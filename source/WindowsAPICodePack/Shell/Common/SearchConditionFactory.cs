@@ -32,9 +32,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public static SearchCondition CreateLeafCondition(string propertyName, string value, SearchConditionOperation operation)
         {
             using (PropVariant propVar = new PropVariant(value))
-            {
+
                 return CreateLeafCondition(propertyName, propVar, null, operation);
-            }
         }
 
         /// <summary>
@@ -54,9 +53,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public static SearchCondition CreateLeafCondition(string propertyName, DateTime value, SearchConditionOperation operation)
         {
             using (PropVariant propVar = new PropVariant(value))
-            {
+
                 return CreateLeafCondition(propertyName, propVar, "System.StructuredQuery.CustomProperty.DateTime", operation);
-            }
         }
 
         /// <summary>
@@ -75,9 +73,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public static SearchCondition CreateLeafCondition(string propertyName, int value, SearchConditionOperation operation)
         {
             using (PropVariant propVar = new PropVariant(value))
-            {
+
                 return CreateLeafCondition(propertyName, propVar, "System.StructuredQuery.CustomProperty.Integer", operation);
-            }
         }
 
         /// <summary>
@@ -96,9 +93,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public static SearchCondition CreateLeafCondition(string propertyName, bool value, SearchConditionOperation operation)
         {
             using (PropVariant propVar = new PropVariant(value))
-            {
+
                 return CreateLeafCondition(propertyName, propVar, "System.StructuredQuery.CustomProperty.Boolean", operation);
-            }
         }
 
         /// <summary>
@@ -117,9 +113,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public static SearchCondition CreateLeafCondition(string propertyName, double value, SearchConditionOperation operation)
         {
             using (PropVariant propVar = new PropVariant(value))
-            {
+
                 return CreateLeafCondition(propertyName, propVar, "System.StructuredQuery.CustomProperty.FloatingPoint", operation);
-            }
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope")]
@@ -136,9 +131,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 ICondition nativeCondition = null;
 
                 if (string.IsNullOrEmpty(propertyName) || propertyName.ToUpperInvariant() == "SYSTEM.NULL")
-                {
+
                     propertyName = null;
-                }
 
                 HResult hr = HResult.Fail;
 
@@ -146,9 +140,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     propVar, null, null, null, false, out nativeCondition);
 
                 if (!CoreErrorHelper.Succeeded(hr))
-                {
+
                     throw new ShellException(hr);
-                }
 
                 // Create our search condition and set the various properties.
                 condition = new SearchCondition(nativeCondition);
@@ -156,9 +149,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
             finally
             {
                 if (nativeConditionFactory != null)
-                {
+
                     Marshal.ReleaseComObject(nativeConditionFactory);
-                }
             }
 
             return condition;
@@ -178,13 +170,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </remarks>
         public static SearchCondition CreateLeafCondition(PropertyKey propertyKey, string value, SearchConditionOperation operation)
         {
-            string canonicalName;
-            PropertySystemNativeMethods.PSGetNameFromPropertyKey(ref propertyKey, out canonicalName);
+            PropertySystemNativeMethods.PSGetNameFromPropertyKey(ref propertyKey, out string canonicalName);
 
             if (string.IsNullOrEmpty(canonicalName))
-            {
-                throw new ArgumentException(LocalizedMessages.SearchConditionFactoryInvalidProperty, "propertyKey");
-            }
+
+                throw new ArgumentException(LocalizedMessages.SearchConditionFactoryInvalidProperty, nameof(propertyKey));
 
             return CreateLeafCondition(canonicalName, value, operation);
         }
@@ -204,13 +194,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </remarks>
         public static SearchCondition CreateLeafCondition(PropertyKey propertyKey, DateTime value, SearchConditionOperation operation)
         {
-            string canonicalName;
-            PropertySystemNativeMethods.PSGetNameFromPropertyKey(ref propertyKey, out canonicalName);
+            PropertySystemNativeMethods.PSGetNameFromPropertyKey(ref propertyKey, out string canonicalName);
 
             if (string.IsNullOrEmpty(canonicalName))
-            {
-                throw new ArgumentException(LocalizedMessages.SearchConditionFactoryInvalidProperty, "propertyKey");
-            }
+
+                throw new ArgumentException(LocalizedMessages.SearchConditionFactoryInvalidProperty, nameof(propertyKey));
+
             return CreateLeafCondition(canonicalName, value, operation);
         }
 
@@ -229,13 +218,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </remarks>
         public static SearchCondition CreateLeafCondition(PropertyKey propertyKey, bool value, SearchConditionOperation operation)
         {
-            string canonicalName;
-            PropertySystemNativeMethods.PSGetNameFromPropertyKey(ref propertyKey, out canonicalName);
+            PropertySystemNativeMethods.PSGetNameFromPropertyKey(ref propertyKey, out string canonicalName);
 
             if (string.IsNullOrEmpty(canonicalName))
-            {
-                throw new ArgumentException(LocalizedMessages.SearchConditionFactoryInvalidProperty, "propertyKey");
-            }
+
+                throw new ArgumentException(LocalizedMessages.SearchConditionFactoryInvalidProperty, nameof(propertyKey));
+
             return CreateLeafCondition(canonicalName, value, operation);
         }
 
@@ -254,13 +242,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </remarks>
         public static SearchCondition CreateLeafCondition(PropertyKey propertyKey, double value, SearchConditionOperation operation)
         {
-            string canonicalName;
-            PropertySystemNativeMethods.PSGetNameFromPropertyKey(ref propertyKey, out canonicalName);
+            PropertySystemNativeMethods.PSGetNameFromPropertyKey(ref propertyKey, out string canonicalName);
 
             if (string.IsNullOrEmpty(canonicalName))
-            {
-                throw new ArgumentException(LocalizedMessages.SearchConditionFactoryInvalidProperty, "propertyKey");
-            }
+
+                throw new ArgumentException(LocalizedMessages.SearchConditionFactoryInvalidProperty, nameof(propertyKey));
+
             return CreateLeafCondition(canonicalName, value, operation);
         }
 
@@ -279,13 +266,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </remarks>
         public static SearchCondition CreateLeafCondition(PropertyKey propertyKey, int value, SearchConditionOperation operation)
         {
-            string canonicalName;
-            PropertySystemNativeMethods.PSGetNameFromPropertyKey(ref propertyKey, out canonicalName);
+            PropertySystemNativeMethods.PSGetNameFromPropertyKey(ref propertyKey, out string canonicalName);
 
             if (string.IsNullOrEmpty(canonicalName))
-            {
-                throw new ArgumentException(LocalizedMessages.SearchConditionFactoryInvalidProperty, "propertyKey");
-            }
+
+                throw new ArgumentException(LocalizedMessages.SearchConditionFactoryInvalidProperty, nameof(propertyKey));
+
             return CreateLeafCondition(canonicalName, value, operation);
         }
 
@@ -312,25 +298,22 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 // 
                 List<ICondition> conditionList = new List<ICondition>();
                 if (conditionNodes != null)
-                {
+
                     foreach (SearchCondition c in conditionNodes)
-                    {
+
                         conditionList.Add(c.NativeSearchCondition);
-                    }
-                }
 
                 IEnumUnknown subConditions = new EnumUnknownClass(conditionList.ToArray());
 
                 HResult hr = nativeConditionFactory.MakeAndOr(conditionType, subConditions, simplify, out result);
 
-                if (!CoreErrorHelper.Succeeded(hr)) { throw new ShellException(hr); }
+                if (!CoreErrorHelper.Succeeded(hr)) throw new ShellException(hr);
             }
             finally
             {
                 if (nativeConditionFactory != null)
-                {
+
                     Marshal.ReleaseComObject(nativeConditionFactory);
-                }
             }
 
             return new SearchCondition(result);
@@ -347,9 +330,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public static SearchCondition CreateNotCondition(SearchCondition conditionToBeNegated, bool simplify)
         {
             if (conditionToBeNegated == null)
-            {
+
                 throw new ArgumentNullException("conditionToBeNegated");
-            }
 
             // Same as the native "IConditionFactory:MakeNot" method
             IConditionFactory nativeConditionFactory = (IConditionFactory)new ConditionFactoryCoClass();
@@ -359,14 +341,13 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 HResult hr = nativeConditionFactory.MakeNot(conditionToBeNegated.NativeSearchCondition, simplify, out result);
 
-                if (!CoreErrorHelper.Succeeded(hr)) { throw new ShellException(hr); }
+                if (!CoreErrorHelper.Succeeded(hr)) throw new ShellException(hr);
             }
             finally
             {
                 if (nativeConditionFactory != null)
-                {
+
                     Marshal.ReleaseComObject(nativeConditionFactory);
-                }
             }
 
             return new SearchCondition(result);
@@ -380,10 +361,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <returns>Search condition resulting from the query</returns>
         /// <remarks>For more information on structured query syntax, visit http://msdn.microsoft.com/en-us/library/bb233500.aspx and
         /// http://www.microsoft.com/windows/products/winfamily/desktopsearch/technicalresources/advquery.mspx</remarks>
-        public static SearchCondition ParseStructuredQuery(string query)
-        {
-            return ParseStructuredQuery(query, null);
-        }
+        public static SearchCondition ParseStructuredQuery(string query) => ParseStructuredQuery(query, null);
 
         /// <summary>
         /// Parses an input string that contains Structured Query keywords (using Advanced Query Syntax 
@@ -397,9 +375,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public static SearchCondition ParseStructuredQuery(string query, CultureInfo cultureInfo)
         {
             if (string.IsNullOrEmpty(query))
-            {
+
                 throw new ArgumentNullException("query");
-            }
 
             IQueryParserManager nativeQueryParserManager = (IQueryParserManager)new QueryParserManagerCoClass();
             IQueryParser queryParser = null;
@@ -418,31 +395,30 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     ref guid,
                     out queryParser);
 
-                if (!CoreErrorHelper.Succeeded(hr)) { throw new ShellException(hr); }
+                if (!CoreErrorHelper.Succeeded(hr)) throw new ShellException(hr);
 
                 if (queryParser != null)
                 {
                     // If user specified natural query, set the option on the query parser
                     using (PropVariant optionValue = new PropVariant(true))
-                    {
-                        hr = queryParser.SetOption(StructuredQuerySingleOption.NaturalSyntax, optionValue);
-                    }
 
-                    if (!CoreErrorHelper.Succeeded(hr)) { throw new ShellException(hr); }
+                        hr = queryParser.SetOption(StructuredQuerySingleOption.NaturalSyntax, optionValue);
+
+                    if (!CoreErrorHelper.Succeeded(hr)) throw new ShellException(hr);
 
                     // Next, try to parse the query.
                     // Result would be IQuerySolution that we can use for getting the ICondition and other
                     // details about the parsed query.
                     hr = queryParser.Parse(query, null, out querySolution);
 
-                    if (!CoreErrorHelper.Succeeded(hr)) { throw new ShellException(hr); }
+                    if (!CoreErrorHelper.Succeeded(hr)) throw new ShellException(hr);
 
                     if (querySolution != null)
                     {
                         // Lastly, try to get the ICondition from this parsed query
                         hr = querySolution.GetQuery(out result, out mainType);
 
-                        if (!CoreErrorHelper.Succeeded(hr)) { throw new ShellException(hr); }
+                        if (!CoreErrorHelper.Succeeded(hr)) throw new ShellException(hr);
                     }
                 }
 
@@ -451,31 +427,27 @@ namespace Microsoft.WindowsAPICodePack.Shell
             }
             catch
             {
-                if (searchCondition != null) { searchCondition.Dispose(); }
+                if (searchCondition != null) searchCondition.Dispose();
                 throw;
             }
             finally
             {
                 if (nativeQueryParserManager != null)
-                {
+                
                     Marshal.ReleaseComObject(nativeQueryParserManager);
-                }
-
+                
                 if (queryParser != null)
-                {
+                
                     Marshal.ReleaseComObject(queryParser);
-                }
-
+                
                 if (querySolution != null)
-                {
+                
                     Marshal.ReleaseComObject(querySolution);
-                }
-
+                
                 if (mainType != null)
-                {
+                
                     Marshal.ReleaseComObject(mainType);
-                }
-            }
+                            }
         }
     }
 }

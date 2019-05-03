@@ -75,9 +75,9 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             finally
             {
                 if (!succeeded)
-                {
+
                     RollBack(originalPtr, length);
-                }
+
                 _cacheLock.ExitWriteLock();
             }
         }
@@ -91,7 +91,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             for (int i = 0; i < services.Length; ++i)
             {
                 Guid guid = (Guid)Marshal.PtrToStructure(
-                    (IntPtr)((UInt64)pServices + InteropTools.OffsetOfGuidInService), InteropTools.TypeOfGuid);
+                    (IntPtr)((ulong)pServices + InteropTools.OffsetOfGuidInService), InteropTools.TypeOfGuid);
                 IntPtr cachedValue;
                 _guidToService.TryGetValue(guid, out cachedValue);
                 if (cachedValue == IntPtr.Zero)
@@ -102,7 +102,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
                 }
                 System.Diagnostics.Debug.Assert(cachedValue != IntPtr.Zero, "Cached value is NULL");
                 services[i] = cachedValue;
-                pServices = (IntPtr)((UInt64)pServices + InteropTools.SizeOfService);
+                pServices = (IntPtr)((ulong)pServices + InteropTools.SizeOfService);
             }
             if (addedToCache)
             {
@@ -125,7 +125,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
                 for (int i = 0; i < length; ++i)
                 {
                     Guid guid = (Guid)Marshal.PtrToStructure(
-                        (IntPtr)((UInt64)pServices + InteropTools.OffsetOfGuidInService), 
+                        (IntPtr)((UInt64)pServices + InteropTools.OffsetOfGuidInService),
                         InteropTools.TypeOfGuid);
                     _guidToService.Remove(guid);
                     pServices = (IntPtr)((UInt64)pServices + InteropTools.SizeOfService);
@@ -135,7 +135,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             finally
             {
                 if (!succeeded)
-                {
+
                     // This should never happen, as none of the above functions
                     // should be allocating any memory, and this rollback
                     // should generally happen in a low-memory condition.
@@ -143,7 +143,6 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
                     // but invalidate the whole cache, since we may still have
                     // traces of the original pointer there.
                     _guidToService = null;
-                }
             }
         }
 
@@ -163,27 +162,20 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         internal void UnregisterResource()
         {
             if (Interlocked.Decrement(ref _resourceRefCount) == 0 && IsInvalid)
-            {
+
                 FreeAllServices();
-            }
         }
 
-        private bool IsInvalid
-        {
-            get
-            {
-                return Interlocked.CompareExchange(ref _finalized, 1, 1) != 0;
-            }
-        }
+        private bool IsInvalid => Interlocked.CompareExchange(ref _finalized, 1, 1) != 0;
 
         private void ReleaseHandle()
         {
             if (!IsInvalid)
             {
                 if (Interlocked.Read(ref _resourceRefCount) == 0)
-                {
+
                     FreeAllServices();
-                }
+
                 Interlocked.CompareExchange(ref _finalized, 1, 0);
             }
         }
@@ -197,20 +189,14 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             if (_servicePointers != null)
             {
                 foreach (IntPtr servicePtr in _servicePointers)
-                {
+                
                     Win32NativeMethods.MappingFreeServicesVoid(servicePtr);
-                }
+                
                 _servicePointers = null;
                 _guidToService = null;
             }
         }
 
-        internal static ServiceCache Instance
-        {
-            get
-            {
-                return staticInstance;
-            }
-        }
+        internal static ServiceCache Instance => staticInstance;
     }
 }

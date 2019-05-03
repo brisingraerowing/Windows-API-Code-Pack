@@ -20,10 +20,7 @@ namespace Microsoft.WindowsAPICodePack.Net
 
         #endregion // Private Fields
 
-        internal NetworkConnectionCollection(IEnumerable networkConnectionEnumerable)
-        {
-            this.networkConnectionEnumerable = networkConnectionEnumerable;
-        }
+        internal NetworkConnectionCollection(IEnumerable networkConnectionEnumerable) => this.networkConnectionEnumerable = networkConnectionEnumerable;
 
         #region IEnumerable<NetworkConnection> Members
 
@@ -34,9 +31,8 @@ namespace Microsoft.WindowsAPICodePack.Net
         public IEnumerator<NetworkConnection> GetEnumerator()
         {
             foreach (INetworkConnection networkConnection in networkConnectionEnumerable)
-            {
+
                 yield return new NetworkConnection(networkConnection);
-            }
         }
 
         #endregion
@@ -50,9 +46,8 @@ namespace Microsoft.WindowsAPICodePack.Net
         IEnumerator IEnumerable.GetEnumerator()
         {
             foreach (INetworkConnection networkConnection in networkConnectionEnumerable)
-            {
+
                 yield return new NetworkConnection(networkConnection);
-            }
         }
 
         #endregion

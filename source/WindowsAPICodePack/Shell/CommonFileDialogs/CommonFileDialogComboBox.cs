@@ -14,14 +14,10 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
     [ContentProperty("Items")]
     public class CommonFileDialogComboBox : CommonFileDialogProminentControl, ICommonFileDialogIndexedControls
     {
-        private readonly Collection<CommonFileDialogComboBoxItem> items = new Collection<CommonFileDialogComboBoxItem>();
         /// <summary>
         /// Gets the collection of CommonFileDialogComboBoxItem objects.
         /// </summary>
-        public Collection<CommonFileDialogComboBoxItem> Items
-        {
-            get { return items; }
-        }
+        public Collection<CommonFileDialogComboBoxItem> Items { get; } = new Collection<CommonFileDialogComboBoxItem>();
 
         /// <summary>
         /// Creates a new instance of this class.
@@ -42,13 +38,14 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
         #region ICommonFileDialogIndexedControls Members
 
         private int selectedIndex = -1;
+
         /// <summary>
         /// Gets or sets the current index of the selected item.
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2201:DoNotRaiseReservedExceptionTypes")]
         public int SelectedIndex
         {
-            get { return selectedIndex; }
+            get => selectedIndex;
             set
             {
                 // Don't update property if it hasn't changed
@@ -62,7 +59,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
                 }
 
                 // Only update this property if it has a valid value
-                if (value >= 0 && value < items.Count)
+                if (value >= 0 && value < Items.Count)
                 {
                     selectedIndex = value;
                     ApplyPropertyChange("SelectedIndex");
@@ -114,25 +111,24 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
             Debug.Assert(dialog != null, "CommonFileDialogComboBox.Attach: dialog parameter can not be null");
 
             // Add the combo box control
-            dialog.AddComboBox(this.Id);
+            dialog.AddComboBox(Id);
 
             // Add the combo box items
-            for (int index = 0; index < items.Count; index++)
-                dialog.AddControlItem(this.Id, index, items[index].Text);
+            for (int index = 0; index < Items.Count; index++)
+                dialog.AddControlItem(Id, index, Items[index].Text);
 
             // Set the currently selected item
-            if (selectedIndex >= 0 && selectedIndex < items.Count)
-            {
-                dialog.SetSelectedControlItem(this.Id, this.selectedIndex);
-            }
+            if (selectedIndex >= 0 && selectedIndex < Items.Count)
+            
+                dialog.SetSelectedControlItem(Id, selectedIndex);
+            
             else if (selectedIndex != -1)
-            {
+            
                 throw new IndexOutOfRangeException(LocalizedMessages.ComboBoxIndexOutsideBounds);
-            }
-
+            
             // Make this control prominent if needed
             if (IsProminent)
-                dialog.MakeProminent(this.Id);
+                dialog.MakeProminent(Id);
 
             // Sync additional properties
             SyncUnmanagedProperties();
@@ -145,15 +141,10 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
     /// </summary>
     public class CommonFileDialogComboBoxItem
     {
-        private string text = string.Empty;
         /// <summary>
         /// Gets or sets the string that is displayed for this item.
         /// </summary>
-        public string Text
-        {
-            get { return text; }
-            set { text = value; }
-        }
+        public string Text { get; set; } = string.Empty;
 
         /// <summary>
         /// Creates a new instance of this class.
@@ -166,9 +157,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
         /// Creates a new instance of this class with the specified text.
         /// </summary>
         /// <param name="text">The text to use for the combo box item.</param>
-        public CommonFileDialogComboBoxItem(string text)
-        {
-            this.text = text;
-        }
+        public CommonFileDialogComboBoxItem(string text) => Text = text;
     }
 }

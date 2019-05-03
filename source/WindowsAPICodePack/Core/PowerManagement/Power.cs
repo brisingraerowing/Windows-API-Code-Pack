@@ -8,43 +8,37 @@ using MS.WindowsAPICodePack.Internal;
 using Microsoft.WindowsAPICodePack.Resources;
 
 namespace Microsoft.WindowsAPICodePack.ApplicationServices
-{    
+{
     internal static class Power
-    {        
+    {
         internal static PowerManagementNativeMethods.SystemPowerCapabilities
             GetSystemPowerCapabilities()
         {
             PowerManagementNativeMethods.SystemPowerCapabilities powerCap;
 
-            uint retval = PowerManagementNativeMethods.CallNtPowerInformation(
+            if (PowerManagementNativeMethods.CallNtPowerInformation(
               PowerManagementNativeMethods.PowerInformationLevel.SystemPowerCapabilities,
               IntPtr.Zero, 0, out powerCap,
-              (UInt32)Marshal.SizeOf(typeof(PowerManagementNativeMethods.SystemPowerCapabilities))
-              );
-
-            if (retval == CoreNativeMethods.StatusAccessDenied)
-            {
+              (uint)Marshal.SizeOf(typeof(PowerManagementNativeMethods.SystemPowerCapabilities))
+              ) == CoreNativeMethods.StatusAccessDenied)
+            
                 throw new UnauthorizedAccessException(LocalizedMessages.PowerInsufficientAccessCapabilities);
-            }
-
+            
             return powerCap;
         }
-        
+
         internal static PowerManagementNativeMethods.SystemBatteryState GetSystemBatteryState()
         {
             PowerManagementNativeMethods.SystemBatteryState batteryState;
 
-            uint retval = PowerManagementNativeMethods.CallNtPowerInformation(
+            if (PowerManagementNativeMethods.CallNtPowerInformation(
               PowerManagementNativeMethods.PowerInformationLevel.SystemBatteryState,
               IntPtr.Zero, 0, out batteryState,
-              (UInt32)Marshal.SizeOf(typeof(PowerManagementNativeMethods.SystemBatteryState))
-              );
-
-            if (retval == CoreNativeMethods.StatusAccessDenied)
-            {
+              (uint)Marshal.SizeOf(typeof(PowerManagementNativeMethods.SystemBatteryState))
+              ) == CoreNativeMethods.StatusAccessDenied)
+            
                 throw new UnauthorizedAccessException(LocalizedMessages.PowerInsufficientAccessBatteryState);
-            }
-
+            
             return batteryState;
         }
 
@@ -59,14 +53,9 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// <returns>Returns a notification handle for unregistering 
         /// power notifications.</returns>
         internal static int RegisterPowerSettingNotification(
-            IntPtr handle, Guid powerSetting)
-        {
-            int outHandle = PowerManagementNativeMethods.RegisterPowerSettingNotification(
+            IntPtr handle, Guid powerSetting) => PowerManagementNativeMethods.RegisterPowerSettingNotification(
                 handle,
                 ref powerSetting,
                 0);
-
-            return outHandle;
-        }        
     }
 }

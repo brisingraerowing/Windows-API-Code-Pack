@@ -29,31 +29,20 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// <param name="text">The label for this button.</param>
         /// <param name="instruction">The instruction for this command link.</param>
         public TaskDialogCommandLink(string name, string text, string instruction)
-            : base(name, text)
-        {
-            this.instruction = instruction;
-        }
+            : base(name, text) => this.Instruction = instruction;
 
-        private string instruction;
         /// <summary>
         /// Gets or sets the instruction associated with this command link button.
         /// </summary>
-        public string Instruction
-        {
-            get { return instruction; }
-            set { instruction = value; }
-        }
+        public string Instruction { get; set; }
 
         /// <summary>
         /// Returns a string representation of this object.
         /// </summary>
-        /// <returns>A <see cref="System.String"/></returns>
-        public override string ToString()
-        {
-            return string.Format(CultureInfo.CurrentCulture, "{0}{1}{2}",
+        /// <returns>A <see cref="string"/></returns>
+        public override string ToString() => string.Format(CultureInfo.CurrentCulture, "{0}{1}{2}",
                 Text ?? string.Empty,
-                (!string.IsNullOrEmpty(Text) && !string.IsNullOrEmpty(instruction)) ? Environment.NewLine : string.Empty,
-                instruction ?? string.Empty);
-        }
+                (!string.IsNullOrEmpty(Text) && !string.IsNullOrEmpty(Instruction)) ? Environment.NewLine : string.Empty,
+                Instruction ?? string.Empty);
     }
 }

@@ -27,7 +27,7 @@ namespace MS.WindowsAPICodePack.Internal
         /// <param name="wparam">Specifies additional message-specific information.</param>
         /// <param name="lparam">Specifies additional message-specific information.</param>
         /// <returns>A return code specific to the message being sent.</returns>     
-        [DllImport("user32.dll", CharSet = CharSet.Auto, PreserveSig=false, SetLastError = true)]
+        [DllImport("user32.dll", CharSet = CharSet.Auto, PreserveSig = false, SetLastError = true)]
         public static extern void PostMessage(
             IntPtr windowHandle,
             WindowMessage message,
@@ -118,10 +118,7 @@ namespace MS.WindowsAPICodePack.Internal
             IntPtr windowHandle,
             uint message,
             int wparam,
-            string lparam)
-        {
-            return SendMessage(windowHandle, message, (IntPtr)wparam, lparam);
-        }
+            string lparam) => SendMessage(windowHandle, message, (IntPtr)wparam, lparam);
 
         /// <summary>
         /// Sends the specified message to a window or windows. The SendMessage function calls 
@@ -203,20 +200,14 @@ namespace MS.WindowsAPICodePack.Internal
         /// <param name="value">The value to get the hi word from.</param>
         /// <param name="size">Size</param>
         /// <returns>The upper half of the dword.</returns>        
-        public static int GetHiWord(long value, int size)
-        {
-            return (short)(value >> size);
-        }
+        public static int GetHiWord(long value, int size) => (short)(value >> size);
 
         /// <summary>
         /// Gets the LoWord
         /// </summary>
         /// <param name="value">The value to get the low word from.</param>
         /// <returns>The lower half of the dword.</returns>
-        public static int GetLoWord(long value)
-        {
-            return (short)(value & 0xFFFF);
-        }
+        public static int GetLoWord(long value) => (short)(value & 0xFFFF);
 
         #endregion
 
@@ -228,18 +219,15 @@ namespace MS.WindowsAPICodePack.Internal
         [StructLayout(LayoutKind.Sequential)]
         public struct Size
         {
-            private int width;
-            private int height;
-
             /// <summary>
             /// Width
             /// </summary>
-            public int Width { get { return width; } set { width = value; } }
+            public int Width { get; set; }
 
             /// <summary>
             /// Height
             /// </summary>
-            public int Height { get { return height; } set { height = value; } }
+            public int Height { get; set; }
         };
 
         // Enable/disable non-client rendering based on window style.
@@ -275,6 +263,4 @@ namespace MS.WindowsAPICodePack.Internal
 
         #endregion
     }
-
-    
 }

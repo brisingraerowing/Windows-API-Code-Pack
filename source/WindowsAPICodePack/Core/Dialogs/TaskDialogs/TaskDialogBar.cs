@@ -24,20 +24,17 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// </summary>
         public TaskDialogProgressBarState State
         {
-            get { return state; }
+            get => state;
             set
             {
-                CheckPropertyChangeAllowed("State");
+                CheckPropertyChangeAllowed(nameof(State));
                 state = value;
-                ApplyPropertyChange("State");
+                ApplyPropertyChange(nameof(State));
             }
         }
         /// <summary>
         /// Resets the state of the control to normal.
         /// </summary>
-        protected internal virtual void Reset()
-        {
-            state = TaskDialogProgressBarState.Normal;
-        }
+        protected internal virtual void Reset() => state = TaskDialogProgressBarState.Normal;
     }
 }

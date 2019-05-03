@@ -13,11 +13,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// Creates a new instance of this class with the specified link text.
         /// </summary>
         /// <param name="linkText">The text of the hyperlink that was clicked.</param>
-        public TaskDialogHyperlinkClickedEventArgs(string linkText)
-        {
-            LinkText = linkText;            
-        }
-                
+        public TaskDialogHyperlinkClickedEventArgs(string linkText) => LinkText = linkText;
+
         /// <summary>
         /// Gets or sets the text of the hyperlink that was clicked.
         /// </summary>

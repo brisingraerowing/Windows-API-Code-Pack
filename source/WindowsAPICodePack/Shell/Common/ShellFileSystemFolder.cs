@@ -17,10 +17,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             // Empty
         }
 
-        internal ShellFileSystemFolder(IShellItem2 shellItem)
-        {
-            nativeShellItem = shellItem;
-        }
+        internal ShellFileSystemFolder(IShellItem2 shellItem) => nativeShellItem = shellItem;
 
         #endregion
 
@@ -37,12 +34,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             // Make sure this is valid
             if (!Directory.Exists(absPath))
-            {
+            
                 throw new DirectoryNotFoundException(
                     string.Format(System.Globalization.CultureInfo.InvariantCulture,
                     LocalizedMessages.FilePathNotExist, path));
-            }
-
+            
             ShellFileSystemFolder folder = new ShellFileSystemFolder();
             try
             {
@@ -64,10 +60,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// The path for this Folder
         /// </summary>
-        public virtual string Path
-        {
-            get { return this.ParsingName; }
-        }
+        public virtual string Path => ParsingName;
 
         #endregion
 

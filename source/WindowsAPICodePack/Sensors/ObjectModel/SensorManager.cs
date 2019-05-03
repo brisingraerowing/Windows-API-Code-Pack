@@ -71,10 +71,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// </summary>
         /// <returns>A list of all sensors.</returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
-        public static SensorList<Sensor> GetAllSensors()
-        {
-            return GetSensorsByCategoryId(SensorCategories.All);
-        }
+        public static SensorList<Sensor> GetAllSensors() => GetSensorsByCategoryId(SensorCategories.All);
 
         /// <summary>
         /// Retrieves a collection of sensors filtered by category ID.
@@ -83,12 +80,11 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// <returns>A list of sensors of the specified category ID.</returns>
         public static SensorList<Sensor> GetSensorsByCategoryId(Guid category)
         {
-            ISensorCollection sensorCollection = null;
-            HResult hr = sensorManager.GetSensorsByCategory(category, out sensorCollection);
-            if (hr == HResult.ElementNotFound)
+            if (sensorManager.GetSensorsByCategory(category, out ISensorCollection sensorCollection) == HResult.ElementNotFound)
+
                 throw new SensorPlatformException(LocalizedMessages.SensorsNotFound);
 
-            return nativeSensorCollectionToSensorCollection<Sensor>(sensorCollection);
+            return NativeSensorCollectionToSensorCollection<Sensor>(sensorCollection);
         }
 
         /// <summary>
@@ -98,13 +94,11 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// <returns>A list of sensors of the spefified type ID.</returns>
         public static SensorList<Sensor> GetSensorsByTypeId(Guid typeId)
         {
-            ISensorCollection sensorCollection = null;
-            HResult hr = sensorManager.GetSensorsByType(typeId, out sensorCollection);
-            if (hr == HResult.ElementNotFound)
-            {
+            if (sensorManager.GetSensorsByType(typeId, out ISensorCollection sensorCollection) == HResult.ElementNotFound)
+
                 throw new SensorPlatformException(LocalizedMessages.SensorsNotFound);
-            }
-            return nativeSensorCollectionToSensorCollection<Sensor>(sensorCollection);
+
+            return NativeSensorCollectionToSensorCollection<Sensor>(sensorCollection);
         }
 
         /// <summary>
@@ -119,13 +113,11 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             {
                 SensorDescriptionAttribute sda = attrs[0] as SensorDescriptionAttribute;
 
-                ISensorCollection nativeSensorCollection = null;
-                HResult hr = sensorManager.GetSensorsByType(sda.SensorTypeGuid, out nativeSensorCollection);
-                if (hr == HResult.ElementNotFound)
-                {
+                if (sensorManager.GetSensorsByType(sda.SensorTypeGuid, out ISensorCollection nativeSensorCollection) == HResult.ElementNotFound)
+
                     throw new SensorPlatformException(LocalizedMessages.SensorsNotFound);
-                }
-                return nativeSensorCollectionToSensorCollection<T>(nativeSensorCollection);
+
+                return NativeSensorCollectionToSensorCollection<T>(nativeSensorCollection);
             }
 
             return new SensorList<T>();
@@ -139,19 +131,13 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// <returns>A particular sensor.</returns>        
         public static T GetSensorBySensorId<T>(Guid sensorId) where T : Sensor
         {
-            ISensor nativeSensor = null;
-            HResult hr = sensorManager.GetSensorByID(sensorId, out nativeSensor);
+            HResult hr = sensorManager.GetSensorByID(sensorId, out ISensor nativeSensor);
+
             if (hr == HResult.ElementNotFound)
-            {
+
                 throw new SensorPlatformException(LocalizedMessages.SensorsNotFound);
-            }
 
-            if (nativeSensor != null)
-            {
-                return GetSensorWrapperInstance<T>(nativeSensor);
-            }
-
-            return null;
+            return nativeSensor == null ? null : GetSensorWrapperInstance<T>(nativeSensor);
         }
 
         /// <summary>
@@ -163,16 +149,14 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         public static void RequestPermission(IntPtr parentWindowHandle, bool modal, SensorList<Sensor> sensors)
         {
             if (sensors == null || sensors.Count == 0)
-            {
+
                 throw new ArgumentException(LocalizedMessages.SensorManagerEmptySensorsCollection, "sensors");
-            }
 
             ISensorCollection sensorCollection = new SensorCollection();
 
             foreach (Sensor sensor in sensors)
-            {
-                sensorCollection.Add(sensor.internalObject);
-            }
+
+                sensorCollection.Add(sensor.InternalObject);
 
             sensorManager.RequestPermissions(parentWindowHandle, sensorCollection, modal);
         }
@@ -190,7 +174,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
         #region implementation
         private static NativeISensorManager sensorManager = new NativeSensorManager();
-        private static nativeSensorManagerEventSink sensorManagerEventSink = new nativeSensorManagerEventSink();
+        private static NativeSensorManagerEventSink sensorManagerEventSink = new NativeSensorManagerEventSink();
 
         /// <summary>
         /// Sensor type GUID -> .NET Type + report type
@@ -212,23 +196,21 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             sensorManager.SetEventSink(sensorManagerEventSink);
         }
 
-        internal static SensorList<S> nativeSensorCollectionToSensorCollection<S>(ISensorCollection nativeCollection) where S : Sensor
+        internal static SensorList<S> NativeSensorCollectionToSensorCollection<S>(ISensorCollection nativeCollection) where S : Sensor
         {
             SensorList<S> sensors = new SensorList<S>();
 
             if (nativeCollection != null)
             {
-                uint sensorCount = 0;
-                nativeCollection.GetCount(out sensorCount);
+                nativeCollection.GetCount(out uint sensorCount);
 
                 for (uint i = 0; i < sensorCount; i++)
                 {
-                    ISensor iSensor = null;
-                    nativeCollection.GetAt(i, out iSensor);
+                    nativeCollection.GetAt(i, out ISensor iSensor);
                     S sensor = GetSensorWrapperInstance<S>(iSensor);
                     if (sensor != null)
                     {
-                        sensor.internalObject = iSensor;
+                        sensor.InternalObject = iSensor;
                         sensors.Add(sensor);
                     }
                 }
@@ -243,9 +225,8 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         internal static void OnSensorsChanged(Guid sensorId, SensorAvailabilityChange change)
         {
             if (SensorsChanged != null)
-            {
+
                 SensorsChanged.Invoke(new SensorsChangedEventArgs(sensorId, change));
-            }
         }
 
         /// <summary>
@@ -262,7 +243,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                 {
                     Type[] exportedTypes = asm.GetExportedTypes();
                     foreach (Type t in exportedTypes)
-                    {
+
                         if (t.IsSubclassOf(typeof(Sensor)) && t.IsPublic && !t.IsAbstract && !t.IsGenericType)
                         {
                             object[] attrs = t.GetCustomAttributes(typeof(SensorDescriptionAttribute), true);
@@ -275,7 +256,6 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                                 sensorTypeToGuid.Add(t, sda.SensorTypeGuid);
                             }
                         }
-                    }
                 }
                 catch (System.NotSupportedException)
                 {
@@ -308,7 +288,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             try
             {
                 S sensor = (S)Activator.CreateInstance(sensorClassType);
-                sensor.internalObject = nativeISensor;
+                sensor.InternalObject = nativeISensor;
                 return sensor;
             }
             catch (InvalidCastException)
@@ -326,28 +306,19 @@ namespace Microsoft.WindowsAPICodePack.Sensors
     /// </summary>
     internal struct SensorTypeData
     {
-        private Type sensorType;
-        private SensorDescriptionAttribute sda;
-
         public SensorTypeData(Type sensorClassType, SensorDescriptionAttribute sda)
         {
-            this.sensorType = sensorClassType;
-            this.sda = sda;
+            SensorType = sensorClassType;
+            Attr = sda;
         }
 
-        public Type SensorType
-        {
-            get { return this.sensorType; }
-        }
-        
+        public Type SensorType { get; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        public SensorDescriptionAttribute Attr
-        {
-            get { return this.sda; }
-        }
+        public SensorDescriptionAttribute Attr { get; }
     }
 
-    internal class nativeSensorManagerEventSink : ISensorManagerEvents
+    internal class NativeSensorManagerEventSink : ISensorManagerEvents
     {
         #region nativeISensorManagerEvents Members
 
@@ -356,11 +327,10 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             if (state == NativeSensorState.Ready)
             {
                 Guid sensorId;
-                HResult hr = nativeSensor.GetID(out sensorId);
-                if (hr == HResult.Ok)
-                {
+
+                if (nativeSensor.GetID(out sensorId) == HResult.Ok)
+
                     SensorManager.OnSensorsChanged(sensorId, SensorAvailabilityChange.Addition);
-                }
             }
         }
 

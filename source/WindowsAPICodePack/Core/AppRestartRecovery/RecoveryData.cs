@@ -1,9 +1,12 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using System;
+using static Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRestartRecoveryManager;
+
 namespace Microsoft.WindowsAPICodePack.ApplicationServices
 {
     /// <summary>
-    /// The <see cref="System.Delegate"/> that represents the callback method invoked
+    /// The <see cref="Delegate"/> that represents the callback method invoked
     /// by the system when an application has registered for 
     /// application recovery. 
     /// </summary>
@@ -11,8 +14,8 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
     /// <remarks>The callback method will be invoked
     /// prior to the application being terminated by Windows Error Reporting (WER). To keep WER from terminating the application before 
     /// the callback method completes, the callback method must
-    /// periodically call the <see cref="ApplicationRestartRecoveryManager.ApplicationRecoveryInProgress"/> method. </remarks>
-    /// <seealso cref="ApplicationRestartRecoveryManager.RegisterForApplicationRecovery(RecoverySettings)"/>
+    /// periodically call the <see cref="ApplicationRecoveryInProgress"/> method. </remarks>
+    /// <seealso cref="RegisterForApplicationRecovery(RecoverySettings)"/>
     public delegate int RecoveryCallback(object state);
 
     /// <summary>
@@ -46,9 +49,6 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// <summary>
         /// Invokes the recovery callback function.
         /// </summary>
-        public void Invoke()
-        {
-            if (Callback != null) { Callback(State); }
-        }
+        public void Invoke() => Callback?.Invoke(State);
     }
 }

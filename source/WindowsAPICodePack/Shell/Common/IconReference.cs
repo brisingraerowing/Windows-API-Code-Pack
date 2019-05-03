@@ -27,9 +27,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
             : this()
         {
             if (string.IsNullOrEmpty(moduleName))
-            {
-                throw new ArgumentNullException("moduleName");
-            }
+
+                throw new ArgumentNullException(nameof(moduleName));
 
             this.moduleName = moduleName;
             ResourceId = resourceId;
@@ -45,21 +44,19 @@ namespace Microsoft.WindowsAPICodePack.Shell
             : this()
         {
             if (string.IsNullOrEmpty(refPath))
-            {
+
                 throw new ArgumentNullException("refPath");
-            }
 
             string[] refParams = refPath.Split(commaSeparator);
 
             if (refParams.Length != 2 || string.IsNullOrEmpty(refParams[0]) || string.IsNullOrEmpty(refParams[1]))
-            {
+
                 throw new ArgumentException(LocalizedMessages.InvalidReferencePath, "refPath");
-            }
 
             moduleName = refParams[0];
             ResourceId = int.Parse(refParams[1], System.Globalization.CultureInfo.InvariantCulture);
 
-            this.referencePath = refPath;
+            referencePath = refPath;
         }
 
         /// <summary>
@@ -67,16 +64,13 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         public string ModuleName
         {
-            get
-            {
-                return moduleName;
-            }
+            get => moduleName;
             set
             {
                 if (string.IsNullOrEmpty(value))
-                {
+
                     throw new ArgumentNullException("value");
-                }
+
                 moduleName = value;
             }
         }
@@ -91,23 +85,18 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         public string ReferencePath
         {
-            get
-            {
-                return referencePath;
-            }
+            get => referencePath;
             set
             {
                 if (string.IsNullOrEmpty(value))
-                {
+
                     throw new ArgumentNullException("value");
-                }
 
                 string[] refParams = value.Split(commaSeparator);
 
                 if (refParams.Length != 2 || string.IsNullOrEmpty(refParams[0]) || string.IsNullOrEmpty(refParams[1]))
-                {
+
                     throw new ArgumentException(LocalizedMessages.InvalidReferencePath, "value");
-                }
 
                 ModuleName = refParams[0];
                 ResourceId = int.Parse(refParams[1], System.Globalization.CultureInfo.InvariantCulture);
@@ -122,12 +111,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="icon1">First object to compare.</param>
         /// <param name="icon2">Second object to compare.</param>
         /// <returns>True if icon1 equals icon1; false otherwise.</returns>
-        public static bool operator ==(IconReference icon1, IconReference icon2)
-        {
-            return (icon1.moduleName == icon2.moduleName) &&
+        public static bool operator ==(IconReference icon1, IconReference icon2) => (icon1.moduleName == icon2.moduleName) &&
                 (icon1.referencePath == icon2.referencePath) &&
                 (icon1.ResourceId == icon2.ResourceId);
-        }
 
         /// <summary>
         /// Implements the != (unequality) operator.
@@ -135,21 +121,14 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="icon1">First object to compare.</param>
         /// <param name="icon2">Second object to compare.</param>
         /// <returns>True if icon1 does not equals icon1; false otherwise.</returns>
-        public static bool operator !=(IconReference icon1, IconReference icon2)
-        {
-            return !(icon1 == icon2);
-        }
+        public static bool operator !=(IconReference icon1, IconReference icon2) => !(icon1 == icon2);
 
         /// <summary>
         /// Determines if this object is equal to another.
         /// </summary>
         /// <param name="obj">The object to compare</param>
         /// <returns>Returns true if the objects are equal; false otherwise.</returns>
-        public override bool Equals(object obj)
-        {
-            if (obj == null || !(obj is IconReference)) { return false; }
-            return (this == (IconReference)obj);
-        }
+        public override bool Equals(object obj) => obj == null || !(obj is IconReference) ? false : this == (IconReference)obj;
 
         /// <summary>
         /// Generates a nearly unique hashcode for this structure.
@@ -157,9 +136,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <returns>A hash code.</returns>
         public override int GetHashCode()
         {
-            int hash = this.moduleName.GetHashCode();
-            hash = hash * 31 + this.referencePath.GetHashCode();
-            hash = hash * 31 + this.ResourceId.GetHashCode();
+            int hash = moduleName.GetHashCode();
+            hash = (hash * 31) + referencePath.GetHashCode();
+            hash = (hash * 31) + ResourceId.GetHashCode();
             return hash;
         }
 

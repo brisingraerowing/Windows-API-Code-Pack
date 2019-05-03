@@ -24,17 +24,16 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             // Need to make sure we're running on Vista or higher
             if (!CoreHelpers.RunningOnVista)
-            {
+            
                 throw new PlatformNotSupportedException(LocalizedMessages.ShellObjectFactoryPlatformNotSupported);
-            }
-
+            
             // A lot of APIs need IShellItem2, so just keep a copy of it here
             IShellItem2 nativeShellItem2 = nativeShellItem as IShellItem2;
 
             // Get the System.ItemType property
             string itemType = ShellHelper.GetItemType(nativeShellItem2);
 
-            if (!string.IsNullOrEmpty(itemType)) { itemType = itemType.ToUpperInvariant(); }
+            if (!string.IsNullOrEmpty(itemType))  itemType = itemType.ToUpperInvariant(); 
 
             // Get some IShellItem attributes
             ShellNativeMethods.ShellFileGetAttributesOptions sfgao;
@@ -47,7 +46,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             bool isFolder = (sfgao & ShellNativeMethods.ShellFileGetAttributesOptions.Folder) != 0;
 
             // Shell Library
-            ShellLibrary shellLibrary = null;
+            ShellLibrary shellLibrary   ;
 
             // Create the right type of ShellObject based on the above information 
 

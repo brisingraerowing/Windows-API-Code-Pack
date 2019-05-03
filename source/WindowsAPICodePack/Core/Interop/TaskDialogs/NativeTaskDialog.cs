@@ -69,9 +69,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             // Applies config struct and other settings, then
             // calls main Win32 function.
             if (settings == null)
-            {
+
                 throw new InvalidOperationException(LocalizedMessages.NativeTaskDialogConfigurationError);
-            }
 
             // Do a last-minute parse of the various dialog control lists,  
             // and only allocate the memory at the last minute.
@@ -243,12 +242,10 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             }
 
             if (settings.ElevatedButtons != null && settings.ElevatedButtons.Count > 0)
-            {
+
                 foreach (int id in settings.ElevatedButtons)
-                {
+
                     UpdateElevationIcon(id, true);
-                }
-            }
 
             return CoreErrorHelper.Ignored;
         }
@@ -259,9 +256,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             // However, we implement Close() by sending a cancel button, so 
             // we don't want to raise a click event in response to that.
             if (ShowState != DialogShowState.Closing)
-            {
+
                 outerDialog.RaiseButtonClickEvent(id);
-            }
 
             // Once that returns, we raise a Closing event for the dialog
             // The Win32 API handles button clicking-and-closing 
@@ -269,9 +265,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             // but it is more .NET friendly to split them up.
             // Unfortunately, we do NOT have the return values at this stage.
             if (id < DialogsDefaults.MinimumDialogControlId)
-            {
+
                 return outerDialog.RaiseClosingEvent(id);
-            }
 
             // https://msdn.microsoft.com/en-us/library/windows/desktop/bb760542(v=vs.85).aspx
             // The return value is specific to the notification being processed.
@@ -288,13 +283,12 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             // we do have a default radio button
             if (firstRadioButtonClicked
                 && !IsOptionSet(TaskDialogNativeMethods.TaskDialogOptions.NoDefaultRadioButton))
-            {
+
                 firstRadioButtonClicked = false;
-            }
+
             else
-            {
+
                 outerDialog.RaiseButtonClickEvent(id);
-            }
 
             // Note: we don't raise Closing, as radio 
             // buttons are non-committing buttons
@@ -347,7 +341,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             AssertCurrentlyShowing();
 
             // Build range LPARAM - note it is in REVERSE intuitive order.
-            long range = NativeTaskDialog.MakeLongLParam(
+            long range = MakeLongLParam(
                 settings.ProgressBarMaximum,
                 settings.ProgressBarMinimum);
 
@@ -360,25 +354,13 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             SendMessageHelper(TaskDialogNativeMethods.TaskDialogMessages.SetProgressBarState, (int)state, 0);
         }
 
-        internal void UpdateText(string text)
-        {
-            UpdateTextCore(text, TaskDialogNativeMethods.TaskDialogElements.Content);
-        }
+        internal void UpdateText(string text) => UpdateTextCore(text, TaskDialogNativeMethods.TaskDialogElements.Content);
 
-        internal void UpdateInstruction(string instruction)
-        {
-            UpdateTextCore(instruction, TaskDialogNativeMethods.TaskDialogElements.MainInstruction);
-        }
+        internal void UpdateInstruction(string instruction) => UpdateTextCore(instruction, TaskDialogNativeMethods.TaskDialogElements.MainInstruction);
 
-        internal void UpdateFooterText(string footerText)
-        {
-            UpdateTextCore(footerText, TaskDialogNativeMethods.TaskDialogElements.Footer);
-        }
+        internal void UpdateFooterText(string footerText) => UpdateTextCore(footerText, TaskDialogNativeMethods.TaskDialogElements.Footer);
 
-        internal void UpdateExpandedText(string expandedText)
-        {
-            UpdateTextCore(expandedText, TaskDialogNativeMethods.TaskDialogElements.ExpandedInformation);
-        }
+        internal void UpdateExpandedText(string expandedText) => UpdateTextCore(expandedText, TaskDialogNativeMethods.TaskDialogElements.ExpandedInformation);
 
         private void UpdateTextCore(string s, TaskDialogNativeMethods.TaskDialogElements element)
         {
@@ -391,15 +373,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 (long)MakeNewString(s, element));
         }
 
-        internal void UpdateMainIcon(TaskDialogStandardIcon mainIcon)
-        {
-            UpdateIconCore(mainIcon, TaskDialogNativeMethods.TaskDialogIconElement.Main);
-        }
+        internal void UpdateMainIcon(TaskDialogStandardIcon mainIcon) => UpdateIconCore(mainIcon, TaskDialogNativeMethods.TaskDialogIconElement.Main);
 
-        internal void UpdateFooterIcon(TaskDialogStandardIcon footerIcon)
-        {
-            UpdateIconCore(footerIcon, TaskDialogNativeMethods.TaskDialogIconElement.Footer);
-        }
+        internal void UpdateFooterIcon(TaskDialogStandardIcon footerIcon) => UpdateIconCore(footerIcon, TaskDialogNativeMethods.TaskDialogIconElement.Footer);
 
         private void UpdateIconCore(TaskDialogStandardIcon icon, TaskDialogNativeMethods.TaskDialogIconElement element)
         {
@@ -465,10 +441,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 new IntPtr(lparam));
         }
 
-        private bool IsOptionSet(TaskDialogNativeMethods.TaskDialogOptions flag)
-        {
-            return ((nativeDialogConfig.taskDialogFlags & flag) == flag);
-        }
+        private bool IsOptionSet(TaskDialogNativeMethods.TaskDialogOptions flag) => (nativeDialogConfig.taskDialogFlags & flag) == flag;
 
         // Allocates a new string on the unmanaged heap, 
         // and stores the pointer so we can free it later.
@@ -499,10 +472,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         // Based on the following defines in WinDef.h and WinUser.h:
         // #define MAKELPARAM(l, h) ((LPARAM)(DWORD)MAKELONG(l, h))
         // #define MAKELONG(a, b) ((LONG)(((WORD)(((DWORD_PTR)(a)) & 0xffff)) | ((DWORD)((WORD)(((DWORD_PTR)(b)) & 0xffff))) << 16))
-        private static long MakeLongLParam(int a, int b)
-        {
-            return (a << 16) + b;
-        }
+        private static long MakeLongLParam(int a, int b) => (a << 16) + b;
 
         // Builds the actual configuration that the 
         // NativeTaskDialog (and underlying Win32 API)
@@ -570,9 +540,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 // itself has been instructed to close.
 
                 if (ShowState == DialogShowState.Showing)
-                {
+
                     NativeClose(TaskDialogResult.Cancel);
-                }
 
                 // Clean up custom allocated strings that were updated
                 // while the dialog was showing. Note that the strings
@@ -581,16 +550,14 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 // marshalling logic.
 
                 if (updatedStrings != null)
-                {
+
                     for (int i = 0; i < updatedStrings.Length; i++)
-                    {
+
                         if (updatedStrings[i] != IntPtr.Zero)
                         {
                             Marshal.FreeHGlobal(updatedStrings[i]);
                             updatedStrings[i] = IntPtr.Zero;
                         }
-                    }
-                }
 
                 // Clean up the button and radio button arrays, if any.
                 if (buttonArray != IntPtr.Zero)

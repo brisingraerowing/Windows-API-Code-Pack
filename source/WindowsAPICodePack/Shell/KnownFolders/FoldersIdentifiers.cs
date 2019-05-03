@@ -24,11 +24,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 // Ignore dictionary field.
                 if (f.FieldType == typeof(Guid))
-                {
-                    Guid id = (Guid)f.GetValue(null);
-                    string name = f.Name;
-                    folders.Add(id, name);
-                }
+
+                    folders.Add((Guid)f.GetValue(null), f.Name);
             }
         }
         /// <summary>
@@ -38,11 +35,10 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <returns>A <see cref="T:System.String"/> value.</returns>
         internal static string NameForGuid(Guid folderId)
         {
-            string folder;
-            if (!folders.TryGetValue(folderId, out folder))
-            {
+            if (!folders.TryGetValue(folderId, out string folder))
+
                 throw new ArgumentException(LocalizedMessages.FolderIdsUnknownGuid, "folderId");
-            }
+
             return folder;
         }
         /// <summary>
@@ -59,9 +55,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             SortedList<string, Guid> slist = new SortedList<string, Guid>();
             foreach (Guid g in keys)
-            {
+
                 slist.Add(folders[g], g);
-            }
 
             return slist;
         }
@@ -551,6 +546,10 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// PicturesLibrary
         /// </summary>
         internal static Guid PicturesLibrary = new Guid(0xa990ae9f, 0xa03b, 0x4e80, 0x94, 0xbc, 0x99, 0x12, 0xd7, 0x50, 0x41, 0x4);
+
+        public static Guid CameraRollLibrary { get; } = new Guid("2b20df75-1eda-4039-8097-38798227d5b7");
+
+        public static Guid SavedPicturesLibrary { get; } = new Guid("e25b5812-be88-4bd9-94b0-29233477b6c3");
 
         /// <summary>
         /// VideosLibrary

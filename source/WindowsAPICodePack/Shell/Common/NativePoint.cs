@@ -36,11 +36,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="first">First NativePoint</param>
         /// <param name="second">Second NativePoint</param>
         /// <returns>True if first NativePoint is equal to the second; false otherwise.</returns>
-        public static bool operator ==(NativePoint first, NativePoint second)
-        {
-            return first.X == second.X
+        public static bool operator ==(NativePoint first, NativePoint second) => first.X == second.X
                 && first.Y == second.Y;
-        }
 
         /// <summary>
         /// Determines if two NativePoints are not equal.
@@ -48,20 +45,14 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="first">First NativePoint</param>
         /// <param name="second">Second NativePoint</param>
         /// <returns>True if first NativePoint is not equal to the second; false otherwise.</returns>
-        public static bool operator !=(NativePoint first, NativePoint second)
-        {
-            return !(first == second);
-        }
+        public static bool operator !=(NativePoint first, NativePoint second) => !(first == second);
 
         /// <summary>
         /// Determines if this NativePoint is equal to another.
         /// </summary>
         /// <param name="obj">Another NativePoint to compare</param>
         /// <returns>True if this NativePoint is equal obj; false otherwise.</returns>
-        public override bool Equals(object obj)
-        {
-            return (obj != null && obj is NativePoint) ? this == (NativePoint)obj : false;
-        }
+        public override bool Equals(object obj) => (obj != null && obj is NativePoint) ? this == (NativePoint)obj : false;
 
         /// <summary>
         /// Gets a hash code for the NativePoint.
@@ -70,7 +61,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public override int GetHashCode()
         {
             int hash = X.GetHashCode();
-            hash = hash * 31 + Y.GetHashCode();
+            hash = (hash * 31) + Y.GetHashCode();
             return hash;
         }
     }

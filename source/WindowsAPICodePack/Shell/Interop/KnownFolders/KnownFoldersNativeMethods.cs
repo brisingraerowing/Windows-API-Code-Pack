@@ -33,7 +33,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             internal IntPtr localizedName;
             internal IntPtr icon;
             internal IntPtr security;
-            internal UInt32 attributes;
+            internal uint attributes;
             internal DefinitionOptions definitionOptions;
             internal Guid folderTypeId;
         }

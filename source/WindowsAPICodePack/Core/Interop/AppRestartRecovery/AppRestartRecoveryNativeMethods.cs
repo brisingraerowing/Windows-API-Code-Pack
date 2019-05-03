@@ -10,15 +10,13 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
     {
         #region Application Restart and Recovery Definitions
 
-        internal delegate UInt32 InternalRecoveryCallback(IntPtr state);
+        internal delegate uint InternalRecoveryCallback(IntPtr state);
 
-        private static InternalRecoveryCallback internalCallback = new InternalRecoveryCallback(InternalRecoveryHandler);
-        internal static InternalRecoveryCallback InternalCallback { get { return internalCallback; } }
+        internal static InternalRecoveryCallback InternalCallback { get; } = new InternalRecoveryCallback(InternalRecoveryHandler);
 
-        private static UInt32 InternalRecoveryHandler(IntPtr parameter)
+        private static uint InternalRecoveryHandler(IntPtr parameter)
         {
-            bool cancelled = false;
-            ApplicationRecoveryInProgress(out cancelled);
+            ApplicationRecoveryInProgress(out bool cancelled);
 
             GCHandle handle = GCHandle.FromIntPtr(parameter);
             RecoveryData data = handle.Target as RecoveryData;

@@ -33,8 +33,8 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             ThrowIfNotWin7();
 
             IntPtr servicePointer;
-            UInt32 serviceCount = 0;
-            UInt32 hresult = 0;
+            uint serviceCount = 0;
+            uint hresult;
 
             // First, check to see if we already have the service in the cache:
             servicePointer = ServiceCache.Instance.GetCachedService(ref serviceIdentifier);
@@ -43,6 +43,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
                 _service = servicePointer;
                 _win32Service = InteropTools.Unpack<Win32Service>(_service);
             }
+
             else // pService is IntPtr.Zero in this case.
             {
                 // If we don't, we must find it via MappingGetServices:
@@ -55,26 +56,25 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
                     Marshal.StructureToPtr(serviceIdentifier, guidPtr, false);
                     enumOptions._pGuid = guidPtr;
                     hresult = Win32NativeMethods.MappingGetServices(ref enumOptions, ref servicePointer, ref serviceCount);
+
                     if (hresult != 0)
-                    {
+
                         throw new LinguisticException(hresult);
-                    }
+
                     if (servicePointer == IntPtr.Zero)
-                    {
+
                         throw new InvalidOperationException();
-                    }
+
                     if (serviceCount != 1)
-                    {
-                        hresult = Win32NativeMethods.MappingFreeServices(servicePointer);
-                        if (hresult == 0)
-                        {
+
+                        if (Win32NativeMethods.MappingFreeServices(servicePointer) == 0)
+
                             throw new InvalidOperationException();
-                        }
+
                         else
-                        {
+
                             throw new LinguisticException(hresult);
-                        }
-                    }
+
                     IntPtr[] services = new IntPtr[1];
                     ServiceCache.Instance.RegisterServices(ref servicePointer, services);
                     _service = services[0];
@@ -83,14 +83,13 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
                 finally
                 {
                     if (servicePointer != IntPtr.Zero)
-                    {
+
                         // Ignore the result if an exception is being thrown.
                         Win32NativeMethods.MappingFreeServicesVoid(servicePointer);
-                    }
+
                     if (guidPtr != IntPtr.Zero)
-                    {
+
                         Marshal.FreeHGlobal(guidPtr);
-                    }
                 }
             }
         }
@@ -115,15 +114,15 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             ThrowIfNotWin7();
 
             IntPtr servicePointer = IntPtr.Zero;
-            UInt32 serviceCount = 0;
-            UInt32 hresult = 0;
+            uint serviceCount = 0;
+            uint hresult;
             IntPtr guidPointer = IntPtr.Zero;
             try
             {
                 if (options != null)
                 {
                     Win32EnumOptions enumOptions = options._win32EnumOption;
-                    Nullable<Guid> pGuid = options._guid;
+                    Guid? pGuid = options._guid;
                     if (pGuid != null)
                     {
                         Guid guid = (Guid)pGuid;
@@ -134,39 +133,36 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
                     hresult = Win32NativeMethods.MappingGetServices(ref enumOptions, ref servicePointer, ref serviceCount);
                 }
                 else
-                {
+
                     hresult = Win32NativeMethods.MappingGetServices(IntPtr.Zero, ref servicePointer, ref serviceCount);
-                }
 
                 if (hresult != 0)
-                {
+
                     throw new LinguisticException(hresult);
-                }
+
                 if ((servicePointer == IntPtr.Zero) != (serviceCount == 0))
-                {
+
                     throw new InvalidOperationException();
-                }
 
                 IntPtr[] services = new IntPtr[serviceCount];
                 ServiceCache.Instance.RegisterServices(ref servicePointer, services);
                 MappingService[] result = new MappingService[serviceCount];
                 for (int i = 0; i < serviceCount; ++i)
-                {
+
                     result[i] = new MappingService(services[i]);
-                }
+
                 return result;
             }
             finally
             {
                 if (servicePointer != IntPtr.Zero)
-                {
+
                     // Ignore the result if an exception is being thrown.
                     Win32NativeMethods.MappingFreeServicesVoid(servicePointer);
-                }
+
                 if (guidPointer != IntPtr.Zero)
-                {
+
                     Marshal.FreeHGlobal(guidPointer);
-                }
             }
         }
 
@@ -184,9 +180,9 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         public MappingPropertyBag RecognizeText(string text, MappingOptions options)
         {
             if (text == null)
-            {
-                throw new ArgumentNullException("text");
-            }
+
+                throw new ArgumentNullException(nameof(text));
+
             return RecognizeText(text, text.Length, 0, options);
         }
 
@@ -208,29 +204,29 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         public MappingPropertyBag RecognizeText(string text, int length, int index, MappingOptions options)
         {
             if (text == null)
-            {
-                throw new ArgumentNullException("text");
-            }
-            if (length > text.Length || length < 0)
-            {
-                throw new ArgumentOutOfRangeException("length");
-            }
-            if (index < 0)
-            {
-                throw new ArgumentOutOfRangeException("index");
-            }
 
-            UInt32 hResult = LinguisticException.Fail;
+                throw new ArgumentNullException(nameof(text));
+
+            if (length > text.Length || length < 0)
+
+                throw new ArgumentOutOfRangeException(nameof(length));
+
+            if (index < 0)
+
+                throw new ArgumentOutOfRangeException(nameof(index));
+
+            uint hResult;
             MappingPropertyBag bag = new MappingPropertyBag(options, text);
             try
             {
                 hResult = Win32NativeMethods.MappingRecognizeText(
                     _service, bag._text.AddrOfPinnedObject(), (uint)length, (uint)index,
                     bag._options, ref bag._win32PropertyBag);
+
                 if (hResult != 0)
-                {                    
+
                     throw new LinguisticException(hResult);
-                }
+
                 return bag;
             }
             catch
@@ -248,7 +244,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             MappingPropertyBag bag = null;
             try
             {
-                bag = this.RecognizeText(asyncResult.Text, asyncResult.Length, asyncResult.Index, asyncResult.Options);
+                bag = RecognizeText(asyncResult.Text, asyncResult.Length, asyncResult.Index, asyncResult.Options);
             }
             catch (LinguisticException linguisticException)
             {
@@ -288,9 +284,9 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         public MappingRecognizeAsyncResult BeginRecognizeText(string text, MappingOptions options, AsyncCallback asyncCallback, object callerData)
         {
             if (text == null)
-            {
-                throw new ArgumentNullException("text");
-            }
+
+                throw new ArgumentNullException(nameof(text));
+
             return BeginRecognizeText(text, text.Length, 0, options, asyncCallback, callerData);
         }
 
@@ -319,13 +315,13 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         public MappingRecognizeAsyncResult BeginRecognizeText(string text, int length, int index, MappingOptions options, AsyncCallback asyncCallback, object callerData)
         {
             if (asyncCallback == null)
-            {
-                throw new ArgumentNullException("asyncCallback");
-            }
+
+                throw new ArgumentNullException(nameof(asyncCallback));
+
             MappingRecognizeAsyncResult result = new MappingRecognizeAsyncResult(callerData, asyncCallback, text, length, index, options);
             try
             {
-                ThreadPool.QueueUserWorkItem(this.RunRecognizeText, result);
+                ThreadPool.QueueUserWorkItem(RunRecognizeText, result);
                 return result;
             }
             catch
@@ -342,9 +338,8 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         public static void EndRecognizeText(MappingRecognizeAsyncResult asyncResult)
         {
             if (asyncResult != null && !asyncResult.IsCompleted)
-            {
+
                 asyncResult.AsyncWaitHandle.WaitOne();
-            }
         }
 
         /// <summary>
@@ -360,17 +355,17 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// This parameter cannot be set to null.</param>
         public static void DoAction(MappingPropertyBag bag, int rangeIndex, string actionId)
         {
-            if (bag == null) { throw new ArgumentNullException("bag"); }
+            if (bag == null) throw new ArgumentNullException(nameof(bag));
 
             if (rangeIndex < 0)
-            {
+
                 throw new LinguisticException(LinguisticException.InvalidArgs);
-            }
-            UInt32 hResult = Win32NativeMethods.MappingDoAction(ref bag._win32PropertyBag, (uint)rangeIndex, actionId);
+
+            uint hResult = Win32NativeMethods.MappingDoAction(ref bag._win32PropertyBag, (uint)rangeIndex, actionId);
+
             if (hResult != 0)
-            {
+
                 throw new LinguisticException(hResult);
-            }
         }
 
         private void RunDoAction(object threadContext)
@@ -421,7 +416,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             MappingActionAsyncResult result = new MappingActionAsyncResult(callerData, asyncCallback, bag, rangeIndex, actionId);
             try
             {
-                ThreadPool.QueueUserWorkItem(this.RunDoAction, result);
+                ThreadPool.QueueUserWorkItem(RunDoAction, result);
                 return result;
             }
             catch
@@ -438,173 +433,88 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         public static void EndDoAction(MappingActionAsyncResult asyncResult)
         {
             if (asyncResult != null && !asyncResult.IsCompleted)
-            {
+
                 asyncResult.AsyncWaitHandle.WaitOne();
-            }
         }
 
         /// <summary>
         /// Copyright information about the service.
         /// </summary>
-        public string Copyright
-        {
-            get
-            {
-                return _win32Service._copyright;
-            }
-        }
+        public string Copyright => _win32Service._copyright;
 
         /// <summary>
         /// Major version number that is used to track changes to the service.
         /// </summary>
-        public int MajorVersion
-        {
-            get
-            {
-                return _win32Service._majorVersion;
-            }
-        }
+        public int MajorVersion => _win32Service._majorVersion;
 
         /// <summary>
         /// Minor version number that is used to track changes to the service.
         /// </summary>
-        public int MinorVersion
-        {
-            get
-            {
-                return _win32Service._minorVersion;
-            }
-        }
+        public int MinorVersion => _win32Service._minorVersion;
 
         /// <summary>
         /// Build version that is used to track changes to the service.
         /// </summary>
-        public int BuildVersion
-        {
-            get
-            {
-                return _win32Service._buildVersion;
-            }
-        }
+        public int BuildVersion => _win32Service._buildVersion;
 
         /// <summary>
         /// Step version that is used to track changes to the service.
         /// </summary>
-        public int StepVersion
-        {
-            get
-            {
-                return _win32Service._stepVersion;
-            }
-        }
+        public int StepVersion => _win32Service._stepVersion;
 
         /// <summary>
         /// Optional. A collection of input content types, following the format of the MIME content types, that
         /// identify the format that the service interprets when the application passes data. Examples of
         /// content types are "text/plain", "text/html" and "text/css".
         /// </summary>
-        public IEnumerable<string> InputContentTypes
-        {
-            get
-            {
-                return InteropTools.UnpackStringArray(_win32Service._inputContentTypes, _win32Service._inputContentTypesCount);
-            }
-        }
+        public IEnumerable<string> InputContentTypes => InteropTools.UnpackStringArray(_win32Service._inputContentTypes, _win32Service._inputContentTypesCount);
 
         /// <summary>
         /// Optional. A collection of output content types, following the format of the MIME content types, that
         /// identify the format in which the service retrieves data.
         /// </summary>
-        public IEnumerable<string> OutputContentTypes
-        {
-            get
-            {
-                return InteropTools.UnpackStringArray(_win32Service._outputContentTypes, _win32Service._outputContentTypesCount);
-            }
-        }
+        public IEnumerable<string> OutputContentTypes => InteropTools.UnpackStringArray(_win32Service._outputContentTypes, _win32Service._outputContentTypesCount);
 
         /// <summary>
         /// A collection of the input languages, following the IETF naming convention, that the service accepts. This
         /// member is set to null if the service can work with any input language.
         /// </summary>
-        public IEnumerable<string> InputLanguages
-        {
-            get
-            {
-                return InteropTools.UnpackStringArray(_win32Service._inputLanguages, _win32Service._inputLanguagesCount);
-            }
-        }
+        public IEnumerable<string> InputLanguages => InteropTools.UnpackStringArray(_win32Service._inputLanguages, _win32Service._inputLanguagesCount);
 
         /// <summary>
         /// A collection of output languages, following the IETF naming convention, in which the service can retrieve
         /// results. This member is set to null if the service can retrieve results in any language, or if the service
         /// ignores the output language.
         /// </summary>
-        public IEnumerable<string> OutputLanguages
-        {
-            get
-            {
-                return InteropTools.UnpackStringArray(_win32Service._outputLanguages, _win32Service._outputLanguagesCount);
-            }
-        }
+        public IEnumerable<string> OutputLanguages => InteropTools.UnpackStringArray(_win32Service._outputLanguages, _win32Service._outputLanguagesCount);
 
         /// <summary>
         /// A collection of input scripts, with Unicode standard script names, that are supported by the service.
         /// This member is set to null if the service can work with any scripts, or if the service ignores the
         /// input scripts.
         /// </summary>
-        public IEnumerable<string> InputScripts
-        {
-            get
-            {
-                return InteropTools.UnpackStringArray(_win32Service._inputScripts, _win32Service._inputScriptsCount);
-            }
-        }
+        public IEnumerable<string> InputScripts => InteropTools.UnpackStringArray(_win32Service._inputScripts, _win32Service._inputScriptsCount);
 
         /// <summary>
         /// A collection of output scripts supported by the service. This member is set to null if the service can work with
         /// any scripts, or the service ignores the output scripts.
         /// </summary>
-        public IEnumerable<string> OutputScripts
-        {
-            get
-            {
-                return InteropTools.UnpackStringArray(_win32Service._outputScripts, _win32Service._outputScriptsCount);
-            }
-        }
+        public IEnumerable<string> OutputScripts => InteropTools.UnpackStringArray(_win32Service._outputScripts, _win32Service._outputScriptsCount);
 
         /// <summary>
         /// Globally unique identifier (guid) for the service.
         /// </summary>
-        public Guid Guid
-        {
-            get
-            {
-                return _win32Service._guid;
-            }
-        }
+        public Guid Guid => _win32Service._guid;
 
         /// <summary>
         /// The service category for the service, for example, "Transliteration".
         /// </summary>
-        public string Category
-        {
-            get
-            {
-                return _win32Service._category;
-            }
-        }
+        public string Category => _win32Service._category;
 
         /// <summary>
         /// The service description. This text can be localized.
         /// </summary>
-        public string Description
-        {
-            get
-            {
-                return _win32Service._description;
-            }
-        }
+        public string Description => _win32Service._description;
 
         /// <summary>
         /// Flag indicating the language mapping between input language and output language that is supported
@@ -616,38 +526,21 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// output language array. Use of the language pairing can be useful, for example, in bilingual
         /// dictionary scenarios.
         /// </summary>
-        public bool IsOneToOneLanguageMapping
-        {
-            get
-            {
-                return (_win32Service._serviceTypes & ServiceTypes.IsOneToOneLanguageMapping)
+        public bool IsOneToOneLanguageMapping => (_win32Service._serviceTypes & ServiceTypes.IsOneToOneLanguageMapping)
                     == ServiceTypes.IsOneToOneLanguageMapping;
-            }
-        }
 
         /// <summary>
         /// Indicates whether this feature is supported on the current platform.
         /// </summary>
-        public static bool IsPlatformSupported
-        {
-            get
-            {
+        public static bool IsPlatformSupported =>
                 // We need Windows 7 onwards ...
-                return RunningOnWin7;
-            }
-        }
+                RunningOnWin7;
 
         /// <summary>
         /// Determines if the application is running on Windows 7
         /// </summary>
-        internal static bool RunningOnWin7
-        {
-            get
-            {
-                return (Environment.OSVersion.Version.Major > 6) ||
+        internal static bool RunningOnWin7 => (Environment.OSVersion.Version.Major > 6) ||
                     (Environment.OSVersion.Version.Major == 6 && Environment.OSVersion.Version.Minor >= 1);
-            }
-        }
 
         /// <summary>
         /// Throws PlatformNotSupportedException if the application is not running on Windows 7
@@ -655,9 +548,8 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         internal static void ThrowIfNotWin7()
         {
             if (!RunningOnWin7)
-            {
+
                 throw new PlatformNotSupportedException(LocalizedMessages.SupportedWindows7);
-            }
         }
 
     }

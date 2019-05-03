@@ -86,21 +86,15 @@ namespace Microsoft.WindowsAPICodePack.Shell
         private SearchConditionOperation conditionOperation = SearchConditionOperation.Implicit;
         /// <summary>
         /// Search condition operation to be performed on the property/value combination.
-        /// See <see cref="Microsoft.WindowsAPICodePack.Shell.SearchConditionOperation"/> for more details.
+        /// See <see cref="SearchConditionOperation"/> for more details.
         /// </summary>        
-        public SearchConditionOperation ConditionOperation
-        {
-            get { return conditionOperation; }
-        }
+        public SearchConditionOperation ConditionOperation => conditionOperation;
 
         private SearchConditionType conditionType = SearchConditionType.Leaf;
         /// <summary>
         /// Represents the condition type for the given node. 
         /// </summary>        
-        public SearchConditionType ConditionType
-        {
-            get { return conditionType; }
-        }
+        public SearchConditionType ConditionType => conditionType;
 
         /// <summary>
         /// Retrieves an array of the sub-conditions. 

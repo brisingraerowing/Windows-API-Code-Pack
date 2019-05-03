@@ -45,12 +45,12 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// <param name="info">Serialization info from which to create exception.</param>
         /// <param name="context">Streaming context from which to create exception.</param>
         protected ApplicationRecoveryException(
-            System.Runtime.Serialization.SerializationInfo info, 
+            System.Runtime.Serialization.SerializationInfo info,
             System.Runtime.Serialization.StreamingContext context)
             : base(info, context)
         {
             // Empty
         }
-            
+
     }
 }

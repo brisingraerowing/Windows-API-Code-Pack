@@ -21,23 +21,21 @@ namespace Microsoft.WindowsAPICodePack.Shell
             : this()
         {
             this.propertyKey = propertyKey;
-            this.direction = direction;
+            this.Direction = direction;
         }
 
         /// <summary>
         /// The ID of the column by which the user will sort. A PropertyKey structure. 
         /// For example, for the "Name" column, the property key is PKEY_ItemNameDisplay or
-        /// <see cref="Microsoft.WindowsAPICodePack.Shell.PropertySystem.SystemProperties.System.ItemName"/>.
+        /// <see cref="SystemProperties.System.ItemName"/>.
         /// </summary>                
-        public PropertyKey PropertyKey { get { return propertyKey; } set { propertyKey = value; } }
+        public PropertyKey PropertyKey { get => propertyKey; set => propertyKey = value; }
         private PropertyKey propertyKey;
 
         /// <summary>
         /// The direction in which the items are sorted.
         /// </summary>                        
-        public SortDirection Direction { get { return direction; } set { direction = value; } }
-        private SortDirection direction;
-
+        public SortDirection Direction { get; set; }
 
         /// <summary>
         /// Implements the == (equality) operator.
@@ -45,11 +43,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="col1">First object to compare.</param>
         /// <param name="col2">Second object to compare.</param>
         /// <returns>True if col1 equals col2; false otherwise.</returns>
-        public static bool operator ==(SortColumn col1, SortColumn col2)
-        {
-            return (col1.direction == col2.direction) &&
+        public static bool operator ==(SortColumn col1, SortColumn col2) => (col1.Direction == col2.Direction) &&
                 (col1.propertyKey == col2.propertyKey);
-        }
 
         /// <summary>
         /// Implements the != (unequality) operator.
@@ -57,21 +52,14 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="col1">First object to compare.</param>
         /// <param name="col2">Second object to compare.</param>
         /// <returns>True if col1 does not equals col1; false otherwise.</returns>
-        public static bool operator !=(SortColumn col1, SortColumn col2)
-        {
-            return !(col1 == col2);
-        }
+        public static bool operator !=(SortColumn col1, SortColumn col2) => !(col1 == col2);
 
         /// <summary>
         /// Determines if this object is equal to another.
         /// </summary>
         /// <param name="obj">The object to compare</param>
         /// <returns>Returns true if the objects are equal; false otherwise.</returns>
-        public override bool Equals(object obj)
-        {
-            if (obj == null || obj.GetType() != typeof(SortColumn)) { return false; }
-            return (this == (SortColumn)obj);
-        }
+        public override bool Equals(object obj) => obj == null || obj.GetType() != typeof(SortColumn) ? false : this == (SortColumn)obj;
 
         /// <summary>
         /// Generates a nearly unique hashcode for this structure.
@@ -79,8 +67,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <returns>A hash code.</returns>
         public override int GetHashCode()
         {
-            int hash = this.direction.GetHashCode();
-            hash = hash * 31 + this.propertyKey.GetHashCode();
+            int hash = Direction.GetHashCode();
+            hash = (hash * 31) + propertyKey.GetHashCode();
             return hash;
         }
 

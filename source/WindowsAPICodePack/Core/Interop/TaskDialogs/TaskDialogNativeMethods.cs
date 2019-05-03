@@ -19,7 +19,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
         [DllImport("Comctl32.dll", SetLastError = true)]
         internal static extern HResult TaskDialogIndirect(
-            [In] TaskDialogNativeMethods.TaskDialogConfiguration taskConfig,
+            [In] TaskDialogConfiguration taskConfig,
             [Out] out int button,
             [Out] out int radioButton,
             [MarshalAs(UnmanagedType.Bool), Out] out bool verificationFlagChecked);
@@ -71,10 +71,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         [StructLayout(LayoutKind.Explicit, CharSet = CharSet.Auto)]
         internal struct IconUnion
         {
-            internal IconUnion(int i)
-            {
-                mainIcon = new IntPtr(i);
-            }
+            internal IconUnion(int i) => mainIcon = new IntPtr(i);
 
             [FieldOffset(0)]
             private readonly IntPtr mainIcon;
@@ -82,7 +79,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             /// <summary>
             /// Gets the handle to the Icon
             /// </summary>
-            public IntPtr MainIcon { get { return mainIcon; } }
+            public IntPtr MainIcon => mainIcon;
         }
 
         // NOTE: Packing must be set to 4 to make this work on 64-bit platforms.

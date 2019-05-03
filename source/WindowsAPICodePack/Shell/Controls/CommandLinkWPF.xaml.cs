@@ -22,18 +22,15 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
             // Throw PlatformNotSupportedException if the user is not running Vista or beyond
             CoreHelpers.ThrowIfNotVista();
 
-            this.DataContext = this;
+            DataContext = this;
             InitializeComponent();
-            this.button.Click += new RoutedEventHandler(button_Click);
+            button.Click += new RoutedEventHandler(button_Click);
         }
 
         void button_Click(object sender, RoutedEventArgs e)
         {
             e.Source = this;
-            if (Click != null)
-            {
-                Click(sender, e);
-            }
+            Click?.Invoke(sender, e);
         }
 
         /// <summary>
@@ -53,15 +50,12 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public string Link
         {
-            get { return link; }
+            get => link;
             set
             {
                 link = value;
 
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("Link"));
-                }
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Link"));
             }
         }
         private string note;
@@ -71,14 +65,11 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public string Note
         {
-            get { return note; }
+            get => note;
             set
             {
                 note = value;
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("Note"));
-                }
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Note"));
             }
         }
         private ImageSource icon;
@@ -88,14 +79,11 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public ImageSource Icon
         {
-            get { return icon; }
+            get => icon;
             set
             {
                 icon = value;
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs("Icon"));
-                }
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Icon"));
             }
         }
 
@@ -104,8 +92,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public bool? IsCheck
         {
-            get { return button.IsChecked; }
-            set { button.IsChecked = value; }
+            get => button.IsChecked;
+            set => button.IsChecked = value;
         }
 
 
@@ -121,12 +109,6 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// <summary>
         /// Indicates whether this feature is supported on the current platform.
         /// </summary>
-        public static bool IsPlatformSupported
-        {
-            get
-            {                
-                return CoreHelpers.RunningOnVista;
-            }
-        }
+        public static bool IsPlatformSupported => CoreHelpers.RunningOnVista;
     }
 }

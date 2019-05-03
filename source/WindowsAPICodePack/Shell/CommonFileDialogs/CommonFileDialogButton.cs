@@ -37,10 +37,10 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
             Debug.Assert(dialog != null, "CommonFileDialogButton.Attach: dialog parameter can not be null");
 
             // Add a push button control
-            dialog.AddPushButton(this.Id, this.Text);
+            dialog.AddPushButton(Id, Text);
 
             // Make this control prominent if needed
-            if (IsProminent) { dialog.MakeProminent(this.Id); }
+            if (IsProminent) { dialog.MakeProminent(Id); }
 
             // Sync unmanaged properties with managed properties
             SyncUnmanagedProperties();
@@ -53,7 +53,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
         internal void RaiseClickEvent()
         {
             // Make sure that this control is enabled and has a specified delegate
-            if (Enabled) { this.Click(this, EventArgs.Empty); }
+            if (Enabled) { Click(this, EventArgs.Empty); }
         }
     }
 }

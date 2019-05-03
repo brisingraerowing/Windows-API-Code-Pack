@@ -14,10 +14,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             // Empty            
         }
 
-        internal ShellNonFileSystemFolder(IShellItem2 shellItem)
-        {
-            nativeShellItem = shellItem;
-        }
+        internal ShellNonFileSystemFolder(IShellItem2 shellItem) => nativeShellItem = shellItem;
 
         #endregion
 

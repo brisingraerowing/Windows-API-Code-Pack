@@ -15,12 +15,12 @@ namespace Microsoft.WindowsAPICodePack.Sensors
     [ComImport, Guid("DADA2357-E0AD-492E-98DB-DD61C53BA353"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     internal interface IPortableDeviceKeyCollection
     {
-        void GetCount(out UInt32 pcElems);
+        void GetCount(out uint pcElems);
         [PreserveSig]
-        HResult GetAt([In] UInt32 dwIndex, out PropertyKey pKey);
+        HResult GetAt([In] uint dwIndex, out PropertyKey pKey);
         void Add([In] ref PropertyKey Key);
         void Clear();
-        void RemoveAt([In] UInt32 dwIndex);
+        void RemoveAt([In] uint dwIndex);
     }
 
     /// <summary>

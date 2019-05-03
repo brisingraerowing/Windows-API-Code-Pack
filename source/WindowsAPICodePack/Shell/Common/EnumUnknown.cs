@@ -12,10 +12,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         List<ICondition> conditionList = new List<ICondition>();
         int current = -1;
 
-        internal EnumUnknownClass(ICondition[] conditions)
-        {
-            conditionList.AddRange(conditions);
-        }
+        internal EnumUnknownClass(ICondition[] conditions) => conditionList.AddRange(conditions);
 
         #region IEnumUnknown Members
 
@@ -38,10 +35,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
             int temp = current + (int)number;
 
             if (temp > (conditionList.Count - 1))
-            {
+            
                 return HResult.False;
-            }
-
+            
             current = temp;
             return HResult.Ok;
         }
@@ -54,7 +50,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         public HResult Clone(out IEnumUnknown result)
         {
-            result = new EnumUnknownClass(this.conditionList.ToArray());
+            result = new EnumUnknownClass(conditionList.ToArray());
             return HResult.Ok;
         }
 

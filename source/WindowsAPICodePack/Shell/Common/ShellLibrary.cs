@@ -22,7 +22,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         private INativeShellLibrary nativeShellLibrary;
         private IKnownFolder knownFolder;
 
-        private static Guid[] FolderTypesGuids = 
+        private static Guid[] FolderTypesGuids =
         {
             new Guid(ShellKFIDGuid.GenericLibrary),
             new Guid(ShellKFIDGuid.DocumentsLibrary),
@@ -35,17 +35,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         #region Private Constructor
 
-        private ShellLibrary()
-        {
-            CoreHelpers.ThrowIfNotWin7();
-        }
+        private ShellLibrary() => CoreHelpers.ThrowIfNotWin7();
 
         //Construct the ShellLibrary object from a native Shell Library
         private ShellLibrary(INativeShellLibrary nativeShellLibrary)
-            : this()
-        {
-            this.nativeShellLibrary = nativeShellLibrary;
-        }
+            : this() => this.nativeShellLibrary = nativeShellLibrary;
 
         /// <summary>
         /// Creates a shell library in the Libraries Known Folder, 
@@ -68,7 +62,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     AccessModes.ReadWrite;
 
             // Get the IShellItem2
-            base.nativeShellItem = ((ShellObject)sourceKnownFolder).NativeShellItem2;
+            nativeShellItem = ((ShellObject)sourceKnownFolder).NativeShellItem2;
 
             Guid guid = sourceKnownFolder.FolderId;
 
@@ -101,11 +95,10 @@ namespace Microsoft.WindowsAPICodePack.Shell
             : this()
         {
             if (string.IsNullOrEmpty(libraryName))
-            {
-                throw new ArgumentException(LocalizedMessages.ShellLibraryEmptyName, "libraryName");
-            }
 
-            this.Name = libraryName;
+                throw new ArgumentException(LocalizedMessages.ShellLibraryEmptyName, "libraryName");
+
+            Name = libraryName;
             Guid guid = new Guid(ShellKFIDGuid.Libraries);
 
             ShellNativeMethods.LibrarySaveOptions flags = overwrite ?
@@ -127,13 +120,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
             : this()
         {
             if (string.IsNullOrEmpty(libraryName))
-            {
+
                 throw new ArgumentException(LocalizedMessages.ShellLibraryEmptyName, "libraryName");
-            }
 
             knownFolder = sourceKnownFolder;
 
-            this.Name = libraryName;
+            Name = libraryName;
             Guid guid = knownFolder.FolderId;
 
             ShellNativeMethods.LibrarySaveOptions flags = overwrite ?
@@ -155,16 +147,14 @@ namespace Microsoft.WindowsAPICodePack.Shell
             : this()
         {
             if (string.IsNullOrEmpty(libraryName))
-            {
+
                 throw new ArgumentException(LocalizedMessages.ShellLibraryEmptyName, "libraryName");
-            }
 
             if (!Directory.Exists(folderPath))
-            {
-                throw new DirectoryNotFoundException(LocalizedMessages.ShellLibraryFolderNotFound);
-            }
 
-            this.Name = libraryName;
+                throw new DirectoryNotFoundException(LocalizedMessages.ShellLibraryFolderNotFound);
+
+            Name = libraryName;
 
             ShellNativeMethods.LibrarySaveOptions flags = overwrite ?
                     ShellNativeMethods.LibrarySaveOptions.OverrideExisting :
@@ -193,9 +183,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
             get
             {
                 if (base.Name == null && NativeShellItem != null)
-                {
-                    base.Name = System.IO.Path.GetFileNameWithoutExtension(ShellHelper.GetParsingName(NativeShellItem));
-                }
+
+                    base.Name = Path.GetFileNameWithoutExtension(ShellHelper.GetParsingName(NativeShellItem));
 
                 return base.Name;
             }
@@ -228,8 +217,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             get
             {
-                Guid folderTypeGuid;
-                nativeShellLibrary.GetFolderType(out folderTypeGuid);
+                nativeShellLibrary.GetFolderType(out Guid folderTypeGuid);
 
                 return GetFolderTypefromGuid(folderTypeGuid);
             }
@@ -250,8 +238,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             get
             {
-                Guid folderTypeGuid;
-                nativeShellLibrary.GetFolderType(out folderTypeGuid);
+                nativeShellLibrary.GetFolderType(out Guid folderTypeGuid);
 
                 return folderTypeGuid;
             }
@@ -260,12 +247,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
         private static LibraryFolderType GetFolderTypefromGuid(Guid folderTypeGuid)
         {
             for (int i = 0; i < FolderTypesGuids.Length; i++)
-            {
+
                 if (folderTypeGuid.Equals(FolderTypesGuids[i]))
-                {
+
                     return (LibraryFolderType)i;
-                }
-            }
+
             throw new ArgumentOutOfRangeException("folderTypeGuid", LocalizedMessages.ShellLibraryInvalidFolderType);
         }
 
@@ -282,26 +268,22 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 Guid guid = new Guid(ShellIIDGuid.IShellItem);
 
-                IShellItem saveFolderItem;
-
                 nativeShellLibrary.GetDefaultSaveFolder(
                     ShellNativeMethods.DefaultSaveFolderType.Detect,
                     ref guid,
-                    out saveFolderItem);
+                    out IShellItem saveFolderItem);
 
                 return ShellHelper.GetParsingName(saveFolderItem);
             }
             set
             {
                 if (string.IsNullOrEmpty(value))
-                {
+
                     throw new ArgumentNullException("value");
-                }
 
                 if (!Directory.Exists(value))
-                {
+
                     throw new DirectoryNotFoundException(LocalizedMessages.ShellLibraryDefaultSaveFolderNotFound);
-                }
 
                 string fullPath = new DirectoryInfo(value).FullName;
 
@@ -326,26 +308,23 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             get
             {
-                ShellNativeMethods.LibraryOptions flags = ShellNativeMethods.LibraryOptions.PinnedToNavigationPane;
+                nativeShellLibrary.GetOptions(out ShellNativeMethods.LibraryOptions flags);
 
-                nativeShellLibrary.GetOptions(out flags);
-
-                return (
+                return
                     (flags & ShellNativeMethods.LibraryOptions.PinnedToNavigationPane) ==
-                    ShellNativeMethods.LibraryOptions.PinnedToNavigationPane);
+                    ShellNativeMethods.LibraryOptions.PinnedToNavigationPane;
             }
             set
             {
                 ShellNativeMethods.LibraryOptions flags = ShellNativeMethods.LibraryOptions.Default;
 
                 if (value)
-                {
+
                     flags |= ShellNativeMethods.LibraryOptions.PinnedToNavigationPane;
-                }
+
                 else
-                {
+
                     flags &= ~ShellNativeMethods.LibraryOptions.PinnedToNavigationPane;
-                }
 
                 nativeShellLibrary.SetOptions(ShellNativeMethods.LibraryOptions.PinnedToNavigationPane, flags);
                 nativeShellLibrary.Commit();
@@ -359,10 +338,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Close the library, and release its associated file system resources
         /// </summary>
-        public void Close()
-        {
-            this.Dispose();
-        }
+        public void Close() => Dispose();
 
         #endregion
 
@@ -370,15 +346,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         internal const string FileExtension = ".library-ms";
 
-        internal override IShellItem NativeShellItem
-        {
-            get { return NativeShellItem2; }
-        }
+        internal override IShellItem NativeShellItem => NativeShellItem2;
 
-        internal override IShellItem2 NativeShellItem2
-        {
-            get { return nativeShellItem; }
-        }
+        internal override IShellItem2 NativeShellItem2 => nativeShellItem;
 
         #endregion
 
@@ -406,35 +376,36 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             CoreHelpers.ThrowIfNotWin7();
 
-            IKnownFolder kf = KnownFolders.Libraries;
-            string librariesFolderPath = (kf != null) ? kf.Path : string.Empty;
-
-            Guid guid = new Guid(ShellIIDGuid.IShellItem);
-            IShellItem nativeShellItem;
-            string shellItemPath = System.IO.Path.Combine(librariesFolderPath, libraryName + FileExtension);
-            int hr = ShellNativeMethods.SHCreateItemFromParsingName(shellItemPath, IntPtr.Zero, ref guid, out nativeShellItem);
-
-            if (!CoreErrorHelper.Succeeded(hr))
-                throw new ShellException(hr);
-
-            INativeShellLibrary nativeShellLibrary = (INativeShellLibrary)new ShellLibraryCoClass();
-            AccessModes flags = isReadOnly ?
-                    AccessModes.Read :
-                    AccessModes.ReadWrite;
-            nativeShellLibrary.LoadLibraryFromItem(nativeShellItem, flags);
-
-            ShellLibrary library = new ShellLibrary(nativeShellLibrary);
-            try
+            using (IKnownFolder kf = KnownFolders.Libraries)
             {
-                library.nativeShellItem = (IShellItem2)nativeShellItem;
-                library.Name = libraryName;
+                Guid guid = new Guid(ShellIIDGuid.IShellItem);
+                string shellItemPath = Path.Combine((kf != null) ? kf.Path : string.Empty, libraryName + FileExtension);
+                int hr = ShellNativeMethods.SHCreateItemFromParsingName(shellItemPath, IntPtr.Zero, ref guid, out IShellItem nativeShellItem);
 
-                return library;
-            }
-            catch
-            {
-                library.Dispose();
-                throw;
+                if (!CoreErrorHelper.Succeeded(hr))
+
+                    throw new ShellException(hr);
+
+                INativeShellLibrary nativeShellLibrary = (INativeShellLibrary)new ShellLibraryCoClass();
+                AccessModes flags = isReadOnly ?
+                        AccessModes.Read :
+                        AccessModes.ReadWrite;
+                nativeShellLibrary.LoadLibraryFromItem(nativeShellItem, flags);
+
+                ShellLibrary library = new ShellLibrary(nativeShellLibrary);
+
+                try
+                {
+                    library.nativeShellItem = (IShellItem2)nativeShellItem;
+                    library.Name = libraryName;
+
+                    return library;
+                }
+                catch
+                {
+                    library.Dispose();
+                    throw;
+                }
             }
         }
 
@@ -450,7 +421,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             CoreHelpers.ThrowIfNotWin7();
 
             // Create the shell item path
-            string shellItemPath = System.IO.Path.Combine(folderPath, libraryName + FileExtension);
+            string shellItemPath = Path.Combine(folderPath, libraryName + FileExtension);
             ShellFile item = ShellFile.FromFilePath(shellItemPath);
 
             IShellItem nativeShellItem = item.NativeShellItem;
@@ -531,7 +502,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             staWorker.Start();
             staWorker.Join();
 
-            if (!CoreErrorHelper.Succeeded(hr)) { throw new ShellException(hr); }
+            if (!CoreErrorHelper.Succeeded(hr)) throw new ShellException(hr);
         }
 
         /// <summary>
@@ -550,10 +521,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
             // Access Violations if called from an MTA thread so we wrap this
             // call up into a Worker thread that performs all operations in a
             // single threaded apartment
-            using (ShellLibrary shellLibrary = ShellLibrary.Load(libraryName, folderPath, true))
-            {
+            using (ShellLibrary shellLibrary = Load(libraryName, folderPath, true))
+
                 ShowManageLibraryUI(shellLibrary, windowHandle, title, instruction, allowAllLocations);
-            }
         }
 
         /// <summary>
@@ -571,10 +541,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
             // Access Violations if called from an MTA thread so we wrap this
             // call up into a Worker thread that performs all operations in a
             // single threaded apartment
-            using (ShellLibrary shellLibrary = ShellLibrary.Load(libraryName, true))
-            {
+            using (ShellLibrary shellLibrary = Load(libraryName, true))
+
                 ShowManageLibraryUI(shellLibrary, windowHandle, title, instruction, allowAllLocations);
-            }
         }
 
         /// <summary>
@@ -592,10 +561,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
             // Access Violations if called from an MTA thread so we wrap this
             // call up into a Worker thread that performs all operations in a
             // single threaded apartment
-            using (ShellLibrary shellLibrary = ShellLibrary.Load(sourceKnownFolder, true))
-            {
+            using (ShellLibrary shellLibrary = Load(sourceKnownFolder, true))
+
                 ShowManageLibraryUI(shellLibrary, windowHandle, title, instruction, allowAllLocations);
-            }
         }
 
         #endregion
@@ -608,7 +576,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="item">The folder to add to the library.</param>
         public void Add(ShellFileSystemFolder item)
         {
-            if (item == null) { throw new ArgumentNullException("item"); }
+            if (item == null) throw new ArgumentNullException("item");
 
             nativeShellLibrary.AddFolder(item.NativeShellItem);
             nativeShellLibrary.Commit();
@@ -621,9 +589,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public void Add(string folderPath)
         {
             if (!Directory.Exists(folderPath))
-            {
+
                 throw new DirectoryNotFoundException(LocalizedMessages.ShellLibraryFolderNotFound);
-            }
 
             Add(ShellFileSystemFolder.FromFolderPath(folderPath));
         }
@@ -635,9 +602,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             List<ShellFileSystemFolder> list = ItemsList;
             foreach (ShellFileSystemFolder folder in list)
-            {
+
                 nativeShellLibrary.RemoveFolder(folder.NativeShellItem);
-            }
 
             nativeShellLibrary.Commit();
         }
@@ -649,7 +615,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <returns><B>true</B> if the item was removed.</returns>
         public bool Remove(ShellFileSystemFolder item)
         {
-            if (item == null) { throw new ArgumentNullException("item"); }
+            if (item == null) throw new ArgumentNullException("item");
 
             try
             {
@@ -706,29 +672,23 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         #region Private Properties
 
-        private List<ShellFileSystemFolder> ItemsList
-        {
-            get { return GetFolders(); }
-        }
+        private List<ShellFileSystemFolder> ItemsList => GetFolders();
 
         private List<ShellFileSystemFolder> GetFolders()
         {
             List<ShellFileSystemFolder> list = new List<ShellFileSystemFolder>();
-            IShellItemArray itemArray;
 
             Guid shellItemArrayGuid = new Guid(ShellIIDGuid.IShellItemArray);
 
-            HResult hr = nativeShellLibrary.GetFolders(ShellNativeMethods.LibraryFolderFilter.AllItems, ref shellItemArrayGuid, out itemArray);
+            HResult hr = nativeShellLibrary.GetFolders(ShellNativeMethods.LibraryFolderFilter.AllItems, ref shellItemArrayGuid, out IShellItemArray itemArray);
 
-            if (!CoreErrorHelper.Succeeded(hr)) { return list; }
+            if (!CoreErrorHelper.Succeeded(hr)) return list;
 
-            uint count;
-            itemArray.GetCount(out count);
+            itemArray.GetCount(out uint count);
 
             for (uint i = 0; i < count; ++i)
             {
-                IShellItem shellItem;
-                itemArray.GetItemAt(i, out shellItem);
+                itemArray.GetItemAt(i, out IShellItem shellItem);
                 list.Add(new ShellFileSystemFolder(shellItem as IShellItem2));
             }
 
@@ -749,10 +709,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// Retrieves the collection enumerator.
         /// </summary>
         /// <returns>The enumerator.</returns>
-        new public IEnumerator<ShellFileSystemFolder> GetEnumerator()
-        {
-            return ItemsList.GetEnumerator();
-        }
+        public new IEnumerator<ShellFileSystemFolder> GetEnumerator() => ItemsList.GetEnumerator();
 
         #endregion
 
@@ -762,10 +719,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// Retrieves the collection enumerator.
         /// </summary>
         /// <returns>The enumerator.</returns>
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return ItemsList.GetEnumerator();
-        }
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => ItemsList.GetEnumerator();
 
         #endregion
 
@@ -780,9 +734,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public bool Contains(string fullPath)
         {
             if (string.IsNullOrEmpty(fullPath))
-            {
+
                 throw new ArgumentNullException("fullPath");
-            }
 
             return ItemsList.Any(folder => string.Equals(fullPath, folder.Path, StringComparison.OrdinalIgnoreCase));
         }
@@ -795,9 +748,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public bool Contains(ShellFileSystemFolder item)
         {
             if (item == null)
-            {
+
                 throw new ArgumentNullException("item");
-            }
 
             return ItemsList.Any(folder => string.Equals(item.Path, folder.Path, StringComparison.OrdinalIgnoreCase));
         }
@@ -812,31 +764,24 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         /// <param name="item">The item to search for.</param>
         /// <returns>The index of the item in the collection, or -1 if the item does not exist.</returns>
-        public int IndexOf(ShellFileSystemFolder item)
-        {
-            return ItemsList.IndexOf(item);
-        }
+        public int IndexOf(ShellFileSystemFolder item) => ItemsList.IndexOf(item);
 
         /// <summary>
         /// Inserts a FileSystemFolder at the specified index.
         /// </summary>
         /// <param name="index">The index to insert at.</param>
         /// <param name="item">The FileSystemFolder to insert.</param>
-        void IList<ShellFileSystemFolder>.Insert(int index, ShellFileSystemFolder item)
-        {
+        void IList<ShellFileSystemFolder>.Insert(int index, ShellFileSystemFolder item) =>
             // Index related options are not supported by IShellLibrary doesn't support them.
             throw new NotImplementedException();
-        }
 
         /// <summary>
         /// Removes an item at the specified index.
         /// </summary>
         /// <param name="index">The index to remove.</param>
-        void IList<ShellFileSystemFolder>.RemoveAt(int index)
-        {
+        void IList<ShellFileSystemFolder>.RemoveAt(int index) =>
             // Index related options are not supported by IShellLibrary doesn't support them.
             throw new NotImplementedException();
-        }
 
         /// <summary>
         /// Retrieves the folder at the specified index
@@ -845,13 +790,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <returns>A folder.</returns>
         public ShellFileSystemFolder this[int index]
         {
-            get { return ItemsList[index]; }
-            set
-            {
+            get => ItemsList[index];
+            set =>
                 // Index related options are not supported by IShellLibrary
                 // doesn't support them.
                 throw new NotImplementedException();
-            }
         }
         #endregion
 
@@ -862,40 +805,26 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         /// <param name="array">The array to copy to.</param>
         /// <param name="arrayIndex">The index in the array at which to start the copy.</param>
-        void ICollection<ShellFileSystemFolder>.CopyTo(ShellFileSystemFolder[] array, int arrayIndex)
-        {
-            throw new NotImplementedException();
-        }
+        void ICollection<ShellFileSystemFolder>.CopyTo(ShellFileSystemFolder[] array, int arrayIndex) => throw new NotImplementedException();
 
         /// <summary>
         /// The count of the items in the list.
         /// </summary>
-        public int Count
-        {
-            get { return ItemsList.Count; }
-        }
+        public int Count => ItemsList.Count;
 
         /// <summary>
         /// Indicates whether this list is read-only or not.
         /// </summary>
-        public bool IsReadOnly
-        {
-            get { return false; }
-        }
+        public bool IsReadOnly => false;
 
         #endregion
 
         /// <summary>
         /// Indicates whether this feature is supported on the current platform.
         /// </summary>
-        new public static bool IsPlatformSupported
-        {
-            get
-            {
+        new public static bool IsPlatformSupported =>
                 // We need Windows 7 onwards ...
-                return CoreHelpers.RunningOnWin7;
-            }
-        }
+                CoreHelpers.RunningOnWin7;
     }
 
 }

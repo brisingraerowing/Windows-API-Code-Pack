@@ -14,7 +14,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Gets the path for this known folder.
         /// </summary>
-        string Path { get; }
+        string Path { get; /*todo: set;*/ }
 
         /// <summary>
         /// Gets the category designation for this known folder.

@@ -31,42 +31,42 @@ namespace MS.WindowsAPICodePack.Internal
         {
             Dictionary<Type, Action<PropVariant, Array, uint>> cache = new Dictionary<Type, Action<PropVariant, Array, uint>>();
 
-            cache.Add(typeof(Int16), (pv, array, i) =>
+            cache.Add(typeof(short), (pv, array, i) =>
             {
                 short val;
                 PropVariantNativeMethods.PropVariantGetInt16Elem(pv, i, out val);
                 array.SetValue(val, i);
             });
 
-            cache.Add(typeof(UInt16), (pv, array, i) =>
+            cache.Add(typeof(ushort), (pv, array, i) =>
             {
                 ushort val;
                 PropVariantNativeMethods.PropVariantGetUInt16Elem(pv, i, out val);
                 array.SetValue(val, i);
             });
 
-            cache.Add(typeof(Int32), (pv, array, i) =>
+            cache.Add(typeof(int), (pv, array, i) =>
             {
                 int val;
                 PropVariantNativeMethods.PropVariantGetInt32Elem(pv, i, out val);
                 array.SetValue(val, i);
             });
 
-            cache.Add(typeof(UInt32), (pv, array, i) =>
+            cache.Add(typeof(uint), (pv, array, i) =>
             {
                 uint val;
                 PropVariantNativeMethods.PropVariantGetUInt32Elem(pv, i, out val);
                 array.SetValue(val, i);
             });
 
-            cache.Add(typeof(Int64), (pv, array, i) =>
+            cache.Add(typeof(long), (pv, array, i) =>
             {
                 long val;
                 PropVariantNativeMethods.PropVariantGetInt64Elem(pv, i, out val);
                 array.SetValue(val, i);
             });
 
-            cache.Add(typeof(UInt64), (pv, array, i) =>
+            cache.Add(typeof(ulong), (pv, array, i) =>
             {
                 ulong val;
                 PropVariantNativeMethods.PropVariantGetUInt64Elem(pv, i, out val);
@@ -83,39 +83,39 @@ namespace MS.WindowsAPICodePack.Internal
                 array.SetValue(DateTime.FromFileTime(fileTime), i);
             });
 
-            cache.Add(typeof(Boolean), (pv, array, i) =>
+            cache.Add(typeof(bool), (pv, array, i) =>
             {
                 bool val;
                 PropVariantNativeMethods.PropVariantGetBooleanElem(pv, i, out val);
                 array.SetValue(val, i);
             });
 
-            cache.Add(typeof(Double), (pv, array, i) =>
+            cache.Add(typeof(double), (pv, array, i) =>
             {
                 double val;
                 PropVariantNativeMethods.PropVariantGetDoubleElem(pv, i, out val);
                 array.SetValue(val, i);
             });
 
-            cache.Add(typeof(Single), (pv, array, i) => // float
-            {                
+            cache.Add(typeof(float), (pv, array, i) => // float
+            {
                 float[] val = new float[1];
                 Marshal.Copy(pv._ptr2, val, (int)i, 1);
                 array.SetValue(val[0], (int)i);
             });
 
-            cache.Add(typeof(Decimal), (pv, array, i) =>
+            cache.Add(typeof(decimal), (pv, array, i) =>
             {
                 int[] val = new int[4];
                 for (int a = 0; a < val.Length; a++)
-                {
+
                     val[a] = Marshal.ReadInt32(pv._ptr2,
                         (int)i * sizeof(decimal) + a * sizeof(int)); //index * size + offset quarter
-                }
+
                 array.SetValue(new decimal(val), i);
             });
 
-            cache.Add(typeof(String), (pv, array, i) =>
+            cache.Add(typeof(string), (pv, array, i) =>
             {
                 string val = string.Empty;
                 PropVariantNativeMethods.PropVariantGetStringElem(pv, i, ref val);
@@ -132,18 +132,7 @@ namespace MS.WindowsAPICodePack.Internal
         /// Attempts to create a PropVariant by finding an appropriate constructor.
         /// </summary>
         /// <param name="value">Object from which PropVariant should be created.</param>
-        public static PropVariant FromObject(object value)
-        {
-            if (value == null)
-            {
-                return new PropVariant();
-            }
-            else
-            {
-                var func = GetDynamicConstructor(value.GetType());
-                return func(value);
-            }
-        }
+        public static PropVariant FromObject(object value) => value == null ? new PropVariant() : GetDynamicConstructor(value.GetType())(value);
 
         // A dictionary and lock to contain compiled expression trees for constructors
         private static Dictionary<Type, Func<object, PropVariant>> _cache = new Dictionary<Type, Func<object, PropVariant>>();
@@ -166,19 +155,19 @@ namespace MS.WindowsAPICodePack.Internal
                         .GetConstructor(new Type[] { type });
 
                     if (constructor == null)
-                    { // if the method was not found, throw.
+                        // if the method was not found, throw.
                         throw new ArgumentException(LocalizedMessages.PropVariantTypeNotSupported);
-                    }
+
                     else // if the method was found, create an expression to call it.
                     {
                         // create parameters to action                    
-                        var arg = Expression.Parameter(typeof(object), "arg");
+                        ParameterExpression arg = Expression.Parameter(typeof(object), nameof(arg));
 
-                        // create an expression to invoke the constructor with an argument cast to the correct type
-                        var create = Expression.New(constructor, Expression.Convert(arg, type));
 
                         // compiles expression into an action delegate
-                        action = Expression.Lambda<Func<object, PropVariant>>(create, arg).Compile();
+                        action = Expression.Lambda<Func<object, PropVariant>>(
+                            // create an expression to invoke the constructor with an argument cast to the correct type
+                            Expression.New(constructor, Expression.Convert(arg, type)), arg).Compile();
                         _cache.Add(type, action);
                     }
                 }
@@ -216,30 +205,30 @@ namespace MS.WindowsAPICodePack.Internal
         // architectures.
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2006:UseSafeHandleToEncapsulateNativeResources")]
         [FieldOffset(12)]
-        IntPtr _ptr2;
+        readonly IntPtr _ptr2;
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2006:UseSafeHandleToEncapsulateNativeResources")]
         [FieldOffset(8)]
         IntPtr _ptr;
         [FieldOffset(8)]
-        Int32 _int32;
+        readonly int _int32;
         [FieldOffset(8)]
-        UInt32 _uint32;
+        readonly uint _uint32;
         [FieldOffset(8)]
-        byte _byte;
+        readonly byte _byte;
         [FieldOffset(8)]
-        sbyte _sbyte;
+        readonly sbyte _sbyte;
         [FieldOffset(8)]
-        short _short;
+        readonly short _short;
         [FieldOffset(8)]
-        ushort _ushort;
+        readonly ushort _ushort;
         [FieldOffset(8)]
-        long _long;
+        readonly long _long;
         [FieldOffset(8)]
-        ulong _ulong;
+        readonly ulong _ulong;
         [FieldOffset(8)]
-        double _double;
+        readonly double _double;
         [FieldOffset(8)]
-        float _float;
+        readonly float _float;
 
         #endregion // struct fields
 
@@ -259,10 +248,9 @@ namespace MS.WindowsAPICodePack.Internal
         public PropVariant(string value)
         {
             if (value == null)
-            {
-                throw new ArgumentException(LocalizedMessages.PropVariantNullString, "value");
-            }
-
+            
+                throw new ArgumentException(LocalizedMessages.PropVariantNullString, nameof(value));
+            
             _valueType = (ushort)VarEnum.VT_LPWSTR;
             _ptr = Marshal.StringToCoTaskMemUni(value);
         }
@@ -272,7 +260,7 @@ namespace MS.WindowsAPICodePack.Internal
         /// </summary>
         public PropVariant(string[] value)
         {
-            if (value == null) { throw new ArgumentNullException("value"); }
+            if (value == null) throw new ArgumentNullException(nameof(value));
 
             PropVariantNativeMethods.InitPropVariantFromStringVector(value, (uint)value.Length, this);
         }
@@ -282,7 +270,7 @@ namespace MS.WindowsAPICodePack.Internal
         /// </summary>
         public PropVariant(bool[] value)
         {
-            if (value == null) { throw new ArgumentNullException("value"); }
+            if (value == null) throw new ArgumentNullException(nameof(value)); 
 
             PropVariantNativeMethods.InitPropVariantFromBooleanVector(value, (uint)value.Length, this);
         }
@@ -292,7 +280,7 @@ namespace MS.WindowsAPICodePack.Internal
         /// </summary>
         public PropVariant(short[] value)
         {
-            if (value == null) { throw new ArgumentNullException("value"); }
+            if (value == null) throw new ArgumentNullException(nameof(value));
 
             PropVariantNativeMethods.InitPropVariantFromInt16Vector(value, (uint)value.Length, this);
         }
@@ -302,7 +290,7 @@ namespace MS.WindowsAPICodePack.Internal
         /// </summary>
         public PropVariant(ushort[] value)
         {
-            if (value == null) { throw new ArgumentNullException("value"); }
+            if (value == null) throw new ArgumentNullException(nameof(value));
 
             PropVariantNativeMethods.InitPropVariantFromUInt16Vector(value, (uint)value.Length, this);
 
@@ -313,7 +301,7 @@ namespace MS.WindowsAPICodePack.Internal
         /// </summary>
         public PropVariant(int[] value)
         {
-            if (value == null) { throw new ArgumentNullException("value"); }
+            if (value == null) throw new ArgumentNullException(nameof(value));
 
             PropVariantNativeMethods.InitPropVariantFromInt32Vector(value, (uint)value.Length, this);
         }
@@ -323,7 +311,7 @@ namespace MS.WindowsAPICodePack.Internal
         /// </summary>
         public PropVariant(uint[] value)
         {
-            if (value == null) { throw new ArgumentNullException("value"); }
+            if (value == null) throw new ArgumentNullException(nameof(value));
 
             PropVariantNativeMethods.InitPropVariantFromUInt32Vector(value, (uint)value.Length, this);
         }
@@ -333,7 +321,7 @@ namespace MS.WindowsAPICodePack.Internal
         /// </summary>
         public PropVariant(long[] value)
         {
-            if (value == null) { throw new ArgumentNullException("value"); }
+            if (value == null) throw new ArgumentNullException(nameof(value));
 
             PropVariantNativeMethods.InitPropVariantFromInt64Vector(value, (uint)value.Length, this);
         }
@@ -343,17 +331,17 @@ namespace MS.WindowsAPICodePack.Internal
         /// </summary>
         public PropVariant(ulong[] value)
         {
-            if (value == null) { throw new ArgumentNullException("value"); }
+            if (value == null) throw new ArgumentNullException(nameof(value));
 
             PropVariantNativeMethods.InitPropVariantFromUInt64Vector(value, (uint)value.Length, this);
         }
 
-        /// <summary>>
+        /// <summary>
         /// Set a double vector
         /// </summary>
         public PropVariant(double[] value)
         {
-            if (value == null) { throw new ArgumentNullException("value"); }
+            if (value == null) throw new ArgumentNullException(nameof(value));
 
             PropVariantNativeMethods.InitPropVariantFromDoubleVector(value, (uint)value.Length, this);
         }
@@ -364,15 +352,14 @@ namespace MS.WindowsAPICodePack.Internal
         /// </summary>
         public PropVariant(DateTime[] value)
         {
-            if (value == null) { throw new ArgumentNullException("value"); }
+            if (value == null) throw new ArgumentNullException(nameof(value));
             System.Runtime.InteropServices.ComTypes.FILETIME[] fileTimeArr =
                 new System.Runtime.InteropServices.ComTypes.FILETIME[value.Length];
 
             for (int i = 0; i < value.Length; i++)
-            {
+            
                 fileTimeArr[i] = DateTimeToFileTime(value[i]);
-            }
-
+            
             PropVariantNativeMethods.InitPropVariantFromFileTimeVector(fileTimeArr, (uint)fileTimeArr.Length, this);
         }
 
@@ -469,15 +456,15 @@ namespace MS.WindowsAPICodePack.Internal
         /// <param name="value">Decimal array to wrap.</param>
         public PropVariant(decimal[] value)
         {
-            if (value == null) { throw new ArgumentNullException("value"); }
+            if (value == null) throw new ArgumentNullException("value");
 
             _valueType = (ushort)(VarEnum.VT_DECIMAL | VarEnum.VT_VECTOR);
             _int32 = value.Length;
 
             // allocate required memory for array with 128bit elements
-            _ptr2 = Marshal.AllocCoTaskMem(value.Length * sizeof(decimal));            
+            _ptr2 = Marshal.AllocCoTaskMem(value.Length * sizeof(decimal));
             for (int i = 0; i < value.Length; i++)
-            {                
+            {
                 int[] bits = decimal.GetBits(value[i]);
                 Marshal.Copy(bits, 0, _ptr2, bits.Length);
             }
@@ -498,11 +485,11 @@ namespace MS.WindowsAPICodePack.Internal
         /// </summary>        
         public PropVariant(float[] value)
         {
-            if (value == null) { throw new ArgumentNullException("value"); }
+            if (value == null) { throw new ArgumentNullException(nameof(value)); }
 
             _valueType = (ushort)(VarEnum.VT_R4 | VarEnum.VT_VECTOR);
             _int32 = value.Length;
-                        
+
             _ptr2 = Marshal.AllocCoTaskMem(value.Length * sizeof(float));
 
             Marshal.Copy(value, 0, _ptr2, value.Length);
@@ -588,21 +575,15 @@ namespace MS.WindowsAPICodePack.Internal
         /// </summary>
         public VarEnum VarType
         {
-            get { return (VarEnum)_valueType; }
-            set { _valueType = (ushort)value; }
+            get => (VarEnum)_valueType;
+            set => _valueType = (ushort)value;
         }
 
         /// <summary>
         /// Checks if this has an empty or null value
         /// </summary>
         /// <returns></returns>
-        public bool IsNullOrEmpty
-        {
-            get
-            {
-                return (_valueType == (ushort)VarEnum.VT_EMPTY || _valueType == (ushort)VarEnum.VT_NULL);
-            }
-        }
+        public bool IsNullOrEmpty => _valueType == (ushort)VarEnum.VT_EMPTY || _valueType == (ushort)VarEnum.VT_NULL;
 
         /// <summary>
         /// Gets the variant value.
@@ -664,27 +645,27 @@ namespace MS.WindowsAPICodePack.Internal
                     case (VarEnum.VT_VECTOR | VarEnum.VT_LPWSTR):
                         return GetVector<string>();
                     case (VarEnum.VT_VECTOR | VarEnum.VT_I2):
-                        return GetVector<Int16>();
+                        return GetVector<short>();
                     case (VarEnum.VT_VECTOR | VarEnum.VT_UI2):
-                        return GetVector<UInt16>();
+                        return GetVector<ushort>();
                     case (VarEnum.VT_VECTOR | VarEnum.VT_I4):
-                        return GetVector<Int32>();
+                        return GetVector<int>();
                     case (VarEnum.VT_VECTOR | VarEnum.VT_UI4):
-                        return GetVector<UInt32>();
+                        return GetVector<uint>();
                     case (VarEnum.VT_VECTOR | VarEnum.VT_I8):
-                        return GetVector<Int64>();
+                        return GetVector<long>();
                     case (VarEnum.VT_VECTOR | VarEnum.VT_UI8):
-                        return GetVector<UInt64>();
-                    case (VarEnum.VT_VECTOR|VarEnum.VT_R4):
+                        return GetVector<ulong>();
+                    case (VarEnum.VT_VECTOR | VarEnum.VT_R4):
                         return GetVector<float>();
                     case (VarEnum.VT_VECTOR | VarEnum.VT_R8):
-                        return GetVector<Double>();
+                        return GetVector<double>();
                     case (VarEnum.VT_VECTOR | VarEnum.VT_BOOL):
-                        return GetVector<Boolean>();
+                        return GetVector<bool>();
                     case (VarEnum.VT_VECTOR | VarEnum.VT_FILETIME):
                         return GetVector<DateTime>();
                     case (VarEnum.VT_VECTOR | VarEnum.VT_DECIMAL):
-                        return GetVector<Decimal>();
+                        return GetVector<decimal>();
                     default:
                         // if the value cannot be marshaled
                         return null;
@@ -696,10 +677,7 @@ namespace MS.WindowsAPICodePack.Internal
 
         #region Private Methods
 
-        private static long GetFileTimeAsLong(ref System.Runtime.InteropServices.ComTypes.FILETIME val)
-        {
-            return (((long)val.dwHighDateTime) << 32) + val.dwLowDateTime;
-        }
+        private static long GetFileTimeAsLong(ref System.Runtime.InteropServices.ComTypes.FILETIME val) => (((long)val.dwHighDateTime) << 32) + val.dwLowDateTime;
 
         private static System.Runtime.InteropServices.ComTypes.FILETIME DateTimeToFileTime(DateTime value)
         {
@@ -724,28 +702,24 @@ namespace MS.WindowsAPICodePack.Internal
         private Array GetVector<T>()
         {
             int count = PropVariantNativeMethods.PropVariantGetElementCount(this);
-            if (count <= 0) { return null; }
+            if (count <= 0) return null;
 
             lock (_padlock)
-            {
+            
                 if (_vectorActions == null)
-                {
+            
                     _vectorActions = GenerateVectorActions();
-                }
-            }
-
+            
             Action<PropVariant, Array, uint> action;
             if (!_vectorActions.TryGetValue(typeof(T), out action))
-            {
+            
                 throw new InvalidCastException(LocalizedMessages.PropVariantUnsupportedType);
-            }
-
+            
             Array array = new T[count];
             for (uint i = 0; i < count; i++)
-            {
+            
                 action(this, array, i);
-            }
-
+            
             return array;
         }
 
@@ -753,7 +727,7 @@ namespace MS.WindowsAPICodePack.Internal
         {
             uint cDims = PropVariantNativeMethods.SafeArrayGetDim(psa);
             if (cDims != 1)
-                throw new ArgumentException(LocalizedMessages.PropVariantMultiDimArray, "psa");
+                throw new ArgumentException(LocalizedMessages.PropVariantMultiDimArray, nameof(psa));
 
             int lBound = PropVariantNativeMethods.SafeArrayGetLBound(psa, 1U);
             int uBound = PropVariantNativeMethods.SafeArrayGetUBound(psa, 1U);
@@ -762,10 +736,9 @@ namespace MS.WindowsAPICodePack.Internal
 
             object[] array = new object[n];
             for (int i = lBound; i <= uBound; ++i)
-            {
+            
                 array[i] = PropVariantNativeMethods.SafeArrayGetElement(psa, ref i);
-            }
-
+            
             return array;
         }
 
@@ -797,11 +770,8 @@ namespace MS.WindowsAPICodePack.Internal
         /// Provides an simple string representation of the contained data and type.
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
-            return string.Format(System.Globalization.CultureInfo.InvariantCulture,
+        public override string ToString() => string.Format(System.Globalization.CultureInfo.InvariantCulture,
                 "{0}: {1}", Value, VarType.ToString());
-        }
 
     }
 

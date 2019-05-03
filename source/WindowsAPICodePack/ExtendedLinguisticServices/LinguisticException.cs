@@ -33,11 +33,8 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// </summary>
         public LinguisticException() { }
 
-        internal LinguisticException(UInt32 hResult)
-            : base((int)hResult)
-        {
-            HResult = (int)hResult;
-        }
+        internal LinguisticException(uint hResult)
+            : base((int)hResult) => HResult = (int)hResult;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LinguisticException">LinguisticException</see> class
@@ -74,13 +71,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// <summary>
         /// Gets the MappingResultState describing the error condition for this exception.
         /// </summary>
-        public MappingResultState ResultState
-        {
-            get
-            {
-                return new MappingResultState(HResult, Message);
-            }
-        }
+        public MappingResultState ResultState => new MappingResultState(HResult, Message);
     }
 
 }

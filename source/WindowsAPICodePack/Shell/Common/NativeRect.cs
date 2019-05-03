@@ -50,13 +50,10 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="first">First NativeRect</param>
         /// <param name="second">Second NativeRect</param>
         /// <returns>True if first NativeRect is equal to second; false otherwise.</returns>
-        public static bool operator ==(NativeRect first, NativeRect second)
-        {
-            return first.Left == second.Left
+        public static bool operator ==(NativeRect first, NativeRect second) => first.Left == second.Left
                 && first.Top == second.Top
                 && first.Right == second.Right
                 && first.Bottom == second.Bottom;
-        }
 
         /// <summary>
         /// Determines if two NativeRects are not equal
@@ -64,20 +61,14 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="first">First NativeRect</param>
         /// <param name="second">Second NativeRect</param>
         /// <returns>True if first is not equal to second; false otherwise.</returns>
-        public static bool operator !=(NativeRect first, NativeRect second)
-        {
-            return !(first == second);
-        }
+        public static bool operator !=(NativeRect first, NativeRect second) => !(first == second);
 
         /// <summary>
         /// Determines if the NativeRect is equal to another Rect.
         /// </summary>
         /// <param name="obj">Another NativeRect to compare</param>
         /// <returns>True if this NativeRect is equal to the one provided; false otherwise.</returns>
-        public override bool Equals(object obj)
-        {
-            return (obj != null && obj is NativeRect) ? this == (NativeRect)obj : false;
-        }
+        public override bool Equals(object obj) => (obj != null && obj is NativeRect) ? this == (NativeRect)obj : false;
 
         /// <summary>
         /// Creates a hash code for the NativeRect
@@ -86,9 +77,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public override int GetHashCode()
         {
             int hash = Left.GetHashCode();
-            hash = hash * 31 + Top.GetHashCode();
-            hash = hash * 31 + Right.GetHashCode();
-            hash = hash * 31 + Bottom.GetHashCode();
+            hash = (hash * 31) + Top.GetHashCode();
+            hash = (hash * 31) + Right.GetHashCode();
+            hash = (hash * 31) + Bottom.GetHashCode();
             return hash;
         }
     }

@@ -40,10 +40,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     {
                         string str = ShellHelper.GetParsingName(NativeShellItem);
                         if (str != null && str != Environment.GetFolderPath(Environment.SpecialFolder.Desktop))
-                        {
+                        
                             throw new ShellException(hr);
-                        }
-                    }
+                                            }
                 }
 
                 return nativeShellFolder;
@@ -96,10 +95,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
             if (NativeShellFolder == null)
             {
                 if (desktopFolderEnumeration == null)
-                {
+                
                     ShellNativeMethods.SHGetDesktopFolder(out desktopFolderEnumeration);
-                }
-
+                
                 nativeShellFolder = desktopFolderEnumeration;
             }
 
@@ -110,10 +108,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         #region IEnumerable Members
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return new ShellFolderItems(this);
-        }
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => new ShellFolderItems(this);
 
         #endregion
     }

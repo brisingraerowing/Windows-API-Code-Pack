@@ -51,14 +51,12 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         private static void EnsureInitialized()
         {
             lock (lockObject)
-            {
+
                 if (window == null)
-                {
+
                     // Create a new hidden window to listen
                     // for power management related window messages.
                     window = new PowerRegWindow();
-                }
-            }
         }
 
         /// <summary>
@@ -89,7 +87,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                 readerWriterLock.AcquireWriterLock(Timeout.Infinite);
                 if (!eventList.Contains(eventId))
                 {
-                    Power.RegisterPowerSettingNotification(this.Handle, eventId);
+                    Power.RegisterPowerSettingNotification(Handle, eventId);
                     ArrayList newList = new ArrayList();
                     newList.Add(eventToRegister);
                     eventList.Add(eventId, newList);
@@ -118,9 +116,9 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                     currList.Remove(eventToUnregister);
                 }
                 else
-                {
+
                     throw new InvalidOperationException(LocalizedMessages.MessageManagerHandlerNotRegistered);
-                }
+
                 readerWriterLock.ReleaseWriterLock();
             }
 
@@ -133,9 +131,8 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
             private static void ExecuteEvents(ArrayList eventHandlerList)
             {
                 foreach (EventHandler handler in eventHandlerList)
-                {
+
                     handler.Invoke(null, new EventArgs());
-                }
             }
 
             /// <summary>
@@ -158,19 +155,19 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                                         
                     // IsMonitorOn
                     if (ps.PowerSetting == EventManager.MonitorPowerStatus &&
-                        ps.DataLength == Marshal.SizeOf(typeof(Int32)))
+                        ps.DataLength == Marshal.SizeOf(typeof(int)))
                     {
-                        Int32 monitorStatus = (Int32)Marshal.PtrToStructure(pData, typeof(Int32));
+                        int monitorStatus = (int)Marshal.PtrToStructure(pData, typeof(int));
                         PowerManager.IsMonitorOn = monitorStatus != 0;
                         EventManager.monitorOnReset.Set();
                     }
 
                     if (!EventManager.IsMessageCaught(currentEvent))
-                    {
+
                         ExecuteEvents((ArrayList)eventList[currentEvent]);
-                    }
                 }
                 else
+
                     base.WndProc(ref m);
 
             }

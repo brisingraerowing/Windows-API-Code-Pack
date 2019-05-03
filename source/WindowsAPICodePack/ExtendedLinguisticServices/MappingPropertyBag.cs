@@ -24,14 +24,15 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         {
             _serviceCache = ServiceCache.Instance;
             if (!_serviceCache.RegisterResource())
-            {
+
                 throw new LinguisticException();
-            }
+
             _win32PropertyBag._size = InteropTools.SizeOfWin32PropertyBag;
+
             if (options != null)
-            {
+
                 _options = InteropTools.Pack(ref options._win32Options);
-            }
+
             _text = GCHandle.Alloc(text, GCHandleType.Pinned);
         }
 
@@ -70,21 +71,22 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// <returns></returns>
         public T[] FormatData<T>(IMappingFormatter<T> formatter)
         {
-            if (formatter == null) { throw new ArgumentNullException("formatter"); }
+            if (formatter == null) throw new ArgumentNullException(nameof(formatter));
             return formatter.FormatAll(this);
         }
 
         private bool DisposeInternal()
         {
             if (_win32PropertyBag._context == IntPtr.Zero)
-            {
+
                 return true;
-            }
-            UInt32 hResult = Win32NativeMethods.MappingFreePropertyBag(ref _win32PropertyBag);
+
+            uint hResult = Win32NativeMethods.MappingFreePropertyBag(ref _win32PropertyBag);
+
             if (hResult != 0)
-            {
+
                 throw new LinguisticException(hResult);
-            }
+
             return true;
         }
 
@@ -103,18 +105,13 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// <param name="disposed"></param>
         protected virtual void Dispose(bool disposed)
         {
-            if (Interlocked.CompareExchange(ref _isFinalized, 0, 0) == 0)
+            if (Interlocked.CompareExchange(ref _isFinalized, 0, 0) == 0 && DisposeInternal())
             {
-                bool result = DisposeInternal();
-                if (result)
-                {
-                    _serviceCache.UnregisterResource();
-                    InteropTools.Free<Win32Options>(ref _options);
-                    _text.Free();
-                    Interlocked.CompareExchange(ref _isFinalized, 1, 0);
-                }
+                _serviceCache.UnregisterResource();
+                InteropTools.Free<Win32Options>(ref _options);
+                _text.Free();
+                Interlocked.CompareExchange(ref _isFinalized, 1, 0);
             }
         }
     }
-
 }

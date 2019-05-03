@@ -100,7 +100,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
         /// </summary>
         public string PropertyBagName
         {
-            get { return propertyBagName; }
+            get => propertyBagName;
             set
             {
                 propertyBagName = value;
@@ -156,10 +156,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
         /// </summary>
         /// <param name="direction">Forward of Backward</param>
         /// <returns>True if the navigation succeeded, false if it failed for any reason.</returns>
-        public bool NavigateLogLocation(NavigationLogDirection direction)
-        {
-            return NavigationLog.NavigateLog(direction);
-        }
+        public bool NavigateLogLocation(NavigationLogDirection direction) => NavigationLog.NavigateLog(direction);
 
         /// <summary>
         /// Navigate within the navigation log. This does not change the set of 
@@ -167,10 +164,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
         /// </summary>
         /// <param name="navigationLogIndex">An index into the navigation logs Locations collection.</param>
         /// <returns>True if the navigation succeeded, false if it failed for any reason.</returns>
-        public bool NavigateLogLocation(int navigationLogIndex)
-        {
-            return NavigationLog.NavigateLog(navigationLogIndex);
-        }
+        public bool NavigateLogLocation(int navigationLogIndex) => NavigationLog.NavigateLog(navigationLogIndex);
         #endregion
 
         #region events
@@ -256,23 +250,20 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
                     Color.Aqua,
                     Color.CadetBlue,
                     LinearGradientMode.ForwardDiagonal))
-                {
+
                     e.Graphics.FillRectangle(linGrBrush, ClientRectangle);
-                }
 
                 using (Font font = new Font("Garamond", 30))
+                using (StringFormat sf = new StringFormat())
                 {
-                    using (StringFormat sf = new StringFormat())
-                    {
-                        sf.Alignment = StringAlignment.Center;
-                        sf.LineAlignment = StringAlignment.Center;
-                        e.Graphics.DrawString(
-                            "ExplorerBrowserControl",
-                            font,
-                            Brushes.White,
-                            ClientRectangle,
-                            sf);
-                    }
+                    sf.Alignment = StringAlignment.Center;
+                    sf.LineAlignment = StringAlignment.Center;
+                    e.Graphics.DrawString(
+                        "ExplorerBrowserControl",
+                        font,
+                        Brushes.White,
+                        ClientRectangle,
+                        sf);
                 }
             }
 
@@ -289,7 +280,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
         {
             base.OnCreateControl();
 
-            if (this.DesignMode == false)
+            if (DesignMode == false)
             {
                 explorerBrowserControl = new ExplorerBrowserClass();
 
@@ -320,14 +311,13 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
                 explorerBrowserControl.SetPropertyBag(propertyBagName);
 
                 if (antecreationNavigationTarget != null)
-                {
+
                     BeginInvoke(new MethodInvoker(
                     delegate
                     {
                         Navigate(antecreationNavigationTarget);
                         antecreationNavigationTarget = null;
                     }));
-                }
             }
 
             Application.AddMessageFilter(this);
@@ -392,7 +382,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
         HResult Microsoft.WindowsAPICodePack.Controls.IServiceProvider.QueryService(
             ref Guid guidService, ref Guid riid, out IntPtr ppvObject)
         {
-            HResult hr = HResult.Ok;
+            HResult hr;
 
             if (guidService.CompareTo(new Guid(ExplorerBrowserIIDGuid.IExplorerPaneVisibility)) == 0)
             {
@@ -569,18 +559,13 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
         #endregion
 
         #region ICommDlgBrowser
-        HResult ICommDlgBrowser3.OnDefaultCommand(IntPtr ppshv)
-        {
-            return HResult.False;
-            //return HResult.Ok;
-        }
+        HResult ICommDlgBrowser3.OnDefaultCommand(IntPtr ppshv) => HResult.False; //return HResult.Ok;
 
         HResult ICommDlgBrowser3.OnStateChange(IntPtr ppshv, CommDlgBrowserStateChange uChange)
         {
             if (uChange == CommDlgBrowserStateChange.SelectionChange)
-            {
+
                 FireSelectionChanged();
-            }
 
             return HResult.Ok;
         }
@@ -602,14 +587,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
         // interface.  This is logged as a bug, but moved to less of a priority, as it only affects being
         // able to change the default action text for remapping the default action.
 
-        HResult ICommDlgBrowser3.GetDefaultMenuText(IShellView shellView, IntPtr text, int cchMax)
-        {
-            return HResult.False;
-            //return HResult.Ok;
-            //OK if new
-            //False if default
-            //other if error
-        }
+        HResult ICommDlgBrowser3.GetDefaultMenuText(IShellView shellView, IntPtr text, int cchMax) => HResult.False;//return HResult.Ok;//OK if new//False if default//other if error
 
         HResult ICommDlgBrowser3.GetViewFlags(out uint pdwFlags)
         {
@@ -619,32 +597,23 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
             return HResult.Ok;
         }
 
-        HResult ICommDlgBrowser3.Notify(IntPtr pshv, CommDlgBrowserNotifyType notifyType)
-        {
-            return HResult.Ok;
-        }
+        HResult ICommDlgBrowser3.Notify(IntPtr pshv, CommDlgBrowserNotifyType notifyType) => HResult.Ok;
 
         #endregion
 
         #region ICommDlgBrowser3 Members
 
-        HResult ICommDlgBrowser3.GetCurrentFilter(StringBuilder pszFileSpec, int cchFileSpec)
-        {
+        HResult ICommDlgBrowser3.GetCurrentFilter(StringBuilder pszFileSpec, int cchFileSpec) =>
             // If the method succeeds, it returns S_OK. Otherwise, it returns an HRESULT error code.
-            return HResult.Ok;
-        }
+            HResult.Ok;
 
-        HResult ICommDlgBrowser3.OnColumnClicked(IShellView ppshv, int iColumn)
-        {
+        HResult ICommDlgBrowser3.OnColumnClicked(IShellView ppshv, int iColumn) =>
             // If the method succeeds, it returns S_OK. Otherwise, it returns an HRESULT error code.
-            return HResult.Ok;
-        }
+            HResult.Ok;
 
-        HResult ICommDlgBrowser3.OnPreViewCreated(IShellView ppshv)
-        {
+        HResult ICommDlgBrowser3.OnPreViewCreated(IShellView ppshv) =>
             // If the method succeeds, it returns S_OK. Otherwise, it returns an HRESULT error code
-            return HResult.Ok;
-        }
+            HResult.Ok;
 
         #endregion
 
@@ -654,11 +623,11 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
         {
             HResult hr = HResult.False;
             if (explorerBrowserControl != null)
-            {
+
                 // translate keyboard input
                 hr = ((IInputObject)explorerBrowserControl).TranslateAcceleratorIO(ref m);
-            }
-            return (hr == HResult.Ok);
+
+            return hr == HResult.Ok;
         }
 
         #endregion
@@ -676,7 +645,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
             IFolderView2 ifv2 = GetFolderView2();
             uint viewMode = 0;
             if (ifv2 != null)
-            {
+
                 try
                 {
                     HResult hr = ifv2.GetCurrentViewMode(out viewMode);
@@ -687,7 +656,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
                     Marshal.ReleaseComObject(ifv2);
                     ifv2 = null;
                 }
-            }
+
             return (FolderViewMode)viewMode;
         }
 
@@ -699,9 +668,9 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
         {
             Guid iid = new Guid(ExplorerBrowserIIDGuid.IFolderView2);
             IntPtr view = IntPtr.Zero;
-            if (this.explorerBrowserControl != null)
+            if (explorerBrowserControl != null)
             {
-                HResult hr = this.explorerBrowserControl.GetCurrentView(ref iid, out view);
+                HResult hr = explorerBrowserControl.GetCurrentView(ref iid, out view);
                 switch (hr)
                 {
                     case HResult.Ok:
@@ -742,9 +711,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
                     if (hr != HResult.Ok &&
                         hr != HResult.ElementNotFound &&
                         hr != HResult.Fail)
-                    {
+
                         throw new CommonControlException(LocalizedMessages.ExplorerBrowserUnexpectedError, hr);
-                    }
                 }
                 finally
                 {
@@ -849,37 +817,13 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
         #endregion
 
         #region view event forwarding
-        internal void FireSelectionChanged()
-        {
-            if (SelectionChanged != null)
-            {
-                SelectionChanged(this, EventArgs.Empty);
-            }
-        }
+        internal void FireSelectionChanged() => SelectionChanged?.Invoke(this, EventArgs.Empty);
 
-        internal void FireContentChanged()
-        {
-            if (ItemsChanged != null)
-            {
-                ItemsChanged.Invoke(this, EventArgs.Empty);
-            }
-        }
+        internal void FireContentChanged() => ItemsChanged?.Invoke(this, EventArgs.Empty);
 
-        internal void FireContentEnumerationComplete()
-        {
-            if (ViewEnumerationComplete != null)
-            {
-                ViewEnumerationComplete.Invoke(this, EventArgs.Empty);
-            }
-        }
+        internal void FireContentEnumerationComplete() => ViewEnumerationComplete?.Invoke(this, EventArgs.Empty);
 
-        internal void FireSelectedItemChanged()
-        {
-            if (ViewSelectedItemChanged != null)
-            {
-                ViewSelectedItemChanged.Invoke(this, EventArgs.Empty);
-            }
-        }
+        internal void FireSelectedItemChanged() => ViewSelectedItemChanged?.Invoke(this, EventArgs.Empty);
         #endregion
 
         #endregion

@@ -12,16 +12,8 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
 
         internal static readonly Guid All = new Guid(0x68A1E95E, 0x13EA, 0x41E1, 0x80, 0x11, 0x0C, 0x49, 0x6C, 0xA4, 0x90, 0xB0);
 
-        internal static PowerPersonality GuidToEnum(Guid guid)
-        {            
-            if (guid == HighPerformance)
-                return PowerPersonality.HighPerformance;
-            else if (guid == PowerSaver)
-                return PowerPersonality.PowerSaver;
-            else if (guid == Automatic)
-                return PowerPersonality.Automatic;            
-            else
-                return PowerPersonality.Unknown;
-        }
+        internal static PowerPersonality GuidToEnum(Guid guid) => guid == HighPerformance
+                ? PowerPersonality.HighPerformance
+                : guid == PowerSaver ? PowerPersonality.PowerSaver : guid == Automatic ? PowerPersonality.Automatic : PowerPersonality.Unknown;
     }
 }

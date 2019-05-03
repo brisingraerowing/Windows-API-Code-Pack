@@ -21,8 +21,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             Id = nextId;
 
             // Support wrapping of control IDs in case you create a lot of custom controls
-            if (nextId == Int32.MaxValue) { nextId = DialogsDefaults.MinimumDialogControlId; }
-            else { nextId++; }
+            if (nextId == int.MaxValue) nextId = DialogsDefaults.MinimumDialogControlId;
+            else nextId++;
         }
 
         /// <summary>
@@ -30,10 +30,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// </summary>
         /// <param name="name">The name for this dialog.</param>
         protected DialogControl(string name)
-            : this()
-        {
-            Name = name;
-        }
+            : this() => Name = name;
 
         /// <summary>
         /// The native dialog that is hosting this control. This property is null is
@@ -45,38 +42,36 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// <summary>
         /// Gets the name for this control.
         /// </summary>
-        /// <value>A <see cref="System.String"/> value.</value>        
+        /// <value>A <see cref="string"/> value.</value>        
         public string Name
         {
-            get { return name; }
+            get => name;
             set
-            { 
+            {
                 // Names for controls need to be quite stable, 
                 // as we are going to maintain a mapping between 
                 // the names and the underlying Win32/COM control IDs.
                 if (string.IsNullOrEmpty(value))
-                {
+
                     throw new ArgumentException(LocalizedMessages.DialogControlNameCannotBeEmpty);
-                }
 
                 if (!string.IsNullOrEmpty(name))
-                {
+
                     throw new InvalidOperationException(LocalizedMessages.DialogControlsCannotBeRenamed);
-                }
 
                 // Note that we don't notify the hosting dialog of 
                 // the change, as the initial set of name is (must be)
                 // always legal, and renames are always illegal.
-                this.name = value;
+                name = value;
             }
         }
-                
+
         /// <summary>
         /// Gets the identifier for this control.
         /// </summary>
-        /// <value>An <see cref="System.Int32"/> value.</value>
+        /// <value>An <see cref="int"/> value.</value>
         public int Id { get; private set; }
-        
+
         ///<summary>
         /// Calls the hosting dialog, if it exists, to check whether the 
         /// property can be set in the dialog's current state. 
@@ -90,10 +85,10 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             Debug.Assert(!string.IsNullOrEmpty(propName), "Property to change was not specified");
 
             if (HostingDialog != null)
-            {
+
                 // This will throw if the property change is not allowed.
                 HostingDialog.IsControlPropertyChangeAllowed(propName, this);
-            }
+
         }
 
         ///<summary>
@@ -110,9 +105,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             Debug.Assert(!string.IsNullOrEmpty(propName), "Property changed was not specified");
 
             if (HostingDialog != null)
-            {
+
                 HostingDialog.ApplyControlPropertyChange(propName, this);
-            }
+
         }
 
         /// <summary>
@@ -125,7 +120,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             DialogControl control = obj as DialogControl;
 
             if (control != null)
-                return (this.Id == control.Id);
+                return Id == control.Id;
 
             return false;
         }
@@ -133,15 +128,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// <summary>
         /// Serves as a hash function for a particular type. 
         /// </summary>
-        /// <returns>An <see cref="System.Int32"/> hash code for this control.</returns>
-        public override int GetHashCode()
-        {
-            if (Name == null)
-            {
-                return this.ToString().GetHashCode();
-            }
-
-            return Name.GetHashCode();
-        }
+        /// <returns>An <see cref="int"/> hash code for this control.</returns>
+        public override int GetHashCode() => Name == null ? ToString().GetHashCode() : Name.GetHashCode();
     }
 }

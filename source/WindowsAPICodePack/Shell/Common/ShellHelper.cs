@@ -16,17 +16,16 @@ namespace Microsoft.WindowsAPICodePack.Shell
     {
         internal static string GetParsingName(IShellItem shellItem)
         {
-            if (shellItem == null) { return null; }
+            if (shellItem == null) return null;
 
             string path = null;
 
-            IntPtr pszPath = IntPtr.Zero;
+            IntPtr pszPath;
             HResult hr = shellItem.GetDisplayName(ShellNativeMethods.ShellItemDesignNameOptions.DesktopAbsoluteParsing, out pszPath);
 
             if (hr != HResult.Ok && hr != HResult.InvalidArguments)
-            {
+
                 throw new ShellException(LocalizedMessages.ShellHelperGetParsingNameFailed, hr);
-            }
 
             if (pszPath != IntPtr.Zero)
             {
@@ -39,28 +38,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         }
 
-        internal static string GetAbsolutePath(string path)
-        {
-            if (Uri.IsWellFormedUriString(path, UriKind.Absolute))
-            {
-                return path;
-            }
-            return Path.GetFullPath((path));
-        }
+        internal static string GetAbsolutePath(string path) => Uri.IsWellFormedUriString(path, UriKind.Absolute) ? path : Path.GetFullPath(path);
 
         internal static PropertyKey ItemTypePropertyKey = new PropertyKey(new Guid("28636AA6-953D-11D2-B5D6-00C04FD918D0"), 11);
 
-        internal static string GetItemType(IShellItem2 shellItem)
-        {
-            if (shellItem != null)
-            {
-                string itemType = null;                
-                HResult hr = shellItem.GetString(ref ItemTypePropertyKey, out itemType);
-                if (hr == HResult.Ok) { return itemType; }
-            }
-
-            return null;
-        }
+        internal static string GetItemType(IShellItem2 shellItem) => shellItem != null && shellItem.GetString(ref ItemTypePropertyKey, out string itemType) == HResult.Ok ? itemType : null;
 
         internal static IntPtr PidlFromParsingName(string name)
         {
@@ -68,24 +50,15 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             ShellNativeMethods.ShellFileGetAttributesOptions sfgao;
             int retCode = ShellNativeMethods.SHParseDisplayName(
-                name, IntPtr.Zero, out pidl, (ShellNativeMethods.ShellFileGetAttributesOptions)0,
+                name, IntPtr.Zero, out pidl, 0,
                 out sfgao);
 
             return (CoreErrorHelper.Succeeded(retCode) ? pidl : IntPtr.Zero);
         }
 
-        internal static IntPtr PidlFromShellItem(IShellItem nativeShellItem)
-        {
-            IntPtr unknown = Marshal.GetIUnknownForObject(nativeShellItem);
-            return PidlFromUnknown(unknown);
-        }
+        internal static IntPtr PidlFromShellItem(IShellItem nativeShellItem) => PidlFromUnknown(Marshal.GetIUnknownForObject(nativeShellItem));
 
-        internal static IntPtr PidlFromUnknown(IntPtr unknown)
-        {
-            IntPtr pidl;
-            int retCode = ShellNativeMethods.SHGetIDListFromObject(unknown, out pidl);
-            return (CoreErrorHelper.Succeeded(retCode) ? pidl : IntPtr.Zero);
-        }
+        internal static IntPtr PidlFromUnknown(IntPtr unknown) => CoreErrorHelper.Succeeded(ShellNativeMethods.SHGetIDListFromObject(unknown, out IntPtr pidl)) ? pidl : IntPtr.Zero;
 
     }
 }

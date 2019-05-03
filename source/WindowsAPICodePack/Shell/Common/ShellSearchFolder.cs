@@ -27,13 +27,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             NativeSearchFolderItemFactory = (ISearchFolderItemFactory)new SearchFolderItemFactoryCoClass();
 
-            this.SearchCondition = searchCondition;
+            SearchCondition = searchCondition;
 
             if (searchScopePath != null && searchScopePath.Length > 0 && searchScopePath[0] != null)
-            {
-                this.SearchScopePaths = searchScopePath.Select(cont => cont.ParsingName);
-            }
-        }
+            
+                SearchScopePaths = searchScopePath.Select(cont => cont.ParsingName);
+                    }
 
         /// <summary>
         /// Create a simple search folder. Once the appropiate parameters are set, 
@@ -48,23 +47,22 @@ namespace Microsoft.WindowsAPICodePack.Shell
             NativeSearchFolderItemFactory = (ISearchFolderItemFactory)new SearchFolderItemFactoryCoClass();
 
             if (searchScopePath != null && searchScopePath.Length > 0 && searchScopePath[0] != null)
-            {
-                this.SearchScopePaths = searchScopePath;
-            }
-
-            this.SearchCondition = searchCondition;
+            
+                SearchScopePaths = searchScopePath;
+            
+            SearchCondition = searchCondition;
         }
 
         internal ISearchFolderItemFactory NativeSearchFolderItemFactory { get; set; }
 
         private SearchCondition searchCondition;
         /// <summary>
-        /// Gets the <see cref="Microsoft.WindowsAPICodePack.Shell.SearchCondition"/> of the search. 
+        /// Gets the <see cref="Shell.SearchCondition"/> of the search. 
         /// When this property is not set, the resulting search will have no filters applied.
         /// </summary>
         public SearchCondition SearchCondition
         {
-            get { return searchCondition; }
+            get => searchCondition;
             private set
             {
                 searchCondition = value;
@@ -83,10 +81,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
             get
             {
                 foreach (var scopePath in searchScopePaths)
-                {
+                
                     yield return scopePath;
-                }
-            }
+                            }
             private set
             {
                 searchScopePaths = value.ToArray();
@@ -98,11 +95,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 // Create IShellItem for all the scopes we were given
                 foreach (string path in searchScopePaths)
                 {
-                    IShellItem scopeShellItem;
+                    int hr = ShellNativeMethods.SHCreateItemFromParsingName(path, IntPtr.Zero, ref shellItemGuid, out IShellItem scopeShellItem);
 
-                    int hr = ShellNativeMethods.SHCreateItemFromParsingName(path, IntPtr.Zero, ref shellItemGuid, out scopeShellItem);
-
-                    if (CoreErrorHelper.Succeeded(hr)) { shellItems.Add(scopeShellItem); }
+                    if (CoreErrorHelper.Succeeded(hr))  shellItems.Add(scopeShellItem); 
                 }
 
                 // Create a new IShellItemArray
@@ -111,7 +106,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 // Set the scope on the native ISearchFolderItemFactory
                 HResult hResult = NativeSearchFolderItemFactory.SetScope(scopeShellItemArray);
 
-                if (!CoreErrorHelper.Succeeded((int)hResult)) { throw new ShellException((int)hResult); }
+                if (!CoreErrorHelper.Succeeded((int)hResult))  throw new ShellException((int)hResult); 
             }
         }
 
@@ -121,12 +116,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 Guid guid = new Guid(ShellIIDGuid.IShellItem);
 
-                if (NativeSearchFolderItemFactory == null) { return null; }
+                if (NativeSearchFolderItemFactory == null)  return null;
 
-                IShellItem shellItem;
-                int hr = NativeSearchFolderItemFactory.GetShellItem(ref guid, out shellItem);
+                int hr = NativeSearchFolderItemFactory.GetShellItem(ref guid, out IShellItem shellItem);
 
-                if (!CoreErrorHelper.Succeeded(hr)) { throw new ShellException(hr); }
+                if (!CoreErrorHelper.Succeeded(hr))  throw new ShellException(hr); 
 
                 return shellItem;
             }
@@ -141,28 +135,25 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <exception cref="System.ArgumentException">If one of the given canonical names is invalid.</exception>
         public void SetStacks(params string[] canonicalNames)
         {
-            if (canonicalNames == null) { throw new ArgumentNullException("canonicalNames"); }
+            if (canonicalNames == null)  throw new ArgumentNullException("canonicalNames"); 
             List<PropertyKey> propertyKeyList = new List<PropertyKey>();
 
             foreach (string prop in canonicalNames)
             {
                 // Get the PropertyKey using the canonicalName passed in
-                PropertyKey propKey;
-                int result = PropertySystemNativeMethods.PSGetPropertyKeyFromName(prop, out propKey);
+                int result = PropertySystemNativeMethods.PSGetPropertyKeyFromName(prop, out PropertyKey propKey);
 
                 if (!CoreErrorHelper.Succeeded(result))
-                {
+                
                     throw new ArgumentException(LocalizedMessages.ShellInvalidCanonicalName, "canonicalNames", Marshal.GetExceptionForHR(result));
-                }
-
+                
                 propertyKeyList.Add(propKey);
             }
 
             if (propertyKeyList.Count > 0)
-            {
+            
                 SetStacks(propertyKeyList.ToArray());
-            }
-        }
+                    }
 
         /// <summary>
         /// Creates a list of stack keys, as specified. If this method is not called, 
@@ -172,10 +163,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public void SetStacks(params PropertyKey[] propertyKeys)
         {
             if (propertyKeys != null && propertyKeys.Length > 0)
-            {
+            
                 NativeSearchFolderItemFactory.SetStacks((uint)propertyKeys.Length, propertyKeys);
-            }
-        }
+                    }
 
         /// <summary>
         /// Sets the search folder display name.
@@ -184,7 +174,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             HResult hr = NativeSearchFolderItemFactory.SetDisplayName(displayName);
 
-            if (!CoreErrorHelper.Succeeded(hr)) { throw new ShellException(hr); }
+            if (!CoreErrorHelper.Succeeded(hr))  throw new ShellException(hr); 
         }
 
 
@@ -198,7 +188,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             HResult hr = NativeSearchFolderItemFactory.SetIconSize(value);
 
-            if (!CoreErrorHelper.Succeeded(hr)) { throw new ShellException(hr); }
+            if (!CoreErrorHelper.Succeeded(hr))  throw new ShellException(hr); 
         }
 
         /// <summary>
@@ -208,7 +198,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             HResult hr = NativeSearchFolderItemFactory.SetFolderTypeID(value);
 
-            if (!CoreErrorHelper.Succeeded(hr)) { throw new ShellException(hr); }
+            if (!CoreErrorHelper.Succeeded(hr))  throw new ShellException(hr); 
         }
 
         /// <summary>
@@ -220,7 +210,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             HResult hr = NativeSearchFolderItemFactory.SetFolderLogicalViewMode(mode);
 
-            if (!CoreErrorHelper.Succeeded(hr)) { throw new ShellException(hr); }
+            if (!CoreErrorHelper.Succeeded(hr))  throw new ShellException(hr); 
         }
 
         /// <summary>
@@ -233,10 +223,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
             HResult hr = NativeSearchFolderItemFactory.SetVisibleColumns(value == null ? 0 : (uint)value.Length, value);
 
             if (!CoreErrorHelper.Succeeded(hr))
-            {
+            
                 throw new ShellException(LocalizedMessages.ShellSearchFolderUnableToSetVisibleColumns, Marshal.GetExceptionForHR((int)hr));
-            }
-        }
+                    }
 
         /// <summary>
         /// Creates a list of sort column directions, as specified.
@@ -247,10 +236,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
             HResult hr = NativeSearchFolderItemFactory.SetSortColumns(value == null ? 0 : (uint)value.Length, value);
 
             if (!CoreErrorHelper.Succeeded(hr))
-            {
+            
                 throw new ShellException(LocalizedMessages.ShellSearchFolderUnableToSetSortColumns, Marshal.GetExceptionForHR((int)hr));
-            }
-        }
+                    }
 
         /// <summary>
         /// Sets a group column, as specified. If no group column is specified, no grouping occurs. 
@@ -260,7 +248,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             HResult hr = NativeSearchFolderItemFactory.SetGroupColumn(ref propertyKey);
 
-            if (!CoreErrorHelper.Succeeded(hr)) { throw new ShellException(hr); }
+            if (!CoreErrorHelper.Succeeded(hr))  throw new ShellException(hr); 
         }
     }
 }

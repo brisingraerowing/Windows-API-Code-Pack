@@ -22,16 +22,14 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// Creates a new instance on a task dialog button.
         /// </summary>
         protected TaskDialogButtonBase() { }
+
         /// <summary>
         /// Creates a new instance on a task dialog button with
         /// the specified name and text.
         /// </summary>
         /// <param name="name">The name for this button.</param>
         /// <param name="text">The label for this button.</param>
-        protected TaskDialogButtonBase(string name, string text) : base(name)
-        {
-            this.text = text;
-        }
+        protected TaskDialogButtonBase(string name, string text) : base(name) => this.text = text;
 
         // Note that we don't need to explicitly 
         // implement the add/remove delegate for the Click event;
@@ -47,27 +45,29 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         internal void RaiseClickEvent()
         {
             // Only perform click if the button is enabled.
-            if (!enabled) { return; }
-            
-            if (Click != null) { Click(this, EventArgs.Empty); }
+            if (!enabled) return;
+
+            Click?.Invoke(this, EventArgs.Empty);
         }
 
         private string text;
+
         /// <summary>
         /// Gets or sets the button text.
         /// </summary>
         public string Text
         {
-            get { return text; }
-            set 
+            get => text;
+            set
             {
-                CheckPropertyChangeAllowed("Text");
+                CheckPropertyChangeAllowed(nameof(Text));
                 text = value;
-                ApplyPropertyChange("Text");
+                ApplyPropertyChange(nameof(Text));
             }
         }
 
         private bool enabled = true;
+
         /// <summary>
         /// Gets or sets a value that determines whether the
         /// button is enabled. The enabled state can cannot be changed
@@ -75,38 +75,36 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// </summary>
         public bool Enabled
         {
-            get { return enabled; }
-            set 
+            get => enabled;
+            set
             {
-                CheckPropertyChangeAllowed("Enabled");
+                CheckPropertyChangeAllowed(nameof(Enabled));
                 enabled = value;
-                ApplyPropertyChange("Enabled");
+                ApplyPropertyChange(nameof(Enabled));
             }
         }
 
         private bool defaultControl;
+
         /// <summary>
         /// Gets or sets a value that indicates whether
         /// this button is the default button.
         /// </summary>
         public bool Default
         {
-            get { return defaultControl; }
+            get => defaultControl;
             set
             {
-                CheckPropertyChangeAllowed("Default");
+                CheckPropertyChangeAllowed(nameof(Default));
                 defaultControl = value;
-                ApplyPropertyChange("Default");
+                ApplyPropertyChange(nameof(Default));
             }
         }
 
         /// <summary>
         /// Returns the Text property value for this button.
         /// </summary>
-        /// <returns>A <see cref="System.String"/>.</returns>
-        public override string ToString()
-        {
-            return text ?? string.Empty;
-        }
+        /// <returns>A <see cref="string"/>.</returns>
+        public override string ToString() => text ?? string.Empty;
     }
 }

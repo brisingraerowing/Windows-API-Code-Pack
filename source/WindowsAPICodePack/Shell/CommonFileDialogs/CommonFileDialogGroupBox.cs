@@ -13,33 +13,23 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
     [ContentProperty("Items")]
     public class CommonFileDialogGroupBox : CommonFileDialogProminentControl
     {
-        private Collection<DialogControl> items;
         /// <summary>
         /// Gets the collection of controls for this group box.
         /// </summary>
-        public Collection<DialogControl> Items
-        {
-            get { return items; }
-        }
+        public Collection<DialogControl> Items { get; private set; }
 
         /// <summary>
         /// Creates a new instance of this class.
         /// </summary>
         public CommonFileDialogGroupBox()
-            : base(string.Empty)
-        {
-            Initialize();
-        }
+            : base(string.Empty) => Initialize();
 
         /// <summary>
         /// Create a new instance of this class with the specified text.
         /// </summary>
         /// <param name="text">The text to display for this control.</param>
         public CommonFileDialogGroupBox(string text)
-            : base(text)
-        {
-            Initialize();
-        }
+            : base(text) => Initialize();
 
         /// <summary>
         /// Creates a new instance of this class with the specified name and text.
@@ -47,18 +37,12 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
         /// <param name="name">The name of this control.</param>
         /// <param name="text">The text to display for this control.</param>
         public CommonFileDialogGroupBox(string name, string text)
-            : base(name, text)
-        {
-            Initialize();
-        }
+            : base(name, text) => Initialize();
 
         /// <summary>
         /// Initializes the item collection for this class.
         /// </summary>
-        private void Initialize()
-        {
-            items = new Collection<DialogControl>();
-        }
+        private void Initialize() => Items = new Collection<DialogControl>();
 
         /// <summary>
         /// Attach the GroupBox control to the dialog object
@@ -69,10 +53,10 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
             Debug.Assert(dialog != null, "CommonFileDialogGroupBox.Attach: dialog parameter can not be null");
 
             // Start a visual group
-            dialog.StartVisualGroup(this.Id, this.Text);
+            dialog.StartVisualGroup(Id, this.Text);
 
             // Add child controls
-            foreach (CommonFileDialogControl item in this.items)
+            foreach (CommonFileDialogControl item in Items)
             {
                 item.HostingDialog = HostingDialog;
                 item.Attach(dialog);
@@ -83,7 +67,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
 
             // Make this control prominent if needed
             if (IsProminent)
-                dialog.MakeProminent(this.Id);
+
+                dialog.MakeProminent(Id);
 
             // Sync unmanaged properties with managed properties
             SyncUnmanagedProperties();

@@ -14,40 +14,19 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// Gets the time when the data report was generated.
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "TimeStamp")]
-        public DateTime TimeStamp
-        {
-            get
-            {
-                return timeStamp;
-            }
-        }
+        public DateTime TimeStamp { get; private set; } = new DateTime();
 
         /// <summary>
         /// Gets the data values in the report.
         /// </summary>
-        public SensorData Values
-        {
-            get
-            {
-                return sensorData;
-            }
-        }
+        public SensorData Values { get; private set; }
 
         /// <summary>
         /// Gets the sensor that is the source of this data report.
         /// </summary>
-        public Sensor Source
-        {
-            get
-            {
-                return originator;
-            }
-        }
+        public Sensor Source { get; private set; }
 
         #region implementation
-        private SensorData sensorData;
-        private Sensor originator;
-        private DateTime timeStamp = new DateTime();
 
         internal static SensorReport FromNativeReport(Sensor originator, ISensorDataReport iReport)
         {
@@ -60,9 +39,9 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             DateTime timeStamp = DateTime.FromFileTime(lTimeStamp);
 
             SensorReport sensorReport = new SensorReport();
-            sensorReport.originator = originator;
-            sensorReport.timeStamp = timeStamp;
-            sensorReport.sensorData = SensorData.FromNativeReport(originator.internalObject, iReport);
+            sensorReport.Source = originator;
+            sensorReport.TimeStamp = timeStamp;
+            sensorReport.Values = SensorData.FromNativeReport(originator.InternalObject, iReport);
 
             return sensorReport;
         }
