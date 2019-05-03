@@ -4,6 +4,8 @@ using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices;
 using MS.WindowsAPICodePack.Internal;
 
 namespace Microsoft.WindowsAPICodePack.ApplicationServices
@@ -37,7 +39,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
             if (settings == null) throw new ArgumentNullException(nameof(settings));
 
             HResult hr = AppRestartRecoveryNativeMethods.RegisterApplicationRecoveryCallback(
-                AppRestartRecoveryNativeMethods.InternalCallback, (IntPtr)GCHandle.Alloc(settings.RecoveryData), settings.PingInterval, 0);
+                AppRestartRecoveryNativeMethods.RecoveryCallback, (IntPtr)GCHandle.Alloc(settings.RecoveryData), settings.PingInterval, 0);
 
             if (!CoreErrorHelper.Succeeded(hr))
             {

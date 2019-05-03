@@ -2,23 +2,23 @@
 
 using System;
 using System.Runtime.InteropServices;
-using MS.WindowsAPICodePack.Internal;
+using Microsoft.WindowsAPICodePack.Win32Native;
 
-namespace Microsoft.WindowsAPICodePack.Dialogs
+namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
 {
 
     /// <summary>
-    /// Internal class containing most native interop declarations used
+    /// public class containing most native interop declarations used
     /// throughout the library.
     /// Functions that are not performance intensive belong in this class.
     /// </summary>
 
-    internal static class TaskDialogNativeMethods
+    public static class TaskDialogNativeMethods
     {
         #region TaskDialog Definitions
 
         [DllImport("Comctl32.dll", SetLastError = true)]
-        internal static extern HResult TaskDialogIndirect(
+        public static extern HResult TaskDialogIndirect(
             [In] TaskDialogConfiguration taskConfig,
             [Out] out int button,
             [Out] out int radioButton,
@@ -27,51 +27,51 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         // Main task dialog configuration struct.
         // NOTE: Packing must be set to 4 to make this work on 64-bit platforms.
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto, Pack = 4)]
-        internal class TaskDialogConfiguration
+        public class TaskDialogConfiguration
         {
-            internal uint size;
-            internal IntPtr parentHandle;
-            internal IntPtr instance;
-            internal TaskDialogOptions taskDialogFlags;
-            internal TaskDialogCommonButtons commonButtons;
+            public uint size;
+            public IntPtr parentHandle;
+            public IntPtr instance;
+            public TaskDialogOptions taskDialogFlags;
+            public TaskDialogCommonButtons commonButtons;
             [MarshalAs(UnmanagedType.LPWStr)]
-            internal string windowTitle;
-            internal IconUnion mainIcon; // NOTE: 32-bit union field, holds pszMainIcon as well
+            public string windowTitle;
+            public IconUnion mainIcon; // NOTE: 32-bit union field, holds pszMainIcon as well
             [MarshalAs(UnmanagedType.LPWStr)]
-            internal string mainInstruction;
+            public string mainInstruction;
             [MarshalAs(UnmanagedType.LPWStr)]
-            internal string content;
-            internal uint buttonCount;
-            internal IntPtr buttons;           // Ptr to TASKDIALOG_BUTTON structs
-            internal int defaultButtonIndex;
-            internal uint radioButtonCount;
-            internal IntPtr radioButtons;      // Ptr to TASKDIALOG_BUTTON structs
-            internal int defaultRadioButtonIndex;
+            public string content;
+            public uint buttonCount;
+            public IntPtr buttons;           // Ptr to TASKDIALOG_BUTTON structs
+            public int defaultButtonIndex;
+            public uint radioButtonCount;
+            public IntPtr radioButtons;      // Ptr to TASKDIALOG_BUTTON structs
+            public int defaultRadioButtonIndex;
             [MarshalAs(UnmanagedType.LPWStr)]
-            internal string verificationText;
+            public string verificationText;
             [MarshalAs(UnmanagedType.LPWStr)]
-            internal string expandedInformation;
+            public string expandedInformation;
             [MarshalAs(UnmanagedType.LPWStr)]
-            internal string expandedControlText;
+            public string expandedControlText;
             [MarshalAs(UnmanagedType.LPWStr)]
-            internal string collapsedControlText;
-            internal IconUnion footerIcon;  // NOTE: 32-bit union field, holds pszFooterIcon as well
+            public string collapsedControlText;
+            public IconUnion footerIcon;  // NOTE: 32-bit union field, holds pszFooterIcon as well
             [MarshalAs(UnmanagedType.LPWStr)]
-            internal string footerText;
-            internal TaskDialogCallback callback;
-            internal IntPtr callbackData;
-            internal uint width;
+            public string footerText;
+            public TaskDialogCallback callback;
+            public IntPtr callbackData;
+            public uint width;
         }
 
-        internal const int TaskDialogIdealWidth = 0;  // Value for TASKDIALOGCONFIG.cxWidth
-        internal const int TaskDialogButtonShieldIcon = 1;
+        public const int TaskDialogIdealWidth = 0;  // Value for TASKDIALOGCONFIG.cxWidth
+        public const int TaskDialogButtonShieldIcon = 1;
 
         // NOTE: We include a "spacer" so that the struct size varies on 
         // 64-bit architectures.
         [StructLayout(LayoutKind.Explicit, CharSet = CharSet.Auto)]
-        internal struct IconUnion
+        public struct IconUnion
         {
-            internal IconUnion(int i) => mainIcon = new IntPtr(i);
+            public IconUnion(int i) => mainIcon = new IntPtr(i);
 
             [FieldOffset(0)]
             private readonly IntPtr mainIcon;
@@ -84,7 +84,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
         // NOTE: Packing must be set to 4 to make this work on 64-bit platforms.
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto, Pack = 4)]
-        internal struct TaskDialogButton
+        public struct TaskDialogButton
         {
             public TaskDialogButton(int buttonId, string text)
             {
@@ -92,14 +92,14 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 buttonText = text;
             }
 
-            internal int buttonId;
+            public int buttonId;
             [MarshalAs(UnmanagedType.LPWStr)]
-            internal string buttonText;
+            public string buttonText;
         }
 
         // Task Dialog - identifies common buttons.
         [Flags]
-        internal enum TaskDialogCommonButtons
+        public enum TaskDialogCommonButtons
         {
             Ok = 0x0001, // selected control return value IDOK
             Yes = 0x0002, // selected control return value IDYES
@@ -111,7 +111,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
         // Identify button *return values* - note that, unfortunately, these are different
         // from the inbound button values.
-        internal enum TaskDialogCommonButtonReturnIds
+        public enum TaskDialogCommonButtonReturnIds
         {
             Ok = 1,
             Cancel = 2,
@@ -123,7 +123,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             Close = 8
         }
 
-        internal enum TaskDialogElements
+        public enum TaskDialogElements
         {
             Content,
             ExpandedInformation,
@@ -131,7 +131,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             MainInstruction
         }
 
-        internal enum TaskDialogIconElement
+        public enum TaskDialogIconElement
         {
             Main,
             Footer
@@ -139,7 +139,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
         // Task Dialog - flags
         [Flags]
-        internal enum TaskDialogOptions
+        public enum TaskDialogOptions
         {
             None = 0,
             EnableHyperlinks = 0x0001,
@@ -159,7 +159,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             NoDefaultRadioButton = 0x4000
         }
 
-        internal enum TaskDialogMessages
+        public enum TaskDialogMessages
         {
             NavigatePage = CoreNativeMethods.UserMessage + 101,
             ClickButton = CoreNativeMethods.UserMessage + 102, // wParam = Button ID
@@ -178,7 +178,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             UpdateIcon = CoreNativeMethods.UserMessage + 116  // wParam = icon element (TASKDIALOG_ICON_ELEMENTS), lParam = new icon (hIcon if TDF_USE_HICON_* was set, PCWSTR otherwise)
         }
 
-        internal enum TaskDialogNotifications
+        public enum TaskDialogNotifications
         {
             Created = 0,
             Navigated = 1,
@@ -194,24 +194,24 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         }
 
         // Used in the various SET_DEFAULT* TaskDialog messages
-        internal const int NoDefaultButtonSpecified = 0;
+        public const int NoDefaultButtonSpecified = 0;
 
         // Task Dialog config and related structs (for TaskDialogIndirect())
-        internal delegate int TaskDialogCallback(
+        public delegate int TaskDialogCallback(
             IntPtr hwnd,
             uint message,
             IntPtr wparam,
             IntPtr lparam,
             IntPtr referenceData);
 
-        internal enum ProgressBarState
+        public enum ProgressBarState
         {
             Normal = 0x0001,
             Error = 0x0002,
             Paused = 0x0003
         }
 
-        internal enum TaskDialogIcons
+        public enum TaskDialogIcons
         {
             Warning = 65535,
             Error = 65534,

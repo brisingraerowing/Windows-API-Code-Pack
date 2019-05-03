@@ -5,6 +5,8 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.WindowsAPICodePack.Resources;
 using MS.WindowsAPICodePack.Internal;
 using System.ComponentModel;
+using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices;
 
 namespace Microsoft.WindowsAPICodePack.ApplicationServices
 {
@@ -288,8 +290,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         {
             get
             {
-                Guid guid;
-                PowerManagementNativeMethods.PowerGetActiveScheme(IntPtr.Zero, out guid);
+                PowerManagementNativeMethods.PowerGetActiveScheme(IntPtr.Zero, out Guid guid);
 
                 try
                 {
@@ -310,9 +311,9 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// This value is in the range 0-100, 
         /// where 0 is not charged and 100 is fully charged.  
         /// </summary>
-        /// <exception cref="System.InvalidOperationException">The system does not have a battery.</exception>
-        /// <exception cref="System.PlatformNotSupportedException">Requires Vista/Windows Server 2008.</exception>
-        /// <value>An <see cref="System.Int32"/> value.</value>
+        /// <exception cref="InvalidOperationException">The system does not have a battery.</exception>
+        /// <exception cref="PlatformNotSupportedException">Requires Vista/Windows Server 2008.</exception>
+        /// <value>An <see cref="int"/> value.</value>
         public static int BatteryLifePercent
         {
             get

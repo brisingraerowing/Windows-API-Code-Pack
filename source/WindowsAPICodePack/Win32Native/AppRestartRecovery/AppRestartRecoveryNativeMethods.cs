@@ -1,20 +1,20 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.Win32Native;
 using System;
 using System.Runtime.InteropServices;
-using MS.WindowsAPICodePack.Internal;
 
-namespace Microsoft.WindowsAPICodePack.ApplicationServices
+namespace Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices
 {
-    internal static class AppRestartRecoveryNativeMethods
+    public static class AppRestartRecoveryNativeMethods
     {
         #region Application Restart and Recovery Definitions
 
-        internal delegate uint InternalRecoveryCallback(IntPtr state);
+        public delegate uint RecoveryCallbackDelegate(IntPtr state);
 
-        internal static InternalRecoveryCallback InternalCallback { get; } = new InternalRecoveryCallback(InternalRecoveryHandler);
+        public static RecoveryCallbackDelegate RecoveryCallback { get; } = new RecoveryCallbackDelegate(RecoveryHandler);
 
-        private static uint InternalRecoveryHandler(IntPtr parameter)
+        private static uint RecoveryHandler(IntPtr parameter)
         {
             ApplicationRecoveryInProgress(out bool cancelled);
 
@@ -29,34 +29,34 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
 
 
         [DllImport("kernel32.dll")]
-        internal static extern void ApplicationRecoveryFinished(
+        public static extern void ApplicationRecoveryFinished(
            [MarshalAs(UnmanagedType.Bool)] bool success);
 
         [DllImport("kernel32.dll")]
         [PreserveSig]
-        internal static extern HResult ApplicationRecoveryInProgress(
+        public static extern HResult ApplicationRecoveryInProgress(
             [Out, MarshalAs(UnmanagedType.Bool)] out bool canceled);
 
         [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
         [PreserveSig]
-        internal static extern HResult RegisterApplicationRecoveryCallback(
-            InternalRecoveryCallback callback, IntPtr param,
+        public static extern HResult RegisterApplicationRecoveryCallback(
+            RecoveryCallbackDelegate callback, IntPtr param,
             uint pingInterval,
             uint flags); // Unused.
 
         [DllImport("kernel32.dll")]
         [PreserveSig]
-        internal static extern HResult RegisterApplicationRestart(
+        public static extern HResult RegisterApplicationRestart(
             [MarshalAs(UnmanagedType.BStr)] string commandLineArgs,
             RestartRestrictions flags);
 
         [DllImport("kernel32.dll")]
         [PreserveSig]
-        internal static extern HResult UnregisterApplicationRecoveryCallback();
+        public static extern HResult UnregisterApplicationRecoveryCallback();
 
         [DllImport("kernel32.dll")]
         [PreserveSig]
-        internal static extern HResult UnregisterApplicationRestart();
+        public static extern HResult UnregisterApplicationRestart();
 
         #endregion
     }

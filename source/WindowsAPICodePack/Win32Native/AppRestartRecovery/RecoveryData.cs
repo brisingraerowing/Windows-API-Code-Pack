@@ -1,9 +1,8 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using System;
-using static Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRestartRecoveryManager;
 
-namespace Microsoft.WindowsAPICodePack.ApplicationServices
+namespace Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices
 {
     /// <summary>
     /// The <see cref="Delegate"/> that represents the callback method invoked

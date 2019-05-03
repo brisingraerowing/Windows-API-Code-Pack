@@ -3,9 +3,9 @@
 using System;
 using System.Globalization;
 using System.Text;
-using Microsoft.WindowsAPICodePack.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.Resources;
 
-namespace MS.WindowsAPICodePack.Internal
+namespace Microsoft.WindowsAPICodePack.Win32Native
 {
     /// <summary>
     /// Common Helper methods
@@ -24,10 +24,9 @@ namespace MS.WindowsAPICodePack.Internal
         public static void ThrowIfNotXP()
         {
             if (!RunningOnXP)
-            {
+            
                 throw new PlatformNotSupportedException(LocalizedMessages.CoreHelpersRunningOnXp);
-            }
-        }
+                    }
 
         /// <summary>
         /// Determines if the application is running on Vista
@@ -40,10 +39,9 @@ namespace MS.WindowsAPICodePack.Internal
         public static void ThrowIfNotVista()
         {
             if (!RunningOnVista)
-            {
+            
                 throw new PlatformNotSupportedException(LocalizedMessages.CoreHelpersRunningOnVista);
-            }
-        }
+                    }
 
         /// <summary>
         /// Determines if the application is running on Windows 7
@@ -59,10 +57,9 @@ namespace MS.WindowsAPICodePack.Internal
         public static void ThrowIfNotWin7()
         {
             if (!RunningOnWin7)
-            {
+            
                 throw new PlatformNotSupportedException(LocalizedMessages.CoreHelpersRunningOn7);
-            }
-        }
+                    }
 
         /// <summary>
         /// Get a string resource given a resource Id
@@ -93,9 +90,8 @@ namespace MS.WindowsAPICodePack.Internal
             index = int.Parse(parts[1], CultureInfo.InvariantCulture);
 
             StringBuilder stringValue = new StringBuilder(255);
-            int retval = CoreNativeMethods.LoadString(handle, index, stringValue, 255);
-
-            return retval != 0 ? stringValue.ToString() : null;
+            
+            return CoreNativeMethods.LoadString(handle, index, stringValue, 255) != 0 ? stringValue.ToString() : null;
         }
     }
 }

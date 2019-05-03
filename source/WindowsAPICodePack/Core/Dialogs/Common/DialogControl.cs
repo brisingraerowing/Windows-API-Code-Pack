@@ -52,7 +52,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 // as we are going to maintain a mapping between 
                 // the names and the underlying Win32/COM control IDs.
                 if (string.IsNullOrEmpty(value))
-
+                    
                     throw new ArgumentException(LocalizedMessages.DialogControlNameCannotBeEmpty);
 
                 if (!string.IsNullOrEmpty(name))

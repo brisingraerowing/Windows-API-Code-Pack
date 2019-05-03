@@ -2,7 +2,7 @@
 
 using System;
 
-namespace Microsoft.WindowsAPICodePack.ApplicationServices
+namespace Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices
 {
     /// <summary>
     /// Specifies the conditions when Windows Error Reporting

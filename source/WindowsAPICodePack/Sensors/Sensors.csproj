@@ -42,7 +42,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Microsoft.WindowsAPICodePack.Sensors.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\Microsoft.WindowsAPICodePack.Sensors.xml</DocumentationFile>
     <CodeAnalysisRules>
     </CodeAnalysisRules>
     <RunCodeAnalysis>false</RunCodeAnalysis>
@@ -117,6 +117,10 @@
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{2E1FB0DF-F9BB-4909-9F32-2D9D022A8E57}</Project>
       <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Win32Native\Win32Native.csproj">
+      <Project>{6C1AD76C-8EEB-4B2D-B6B4-F9B7234A92FB}</Project>
+      <Name>Win32Native</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

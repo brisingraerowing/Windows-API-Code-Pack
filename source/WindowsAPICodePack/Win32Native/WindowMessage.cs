@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MS.WindowsAPICodePack.Internal
+namespace Microsoft.WindowsAPICodePack.Win32Native
 {
-    internal enum WindowMessage
+    public enum WindowMessage
     {
         Null = 0x00,
         Create = 0x01,

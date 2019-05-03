@@ -169,33 +169,6 @@ namespace Microsoft.WindowsAPICodePack.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Only supported on Windows 7 or newer..
-        /// </summary>
-        internal static string CoreHelpersRunningOn7 {
-            get {
-                return ResourceManager.GetString("CoreHelpersRunningOn7", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Only supported on Windows Vista or newer..
-        /// </summary>
-        internal static string CoreHelpersRunningOnVista {
-            get {
-                return ResourceManager.GetString("CoreHelpersRunningOnVista", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Only supported on Windows XP or newer..
-        /// </summary>
-        internal static string CoreHelpersRunningOnXp {
-            get {
-                return ResourceManager.GetString("CoreHelpersRunningOnXp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Dialog cannot have more than one control with the same name..
         /// </summary>
         internal static string DialogCollectionCannotHaveDuplicateNames {
@@ -570,33 +543,6 @@ namespace Microsoft.WindowsAPICodePack.Resources {
         internal static string TaskDialogCloseNonShowing {
             get {
                 return ResourceManager.GetString("TaskDialogCloseNonShowing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Application.
-        /// </summary>
-        internal static string TaskDialogDefaultCaption {
-            get {
-                return ResourceManager.GetString("TaskDialogDefaultCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string TaskDialogDefaultContent {
-            get {
-                return ResourceManager.GetString("TaskDialogDefaultContent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string TaskDialogDefaultMainInstruction {
-            get {
-                return ResourceManager.GetString("TaskDialogDefaultMainInstruction", resourceCulture);
             }
         }
         

@@ -1,16 +1,17 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.Win32Native.NetworkList;
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace Microsoft.WindowsAPICodePack.Net
+namespace Microsoft.WindowsAPICodePack.Win32Native.Net
 {
     [ComImport]
-    [TypeLibType((short)0x1040)]
+    [TypeLibType(0x1040)]
     [Guid("DCB00002-570F-4A9B-8D69-199FDBA5723B")]
-    internal interface INetwork
+    public interface INetwork
     {
         [return: MarshalAs(UnmanagedType.BStr)]
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]

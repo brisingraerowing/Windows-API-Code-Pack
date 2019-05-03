@@ -5,6 +5,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
 using MS.WindowsAPICodePack.Internal;
+using Microsoft.WindowsAPICodePack.Win32Native;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {

@@ -38,17 +38,17 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\x64\Debug\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Microsoft.WindowsAPICodePack.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\Microsoft.WindowsAPICodePack.xml</DocumentationFile>
     <CodeAnalysisRules>
     </CodeAnalysisRules>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -115,41 +115,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppRestartRecovery\ApplicationRestartRecoveryManager.cs" />
     <Compile Include="AppRestartRecovery\ApplicationRecoveryException.cs" />
-    <Compile Include="AppRestartRecovery\RecoveryData.cs" />
+    <Compile Include="AppRestartRecovery\ApplicationRestartRecoveryManager.cs" />
     <Compile Include="AppRestartRecovery\RecoverySettings.cs" />
-    <Compile Include="AppRestartRecovery\RestartRestrictions.cs" />
     <Compile Include="AppRestartRecovery\RestartSettings.cs" />
-    <Compile Include="Interop\WindowMessage.cs" />
+    <Compile Include="Interop\Dialogs\TaskDialogs\NativeTaskDialog.cs" />
     <Compile Include="PowerManagement\PowerManagerException.cs" />
     <Compile Include="Dialogs\Common\DialogControl.cs" />
     <Compile Include="Dialogs\Common\DialogControlCollection.cs" />
     <Compile Include="Dialogs\Common\DialogsDefaults.cs" />
     <Compile Include="Dialogs\Common\IDialogControlHost.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Interop\AppRestartRecovery\AppRestartRecoveryNativeMethods.cs" />
-    <Compile Include="Interop\CoreErrorHelper.cs" />
-    <Compile Include="Interop\CoreHelpers.cs" />
-    <Compile Include="Interop\CoreNativeMethods.cs" />
     <Compile Include="Interop\Dialogs\DialogShowState.cs" />
-    <Compile Include="Interop\NetworkList\INetwork.cs" />
-    <Compile Include="Interop\NetworkList\INetworkConnection.cs" />
-    <Compile Include="Interop\NetworkList\INetworkListManager.cs" />
-    <Compile Include="Interop\NetworkList\NetworkListManagerClass.cs" />
-    <Compile Include="Interop\PowerManagement\PowerManagementNativeMethods.cs" />
-    <Compile Include="Interop\TaskDialogs\NativeTaskDialog.cs" />
-    <Compile Include="Interop\TaskDialogs\NativeTaskDialogSettings.cs" />
-    <Compile Include="Interop\TaskDialogs\TaskDialogNativeMethods.cs" />
     <Compile Include="NetworkList\Network.cs" />
     <Compile Include="NetworkList\NetworkCollection.cs" />
     <Compile Include="NetworkList\NetworkConnection.cs" />
     <Compile Include="NetworkList\NetworkConnectionCollection.cs" />
-    <Compile Include="NetworkList\NetworkListEnums.cs" />
     <Compile Include="NetworkList\NetworkListManager.cs" />
     <Compile Include="PowerManagement\BatteryState.cs" />
     <Compile Include="PowerManagement\EventManager.cs" />
-    <Compile Include="PowerManagement\ExecutionState.cs" />
     <Compile Include="PowerManagement\MessageManager.cs">
     </Compile>
     <Compile Include="PowerManagement\PersonalityGuids.cs" />
@@ -177,11 +161,9 @@
     <Compile Include="Dialogs\TaskDialogs\TaskDialogClosingEventArgs.cs" />
     <Compile Include="Dialogs\TaskDialogs\TaskDialogCommandLink.cs" />
     <Compile Include="Dialogs\TaskDialogs\TaskDialogControl.cs" />
-    <Compile Include="Dialogs\TaskDialogs\TaskDialogDefaults.cs" />
     <Compile Include="Dialogs\TaskDialogs\TaskDialogExpandedInfoMode.cs" />
     <Compile Include="Dialogs\TaskDialogs\TaskDialogHyperlinkClickedEventArgs.cs" />
     <Compile Include="Dialogs\TaskDialogs\TaskDialogProgressBar.cs" />
-    <Compile Include="Dialogs\TaskDialogs\TaskDialogProgressBarState.cs" />
     <Compile Include="Dialogs\TaskDialogs\TaskDialogRadioButton.cs" />
     <Compile Include="Dialogs\TaskDialogs\TaskDialogResult.cs" />
     <Compile Include="Dialogs\TaskDialogs\TaskDialogStandardButton.cs" />
@@ -217,6 +199,12 @@
     <CodeAnalysisDictionary Include="CustomDictionary.xml">
       <SubType>Designer</SubType>
     </CodeAnalysisDictionary>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Win32Native\Win32Native.csproj">
+      <Project>{6C1AD76C-8EEB-4B2D-B6B4-F9B7234A92FB}</Project>
+      <Name>Win32Native</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -4,15 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace Microsoft.WindowsAPICodePack.Dialogs
+namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
 {
     ///<summary>
     /// Encapsulates additional configuration needed by NativeTaskDialog
     /// that it can't get from the TASKDIALOGCONFIG struct.
     ///</summary>
-    internal class NativeTaskDialogSettings
+    public class NativeTaskDialogSettings
     {
-        internal NativeTaskDialogSettings()
+        public NativeTaskDialogSettings()
         {
             NativeConfiguration = new TaskDialogNativeMethods.TaskDialogConfiguration();
 

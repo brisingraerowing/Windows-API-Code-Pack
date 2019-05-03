@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Threading;
 using Microsoft.WindowsAPICodePack.Sensors.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native;
 using MS.WindowsAPICodePack.Internal;
 
 namespace Microsoft.WindowsAPICodePack.Sensors
@@ -325,14 +326,11 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         public void OnSensorEnter(ISensor nativeSensor, NativeSensorState state)
         {
             if (state == NativeSensorState.Ready)
-            {
-                Guid sensorId;
-
-                if (nativeSensor.GetID(out sensorId) == HResult.Ok)
+            
+                if (nativeSensor.GetID(out Guid sensorId) == HResult.Ok)
 
                     SensorManager.OnSensorsChanged(sensorId, SensorAvailabilityChange.Addition);
-            }
-        }
+                    }
 
         #endregion
     }

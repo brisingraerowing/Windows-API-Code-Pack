@@ -4,13 +4,13 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace MS.WindowsAPICodePack.Internal
+namespace Microsoft.WindowsAPICodePack.Win32Native
 {
     /// <summary>
     /// Wrappers for Native Methods and Structs.
-    /// This type is intended for internal use only
+    /// This type is intended for public use only
     /// </summary>    
-    internal static class CoreNativeMethods
+    public static class CoreNativeMethods
     {
         #region General Definitions
 
@@ -145,21 +145,21 @@ namespace MS.WindowsAPICodePack.Internal
         // Various helpers for forcing binding to proper 
         // version of Comctl32 (v6).
         [DllImport("kernel32.dll", SetLastError = true, ThrowOnUnmappableChar = true, BestFitMapping = false)]
-        internal static extern IntPtr LoadLibrary([MarshalAs(UnmanagedType.LPStr)] string fileName);
+        public static extern IntPtr LoadLibrary([MarshalAs(UnmanagedType.LPStr)] string fileName);
 
         [DllImport("gdi32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        internal static extern bool DeleteObject(IntPtr graphicsObjectHandle);
+        public static extern bool DeleteObject(IntPtr graphicsObjectHandle);
 
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
-        internal static extern int LoadString(
+        public static extern int LoadString(
             IntPtr instanceHandle,
             int id,
             StringBuilder buffer,
             int bufferSize);
 
         [DllImport("Kernel32.dll", EntryPoint = "LocalFree")]
-        internal static extern IntPtr LocalFree(ref Guid guid);
+        public static extern IntPtr LocalFree(ref Guid guid);
 
         /// <summary>
         /// Destroys an icon and frees any memory the icon occupied.
@@ -168,14 +168,14 @@ namespace MS.WindowsAPICodePack.Internal
         /// <returns>If the function succeeds, the return value is nonzero. If the function fails, the return value is zero. To get extended error information, call GetLastError. </returns>
         [DllImport("user32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        internal static extern bool DestroyIcon(IntPtr hIcon);
+        public static extern bool DestroyIcon(IntPtr hIcon);
 
         #endregion
 
         #region Window Handling
 
         [DllImport("user32.dll", SetLastError = true, EntryPoint = "DestroyWindow", CallingConvention = CallingConvention.StdCall)]
-        internal static extern int DestroyWindow(IntPtr handle);
+        public static extern int DestroyWindow(IntPtr handle);
 
         #endregion
 
@@ -252,7 +252,7 @@ namespace MS.WindowsAPICodePack.Internal
 
         #region Windows OS structs and consts
 
-        internal const uint StatusAccessDenied = 0xC0000022;
+        public const uint StatusAccessDenied = 0xC0000022;
 
 
 

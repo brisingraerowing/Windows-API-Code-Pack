@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shell", "Shell\Shell.csproj", "{AA0C00CB-8699-4F37-BFAE-40CA87ACC06D}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedLinguisticServices", "ExtendedLinguisticServices\ExtendedLinguisticServices.csproj", "{B2CE24B7-FC5D-49AC-806F-1D88F78A31E9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShellExtensions", "ShellExtensions\ShellExtensions.csproj", "{F3C863EC-33F4-4ED2-9D67-00BF3EEEAB64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win32Native", "Win32Native\Win32Native.csproj", "{6C1AD76C-8EEB-4B2D-B6B4-F9B7234A92FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,8 +75,23 @@ Global
 		{F3C863EC-33F4-4ED2-9D67-00BF3EEEAB64}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{F3C863EC-33F4-4ED2-9D67-00BF3EEEAB64}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F3C863EC-33F4-4ED2-9D67-00BF3EEEAB64}.Release|Win32.ActiveCfg = Release|Any CPU
+		{6C1AD76C-8EEB-4B2D-B6B4-F9B7234A92FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C1AD76C-8EEB-4B2D-B6B4-F9B7234A92FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C1AD76C-8EEB-4B2D-B6B4-F9B7234A92FB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6C1AD76C-8EEB-4B2D-B6B4-F9B7234A92FB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6C1AD76C-8EEB-4B2D-B6B4-F9B7234A92FB}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{6C1AD76C-8EEB-4B2D-B6B4-F9B7234A92FB}.Debug|Win32.Build.0 = Debug|Any CPU
+		{6C1AD76C-8EEB-4B2D-B6B4-F9B7234A92FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C1AD76C-8EEB-4B2D-B6B4-F9B7234A92FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C1AD76C-8EEB-4B2D-B6B4-F9B7234A92FB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6C1AD76C-8EEB-4B2D-B6B4-F9B7234A92FB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6C1AD76C-8EEB-4B2D-B6B4-F9B7234A92FB}.Release|Win32.ActiveCfg = Release|Any CPU
+		{6C1AD76C-8EEB-4B2D-B6B4-F9B7234A92FB}.Release|Win32.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B754C752-6D53-4C13-BA50-D0152A1534E7}
 	EndGlobalSection
 EndGlobal

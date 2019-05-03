@@ -6,6 +6,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using MS.WindowsAPICodePack.Internal;
 using Microsoft.WindowsAPICodePack.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices;
 
 namespace Microsoft.WindowsAPICodePack.ApplicationServices
 {

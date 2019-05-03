@@ -1,10 +1,10 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.Resources;
 
-namespace Microsoft.WindowsAPICodePack.Dialogs
+namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
 {
-    internal static class TaskDialogDefaults
+    public static class TaskDialogDefaults
     {
         public static string Caption => LocalizedMessages.TaskDialogDefaultCaption;
         public static string MainInstruction => LocalizedMessages.TaskDialogDefaultMainInstruction;

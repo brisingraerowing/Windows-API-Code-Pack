@@ -1,32 +1,21 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.Win32Native.NetworkList;
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace Microsoft.WindowsAPICodePack.Net
+namespace Microsoft.WindowsAPICodePack.Win32Native.Net
 {
     [ComImport]
-    [Guid("DCB00000-570F-4A9B-8D69-199FDBA5723B")]
     [TypeLibType((short)0x1040)]
-    internal interface INetworkListManager
+    [Guid("DCB00005-570F-4A9B-8D69-199FDBA5723B")]
+    public interface INetworkConnection
     {
         [return: MarshalAs(UnmanagedType.Interface)]
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        IEnumerable GetNetworks([In] NetworkConnectivityLevels Flags);
-
-        [return: MarshalAs(UnmanagedType.Interface)]
-        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        INetwork GetNetwork([In] Guid gdNetworkId);
-
-        [return: MarshalAs(UnmanagedType.Interface)]
-        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        IEnumerable GetNetworkConnections();
-
-        [return: MarshalAs(UnmanagedType.Interface)]
-        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        INetworkConnection GetNetworkConnection([In] Guid gdNetworkConnectionId);
+        INetwork GetNetwork();
 
         bool IsConnectedToInternet
         {
@@ -42,5 +31,14 @@ namespace Microsoft.WindowsAPICodePack.Net
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         ConnectivityStates GetConnectivity();
+
+        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+        Guid GetConnectionId();
+
+        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+        Guid GetAdapterId();
+
+        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+        DomainType GetDomainType();
     }
 }

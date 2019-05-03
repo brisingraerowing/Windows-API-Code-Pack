@@ -3,17 +3,17 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Microsoft.WindowsAPICodePack.ApplicationServices
+namespace Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices
 {
-    internal static class PowerManagementNativeMethods
+    public static class PowerManagementNativeMethods
     {
         #region Power Management
 
-        internal const uint PowerBroadcastMessage = 536;
-        internal const uint PowerSettingChangeMessage = 32787;
-        internal const uint ScreenSaverSetActive = 0x0011;
-        internal const uint UpdateInFile = 0x0001;
-        internal const uint SendChange = 0x0002;
+        public const uint PowerBroadcastMessage = 536;
+        public const uint PowerSettingChangeMessage = 32787;
+        public const uint ScreenSaverSetActive = 0x0011;
+        public const uint UpdateInFile = 0x0001;
+        public const uint SendChange = 0x0002;
 
         // This structure is sent when the PBT_POWERSETTINGSCHANGE message is sent.
         // It describes the power setting that has changed and 
@@ -183,7 +183,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         }
 
         [DllImport("powrprof.dll")]
-        internal static extern uint CallNtPowerInformation(
+        public static extern uint CallNtPowerInformation(
              PowerInformationLevel informationLevel,
              IntPtr inputBuffer,
              uint inputBufferSize,
@@ -192,7 +192,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         );
 
         [DllImport("powrprof.dll")]
-        internal static extern uint CallNtPowerInformation(
+        public static extern uint CallNtPowerInformation(
              PowerInformationLevel informationLevel,
              IntPtr inputBuffer,
              uint inputBufferSize,
@@ -206,7 +206,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// <param name="rootPowerKey">Reserved for future use, this must be set to IntPtr.Zero</param>
         /// <param name="activePolicy">Returns a Guid referring to the currently active power scheme.</param>
         [DllImport("powrprof.dll")]
-        internal static extern void PowerGetActiveScheme(
+        public static extern void PowerGetActiveScheme(
             IntPtr rootPowerKey,
             [MarshalAs(UnmanagedType.LPStruct)]
             out Guid activePolicy);
@@ -214,13 +214,13 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         [DllImport("User32", SetLastError = true,
             EntryPoint = "RegisterPowerSettingNotification",
             CallingConvention = CallingConvention.StdCall)]
-        internal static extern int RegisterPowerSettingNotification(
+        public static extern int RegisterPowerSettingNotification(
                 IntPtr hRecipient,
                 ref Guid PowerSettingGuid,
                 int Flags);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        internal static extern ExecutionStates SetThreadExecutionState(ExecutionStates esFlags);
+        public static extern ExecutionStates SetThreadExecutionState(ExecutionStates esFlags);
         
         #endregion
     }

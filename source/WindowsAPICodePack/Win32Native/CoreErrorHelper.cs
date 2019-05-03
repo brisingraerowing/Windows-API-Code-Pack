@@ -1,6 +1,6 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
-namespace MS.WindowsAPICodePack.Internal
+namespace Microsoft.WindowsAPICodePack.Win32Native
 {
     /// <summary>
     /// HRESULT Wrapper    
@@ -77,7 +77,7 @@ namespace MS.WindowsAPICodePack.Internal
     /// Provide Error Message Helper Methods.
     /// This is intended for Library Internal use only.
     /// </summary>
-    internal static class CoreErrorHelper
+    public static class CoreErrorHelper
     {
         /// <summary>
         /// This is intended for Library Internal use only.
