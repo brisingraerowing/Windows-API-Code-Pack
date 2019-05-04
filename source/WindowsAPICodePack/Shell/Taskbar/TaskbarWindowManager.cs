@@ -8,6 +8,9 @@ using System.Windows.Forms;
 using System.Windows.Media;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 using MS.WindowsAPICodePack.Internal;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar
@@ -394,14 +397,13 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
                     // if we don't have a offset specified already by the user...
                     if (!taskbarWindow.TabbedThumbnail.PeekOffset.HasValue)
-                    {
+                    
                         offset = WindowUtilities.GetParentOffsetOfChild(taskbarWindow.TabbedThumbnail.WindowHandle, taskbarWindow.TabbedThumbnail.ParentWindowHandle);
-                    }
+                    
                     else
-                    {
+                    
                         offset = new System.Drawing.Point(Convert.ToInt32(taskbarWindow.TabbedThumbnail.PeekOffset.Value.X),
                             Convert.ToInt32(taskbarWindow.TabbedThumbnail.PeekOffset.Value.Y));
-                    }
 
                     // Only set the peek bitmap if it's not null. 
                     // If it's null (either we didn't get the bitmap or size was 0),
@@ -706,19 +708,17 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         internal static void UnregisterTab(TaskbarWindow taskbarWindow)
         {
             if (taskbarWindow != null)
-            {
+            
                 TaskbarList.Instance.UnregisterTab(taskbarWindow.WindowToTellTaskbarAbout);
-            }
         }
 
         internal static void InvalidatePreview(TaskbarWindow taskbarWindow)
         {
             if (taskbarWindow != null)
-            {
+            
                 TabbedThumbnailNativeMethods.DwmInvalidateIconicBitmaps(
                     taskbarWindow.WindowToTellTaskbarAbout);
-            }
-        }
+                    }
 
         private static void AddButtons(TaskbarWindow taskbarWindow)
         {
@@ -731,17 +731,15 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             HResult hr = TaskbarList.Instance.ThumbBarAddButtons(taskbarWindow.WindowToTellTaskbarAbout, (uint)taskbarWindow.ThumbnailButtons.Length, nativeButtons);
 
             if (!CoreErrorHelper.Succeeded(hr))
-            {
+            
                 throw new ShellException(hr);
-            }
-
+            
             _buttonsAdded = true;
 
             foreach (ThumbnailToolBarButton button in taskbarWindow.ThumbnailButtons)
-            {
+            
                 button.AddedToTaskbar = _buttonsAdded;
-            }
-        }
+                    }
         
         #region Event handlers
 

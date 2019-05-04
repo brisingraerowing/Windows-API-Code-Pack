@@ -6,7 +6,8 @@ using Microsoft.WindowsAPICodePack.Resources;
 using MS.WindowsAPICodePack.Internal;
 using System.ComponentModel;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native.Core.ApplicationServices;
 
 namespace Microsoft.WindowsAPICodePack.ApplicationServices
 {

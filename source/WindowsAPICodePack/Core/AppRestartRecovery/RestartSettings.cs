@@ -2,7 +2,7 @@
 
 using System;
 using Microsoft.WindowsAPICodePack.Resources;
-using Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices;
+using Microsoft.WindowsAPICodePack.Win32Native.Core.ApplicationServices;
 
 namespace Microsoft.WindowsAPICodePack.ApplicationServices
 {

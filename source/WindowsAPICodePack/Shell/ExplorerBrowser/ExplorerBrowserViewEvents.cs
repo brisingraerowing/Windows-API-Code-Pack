@@ -4,6 +4,8 @@ using System;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Controls;
 using Microsoft.WindowsAPICodePack.Controls.WindowsForms;
+using Microsoft.WindowsAPICodePack.Win32Native.Controls;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
 
 namespace MS.WindowsAPICodePack.Internal
 {

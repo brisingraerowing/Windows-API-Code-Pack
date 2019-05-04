@@ -2,7 +2,7 @@
 
 using System;
 using Microsoft.WindowsAPICodePack.Resources;
-using Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices;
+using Microsoft.WindowsAPICodePack.Win32Native.Core.ApplicationServices;
 using static Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRestartRecoveryManager;
 
 namespace Microsoft.WindowsAPICodePack.ApplicationServices

@@ -10,7 +10,9 @@ using Microsoft.WindowsAPICodePack.Shell.Resources;
 using MS.WindowsAPICodePack.Internal;
 using System.Text;
 using System.Linq;
-using Microsoft.WindowsAPICodePack.Shell.Interop;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native.Controls;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
 {
@@ -19,7 +21,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
     /// </summary>
     public sealed class ExplorerBrowser :
         System.Windows.Forms.UserControl,
-        Microsoft.WindowsAPICodePack.Controls.IServiceProvider,
+        Win32Native.Controls.IServiceProvider,
         IExplorerPaneVisibility,
         IExplorerBrowserEvents,
         ICommDlgBrowser3,
@@ -46,9 +48,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
             get
             {
                 if (shellItemsArray != null)
-                {
+                
                     Marshal.ReleaseComObject(shellItemsArray);
-                }
 
                 if (itemsCollection != null)
                 {
@@ -73,9 +74,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
             get
             {
                 if (selectedShellItemsArray != null)
-                {
+                
                     Marshal.ReleaseComObject(selectedShellItemsArray);
-                }
 
                 if (selectedItemsCollection != null)
                 {
@@ -105,9 +105,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
             {
                 propertyBagName = value;
                 if (explorerBrowserControl != null)
-                {
+                
                     explorerBrowserControl.SetPropertyBag(propertyBagName);
-                }
             }
         }
 
@@ -119,23 +118,22 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
         /// content from the specified container, and adds a new point to the Travel Log.
         /// </summary>
         /// <param name="shellObject">The shell container to navigate to.</param>
-        /// <exception cref="System.Runtime.InteropServices.COMException">Will throw if navigation fails for any other reason.</exception>
+        /// <exception cref="COMException">Will throw if navigation fails for any other reason.</exception>
         public void Navigate(ShellObject shellObject)
         {
             if (shellObject == null)
-            {
-                throw new ArgumentNullException("shellObject");
-            }
+            
+                throw new ArgumentNullException(nameof(shellObject));
 
             if (explorerBrowserControl == null)
-            {
+            
                 antecreationNavigationTarget = shellObject;
-            }
+            
             else
             {
                 HResult hr = explorerBrowserControl.BrowseToObject(shellObject.NativeShellItem, 0);
                 if (hr != HResult.Ok)
-                {
+
                     if ((hr == HResult.ResourceInUse || hr == HResult.Canceled) && NavigationFailed != null)
                     {
                         NavigationFailedEventArgs args = new NavigationFailedEventArgs();
@@ -143,10 +141,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
                         NavigationFailed(this, args);
                     }
                     else
-                    {
+                    
                         throw new CommonControlException(LocalizedMessages.ExplorerBrowserBrowseToObjectFailed, hr);
-                    }
-                }
             }
         }
 
@@ -379,7 +375,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
         /// <param name="riid">requested interface guid</param>
         /// <param name="ppvObject">caller-allocated memory for interface pointer</param>
         /// <returns></returns>
-        HResult Microsoft.WindowsAPICodePack.Controls.IServiceProvider.QueryService(
+        HResult Win32Native.Controls.IServiceProvider.QueryService(
             ref Guid guidService, ref Guid riid, out IntPtr ppvObject)
         {
             HResult hr;

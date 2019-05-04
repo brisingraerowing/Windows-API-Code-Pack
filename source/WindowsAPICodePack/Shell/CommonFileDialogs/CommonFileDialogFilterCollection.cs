@@ -2,6 +2,7 @@
 
 using System.Collections.ObjectModel;
 using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Dialogs
 {

@@ -7,7 +7,8 @@ using System.Runtime.InteropServices;
 using MS.WindowsAPICodePack.Internal;
 using Microsoft.WindowsAPICodePack.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices;
+using Microsoft.WindowsAPICodePack.Win32Native.Core.ApplicationServices;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
 
 namespace Microsoft.WindowsAPICodePack.ApplicationServices
 {

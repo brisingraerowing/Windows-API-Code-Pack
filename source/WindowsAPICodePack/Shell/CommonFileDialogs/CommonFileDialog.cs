@@ -14,6 +14,9 @@ using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
 using MS.WindowsAPICodePack.Internal;
 using System.Collections.Generic;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
 
 namespace Microsoft.WindowsAPICodePack.Dialogs
 {
@@ -346,7 +349,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
             for (uint filtersCounter = 0; filtersCounter < Filters.Count; filtersCounter++)
             {
-                filter = (CommonFileDialogFilter)Filters[(int)filtersCounter];
+                filter = Filters[(int)filtersCounter];
 
                 if (filter.Extensions.Contains(DefaultExtension))
                 {
@@ -364,8 +367,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// <summary>
         /// Gets the selected filename.
         /// </summary>
-        /// <value>A <see cref="System.String"/> object.</value>
-        /// <exception cref="System.InvalidOperationException">This property cannot be used when multiple files are selected.</exception>
+        /// <value>A <see cref="string"/> object.</value>
+        /// <exception cref="InvalidOperationException">This property cannot be used when multiple files are selected.</exception>
         public string FileName
         {
             get

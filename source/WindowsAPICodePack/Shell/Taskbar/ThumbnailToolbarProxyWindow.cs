@@ -3,6 +3,8 @@
 using System;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 using MS.WindowsAPICodePack.Internal;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar
@@ -72,7 +74,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         {
             bool handled = false;
 
-            handled = TaskbarWindowManager.DispatchMessage(ref m, this.TaskbarWindow);
+            handled = TaskbarWindowManager.DispatchMessage(ref m, TaskbarWindow);
 
             // If it's a WM_Destroy message, then also forward it to the base class (our native window)
             if ((m.Msg == (int)WindowMessage.Destroy) ||

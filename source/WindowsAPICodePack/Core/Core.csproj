@@ -142,9 +142,6 @@
     <Compile Include="PowerManagement\PowerPersonality.cs" />
     <Compile Include="PowerManagement\PowerSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertySystem\PropertyKey.cs" />
-    <Compile Include="PropertySystem\PropVariant.cs" />
-    <Compile Include="PropertySystem\PropVariantNativeMethods.cs" />
     <Compile Include="Resources\LocalizedMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

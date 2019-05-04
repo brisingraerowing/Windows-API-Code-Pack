@@ -4,6 +4,7 @@ using System;
 using System.ComponentModel;
 using System.Threading;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -70,7 +71,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         public void Start()
         {
-            if (Running) { return; }
+            if (Running)  return; 
 
             #region Registration
             ShellNativeMethods.SHChangeNotifyEntry entry = new ShellNativeMethods.SHChangeNotifyEntry();
@@ -87,9 +88,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 ref entry);
 
             if (_registrationId == 0)
-            {
+            
                 throw new Win32Exception(LocalizedMessages.ShellObjectWatcherRegisterFailed);
-            }
             #endregion
 
             Running = true;
@@ -101,7 +101,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         public void Stop()
         {
-            if (!Running) { return; }
+            if (!Running)  return; 
             if (_registrationId > 0)
             {
                 ShellNativeMethods.SHChangeNotifyDeregister(_registrationId);

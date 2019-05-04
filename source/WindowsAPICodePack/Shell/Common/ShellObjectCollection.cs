@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -298,10 +299,10 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="arrayIndex">The index into the array at which copying will commence.</param>
         public void CopyTo(ShellObject[] array, int arrayIndex)
         {
-            if (array == null)  throw new ArgumentNullException("array"); 
+            if (array == null)  throw new ArgumentNullException(nameof(array)); 
             if (array.Length < arrayIndex + content.Count)
             
-                throw new ArgumentException(LocalizedMessages.ShellObjectCollectionArrayTooSmall, "array");
+                throw new ArgumentException(LocalizedMessages.ShellObjectCollectionArrayTooSmall, nameof(array));
             
             for (int index = 0; index < content.Count; index++)
             

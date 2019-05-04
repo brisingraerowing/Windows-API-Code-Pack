@@ -1,6 +1,6 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.Win32Native.Net;
+using Microsoft.WindowsAPICodePack.Win32Native.Core.Net;
 using System;
 using System.Collections;
 using System.Collections.Generic;

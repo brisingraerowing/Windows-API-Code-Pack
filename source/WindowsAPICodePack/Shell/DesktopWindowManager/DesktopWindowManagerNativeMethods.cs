@@ -4,6 +4,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Security;
 using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
 namespace MS.WindowsAPICodePack.Internal
 {

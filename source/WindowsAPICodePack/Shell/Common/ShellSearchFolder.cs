@@ -7,6 +7,9 @@ using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
 using MS.WindowsAPICodePack.Internal;
 using System.Linq;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -110,7 +113,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
             }
         }
 
-        internal override IShellItem NativeShellItem
+        // todo: should not be used directly
+
+        public override IShellItem NativeShellItem
         {
             get
             {
@@ -145,7 +150,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 if (!CoreErrorHelper.Succeeded(result))
                 
-                    throw new ArgumentException(LocalizedMessages.ShellInvalidCanonicalName, "canonicalNames", Marshal.GetExceptionForHR(result));
+                    throw new ArgumentException( Win32Native.Shell.Resources. LocalizedMessages.ShellInvalidCanonicalName, "canonicalNames", Marshal.GetExceptionForHR(result));
                 
                 propertyKeyList.Add(propKey);
             }

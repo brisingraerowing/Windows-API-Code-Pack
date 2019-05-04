@@ -1,5 +1,6 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 using Microsoft.WindowsAPICodePack.Controls.WindowsForms;
+using Microsoft.WindowsAPICodePack.Win32Native.Controls;
 
 namespace Microsoft.WindowsAPICodePack.Controls
 {
@@ -38,10 +39,9 @@ namespace Microsoft.WindowsAPICodePack.Controls
             {
                 ExplorerBrowserOptions ebo = (ExplorerBrowserOptions)value;
                 if (eb.explorerBrowserControl != null)
-                {
+                
                     // Always forcing SHOWFRAMES because we handle IExplorerPaneVisibility
                     eb.explorerBrowserControl.SetOptions(ebo | ExplorerBrowserOptions.ShowFrames);
-                }
             }
         }
         #endregion

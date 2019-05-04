@@ -192,9 +192,6 @@
   <data name="HyperlinksCannotBetSet" xml:space="preserve">
     <value>Hyperlinks cannot be enabled/disabled while dialog is showing.</value>
   </data>
-  <data name="InvalidReferencePath" xml:space="preserve">
-    <value>Reference path is invalid.</value>
-  </data>
   <data name="MessageManagerHandlerNotRegistered" xml:space="preserve">
     <value>The specified event handler has not been registered.</value>
   </data>
@@ -233,18 +230,6 @@
   </data>
   <data name="ProgressBarCannotBeHostedInMultipleDialogs" xml:space="preserve">
     <value>Progress bar cannot be hosted in multiple dialogs.</value>
-  </data>
-  <data name="PropertyKeyFormatString" xml:space="preserve">
-    <value>{0}, {1}</value>
-  </data>
-  <data name="PropVariantMultiDimArray" xml:space="preserve">
-    <value>Multi-dimensional SafeArrays not supported.</value>
-  </data>
-  <data name="PropVariantNullString" xml:space="preserve">
-    <value>String argument cannot be null or empty.</value>
-  </data>
-  <data name="PropVariantTypeNotSupported" xml:space="preserve">
-    <value>This Value type is not supported.</value>
   </data>
   <data name="RecoverySettingsFormatString" xml:space="preserve">
     <value>delegate: {0}, state: {1}, ping: {2}</value>
@@ -299,8 +284,5 @@
   </data>
   <data name="PowerManagerActiveSchemeFailed" xml:space="preserve">
     <value>Failed to get active power scheme.</value>
-  </data>
-  <data name="PropVariantUnsupportedType" xml:space="preserve">
-    <value>Cannot be cast to unsupported type.</value>
   </data>
 </root>

@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using MS.WindowsAPICodePack.Internal;
 
 namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms

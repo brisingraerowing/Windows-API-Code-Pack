@@ -4,6 +4,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Text;
 using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Dialogs
 {

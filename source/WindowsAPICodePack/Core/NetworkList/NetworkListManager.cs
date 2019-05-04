@@ -2,8 +2,9 @@
 
 using System;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Net;
-using Microsoft.WindowsAPICodePack.Win32Native.NetworkList;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native.Core.Net;
+using Microsoft.WindowsAPICodePack.Win32Native.Core.NetworkList;
 using MS.WindowsAPICodePack.Internal;
 
 namespace Microsoft.WindowsAPICodePack.Net

@@ -3,6 +3,8 @@
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Controls.WindowsForms;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.Controls;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using MS.WindowsAPICodePack.Internal;
 
 namespace Microsoft.WindowsAPICodePack.Controls
@@ -15,10 +17,7 @@ namespace Microsoft.WindowsAPICodePack.Controls
     {
         #region construction
         ExplorerBrowser eb;
-        internal ExplorerBrowserContentOptions(ExplorerBrowser eb)
-        {
-            this.eb = eb;
-        }
+        internal ExplorerBrowserContentOptions(ExplorerBrowser eb) => this.eb = eb;
         #endregion
 
         #region ViewMode property
@@ -31,18 +30,14 @@ namespace Microsoft.WindowsAPICodePack.Controls
         /// </summary>
         public ExplorerBrowserViewMode ViewMode
         {
-            get
-            {
-                return (ExplorerBrowserViewMode)folderSettings.ViewMode;
-            }
+            get => (ExplorerBrowserViewMode)folderSettings.ViewMode;
             set
             {
                 folderSettings.ViewMode = (FolderViewMode)value;
 
                 if (eb.explorerBrowserControl != null)
-                {
+
                     eb.explorerBrowserControl.SetFolderSettings(folderSettings);
-                }
             }
         }
         #endregion
@@ -53,18 +48,14 @@ namespace Microsoft.WindowsAPICodePack.Controls
         /// </summary>
         public ExplorerBrowserContentSectionOptions Flags
         {
-            get
-            {
-                return (ExplorerBrowserContentSectionOptions)folderSettings.Options;
-            }
+            get => (ExplorerBrowserContentSectionOptions)folderSettings.Options;
             set
             {
                 folderSettings.Options = (FolderOptions)value | FolderOptions.UseSearchFolders | FolderOptions.NoWebView;
                 if (eb.explorerBrowserControl != null)
-                {
+                
                     eb.explorerBrowserControl.SetFolderSettings(folderSettings);
-                }
-            }
+                            }
         }
         #endregion
 
@@ -74,56 +65,32 @@ namespace Microsoft.WindowsAPICodePack.Controls
         /// </summary>
         public bool AlignLeft
         {
-            get
-            {
-                return IsFlagSet(ExplorerBrowserContentSectionOptions.AlignLeft);
-            }
-            set
-            {
-                SetFlag(ExplorerBrowserContentSectionOptions.AlignLeft, value);
-            }
+            get => IsFlagSet(ExplorerBrowserContentSectionOptions.AlignLeft);
+            set => SetFlag(ExplorerBrowserContentSectionOptions.AlignLeft, value);
         }
         /// <summary>
         /// Automatically arrange the elements in the view. 
         /// </summary>
         public bool AutoArrange
         {
-            get
-            {
-                return IsFlagSet(ExplorerBrowserContentSectionOptions.AutoArrange);
-            }
-            set
-            {
-                SetFlag(ExplorerBrowserContentSectionOptions.AutoArrange, value);
-            }
+            get => IsFlagSet(ExplorerBrowserContentSectionOptions.AutoArrange);
+            set => SetFlag(ExplorerBrowserContentSectionOptions.AutoArrange, value);
         }
         /// <summary>
         /// Turns on check mode for the view
         /// </summary>
         public bool CheckSelect
         {
-            get
-            {
-                return IsFlagSet(ExplorerBrowserContentSectionOptions.CheckSelect);
-            }
-            set
-            {
-                SetFlag(ExplorerBrowserContentSectionOptions.CheckSelect, value);
-            }
+            get => IsFlagSet(ExplorerBrowserContentSectionOptions.CheckSelect);
+            set => SetFlag(ExplorerBrowserContentSectionOptions.CheckSelect, value);
         }
         /// <summary>
         /// When the view is in "tile view mode" the layout of a single item should be extended to the width of the view.
         /// </summary>
         public bool ExtendedTiles
         {
-            get
-            {
-                return IsFlagSet(ExplorerBrowserContentSectionOptions.ExtendedTiles);
-            }
-            set
-            {
-                SetFlag(ExplorerBrowserContentSectionOptions.ExtendedTiles, value);
-            }
+            get => IsFlagSet(ExplorerBrowserContentSectionOptions.ExtendedTiles);
+            set => SetFlag(ExplorerBrowserContentSectionOptions.ExtendedTiles, value);
         }
         /// <summary>
         /// When an item is selected, the item and all its sub-items are highlighted.
@@ -287,10 +254,9 @@ namespace Microsoft.WindowsAPICodePack.Controls
                         int fvm = 0;
                         HResult hr = iFV2.GetViewModeAndIconSize(out fvm, out iconSize);
                         if (hr != HResult.Ok)
-                        {
+                        
                             throw new CommonControlException(LocalizedMessages.ExplorerBrowserIconSize, hr);
-                        }
-                    }
+                                            }
                     finally
                     {
                         Marshal.ReleaseComObject(iFV2);
@@ -311,15 +277,14 @@ namespace Microsoft.WindowsAPICodePack.Controls
                         int iconSize = 0;
                         HResult hr = iFV2.GetViewModeAndIconSize(out fvm, out iconSize);
                         if (hr != HResult.Ok)
-                        {
+                        
                             throw new CommonControlException(LocalizedMessages.ExplorerBrowserIconSize, hr);
-                        }
+                        
                         hr = iFV2.SetViewModeAndIconSize(fvm, value);
                         if (hr != HResult.Ok)
-                        {
+                        
                             throw new CommonControlException(LocalizedMessages.ExplorerBrowserIconSize, hr);
-                        }
-                    }
+                                            }
                     finally
                     {
                         Marshal.ReleaseComObject(iFV2);

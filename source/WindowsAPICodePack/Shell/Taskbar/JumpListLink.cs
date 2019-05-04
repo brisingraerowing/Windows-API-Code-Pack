@@ -5,7 +5,11 @@ using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using MS.WindowsAPICodePack.Internal;
+using MS.WindowsAPICodePack.Win32Native.Win32Native;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar
 {
@@ -24,14 +28,13 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         public JumpListLink(string pathValue, string titleValue)
         {
             if (string.IsNullOrEmpty(pathValue))
-            {
-                throw new ArgumentNullException("pathValue", LocalizedMessages.JumpListLinkPathRequired);
-            }
+
+                throw new ArgumentNullException(nameof(pathValue), LocalizedMessages.JumpListLinkPathRequired);
+
 
             if (string.IsNullOrEmpty(titleValue))
-            {
-                throw new ArgumentNullException("titleValue", LocalizedMessages.JumpListLinkTitleRequired);
-            }
+
+                throw new ArgumentNullException(nameof(titleValue), LocalizedMessages.JumpListLinkTitleRequired);
 
             Path = pathValue;
             Title = titleValue;
@@ -43,13 +46,12 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// </summary>
         public string Title
         {
-            get { return title; }
+            get => title;
             set
             {
                 if (string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentNullException("value", LocalizedMessages.JumpListLinkTitleRequired);
-                }
+
+                    throw new ArgumentNullException(nameof(value), LocalizedMessages.JumpListLinkTitleRequired);
 
                 title = value;
             }
@@ -61,13 +63,12 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// </summary>
         public string Path
         {
-            get { return path; }
+            get => path;
             set
             {
                 if (string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentNullException("value", LocalizedMessages.JumpListLinkTitleRequired);
-                }
+
+                    throw new ArgumentNullException(nameof(value), LocalizedMessages.JumpListLinkTitleRequired);
 
                 path = value;
             }
@@ -121,29 +122,25 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 nativeShellLink.SetPath(Path);
 
                 if (!string.IsNullOrEmpty(IconReference.ModuleName))
-                {
+
                     nativeShellLink.SetIconLocation(IconReference.ModuleName, IconReference.ResourceId);
-                }
 
                 if (!string.IsNullOrEmpty(Arguments))
-                {
+
                     nativeShellLink.SetArguments(Arguments);
-                }
 
                 if (!string.IsNullOrEmpty(WorkingDirectory))
-                {
-                    nativeShellLink.SetWorkingDirectory(WorkingDirectory);
-                }
 
-                nativeShellLink.SetShowCmd((uint)ShowCommand);
+                    nativeShellLink.SetWorkingDirectory(WorkingDirectory);
+
+                nativeShellLink.SetShowCmd( (uint) ShowCommand);
 
                 using (PropVariant propVariant = new PropVariant(Title))
                 {
-                    HResult result =  nativePropertyStore.SetValue(ref PKEY_Title, propVariant);
+                    HResult result = nativePropertyStore.SetValue(ref PKEY_Title, propVariant);
                     if (!CoreErrorHelper.Succeeded(result))
-                    {
+
                         throw new ShellException(result);
-                    }
 
                     nativePropertyStore.Commit();
                 }
@@ -151,7 +148,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 return nativeShellLink;
             }
         }
-        
+
         #region IDisposable Members
 
         /// <summary>
@@ -161,10 +158,9 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
-            {
+            
                 title = null;
-            }
-
+            
             if (nativePropertyStore != null)
             {
                 Marshal.ReleaseComObject(nativePropertyStore);

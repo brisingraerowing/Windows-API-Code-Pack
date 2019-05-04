@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddToMostRecentlyUsedListCannotBeChanged" xml:space="preserve">
     <value>AddToMostRecentlyUsedList cannot be changed while dialog is showing.</value>
@@ -207,96 +207,6 @@
   <data name="ExplorerBrowserViewItems" xml:space="preserve">
     <value>Unexpected error retrieving view items.</value>
   </data>
-  <data name="FilePathNotExist" xml:space="preserve">
-    <value>The given path does not exist ({0})</value>
-  </data>
-  <data name="FolderIdsUnknownGuid" xml:space="preserve">
-    <value>Guid does not identify a known folder.</value>
-  </data>
-  <data name="FolderTypeCategory" xml:space="preserve">
-    <value>ControlPanel Category</value>
-  </data>
-  <data name="FolderTypeClassic" xml:space="preserve">
-    <value>ControlPanel Classic</value>
-  </data>
-  <data name="FolderTypeCommunications" xml:space="preserve">
-    <value>Communications</value>
-  </data>
-  <data name="FolderTypeCompressedFolder" xml:space="preserve">
-    <value>Compressed Folder</value>
-  </data>
-  <data name="FolderTypeContacts" xml:space="preserve">
-    <value>Contacts</value>
-  </data>
-  <data name="FolderTypeDocuments" xml:space="preserve">
-    <value>Documents</value>
-  </data>
-  <data name="FolderTypeGames" xml:space="preserve">
-    <value>Games</value>
-  </data>
-  <data name="FolderTypeGenericLibrary" xml:space="preserve">
-    <value>Generic Library</value>
-  </data>
-  <data name="FolderTypeInvalid" xml:space="preserve">
-    <value>Invalid</value>
-  </data>
-  <data name="FolderTypeLibrary" xml:space="preserve">
-    <value>Library</value>
-  </data>
-  <data name="FolderTypeMusic" xml:space="preserve">
-    <value>Music</value>
-  </data>
-  <data name="FolderTypeMusicIcons" xml:space="preserve">
-    <value>Music Icons</value>
-  </data>
-  <data name="FolderTypeNetworkExplorer" xml:space="preserve">
-    <value>Network Explorer</value>
-  </data>
-  <data name="FolderTypeNotSpecified" xml:space="preserve">
-    <value>Not Specified</value>
-  </data>
-  <data name="FolderTypeOpenSearch" xml:space="preserve">
-    <value>Open Search</value>
-  </data>
-  <data name="FolderTypeOtherUsers" xml:space="preserve">
-    <value>Other Users</value>
-  </data>
-  <data name="FolderTypePictures" xml:space="preserve">
-    <value>Pictures</value>
-  </data>
-  <data name="FolderTypePrinters" xml:space="preserve">
-    <value>Printers</value>
-  </data>
-  <data name="FolderTypeRecordedTV" xml:space="preserve">
-    <value>RecordedTV</value>
-  </data>
-  <data name="FolderTypeRecycleBin" xml:space="preserve">
-    <value>RecycleBin</value>
-  </data>
-  <data name="FolderTypeSavedGames" xml:space="preserve">
-    <value>Saved Games</value>
-  </data>
-  <data name="FolderTypeSearchConnector" xml:space="preserve">
-    <value>Search Connector</value>
-  </data>
-  <data name="FolderTypeSearches" xml:space="preserve">
-    <value>Searches</value>
-  </data>
-  <data name="FolderTypeSearchResults" xml:space="preserve">
-    <value>Generic SearchResults</value>
-  </data>
-  <data name="FolderTypeSoftwareExplorer" xml:space="preserve">
-    <value>Software Explorer</value>
-  </data>
-  <data name="FolderTypeUserFiles" xml:space="preserve">
-    <value>User Files</value>
-  </data>
-  <data name="FolderTypeUserLibraries" xml:space="preserve">
-    <value>Users Libraries</value>
-  </data>
-  <data name="FolderTypeVideos" xml:space="preserve">
-    <value>Videos</value>
-  </data>
   <data name="IsExpandedModeCannotBeChanged" xml:space="preserve">
     <value>IsExpandedMode cannot be changed while dialog is showing.</value>
   </data>
@@ -315,12 +225,6 @@
   <data name="JumpListNegativeOrdinalPosition" xml:space="preserve">
     <value>Negative numbers are not allowed for the ordinal position.</value>
   </data>
-  <data name="KnownFolderInvalidGuid" xml:space="preserve">
-    <value>Given Known Folder ID is invalid.</value>
-  </data>
-  <data name="KnownFolderParsingName" xml:space="preserve">
-    <value>Parsing name is invalid.</value>
-  </data>
   <data name="NavigateToShortcutCannotBeChanged" xml:space="preserve">
     <value>NavigateToShortcut cannot be changed while dialog is showing.</value>
   </data>
@@ -332,15 +236,6 @@
   </data>
   <data name="OverwritePromptCannotBeChanged" xml:space="preserve">
     <value>OverwritePrompt cannot be changed while dialog is showing.</value>
-  </data>
-  <data name="PropertyCollectionCanonicalInvalidIndex" xml:space="preserve">
-    <value>This CanonicalName is not a valid index.</value>
-  </data>
-  <data name="PropertyCollectionInvalidIndex" xml:space="preserve">
-    <value>This PropertyKey is not a valid index.</value>
-  </data>
-  <data name="PropertyCollectionNullCanonicalName" xml:space="preserve">
-    <value>Argument CanonicalName cannot be null or empty.</value>
   </data>
   <data name="RadioButtonListIndexOutOfBounds" xml:space="preserve">
     <value>Index was outside the bounds of the CommonFileDialogRadioButtonList.</value>
@@ -354,32 +249,8 @@
   <data name="SearchConditionFactoryInvalidProperty" xml:space="preserve">
     <value>Given property key is invalid.</value>
   </data>
-  <data name="ShellExceptionDefaultText" xml:space="preserve">
-    <value>Shell Exception has occurred, look at inner exception for information.</value>
-  </data>
-  <data name="ShellHelperGetParsingNameFailed" xml:space="preserve">
-    <value>GetParsingName has failed.</value>
-  </data>
-  <data name="ShellInvalidCanonicalName" xml:space="preserve">
-    <value>The given CanonicalName is not valid.</value>
-  </data>
   <data name="ShellLibraryDefaultSaveFolderNotFound" xml:space="preserve">
     <value>DefaultSaveFolder path not found.</value>
-  </data>
-  <data name="ShellLibraryEmptyName" xml:space="preserve">
-    <value>LibraryName cannot be empty.</value>
-  </data>
-  <data name="ShellLibraryFolderNotFound" xml:space="preserve">
-    <value>Folder path not found.</value>
-  </data>
-  <data name="ShellLibraryInvalidFolderType" xml:space="preserve">
-    <value>Invalid FolderType Guid.</value>
-  </data>
-  <data name="ShellLibraryInvalidLibrary" xml:space="preserve">
-    <value>The given known folder is not a valid library.</value>
-  </data>
-  <data name="ShellObjectCannotGetDisplayName" xml:space="preserve">
-    <value>Can't get the display name.</value>
   </data>
   <data name="ShellObjectCollectionArrayTooSmall" xml:space="preserve">
     <value>Destination array too small, or invalid arrayIndex.</value>
@@ -393,50 +264,11 @@
   <data name="ShellObjectCollectionRemoveReadOnly" xml:space="preserve">
     <value>Cannot remove items from a read only list.</value>
   </data>
-  <data name="ShellObjectCreationFailed" xml:space="preserve">
-    <value>Shell item could not be created.</value>
-  </data>
-  <data name="ShellObjectFactoryPlatformNotSupported" xml:space="preserve">
-    <value>Shell Object creation requires Windows Vista or higher operating system.</value>
-  </data>
-  <data name="ShellObjectFactoryUnableToCreateItem" xml:space="preserve">
-    <value>Unable to Create Shell Item.</value>
-  </data>
-  <data name="ShellPropertyCannotSetProperty" xml:space="preserve">
-    <value>The value on this property cannot be set. To set the property value, use the ShellObject that is associated with this property.</value>
-  </data>
-  <data name="ShellPropertySetValue" xml:space="preserve">
-    <value>Unable to set property.</value>
-  </data>
-  <data name="ShellPropertyUnableToGetWritableProperty" xml:space="preserve">
-    <value>Unable to get writable property store for this property.</value>
-  </data>
-  <data name="ShellPropertyValueTruncated" xml:space="preserve">
-    <value>A value had to be truncated in a string or rounded if a numeric value. Set AllowTruncatedValue to true to prevent this exception.</value>
-  </data>
-  <data name="ShellPropertyWindows7" xml:space="preserve">
-    <value>This Property is available on Windows 7 only.</value>
-  </data>
-  <data name="ShellPropertyWrongType" xml:space="preserve">
-    <value>This property only accepts a value of type \"{0}\".</value>
-  </data>
   <data name="ShellSearchFolderUnableToSetSortColumns" xml:space="preserve">
     <value>Unable to set list of sort columns.</value>
   </data>
   <data name="ShellSearchFolderUnableToSetVisibleColumns" xml:space="preserve">
     <value>Unable to set visible columns.</value>
-  </data>
-  <data name="ShellThumbnailCurrentSizeRange" xml:space="preserve">
-    <value>CurrentSize (width or height) cannot be greater than the maximum size: {0}.</value>
-  </data>
-  <data name="ShellThumbnailDoesNotHaveThumbnail" xml:space="preserve">
-    <value>The current ShellObject does not have a thumbnail. Try using ShellThumbnailFormatOption.Default to get the icon for this item.</value>
-  </data>
-  <data name="ShellThumbnailNoHandler" xml:space="preserve">
-    <value>The current ShellObject does not have a valid thumbnail handler or there was a problem in extracting the thumbnail for this specific shell object.</value>
-  </data>
-  <data name="ShellThumbnailSizeCannotBe0" xml:space="preserve">
-    <value>CurrentSize (width or height) cannot be 0.</value>
   </data>
   <data name="ShowHiddenItemsCannotBeChanged" xml:space="preserve">
     <value>ShowHiddenItems cannot be changed while dialog is showing.</value>
@@ -491,9 +323,6 @@
   </data>
   <data name="ShellObjectWatcherRegisterFailed" xml:space="preserve">
     <value>Registration for change notification has failed.</value>
-  </data>
-  <data name="ShellPropertyFactoryConstructorNotFound" xml:space="preserve">
-    <value>No constructor found matching requested argument types.</value>
   </data>
   <data name="MessageListenerNoWindowHandle" xml:space="preserve">
     <value>Cannot create window on the listener thread because there is no existing window on the listener thread.</value>

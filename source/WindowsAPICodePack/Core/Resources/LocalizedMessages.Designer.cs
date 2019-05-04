@@ -286,15 +286,6 @@ namespace Microsoft.WindowsAPICodePack.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reference path is invalid..
-        /// </summary>
-        internal static string InvalidReferencePath {
-            get {
-                return ResourceManager.GetString("InvalidReferencePath", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The specified event handler has not been registered..
         /// </summary>
         internal static string MessageManagerHandlerNotRegistered {
@@ -421,56 +412,11 @@ namespace Microsoft.WindowsAPICodePack.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}, {1}.
-        /// </summary>
-        internal static string PropertyKeyFormatString {
-            get {
-                return ResourceManager.GetString("PropertyKeyFormatString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Unable to initialize PropVariant..
         /// </summary>
         internal static string PropVariantInitializationError {
             get {
                 return ResourceManager.GetString("PropVariantInitializationError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Multi-dimensional SafeArrays not supported..
-        /// </summary>
-        internal static string PropVariantMultiDimArray {
-            get {
-                return ResourceManager.GetString("PropVariantMultiDimArray", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to String argument cannot be null or empty..
-        /// </summary>
-        internal static string PropVariantNullString {
-            get {
-                return ResourceManager.GetString("PropVariantNullString", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This Value type is not supported..
-        /// </summary>
-        internal static string PropVariantTypeNotSupported {
-            get {
-                return ResourceManager.GetString("PropVariantTypeNotSupported", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cannot be cast to unsupported type..
-        /// </summary>
-        internal static string PropVariantUnsupportedType {
-            get {
-                return ResourceManager.GetString("PropVariantUnsupportedType", resourceCulture);
             }
         }
         
