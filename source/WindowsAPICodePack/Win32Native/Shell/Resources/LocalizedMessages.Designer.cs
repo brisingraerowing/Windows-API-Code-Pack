@@ -376,6 +376,15 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Given property key is invalid..
+        /// </summary>
+        public static string SearchConditionFactoryInvalidProperty {
+            get {
+                return ResourceManager.GetString("SearchConditionFactoryInvalidProperty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shell Exception has occurred, look at inner exception for information..
         /// </summary>
         public static string ShellExceptionDefaultText {
@@ -543,6 +552,24 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources {
         public static string ShellPropertyWrongType {
             get {
                 return ResourceManager.GetString("ShellPropertyWrongType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to set list of sort columns..
+        /// </summary>
+        public static string ShellSearchFolderUnableToSetSortColumns {
+            get {
+                return ResourceManager.GetString("ShellSearchFolderUnableToSetSortColumns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to set visible columns..
+        /// </summary>
+        public static string ShellSearchFolderUnableToSetVisibleColumns {
+            get {
+                return ResourceManager.GetString("ShellSearchFolderUnableToSetVisibleColumns", resourceCulture);
             }
         }
         

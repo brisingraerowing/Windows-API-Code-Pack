@@ -24,9 +24,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Core
         public static void ThrowIfNotXP()
         {
             if (!RunningOnXP)
-            
+
                 throw new PlatformNotSupportedException(LocalizedMessages.CoreHelpersRunningOnXp);
-                    }
+        }
 
         /// <summary>
         /// Determines if the application is running on Vista
@@ -39,9 +39,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Core
         public static void ThrowIfNotVista()
         {
             if (!RunningOnVista)
-            
+
                 throw new PlatformNotSupportedException(LocalizedMessages.CoreHelpersRunningOnVista);
-                    }
+        }
 
         /// <summary>
         /// Determines if the application is running on Windows 7
@@ -57,9 +57,63 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Core
         public static void ThrowIfNotWin7()
         {
             if (!RunningOnWin7)
-            
+
                 throw new PlatformNotSupportedException(LocalizedMessages.CoreHelpersRunningOn7);
-                    }
+        }
+
+        /// <summary>
+        /// Determines if the application is running on Windows 8
+        /// </summary>
+        public static bool RunningOnWin8 => Environment.OSVersion.Platform == PlatformID.Win32NT &&
+            Environment.OSVersion.Version.CompareTo(new Version(6, 2)) >= 0;
+
+        /// <summary>
+        /// Throws PlatformNotSupportedException if the application is not running on Windows 8
+        /// </summary>
+        public static void ThrowIfNotWin8()
+        {
+
+            if (!RunningOnWin8)
+
+                throw new PlatformNotSupportedException(LocalizedMessages.CoreHelpersRunningOn8);
+
+        }
+
+        /// <summary>
+        /// Determines if the application is running on Windows 8.1
+        /// </summary>
+        public static bool RunningOnWin8_1 => Environment.OSVersion.Platform == PlatformID.Win32NT &&
+            Environment.OSVersion.Version.CompareTo(new Version(6, 3)) >= 0;
+
+        /// <summary>
+        /// Throws PlatformNotSupportedException if the application is not running on Windows 8.1
+        /// </summary>
+        public static void ThrowIfNotWin8_1()
+        {
+
+            if (!RunningOnWin8_1)
+
+                throw new PlatformNotSupportedException(LocalizedMessages.CoreHelpersRunningOn8_1);
+
+        }
+
+        /// <summary>
+        /// Determines if the application is running on Windows 10
+        /// </summary>
+        public static bool RunningOnWin10 => Environment.OSVersion.Platform == PlatformID.Win32NT &&
+            Environment.OSVersion.Version.CompareTo(new Version(10, 0)) >= 0;
+
+        /// <summary>
+        /// Throws PlatformNotSupportedException if the application is not running on Windows 10
+        /// </summary>
+        public static void ThrowIfNotWin10()
+        {
+
+            if (!RunningOnWin10)
+
+                throw new PlatformNotSupportedException(LocalizedMessages.CoreHelpersRunningOn10);
+
+        }
 
         /// <summary>
         /// Get a string resource given a resource Id
@@ -90,7 +144,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Core
             index = int.Parse(parts[1], CultureInfo.InvariantCulture);
 
             StringBuilder stringValue = new StringBuilder(255);
-            
+
             return CoreNativeMethods.LoadString(handle, index, stringValue, 255) != 0 ? stringValue.ToString() : null;
         }
     }

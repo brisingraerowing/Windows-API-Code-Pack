@@ -46,6 +46,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         public const string IQuerySolution = "D6EBC66B-8921-4193-AFDD-A1789FB7FF57";
         public const string IQueryParser = "2EBDEE67-3505-43f8-9946-EA44ABC8E5B0";
         public const string IQueryParserManager = "A879E3C4-AF77-44fb-8F37-EBD1487CF920";
+        public const string IEntity = "24264891-E80B-4fd3-B7CE-4FF2FAE8931F";
+        public const string IFileOperation = "947AAB5F-0A5C-4C13-B4D6-4BF7836FC9F8";
     }
 
     public static class ShellCLSIDGuid
@@ -80,6 +82,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 
     public static class ShellBHIDGuid
     {
-       public const string ShellFolderObject = "3981e224-f559-11d3-8e3a-00c04f6837d5";
+        public const string ShellFolderObject = "3981e224-f559-11d3-8e3a-00c04f6837d5";
     }
 }

@@ -5,12 +5,11 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
-using MS.WindowsAPICodePack.Internal;
-using Microsoft.WindowsAPICodePack.Shell.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
-using MS.WindowsAPICodePack.Win32Native.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -335,7 +334,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             if (conditionToBeNegated == null)
 
-                throw new ArgumentNullException("conditionToBeNegated");
+                throw new ArgumentNullException(nameof(conditionToBeNegated));
 
             // Same as the native "IConditionFactory:MakeNot" method
             IConditionFactory nativeConditionFactory = (IConditionFactory)new ConditionFactoryCoClass();
@@ -380,7 +379,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             if (string.IsNullOrEmpty(query))
 
-                throw new ArgumentNullException("query");
+                throw new ArgumentNullException(nameof(query));
 
             IQueryParserManager nativeQueryParserManager = (IQueryParserManager)new QueryParserManagerCoClass();
             IQueryParser queryParser = null;
@@ -437,21 +436,21 @@ namespace Microsoft.WindowsAPICodePack.Shell
             finally
             {
                 if (nativeQueryParserManager != null)
-                
+
                     Marshal.ReleaseComObject(nativeQueryParserManager);
-                
+
                 if (queryParser != null)
-                
+
                     Marshal.ReleaseComObject(queryParser);
-                
+
                 if (querySolution != null)
-                
+
                     Marshal.ReleaseComObject(querySolution);
-                
+
                 if (mainType != null)
-                
+
                     Marshal.ReleaseComObject(mainType);
-                            }
+            }
         }
     }
 }

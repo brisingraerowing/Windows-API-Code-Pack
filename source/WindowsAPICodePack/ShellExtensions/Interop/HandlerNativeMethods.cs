@@ -3,7 +3,8 @@ using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using Microsoft.WindowsAPICodePack.Shell;
 using MS.WindowsAPICodePack.Internal;
-using Microsoft.WindowsAPICodePack.Shell.Interop;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
 namespace Microsoft.WindowsAPICodePack.ShellExtensions.Interop
 {
@@ -237,7 +238,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions.Interop
         /// <summary>
         /// Font face name
         /// </summary>
-        public string FaceName { get { return faceName; } set { faceName = value; } }
+        public string FaceName { get => faceName; set => faceName = value; }
     }
 
     [StructLayout(LayoutKind.Sequential)]

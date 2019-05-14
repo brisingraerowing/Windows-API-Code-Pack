@@ -22,6 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\Win32Native.xml</DocumentationFile>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -62,6 +63,7 @@
     <Compile Include="Core\NetworkList\NetworkListEnums.cs" />
     <Compile Include="Core\NetworkList\NetworkListManagerClass.cs" />
     <Compile Include="Core\PowerManagement\PowerManagementNativeMethods.cs" />
+    <Compile Include="Core\PropertySystem\PropertyChange.cs" />
     <Compile Include="Core\PropertySystem\PropertyKey.cs" />
     <Compile Include="Core\PropertySystem\PropVariant.cs" />
     <Compile Include="Core\PropertySystem\PropVariantNativeMethods.cs" />
@@ -77,10 +79,13 @@
     <Compile Include="Core\TaskDialogs\TaskDialogProgressBarState.cs" />
     <Compile Include="Core\WindowMessage.cs" />
     <Compile Include="Shell\Common\DefaultShellImageSizes.cs" />
+    <Compile Include="Shell\Common\EnumUnknown.cs" />
     <Compile Include="Shell\Common\IconReference.cs" />
     <Compile Include="Shell\Common\IntPtrExtensions.cs" />
     <Compile Include="Shell\Common\NativePoint.cs" />
     <Compile Include="Shell\Common\NativeRect.cs" />
+    <Compile Include="Shell\Common\SearchCondition.cs" />
+    <Compile Include="Shell\Common\SearchConditionFactory.cs" />
     <Compile Include="Shell\Common\ShellCOMClasses.cs" />
     <Compile Include="Shell\Common\ShellCOMGuids.cs" />
     <Compile Include="Shell\Common\ShellCOMInterfaces.cs" />
@@ -90,6 +95,7 @@
     <Compile Include="Shell\Common\ShellFolder.cs" />
     <Compile Include="Shell\Common\ShellFolderItems.cs" />
     <Compile Include="Shell\Common\ShellHelper.cs" />
+    <Compile Include="Shell\Common\ShellItemArray.cs" />
     <Compile Include="Shell\Common\ShellLibrary.cs" />
     <Compile Include="Shell\Common\ShellLink.cs" />
     <Compile Include="Shell\Common\ShellNativeMethods.cs" />
@@ -102,6 +108,7 @@
     <Compile Include="Shell\Common\ShellSavedSearchCollection.cs" />
     <Compile Include="Shell\Common\ShellSearchCollection.cs" />
     <Compile Include="Shell\Common\ShellSearchConnector.cs" />
+    <Compile Include="Shell\Common\ShellSearchFolder.cs" />
     <Compile Include="Shell\Common\ShellThumbnail.cs" />
     <Compile Include="Shell\Common\ShellThumbnailEnums.cs" />
     <Compile Include="Shell\Common\SortColumn.cs" />

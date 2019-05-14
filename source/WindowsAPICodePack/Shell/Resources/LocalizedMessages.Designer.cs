@@ -502,15 +502,6 @@ namespace Microsoft.WindowsAPICodePack.Shell.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Given property key is invalid..
-        /// </summary>
-        internal static string SearchConditionFactoryInvalidProperty {
-            get {
-                return ResourceManager.GetString("SearchConditionFactoryInvalidProperty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to DefaultSaveFolder path not found..
         /// </summary>
         internal static string ShellLibraryDefaultSaveFolderNotFound {
@@ -570,24 +561,6 @@ namespace Microsoft.WindowsAPICodePack.Shell.Resources {
         internal static string ShellObjectWatcherUnableToChangeEvents {
             get {
                 return ResourceManager.GetString("ShellObjectWatcherUnableToChangeEvents", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to set list of sort columns..
-        /// </summary>
-        internal static string ShellSearchFolderUnableToSetSortColumns {
-            get {
-                return ResourceManager.GetString("ShellSearchFolderUnableToSetSortColumns", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to set visible columns..
-        /// </summary>
-        internal static string ShellSearchFolderUnableToSetVisibleColumns {
-            get {
-                return ResourceManager.GetString("ShellSearchFolderUnableToSetVisibleColumns", resourceCulture);
             }
         }
         

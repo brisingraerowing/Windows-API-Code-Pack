@@ -116,6 +116,10 @@
       <Project>{AA0C00CB-8699-4F37-BFAE-40CA87ACC06D}</Project>
       <Name>Shell</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Win32Native\Win32Native.csproj">
+      <Project>{6C1AD76C-8EEB-4B2D-B6B4-F9B7234A92FB}</Project>
+      <Name>Win32Native</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\LocalizedMessages.resx">

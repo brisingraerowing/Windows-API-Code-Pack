@@ -246,9 +246,6 @@
   <data name="SaveFileNullItem" xml:space="preserve">
     <value>Retrieved a null shell item from dialog.</value>
   </data>
-  <data name="SearchConditionFactoryInvalidProperty" xml:space="preserve">
-    <value>Given property key is invalid.</value>
-  </data>
   <data name="ShellLibraryDefaultSaveFolderNotFound" xml:space="preserve">
     <value>DefaultSaveFolder path not found.</value>
   </data>
@@ -263,12 +260,6 @@
   </data>
   <data name="ShellObjectCollectionRemoveReadOnly" xml:space="preserve">
     <value>Cannot remove items from a read only list.</value>
-  </data>
-  <data name="ShellSearchFolderUnableToSetSortColumns" xml:space="preserve">
-    <value>Unable to set list of sort columns.</value>
-  </data>
-  <data name="ShellSearchFolderUnableToSetVisibleColumns" xml:space="preserve">
-    <value>Unable to set visible columns.</value>
   </data>
   <data name="ShowHiddenItemsCannotBeChanged" xml:space="preserve">
     <value>ShowHiddenItems cannot be changed while dialog is showing.</value>

@@ -4,7 +4,7 @@ using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
-using MS.WindowsAPICodePack.Win32Native.Win32Native;
+using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using System;
 using System.Runtime.InteropServices;
 using static Microsoft.WindowsAPICodePack.Shell.PropertySystem.SystemProperties.System;

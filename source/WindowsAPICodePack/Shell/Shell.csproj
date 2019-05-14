@@ -158,12 +158,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\EnumUnknown.cs" />
     <Compile Include="Common\EventHandlerExtensionMethods.cs" />
-    <Compile Include="Common\SearchCondition.cs" />
-    <Compile Include="Common\SearchConditionFactory.cs" />
-    <Compile Include="Common\ShellSearchFolder.cs" />
-    <Compile Include="Common\ShellItemArray.cs" />
+    <Compile Include="Common\FileOperation.cs" />
     <Compile Include="Common\ShellObjectCollection.cs" />
     <Compile Include="Controls\CommandLinkWinforms.cs">
       <SubType>Component</SubType>

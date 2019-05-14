@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace MS.WindowsAPICodePack.Win32Native.Win32Native
+namespace MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem
 {
     /// <summary>
     /// Represents the OLE struct PROPVARIANT.

@@ -291,4 +291,13 @@
   <data name="ShellPropertyValueTruncated" xml:space="preserve">
     <value>A value had to be truncated in a string or rounded if a numeric value. Set AllowTruncatedValue to true to prevent this exception.</value>
   </data>
+  <data name="SearchConditionFactoryInvalidProperty" xml:space="preserve">
+    <value>Given property key is invalid.</value>
+  </data>
+  <data name="ShellSearchFolderUnableToSetSortColumns" xml:space="preserve">
+    <value>Unable to set list of sort columns.</value>
+  </data>
+  <data name="ShellSearchFolderUnableToSetVisibleColumns" xml:space="preserve">
+    <value>Unable to set visible columns.</value>
+  </data>
 </root>

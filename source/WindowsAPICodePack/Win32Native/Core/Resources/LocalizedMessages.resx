@@ -153,4 +153,13 @@
   <data name="TaskDialogDefaultMainInstruction" xml:space="preserve">
     <value />
   </data>
+  <data name="CoreHelpersRunningOn10" xml:space="preserve">
+    <value>Only supported on Windows 8 or newer.</value>
+  </data>
+  <data name="CoreHelpersRunningOn8" xml:space="preserve">
+    <value>Only supported on Windows 8 or newer.</value>
+  </data>
+  <data name="CoreHelpersRunningOn8.1" xml:space="preserve">
+    <value>Only supported on Windows 8.1 or newer.</value>
+  </data>
 </root>

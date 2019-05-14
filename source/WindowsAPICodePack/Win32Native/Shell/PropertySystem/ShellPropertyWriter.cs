@@ -6,7 +6,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
-using MS.WindowsAPICodePack.Win32Native.Win32Native;
+using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 {
@@ -34,21 +34,19 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                         out writablePropStore);
 
                 if (!CoreErrorHelper.Succeeded(hr))
-                {
+                
                     throw new PropertySystemException(LocalizedMessages.ShellPropertyUnableToGetWritableProperty,
                         Marshal.GetExceptionForHR(hr));
-                }
+                
                 else
-                {
+                
                     // If we succeed in creating a valid property store for this ShellObject,
                     // then set it on the parent shell object for others to use.
                     // Once this writer is closed/commited, we will set the 
                     if (ParentShellObject.NativePropertyStore == null)
-                    {
+                
                         ParentShellObject.NativePropertyStore = writablePropStore;
-                    }
-                }
-
+                
             }
             catch (InvalidComObjectException e)
             {
@@ -105,10 +103,9 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                 }
 
                 if (!CoreErrorHelper.Succeeded(result))
-                {
+                
                     throw new PropertySystemException(LocalizedMessages.ShellPropertySetValue, Marshal.GetExceptionForHR((int)result));
-                }
-            }
+                            }
         }
 
         /// <summary>
@@ -116,10 +113,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// </summary>
         /// <param name="canonicalName">The canonical name.</param>
         /// <param name="value">The property value.</param>
-        public void WriteProperty(string canonicalName, object value)
-        {
-            WriteProperty(canonicalName, value, true);
-        }
+        public void WriteProperty(string canonicalName, object value) => WriteProperty(canonicalName, value, true);
 
         /// <summary>
         /// Writes the specified property given the canonical name and a value. To allow truncation of the given value, set allowTruncatedValue
@@ -132,17 +126,14 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         public void WriteProperty(string canonicalName, object value, bool allowTruncatedValue)
         {
             // Get the PropertyKey using the canonicalName passed in
-            PropertyKey propKey;
-
-            int result = PropertySystemNativeMethods.PSGetPropertyKeyFromName(canonicalName, out propKey);
+            int result = PropertySystemNativeMethods.PSGetPropertyKeyFromName(canonicalName, out PropertyKey propKey);
 
             if (!CoreErrorHelper.Succeeded(result))
-            {
+            
                 throw new ArgumentException(
                     LocalizedMessages.ShellInvalidCanonicalName,
                     Marshal.GetExceptionForHR(result));
-            }
-
+            
             WriteProperty(propKey, value, allowTruncatedValue);
         }
 
@@ -165,7 +156,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// <param name="allowTruncatedValue">True to allow truncation (default); otherwise False.</param>
         public void WriteProperty(IShellProperty shellProperty, object value, bool allowTruncatedValue)
         {
-            if (shellProperty == null) { throw new ArgumentNullException("shellProperty"); }
+            if (shellProperty == null)  throw new ArgumentNullException(nameof(shellProperty)); 
             WriteProperty(shellProperty.PropertyKey, value, allowTruncatedValue);
         }
 
@@ -175,10 +166,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// <typeparam name="T">The type of the property name.</typeparam>
         /// <param name="shellProperty">The property name.</param>
         /// <param name="value">The property value.</param>
-        public void WriteProperty<T>(ShellProperty<T> shellProperty, T value)
-        {
-            WriteProperty<T>(shellProperty, value, true);
-        }
+        public void WriteProperty<T>(ShellProperty<T> shellProperty, T value) => WriteProperty(shellProperty, value, true);
         /// <summary>
         /// Writes the specified property given a strongly-typed ShellProperty and a value. To allow truncation of the given value, set allowTruncatedValue
         /// to true.
@@ -189,7 +177,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// <param name="allowTruncatedValue">True to allow truncation (default); otherwise False.</param>
         public void WriteProperty<T>(ShellProperty<T> shellProperty, T value, bool allowTruncatedValue)
         {
-            if (shellProperty == null) { throw new ArgumentNullException("shellProperty"); }
+            if (shellProperty == null) throw new ArgumentNullException(nameof(shellProperty)); 
             WriteProperty(shellProperty.PropertyKey, value, allowTruncatedValue);
         }
 
@@ -217,10 +205,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// </summary>
         /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.
         /// </param>
-        protected virtual void Dispose(bool disposing)
-        {
-            Close();
-        }
+        protected virtual void Dispose(bool disposing) => Close();
 
         /// <summary>
         /// Call this method to commit the writes (calls to WriteProperty method)

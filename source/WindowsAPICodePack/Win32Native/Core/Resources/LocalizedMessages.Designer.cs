@@ -61,11 +61,38 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Only supported on Windows 8 or newer..
+        /// </summary>
+        public static string CoreHelpersRunningOn10 {
+            get {
+                return ResourceManager.GetString("CoreHelpersRunningOn10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Only supported on Windows 7 or newer..
         /// </summary>
         public static string CoreHelpersRunningOn7 {
             get {
                 return ResourceManager.GetString("CoreHelpersRunningOn7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only supported on Windows 8 or newer..
+        /// </summary>
+        public static string CoreHelpersRunningOn8 {
+            get {
+                return ResourceManager.GetString("CoreHelpersRunningOn8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only supported on Windows 8.1 or newer..
+        /// </summary>
+        public static string CoreHelpersRunningOn8_1 {
+            get {
+                return ResourceManager.GetString("CoreHelpersRunningOn8.1", resourceCulture);
             }
         }
         
