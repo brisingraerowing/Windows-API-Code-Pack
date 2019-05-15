@@ -2,6 +2,9 @@
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Core
 {
+
+    // todo: to add the other error codes
+
     /// <summary>
     /// HRESULT Wrapper    
     /// </summary>    
@@ -70,7 +73,15 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Core
         /// <summary>
         /// The requested resources is read-only.
         /// </summary>
-        AccessDenied = unchecked((int)0x80030005)
+        AccessDenied = unchecked((int)0x80030005),
+
+        E_UNEXPECTED = unchecked((int)0x8000FFFF),
+
+        E_NOTIMPL = unchecked((int)0x80004001),
+
+        E_OUTOFMEMORY = unchecked((int)0x8007000E),
+
+        E_INVALIDARG = unchecked((int)0x80070057)
     }
 
     /// <summary>
