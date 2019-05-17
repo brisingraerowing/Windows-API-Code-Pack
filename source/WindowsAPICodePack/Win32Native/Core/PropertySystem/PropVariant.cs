@@ -193,7 +193,8 @@ namespace MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem
         // the last 4-bytes of an 8-byte value on 32-bit
         // architectures.
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2006:UseSafeHandleToEncapsulateNativeResources")]
-        [FieldOffset(12)]
+        // [FieldOffset(12)]
+        [FieldOffset(16)]
         readonly IntPtr _ptr2;
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2006:UseSafeHandleToEncapsulateNativeResources")]
         [FieldOffset(8)]
@@ -237,9 +238,9 @@ namespace MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem
         public PropVariant(string value)
         {
             if (value == null)
-            
+
                 throw new ArgumentException(LocalizedMessages.PropVariantNullString, nameof(value));
-            
+
             _valueType = (ushort)VarEnum.VT_LPWSTR;
             _ptr = Marshal.StringToCoTaskMemUni(value);
         }
@@ -259,7 +260,7 @@ namespace MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem
         /// </summary>
         public PropVariant(bool[] value)
         {
-            if (value == null) throw new ArgumentNullException(nameof(value)); 
+            if (value == null) throw new ArgumentNullException(nameof(value));
 
             PropVariantNativeMethods.InitPropVariantFromBooleanVector(value, (uint)value.Length, this);
         }
@@ -346,9 +347,9 @@ namespace MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 new System.Runtime.InteropServices.ComTypes.FILETIME[value.Length];
 
             for (int i = 0; i < value.Length; i++)
-            
+
                 fileTimeArr[i] = DateTimeToFileTime(value[i]);
-            
+
             PropVariantNativeMethods.InitPropVariantFromFileTimeVector(fileTimeArr, (uint)fileTimeArr.Length, this);
         }
 
@@ -474,7 +475,7 @@ namespace MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem
         /// </summary>        
         public PropVariant(float[] value)
         {
-            if (value == null)  throw new ArgumentNullException(nameof(value)); 
+            if (value == null) throw new ArgumentNullException(nameof(value));
 
             _valueType = (ushort)(VarEnum.VT_R4 | VarEnum.VT_VECTOR);
             _int32 = value.Length;
@@ -532,7 +533,7 @@ namespace MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem
         /// <param name="array">The new value to set.</param>
         internal void SetSafeArray(Array array)
         {
-            if (array == null)  throw new ArgumentNullException(nameof(array)); 
+            if (array == null) throw new ArgumentNullException(nameof(array));
             const ushort vtUnknown = 13;
             IntPtr psa = PropVariantNativeMethods.SafeArrayCreateVector(vtUnknown, 0, (uint)array.Length);
 
@@ -694,21 +695,21 @@ namespace MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             if (count <= 0) return null;
 
             lock (_padlock)
-            
+
                 if (_vectorActions == null)
-            
+
                     _vectorActions = GenerateVectorActions();
-            
+
             Action<PropVariant, Array, uint> action;
             if (!_vectorActions.TryGetValue(typeof(T), out action))
-            
+
                 throw new InvalidCastException(LocalizedMessages.PropVariantUnsupportedType);
-            
+
             Array array = new T[count];
             for (uint i = 0; i < count; i++)
-            
+
                 action(this, array, i);
-            
+
             return array;
         }
 
@@ -725,9 +726,9 @@ namespace MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem
 
             object[] array = new object[n];
             for (int i = lBound; i <= uBound; ++i)
-            
+
                 array[i] = PropVariantNativeMethods.SafeArrayGetElement(psa, ref i);
-            
+
             return array;
         }
 

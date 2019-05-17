@@ -251,6 +251,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             HResult hr = fileOperation.ApplyPropertiesToItem(psiItem);
 
+            // todo: to add error wrappers using the return error code
+
             if (!CoreErrorHelper.Succeeded(hr))
 
                 throw new Win32Exception((int)hr);
