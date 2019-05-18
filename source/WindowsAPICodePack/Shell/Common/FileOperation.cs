@@ -10,7 +10,10 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Interop;
+using static Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellNativeMethods;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -377,6 +380,128 @@ namespace Microsoft.WindowsAPICodePack.Shell
             else throw new Win32Exception((int)hr);
 
         }
+
+        /// <summary>
+        /// Queries the size and the number of items in the Recycle Bin.
+        /// </summary>
+        /// <param name="drivePath">The path to the Recycle Bin drive. Leave this parameter null or empty if you want to get the info for the Recycle Bins for all drives.</param>
+        /// <param name="recycleBinInfo">The out Recycle Bin info</param>
+        /// <returns><see langword="true"/> if the drive supports the Recycle Bin, otherwise <see langword="false"/>.</returns>
+        /// <exception cref="Win32Exception">Exception thrown if a Win32 exception has occurred during thr process.</exception>
+        public static bool QueryRecycleBinInfo(string drivePath, out RecycleBinInfo recycleBinInfo)
+        {
+
+            ShellNativeMethods.SHQUERYRBINFO rbInfo = new ShellNativeMethods.SHQUERYRBINFO
+            {
+                cbSize = Marshal.SizeOf(typeof(ShellNativeMethods.SHQUERYRBINFO))
+            };
+
+            HResult hr = ShellNativeMethods.SHQueryRecycleBin(drivePath, ref rbInfo);
+
+            if (hr == HResult.Ok)
+            {
+
+                recycleBinInfo = new RecycleBinInfo(rbInfo.i64Size, rbInfo.i64NumItems);
+
+                return true;
+
+            }
+
+            else if (hr == HResult.Fail)
+            {
+
+                recycleBinInfo = default;
+
+                return false;
+
+            }
+
+            else
+
+                throw new Win32Exception((int)hr);
+
+        }
+
+        /// <summary>
+        /// Empties the Recycle Bin.
+        /// </summary>
+        /// <param name="windowHandle">A handle to the owner window</param>
+        /// <param name="drivePath">The path to the Recycle Bin drive. Leave this parameter null or empty if you want to get the info for the Recycle Bins for all drives.</param>
+        /// <param name="emptyRecycleBinFlags">Flags to describe the behavior for the process.</param>
+        /// <returns><see langword="true"/> if the drive supports the Recycle Bin, otherwise <see langword="false"/>.</returns>
+        /// <exception cref="Win32Exception">Exception thrown if a Win32 exception has occurred during thr process.</exception>
+        public static bool EmptyRecycleBin(IntPtr windowHandle, string drivePath, EmptyRecycleBinFlags emptyRecycleBinFlags)
+        {
+
+            HResult hr = SHEmptyRecycleBin(windowHandle, drivePath, emptyRecycleBinFlags);
+
+            if (hr == HResult.Ok) return true;
+
+            else if (hr == HResult.Fail) return false;
+
+            else throw new Win32Exception((int)hr);
+
+        }
+
+        /// <summary>
+        /// Empties the Recycle Bin.
+        /// </summary>
+        /// <param name="window">The owner window</param>
+        /// <param name="drivePath">The path to the Recycle Bin drive. Leave this parameter null or empty if you want to get the info for the Recycle Bins for all drives.</param>
+        /// <param name="emptyRecycleBinFlags">Flags to describe the behavior for the process.</param>
+        /// <returns><see langword="true"/> if the drive supports the Recycle Bin, otherwise <see langword="false"/>.</returns>
+        /// <exception cref="Win32Exception">Exception thrown if a Win32 exception has occurred during thr process.</exception>
+        public static bool EmptyRecycleBin(Form window, string drivePath, EmptyRecycleBinFlags emptyRecycleBinFlags)
+        {
+
+            HResult hr = SHEmptyRecycleBin(window.Handle, drivePath, emptyRecycleBinFlags);
+
+            if (hr == HResult.Ok) return true;
+
+            else if (hr == HResult.Fail) return false;
+
+            else throw new Win32Exception((int)hr);
+
+        }
+
+        /// <summary>
+        /// Empties the Recycle Bin.
+        /// </summary>
+        /// <param name="window">The owner window</param>
+        /// <param name="drivePath">The path to the Recycle Bin drive. Leave this parameter null or empty if you want to get the info for the Recycle Bins for all drives.</param>
+        /// <param name="emptyRecycleBinFlags">Flags to describe the behavior for the process.</param>
+        /// <returns><see langword="true"/> if the drive supports the Recycle Bin, otherwise <see langword="false"/>.</returns>
+        /// <exception cref="Win32Exception">Exception thrown if a Win32 exception has occurred during thr process.</exception>
+        public static bool EmptyRecycleBin(Window window, string drivePath, EmptyRecycleBinFlags emptyRecycleBinFlags)
+        {
+
+            HResult hr = SHEmptyRecycleBin(new WindowInteropHelper(window).Handle, drivePath, emptyRecycleBinFlags);
+
+            if (hr == HResult.Ok) return true;
+
+            else if (hr == HResult.Fail) return false;
+
+            else throw new Win32Exception((int)hr);
+
+        }
+    }
+
+    public struct RecycleBinInfo
+    {
+
+        public long Size { get; }
+
+        public long NumItems { get; }
+
+        internal RecycleBinInfo(long size, long numItems)
+        {
+
+            Size = size;
+
+            NumItems = numItems;
+
+        }
+
     }
 
     public class FileOperationProgressSink : IDisposable

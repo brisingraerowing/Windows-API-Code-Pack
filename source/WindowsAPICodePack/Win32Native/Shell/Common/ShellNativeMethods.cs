@@ -1,6 +1,7 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -488,6 +489,14 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
             byte rgbKey;
         }
 
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct SHQUERYRBINFO
+        {
+            public int cbSize;
+            public long i64Size;
+            public long i64NumItems;
+        }
+
         #endregion
 
         #region Shell Helper Methods
@@ -556,7 +565,12 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         public static extern uint ILGetSize(IntPtr pidl);
 
         [DllImport("shell32.dll", CharSet = CharSet.None)]
-        public static extern void ILFree(IntPtr pidl);
+        public static extern void ILFree(IntPtr pidl);[DllImport("shell32.dll")]
+        public static extern HResult SHQueryRecycleBin(string pszRootPath, ref SHQUERYRBINFO
+   pSHQueryRBInfo);
+
+        [DllImport("shell32.dll")]
+        public static extern HResult SHEmptyRecycleBin(IntPtr hWnd, string pszRootPath, EmptyRecycleBinFlags dwFlags);
 
         [DllImport("gdi32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
@@ -601,7 +615,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
             NonIndexableLocationWarning = 1
         };
 
-        
+
         #endregion
 
         #region Shell Library Helper Methods
@@ -681,6 +695,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
             RecursiveInterrupt = 0x1000,
             NewDelivery = 0x8000
         }
+
+
 
 
 
