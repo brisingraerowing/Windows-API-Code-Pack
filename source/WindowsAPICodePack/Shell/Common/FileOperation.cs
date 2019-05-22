@@ -83,7 +83,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             }
 
-            else throw new Win32Exception((int)hr);
+            else Marshal.ThrowExceptionForHR((int)hr);
+
+            return 0;
 
         }
 
@@ -109,7 +111,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (!CoreErrorHelper.Succeeded(hr))
 
-                throw new Win32Exception((int)hr);
+                Marshal.ThrowExceptionForHR((int)hr);
 
         }
 
@@ -156,7 +158,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (!CoreErrorHelper.Succeeded(hr))
 
-                throw new Win32Exception((int)hr);
+                Marshal.ThrowExceptionForHR((int)hr);
 
         }
 
@@ -175,7 +177,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (!CoreErrorHelper.Succeeded(hr))
 
-                throw new Win32Exception((int)hr);
+                Marshal.ThrowExceptionForHR((int)hr);
 
         }
 
@@ -198,7 +200,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (!CoreErrorHelper.Succeeded(hr))
 
-                throw new Win32Exception((int)hr);
+                Marshal.ThrowExceptionForHR((int)hr);
 
         }
 
@@ -226,7 +228,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (!CoreErrorHelper.Succeeded(hr))
 
-                throw new Win32Exception((int)hr);
+                Marshal.ThrowExceptionForHR((int)hr);
 
         }
 
@@ -239,13 +241,13 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (!CoreErrorHelper.Succeeded(hr))
 
-                throw new Win32Exception((int)hr);
+                Marshal.ThrowExceptionForHR((int)hr);
 
         }
 
-        public void SetOwnerWindow(System.Windows.Forms.Form window) => SetOwnerWindow(window.Handle);
+        public void SetOwnerWindow(Form window) => SetOwnerWindow(window.Handle);
 
-        public void SetOwnerWindow(System.Windows.Window window) => SetOwnerWindow(new WindowInteropHelper(window).Handle);
+        public void SetOwnerWindow(Window window) => SetOwnerWindow(new WindowInteropHelper(window).Handle);
 
         public void ApplyPropertiesToItem(IShellItem psiItem)
         {
@@ -258,7 +260,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (!CoreErrorHelper.Succeeded(hr))
 
-                throw new Win32Exception((int)hr);
+                Marshal.ThrowExceptionForHR((int)hr);
 
         }
 
@@ -278,7 +280,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (!CoreErrorHelper.Succeeded(hr))
 
-                throw new Win32Exception((int)hr);
+                Marshal.ThrowExceptionForHR((int)hr);
 
         }
 
@@ -298,7 +300,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (!CoreErrorHelper.Succeeded(hr))
 
-                throw new Win32Exception((int)hr);
+                Marshal.ThrowExceptionForHR((int)hr);
 
         }
 
@@ -315,7 +317,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (!CoreErrorHelper.Succeeded(hr))
 
-                throw new Win32Exception((int)hr);
+                Marshal.ThrowExceptionForHR((int)hr);
 
         }
 
@@ -332,7 +334,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (!CoreErrorHelper.Succeeded(hr))
 
-                throw new Win32Exception((int)hr);
+                Marshal.ThrowExceptionForHR((int)hr);
 
         }
 
@@ -349,7 +351,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (!CoreErrorHelper.Succeeded(hr))
 
-                throw new Win32Exception((int)hr);
+                Marshal.ThrowExceptionForHR((int)hr);
 
         }
 
@@ -364,7 +366,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (!CoreErrorHelper.Succeeded(hr))
 
-                throw new Win32Exception((int)hr);
+                Marshal.ThrowExceptionForHR((int)hr);
 
         }
 
@@ -377,7 +379,27 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (CoreErrorHelper.Succeeded(hr)) return anyOperationsAborted;
 
-            else throw new Win32Exception((int)hr);
+            else
+
+                Marshal.ThrowExceptionForHR((int)hr);
+
+            return false;
+
+        }
+
+        public static void CopyFile(string sourceFileName, string newFileName,
+   CopyProgressRoutine progressRoutine, IntPtr data, ref bool cancel,
+   CopyFileFlags copyFlags)
+
+        {
+
+            if (copyFlags == CopyFileFlags.CopySymLink || copyFlags == CopyFileFlags.NoBuffering)
+
+                CoreHelpers.ThrowIfNotVista();
+
+            if (!CopyFileEx(sourceFileName, newFileName, progressRoutine, data, ref cancel, copyFlags))
+
+                Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
 
         }
 
@@ -391,12 +413,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public static bool QueryRecycleBinInfo(string drivePath, out RecycleBinInfo recycleBinInfo)
         {
 
-            ShellNativeMethods.SHQUERYRBINFO rbInfo = new ShellNativeMethods.SHQUERYRBINFO
+            SHQUERYRBINFO rbInfo = new SHQUERYRBINFO
             {
-                cbSize = Marshal.SizeOf(typeof(ShellNativeMethods.SHQUERYRBINFO))
+                cbSize = Marshal.SizeOf(typeof(SHQUERYRBINFO))
             };
 
-            HResult hr = ShellNativeMethods.SHQueryRecycleBin(drivePath, ref rbInfo);
+            HResult hr = SHQueryRecycleBin(drivePath, ref rbInfo);
 
             if (hr == HResult.Ok)
             {
@@ -418,7 +440,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             else
 
-                throw new Win32Exception((int)hr);
+                Marshal.ThrowExceptionForHR((int)hr);
+
+            recycleBinInfo = default;
+
+            return false;
 
         }
 
@@ -439,7 +465,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             else if (hr == HResult.Fail) return false;
 
-            else throw new Win32Exception((int)hr);
+            else Marshal.ThrowExceptionForHR((int)hr);
+
+            return false;
 
         }
 
@@ -460,7 +488,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             else if (hr == HResult.Fail) return false;
 
-            else throw new Win32Exception((int)hr);
+            else Marshal.ThrowExceptionForHR((int)hr);
+
+            return false;
 
         }
 
@@ -481,7 +511,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             else if (hr == HResult.Fail) return false;
 
-            else throw new Win32Exception((int)hr);
+            else Marshal.ThrowExceptionForHR((int)hr);
+
+            return false;
 
         }
     }
@@ -516,6 +548,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public Action StartOperations { get; set; }
 
         public Action FinishOperations { get; set; }
+
+        // todo: to implement more specific handlers
 
         public Action<uint, IShellItem, string> PreRenameItem { get; set; }
 
@@ -560,7 +594,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             if (!CoreErrorHelper.Succeeded(hr))
 
-                throw new Win32Exception((int)hr);
+                Marshal.ThrowExceptionForHR((int)hr);
 
             fileOperationProgressSink.FinishOperations?.Invoke();
 
@@ -573,7 +607,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             if (!CoreErrorHelper.Succeeded(hrRename))
 
-                throw new Win32Exception((int)hrRename);
+                Marshal.ThrowExceptionForHR((int)hrRename);
 
             fileOperationProgressSink.PostRenameItem?.Invoke(dwFlags, psiItem, pszNewName, psiNewlyCreated);
 
@@ -586,7 +620,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             if (!CoreErrorHelper.Succeeded(hrMove))
 
-                throw new Win32Exception((int)hrMove);
+                Marshal.ThrowExceptionForHR((int)hrMove);
 
             fileOperationProgressSink.PostMoveItem?.Invoke(dwFlags, psiItem, psiDestinationFolder, pszNewName, psiNewlyCreated);
 
@@ -600,7 +634,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (!CoreErrorHelper.Succeeded(hrCopy))
 
-                throw new Win32Exception((int)hrCopy);
+                Marshal.ThrowExceptionForHR((int)hrCopy);
 
             fileOperationProgressSink.PostCopyItem?.Invoke(dwFlags, psiItem, psiDestinationFolder, pszNewName, psiNewlyCreated);
 
@@ -615,7 +649,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (!CoreErrorHelper.Succeeded(hrDelete))
 
-                throw new Win32Exception((int)hrDelete);
+                Marshal.ThrowExceptionForHR((int)hrDelete);
 
             fileOperationProgressSink.PostDeleteItem?.Invoke(dwFlags, psiItem, psiNewlyCreated);
 
@@ -630,7 +664,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (!CoreErrorHelper.Succeeded(hrNew))
 
-                throw new Win32Exception((int)hrNew);
+                Marshal.ThrowExceptionForHR((int)hrNew);
 
             fileOperationProgressSink.PostNewItem?.Invoke(dwFlags, psiDestinationFolder, pszNewName, pszTemplateName, dwFileAttributes, psiNewItem);
 

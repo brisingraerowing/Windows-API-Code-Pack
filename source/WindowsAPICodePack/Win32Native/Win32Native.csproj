@@ -79,6 +79,9 @@
     <Compile Include="Core\TaskDialogs\TaskDialogNativeMethods.cs" />
     <Compile Include="Core\TaskDialogs\TaskDialogProgressBarState.cs" />
     <Compile Include="Core\WindowMessage.cs" />
+    <Compile Include="Shell\Common\CopyFileFlags.cs" />
+    <Compile Include="Shell\Common\CopyProgressCallbackReason.cs" />
+    <Compile Include="Shell\Common\CopyProgressResult.cs" />
     <Compile Include="Shell\Common\DefaultShellImageSizes.cs" />
     <Compile Include="Shell\Common\EnumUnknown.cs" />
     <Compile Include="Shell\Common\IconReference.cs" />
