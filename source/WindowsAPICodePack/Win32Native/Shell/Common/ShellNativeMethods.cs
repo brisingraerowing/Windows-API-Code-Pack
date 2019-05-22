@@ -10,7 +10,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 {
 
     /// <summary>
-    /// An application-defined callback function used with the <see cref="Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellNativeMethods.CopyFileEx(string, string, CopyProgressRoutine, IntPtr, ref int, CopyFileFlags)"/>, MoveFileTransacted, and MoveFileWithProgress functions. It is called when a portion of a copy or move operation is completed. The LPPROGRESS_ROUTINE type defines a pointer to this callback function. CopyProgressRoutine is a placeholder for the application-defined function name.
+    /// An application-defined callback for some file management. It is called when a portion of a copy or move operation is completed. The LPPROGRESS_ROUTINE type defines a pointer to this callback function. CopyProgressRoutine is a placeholder for the application-defined function name.
     /// </summary>
     /// <param name="TotalFileSize">The total size of the file, in bytes.</param>
     /// <param name="TotalBytesTransferred">The total number of bytes transferred from the source file to the destination file since the copy operation began.</param>
@@ -20,7 +20,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
     /// <param name="dwCallbackReason">The reason that <see cref="CopyProgressRoutine"/> was called. This parameter can be one of the values of the <see cref="CopyProgressCallbackReason"/> enum.</param>
     /// <param name="hSourceFile">A handle to the source file.</param>
     /// <param name="hDestinationFile">A handle to the destination file.</param>
-    /// <param name="lpData">Argument passed to CopyProgressRoutine by <see cref="Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellNativeMethods.CopyFileEx(string, string, CopyProgressRoutine, IntPtr, ref int, CopyFileFlags)"/>, MoveFileTransacted, or MoveFileWithProgress.</param>
+    /// <param name="lpData">Argument passed to CopyProgressRoutine by <see cref="Win32Native.Shell.ShellNativeMethods.CopyFileEx(string, string, CopyProgressRoutine, IntPtr, ref bool, CopyFileFlags)"/>, MoveFileTransacted, or MoveFileWithProgress.</param>
     /// <returns>The CopyProgressRoutine function should return one of the values of the <see cref="CopyProgressResult"/> enum.</returns>
     /// <remarks>An application can use this information to display a progress bar that shows the total number of bytes copied as a percent of the total file size.</remarks>
     public delegate CopyProgressResult CopyProgressRoutine(
@@ -616,7 +616,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         /// <para>In the ANSI version of this function, the name is limited to MAX_PATH characters. To extend this limit to 32,767 wide characters, call the Unicode version of the function and prepend "\?" to the path.For more information, see Naming a File.</para>
         /// <para>Tip Starting in Windows 10, version 1607, for the unicode version of this function (CopyFileExW), you can opt-in to remove the MAX_PATH character limitation without prepending "\\?\". See the "Maximum Path Limitation" section of Naming Files, Paths, and Namespaces for details.</para>
         ///
-        ///<para>If lpExistingFileName does not exist, the <see cref="CopyFileEx(string, string, CopyProgressRoutine, IntPtr, ref int, CopyFileFlags)"/> function fails, and the <see cref="Marshal. GetLastWin32Error"/> function returns <see cref="NativeWin32FilesProcessesErrorCodes.ERROR_FILE_NOT_FOUND"/>.</para></param>
+        ///<para>If lpExistingFileName does not exist, the <see cref="CopyFileEx(string, string, CopyProgressRoutine, IntPtr, ref bool, CopyFileFlags)"/> function fails, and the <see cref="Marshal. GetLastWin32Error"/> function returns <see cref="NativeWin32FilesProcessesErrorCodes.ERROR_FILE_NOT_FOUND"/>.</para></param>
         /// <param name="lpNewFileName"><para>The name of the new file.</para>
         ///
         /// <para>In the ANSI version of this function, the name is limited to MAX_PATH characters. To extend this limit to 32,767 wide characters, call the Unicode version of the function and prepend "\?" to the path.For more information, see Naming a File.</para>
@@ -630,12 +630,12 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         ///
         /// <para>If the function fails, the return value is zero.To get extended error information call <see cref="Marshal.GetLastWin32Error"/>.</para>
         ///
-        /// <para>If lpProgressRoutine returns <see cref="CopyProgressResult.Cancel"/> due to the user canceling the operation, <see cref="CopyFileEx(string, string, CopyProgressRoutine, IntPtr, ref int, CopyFileFlags)"/> will return zero and <see cref="Marshal.GetLastWin32Error"/> will return <see cref="WinCopies.Util.Win32ErrorCodes.ERROR_REQUEST_ABORTED"/>. In this case, the partially copied destination file is deleted.</para>
+        /// <para>If lpProgressRoutine returns <see cref="CopyProgressResult.Cancel"/> due to the user canceling the operation, <see cref="CopyFileEx(string, string, CopyProgressRoutine, IntPtr, ref bool, CopyFileFlags)"/> will return zero and <see cref="Marshal.GetLastWin32Error"/> will return <see cref="WinCopies.Util.Win32ErrorCodes.ERROR_REQUEST_ABORTED"/>. In this case, the partially copied destination file is deleted.</para>
         ///
-        /// <para>If lpProgressRoutine returns <see cref="CopyProgressResult.Stop"/> due to the user stopping the operation, <see cref="CopyFileEx(string, string, CopyProgressRoutine, IntPtr, ref int, CopyFileFlags)"/> will return zero and <see cref="Marshal.GetLastWin32Error"/> will return <see cref="WinCopies.Util.Win32ErrorCodes.ERROR_REQUEST_ABORTED"/>. In this case, the partially copied destination file is left intact.</para></returns>
+        /// <para>If lpProgressRoutine returns <see cref="CopyProgressResult.Stop"/> due to the user stopping the operation, <see cref="CopyFileEx(string, string, CopyProgressRoutine, IntPtr, ref bool, CopyFileFlags)"/> will return zero and <see cref="Marshal.GetLastWin32Error"/> will return <see cref="WinCopies.Util.Win32ErrorCodes.ERROR_REQUEST_ABORTED"/>. In this case, the partially copied destination file is left intact.</para></returns>
         /// <remarks><para>This function preserves extended attributes, OLE structured storage, NTFS file system alternate data streams, security resource attributes, and file attributes.</para>
         ///
-        /// <para>Windows 7, Windows Server 2008 R2, Windows Server 2008, Windows Vista, Windows Server 2003 and Windows XP:  Security resource attributes(ATTRIBUTE_SECURITY_INFORMATION) for the existing file are not copied to the new file until Windows 8 and Windows Server 2012.</para>
+        /// <para>Windows 7, Windows Server 2008 R2, Windows Server 2008, Windows Vista, Windows Server 2003 and Windows XP:  Security resource attributes (ATTRIBUTE_SECURITY_INFORMATION) for the existing file are not copied to the new file until Windows 8 and Windows Server 2012.</para>
         ///
         /// <para>The security resource properties(ATTRIBUTE_SECURITY_INFORMATION) for the existing file are copied to the new file.</para>
         ///
@@ -643,7 +643,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         ///
         /// <para>This function fails with <see cref="HResult.AccessDenied"/> if the destination file already exists and has the <see cref="System.IO.FileAttributes.Hidden"/> or <see cref="System.IO.FileAttributes.ReadOnly"/> attribute set.</para>
         ///
-        /// <para>When encrypted files are copied using <see cref="CopyFileEx(string, string, CopyProgressRoutine, IntPtr, ref int, CopyFileFlags)"/>, the function attempts to encrypt the destination file with the keys used in the encryption of the source file.If this cannot be done, this function attempts to encrypt the destination file with default keys.If both of these methods cannot be done, <see cref="CopyFileEx(string, string, CopyProgressRoutine, IntPtr, ref int, CopyFileFlags)"/> fails with an <see cref="WinCopies.Util.Win32ErrorCodes.ERROR_ENCRYPTION_FAILED"/> error code. If you want <see cref="CopyFileEx(string, string, CopyProgressRoutine, IntPtr, ref int, CopyFileFlags)"/> to complete the copy operation even if the destination file cannot be encrypted, include the <see cref="CopyFileFlags.COPY_FILE_ALLOW_DECRYPTED_DESTINATION"/> as the value of the dwCopyFlags parameter in your call to <see cref="CopyFileEx(string, string, CopyProgressRoutine, IntPtr, ref int, CopyFileFlags)"/>.</para>
+        /// <para>When encrypted files are copied using <see cref="CopyFileEx(string, string, CopyProgressRoutine, IntPtr, ref bool, CopyFileFlags)"/>, the function attempts to encrypt the destination file with the keys used in the encryption of the source file.If this cannot be done, this function attempts to encrypt the destination file with default keys.If both of these methods cannot be done, <see cref="CopyFileEx(string, string, CopyProgressRoutine, IntPtr, ref int, CopyFileFlags)"/> fails with an <see cref="WinCopies.Util.Win32ErrorCodes.ERROR_ENCRYPTION_FAILED"/> error code. If you want <see cref="CopyFileEx(string, string, CopyProgressRoutine, IntPtr, ref int, CopyFileFlags)"/> to complete the copy operation even if the destination file cannot be encrypted, include the <see cref="CopyFileFlags.COPY_FILE_ALLOW_DECRYPTED_DESTINATION"/> as the value of the dwCopyFlags parameter in your call to <see cref="CopyFileEx(string, string, CopyProgressRoutine, IntPtr, ref int, CopyFileFlags)"/>.</para>
         ///
         /// If <see cref="CopyFileFlags.CopySymLink"/> is specified, the following rules apply:
         ///
