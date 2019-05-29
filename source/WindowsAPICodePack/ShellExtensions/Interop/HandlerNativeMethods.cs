@@ -8,16 +8,51 @@ using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
 namespace Microsoft.WindowsAPICodePack.ShellExtensions.Interop
 {
-    internal static class HandlerNativeMethods
+    public static class HandlerNativeMethods
     {
         [DllImport("user32.dll")]
-        internal static extern IntPtr SetParent(IntPtr hWndChild, IntPtr hWndNewParent);
+        public static extern IntPtr SetParent(IntPtr hWndChild, IntPtr hWndNewParent);
 
         [DllImport("user32.dll")]
-        internal static extern IntPtr GetFocus();
+        public static extern IntPtr GetFocus();
+
+        //[DllImport("user32.dll")]
+        //public static extern uint GetWindowLong(IntPtr hwnd, GetWindowLong index);
+
+        [DllImport("user32.dll", EntryPoint = "GetWindowLong")]
+        private static extern uint GetWindowLongPtr32(IntPtr hWnd, GetWindowLong nIndex);
+
+        [DllImport("user32.dll", EntryPoint = "GetWindowLongPtr")]
+        private static extern uint GetWindowLongPtr64(IntPtr hWnd, GetWindowLong nIndex);
+
+        // This static method is required because Win32 does not support
+        // GetWindowLongPtr directly
+        public static uint GetWindowLongPtr(IntPtr hWnd, GetWindowLong nIndex) => IntPtr.Size == 8 ? GetWindowLongPtr64(hWnd, nIndex) : GetWindowLongPtr32(hWnd, nIndex);
+
+        //[DllImport("user32.dll")]
+        //public static extern int SetWindowLong(IntPtr hwnd, GetWindowLong index, uint newStyle);
+
+        // This helper static method is required because the 32-bit version of user32.dll does not contain this API
+        // (on any versions of Windows), so linking the method will fail at run-time. The bridge dispatches the request
+        // to the correct function (GetWindowLong in 32-bit mode and GetWindowLongPtr in 64-bit mode)
+        public static int SetWindowLongPtr(IntPtr hWnd, GetWindowLong nIndex, uint dwNewLong) => IntPtr.Size == 8
+                ? SetWindowLongPtr64(hWnd, nIndex, dwNewLong)
+                : SetWindowLong32(hWnd, nIndex, dwNewLong);
+
+        [DllImport("user32.dll", EntryPoint = "SetWindowLong")]
+        private static extern int SetWindowLong32(IntPtr hWnd, GetWindowLong nIndex, uint dwNewLong);
+
+        [DllImport("user32.dll", EntryPoint = "SetWindowLongPtr")]
+        private static extern int SetWindowLongPtr64(IntPtr hWnd, GetWindowLong nIndex, uint dwNewLong);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        public static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern int GetWindowThreadProcessId(IntPtr handle, out int processId);
 
         [DllImport("user32.dll")]
-        internal static extern void SetWindowPos(
+        public static extern bool SetWindowPos(
             IntPtr hWnd,
             IntPtr hWndInsertAfter,
             int x,
@@ -26,14 +61,14 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions.Interop
             int cy,
             SetWindowPositionOptions flags);
 
-        internal static readonly Guid IPreviewHandlerGuid = new Guid("8895b1c6-b41f-4c1c-a562-0d564250836f");
-        internal static readonly Guid IThumbnailProviderGuid = new Guid("e357fccd-a995-4576-b01f-234630154e96");
+        public static readonly Guid IPreviewHandlerGuid = new Guid("8895b1c6-b41f-4c1c-a562-0d564250836f");
+        public static readonly Guid IThumbnailProviderGuid = new Guid("e357fccd-a995-4576-b01f-234630154e96");
 
-        internal static readonly Guid IInitializeWithFileGuid = new Guid("b7d14566-0509-4cce-a71f-0a554233bd9b");
-        internal static readonly Guid IInitializeWithStreamGuid = new Guid("b824b49d-22ac-4161-ac8a-9916e8fa3f7f");
-        internal static readonly Guid IInitializeWithItemGuid = new Guid("7f73be3f-fb79-493c-a6c7-7ee14e245841");
+        public static readonly Guid IInitializeWithFileGuid = new Guid("b7d14566-0509-4cce-a71f-0a554233bd9b");
+        public static readonly Guid IInitializeWithStreamGuid = new Guid("b824b49d-22ac-4161-ac8a-9916e8fa3f7f");
+        public static readonly Guid IInitializeWithItemGuid = new Guid("7f73be3f-fb79-493c-a6c7-7ee14e245841");
 
-        internal static readonly Guid IMarshalGuid = new Guid("00000003-0000-0000-C000-000000000046");
+        public static readonly Guid IMarshalGuid = new Guid("00000003-0000-0000-C000-000000000046");
     }
 
     #region Interfaces
@@ -53,7 +88,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions.Interop
         /// <param name="bitmapHandle"></param>
         /// <param name="bitmapType"></param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "2#"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "1#")]
-        void GetThumbnail(uint squareLength, [Out] out IntPtr bitmapHandle, [Out] out UInt32 bitmapType);        
+        void GetThumbnail(uint squareLength, [Out] out IntPtr bitmapHandle, [Out] out UInt32 bitmapType);
     }
 
     /// <summary>
@@ -242,7 +277,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions.Interop
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct NativeColorRef
+    public struct NativeColorRef
     {
         public uint Dword { get; set; }
     }
@@ -250,7 +285,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions.Interop
     #endregion
 
     [Flags]
-    internal enum SetWindowPositionOptions
+    public enum SetWindowPositionOptions
     {
         AsyncWindowPos = 0x4000,
         DeferErase = 0x2000,
@@ -269,11 +304,34 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions.Interop
         ShowWindow = 0x0040
     }
 
-    internal enum SetWindowPositionInsertAfter
+    public enum SetWindowPositionInsertAfter
     {
         NoTopMost = -2,
         TopMost = -1,
         Top = 0,
         Bottom = 1
+    }
+
+    public enum GetWindowLong
+    {
+
+        WindowProcedure = -4,
+        HandleInstance = -6,
+        HWndParent = -8,
+        Style = -16,
+        ExStyle = -20,
+        UserData = -21,
+        Id = -12,
+        User = 0x8,
+        MessageResult = 0x0,
+        DLGProcedure = 0x4
+
+    }
+
+    public enum SystemCommand
+    {
+
+        ContextHelp = 0xF180
+
     }
 }

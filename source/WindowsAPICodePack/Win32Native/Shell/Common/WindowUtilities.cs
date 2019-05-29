@@ -39,7 +39,10 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
             return new System.Drawing.Size(c.X - r.Left, c.Y - r.Top);
         }
     }
+}
 
+namespace Microsoft.WindowsAPICodePack.Shell
+{
     [Flags]
     public enum WindowStyles
     {
@@ -217,5 +220,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         /// The window is an overlapped window. Same as the WS_TILEDWINDOW style.
         /// </summary>
         OverlappedWindowMask = Overlapped | Caption | SystemMenu | ThickFrame | MinimizeBox | MaximizeBox,
+    }
+
+    [Flags]
+    public enum WindowStylesEx
+    {
+
+        ContextHelp = 0x00000400
+
     }
 }

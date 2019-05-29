@@ -117,6 +117,7 @@
     <Compile Include="ThumbnailProviders\ManagedInitializationInterfaces.cs" />
     <Compile Include="ThumbnailProviders\ThumbnailProvider.cs" />
     <Compile Include="ThumbnailProviders\ThumbnailProviderAttribute.cs" />
+    <Compile Include="WindowUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\LocalizedMessages.resx">
