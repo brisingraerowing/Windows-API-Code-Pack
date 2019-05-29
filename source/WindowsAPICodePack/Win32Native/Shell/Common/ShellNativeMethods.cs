@@ -595,7 +595,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         public static extern uint ILGetSize(IntPtr pidl);
 
         [DllImport("shell32.dll", CharSet = CharSet.None)]
-        public static extern void ILFree(IntPtr pidl);[DllImport("shell32.dll")]
+        public static extern void ILFree(IntPtr pidl);
+
+        [DllImport("shell32.dll")]
         public static extern HResult SHQueryRecycleBin(string pszRootPath, ref SHQUERYRBINFO
    pSHQueryRBInfo);
 

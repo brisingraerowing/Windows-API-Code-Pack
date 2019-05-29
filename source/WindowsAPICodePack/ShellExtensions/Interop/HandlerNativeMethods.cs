@@ -20,14 +20,14 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions.Interop
         //public static extern uint GetWindowLong(IntPtr hwnd, GetWindowLong index);
 
         [DllImport("user32.dll", EntryPoint = "GetWindowLong")]
-        private static extern uint GetWindowLongPtr32(IntPtr hWnd, GetWindowLong nIndex);
+        private static extern int GetWindowLongPtr32(IntPtr hWnd, GetWindowLong nIndex);
 
         [DllImport("user32.dll", EntryPoint = "GetWindowLongPtr")]
-        private static extern uint GetWindowLongPtr64(IntPtr hWnd, GetWindowLong nIndex);
+        private static extern int GetWindowLongPtr64(IntPtr hWnd, GetWindowLong nIndex);
 
         // This static method is required because Win32 does not support
         // GetWindowLongPtr directly
-        public static uint GetWindowLongPtr(IntPtr hWnd, GetWindowLong nIndex) => IntPtr.Size == 8 ? GetWindowLongPtr64(hWnd, nIndex) : GetWindowLongPtr32(hWnd, nIndex);
+        public static int GetWindowLongPtr(IntPtr hWnd, GetWindowLong nIndex) => IntPtr.Size == 8 ? GetWindowLongPtr64(hWnd, nIndex) : GetWindowLongPtr32(hWnd, nIndex);
 
         //[DllImport("user32.dll")]
         //public static extern int SetWindowLong(IntPtr hwnd, GetWindowLong index, uint newStyle);
@@ -45,12 +45,6 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions.Interop
         [DllImport("user32.dll", EntryPoint = "SetWindowLongPtr")]
         private static extern int SetWindowLongPtr64(IntPtr hWnd, GetWindowLong nIndex, uint dwNewLong);
 
-        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
-        public static extern IntPtr GetForegroundWindow();
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        public static extern int GetWindowThreadProcessId(IntPtr handle, out int processId);
-
         [DllImport("user32.dll")]
         public static extern bool SetWindowPos(
             IntPtr hWnd,
@@ -60,6 +54,12 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions.Interop
             int cx,
             int cy,
             SetWindowPositionOptions flags);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        public static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern int GetWindowThreadProcessId(IntPtr handle, out int processId);
 
         public static readonly Guid IPreviewHandlerGuid = new Guid("8895b1c6-b41f-4c1c-a562-0d564250836f");
         public static readonly Guid IThumbnailProviderGuid = new Guid("e357fccd-a995-4576-b01f-234630154e96");
