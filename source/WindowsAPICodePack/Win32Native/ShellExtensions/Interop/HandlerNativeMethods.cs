@@ -2,7 +2,6 @@
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using Microsoft.WindowsAPICodePack.Shell;
-using MS.WindowsAPICodePack.Internal;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
@@ -79,7 +78,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions.Interop
     [ComImport]
     [Guid("e357fccd-a995-4576-b01f-234630154e96")]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    interface IThumbnailProvider
+   public interface IThumbnailProvider
     {
         /// <summary>
         /// Gets a pointer to a bitmap to display as a thumbnail
@@ -97,7 +96,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions.Interop
     [ComImport]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     [Guid("b7d14566-0509-4cce-a71f-0a554233bd9b")]
-    interface IInitializeWithFile
+    public interface IInitializeWithFile
     {
         /// <summary>
         /// Initializes with a file.
@@ -114,7 +113,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions.Interop
     [ComImport]
     [Guid("b824b49d-22ac-4161-ac8a-9916e8fa3f7f")]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    interface IInitializeWithStream
+    public interface IInitializeWithStream
     {
         /// <summary>
         /// Initializes with a stream.
@@ -130,7 +129,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions.Interop
     [ComImport]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     [Guid("7f73be3f-fb79-493c-a6c7-7ee14e245841")]
-    interface IInitializeWithItem
+    public interface IInitializeWithItem
     {
         /// <summary>
         /// Initializes with ShellItem
@@ -143,7 +142,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions.Interop
     [ComImport]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     [Guid("fc4801a3-2ba9-11cf-a229-00aa003d7352")]
-    interface IObjectWithSite
+    public interface IObjectWithSite
     {
         void SetSite([In, MarshalAs(UnmanagedType.IUnknown)] object pUnkSite);
         void GetSite(ref Guid riid, [MarshalAs(UnmanagedType.IUnknown)] out object ppvSite);
@@ -152,7 +151,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions.Interop
     [ComImport]
     [Guid("00000114-0000-0000-C000-000000000046")]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    interface IOleWindow
+    public interface IOleWindow
     {
         void GetWindow(out IntPtr phwnd);
         void ContextSensitiveHelp([MarshalAs(UnmanagedType.Bool)] bool fEnterMode);
@@ -161,7 +160,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions.Interop
     [ComImport]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     [Guid("8895b1c6-b41f-4c1c-a562-0d564250836f")]
-    interface IPreviewHandler
+    public interface IPreviewHandler
     {
         void SetWindow(IntPtr hwnd, ref NativeRect rect);
         void SetRect(ref NativeRect rect);
@@ -176,7 +175,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions.Interop
     [ComImport]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     [Guid("fec87aaf-35f9-447a-adb7-20234491401a")]
-    interface IPreviewHandlerFrame
+    public interface IPreviewHandlerFrame
     {
         void GetWindowContext(IntPtr pinfo);
         [PreserveSig]
@@ -186,7 +185,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions.Interop
     [ComImport]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     [Guid("8327b13c-b63f-4b24-9b8a-d010dcc3f599")]
-    interface IPreviewHandlerVisuals
+    public interface IPreviewHandlerVisuals
     {
         void SetBackgroundColor(NativeColorRef color);
         void SetFont(ref LogFont plf);
