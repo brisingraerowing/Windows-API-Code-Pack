@@ -1,5 +1,6 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
 using System;
 using System.Diagnostics;
 
@@ -38,9 +39,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
             get
             {
                 if (!Closed)
-                {
+
                     SyncValue();
-                }
 
                 return base.Text;
             }
@@ -48,9 +48,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
             set
             {
                 if (customizedDialog != null)
-                {
+
                     customizedDialog.SetEditBoxText(this.Id, value);
-                }
 
                 base.Text = value;
             }

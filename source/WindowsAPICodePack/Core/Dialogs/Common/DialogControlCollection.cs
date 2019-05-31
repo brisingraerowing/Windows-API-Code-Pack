@@ -15,10 +15,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
     {
         private IDialogControlHost hostingDialog;
 
-        internal DialogControlCollection(IDialogControlHost host)
-        {
-            hostingDialog = host;
-        }
+        internal DialogControlCollection(IDialogControlHost host) => hostingDialog = host;
 
         /// <summary>
         /// Inserts an dialog control at the specified index.
@@ -34,17 +31,16 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             // Check for duplicates, lack of host, 
             // and during-show adds.
             if (Items.Contains(control))
-            {
+
                 throw new InvalidOperationException(LocalizedMessages.DialogCollectionCannotHaveDuplicateNames);
-            }
+
             if (control.HostingDialog != null)
-            {
+
                 throw new InvalidOperationException(LocalizedMessages.DialogCollectionControlAlreadyHosted);
-            }
+
             if (!hostingDialog.IsCollectionChangeAllowed())
-            {
+
                 throw new InvalidOperationException(LocalizedMessages.DialogCollectionModifyShowingDialog);
-            }
 
             // Reparent, add control.
             control.HostingDialog = hostingDialog;
@@ -66,11 +62,10 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             // Notify that we're about to remove a control.
             // Throw if dialog showing.
             if (!hostingDialog.IsCollectionChangeAllowed())
-            {
-                throw new InvalidOperationException(LocalizedMessages.DialogCollectionModifyShowingDialog);
-            }
 
-            DialogControl control = (DialogControl)Items[index];
+                throw new InvalidOperationException(LocalizedMessages.DialogCollectionModifyShowingDialog);
+
+            DialogControl control = Items[index];
 
             // Unparent and remove.
             control.HostingDialog = null;
@@ -86,7 +81,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// <para>Control names are case sensitive.</para>
         /// <para>This indexer is useful when the dialog is created in XAML
         /// rather than constructed in code.</para></remarks>
-        ///<exception cref="System.ArgumentException">
+        ///<exception cref="ArgumentException">
         /// The name cannot be null or a zero-length string.</exception>
         /// <remarks>If there is more than one control with the same name, only the <B>first control</B> will be returned.</remarks>
         public T this[string name]
@@ -94,9 +89,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             get
             {
                 if (string.IsNullOrEmpty(name))
-                {
-                    throw new ArgumentException(LocalizedMessages.DialogCollectionControlNameNull, "name");
-                }
+
+                    throw new ArgumentException(LocalizedMessages.DialogCollectionControlNameNull, nameof(name));
 
                 return Items.FirstOrDefault(x => x.Name == name);
             }
@@ -112,9 +106,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// 
         /// <returns>A DialogControl who's id matches the value of the
         /// <paramref name="id"/> parameter.</returns>        
-        internal DialogControl GetControlbyId(int id)
-        {
-            return Items.FirstOrDefault(x => x.Id == id);
-        }
+        internal DialogControl GetControlbyId(int id) => Items.FirstOrDefault(x => x.Id == id);
     }
 }

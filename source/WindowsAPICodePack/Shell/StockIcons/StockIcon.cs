@@ -7,6 +7,8 @@ using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using MS.WindowsAPICodePack.Internal;
 
 namespace Microsoft.WindowsAPICodePack.Shell
@@ -63,10 +65,10 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Gets or sets a value indicating whether the icon appears selected.
         /// </summary>
-        /// <value>A <see cref="System.Boolean"/> value.</value>
+        /// <value>A <see cref="bool"/> value.</value>
         public bool Selected
         {
-            get { return selected; }
+            get => selected;
             set
             {
                 selected = value;
@@ -77,10 +79,10 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Gets or sets a value that cotrols whether to put a link overlay on the icon.
         /// </summary>
-        /// <value>A <see cref="System.Boolean"/> value.</value>
+        /// <value>A <see cref="bool"/> value.</value>
         public bool LinkOverlay
         {
-            get { return linkOverlay; }
+            get => linkOverlay;
             set
             {
                 linkOverlay = value;
@@ -91,10 +93,10 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Gets or sets a value that controls the size of the Stock Icon.
         /// </summary>
-        /// <value>A <see cref="Microsoft.WindowsAPICodePack.Shell.StockIconSize"/> value.</value>
+        /// <value>A <see cref="StockIconSize"/> value.</value>
         public StockIconSize CurrentSize
         {
-            get { return currentSize; }
+            get => currentSize;
             set
             {
                 currentSize = value;
@@ -107,7 +109,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         public StockIconIdentifier Identifier
         {
-            get { return identifier; }
+            get => identifier;
             set
             {
                 identifier = value;
@@ -179,31 +181,28 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             // Based on the current settings, update the flags
             if (CurrentSize == StockIconSize.Small)
-            {
+            
                 flags |= StockIconsNativeMethods.StockIconOptions.Small;
-            }
+            
             else if (CurrentSize == StockIconSize.ShellSize)
-            {
+            
                 flags |= StockIconsNativeMethods.StockIconOptions.ShellSize;
-            }
+            
             else
-            {
+            
                 flags |= StockIconsNativeMethods.StockIconOptions.Large;  // default
-            }
-
+            
             if (Selected)
-            {
+            
                 flags |= StockIconsNativeMethods.StockIconOptions.Selected;
-            }
-
+            
             if (LinkOverlay)
-            {
+            
                 flags |= StockIconsNativeMethods.StockIconOptions.LinkOverlay;
-            }
-
+            
             // Create a StockIconInfo structure to pass to the native method.
             StockIconsNativeMethods.StockIconInfo info = new StockIconsNativeMethods.StockIconInfo();
-            info.StuctureSize = (UInt32)Marshal.SizeOf(typeof(StockIconsNativeMethods.StockIconInfo));
+            info.StuctureSize = (uint)Marshal.SizeOf(typeof(StockIconsNativeMethods.StockIconInfo));
 
             // Pass the struct to the native method
             HResult hr = StockIconsNativeMethods.SHGetStockIconInfo(identifier, flags, ref info);
@@ -213,13 +212,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
             if (hr != HResult.Ok)
             {
                 if (hr == HResult.InvalidArguments)
-                {
+                
                     throw new InvalidOperationException(
                         string.Format(System.Globalization.CultureInfo.InvariantCulture,
                         LocalizedMessages.StockIconInvalidGuid,
                         identifier));
-                }
-
+                
                 return IntPtr.Zero;
             }
 

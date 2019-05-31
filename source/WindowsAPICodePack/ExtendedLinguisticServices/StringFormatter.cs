@@ -38,9 +38,9 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             MappingDataRange[] dataRanges = bag.GetResultRanges();
             string[] results = new string[dataRanges.Length];
             for (int i = 0; i < results.Length; ++i)
-            {
+
                 results[i] = Format(dataRanges[i]);
-            }
+
             return results;
         }
     }

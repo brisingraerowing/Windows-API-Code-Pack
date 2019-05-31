@@ -5,6 +5,7 @@ using System.Windows.Media;
 using Microsoft.WindowsAPICodePack.ShellExtensions.Interop;
 using Microsoft.WindowsAPICodePack.ShellExtensions.Resources;
 using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
 namespace Microsoft.WindowsAPICodePack.ShellExtensions
 {
@@ -34,9 +35,8 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         protected void ThrowIfNoControl()
         {
             if (Control == null)
-            {
+            
                 throw new InvalidOperationException(LocalizedMessages.PreviewHandlerControlNotInitialized);
-            }
         }
 
         /// <summary>
@@ -82,13 +82,11 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         {
             get
             {
-                {
                     if (_source == null)
-                    {
+                    
                         throw new InvalidOperationException(LocalizedMessages.WpfPreviewHandlerNoHandle);
-                    }
+                    
                     return _source.Handle;
-                }
             }
         }
 
@@ -100,7 +98,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
 
         protected override void HandleInitializeException(Exception caughtException)
         {
-            if (caughtException == null) { return; }
+            if (caughtException == null)  return; 
 
             TextBox text = new TextBox
             {
@@ -111,10 +109,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
             Control = new UserControl() { Content = text };
         }
 
-        protected override void SetFocus()
-        {
-            Control.Focus();
-        }
+        protected override void SetFocus() => Control.Focus();
 
         protected override void SetBackground(int argb)
         {
@@ -134,9 +129,9 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
                  (byte)(argb & 0xFF))); //b                 
         }
 
-        protected override void SetFont(Interop.LogFont font)
+        protected override void SetFont(LogFont font)
         {
-            if (font == null) { throw new ArgumentNullException("font"); }
+            if (font == null)  throw new ArgumentNullException("font"); 
             
             Control.FontFamily = new FontFamily(font.FaceName);
             Control.FontSize = font.Height;
@@ -172,9 +167,8 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         protected virtual void Dispose(bool disposing)
         {
             if (disposing && _source != null)
-            {
+            
                 _source.Dispose();
-            }
         }
 
         #endregion

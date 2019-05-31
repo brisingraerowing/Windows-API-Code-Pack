@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <!--*-->
+    <id>WinCopies.WindowsAPICodePack.Win32Native</id>
+    <!--*-->
+    <version>1.0.0</version>
+    <title>Microsoft.WindowsAPICodePack.Win32Native</title>
+    <!--*-->
+    <authors>Microsoft, Aybe, Pierre Sprimont</authors>
+    <owners>Pierre Sprimont</owners>
+    <licenseUrl>https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/LICENCE</licenseUrl>
+    <projectUrl>https://github.com/pierresprim/Windows-API-Code-Pack</projectUrl>
+    <!--
+    <iconUrl></iconUrl>
+-->
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <!--*-->
+    <description>WindowsAPICodePack Win32 Interop</description>
+    <!--*-->
+    <releaseNotes>System requirements:
+.NET Framework version: 4.8
+OS: Windows
+New in this version:
+Added some features and updated project to the new .NET and code specifications
+Project link: https://github.com/pierresprim/Windows-API-Code-Pack
+License link: https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/LICENCE</releaseNotes>
+    <copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2019</copyright>
+    <tags>
+    </tags>
+    <dependencies>
+      <!--
+      <dependency id="SampleDependency" version="1.0" />
+-->
+    </dependencies>
+  </metadata>
+</package>

@@ -10,6 +10,9 @@ using System.Windows.Interop;
 using System.Windows.Media.Imaging;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 using MS.WindowsAPICodePack.Internal;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar
@@ -316,9 +319,8 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         {
             // Before we set a new bitmap, dispose the old one
             if (CurrentHBitmap != IntPtr.Zero)
-            {
+            
                 ShellNativeMethods.DeleteObject(CurrentHBitmap);
-            }
 
             // Set the new bitmap
             CurrentHBitmap = hBitmap;
@@ -412,16 +414,14 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         internal void OnTabbedThumbnailMinimized()
         {
             if (TabbedThumbnailMinimized != null)
-            {
+            
                 TabbedThumbnailMinimized(this, GetTabbedThumbnailEventArgs());
-            }
+            
             else
-            {
+            
                 // No one is listening to these events.
                 // Forward the message to the main window
                 CoreNativeMethods.SendMessage(ParentWindowHandle, WindowMessage.SystemCommand, new IntPtr(TabbedThumbnailNativeMethods.ScMinimize), IntPtr.Zero);
-            }
-
         }
 
         /// <summary>
@@ -433,17 +433,16 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             var closedHandler = TabbedThumbnailClosed;
             if (closedHandler != null)
             {
-                var closingEvent = GetTabbedThumbnailClosingEventArgs();
+                TabbedThumbnailClosedEventArgs closingEvent = GetTabbedThumbnailClosingEventArgs();
 
                 closedHandler(this, closingEvent);
 
-                if (closingEvent.Cancel) { return false; }                
+                if (closingEvent.Cancel)  return false; 
             }
             else
-            {
+            
                 // No one is listening to these events. Forward the message to the main window
                 CoreNativeMethods.SendMessage(ParentWindowHandle, WindowMessage.NCDestroy, IntPtr.Zero, IntPtr.Zero);
-            }
 
             // Remove it from the internal list as well as the taskbar
             TaskbarManager.Instance.TabbedThumbnail.RemoveThumbnailPreview(this);
@@ -453,15 +452,14 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         internal void OnTabbedThumbnailActivated()
         {
             if (TabbedThumbnailActivated != null)
-            {
+            
                 TabbedThumbnailActivated(this, GetTabbedThumbnailEventArgs());
-            }
+            
             else
-            {
+            
                 // No one is listening to these events.
                 // Forward the message to the main window
                 CoreNativeMethods.SendMessage(ParentWindowHandle, WindowMessage.ActivateApplication, new IntPtr(1), new IntPtr(Thread.CurrentThread.GetHashCode()));
-            }
         }
 
         internal void OnTabbedThumbnailBitmapRequested()

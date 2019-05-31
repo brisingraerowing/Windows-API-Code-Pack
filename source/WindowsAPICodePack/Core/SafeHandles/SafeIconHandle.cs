@@ -1,5 +1,8 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
+
 namespace MS.WindowsAPICodePack.Internal
 {
     /// <summary>
@@ -11,16 +14,6 @@ namespace MS.WindowsAPICodePack.Internal
         /// Release the handle
         /// </summary>
         /// <returns>true if handled is release successfully, false otherwise</returns>
-        protected override bool ReleaseHandle()
-        {
-            if (CoreNativeMethods.DestroyIcon(handle))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        protected override bool ReleaseHandle() => CoreNativeMethods.DestroyIcon(handle);
     }
 }

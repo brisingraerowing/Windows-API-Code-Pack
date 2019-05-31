@@ -4,30 +4,15 @@ Windows-API-Code-Pack-1.1
 README
 ======
 
-NuGet packages (recommended)
-----------------------------
-
-https://www.nuget.org/packages/WindowsAPICodePack-Core/
-
-https://www.nuget.org/packages/WindowsAPICodePack-Shell/
-
-https://www.nuget.org/packages/WindowsAPICodePack-ShellExtensions/
-
-https://www.nuget.org/packages/WindowsAPICodePack-DirectX/
-
-https://www.nuget.org/packages/WindowsAPICodePack-ExtendedLinguisticServices/
-
-https://www.nuget.org/packages/WindowsAPICodePack-Sensors/
-
 Licence
 -------
 
-See [LICENCE](https://github.com/aybe/Windows-API-Code-Pack-1.1/blob/master/LICENCE) for the original licence (retrieved from [WebArchive](http://web.archive.org/web/20130717101016/http://archive.msdn.microsoft.com/WindowsAPICodePack/Project/License.aspx)). The library is not developed anymore by Microsoft and seems to have been left as 'free to use'. A clarification or update about the licence terms from Microsoft is welcome, however.
+See [LICENCE](https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/LICENCE) for the original licence (retrieved from [WebArchive](http://web.archive.org/web/20130717101016/http://archive.msdn.microsoft.com/WindowsAPICodePack/Project/License.aspx)). The library is not developed anymore by Microsoft and seems to have been left as 'free to use'. A clarification or update about the licence terms from Microsoft is welcome, however.
  
 Release notes
 -------------
 
-See [CHANGELOG](https://github.com/aybe/Windows-API-Code-Pack-1.1/blob/master/CHANGELOG) for latest changes.
+See [CHANGELOG](https://github.com/pierresprim/Windows-API-Code-Pack-1.1/blob/master/CHANGELOG) for latest changes.
 
 Bugs
 ----

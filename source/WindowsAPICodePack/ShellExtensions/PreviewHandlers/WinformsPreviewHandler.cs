@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.ShellExtensions.Interop;
 using Microsoft.WindowsAPICodePack.ShellExtensions.Resources;
 using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
 namespace Microsoft.WindowsAPICodePack.ShellExtensions
 {
@@ -26,9 +27,8 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         protected void ThrowIfNoControl()
         {
             if (Control == null)
-            {
+            
                 throw new InvalidOperationException(LocalizedMessages.PreviewHandlerControlNotInitialized);
-            }
         }
 
         /// <summary>
@@ -58,40 +58,17 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
             Control.Visible = true;
         }
 
-        protected override void SetFocus()
-        {
-            Control.Focus();
-        }
+        protected override void SetFocus() => Control.Focus();
 
-        protected override void SetBackground(int argb)
-        {
-            Control.BackColor = Color.FromArgb(argb);
-        }
+        protected override void SetBackground(int argb) => Control.BackColor = Color.FromArgb(argb);
 
-        protected override void SetForeground(int argb)
-        {
-            Control.ForeColor = Color.FromArgb(argb);
-        }
+        protected override void SetForeground(int argb) => Control.ForeColor = Color.FromArgb(argb);
 
-        protected override void SetFont(Interop.LogFont font)
-        {
-            Control.Font = Font.FromLogFont(font);
-        }
+        protected override void SetFont(LogFont font) => Control.Font = Font.FromLogFont(font);
 
-        protected override IntPtr Handle
-        {
-            get
-            {
-                {
-                    return Control.Handle;
-                }
-            }
-        }
+        protected override IntPtr Handle => Control.Handle;
 
-        protected override void SetParentHandle(IntPtr handle)
-        {
-            HandlerNativeMethods.SetParent(Control.Handle, handle);
-        }
+        protected override void SetParentHandle(IntPtr handle) => HandlerNativeMethods.SetParent(Control.Handle, handle);
 
         #region IDisposable Members
 
@@ -109,9 +86,8 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         protected virtual void Dispose(bool disposing)
         {
             if (disposing && Control != null)
-            {
+            
                 Control.Dispose();
-            }
         }
 
         #endregion

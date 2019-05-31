@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ApplicationRecoverFailedToRegisterForRestartBadParameters" xml:space="preserve">
     <value>Failed to register application for restart due to bad parameters.</value>
@@ -152,15 +152,6 @@
   </data>
   <data name="CollapsedTextCannotBeChanged" xml:space="preserve">
     <value>Collapsed control text cannot be changed while dialog is showing.</value>
-  </data>
-  <data name="CoreHelpersRunningOn7" xml:space="preserve">
-    <value>Only supported on Windows 7 or newer.</value>
-  </data>
-  <data name="CoreHelpersRunningOnVista" xml:space="preserve">
-    <value>Only supported on Windows Vista or newer.</value>
-  </data>
-  <data name="CoreHelpersRunningOnXp" xml:space="preserve">
-    <value>Only supported on Windows XP or newer.</value>
   </data>
   <data name="DialogCollectionCannotHaveDuplicateNames" xml:space="preserve">
     <value>Dialog cannot have more than one control with the same name.</value>
@@ -201,9 +192,6 @@
   <data name="HyperlinksCannotBetSet" xml:space="preserve">
     <value>Hyperlinks cannot be enabled/disabled while dialog is showing.</value>
   </data>
-  <data name="InvalidReferencePath" xml:space="preserve">
-    <value>Reference path is invalid.</value>
-  </data>
   <data name="MessageManagerHandlerNotRegistered" xml:space="preserve">
     <value>The specified event handler has not been registered.</value>
   </data>
@@ -243,18 +231,6 @@
   <data name="ProgressBarCannotBeHostedInMultipleDialogs" xml:space="preserve">
     <value>Progress bar cannot be hosted in multiple dialogs.</value>
   </data>
-  <data name="PropertyKeyFormatString" xml:space="preserve">
-    <value>{0}, {1}</value>
-  </data>
-  <data name="PropVariantMultiDimArray" xml:space="preserve">
-    <value>Multi-dimensional SafeArrays not supported.</value>
-  </data>
-  <data name="PropVariantNullString" xml:space="preserve">
-    <value>String argument cannot be null or empty.</value>
-  </data>
-  <data name="PropVariantTypeNotSupported" xml:space="preserve">
-    <value>This Value type is not supported.</value>
-  </data>
   <data name="RecoverySettingsFormatString" xml:space="preserve">
     <value>delegate: {0}, state: {1}, ping: {2}</value>
   </data>
@@ -278,15 +254,6 @@
   </data>
   <data name="TaskDialogCloseNonShowing" xml:space="preserve">
     <value>Attempting to close a non-showing dialog.</value>
-  </data>
-  <data name="TaskDialogDefaultCaption" xml:space="preserve">
-    <value>Application</value>
-  </data>
-  <data name="TaskDialogDefaultContent" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TaskDialogDefaultMainInstruction" xml:space="preserve">
-    <value />
   </data>
   <data name="TaskDialogOnlyOneDefaultControl" xml:space="preserve">
     <value>Cannot have more than one default button of a given type.</value>
@@ -317,8 +284,5 @@
   </data>
   <data name="PowerManagerActiveSchemeFailed" xml:space="preserve">
     <value>Failed to get active power scheme.</value>
-  </data>
-  <data name="PropVariantUnsupportedType" xml:space="preserve">
-    <value>Cannot be cast to unsupported type.</value>
   </data>
 </root>

@@ -2,6 +2,8 @@
 
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+
 namespace Microsoft.WindowsAPICodePack.Taskbar
 {
     /// <summary>

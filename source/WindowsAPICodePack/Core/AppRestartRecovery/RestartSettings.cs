@@ -2,6 +2,7 @@
 
 using System;
 using Microsoft.WindowsAPICodePack.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.Core.ApplicationServices;
 
 namespace Microsoft.WindowsAPICodePack.ApplicationServices
 {
@@ -15,9 +16,6 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
     /// terminating.</remarks>
     public class RestartSettings
     {
-        private string command;
-        private RestartRestrictions restrictions;
-
         /// <summary>
         /// Creates a new instance of the RestartSettings class.
         /// </summary>
@@ -29,42 +27,33 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// </param>
         public RestartSettings(string command, RestartRestrictions restrictions)
         {
-            this.command = command;
-            this.restrictions = restrictions;
+            Command = command;
+            Restrictions = restrictions;
         }
 
         /// <summary>
         /// Gets the command line arguments used to restart the application.
         /// </summary>
-        /// <value>A <see cref="System.String"/> object.</value>
-        public string Command
-        {
-            get { return command; }
-        }
+        /// <value>A <see cref="string"/> object.</value>
+        public string Command { get; }
 
         /// <summary>
         /// Gets the set of conditions when the application 
         /// should not be restarted.
         /// </summary>
         /// <value>A set of <see cref="RestartRestrictions"/> values.</value>
-        public RestartRestrictions Restrictions
-        {
-            get { return restrictions; }
-        }
+        public RestartRestrictions Restrictions { get; }
 
         /// <summary>
         /// Returns a string representation of the current state
         /// of this object.
         /// </summary>
-        /// <returns>A <see cref="System.String"/> that displays 
+        /// <returns>A <see cref="string"/> that displays 
         /// the command line arguments 
         /// and restrictions for restarting the application.</returns>
-        public override string ToString()
-        {
-            return string.Format(System.Globalization.CultureInfo.InvariantCulture,
+        public override string ToString() => string.Format(System.Globalization.CultureInfo.InvariantCulture,
                 LocalizedMessages.RestartSettingsFormatString,
-                command, restrictions.ToString());
-        }
+                Command, Restrictions.ToString());
     }
 }
 

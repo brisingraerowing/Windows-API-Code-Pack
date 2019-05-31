@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
-using Microsoft.WindowsAPICodePack.Shell.Interop;
 using MS.WindowsAPICodePack.Internal;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {

@@ -2,6 +2,7 @@
 
 using System;
 using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.Sensors
 {

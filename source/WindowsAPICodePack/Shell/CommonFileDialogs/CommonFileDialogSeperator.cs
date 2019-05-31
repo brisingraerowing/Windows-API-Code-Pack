@@ -1,5 +1,6 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
 using System.Diagnostics;
 
 namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
@@ -18,7 +19,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
             Debug.Assert(dialog != null, "CommonFileDialogSeparator.Attach: dialog parameter can not be null");
 
             // Add a separator
-            dialog.AddSeparator(this.Id);
+            dialog.AddSeparator(Id);
 
             // Sync unmanaged properties with managed properties
             SyncUnmanagedProperties();

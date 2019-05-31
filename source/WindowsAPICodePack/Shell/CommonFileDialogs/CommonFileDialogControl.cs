@@ -1,5 +1,7 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
+
 namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
 {
     /// <summary>
@@ -18,7 +20,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
         /// </summary>
         public virtual string Text
         {
-            get { return textValue; }
+            get => textValue;
             set
             {
                 // Don't update this property if it hasn't changed
@@ -36,7 +38,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
         /// </summary>
         public bool Enabled
         {
-            get { return enabled; }
+            get => enabled;
             set
             {
                 // Don't update this property if it hasn't changed
@@ -54,7 +56,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
         /// </summary>
         public bool Visible
         {
-            get { return visible; }
+            get => visible;
             set
             {
                 // Don't update this property if it hasn't changed
@@ -65,15 +67,10 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
             }
         }
 
-        private bool isAdded;
         /// <summary>
         /// Has this control been added to the dialog
         /// </summary>
-        internal bool IsAdded
-        {
-            get { return isAdded; }
-            set { isAdded = value; }
-        }
+        internal bool IsAdded { get; set; }
 
         /// <summary>
         /// Creates a new instance of this class.
@@ -85,10 +82,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
         /// </summary>
         /// <param name="text">The text of the common file dialog control.</param>
         protected CommonFileDialogControl(string text)
-            : base()
-        {
-            this.textValue = text;
-        }
+            : base() => textValue = text;
 
         /// <summary>
         /// Creates a new instance of this class with the specified name and text.
@@ -96,10 +90,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
         /// <param name="name">The name of the common file dialog control.</param>
         /// <param name="text">The text of the common file dialog control.</param>
         protected CommonFileDialogControl(string name, string text)
-            : base(name)
-        {
-            this.textValue = text;
-        }
+            : base(name) => textValue = text;
 
         /// <summary>
         /// Attach the custom control itself to the specified dialog

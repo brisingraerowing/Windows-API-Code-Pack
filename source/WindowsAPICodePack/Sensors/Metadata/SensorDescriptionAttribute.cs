@@ -17,23 +17,18 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// Constructs the attribue with a string represening the sensor type GUID and the type of the data report class.
         /// </summary>
         /// <param name="sensorType">String representing the sensor type GUID.</param>
-        public SensorDescriptionAttribute(string sensorType)
-        {
+        public SensorDescriptionAttribute(string sensorType) =>
             // will throw if invalid format
             _sensorType = new Guid(sensorType);
-        }
 
         /// <summary>
         /// Gets a string representing the sensor type GUID.
         /// </summary>
-        public string SensorType { get { return _sensorType.ToString(); } }
+        public string SensorType => _sensorType.ToString();
 
         /// <summary>
         /// Gets the GUID of the sensor type.
         /// </summary>
-        public Guid SensorTypeGuid
-        {
-            get { return _sensorType; }
-        }
+        public Guid SensorTypeGuid => _sensorType;
     }
 }

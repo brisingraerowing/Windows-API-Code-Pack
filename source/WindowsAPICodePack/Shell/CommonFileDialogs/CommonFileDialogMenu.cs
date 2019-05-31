@@ -1,5 +1,6 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -13,14 +14,10 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
     [ContentProperty("Items")]
     public class CommonFileDialogMenu : CommonFileDialogProminentControl
     {
-        private Collection<CommonFileDialogMenuItem> items = new Collection<CommonFileDialogMenuItem>();
         /// <summary>
         /// Gets the collection of CommonFileDialogMenuItem objects.
         /// </summary>
-        public Collection<CommonFileDialogMenuItem> Items
-        {
-            get { return items; }
-        }
+        public Collection<CommonFileDialogMenuItem> Items { get; } = new Collection<CommonFileDialogMenuItem>();
 
         /// <summary>
         /// Creates a new instance of this class.
@@ -52,7 +49,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
             dialog.AddMenu(this.Id, this.Text);
 
             // Add the menu items
-            foreach (CommonFileDialogMenuItem item in this.items)
+            foreach (CommonFileDialogMenuItem item in this.Items)
                 dialog.AddControlItem(this.Id, item.Id, item.Text);
 
             // Make prominent as needed

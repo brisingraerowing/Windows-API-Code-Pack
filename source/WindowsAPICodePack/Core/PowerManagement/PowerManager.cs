@@ -5,6 +5,9 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.WindowsAPICodePack.Resources;
 using MS.WindowsAPICodePack.Internal;
 using System.ComponentModel;
+using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native.Core.ApplicationServices;
 
 namespace Microsoft.WindowsAPICodePack.ApplicationServices
 {
@@ -20,7 +23,6 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
 
         private static readonly object monitoronlock = new object();
 
-
         #region Notifications
 
         /// <summary>
@@ -32,8 +34,6 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         {
             add
             {
-
-
                 MessageManager.RegisterPowerEvent(
                     EventManager.PowerPersonalityChange, value);
             }
@@ -170,7 +170,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// that display information but do not require 
         /// user interaction. For example, video playback applications.</remarks>
         /// <permission cref="T:System.Security.Permissions.SecurityPermission"> to set this property. Demand value: <see cref="F:System.Security.Permissions.SecurityAction.Demand"/>; Named Permission Sets: <b>FullTrust</b>.</permission>
-        /// <value>A <see cref="System.Boolean"/> value. <b>True</b> if the monitor
+        /// <value>A <see cref="bool"/> value. <b>True</b> if the monitor
         /// is required to remain on.</value>
         public static bool MonitorRequired
         {
@@ -179,19 +179,19 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                 CoreHelpers.ThrowIfNotXP();
                 return monitorRequired;
             }
-            [System.Security.Permissions.PermissionSetAttribute(System.Security.Permissions.SecurityAction.Demand, Name = "FullTrust")]
+
+            [System.Security.Permissions.PermissionSet(System.Security.Permissions.SecurityAction.Demand, Name = "FullTrust")]
             set
             {
                 CoreHelpers.ThrowIfNotXP();
 
+                ExecutionStates executionStates = ExecutionStates.Continuous;
+
                 if (value)
-                {
-                    PowerManager.SetThreadExecutionState(ExecutionStates.Continuous | ExecutionStates.DisplayRequired);
-                }
-                else
-                {
-                    PowerManager.SetThreadExecutionState(ExecutionStates.Continuous);
-                }
+
+                    executionStates |= ExecutionStates.DisplayRequired;
+
+                SetThreadExecutionState(executionStates);
 
                 monitorRequired = value;
             }
@@ -205,7 +205,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// <exception cref="System.Security.SecurityException">The caller does not have sufficient privileges to set this property.
         /// </exception>
         /// <permission cref="System.Security.Permissions.SecurityPermission"> to set this property. Demand value: <see cref="F:System.Security.Permissions.SecurityAction.Demand"/>; Named Permission Sets: <b>FullTrust</b>.</permission>
-        /// <value>A <see cref="System.Boolean"/> value.</value>
+        /// <value>A <see cref="bool"/> value.</value>
         public static bool RequestBlockSleep
         {
             get
@@ -214,15 +214,19 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
 
                 return requestBlockSleep;
             }
-            [System.Security.Permissions.PermissionSetAttribute(System.Security.Permissions.SecurityAction.Demand, Name = "FullTrust")]
+
+            [System.Security.Permissions.PermissionSet(System.Security.Permissions.SecurityAction.Demand, Name = "FullTrust")]
             set
             {
                 CoreHelpers.ThrowIfNotXP();
 
+                ExecutionStates executionStates = ExecutionStates.Continuous;
+
                 if (value)
-                    PowerManager.SetThreadExecutionState(ExecutionStates.Continuous | ExecutionStates.SystemRequired);
-                else
-                    PowerManager.SetThreadExecutionState(ExecutionStates.Continuous);
+
+                    executionStates |= ExecutionStates.SystemRequired;
+
+                SetThreadExecutionState(executionStates);
 
                 requestBlockSleep = value;
             }
@@ -233,7 +237,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// The battery can be a short term battery.
         /// </summary>
         /// <exception cref="System.PlatformNotSupportedException">Requires XP/Windows Server 2003 or higher.</exception>
-        /// <value>A <see cref="System.Boolean"/> value.</value>
+        /// <value>A <see cref="bool"/> value.</value>
         public static bool IsBatteryPresent
         {
             get
@@ -248,7 +252,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// Gets a value that indicates whether the battery is a short term battery. 
         /// </summary>
         /// <exception cref="System.PlatformNotSupportedException">Requires XP/Windows Server 2003 or higher.</exception>
-        /// <value>A <see cref="System.Boolean"/> value.</value>
+        /// <value>A <see cref="bool"/> value.</value>
         public static bool IsBatteryShortTerm
         {
             get
@@ -263,7 +267,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// sudden loss of power.
         /// </summary>
         /// <exception cref="System.PlatformNotSupportedException">Requires XP/Windows Server 2003 or higher.</exception>
-        /// <value>A <see cref="System.Boolean"/> value.</value>
+        /// <value>A <see cref="bool"/> value.</value>
         public static bool IsUpsPresent
         {
             get
@@ -274,7 +278,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                 // use .BatteriesAreShortTerm and .SystemBatteriesPresent to check for UPS
                 PowerManagementNativeMethods.SystemPowerCapabilities batt = Power.GetSystemPowerCapabilities();
 
-                return (batt.BatteriesAreShortTerm && batt.SystemBatteriesPresent);
+                return batt.BatteriesAreShortTerm && batt.SystemBatteriesPresent;
             }
         }
 
@@ -287,8 +291,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         {
             get
             {
-                Guid guid;
-                PowerManagementNativeMethods.PowerGetActiveScheme(IntPtr.Zero, out guid);
+                PowerManagementNativeMethods.PowerGetActiveScheme(IntPtr.Zero, out Guid guid);
 
                 try
                 {
@@ -309,9 +312,9 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// This value is in the range 0-100, 
         /// where 0 is not charged and 100 is fully charged.  
         /// </summary>
-        /// <exception cref="System.InvalidOperationException">The system does not have a battery.</exception>
-        /// <exception cref="System.PlatformNotSupportedException">Requires Vista/Windows Server 2008.</exception>
-        /// <value>An <see cref="System.Int32"/> value.</value>
+        /// <exception cref="InvalidOperationException">The system does not have a battery.</exception>
+        /// <exception cref="PlatformNotSupportedException">Requires Vista/Windows Server 2008.</exception>
+        /// <value>An <see cref="int"/> value.</value>
         public static int BatteryLifePercent
         {
             get
@@ -322,10 +325,9 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                 if (!Power.GetSystemBatteryState().BatteryPresent)
                     throw new InvalidOperationException(LocalizedMessages.PowerManagerBatteryNotPresent);
 
-                var state = Power.GetSystemBatteryState();
+                PowerManagementNativeMethods.SystemBatteryState state = Power.GetSystemBatteryState();
 
-                int percent = (int)Math.Round(((double)state.RemainingCapacity / state.MaxCapacity * 100), 0);
-                return percent;
+                return (int)Math.Round(((double)state.RemainingCapacity / state.MaxCapacity * 100), 0);
             }
         }
 
@@ -341,20 +343,19 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                 CoreHelpers.ThrowIfNotVista();
 
                 lock (monitoronlock)
-                {
+
                     if (isMonitorOn == null)
                     {
-                        EventHandler dummy = delegate(object sender, EventArgs args) { };
+                        EventHandler dummy = delegate (object sender, EventArgs args) { };
                         IsMonitorOnChanged += dummy;
                         // Wait until Windows updates the power source 
                         // (through RegisterPowerSettingNotification)
                         EventManager.monitorOnReset.WaitOne();
                     }
-                }
 
                 return (bool)isMonitorOn;
             }
-            internal set { isMonitorOn = value; }
+            internal set => isMonitorOn = value;
         }
 
         /// <summary>
@@ -368,17 +369,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
             {
                 CoreHelpers.ThrowIfNotVista();
 
-                if (IsUpsPresent)
-                {
-                    return PowerSource.Ups;
-                }
-
-                if (!IsBatteryPresent || GetCurrentBatteryState().ACOnline)
-                {
-                    return PowerSource.AC;
-                }
-
-                return PowerSource.Battery;
+                return IsUpsPresent ? PowerSource.Ups : !IsBatteryPresent || GetCurrentBatteryState().ACOnline ? PowerSource.AC : PowerSource.Battery;
             }
         }
         #endregion
@@ -394,10 +385,10 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         public static void SetThreadExecutionState(ExecutionStates executionStateOptions)
         {
             ExecutionStates ret = PowerManagementNativeMethods.SetThreadExecutionState(executionStateOptions);
+
             if (ret == ExecutionStates.None)
-            {
+
                 throw new Win32Exception(LocalizedMessages.PowerExecutionStateFailed);
-            }
         }
 
     }

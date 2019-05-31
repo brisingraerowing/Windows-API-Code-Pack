@@ -22,20 +22,19 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             if (dataRange == null) { throw new ArgumentNullException("dataRange"); }
 
             byte[] data = dataRange.GetData();
+
             if ((data.Length & 1) != 0)
-            {
+            
                 throw new LinguisticException(LinguisticException.InvalidArgs);
-            }
 
             int nullIndex = data.Length;
             for (int i = 0; i < data.Length; i += 2)
-            {
+            
                 if (data[i] == 0 && data[i + 1] == 0)
                 {
                     nullIndex = i;
                     break;
                 }
-            }
             
             string resultText = Encoding.Unicode.GetString(data, 0, nullIndex);
             return resultText;
@@ -54,9 +53,9 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             MappingDataRange[] dataRanges = bag.GetResultRanges();
             string[] results = new string[dataRanges.Length];
             for (int i = 0; i < results.Length; ++i)
-            {
+            
                 results[i] = Format(dataRanges[i]);
-            }
+            
             return results;
         }
     }

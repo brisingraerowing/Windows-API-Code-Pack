@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6C1AD76C-8EEB-4B2D-B6B4-F9B7234A92FB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Microsoft.WindowsAPICodePack.Win32Native</RootNamespace>
+    <AssemblyName>Microsoft.WindowsAPICodePack.Win32Native</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Microsoft.WindowsAPICodePack.Win32Native.xml</DocumentationFile>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Microsoft.WindowsAPICodePack.Win32Native.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Win32Native.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\AppRestartRecovery\AppRestartRecoveryNativeMethods.cs" />
+    <Compile Include="Core\AppRestartRecovery\RecoveryData.cs" />
+    <Compile Include="Core\AppRestartRecovery\RestartRestrictions.cs" />
+    <Compile Include="Core\CoreErrorHelper.cs" />
+    <Compile Include="Core\CoreHelpers.cs" />
+    <Compile Include="Core\CoreNativeMethods.cs" />
+    <Compile Include="Core\ExecutionState.cs" />
+    <Compile Include="Core\NetworkList\INetwork.cs" />
+    <Compile Include="Core\NetworkList\INetworkConnection.cs" />
+    <Compile Include="Core\NetworkList\INetworkListManager.cs" />
+    <Compile Include="Core\NetworkList\NetworkListEnums.cs" />
+    <Compile Include="Core\NetworkList\NetworkListManagerClass.cs" />
+    <Compile Include="Core\PowerManagement\PowerManagementNativeMethods.cs" />
+    <Compile Include="Core\PropertySystem\PropertyChange.cs" />
+    <Compile Include="Core\PropertySystem\PropertyKey.cs" />
+    <Compile Include="Core\PropertySystem\PropVariant.cs" />
+    <Compile Include="Core\PropertySystem\PropVariantNativeMethods.cs" />
+    <Compile Include="ExtendedLinguisticServices\Win32NativeMethods.cs" />
+    <Compile Include="ExtendedLinguisticServices\Win32Structs.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Core\Resources\LocalizedMessages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalizedMessages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Core\TaskDialogs\NativeTaskDialogSettings.cs" />
+    <Compile Include="Core\TaskDialogs\TaskDialogDefaults.cs" />
+    <Compile Include="Core\TaskDialogs\TaskDialogNativeMethods.cs" />
+    <Compile Include="Core\TaskDialogs\TaskDialogProgressBarState.cs" />
+    <Compile Include="Core\WindowMessage.cs" />
+    <Compile Include="ShellExtensions\Interop\HandlerNativeMethods.cs" />
+    <Compile Include="Shell\Common\CopyFileFlags.cs" />
+    <Compile Include="Shell\Common\CopyProgressCallbackReason.cs" />
+    <Compile Include="Shell\Common\CopyProgressResult.cs" />
+    <Compile Include="Shell\Common\DefaultShellImageSizes.cs" />
+    <Compile Include="Shell\Common\EnumUnknown.cs" />
+    <Compile Include="Shell\Common\IconReference.cs" />
+    <Compile Include="Shell\Common\IntPtrExtensions.cs" />
+    <Compile Include="Shell\Common\NativePoint.cs" />
+    <Compile Include="Shell\Common\NativeRect.cs" />
+    <Compile Include="Shell\Common\SearchCondition.cs" />
+    <Compile Include="Shell\Common\SearchConditionFactory.cs" />
+    <Compile Include="Shell\Common\ShellCOMClasses.cs" />
+    <Compile Include="Shell\Common\ShellCOMGuids.cs" />
+    <Compile Include="Shell\Common\ShellCOMInterfaces.cs" />
+    <Compile Include="Shell\Common\ShellEnums.cs" />
+    <Compile Include="Shell\Common\ShellFile.cs" />
+    <Compile Include="Shell\Common\ShellFileSystemFolder.cs" />
+    <Compile Include="Shell\Common\ShellFolder.cs" />
+    <Compile Include="Shell\Common\ShellFolderItems.cs" />
+    <Compile Include="Shell\Common\ShellHelper.cs" />
+    <Compile Include="Shell\Common\ShellItemArray.cs" />
+    <Compile Include="Shell\Common\ShellLibrary.cs" />
+    <Compile Include="Shell\Common\ShellLink.cs" />
+    <Compile Include="Shell\Common\ShellNativeMethods.cs" />
+    <Compile Include="Shell\Common\ShellNativeStructs.cs" />
+    <Compile Include="Shell\Common\ShellNonFileSystemFolder.cs" />
+    <Compile Include="Shell\Common\ShellNonFileSystemItem.cs" />
+    <Compile Include="Shell\Common\ShellObject.cs" />
+    <Compile Include="Shell\Common\ShellObjectContainer.cs" />
+    <Compile Include="Shell\Common\ShellObjectFactory.cs" />
+    <Compile Include="Shell\Common\ShellSavedSearchCollection.cs" />
+    <Compile Include="Shell\Common\ShellSearchCollection.cs" />
+    <Compile Include="Shell\Common\ShellSearchConnector.cs" />
+    <Compile Include="Shell\Common\ShellSearchFolder.cs" />
+    <Compile Include="Shell\Common\ShellThumbnail.cs" />
+    <Compile Include="Shell\Common\ShellThumbnailEnums.cs" />
+    <Compile Include="Shell\Common\SortColumn.cs" />
+    <Compile Include="Shell\Common\WindowUtilities.cs" />
+    <Compile Include="Shell\Dialogs\DialogsCOMClasses.cs" />
+    <Compile Include="Shell\Dialogs\DialogsCOMInterfaces.cs" />
+    <Compile Include="Shell\ExplorerBrowser\ExplorerBrowserCOMGuids.cs" />
+    <Compile Include="Shell\ExplorerBrowser\ExplorerBrowserCOMInterfaces.cs" />
+    <Compile Include="Shell\ExplorerBrowser\ExplorerBrowserNativeMethods.cs" />
+    <Compile Include="Shell\KnownFolders\DefinitionOptions.cs" />
+    <Compile Include="Shell\KnownFolders\FileSystemKnownFolder.cs" />
+    <Compile Include="Shell\KnownFolders\FolderCategory.cs" />
+    <Compile Include="Shell\KnownFolders\FolderProperties.cs" />
+    <Compile Include="Shell\KnownFolders\FoldersIdentifiers.cs" />
+    <Compile Include="Shell\KnownFolders\FolderTypes.cs" />
+    <Compile Include="Shell\KnownFolders\IKnownFolder.cs" />
+    <Compile Include="Shell\KnownFolders\KnownFolderHelper.cs" />
+    <Compile Include="Shell\KnownFolders\KnownFolders.cs" />
+    <Compile Include="Shell\KnownFolders\KnownFoldersCOMGuids.cs" />
+    <Compile Include="Shell\KnownFolders\KnownFoldersCOMInterfaces.cs" />
+    <Compile Include="Shell\KnownFolders\KnownFolderSettings.cs" />
+    <Compile Include="Shell\KnownFolders\KnownFoldersNativeMethods.cs" />
+    <Compile Include="Shell\KnownFolders\NonFileSystemKnownFolder.cs" />
+    <Compile Include="Shell\KnownFolders\RedirectionCapabilities.cs" />
+    <Compile Include="Shell\Common\ShellException.cs" />
+    <Compile Include="Shell\PropertySystem\IShellProperty.cs" />
+    <Compile Include="Shell\PropertySystem\PropertySystemCOMInterfaces.cs" />
+    <Compile Include="Shell\PropertySystem\PropertySystemException.cs" />
+    <Compile Include="Shell\PropertySystem\PropertySystemNativeMethods.cs" />
+    <Compile Include="Shell\PropertySystem\ShellProperties.cs" />
+    <Compile Include="Shell\PropertySystem\ShellProperty.cs" />
+    <Compile Include="Shell\PropertySystem\ShellPropertyCollection.cs" />
+    <Compile Include="Shell\PropertySystem\ShellPropertyDescription.cs" />
+    <Compile Include="Shell\PropertySystem\ShellPropertyDescriptionsCache.cs" />
+    <Compile Include="Shell\PropertySystem\ShellPropertyEnums.cs" />
+    <Compile Include="Shell\PropertySystem\ShellPropertyEnumType.cs" />
+    <Compile Include="Shell\PropertySystem\ShellPropertyFactory.cs" />
+    <Compile Include="Shell\PropertySystem\ShellPropertyWriter.cs" />
+    <Compile Include="Shell\PropertySystem\StronglyTypedProperties.cs" />
+    <Compile Include="Shell\PropertySystem\SystemProperties.cs" />
+    <Compile Include="Shell\Resources\LocalizedMessages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalizedMessages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Shell\ShellObjectWatcher\ShellObjectWatcherEnums.cs" />
+    <Compile Include="Shell\ShellObjectWatcher\ShellObjectWatcherNativeMethods.cs" />
+    <Compile Include="Shell\StockIcons\StockIconEnums.cs" />
+    <Compile Include="Shell\StockIcons\StockIconsNativeMethods.cs" />
+    <Compile Include="Shell\Taskbar\TabbedThumbnailNativeMethods.cs" />
+    <Compile Include="Shell\Taskbar\TaskbarCOMInterfaces.cs" />
+    <Compile Include="Shell\Taskbar\TaskbarNativeMethods.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Core\Resources\LocalizedMessages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LocalizedMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shell\Resources\LocalizedMessages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LocalizedMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="package.nuspec" />
+    <None Include="Win32Native.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

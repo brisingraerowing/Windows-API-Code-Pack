@@ -6,11 +6,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
     /// Event argument for The GlassAvailabilityChanged event
     /// </summary>
     public class AeroGlassCompositionChangedEventArgs : EventArgs
-    {        
-        internal AeroGlassCompositionChangedEventArgs(bool avialbility)
-        {
-            GlassAvailable = avialbility;
-        }
+    {
+        internal AeroGlassCompositionChangedEventArgs(bool avialbility) => GlassAvailable = avialbility;
 
         /// <summary>
         /// The new GlassAvailable state

@@ -8,6 +8,8 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar
 {
@@ -67,24 +69,21 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
                         targetGr.ReleaseHdc(targetDC);
 
-                        if (!success) { return null; }
-
-                        return targetBitmap;
+                        return success ? targetBitmap : null;
                     }
                 }
                 catch
                 {
-                    if (targetBitmap != null) { targetBitmap.Dispose(); }
+                    if (targetBitmap != null)  targetBitmap.Dispose(); 
                     throw;
                 }
             }
             finally
             {
                 if (windowDC != IntPtr.Zero)
-                {
+                
                     TabbedThumbnailNativeMethods.ReleaseDC(windowHandle, windowDC);
-                }                
-            }
+                            }
         }
 
         /// <summary>
@@ -110,9 +109,8 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
             // create the renderer.
             if (bounds.Height == 0 || bounds.Width == 0)
-            {
+            
                 return null;    // 0 sized element. Probably hidden
-            }
 
             RenderTargetBitmap rendertarget = new RenderTargetBitmap((int)(bounds.Width * dpiX / 96.0),
              (int)(bounds.Height * dpiY / 96.0), dpiX, dpiY, PixelFormats.Default);
@@ -151,14 +149,13 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// <returns></returns>
         internal static Bitmap ResizeImageWithAspect(IntPtr originalHBitmap, int newWidth, int maxHeight, bool resizeIfWider)
         {
-            Bitmap originalBitmap = Bitmap.FromHbitmap(originalHBitmap);
+            Bitmap originalBitmap = Image.FromHbitmap(originalHBitmap);
 
             try
             {
                 if (resizeIfWider && originalBitmap.Width <= newWidth)
-                {
+                
                     newWidth = originalBitmap.Width;
-                }
 
                 int newHeight = originalBitmap.Height * newWidth / originalBitmap.Width;
 

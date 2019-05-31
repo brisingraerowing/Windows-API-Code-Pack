@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Markup;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
 
 namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
 {
@@ -14,14 +15,10 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
     [ContentProperty("Items")]
     public class CommonFileDialogRadioButtonList : CommonFileDialogControl, ICommonFileDialogIndexedControls
     {
-        private Collection<CommonFileDialogRadioButtonListItem> items = new Collection<CommonFileDialogRadioButtonListItem>();
         /// <summary>
         /// Gets the collection of CommonFileDialogRadioButtonListItem objects
         /// </summary>
-        public Collection<CommonFileDialogRadioButtonListItem> Items
-        {
-            get { return items; }
-        }
+        public Collection<CommonFileDialogRadioButtonListItem> Items { get; } = new Collection<CommonFileDialogRadioButtonListItem>();
 
         /// <summary>
         /// Creates a new instance of this class.
@@ -43,7 +40,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2201:DoNotRaiseReservedExceptionTypes")]
         public int SelectedIndex
         {
-            get { return selectedIndex; }
+            get => selectedIndex;
             set
             {
                 // Don't update this property if it hasn't changed
@@ -51,18 +48,17 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
 
                 // If the native dialog has not been created yet
                 if (HostingDialog == null)
-                {
+
                     selectedIndex = value;
-                }
-                else if (value >= 0 && value < items.Count)
+
+                else if (value >= 0 && value < Items.Count)
                 {
                     selectedIndex = value;
                     ApplyPropertyChange("SelectedIndex");
                 }
                 else
-                {
+
                     throw new IndexOutOfRangeException(LocalizedMessages.RadioButtonListIndexOutOfBounds);
-                }
             }
         }
 
@@ -106,20 +102,18 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
             dialog.AddRadioButtonList(this.Id);
 
             // Add the radio button list items
-            for (int index = 0; index < items.Count; index++)
-            {
-                dialog.AddControlItem(this.Id, index, items[index].Text);
-            }
+            for (int index = 0; index < Items.Count; index++)
+
+                dialog.AddControlItem(this.Id, index, Items[index].Text);
 
             // Set the currently selected item
-            if (selectedIndex >= 0 && selectedIndex < items.Count)
-            {
+            if (selectedIndex >= 0 && selectedIndex < Items.Count)
+
                 dialog.SetSelectedControlItem(this.Id, this.selectedIndex);
-            }
+
             else if (selectedIndex != -1)
-            {
+
                 throw new IndexOutOfRangeException(LocalizedMessages.RadioButtonListIndexOutOfBounds);
-            }
 
             // Sync unmanaged properties with managed properties
             SyncUnmanagedProperties();
@@ -145,9 +139,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
         /// Creates a new instance of this class with the specified text.
         /// </summary>
         /// <param name="text">The string that you want to display for this list item.</param>
-        public CommonFileDialogRadioButtonListItem(string text)
-        {
-            Text = text;
-        }
+        public CommonFileDialogRadioButtonListItem(string text) => Text = text;
     }
 }

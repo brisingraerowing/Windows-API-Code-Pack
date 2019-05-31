@@ -1,5 +1,6 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
 using System.Diagnostics;
 
 namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
@@ -36,7 +37,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
             Debug.Assert(dialog != null, "CommonFileDialog.Attach: dialog parameter can not be null");
 
             // Add a text control
-            dialog.AddText(this.Id, this.Text);
+            dialog.AddText(Id, Text);
 
             // Sync unmanaged properties with managed properties
             SyncUnmanagedProperties();

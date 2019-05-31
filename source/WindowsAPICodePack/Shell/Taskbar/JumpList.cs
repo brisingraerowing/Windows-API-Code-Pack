@@ -7,6 +7,9 @@ using System.Runtime.InteropServices;
 using System.Text;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 using MS.WindowsAPICodePack.Internal;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar
@@ -466,7 +469,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                     }
 
                     // Don't process empty categories
-                    if (category.JumpListItems.Count == 0) { continue; }
+                    if (category.JumpListItems.Count == 0)  continue; 
 
                     IObjectCollection categoryContent =
                         (IObjectCollection)new CEnumerableObjectCollection();
@@ -477,13 +480,13 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                         JumpListItem listItem = link as JumpListItem;
                         JumpListLink listLink = link as JumpListLink;
                         if (listItem != null)
-                        {
+                        
                             categoryContent.AddObject(listItem.NativeShellItem);
-                        }
+                        
                         else if (listLink != null)
-                        {
+                        
                             categoryContent.AddObject(listLink.NativeShellLink);
-                        }
+                        
                     }
 
                     // Add current category to destination list
@@ -494,11 +497,11 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                     if (!CoreErrorHelper.Succeeded(hr))
                     {
                         if ((uint)hr == 0x80040F03)
-                        {
+                        
                             throw new InvalidOperationException(LocalizedMessages.JumpListFileTypeNotRegistered);
-                        }
+                        
                         else if ((uint)hr == 0x80070005 /*E_ACCESSDENIED*/)
-                        {
+                        
                             // If the recent documents tracking is turned off by the user,
                             // custom categories or items to an existing category cannot be added.
                             // The recent documents tracking can be changed via:
@@ -507,7 +510,6 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                             //         the Start menu and the taskbar” in the Start menu property dialog.
                             //
                             throw new UnauthorizedAccessException(LocalizedMessages.JumpListCustomCategoriesDisabled);
-                        }
 
                         throw new ShellException(hr);
                     }
@@ -520,14 +522,13 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             // If the ordinal position was out of range, append the Known Categories
             // at the end
             if (!knownCategoriesAdded)
-            {
+            
                 AppendKnownCategories();
-            }
         }
 
         private void AppendTaskList()
         {
-            if (userTasks == null || userTasks.Count == 0) { return; }
+            if (userTasks == null || userTasks.Count == 0)  return; 
 
             IObjectCollection taskContent =
                     (IObjectCollection)new CEnumerableObjectCollection();
@@ -538,13 +539,12 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 JumpListSeparator seperator;
                 JumpListLink link = task as JumpListLink;
                 if (link != null)
-                {
+                
                     taskContent.AddObject(link.NativeShellLink);
-                }
+                
                 else if ((seperator = task as JumpListSeparator) != null)
-                {
+                
                     taskContent.AddObject(seperator.NativeShellLink);
-                }
             }
 
             // Add tasks to the taskbar
@@ -553,9 +553,9 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             if (!CoreErrorHelper.Succeeded(hr))
             {
                 if ((uint)hr == 0x80040F03)
-                {
+                
                     throw new InvalidOperationException(LocalizedMessages.JumpListFileTypeNotRegistered);
-                }
+                
                 throw new ShellException(hr);
             }
         }
@@ -563,13 +563,12 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         private void AppendKnownCategories()
         {
             if (KnownCategoryToDisplay == JumpListKnownCategoryType.Recent)
-            {
+            
                 customDestinationList.AppendKnownCategory(KnownDestinationCategory.Recent);
-            }
+            
             else if (KnownCategoryToDisplay == JumpListKnownCategoryType.Frequent)
-            {
+            
                 customDestinationList.AppendKnownCategory(KnownDestinationCategory.Frequent);
-            }
         }
     }
 }

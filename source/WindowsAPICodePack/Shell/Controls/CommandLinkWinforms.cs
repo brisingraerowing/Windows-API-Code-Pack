@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using MS.WindowsAPICodePack.Internal;
 
 namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
@@ -49,25 +51,19 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
         /// <summary>
         /// Increase default width.
         /// </summary>
-        protected override System.Drawing.Size DefaultSize
-        {
-            get { return new System.Drawing.Size(180, 60); }
-        }
+        protected override System.Drawing.Size DefaultSize => new System.Drawing.Size(180, 60);
 
         /// <summary>
         /// Specifies the supporting note text
         /// </summary>
         [Category("Appearance")]
         [Description("Specifies the supporting note text.")]
-        [BrowsableAttribute(true)]
+        [Browsable(true)]
         [DefaultValue("(Note Text)")]
         public string NoteText
         {
-            get { return (GetNote(this)); }
-            set
-            {
-                SetNote(this, value);
-            }
+            get => GetNote(this);
+            set => SetNote(this, value);
         }
 
         /// <summary>
@@ -75,15 +71,15 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
         /// </summary>
         [Category("Appearance")]
         [Description("Indicates whether the button should be decorated with the security shield icon (Windows Vista only).")]
-        [BrowsableAttribute(true)]
+        [Browsable(true)]
         [DefaultValue(false)]
         public bool UseElevationIcon
         {
-            get { return (useElevationIcon); }
+            get => useElevationIcon;
             set
             {
                 useElevationIcon = value;
-                SetShieldIcon(this, this.useElevationIcon);
+                SetShieldIcon(this, useElevationIcon);
             }
         }
         private bool useElevationIcon;
@@ -96,9 +92,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
             // Only add BS_COMMANDLINK style on Windows Vista or above.
             // Otherwise, button creation will fail.
             if (CoreHelpers.RunningOnVista)
-            {
+
                 style |= ShellNativeMethods.CommandLink;
-            }
 
             return style;
         }
@@ -119,11 +114,9 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
             return strBld.ToString();
         }
 
-        private static void SetNote(System.Windows.Forms.Button button, string text)
-        {
+        private static void SetNote(System.Windows.Forms.Button button, string text) =>
             // This call will be ignored on versions earlier than Windows Vista.
             CoreNativeMethods.SendMessage(button.Handle, ShellNativeMethods.SetNote, 0, text);
-        }
 
         static internal void SetShieldIcon(System.Windows.Forms.Button Button, bool Show)
         {
@@ -140,13 +133,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
         /// <summary>
         /// Indicates whether this feature is supported on the current platform.
         /// </summary>
-        public static bool IsPlatformSupported
-        {
-            get
-            {
+        public static bool IsPlatformSupported =>
                 // We need Windows Vista onwards ...
-                return CoreHelpers.RunningOnVista;
-            }
-        }
+                CoreHelpers.RunningOnVista;
     }
 }

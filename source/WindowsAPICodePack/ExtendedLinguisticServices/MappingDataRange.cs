@@ -26,13 +26,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// index passed to the function in the index parameter. The value should be less than the entire length
         /// of the text.
         /// </summary>
-        public int StartIndex
-        {
-            get
-            {
-                return (int)_win32DataRange._startIndex;
-            }
-        }
+        public int StartIndex => (int)_win32DataRange._startIndex;
 
         /// <summary>
         /// Index of the end of the subrange in the text, where 0 indicates the first character at of the string
@@ -41,13 +35,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// index passed to the function in the index parameter. The value should be less than the entire length
         /// of the text.
         /// </summary>
-        public int EndIndex
-        {
-            get
-            {
-                return (int)_win32DataRange._endIndex;
-            }
-        }
+        public int EndIndex => (int)_win32DataRange._endIndex;
 
         /// <summary>
         /// The data retrieved as service output associated with the subrange. This data must be of the format indicated
@@ -56,14 +44,15 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         public byte[] GetData()
         {
             byte[] data = new byte[(int)_win32DataRange._dataSize];
+
             if (_win32DataRange._dataSize == 0)
-            {
+
                 return data;
-            }
+
             if (_win32DataRange._data == IntPtr.Zero)
-            {
+
                 throw new LinguisticException(LinguisticException.InvalidData);
-            }
+
             Marshal.Copy(_win32DataRange._data, data, 0, (int)_win32DataRange._dataSize);
             return data;
         }
@@ -75,13 +64,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// <note>In Windows 7, the ELS services support only the content type "text/plain". A content type specification
         /// can be found at the IANA website: http://www.iana.org/assignments/media-types/text/ </note>
         /// </summary>
-        public string ContentType
-        {
-            get
-            {
-                return _win32DataRange._contentType;
-            }
-        }
+        public string ContentType => _win32DataRange._contentType;
 
         /// <summary>
         /// Available action IDs for this data range. Usable for calling <see cref="MappingService.DoAction">MappingService.DoAction</see> or
@@ -89,30 +72,16 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         ///
         /// <note>In Windows 7, the ELS services do not expose any actions.</note>
         /// </summary>
-        public IEnumerable<string> ActionIds
-        {
-            get
-            {
-                string[] actionIDs = InteropTools.UnpackStringArray(
+        public IEnumerable<string> ActionIds => InteropTools.UnpackStringArray(
                     _win32DataRange._actionIDs, _win32DataRange._actionsCount);
-                return actionIDs;
-            }
-        }
 
         /// <summary>
         /// Available action display names for this data range. These strings can be localized.
         ///
         /// <note>In Windows 7, the ELS services do not expose any actions.</note>
         /// </summary>
-        public IEnumerable<string> ActionDisplayNames
-        {
-            get
-            {
-                string[] actionDisplayNames = InteropTools.UnpackStringArray(
+        public IEnumerable<string> ActionDisplayNames => InteropTools.UnpackStringArray(
                     _win32DataRange._actionDisplayNames, _win32DataRange._actionsCount);
-                return actionDisplayNames;
-            }
-        }
 
         /// <summary>
         /// Formats the low-level data contained in this <see cref="MappingDataRange">MappingDataRange</see> using an implementation of the
@@ -123,7 +92,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// <returns>A formatted version of this <see cref="MappingDataRange">MappingDataRange</see>.</returns>
         public T FormatData<T>(IMappingFormatter<T> formatter)
         {
-            if (formatter == null) { throw new ArgumentNullException("formatter"); }
+            if (formatter == null) throw new ArgumentNullException(nameof(formatter));
             return formatter.Format(this);
         }
     }

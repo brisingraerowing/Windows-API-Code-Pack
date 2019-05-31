@@ -3,6 +3,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using MS.WindowsAPICodePack.Internal;
 
 namespace Microsoft.WindowsAPICodePack.Sensors

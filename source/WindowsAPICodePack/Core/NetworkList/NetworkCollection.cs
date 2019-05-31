@@ -1,5 +1,6 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.Win32Native.Core.Net;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,10 +21,7 @@ namespace Microsoft.WindowsAPICodePack.Net
 
         #endregion // Private Fields
 
-        internal NetworkCollection(IEnumerable networkEnumerable)
-        {
-            this.networkEnumerable = networkEnumerable;
-        }
+        internal NetworkCollection(IEnumerable networkEnumerable) => this.networkEnumerable = networkEnumerable;
 
         #region IEnumerable<Network> Members
 
@@ -34,9 +32,8 @@ namespace Microsoft.WindowsAPICodePack.Net
         public IEnumerator<Network> GetEnumerator()
         {
             foreach (INetwork network in networkEnumerable)
-            {
+
                 yield return new Network(network);
-            }
         }
 
         #endregion
@@ -50,9 +47,8 @@ namespace Microsoft.WindowsAPICodePack.Net
         IEnumerator IEnumerable.GetEnumerator()
         {
             foreach (INetwork network in networkEnumerable)
-            {
+
                 yield return new Network(network);
-            }
         }
 
         #endregion

@@ -1,6 +1,8 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using Microsoft.WindowsAPICodePack.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.Core.Dialogs;
+using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
 
 namespace Microsoft.WindowsAPICodePack.Dialogs
 {
@@ -44,44 +46,43 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// </summary>                
         public int Minimum
         {
-            get { return _minimum; }
+            get => _minimum;
             set
             {
-                CheckPropertyChangeAllowed("Minimum");
+                CheckPropertyChangeAllowed(nameof(Minimum));
 
                 // Check for positive numbers
                 if (value < 0)
-                {
-                    throw new System.ArgumentException(LocalizedMessages.TaskDialogProgressBarMinValueGreaterThanZero, "value");
-                }
+
+                    throw new System.ArgumentException(LocalizedMessages.TaskDialogProgressBarMinValueGreaterThanZero, nameof(value));
 
                 // Check if min / max differ
                 if (value >= Maximum)
-                {
-                    throw new System.ArgumentException(LocalizedMessages.TaskDialogProgressBarMinValueLessThanMax, "value");
-                }
+
+                    throw new System.ArgumentException(LocalizedMessages.TaskDialogProgressBarMinValueLessThanMax, nameof(value));
 
                 _minimum = value;
-                ApplyPropertyChange("Minimum");
+                ApplyPropertyChange(nameof(Minimum));
             }
         }
+
         /// <summary>
         /// Gets or sets the maximum value for the control.
         /// </summary>
         public int Maximum
         {
-            get { return _maximum; }
+            get => _maximum;
             set
             {
-                CheckPropertyChangeAllowed("Maximum");
+                CheckPropertyChangeAllowed(nameof(Maximum));
 
                 // Check if min / max differ
                 if (value < Minimum)
-                {
-                    throw new System.ArgumentException(LocalizedMessages.TaskDialogProgressBarMaxValueGreaterThanMin, "value");
-                }
+
+                    throw new System.ArgumentException(LocalizedMessages.TaskDialogProgressBarMaxValueGreaterThanMin, nameof(value));
+
                 _maximum = value;
-                ApplyPropertyChange("Maximum");
+                ApplyPropertyChange(nameof(Maximum));
             }
         }
         /// <summary>
@@ -89,27 +90,25 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// </summary>
         public int Value
         {
-            get { return this._value; }
+            get => _value;
             set
             {
-                CheckPropertyChangeAllowed("Value");
+                CheckPropertyChangeAllowed(nameof(Value));
+
                 // Check for positive numbers
                 if (value < Minimum || value > Maximum)
-                {
-                    throw new System.ArgumentException(LocalizedMessages.TaskDialogProgressBarValueInRange, "value");
-                }
-                this._value = value;
-                ApplyPropertyChange("Value");
+
+                    throw new System.ArgumentException(LocalizedMessages.TaskDialogProgressBarValueInRange, nameof(value));
+
+                _value = value;
+                ApplyPropertyChange(nameof(Value));
             }
         }
 
         /// <summary>
         /// Verifies that the progress bar's value is between its minimum and maximum.
         /// </summary>
-        internal bool HasValidValues
-        {
-            get { return _minimum <= _value && _value <= _maximum; }
-        }
+        internal bool HasValidValues => _minimum <= _value && _value <= _maximum;
 
         /// <summary>
         /// Resets the control to its minimum value.

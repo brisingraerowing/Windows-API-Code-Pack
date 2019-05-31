@@ -1,5 +1,6 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
 using System;
 using System.Diagnostics;
 
@@ -11,12 +12,13 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
     public class CommonFileDialogCheckBox : CommonFileDialogProminentControl
     {
         private bool isChecked;
+
         /// <summary>
         /// Gets or sets the state of the check box.
         /// </summary>
         public bool IsChecked
         {
-            get { return isChecked; }
+            get => isChecked;
             set
             {
                 // Check if property has changed
@@ -52,10 +54,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
         /// <param name="text">The text to display for this control.</param>
         /// <param name="isChecked">The check state of this control.</param>
         public CommonFileDialogCheckBox(string text, bool isChecked)
-            : base(text)
-        {
-            this.isChecked = isChecked;
-        }
+            : base(text) => this.isChecked = isChecked;
 
         /// <summary>
         /// Creates a new instance of this class with the specified name, text and check state.
@@ -64,22 +63,19 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
         /// <param name="text">The text to display for this control.</param>
         /// <param name="isChecked">The check state of this control.</param>
         public CommonFileDialogCheckBox(string name, string text, bool isChecked)
-            : base(name, text)
-        {
-            this.isChecked = isChecked;
-        }
+            : base(name, text) => this.isChecked = isChecked;
 
         /// <summary>
         /// Occurs when the user changes the check state.
         /// </summary>
         public event EventHandler CheckedChanged = delegate { };
+
         internal void RaiseCheckedChangedEvent()
         {
             // Make sure that this control is enabled and has a specified delegate
             if (Enabled)
-            {
-                this.CheckedChanged(this, EventArgs.Empty);
-            }
+
+                CheckedChanged(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -91,10 +87,10 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
             Debug.Assert(dialog != null, "CommonFileDialogCheckBox.Attach: dialog parameter can not be null");
 
             // Add a check button control
-            dialog.AddCheckButton(this.Id, this.Text, this.isChecked);
+            dialog.AddCheckButton(Id, Text, isChecked);
 
             // Make this control prominent if needed
-            if (IsProminent) { dialog.MakeProminent(this.Id); }
+            if (IsProminent) dialog.MakeProminent(Id);
 
             // Make sure this property is set
             ApplyPropertyChange("IsChecked");

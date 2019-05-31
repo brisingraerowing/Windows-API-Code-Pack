@@ -2,8 +2,8 @@
 using System.Windows.Interop;
 using System.Windows.Media;
 using MS.WindowsAPICodePack.Internal;
-using Microsoft.WindowsAPICodePack.Shell.Interop;
 using System.Windows;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -21,15 +21,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         public static bool AeroGlassCompositionEnabled
         {
-            set
-            {
-                DesktopWindowManagerNativeMethods.DwmEnableComposition(
+            set => DesktopWindowManagerNativeMethods.DwmEnableComposition(
                     value ? CompositionEnable.Enable : CompositionEnable.Disable);
-            }
-            get
-            {
-                return DesktopWindowManagerNativeMethods.DwmIsCompositionEnabled();
-            }
+            get => DesktopWindowManagerNativeMethods.DwmIsCompositionEnabled();
         }
 
         #endregion
@@ -54,7 +48,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             HwndSource.FromHwnd(windowHandle).CompositionTarget.BackgroundColor = System.Windows.Media.Colors.Transparent;
 
             // Set the Background to transparent from WPF perpective 
-            this.Background = Brushes.Transparent;
+            Background = Brushes.Transparent;
         }
 
         /// <summary>
@@ -87,9 +81,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 // Create a margin structure
                 Margins margins = new Margins();
                 margins.LeftWidth = (int)topLeftFrame.X;
-                margins.RightWidth = (int)(this.ActualWidth - bottomRightFrame.X);
+                margins.RightWidth = (int)(ActualWidth - bottomRightFrame.X);
                 margins.TopHeight = (int)(topLeftFrame.Y);
-                margins.BottomHeight = (int)(this.ActualHeight - bottomRightFrame.Y);
+                margins.BottomHeight = (int)(ActualHeight - bottomRightFrame.Y);
 
                 // Extend the Frame into client area
                 DesktopWindowManagerNativeMethods.DwmExtendFrameIntoClientArea(windowHandle, ref margins);
@@ -116,11 +110,10 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 || msg == DWMMessages.WM_DWMNCRENDERINGCHANGED)
             {
                 if (AeroGlassCompositionChanged != null)
-                {
+                
                     AeroGlassCompositionChanged.Invoke(this,
                         new AeroGlassCompositionChangedEventArgs(AeroGlassCompositionEnabled));
-                }
-
+                
                 handled = true;
             }
             return IntPtr.Zero;
@@ -136,7 +129,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             base.OnSourceInitialized(e);
             WindowInteropHelper interopHelper = new WindowInteropHelper(this);
-            this.windowHandle = interopHelper.Handle;
+            windowHandle = interopHelper.Handle;
 
             // add Window Proc hook to capture DWM messages
             HwndSource source = HwndSource.FromHwnd(windowHandle);

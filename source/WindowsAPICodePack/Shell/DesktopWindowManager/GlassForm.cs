@@ -19,15 +19,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         public static bool AeroGlassCompositionEnabled
         {
-            set
-            {
-                DesktopWindowManagerNativeMethods.DwmEnableComposition(
+            set => DesktopWindowManagerNativeMethods.DwmEnableComposition(
                     value ? CompositionEnable.Enable : CompositionEnable.Disable);
-            }
-            get
-            {
-                return DesktopWindowManagerNativeMethods.DwmIsCompositionEnabled();
-            }
+            get => DesktopWindowManagerNativeMethods.DwmIsCompositionEnabled();
         }
 
         #endregion
@@ -46,10 +40,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Makes the background of current window transparent
         /// </summary>
-        public void SetAeroGlassTransparency()
-        {
-            this.BackColor = Color.Transparent;
-        }
+        public void SetAeroGlassTransparency() => BackColor = Color.Transparent;
 
         /// <summary>
         /// Excludes a Control from the AeroGlass frame.
@@ -63,14 +54,16 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (AeroGlassCompositionEnabled)
             {
-                Rectangle clientScreen = this.RectangleToScreen(this.ClientRectangle);
+                Rectangle clientScreen = RectangleToScreen(ClientRectangle);
                 Rectangle controlScreen = control.RectangleToScreen(control.ClientRectangle);
 
-                Margins margins = new Margins();
-                margins.LeftWidth = controlScreen.Left - clientScreen.Left;
-                margins.RightWidth = clientScreen.Right - controlScreen.Right;
-                margins.TopHeight = controlScreen.Top - clientScreen.Top;
-                margins.BottomHeight = clientScreen.Bottom - controlScreen.Bottom;
+                Margins margins = new Margins
+                {
+                    LeftWidth = controlScreen.Left - clientScreen.Left,
+                    RightWidth = clientScreen.Right - controlScreen.Right,
+                    TopHeight = controlScreen.Top - clientScreen.Top,
+                    BottomHeight = clientScreen.Bottom - controlScreen.Bottom
+                };
 
                 // Extend the Frame into client area
                 DesktopWindowManagerNativeMethods.DwmExtendFrameIntoClientArea(Handle, ref margins);
@@ -82,10 +75,10 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         public void ResetAeroGlass()
         {
-            if (this.Handle != IntPtr.Zero)
+            if (Handle != IntPtr.Zero)
             {
                 Margins margins = new Margins(true);
-                DesktopWindowManagerNativeMethods.DwmExtendFrameIntoClientArea(this.Handle, ref margins);
+                DesktopWindowManagerNativeMethods.DwmExtendFrameIntoClientArea(Handle, ref margins);
             }
         }
         #endregion
@@ -102,10 +95,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 || m.Msg == DWMMessages.WM_DWMNCRENDERINGCHANGED)
             {
                 if (AeroGlassCompositionChanged != null)
-                {
+
                     AeroGlassCompositionChanged.Invoke(this,
                         new AeroGlassCompositionChangedEventArgs(AeroGlassCompositionEnabled));
-                }
             }
 
             base.WndProc(ref m);
@@ -130,13 +122,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
             base.OnPaint(e);
 
             if (DesignMode == false)
-            {
+
                 if (AeroGlassCompositionEnabled && e != null)
-                {
+
                     // Paint the all the regions black to enable glass
                     e.Graphics.FillRectangle(Brushes.Black, this.ClientRectangle);
-                }
-            }
+
         }
 
         #endregion

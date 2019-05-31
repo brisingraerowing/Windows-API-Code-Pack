@@ -4,6 +4,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Text;
 using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Dialogs
 {
@@ -12,19 +13,12 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
     /// </summary>
     public class CommonFileDialogFilter
     {
-        // We'll keep a parsed list of separate 
-        // extensions and rebuild as needed.
-
-        private Collection<string> extensions;
         private string rawDisplayName;
 
         /// <summary>
         /// Creates a new instance of this class.
         /// </summary>
-        public CommonFileDialogFilter()
-        {
-            extensions = new Collection<string>();
-        }
+        public CommonFileDialogFilter() => Extensions = new Collection<string>();
 
         /// <summary>
         /// Creates a new instance of this class with the specified display name and 
@@ -44,9 +38,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             : this()
         {
             if (string.IsNullOrEmpty(extensionList))
-            {
+
                 throw new ArgumentNullException("extensionList");
-            }
 
             this.rawDisplayName = rawDisplayName;
 
@@ -56,7 +49,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             string[] rawExtensions = extensionList.Split(',', ';');
             foreach (string extension in rawExtensions)
             {
-                extensions.Add(CommonFileDialogFilter.NormalizeExtension(extension));
+                Extensions.Add(NormalizeExtension(extension));
             }
         }
         /// <summary>
@@ -70,13 +63,12 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         {
             get
             {
-                if (showExtensions)
-                {
+                if (ShowExtensions)
+
                     return string.Format(System.Globalization.CultureInfo.InvariantCulture,
                         "{0} ({1})",
-                        rawDisplayName, 
-                        CommonFileDialogFilter.GetDisplayExtensionList(extensions));
-                }
+                        rawDisplayName,
+                        GetDisplayExtensionList(Extensions));
 
                 return rawDisplayName;
             }
@@ -84,9 +76,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             set
             {
                 if (string.IsNullOrEmpty(value))
-                {
+
                     throw new ArgumentNullException("value");
-                }
+
                 rawDisplayName = value;
             }
         }
@@ -95,20 +87,12 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// Gets a collection of the individual extensions 
         /// described by this filter.
         /// </summary>
-        public Collection<string> Extensions
-        {
-            get { return extensions; }
-        }
+        public Collection<string> Extensions { get; }
 
-        private bool showExtensions = true;
         /// <summary>
         /// Gets or sets a value that controls whether the extensions are displayed.
         /// </summary>
-        public bool ShowExtensions
-        {
-            get { return showExtensions; }
-            set { showExtensions = value; }
-        }
+        public bool ShowExtensions { get; set; } = true;
 
         private static string NormalizeExtension(string rawExtension)
         {
@@ -140,7 +124,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         internal ShellNativeMethods.FilterSpec GetFilterSpec()
         {
             StringBuilder filterList = new StringBuilder();
-            foreach (string extension in extensions)
+            foreach (string extension in Extensions)
             {
                 if (filterList.Length > 0) { filterList.Append(";"); }
 
@@ -161,7 +145,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             return string.Format(System.Globalization.CultureInfo.InvariantCulture,
                 "{0} ({1})",
                 rawDisplayName,
-                CommonFileDialogFilter.GetDisplayExtensionList(extensions));
+                CommonFileDialogFilter.GetDisplayExtensionList(Extensions));
         }
     }
 }

@@ -4,7 +4,11 @@ using System;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using MS.WindowsAPICodePack.Internal;
+using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar
 {
@@ -45,9 +49,9 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 {
                     HResult result = nativePropertyStore.SetValue(ref PKEY_AppUserModel_IsDestListSeparator, propVariant);
                     if (!CoreErrorHelper.Succeeded(result))
-                    {
+                    
                         throw new ShellException(result);
-                    }
+                    
                     nativePropertyStore.Commit();
                 }
                 

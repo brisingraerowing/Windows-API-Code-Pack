@@ -3,8 +3,8 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Security;
-using Microsoft.WindowsAPICodePack.Shell.Interop;
 using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
 namespace MS.WindowsAPICodePack.Internal
 {
@@ -22,12 +22,9 @@ namespace MS.WindowsAPICodePack.Internal
         public int TopHeight;      // height of top border that retains its size
         public int BottomHeight;   // height of bottom border that retains its size
 
-        public Margins(bool fullWindow)
-        {
-            LeftWidth = RightWidth = TopHeight = BottomHeight = (fullWindow ? -1 : 0);
-        }
+        public Margins(bool fullWindow) => LeftWidth = RightWidth = TopHeight = BottomHeight = fullWindow ? -1 : 0;
     };
-    
+
     internal enum CompositionEnable
     {
         Disable = 0,
@@ -57,7 +54,7 @@ namespace MS.WindowsAPICodePack.Internal
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool GetWindowRect(IntPtr hwnd, [Out] out NativeRect rect);
-        
+
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         internal static extern bool GetClientRect(IntPtr hwnd, [Out] out NativeRect rect);

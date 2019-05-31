@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using MS.WindowsAPICodePack.Internal;
+using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.Sensors
 {
@@ -23,8 +25,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             iSensor.GetSupportedDataFields(out keyCollection);
             iReport.GetSensorValues(keyCollection, out valuesCollection);
 
-            uint items = 0;
-            keyCollection.GetCount(out items);
+            keyCollection.GetCount(out uint items);
             for (uint index = 0; index < items; index++)
             {
                 PropertyKey key;
@@ -34,28 +35,21 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                     valuesCollection.GetValue(ref key, propValue);
 
                     if (data.ContainsKey(key.FormatId))
-                    {
+
                         data[key.FormatId].Add(propValue.Value);
-                    }
+
                     else
-                    {
+
                         data.Add(key.FormatId, new List<object> { propValue.Value });
-                    }
                 }
             }
 
             if (keyCollection != null)
-            {
+
                 Marshal.ReleaseComObject(keyCollection);
-                keyCollection = null;
-            }
 
             if (valuesCollection != null)
-            {
                 Marshal.ReleaseComObject(valuesCollection);
-                valuesCollection = null;
-            }
-
 
             return data;
         }
@@ -70,58 +64,40 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// </summary>
         /// <param name="key">The data field identifier.</param>
         /// <param name="value">The data list.</param>
-        public void Add(Guid key, IList<object> value)
-        {
-            sensorDataDictionary.Add(key, value);
-        }
+        public void Add(Guid key, IList<object> value) => sensorDataDictionary.Add(key, value);
+
         /// <summary>
         /// Determines if a particular data field itentifer is present in the collection.
         /// </summary>
         /// <param name="key">The data field identifier.</param>
         /// <returns><b>true</b> if the data field identifier is present.</returns>
-        public bool ContainsKey(Guid key)
-        {
-            return sensorDataDictionary.ContainsKey(key);
-        }
+        public bool ContainsKey(Guid key) => sensorDataDictionary.ContainsKey(key);
+
         /// <summary>
         /// Gets the list of the data field identifiers in this collection.
         /// </summary>
-        public ICollection<Guid> Keys
-        {
-            get
-            {
-                return sensorDataDictionary.Keys;
-            }
-        }
+        public ICollection<Guid> Keys => sensorDataDictionary.Keys;
+
         /// <summary>
         /// Removes a particular data field identifier from the collection.
         /// </summary>
         /// <param name="key">The data field identifier.</param>
         /// <returns><b>true</b> if the item was removed.</returns>
-        public bool Remove(Guid key)
-        {
-            return sensorDataDictionary.Remove(key);
-        }
+        public bool Remove(Guid key) => sensorDataDictionary.Remove(key);
+
         /// <summary>
         /// Attempts to get the value of a data item.
         /// </summary>
         /// <param name="key">The data field identifier.</param>
         /// <param name="value">The data list.</param>
         /// <returns><b>true</b> if able to obtain the value; otherwise <b>false</b>.</returns>
-        public bool TryGetValue(Guid key, out IList<object> value)
-        {
-            return sensorDataDictionary.TryGetValue(key, out value);
-        }
+        public bool TryGetValue(Guid key, out IList<object> value) => sensorDataDictionary.TryGetValue(key, out value);
+
         /// <summary>
         /// Gets the list of data values in the dictionary.
         /// </summary>
-        public ICollection<IList<object>> Values
-        {
-            get
-            {
-                return sensorDataDictionary.Values;
-            }
-        }
+        public ICollection<IList<object>> Values => sensorDataDictionary.Values;
+
         /// <summary>
         /// Gets or sets the index operator for the dictionary by key.
         /// </summary>
@@ -129,14 +105,8 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// <returns>The item at the specified index.</returns>
         public IList<object> this[Guid key]
         {
-            get
-            {
-                return sensorDataDictionary[key];
-            }
-            set
-            {
-                sensorDataDictionary[key] = value;
-            }
+            get => sensorDataDictionary[key];
+            set => sensorDataDictionary[key] = value;
         }
 
         #endregion
@@ -166,49 +136,31 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// </summary>
         /// <param name="item">The item to locate.</param>
         /// <returns><b>true</b> if the collection contains the key/value pair; otherwise false.</returns>
-        public bool Contains(KeyValuePair<Guid, IList<object>> item)
-        {
-            ICollection<KeyValuePair<Guid, IList<object>>> c = sensorDataDictionary as ICollection<KeyValuePair<Guid, IList<object>>>;
-            return c.Contains(item);
-        }
+        public bool Contains(KeyValuePair<Guid, IList<object>> item) => (sensorDataDictionary as ICollection<KeyValuePair<Guid, IList<object>>>).Contains(item);
 
         /// <summary>
         /// Copies an element collection to another collection.
         /// </summary>
         /// <param name="array">The destination collection.</param>
         /// <param name="arrayIndex">The index of the item to copy.</param>
-        public void CopyTo(KeyValuePair<Guid, IList<object>>[] array, int arrayIndex)
-        {
-            ICollection<KeyValuePair<Guid, IList<object>>> c = sensorDataDictionary as ICollection<KeyValuePair<Guid, IList<object>>>;
-            c.CopyTo(array, arrayIndex);
-        }
+        public void CopyTo(KeyValuePair<Guid, IList<object>>[] array, int arrayIndex) => (sensorDataDictionary as ICollection<KeyValuePair<Guid, IList<object>>>).CopyTo(array, arrayIndex);
 
         /// <summary>
         /// Returns the number of items in the collection.
         /// </summary>
-        public int Count
-        {
-            get
-            {
-                return sensorDataDictionary.Count;
-            }
-        }
+        public int Count => sensorDataDictionary.Count;
 
         /// <summary>
         /// Gets a value that determines if the collection is read-only.
         /// </summary>
-        public bool IsReadOnly { get { return true; } }
+        public bool IsReadOnly => true;
 
         /// <summary>
         /// Removes a particular item from the collection.
         /// </summary>
         /// <param name="item">The item to remove.</param>
         /// <returns><b>true</b> if successful; otherwise <b>false</b></returns>
-        public bool Remove(KeyValuePair<Guid, IList<object>> item)
-        {
-            ICollection<KeyValuePair<Guid, IList<object>>> c = sensorDataDictionary as ICollection<KeyValuePair<Guid, IList<object>>>;            
-            return c.Remove(item);
-        }
+        public bool Remove(KeyValuePair<Guid, IList<object>> item) => (sensorDataDictionary as ICollection<KeyValuePair<Guid, IList<object>>>).Remove(item);
 
         #endregion
 
@@ -217,10 +169,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// Returns an enumerator for the collection.
         /// </summary>
         /// <returns>An enumerator.</returns>
-        public IEnumerator<KeyValuePair<Guid, IList<object>>> GetEnumerator()
-        {
-            return (sensorDataDictionary as IEnumerator<KeyValuePair<Guid, IList<object>>>);
-        }
+        public IEnumerator<KeyValuePair<Guid, IList<object>>> GetEnumerator() => sensorDataDictionary as IEnumerator<KeyValuePair<Guid, IList<object>>>;
 
         #endregion
 
@@ -229,10 +178,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// Returns an enumerator for the collection.
         /// </summary>
         /// <returns>An enumerator.</returns>
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return sensorDataDictionary as System.Collections.IEnumerator;
-        }
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => sensorDataDictionary as System.Collections.IEnumerator;
 
         #endregion
     }
