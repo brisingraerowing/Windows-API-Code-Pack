@@ -21,7 +21,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
     [ComImport]    
     [Guid(ShellIIDGuid.IPropertyStoreCapabilities)]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    interface IPropertyStoreCapabilities
+   public interface IPropertyStoreCapabilities
     {
         HResult IsPropertyWritable([In]ref PropertyKey propertyKey);
     }
@@ -32,7 +32,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
     [ComImport]
     [Guid(ShellIIDGuid.IPropertyStoreCache)]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    interface IPropertyStoreCache
+    public interface IPropertyStoreCache
     {
         /// <summary>
         /// Gets the state of a property stored in the cache

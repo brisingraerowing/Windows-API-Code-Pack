@@ -167,7 +167,9 @@
   <ItemGroup>
     <Compile Include="Common\EventHandlerExtensionMethods.cs" />
     <Compile Include="Common\FileOperation.cs" />
+    <Compile Include="Common\ShellItemArray.cs" />
     <Compile Include="Common\ShellObjectCollection.cs" />
+    <Compile Include="Common\ShellSearchFolder.cs" />
     <Compile Include="Controls\CommandLinkWinforms.cs">
       <SubType>Component</SubType>
     </Compile>
