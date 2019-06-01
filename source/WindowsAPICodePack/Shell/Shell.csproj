@@ -133,14 +133,19 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Shell.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CustomMarshalers" />
-    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Core\bin\Debug\Microsoft.WindowsAPICodePack.dll</HintPath>
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.3.0, Culture=neutral, PublicKeyToken=36e1beb1f73d5bc6, processorArchitecture=MSIL">
+      <HintPath>..\packages\WinCopies.WindowsAPICodePack.1.1.3\lib\net48\Microsoft.WindowsAPICodePack.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.WindowsAPICodePack.Win32Native">
-      <HintPath>..\Win32Native\bin\Debug\Microsoft.WindowsAPICodePack.Win32Native.dll</HintPath>
+    <Reference Include="Microsoft.WindowsAPICodePack.Win32Native, Version=1.0.0.0, Culture=neutral, PublicKeyToken=83ecd65d6ddba0f8, processorArchitecture=MSIL">
+      <HintPath>..\packages\WinCopies.WindowsAPICodePack.Win32Native.1.0.0\lib\net48\Microsoft.WindowsAPICodePack.Win32Native.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
@@ -267,6 +272,9 @@
     <None Include="Design\ShellThumbnailClassDiagram.cd" />
     <None Include="Design\ShellObjects.cd" />
     <None Include="ExplorerBrowser\ExplorerBrowserDiagram.cd" />
+    <None Include="package.nuspec" />
+    <None Include="packages.config" />
+    <None Include="Shell.snk" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\CommandLinkWPF.xaml">
