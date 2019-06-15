@@ -128,6 +128,7 @@
     <Compile Include="AppRestartRecovery\ApplicationRestartRecoveryManager.cs" />
     <Compile Include="AppRestartRecovery\RecoverySettings.cs" />
     <Compile Include="AppRestartRecovery\RestartSettings.cs" />
+    <Compile Include="Clipboard.cs" />
     <Compile Include="Interop\Dialogs\TaskDialogs\NativeTaskDialog.cs" />
     <Compile Include="PowerManagement\PowerManagerException.cs" />
     <Compile Include="Dialogs\Common\DialogControl.cs" />

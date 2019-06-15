@@ -58,6 +58,7 @@
     <Compile Include="Core\AppRestartRecovery\AppRestartRecoveryNativeMethods.cs" />
     <Compile Include="Core\AppRestartRecovery\RecoveryData.cs" />
     <Compile Include="Core\AppRestartRecovery\RestartRestrictions.cs" />
+    <Compile Include="Core\Clipboard\ClipboardNativeMethods.cs" />
     <Compile Include="Core\CoreErrorHelper.cs" />
     <Compile Include="Core\CoreHelpers.cs" />
     <Compile Include="Core\CoreNativeMethods.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Core\PropertySystem\PropertyKey.cs" />
     <Compile Include="Core\PropertySystem\PropVariant.cs" />
     <Compile Include="Core\PropertySystem\PropVariantNativeMethods.cs" />
+    <Compile Include="Core\Clipboard\StandardClipboardFormat.cs" />
     <Compile Include="ExtendedLinguisticServices\Win32NativeMethods.cs" />
     <Compile Include="ExtendedLinguisticServices\Win32Structs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -167,6 +169,7 @@
     </Compile>
     <Compile Include="Shell\ShellObjectWatcher\ShellObjectWatcherEnums.cs" />
     <Compile Include="Shell\ShellObjectWatcher\ShellObjectWatcherNativeMethods.cs" />
+    <Compile Include="Shell\SingleInstance\SingleInstanceNativeMethods.cs" />
     <Compile Include="Shell\StockIcons\StockIconEnums.cs" />
     <Compile Include="Shell\StockIcons\StockIconsNativeMethods.cs" />
     <Compile Include="Shell\Taskbar\TabbedThumbnailNativeMethods.cs" />
