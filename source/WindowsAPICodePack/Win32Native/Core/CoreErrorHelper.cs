@@ -81,7 +81,27 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Core
 
         E_OUTOFMEMORY = unchecked((int)0x8007000E),
 
-        E_INVALIDARG = unchecked((int)0x80070057)
+        E_INVALIDARG = unchecked((int)0x80070057),
+
+        /// <summary>
+        /// OpenClipboard Failed
+        /// </summary>
+        CLIPBRD_E_CANT_OPEN = unchecked((int)0x800401D0),
+
+        /// <summary>
+        /// EmptyClipboard Failed
+        /// </summary>
+        CLIPBRD_E_CANT_EMPTY = unchecked((int)0x800401D1),
+
+        /// <summary>
+        /// CloseClipboard Failed
+        /// </summary>
+        CLIPBRD_E_CANT_CLOSE = unchecked((int)0x800401D4),
+
+        /// <summary>
+        /// SetClipboard Failed
+        /// </summary>
+        CLIPBRD_E_CANT_SET = unchecked((int)0x800401D2)
     }
 
     // todo: to add the other codes

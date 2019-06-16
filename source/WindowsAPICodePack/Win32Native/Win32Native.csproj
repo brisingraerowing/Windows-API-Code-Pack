@@ -170,6 +170,7 @@
     <Compile Include="Shell\ShellObjectWatcher\ShellObjectWatcherEnums.cs" />
     <Compile Include="Shell\ShellObjectWatcher\ShellObjectWatcherNativeMethods.cs" />
     <Compile Include="Shell\SingleInstance\SingleInstanceNativeMethods.cs" />
+    <Compile Include="Shell\SingleInstance\WM.cs" />
     <Compile Include="Shell\StockIcons\StockIconEnums.cs" />
     <Compile Include="Shell\StockIcons\StockIconsNativeMethods.cs" />
     <Compile Include="Shell\Taskbar\TabbedThumbnailNativeMethods.cs" />

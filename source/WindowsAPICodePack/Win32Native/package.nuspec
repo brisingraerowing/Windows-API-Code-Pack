@@ -4,7 +4,7 @@
     <!--*-->
     <id>WinCopies.WindowsAPICodePack.Win32Native</id>
     <!--*-->
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <title>Microsoft.WindowsAPICodePack.Win32Native</title>
     <!--*-->
     <authors>Microsoft, Aybe, Pierre Sprimont</authors>
@@ -16,15 +16,17 @@
 -->
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <!--*-->
-    <description>WindowsAPICodePack Win32 Interop</description>
+    <description>WindowsAPICodePack Win32 and COM Interop</description>
     <!--*-->
     <releaseNotes>System requirements:
 .NET Framework version: 4.8
 OS: Windows
 New in this version:
-Added some features and updated project to the new .NET and code specifications
+- Clipboard APIs update
+- WM enum is now obsolete
 Project link: https://github.com/pierresprim/Windows-API-Code-Pack
-License link: https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/LICENCE</releaseNotes>
+License link: https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/LICENCE
+</releaseNotes>
     <copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2019</copyright>
     <tags>
     </tags>

@@ -24,19 +24,22 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Core.Clipboard
         public static extern IntPtr GetOpenClipboardWindow();
 
         [DllImport("user32.dll", SetLastError = true)]
+        public static extern IntPtr GetClipboardOwner();
+
+        [DllImport("user32.dll", SetLastError = true)]
         public static extern int EnumClipboardFormats(int format);
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern bool EmptyClipboard();
 
         [DllImport("ole32.dll")]
-        public static extern uint OleGetClipboard([MarshalAs(UnmanagedType.IUnknown)]out object ppDataObj);
+        public static extern HResult OleGetClipboard([MarshalAs(UnmanagedType.IUnknown)]out object ppDataObj);
 
         [DllImport("ole32.dll")]
-        public static extern uint OleSetClipboard(IDataObject pDataObj);
+        public static extern HResult OleSetClipboard(IDataObject pDataObj);
 
         [DllImport("ole32.dll")]
-        public static extern int OleFlushClipboard();
+        public static extern HResult OleFlushClipboard();
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern bool CloseClipboard();

@@ -30,7 +30,7 @@ License link: https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/L
     <tags>
     </tags>
     <dependencies>
-      <dependency id="WinCopies.WindowsAPICodePack.Win32Native" version="1.0" />
+      <dependency id="WinCopies.WindowsAPICodePack.Win32Native" version="1.1" />
     </dependencies>
   </metadata>
 </package>
