@@ -452,7 +452,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 Marshal.ThrowExceptionForHR((int)hr);
 
-            return new FileInfo() { Icon = Icon.FromHandle(psfi.hIcon), IconIndex = psfi.iIcon, Attributes = psfi.dwAttributes, DisplayName = psfi.szDisplayName, TypeName = psfi.szTypeName };
+            var icon = (Icon)Icon.FromHandle(psfi.hIcon).Clone();
+
+            _ = CoreNativeMethods.DestroyIcon(psfi.hIcon);
+
+            return new FileInfo() { Icon = icon, IconIndex = psfi.iIcon, Attributes = psfi.dwAttributes, DisplayName = psfi.szDisplayName, TypeName = psfi.szTypeName };
 
         }
 
@@ -482,7 +486,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             exeType = options.HasFlag(GetFileInfoOptions.ExeType) ? (int)hr : 0;
 
-            return new FileInfo() { Icon = Icon.FromHandle(psfi.hIcon), IconIndex = psfi.iIcon, Attributes = psfi.dwAttributes, DisplayName = psfi.szDisplayName, TypeName = psfi.szTypeName };
+            var icon = (Icon)Icon.FromHandle(psfi.hIcon).Clone();
+
+            _ = CoreNativeMethods.DestroyIcon(psfi.hIcon);
+
+            return new FileInfo() { Icon = icon, IconIndex = psfi.iIcon, Attributes = psfi.dwAttributes, DisplayName = psfi.szDisplayName, TypeName = psfi.szTypeName };
 
         }
 

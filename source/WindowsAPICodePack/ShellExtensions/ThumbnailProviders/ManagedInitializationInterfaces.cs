@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System.IO;
 using Microsoft.WindowsAPICodePack.Shell;
+using FileInfo = System.IO.FileInfo;
 
 namespace Microsoft.WindowsAPICodePack.ShellExtensions
 {
