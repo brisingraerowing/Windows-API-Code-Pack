@@ -152,8 +152,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// Gets this known folder's file attributes, 
         /// such as "read-only".
         /// </summary>
-        /// <value>A <see cref="System.IO.FileAttributes"/> value.</value>
-        public System.IO.FileAttributes FileAttributes => KnownFolderSettings.FileAttributes;
+        /// <value>A <see cref="Shell.FileAttributes"/> value.</value>
+        public FileAttributes FileAttributes => KnownFolderSettings.FileAttributes;
 
         /// <summary>
         /// Gets an value that describes this known folder's behaviors.

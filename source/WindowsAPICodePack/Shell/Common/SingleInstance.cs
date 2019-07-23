@@ -174,7 +174,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     {
                         using (TextReader reader = new StreamReader(cmdLinePath, System.Text.Encoding.Unicode))
 
-                            args = Microsoft.WindowsAPICodePack.Win32Native.Shell.SingleInstance. SingleInstanceNativeMethods.CommandLineToArgv(reader.ReadToEnd());
+                            args = Win32Native.Shell.SingleInstanceNativeMethods.CommandLineToArgv(reader.ReadToEnd());
 
                         File.Delete(cmdLinePath);
                     }

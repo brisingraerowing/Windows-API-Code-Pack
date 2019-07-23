@@ -12,6 +12,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
+using FileAttributes = Microsoft.WindowsAPICodePack.Shell.FileAttributes;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {

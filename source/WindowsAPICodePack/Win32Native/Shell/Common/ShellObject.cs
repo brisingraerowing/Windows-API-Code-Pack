@@ -257,13 +257,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     NativeShellItem.GetAttributes(ShellNativeMethods.ShellFileGetAttributesOptions.Link, out ShellNativeMethods.ShellFileGetAttributesOptions sfgao);
                     return (sfgao & ShellNativeMethods.ShellFileGetAttributesOptions.Link) != 0;
                 }
-                catch (FileNotFoundException)
+                catch (Exception ex) when (ex is FileNotFoundException || ex is NullReferenceException /*NativeShellItem is null*/)
                 {
-                    return false;
-                }
-                catch (NullReferenceException)
-                {
-                    // NativeShellItem is null
                     return false;
                 }
             }
@@ -281,13 +276,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     NativeShellItem.GetAttributes(ShellNativeMethods.ShellFileGetAttributesOptions.FileSystem, out ShellNativeMethods.ShellFileGetAttributesOptions sfgao);
                     return (sfgao & ShellNativeMethods.ShellFileGetAttributesOptions.FileSystem) != 0;
                 }
-                catch (FileNotFoundException)
+                catch (Exception ex) when (ex is FileNotFoundException || ex is NullReferenceException /*NativeShellItem is null*/)
                 {
-                    return false;
-                }
-                catch (NullReferenceException)
-                {
-                    // NativeShellItem is null
                     return false;
                 }
             }

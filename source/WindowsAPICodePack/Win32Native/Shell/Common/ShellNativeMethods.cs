@@ -2,9 +2,13 @@
 
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using System;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
+using static Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellNativeMethods;
+using FileAttributes = Microsoft.WindowsAPICodePack.Shell.FileAttributes;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -34,6 +38,282 @@ namespace Microsoft.WindowsAPICodePack.Shell
         IntPtr hDestinationFile,
         IntPtr lpData);
 
+    [Flags]
+    public enum FileOpenOptions
+    {
+        OverwritePrompt = 0x00000002,
+        StrictFileTypes = 0x00000004,
+        NoChangeDirectory = 0x00000008,
+        PickFolders = 0x00000020,
+        // Ensure that items returned are filesystem items.
+        ForceFilesystem = 0x00000040,
+        // Allow choosing items that have no storage.
+        AllNonStorageItems = 0x00000080,
+        NoValidate = 0x00000100,
+        AllowMultiSelect = 0x00000200,
+        PathMustExist = 0x00000800,
+        FileMustExist = 0x00001000,
+        CreatePrompt = 0x00002000,
+        ShareAware = 0x00004000,
+        NoReadOnlyReturn = 0x00008000,
+        NoTestFileCreate = 0x00010000,
+        HideMruPlaces = 0x00020000,
+        HidePinnedPlaces = 0x00040000,
+        NoDereferenceLinks = 0x00100000,
+        DontAddToRecent = 0x02000000,
+        ForceShowHidden = 0x10000000,
+        DefaultNoMiniMode = 0x20000000
+    }
+
+    public enum ControlState
+    {
+        Inactive = 0x00000000,
+        Enable = 0x00000001,
+        Visible = 0x00000002
+    }
+
+    public enum ShellItemDesignNameOptions
+    {
+        Normal = 0x00000000,           // SIGDN_NORMAL
+        ParentRelativeParsing = unchecked((int)0x80018001),   // SIGDN_INFOLDER | SIGDN_FORPARSING
+        DesktopAbsoluteParsing = unchecked((int)0x80028000),  // SIGDN_FORPARSING
+        ParentRelativeEditing = unchecked((int)0x80031001),   // SIGDN_INFOLDER | SIGDN_FOREDITING
+        DesktopAbsoluteEditing = unchecked((int)0x8004c000),  // SIGDN_FORPARSING | SIGDN_FORADDRESSBAR
+        FileSystemPath = unchecked((int)0x80058000),             // SIGDN_FORPARSING
+        Url = unchecked((int)0x80068000),                     // SIGDN_FORPARSING
+        ParentRelativeForAddressBar = unchecked((int)0x8007c001),     // SIGDN_INFOLDER | SIGDN_FORPARSING | SIGDN_FORADDRESSBAR
+        ParentRelative = unchecked((int)0x80080001)           // SIGDN_INFOLDER
+    }
+
+    public enum FileDialogEventShareViolationResponse
+    {
+        Default = 0x00000000,
+        Accept = 0x00000001,
+        Refuse = 0x00000002
+    }
+
+    public enum FileDialogEventOverwriteResponse
+    {
+        Default = 0x00000000,
+        Accept = 0x00000001,
+        Refuse = 0x00000002
+    }
+
+    public enum FileDialogAddPlacement
+    {
+        Bottom = 0x00000000,
+        Top = 0x00000001,
+    }
+
+    /// <summary>
+    /// Provides attributes for files and directories.
+    /// </summary>
+    [Flags]
+    [ComVisible(true)]
+    [System.Serializable]
+    public enum FileAttributes
+    {
+        /// <summary>
+        /// The file is read-only. <see cref="ReadOnly"/> is supported on Windows, Linux, and macOS. On Linux and macOS, changing the <see cref="ReadOnly"/> flag is a permissions operation.
+        /// </summary>
+        ReadOnly = 1,
+
+        /// <summary>
+        /// The file is hidden, and thus is not included in an ordinary directory listing. <see cref="Hidden"/> is supported on Windows, Linux, and macOS.
+        /// </summary>
+        Hidden = 2,
+
+        /// <summary>
+        /// The file is a system file. That is, the file is part of the operating system or is used exclusively by the operating system.
+        /// </summary>
+        System = 4,
+
+        /// <summary>
+        /// The file is a directory. <see cref="Directory"/> is supported on Windows, Linux, and macOS.
+        /// </summary>
+        Directory = 16,
+
+        /// <summary>
+        /// This file is marked to be included in incremental backup operation. Windows sets this attribute whenever the file is modified, and backup software should clear it when processing the file during incremental backup.
+        /// </summary>
+        Archive = 32,
+
+        /// <summary>
+        /// Reserved for future use.
+        /// </summary>
+        Device = 64,
+
+        /// <summary>
+        /// The file is a standard file that has no special attributes. This attribute is valid only if it is used alone. <see cref="Normal"/> is supported on Windows, Linux, and macOS.
+        /// </summary>
+        Normal = 128,
+
+        /// <summary>
+        /// The file is temporary. A temporary file contains data that is needed while an application is executing but is not needed after the application is finished. File systems try to keep all the data in memory for quicker access rather than flushing the data back to mass storage. A temporary file should be deleted by the application as soon as it is no longer needed.
+        /// </summary>
+        Temporary = 256,
+
+        /// <summary>
+        /// The file is a sparse file. Sparse files are typically large files whose data consists of mostly zeros.
+        /// </summary>
+        SparseFile = 512,
+
+        /// <summary>
+        /// The file contains a reparse point, which is a block of user-defined data associated with a file or a directory. <see cref="ReparsePoint"/> is supported on Windows, Linux, and macOS.
+        /// </summary>
+        ReparsePoint = 1024,
+
+        /// <summary>
+        /// The file is compressed.
+        /// </summary>
+        Compressed = 2048,
+
+        /// <summary>
+        /// The file is offline. The data of the file is not immediately available.
+        /// </summary>
+        Offline = 4096,
+
+        /// <summary>
+        /// The file will not be indexed by the operating system's content indexing service.
+        /// </summary>
+        NotContentIndexed = 8192,
+
+        /// <summary>
+        /// The file or directory is encrypted. For a file, this means that all data in the file is encrypted. For a directory, this means that encryption is the default for newly created files and directories.
+        /// </summary>
+        Encrypted = 16384,
+
+        /// <summary>
+        /// The file or directory includes data integrity support. When this value is applied to a file, all data streams in the file have integrity support. When this value is applied to a directory, all new files and subdirectories within that directory, by default, include integrity support.
+        /// </summary>
+        IntegrityStream = 32768,
+
+        /// <summary>
+        /// This value is reserved for system use.
+        /// </summary>
+        Virtual = 65536,
+
+        /// <summary>
+        /// The file or directory is excluded from the data integrity scan. When this value is applied to a directory, by default, all new files and subdirectories within that directory are excluded from data integrity.
+        /// </summary>
+        NoScrubData = 131072,
+
+        /// <summary>
+        /// This attribute only appears in directory enumeration classes (FILE_DIRECTORY_INFORMATION, FILE_BOTH_DIR_INFORMATION, etc.). When this attribute is set, it means that the file or directory has no physical representation on the local system; the item is virtual. Opening the item will be more expensive than normal, e.g. it will cause at least some of it to be fetched from a remote store.
+        /// </summary>
+        RecallOnOpen = 262144,
+
+        Pinned = 524288,
+
+        Unpinned = 1048576,
+
+        /// <summary>
+        /// Same as <see cref="RecallOnOpen"/>
+        /// </summary>
+        EA = RecallOnOpen,
+
+        /// <summary>
+        /// When this attribute is set, it means that the file or directory is not fully present locally. For a file that means that not all of its data is on local storage (e.g. it may be sparse with some data still in remote storage). For a directory it means that some of the directory contents are being virtualized from another location. Reading the file / enumerating the directory will be more expensive than normal, e.g. it will cause at least some of the file/directory content to be fetched from a remote store. Only kernel-mode callers can set this bit.
+        /// </summary>
+        RecallOnDataAccess = 4194304
+    }
+
+    [Flags]
+    public enum GetFileInfoOptions : uint
+    {
+
+        /// <summary>
+        /// Apply the appropriate overlays to the file's icon. The <see cref="Icon"/> flag must also be set. <b>Windows ME or higher.</b>
+        /// </summary>
+        AddOverlays = 0x000000020,
+
+        /// <summary>
+        /// Modify <see cref="Attributes"/> to indicate that the <see cref="SHFILEINFO.dwAttributes"/> member of the <see cref="SHFILEINFO"/> structure at <b>psfi</b> contains the specific attributes that are desired. These attributes are passed to <see cref="IShellFolder.GetAttributesOf"/>. If this flag is not specified, 0xFFFFFFFF is passed to <see cref="IShellFolder.GetAttributesOf"/>, requesting all attributes. This flag cannot be specified with the <see cref="Icon"/> flag.
+        /// </summary>
+        AttributesSpecified = 0x000020000,
+
+        /// <summary>
+        /// Retrieve the item attributes. The attributes are copied to the <see cref="SHFILEINFO.dwAttributes"/> member of the structure specified in the <b>psfi</b> parameter. These are the same attributes that are obtained from <see cref="IShellFolder.GetAttributesOf"/>.
+        /// </summary>
+        Attributes = 0x000000800,
+
+        /// <summary>
+        /// Retrieve the display name for the file, which is the name as it appears in Windows Explorer. The name is copied to the <see cref="SHFILEINFO.szDisplayName"/> member of the structure specified in <b>psfi</b>. The returned display name uses the long file name, if there is one, rather than the 8.3 form of the file name. Note that the display name can be affected by settings such as whether extensions are shown.
+        /// </summary>
+        DisplayName = 0x000000200,
+
+        /// <summary>
+        /// Retrieve the type of the executable file if <b>pszPath</b> identifies an executable file. The information is packed into the return value. This flag cannot be specified with any other flags.
+        /// </summary>
+        ExeType = 0x000002000,
+
+        /// <summary>
+        /// Retrieve the handle to the icon that represents the file and the index of the icon within the system image list. The handle is copied to the <see cref="SHFILEINFO.hIcon"/> member of the structure specified by <b>psfi</b>, and the index is copied to the <see cref="SHFILEINFO.iIcon"/> member.
+        /// </summary>
+        Icon = 0x000000100,
+
+        /// <summary>
+        /// Retrieve the name of the file that contains the icon representing the file specified by <b>pszPath</b>, as returned by the <see cref="IExtractIcon.GetIconLocation"/> method of the file's icon handler. Also retrieve the icon index within that file. The name of the file containing the icon is copied to the <see cref="SHFILEINFO.szDisplayName"/> member of the structure specified by <b>psfi</b>. The icon's index is copied to that structure's <see cref="SHFILEINFO.iIcon"/> member.
+        /// </summary>
+        IconLocation = 0x000001000,
+
+        /// <summary>
+        /// Modify <see cref="Icon"/>, causing the function to retrieve the file's large icon. The <see cref="Icon"/> flag must also be set.
+        /// </summary>
+        LargeIcon = 0x000000000,
+
+        /// <summary>
+        /// Modify <see cref="Icon"/>, causing the function to add the link overlay to the file's icon. The <see cref="Icon"/> flag must also be set.
+        /// </summary>
+        LinkOverlay = 0x000008000,
+
+        /// <summary>
+        /// Modify <see cref="Icon"/>, causing the function to retrieve the file's open icon. Also used to modify <see cref="SysIconIndex"/>, causing the function to return the handle to the system image list that contains the file's small open icon. A container object displays an open icon to indicate that the container is open. The <see cref="Icon"/> and/or <see cref="SysIconIndex"/> flag must also be set.
+        /// </summary>
+        OpenIcon = 0x000000002,
+
+        /// <summary>
+        /// Return the index of the overlay icon. The value of the overlay index is returned in the upper eight bits of the <see cref="SHFILEINFO.iIcon"/> member of the structure specified by <b>psfi</b>. This flag requires that the <see cref="Icon"/> be set as well. <b>Windows ME or higher.</b>
+        /// </summary>
+        OverlayIndex = 0x000000040,
+
+        /// <summary>
+        /// Indicate that <b>pszPath</b> is the address of an <see cref="ITEMIDLIST"/> structure rather than a path name.
+        /// </summary>
+        PIDL = 0x000000008,
+
+        /// <summary>
+        /// Modify <see cref="Icon"/>, causing the function to blend the file's icon with the system highlight color. The <see cref="Icon"/> flag must also be set.
+        /// </summary>
+        Selected = 0x000010000,
+
+        /// <summary>
+        /// Modify <see cref="Icon"/>, causing the function to retrieve a Shell-sized icon. If this flag is not specified the function sizes the icon according to the system metric values. The <see cref="Icon"/> flag must also be set.
+        /// </summary>
+        ShelliconSize = 0x000000004,
+
+        /// <summary>
+        /// Modify <see cref="Icon"/>, causing the function to retrieve the file's small icon. Also used to modify <see cref="SysIconIndex"/>, causing the function to return the handle to the system image list that contains small icon images. The <see cref="Icon"/> and/or <see cref="SysIconIndex"/> flag must also be set.
+        /// </summary>
+        SmallIcon = 0x000000001,
+
+        /// <summary>
+        /// Retrieve the index of a system image list icon. If successful, the index is copied to the <see cref="SHFILEINFO.iIcon"/> member of <b>psfi</b>. The return value is a handle to the system image list. Only those images whose indices are successfully copied to iIcon are valid. Attempting to access other images in the system image list will result in undefined behavior.
+        /// </summary>
+        SysIconIndex = 0x000004000,
+
+        /// <summary>
+        /// Retrieve the string that describes the file's type. The string is copied to the <see cref="SHFILEINFO.szTypeName"/> member of the structure specified in <b>psfi</b>.
+        /// </summary>
+        TypeName = 0x000000400,
+
+        /// <summary>
+        /// Indicates that the function should not attempt to access the file specified by <b>pszPath</b>. Rather, it should act as if the file specified by <b>pszPath</b> exists with the file attributes passed in <b>dwFileAttributes</b>. This flag cannot be combined with the <see cref="Attributes"/>, <see cref="ExeType"/>, or <see cref="PIDL"/> flags.
+        /// </summary>
+        UseFileAttributes = 0x000000010
+
+    }
+
 }
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
@@ -43,6 +323,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         #region Shell Enums
 
         [Flags]
+        [Obsolete("Use the same enum of the Microsoft.WindowsAPICodePack.Shell namespace instead.")]
         public enum FileOpenOptions
         {
             OverwritePrompt = 0x00000002,
@@ -68,12 +349,16 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
             ForceShowHidden = 0x10000000,
             DefaultNoMiniMode = 0x20000000
         }
+
+        [Obsolete("Use the same enum of the Microsoft.WindowsAPICodePack.Shell namespace instead.")]
         public enum ControlState
         {
             Inactive = 0x00000000,
             Enable = 0x00000001,
             Visible = 0x00000002
         }
+
+        [Obsolete("Use the same enum of the Microsoft.WindowsAPICodePack.Shell namespace instead.")]
         public enum ShellItemDesignNameOptions
         {
             Normal = 0x00000000,           // SIGDN_NORMAL
@@ -229,18 +514,23 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
             AllItems = 0x00004000
         }
 
+        [Obsolete("Use the same enum of the Microsoft.WindowsAPICodePack.Shell namespace instead.")]
         public enum FileDialogEventShareViolationResponse
         {
             Default = 0x00000000,
             Accept = 0x00000001,
             Refuse = 0x00000002
         }
+
+        [Obsolete("Use the same enum of the Microsoft.WindowsAPICodePack.Shell namespace instead.")]
         public enum FileDialogEventOverwriteResponse
         {
             Default = 0x00000000,
             Accept = 0x00000001,
             Refuse = 0x00000002
         }
+
+        [Obsolete("Use the same enum of the Microsoft.WindowsAPICodePack.Shell namespace instead.")]
         public enum FileDialogAddPlacement
         {
             Bottom = 0x00000000,
@@ -516,7 +806,44 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         public struct ThumbnailId
         {
             [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 16)]
-            byte rgbKey;
+            public byte rgbKey;
+        }
+
+        /// <summary>
+        /// Contains information about a file object.
+        /// </summary>
+        /// <remarks>This structure is used with the <see cref="SHGetFileInfo"/> function.</remarks>
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+        public struct SHFILEINFO
+        {
+
+            /// <summary>
+            /// A handle to the icon that represents the file. You are responsible for destroying this handle with DestroyIcon when you no longer need it.
+            /// </summary>
+            public IntPtr hIcon;
+
+            /// <summary>
+            /// The index of the icon image within the system image list.
+            /// </summary>
+            public int iIcon;
+
+            /// <summary>
+            /// An array of values that indicates the attributes of the file object. For information about these values, see the <see cref="IShellFolder.GetAttributesOf"/> method.
+            /// </summary>
+            public ShellFileGetAttributesOptions dwAttributes;
+
+            /// <summary>
+            /// A string that contains the name of the file as it appears in the Windows Shell, or the path and file name of the file that contains the icon representing the file.
+            /// </summary>
+            [MarshalAs(UnmanagedType.BStr)]
+            public string szDisplayName;
+
+            /// <summary>
+            /// A string that describes the type of file.
+            /// </summary>
+            [MarshalAs(UnmanagedType.BStr)]
+            public string szTypeName;
+
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
@@ -530,6 +857,33 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         #endregion
 
         #region Shell Helper Methods
+
+        /// <summary>
+        /// Retrieves information about an object in the file system, such as a file, folder, directory, or drive root.
+        /// </summary>
+        /// <param name="pszPath"><para>A string of maximum length <see cref="MaxPath"/> that contains the path and file name. Both absolute and relative paths are valid.</para>
+        /// <para>If the <b>uFlags</b> parameter includes the <see cref="GetFileInfoOptions.PIDL"/> flag, this parameter must be the address of an ITEMIDLIST(PIDL) structure that contains the list of item identifiers that uniquely identifies the file within the Shell's namespace. The PIDL must be a fully qualified PIDL. Relative PIDLs are not allowed.</para>
+        /// <para>If the <b>uFlags</b> parameter includes the <see cref="GetFileInfoOptions.UseFileAttributes"/> flag, this parameter does not have to be a valid file name. The function will proceed as if the file exists with the specified name and with the file attributes passed in the <b>dwFileAttributes</b> parameter. This allows you to obtain information about a file type by passing just the extension for <b>pszPath</b> and passing <see cref="FileAttributes.Normal"/> in <b>dwFileAttributes</b>.</para>
+        /// <para>This string can use either short (the 8.3 form) or long file names.</para></param>
+        /// <param name="dwFileAttributes">A combination of one or more <see cref="FileAttributes"/> flags. If <b>uFlags</b> does not include the <see cref="GetFileInfoOptions.UseFileAttributes"/> flag, this parameter is ignored.</param>
+        /// <param name="psfi">A <see cref="SHFILEINFO"/> structure to receive the file information.</param>
+        /// <param name="cbFileInfo">The size, in bytes, of the <see cref="SHFILEINFO"/> structure pointed to by the <b>psfi</b> parameter.</param>
+        /// <param name="uFlags">The flags that specify the file information to retrieve. This parameter can be a combination of the values of the <see cref="GetFileInfoOptions"/> enum.</param>
+        /// <returns><para>Returns a value whose meaning depends on the <b>uFlags</b> parameter.</para>
+        /// <para>If <b>uFlags</b> does not contain <see cref="GetFileInfoOptions.ExeType"/> or <see cref="GetFileInfoOptions.SysIconIndex"/>, the return value is nonzero if successful, or zero otherwise.</para>
+        /// <para>If <b>uFlags</b> contains the <see cref="GetFileInfoOptions.ExeType"/> flag, the return value specifies the type of the executable file. It will be one of the following values.</para>
+        /// Return code                                    | Description
+        /// -----------------------------------------------+------------------------------------------
+        /// 0                                              | Nonexecutable file or an error condition.
+        /// LOWORD = NE or PE and HIWORD = Windows version | Windows application.
+        /// LOWORD = MZ and HIWORD = 0                     | MS-DOS.exe or .com file
+        /// LOWORD = PE and HIWORD = 0                     | Console application or.bat file</returns>
+        /// <remarks><para>You should call this function from a background thread. Failure to do so could cause the UI to stop responding.</para>
+        /// <para>If <see cref="SHGetFileInfo"/> returns an icon handle in the <b>hIcon</b> member of the <see cref="SHFILEINFO"/> structure pointed to by <b>psfi</b>, you are responsible for freeing it with <see cref="CoreNativeMethods.DestroyIcon"/> when you no longer need it.</para>
+        /// <para>Note: Once you have a handle to a system image list, you can use the <b>Image List API</b> to manipulate it like any other image list. Because system image lists are created on a per-process basis, you should treat them as read-only objects. Writing to a system image list may overwrite or delete one of the system images, making it unavailable or incorrect for the remainder of the process.</para>
+        /// <para>When you use the <see cref="GetFileInfoOptions.ExeType"/> flag with a Windows application, the Windows version of the executable is given in the HIWORD of the return value. This version is returned as a hexadecimal value. For details on equating this value with a specific Windows version, see <a href="https://docs.microsoft.com/windows/desktop/WinProg/using-the-windows-headers">Using the Windows Headers</a>.</para></remarks>
+        [DllImport("shell32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern HResult SHGetFileInfo(string pszPath, FileAttributes dwFileAttributes, out SHFILEINFO psfi, uint cbFileInfo, GetFileInfoOptions uFlags);
 
         [DllImport("shell32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
         public static extern int SHCreateShellItemArrayFromDataObject(

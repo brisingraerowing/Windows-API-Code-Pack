@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -17,6 +18,45 @@ using static Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellNativeMethods;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
+
+    /// <summary>
+    /// Contains information about a file object.
+    /// </summary>
+    /// <remarks>This structure is used with the <see cref="FileOperation.GetFileInfo(string, FileAttributes, GetFileInfoOptions)"/> function.</remarks>
+    public struct FileInfo : IDisposable
+    {
+
+        /// <summary>
+        /// Gets or sets the icon that represents the file.
+        /// </summary>
+        public Icon Icon { get; set; }
+
+        /// <summary>
+        /// Gets or sets the index of the icon image within the system image list.
+        /// </summary>
+        public int IconIndex { get; set; }
+
+        /// <summary>
+        /// Gets or sets an array of values that indicates the attributes of the file object. For information about these values, see the <see cref="IShellFolder.GetAttributesOf"/> method.
+        /// </summary>
+        public ShellFileGetAttributesOptions Attributes { get; set; }
+
+        /// <summary>
+        /// Gets or sets a string that contains the name of the file as it appears in the Windows Shell, or the path and file name of the file that contains the icon representing the file.
+        /// </summary>
+        public string DisplayName { get; set; }
+
+        /// <summary>
+        /// Gets or sets a string that describes the type of file.
+        /// </summary>
+        public string TypeName { get; set; }
+
+        /// <summary>
+        /// Calls the <see cref="Icon.Dispose"/> method from the <see cref="Icon"/> property.
+        /// </summary>
+        public void Dispose() => Icon.Dispose();
+
+    }
     /// <summary>
     /// Provides methods to perform file system operations.
     /// </summary>
@@ -171,13 +211,15 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public void SetProgressMessage(string pszMessage)
         {
 
-            if (disposed) throw new ObjectDisposedException(nameof(FileOperation));
+            //if (disposed) throw new ObjectDisposedException(nameof(FileOperation));
 
-            HResult hr = fileOperation.SetProgressMessage(pszMessage);
+            //HResult hr = fileOperation.SetProgressMessage(pszMessage);
 
-            if (!CoreErrorHelper.Succeeded(hr))
+            //if (!CoreErrorHelper.Succeeded(hr))
 
-                Marshal.ThrowExceptionForHR((int)hr);
+            //    Marshal.ThrowExceptionForHR((int)hr);
+
+            throw new NotImplementedException();
 
         }
 
@@ -387,6 +429,63 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         }
 
+        /// <summary>
+        /// Retrieves information about an object in the file system, such as a file, folder, directory, or drive root.
+        /// </summary>
+        /// <param name="path"><para>A string of maximum length <see cref="MaxPath"/> that contains the path and file name. Both absolute and relative paths are valid.</para>
+        /// <para>If the <b>uFlags</b> parameter includes the <see cref="GetFileInfoOptions.PIDL"/> flag, this parameter must be the address of an ITEMIDLIST(PIDL) structure that contains the list of item identifiers that uniquely identifies the file within the Shell's namespace. The PIDL must be a fully qualified PIDL. Relative PIDLs are not allowed.</para>
+        /// <para>If the <b>uFlags</b> parameter includes the <see cref="GetFileInfoOptions.UseFileAttributes"/> flag, this parameter does not have to be a valid file name. The function will proceed as if the file exists with the specified name and with the file attributes passed in the <b>dwFileAttributes</b> parameter. This allows you to obtain information about a file type by passing just the extension for <b>pszPath</b> and passing <see cref="FileAttributes.Normal"/> in <b>dwFileAttributes</b>.</para>
+        /// <para>This string can use either short (the 8.3 form) or long file names.</para></param>
+        /// <param name="fileAttributes">A combination of one or more <see cref="FileAttributes"/> flags. If <b>uFlags</b> does not include the <see cref="GetFileInfoOptions.UseFileAttributes"/> flag, this parameter is ignored.</param>
+        /// <param name="options">The flags that specify the file information to retrieve. This parameter can be a combination of the values of the <see cref="GetFileInfoOptions"/> enum.</param>
+        /// <returns>A <see cref="FileInfo"/> structure that contains the file information.</returns>
+        public static FileInfo GetFileInfo(string path, FileAttributes fileAttributes, GetFileInfoOptions options)
+        {
+
+#pragma warning disable IDE0059 // Initialized in the following call to SHGetFileInfo and used in the return statement.
+            var psfi = new SHFILEINFO();
+#pragma warning restore IDE0059 // Value assigned to variable is never used
+
+            HResult hr = SHGetFileInfo(path, fileAttributes, out psfi, (uint)Marshal.SizeOf(psfi), options);
+
+            if (!CoreErrorHelper.Succeeded(hr))
+
+                Marshal.ThrowExceptionForHR((int)hr);
+
+            return new FileInfo() { Icon = Icon.FromHandle(psfi.hIcon), IconIndex = psfi.iIcon, Attributes = psfi.dwAttributes, DisplayName = psfi.szDisplayName, TypeName = psfi.szTypeName };
+
+        }
+
+        /// <summary>
+        /// Retrieves information about an object in the file system, such as a file, folder, directory, or drive root and a value that indicates the exe type.
+        /// </summary>
+        /// <param name="path"><para>A string of maximum length <see cref="MaxPath"/> that contains the path and file name. Both absolute and relative paths are valid.</para>
+        /// <para>If the <b>uFlags</b> parameter includes the <see cref="GetFileInfoOptions.PIDL"/> flag, this parameter must be the address of an ITEMIDLIST(PIDL) structure that contains the list of item identifiers that uniquely identifies the file within the Shell's namespace. The PIDL must be a fully qualified PIDL. Relative PIDLs are not allowed.</para>
+        /// <para>If the <b>uFlags</b> parameter includes the <see cref="GetFileInfoOptions.UseFileAttributes"/> flag, this parameter does not have to be a valid file name. The function will proceed as if the file exists with the specified name and with the file attributes passed in the <b>dwFileAttributes</b> parameter. This allows you to obtain information about a file type by passing just the extension for <b>pszPath</b> and passing <see cref="FileAttributes.Normal"/> in <b>dwFileAttributes</b>.</para>
+        /// <para>This string can use either short (the 8.3 form) or long file names.</para></param>
+        /// <param name="fileAttributes">A combination of one or more <see cref="FileAttributes"/> flags. If <b>uFlags</b> does not include the <see cref="GetFileInfoOptions.UseFileAttributes"/> flag, this parameter is ignored.</param>
+        /// <param name="options">The flags that specify the file information to retrieve. This parameter can be a combination of the values of the <see cref="GetFileInfoOptions"/> enum.</param>
+        /// <param name="exeType">The exe type. In order to this method retrieves the exe type, you need to use the <see cref="GetFileInfoOptions.ExeType"/> flag in the <b>options</b> parameter.</param>
+        /// <returns>A <see cref="FileInfo"/> structure that contains the file information.</returns>
+        public static FileInfo GetFileInfo(string path, FileAttributes fileAttributes, GetFileInfoOptions options, out int exeType)
+        {
+
+#pragma warning disable IDE0059 // Initialized in the following call to SHGetFileInfo and used in the return statement.
+            var psfi = new SHFILEINFO();
+#pragma warning restore IDE0059 // Value assigned to variable is never used
+
+            HResult hr = SHGetFileInfo(path, fileAttributes, out psfi, (uint)Marshal.SizeOf(psfi), options);
+
+            if (!CoreErrorHelper.Succeeded(hr))
+
+                Marshal.ThrowExceptionForHR((int)hr);
+
+            exeType = options.HasFlag(GetFileInfoOptions.ExeType) ? (int)hr : 0;
+
+            return new FileInfo() { Icon = Icon.FromHandle(psfi.hIcon), IconIndex = psfi.iIcon, Attributes = psfi.dwAttributes, DisplayName = psfi.szDisplayName, TypeName = psfi.szTypeName };
+
+        }
+
         public static void CopyFile(string sourceFileName, string newFileName,
    CopyProgressRoutine progressRoutine, IntPtr data, ref bool cancel,
    CopyFileFlags copyFlags)
@@ -413,7 +512,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public static bool QueryRecycleBinInfo(string drivePath, out RecycleBinInfo recycleBinInfo)
         {
 
-            SHQUERYRBINFO rbInfo = new SHQUERYRBINFO
+            var rbInfo = new SHQUERYRBINFO
             {
                 cbSize = Marshal.SizeOf(typeof(SHQUERYRBINFO))
             };
