@@ -1,4 +1,4 @@
-Windows-API-Code-Pack-1.1.4
+Windows-API-Code-Pack-1.1.5
 ===========================
 
 README
