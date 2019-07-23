@@ -1,0 +1,23 @@
+06/16/2019
+
+Shell 1.1.2
+Added feature to create single-instance apps
+
+06/15/2019
+
+Win32Native 1.1.0
+Added features to interact with the system Clipboard and to create single-instance apps
+
+06/01/2019
+
+Shell 1.1.1
+Added some features to interact with file system
+
+Win32Native 1.0.0
+Moved some native Win32 and COM APIs to this new project
+
+02/01/2016
+ 
+Core 1.1.2
+- TaskDialog icons were visible only when defined in Opened event
+- TaskDialog custom/hyperlink button not closing dialog from within Click event
