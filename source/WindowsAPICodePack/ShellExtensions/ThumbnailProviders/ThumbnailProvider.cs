@@ -7,7 +7,6 @@ using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.ShellExtensions.Interop;
 using Microsoft.WindowsAPICodePack.ShellExtensions.Resources;
-using Microsoft.WindowsAPICodePack.Taskbar;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 using FileInfo = System.IO.FileInfo;

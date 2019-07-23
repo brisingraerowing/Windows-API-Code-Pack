@@ -9,7 +9,6 @@ using Microsoft.WindowsAPICodePack.ShellExtensions.Interop;
 using Microsoft.WindowsAPICodePack.ShellExtensions.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using MS.WindowsAPICodePack.Internal;
 using FileInfo = System.IO.FileInfo;
 
 namespace Microsoft.WindowsAPICodePack.ShellExtensions
