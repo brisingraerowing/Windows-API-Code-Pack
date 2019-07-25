@@ -4,7 +4,7 @@
     <!--*-->
     <id>WinCopies.WindowsAPICodePack</id>
     <!--*-->
-    <version>1.1.3</version>
+    <version>1.2.0</version>
     <title>Microsoft.WindowsAPICodePack</title>
     <!--*-->
     <authors>Microsoft, Aybe, Pierre Sprimont</authors>
@@ -19,18 +19,27 @@
     <description>WindowsAPICodePack Core</description>
     <!--*-->
     <releaseNotes>System requirements:
+
 .NET Framework version: 4.8
+
 OS: Windows
+
 New in this version:
-Updated project to the new .NET and code specifications and moved native components into the Win32Native package
+
+Updated for the new Win32Native version
+
 Project link: https://github.com/pierresprim/Windows-API-Code-Pack
+
 License link: https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/LICENCE
 </releaseNotes>
     <copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2019</copyright>
     <tags>
     </tags>
     <dependencies>
-      <dependency id="WinCopies.WindowsAPICodePack.Win32Native" version="1.1" />
+      <dependency id="WinCopies.WindowsAPICodePack.Win32Native" version="1.2" />
+      <dependency id="System.Runtime.CompilerServices.Unsafe" version="4.6.0-preview7.19362.9" />
+      <dependency id="System.Threading.Tasks.Extensions" version="4.6.0-preview.18571.3" />
+      <dependency id="System.ValueTuple" version="4.5.0" />
     </dependencies>
   </metadata>
 </package>
