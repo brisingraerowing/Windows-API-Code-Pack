@@ -4,7 +4,7 @@
     <!--*-->
     <id>WinCopies.WindowsAPICodePack.Shell</id>
     <!--*-->
-    <version>1.2.0</version>
+    <version>1.2.1</version>
     <title>Microsoft.WindowsAPICodePack.Shell</title>
     <!--*-->
     <authors>Microsoft, Aybe, Pierre Sprimont</authors>
@@ -22,7 +22,7 @@
 .NET Framework version: 4.8
 OS: Windows
 New in this version:
-Gesture added for the Win32 SHGetFileInfo API
+Bug fixed in the Win32 SHGetFileInfo API
 Project link: https://github.com/pierresprim/Windows-API-Code-Pack
 License link: https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/LICENCE</releaseNotes>
     <copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2019</copyright>
