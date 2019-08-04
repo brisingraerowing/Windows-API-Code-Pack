@@ -63,11 +63,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
     public class FileOperation : IDisposable
     {
 
-        private IFileOperation fileOperation = null;
+        private readonly IFileOperation fileOperation = null;
 
         private bool disposed = false;
 
-        List<uint> cookies = new List<uint>();
+        private readonly List<uint> cookies = new List<uint>();
 
         public ReadOnlyCollection<uint> Cookies { get; }
 
@@ -92,7 +92,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 UnadviseInternal(cookie);
 
-            Marshal.FinalReleaseComObject(fileOperation);
+            _ = Marshal.FinalReleaseComObject(fileOperation);
 
         }
 
@@ -208,8 +208,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="pszMessage">The window title.</param>
         /// <exception cref="ObjectDisposedException">Exception thrown when this object is disposed.</exception>
         /// <exception cref="Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
-        public void SetProgressMessage(string pszMessage)
-        {
+        public void SetProgressMessage(string pszMessage) =>
 
             //if (disposed) throw new ObjectDisposedException(nameof(FileOperation));
 
@@ -220,8 +219,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
             //    Marshal.ThrowExceptionForHR((int)hr);
 
             throw new NotImplementedException();
-
-        }
 
         // todo: to encapsulate
 
