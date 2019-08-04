@@ -1,10 +1,17 @@
 WindowsAPICodePack CHANGELOG
 ============================
 
+08/04/2019 1.1.5.2
+==================
+
+Shell 1.2.2
+-----------
+- Optimized FileOperation class.
+
 07/24/2019 1.1.5.1
 ==================
 
-Shell 1..2.1
+Shell 1.2.1
 ------------
 - Bug fix: GetFileInfo methods: This method now can be called for files that does not have icon
 
