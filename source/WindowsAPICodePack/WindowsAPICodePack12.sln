@@ -18,6 +18,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{21C85C30-53C8-4CD7-8278-1FC0AE1188A9}"
 	ProjectSection(SolutionItems) = preProject
 		..\..\CHANGELOG.md = ..\..\CHANGELOG.md
+		Directory.Build.props = Directory.Build.props
 		..\..\LICENCE = ..\..\LICENCE
 		..\..\README.md = ..\..\README.md
 	EndProjectSection

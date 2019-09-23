@@ -4,6 +4,8 @@ WindowsAPICodePack CHANGELOG
 08/04/2019 1.1.5.2
 ==================
 
+- Added support for Source Link
+
 Shell 1.2.2
 -----------
 - Optimized FileOperation class.

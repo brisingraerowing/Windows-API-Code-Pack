@@ -4,13 +4,14 @@
     <!--*-->
     <id>WinCopies.WindowsAPICodePack.Win32Native</id>
     <!--*-->
-    <version>1.2.0</version>
+    <version>1.2.1</version>
     <title>Microsoft.WindowsAPICodePack.Win32Native</title>
     <!--*-->
     <authors>Microsoft, Aybe, Pierre Sprimont</authors>
     <owners>Pierre Sprimont</owners>
     <licenseUrl>https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/LICENCE</licenseUrl>
-    <projectUrl>https://github.com/pierresprim/Windows-API-Code-Pack</projectUrl>
+    <projectUrl>http://wincopies.com</projectUrl>
+    <repository type="git" url="https://github.com/pierresprim/Windows-API-Code-Pack.git" />
     <!--
     <iconUrl></iconUrl>
 -->
@@ -22,9 +23,10 @@
 .NET Framework version: 4.8
 OS: Windows
 New in this version:
-- Gesture added for the Win32 SHGetFileInfo API
-Project link: https://github.com/pierresprim/Windows-API-Code-Pack
-License link: https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/LICENCE</releaseNotes>
+- Added support for Source Link
+Project link: http://wincopies.com
+License link: https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/LICENCE
+</releaseNotes>
     <copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2019</copyright>
     <tags>
     </tags>
@@ -32,6 +34,7 @@ License link: https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/L
       <dependency id="System.Runtime.CompilerServices.Unsafe" version="4.6.0-preview7.19362.9" />
       <dependency id="System.Threading.Tasks.Extensions" version="4.6.0-preview.18571.3" />
       <dependency id="System.ValueTuple" version="4.5.0" />
+      <dependency id="Microsoft.SourceLink.GitHub" version="1.0.0-*" />
     </dependencies>
   </metadata>
 </package>

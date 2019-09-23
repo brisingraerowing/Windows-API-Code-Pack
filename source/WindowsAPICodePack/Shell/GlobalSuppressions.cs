@@ -874,6 +874,6 @@
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0059:Value assigned to symbol is never used", Justification = "<Pending>", Scope = "member", Target = "~M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.GetItemsCount~System.Int32")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0059:Value assigned to symbol is never used", Justification = "<Pending>", Scope = "member", Target = "~M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.GetSelectedItemsCount~System.Int32")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0059:Value assigned to symbol is never used", Justification = "<Pending>", Scope = "member", Target = "~M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.GetItemsArray~Microsoft.WindowsAPICodePack.Shell.IShellItemArray")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Supprimer le paramètre inutilisé", Justification = "Method not implemented.", Scope = "member", Target = "~M:Microsoft.WindowsAPICodePack.Shell.FileOperation.SetProgressMessage(System.String)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Method not implemented.", Scope = "member", Target = "~M:Microsoft.WindowsAPICodePack.Shell.FileOperation.SetProgressMessage(System.String)")]
 #endregion
 

@@ -16,29 +16,59 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Core
         Ok = 0x0000,
 
         /// <summary>
+        /// NOERROR
+        /// </summary>
+        NoError = Ok,
+
+        /// <summary>
         /// S_FALSE
         /// </summary>        
         False = 0x0001,
 
         /// <summary>
-        /// E_INVALIDARG
+        /// Catastrophic failure (E_UNEXPECTED)
         /// </summary>
-        InvalidArguments = unchecked((int)0x80070057),
+        Unexpected = -2147418113,
 
         /// <summary>
-        /// E_OUTOFMEMORY
+        /// Not implemented (E_NOTIMPL)
         /// </summary>
-        OutOfMemory = unchecked((int)0x8007000E),
+        NotImplemented = -2147467263,
 
         /// <summary>
-        /// E_NOINTERFACE
+        /// Ran out of memory (E_OUTOFMEMORY)
         /// </summary>
-        NoInterface = unchecked((int)0x80004002),
+        OutOfMemory = -2147024882,
 
         /// <summary>
-        /// E_FAIL
+        /// One or more arguments are invalid (E_INVALIDARG)
         /// </summary>
-        Fail = unchecked((int)0x80004005),
+        InvalidArguments = -2147024809,
+
+        /// <summary>
+        /// No such interface supported (E_NOINTERFACE)
+        /// </summary>
+        NoInterface = -2147467262,
+
+        /// <summary>
+        /// Invalid pointer (E_POINTER)
+        /// </summary>
+        InvalidPointer = -2147467261,
+
+        /// <summary>
+        /// Invalid handle (E_HANDLE)
+        /// </summary>
+        InvalidHandle = -2147024890,
+
+        /// <summary>
+        /// Operation aborted (E_ABORT)
+        /// </summary>
+        OperationAborted = -2147467260,
+
+        /// <summary>
+        /// Unspecified error (E_FAIL)
+        /// </summary>
+        Fail = -2147467259,
 
         /// <summary>
         /// E_ELEMENTNOTFOUND
