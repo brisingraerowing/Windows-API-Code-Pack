@@ -8,14 +8,16 @@ using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 
-namespace Microsoft.WindowsAPICodePack.Sensors
+// todo: replace by the upcoming WPD implementation
+
+namespace Microsoft.WindowsAPICodePack.Win32Native.Sensors
 {
     /// <summary>
     /// Holds a collection of PROPERTYKEY values. This interface can be retrieved from a method 
     /// or, if a new object is required, call CoCreate with CLSID_PortableDeviceKeyCollection.
     /// </summary>
     [ComImport, Guid("DADA2357-E0AD-492E-98DB-DD61C53BA353"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    internal interface IPortableDeviceKeyCollection
+    public interface IPortableDeviceKeyCollection
     {
         void GetCount(out uint pcElems);
         [PreserveSig]
@@ -34,7 +36,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
     /// the method specific to the type of data added. 
     /// </summary>
     [ComImport, Guid("6848F6F2-3155-4F86-B6F5-263EEEAB3143"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    internal interface IPortableDeviceValues
+    public interface IPortableDeviceValues
     {
         void GetCount([In] ref uint pcelt);
         void GetAt([In] uint index, [In, Out] ref PropertyKey pKey, [In, Out] PropVariant pValue);
@@ -84,7 +86,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
     /// CLSID_PortableDeviceValuesCollection.
     /// </summary>
     [ComImport, Guid("6E3F2D79-4E07-48C4-8208-D8C2E5AF4A99"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    internal interface IPortableDeviceValuesCollection
+    public interface IPortableDeviceValuesCollection
     {
         /// <summary>
         /// Retrieves the number of items in the collection.
@@ -124,7 +126,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
     /// collection?s current VARTYPE. To change the VARTYPE of the collection manually, call ChangeType
     /// </summary>
     [ComImport, Guid("89B2E422-4F1B-4316-BCEF-A44AFEA83EB3"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    internal interface IPortableDevicePropVariantCollection
+    public interface IPortableDevicePropVariantCollection
     {
         void GetCount([In] ref uint pcElems);
         void GetAt([In] uint dwIndex, [Out] PropVariant pValue);
@@ -139,7 +141,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
     /// Exposes methods for enumerating, getting, and setting property values.
     /// </summary>
     [ComImport, Guid("886D8EEB-8CF2-4446-8D02-CDBA1DBDCF99"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    internal interface IPropertyStore
+    public interface IPropertyStore
     {
         void GetCount(out uint cProps);
         void GetAt([In] uint iProp, out PropertyKey pKey);
@@ -149,7 +151,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
     }
 
     [ComImport, Guid("DE2D022D-2480-43BE-97F0-D1FA2CF98F4F"), ClassInterface(ClassInterfaceType.None), TypeLibType(TypeLibTypeFlags.FCanCreate)]
-    internal class PortableDeviceKeyCollection : IPortableDeviceKeyCollection
+    public class PortableDeviceKeyCollection : IPortableDeviceKeyCollection
     {
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         public virtual extern void GetCount(out uint pcElems);
@@ -169,7 +171,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
     }
 
     [ComImport, Guid("0C15D503-D017-47CE-9016-7B3F978721CC"), ClassInterface(ClassInterfaceType.None), TypeLibType(TypeLibTypeFlags.FCanCreate)]
-    internal class PortableDeviceValues : IPortableDeviceValues
+    public class PortableDeviceValues : IPortableDeviceValues
     {
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         public virtual extern void GetCount([In] ref uint pcelt);

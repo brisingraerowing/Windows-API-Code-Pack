@@ -4,13 +4,13 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace Microsoft.WindowsAPICodePack.Sensors
+namespace Microsoft.WindowsAPICodePack.Win32Native.Sensors
 {
     /// <summary>
     /// A COM interop wrapper for the ISensorCollection interface
     /// </summary>
     [ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown), Guid("23571E11-E545-4DD8-A337-B89BF44B10DF")]
-    internal interface ISensorCollection
+    public interface ISensorCollection
     {
         /// <summary>
         /// Get a sensor by index
@@ -53,7 +53,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
     /// A COM interop wrapper for the SensorCollection class
     /// </summary>
     [ComImport, Guid("79C43ADB-A429-469F-AA39-2F2B74B75937"), ClassInterface(ClassInterfaceType.None), TypeLibType(TypeLibTypeFlags.FCanCreate)]
-    internal class SensorCollection : ISensorCollection
+    public class SensorCollection : ISensorCollection
     {
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         public virtual extern void GetAt([In] uint index, [MarshalAs(UnmanagedType.Interface)] out ISensor ppSensor);

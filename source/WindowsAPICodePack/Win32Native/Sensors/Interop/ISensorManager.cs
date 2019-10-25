@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
 
-namespace Microsoft.WindowsAPICodePack.Sensors
+namespace Microsoft.WindowsAPICodePack.Win32Native.Sensors
 {
     /// <summary>
     /// A COM interop wrapper for the SensorsManager class
@@ -13,8 +13,8 @@ namespace Microsoft.WindowsAPICodePack.Sensors
     /// <remarks>
     /// See Sensor API documentation in Windows 7 SDK
     /// </remarks>
-    [ComImport, GuidAttribute("77A1C827-FCD2-4689-8915-9D613CC5FA3E"), ClassInterfaceAttribute(ClassInterfaceType.None)]
-    internal class NativeSensorManager : NativeISensorManager
+    [ComImport, Guid("77A1C827-FCD2-4689-8915-9D613CC5FA3E"), ClassInterface(ClassInterfaceType.None)]
+    public class NativeSensorManager : NativeISensorManager
     {
         [PreserveSig]
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
@@ -49,7 +49,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
     /// A COM interop wrapper for the ISensorsManager interface
     /// </summary>
     [ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown), Guid("BD77DB67-45A8-42DC-8D00-6DCF15F8377A")]
-    internal interface NativeISensorManager
+    public interface NativeISensorManager
     {
         /// <summary>
         /// Get a collection of related sensors by category, Ex: Light

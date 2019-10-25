@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.Win32Native.Sensors;
 using System;
 using System.Runtime.InteropServices.ComTypes;
 
@@ -30,16 +31,14 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
         internal static SensorReport FromNativeReport(Sensor originator, ISensorDataReport iReport)
         {
-
-            SystemTime systemTimeStamp = new SystemTime();
-            iReport.GetTimestamp(out systemTimeStamp);
-            FILETIME ftTimeStamp = new FILETIME();
-            SensorNativeMethods.SystemTimeToFileTime(ref systemTimeStamp, out ftTimeStamp);
-            long lTimeStamp = (((long)ftTimeStamp.dwHighDateTime) << 32) + (long)ftTimeStamp.dwLowDateTime;
-            DateTime timeStamp = DateTime.FromFileTime(lTimeStamp);
-
-            SensorReport sensorReport = new SensorReport();
-            sensorReport.Source = originator;
+            iReport.GetTimestamp(out SystemTime systemTimeStamp);
+            _ = SensorNativeMethods.SystemTimeToFileTime(ref systemTimeStamp, out FILETIME ftTimeStamp);
+            long lTimeStamp = (((long)ftTimeStamp.dwHighDateTime) << 32) + ftTimeStamp.dwLowDateTime;
+            var sensorReport = new SensorReport
+            {
+                Source = originator
+            };
+            var timeStamp = DateTime.FromFileTime(lTimeStamp);
             sensorReport.TimeStamp = timeStamp;
             sensorReport.Values = SensorData.FromNativeReport(originator.InternalObject, iReport);
 

@@ -86,13 +86,13 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (disposed) return;
 
-            disposed = true;
-
             foreach (uint cookie in cookies)
 
                 UnadviseInternal(cookie);
 
             _ = Marshal.FinalReleaseComObject(fileOperation);
+
+            disposed = true;
 
         }
 
@@ -707,7 +707,37 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         public Action ResumeTimer { get; set; }
 
-        public void Dispose() => throw new NotImplementedException();
+        #region IDisposable Support
+        // private bool disposedValue = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            // if (!disposedValue)
+            // {
+                if (disposing)
+
+                    foreach (System.Reflection.PropertyInfo prop in GetType().GetProperties())
+
+                        prop.SetValue(this, null);
+
+                Marshal.ReleaseComObject(FileOperationProgressSinkInternal);
+
+                // disposedValue = true;
+            // }
+        }
+
+        ~FileOperationProgressSink()
+        {
+            Dispose(false);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+
+            GC.SuppressFinalize(this);
+        }
+        #endregion
     }
 
     internal class FileOperationProgressSinkInternal : IFileOperationProgressSink

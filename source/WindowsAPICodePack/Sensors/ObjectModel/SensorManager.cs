@@ -7,6 +7,7 @@ using System.Threading;
 using Microsoft.WindowsAPICodePack.Sensors.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native.Sensors;
 
 namespace Microsoft.WindowsAPICodePack.Sensors
 {
@@ -33,20 +34,12 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// <summary>
         /// The type of change. 
         /// </summary>
-        public SensorAvailabilityChange Change
-        {
-            get;
-            set;
-        }
+        public SensorAvailabilityChange Change { get; set; }
 
         /// <summary>
         /// The ID of the sensor that changed.
         /// </summary>
-        public Guid SensorId
-        {
-            get;
-            set;
-        }
+        public Guid SensorId { get; set; }
 
         internal SensorsChangedEventArgs(Guid sensorId, SensorAvailabilityChange change)
         {
@@ -110,9 +103,10 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         public static SensorList<T> GetSensorsByTypeId<T>() where T : Sensor
         {
             object[] attrs = typeof(T).GetCustomAttributes(typeof(SensorDescriptionAttribute), true);
+
             if (attrs != null && attrs.Length > 0)
             {
-                SensorDescriptionAttribute sda = attrs[0] as SensorDescriptionAttribute;
+                var sda = attrs[0] as SensorDescriptionAttribute;
 
                 if (sensorManager.GetSensorsByType(sda.SensorTypeGuid, out ISensorCollection nativeSensorCollection) == HResult.ElementNotFound)
 
@@ -199,7 +193,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
         internal static SensorList<S> NativeSensorCollectionToSensorCollection<S>(ISensorCollection nativeCollection) where S : Sensor
         {
-            SensorList<S> sensors = new SensorList<S>();
+            var sensors = new SensorList<S>();
 
             if (nativeCollection != null)
             {
@@ -239,7 +233,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             Assembly[] loadedAssemblies = AppDomain.CurrentDomain.GetAssemblies();
 
             foreach (Assembly asm in loadedAssemblies)
-            {
+
                 try
                 {
                     Type[] exportedTypes = asm.GetExportedTypes();
@@ -250,15 +244,15 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                             object[] attrs = t.GetCustomAttributes(typeof(SensorDescriptionAttribute), true);
                             if (attrs != null && attrs.Length > 0)
                             {
-                                SensorDescriptionAttribute sda = (SensorDescriptionAttribute)attrs[0];
-                                SensorTypeData stm = new SensorTypeData(t, sda);
+                                var sda = (SensorDescriptionAttribute)attrs[0];
+                                var stm = new SensorTypeData(t, sda);
 
                                 guidToSensorDescr.Add(sda.SensorTypeGuid, stm);
                                 sensorTypeToGuid.Add(t, sda.SensorTypeGuid);
                             }
                         }
                 }
-                catch (System.NotSupportedException)
+                catch (NotSupportedException)
                 {
                     // GetExportedTypes can throw this if dynamic assemblies are loaded 
                     // via Reflection.Emit.
@@ -268,7 +262,6 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                     // GetExportedTypes can throw this if a loaded asembly is not in the 
                     // current directory or path.
                 }
-            }
         }
 
         /// <summary>
@@ -279,16 +272,13 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// <returns>A wrapper instance.</returns>
         private static S GetSensorWrapperInstance<S>(ISensor nativeISensor) where S : Sensor
         {
-            Guid sensorTypeGuid;
-            nativeISensor.GetType(out sensorTypeGuid);
-
-            SensorTypeData stm;
-            Type sensorClassType =
-                guidToSensorDescr.TryGetValue(sensorTypeGuid, out stm) ? stm.SensorType : typeof(UnknownSensor);
+            _ = nativeISensor.GetType(out Guid sensorTypeGuid);
 
             try
             {
-                S sensor = (S)Activator.CreateInstance(sensorClassType);
+                Type sensorClassType =
+                    guidToSensorDescr.TryGetValue(sensorTypeGuid, out SensorTypeData stm) ? stm.SensorType : typeof(UnknownSensor);
+                var sensor = (S)Activator.CreateInstance(sensorClassType);
                 sensor.InternalObject = nativeISensor;
                 return sensor;
             }
@@ -326,11 +316,11 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         public void OnSensorEnter(ISensor nativeSensor, NativeSensorState state)
         {
             if (state == NativeSensorState.Ready)
-            
+
                 if (nativeSensor.GetID(out Guid sensorId) == HResult.Ok)
 
                     SensorManager.OnSensorsChanged(sensorId, SensorAvailabilityChange.Addition);
-                    }
+        }
 
         #endregion
     }
