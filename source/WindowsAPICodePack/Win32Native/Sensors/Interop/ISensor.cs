@@ -7,14 +7,14 @@ using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 
-namespace Microsoft.WindowsAPICodePack.Sensors
+namespace Microsoft.WindowsAPICodePack.Win32Native.Sensors
 {
 
     /// <summary>
     /// A COM interop wrapper for the ISensor interface.
     /// </summary>
     [ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown), Guid("5FA08F80-2657-458E-AF75-46F73FA6AC5C")]
-    internal interface ISensor
+    public interface ISensor
     {
         /// <summary>
         /// Unique ID of sensor within the sensors platform

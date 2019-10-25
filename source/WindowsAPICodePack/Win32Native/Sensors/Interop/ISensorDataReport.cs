@@ -7,14 +7,14 @@ using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 
-namespace Microsoft.WindowsAPICodePack.Sensors
+namespace Microsoft.WindowsAPICodePack.Win32Native.Sensors
 {
     /// <summary>
     /// The SystemTime structure represents a date and time using individual members for 
     /// the month, day, year, weekday, hour, minute, second, and millisecond.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    internal struct SystemTime
+    public struct SystemTime
     {
         internal ushort Year;
         internal ushort Month;
@@ -28,29 +28,20 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// <summary>
         /// Gets the <see cref="DateTime"/> representation of this object.
         /// </summary>
-        public DateTime DateTime
-        {
-            get { return new DateTime(Year, Month, Day, Hour, Minute, Second, Millisecond); }
-        }
+        public DateTime DateTime => new DateTime(Year, Month, Day, Hour, Minute, Second, Millisecond);
 
-        public static implicit operator DateTime(SystemTime systemTime)
-        {
-            return systemTime.DateTime;
-        }
+        public static implicit operator DateTime(SystemTime systemTime) => systemTime.DateTime;
 
-        public override string ToString()
-        {
-            return string.Format(CultureInfo.InvariantCulture.NumberFormat, 
-                "{0:D2}/{1:D2}/{2:D4}, {3:D2}:{4:D2}:{5:D2}.{6}", 
+        public override string ToString() => string.Format(CultureInfo.InvariantCulture.NumberFormat,
+                "{0:D2}/{1:D2}/{2:D4}, {3:D2}:{4:D2}:{5:D2}.{6}",
                 Month, Day, Year, Hour, Minute, Second, Millisecond);
-        }
     }
 
     /// <summary>
     /// COM interop wrapper for the ISensorDataReport interface.
     /// </summary>
     [ComImport, Guid("0AB9DF9B-C4B5-4796-8898-0470706A2E1D"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    internal interface ISensorDataReport
+    public interface ISensorDataReport
     {
         /// <summary>
         /// Get the timestamp for the data report

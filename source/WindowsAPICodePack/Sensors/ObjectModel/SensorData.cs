@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native.Sensors;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 
@@ -17,20 +18,18 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         #region implementation
         internal static SensorData FromNativeReport(ISensor iSensor, ISensorDataReport iReport)
         {
-            SensorData data = new SensorData();
+            var data = new SensorData();
 
-            IPortableDeviceKeyCollection keyCollection;
-            IPortableDeviceValues valuesCollection;
-            iSensor.GetSupportedDataFields(out keyCollection);
-            iReport.GetSensorValues(keyCollection, out valuesCollection);
+            _ = iSensor.GetSupportedDataFields(out IPortableDeviceKeyCollection keyCollection);
+            iReport.GetSensorValues(keyCollection, out IPortableDeviceValues valuesCollection);
 
             keyCollection.GetCount(out uint items);
+
             for (uint index = 0; index < items; index++)
-            {
-                PropertyKey key;
-                using (PropVariant propValue = new PropVariant())
+
+                using (var propValue = new PropVariant())
                 {
-                    keyCollection.GetAt(index, out key);
+                    _ = keyCollection.GetAt(index, out PropertyKey key);
                     valuesCollection.GetValue(ref key, propValue);
 
                     if (data.ContainsKey(key.FormatId))
@@ -41,14 +40,14 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
                         data.Add(key.FormatId, new List<object> { propValue.Value });
                 }
-            }
 
             if (keyCollection != null)
 
-                Marshal.ReleaseComObject(keyCollection);
+                _ = Marshal.ReleaseComObject(keyCollection);
 
             if (valuesCollection != null)
-                Marshal.ReleaseComObject(valuesCollection);
+
+                _ = Marshal.ReleaseComObject(valuesCollection);
 
             return data;
         }
@@ -115,20 +114,12 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// Adds a specified key/value data pair to the collection.
         /// </summary>
         /// <param name="item">The item to add.</param>
-        public void Add(KeyValuePair<Guid, IList<object>> item)
-        {
-            ICollection<KeyValuePair<Guid, IList<object>>> c = sensorDataDictionary as ICollection<KeyValuePair<Guid, IList<object>>>;
-            c.Add(item);
-        }
+        public void Add(KeyValuePair<Guid, IList<object>> item) => (sensorDataDictionary as ICollection<KeyValuePair<Guid, IList<object>>>).Add(item);
 
         /// <summary>
         /// Clears the items from the collection.
         /// </summary>
-        public void Clear()
-        {
-            ICollection<KeyValuePair<Guid, IList<object>>> c = sensorDataDictionary as ICollection<KeyValuePair<Guid, IList<object>>>;
-            c.Clear();
-        }
+        public void Clear() => (sensorDataDictionary as ICollection<KeyValuePair<Guid, IList<object>>>).Clear();
 
         /// <summary>
         /// Determines if the collection contains the specified key/value pair. 

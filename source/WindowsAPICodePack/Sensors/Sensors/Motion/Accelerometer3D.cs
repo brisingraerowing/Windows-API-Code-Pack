@@ -12,13 +12,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// <summary>
         /// Gets the current acceleration in G's. 
         /// </summary>
-        public Acceleration3D CurrentAcceleration
-        {
-            get
-            {                
-                return new Acceleration3D(this.DataReport);
-            }
-        }
+        public Acceleration3D CurrentAcceleration => new Acceleration3D(DataReport);
     }
 
     /// <summary>
@@ -51,13 +45,13 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// <param name="report">The sensor report to evaluate.</param>
         public Acceleration3D(SensorReport report)
         {
-            if (report == null) { throw new ArgumentNullException("report"); }
+            if (report == null)  throw new ArgumentNullException(nameof(report)); 
 
-            this.acceleration[(int)AccelerationAxis.XAxis] =
+            acceleration[(int)AccelerationAxis.XAxis] =
                 (float)report.Values[SensorPropertyKeys.SensorDataTypeAccelerationXG.FormatId][0];
-            this.acceleration[(int)AccelerationAxis.YAxis] =
+            acceleration[(int)AccelerationAxis.YAxis] =
                 (float)report.Values[SensorPropertyKeys.SensorDataTypeAccelerationYG.FormatId][1];
-            this.acceleration[(int)AccelerationAxis.ZAxis] =
+            acceleration[(int)AccelerationAxis.ZAxis] =
                 (float)report.Values[SensorPropertyKeys.SensorDataTypeAccelerationZG.FormatId][2];
         }
 
@@ -66,10 +60,8 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// </summary>
         /// <param name="axis">The axis of the acceleration.</param>
         /// <returns></returns>
-        public float this[AccelerationAxis axis]
-        {
-            get { return acceleration[(int)axis]; }
-        }
-        private float[] acceleration = new float[3];
+        public float this[AccelerationAxis axis] => acceleration[(int)axis];
+
+        private readonly float[] acceleration = new float[3];
     }
 }
