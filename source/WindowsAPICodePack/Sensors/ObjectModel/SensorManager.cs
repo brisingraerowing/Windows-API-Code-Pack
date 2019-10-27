@@ -145,7 +145,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         {
             if (sensors == null || sensors.Count == 0)
 
-                throw new ArgumentException(LocalizedMessages.SensorManagerEmptySensorsCollection, "sensors");
+                throw new ArgumentException(LocalizedMessages.SensorManagerEmptySensorsCollection, nameof(sensors));
 
             ISensorCollection sensorCollection = new SensorCollection();
 
@@ -168,18 +168,18 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         #endregion
 
         #region implementation
-        private static NativeISensorManager sensorManager = new NativeSensorManager();
-        private static NativeSensorManagerEventSink sensorManagerEventSink = new NativeSensorManagerEventSink();
+        private static readonly NativeISensorManager sensorManager = new NativeSensorManager();
+        private static readonly NativeSensorManagerEventSink sensorManagerEventSink = new NativeSensorManagerEventSink();
 
         /// <summary>
         /// Sensor type GUID -> .NET Type + report type
         /// </summary>
-        private static Dictionary<Guid, SensorTypeData> guidToSensorDescr = new Dictionary<Guid, SensorTypeData>();
+        private static readonly Dictionary<Guid, SensorTypeData> guidToSensorDescr = new Dictionary<Guid, SensorTypeData>();
 
         /// <summary>
         /// .NET type -> type GUID.
         /// </summary>      
-        private static Dictionary<Type, Guid> sensorTypeToGuid = new Dictionary<Type, Guid>();
+        private static readonly Dictionary<Type, Guid> sensorTypeToGuid = new Dictionary<Type, Guid>();
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline")]
         static SensorManager()
@@ -315,9 +315,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
         public void OnSensorEnter(ISensor nativeSensor, NativeSensorState state)
         {
-            if (state == NativeSensorState.Ready)
-
-                if (nativeSensor.GetID(out Guid sensorId) == HResult.Ok)
+            if (state == NativeSensorState.Ready && nativeSensor.GetID(out Guid sensorId) == HResult.Ok)
 
                     SensorManager.OnSensorsChanged(sensorId, SensorAvailabilityChange.Addition);
         }

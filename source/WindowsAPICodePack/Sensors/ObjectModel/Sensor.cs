@@ -342,13 +342,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                 {
                     Exception e = Marshal.GetExceptionForHR((int)hr);
 
-                    if (hr == HResult.ElementNotFound)
-
-                        throw new ArgumentOutOfRangeException(LocalizedMessages.SensorPropertyNotFound, e);
-
-                    else
-
-                        throw e;
+                        throw hr == HResult.ElementNotFound ? new ArgumentOutOfRangeException(LocalizedMessages.SensorPropertyNotFound, e) : e;
                 }
 
                 return pv.Value;
@@ -617,20 +611,13 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
         #region ISensorEvents Members
 
-        void ISensorEvents.OnStateChanged(ISensor sensor, NativeSensorState state)
-        {
-            if (StateChanged != null)
-
-                StateChanged.Invoke(this, EventArgs.Empty);
-        }
+        void ISensorEvents.OnStateChanged(ISensor sensor, NativeSensorState state) => StateChanged?.Invoke(this, EventArgs.Empty);
 
         void ISensorEvents.OnDataUpdated(ISensor sensor, ISensorDataReport newData)
         {
             DataReport = SensorReport.FromNativeReport(this, newData);
 
-            if (DataReportChanged != null)
-
-                DataReportChanged.Invoke(this, EventArgs.Empty);
+                DataReportChanged?.Invoke(this, EventArgs.Empty);
         }
 
         void ISensorEvents.OnEvent(ISensor sensor, Guid eventID, ISensorDataReport newData)
@@ -746,23 +733,15 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
         private static IntPtr IncrementIntPtr(IntPtr source, int increment)
         {
-            if (IntPtr.Size == 8)
+            switch (IntPtr.Size)
             {
-                long p = source.ToInt64();
-                p += increment;
-                return new IntPtr(p);
+                case 8:
+                    return new IntPtr(source.ToInt64() + increment);
+                case 4:
+                    return new IntPtr(source.ToInt32() + increment);
+                default:
+                    throw new SensorPlatformException(LocalizedMessages.SensorUnexpectedPointerSize);
             }
-
-            else if (IntPtr.Size == 4)
-            {
-                int p = source.ToInt32();
-                p += increment;
-                return new IntPtr(p);
-            }
-
-            else
-
-                throw new SensorPlatformException(LocalizedMessages.SensorUnexpectedPointerSize);
         }
 
         #endregion
@@ -811,9 +790,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// <returns><b>true</b> if this instance and another object are equal; otherwise <b>false</b>.</returns>
         public override bool Equals(object obj)
         {
-            if (obj == null) return false;
-
-            if (!(obj is DataFieldInfo)) return false;
+            if (obj == null || !(obj is DataFieldInfo)) return false;
 
             var other = (DataFieldInfo)obj;
             return Value.Equals(other.Value) && _propKey.Equals(other._propKey);
