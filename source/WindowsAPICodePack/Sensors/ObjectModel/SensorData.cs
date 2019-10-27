@@ -53,7 +53,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         }
         #endregion
 
-        private Dictionary<Guid, IList<object>> sensorDataDictionary = new Dictionary<Guid, IList<object>>();
+        private readonly Dictionary<Guid, IList<object>> sensorDataDictionary = new Dictionary<Guid, IList<object>>();
 
         #region IDictionary<Guid,IList<object>> Members
 
