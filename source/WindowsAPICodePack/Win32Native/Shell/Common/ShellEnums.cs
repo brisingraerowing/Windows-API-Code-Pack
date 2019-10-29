@@ -544,137 +544,137 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <para>In Windows Vista and later systems, the scope of the undo is a user session. Any process running in the user session can undo another operation. The undo state is held in the Explorer.exe process, and as long as that process is running, it can coordinate the undo functions.</para>
         /// <para>If the source file parameter does not contain fully qualified path and file names, this flag is ignored.</para>
         /// </summary>
-        FOF_ALLOWUNDO = 0x0040,
+        AllowUndo = 0x0040,
 
         /// <summary>
         /// Perform the operation only on files (not on folders) if a wildcard file name (.) is specified.
         /// </summary>
-        FOF_FILESONLY = 0x0080,
+        FilesOnly = 0x0080,
 
         /// <summary>
         /// Respond with <b>Yes to All</b> for any dialog box that is displayed.
         /// </summary>
-        FOF_NOCONFIRMATION = 0x0010,
+        NoConfirmation = 0x0010,
 
         /// <summary>
         /// Do not confirm the creation of a new folder if the operation requires one to be created.
         /// </summary>
-        FOF_NOCONFIRMMKDIR = 0x0200,
+        NoConfirmMkDir = 0x0200,
 
         /// <summary>
         /// Do not move connected items as a group. Only move the specified files.
         /// </summary>
-        FOF_NO_CONNECTED_ELEMENTS = 0x2000,
+        NoConnectedElements = 0x2000,
 
         /// <summary>
         /// Do not copy the security attributes of the item.
         /// </summary>
-        FOF_NOCOPYSECURITYATTRIBS = 0x0800,
+        NoCopySecurityAttribs = 0x0800,
 
         /// <summary>
-        /// Do not display a message to the user if an error occurs. If this flag is set without <see cref="FOFX_EARLYFAILURE"/>, any error is treated as if the user had chosen <b>Ignore</b> or <b>Continue</b> in a dialog box. It halts the current action, sets a flag to indicate that an action was aborted, and proceeds with the rest of the operation.
+        /// Do not display a message to the user if an error occurs. If this flag is set without <see cref="EarlyFailure"/>, any error is treated as if the user had chosen <b>Ignore</b> or <b>Continue</b> in a dialog box. It halts the current action, sets a flag to indicate that an action was aborted, and proceeds with the rest of the operation.
         /// </summary>
-        FOF_NOERRORUI = 0x0400,
+        NoErrorUI = 0x0400,
 
         /// <summary>
         /// Only operate in the local folder. Do not operate recursively into subdirectories.
         /// </summary>
-        FOF_NORECURSION = 0x1000,
+        NoRecursion = 0x1000,
 
         /// <summary>
         /// Give the item being operated on a new name in a move, copy, or rename operation if an item with the target name already exists.
         /// </summary>
-        FOF_RENAMEONCOLLISION = 0x0008,
+        RenameOnCollision = 0x0008,
 
         /// <summary>
         /// Do not display a progress dialog box.
         /// </summary>
-        FOF_SILENT = 0x0004,
+        Silent = 0x0004,
 
         /// <summary>
-        /// Send a warning if a file or folder is being destroyed during a delete operation rather than recycled. This flag partially overrides <see cref="FOF_NOCONFIRMATION"/>.
+        /// Send a warning if a file or folder is being destroyed during a delete operation rather than recycled. This flag partially overrides <see cref="NoConfirmation"/>.
         /// </summary>
-        FOF_WANTNUKEWARNING = 0x4000,
+        WantNukeWarning = 0x4000,
 
         /// <summary>
-        /// <b>Introduced in Windows 8.</b> The file operation was user-invoked and should be placed on the undo stack. This flag is preferred to <see cref="FOF_ALLOWUNDO"/>.
+        /// <b>Introduced in Windows 8.</b> The file operation was user-invoked and should be placed on the undo stack. This flag is preferred to <see cref="AllowUndo"/>.
         /// </summary>
-        FOFX_ADDUNDORECORD = 0x20000000,
+        AddUndoRecord = 0x20000000,
 
         /// <summary>
         /// Walk into Shell namespace junctions. By default, junctions are not entered. For more information on junctions, see <a href="https://msdn.microsoft.com/2c1fdd5d-b359-4d5c-a20e-0622f3a1cb1d">Specifying a Namespace Extension's Location</a>.
         /// </summary>
-        FOFX_NOSKIPJUNCTIONS = 0x00010000,
+        NoSkipJunctions = 0x00010000,
 
         /// <summary>
         /// If possible, create a hard link rather than a new instance of the file in the destination.
         /// </summary>
-        FOFX_PREFERHARDLINK = 0x00020000,
+        PreferHardLink = 0x00020000,
 
         /// <summary>
-        /// If an operation requires elevated rights and the <see cref="FOF_NOERRORUI"/> flag is set to disable error UI, display a UAC UI prompt nonetheless.
+        /// If an operation requires elevated rights and the <see cref="NoErrorUI"/> flag is set to disable error UI, display a UAC UI prompt nonetheless.
         /// </summary>
-        FOFX_SHOWELEVATIONPROMPT = 0x00040000,
+        ShowElevationPrompt = 0x00040000,
 
         /// <summary>
-        /// If <see cref="FOFX_EARLYFAILURE"/> is set together with <see cref="FOF_NOERRORUI"/>, the entire set of operations is stopped upon encountering any error in any operation. This flag is valid only when <see cref="FOF_NOERRORUI"/> is set.
+        /// If <see cref="EarlyFailure"/> is set together with <see cref="NoErrorUI"/>, the entire set of operations is stopped upon encountering any error in any operation. This flag is valid only when <see cref="NoErrorUI"/> is set.
         /// </summary>
-        FOFX_EARLYFAILURE = 0x00100000,
+        EarlyFailure = 0x00100000,
 
         /// <summary>
-        /// Rename collisions in such a way as to preserve file name extensions. This flag is valid only when <see cref="FOF_RENAMEONCOLLISION"/> is also set.
+        /// Rename collisions in such a way as to preserve file name extensions. This flag is valid only when <see cref="RenameOnCollision"/> is also set.
         /// </summary>
-        FOFX_PRESERVEFILEEXTENSIONS = 0x00200000,
+        PreserveFileExtensions = 0x00200000,
 
         /// <summary>
         /// Keep the newer file or folder, based on the Date Modified property, if a collision occurs. This is done automatically with no prompt UI presented to the user.
         /// </summary>
-        FOFX_KEEPNEWERFILE = 0x00400000,
+        KeepNewerFile = 0x00400000,
 
         /// <summary>
         /// Do not use copy hooks.
         /// </summary>
-        FOFX_NOCOPYHOOKS = 0x00800000,
+        NoCopyHooks = 0x00800000,
 
         /// <summary>
         /// Do not allow the progress dialog to be minimized.
         /// </summary>
-        FOFX_NOMINIMIZEBOX = 0x01000000,
+        NoMinimizeBox = 0x01000000,
 
         /// <summary>
         /// Copy the security attributes of the source item to the destination item when performing a cross-volume move operation. Without this flag, the destination item receives the security attributes of its new folder.
         /// </summary>
-        FOFX_MOVEACLSACROSSVOLUMES = 0x02000000,
+        MoveACLSAcrossVolumes = 0x02000000,
 
         /// <summary>
         /// Do not display the path of the source item in the progress dialog.
         /// </summary>
-        FOFX_DONTDISPLAYSOURCEPATH = 0x04000000,
+        DoNotDisplaySourcePath = 0x04000000,
 
         /// <summary>
         /// Do not display the path of the destination item in the progress dialog.
         /// </summary>
-        FOFX_DONTDISPLAYDESTPATH = 0x08000000,
+        DoNotDisplayDestPath = 0x08000000,
 
         /// <summary>
         /// <b>Introduced in Windows 8.</b> When a file is deleted, send it to the Recycle Bin rather than permanently deleting it.
         /// </summary>
-        FOFX_RECYCLEONDELETE = 0x00080000,
+        RecycleOnDelete = 0x00080000,
 
         /// <summary>
         /// <b>Introduced in Windows Vista SP1.</b> The user expects a requirement for rights elevation, so do not display a dialog box asking for a confirmation of the elevation.
         /// </summary>
-        FOFX_REQUIREELEVATION = 0x10000000,
+        RequireElevation = 0x10000000,
 
         /// <summary>
         /// <b>Introduced in Windows 7.</b> Display a <b>Downloading</b> instead of <b>Copying</b> message in the progress dialog.
         /// </summary>
-        FOFX_COPYASDOWNLOAD = 0x40000000,
+        CopyAsDownload = 0x40000000,
 
         /// <summary>
         /// <b>Introduced in Windows 7.</b> Do not display the location line in the progress dialog.
         /// </summary>
-        FOFX_DONTDISPLAYLOCATIONS = 0x80000000
+        DoNotDisplayLocations = 0x80000000
 
     }
 
@@ -685,17 +685,17 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// No dialog box confirming the deletion of the objects will be displayed.
         /// </summary>
-        SHERB_NOCONFIRMATION = 0x00000001,
+        NoConfirmation = 0x00000001,
 
         /// <summary>
         /// No dialog box indicating the progress will be displayed.
         /// </summary>
-        SHERB_NOPROGRESSUI = 0x00000002,
+        NoProgressUI = 0x00000002,
 
         /// <summary>
         /// No sound will be played when the operation is complete.
         /// </summary>
-        SHERB_NOSOUND = 0x00000004
+        NoSound = 0x00000004
 
     }
 
@@ -708,27 +708,27 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Operation is running, no user intervention.
         /// </summary>
-        PDOPS_RUNNING,
+        Running,
 
         /// <summary>
         /// Operation has been paused by the user.
         /// </summary>
-        PDOPS_PAUSED,
+        Paused,
 
         /// <summary>
         /// Operation has been canceled by the user - now go undo.
         /// </summary>
-        PDOPS_CANCELLED,
+        Cancelled,
 
         /// <summary>
         /// Operation has been stopped by the user - terminate completely.
         /// </summary>
-        PDOPS_STOPPED,
+        Stopped,
 
         /// <summary>
         /// Operation has gone as far as it can go without throwing error dialogs.
         /// </summary>
-        PDOPS_ERRORS
+        Errors
 
     }
 
@@ -738,110 +738,110 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Use the default progress dialog operations mode.
         /// </summary>
-        PDM_DEFAULT = 0x00000000,
+        Default = 0x00000000,
 
         /// <summary>
         /// The operation is running.
         /// </summary>
-        PDM_RUN = 0x00000001,
+        Run = 0x00000001,
 
         /// <summary>
         /// The operation is gathering data before it begins, such as calculating the predicted operation time.
         /// </summary>
-        PDM_PRELIGHT = 0x00000002,
+        Prelight = 0x00000002,
 
         /// <summary>
         /// The operation is rolling back due to an Undo command from the user.
         /// </summary>
-        PDM_UNDOING = 0x00000004,
+        Undoing = 0x00000004,
 
         /// <summary>
         /// Error dialogs are blocking progress from continuing.
         /// </summary>
-        PDM_ERRORSBLOCKING = 0x00000008,
+        ErrorsBlocking = 0x00000008,
 
         /// <summary>
         /// The length of the operation is indeterminate. Do not show a timer and display the progress bar in marquee mode.
         /// </summary>
-        PDM_INDETERMINATE = 0x00000010
+        Indeterminate = 0x00000010
 
     }
 
     /// <summary>
     /// Describes an action being performed that requires progress to be shown to the user using an IActionProgress interface.
     /// </summary>
-    public enum SPACTION
+    public enum SPAction
     {
 
         /// <summary>
         /// No action is being performed.
         /// </summary>
-        SPACTION_NONE,
+        None,
 
         /// <summary>
         /// Files are being moved.
         /// </summary>
-        SPACTION_MOVING,
+        Moving,
 
         /// <summary>
         /// Files are being copied.
         /// </summary>
-        SPACTION_COPYING,
+        Copying,
 
         /// <summary>
         /// Files are being deleted.
         /// </summary>
-        SPACTION_RECYCLING,
+        Recycling,
 
         /// <summary>
         /// A set of attributes are being applied to files.
         /// </summary>
-        SPACTION_APPLYINGATTRIBS,
+        ApplyingAttribs,
 
         /// <summary>
         /// A file is being downloaded from a remote source.
         /// </summary>
-        SPACTION_DOWNLOADING,
+        Downloading,
 
         /// <summary>
         /// An Internet search is being performed.
         /// </summary>
-        SPACTION_SEARCHING_INTERNET,
+        SearchingInternet,
 
         /// <summary>
         /// A calculation is being performed.
         /// </summary>
-        SPACTION_CALCULATING,
+        Calculating,
 
         /// <summary>
         /// A file is being uploaded to a remote source.
         /// </summary>
-        SPACTION_UPLOADING,
+        Uploading,
 
         /// <summary>
         /// A local search is being performed.
         /// </summary>
-        SPACTION_SEARCHING_FILES,
+        SearchingFiles,
 
         /// <summary>
         /// <b>Windows Vista and later.</b> A deletion is being performed.
         /// </summary>
-        SPACTION_DELETING,
+        Deleting,
 
         /// <summary>
         /// <b>Windows Vista and later.</b> A renaming action is being performed.
         /// </summary>
-        SPACTION_RENAMING,
+        Renaming,
 
         /// <summary>
         /// <b>Windows Vista and later.</b> A formatting action is being performed.
         /// </summary>
-        SPACTION_FORMATTING,
+        Formatting,
 
         /// <summary>
         /// <b>Windows 7 and later.</b> A copy or move action is being performed.
         /// </summary>
-        SPACTION_COPY_MOVING
+        CopyMoving
 
     }
 
@@ -852,77 +852,77 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Default, normal progress dialog behavior.
         /// </summary>
-        PROGDLG_NORMAL = 0x00000000,
+        Normal = 0x00000000,
 
         /// <summary>
         /// The dialog is modal to its hwndOwner. The default setting is modeless.
         /// </summary>
-        PROGDLG_MODAL = 0x00000001,
+        Modal = 0x00000001,
 
         /// <summary>
         /// Update "Line3" text with the time remaining. This flag does not need to be implicitly set because progress dialogs started by <see cref="IOperationsProgressDialog.StartProgressDialog"/> automatically display the time remaining.
         /// </summary>
-        PROGDLG_AUTOTIME = 0x00000002,
+        AutoTime = 0x00000002,
 
         /// <summary>
         /// Do not show the time remaining. We do not recommend setting this flag through <see cref="IOperationsProgressDialog"/> because it goes against the purpose of the dialog.
         /// </summary>
-        PROGDLG_NOTIME = 0x00000004,
+        NoTime = 0x00000004,
 
         /// <summary>
         /// Do not display the minimize button.
         /// </summary>
-        PROGDLG_NOMINIMIZE = 0x00000008,
+        NoMinimize = 0x00000008,
 
         /// <summary>
         /// Do not display the progress bar.
         /// </summary>
-        PROGDLG_NOPROGRESSBAR = 0x00000010,
+        NoProgressBar = 0x00000010,
 
         /// <summary>
         /// This flag is invalid in this method. To set the progress bar to marquee mode, use the flags in <see cref="IOperationsProgressDialog.SetMode"/>.
         /// </summary>
-        PROGDLG_MARQUEEPROGRESS = 0x00000020,
+        MarqueeProgress = 0x00000020,
 
         /// <summary>
         /// Do not display a cancel button because the operation cannot be canceled. Use this value only when absolutely necessary.
         /// </summary>
-        PROGDLG_NOCANCEL = 0x00000040,
+        NoCancel = 0x00000040,
 
         /// <summary>
         /// <b>Windows 7 and later.</b> Indicates default, normal operation progress dialog behavior.
         /// </summary>
-        OPPROGDLG_DEFAULT = 0x00000000,
+        Default = 0x00000000,
 
         /// <summary>
         /// Display a pause button. Use this only in situations where the operation can be paused.
         /// </summary>
-        OPPROGDLG_ENABLEPAUSE = 0x00000080,
+        EnablePause = 0x00000080,
 
         /// <summary>
         /// The operation can be undone through the dialog. The <b>Stop</b> button becomes <b>Undo</b>. If pressed, the <b>Undo</b> button then reverts to <b>Stop</b>.
         /// </summary>
-        OPPROGDLG_ALLOWUNDO = 0x00000100,
+        AllowUndo = 0x00000100,
 
         /// <summary>
         /// Do not display the path of source file in the progress dialog.
         /// </summary>
-        OPPROGDLG_DONTDISPLAYSOURCEPATH = 0x00000200,
+        DoNotDisplaySourcePath = 0x00000200,
 
         /// <summary>
         /// Do not display the path of the destination file in the progress dialog.
         /// </summary>
-        OPPROGDLG_DONTDISPLAYDESTPATH = 0x00000400,
+        DoNotDisplayDestPath = 0x00000400,
 
         /// <summary>
         /// <b>Windows 7 and later.</b> If the estimated time to completion is greater than one day, do not display the time.
         /// </summary>
-        OPPROGDLG_NOMULTIDAYESTIMATES = 0x00000800,
+        NoMultiDayEstimates = 0x00000800,
 
         /// <summary>
         /// <b>Windows 7 and later.</b> Do not display the location line in the progress dialog.
         /// </summary>
-        OPPROGDLG_DONTDISPLAYLOCATIONS = 0x00001000
+        DoNotDisplayLocations = 0x00001000
 
     }
 }

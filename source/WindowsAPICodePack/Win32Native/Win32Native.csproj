@@ -1,9 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.SourceLink.GitHub.1.0.0-beta2-19367-01\build\Microsoft.SourceLink.GitHub.props" Condition="Exists('..\packages\Microsoft.SourceLink.GitHub.1.0.0-beta2-19367-01\build\Microsoft.SourceLink.GitHub.props')" />
-  <Import Project="..\packages\Microsoft.SourceLink.Common.1.0.0-beta2-19367-01\build\Microsoft.SourceLink.Common.props" Condition="Exists('..\packages\Microsoft.SourceLink.Common.1.0.0-beta2-19367-01\build\Microsoft.SourceLink.Common.props')" />
-  <Import Project="..\packages\Microsoft.Build.Tasks.Git.1.0.0-beta2-19367-01\build\Microsoft.Build.Tasks.Git.props" Condition="Exists('..\packages\Microsoft.Build.Tasks.Git.1.0.0-beta2-19367-01\build\Microsoft.Build.Tasks.Git.props')" />
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -52,13 +48,13 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <HintPath>..\..\Tests\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.6.0-preview.18571.3\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+      <HintPath>..\..\Tests\packages\System.Threading.Tasks.Extensions.4.6.0-preview.18571.3\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+      <HintPath>..\..\Tests\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
@@ -116,37 +112,16 @@
     <Compile Include="Shell\Common\CopyProgressCallbackReason.cs" />
     <Compile Include="Shell\Common\CopyProgressResult.cs" />
     <Compile Include="Shell\Common\DefaultShellImageSizes.cs" />
-    <Compile Include="Shell\Common\EnumUnknown.cs" />
     <Compile Include="Shell\Common\IconReference.cs" />
     <Compile Include="Shell\Common\IntPtrExtensions.cs" />
     <Compile Include="Shell\Common\NativePoint.cs" />
     <Compile Include="Shell\Common\NativeRect.cs" />
-    <Compile Include="Shell\Common\SearchCondition.cs" />
-    <Compile Include="Shell\Common\SearchConditionFactory.cs" />
     <Compile Include="Shell\Common\ShellCOMClasses.cs" />
     <Compile Include="Shell\Common\ShellCOMGuids.cs" />
     <Compile Include="Shell\Common\ShellCOMInterfaces.cs" />
     <Compile Include="Shell\Common\ShellEnums.cs" />
-    <Compile Include="Shell\Common\ShellFile.cs" />
-    <Compile Include="Shell\Common\ShellFileSystemFolder.cs" />
-    <Compile Include="Shell\Common\ShellFolder.cs" />
-    <Compile Include="Shell\Common\ShellFolderItems.cs" />
-    <Compile Include="Shell\Common\ShellHelper.cs" />
-    <Compile Include="Shell\Common\ShellItemArray.cs" />
-    <Compile Include="Shell\Common\ShellLibrary.cs" />
-    <Compile Include="Shell\Common\ShellLink.cs" />
     <Compile Include="Shell\Common\ShellNativeMethods.cs" />
     <Compile Include="Shell\Common\ShellNativeStructs.cs" />
-    <Compile Include="Shell\Common\ShellNonFileSystemFolder.cs" />
-    <Compile Include="Shell\Common\ShellNonFileSystemItem.cs" />
-    <Compile Include="Shell\Common\ShellObject.cs" />
-    <Compile Include="Shell\Common\ShellObjectContainer.cs" />
-    <Compile Include="Shell\Common\ShellObjectFactory.cs" />
-    <Compile Include="Shell\Common\ShellSavedSearchCollection.cs" />
-    <Compile Include="Shell\Common\ShellSearchCollection.cs" />
-    <Compile Include="Shell\Common\ShellSearchConnector.cs" />
-    <Compile Include="Shell\Common\ShellSearchFolder.cs" />
-    <Compile Include="Shell\Common\ShellThumbnail.cs" />
     <Compile Include="Shell\Common\ShellThumbnailEnums.cs" />
     <Compile Include="Shell\Common\SortColumn.cs" />
     <Compile Include="Shell\Common\WindowUtilities.cs" />
@@ -156,35 +131,20 @@
     <Compile Include="Shell\ExplorerBrowser\ExplorerBrowserCOMInterfaces.cs" />
     <Compile Include="Shell\ExplorerBrowser\ExplorerBrowserNativeMethods.cs" />
     <Compile Include="Shell\KnownFolders\DefinitionOptions.cs" />
-    <Compile Include="Shell\KnownFolders\FileSystemKnownFolder.cs" />
     <Compile Include="Shell\KnownFolders\FolderCategory.cs" />
     <Compile Include="Shell\KnownFolders\FolderProperties.cs" />
     <Compile Include="Shell\KnownFolders\FoldersIdentifiers.cs" />
     <Compile Include="Shell\KnownFolders\FolderTypes.cs" />
-    <Compile Include="Shell\KnownFolders\IKnownFolder.cs" />
-    <Compile Include="Shell\KnownFolders\KnownFolderHelper.cs" />
-    <Compile Include="Shell\KnownFolders\KnownFolders.cs" />
     <Compile Include="Shell\KnownFolders\KnownFoldersCOMGuids.cs" />
     <Compile Include="Shell\KnownFolders\KnownFoldersCOMInterfaces.cs" />
-    <Compile Include="Shell\KnownFolders\KnownFolderSettings.cs" />
     <Compile Include="Shell\KnownFolders\KnownFoldersNativeMethods.cs" />
-    <Compile Include="Shell\KnownFolders\NonFileSystemKnownFolder.cs" />
     <Compile Include="Shell\KnownFolders\RedirectionCapabilities.cs" />
     <Compile Include="Shell\Common\ShellException.cs" />
-    <Compile Include="Shell\PropertySystem\IShellProperty.cs" />
     <Compile Include="Shell\PropertySystem\PropertySystemCOMInterfaces.cs" />
     <Compile Include="Shell\PropertySystem\PropertySystemException.cs" />
     <Compile Include="Shell\PropertySystem\PropertySystemNativeMethods.cs" />
-    <Compile Include="Shell\PropertySystem\ShellProperties.cs" />
-    <Compile Include="Shell\PropertySystem\ShellProperty.cs" />
-    <Compile Include="Shell\PropertySystem\ShellPropertyCollection.cs" />
-    <Compile Include="Shell\PropertySystem\ShellPropertyDescription.cs" />
-    <Compile Include="Shell\PropertySystem\ShellPropertyDescriptionsCache.cs" />
     <Compile Include="Shell\PropertySystem\ShellPropertyEnums.cs" />
-    <Compile Include="Shell\PropertySystem\ShellPropertyEnumType.cs" />
     <Compile Include="Shell\PropertySystem\ShellPropertyFactory.cs" />
-    <Compile Include="Shell\PropertySystem\ShellPropertyWriter.cs" />
-    <Compile Include="Shell\PropertySystem\StronglyTypedProperties.cs" />
     <Compile Include="Shell\PropertySystem\SystemProperties.cs" />
     <Compile Include="Shell\Resources\LocalizedMessages.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -200,6 +160,31 @@
     <Compile Include="Shell\Taskbar\TabbedThumbnailNativeMethods.cs" />
     <Compile Include="Shell\Taskbar\TaskbarCOMInterfaces.cs" />
     <Compile Include="Shell\Taskbar\TaskbarNativeMethods.cs" />
+    <Compile Include="WindowsPortableDevices\ClientInterfaces\IEnumPortableDeviceObjectIDs.cs" />
+    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDevice.cs" />
+    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceCapabilities.cs" />
+    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceContent.cs" />
+    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceContent2.cs" />
+    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceDataStream.cs" />
+    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceEventCallback.cs" />
+    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceManager.cs" />
+    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceProperties.cs" />
+    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDevicePropertiesBulk.cs" />
+    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDevicePropertiesBulkCallback.cs" />
+    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceResources.cs" />
+    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceService.cs" />
+    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceServiceCapabilities.cs" />
+    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceServiceManager.cs" />
+    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceServiceMethodCallback.cs" />
+    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceServiceMethods.cs" />
+    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceUnitsStream.cs" />
+    <Compile Include="WindowsPortableDevices\CoClasses\ClientClasses\PortableDeviceManager.cs" />
+    <Compile Include="WindowsPortableDevices\CollectionInterfaces\IPortableDeviceKeyCollection.cs" />
+    <Compile Include="WindowsPortableDevices\CollectionInterfaces\IPortableDevicePropVariantCollection.cs" />
+    <Compile Include="WindowsPortableDevices\CollectionInterfaces\IPortableDeviceValues.cs" />
+    <Compile Include="WindowsPortableDevices\CollectionInterfaces\IPortableDeviceValuesCollection.cs" />
+    <Compile Include="WindowsPortableDevices\Enums.cs" />
+    <Compile Include="WindowsPortableDevices\WPDCOMGuids.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Core\Resources\LocalizedMessages.resx">
@@ -218,18 +203,4 @@
     <None Include="Win32Native.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Utilisez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est : {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.Build.Tasks.Git.1.0.0-beta2-19367-01\build\Microsoft.Build.Tasks.Git.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Build.Tasks.Git.1.0.0-beta2-19367-01\build\Microsoft.Build.Tasks.Git.props'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.Build.Tasks.Git.1.0.0-beta2-19367-01\build\Microsoft.Build.Tasks.Git.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Build.Tasks.Git.1.0.0-beta2-19367-01\build\Microsoft.Build.Tasks.Git.targets'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.SourceLink.Common.1.0.0-beta2-19367-01\build\Microsoft.SourceLink.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.SourceLink.Common.1.0.0-beta2-19367-01\build\Microsoft.SourceLink.Common.props'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.SourceLink.Common.1.0.0-beta2-19367-01\build\Microsoft.SourceLink.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.SourceLink.Common.1.0.0-beta2-19367-01\build\Microsoft.SourceLink.Common.targets'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.SourceLink.GitHub.1.0.0-beta2-19367-01\build\Microsoft.SourceLink.GitHub.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.SourceLink.GitHub.1.0.0-beta2-19367-01\build\Microsoft.SourceLink.GitHub.props'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.SourceLink.GitHub.1.0.0-beta2-19367-01\build\Microsoft.SourceLink.GitHub.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.SourceLink.GitHub.1.0.0-beta2-19367-01\build\Microsoft.SourceLink.GitHub.targets'))" />
-  </Target>
-  <Import Project="..\packages\Microsoft.Build.Tasks.Git.1.0.0-beta2-19367-01\build\Microsoft.Build.Tasks.Git.targets" Condition="Exists('..\packages\Microsoft.Build.Tasks.Git.1.0.0-beta2-19367-01\build\Microsoft.Build.Tasks.Git.targets')" />
-  <Import Project="..\packages\Microsoft.SourceLink.Common.1.0.0-beta2-19367-01\build\Microsoft.SourceLink.Common.targets" Condition="Exists('..\packages\Microsoft.SourceLink.Common.1.0.0-beta2-19367-01\build\Microsoft.SourceLink.Common.targets')" />
-  <Import Project="..\packages\Microsoft.SourceLink.GitHub.1.0.0-beta2-19367-01\build\Microsoft.SourceLink.GitHub.targets" Condition="Exists('..\packages\Microsoft.SourceLink.GitHub.1.0.0-beta2-19367-01\build\Microsoft.SourceLink.GitHub.targets')" />
 </Project>

@@ -46,7 +46,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.AcquisitionID;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.AcquisitionID;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -68,7 +68,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ApplicationName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ApplicationName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -90,7 +90,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Author;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Author;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -112,7 +112,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Capacity;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Capacity;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -134,7 +134,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Category;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Category;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -156,7 +156,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Comment;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Comment;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -178,7 +178,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Company;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Company;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -200,7 +200,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ComputerName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ComputerName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -223,7 +223,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ContainedItems;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ContainedItems;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -244,7 +244,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ContentStatus;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ContentStatus;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -265,7 +265,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ContentType;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ContentType;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -287,7 +287,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Copyright;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Copyright;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -309,7 +309,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.DateAccessed;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.DateAccessed;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -332,7 +332,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.DateAcquired;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.DateAcquired;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -353,7 +353,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.DateArchived;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.DateArchived;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -374,7 +374,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.DateCompleted;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.DateCompleted;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -396,7 +396,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.DateCreated;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.DateCreated;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -418,7 +418,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.DateImported;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.DateImported;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -440,7 +440,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.DateModified;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.DateModified;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -462,7 +462,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.DescriptionID;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.DescriptionID;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -483,7 +483,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.DueDate;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.DueDate;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -504,7 +504,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.EndDate;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.EndDate;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -526,7 +526,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.FileAllocationSize;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.FileAllocationSize;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -548,7 +548,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.FileAttributes;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.FileAttributes;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -570,7 +570,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.FileCount;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.FileCount;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -592,7 +592,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.FileDescription;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.FileDescription;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -631,7 +631,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.FileExtension;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.FileExtension;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -654,7 +654,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.FileFRN;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.FileFRN;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -696,7 +696,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.FileName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.FileName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -718,7 +718,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.FileOwner;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.FileOwner;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -740,7 +740,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.FileVersion;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.FileVersion;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -762,7 +762,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.FindData;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.FindData;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -784,7 +784,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.FlagColor;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.FlagColor;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -807,7 +807,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.FlagColorText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.FlagColorText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -829,7 +829,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.FlagStatus;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.FlagStatus;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -852,7 +852,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.FlagStatusText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.FlagStatusText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -874,7 +874,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.FreeSpace;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.FreeSpace;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -898,7 +898,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.FullText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.FullText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -919,7 +919,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.IdentityProperty;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.IdentityProperty;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -940,7 +940,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ImageParsingName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ImageParsingName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -961,7 +961,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Importance;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Importance;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -984,7 +984,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ImportanceText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ImportanceText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1006,7 +1006,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.InfoTipText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.InfoTipText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1028,7 +1028,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.InternalName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.InternalName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1050,7 +1050,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.IsAttachment;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.IsAttachment;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1072,7 +1072,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.IsDefaultNonOwnerSaveLocation;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.IsDefaultNonOwnerSaveLocation;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1094,7 +1094,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.IsDefaultSaveLocation;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.IsDefaultSaveLocation;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1115,7 +1115,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.IsDeleted;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.IsDeleted;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1137,7 +1137,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.IsEncrypted;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.IsEncrypted;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1158,7 +1158,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.IsFlagged;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.IsFlagged;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1179,7 +1179,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.IsFlaggedComplete;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.IsFlaggedComplete;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1201,7 +1201,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.IsIncomplete;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.IsIncomplete;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1223,7 +1223,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.IsLocationSupported;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.IsLocationSupported;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1245,7 +1245,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.IsPinnedToNamespaceTree;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.IsPinnedToNamespaceTree;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1267,7 +1267,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.IsRead;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.IsRead;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1289,7 +1289,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.IsSearchOnlyItem;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.IsSearchOnlyItem;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1311,7 +1311,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.IsSendToTarget;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.IsSendToTarget;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1333,7 +1333,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.IsShared;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.IsShared;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1357,7 +1357,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ItemAuthors;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ItemAuthors;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1378,7 +1378,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ItemClassType;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ItemClassType;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1402,7 +1402,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ItemDate;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ItemDate;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1439,7 +1439,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ItemFolderNameDisplay;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ItemFolderNameDisplay;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1474,7 +1474,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ItemFolderPathDisplay;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ItemFolderPathDisplay;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1512,7 +1512,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ItemFolderPathDisplayNarrow;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ItemFolderPathDisplayNarrow;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1540,7 +1540,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ItemName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ItemName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1599,7 +1599,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ItemNameDisplay;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ItemNameDisplay;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1636,7 +1636,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ItemNamePrefix;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ItemNamePrefix;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1662,7 +1662,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ItemParticipants;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ItemParticipants;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1704,7 +1704,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ItemPathDisplay;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ItemPathDisplay;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1742,7 +1742,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ItemPathDisplayNarrow;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ItemPathDisplayNarrow;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1785,7 +1785,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ItemType;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ItemType;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1827,7 +1827,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ItemTypeText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ItemTypeText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1857,7 +1857,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ItemUrl;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ItemUrl;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1879,7 +1879,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Keywords;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Keywords;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1903,7 +1903,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Kind;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Kind;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1926,7 +1926,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.KindText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.KindText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1948,7 +1948,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Language;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Language;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1969,7 +1969,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.MileageInformation;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.MileageInformation;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -1991,7 +1991,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.MIMEType;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.MIMEType;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2013,7 +2013,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.NamespaceClsid;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.NamespaceClsid;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2034,7 +2034,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Null;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Null;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2055,7 +2055,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.OfflineAvailability;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.OfflineAvailability;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2076,7 +2076,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.OfflineStatus;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.OfflineStatus;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2098,7 +2098,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.OriginalFileName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.OriginalFileName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2120,7 +2120,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.OwnerSid;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.OwnerSid;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2142,7 +2142,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ParentalRating;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ParentalRating;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2163,7 +2163,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ParentalRatingReason;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ParentalRatingReason;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2184,7 +2184,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ParentalRatingsOrganization;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ParentalRatingsOrganization;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2206,7 +2206,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ParsingBindContext;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ParsingBindContext;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2229,7 +2229,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ParsingName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ParsingName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2256,7 +2256,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ParsingPath;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ParsingPath;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2278,7 +2278,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PerceivedType;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PerceivedType;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2300,7 +2300,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PercentFull;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PercentFull;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2322,7 +2322,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Priority;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Priority;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2345,7 +2345,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PriorityText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PriorityText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2366,7 +2366,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Project;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Project;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2388,7 +2388,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ProviderItemID;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ProviderItemID;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2411,7 +2411,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Rating;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Rating;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2434,7 +2434,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.RatingText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.RatingText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2456,7 +2456,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Sensitivity;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Sensitivity;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2479,7 +2479,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.SensitivityText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.SensitivityText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2501,7 +2501,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.SFGAOFlags;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.SFGAOFlags;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2523,7 +2523,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.SharedWith;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.SharedWith;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2545,7 +2545,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ShareUserRating;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ShareUserRating;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2567,7 +2567,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.SharingStatus;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.SharingStatus;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2590,7 +2590,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.SimpleRating;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.SimpleRating;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2612,7 +2612,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Size;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Size;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2634,7 +2634,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.SoftwareUsed;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.SoftwareUsed;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2655,7 +2655,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.SourceItem;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.SourceItem;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2676,7 +2676,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.StartDate;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.StartDate;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2697,7 +2697,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Status;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Status;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2719,7 +2719,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Subject;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Subject;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2741,7 +2741,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Thumbnail;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Thumbnail;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2764,7 +2764,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ThumbnailCacheId;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ThumbnailCacheId;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2786,7 +2786,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.ThumbnailStream;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.ThumbnailStream;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2808,7 +2808,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Title;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Title;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2830,7 +2830,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.TotalFileSize;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.TotalFileSize;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -2852,7 +2852,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Trademarks;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Trademarks;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3424,7 +3424,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.AppUserModel.ExcludeFromShowInNewInstall;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.AppUserModel.ExcludeFromShowInNewInstall;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3445,7 +3445,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.AppUserModel.ID;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.AppUserModel.ID;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3466,7 +3466,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.AppUserModel.IsDestinationListSeparator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.AppUserModel.IsDestinationListSeparator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3487,7 +3487,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.AppUserModel.PreventPinning;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.AppUserModel.PreventPinning;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3508,7 +3508,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.AppUserModel.RelaunchCommand;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.AppUserModel.RelaunchCommand;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3529,7 +3529,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.AppUserModel.RelaunchDisplayNameResource;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.AppUserModel.RelaunchDisplayNameResource;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3550,7 +3550,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.AppUserModel.RelaunchIconResource;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.AppUserModel.RelaunchIconResource;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3595,7 +3595,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Audio.ChannelCount;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Audio.ChannelCount;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3617,7 +3617,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Audio.Compression;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Audio.Compression;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3639,7 +3639,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Audio.EncodingBitrate;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Audio.EncodingBitrate;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3661,7 +3661,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Audio.Format;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Audio.Format;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3682,7 +3682,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Audio.IsVariableBitrate;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Audio.IsVariableBitrate;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3703,7 +3703,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Audio.PeakValue;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Audio.PeakValue;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3725,7 +3725,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Audio.SampleRate;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Audio.SampleRate;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3747,7 +3747,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Audio.SampleSize;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Audio.SampleSize;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3769,7 +3769,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Audio.StreamName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Audio.StreamName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3791,7 +3791,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Audio.StreamNumber;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Audio.StreamNumber;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3836,7 +3836,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Calendar.Duration;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Calendar.Duration;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3858,7 +3858,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Calendar.IsOnline;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Calendar.IsOnline;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3879,7 +3879,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Calendar.IsRecurring;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Calendar.IsRecurring;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3900,7 +3900,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Calendar.Location;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Calendar.Location;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3921,7 +3921,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Calendar.OptionalAttendeeAddresses;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Calendar.OptionalAttendeeAddresses;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3942,7 +3942,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Calendar.OptionalAttendeeNames;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Calendar.OptionalAttendeeNames;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3964,7 +3964,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Calendar.OrganizerAddress;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Calendar.OrganizerAddress;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -3986,7 +3986,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Calendar.OrganizerName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Calendar.OrganizerName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4007,7 +4007,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Calendar.ReminderTime;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Calendar.ReminderTime;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4028,7 +4028,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Calendar.RequiredAttendeeAddresses;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Calendar.RequiredAttendeeAddresses;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4049,7 +4049,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Calendar.RequiredAttendeeNames;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Calendar.RequiredAttendeeNames;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4070,7 +4070,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Calendar.Resources;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Calendar.Resources;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4092,7 +4092,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Calendar.ResponseStatus;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Calendar.ResponseStatus;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4114,7 +4114,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Calendar.ShowTimeAs;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Calendar.ShowTimeAs;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4137,7 +4137,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Calendar.ShowTimeAsText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Calendar.ShowTimeAsText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4179,7 +4179,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Communication.AccountName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Communication.AccountName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4201,7 +4201,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Communication.DateItemExpires;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Communication.DateItemExpires;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4223,7 +4223,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Communication.FollowUpIconIndex;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Communication.FollowUpIconIndex;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4245,7 +4245,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Communication.HeaderItem;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Communication.HeaderItem;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4267,7 +4267,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Communication.PolicyTag;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Communication.PolicyTag;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4289,7 +4289,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Communication.SecurityFlags;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Communication.SecurityFlags;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4310,7 +4310,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Communication.Suffix;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Communication.Suffix;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4331,7 +4331,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Communication.TaskStatus;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Communication.TaskStatus;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4354,7 +4354,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Communication.TaskStatusText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Communication.TaskStatusText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4399,7 +4399,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Computer.DecoratedFreeSpace;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Computer.DecoratedFreeSpace;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4443,7 +4443,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.Anniversary;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.Anniversary;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4464,7 +4464,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.AssistantName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.AssistantName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4485,7 +4485,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.AssistantTelephone;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.AssistantTelephone;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4506,7 +4506,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.Birthday;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.Birthday;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4527,7 +4527,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.BusinessAddress;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.BusinessAddress;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4548,7 +4548,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.BusinessAddressCity;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.BusinessAddressCity;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4569,7 +4569,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.BusinessAddressCountry;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.BusinessAddressCountry;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4590,7 +4590,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.BusinessAddressPostalCode;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.BusinessAddressPostalCode;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4611,7 +4611,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.BusinessAddressPostOfficeBox;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.BusinessAddressPostOfficeBox;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4632,7 +4632,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.BusinessAddressState;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.BusinessAddressState;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4653,7 +4653,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.BusinessAddressStreet;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.BusinessAddressStreet;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4675,7 +4675,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.BusinessFaxNumber;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.BusinessFaxNumber;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4696,7 +4696,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.BusinessHomepage;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.BusinessHomepage;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4717,7 +4717,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.BusinessTelephone;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.BusinessTelephone;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4738,7 +4738,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.CallbackTelephone;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.CallbackTelephone;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4759,7 +4759,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.CarTelephone;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.CarTelephone;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4780,7 +4780,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.Children;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.Children;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4801,7 +4801,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.CompanyMainTelephone;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.CompanyMainTelephone;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4822,7 +4822,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.Department;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.Department;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4843,7 +4843,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.EmailAddress;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.EmailAddress;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4864,7 +4864,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.EmailAddress2;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.EmailAddress2;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4885,7 +4885,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.EmailAddress3;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.EmailAddress3;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4906,7 +4906,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.EmailAddresses;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.EmailAddresses;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4927,7 +4927,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.EmailName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.EmailName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4948,7 +4948,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.FileAsName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.FileAsName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4969,7 +4969,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.FirstName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.FirstName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -4990,7 +4990,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.FullName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.FullName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5011,7 +5011,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.Gender;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.Gender;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5032,7 +5032,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.GenderValue;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.GenderValue;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5053,7 +5053,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.Hobbies;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.Hobbies;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5074,7 +5074,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.HomeAddress;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.HomeAddress;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5095,7 +5095,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.HomeAddressCity;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.HomeAddressCity;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5116,7 +5116,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.HomeAddressCountry;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.HomeAddressCountry;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5137,7 +5137,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.HomeAddressPostalCode;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.HomeAddressPostalCode;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5158,7 +5158,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.HomeAddressPostOfficeBox;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.HomeAddressPostOfficeBox;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5179,7 +5179,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.HomeAddressState;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.HomeAddressState;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5200,7 +5200,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.HomeAddressStreet;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.HomeAddressStreet;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5221,7 +5221,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.HomeFaxNumber;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.HomeFaxNumber;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5242,7 +5242,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.HomeTelephone;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.HomeTelephone;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5263,7 +5263,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.IMAddress;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.IMAddress;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5284,7 +5284,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.Initials;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.Initials;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5305,7 +5305,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.JobTitle;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.JobTitle;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5326,7 +5326,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.Label;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.Label;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5347,7 +5347,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.LastName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.LastName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5368,7 +5368,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.MailingAddress;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.MailingAddress;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5389,7 +5389,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.MiddleName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.MiddleName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5410,7 +5410,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.MobileTelephone;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.MobileTelephone;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5431,7 +5431,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.Nickname;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.Nickname;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5452,7 +5452,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.OfficeLocation;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.OfficeLocation;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5473,7 +5473,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.OtherAddress;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.OtherAddress;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5494,7 +5494,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.OtherAddressCity;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.OtherAddressCity;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5515,7 +5515,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.OtherAddressCountry;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.OtherAddressCountry;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5536,7 +5536,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.OtherAddressPostalCode;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.OtherAddressPostalCode;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5557,7 +5557,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.OtherAddressPostOfficeBox;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.OtherAddressPostOfficeBox;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5578,7 +5578,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.OtherAddressState;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.OtherAddressState;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5599,7 +5599,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.OtherAddressStreet;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.OtherAddressStreet;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5620,7 +5620,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.PagerTelephone;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.PagerTelephone;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5641,7 +5641,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.PersonalTitle;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.PersonalTitle;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5662,7 +5662,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.PrimaryAddressCity;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.PrimaryAddressCity;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5683,7 +5683,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.PrimaryAddressCountry;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.PrimaryAddressCountry;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5704,7 +5704,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.PrimaryAddressPostalCode;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.PrimaryAddressPostalCode;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5725,7 +5725,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.PrimaryAddressPostOfficeBox;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.PrimaryAddressPostOfficeBox;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5746,7 +5746,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.PrimaryAddressState;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.PrimaryAddressState;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5767,7 +5767,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.PrimaryAddressStreet;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.PrimaryAddressStreet;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5788,7 +5788,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.PrimaryEmailAddress;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.PrimaryEmailAddress;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5809,7 +5809,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.PrimaryTelephone;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.PrimaryTelephone;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5830,7 +5830,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.Profession;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.Profession;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5851,7 +5851,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.SpouseName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.SpouseName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5872,7 +5872,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.Suffix;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.Suffix;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5893,7 +5893,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.TelexNumber;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.TelexNumber;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5914,7 +5914,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.TTYTDDTelephone;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.TTYTDDTelephone;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5935,7 +5935,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.Webpage;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.Webpage;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -5996,7 +5996,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.JA.CompanyNamePhonetic;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.JA.CompanyNamePhonetic;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6018,7 +6018,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.JA.FirstNamePhonetic;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.JA.FirstNamePhonetic;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6040,7 +6040,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Contact.JA.LastNamePhonetic;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Contact.JA.LastNamePhonetic;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6085,7 +6085,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Device.PrinterUrl;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Device.PrinterUrl;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6130,7 +6130,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.DeviceInterface.PrinterDriverDirectory;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.DeviceInterface.PrinterDriverDirectory;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6152,7 +6152,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.DeviceInterface.PrinterDriverName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.DeviceInterface.PrinterDriverName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6174,7 +6174,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.DeviceInterface.PrinterName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.DeviceInterface.PrinterName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6196,7 +6196,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.DeviceInterface.PrinterPortName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.DeviceInterface.PrinterPortName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6241,7 +6241,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.BatteryLife;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.BatteryLife;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6263,7 +6263,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.BatteryPlusCharging;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.BatteryPlusCharging;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6285,7 +6285,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.BatteryPlusChargingText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.BatteryPlusChargingText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6307,7 +6307,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.Category;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.Category;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6329,7 +6329,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.CategoryGroup;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.CategoryGroup;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6351,7 +6351,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.CategoryPlural;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.CategoryPlural;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6373,7 +6373,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.ChargingState;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.ChargingState;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6395,7 +6395,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.Connected;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.Connected;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6417,7 +6417,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.ContainerId;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.ContainerId;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6439,7 +6439,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.DefaultTooltip;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.DefaultTooltip;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6461,7 +6461,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.DeviceDescription1;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.DeviceDescription1;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6483,7 +6483,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.DeviceDescription2;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.DeviceDescription2;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6505,7 +6505,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.DiscoveryMethod;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.DiscoveryMethod;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6527,7 +6527,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.FriendlyName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.FriendlyName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6549,7 +6549,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.FunctionPaths;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.FunctionPaths;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6571,7 +6571,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.InterfacePaths;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.InterfacePaths;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6593,7 +6593,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.IsDefault;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.IsDefault;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6615,7 +6615,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.IsNetworkConnected;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.IsNetworkConnected;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6637,7 +6637,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.IsShared;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.IsShared;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6659,7 +6659,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.IsSoftwareInstalling;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.IsSoftwareInstalling;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6681,7 +6681,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.LaunchDeviceStageFromExplorer;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.LaunchDeviceStageFromExplorer;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6703,7 +6703,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.LocalMachine;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.LocalMachine;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6725,7 +6725,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.Manufacturer;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.Manufacturer;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6747,7 +6747,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.MissedCalls;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.MissedCalls;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6769,7 +6769,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.ModelName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.ModelName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6791,7 +6791,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.ModelNumber;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.ModelNumber;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6813,7 +6813,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.NetworkedTooltip;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.NetworkedTooltip;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6835,7 +6835,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.NetworkName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.NetworkName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6857,7 +6857,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.NetworkType;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.NetworkType;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6879,7 +6879,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.NewPictures;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.NewPictures;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6901,7 +6901,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.Notification;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.Notification;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6923,7 +6923,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.NotificationStore;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.NotificationStore;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6945,7 +6945,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.NotWorkingProperly;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.NotWorkingProperly;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6967,7 +6967,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.Paired;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.Paired;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -6989,7 +6989,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.PrimaryCategory;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.PrimaryCategory;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7011,7 +7011,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.Roaming;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.Roaming;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7033,7 +7033,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.SafeRemovalRequired;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.SafeRemovalRequired;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7055,7 +7055,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.SharedTooltip;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.SharedTooltip;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7077,7 +7077,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.SignalStrength;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.SignalStrength;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7099,7 +7099,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.Status1;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.Status1;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7121,7 +7121,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.Status2;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.Status2;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7143,7 +7143,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.StorageCapacity;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.StorageCapacity;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7165,7 +7165,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.StorageFreeSpace;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.StorageFreeSpace;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7187,7 +7187,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.StorageFreeSpacePercent;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.StorageFreeSpacePercent;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7209,7 +7209,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.TextMessages;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.TextMessages;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7231,7 +7231,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.Voicemail;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.Voicemail;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7292,7 +7292,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.Notifications.LowBattery;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.Notifications.LowBattery;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7314,7 +7314,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.Notifications.MissedCall;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.Notifications.MissedCall;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7336,7 +7336,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.Notifications.NewMessage;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.Notifications.NewMessage;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7358,7 +7358,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.Notifications.NewVoicemail;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.Notifications.NewVoicemail;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7380,7 +7380,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.Notifications.StorageFull;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.Notifications.StorageFull;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7402,7 +7402,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Devices.Notifications.StorageFullLinkText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Devices.Notifications.StorageFullLinkText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7447,7 +7447,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.ByteCount;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.ByteCount;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7469,7 +7469,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.CharacterCount;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.CharacterCount;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7490,7 +7490,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.ClientID;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.ClientID;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7511,7 +7511,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.Contributor;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.Contributor;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7533,7 +7533,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.DateCreated;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.DateCreated;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7555,7 +7555,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.DatePrinted;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.DatePrinted;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7577,7 +7577,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.DateSaved;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.DateSaved;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7598,7 +7598,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.Division;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.Division;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7619,7 +7619,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.DocumentID;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.DocumentID;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7641,7 +7641,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.HiddenSlideCount;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.HiddenSlideCount;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7663,7 +7663,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.LastAuthor;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.LastAuthor;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7685,7 +7685,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.LineCount;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.LineCount;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7707,7 +7707,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.Manager;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.Manager;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7729,7 +7729,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.MultimediaClipCount;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.MultimediaClipCount;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7751,7 +7751,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.NoteCount;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.NoteCount;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7773,7 +7773,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.PageCount;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.PageCount;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7795,7 +7795,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.ParagraphCount;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.ParagraphCount;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7817,7 +7817,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.PresentationFormat;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.PresentationFormat;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7839,7 +7839,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.RevisionNumber;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.RevisionNumber;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7861,7 +7861,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.Security;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.Security;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7883,7 +7883,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.SlideCount;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.SlideCount;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7905,7 +7905,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.Template;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.Template;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7927,7 +7927,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.TotalEditingTime;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.TotalEditingTime;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7948,7 +7948,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.Version;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.Version;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -7970,7 +7970,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Document.WordCount;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Document.WordCount;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8015,7 +8015,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.DRM.DatePlayExpires;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.DRM.DatePlayExpires;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8037,7 +8037,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.DRM.DatePlayStarts;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.DRM.DatePlayStarts;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8059,7 +8059,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.DRM.Description;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.DRM.Description;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8081,7 +8081,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.DRM.IsProtected;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.DRM.IsProtected;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8103,7 +8103,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.DRM.PlayCount;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.DRM.PlayCount;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8149,7 +8149,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.Altitude;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.Altitude;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8171,7 +8171,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.AltitudeDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.AltitudeDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8193,7 +8193,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.AltitudeNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.AltitudeNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8215,7 +8215,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.AltitudeRef;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.AltitudeRef;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8237,7 +8237,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.AreaInformation;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.AreaInformation;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8259,7 +8259,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.Date;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.Date;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8282,7 +8282,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.DestinationBearing;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.DestinationBearing;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8304,7 +8304,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.DestinationBearingDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.DestinationBearingDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8326,7 +8326,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.DestinationBearingNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.DestinationBearingNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8348,7 +8348,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.DestinationBearingRef;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.DestinationBearingRef;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8371,7 +8371,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.DestinationDistance;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.DestinationDistance;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8393,7 +8393,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.DestinationDistanceDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.DestinationDistanceDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8415,7 +8415,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.DestinationDistanceNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.DestinationDistanceNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8437,7 +8437,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.DestinationDistanceRef;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.DestinationDistanceRef;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8461,7 +8461,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.DestinationLatitude;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.DestinationLatitude;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8483,7 +8483,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.DestinationLatitudeDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.DestinationLatitudeDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8505,7 +8505,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.DestinationLatitudeNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.DestinationLatitudeNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8527,7 +8527,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.DestinationLatitudeRef;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.DestinationLatitudeRef;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8551,7 +8551,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.DestinationLongitude;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.DestinationLongitude;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8573,7 +8573,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.DestinationLongitudeDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.DestinationLongitudeDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8595,7 +8595,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.DestinationLongitudeNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.DestinationLongitudeNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8617,7 +8617,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.DestinationLongitudeRef;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.DestinationLongitudeRef;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8639,7 +8639,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.Differential;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.Differential;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8661,7 +8661,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.DOP;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.DOP;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8683,7 +8683,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.DOPDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.DOPDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8705,7 +8705,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.DOPNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.DOPNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8728,7 +8728,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.ImageDirection;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.ImageDirection;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8750,7 +8750,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.ImageDirectionDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.ImageDirectionDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8772,7 +8772,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.ImageDirectionNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.ImageDirectionNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8794,7 +8794,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.ImageDirectionRef;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.ImageDirectionRef;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8817,7 +8817,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.Latitude;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.Latitude;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8839,7 +8839,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.LatitudeDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.LatitudeDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8861,7 +8861,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.LatitudeNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.LatitudeNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8883,7 +8883,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.LatitudeRef;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.LatitudeRef;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8906,7 +8906,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.Longitude;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.Longitude;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8928,7 +8928,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.LongitudeDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.LongitudeDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8950,7 +8950,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.LongitudeNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.LongitudeNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8972,7 +8972,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.LongitudeRef;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.LongitudeRef;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -8994,7 +8994,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.MapDatum;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.MapDatum;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9016,7 +9016,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.MeasureMode;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.MeasureMode;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9038,7 +9038,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.ProcessingMethod;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.ProcessingMethod;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9060,7 +9060,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.Satellites;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.Satellites;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9083,7 +9083,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.Speed;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.Speed;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9105,7 +9105,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.SpeedDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.SpeedDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9127,7 +9127,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.SpeedNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.SpeedNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9150,7 +9150,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.SpeedRef;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.SpeedRef;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9173,7 +9173,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.Status;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.Status;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9196,7 +9196,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.Track;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.Track;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9218,7 +9218,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.TrackDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.TrackDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9240,7 +9240,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.TrackNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.TrackNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9262,7 +9262,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.TrackRef;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.TrackRef;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9284,7 +9284,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.GPS.VersionID;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.GPS.VersionID;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9329,7 +9329,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Identity.Blob;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Identity.Blob;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9351,7 +9351,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Identity.DisplayName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Identity.DisplayName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9373,7 +9373,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Identity.IsMeIdentity;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Identity.IsMeIdentity;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9395,7 +9395,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Identity.PrimaryEmailAddress;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Identity.PrimaryEmailAddress;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9417,7 +9417,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Identity.ProviderID;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Identity.ProviderID;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9439,7 +9439,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Identity.UniqueID;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Identity.UniqueID;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9461,7 +9461,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Identity.UserName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Identity.UserName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9506,7 +9506,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.IdentityProvider.Name;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.IdentityProvider.Name;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9528,7 +9528,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.IdentityProvider.Picture;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.IdentityProvider.Picture;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9573,7 +9573,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Image.BitDepth;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Image.BitDepth;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9595,7 +9595,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Image.ColorSpace;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Image.ColorSpace;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9617,7 +9617,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Image.CompressedBitsPerPixel;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Image.CompressedBitsPerPixel;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9639,7 +9639,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Image.CompressedBitsPerPixelDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Image.CompressedBitsPerPixelDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9661,7 +9661,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Image.CompressedBitsPerPixelNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Image.CompressedBitsPerPixelNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9683,7 +9683,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Image.Compression;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Image.Compression;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9706,7 +9706,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Image.CompressionText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Image.CompressionText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9728,7 +9728,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Image.Dimensions;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Image.Dimensions;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9750,7 +9750,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Image.HorizontalResolution;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Image.HorizontalResolution;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9772,7 +9772,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Image.HorizontalSize;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Image.HorizontalSize;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9793,7 +9793,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Image.ImageID;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Image.ImageID;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9814,7 +9814,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Image.ResolutionUnit;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Image.ResolutionUnit;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9836,7 +9836,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Image.VerticalResolution;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Image.VerticalResolution;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9858,7 +9858,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Image.VerticalSize;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Image.VerticalSize;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9902,7 +9902,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Journal.Contacts;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Journal.Contacts;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9923,7 +9923,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Journal.EntryType;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Journal.EntryType;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9969,7 +9969,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.LayoutPattern.ContentViewModeForBrowse;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.LayoutPattern.ContentViewModeForBrowse;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -9992,7 +9992,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.LayoutPattern.ContentViewModeForSearch;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.LayoutPattern.ContentViewModeForSearch;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10036,7 +10036,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Link.Arguments;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Link.Arguments;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10057,7 +10057,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Link.Comment;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Link.Comment;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10078,7 +10078,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Link.DateVisited;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Link.DateVisited;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10099,7 +10099,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Link.Description;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Link.Description;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10121,7 +10121,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Link.Status;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Link.Status;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10143,7 +10143,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Link.TargetExtension;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Link.TargetExtension;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10170,7 +10170,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Link.TargetParsingPath;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Link.TargetParsingPath;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10193,7 +10193,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Link.TargetSFGAOFlags;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Link.TargetSFGAOFlags;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10216,7 +10216,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Link.TargetSFGAOFlagsStrings;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Link.TargetSFGAOFlagsStrings;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10237,7 +10237,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Link.TargetUrl;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Link.TargetUrl;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10282,7 +10282,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.AuthorUrl;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.AuthorUrl;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10303,7 +10303,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.AverageLevel;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.AverageLevel;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10325,7 +10325,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.ClassPrimaryID;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.ClassPrimaryID;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10347,7 +10347,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.ClassSecondaryID;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.ClassSecondaryID;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10369,7 +10369,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.CollectionGroupID;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.CollectionGroupID;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10391,7 +10391,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.CollectionID;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.CollectionID;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10413,7 +10413,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.ContentDistributor;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.ContentDistributor;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10435,7 +10435,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.ContentID;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.ContentID;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10457,7 +10457,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.CreatorApplication;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.CreatorApplication;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10479,7 +10479,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.CreatorApplicationVersion;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.CreatorApplicationVersion;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10501,7 +10501,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.DateEncoded;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.DateEncoded;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10522,7 +10522,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.DateReleased;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.DateReleased;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10544,7 +10544,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.Duration;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.Duration;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10566,7 +10566,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.DVDID;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.DVDID;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10588,7 +10588,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.EncodedBy;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.EncodedBy;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10610,7 +10610,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.EncodingSettings;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.EncodingSettings;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10632,7 +10632,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.FrameCount;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.FrameCount;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10654,7 +10654,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.MCDI;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.MCDI;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10676,7 +10676,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.MetadataContentProvider;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.MetadataContentProvider;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10698,7 +10698,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.Producer;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.Producer;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10720,7 +10720,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.PromotionUrl;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.PromotionUrl;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10742,7 +10742,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.ProtectionType;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.ProtectionType;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10764,7 +10764,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.ProviderRating;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.ProviderRating;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10786,7 +10786,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.ProviderStyle;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.ProviderStyle;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10808,7 +10808,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.Publisher;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.Publisher;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10829,7 +10829,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.SubscriptionContentId;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.SubscriptionContentId;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10851,7 +10851,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.Subtitle;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.Subtitle;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10873,7 +10873,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.UniqueFileIdentifier;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.UniqueFileIdentifier;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10895,7 +10895,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.UserNoAutoInfo;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.UserNoAutoInfo;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10917,7 +10917,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.UserWebUrl;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.UserWebUrl;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10939,7 +10939,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.Writer;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.Writer;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -10961,7 +10961,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Media.Year;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Media.Year;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11005,7 +11005,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Message.AttachmentContents;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Message.AttachmentContents;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11027,7 +11027,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Message.AttachmentNames;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Message.AttachmentNames;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11049,7 +11049,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Message.BccAddress;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Message.BccAddress;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11071,7 +11071,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Message.BccName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Message.BccName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11093,7 +11093,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Message.CcAddress;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Message.CcAddress;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11115,7 +11115,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Message.CcName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Message.CcName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11136,7 +11136,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Message.ConversationID;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Message.ConversationID;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11158,7 +11158,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Message.ConversationIndex;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Message.ConversationIndex;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11180,7 +11180,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Message.DateReceived;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Message.DateReceived;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11202,7 +11202,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Message.DateSent;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Message.DateSent;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11225,7 +11225,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Message.Flags;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Message.Flags;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11246,7 +11246,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Message.FromAddress;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Message.FromAddress;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11268,7 +11268,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Message.FromName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Message.FromName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11290,7 +11290,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Message.HasAttachments;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Message.HasAttachments;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11311,7 +11311,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Message.IsFwdOrReply;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Message.IsFwdOrReply;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11333,7 +11333,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Message.MessageClass;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Message.MessageClass;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11355,7 +11355,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Message.ProofInProgress;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Message.ProofInProgress;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11376,7 +11376,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Message.SenderAddress;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Message.SenderAddress;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11397,7 +11397,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Message.SenderName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Message.SenderName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11419,7 +11419,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Message.Store;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Message.Store;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11441,7 +11441,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Message.ToAddress;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Message.ToAddress;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11463,7 +11463,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Message.ToDoFlags;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Message.ToDoFlags;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11484,7 +11484,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Message.ToDoTitle;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Message.ToDoTitle;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11506,7 +11506,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Message.ToName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Message.ToName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11551,7 +11551,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Music.AlbumArtist;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Music.AlbumArtist;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11574,7 +11574,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Music.AlbumID;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Music.AlbumID;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11596,7 +11596,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Music.AlbumTitle;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Music.AlbumTitle;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11618,7 +11618,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Music.Artist;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Music.Artist;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11640,7 +11640,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Music.BeatsPerMinute;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Music.BeatsPerMinute;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11662,7 +11662,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Music.Composer;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Music.Composer;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11684,7 +11684,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Music.Conductor;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Music.Conductor;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11706,7 +11706,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Music.ContentGroupDescription;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Music.ContentGroupDescription;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11729,7 +11729,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Music.DisplayArtist;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Music.DisplayArtist;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11751,7 +11751,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Music.Genre;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Music.Genre;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11773,7 +11773,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Music.InitialKey;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Music.InitialKey;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11795,7 +11795,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Music.IsCompilation;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Music.IsCompilation;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11817,7 +11817,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Music.Lyrics;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Music.Lyrics;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11839,7 +11839,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Music.Mood;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Music.Mood;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11861,7 +11861,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Music.PartOfSet;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Music.PartOfSet;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11883,7 +11883,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Music.Period;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Music.Period;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11904,7 +11904,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Music.SynchronizedLyrics;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Music.SynchronizedLyrics;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11926,7 +11926,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Music.TrackNumber;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Music.TrackNumber;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11970,7 +11970,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Note.Color;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Note.Color;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -11993,7 +11993,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Note.ColorText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Note.ColorText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12038,7 +12038,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.Aperture;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.Aperture;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12060,7 +12060,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.ApertureDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.ApertureDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12082,7 +12082,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.ApertureNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.ApertureNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12109,7 +12109,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.Brightness;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.Brightness;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12131,7 +12131,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.BrightnessDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.BrightnessDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12153,7 +12153,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.BrightnessNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.BrightnessNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12175,7 +12175,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.CameraManufacturer;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.CameraManufacturer;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12197,7 +12197,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.CameraModel;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.CameraModel;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12219,7 +12219,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.CameraSerialNumber;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.CameraSerialNumber;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12242,7 +12242,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.Contrast;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.Contrast;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12265,7 +12265,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.ContrastText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.ContrastText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12287,7 +12287,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.DateTaken;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.DateTaken;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12309,7 +12309,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.DigitalZoom;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.DigitalZoom;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12331,7 +12331,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.DigitalZoomDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.DigitalZoomDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12353,7 +12353,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.DigitalZoomNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.DigitalZoomNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12375,7 +12375,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.Event;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.Event;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12397,7 +12397,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.EXIFVersion;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.EXIFVersion;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12419,7 +12419,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.ExposureBias;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.ExposureBias;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12441,7 +12441,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.ExposureBiasDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.ExposureBiasDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12463,7 +12463,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.ExposureBiasNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.ExposureBiasNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12485,7 +12485,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.ExposureIndex;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.ExposureIndex;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12507,7 +12507,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.ExposureIndexDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.ExposureIndexDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12529,7 +12529,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.ExposureIndexNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.ExposureIndexNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12551,7 +12551,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.ExposureProgram;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.ExposureProgram;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12574,7 +12574,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.ExposureProgramText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.ExposureProgramText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12596,7 +12596,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.ExposureTime;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.ExposureTime;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12618,7 +12618,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.ExposureTimeDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.ExposureTimeDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12640,7 +12640,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.ExposureTimeNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.ExposureTimeNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12662,7 +12662,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.Flash;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.Flash;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12684,7 +12684,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.FlashEnergy;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.FlashEnergy;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12706,7 +12706,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.FlashEnergyDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.FlashEnergyDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12728,7 +12728,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.FlashEnergyNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.FlashEnergyNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12749,7 +12749,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.FlashManufacturer;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.FlashManufacturer;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12770,7 +12770,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.FlashModel;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.FlashModel;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12793,7 +12793,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.FlashText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.FlashText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12815,7 +12815,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.FNumber;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.FNumber;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12837,7 +12837,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.FNumberDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.FNumberDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12859,7 +12859,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.FNumberNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.FNumberNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12881,7 +12881,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.FocalLength;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.FocalLength;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12903,7 +12903,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.FocalLengthDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.FocalLengthDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12924,7 +12924,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.FocalLengthInFilm;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.FocalLengthInFilm;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12946,7 +12946,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.FocalLengthNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.FocalLengthNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12969,7 +12969,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.FocalPlaneXResolution;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.FocalPlaneXResolution;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -12991,7 +12991,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.FocalPlaneXResolutionDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.FocalPlaneXResolutionDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13013,7 +13013,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.FocalPlaneXResolutionNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.FocalPlaneXResolutionNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13036,7 +13036,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.FocalPlaneYResolution;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.FocalPlaneYResolution;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13058,7 +13058,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.FocalPlaneYResolutionDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.FocalPlaneYResolutionDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13080,7 +13080,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.FocalPlaneYResolutionNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.FocalPlaneYResolutionNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13104,7 +13104,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.GainControl;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.GainControl;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13126,7 +13126,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.GainControlDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.GainControlDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13148,7 +13148,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.GainControlNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.GainControlNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13171,7 +13171,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.GainControlText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.GainControlText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13193,7 +13193,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.ISOSpeed;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.ISOSpeed;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13214,7 +13214,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.LensManufacturer;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.LensManufacturer;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13235,7 +13235,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.LensModel;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.LensModel;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13257,7 +13257,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.LightSource;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.LightSource;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13278,7 +13278,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.MakerNote;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.MakerNote;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13299,7 +13299,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.MakerNoteOffset;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.MakerNoteOffset;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13321,7 +13321,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.MaxAperture;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.MaxAperture;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13343,7 +13343,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.MaxApertureDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.MaxApertureDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13365,7 +13365,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.MaxApertureNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.MaxApertureNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13387,7 +13387,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.MeteringMode;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.MeteringMode;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13410,7 +13410,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.MeteringModeText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.MeteringModeText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13432,7 +13432,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.Orientation;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.Orientation;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13455,7 +13455,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.OrientationText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.OrientationText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13477,7 +13477,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.PeopleNames;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.PeopleNames;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13500,7 +13500,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.PhotometricInterpretation;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.PhotometricInterpretation;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13523,7 +13523,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.PhotometricInterpretationText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.PhotometricInterpretationText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13546,7 +13546,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.ProgramMode;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.ProgramMode;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13569,7 +13569,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.ProgramModeText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.ProgramModeText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13590,7 +13590,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.RelatedSoundFile;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.RelatedSoundFile;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13613,7 +13613,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.Saturation;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.Saturation;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13636,7 +13636,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.SaturationText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.SaturationText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13659,7 +13659,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.Sharpness;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.Sharpness;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13682,7 +13682,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.SharpnessText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.SharpnessText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13704,7 +13704,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.ShutterSpeed;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.ShutterSpeed;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13726,7 +13726,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.ShutterSpeedDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.ShutterSpeedDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13748,7 +13748,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.ShutterSpeedNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.ShutterSpeedNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13770,7 +13770,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.SubjectDistance;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.SubjectDistance;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13792,7 +13792,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.SubjectDistanceDenominator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.SubjectDistanceDenominator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13814,7 +13814,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.SubjectDistanceNumerator;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.SubjectDistanceNumerator;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13836,7 +13836,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.TagViewAggregate;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.TagViewAggregate;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13857,7 +13857,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.TranscodedForSync;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.TranscodedForSync;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13879,7 +13879,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.WhiteBalance;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.WhiteBalance;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13902,7 +13902,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Photo.WhiteBalanceText;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Photo.WhiteBalanceText;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13946,7 +13946,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropGroup.Advanced;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropGroup.Advanced;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13967,7 +13967,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropGroup.Audio;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropGroup.Audio;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -13988,7 +13988,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropGroup.Calendar;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropGroup.Calendar;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14009,7 +14009,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropGroup.Camera;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropGroup.Camera;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14030,7 +14030,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropGroup.Contact;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropGroup.Contact;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14051,7 +14051,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropGroup.Content;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropGroup.Content;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14072,7 +14072,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropGroup.Description;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropGroup.Description;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14093,7 +14093,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropGroup.FileSystem;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropGroup.FileSystem;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14114,7 +14114,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropGroup.General;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropGroup.General;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14135,7 +14135,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropGroup.GPS;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropGroup.GPS;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14156,7 +14156,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropGroup.Image;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropGroup.Image;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14177,7 +14177,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropGroup.Media;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropGroup.Media;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14198,7 +14198,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropGroup.MediaAdvanced;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropGroup.MediaAdvanced;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14219,7 +14219,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropGroup.Message;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropGroup.Message;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14240,7 +14240,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropGroup.Music;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropGroup.Music;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14261,7 +14261,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropGroup.Origin;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropGroup.Origin;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14282,7 +14282,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropGroup.PhotoAdvanced;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropGroup.PhotoAdvanced;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14303,7 +14303,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropGroup.RecordedTV;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropGroup.RecordedTV;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14324,7 +14324,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropGroup.Video;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropGroup.Video;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14370,7 +14370,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropList.ConflictPrompt;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropList.ConflictPrompt;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14393,7 +14393,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropList.ContentViewModeForBrowse;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropList.ContentViewModeForBrowse;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14416,7 +14416,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropList.ContentViewModeForSearch;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropList.ContentViewModeForSearch;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14439,7 +14439,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropList.ExtendedTileInfo;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropList.ExtendedTileInfo;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14463,7 +14463,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropList.FileOperationPrompt;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropList.FileOperationPrompt;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14486,7 +14486,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropList.FullDetails;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropList.FullDetails;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14509,7 +14509,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropList.InfoTip;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropList.InfoTip;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14533,7 +14533,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropList.NonPersonal;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropList.NonPersonal;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14555,7 +14555,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropList.PreviewDetails;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropList.PreviewDetails;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14578,7 +14578,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropList.PreviewTitle;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropList.PreviewTitle;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14601,7 +14601,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropList.QuickTip;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropList.QuickTip;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14623,7 +14623,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropList.TileInfo;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropList.TileInfo;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14645,7 +14645,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.PropList.XPDetailsPanel;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.PropList.XPDetailsPanel;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14690,7 +14690,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.RecordedTV.ChannelNumber;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.RecordedTV.ChannelNumber;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14712,7 +14712,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.RecordedTV.Credits;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.RecordedTV.Credits;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14733,7 +14733,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.RecordedTV.DateContentExpires;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.RecordedTV.DateContentExpires;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14755,7 +14755,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.RecordedTV.EpisodeName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.RecordedTV.EpisodeName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14776,7 +14776,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.RecordedTV.IsATSCContent;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.RecordedTV.IsATSCContent;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14797,7 +14797,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.RecordedTV.IsClosedCaptioningAvailable;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.RecordedTV.IsClosedCaptioningAvailable;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14818,7 +14818,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.RecordedTV.IsDTVContent;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.RecordedTV.IsDTVContent;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14839,7 +14839,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.RecordedTV.IsHDContent;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.RecordedTV.IsHDContent;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14860,7 +14860,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.RecordedTV.IsRepeatBroadcast;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.RecordedTV.IsRepeatBroadcast;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14881,7 +14881,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.RecordedTV.IsSAP;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.RecordedTV.IsSAP;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14902,7 +14902,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.RecordedTV.NetworkAffiliation;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.RecordedTV.NetworkAffiliation;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14923,7 +14923,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.RecordedTV.OriginalBroadcastDate;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.RecordedTV.OriginalBroadcastDate;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14944,7 +14944,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.RecordedTV.ProgramDescription;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.RecordedTV.ProgramDescription;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14965,7 +14965,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.RecordedTV.RecordingTime;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.RecordedTV.RecordingTime;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -14987,7 +14987,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.RecordedTV.StationCallSign;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.RecordedTV.StationCallSign;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15008,7 +15008,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.RecordedTV.StationName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.RecordedTV.StationName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15053,7 +15053,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Search.AutoSummary;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Search.AutoSummary;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15075,7 +15075,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Search.ContainerHash;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Search.ContainerHash;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15098,7 +15098,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Search.Contents;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Search.Contents;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15121,7 +15121,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Search.EntryID;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Search.EntryID;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15142,7 +15142,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Search.ExtendedProperties;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Search.ExtendedProperties;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15164,7 +15164,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Search.GatherTime;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Search.GatherTime;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15187,7 +15187,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Search.HitCount;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Search.HitCount;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15209,7 +15209,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Search.IsClosedDirectory;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Search.IsClosedDirectory;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15231,7 +15231,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Search.IsFullyContained;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Search.IsFullyContained;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15253,7 +15253,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Search.QueryFocusedSummary;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Search.QueryFocusedSummary;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15275,7 +15275,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Search.QueryFocusedSummaryWithFallback;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Search.QueryFocusedSummaryWithFallback;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15297,7 +15297,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Search.Rank;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Search.Rank;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15319,7 +15319,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Search.Store;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Search.Store;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15341,7 +15341,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Search.UrlToIndex;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Search.UrlToIndex;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15363,7 +15363,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Search.UrlToIndexWithModificationTime;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Search.UrlToIndexWithModificationTime;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15408,7 +15408,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Shell.OmitFromView;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Shell.OmitFromView;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15430,7 +15430,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Shell.SFGAOFlagsStrings;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Shell.SFGAOFlagsStrings;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15475,7 +15475,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Software.DateLastUsed;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Software.DateLastUsed;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15497,7 +15497,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Software.ProductName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Software.ProductName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15541,7 +15541,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Sync.Comments;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Sync.Comments;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15562,7 +15562,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Sync.ConflictDescription;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Sync.ConflictDescription;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15583,7 +15583,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Sync.ConflictFirstLocation;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Sync.ConflictFirstLocation;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15604,7 +15604,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Sync.ConflictSecondLocation;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Sync.ConflictSecondLocation;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15625,7 +15625,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Sync.HandlerCollectionID;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Sync.HandlerCollectionID;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15646,7 +15646,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Sync.HandlerID;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Sync.HandlerID;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15667,7 +15667,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Sync.HandlerName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Sync.HandlerName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15689,7 +15689,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Sync.HandlerType;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Sync.HandlerType;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15711,7 +15711,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Sync.HandlerTypeLabel;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Sync.HandlerTypeLabel;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15732,7 +15732,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Sync.ItemID;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Sync.ItemID;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15753,7 +15753,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Sync.ItemName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Sync.ItemName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15775,7 +15775,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Sync.ProgressPercentage;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Sync.ProgressPercentage;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15797,7 +15797,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Sync.State;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Sync.State;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15818,7 +15818,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Sync.Status;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Sync.Status;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15862,7 +15862,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Task.BillingInformation;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Task.BillingInformation;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15883,7 +15883,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Task.CompletionStatus;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Task.CompletionStatus;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15904,7 +15904,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Task.Owner;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Task.Owner;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15949,7 +15949,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Video.Compression;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Video.Compression;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15971,7 +15971,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Video.Director;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Video.Director;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -15993,7 +15993,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Video.EncodingBitrate;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Video.EncodingBitrate;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -16015,7 +16015,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Video.FourCC;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Video.FourCC;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -16037,7 +16037,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Video.FrameHeight;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Video.FrameHeight;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -16059,7 +16059,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Video.FrameRate;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Video.FrameRate;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -16081,7 +16081,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Video.FrameWidth;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Video.FrameWidth;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -16104,7 +16104,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Video.HorizontalAspectRatio;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Video.HorizontalAspectRatio;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -16126,7 +16126,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Video.SampleSize;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Video.SampleSize;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -16148,7 +16148,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Video.StreamName;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Video.StreamName;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -16170,7 +16170,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Video.StreamNumber;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Video.StreamNumber;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -16192,7 +16192,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Video.TotalBitrate;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Video.TotalBitrate;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -16213,7 +16213,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Video.TranscodedForSync;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Video.TranscodedForSync;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -16236,7 +16236,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Video.VerticalAspectRatio;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Video.VerticalAspectRatio;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -16281,7 +16281,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Volume.FileSystem;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Volume.FileSystem;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -16302,7 +16302,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Volume.IsMappedDrive;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Volume.IsMappedDrive;
 
                     if (!hashtable.ContainsKey(key))
                     {
@@ -16324,7 +16324,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 get
                 {
-                    PropertyKey key = SystemProperties.System.Volume.IsRoot;
+                    PropertyKey key = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.Volume.IsRoot;
 
                     if (!hashtable.ContainsKey(key))
                     {

@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CollectionInterfaces;
+
+namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfaces
+{
+    [ComImport,
+        Guid(WPDCOMGuids.IPortableDeviceEventCallback),
+        InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IPortableDeviceEventCallback
+    {
+        HResult OnEvent([MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pEventParameters);
+    }
+}

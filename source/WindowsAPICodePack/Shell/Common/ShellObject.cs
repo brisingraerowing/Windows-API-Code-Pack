@@ -54,7 +54,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
         }
 
-        internal ShellObject(IShellItem2 shellItem) => nativeShellItem = shellItem;
+        protected ShellObject(IShellItem2 shellItem) => nativeShellItem = shellItem;
 
         #endregion
 

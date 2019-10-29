@@ -14,9 +14,9 @@ namespace Tests
         public void DefaultCtorInitializesWithLastError()
         {
             SetLastError(0);
-            LinguisticException e = new LinguisticException();
+            var e = new LinguisticException();
 
-            Assert.True(e.Message == String.Empty,
+            Assert.True(string.IsNullOrEmpty(e.Message),
                 "e.Message is supposed to be empty. Instead, it is \"" + e.Message + "\"");
             // BUG: Doesn't initialize with last error, or another value is being set to last error after SetLastError(0) is called.
         }
@@ -27,11 +27,11 @@ namespace Tests
         [InlineData("Localized message - локализирано съобщение")]
         public void ConstructorWithMessage(string message)
         {
-            LinguisticException e = new LinguisticException(message);
+            var e = new LinguisticException(message);
 
-            Assert.Equal<string>(e.Message, message);
-            Assert.Equal<string>(e.ResultState.ErrorMessage, message);
-            Assert.Equal<Exception>(e.InnerException, null);
+            Assert.Equal(e.Message, message);
+            Assert.Equal(e.ResultState.ErrorMessage, message);
+            Assert.Null(e.InnerException);
         }
 
         [Theory]
@@ -39,13 +39,12 @@ namespace Tests
         [InlineData("Sample message", null)]
         public void ConstructorWithMessageAndInnerException(string message, Exception innerException)
         {
-            LinguisticException e = new LinguisticException(message, innerException);
+            var e = new LinguisticException(message, innerException);
 
-            Assert.Equal<string>(e.Message, message);
-            Assert.Equal<string>(e.ResultState.ErrorMessage, message);
-            Assert.Equal<Exception>(e.InnerException, innerException);
+            Assert.Equal(e.Message, message);
+            Assert.Equal(e.ResultState.ErrorMessage, message);
+            Assert.Equal(e.InnerException, innerException);
         }
-
 
         [DllImport("kernel32.dll")]
         private static extern void SetLastError(int error);

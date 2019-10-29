@@ -92,14 +92,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 nativePropertyStore.GetAt(i, out propKey);
 
-                if (ParentShellObject != null)
-                {
-                    Items.Add(ParentShellObject.Properties.CreateTypedProperty(propKey));
-                }
-                else
-                {
-                    Items.Add(CreateTypedProperty(propKey, NativePropertyStore));
-                }
+                Items.Add(ParentShellObject != null ? ParentShellObject.Properties.CreateTypedProperty(propKey) : CreateTypedProperty(propKey, NativePropertyStore));
             }
         }
 
@@ -137,7 +130,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         public bool Contains(string canonicalName)
         {
             if (string.IsNullOrEmpty(canonicalName))
-            
+
                 throw new ArgumentException(LocalizedMessages.PropertyCollectionNullCanonicalName, "canonicalName");
 
             return Items.Any(p => p.CanonicalName == canonicalName);
@@ -165,14 +158,14 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             get
             {
                 if (string.IsNullOrEmpty(canonicalName))
-                
+
                     throw new ArgumentException(LocalizedMessages.PropertyCollectionNullCanonicalName, "canonicalName");
 
                 IShellProperty prop = Items.FirstOrDefault(p => p.CanonicalName == canonicalName);
                 if (prop == null)
-                
+
                     throw new IndexOutOfRangeException(LocalizedMessages.PropertyCollectionCanonicalInvalidIndex);
-                
+
                 return prop;
             }
         }

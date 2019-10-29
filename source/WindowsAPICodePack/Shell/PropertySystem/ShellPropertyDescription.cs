@@ -144,7 +144,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 if (valueType == null)
 
-                    valueType = ShellPropertyFactory.VarEnumToSystemType(VarEnumType);
+                    valueType = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. ShellPropertyFactory.VarEnumToSystemType(VarEnumType);
 
                 return valueType;
             }

@@ -16,7 +16,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     [ComImport,
     Guid(KnownFoldersIIDGuid.IKnownFolder),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    internal interface IKnownFolderNative
+    public interface IKnownFolderNative
     {
         [MethodImpl(MethodImplOptions.InternalCall,
             MethodCodeType = MethodCodeType.Runtime)]
@@ -65,7 +65,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     [ComImport,
     Guid(KnownFoldersIIDGuid.IKnownFolderManager),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    internal interface IKnownFolderManager
+    public interface IKnownFolderManager
     {
         [MethodImpl(MethodImplOptions.InternalCall,
             MethodCodeType = MethodCodeType.Runtime)]
@@ -122,7 +122,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     
     [ComImport]
     [Guid("4df0c730-df9d-4ae3-9153-aa6b82e9795a")]
-    internal class KnownFolderManagerClass : IKnownFolderManager
+    public class KnownFolderManagerClass : IKnownFolderManager
     {
         
         [MethodImpl(MethodImplOptions.InternalCall,

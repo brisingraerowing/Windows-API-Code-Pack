@@ -18,7 +18,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
     /// </summary>
     public class JumpListLink : JumpListTask, IJumpListItem, IDisposable
     {
-        internal static PropertyKey PKEY_Title = SystemProperties.System.Title;
+        internal static PropertyKey PKEY_Title = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.SystemProperties.System.Title;
 
         /// <summary>
         /// Initializes a new instance of a JumpListLink with the specified path.

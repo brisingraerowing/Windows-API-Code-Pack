@@ -12,23 +12,23 @@ namespace Tests
         [Fact]
         public void ConstructAndConfirmThatGettersThrow()
         {
-            UnknownSensor us = new UnknownSensor();
+            var us = new UnknownSensor();
 
-            Assert.Throws<SensorPlatformException>(() => { bool b = us.AutoUpdateDataReport; }); // BUG: Inconsistency with the rest of the API
-            Assert.Throws<NullReferenceException>(() => { Guid? g = us.CategoryId; });
-            Assert.Throws<NullReferenceException>(() => { SensorConnectionType? t = us.ConnectionType; });
-            Assert.Equal<SensorReport>(null, us.DataReport);   // BUG: Inconsistency
-            Assert.Throws<NullReferenceException>(() => { string s = us.Description; });
-            Assert.Throws<NullReferenceException>(() => { string s = us.DevicePath; });
-            Assert.Throws<NullReferenceException>(() => { string s = us.FriendlyName; });
-            Assert.Throws<NullReferenceException>(() => { string s = us.Manufacturer; });
-            Assert.Throws<NullReferenceException>(() => { uint u = us.MinimumReportInterval; });
-            Assert.Throws<NullReferenceException>(() => { string s = us.Model; });
-            Assert.Throws<NullReferenceException>(() => { uint u = us.ReportInterval; });
-            Assert.Throws<NullReferenceException>(() => { Guid? g = us.SensorId; });
-            Assert.Throws<NullReferenceException>(() => { string s = us.SerialNumber; });
-            Assert.Throws<NullReferenceException>(() => { SensorState s = us.State; });
-            Assert.Throws<NullReferenceException>(() => { Guid? g = us.TypeId; });
+            _ = Assert.Throws<SensorPlatformException>(() => { bool b = us.AutoUpdateDataReport; }); // BUG: Inconsistency with the rest of the API
+            _ = Assert.Throws<NullReferenceException>(() => { Guid? g = us.CategoryId; });
+            _ = Assert.Throws<NullReferenceException>(() => { SensorConnectionType? t = us.ConnectionType; });
+            Assert.Null(us.DataReport);   // BUG: Inconsistency
+            _ = Assert.Throws<NullReferenceException>(() => { string s = us.Description; });
+            _ = Assert.Throws<NullReferenceException>(() => { string s = us.DevicePath; });
+            _ = Assert.Throws<NullReferenceException>(() => { string s = us.FriendlyName; });
+            _ = Assert.Throws<NullReferenceException>(() => { string s = us.Manufacturer; });
+            _ = Assert.Throws<NullReferenceException>(() => { uint u = us.MinimumReportInterval; });
+            _ = Assert.Throws<NullReferenceException>(() => { string s = us.Model; });
+            _ = Assert.Throws<NullReferenceException>(() => { uint u = us.ReportInterval; });
+            _ = Assert.Throws<NullReferenceException>(() => { Guid? g = us.SensorId; });
+            _ = Assert.Throws<NullReferenceException>(() => { string s = us.SerialNumber; });
+            _ = Assert.Throws<NullReferenceException>(() => { SensorState s = us.State; });
+            _ = Assert.Throws<NullReferenceException>(() => { Guid? g = us.TypeId; });
         }
 
         [Theory]
@@ -36,20 +36,20 @@ namespace Tests
         [InlineData(false)]
         public void AutoUpdateDataReportPropertySetterThrows(bool autoUpdate)
         {
-            UnknownSensor us = new UnknownSensor();
-            Assert.Throws<SensorPlatformException>(() => { us.AutoUpdateDataReport = autoUpdate; }); // BUG: Inconsistency with the rest of the API
+            var us = new UnknownSensor();
+            _ = Assert.Throws<SensorPlatformException>(() => { us.AutoUpdateDataReport = autoUpdate; }); // BUG: Inconsistency with the rest of the API
         }
 
         [Theory]
-        [InlineData(UInt32.MinValue)]
-        [InlineData(UInt32.MinValue + 1)]
-        [InlineData(UInt32.MinValue + 2)]
-        [InlineData(UInt32.MaxValue - 1)]
-        [InlineData(UInt32.MaxValue)]
+        [InlineData(uint.MinValue)]
+        [InlineData(uint.MinValue + 1)]
+        [InlineData(uint.MinValue + 2)]
+        [InlineData(uint.MaxValue - 1)]
+        [InlineData(uint.MaxValue)]
         public void ReportIntervalPropertySetterThrows(uint interval)
         {
-            UnknownSensor us = new UnknownSensor();
-            Assert.Throws<NullReferenceException>(() => { us.ReportInterval = interval; });
+            var us = new UnknownSensor();
+            _ = Assert.Throws<NullReferenceException>(() => { us.ReportInterval = interval; });
         }
     }
 }

@@ -9,6 +9,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using Microsoft.WindowsAPICodePack.Win32Native.Sensors;
+using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CollectionInterfaces;
 
 namespace Microsoft.WindowsAPICodePack.Sensors
 {
@@ -113,8 +114,8 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             {
                 if (friendlyName == null && nativeISensor.GetFriendlyName(out string name) == HResult.Ok)
 
-                        friendlyName = name;
-                
+                    friendlyName = name;
+
                 return friendlyName;
             }
         }
@@ -342,7 +343,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                 {
                     Exception e = Marshal.GetExceptionForHR((int)hr);
 
-                        throw hr == HResult.ElementNotFound ? new ArgumentOutOfRangeException(LocalizedMessages.SensorPropertyNotFound, e) : e;
+                    throw hr == HResult.ElementNotFound ? new ArgumentOutOfRangeException(LocalizedMessages.SensorPropertyNotFound, e) : e;
                 }
 
                 return pv.Value;
@@ -375,7 +376,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                 for (int i = 0; i < propKeys.Length; i++)
                 {
                     PropertyKey propKey = propKeys[i];
-                    keyCollection.Add(ref propKey);
+                    _ = keyCollection.Add(ref propKey);
                 }
 
                 var data = new Dictionary<PropertyKey, object>();
@@ -387,17 +388,15 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                     try
                     {
 
-                        uint count = 0;
-                        valuesCollection.GetCount(ref count);
+                        _ = valuesCollection.GetCount(out uint count);
 
                         for (uint i = 0; i < count; i++)
                         {
-                            using (var propVal = new PropVariant())
-                            {
-                                var propKey = new PropertyKey();
-                                valuesCollection.GetAt(i, ref propKey, propVal);
-                                data.Add(propKey, propVal.Value);
-                            }
+                            var propVal = new PropVariant();
+
+                            var propKey = new PropertyKey();
+                            valuesCollection.GetAt(i, ref propKey, ref propVal);
+                            data.Add(propKey, propVal.Value);
                         }
                     }
                     finally
@@ -488,18 +487,18 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                         if (valuesCollection == null) return data;
 
                         uint count = 0;
-                        valuesCollection.GetCount(ref count);
+                        valuesCollection.GetCount(out count);
                         var propKey = new PropertyKey();
 
                         for (uint i = 0; i < count; i++)
+                        {
+                            var propVal = new PropVariant();
 
-                            using (var propVal = new PropVariant())
-                            {
-                                valuesCollection.GetAt(i, ref propKey, propVal);
+                            valuesCollection.GetAt(i, ref propKey, propVal);
 
-                                int idx = propKeyToIdx[propKey];
-                                data[idx] = propVal.Value;
-                            }
+                            int idx = propKeyToIdx[propKey];
+                            data[idx] = propVal.Value;
+                        }
                     }
                     finally
                     {
@@ -554,7 +553,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                 catch (ArgumentException)
                 {
                     if (value is Guid guid)
-                    
+
                         pdv.SetGuidValue(ref propKey, ref guid);
 
                     else if (value is byte[] buffer)
@@ -575,7 +574,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                 try
                 {
                     uint count = 0;
-                    pdv2.GetCount(ref count);
+                    pdv2.GetCount(out count);
 
                     for (uint i = 0; i < count; i++)
                     {
@@ -617,7 +616,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         {
             DataReport = SensorReport.FromNativeReport(this, newData);
 
-                DataReportChanged?.Invoke(this, EventArgs.Empty);
+            DataReportChanged?.Invoke(this, EventArgs.Empty);
         }
 
         void ISensorEvents.OnEvent(ISensor sensor, Guid eventID, ISensorDataReport newData)

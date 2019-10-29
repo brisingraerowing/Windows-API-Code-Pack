@@ -10,11 +10,7 @@ namespace Tests.ShellExtensions.PreviewHandlers
 {
     public class WinformsPreviewHandlerTestSample : WinFormsPreviewHandler, IPreviewFromStream
     {
-        public WinformsPreviewHandlerTestSample()
-        {
-            Control = new WinFormsPreviewHandlerSampleForm();
-        }
-
+        public WinformsPreviewHandlerTestSample() => Control = new WinFormsPreviewHandlerSampleForm();
 
         #region IPreviewFromStream Members
 

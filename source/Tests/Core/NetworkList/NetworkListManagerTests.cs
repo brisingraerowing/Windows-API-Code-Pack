@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using Microsoft.WindowsAPICodePack.Net;
+using Microsoft.WindowsAPICodePack.Win32Native.Core.NetworkList;
 using Xunit;
 using Xunit.Extensions;
 
@@ -11,9 +12,9 @@ namespace Tests
         [Fact]
         public void NetworkCollectionContainsAllNetworkConnections()
         {
-            bool isConnected = NetworkListManager.IsConnected;
-            ConnectivityStates connectivity = NetworkListManager.Connectivity;
-            bool isConnectedToInternet = NetworkListManager.IsConnectedToInternet;
+            _ = NetworkListManager.IsConnected;
+            _ = NetworkListManager.Connectivity;
+            _ = NetworkListManager.IsConnectedToInternet;
 
             NetworkCollection networks = NetworkListManager.GetNetworks(NetworkConnectivityLevels.All);
             NetworkConnectionCollection connections = NetworkListManager.GetNetworkConnections();
@@ -22,9 +23,8 @@ namespace Tests
             // you can't do a reference comparison.
             // By inspection, the connections are contained in the NetworkCollection, just a different instance.
             foreach (NetworkConnection c in connections)
-            {
+
                 Assert.Contains(c.Network, networks);
-            }
         }
 
         [Fact]

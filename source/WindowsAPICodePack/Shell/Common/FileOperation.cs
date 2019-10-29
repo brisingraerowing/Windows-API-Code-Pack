@@ -172,21 +172,21 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             {
 
-                case ShellOperationFlags.FOFX_ADDUNDORECORD:
-                case ShellOperationFlags.FOFX_RECYCLEONDELETE:
+                case ShellOperationFlags.AddUndoRecord:
+                case ShellOperationFlags.RecycleOnDelete:
 
                     CoreHelpers.ThrowIfNotWin8();
 
                     break;
 
-                case ShellOperationFlags.FOFX_COPYASDOWNLOAD:
-                case ShellOperationFlags.FOFX_DONTDISPLAYLOCATIONS:
+                case ShellOperationFlags.CopyAsDownload:
+                case ShellOperationFlags.DoNotDisplayLocations:
 
                     CoreHelpers.ThrowIfNotWin7();
 
                     break;
 
-                case ShellOperationFlags.FOFX_REQUIREELEVATION:
+                case ShellOperationFlags.RequireElevation:
 
                     CoreHelpers.ThrowIfNotVista();
 
