@@ -17,26 +17,28 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     /// should be located in the NativeMethods class.
     /// </remarks>
     [SuppressUnmanagedCodeSecurity]
-    internal static class KnownFoldersSafeNativeMethods
+    public static class KnownFoldersSafeNativeMethods
     {
         #region KnownFolders
 
+            // todo: replace public fields by internal fields and implement a new struct with public read-only properties
+
         [StructLayout(LayoutKind.Sequential)]
-        internal struct NativeFolderDefinition
+        public struct NativeFolderDefinition
         {
-            internal FolderCategory category;
-            internal IntPtr name;
-            internal IntPtr description;
-            internal Guid parentId;
-            internal IntPtr relativePath;
-            internal IntPtr parsingName;
-            internal IntPtr tooltip;
-            internal IntPtr localizedName;
-            internal IntPtr icon;
-            internal IntPtr security;
-            internal uint attributes;
-            internal DefinitionOptions definitionOptions;
-            internal Guid folderTypeId;
+            public FolderCategory category;
+            public IntPtr name;
+            public IntPtr description;
+            public Guid parentId;
+            public IntPtr relativePath;
+            public IntPtr parsingName;
+            public IntPtr tooltip;
+            public IntPtr localizedName;
+            public IntPtr icon;
+            public IntPtr security;
+            public uint attributes;
+            public DefinitionOptions definitionOptions;
+            public Guid folderTypeId;
         }
 
         #endregion

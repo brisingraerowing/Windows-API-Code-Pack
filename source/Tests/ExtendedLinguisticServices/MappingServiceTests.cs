@@ -22,9 +22,9 @@ namespace Tests
         public void ConstructorWithValidServiceGuidSucceeds(string service)
         {
             Guid guid = ServiceGuidFromServiceString(service);
-            MappingService s = new MappingService(guid);
+            var s = new MappingService(guid);
 
-            Assert.Equal<Guid>(s.Guid, guid);
+            Assert.Equal(s.Guid, guid);
         }
 
         [Theory]
@@ -34,10 +34,10 @@ namespace Tests
         {
             Guid guid = ServiceGuidFromServiceString(service);
 
-            Assert.Throws<LinguisticException>(() =>
-            {
-                MappingService s = new MappingService(guid);
-            });
+            _ = Assert.Throws<LinguisticException>(() =>
+              {
+                  var s = new MappingService(guid);
+              });
         }
 
         [Fact]
@@ -52,7 +52,7 @@ namespace Tests
         {
             MappingService[] ss = MappingService.GetServices(null);
 
-            Guid[] guids = new Guid[] {
+            var guids = new Guid[] {
                 MappingAvailableServices.LanguageDetection, 
                 MappingAvailableServices.ScriptDetection,
                 MappingAvailableServices.TransliterationBengaliToLatin,
@@ -66,19 +66,19 @@ namespace Tests
             foreach (MappingService s in ss)
             {
                 Assert.True(s.BuildVersion >= 0);
-                Assert.NotEqual<string>(s.Category, String.Empty);
-                Assert.NotEqual<string>(s.Category, "");
+                Assert.NotEqual(s.Category, string.Empty);
+                Assert.NotEqual("", s.Category);
                 Assert.NotNull(s.Category);
                 
-                Assert.NotEqual<string>(s.Copyright, String.Empty);
-                Assert.NotEqual<string>(s.Copyright, "");
+                Assert.NotEqual(s.Copyright, string.Empty);
+                Assert.NotEqual("", s.Copyright);
                 Assert.NotNull(s.Copyright);
 
-                Assert.NotEqual<string>(s.Description, String.Empty);
-                Assert.NotEqual<string>(s.Description, "");
+                Assert.NotEqual(s.Description, string.Empty);
+                Assert.NotEqual("", s.Description);
                 Assert.NotNull(s.Description);
 
-                Assert.Contains<Guid>(s.Guid, guids);
+                Assert.Contains(s.Guid, guids);
 
                 Assert.NotEmpty(s.InputContentTypes);
                 Assert.True(s.MajorVersion >= 0 && s.MinorVersion >= 0);

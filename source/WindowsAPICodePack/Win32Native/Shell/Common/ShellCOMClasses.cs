@@ -8,7 +8,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     [ComImport,
     Guid(ShellIIDGuid.IShellLibrary),
     CoClass(typeof(ShellLibraryCoClass))]
-    internal interface INativeShellLibrary : IShellLibrary
+    public interface INativeShellLibrary : IShellLibrary
     {
     }
 
@@ -16,7 +16,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     ClassInterface(ClassInterfaceType.None),
     TypeLibType(TypeLibTypeFlags.FCanCreate),
     Guid(ShellCLSIDGuid.ShellLibrary)]
-    internal class ShellLibraryCoClass
+    public class ShellLibraryCoClass
     {
     }
 }

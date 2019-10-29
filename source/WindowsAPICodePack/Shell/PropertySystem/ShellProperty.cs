@@ -169,7 +169,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             get
             {
                 // Make sure we load the correct type
-                Debug.Assert(ValueType == ShellPropertyFactory.VarEnumToSystemType(Description.VarEnumType));
+                Debug.Assert(ValueType == Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. ShellPropertyFactory.VarEnumToSystemType(Description.VarEnumType));
 
                 using (PropVariant propVar = new PropVariant())
                 {
@@ -196,7 +196,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             set
             {
                 // Make sure we use the correct type
-                Debug.Assert(ValueType == ShellPropertyFactory.VarEnumToSystemType(Description.VarEnumType));
+                Debug.Assert(ValueType == Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. ShellPropertyFactory.VarEnumToSystemType(Description.VarEnumType));
 
                 if (typeof(T) != ValueType)
                 {

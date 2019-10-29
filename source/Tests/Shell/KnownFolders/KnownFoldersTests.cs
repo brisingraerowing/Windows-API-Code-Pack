@@ -31,7 +31,7 @@ namespace Tests
                         continue;
                     }
 
-                    Assert.True(folders.Any(x => kf.FolderId == x.FolderId));
+                    Assert.Contains(folders, x => kf.FolderId == x.FolderId);
                 }
             }
         }

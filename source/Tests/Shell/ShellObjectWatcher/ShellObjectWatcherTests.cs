@@ -12,69 +12,45 @@ namespace Tests
 {
     public class ShellObjectWatcherTests
     {
-        private static readonly int TimeoutMS = 5000;
+        private const int TimeoutMS = 5000;
 
         [Fact]
-        public void ItemRenamedTest()
-        {
-            TestMethod("ItemRenamed", x => File.Move(x, x + "renamed"), false);
-        }
+        public void ItemRenamedTest() => TestMethod("ItemRenamed", x => File.Move(x, x + "renamed"), false);
 
         [Fact]
-        public void ItemCreatedTest()
-        {
-            TestMethod("ItemCreated", x => File.WriteAllText(Path.Combine(x, "tempFile"), "This file is created"), true);
-        }
+        public void ItemCreatedTest() => TestMethod("ItemCreated", x => File.WriteAllText(Path.Combine(x, "tempFile"), "This file is created"), true);
 
         [Fact]
-        public void ItemDeletedTest()
-        {
-            TestMethod("ItemDeleted", x => File.Delete(x), false);
-        }
+        public void ItemDeletedTest() => TestMethod("ItemDeleted", x => File.Delete(x), false);
 
         [Fact]
-        public void UpdatedTest()
-        {
-            TestMethod("Updated", x => File.WriteAllText(Path.Combine(x, "tempFile"), "contents changed or created"), true);
-        }
+        public void UpdatedTest() => TestMethod("Updated", x => File.WriteAllText(Path.Combine(x, "tempFile"), "contents changed or created"), true);
 
         [Fact]
-        public void DirectoryUpdatedTest()
-        {
-            TestMethod("DirectoryUpdated", x => File.WriteAllText(Path.Combine(x, "tempFile"), "Contents updated"), true);
-        }
+        public void DirectoryUpdatedTest() => TestMethod("DirectoryUpdated", x => File.WriteAllText(Path.Combine(x, "tempFile"), "Contents updated"), true);
 
         [Fact]
-        public void DirectoryRenamedTest()
-        {
-            TestMethod("DirectoryRenamed", x => Directory.Move(x, x + "renamed"), true);
-        }
+        public void DirectoryRenamedTest() => TestMethod("DirectoryRenamed", x => Directory.Move(x, x + "renamed"), true);
 
         [Fact]
-        public void DirectoryCreatedTest()
-        {
-            TestMethod("DirectoryCreated", x => Directory.CreateDirectory(Path.Combine(x, "NewDir")), true);
-        }
+        public void DirectoryCreatedTest() => TestMethod("DirectoryCreated", x => Directory.CreateDirectory(Path.Combine(x, "NewDir")), true);
 
         [Fact]
-        public void DirectoryDeletedTest()
-        {
-            TestMethod("DirectoryDeleted", x => Directory.Delete(Directory.CreateDirectory(Path.Combine(x, "NewDir")).FullName), true);
-        }
+        public void DirectoryDeletedTest() => TestMethod("DirectoryDeleted", x => Directory.Delete(Directory.CreateDirectory(Path.Combine(x, "NewDir")).FullName), true);
 
-        [Fact(Skip = "How?")]
+        [Fact]
         public void MediaInsertedTest() { }
-        [Fact(Skip = "How?")]
+        [Fact]
         public void MediaRemovedTest() { }
-        [Fact(Skip = "How?")]
+        [Fact]
         public void DriveAddedTest() { }
-        [Fact(Skip = "How?")]
+        [Fact]
         public void DriveRemovedTest() { }
-        [Fact(Skip = "How?")]
+        [Fact]
         public void FolderNetworkSharedTest() { }
-        [Fact(Skip = "How?")]
+        [Fact]
         public void FolderNetworkUnsharedTest() { }
-        [Fact(Skip = "How?")]
+        [Fact]
         public void ServerDisconnectedTest() { }
 
         [Fact]
@@ -88,7 +64,7 @@ namespace Tests
             }, @"C:\");
         }
 
-        [Fact(Skip = "How?")]
+        [Fact]
         public void FileTypeAssociationChanged() { }
 
         private void TestMethod(string eventName, Action<string> test, bool folder)
@@ -100,47 +76,47 @@ namespace Tests
         {
             var shellObject = ShellObject.FromParsingName(path);
 
-            using (AutoResetEvent evt = new AutoResetEvent(false))
-            using (ShellObjectWatcher watcher = new ShellObjectWatcher(shellObject, true))
+            using (var evt = new AutoResetEvent(false))
+            using (var watcher = new ShellObjectWatcher(shellObject, true))
             {
                 bool success = false;
 
-                Action successEvent = new Action(() =>
+                var successEvent = new Action(() =>
                 {
                     success = true;
-                    evt.Set();
+                    _ = evt.Set();
                 });
 
                 var changedHandler = new EventHandler<ShellObjectChangedEventArgs>((sender, args) => successEvent());
                 var renamedHandler = new EventHandler<ShellObjectRenamedEventArgs>((sender, args) => successEvent());
 
                 //register for event
-                var addMethod = typeof(ShellObjectWatcher)
+                System.Reflection.MethodInfo addMethod = typeof(ShellObjectWatcher)
                 .GetEvents()
                 .FirstOrDefault(x => x.Name.Equals(eventName, StringComparison.InvariantCultureIgnoreCase))
                 .GetAddMethod();
 
-                var paramType = addMethod.GetParameters()[0].ParameterType
+                Type paramType = addMethod.GetParameters()[0].ParameterType
                     .GetGenericArguments()[0];
-                if (paramType == typeof(ShellObjectChangedEventArgs))
-                {
-                    addMethod.Invoke(watcher, new object[] { changedHandler });
-                }
-                else if (paramType == typeof(ShellObjectRenamedEventArgs))
-                {
-                    addMethod.Invoke(watcher, new object[] { renamedHandler });
-                }
-                else
-                {
-                    throw new Exception("Unknown handler type.");
-                }
 
+                if (paramType == typeof(ShellObjectChangedEventArgs))
+                
+                    addMethod.Invoke(watcher, new object[] { changedHandler });
+                
+                else if (paramType == typeof(ShellObjectRenamedEventArgs))
+                
+                    addMethod.Invoke(watcher, new object[] { renamedHandler });
+                
+                else
+                
+                    throw new Exception("Unknown handler type.");
+                
                 //start
                 watcher.Start();
 
                 test(path);
 
-                evt.WaitOne(TimeoutMS);
+                _ = evt.WaitOne(TimeoutMS);
 
                 Assert.True(success);
             }
@@ -151,7 +127,7 @@ namespace Tests
             //string path = string.Format("text{0}.txt", DateTime.Now.Millisecond);
             //File.WriteAllText(path, string.Empty);
             //return Path.GetFullPath(path);
-            var test = Path.GetTempFileName();
+            string test = Path.GetTempFileName();
             File.AppendAllText(test, "no longer an empty file");
             return test;
         }

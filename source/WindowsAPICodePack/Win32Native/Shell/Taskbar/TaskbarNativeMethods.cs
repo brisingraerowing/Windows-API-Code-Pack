@@ -7,7 +7,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using System;
 using System.Runtime.InteropServices;
-using static Microsoft.WindowsAPICodePack.Shell.PropertySystem.SystemProperties.System;
+using static Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.SystemProperties.System;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Taskbar
 {

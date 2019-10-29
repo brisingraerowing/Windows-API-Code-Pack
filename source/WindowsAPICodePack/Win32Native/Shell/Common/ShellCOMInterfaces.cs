@@ -292,7 +292,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     [ComImport()]
     [Guid("bcc18b79-ba16-442f-80c4-8a59c30c463b")]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    interface IShellItemImageFactory
+    public interface IShellItemImageFactory
     {
         [PreserveSig]
         HResult GetImage(
@@ -304,7 +304,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     [ComImport,
     Guid(ShellIIDGuid.IThumbnailCache),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    interface IThumbnailCache
+    public interface IThumbnailCache
     {
         void GetThumbnail([In] IShellItem pShellItem,
         [In] uint cxyRequestedThumbSize,
@@ -322,7 +322,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     [ComImport,
     Guid(ShellIIDGuid.ISharedBitmap),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    interface ISharedBitmap
+    public interface ISharedBitmap
     {
         void GetSharedBitmap([Out] out IntPtr phbm);
         void GetSize([Out] out CoreNativeMethods.Size pSize);
@@ -330,6 +330,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         void InitializeBitmap([In] IntPtr hbm, [In] ThumbnailAlphaType wtsAT);
         void Detach([Out] out IntPtr phbm);
     }
+
     [ComImport,
     Guid(ShellIIDGuid.IShellFolder),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
@@ -1200,7 +1201,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         /// </summary>
         /// <param name="action">Specifies operation.</param>
         /// <returns>If this method succeeds, it returns <see cref="HResult.Ok"/>. Otherwise, it returns an <see cref="HResult"/> error code.</returns>
-        HResult SetOperation(SPACTION action);
+        HResult SetOperation(SPAction action);
 
         /// <summary>
         /// Sets progress dialog operations mode.

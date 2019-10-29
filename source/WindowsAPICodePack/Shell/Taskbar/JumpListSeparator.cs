@@ -18,7 +18,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
     /// </summary>
     public class JumpListSeparator : JumpListTask, IDisposable
     {
-        internal static PropertyKey PKEY_AppUserModel_IsDestListSeparator = SystemProperties.System.AppUserModel.IsDestinationListSeparator;
+        internal static PropertyKey PKEY_AppUserModel_IsDestListSeparator = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem. SystemProperties.System.AppUserModel.IsDestinationListSeparator;
 
         private IPropertyStore nativePropertyStore;
         private IShellLinkW nativeShellLink;

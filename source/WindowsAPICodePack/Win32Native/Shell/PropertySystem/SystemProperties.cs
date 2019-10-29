@@ -7,7 +7,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
 
-namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
+namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
 {
 
 
@@ -16,30 +16,6 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
     /// </summary>
     public static class SystemProperties
     {
-
-        /// <summary>
-        /// Returns the property description for a given property key.
-        /// </summary>
-        /// <param name="propertyKey">Property key of the property whose description is required.</param>
-        /// <returns>Property Description for a given property key</returns>
-        public static ShellPropertyDescription GetPropertyDescription(PropertyKey propertyKey) => ShellPropertyDescriptionsCache.Cache.GetPropertyDescription(propertyKey);
-
-
-        /// <summary>
-        /// Gets the property description for a given property's canonical name.
-        /// </summary>
-        /// <param name="canonicalName">Canonical name of the property whose description is required.</param>
-        /// <returns>Property Description for a given property key</returns>
-        public static ShellPropertyDescription GetPropertyDescription(string canonicalName)
-        {
-            int result = PropertySystemNativeMethods.PSGetPropertyKeyFromName(canonicalName, out PropertyKey propKey);
-
-            if (!CoreErrorHelper.Succeeded(result))
-
-                throw new ArgumentException(LocalizedMessages.ShellInvalidCanonicalName, Marshal.GetExceptionForHR(result));
-            
-            return ShellPropertyDescriptionsCache.Cache.GetPropertyDescription(propKey);
-        }
 
         /// <summary>
         /// System Properties
