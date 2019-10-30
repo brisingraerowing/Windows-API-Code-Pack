@@ -19,14 +19,30 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
 
         HResult RefreshDeviceList();
 
-        HResult GetDeviceFriendlyName([ In, MarshalAs(UnmanagedType.LPWStr)]  string pszPnPDeviceID, [ In,Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pDeviceFriendlyName, [In,Out] ref uint pcchDeviceFriendlyName);
+        HResult GetDeviceFriendlyName(
+            [In, MarshalAs(UnmanagedType.LPWStr)]  string pszPnPDeviceID,
+            [In, Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pDeviceFriendlyName,
+            [In, Out] ref uint pcchDeviceFriendlyName);
 
-        HResult GetDeviceDescription([MarshalAs(UnmanagedType.LPWStr)] string pszPnPDeviceID, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder pDeviceDescription, ref uint pcchDeviceDescription);
+        HResult GetDeviceDescription(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszPnPDeviceID,
+            [In, Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pDeviceDescription,
+            [In, Out] ref uint pcchDeviceDescription);
 
-        HResult GetDeviceManufacturer([MarshalAs(UnmanagedType.LPWStr)] string pszPnPDeviceID, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder pDeviceManufacturer, ref uint pcchDeviceManufacturer);
+        HResult GetDeviceManufacturer(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszPnPDeviceID,
+            [In, Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pDeviceManufacturer,
+            [In, Out] ref uint pcchDeviceManufacturer);
 
-        HResult GetDeviceProperty([MarshalAs(UnmanagedType.LPWStr)] string pszPnPDeviceID, [MarshalAs(UnmanagedType.LPWStr)] ref string pszDevicePropertyName, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder pData, ref uint pcbData, ref uint pdwType);
+        HResult GetDeviceProperty(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszPnPDeviceID,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszDevicePropertyName,
+            [In, Out] ref byte pData,
+            [In, Out] ref uint pcbData,
+            [In, Out] ref uint pdwType);
 
-        HResult GetPrivateDevices([MarshalAs(UnmanagedType.LPWStr)] string pPnPDeviceIDs, ref uint pcPnPDeviceIDs);
+        HResult GetPrivateDevices(
+            [In, Out, MarshalAs( UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPWStr)] string[] pPnPDeviceIDs,
+            [In, Out] ref uint pcPnPDeviceIDs);
     }
 }

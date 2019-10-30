@@ -14,26 +14,41 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceService
     {
-        HResult Open([MarshalAs(UnmanagedType.LPWStr)] ref string pszPnPServiceID, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pClientInfo);
+        HResult Open(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszPnPServiceID,
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pClientInfo);
 
-        HResult Capabilities([MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceServiceCapabilities ppCapabilities);
+        HResult Capabilities(
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceServiceCapabilities ppCapabilities);
 
-        HResult Content([MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceContent2 ppContent);
+        HResult Content(
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceContent2 ppContent);
 
-        HResult Methods([MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceServiceMethods ppMethods);
+        HResult Methods(
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceServiceMethods ppMethods);
 
         HResult Cancel();
 
         HResult Close();
 
-        HResult GetServiceObjectID([MarshalAs(UnmanagedType.LPWStr)] ref string ppszServiceObjectID);
+        HResult GetServiceObjectID(
+            [Out, MarshalAs(UnmanagedType.LPWStr)] out string ppszServiceObjectID);
 
-        HResult GetPnPServiceID([MarshalAs(UnmanagedType.LPWStr)] ref string ppszPnPServiceID);
+        HResult GetPnPServiceID(
+            [Out, MarshalAs(UnmanagedType.LPWStr)] out string ppszPnPServiceID);
 
-        HResult Advise(uint dwFlags, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceEventCallback pCallback, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pParameters, [MarshalAs(UnmanagedType.LPWStr)] ref string ppszCookie);
+        HResult Advise(
+            [In] uint dwFlags,
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceEventCallback pCallback,
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pParameters,
+            [Out, MarshalAs(UnmanagedType.LPWStr)] out string ppszCookie);
 
-        HResult Unadvise([MarshalAs(UnmanagedType.LPWStr)] ref string pszCookie);
+        HResult Unadvise(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszCookie);
 
-        HResult SendCommand(uint dwFlags, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pParameters, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues ppResults);
+        HResult SendCommand(
+            [In] uint dwFlags,
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pParameters,
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppResults);
     }
 }

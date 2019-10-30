@@ -14,24 +14,47 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceContent
     {
-        HResult EnumObjects(uint dwFlags, [MarshalAs(UnmanagedType.LPWStr)] ref string pszParentObjectID, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pFilter, [MarshalAs(UnmanagedType.Interface)] ref IEnumPortableDeviceObjectIDs ppEnum);
+        HResult EnumObjects(
+            [In] uint dwFlags,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszParentObjectID,
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pFilter,
+            [Out, MarshalAs(UnmanagedType.Interface)] out IEnumPortableDeviceObjectIDs ppEnum);
 
-        HResult Properties([MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceProperties ppProperties);
+        HResult Properties(
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceProperties ppProperties);
 
-        HResult Transfer([MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceResources ppResources);
+        HResult Transfer(
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceResources ppResources);
 
-        HResult CreateObjectWithPropertiesOnly([MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pValues, [MarshalAs(UnmanagedType.LPWStr)] ref string ppszObjectID);
+        HResult CreateObjectWithPropertiesOnly(
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pValues,
+            [In, Out, MarshalAs(UnmanagedType.LPWStr)] ref string ppszObjectID);
 
-        HResult CreateObjectWithPropertiesAndData([MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pValues, [MarshalAs(UnmanagedType.Interface)] ref System.Runtime.InteropServices.ComTypes.IStream ppData, ref uint pdwOptimalWriteBufferSize, [MarshalAs(UnmanagedType.LPWStr)] ref string ppszCookie);
+        HResult CreateObjectWithPropertiesAndData(
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pValues,
+            [Out, MarshalAs(UnmanagedType.Interface)] out System.Runtime.InteropServices.ComTypes.IStream ppData,
+            [In, Out] ref uint pdwOptimalWriteBufferSize,
+            [In, Out, MarshalAs(UnmanagedType.LPWStr)] ref string ppszCookie);
 
-        HResult Delete(DeleteObjectOptions dwOptions, [MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection pObjectIDs, [MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection ppResults);
+        HResult Delete(
+            [In] DeleteObjectOptions dwOptions,
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection pObjectIDs,
+            [In, Out, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection ppResults);
 
-        HResult GetObjectIDsFromPersistentUniqueIDs([MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection pPersistentUniqueIDs, [MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection ppObjectIDs);
+        HResult GetObjectIDsFromPersistentUniqueIDs(
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection pPersistentUniqueIDs,
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDevicePropVariantCollection ppObjectIDs);
 
         HResult Cancel();
 
-        HResult Move([MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection pObjectIDs, [MarshalAs(UnmanagedType.LPWStr)] ref string pszDestinationFolderObjectID, [MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection ppResults);
+        HResult Move(
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection pObjectIDs,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszDestinationFolderObjectID,
+            [In, Out, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection ppResults);
 
-        HResult Copy([MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection pObjectIDs, [MarshalAs(UnmanagedType.LPWStr)] ref string pszDestinationFolderObjectID, [MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection ppResults);
+        HResult Copy(
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection pObjectIDs,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszDestinationFolderObjectID,
+            [In, Out, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection ppResults);
     }
 }

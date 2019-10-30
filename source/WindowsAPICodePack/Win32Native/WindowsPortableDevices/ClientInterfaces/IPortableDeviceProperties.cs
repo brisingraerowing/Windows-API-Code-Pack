@@ -15,15 +15,28 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceProperties
     {
-        HResult GetSupportedProperties([MarshalAs(UnmanagedType.LPWStr)] ref string pszObjectID, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection ppKeys);
+        HResult GetSupportedProperties(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceKeyCollection ppKeys);
 
-        HResult GetPropertyAttributes([MarshalAs(UnmanagedType.LPWStr)] ref string pszObjectID, ref PropertyKey Key, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues ppAttributes);
+        HResult GetPropertyAttributes(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
+            [In] PropertyKey Key,
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppAttributes);
 
-        HResult GetValues([MarshalAs(UnmanagedType.LPWStr)] ref string pszObjectID, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection pKeys, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues ppValues);
+        HResult GetValues(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection pKeys,
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppValues);
 
-        HResult SetValues([MarshalAs(UnmanagedType.LPWStr)] ref string pszObjectID, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pValues, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues ppResults);
+        HResult SetValues(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pValues,
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppResults);
 
-        HResult Delete([MarshalAs(UnmanagedType.LPWStr)] ref string pszObjectID, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection pKeys);
+        HResult Delete(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection pKeys);
 
         HResult Cancel();
     }

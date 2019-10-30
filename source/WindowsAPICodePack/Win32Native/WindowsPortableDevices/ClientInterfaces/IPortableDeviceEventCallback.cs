@@ -14,6 +14,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceEventCallback
     {
-        HResult OnEvent([MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pEventParameters);
+        HResult OnEvent(
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pEventParameters);
     }
 }

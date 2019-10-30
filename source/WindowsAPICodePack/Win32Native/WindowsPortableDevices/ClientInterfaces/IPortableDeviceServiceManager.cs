@@ -13,8 +13,14 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceServiceManager
     {
-        HResult GetDeviceServices([MarshalAs(UnmanagedType.LPWStr)] ref string pszPnPDeviceID, ref Guid guidServiceCategory, [MarshalAs(UnmanagedType.LPWStr)] ref string pServices, ref uint pcServices);
+        HResult GetDeviceServices(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszPnPDeviceID,
+            [In] Guid guidServiceCategory,
+            [In, Out, MarshalAs(UnmanagedType.LPWStr)] ref string pServices,
+            [In, Out] ref uint pcServices);
 
-        HResult GetDeviceForService([MarshalAs(UnmanagedType.LPWStr)] ref string pszPnPServiceID, [MarshalAs(UnmanagedType.LPWStr)] ref string ppszPnPDeviceID);
+        HResult GetDeviceForService(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszPnPServiceID,
+            [Out, MarshalAs(UnmanagedType.LPWStr)] out string ppszPnPDeviceID);
     }
 }
