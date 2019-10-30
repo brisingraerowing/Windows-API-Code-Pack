@@ -31,11 +31,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Sensors
     public class PortableDeviceKeyCollection : IPortableDeviceKeyCollection
     {
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        public virtual extern HResult GetCount(out uint pcElems);
+        public virtual extern HResult GetCount(ref uint pcElems);
 
         [PreserveSig]
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        public virtual extern HResult GetAt([In] uint dwIndex, out PropertyKey pKey);
+        public virtual extern HResult GetAt([In] uint dwIndex, ref PropertyKey pKey);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         public virtual extern HResult Add([In] ref PropertyKey Key);
@@ -51,7 +51,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Sensors
     public class PortableDeviceValues : IPortableDeviceValues
     {
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        public virtual extern HResult GetCount(out uint pcelt);
+        public virtual extern HResult GetCount(ref uint pcelt);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         public virtual extern HResult GetAt([In] uint index, [In, Out] ref PropertyKey pKey, [In, Out] ref PropVariant pValue);
@@ -60,10 +60,10 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Sensors
         public virtual extern HResult SetValue([In] ref PropertyKey key, [In] ref PropVariant pValue);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        public virtual extern HResult GetValue([In] ref PropertyKey key, [In, Out] ref PropVariant pValue);
+        public virtual extern HResult GetValue([In] ref PropertyKey key, [Out] out PropVariant pValue);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        public virtual extern HResult SetStringValue([In] ref PropertyKey key, [In, MarshalAs(UnmanagedType.LPWStr)] ref string Value);
+        public virtual extern HResult SetStringValue([In] ref PropertyKey key, [In, MarshalAs(UnmanagedType.LPWStr)] string Value);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         public virtual extern HResult GetStringValue([In] ref PropertyKey key, [MarshalAs(UnmanagedType.LPWStr)] out string pValue);
@@ -123,13 +123,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Sensors
         public virtual extern HResult GetIUnknownValue([In] ref PropertyKey key, [MarshalAs(UnmanagedType.IUnknown)] out object ppValue);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        public virtual extern HResult SetGuidValue([In] ref PropertyKey key, [In] ref Guid Value);
+        public virtual extern HResult SetGuidValue([In] ref PropertyKey key, [In] Guid Value);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         public virtual extern HResult GetGuidValue([In] ref PropertyKey key, out Guid pValue);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        public virtual extern HResult SetBufferValue([In] ref PropertyKey key, [In] ref byte[] pValue, [In] uint cbValue);
+        public virtual extern HResult SetBufferValue([In] ref PropertyKey key, [In] ref byte pValue, [In] uint cbValue);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         public virtual extern HResult GetBufferValue([In] ref PropertyKey key, [Out] IntPtr ppValue, out uint pcbValue);

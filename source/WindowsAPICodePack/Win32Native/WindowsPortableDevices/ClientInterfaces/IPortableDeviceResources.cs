@@ -15,16 +15,32 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceResources
     {
-        HResult GetSupportedResources([MarshalAs(UnmanagedType.LPWStr)] ref string pszObjectID, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection ppKeys);
+        HResult GetSupportedResources(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceKeyCollection ppKeys);
 
-        HResult GetResourceAttributes([MarshalAs(UnmanagedType.LPWStr)] ref string pszObjectID, ref PropertyKey Key, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues ppResourceAttributes);
+        HResult GetResourceAttributes(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
+            [In] PropertyKey Key,
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppResourceAttributes);
 
-        HResult GetStream([MarshalAs(UnmanagedType.LPWStr)] ref string pszObjectID, ref PropertyKey Key, uint dwMode, uint pdwOptimalBufferSize, [MarshalAs(UnmanagedType.Interface)] ref System.Runtime.InteropServices.ComTypes.IStream ppStream);
+        HResult GetStream(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
+            [In] PropertyKey Key,
+            [In] uint dwMode,
+            [In, Out] ref uint pdwOptimalBufferSize,
+            [Out, MarshalAs(UnmanagedType.Interface)] out System.Runtime.InteropServices.ComTypes.IStream ppStream);
 
-        HResult Delete([MarshalAs(UnmanagedType.LPWStr)] ref string pszObjectID, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection pKeys);
+        HResult Delete(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection pKeys);
 
         HResult Cancel();
 
-        HResult CreateResource([MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pResourceAttributes, [MarshalAs(UnmanagedType.Interface)] ref System.Runtime.InteropServices.ComTypes.IStream ppData, ref uint pdwOptimalWriteBufferSize, [MarshalAs(UnmanagedType.LPWStr)] ref string ppszCookie);
+        HResult CreateResource(
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pResourceAttributes,
+            [Out, MarshalAs(UnmanagedType.Interface)] out System.Runtime.InteropServices.ComTypes.IStream ppData,
+            [In, Out] ref uint pdwOptimalWriteBufferSize,
+            [In, Out, MarshalAs(UnmanagedType.LPWStr)] ref string ppszCookie);
     }
 }

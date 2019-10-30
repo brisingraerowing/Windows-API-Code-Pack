@@ -14,14 +14,29 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDevicePropertiesBulk
     {
-        HResult QueueGetValuesByObjectList([MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection pObjectIDs, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection pKeys, [MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropertiesBulkCallback pCallback, ref Guid pContext);
+        HResult QueueGetValuesByObjectList(
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection pObjectIDs,
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection pKeys,
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropertiesBulkCallback pCallback,
+            [Out] out Guid pContext);
 
-        HResult QueueGetValuesByObjectFormat(ref Guid pguidObjectFormat, [MarshalAs(UnmanagedType.LPWStr)] ref string pszParentObjectID, uint dwDepth, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection pKeys, [MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropertiesBulkCallback pCallback, ref Guid pContext);
+        HResult QueueGetValuesByObjectFormat(
+            [In] Guid pguidObjectFormat,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszParentObjectID,
+            [In] uint dwDepth,
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection pKeys,
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropertiesBulkCallback pCallback,
+            [Out] out Guid pContext);
 
-        HResult QueueSetValuesByObjectList([MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValuesCollection pObjectValues, [MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropertiesBulkCallback pCallback, ref Guid pContext);
+        HResult QueueSetValuesByObjectList(
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValuesCollection pObjectValues,
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropertiesBulkCallback pCallback,
+            [Out] out Guid pContext);
 
-        HResult Start(ref Guid pContext);
+        HResult Start(
+            [In] Guid pContext);
 
-        HResult Cancel(ref Guid pContext);
+        HResult Cancel(
+            [In] Guid pContext);
     }
 }

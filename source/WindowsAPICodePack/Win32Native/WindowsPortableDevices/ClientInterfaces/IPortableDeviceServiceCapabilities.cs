@@ -15,35 +15,64 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceServiceCapabilities
     {
-        HResult GetSupportedMethods([MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection ppMethods);
+        HResult GetSupportedMethods(
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDevicePropVariantCollection ppMethods);
 
-        HResult GetSupportedMethodsByFormat(ref Guid Format, [MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection ppMethods);
+        HResult GetSupportedMethodsByFormat(
+            [In] Guid Format,
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDevicePropVariantCollection ppMethods);
 
-        HResult GetMethodAttributes(ref Guid Method, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues ppAttributes);
+        HResult GetMethodAttributes(
+            [In] Guid Method,
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppAttributes);
 
-        HResult GetMethodParameterAttributes(ref Guid Method, ref PropertyKey ppAttributes, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues Parameter);
+        HResult GetMethodParameterAttributes(
+            [In] Guid Method,
+            [In] PropertyKey ppAttributes,
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues Parameter);
 
-        HResult GetSupportedFormats([MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection ppFormats);
+        HResult GetSupportedFormats(
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDevicePropVariantCollection ppFormats);
 
-        HResult GetFormatAttributes(ref Guid Format, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues ppAttributes);
+        HResult GetFormatAttributes(
+            [In] Guid Format,
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppAttributes);
 
-        HResult GetSupportedFormatProperties(ref Guid Format, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection ppKeys);
+        HResult GetSupportedFormatProperties(
+            [In] Guid Format,
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceKeyCollection ppKeys);
 
-        HResult GetFormatPropertyAttributes(ref Guid Format, ref PropertyKey Property, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues ppAttributes);
+        HResult GetFormatPropertyAttributes(
+            [In] Guid Format,
+            [In] PropertyKey Property,
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppAttributes);
 
-        HResult GetSupportedEvents([MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection ppEvents);
+        HResult GetSupportedEvents(
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDevicePropVariantCollection ppEvents);
 
-        HResult GetEventAttributes(ref Guid Event, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues ppAttributes);
+        HResult GetEventAttributes(
+            [In] Guid Event,
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppAttributes);
 
-        HResult GetEventParameterAttributes(ref Guid Event, ref PropertyKey ppAttributes, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues Parameter);
+        HResult GetEventParameterAttributes(
+            [In] Guid Event,
+            [In] PropertyKey ppAttributes,
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues Parameter);
 
-        HResult GetInheritedServices(uint dwInheritanceType, [MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection ppServices);
+        HResult GetInheritedServices(
+            [In] uint dwInheritanceType,
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDevicePropVariantCollection ppServices);
 
-        HResult GetFormatRenderingProfiles(ref Guid Format, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValuesCollection ppRenderingProfiles);
+        HResult GetFormatRenderingProfiles(
+            [In] Guid Format,
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValuesCollection ppRenderingProfiles);
 
-        HResult GetSupportedCommands([MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection ppCommands);
+        HResult GetSupportedCommands(
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceKeyCollection ppCommands);
 
-        HResult GetCommandOptions(ref PropertyKey Command, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues ppOptions);
+        HResult GetCommandOptions(
+            [In] PropertyKey Command,
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppOptions);
 
         HResult Cancel();
     }

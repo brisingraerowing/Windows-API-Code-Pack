@@ -13,14 +13,19 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CollectionInt
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceValuesCollection
     {
-        HResult GetCount(out uint pcElems);
+        HResult GetCount( 
+            [In] ref uint pcElems);
 
-        HResult GetAt([In] uint dwIndex, [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppValues);
+        HResult GetAt(
+            [In] uint dwIndex, 
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppValues);
 
-        HResult Add([In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pValues);
+        HResult Add(
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pValues);
 
         HResult Clear();
 
-        HResult RemoveAt([In] uint dwIndex);
+        HResult RemoveAt(
+            [In] uint dwIndex);
     }
 }

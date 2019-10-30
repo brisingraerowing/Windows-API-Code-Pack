@@ -163,7 +163,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         ///     return hr;
         /// }</code>
         /// </example>
-        HResult Open([MarshalAs(UnmanagedType.LPWStr)] ref string pszPnPDeviceID, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pClientInfo);
+        HResult Open(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszPnPDeviceID,
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pClientInfo);
 
         /// <summary>
         /// The <see cref="SendCommand"/> method sends a command to the device and retrieves the results synchronously.
@@ -178,7 +180,10 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         /// <li><see cref="HResult.Pointer"/></li></ul></para></returns>
         /// <remarks>TODO</remarks>
         /// <example><code>TODO</code></example>
-        HResult SendCommand(uint dwFlags, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pParameters, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues ppResults);
+        HResult SendCommand(
+            [In] uint dwFlags,
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pParameters,
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppResults);
 
         /// <summary>
         /// The <see cref="Content"/> method retrieves an interface that you can use to access objects on a device.
@@ -187,7 +192,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         /// <returns><para>The method returns an <see cref="HResult"/>. Possible values include, but are not limited to, those in the following list.</para>
         /// <para><ul><li><see cref="HResult.OK"/></li>
         /// <li><see cref="HResult.Pointer"/></li></ul></para></returns>
-        HResult Content([MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceContent ppContent);
+        HResult Content(
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceContent ppContent);
 
         /// <summary>
         /// The <see cref="Capabilities"/> method retrieves an interface used to query the capabilities of a portable device.
@@ -196,7 +202,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         /// <returns><para>The method returns an <see cref="HResult"/>. Possible values include, but are not limited to, those in the following list.</para>
         /// <para><ul><li><see cref="HResult.OK"/></li>
         /// <li><see cref="HResult.Pointer"/></li></ul></para></returns>
-        HResult Capabilities([MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceCapabilities ppCapabilities);
+        HResult Capabilities(
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceCapabilities ppCapabilities);
 
         /// <summary>
         /// The <see cref="Cancel"/> method cancels a pending operation on this interface.
@@ -225,7 +232,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         /// <param name="ppszCookie">A string that represents a unique context ID. This is used to unregister for callbacks when calling <see cref="Unadvise"/>.</param>
         /// <returns><para>The method returns an <see cref="HResult"/>. Possible values include, but are not limited to, those in the following list.</para>
         /// <para><ul><li><see cref="HResult.Ok"/></li></ul></para></returns>
-        HResult Advise(uint dwFlags, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceEventCallback pCallback, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pParameters, [MarshalAs(UnmanagedType.LPWStr)] ref string ppszCookie);
+        HResult Advise(
+            [In] uint dwFlags,
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceEventCallback pCallback,
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pParameters,
+            [Out, MarshalAs(UnmanagedType.LPWStr)] out string ppszCookie);
 
         /// <summary>
         /// The <see cref="Unadvise"/> method unregisters a client from receiving callback notifications. You must call this method if you called <see cref="Advise"/> previously.
@@ -233,7 +244,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         /// <param name="pszCookie">Reference to a null-terminated string that is a unique context ID. This was retrieved in the initial call to <see cref="Advise"/>.</param>
         /// <returns><para>The method returns an <see cref="HResult"/>. Possible values include, but are not limited to, those in the following list.</para>
         /// <para><ul><li><see cref="HResult.Ok"/></li></ul></para></returns>
-        HResult Unadvise([MarshalAs(UnmanagedType.LPWStr)] ref string pszCookie);
+        HResult Unadvise(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszCookie);
 
         /// <summary>
         /// The <see cref="GetPnPDeviceID"/> method retrieves the Plug and Play (PnP) device identifier that the application used to open the device.
@@ -244,6 +256,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         /// <li><see cref="HResult.DeviceNotOpen"/></li></ul></para></returns>
         /// <remarks><para>After the application is through using the string returned by this method, it must call the <see cref="CoTaskMemFree"/> function to free the string.</para>
         /// <para>The <paramref name="ppszPnPDeviceID"/> argument must not be set to <see langword="null"/>.</para></remarks>
-        HResult GetPnPDeviceID([MarshalAs(UnmanagedType.LPWStr)] out string ppszPnPDeviceID);
+        HResult GetPnPDeviceID(
+            [Out, MarshalAs(UnmanagedType.LPWStr)] out string ppszPnPDeviceID);
     }
 }

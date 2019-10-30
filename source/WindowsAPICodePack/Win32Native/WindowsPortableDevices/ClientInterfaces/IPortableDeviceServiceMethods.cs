@@ -14,10 +14,17 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceServiceMethods
     {
-        HResult Invoke(ref Guid Method, ref IPortableDeviceValues pParameters, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues ppResults);
+        HResult Invoke(
+            [In] Guid Method,
+            [In] ref IPortableDeviceValues pParameters,
+            [In, Out, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues ppResults);
 
-        HResult InvokeAsync(ref Guid Method, ref IPortableDeviceValues pParameters, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceServiceMethodCallback pCallback);
+        HResult InvokeAsync(
+            [In] Guid Method,
+            [In] ref IPortableDeviceValues pParameters,
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceServiceMethodCallback pCallback);
 
-        HResult Cancel([MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceServiceMethodCallback pCallback);
+        HResult Cancel(
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceServiceMethodCallback pCallback);
     }
 }

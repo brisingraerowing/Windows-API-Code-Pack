@@ -15,83 +15,160 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CollectionInt
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceValues
     {
-        HResult GetCount( out uint pcelt);
+        HResult GetCount(
+            [In] ref uint pcelt);
 
-        HResult GetAt([In] uint index, [In, Out] ref PropertyKey pKey, [In, Out] ref PropVariant pValue);
+        HResult GetAt(
+            [In] uint index,
+            [In, Out] ref PropertyKey pKey,
+            [In, Out] ref PropVariant pValue);
 
-        HResult SetValue([In] ref PropertyKey key, [In] ref PropVariant pValue);
+        HResult SetValue(
+            [In] ref PropertyKey key,
+            [In] ref PropVariant pValue);
 
-        HResult GetValue([In] ref PropertyKey key, [In, Out] ref PropVariant pValue);
+        HResult GetValue(
+            [In] ref PropertyKey key,
+            [Out] out PropVariant pValue);
 
-        HResult SetStringValue([In] ref PropertyKey key, [In, MarshalAs(UnmanagedType.LPWStr)] ref string Value);
+        HResult SetStringValue(
+            [In] ref PropertyKey key,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string Value);
 
-        HResult GetStringValue([In] ref PropertyKey key, [Out, MarshalAs(UnmanagedType.LPWStr)] out string pValue);
+        HResult GetStringValue(
+            [In] ref PropertyKey key,
+            [Out, MarshalAs(UnmanagedType.LPWStr)] out string pValue);
 
-        HResult SetUnsignedIntegerValue([In] ref PropertyKey key, [In] uint Value);
+        HResult SetUnsignedIntegerValue(
+            [In] ref PropertyKey key,
+            [In] uint Value);
 
-        HResult GetUnsignedIntegerValue([In] ref PropertyKey key, [Out] out uint pValue);
+        HResult GetUnsignedIntegerValue(
+            [In] ref PropertyKey key,
+            [Out] out uint pValue);
 
-        HResult SetSignedIntegerValue([In] ref PropertyKey key, [In] int Value);
+        HResult SetSignedIntegerValue(
+            [In] ref PropertyKey key,
+            [In] int Value);
 
-        HResult GetSignedIntegerValue([In] ref PropertyKey key, [Out] out int pValue);
+        HResult GetSignedIntegerValue(
+            [In] ref PropertyKey key,
+            [Out] out int pValue);
 
-        HResult SetUnsignedLargeIntegerValue([In] ref PropertyKey key, [In] ulong Value);
+        HResult SetUnsignedLargeIntegerValue(
+            [In] ref PropertyKey key,
+            [In] ulong Value);
 
-        HResult GetUnsignedLargeIntegerValue([In] ref PropertyKey key, [Out] out ulong pValue);
+        HResult GetUnsignedLargeIntegerValue(
+            [In] ref PropertyKey key,
+            [Out] out ulong pValue);
 
-        HResult SetSignedLargeIntegerValue([In] ref PropertyKey key, [In] long Value);
+        HResult SetSignedLargeIntegerValue(
+            [In] ref PropertyKey key,
+            [In] long Value);
 
-        HResult GetSignedLargeIntegerValue([In] ref PropertyKey key, [Out] out long pValue);
+        HResult GetSignedLargeIntegerValue(
+            [In] ref PropertyKey key,
+            [Out] out long pValue);
 
-        HResult SetFloatValue([In] ref PropertyKey key, [In] float Value);
+        HResult SetFloatValue(
+            [In] ref PropertyKey key,
+            [In] float Value);
 
-        HResult GetFloatValue([In] ref PropertyKey key, [Out] out float pValue);
+        HResult GetFloatValue(
+            [In] ref PropertyKey key,
+            [Out] out float pValue);
 
-        HResult SetErrorValue([In] ref PropertyKey key, [In, MarshalAs(UnmanagedType.Error)] HResult Value);
+        HResult SetErrorValue(
+            [In] ref PropertyKey key,
+            [In, MarshalAs(UnmanagedType.Error)] HResult Value);
 
-        HResult GetErrorValue([In] ref PropertyKey key, [Out, MarshalAs(UnmanagedType.Error)] out HResult pValue);
+        HResult GetErrorValue(
+            [In] ref PropertyKey key,
+            [Out, MarshalAs(UnmanagedType.Error)] out HResult pValue);
 
-        HResult SetKeyValue([In] ref PropertyKey key, [In] ref PropertyKey Value);
+        HResult SetKeyValue(
+            [In] ref PropertyKey key,
+            [In] ref PropertyKey Value);
 
-        HResult GetKeyValue([In] ref PropertyKey key, [Out] out PropertyKey pValue);
+        HResult GetKeyValue(
+            [In] ref PropertyKey key,
+            [Out] out PropertyKey pValue);
 
-        HResult SetBoolValue([In] ref PropertyKey key, [In, MarshalAs(UnmanagedType.Bool)] bool Value);
+        HResult SetBoolValue(
+            [In] ref PropertyKey key,
+            [In, MarshalAs(UnmanagedType.Bool)] bool Value);
 
-        HResult GetBoolValue([In] ref PropertyKey key, [Out, MarshalAs(UnmanagedType.Bool)] out bool pValue);
+        HResult GetBoolValue(
+            [In] ref PropertyKey key,
+            [Out, MarshalAs(UnmanagedType.Bool)] out bool pValue);
 
-        HResult SetIUnknownValue([In] ref PropertyKey key, [In, MarshalAs(UnmanagedType.IUnknown)] ref object pValue);
+        HResult SetIUnknownValue(
+            [In] ref PropertyKey key,
+            [In, MarshalAs(UnmanagedType.IUnknown)] ref object pValue);
 
-        HResult GetIUnknownValue([In] ref PropertyKey key, [Out, MarshalAs(UnmanagedType.IUnknown)] out object ppValue);
+        HResult GetIUnknownValue(
+            [In] ref PropertyKey key,
+            [Out, MarshalAs(UnmanagedType.IUnknown)] out object ppValue);
 
-        HResult SetGuidValue([In] ref PropertyKey key, [In] ref Guid Value);
+        HResult SetGuidValue(
+            [In] ref PropertyKey key,
+            [In] Guid Value);
 
-        HResult GetGuidValue([In] ref PropertyKey key, [Out] out Guid pValue);
+        HResult GetGuidValue(
+            [In] ref PropertyKey key,
+            [Out] out Guid pValue);
 
-        HResult SetBufferValue([In] ref PropertyKey key, [In] ref byte[] pValue, [In] uint cbValue);
+        HResult SetBufferValue(
+            [In] ref PropertyKey key,
+            [In] ref byte pValue,
+            [In] uint cbValue);
 
-        HResult GetBufferValue([In] ref PropertyKey key, [Out] IntPtr ppValue, [Out] out uint pcbValue);
+        HResult GetBufferValue(
+            [In] ref PropertyKey key,
+            [Out] IntPtr ppValue,
+            [Out] out uint pcbValue);
 
-        HResult SetIPortableDeviceValuesValue([In] ref PropertyKey key, [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pValue);
+        HResult SetIPortableDeviceValuesValue(
+            [In] ref PropertyKey key, 
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pValue);
 
-        HResult GetIPortableDeviceValuesValue([In] ref PropertyKey key, [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppValue);
+        HResult GetIPortableDeviceValuesValue(
+            [In] ref PropertyKey key, 
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppValue);
 
-        HResult SetIPortableDevicePropVariantCollectionValue([In] ref PropertyKey key, [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection pValue);
+        HResult SetIPortableDevicePropVariantCollectionValue(
+            [In] ref PropertyKey key, 
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection pValue);
 
-        HResult GetIPortableDevicePropVariantCollectionValue([In] ref PropertyKey key, [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDevicePropVariantCollection ppValue);
+        HResult GetIPortableDevicePropVariantCollectionValue(
+            [In] ref PropertyKey key, 
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDevicePropVariantCollection ppValue);
 
-        HResult SetIPortableDeviceKeyCollectionValue([In] ref PropertyKey key, [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection pValue);
+        HResult SetIPortableDeviceKeyCollectionValue(
+            [In] ref PropertyKey key, 
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection pValue);
 
-        HResult GetIPortableDeviceKeyCollectionValue([In] ref PropertyKey key, [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceKeyCollection ppValue);
+        HResult GetIPortableDeviceKeyCollectionValue(
+            [In] ref PropertyKey key, 
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceKeyCollection ppValue);
 
-        HResult SetIPortableDeviceValuesCollectionValue([In] ref PropertyKey key, [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValuesCollection pValue);
+        HResult SetIPortableDeviceValuesCollectionValue(
+            [In] ref PropertyKey key, 
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValuesCollection pValue);
 
-        HResult GetIPortableDeviceValuesCollectionValue([In] ref PropertyKey key, [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValuesCollection ppValue);
+        HResult GetIPortableDeviceValuesCollectionValue(
+            [In] ref PropertyKey key, 
+            [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValuesCollection ppValue);
 
-        HResult RemoveValue([In] ref PropertyKey key);
+        HResult RemoveValue(
+            [In] ref PropertyKey key);
 
-        HResult CopyValuesFromPropertyStore([In, MarshalAs(UnmanagedType.Interface)] ref IPropertyStore pStore);
+        HResult CopyValuesFromPropertyStore(
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPropertyStore pStore);
 
-        HResult CopyValuesToPropertyStore([In, MarshalAs(UnmanagedType.Interface)] ref IPropertyStore pStore);
+        HResult CopyValuesToPropertyStore(
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPropertyStore pStore);
 
         HResult Clear();
     }

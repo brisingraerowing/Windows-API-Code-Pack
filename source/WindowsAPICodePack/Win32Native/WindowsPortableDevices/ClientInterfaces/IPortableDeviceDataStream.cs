@@ -12,7 +12,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         Guid(WPDCOMGuids.IPortableDeviceDataStream)]
     public interface IPortableDeviceDataStream : System.Runtime.InteropServices.ComTypes.IStream
     {
-        HResult GetObjectID([MarshalAs(UnmanagedType.LPWStr)] ref string ppszObjectID);
+        HResult GetObjectID(
+            [Out, MarshalAs(UnmanagedType.LPWStr)] out string ppszObjectID);
 
         HResult Cancel();
     }

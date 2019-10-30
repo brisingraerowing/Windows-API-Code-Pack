@@ -13,6 +13,10 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceUnitsStream
     {
-        HResult SeekInUnits(long dlibMove, StreamUnits units, uint dwOrigin, ref ulong plibNewPosition);
+        HResult SeekInUnits(
+            [In] long dlibMove,
+            [In] StreamUnits units,
+            [In] uint dwOrigin,
+            [In, Out] ref ulong plibNewPosition);
     }
 }

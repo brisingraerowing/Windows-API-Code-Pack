@@ -14,6 +14,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceServiceMethodCallback
     {
-        HResult OnComplete(HResult hrStatus, [MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pResults);
+        HResult OnComplete(
+            [In] HResult hrStatus,
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pResults);
     }
 }
