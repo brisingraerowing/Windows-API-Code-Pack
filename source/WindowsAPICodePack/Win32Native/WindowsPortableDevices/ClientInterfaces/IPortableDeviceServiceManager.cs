@@ -15,8 +15,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
     {
         HResult GetDeviceServices(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszPnPDeviceID,
-            [In] Guid guidServiceCategory,
-            [In, Out, MarshalAs(UnmanagedType.LPWStr)] ref string pServices,
+            [In] ref Guid guidServiceCategory,
+            [In, Out, MarshalAs( UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPWStr)] string[] pServices,
             [In, Out] ref uint pcServices);
 
         HResult GetDeviceForService(

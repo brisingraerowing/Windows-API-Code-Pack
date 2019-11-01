@@ -22,28 +22,28 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CoClasses.Cli
             [In, Out] ref uint pcPnPDeviceIDs);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        public extern HResult RefreshDeviceList();
+        public extern virtual HResult RefreshDeviceList();
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        public extern HResult GetDeviceFriendlyName(
+        public extern virtual HResult GetDeviceFriendlyName(
             [ In, MarshalAs(UnmanagedType.LPWStr)]  string pszPnPDeviceID, 
             [ In, Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pDeviceFriendlyName, 
             [In,Out] ref uint pcchDeviceFriendlyName);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        public extern HResult GetDeviceDescription(
+        public extern virtual HResult GetDeviceDescription(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszPnPDeviceID, 
             [In,Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pDeviceDescription, 
             [In,Out] ref uint pcchDeviceDescription);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        public extern HResult GetDeviceManufacturer(
+        public extern virtual HResult GetDeviceManufacturer(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszPnPDeviceID, 
             [In,Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pDeviceManufacturer, 
             [In,Out] ref uint pcchDeviceManufacturer);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        public extern HResult GetDeviceProperty(
+        public extern virtual HResult GetDeviceProperty(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszPnPDeviceID, 
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszDevicePropertyName, 
             [In,Out, MarshalAs(UnmanagedType.LPWStr)] ref byte pData, 
@@ -51,7 +51,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CoClasses.Cli
             [In,Out] ref uint pdwType);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        public extern HResult GetPrivateDevices(
+        public extern virtual HResult GetPrivateDevices(
             [In,Out, MarshalAs(UnmanagedType.LPWStr)] string[] pPnPDeviceIDs, 
             [In,Out] ref uint pcPnPDeviceIDs);
     }

@@ -388,7 +388,9 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                     try
                     {
 
-                        _ = valuesCollection.GetCount(out uint count);
+                        uint count = 0;
+
+                        _ = valuesCollection.GetCount(ref count);
 
                         for (uint i = 0; i < count; i++)
                         {
@@ -429,15 +431,20 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
                 try
                 {
-                    collection.GetCount(out uint elements);
+                    uint elements = 0;
+
+                    collection.GetCount(ref elements);
 
                     if (elements == 0) return null;
 
                     for (uint element = 0; element < elements; element++)
+                    {
+                        PropertyKey key = new PropertyKey();
 
-                        if (collection.GetAt(element, out PropertyKey key) == HResult.Ok)
+                        if (collection.GetAt(element, ref key) == HResult.Ok)
 
                             list.Add(key);
+                    }
                 }
                 finally
                 {
@@ -487,11 +494,11 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                         if (valuesCollection == null) return data;
 
                         uint count = 0;
-                        valuesCollection.GetCount(out count);
-                        var propKey = new PropertyKey();
+                        valuesCollection.GetCount(ref count);
 
                         for (uint i = 0; i < count; i++)
                         {
+                            var propKey = new PropertyKey();
                             var propVal = new PropVariant();
 
                             valuesCollection.GetAt(i, ref propKey, propVal);
@@ -574,13 +581,13 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                 try
                 {
                     uint count = 0;
-                    pdv2.GetCount(out count);
+                    pdv2.GetCount(ref count);
 
                     for (uint i = 0; i < count; i++)
                     {
-                        propKey = new PropertyKey();
                         using (var propVal = new PropVariant())
                         {
+                            propKey = new PropertyKey();
                             pdv2.GetAt(i, ref propKey, propVal);
                             results.Add(propKey, propVal.Value);
                         }

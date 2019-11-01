@@ -178,6 +178,7 @@
     <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceServiceMethodCallback.cs" />
     <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceServiceMethods.cs" />
     <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceUnitsStream.cs" />
+    <Compile Include="WindowsPortableDevices\CoClasses\ClientClasses\PortableDevice.cs" />
     <Compile Include="WindowsPortableDevices\CoClasses\ClientClasses\PortableDeviceManager.cs" />
     <Compile Include="WindowsPortableDevices\CollectionInterfaces\IPortableDeviceKeyCollection.cs" />
     <Compile Include="WindowsPortableDevices\CollectionInterfaces\IPortableDevicePropVariantCollection.cs" />

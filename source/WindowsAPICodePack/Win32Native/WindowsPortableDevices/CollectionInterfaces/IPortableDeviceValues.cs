@@ -113,7 +113,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CollectionInt
 
         HResult SetGuidValue(
             [In] ref PropertyKey key,
-            [In] Guid Value);
+            [In] ref Guid Value);
 
         HResult GetGuidValue(
             [In] ref PropertyKey key,
@@ -121,7 +121,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CollectionInt
 
         HResult SetBufferValue(
             [In] ref PropertyKey key,
-            [In] ref byte pValue,
+            [In] byte[] pValue,
             [In] uint cbValue);
 
         HResult GetBufferValue(

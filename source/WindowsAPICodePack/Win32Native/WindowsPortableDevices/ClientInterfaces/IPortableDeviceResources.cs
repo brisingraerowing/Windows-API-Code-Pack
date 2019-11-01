@@ -21,12 +21,12 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
 
         HResult GetResourceAttributes(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
-            [In] PropertyKey Key,
+            [In] ref PropertyKey Key,
             [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppResourceAttributes);
 
         HResult GetStream(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
-            [In] PropertyKey Key,
+            [In] ref PropertyKey Key,
             [In] uint dwMode,
             [In, Out] ref uint pdwOptimalBufferSize,
             [Out, MarshalAs(UnmanagedType.Interface)] out System.Runtime.InteropServices.ComTypes.IStream ppStream);

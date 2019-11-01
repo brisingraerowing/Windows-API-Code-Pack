@@ -21,7 +21,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
 
         HResult GetPropertyAttributes(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
-            [In] PropertyKey Key,
+            [In] ref PropertyKey Key,
             [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppAttributes);
 
         HResult GetValues(

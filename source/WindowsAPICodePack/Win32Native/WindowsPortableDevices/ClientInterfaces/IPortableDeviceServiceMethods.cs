@@ -15,12 +15,12 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
     public interface IPortableDeviceServiceMethods
     {
         HResult Invoke(
-            [In] Guid Method,
+            [In] ref Guid Method,
             [In] ref IPortableDeviceValues pParameters,
             [In, Out, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues ppResults);
 
         HResult InvokeAsync(
-            [In] Guid Method,
+            [In] ref Guid Method,
             [In] ref IPortableDeviceValues pParameters,
             [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceServiceMethodCallback pCallback);
 

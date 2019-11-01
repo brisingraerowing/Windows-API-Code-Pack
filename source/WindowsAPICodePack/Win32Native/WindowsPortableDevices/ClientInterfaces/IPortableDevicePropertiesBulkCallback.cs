@@ -15,14 +15,14 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
     public interface IPortableDevicePropertiesBulkCallback
     {
         HResult OnStart(
-            [In] Guid pContext);
+            [In] ref Guid pContext);
 
         HResult OnProgress(
-            [In] Guid pContext,
+            [In] ref Guid pContext,
             [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValuesCollection pResults);
 
         HResult OnEnd(
-            [In] Guid pContext,
+            [In] ref Guid pContext,
             [In] HResult hrStatus);
     }
 }

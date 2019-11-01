@@ -24,23 +24,29 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             _ = iSensor.GetSupportedDataFields(out IPortableDeviceKeyCollection keyCollection);
             iReport.GetSensorValues(keyCollection, out IPortableDeviceValues valuesCollection);
 
-            keyCollection.GetCount(out uint items);
+            uint items = 0;
+
+            keyCollection.GetCount(ref items);
 
             for (uint index = 0; index < items; index++)
+            {
+                var propValue = new PropVariant();
 
-                using (var propValue = new PropVariant())
-                {
-                    _ = keyCollection.GetAt(index, out PropertyKey key);
-                    valuesCollection.GetValue(ref key, propValue);
+                PropertyKey key = new PropertyKey();
 
-                    if (data.ContainsKey(key.FormatId))
+                _ = keyCollection.GetAt(index, ref key);
+                valuesCollection.GetValue(ref key, out propValue);
 
-                        data[key.FormatId].Add(propValue.Value);
+                if (data.ContainsKey(key.FormatId))
 
-                    else
+                    data[key.FormatId].Add(propValue.Value);
 
-                        data.Add(key.FormatId, new List<object> { propValue.Value });
-                }
+                else
+
+                    data.Add(key.FormatId, new List<object> { propValue.Value });
+
+                propValue.Dispose();
+            }
 
             if (keyCollection != null)
 

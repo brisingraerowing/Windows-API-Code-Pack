@@ -21,7 +21,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
             [Out] out Guid pContext);
 
         HResult QueueGetValuesByObjectFormat(
-            [In] Guid pguidObjectFormat,
+            [In] ref Guid pguidObjectFormat,
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszParentObjectID,
             [In] uint dwDepth,
             [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection pKeys,
@@ -34,9 +34,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
             [Out] out Guid pContext);
 
         HResult Start(
-            [In] Guid pContext);
+            [In] ref Guid pContext);
 
         HResult Cancel(
-            [In] Guid pContext);
+            [In] ref Guid pContext);
     }
 }

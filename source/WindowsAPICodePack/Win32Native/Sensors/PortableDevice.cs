@@ -123,13 +123,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Sensors
         public virtual extern HResult GetIUnknownValue([In] ref PropertyKey key, [MarshalAs(UnmanagedType.IUnknown)] out object ppValue);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        public virtual extern HResult SetGuidValue([In] ref PropertyKey key, [In] Guid Value);
+        public virtual extern HResult SetGuidValue([In] ref PropertyKey key, [In] ref Guid Value);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         public virtual extern HResult GetGuidValue([In] ref PropertyKey key, out Guid pValue);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        public virtual extern HResult SetBufferValue([In] ref PropertyKey key, [In] ref byte pValue, [In] uint cbValue);
+        public virtual extern HResult SetBufferValue([In] ref PropertyKey key, [In] byte[] pValue, [In] uint cbValue);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         public virtual extern HResult GetBufferValue([In] ref PropertyKey key, [Out] IntPtr ppValue, out uint pcbValue);
