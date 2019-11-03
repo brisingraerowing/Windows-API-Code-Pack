@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.WindowsAPICodePack.WindowsPortableDevices
+namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
     public interface IPortableDeviceManager
     {

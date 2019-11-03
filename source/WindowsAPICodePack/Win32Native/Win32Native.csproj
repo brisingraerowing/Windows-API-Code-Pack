@@ -88,6 +88,7 @@
     <Compile Include="Core\Clipboard\StandardClipboardFormat.cs" />
     <Compile Include="ExtendedLinguisticServices\Win32NativeMethods.cs" />
     <Compile Include="ExtendedLinguisticServices\Win32Structs.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\Resources\LocalizedMessages.Designer.cs">
       <AutoGen>True</AutoGen>

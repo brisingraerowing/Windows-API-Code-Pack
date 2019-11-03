@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.WindowsPortableDevices.CoClasses.ClientClasses
+namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CoClasses.ClientClasses
 {
     [ComImport,
         Guid(WPDCOMGuids.PortableDeviceFTM),

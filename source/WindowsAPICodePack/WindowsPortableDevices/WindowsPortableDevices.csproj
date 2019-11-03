@@ -7,8 +7,8 @@
     <ProjectGuid>{2945CB31-1559-4BD9-A7C4-64475EB0F33B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Microsoft.WindowsAPICodePack.WindowsPortableDevices</RootNamespace>
-    <AssemblyName>Microsoft.WindowsAPICodePack.WindowsPortableDevices</AssemblyName>
+    <RootNamespace>Microsoft.WindowsAPICodePack.PortableDevices</RootNamespace>
+    <AssemblyName>Microsoft.WindowsAPICodePack.PortableDevices</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -53,8 +53,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPortableDevice.cs" />
     <Compile Include="IPortableDeviceManager.cs" />
+    <Compile Include="NotConnectedException.cs" />
     <Compile Include="PortableDevice.cs" />
+    <Compile Include="PortableDeviceManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
