@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win32Native", "..\WindowsAP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsPortableDevices", "..\WindowsAPICodePack\WindowsPortableDevices\WindowsPortableDevices.csproj", "{2945CB31-1559-4BD9-A7C4-64475EB0F33B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win32NativeGuids", "..\WindowsAPICodePack\Win32NativeGuids\Win32NativeGuids.csproj", "{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CodeAnalysisDebug|Any CPU = CodeAnalysisDebug|Any CPU
@@ -248,6 +250,24 @@ Global
 		{2945CB31-1559-4BD9-A7C4-64475EB0F33B}.Release|x64.Build.0 = Release|Any CPU
 		{2945CB31-1559-4BD9-A7C4-64475EB0F33B}.Release|x86.ActiveCfg = Release|Any CPU
 		{2945CB31-1559-4BD9-A7C4-64475EB0F33B}.Release|x86.Build.0 = Release|Any CPU
+		{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}.CodeAnalysisDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}.CodeAnalysisDebug|Any CPU.Build.0 = Debug|Any CPU
+		{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}.CodeAnalysisDebug|x64.ActiveCfg = Debug|Any CPU
+		{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}.CodeAnalysisDebug|x64.Build.0 = Debug|Any CPU
+		{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}.CodeAnalysisDebug|x86.ActiveCfg = Debug|Any CPU
+		{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}.CodeAnalysisDebug|x86.Build.0 = Debug|Any CPU
+		{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}.Debug|x64.Build.0 = Debug|Any CPU
+		{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}.Debug|x86.Build.0 = Debug|Any CPU
+		{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}.Release|x64.ActiveCfg = Release|Any CPU
+		{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}.Release|x64.Build.0 = Release|Any CPU
+		{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}.Release|x86.ActiveCfg = Release|Any CPU
+		{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -265,6 +285,7 @@ Global
 		{8E82E837-B4D1-4817-B51A-3F7BAF4723AE} = {6DFBDAF3-FC7C-45CC-8901-D1A6322DE052}
 		{6C1AD76C-8EEB-4B2D-B6B4-F9B7234A92FB} = {4402274F-C9CF-45EB-BBF2-4FF15ED32A30}
 		{2945CB31-1559-4BD9-A7C4-64475EB0F33B} = {4402274F-C9CF-45EB-BBF2-4FF15ED32A30}
+		{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3} = {4402274F-C9CF-45EB-BBF2-4FF15ED32A30}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2C2E89CE-4940-4852-AC34-C995472506A1}

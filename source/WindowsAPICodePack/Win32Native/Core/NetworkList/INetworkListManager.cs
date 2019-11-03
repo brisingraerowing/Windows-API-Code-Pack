@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 namespace Microsoft.WindowsAPICodePack.Win32Native.Core.Net
 {
     [ComImport]
-    [Guid("DCB00000-570F-4A9B-8D69-199FDBA5723B")]
+    [Guid(Win32Native.Guids.Core.Net.INetworkListManager)]
     [TypeLibType((short)0x1040)]
     public interface INetworkListManager
     {

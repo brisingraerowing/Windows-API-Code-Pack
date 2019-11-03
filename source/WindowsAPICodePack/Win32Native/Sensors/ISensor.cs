@@ -14,7 +14,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Sensors
     /// <summary>
     /// A COM interop wrapper for the ISensor interface.
     /// </summary>
-    [ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown), Guid("5FA08F80-2657-458E-AF75-46F73FA6AC5C")]
+    [ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown), Guid(Guids.Sensors.ISensor)]
     public interface ISensor
     {
         /// <summary>

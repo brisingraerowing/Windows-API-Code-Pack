@@ -10,7 +10,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Core.Net
 {
     [ComImport]
     [TypeLibType((short)0x1040)]
-    [Guid("DCB00005-570F-4A9B-8D69-199FDBA5723B")]
+    [Guid(Guids.Core.Net.INetworkConnection)]
     public interface INetworkConnection
     {
         [return: MarshalAs(UnmanagedType.Interface)]

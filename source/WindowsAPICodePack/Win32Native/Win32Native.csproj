@@ -204,5 +204,11 @@
     <None Include="packages.config" />
     <None Include="Win32Native.snk" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Win32NativeGuids\Win32NativeGuids.csproj">
+      <Project>{fe2c0c65-e1d7-4431-91ca-ea041b2f8ec3}</Project>
+      <Name>Win32NativeGuids</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

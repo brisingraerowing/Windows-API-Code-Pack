@@ -6,7 +6,8 @@ using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
-using static Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.SystemProperties;
+using PropertySystemGuids = Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.PropertySystem;
+using SystemPropertiesGuids = Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.PropertySystem.SystemProperties;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
 {
@@ -17,24 +18,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
     /// </summary>
     public static class SystemProperties
     {
-
-        public static class Guids
-        {
-
-            public const string AcquisitionID = "65A98875-3C80-40AB-ABBC-EFDAF77DBEE2";
-            public const string FMTID_SummaryInformation = "F29F85E0-4FF9-1068-AB91-08002B27B3D9";
-            public const string FMTID_Volume = "9B174B35-40FF-11D2-A27E-00C04FC30871";
-            public const string FMTID_DocumentSummaryInformation = "D5CDD502-2E9C-101B-9397-08002B2CF9AE";
-            public const string FMTID_ShellDetails = "28636AA6-953D-11D2-B5D6-00C04FD918D0";
-            public const string FMTID_Storage = "B725F130-47EF-101A-A5F1-02608C9EEBAC";
-            public const string PSFMTID_VERSION = "0CEF7D53-FA64-11D1-A203-0000F81FEDEE";
-            public const string FMTID_Misc = "9B174B34-40FF-11D2-A27E-00C04FC30871";
-            public const string FMTID_Query = "49691C90-7E17-101A-A91C-08002B2ECDA9";
-            public const string PSGUID_MEDIAFILESUMMARYINFORMATION = "64440492-4C8B-11D1-8B70-080036B11A03";
-            public const string FMTID_ImageProperties = "14B81DA1-0135-4D31-96D9-6CBFC9671A99";
-            public const string FMTID_IntSite = "000214A1-0000-0000-C000-000000000046";
-
-        }
 
         /// <summary>
         /// System Properties
@@ -48,72 +31,72 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Description: Hash to determine acquisition session.
             ///</para>
             /// <para>Type: Int32 -- VT_I4</para>
-            /// <para>FormatID: <see cref="Guids.AcquisitionID"/>, 100</para>
+            /// <para>FormatID: <see cref="SystemPropertiesGuids.AcquisitionID"/>, 100</para>
             /// </summary>
-            public static PropertyKey AcquisitionID => new PropertyKey(new Guid(Guids.AcquisitionID), 100);
+            public static PropertyKey AcquisitionID => new PropertyKey(new Guid(SystemPropertiesGuids.AcquisitionID), 100);
 
             /// <summary>
             /// <para>Name: System.ApplicationName -- PKEY_ApplicationName</para>
             /// <para>Description: 
             ///</para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)  Legacy code may treat this as VT_LPSTR.</para>
-            /// <para>FormatID: (FMTID_SummaryInformation) <see cref="Guids.FMTID_SummaryInformation"/>, 18 (PIDSI_APPNAME)</para>
+            /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 18 (PIDSI_APPNAME)</para>
             /// </summary>
-            public static PropertyKey ApplicationName => new PropertyKey(new Guid(Guids.FMTID_SummaryInformation), 18);
+            public static PropertyKey ApplicationName => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 18);
 
             /// <summary>
             /// <para>Name: System.Author -- PKEY_Author</para>
             /// <para>Description: 
             ///</para>
             /// <para>Type: Multivalue String -- VT_VECTOR | VT_LPWSTR  (For variants: VT_ARRAY | VT_BSTR)  Legacy code may treat this as VT_LPSTR.</para>
-            /// <para>FormatID: (FMTID_SummaryInformation) <see cref="Guids.FMTID_SummaryInformation"/>, 4 (PIDSI_AUTHOR)</para>
+            /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 4 (PIDSI_AUTHOR)</para>
             /// </summary>
-            public static PropertyKey Author => new PropertyKey(new Guid(Guids.FMTID_SummaryInformation), 4);
+            public static PropertyKey Author => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 4);
 
             /// <summary>
             /// <para>Name: System.Capacity -- PKEY_Capacity</para>
             /// <para>Description: The amount of total space in bytes.
             ///</para>
             /// <para>Type: UInt64 -- VT_UI8</para>
-            /// <para>FormatID: (FMTID_Volume) <see cref="Guids.FMTID_Volume"/>, 3 (PID_VOLUME_CAPACITY)  (Filesystem Volume Properties)</para>
+            /// <para>FormatID: (FMTID_Volume) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Volume"/>, 3 (PID_VOLUME_CAPACITY)  (Filesystem Volume Properties)</para>
             /// </summary>
-            public static PropertyKey Capacity => new PropertyKey(new Guid(Guids.FMTID_Volume), 3);
+            public static PropertyKey Capacity => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Volume), 3);
 
             /// <summary>
             /// <para>Name: System.Category -- PKEY_Category</para>
             /// <para>Description: Legacy code treats this as VT_LPSTR.
             ///</para>
             /// <para>Type: Multivalue String -- VT_VECTOR | VT_LPWSTR  (For variants: VT_ARRAY | VT_BSTR)</para>
-            /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="Guids.FMTID_DocumentSummaryInformation"/>, 2 (PIDDSI_CATEGORY)</para>
+            /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 2 (PIDDSI_CATEGORY)</para>
             /// </summary>
-            public static PropertyKey Category => new PropertyKey(new Guid(Guids.FMTID_DocumentSummaryInformation), 2);
+            public static PropertyKey Category => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 2);
 
             /// <summary>
             /// <para>Name: System.Comment -- PKEY_Comment</para>
             /// <para>Description: Comments.
             ///</para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)  Legacy code may treat this as VT_LPSTR.</para>
-            /// <para>FormatID: (FMTID_SummaryInformation) <see cref="Guids.FMTID_SummaryInformation"/>, 6 (PIDSI_COMMENTS)</para>
+            /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 6 (PIDSI_COMMENTS)</para>
             /// </summary>
-            public static PropertyKey Comment => new PropertyKey(new Guid(Guids.FMTID_SummaryInformation), 6);
+            public static PropertyKey Comment => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 6);
 
             /// <summary>
             /// <para>Name: System.Company -- PKEY_Company</para>
             /// <para>Description: The company or publisher.
             ///</para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-            /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="Guids.FMTID_DocumentSummaryInformation"/>, 15 (PIDDSI_COMPANY)</para>
+            /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 15 (PIDDSI_COMPANY)</para>
             /// </summary>
-            public static PropertyKey Company => new PropertyKey(new Guid(Guids.FMTID_DocumentSummaryInformation), 15);
+            public static PropertyKey Company => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 15);
 
             /// <summary>
             /// <para>Name: System.ComputerName -- PKEY_ComputerName</para>
             /// <para>Description: 
             ///</para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-            /// <para>FormatID: (FMTID_ShellDetails) <see cref="Guids.FMTID_ShellDetails"/>, 5 (PID_COMPUTERNAME)</para>
+            /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 5 (PID_COMPUTERNAME)</para>
             /// </summary>
-            public static PropertyKey ComputerName => new PropertyKey(new Guid(Guids.FMTID_ShellDetails), 5);
+            public static PropertyKey ComputerName => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 5);
 
             /// <summary>
             /// <para>Name: System.ContainedItems -- PKEY_ContainedItems</para>
@@ -121,43 +104,43 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             ///This is represented as a vector array of GUIDs where each GUID represents certain type.
             ///</para>
             /// <para>Type: Multivalue Guid -- VT_VECTOR | VT_CLSID  (For variants: VT_ARRAY | VT_CLSID)</para>
-            /// <para>FormatID: (FMTID_ShellDetails) <see cref="Guids.FMTID_ShellDetails"/>, 29</para>
+            /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 29</para>
             /// </summary>
-            public static PropertyKey ContainedItems => new PropertyKey(new Guid(Guids.FMTID_ShellDetails), 29);
+            public static PropertyKey ContainedItems => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 29);
 
             /// <summary>
             /// <para>Name: System.ContentStatus -- PKEY_ContentStatus</para>
             /// <para>Description: </para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-            /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="Guids.FMTID_DocumentSummaryInformation"/>, 27</para>
+            /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 27</para>
             /// </summary>
-            public static PropertyKey ContentStatus => new PropertyKey(new Guid(Guids.FMTID_DocumentSummaryInformation), 27);
+            public static PropertyKey ContentStatus => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 27);
 
             /// <summary>
             /// <para>Name: System.ContentType -- PKEY_ContentType</para>
             /// <para>Description: </para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-            /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="Guids.FMTID_DocumentSummaryInformation"/>, 26</para>
+            /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 26</para>
             /// </summary>
-            public static PropertyKey ContentType => new PropertyKey(new Guid(Guids.FMTID_DocumentSummaryInformation), 26);
+            public static PropertyKey ContentType => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 26);
 
             /// <summary>
             /// <para>Name: System.Copyright -- PKEY_Copyright</para>
             /// <para>Description: 
             ///</para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-            /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 11 (PIDMSI_COPYRIGHT)</para>
+            /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 11 (PIDMSI_COPYRIGHT)</para>
             /// </summary>
-            public static PropertyKey Copyright => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 11);
+            public static PropertyKey Copyright => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 11);
 
             /// <summary>
             /// <para>Name: System.DateAccessed -- PKEY_DateAccessed</para>
             /// <para>Description: The time of the last access to the item.  The Indexing Service friendly name is 'access'.
             ///</para>
             /// <para>Type: DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
-            /// <para>FormatID: (FMTID_Storage) <see cref="Guids.FMTID_Storage"/>, 16 (PID_STG_ACCESSTIME)</para>
+            /// <para>FormatID: (FMTID_Storage) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Storage"/>, 16 (PID_STG_ACCESSTIME)</para>
             /// </summary>
-            public static PropertyKey DateAccessed => new PropertyKey(new Guid(Guids.FMTID_Storage), 16);
+            public static PropertyKey DateAccessed => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Storage), 16);
 
             /// <summary>
             /// <para>Name: System.DateAcquired -- PKEY_DateAcquired</para>
@@ -190,36 +173,36 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Description: The date and time the item was created. The Indexing Service friendly name is 'create'.
             ///</para>
             /// <para>Type: DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
-            /// <para>FormatID: (FMTID_Storage) <see cref="Guids.FMTID_Storage"/>, 15 (PID_STG_CREATETIME)</para>
+            /// <para>FormatID: (FMTID_Storage) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Storage"/>, 15 (PID_STG_CREATETIME)</para>
             /// </summary>
-            public static PropertyKey DateCreated => new PropertyKey(new Guid(Guids.FMTID_Storage), 15);
+            public static PropertyKey DateCreated => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Storage), 15);
 
             /// <summary>
             /// <para>Name: System.DateImported -- PKEY_DateImported</para>
             /// <para>Description: The time the file is imported into a separate database.  This is not the same as System.DateAcquired.  (Eg, 2003:05:22 13:55:04)
             ///</para>
             /// <para>Type: DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
-            /// <para>FormatID: (FMTID_ImageProperties) <see cref="Guids.FMTID_ImageProperties"/>, 18258</para>
+            /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 18258</para>
             /// </summary>
-            public static PropertyKey DateImported => new PropertyKey(new Guid(Guids.FMTID_ImageProperties), 18258);
+            public static PropertyKey DateImported => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 18258);
 
             /// <summary>
             /// <para>Name: System.DateModified -- PKEY_DateModified</para>
             /// <para>Description: The date and time of the last write to the item. The Indexing Service friendly name is 'write'.
             ///</para>
             /// <para>Type: DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
-            /// <para>FormatID: (FMTID_Storage) <see cref="Guids.FMTID_Storage"/>, 14 (PID_STG_WRITETIME)</para>
+            /// <para>FormatID: (FMTID_Storage) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Storage"/>, 14 (PID_STG_WRITETIME)</para>
             /// </summary>
-            public static PropertyKey DateModified => new PropertyKey(new Guid(Guids.FMTID_Storage), 14);
+            public static PropertyKey DateModified => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Storage), 14);
 
             /// <summary>
             /// <para>Name: System.DescriptionID -- PKEY_DescriptionID</para>
             /// <para>Description: The contents of a SHDESCRIPTIONID structure as a buffer of bytes.
             ///</para>
             /// <para>Type: Buffer -- VT_VECTOR | VT_UI1  (For variants: VT_ARRAY | VT_UI1)</para>
-            /// <para>FormatID: (FMTID_ShellDetails) <see cref="Guids.FMTID_ShellDetails"/>, 2 (PID_DESCRIPTIONID)</para>
+            /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 2 (PID_DESCRIPTIONID)</para>
             /// </summary>
-            public static PropertyKey DescriptionID => new PropertyKey(new Guid(Guids.FMTID_ShellDetails), 2);
+            public static PropertyKey DescriptionID => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 2);
 
             /// <summary>
             /// <para>Name: System.DueDate -- PKEY_DueDate</para>
@@ -242,36 +225,36 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Description: 
             ///</para>
             /// <para>Type: UInt64 -- VT_UI8</para>
-            /// <para>FormatID: (FMTID_Storage) <see cref="Guids.FMTID_Storage"/>, 18 (PID_STG_ALLOCSIZE)</para>
+            /// <para>FormatID: (FMTID_Storage) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Storage"/>, 18 (PID_STG_ALLOCSIZE)</para>
             /// </summary>
-            public static PropertyKey FileAllocationSize => new PropertyKey(new Guid(Guids.FMTID_Storage), 18);
+            public static PropertyKey FileAllocationSize => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Storage), 18);
 
             /// <summary>
             /// <para>Name: System.FileAttributes -- PKEY_FileAttributes</para>
             /// <para>Description: This is the WIN32_FIND_DATA dwFileAttributes for the file-based item.
             ///</para>
             /// <para>Type: UInt32 -- VT_UI4</para>
-            /// <para>FormatID: (FMTID_Storage) <see cref="Guids.FMTID_Storage"/>, 13 (PID_STG_ATTRIBUTES)</para>
+            /// <para>FormatID: (FMTID_Storage) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Storage"/>, 13 (PID_STG_ATTRIBUTES)</para>
             /// </summary>
-            public static PropertyKey FileAttributes => new PropertyKey(new Guid(Guids.FMTID_Storage), 13);
+            public static PropertyKey FileAttributes => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Storage), 13);
 
             /// <summary>
             /// <para>Name: System.FileCount -- PKEY_FileCount</para>
             /// <para>Description: 
             ///</para>
             /// <para>Type: UInt64 -- VT_UI8</para>
-            /// <para>FormatID: (FMTID_ShellDetails) <see cref="Guids.FMTID_ShellDetails"/>, 12</para>
+            /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 12</para>
             /// </summary>
-            public static PropertyKey FileCount => new PropertyKey(new Guid(Guids.FMTID_ShellDetails), 12);
+            public static PropertyKey FileCount => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 12);
 
             /// <summary>
             /// <para>Name: System.FileDescription -- PKEY_FileDescription</para>
             /// <para>Description: This is a user-friendly description of the file.
             ///</para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-            /// <para>FormatID: (PSFMTID_VERSION) <see cref="Guids.PSFMTID_VERSION"/>, 3 (PIDVSI_FileDescription)</para>
+            /// <para>FormatID: (PSFMTID_VERSION) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Version"/>, 3 (PIDVSI_FileDescription)</para>
             /// </summary>
-            public static PropertyKey FileDescription => new PropertyKey(new Guid(Guids.PSFMTID_VERSION), 3);
+            public static PropertyKey FileDescription => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Version), 3);
 
             /// <summary>
             /// <para>Name: System.FileExtension -- PKEY_FileExtension</para>
@@ -305,9 +288,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             ///as is found in the structure variable FILE_ID_BOTH_DIR_INFO.FileId, via GetFileInformationByHandleEx().
             ///</para>
             /// <para>Type: UInt64 -- VT_UI8</para>
-            /// <para>FormatID: (FMTID_Storage) <see cref="Guids.FMTID_Storage"/>, 21 (PID_STG_FRN)</para>
+            /// <para>FormatID: (FMTID_Storage) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Storage"/>, 21 (PID_STG_FRN)</para>
             /// </summary>
-            public static PropertyKey FileFRN => new PropertyKey(new Guid(Guids.FMTID_Storage), 21);
+            public static PropertyKey FileFRN => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Storage), 21);
 
             /// <summary>
             /// <para>Name: System.FileName -- PKEY_FileName</para>
@@ -343,27 +326,27 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Description: This is the owner of the file, according to the file system.
             ///</para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-            /// <para>FormatID: (FMTID_Misc) <see cref="Guids.FMTID_Misc"/>, 4 (PID_MISC_OWNER)</para>
+            /// <para>FormatID: (FMTID_Misc) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Misc"/>, 4 (PID_MISC_OWNER)</para>
             /// </summary>
-            public static PropertyKey FileOwner => new PropertyKey(new Guid(Guids.FMTID_Misc), 4);
+            public static PropertyKey FileOwner => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Misc), 4);
 
             /// <summary>
             /// <para>Name: System.FileVersion -- PKEY_FileVersion</para>
             /// <para>Description: 
             ///</para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-            /// <para>FormatID: (PSFMTID_VERSION) <see cref="Guids.PSFMTID_VERSION"/>, 4 (PIDVSI_FileVersion)</para>
+            /// <para>FormatID: (PSFMTID_VERSION) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Version"/>, 4 (PIDVSI_FileVersion)</para>
             /// </summary>
-            public static PropertyKey FileVersion => new PropertyKey(new Guid(Guids.PSFMTID_VERSION), 4);
+            public static PropertyKey FileVersion => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Version), 4);
 
             /// <summary>
             /// <para>Name: System.FindData -- PKEY_FindData</para>
             /// <para>Description: WIN32_FIND_DATAW in buffer of bytes.
             ///</para>
             /// <para>Type: Buffer -- VT_VECTOR | VT_UI1  (For variants: VT_ARRAY | VT_UI1)</para>
-            /// <para>FormatID: (FMTID_ShellDetails) <see cref="Guids.FMTID_ShellDetails"/>, 0 (PID_FINDDATA)</para>
+            /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 0 (PID_FINDDATA)</para>
             /// </summary>
-            public static PropertyKey FindData => new PropertyKey(new Guid(Guids.FMTID_ShellDetails), 0);
+            public static PropertyKey FindData => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 0);
 
             /// <summary>
             /// <para>Name: System.FlagColor -- PKEY_FlagColor</para>
@@ -408,9 +391,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Description: The amount of free space in bytes.
             ///</para>
             /// <para>Type: UInt64 -- VT_UI8</para>
-            /// <para>FormatID: (FMTID_Volume) {<see cref="Guids.FMTID_Volume"/>}, 2 (PID_VOLUME_FREE)  (Filesystem Volume Properties)</para>
+            /// <para>FormatID: (FMTID_Volume) {<see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Volume"/>}, 2 (PID_VOLUME_FREE)  (Filesystem Volume Properties)</para>
             /// </summary>
-            public static PropertyKey FreeSpace => new PropertyKey(new Guid(Guids.FMTID_Volume), 2);
+            public static PropertyKey FreeSpace => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Volume), 2);
 
             /// <summary>
             /// <para>Name: System.FullText -- PKEY_FullText</para>
@@ -471,9 +454,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Description: 
             ///</para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-            /// <para>FormatID: (PSFMTID_VERSION) <see cref="Guids.PSFMTID_VERSION"/>, 5 (PIDVSI_InternalName)</para>
+            /// <para>FormatID: (PSFMTID_VERSION) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Version"/>, 5 (PIDVSI_InternalName)</para>
             /// </summary>
-            public static PropertyKey InternalName => new PropertyKey(new Guid(Guids.PSFMTID_VERSION), 5);
+            public static PropertyKey InternalName => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Version), 5);
 
             /// <summary>
             /// <para>Name: System.IsAttachment -- PKEY_IsAttachment</para>
@@ -585,9 +568,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Description: Provided by certain shell folders. Return TRUE if the folder is a valid Send To target.
             ///</para>
             /// <para>Type: Boolean -- VT_BOOL</para>
-            /// <para>FormatID: (FMTID_ShellDetails) <see cref="Guids.FMTID_ShellDetails"/>, 33</para>
+            /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 33</para>
             /// </summary>
-            public static PropertyKey IsSendToTarget => new PropertyKey(new Guid(Guids.FMTID_ShellDetails), 33);
+            public static PropertyKey IsSendToTarget => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 33);
 
             /// <summary>
             /// <para>Name: System.IsShared -- PKEY_IsShared</para>
@@ -648,9 +631,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             ///"/Mailbox Account/Inbox/'Re: Hello!'" "Inbox"
             ///</para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-            /// <para>FormatID: (FMTID_Storage) <see cref="Guids.FMTID_Storage"/>, 2 (PID_STG_DIRECTORY)</para>
+            /// <para>FormatID: (FMTID_Storage) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Storage"/>, 2 (PID_STG_DIRECTORY)</para>
             /// </summary>
-            public static PropertyKey ItemFolderNameDisplay => new PropertyKey(new Guid(Guids.FMTID_Storage), 2);
+            public static PropertyKey ItemFolderNameDisplay => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Storage), 2);
 
             /// <summary>
             /// <para>Name: System.ItemFolderPathDisplay -- PKEY_ItemFolderPathDisplay</para>
@@ -756,9 +739,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             ///Folder:"Documents"
             ///</para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-            /// <para>FormatID: (FMTID_Storage) <see cref="Guids.FMTID_Storage"/>, 10 (PID_STG_NAME)</para>
+            /// <para>FormatID: (FMTID_Storage) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Storage"/>, 10 (PID_STG_NAME)</para>
             /// </summary>
-            public static PropertyKey ItemNameDisplay => new PropertyKey(new Guid(Guids.FMTID_Storage), 10);
+            public static PropertyKey ItemNameDisplay => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Storage), 10);
 
             /// <summary>
             /// <para>Name: System.ItemNamePrefix -- PKEY_ItemNamePrefix</para>
@@ -847,9 +830,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             ///"/Mailbox Account/Inbox/'Re: Hello!'" "Re: Hello! (/Mailbox Account/Inbox)"
             ///</para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-            /// <para>FormatID: (FMTID_ShellDetails) <see cref="Guids.FMTID_ShellDetails"/>, 8</para>
+            /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 8</para>
             /// </summary>
-            public static PropertyKey ItemPathDisplayNarrow => new PropertyKey(new Guid(Guids.FMTID_ShellDetails), 8);
+            public static PropertyKey ItemPathDisplayNarrow => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 8);
 
             /// <summary>
             /// <para>Name: System.ItemType -- PKEY_ItemType</para>
@@ -877,9 +860,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             ///"/Mailbox Account/Inbox/'Re: Hello!'" "MAPI/IPM.Message"
             ///</para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-            /// <para>FormatID: (FMTID_ShellDetails) <see cref="Guids.FMTID_ShellDetails"/>, 11</para>
+            /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 11</para>
             /// </summary>
-            public static PropertyKey ItemType => new PropertyKey(new Guid(Guids.FMTID_ShellDetails), 11);
+            public static PropertyKey ItemType => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 11);
 
             /// <summary>
             /// <para>Name: System.ItemTypeText -- PKEY_ItemTypeText</para>
@@ -906,9 +889,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             ///"/Mailbox Account/Inbox/'Re: Hello!'" "Outlook E-Mail Message"
             ///</para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-            /// <para>FormatID: (FMTID_Storage) <see cref="Guids.FMTID_Storage"/>, 4 (PID_STG_STORAGETYPE)</para>
+            /// <para>FormatID: (FMTID_Storage) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Storage"/>, 4 (PID_STG_STORAGETYPE)</para>
             /// </summary>
-            public static PropertyKey ItemTypeText => new PropertyKey(new Guid(Guids.FMTID_Storage), 4);
+            public static PropertyKey ItemTypeText => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Storage), 4);
 
             /// <summary>
             /// <para>Name: System.ItemUrl -- PKEY_ItemUrl</para>
@@ -923,18 +906,18 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             ///Messages: "mapi://..."
             ///</para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-            /// <para>FormatID: (FMTID_Query) <see cref="Guids.FMTID_Query"/>, 9 (DISPID_QUERY_VIRTUALPATH)</para>
+            /// <para>FormatID: (FMTID_Query) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Query"/>, 9 (DISPID_QUERY_VIRTUALPATH)</para>
             /// </summary>
-            public static PropertyKey ItemUrl => new PropertyKey(new Guid(Guids.FMTID_Query), 9);
+            public static PropertyKey ItemUrl => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Query), 9);
 
             /// <summary>
             /// <para>Name: System.Keywords -- PKEY_Keywords</para>
             /// <para>Description: The keywords for the item.  Also referred to as tags.
             ///</para>
             /// <para>Type: Multivalue String -- VT_VECTOR | VT_LPWSTR  (For variants: VT_ARRAY | VT_BSTR)  Legacy code may treat this as VT_LPSTR.</para>
-            /// <para>FormatID: (FMTID_SummaryInformation) <see cref="Guids.FMTID_SummaryInformation"/>, 5 (PIDSI_KEYWORDS)</para>
+            /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 5 (PIDSI_KEYWORDS)</para>
             /// </summary>
-            public static PropertyKey Keywords => new PropertyKey(new Guid(Guids.FMTID_SummaryInformation), 5);
+            public static PropertyKey Keywords => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 5);
 
             /// <summary>
             /// <para>Name: System.Kind -- PKEY_Kind</para>
@@ -962,9 +945,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Description: 
             ///</para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-            /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="Guids.FMTID_DocumentSummaryInformation"/>, 28</para>
+            /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 28</para>
             /// </summary>
-            public static PropertyKey Language => new PropertyKey(new Guid(Guids.FMTID_DocumentSummaryInformation), 28);
+            public static PropertyKey Language => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 28);
 
             /// <summary>
             /// <para>Name: System.MileageInformation -- PKEY_MileageInformation</para>
@@ -988,9 +971,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Description: The CLSID of the name space extension for an item, the object that implements IShellFolder for this item
             ///</para>
             /// <para>Type: Guid -- VT_CLSID</para>
-            /// <para>FormatID: (FMTID_ShellDetails) <see cref="Guids.FMTID_ShellDetails"/>, 6</para>
+            /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 6</para>
             /// </summary>
-            public static PropertyKey NamespaceClsid => new PropertyKey(new Guid(Guids.FMTID_ShellDetails), 6);
+            public static PropertyKey NamespaceClsid => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 6);
 
             /// <summary>
             /// <para>Name: System.Null -- PKEY_Null</para>
@@ -1021,9 +1004,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Description: 
             ///</para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-            /// <para>FormatID: (PSFMTID_VERSION) <see cref="Guids.PSFMTID_VERSION"/>, 6</para>
+            /// <para>FormatID: (PSFMTID_VERSION) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Version"/>, 6</para>
             /// </summary>
-            public static PropertyKey OriginalFileName => new PropertyKey(new Guid(Guids.PSFMTID_VERSION), 6);
+            public static PropertyKey OriginalFileName => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Version), 6);
 
             /// <summary>
             /// <para>Name: System.OwnerSID -- PKEY_OwnerSID</para>
@@ -1039,9 +1022,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Description: 
             ///</para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-            /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 21 (PIDMSI_PARENTAL_RATING)</para>
+            /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 21 (PIDMSI_PARENTAL_RATING)</para>
             /// </summary>
-            public static PropertyKey ParentalRating => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 21);
+            public static PropertyKey ParentalRating => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 21);
 
             /// <summary>
             /// <para>Name: System.ParentalRatingReason -- PKEY_ParentalRatingReason</para>
@@ -1074,9 +1057,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             ///IShellFolder::ParseDisplayName() of the parent shell folder.
             ///</para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-            /// <para>FormatID: (FMTID_ShellDetails) <see cref="Guids.FMTID_ShellDetails"/>, 24</para>
+            /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 24</para>
             /// </summary>
-            public static PropertyKey ParsingName => new PropertyKey(new Guid(Guids.FMTID_ShellDetails), 24);
+            public static PropertyKey ParsingName => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 24);
 
             /// <summary>
             /// <para>Name: System.ParsingPath -- PKEY_ParsingPath</para>
@@ -1088,27 +1071,27 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             ///If the item cannot be accessed through the shell namespace, this value is VT_EMPTY.
             ///</para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-            /// <para>FormatID: (FMTID_ShellDetails) <see cref="Guids.FMTID_ShellDetails"/>, 30</para>
+            /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 30</para>
             /// </summary>
-            public static PropertyKey ParsingPath => new PropertyKey(new Guid(Guids.FMTID_ShellDetails), 30);
+            public static PropertyKey ParsingPath => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 30);
 
             /// <summary>
             /// <para>Name: System.PerceivedType -- PKEY_PerceivedType</para>
             /// <para>Description: The perceived type of a shell item, based upon its canonical type.
             ///</para>
             /// <para>Type: Int32 -- VT_I4</para>
-            /// <para>FormatID: (FMTID_ShellDetails) <see cref="Guids.FMTID_ShellDetails"/>, 9</para>
+            /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 9</para>
             /// </summary>
-            public static PropertyKey PerceivedType => new PropertyKey(new Guid(Guids.FMTID_ShellDetails), 9);
+            public static PropertyKey PerceivedType => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 9);
 
             /// <summary>
             /// <para>Name: System.PercentFull -- PKEY_PercentFull</para>
             /// <para>Description: The amount filled as a percentage, multiplied by 100 (ie, the valid range is 0 through 100).
             ///</para>
             /// <para>Type: UInt32 -- VT_UI4</para>
-            /// <para>FormatID: (FMTID_Volume) <see cref="Guids.FMTID_Volume"/>, 5  (Filesystem Volume Properties)</para>
+            /// <para>FormatID: (FMTID_Volume) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Volume"/>, 5  (Filesystem Volume Properties)</para>
             /// </summary>
-            public static PropertyKey PercentFull => new PropertyKey(new Guid(Guids.FMTID_Volume), 5);
+            public static PropertyKey PercentFull => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Volume), 5);
 
             /// <summary>
             /// <para>Name: System.Priority -- PKEY_Priority</para>
@@ -1152,9 +1135,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             ///13-37 = Two Stars, 38-62 = Three Stars, 63-87 = Four Stars, 88-99 = Five Stars).
             ///</para>
             /// <para>Type: UInt32 -- VT_UI4</para>
-            /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 9 (PIDMSI_RATING)</para>
+            /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 9 (PIDMSI_RATING)</para>
             /// </summary>
-            public static PropertyKey Rating => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 9);
+            public static PropertyKey Rating => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 9);
 
             /// <summary>
             /// <para>Name: System.RatingText -- PKEY_RatingText</para>
@@ -1190,10 +1173,10 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Description: IShellFolder::GetAttributesOf flags, with SFGAO_PKEYSFGAOMASK attributes masked out.
             ///</para>
             /// <para>Type: UInt32 -- VT_UI4</para>
-            /// <para>FormatID: (FMTID_ShellDetails) <see cref="Guids.FMTID_ShellDetails"/>, 25</para>
+            /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 25</para>
             /// </summary>
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Flags")]
-            public static PropertyKey SFGAOFlags => new PropertyKey(new Guid(Guids.FMTID_ShellDetails), 25);
+            public static PropertyKey SFGAOFlags => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 25);
 
             /// <summary>
             /// <para>Name: System.SharedWith -- PKEY_SharedWith</para>
@@ -1209,9 +1192,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Description: 
             ///</para>
             /// <para>Type: UInt32 -- VT_UI4</para>
-            /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 12 (PIDMSI_SHARE_USER_RATING)</para>
+            /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 12 (PIDMSI_SHARE_USER_RATING)</para>
             /// </summary>
-            public static PropertyKey ShareUserRating => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 12);
+            public static PropertyKey ShareUserRating => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 12);
 
             /// <summary>
             /// <para>Name: System.SharingStatus -- PKEY_SharingStatus</para>
@@ -1237,18 +1220,18 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Description: 
             ///</para>
             /// <para>Type: UInt64 -- VT_UI8</para>
-            /// <para>FormatID: (FMTID_Storage) <see cref="Guids.FMTID_Storage"/>, 12 (PID_STG_SIZE)</para>
+            /// <para>FormatID: (FMTID_Storage) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Storage"/>, 12 (PID_STG_SIZE)</para>
             /// </summary>
-            public static PropertyKey Size => new PropertyKey(new Guid(Guids.FMTID_Storage), 12);
+            public static PropertyKey Size => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Storage), 12);
 
             /// <summary>
             /// <para>Name: System.SoftwareUsed -- PKEY_SoftwareUsed</para>
             /// <para>Description: PropertyTagSoftwareUsed
             ///</para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-            /// <para>FormatID: (FMTID_ImageProperties) <see cref="Guids.FMTID_ImageProperties"/>, 305</para>
+            /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 305</para>
             /// </summary>
-            public static PropertyKey SoftwareUsed => new PropertyKey(new Guid(Guids.FMTID_ImageProperties), 305);
+            public static PropertyKey SoftwareUsed => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 305);
 
             /// <summary>
             /// <para>Name: System.SourceItem -- PKEY_SourceItem</para>
@@ -1270,27 +1253,27 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Name: System.Status -- PKEY_Status</para>
             /// <para>Description: </para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-            /// <para>FormatID: (FMTID_IntSite) <see cref="Guids.FMTID_IntSite"/>, 9</para>
+            /// <para>FormatID: (FMTID_IntSite) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.IntSite"/>, 9</para>
             /// </summary>
-            public static PropertyKey Status => new PropertyKey(new Guid(Guids.FMTID_IntSite), 9);
+            public static PropertyKey Status => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.IntSite), 9);
 
             /// <summary>
             /// <para>Name: System.Subject -- PKEY_Subject</para>
             /// <para>Description: 
             ///</para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-            /// <para>FormatID: (FMTID_SummaryInformation) <see cref="Guids.FMTID_SummaryInformation"/>, 3 (PIDSI_SUBJECT)</para>
+            /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 3 (PIDSI_SUBJECT)</para>
             /// </summary>
-            public static PropertyKey Subject => new PropertyKey(new Guid(Guids.FMTID_SummaryInformation), 3);
+            public static PropertyKey Subject => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 3);
 
             /// <summary>
             /// <para>Name: System.Thumbnail -- PKEY_Thumbnail</para>
             /// <para>Description: A data that represents the thumbnail in VT_CF format.
             ///</para>
             /// <para>Type: Clipboard -- VT_CF</para>
-            /// <para>FormatID: (FMTID_SummaryInformation) <see cref="Guids.FMTID_SummaryInformation"/>, 17 (PIDSI_THUMBNAIL)</para>
+            /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 17 (PIDSI_THUMBNAIL)</para>
             /// </summary>
-            public static PropertyKey Thumbnail => new PropertyKey(new Guid(Guids.FMTID_SummaryInformation), 17);
+            public static PropertyKey Thumbnail => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 17);
 
             /// <summary>
             /// <para>Name: System.ThumbnailCacheId -- PKEY_ThumbnailCacheId</para>
@@ -1307,36 +1290,36 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Description: Data that represents the thumbnail in VT_STREAM format that GDI+/WindowsCodecs supports (jpg, png, etc).
             ///</para>
             /// <para>Type: Stream -- VT_STREAM</para>
-            /// <para>FormatID: (FMTID_SummaryInformation) <see cref="Guids.FMTID_SummaryInformation"/>, 27</para>
+            /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 27</para>
             /// </summary>
-            public static PropertyKey ThumbnailStream => new PropertyKey(new Guid(Guids.FMTID_SummaryInformation), 27);
+            public static PropertyKey ThumbnailStream => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 27);
 
             /// <summary>
             /// <para>Name: System.Title -- PKEY_Title</para>
             /// <para>Description: Title of item.
             ///</para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)  Legacy code may treat this as VT_LPSTR.</para>
-            /// <para>FormatID: (FMTID_SummaryInformation) <see cref="Guids.FMTID_SummaryInformation"/>, 2 (PIDSI_TITLE)</para>
+            /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 2 (PIDSI_TITLE)</para>
             /// </summary>
-            public static PropertyKey Title => new PropertyKey(new Guid(Guids.FMTID_SummaryInformation), 2);
+            public static PropertyKey Title => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 2);
 
             /// <summary>
             /// <para>Name: System.TotalFileSize -- PKEY_TotalFileSize</para>
             /// <para>Description: 
             ///</para>
             /// <para>Type: UInt64 -- VT_UI8</para>
-            /// <para>FormatID: (FMTID_ShellDetails) <see cref="Guids.FMTID_ShellDetails"/>, 14</para>
+            /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 14</para>
             /// </summary>
-            public static PropertyKey TotalFileSize => new PropertyKey(new Guid(Guids.FMTID_ShellDetails), 14);
+            public static PropertyKey TotalFileSize => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 14);
 
             /// <summary>
             /// <para>Name: System.Trademarks -- PKEY_Trademarks</para>
             /// <para>Description: 
             ///</para>
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-            /// <para>FormatID: (PSFMTID_VERSION) <see cref="Guids.PSFMTID_VERSION"/>, 9 (PIDVSI_Trademarks)</para>
+            /// <para>FormatID: (PSFMTID_VERSION) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Version"/>, 9 (PIDVSI_Trademarks)</para>
             /// </summary>
-            public static PropertyKey Trademarks => new PropertyKey(new Guid(Guids.PSFMTID_VERSION), 9);
+            public static PropertyKey Trademarks => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Version), 9);
             #endregion
 
             #region sub-classes
@@ -1761,9 +1744,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: Free space and total space: "%s free of %s"
                 ///</para>
                 /// <para>Type: Multivalue UInt64 -- VT_VECTOR | VT_UI8  (For variants: VT_ARRAY | VT_UI8)</para>
-                /// <para>FormatID: (FMTID_Volume) <see cref="Guids.FMTID_Volume"/>, 7  (Filesystem Volume Properties)</para>
+                /// <para>FormatID: (FMTID_Volume) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Volume"/>, 7  (Filesystem Volume Properties)</para>
                 /// </summary>
-                public static PropertyKey DecoratedFreeSpace => new PropertyKey(new Guid(Guids.FMTID_Volume), 7);
+                public static PropertyKey DecoratedFreeSpace => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Volume), 7);
                 #endregion
 
 
@@ -3094,18 +3077,18 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: Int32 -- VT_I4</para>
-                /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="Guids.FMTID_DocumentSummaryInformation"/>, 4 (PIDDSI_BYTECOUNT)</para>
+                /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 4 (PIDDSI_BYTECOUNT)</para>
                 /// </summary>
-                public static PropertyKey ByteCount => new PropertyKey(new Guid(Guids.FMTID_DocumentSummaryInformation), 4);
+                public static PropertyKey ByteCount => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 4);
 
                 /// <summary>
                 /// <para>Name: System.Document.CharacterCount -- PKEY_Document_CharacterCount</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: Int32 -- VT_I4</para>
-                /// <para>FormatID: (FMTID_SummaryInformation) <see cref="Guids.FMTID_SummaryInformation"/>, 16 (PIDSI_CHARCOUNT)</para>
+                /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 16 (PIDSI_CHARCOUNT)</para>
                 /// </summary>
-                public static PropertyKey CharacterCount => new PropertyKey(new Guid(Guids.FMTID_SummaryInformation), 16);
+                public static PropertyKey CharacterCount => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 16);
 
                 /// <summary>
                 /// <para>Name: System.Document.ClientID -- PKEY_Document_ClientID</para>
@@ -3128,27 +3111,27 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: This property is stored in the document, not obtained from the file system.
                 ///</para>
                 /// <para>Type: DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
-                /// <para>FormatID: (FMTID_SummaryInformation) <see cref="Guids.FMTID_SummaryInformation"/>, 12 (PIDSI_CREATE_DTM)</para>
+                /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 12 (PIDSI_CREATE_DTM)</para>
                 /// </summary>
-                public static PropertyKey DateCreated => new PropertyKey(new Guid(Guids.FMTID_SummaryInformation), 12);
+                public static PropertyKey DateCreated => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 12);
 
                 /// <summary>
                 /// <para>Name: System.Document.DatePrinted -- PKEY_Document_DatePrinted</para>
                 /// <para>Description: Legacy name: "DocLastPrinted".
                 ///</para>
                 /// <para>Type: DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
-                /// <para>FormatID: (FMTID_SummaryInformation) <see cref="Guids.FMTID_SummaryInformation"/>, 11 (PIDSI_LASTPRINTED)</para>
+                /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 11 (PIDSI_LASTPRINTED)</para>
                 /// </summary>
-                public static PropertyKey DatePrinted => new PropertyKey(new Guid(Guids.FMTID_SummaryInformation), 11);
+                public static PropertyKey DatePrinted => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 11);
 
                 /// <summary>
                 /// <para>Name: System.Document.DateSaved -- PKEY_Document_DateSaved</para>
                 /// <para>Description: Legacy name: "DocLastSavedTm".
                 ///</para>
                 /// <para>Type: DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
-                /// <para>FormatID: (FMTID_SummaryInformation) <see cref="Guids.FMTID_SummaryInformation"/>, 13 (PIDSI_LASTSAVE_DTM)</para>
+                /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 13 (PIDSI_LASTSAVE_DTM)</para>
                 /// </summary>
-                public static PropertyKey DateSaved => new PropertyKey(new Guid(Guids.FMTID_SummaryInformation), 13);
+                public static PropertyKey DateSaved => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 13);
 
                 /// <summary>
                 /// <para>Name: System.Document.Division -- PKEY_Document_Division</para>
@@ -3171,143 +3154,143 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: Int32 -- VT_I4</para>
-                /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="Guids.FMTID_DocumentSummaryInformation"/>, 9 (PIDDSI_HIDDENCOUNT)</para>
+                /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 9 (PIDDSI_HIDDENCOUNT)</para>
                 /// </summary>
-                public static PropertyKey HiddenSlideCount => new PropertyKey(new Guid(Guids.FMTID_DocumentSummaryInformation), 9);
+                public static PropertyKey HiddenSlideCount => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 9);
 
                 /// <summary>
                 /// <para>Name: System.Document.LastAuthor -- PKEY_Document_LastAuthor</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (FMTID_SummaryInformation) <see cref="Guids.FMTID_SummaryInformation"/>, 8 (PIDSI_LASTAUTHOR)</para>
+                /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 8 (PIDSI_LASTAUTHOR)</para>
                 /// </summary>
-                public static PropertyKey LastAuthor => new PropertyKey(new Guid(Guids.FMTID_SummaryInformation), 8);
+                public static PropertyKey LastAuthor => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 8);
 
                 /// <summary>
                 /// <para>Name: System.Document.LineCount -- PKEY_Document_LineCount</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: Int32 -- VT_I4</para>
-                /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="Guids.FMTID_DocumentSummaryInformation"/>, 5 (PIDDSI_LINECOUNT)</para>
+                /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 5 (PIDDSI_LINECOUNT)</para>
                 /// </summary>
-                public static PropertyKey LineCount => new PropertyKey(new Guid(Guids.FMTID_DocumentSummaryInformation), 5);
+                public static PropertyKey LineCount => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 5);
 
                 /// <summary>
                 /// <para>Name: System.Document.Manager -- PKEY_Document_Manager</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="Guids.FMTID_DocumentSummaryInformation"/>, 14 (PIDDSI_MANAGER)</para>
+                /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 14 (PIDDSI_MANAGER)</para>
                 /// </summary>
-                public static PropertyKey Manager => new PropertyKey(new Guid(Guids.FMTID_DocumentSummaryInformation), 14);
+                public static PropertyKey Manager => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 14);
 
                 /// <summary>
                 /// <para>Name: System.Document.MultimediaClipCount -- PKEY_Document_MultimediaClipCount</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: Int32 -- VT_I4</para>
-                /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="Guids.FMTID_DocumentSummaryInformation"/>, 10 (PIDDSI_MMCLIPCOUNT)</para>
+                /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 10 (PIDDSI_MMCLIPCOUNT)</para>
                 /// </summary>
-                public static PropertyKey MultimediaClipCount => new PropertyKey(new Guid(Guids.FMTID_DocumentSummaryInformation), 10);
+                public static PropertyKey MultimediaClipCount => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 10);
 
                 /// <summary>
                 /// <para>Name: System.Document.NoteCount -- PKEY_Document_NoteCount</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: Int32 -- VT_I4</para>
-                /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="Guids.FMTID_DocumentSummaryInformation"/>, 8 (PIDDSI_NOTECOUNT)</para>
+                /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 8 (PIDDSI_NOTECOUNT)</para>
                 /// </summary>
-                public static PropertyKey NoteCount => new PropertyKey(new Guid(Guids.FMTID_DocumentSummaryInformation), 8);
+                public static PropertyKey NoteCount => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 8);
 
                 /// <summary>
                 /// <para>Name: System.Document.PageCount -- PKEY_Document_PageCount</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: Int32 -- VT_I4</para>
-                /// <para>FormatID: (FMTID_SummaryInformation) <see cref="Guids.FMTID_SummaryInformation"/>, 14 (PIDSI_PAGECOUNT)</para>
+                /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 14 (PIDSI_PAGECOUNT)</para>
                 /// </summary>
-                public static PropertyKey PageCount => new PropertyKey(new Guid(Guids.FMTID_SummaryInformation), 14);
+                public static PropertyKey PageCount => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 14);
 
                 /// <summary>
                 /// <para>Name: System.Document.ParagraphCount -- PKEY_Document_ParagraphCount</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: Int32 -- VT_I4</para>
-                /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="Guids.FMTID_DocumentSummaryInformation"/>, 6 (PIDDSI_PARCOUNT)</para>
+                /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 6 (PIDDSI_PARCOUNT)</para>
                 /// </summary>
-                public static PropertyKey ParagraphCount => new PropertyKey(new Guid(Guids.FMTID_DocumentSummaryInformation), 6);
+                public static PropertyKey ParagraphCount => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 6);
 
                 /// <summary>
                 /// <para>Name: System.Document.PresentationFormat -- PKEY_Document_PresentationFormat</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="Guids.FMTID_DocumentSummaryInformation"/>, 3 (PIDDSI_PRESFORMAT)</para>
+                /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 3 (PIDDSI_PRESFORMAT)</para>
                 /// </summary>
-                public static PropertyKey PresentationFormat => new PropertyKey(new Guid(Guids.FMTID_DocumentSummaryInformation), 3);
+                public static PropertyKey PresentationFormat => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 3);
 
                 /// <summary>
                 /// <para>Name: System.Document.RevisionNumber -- PKEY_Document_RevisionNumber</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (FMTID_SummaryInformation) <see cref="Guids.FMTID_SummaryInformation"/>, 9 (PIDSI_REVNUMBER)</para>
+                /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 9 (PIDSI_REVNUMBER)</para>
                 /// </summary>
-                public static PropertyKey RevisionNumber => new PropertyKey(new Guid(Guids.FMTID_SummaryInformation), 9);
+                public static PropertyKey RevisionNumber => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 9);
 
                 /// <summary>
                 /// <para>Name: System.Document.Security -- PKEY_Document_Security</para>
                 /// <para>Description: Access control information, from SummaryInfo propset
                 ///</para>
                 /// <para>Type: Int32 -- VT_I4</para>
-                /// <para>FormatID: (FMTID_SummaryInformation) <see cref="Guids.FMTID_SummaryInformation"/>, 19</para>
+                /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 19</para>
                 /// </summary>
-                public static PropertyKey Security => new PropertyKey(new Guid(Guids.FMTID_SummaryInformation), 19);
+                public static PropertyKey Security => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 19);
 
                 /// <summary>
                 /// <para>Name: System.Document.SlideCount -- PKEY_Document_SlideCount</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: Int32 -- VT_I4</para>
-                /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="Guids.FMTID_DocumentSummaryInformation"/>, 7 (PIDDSI_SLIDECOUNT)</para>
+                /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 7 (PIDDSI_SLIDECOUNT)</para>
                 /// </summary>
-                public static PropertyKey SlideCount => new PropertyKey(new Guid(Guids.FMTID_DocumentSummaryInformation), 7);
+                public static PropertyKey SlideCount => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 7);
 
                 /// <summary>
                 /// <para>Name: System.Document.Template -- PKEY_Document_Template</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (FMTID_SummaryInformation) <see cref="Guids.FMTID_SummaryInformation"/>, 7 (PIDSI_TEMPLATE)</para>
+                /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 7 (PIDSI_TEMPLATE)</para>
                 /// </summary>
-                public static PropertyKey Template => new PropertyKey(new Guid(Guids.FMTID_SummaryInformation), 7);
+                public static PropertyKey Template => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 7);
 
                 /// <summary>
                 /// <para>Name: System.Document.TotalEditingTime -- PKEY_Document_TotalEditingTime</para>
                 /// <para>Description: 100ns units, not milliseconds. VT_FILETIME for IPropertySetStorage handlers (legacy)
                 ///</para>
                 /// <para>Type: UInt64 -- VT_UI8</para>
-                /// <para>FormatID: (FMTID_SummaryInformation) <see cref="Guids.FMTID_SummaryInformation"/>, 10 (PIDSI_EDITTIME)</para>
+                /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 10 (PIDSI_EDITTIME)</para>
                 /// </summary>
-                public static PropertyKey TotalEditingTime => new PropertyKey(new Guid(Guids.FMTID_SummaryInformation), 10);
+                public static PropertyKey TotalEditingTime => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 10);
 
                 /// <summary>
                 /// <para>Name: System.Document.Version -- PKEY_Document_Version</para>
                 /// <para>Description: </para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="Guids.FMTID_DocumentSummaryInformation"/>, 29</para>
+                /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 29</para>
                 /// </summary>
-                public static PropertyKey Version => new PropertyKey(new Guid(Guids.FMTID_DocumentSummaryInformation), 29);
+                public static PropertyKey Version => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 29);
 
                 /// <summary>
                 /// <para>Name: System.Document.WordCount -- PKEY_Document_WordCount</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: Int32 -- VT_I4</para>
-                /// <para>FormatID: (FMTID_SummaryInformation) <see cref="Guids.FMTID_SummaryInformation"/>, 15 (PIDSI_WORDCOUNT)</para>
+                /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 15 (PIDSI_WORDCOUNT)</para>
                 /// </summary>
-                public static PropertyKey WordCount => new PropertyKey(new Guid(Guids.FMTID_SummaryInformation), 15);
+                public static PropertyKey WordCount => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 15);
                 #endregion
 
 
@@ -4001,9 +3984,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: PropertyTagExifColorSpace
                 ///</para>
                 /// <para>Type: UInt16 -- VT_UI2</para>
-                /// <para>FormatID: (FMTID_ImageProperties) <see cref="Guids.FMTID_ImageProperties"/>, 40961</para>
+                /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 40961</para>
                 /// </summary>
-                public static PropertyKey ColorSpace => new PropertyKey(new Guid(Guids.FMTID_ImageProperties), 40961);
+                public static PropertyKey ColorSpace => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 40961);
 
                 /// <summary>
                 /// <para>Name: System.Image.CompressedBitsPerPixel -- PKEY_Image_CompressedBitsPerPixel</para>
@@ -4037,9 +4020,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: Indicates the image compression level.  PropertyTagCompression.
                 ///</para>
                 /// <para>Type: UInt16 -- VT_UI2</para>
-                /// <para>FormatID: (FMTID_ImageProperties) <see cref="Guids.FMTID_ImageProperties"/>, 259</para>
+                /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 259</para>
                 /// </summary>
-                public static PropertyKey Compression => new PropertyKey(new Guid(Guids.FMTID_ImageProperties), 259);
+                public static PropertyKey Compression => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 259);
 
                 /// <summary>
                 /// <para>Name: System.Image.CompressionText -- PKEY_Image_CompressionText</para>
@@ -4301,9 +4284,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 32 (PIDMSI_AUTHOR_URL)</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 32 (PIDMSI_AUTHOR_URL)</para>
                 /// </summary>
-                public static PropertyKey AuthorUrl => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 32);
+                public static PropertyKey AuthorUrl => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 32);
 
                 /// <summary>
                 /// <para>Name: System.Media.AverageLevel -- PKEY_Media_AverageLevel</para>
@@ -4318,72 +4301,72 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 13 (PIDMSI_CLASS_PRIMARY_ID)</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 13 (PIDMSI_CLASS_PRIMARY_ID)</para>
                 /// </summary>
-                public static PropertyKey ClassPrimaryID => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 13);
+                public static PropertyKey ClassPrimaryID => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 13);
 
                 /// <summary>
                 /// <para>Name: System.Media.ClassSecondaryID -- PKEY_Media_ClassSecondaryID</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 14 (PIDMSI_CLASS_SECONDARY_ID)</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 14 (PIDMSI_CLASS_SECONDARY_ID)</para>
                 /// </summary>
-                public static PropertyKey ClassSecondaryID => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 14);
+                public static PropertyKey ClassSecondaryID => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 14);
 
                 /// <summary>
                 /// <para>Name: System.Media.CollectionGroupID -- PKEY_Media_CollectionGroupID</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 24 (PIDMSI_COLLECTION_GROUP_ID)</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 24 (PIDMSI_COLLECTION_GROUP_ID)</para>
                 /// </summary>
-                public static PropertyKey CollectionGroupID => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 24);
+                public static PropertyKey CollectionGroupID => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 24);
 
                 /// <summary>
                 /// <para>Name: System.Media.CollectionID -- PKEY_Media_CollectionID</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 25 (PIDMSI_COLLECTION_ID)</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 25 (PIDMSI_COLLECTION_ID)</para>
                 /// </summary>
-                public static PropertyKey CollectionID => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 25);
+                public static PropertyKey CollectionID => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 25);
 
                 /// <summary>
                 /// <para>Name: System.Media.ContentDistributor -- PKEY_Media_ContentDistributor</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 18 (PIDMSI_CONTENTDISTRIBUTOR)</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 18 (PIDMSI_CONTENTDISTRIBUTOR)</para>
                 /// </summary>
-                public static PropertyKey ContentDistributor => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 18);
+                public static PropertyKey ContentDistributor => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 18);
 
                 /// <summary>
                 /// <para>Name: System.Media.ContentID -- PKEY_Media_ContentID</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 26 (PIDMSI_CONTENT_ID)</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 26 (PIDMSI_CONTENT_ID)</para>
                 /// </summary>
-                public static PropertyKey ContentID => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 26);
+                public static PropertyKey ContentID => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 26);
 
                 /// <summary>
                 /// <para>Name: System.Media.CreatorApplication -- PKEY_Media_CreatorApplication</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 27 (PIDMSI_TOOL_NAME)</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 27 (PIDMSI_TOOL_NAME)</para>
                 /// </summary>
-                public static PropertyKey CreatorApplication => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 27);
+                public static PropertyKey CreatorApplication => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 27);
 
                 /// <summary>
                 /// <para>Name: System.Media.CreatorApplicationVersion -- PKEY_Media_CreatorApplicationVersion</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 28 (PIDMSI_TOOL_VERSION)</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 28 (PIDMSI_TOOL_VERSION)</para>
                 /// </summary>
-                public static PropertyKey CreatorApplicationVersion => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 28);
+                public static PropertyKey CreatorApplicationVersion => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 28);
 
                 /// <summary>
                 /// <para>Name: System.Media.DateEncoded -- PKEY_Media_DateEncoded</para>
@@ -4416,27 +4399,27 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 15 (PIDMSI_DVDID)</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 15 (PIDMSI_DVDID)</para>
                 /// </summary>
-                public static PropertyKey DVDID => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 15);
+                public static PropertyKey DVDID => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 15);
 
                 /// <summary>
                 /// <para>Name: System.Media.EncodedBy -- PKEY_Media_EncodedBy</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 36 (PIDMSI_ENCODED_BY)</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 36 (PIDMSI_ENCODED_BY)</para>
                 /// </summary>
-                public static PropertyKey EncodedBy => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 36);
+                public static PropertyKey EncodedBy => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 36);
 
                 /// <summary>
                 /// <para>Name: System.Media.EncodingSettings -- PKEY_Media_EncodingSettings</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 37 (PIDMSI_ENCODING_SETTINGS)</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 37 (PIDMSI_ENCODING_SETTINGS)</para>
                 /// </summary>
-                public static PropertyKey EncodingSettings => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 37);
+                public static PropertyKey EncodingSettings => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 37);
 
                 /// <summary>
                 /// <para>Name: System.Media.FrameCount -- PKEY_Media_FrameCount</para>
@@ -4452,72 +4435,72 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 16 (PIDMSI_MCDI)</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 16 (PIDMSI_MCDI)</para>
                 /// </summary>
-                public static PropertyKey MCDI => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 16);
+                public static PropertyKey MCDI => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 16);
 
                 /// <summary>
                 /// <para>Name: System.Media.MetadataContentProvider -- PKEY_Media_MetadataContentProvider</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 17 (PIDMSI_PROVIDER)</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 17 (PIDMSI_PROVIDER)</para>
                 /// </summary>
-                public static PropertyKey MetadataContentProvider => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 17);
+                public static PropertyKey MetadataContentProvider => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 17);
 
                 /// <summary>
                 /// <para>Name: System.Media.Producer -- PKEY_Media_Producer</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: Multivalue String -- VT_VECTOR | VT_LPWSTR  (For variants: VT_ARRAY | VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 22 (PIDMSI_PRODUCER)</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 22 (PIDMSI_PRODUCER)</para>
                 /// </summary>
-                public static PropertyKey Producer => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 22);
+                public static PropertyKey Producer => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 22);
 
                 /// <summary>
                 /// <para>Name: System.Media.PromotionUrl -- PKEY_Media_PromotionUrl</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 33 (PIDMSI_PROMOTION_URL)</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 33 (PIDMSI_PROMOTION_URL)</para>
                 /// </summary>
-                public static PropertyKey PromotionUrl => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 33);
+                public static PropertyKey PromotionUrl => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 33);
 
                 /// <summary>
                 /// <para>Name: System.Media.ProtectionType -- PKEY_Media_ProtectionType</para>
                 /// <para>Description: If media is protected, how is it protected?
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 38</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 38</para>
                 /// </summary>
-                public static PropertyKey ProtectionType => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 38);
+                public static PropertyKey ProtectionType => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 38);
 
                 /// <summary>
                 /// <para>Name: System.Media.ProviderRating -- PKEY_Media_ProviderRating</para>
                 /// <para>Description: Rating (0 - 99) supplied by metadata provider
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 39</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 39</para>
                 /// </summary>
-                public static PropertyKey ProviderRating => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 39);
+                public static PropertyKey ProviderRating => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 39);
 
                 /// <summary>
                 /// <para>Name: System.Media.ProviderStyle -- PKEY_Media_ProviderStyle</para>
                 /// <para>Description: Style of music or video, supplied by metadata provider
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 40</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 40</para>
                 /// </summary>
-                public static PropertyKey ProviderStyle => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 40);
+                public static PropertyKey ProviderStyle => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 40);
 
                 /// <summary>
                 /// <para>Name: System.Media.Publisher -- PKEY_Media_Publisher</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 30 (PIDMSI_PUBLISHER)</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 30 (PIDMSI_PUBLISHER)</para>
                 /// </summary>
-                public static PropertyKey Publisher => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 30);
+                public static PropertyKey Publisher => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 30);
 
                 /// <summary>
                 /// <para>Name: System.Media.SubscriptionContentId -- PKEY_Media_SubscriptionContentId</para>
@@ -4541,36 +4524,36 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 35 (PIDMSI_UNIQUE_FILE_IDENTIFIER)</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 35 (PIDMSI_UNIQUE_FILE_IDENTIFIER)</para>
                 /// </summary>
-                public static PropertyKey UniqueFileIdentifier => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 35);
+                public static PropertyKey UniqueFileIdentifier => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 35);
 
                 /// <summary>
                 /// <para>Name: System.Media.UserNoAutoInfo -- PKEY_Media_UserNoAutoInfo</para>
                 /// <para>Description: If true, do NOT alter this file's metadata. Set by user.
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 41</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 41</para>
                 /// </summary>
-                public static PropertyKey UserNoAutoInfo => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 41);
+                public static PropertyKey UserNoAutoInfo => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 41);
 
                 /// <summary>
                 /// <para>Name: System.Media.UserWebUrl -- PKEY_Media_UserWebUrl</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 34 (PIDMSI_USER_WEB_URL)</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 34 (PIDMSI_USER_WEB_URL)</para>
                 /// </summary>
-                public static PropertyKey UserWebUrl => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 34);
+                public static PropertyKey UserWebUrl => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 34);
 
                 /// <summary>
                 /// <para>Name: System.Media.Writer -- PKEY_Media_Writer</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: Multivalue String -- VT_VECTOR | VT_LPWSTR  (For variants: VT_ARRAY | VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 23 (PIDMSI_WRITER)</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 23 (PIDMSI_WRITER)</para>
                 /// </summary>
-                public static PropertyKey Writer => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 23);
+                public static PropertyKey Writer => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 23);
 
                 /// <summary>
                 /// <para>Name: System.Media.Year -- PKEY_Media_Year</para>
@@ -4870,9 +4853,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: Multivalue String -- VT_VECTOR | VT_LPWSTR  (For variants: VT_ARRAY | VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 19 (PIDMSI_COMPOSER)</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 19 (PIDMSI_COMPOSER)</para>
                 /// </summary>
-                public static PropertyKey Composer => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 19);
+                public static PropertyKey Composer => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 19);
 
                 /// <summary>
                 /// <para>Name: System.Music.Conductor -- PKEY_Music_Conductor</para>
@@ -4961,9 +4944,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 31 (PIDMSI_PERIOD)</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 31 (PIDMSI_PERIOD)</para>
                 /// </summary>
-                public static PropertyKey Period => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 31);
+                public static PropertyKey Period => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 31);
 
                 /// <summary>
                 /// <para>Name: System.Music.SynchronizedLyrics -- PKEY_Music_SynchronizedLyrics</para>
@@ -5033,9 +5016,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: PropertyTagExifAperture.  Calculated from PKEY_Photo_ApertureNumerator and PKEY_Photo_ApertureDenominator
                 ///</para>
                 /// <para>Type: Double -- VT_R8</para>
-                /// <para>FormatID: (FMTID_ImageProperties) <see cref="Guids.FMTID_ImageProperties"/>, 37378</para>
+                /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 37378</para>
                 /// </summary>
-                public static PropertyKey Aperture => new PropertyKey(new Guid(Guids.FMTID_ImageProperties), 37378);
+                public static PropertyKey Aperture => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 37378);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ApertureDenominator -- PKEY_Photo_ApertureDenominator</para>
@@ -5092,27 +5075,27 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (FMTID_ImageProperties) <see cref="Guids.FMTID_ImageProperties"/>, 271 (PropertyTagEquipMake)</para>
+                /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 271 (PropertyTagEquipMake)</para>
                 /// </summary>
-                public static PropertyKey CameraManufacturer => new PropertyKey(new Guid(Guids.FMTID_ImageProperties), 271);
+                public static PropertyKey CameraManufacturer => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 271);
 
                 /// <summary>
                 /// <para>Name: System.Photo.CameraModel -- PKEY_Photo_CameraModel</para>
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (FMTID_ImageProperties) <see cref="Guids.FMTID_ImageProperties"/>, 272 (PropertyTagEquipModel)</para>
+                /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 272 (PropertyTagEquipModel)</para>
                 /// </summary>
-                public static PropertyKey CameraModel => new PropertyKey(new Guid(Guids.FMTID_ImageProperties), 272);
+                public static PropertyKey CameraModel => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 272);
 
                 /// <summary>
                 /// <para>Name: System.Photo.CameraSerialNumber -- PKEY_Photo_CameraSerialNumber</para>
                 /// <para>Description: Serial number of camera that produced this photo
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (FMTID_ImageProperties) <see cref="Guids.FMTID_ImageProperties"/>, 273</para>
+                /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 273</para>
                 /// </summary>
-                public static PropertyKey CameraSerialNumber => new PropertyKey(new Guid(Guids.FMTID_ImageProperties), 273);
+                public static PropertyKey CameraSerialNumber => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 273);
 
                 /// <summary>
                 /// <para>Name: System.Photo.Contrast -- PKEY_Photo_Contrast</para>
@@ -5139,9 +5122,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: PropertyTagExifDTOrig
                 ///</para>
                 /// <para>Type: DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
-                /// <para>FormatID: (FMTID_ImageProperties) <see cref="Guids.FMTID_ImageProperties"/>, 36867</para>
+                /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 36867</para>
                 /// </summary>
-                public static PropertyKey DateTaken => new PropertyKey(new Guid(Guids.FMTID_ImageProperties), 36867);
+                public static PropertyKey DateTaken => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 36867);
 
                 /// <summary>
                 /// <para>Name: System.Photo.DigitalZoom -- PKEY_Photo_DigitalZoom</para>
@@ -5175,9 +5158,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: The event at which the photo was taken
                 ///</para>
                 /// <para>Type: Multivalue String -- VT_VECTOR | VT_LPWSTR  (For variants: VT_ARRAY | VT_BSTR)</para>
-                /// <para>FormatID: (FMTID_ImageProperties) <see cref="Guids.FMTID_ImageProperties"/>, 18248</para>
+                /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 18248</para>
                 /// </summary>
-                public static PropertyKey Event => new PropertyKey(new Guid(Guids.FMTID_ImageProperties), 18248);
+                public static PropertyKey Event => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 18248);
 
                 /// <summary>
                 /// <para>Name: System.Photo.EXIFVersion -- PKEY_Photo_EXIFVersion</para>
@@ -5193,9 +5176,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: PropertyTagExifExposureBias.  Calculated from PKEY_Photo_ExposureBiasNumerator and PKEY_Photo_ExposureBiasDenominator
                 ///</para>
                 /// <para>Type: Double -- VT_R8</para>
-                /// <para>FormatID: (FMTID_ImageProperties) <see cref="Guids.FMTID_ImageProperties"/>, 37380</para>
+                /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 37380</para>
                 /// </summary>
-                public static PropertyKey ExposureBias => new PropertyKey(new Guid(Guids.FMTID_ImageProperties), 37380);
+                public static PropertyKey ExposureBias => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 37380);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ExposureBiasDenominator -- PKEY_Photo_ExposureBiasDenominator</para>
@@ -5247,9 +5230,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: UInt32 -- VT_UI4</para>
-                /// <para>FormatID: (FMTID_ImageProperties) <see cref="Guids.FMTID_ImageProperties"/>, 34850 (PropertyTagExifExposureProg)</para>
+                /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 34850 (PropertyTagExifExposureProg)</para>
                 /// </summary>
-                public static PropertyKey ExposureProgram => new PropertyKey(new Guid(Guids.FMTID_ImageProperties), 34850);
+                public static PropertyKey ExposureProgram => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 34850);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ExposureProgramText -- PKEY_Photo_ExposureProgramText</para>
@@ -5266,9 +5249,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: PropertyTagExifExposureTime.  Calculated from  PKEY_Photo_ExposureTimeNumerator and PKEY_Photo_ExposureTimeDenominator
                 ///</para>
                 /// <para>Type: Double -- VT_R8</para>
-                /// <para>FormatID: (FMTID_ImageProperties) <see cref="Guids.FMTID_ImageProperties"/>, 33434</para>
+                /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 33434</para>
                 /// </summary>
-                public static PropertyKey ExposureTime => new PropertyKey(new Guid(Guids.FMTID_ImageProperties), 33434);
+                public static PropertyKey ExposureTime => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 33434);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ExposureTimeDenominator -- PKEY_Photo_ExposureTimeDenominator</para>
@@ -5293,18 +5276,18 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: PropertyTagExifFlash
                 ///</para>
                 /// <para>Type: Byte -- VT_UI1</para>
-                /// <para>FormatID: (FMTID_ImageProperties) <see cref="Guids.FMTID_ImageProperties"/>, 37385</para>
+                /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 37385</para>
                 /// </summary>
-                public static PropertyKey Flash => new PropertyKey(new Guid(Guids.FMTID_ImageProperties), 37385);
+                public static PropertyKey Flash => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 37385);
 
                 /// <summary>
                 /// <para>Name: System.Photo.FlashEnergy -- PKEY_Photo_FlashEnergy</para>
                 /// <para>Description: PropertyTagExifFlashEnergy.  Calculated from PKEY_Photo_FlashEnergyNumerator and PKEY_Photo_FlashEnergyDenominator
                 ///</para>
                 /// <para>Type: Double -- VT_R8</para>
-                /// <para>FormatID: (FMTID_ImageProperties) <see cref="Guids.FMTID_ImageProperties"/>, 41483</para>
+                /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 41483</para>
                 /// </summary>
-                public static PropertyKey FlashEnergy => new PropertyKey(new Guid(Guids.FMTID_ImageProperties), 41483);
+                public static PropertyKey FlashEnergy => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 41483);
 
                 /// <summary>
                 /// <para>Name: System.Photo.FlashEnergyDenominator -- PKEY_Photo_FlashEnergyDenominator</para>
@@ -5355,9 +5338,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: PropertyTagExifFNumber.  Calculated from PKEY_Photo_FNumberNumerator and PKEY_Photo_FNumberDenominator
                 ///</para>
                 /// <para>Type: Double -- VT_R8</para>
-                /// <para>FormatID: (FMTID_ImageProperties) <see cref="Guids.FMTID_ImageProperties"/>, 33437</para>
+                /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 33437</para>
                 /// </summary>
-                public static PropertyKey FNumber => new PropertyKey(new Guid(Guids.FMTID_ImageProperties), 33437);
+                public static PropertyKey FNumber => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 33437);
 
                 /// <summary>
                 /// <para>Name: System.Photo.FNumberDenominator -- PKEY_Photo_FNumberDenominator</para>
@@ -5382,9 +5365,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: PropertyTagExifFocalLength.  Calculated from PKEY_Photo_FocalLengthNumerator and PKEY_Photo_FocalLengthDenominator
                 ///</para>
                 /// <para>Type: Double -- VT_R8</para>
-                /// <para>FormatID: (FMTID_ImageProperties) <see cref="Guids.FMTID_ImageProperties"/>, 37386</para>
+                /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 37386</para>
                 /// </summary>
-                public static PropertyKey FocalLength => new PropertyKey(new Guid(Guids.FMTID_ImageProperties), 37386);
+                public static PropertyKey FocalLength => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 37386);
 
                 /// <summary>
                 /// <para>Name: System.Photo.FocalLengthDenominator -- PKEY_Photo_FocalLengthDenominator</para>
@@ -5512,9 +5495,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: PropertyTagExifISOSpeed
                 ///</para>
                 /// <para>Type: UInt16 -- VT_UI2</para>
-                /// <para>FormatID: (FMTID_ImageProperties) <see cref="Guids.FMTID_ImageProperties"/>, 34855</para>
+                /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 34855</para>
                 /// </summary>
-                public static PropertyKey ISOSpeed => new PropertyKey(new Guid(Guids.FMTID_ImageProperties), 34855);
+                public static PropertyKey ISOSpeed => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 34855);
 
                 /// <summary>
                 /// <para>Name: System.Photo.LensManufacturer -- PKEY_Photo_LensManufacturer</para>
@@ -5537,9 +5520,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: PropertyTagExifLightSource
                 ///</para>
                 /// <para>Type: UInt32 -- VT_UI4</para>
-                /// <para>FormatID: (FMTID_ImageProperties) <see cref="Guids.FMTID_ImageProperties"/>, 37384</para>
+                /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 37384</para>
                 /// </summary>
-                public static PropertyKey LightSource => new PropertyKey(new Guid(Guids.FMTID_ImageProperties), 37384);
+                public static PropertyKey LightSource => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 37384);
 
                 /// <summary>
                 /// <para>Name: System.Photo.MakerNote -- PKEY_Photo_MakerNote</para>
@@ -5589,9 +5572,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: PropertyTagExifMeteringMode
                 ///</para>
                 /// <para>Type: UInt16 -- VT_UI2</para>
-                /// <para>FormatID: (FMTID_ImageProperties) <see cref="Guids.FMTID_ImageProperties"/>, 37383</para>
+                /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 37383</para>
                 /// </summary>
-                public static PropertyKey MeteringMode => new PropertyKey(new Guid(Guids.FMTID_ImageProperties), 37383);
+                public static PropertyKey MeteringMode => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 37383);
 
                 /// <summary>
                 /// <para>Name: System.Photo.MeteringModeText -- PKEY_Photo_MeteringModeText</para>
@@ -5608,9 +5591,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: This is the image orientation viewed in terms of rows and columns.
                 ///</para>
                 /// <para>Type: UInt16 -- VT_UI2</para>
-                /// <para>FormatID: (FMTID_ImageProperties) <see cref="Guids.FMTID_ImageProperties"/>, 274 (PropertyTagOrientation)</para>
+                /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 274 (PropertyTagOrientation)</para>
                 /// </summary>
-                public static PropertyKey Orientation => new PropertyKey(new Guid(Guids.FMTID_ImageProperties), 274);
+                public static PropertyKey Orientation => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 274);
 
                 /// <summary>
                 /// <para>Name: System.Photo.OrientationText -- PKEY_Photo_OrientationText</para>
@@ -5724,9 +5707,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: PropertyTagExifShutterSpeed.  Calculated from PKEY_Photo_ShutterSpeedNumerator and PKEY_Photo_ShutterSpeedDenominator
                 ///</para>
                 /// <para>Type: Double -- VT_R8</para>
-                /// <para>FormatID: (FMTID_ImageProperties) <see cref="Guids.FMTID_ImageProperties"/>, 37377</para>
+                /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 37377</para>
                 /// </summary>
-                public static PropertyKey ShutterSpeed => new PropertyKey(new Guid(Guids.FMTID_ImageProperties), 37377);
+                public static PropertyKey ShutterSpeed => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 37377);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ShutterSpeedDenominator -- PKEY_Photo_ShutterSpeedDenominator</para>
@@ -5751,9 +5734,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: PropertyTagExifSubjectDist.  Calculated from PKEY_Photo_SubjectDistanceNumerator and PKEY_Photo_SubjectDistanceDenominator
                 ///</para>
                 /// <para>Type: Double -- VT_R8</para>
-                /// <para>FormatID: (FMTID_ImageProperties) <see cref="Guids.FMTID_ImageProperties"/>, 37382</para>
+                /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 37382</para>
                 /// </summary>
-                public static PropertyKey SubjectDistance => new PropertyKey(new Guid(Guids.FMTID_ImageProperties), 37382);
+                public static PropertyKey SubjectDistance => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 37382);
 
                 /// <summary>
                 /// <para>Name: System.Photo.SubjectDistanceDenominator -- PKEY_Photo_SubjectDistanceDenominator</para>
@@ -6302,9 +6285,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 ///query result. The Indexing Service friendly name is 'contents'.
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (FMTID_Storage) <see cref="Guids.FMTID_Storage"/>, 19 (PID_STG_CONTENTS)</para>
+                /// <para>FormatID: (FMTID_Storage) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Storage"/>, 19 (PID_STG_CONTENTS)</para>
                 /// </summary>
-                public static PropertyKey Contents => new PropertyKey(new Guid(Guids.FMTID_Storage), 19);
+                public static PropertyKey Contents => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Storage), 19);
 
                 /// <summary>
                 /// <para>Name: System.Search.EntryID -- PKEY_Search_EntryID</para>
@@ -6312,9 +6295,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 ///This value may be recycled, and therefore is not considered unique over time.
                 ///</para>
                 /// <para>Type: Int32 -- VT_I4</para>
-                /// <para>FormatID: (FMTID_Query) <see cref="Guids.FMTID_Query"/>, 5 (PROPID_QUERY_WORKID)</para>
+                /// <para>FormatID: (FMTID_Query) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Query"/>, 5 (PROPID_QUERY_WORKID)</para>
                 /// </summary>
-                public static PropertyKey EntryID => new PropertyKey(new Guid(Guids.FMTID_Query), 5);
+                public static PropertyKey EntryID => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Query), 5);
 
                 /// <summary>
                 /// <para>Name: System.Search.ExtendedProperties -- PKEY_Search_ExtendedProperties</para>
@@ -6339,9 +6322,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 ///If there are multiple CONTAINS, an AND computes the min number of hits and an OR the max number of hits.
                 ///</para>
                 /// <para>Type: Int32 -- VT_I4</para>
-                /// <para>FormatID: (FMTID_Query) <see cref="Guids.FMTID_Query"/>, 4 (PROPID_QUERY_HITCOUNT)</para>
+                /// <para>FormatID: (FMTID_Query) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Query"/>, 4 (PROPID_QUERY_HITCOUNT)</para>
                 /// </summary>
-                public static PropertyKey HitCount => new PropertyKey(new Guid(Guids.FMTID_Query), 4);
+                public static PropertyKey HitCount => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Query), 4);
 
                 /// <summary>
                 /// <para>Name: System.Search.IsClosedDirectory -- PKEY_Search_IsClosedDirectory</para>
@@ -6384,9 +6367,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: Relevance rank of row. Ranges from 0-1000. Larger numbers = better matches.  Query-time only.
                 ///</para>
                 /// <para>Type: Int32 -- VT_I4</para>
-                /// <para>FormatID: (FMTID_Query) <see cref="Guids.FMTID_Query"/>, 3 (PROPID_QUERY_RANK)</para>
+                /// <para>FormatID: (FMTID_Query) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Query"/>, 3 (PROPID_QUERY_RANK)</para>
                 /// </summary>
-                public static PropertyKey Rank => new PropertyKey(new Guid(Guids.FMTID_Query), 3);
+                public static PropertyKey Rank => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Query), 3);
 
                 /// <summary>
                 /// <para>Name: System.Search.Store -- PKEY_Search_Store</para>
@@ -6476,9 +6459,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (PSFMTID_VERSION) <see cref="Guids.PSFMTID_VERSION"/>, 7</para>
+                /// <para>FormatID: (PSFMTID_VERSION) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Version"/>, 7</para>
                 /// </summary>
-                public static PropertyKey ProductName => new PropertyKey(new Guid(Guids.PSFMTID_VERSION), 7);
+                public static PropertyKey ProductName => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Version), 7);
                 #endregion
 
 
@@ -6676,9 +6659,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: Multivalue String -- VT_VECTOR | VT_LPWSTR  (For variants: VT_ARRAY | VT_BSTR)</para>
-                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="Guids.PSGUID_MEDIAFILESUMMARYINFORMATION"/>, 20 (PIDMSI_DIRECTOR)</para>
+                /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 20 (PIDMSI_DIRECTOR)</para>
                 /// </summary>
-                public static PropertyKey Director => new PropertyKey(new Guid(Guids.PSGUID_MEDIAFILESUMMARYINFORMATION), 20);
+                public static PropertyKey Director => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 20);
 
                 /// <summary>
                 /// <para>Name: System.Video.EncodingBitrate -- PKEY_Video_EncodingBitrate</para>
@@ -6808,9 +6791,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: Indicates the filesystem of the volume.
                 ///</para>
                 /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
-                /// <para>FormatID: (FMTID_Volume) <see cref="Guids.FMTID_Volume"/>, 4 (PID_VOLUME_FILESYSTEM)  (Filesystem Volume Properties)</para>
+                /// <para>FormatID: (FMTID_Volume) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Volume"/>, 4 (PID_VOLUME_FILESYSTEM)  (Filesystem Volume Properties)</para>
                 /// </summary>
-                public static PropertyKey FileSystem => new PropertyKey(new Guid(Guids.FMTID_Volume), 4);
+                public static PropertyKey FileSystem => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Volume), 4);
 
                 /// <summary>
                 /// <para>Name: System.Volume.IsMappedDrive -- PKEY_Volume_IsMappedDrive</para>
@@ -6825,9 +6808,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                 /// <para>Description: 
                 ///</para>
                 /// <para>Type: Boolean -- VT_BOOL</para>
-                /// <para>FormatID: (FMTID_Volume) <see cref="Guids.FMTID_Volume"/>, 10  (Filesystem Volume Properties)</para>
+                /// <para>FormatID: (FMTID_Volume) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Volume"/>, 10  (Filesystem Volume Properties)</para>
                 /// </summary>
-                public static PropertyKey IsRoot => new PropertyKey(new Guid(Guids.FMTID_Volume), 10);
+                public static PropertyKey IsRoot => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Volume), 10);
                 #endregion
 
 
