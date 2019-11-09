@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.WindowsAPICodePack.Shell
+namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
     /// <summary>
     /// Flags that specify how the file is to be copied.

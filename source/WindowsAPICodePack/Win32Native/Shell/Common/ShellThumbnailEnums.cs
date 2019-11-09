@@ -2,7 +2,7 @@
 
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
-namespace Microsoft.WindowsAPICodePack.Shell
+namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
     /// <summary>
     /// Represents the different retrieval options for the thumbnail or icon,

@@ -4,7 +4,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
 using System;
 using System.Collections.Generic;
 
-namespace Microsoft.WindowsAPICodePack.Shell
+namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
     /// <summary>
     /// The FolderTypes values represent a view template applied to a folder, 

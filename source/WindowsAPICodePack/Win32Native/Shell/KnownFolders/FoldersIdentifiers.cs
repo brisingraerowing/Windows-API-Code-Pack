@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Microsoft.WindowsAPICodePack.Shell
+namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
     /// <summary>
     /// Contains the GUID identifiers for well-known folders.

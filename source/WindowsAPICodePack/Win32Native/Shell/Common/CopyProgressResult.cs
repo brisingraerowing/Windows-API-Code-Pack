@@ -1,4 +1,4 @@
-﻿namespace Microsoft.WindowsAPICodePack.Shell
+﻿namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
     /// <summary>
     /// The result that is returned by the <see cref="CopyProgressRoutine"/> function.

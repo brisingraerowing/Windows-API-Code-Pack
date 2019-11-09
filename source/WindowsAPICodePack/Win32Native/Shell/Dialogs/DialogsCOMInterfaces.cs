@@ -3,7 +3,6 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;

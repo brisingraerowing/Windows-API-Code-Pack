@@ -4,7 +4,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Windows.Media.Imaging;
 
-namespace Microsoft.WindowsAPICodePack.Shell
+namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
     /// <summary>
     /// Structure used publicly to store property values for 

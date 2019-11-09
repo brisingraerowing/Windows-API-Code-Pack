@@ -1,7 +1,7 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using System;
-using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
@@ -41,7 +41,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     }
 }
 
-namespace Microsoft.WindowsAPICodePack.Shell
+namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
     [Flags]
     public enum WindowStyles

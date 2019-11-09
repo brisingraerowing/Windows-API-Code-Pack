@@ -3,7 +3,7 @@
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using System;
 
-namespace Microsoft.WindowsAPICodePack.Shell
+namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
     /// <summary>
     /// CommonFileDialog AddPlace locations
@@ -278,7 +278,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         /// <summary>
         /// Indicates that the node is a comparison between a property and a 
-        /// constant value using a <see cref="Microsoft.WindowsAPICodePack.Shell.SearchConditionOperation"/>.
+        /// constant value using a <see cref="Microsoft.WindowsAPICodePack.Win32Native.Shell.SearchConditionOperation"/>.
         /// </summary>
         Leaf = 3,
     }

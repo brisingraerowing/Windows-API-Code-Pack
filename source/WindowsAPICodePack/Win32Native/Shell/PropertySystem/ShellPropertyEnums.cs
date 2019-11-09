@@ -2,7 +2,7 @@
 
 using System;
 
-namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
+namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
 {
     #region Property System Enumerations
 

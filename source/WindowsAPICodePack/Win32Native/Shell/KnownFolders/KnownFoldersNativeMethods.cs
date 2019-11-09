@@ -1,6 +1,6 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using System;
 using System.Runtime.InteropServices;
 using System.Security;

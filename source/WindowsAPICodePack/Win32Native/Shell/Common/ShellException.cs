@@ -9,7 +9,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.Core.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
 using LocalizedMessages = Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages;
 
-namespace Microsoft.WindowsAPICodePack.Shell
+namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
 
     /// <summary>

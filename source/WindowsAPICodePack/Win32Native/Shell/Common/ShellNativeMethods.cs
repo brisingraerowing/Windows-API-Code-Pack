@@ -1,6 +1,5 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using System;
@@ -8,9 +7,9 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using static Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellNativeMethods;
-using FileAttributes = Microsoft.WindowsAPICodePack.Shell.FileAttributes;
+using FileAttributes = Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes;
 
-namespace Microsoft.WindowsAPICodePack.Shell
+namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
 
     /// <summary>
@@ -323,7 +322,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         #region Shell Enums
 
         [Flags]
-        [Obsolete("Use the same enum of the Microsoft.WindowsAPICodePack.Shell namespace instead.")]
+        [Obsolete("Use the same enum of the Microsoft.WindowsAPICodePack.Win32Native.Shell namespace instead.")]
         public enum FileOpenOptions
         {
             OverwritePrompt = 0x00000002,
@@ -350,7 +349,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
             DefaultNoMiniMode = 0x20000000
         }
 
-        [Obsolete("Use the same enum of the Microsoft.WindowsAPICodePack.Shell namespace instead.")]
+        [Obsolete("Use the same enum of the Microsoft.WindowsAPICodePack.Win32Native.Shell namespace instead.")]
         public enum ControlState
         {
             Inactive = 0x00000000,
@@ -358,7 +357,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
             Visible = 0x00000002
         }
 
-        [Obsolete("Use the same enum of the Microsoft.WindowsAPICodePack.Shell namespace instead.")]
+        [Obsolete("Use the same enum of the Microsoft.WindowsAPICodePack.Win32Native.Shell namespace instead.")]
         public enum ShellItemDesignNameOptions
         {
             Normal = 0x00000000,           // SIGDN_NORMAL
@@ -514,7 +513,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
             AllItems = 0x00004000
         }
 
-        [Obsolete("Use the same enum of the Microsoft.WindowsAPICodePack.Shell namespace instead.")]
+        [Obsolete("Use the same enum of the Microsoft.WindowsAPICodePack.Win32Native.Shell namespace instead.")]
         public enum FileDialogEventShareViolationResponse
         {
             Default = 0x00000000,
@@ -522,7 +521,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
             Refuse = 0x00000002
         }
 
-        [Obsolete("Use the same enum of the Microsoft.WindowsAPICodePack.Shell namespace instead.")]
+        [Obsolete("Use the same enum of the Microsoft.WindowsAPICodePack.Win32Native.Shell namespace instead.")]
         public enum FileDialogEventOverwriteResponse
         {
             Default = 0x00000000,
@@ -530,7 +529,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
             Refuse = 0x00000002
         }
 
-        [Obsolete("Use the same enum of the Microsoft.WindowsAPICodePack.Shell namespace instead.")]
+        [Obsolete("Use the same enum of the Microsoft.WindowsAPICodePack.Win32Native.Shell namespace instead.")]
         public enum FileDialogAddPlacement
         {
             Bottom = 0x00000000,

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
+namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
 {
 
     /// <summary>

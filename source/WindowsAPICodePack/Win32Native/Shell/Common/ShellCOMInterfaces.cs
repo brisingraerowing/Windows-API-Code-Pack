@@ -6,13 +6,13 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
-using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
-using FileAttributes = Microsoft.WindowsAPICodePack.Shell.FileAttributes;
+using FileAttributes = Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {

@@ -3,7 +3,7 @@
 using Microsoft.WindowsAPICodePack.Win32Native.Core.Resources;
 using System;
 
-namespace Microsoft.WindowsAPICodePack.Shell
+namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
     /// <summary>
     /// A refence to an icon resource 

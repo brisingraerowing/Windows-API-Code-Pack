@@ -1,7 +1,7 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using System;
-namespace Microsoft.WindowsAPICodePack.Shell
+namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
     /// <summary>
     /// Specifies behaviors for known folders.

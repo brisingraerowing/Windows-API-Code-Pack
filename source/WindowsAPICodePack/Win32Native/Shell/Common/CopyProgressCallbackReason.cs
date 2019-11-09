@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellNativeMethods;
 
-namespace Microsoft.WindowsAPICodePack.Shell
+namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
     /// <summary>
     /// The reason that <see cref="CopyProgressRoutine"/> was called.

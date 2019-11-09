@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
-using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
-namespace Microsoft.WindowsAPICodePack.ShellExtensions.Interop
+namespace Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop
 {
     public static class HandlerNativeMethods
     {
