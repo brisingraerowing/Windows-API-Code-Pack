@@ -5,9 +5,9 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Shell;
-using Microsoft.WindowsAPICodePack.ShellExtensions.Interop;
 using Microsoft.WindowsAPICodePack.ShellExtensions.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 using FileInfo = System.IO.FileInfo;
 

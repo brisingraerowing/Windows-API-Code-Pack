@@ -1,5 +1,6 @@
 ﻿using Microsoft.WindowsAPICodePack.Shell;
-using Microsoft.WindowsAPICodePack.ShellExtensions.Interop;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

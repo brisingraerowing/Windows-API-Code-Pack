@@ -15,6 +15,7 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Interop;
 using static Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellNativeMethods;
+using FileAttributes = Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -697,7 +698,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         public Action<uint, IShellItem, string> PreNewItem { get; set; }
 
-        public Action<uint, IShellItem, string, string, FileAttributes, IShellItem> PostNewItem { get; set; }
+        public Action<uint, IShellItem, string, string, Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes, IShellItem> PostNewItem { get; set; }
 
         public Action<uint, uint> UpdateProgress { get; set; }
 
@@ -817,7 +818,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         public virtual void PreNewItem(uint dwFlags, IShellItem psiDestinationFolder, string pszNewName) => fileOperationProgressSink.PreNewItem?.Invoke(dwFlags, psiDestinationFolder, pszNewName); /*return HResult.Ok;*/
 
-        public virtual void PostNewItem(uint dwFlags, IShellItem psiDestinationFolder, string pszNewName, string pszTemplateName, FileAttributes dwFileAttributes, HResult hrNew, IShellItem psiNewItem)
+        public virtual void PostNewItem(uint dwFlags, IShellItem psiDestinationFolder, string pszNewName, string pszTemplateName, Microsoft.WindowsAPICodePack.Win32Native.Shell. FileAttributes dwFileAttributes, HResult hrNew, IShellItem psiNewItem)
         {
 
             if (!CoreErrorHelper.Succeeded(hrNew))

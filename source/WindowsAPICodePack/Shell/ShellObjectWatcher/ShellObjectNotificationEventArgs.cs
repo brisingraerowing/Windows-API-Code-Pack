@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+using System;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -35,10 +36,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public string Path { get; private set; }
 
         internal ShellObjectChangedEventArgs(ChangeNotifyLock notifyLock)
-            : base(notifyLock)
-        {
-            Path = notifyLock.ItemName;
-        }
+            : base(notifyLock) => Path = notifyLock.ItemName;
     }
 
     /// <summary>
@@ -52,10 +50,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public string NewPath { get; private set; }
 
         internal ShellObjectRenamedEventArgs(ChangeNotifyLock notifyLock)
-            : base(notifyLock)
-        {
-            NewPath = notifyLock.ItemName2;
-        }
+            : base(notifyLock) => NewPath = notifyLock.ItemName2;
     }
 
     /// <summary>
@@ -69,10 +64,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public int ImageIndex { get; private set; }
 
         internal SystemImageUpdatedEventArgs(ChangeNotifyLock notifyLock)
-            : base(notifyLock)
-        {
-            ImageIndex = notifyLock.ImageIndex;
-        }
+            : base(notifyLock) => ImageIndex = notifyLock.ImageIndex;
     }
 
 

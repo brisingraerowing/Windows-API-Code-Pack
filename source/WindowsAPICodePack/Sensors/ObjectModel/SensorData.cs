@@ -3,7 +3,6 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CollectionInterfaces;
 using Microsoft.WindowsAPICodePack.Win32Native.Sensors;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;

@@ -1,8 +1,10 @@
 // Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using FileAttributes = Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {

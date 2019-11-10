@@ -1296,7 +1296,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         /// <param name="psiItem">Pointer to an <see cref="IShellItem"/> that specifies the item to be renamed.</param>
         /// <param name="pszNewName">Pointer to the new <a href="https://msdn.microsoft.com/9b159be9-3797-4c8b-90f8-9d3b3a3afb71">display name</a> of the item. This is a null-terminated, Unicode string.</param>
         /// <returns>Returns <see cref="HResult.Ok"/> if successful, or an error value otherwise. In the case of an error value, the rename operation and all subsequent operations pending from the call to <see cref="IFileOperation"/> are canceled.</returns>
-        void PreRenameItem(uint dwFlags, IShellItem psiItem, [MarshalAs(UnmanagedType.LPWStr)] string pszNewName);
+        void PreRenameItem(uint dwFlags, IShellItem psiItem, [MarshalAs(UnmanagedType.LPWStr)] string pszNewName); // todo: replace uint dwFlags by enums
 
         /// <summary>
         /// Performs caller-implemented actions after the rename process for each item is complete.
