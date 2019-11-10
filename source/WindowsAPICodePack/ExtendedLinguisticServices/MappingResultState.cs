@@ -9,7 +9,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
     /// This class serves as the result status of asynchronous calls to ELS and
     /// as the result status of linguistic exceptions.
     /// </summary>
-    public struct MappingResultState
+    public struct MappingResultState : IEquatable<MappingResultState>
     {
         internal MappingResultState(int hResult, string errorMessage)
         {
