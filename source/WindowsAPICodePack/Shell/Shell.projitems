@@ -55,12 +55,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\ShellSearchFolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ShellThumbnail.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SingleInstance.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\CommandLinkWinforms.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\CommandLinkWPF.xaml.cs">
-      <DependentUpon>CommandLinkWPF.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)DesktopWindowManager\DesktopWindowManagerNativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DesktopWindowManager\GlassEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DesktopWindowManager\GlassForm.cs">
@@ -70,9 +64,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\CommonControlException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowser.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowser.WPF.xaml.cs">
-      <DependentUpon>ExplorerBrowser.WPF.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowserContentOptions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowserEnums.cs" />
@@ -137,16 +128,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Taskbar\ThumbnailToolbarManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Taskbar\ThumbnailToolbarProxyWindow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Taskbar\UserRemovedJumpListItemsEventArg.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="$(MSBuildThisFileDirectory)Controls\CommandLinkWPF.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowser.WPF.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Design\ShellObjects.cd" />

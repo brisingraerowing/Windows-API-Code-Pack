@@ -119,8 +119,8 @@
       <Name>Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Shell.Net4.7\Shell.Net4.7.csproj">
-      <Project>{aa0c00cb-8699-4f37-bfae-40ca87acc06d}</Project>
-      <Name>Shell</Name>
+      <Project>{9dd9cf03-2d27-4868-8a8a-0727b8805188}</Project>
+      <Name>Shell.Net4.7</Name>
     </ProjectReference>
     <ProjectReference Include="..\Win32Native.Net4.7\Win32Native.Net4.7.csproj">
       <Project>{6c1ad76c-8eeb-4b2d-b6b4-f9b7234a92fb}</Project>
