@@ -62,9 +62,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)DesktopWindowManager\GlassWindow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\CommonControlException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowser.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowserContentOptions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowserEnums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowserEvents.cs" />

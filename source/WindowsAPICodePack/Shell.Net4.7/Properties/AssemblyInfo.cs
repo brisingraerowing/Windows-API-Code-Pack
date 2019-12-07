@@ -1,36 +1,42 @@
-﻿using System.Reflection;
+﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
+
+using System;
+using System.Reflection;
+using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Security;
 
-// Les informations générales relatives à un assembly dépendent de
-// l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
-// associées à un assembly.
-[assembly: AssemblyTitle("Shell.Net4.7")]
-[assembly: AssemblyDescription("")]
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+[assembly: AssemblyTitle("Microsoft.WindowsAPICodePack.Shell")]
+[assembly: AssemblyDescription("WindowsAPICodePack for Shell")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Shell.Net4.7")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyCompany("Pierre Sprimont")]
+[assembly: AssemblyProduct("Microsoft Windows API Code Pack for .NET Framework")]
+[assembly: AssemblyCopyright("Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-// L'affectation de la valeur false à ComVisible rend les types invisibles dans cet assembly
-// aux composants COM. Si vous devez accéder à un type dans cet assembly à partir de
-// COM, affectez la valeur true à l'attribut ComVisible sur ce type.
+//[assembly: InternalsVisibleTo("Microsoft.WindowsAPICodePack.ShellExtensions")]
+
+// Setting ComVisible to false makes the types in this assembly not visible 
+// to COM components.  If you need to access a type in this assembly from 
+// COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 
-// Le GUID suivant est pour l'ID de la typelib si ce projet est exposé à COM
-[assembly: Guid("9dd9cf03-2d27-4868-8a8a-0727b8805188")]
+// The following GUID is for the ID of the typelib if this project is exposed to COM
+[assembly: Guid("48fe0672-7ff4-48fd-a3fd-83c8fa8c3506")]
 
-// Les informations de version pour un assembly se composent des quatre valeurs suivantes :
+// Version information for an assembly consists of the following four values:
 //
-//      Version principale
-//      Version secondaire
-//      Numéro de build
-//      Révision
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
 //
-// Vous pouvez spécifier toutes les valeurs ou indiquer les numéros de build et de révision par défaut
-// en utilisant '*', comme indiqué ci-dessous :
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("2.0.0.0")]
+[assembly: AssemblyFileVersion("2.0.0.0")]
+
+[assembly: NeutralResourcesLanguageAttribute("en")]

@@ -125,6 +125,9 @@
     <Compile Include="Controls\CommandLinkWPF.xaml.cs">
       <DependentUpon>CommandLinkWPF.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ExplorerBrowser\ExplorerBrowser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ExplorerBrowser\ExplorerBrowser.WPF.xaml.cs">
       <DependentUpon>ExplorerBrowser.WPF.xaml</DependentUpon>
     </Compile>
