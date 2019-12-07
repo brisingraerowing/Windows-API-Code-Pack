@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>ce862078-c419-483a-ae32-dcc933aeb787</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>ExtendedLinguisticServices</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)IMappingFormatter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)InteropTools.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LinguisticException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MappingActionAsyncResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MappingAsyncResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MappingDataRange.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MappingEnumOptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MappingPropertyBag.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MappingRecognizeAsyncResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MappingResultState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MappingService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NullTerminatedStringFormatter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ServiceCache.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StringArrayFormatter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StringFormatter.cs" />
+  </ItemGroup>
+</Project>

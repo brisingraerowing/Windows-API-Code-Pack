@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>3c3964dd-26d2-4497-a8ee-aad7dc73a52d</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Core</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AppRestartRecovery\ApplicationRecoveryException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AppRestartRecovery\ApplicationRestartRecoveryManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AppRestartRecovery\RecoverySettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AppRestartRecovery\RestartSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\Common\DialogControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\Common\DialogControlCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\Common\DialogsDefaults.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\Common\IDialogControlHost.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\TaskDialogs\TaskDialog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\TaskDialogs\TaskDialogBar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\TaskDialogs\TaskDialogButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\TaskDialogs\TaskDialogButtonBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\TaskDialogs\TaskDialogClosingEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\TaskDialogs\TaskDialogCommandLink.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\TaskDialogs\TaskDialogControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\TaskDialogs\TaskDialogExpandedInfoMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\TaskDialogs\TaskDialogHyperlinkClickedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\TaskDialogs\TaskDialogProgressBar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\TaskDialogs\TaskDialogRadioButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\TaskDialogs\TaskDialogResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\TaskDialogs\TaskDialogStandardButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\TaskDialogs\TaskDialogStandardIcon.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\TaskDialogs\TaskDialogStartupLocation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\TaskDialogs\TaskDialogTickEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interop\Dialogs\DialogShowState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interop\Dialogs\TaskDialogs\NativeTaskDialog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NetworkList\Network.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NetworkList\NetworkCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NetworkList\NetworkConnection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NetworkList\NetworkConnectionCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NetworkList\NetworkListManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PowerManagement\BatteryState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PowerManagement\EventManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PowerManagement\MessageManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PowerManagement\PersonalityGuids.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PowerManagement\Power.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PowerManagement\PowerManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PowerManagement\PowerManagerException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PowerManagement\PowerPersonality.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PowerManagement\PowerSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SafeHandles\SafeIconHandle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SafeHandles\SafeRegionHandle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SafeHandles\SafeWindowHandle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SafeHandles\ZeroInvalidHandle.cs" />
+  </ItemGroup>
+</Project>

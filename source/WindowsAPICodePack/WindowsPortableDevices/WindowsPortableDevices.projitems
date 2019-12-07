@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>dfe309f3-5fc4-48e2-b26d-274f1033b41e</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>WindowsPortableDevices</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)IPortableDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IPortableDeviceManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NotConnectedException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDeviceManager.cs" />
+  </ItemGroup>
+</Project>

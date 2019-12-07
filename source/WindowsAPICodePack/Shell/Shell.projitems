@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>ec2b98cc-6f10-4e51-8d2a-17595dad65eb</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Shell</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogCheckBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogComboBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogControlCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogFilter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogFilterCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogFolderChangeEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogGroupBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogLabel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogMenu.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogProminentControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogRadioButtonList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogSeperator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogStandardFilters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogTextBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonOpenFileDialog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonSaveFileDialog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\ICommonFileDialogIndexedControls.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\EnumUnknown.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\EventHandlerExtensionMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\FileOperation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\SearchCondition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\SearchConditionFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellFile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellFileSystemFolder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellFolder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellFolderItems.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellItemArray.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellLink.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellNonFileSystemFolder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellNonFileSystemItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellObjectCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellObjectContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellObjectFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellSavedSearchCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellSearchCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellSearchConnector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellSearchFolder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellThumbnail.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\SingleInstance.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CommandLinkWinforms.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CommandLinkWPF.xaml.cs">
+      <DependentUpon>CommandLinkWPF.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)DesktopWindowManager\DesktopWindowManagerNativeMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DesktopWindowManager\GlassEvents.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DesktopWindowManager\GlassForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)DesktopWindowManager\GlassWindow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\CommonControlException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowser.WPF.xaml.cs">
+      <DependentUpon>ExplorerBrowser.WPF.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowserContentOptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowserEnums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowserEvents.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowserPaneVisibility.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowserViewEvents.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\NavigationLog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\NavigationLogEnums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\NavigationLogEvents.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\NavigationOptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)KnownFolders\FileSystemKnownFolder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)KnownFolders\IKnownFolder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)KnownFolders\KnownFolderHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)KnownFolders\KnownFolders.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)KnownFolders\KnownFolderSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)KnownFolders\NonFileSystemKnownFolder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)KnownFolders\RetrievalOptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\IShellProperty.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\ShellProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\ShellProperty.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\ShellPropertyCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\ShellPropertyDescription.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\ShellPropertyDescriptionsCache.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\ShellPropertyEnumType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\ShellPropertyFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\ShellPropertyWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\StronglyTypedProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\SystemProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\WindowProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShellObjectWatcher\ChangeNotifyEventManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShellObjectWatcher\ChangeNotifyLock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShellObjectWatcher\MessageListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShellObjectWatcher\MessageListenerFilter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShellObjectWatcher\ShellObjectNotificationEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShellObjectWatcher\ShellObjectWatcher.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StockIcons\StockIcon.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StockIcons\StockIcons.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\JumpList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\JumpListCustomCategory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\JumpListCustomCategoryCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\JumpListItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\JumpListItemCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\JumpListLink.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\JumpListSeparator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\TabbedThumbnail.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\TabbedThumbnailBitmapRequestedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\TabbedThumbnailClosedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\TabbedThumbnailEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\TabbedThumbnailManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\TabbedThumbnailProxyWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\TabbedThumbnailScreenCapture.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\TaskbarEnums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\TaskbarInterfaces.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\TaskbarList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\TaskbarManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\TaskbarWindow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\TaskbarWindowManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\ThumbnailButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\ThumbnailButtonClickedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\ThumbnailToolbarManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\ThumbnailToolbarProxyWindow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\UserRemovedJumpListItemsEventArg.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\CommandLinkWPF.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowser.WPF.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Design\ShellObjects.cd" />
+    <None Include="$(MSBuildThisFileDirectory)Design\ShellThumbnailClassDiagram.cd" />
+    <None Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowserDiagram.cd" />
+  </ItemGroup>
+</Project>
