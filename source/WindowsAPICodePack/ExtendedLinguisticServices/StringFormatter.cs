@@ -18,11 +18,9 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// <returns>The resulting string</returns>
         public string Format(MappingDataRange dataRange)
         {
-            if (dataRange == null) { throw new ArgumentNullException(nameof(dataRange)); }
+            if (dataRange == null) throw new ArgumentNullException(nameof(dataRange));
 
-            byte[] data = dataRange.GetData();
-            string resultText = Encoding.Unicode.GetString(data);
-            return resultText;
+            return Encoding.Unicode.GetString(dataRange.GetData());
         }
 
         /// <summary>
@@ -33,7 +31,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// <returns>An array of strings, one per <see cref="MappingDataRange">MappingDataRange</see>.</returns>
         public string[] FormatAll(MappingPropertyBag bag)
         {
-            if (bag == null) { throw new ArgumentNullException(nameof(bag)); }
+            if (bag == null) throw new ArgumentNullException(nameof(bag));
 
             MappingDataRange[] dataRanges = bag.GetResultRanges();
             string[] results = new string[dataRanges.Length];

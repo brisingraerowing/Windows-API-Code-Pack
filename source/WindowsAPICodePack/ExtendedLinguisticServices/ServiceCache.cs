@@ -37,8 +37,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             _cacheLock.EnterReadLock();
             try
             {
-                IntPtr result;
-                _guidToService.TryGetValue(guid, out result);
+                _guidToService.TryGetValue(guid, out IntPtr result);
                 return result;
             }
             finally
@@ -90,10 +89,9 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             IntPtr pServices = originalPtr;
             for (int i = 0; i < services.Length; ++i)
             {
-                Guid guid = (Guid)Marshal.PtrToStructure(
+                var guid = (Guid)Marshal.PtrToStructure(
                     (IntPtr)((ulong)pServices + InteropTools.OffsetOfGuidInService), InteropTools.TypeOfGuid);
-                IntPtr cachedValue;
-                _guidToService.TryGetValue(guid, out cachedValue);
+                _guidToService.TryGetValue(guid, out IntPtr cachedValue);
                 if (cachedValue == IntPtr.Zero)
                 {
                     _guidToService.Add(guid, pServices);
@@ -124,11 +122,11 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
                 // This should not fail.
                 for (int i = 0; i < length; ++i)
                 {
-                    Guid guid = (Guid)Marshal.PtrToStructure(
-                        (IntPtr)((UInt64)pServices + InteropTools.OffsetOfGuidInService),
+                    var guid = (Guid)Marshal.PtrToStructure(
+                        (IntPtr)((ulong)pServices + InteropTools.OffsetOfGuidInService),
                         InteropTools.TypeOfGuid);
                     _guidToService.Remove(guid);
-                    pServices = (IntPtr)((UInt64)pServices + InteropTools.SizeOfService);
+                    pServices = (IntPtr)((ulong)pServices + InteropTools.SizeOfService);
                 }
                 succeeded = true;
             }
@@ -151,9 +149,9 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             // The correctness of this code relies on the
             // fact that there can be no Int64.MaxValue / 2
             // executing this code at the same time.
-            if (Interlocked.Increment(ref _resourceRefCount) > Int64.MaxValue / 2)
+            if (Interlocked.Increment(ref _resourceRefCount) > long.MaxValue / 2)
             {
-                Interlocked.Decrement(ref _resourceRefCount);
+                _ = Interlocked.Decrement(ref _resourceRefCount);
                 return false;
             }
             return true;
@@ -176,7 +174,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 
                     FreeAllServices();
 
-                Interlocked.CompareExchange(ref _finalized, 1, 0);
+                _ = Interlocked.CompareExchange(ref _finalized, 1, 0);
             }
         }
 

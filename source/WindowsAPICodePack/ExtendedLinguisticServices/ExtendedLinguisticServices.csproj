@@ -155,7 +155,6 @@
     <Compile Include="LinguisticException.cs" />
     <Compile Include="MappingActionAsyncResult.cs" />
     <Compile Include="MappingAsyncResult.cs" />
-    <Compile Include="MappingAvailableServices.cs" />
     <Compile Include="MappingDataRange.cs" />
     <Compile Include="MappingEnumOptions.cs" />
     <Compile Include="MappingPropertyBag.cs" />
@@ -208,6 +207,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Win32NativeGuids\Win32NativeGuids.csproj">
+      <Project>{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}</Project>
+      <Name>Win32NativeGuids</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Win32Native\Win32Native.csproj">
       <Project>{6c1ad76c-8eeb-4b2d-b6b4-f9b7234a92fb}</Project>
       <Name>Win32Native</Name>

@@ -19,14 +19,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// </summary>
         /// <param name="dataRange">The <see cref="MappingDataRange">MappingDataRange</see> to convert</param>
         /// <returns>The resulting string array</returns>
-        public string[] Format(MappingDataRange dataRange)
-        {
-            if (dataRange == null) { throw new ArgumentNullException(nameof(dataRange)); }
-
-            byte[] data = dataRange.GetData();
-            string resultText = Encoding.Unicode.GetString(data);
-            return resultText.Split(Separator, StringSplitOptions.RemoveEmptyEntries);
-        }
+        public string[] Format(MappingDataRange dataRange) => dataRange == null ? throw new ArgumentNullException(nameof(dataRange)) : Encoding.Unicode.GetString(dataRange.GetData()).Split(Separator, StringSplitOptions.RemoveEmptyEntries);
 
         /// <summary>
         /// Uses <see cref="Format(MappingDataRange)">Format</see> to format all the ranges of the supplied
@@ -36,7 +29,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// <returns>An array of string arrays, one per <see cref="MappingDataRange">MappingDataRange</see>.</returns>
         public string[][] FormatAll(MappingPropertyBag bag)
         {
-            if (bag == null) { throw new ArgumentNullException(nameof(bag)); }
+            if (bag == null) throw new ArgumentNullException(nameof(bag));
 
             MappingDataRange[] dataRanges = bag.GetResultRanges();
             string[][] results = new string[dataRanges.Length][];

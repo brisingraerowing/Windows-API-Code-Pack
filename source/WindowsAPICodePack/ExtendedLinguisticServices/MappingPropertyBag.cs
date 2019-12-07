@@ -22,8 +22,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 
         internal MappingPropertyBag(MappingOptions options, string text)
         {
-            _serviceCache = ServiceCache.Instance;
-            if (!_serviceCache.RegisterResource())
+            if (!(_serviceCache = ServiceCache.Instance).RegisterResource())
 
                 throw new LinguisticException();
 
@@ -51,12 +50,14 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// </summary>
         public MappingDataRange[] GetResultRanges()
         {
-            MappingDataRange[] result = new MappingDataRange[_win32PropertyBag._rangesCount];
+            var result = new MappingDataRange[_win32PropertyBag._rangesCount];
             for (int i = 0; i < result.Length; ++i)
             {
-                MappingDataRange range = new MappingDataRange();
-                range._win32DataRange = InteropTools.Unpack<Win32DataRange>(
-                    (IntPtr)((UInt64)_win32PropertyBag._ranges + ((UInt64)i * InteropTools.SizeOfWin32DataRange)));
+                var range = new MappingDataRange
+                {
+                    _win32DataRange = InteropTools.Unpack<Win32DataRange>(
+                    (IntPtr)((ulong)_win32PropertyBag._ranges + ((ulong)i * InteropTools.SizeOfWin32DataRange)))
+                };
                 result[i] = range;
             }
             return result;
@@ -69,11 +70,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// <typeparam name="T">The type with which <see cref="IMappingFormatter{T}">IMappingFormatter</see> is parameterized.</typeparam>
         /// <param name="formatter">The formatter to be used in the formatting.</param>
         /// <returns></returns>
-        public T[] FormatData<T>(IMappingFormatter<T> formatter)
-        {
-            if (formatter == null) throw new ArgumentNullException(nameof(formatter));
-            return formatter.FormatAll(this);
-        }
+        public T[] FormatData<T>(IMappingFormatter<T> formatter) => formatter == null ? throw new ArgumentNullException(nameof(formatter)) : formatter.FormatAll(this);
 
         private bool DisposeInternal()
         {
@@ -83,11 +80,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 
             uint hResult = Win32NativeMethods.MappingFreePropertyBag(ref _win32PropertyBag);
 
-            if (hResult != 0)
-
-                throw new LinguisticException(hResult);
-
-            return true;
+            return hResult != 0 ? throw new LinguisticException(hResult) : true;
         }
 
         /// <summary>
@@ -110,7 +103,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
                 _serviceCache.UnregisterResource();
                 InteropTools.Free<Win32Options>(ref _options);
                 _text.Free();
-                Interlocked.CompareExchange(ref _isFinalized, 1, 0);
+                _ = Interlocked.CompareExchange(ref _isFinalized, 1, 0);
             }
         }
     }
