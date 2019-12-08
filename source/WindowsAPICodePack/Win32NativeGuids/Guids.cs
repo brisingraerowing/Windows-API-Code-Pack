@@ -16,6 +16,104 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
 
     }
 
+    public static class PortableDevices
+
+    {
+
+        public const string IEnumPortableDeviceObjectID = "10ece955-cf41-4728-bfa0-41eedf1bbf19";
+        public const string IPortableDevice = "625e2df8-6392-4cf0-9ad1-3cfa5f17775c";
+        public const string IPortableDeviceCapabilities = "2c8c6dbf-e3dc-4061-becc-8542e810d126";
+        public const string IPortableDeviceContent = "6a96ed84-7c73-4480-9938-bf5af477d426";
+        public const string IPortableDeviceContent2 = "9b4add96-f6bf-4034-8708-eca72bf10554";
+        public const string IPortableDeviceDataStream = "88e04db3-1012-4d64-9996-f703a950d3f4";
+        public const string IPortableDeviceEventCallback = "a8792a31-f385-493c-a893-40f64eb45f6e";
+        public const string IPortableDeviceManager = "a1567595-4c2f-4574-a6fa-ecef917b9a40";
+        public const string IPortableDeviceProperties = "7f6d695c-03df-4439-a809-59266beee3a6";
+        public const string IPortableDevicePropertiesBulk = "482b05c0-4056-44ed-9e0f-5e23b009da93";
+        public const string IPortableDevicePropertiesBulkCallback = "9deacb80-11e8-40e3-a9f3-f557986a7845";
+        public const string IPortableDeviceResources = "fd8878ac-d841-4d17-891c-e6829cdb6934";
+        public const string IPortableDeviceService = "d3bd3a44-d7b5-40a9-98b7-2fa4d01dec08";
+        public const string IPortableDeviceServiceCapabilities = "24dbd89d-413e-43e0-bd5b-197f3c56c886";
+        public const string IPortableDeviceUnitsStream = "5e98025f-bfc4-47a2-9a5f-bc900a507c67";
+        public const string IPortableDeviceServiceMethods = "e20333c9-fd34-412d-a381-cc6f2d820df7";
+        public const string IPortableDeviceServiceMethodCallback = "c424233c-afce-4828-a756-7ed7a2350083";
+        public const string IPortableDeviceServiceManager = "a8abc4e9-a84a-47a9-80b3-c5d9b172a961";
+        public const string IPortableDeviceKeyCollection = "dada2357-e0ad-492e-98db-dd61c53ba353";
+        public const string IPortableDevicePropVariantCollection = "89b2e422-4f1b-4316-bcef-a44afea83eb3";
+        public const string IPortableDeviceValues = "6848f6f2-3155-4f86-b6f5-263eeeab3143";
+        public const string IPortableDeviceValuesCollection = "6e3f2d79-4e07-48c4-8208-d8c2e5af4a99";
+
+        public const string PortableDeviceFTM = "f7c0039a-4762-488a-b4b3-760ef9a1ba9b";
+        [Obsolete("This CLSID does not aggregates the free-threaded marshaler and is here for legacy reasons. Use the IPortableDeviceFTM constant instead.")]
+        public const string PortableDevice = "728a21c5-3d9e-48d7-9810-864848f0f404";
+        public const string PortableDeviceManager = "0af10cec-2ecd-4b92-9581-34f6ae0637f3";
+
+    }
+
+    public static class MediaDevices
+
+    {
+
+        public const string IComponentAuthenticate = "A9889C00-6D2B-11d3-8496-00C04F79DBC0";
+        public const string IMDServiceProvider = "1DCB3A10-33ED-11d3-8470-00C04F79DBC0";
+        public const string IMDServiceProvider2 = "B2FA24B7-CDA3-4694-9862-413AE1A34819";
+        public const string IMDServiceProvider3 = "4ed13ef3-a971-4d19-9f51-0e1826b2da57";
+        public const string IMDSPDevice = "1DCB3A12-33ED-11d3-8470-00C04F79DBC0";
+        public const string IMDSPDevice2 = "420D16AD-C97D-4e00-82AA-00E9F4335DDD";
+        public const string IMDSPDevice3 = "1a839845-fc55-487c-976f-ee38ac0e8c4e";
+        public const string IMDSPDeviceControl = "1DCB3A14-33ED-11d3-8470-00C04F79DBC0";
+        public const string IMDSPDirectTransfer = "c2fe57a8-9304-478c-9ee4-47e397b912d7";
+        public const string IMDSPEnumDevice = "1DCB3A11-33ED-11d3-8470-00C04F79DBC0";
+        public const string IMDSPEnumStorage = "1DCB3A15-33ED-11d3-8470-00C04F79DBC0";
+        public const string IMDSPObject = "1DCB3A18-33ED-11d3-8470-00C04F79DBC0";
+        public const string IMDSPObject2 = "3f34cd3e-5907-4341-9af9-97f4187c3aa5";
+        public const string IMDSPObjectInfo = "1DCB3A19-33ED-11d3-8470-00C04F79DBC0";
+        public const string IMDSPRevoked = "A4E8F2D4-3F31-464d-B53D-4FC335998184";
+        public const string IMDSPStorage = "1DCB3A16-33ED-11d3-8470-00C04F79DBC0";
+        public const string IMDSPStorage2 = "0A5E07A5-6454-4451-9C36-1C6AE7E2B1D6";
+        public const string IMDSPStorage3 = "6C669867-97ED-4a67-9706-1C5529D2A414";
+        public const string IMDSPStorage4 = "3133b2c4-515c-481b-b1ce-39327ecb4f74";
+        public const string IMDSPStorageGlobals = "1DCB3A17-33ED-11d3-8470-00C04F79DBC0";
+        public const string ISCPSecureAuthenticate = "1DCB3A0F-33ED-11d3-8470-00C04F79DBC0";
+        public const string ISCPSecureAuthenticate2 = "B580CFAE-1672-47e2-ACAA-44BBECBCAE5B";
+        public const string ISCPSecureExchange = "1DCB3A0E-33ED-11d3-8470-00C04F79DBC0";
+        public const string ISCPSecureExchange2 = "6C62FC7B-2690-483F-9D44-0A20CB35577C";
+        public const string ISCPSecureExchange3 = "ab4e77e4-8908-4b17-bd2a-b1dbe6dd69e1";
+        public const string ISCPSecureQuery = "1DCB3A0D-33ED-11d3-8470-00C04F79DBC0";
+        public const string ISCPSecureQuery2 = "EBE17E25-4FD7-4632-AF46-6D93D4FCC72E";
+        public const string ISCPSecureQuery3 = "B7EDD1A2-4DAB-484b-B3C5-AD39B8B4C0B1";
+        public const string ISCPSession = "88a3e6ed-eee4-4619-bbb3-fd4fb62715d1";
+        public const string IWMDeviceManager = "1DCB3A00-33ED-11d3-8470-00C04F79DBC0";
+        public const string IWMDeviceManager2 = "923E5249-8731-4c5b-9B1C-B8B60B6E46AF";
+        public const string IWMDeviceManager3 = "af185c41-100d-46ed-be2e-9ce8c44594ef";
+        public const string IWMDMDevice = "1DCB3A02-33ED-11d3-8470-00C04F79DBC0";
+        public const string IWMDMDevice2 = "E34F3D37-9D67-4fc1-9252-62D28B2F8B55";
+        public const string IWMDMDevice3 = "6c03e4fe-05db-4dda-9e3c-06233a6d5d65";
+        public const string IWMDMDeviceControl = "1DCB3A04-33ED-11d3-8470-00C04F79DBC0";
+        public const string IWMDMDeviceSession = "82af0a65-9d96-412c-83e5-3c43e4b06cc7";
+        public const string IWMDMEnumDevice = "1DCB3A01-33ED-11d3-8470-00C04F79DBC0";
+        public const string IWMDMEnumStorage = "1DCB3A05-33ED-11d3-8470-00C04F79DBC0";
+        public const string IWMDMMetaData = "EC3B0663-0951-460a-9A80-0DCEED3C043C";
+        public const string IWMDMNotification = "3F5E95C0-0F43-4ed4-93D2-C89A45D59B81";
+        public const string IWMDMObjectInfo = "1DCB3A09-33ED-11d3-8470-00C04F79DBC0";
+        public const string IWMDMOperation = "1DCB3A0B-33ED-11d3-8470-00C04F79DBC0";
+        public const string IWMDMOperation2 = "33445B48-7DF7-425c-AD8F-0FC6D82F9F75";
+        public const string IWMDMOperation3 = "d1f9b46a-9ca8-46d8-9d0f-1ec9bae54919";
+        public const string IWMDMProgress = "1DCB3A0C-33ED-11d3-8470-00C04F79DBC0";
+        public const string IWMDMProgress2 = "3A43F550-B383-4e92-B04A-E6BBC660FEFC";
+        public const string IWMDMProgress3 = "21DE01CB-3BB4-4929-B21A-17AF3F80F658";
+        public const string IWMDMRevoked = "EBECCEDB-88EE-4e55-B6A4-8D9F07D696AA";
+        public const string IWMDMStorage = "1DCB3A06-33ED-11d3-8470-00C04F79DBC0";
+        public const string IWMDMStorage2 = "1ED5A144-5CD5-4683-9EFF-72CBDB2D9533";
+        public const string IWMDMStorage3 = "97717EEA-926A-464e-96A4-247B0216026E";
+        public const string IWMDMStorage4 = "c225bac5-a03a-40b8-9a23-91cf478c64a6";
+        public const string IWMDMStorageControl = "1DCB3A08-33ED-11d3-8470-00C04F79DBC0";
+        public const string IWMDMStorageControl2 = "972C2E88-BD6C-4125-8E09-84F837E637B6";
+        public const string IWMDMStorageControl3 = "B3266365-D4F3-4696-8D53-BD27EC60993A";
+        public const string IWMDMStorageGlobals = "1DCB3A07-33ED-11d3-8470-00C04F79DBC0";
+
+    }
+
 }
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.Core
@@ -625,7 +723,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.ExtendedLinguisticServi
         /// <summary>
         /// The guid of the Microsoft Language Detection service.
         /// </summary>
-        public const string LanguageDetection =            "CF7E00B1-909B-4d95-A8F4-611F7C377702";
+        public const string LanguageDetection = "CF7E00B1-909B-4d95-A8F4-611F7C377702";
 
         /// <summary>
         /// The guid of the Microsoft Script Detection service.
@@ -640,7 +738,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.ExtendedLinguisticServi
         /// <summary>
         /// The guid of the Microsoft Simplified Chinese to Traditional Chinese Transliteration service.
         /// </summary>
-        public const string TransliterationHansToHant ="3CACCDC8-5590-42dc-9A7B-B5A6B5B3B63B";
+        public const string TransliterationHansToHant = "3CACCDC8-5590-42dc-9A7B-B5A6B5B3B63B";
 
         /// <summary>
         /// The guid of the Microsoft Malayalam to Latin Transliteration service.

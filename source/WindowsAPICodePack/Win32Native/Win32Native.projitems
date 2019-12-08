@@ -126,7 +126,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CollectionInterfaces\IPortableDeviceValues.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CollectionInterfaces\IPortableDeviceValuesCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\Enums.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\WPDCOMGuids.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Core\Resources\LocalizedMessages.resx">
