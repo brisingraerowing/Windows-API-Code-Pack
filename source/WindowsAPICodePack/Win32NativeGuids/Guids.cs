@@ -111,6 +111,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
         public const string IWMDMStorageControl2 = "972C2E88-BD6C-4125-8E09-84F837E637B6";
         public const string IWMDMStorageControl3 = "B3266365-D4F3-4696-8D53-BD27EC60993A";
         public const string IWMDMStorageGlobals = "1DCB3A07-33ED-11d3-8470-00C04F79DBC0";
+        public const string IWMDMLogger = "110A3200-5A79-11d3-8D78-444553540000";
 
     }
 
