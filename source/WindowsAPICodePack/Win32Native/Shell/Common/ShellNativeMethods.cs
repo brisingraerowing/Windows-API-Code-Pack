@@ -1018,7 +1018,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         /// Cluster Shared Volume File System (CsvFS) Yes
         /// Resilient File System (ReFS) Yes </remarks>
 
-        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool CopyFileEx(string lpExistingFileName, string lpNewFileName,
    CopyProgressRoutine lpProgressRoutine, IntPtr lpData, ref bool pbCancel,

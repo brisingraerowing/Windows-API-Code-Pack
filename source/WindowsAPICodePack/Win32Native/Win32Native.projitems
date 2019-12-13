@@ -101,7 +101,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Taskbar\TabbedThumbnailNativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Taskbar\TaskbarCOMInterfaces.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Taskbar\TaskbarNativeMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\ClientInterfaces\IWMDeviceManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\ClientInterfaces\IWMDMDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\Consts.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\Enums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\Structures.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\ClientInterfaces\IEnumPortableDeviceObjectIDs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\ClientInterfaces\IPortableDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\ClientInterfaces\IPortableDeviceCapabilities.cs" />
