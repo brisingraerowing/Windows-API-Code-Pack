@@ -15,7 +15,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
     /// The <see cref="IPortableDeviceCapabilities"/> interface a variety of device capabilities, including supported formats, commands, and functional objects. You can retrieve this interface from a device by calling <see cref="IPortableDevice.Capabilities"/>.
     /// </summary>
     [ComImport,
-        Guid(WPDCOMGuids.IPortableDeviceCapabilities),
+        Guid(Win32Native.Guids.PortableDevices.IPortableDeviceCapabilities),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceCapabilities
     {

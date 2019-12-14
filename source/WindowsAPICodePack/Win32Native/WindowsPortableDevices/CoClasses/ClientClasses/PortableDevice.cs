@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CoClasses.ClientClasses
 {
     [ComImport,
-        Guid(WPDCOMGuids.PortableDeviceFTM),
+        Guid(Win32Native.Guids.PortableDevices.PortableDeviceFTM),
         ClassInterface(ClassInterfaceType.None),
         TypeLibType(TypeLibTypeFlags.FCanCreate)]
     public class PortableDevice : IPortableDevice

@@ -10,7 +10,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CollectionInterfa
 namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfaces
 {
     [ComImport,
-        Guid(WPDCOMGuids.IPortableDeviceServiceMethodCallback),
+        Guid(Win32Native.Guids.PortableDevices.IPortableDeviceServiceMethodCallback),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceServiceMethodCallback
     {

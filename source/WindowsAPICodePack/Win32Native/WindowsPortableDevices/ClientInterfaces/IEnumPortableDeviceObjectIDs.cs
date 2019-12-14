@@ -10,7 +10,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CollectionInt
     /// The <see cref="IEnumPortableDeviceObjectIDs"/> interface enumerates the objects on a portable device. Get this interface initially by calling <see cref="IPortableDeviceContent.EnumObjects"/> on a device.
     /// </summary>
     [ComImport(),
-        Guid(WPDCOMGuids.IEnumPortableDeviceObjectID),
+        Guid(Win32Native.Guids.PortableDevices.IEnumPortableDeviceObjectID),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IEnumPortableDeviceObjectIDs
     {

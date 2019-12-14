@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CollectionInterfaces
 {
     [ComImport,
-        Guid(WPDCOMGuids.IPortableDeviceValues),
+        Guid(Win32Native.Guids.PortableDevices.IPortableDeviceValues),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceValues
     {

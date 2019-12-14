@@ -10,7 +10,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CollectionInterfa
 namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfaces
 {
     [ComImport,
-        Guid(WPDCOMGuids.IPortableDevicePropertiesBulk),
+        Guid(Win32Native.Guids.PortableDevices.IPortableDevicePropertiesBulk),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDevicePropertiesBulk
     {

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CollectionInterfaces
 {
     [ComImport,
-        Guid(WPDCOMGuids.IPortableDeviceValuesCollection),
+        Guid(Win32Native.Guids.PortableDevices.IPortableDeviceValuesCollection),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceValuesCollection
     {

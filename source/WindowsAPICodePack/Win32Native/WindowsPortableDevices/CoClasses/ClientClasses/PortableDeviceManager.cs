@@ -11,7 +11,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfaces;
 namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CoClasses.ClientClasses
 {
     [ComImport,
-        Guid(WPDCOMGuids.PortableDeviceManager),
+        Guid(Win32Native.Guids.PortableDevices.PortableDeviceManager),
         ClassInterface(ClassInterfaceType.None),
         TypeLibType(TypeLibTypeFlags.FCanCreate)]
     public class PortableDeviceManager : IPortableDeviceManager

@@ -11,13 +11,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
 {
     /// <summary>
     /// <para>The <see cref="IPortableDevice"/> interface provides access to a portable device.</para>
-    /// <para>To create and open this interface, first call <see cref="CoCreateInstance"/> with <see cref="WPDCOMGuids.PortableDeviceFTM"/> or <see cref="WPDCOMGuids.PortableDevice"/> to retrieve an <see cref="IPortableDevice"/> interface, and then call <see cref="Open"/> to open a connection to the device.</para>
+    /// <para>To create and open this interface, first call <see cref="CoCreateInstance"/> with <see cref="Win32Native.Guids.PortableDevices.PortableDeviceFTM"/> or <see cref="Win32Native.Guids.PortableDevices.PortableDevice"/> to retrieve an <see cref="IPortableDevice"/> interface, and then call <see cref="Open"/> to open a connection to the device.</para>
     /// </summary>
     /// <remarks><para>The client interfaces are designed to be used for any WPD object; it is not necessary to create a new instance for each object referenced by the application. After an application opens an instance of the <see cref="IPortableDevice"/> interface, it should open and cache any other WPD client interfaces that it will require.</para>
-    /// <para>For Windows 7, <see cref="IPortableDevice"/> supports two CLSIDs for <see cref="CoCreateInstance"/>. <see cref="WPDCOMGuids.PortableDevice"/> returns an <see cref="IPortableDevice"/> pointer that does not aggregate the free-threaded marshaler; <see cref="WPDCOMGuids.PortableDeviceFTM"/> is a new CLSID that returns an <see cref="IPortableDevice"/> pointer that aggregates the free-threaded marshaler.Both pointers support the same functionality otherwise.</para>
-    /// <para>Applications that live in Single Threaded Apartments should use <see cref="WPDCOMGuids.PortableDeviceFTM"/> as this eliminates the overhead of interface pointer marshaling. <see cref="WPDCOMGuids.PortableDevice"/> is still supported for legacy applications.</para></remarks>
+    /// <para>For Windows 7, <see cref="IPortableDevice"/> supports two CLSIDs for <see cref="CoCreateInstance"/>. <see cref="Win32Native.Guids.PortableDevices.PortableDevice"/> returns an <see cref="IPortableDevice"/> pointer that does not aggregate the free-threaded marshaler; <see cref="Win32Native.Guids.PortableDevices.PortableDeviceFTM"/> is a new CLSID that returns an <see cref="IPortableDevice"/> pointer that aggregates the free-threaded marshaler.Both pointers support the same functionality otherwise.</para>
+    /// <para>Applications that live in Single Threaded Apartments should use <see cref="Win32Native.Guids.PortableDevices.PortableDeviceFTM"/> as this eliminates the overhead of interface pointer marshaling. <see cref="Win32Native.Guids.PortableDevices.PortableDevice"/> is still supported for legacy applications.</para></remarks>
     [ComImport(),
-        Guid(WPDCOMGuids.IPortableDevice),
+        Guid(Win32Native.Guids.PortableDevices.IPortableDevice),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDevice
     {
@@ -35,7 +35,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         /// <para>Administrators can restrict the access of portable devices to computers running on a network.For example, an administrator may restrict all Guest users to read-only access, while Authenticated users are given read/write access.</para>
         /// <para>Due to these security issues, if your application will not perform write operations, it should call the <see cref="Open"/> method and request read-only access by specifying GENERIC_READ for the WPD_CLIENT_DESIRED_ACCESS property that it supplies in the pClientInfo parameter.</para>
         /// <para>If your application requires write operations, it should call the <see cref="Open"/> method as shown in the following example code. The first time, it should request read/write access by passing the default WPD_CLIENT_DESIRED_ACCESS property in the pClientInfo parameter.If this first call fails and returns E_ACCESSDENIED, your application should call the <see cref="Open"/> method a second time and request read-only access by specifying GENERIC_READ for the WPD_CLIENT_DESIRED_ACCESS property that it supplies in the pClientInfo parameter.</para>
-        /// <para>Applications that live in Single Threaded Apartments should use <see cref="WPDCOMGuids.PortableDeviceFTM"/>, as this eliminates the overhead of interface pointer marshaling. <see cref="WPDCOMGuids.PortableDevice"/> is still supported for legacy applications.</para></remarks>
+        /// <para>Applications that live in Single Threaded Apartments should use <see cref="Win32Native.Guids.PortableDevices.PortableDeviceFTM"/>, as this eliminates the overhead of interface pointer marshaling. <see cref="Win32Native.Guids.PortableDevices.PortableDevice"/> is still supported for legacy applications.</para></remarks>
         /// <example>
         /// <code>
         /// const string CLIENT_NAME = "My WPD Application";
@@ -56,10 +56,10 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         ///     }
         ///     
         ///     // CoCreate an IPortableDeviceValues interface to hold the client information.
-        ///     hr = CoCreateInstance(WPDCOMGuids.PortableDeviceValues,
+        ///     hr = CoCreateInstance(Win32Native.Guids.PortableDevices.PortableDeviceValues,
         ///                           null,
         ///                           CLSCTX_INPROC_SERVER,
-        ///                           WPDCOMGuids.IPortableDeviceValues,
+        ///                           Win32Native.Guids.PortableDevices.IPortableDeviceValues,
         ///                           ref pClientInformation);
         ///     if (CoreErrorHelper.Succeeded(hr))
         ///     {
@@ -94,7 +94,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         ///     }
         ///     else
         ///     {
-        ///         // Failed to CoCreateInstance WPDCOMGuids.PortableDeviceValues for client information
+        ///         // Failed to CoCreateInstance Win32Native.Guids.PortableDevices.PortableDeviceValues for client information
         ///     }
         /// 
         ///     ClientInfoHR = pClientInformation.SetUnsignedIntegerValue(WPD_CLIENT_SECURITY_QUALITY_OF_SERVICE, SECURITY_IMPERSONATION);
@@ -106,10 +106,10 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         ///     if (CoreErrorHelper.Succeeded(hr))
         ///     {
         ///         // CoCreate an IPortableDevice interface
-        ///         hr = CoCreateInstance(WPDCOMGuids.PortableDeviceFTM,
+        ///         hr = CoCreateInstance(Win32Native.Guids.PortableDevices.PortableDeviceFTM,
         ///                               null,
         ///                               CLSCTX_INPROC_SERVER,
-        ///                               WPDCOMGuids.IPortableDevice,
+        ///                               Win32Native.Guids.PortableDevices.IPortableDevice,
         ///                               ref pDevice);
         /// 
         ///         if (CoreErrorHelper.Succeeded(hr))
@@ -133,7 +133,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         ///             {
         ///                 // The device successfully opened, obtain an instance of the Device into
         ///                 // ppDevice so the caller can be returned an opened IPortableDevice.
-        ///                 hr = pDevice.QueryInterface(WPDCOMGuids.IPortableDevice, ref ppDevice);
+        ///                 hr = pDevice.QueryInterface(Win32Native.Guids.PortableDevices.IPortableDevice, ref ppDevice);
         ///                 if (CoreErrorHelper.Failed(hr))
         ///                 {
         ///                     // Failed to QueryInterface the opened IPortableDevice
@@ -142,7 +142,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfa
         ///         }
         ///         else
         ///         {
-        ///             // Failed to CoCreateInstance WPDCOMGuids.PortableDevice
+        ///             // Failed to CoCreateInstance Win32Native.Guids.PortableDevices.PortableDevice
         ///         }
         ///     }
         /// 

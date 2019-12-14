@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfaces
 {
     [ComImport,
-        Guid(WPDCOMGuids.IPortableDeviceDataStream)]
+        Guid(Win32Native.Guids.PortableDevices.IPortableDeviceDataStream)]
     public interface IPortableDeviceDataStream : System.Runtime.InteropServices.ComTypes.IStream
     {
         HResult GetObjectID(

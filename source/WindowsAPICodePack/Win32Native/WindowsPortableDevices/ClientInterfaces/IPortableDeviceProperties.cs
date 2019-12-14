@@ -11,7 +11,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.Core;
 namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfaces
 {
     [ComImport,
-        Guid(WPDCOMGuids.IPortableDeviceProperties),
+        Guid(Win32Native.Guids.PortableDevices.IPortableDeviceProperties),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceProperties
     {
