@@ -687,7 +687,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public Action<uint, IShellItem, IShellItem, string> PreMoveItem { get; set; }
 
         public Action<uint, IShellItem, IShellItem, string, IShellItem> PostMoveItem { get; set; }
-
+        
         public Action<uint, IShellItem, IShellItem, string> PreCopyItem { get; set; }
 
         public Action<uint, IShellItem, IShellItem, string, IShellItem> PostCopyItem { get; set; }
@@ -721,7 +721,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                         prop.SetValue(this, null);
 
-                Marshal.ReleaseComObject(FileOperationProgressSinkInternal);
+            _ = Marshal.ReleaseComObject(FileOperationProgressSinkInternal);
 
                 // disposedValue = true;
             // }

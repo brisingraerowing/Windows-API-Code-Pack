@@ -1,4 +1,5 @@
 ﻿using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -27,7 +28,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices.ClientInterfaces
 
         HResult GetSerialNumber(
             [Out] out WMDMID pSerialNumber,
-            [Out, In] ref char[] abMac);
+            [Out, In] ref StringBuilder abMac);
 
         HResult GetPowerSource(
             [Out] out uint pdwPowerSource,
@@ -46,9 +47,65 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices.ClientInterfaces
             [Out] out WAVEFORMATEX ppFormatEx,
             [Out] out ushort pnFormatCount,
             [Out, MarshalAs(UnmanagedType.LPWStr)] out string pppwszMimeType,
-            [Out] ushort pnMimeTypeCount);
+            [Out] out ushort pnMimeTypeCount);
         
         HResult SendOpaqueCommand(
             [Out, In] ref OPAQUECOMMAND pCommand);
+    }
+
+    public interface IWMDMDevice2 : IWMDMDevice
+
+    {
+        HResult GetStorage(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszStorageName,
+            [Out,MarshalAs(UnmanagedType.Interface)] out IWMDMStorage ppStorage);
+        
+        HResult GetFormatSupport2(
+            [In] uint dwFlags,
+            [Out] out WAVEFORMATEX ppAudioFormatEx,
+            [Out] out ushort pnAudioFormatCount,
+            [Out] out VIDEOINFOHEADER ppVideoFormatEx,
+            [Out] out ushort pnVideoFormatCount,
+            [Out] out WMFILECAPABILITIES ppFileType,
+            [Out] out ushort pnFileTypeCount);
+        
+        HResult GetSpecifyPropertyPages(
+            [Out,MarshalAs(UnmanagedType.Interface)] out ISpecifyPropertyPages ppSpecifyPropPages,
+            [Out, MarshalAs(UnmanagedType.IUnknown)] out object pppUnknowns,
+            [Out] out uint pcUnks);
+        
+        HResult GetCanonicalName(
+            [Out, MarshalAs(UnmanagedType.LPWStr)] out string pwszPnPName,
+            [In] ushort nMaxChars);
+
+    }
+
+    public interface IWMDMDevice3 : IWMDMDevice2
+
+    {
+        HResult GetProperty(
+            [In,MarshalAs(UnmanagedType.LPWStr)] string pwszPropName,
+            [Out] out PropVariant pValue);
+        
+        HResult SetProperty(
+            [In,MarshalAs(UnmanagedType.LPWStr)] string pwszPropName,
+            [In] in PropVariant pValue);
+
+        HResult GetFormatCapability(
+            [In] WMDM_FORMATCODE format,
+            [Out] out WMDM_FORMAT_CAPABILITY pFormatSupport);
+        
+        HResult DeviceIoControl(
+            [In] uint dwIoControlCode,
+            [In] char[] lpInBuffer,
+            [In] uint nInBufferSize,
+            [Out] out char[] lpOutBuffer,
+            [In,Out] ref uint pnOutBufferSize);
+        
+        HResult FindStorage(
+            [In] WMDM_FIND_SCOPE findScope,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pwszUniqueID,
+            [Out, MarshalAs(UnmanagedType.Interface)] out IWMDMStorage ppStorage);
+
     }
 }

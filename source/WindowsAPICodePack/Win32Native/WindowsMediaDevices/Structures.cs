@@ -1,10 +1,11 @@
-﻿using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
+﻿using Microsoft.WindowsAPICodePack.Win32Native.MediaDevices.ClientInterfaces;
+using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices.ClientInterfaces
+namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
 {
     /// <summary>
     /// The WMDMID structure describes serial numbers and group IDs.
@@ -114,5 +115,36 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices.ClientInterfaces
         [FieldOffset(0)]
         public WMDM_PROP_VALUES_ENUM EnumeratedValidValues;
 
+    }
+    /// <summary>
+    /// The <see cref="WMDM_PROP_VALUES_ENUM"/> structure contains an enumerated set of valid values for a particular property in a particular property configuration.
+    /// </summary>
+    /// <remarks><para>This structure is used in the <see cref="WMDM_PROP_DESC"/> structure to describe an enumerated set of valid values. An enumerated set of valid values is applicable when <see cref="PropValidValuesForm.Enum"/> is selected from the <see cref="PropValidValuesForm"/> enumeration.</para>
+    /// <para>The caller is required to free the memory used by pValues. For an example of how to do this, see <a href="https://docs.microsoft.com/fr-fr/windows/win32/wmdm/wmdm-format-capability">WMDM_FORMAT_CAPABILITY</a>.</para></remarks>
+    /// <seealso cref="IWMDMDevice3.GetFormatCapability"/>
+    /// <seealso cref="PropValidValuesForm"/>
+    /// <seealso cref="WMDM_FORMAT_CAPABILITY"/>
+    /// <seealso cref="WMDM_PROP_CONFIG"/>
+    /// <seealso cref="WMDM_PROP_DESC"/>
+    /// <seealso cref="WMDM_PROP_VALUES_RANGE"/>
+    /// <seealso cref="https://docs.microsoft.com/fr-fr/windows/win32/wmdm/structures"/>
+    public struct WMDM_PROP_VALUES_ENUM
+    {
+        /// <summary>
+        /// Count of enumerated values.
+        /// </summary>
+        public ushort cEnumValues;
+        /// <summary>
+        /// An array of values. The size of the array is equal to the value of cEnumValues.
+        /// </summary>
+        public PropVariant[] pValues;
+    }
+
+    public struct OPAQUECOMMAND
+    {
+        public Guid guidCommand;
+        public uint dwDataLen;
+        public char pData;
+        public char[] abMAC;
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices.ClientInterfaces
+namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
 {
     public static class Consts
     {

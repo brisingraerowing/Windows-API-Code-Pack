@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.WindowsAPICodePack.Win32Native.MediaDevices.ClientInterfaces;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfaces;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CollectionInterfaces;
 
@@ -15,7 +16,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
     /// <remarks>
     /// This enumeration is used in the <see cref="WMDM_PROP_DESC"/> structure to specify the form of valid values for a property.
     /// </remarks>
-    /// <seealso cref="IWMDMDevice3::GetFormatCapability"/>
+    /// <seealso cref="IWMDMDevice3.GetFormatCapability"/>
     /// <seealso cref="WMDM_FORMAT_CAPABILITY"/>
     /// <seealso cref="WMDM_PROP_CONFIG"/>
     /// <seealso cref="WMDM_PROP_DESC"/>

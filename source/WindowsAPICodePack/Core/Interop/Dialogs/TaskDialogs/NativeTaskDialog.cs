@@ -25,12 +25,12 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
     /// </remarks>
     internal class NativeTaskDialog : IDisposable
     {
-        private TaskDialogNativeMethods.TaskDialogConfiguration nativeDialogConfig;
-        private NativeTaskDialogSettings settings;
+        private readonly TaskDialogNativeMethods.TaskDialogConfiguration nativeDialogConfig;
+        private readonly NativeTaskDialogSettings settings;
         private IntPtr hWndDialog;
-        private TaskDialog outerDialog;
+        private readonly TaskDialog outerDialog;
 
-        private IntPtr[] updatedStrings = new IntPtr[Enum.GetNames(typeof(TaskDialogNativeMethods.TaskDialogElements)).Length];
+        private readonly IntPtr[] updatedStrings = new IntPtr[Enum.GetNames(typeof(TaskDialogNativeMethods.TaskDialogElements)).Length];
         private IntPtr buttonArray, radioButtonArray;
 
         // Flag tracks whether our first radio 
@@ -88,16 +88,12 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             {
                 ShowState = DialogShowState.Showing;
 
-                int selectedButtonId;
-                int selectedRadioButtonId;
-                bool checkBoxChecked;
-
                 // Here is the way we use "vanilla" P/Invoke to call TaskDialogIndirect().  
                 HResult hresult = TaskDialogNativeMethods.TaskDialogIndirect(
                     nativeDialogConfig,
-                    out selectedButtonId,
-                    out selectedRadioButtonId,
-                    out checkBoxChecked);
+                    out int selectedButtonId,
+                    out int selectedRadioButtonId,
+                    out bool checkBoxChecked);
 
                 if (CoreErrorHelper.Failed(hresult))
                 {
@@ -171,7 +167,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                     break;
             }
 
-            SendMessageHelper(TaskDialogNativeMethods.TaskDialogMessages.ClickButton, id, 0);
+            _ = SendMessageHelper(TaskDialogNativeMethods.TaskDialogMessages.ClickButton, id, 0);
         }
 
         #region Main Dialog Proc
@@ -241,7 +237,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 // round-tripped when the marquee is
                 // is set to different states, so it never has to 
                 // be touched/sent again.
-                SendMessageHelper(TaskDialogNativeMethods.TaskDialogMessages.SetProgressBarMarquee, 1, 0);
+                _ = SendMessageHelper(TaskDialogNativeMethods.TaskDialogMessages.SetProgressBarMarquee, 1, 0);
                 UpdateProgressBarState(settings.ProgressBarState);
             }
 
@@ -337,7 +333,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         internal void UpdateProgressBarValue(int i)
         {
             AssertCurrentlyShowing();
-            SendMessageHelper(TaskDialogNativeMethods.TaskDialogMessages.SetProgressBarPosition, i, 0);
+            _ = SendMessageHelper(TaskDialogNativeMethods.TaskDialogMessages.SetProgressBarPosition, i, 0);
         }
 
         internal void UpdateProgressBarRange()
@@ -349,13 +345,13 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 settings.ProgressBarMaximum,
                 settings.ProgressBarMinimum);
 
-            SendMessageHelper(TaskDialogNativeMethods.TaskDialogMessages.SetProgressBarRange, 0, range);
+            _ = SendMessageHelper(TaskDialogNativeMethods.TaskDialogMessages.SetProgressBarRange, 0, range);
         }
 
         internal void UpdateProgressBarState(TaskDialogProgressBarState state)
         {
             AssertCurrentlyShowing();
-            SendMessageHelper(TaskDialogNativeMethods.TaskDialogMessages.SetProgressBarState, (int)state, 0);
+            _ = SendMessageHelper(TaskDialogNativeMethods.TaskDialogMessages.SetProgressBarState, (int)state, 0);
         }
 
         internal void UpdateText(string text) => UpdateTextCore(text, TaskDialogNativeMethods.TaskDialogElements.Content);
@@ -371,7 +367,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             AssertCurrentlyShowing();
 
             FreeOldString(element);
-            SendMessageHelper(
+            _ = SendMessageHelper(
                 TaskDialogNativeMethods.TaskDialogMessages.SetElementText,
                 (int)element,
                 (long)MakeNewString(s, element));
@@ -384,7 +380,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         private void UpdateIconCore(TaskDialogStandardIcon icon, TaskDialogNativeMethods.TaskDialogIconElement element)
         {
             AssertCurrentlyShowing();
-            SendMessageHelper(
+            _ = SendMessageHelper(
                 TaskDialogNativeMethods.TaskDialogMessages.UpdateIcon,
                 (int)element,
                 (long)icon);
@@ -393,7 +389,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         internal void UpdateCheckBoxChecked(bool cbc)
         {
             AssertCurrentlyShowing();
-            SendMessageHelper(
+            _ = SendMessageHelper(
                 TaskDialogNativeMethods.TaskDialogMessages.ClickVerification,
                 (cbc ? 1 : 0),
                 1);
@@ -402,7 +398,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         internal void UpdateElevationIcon(int buttonId, bool showIcon)
         {
             AssertCurrentlyShowing();
-            SendMessageHelper(
+            _ = SendMessageHelper(
                 TaskDialogNativeMethods.TaskDialogMessages.SetButtonElevationRequiredState,
                 buttonId,
                 Convert.ToInt32(showIcon));
@@ -411,22 +407,19 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         internal void UpdateButtonEnabled(int buttonID, bool enabled)
         {
             AssertCurrentlyShowing();
-            SendMessageHelper(
+            _ = SendMessageHelper(
                 TaskDialogNativeMethods.TaskDialogMessages.EnableButton, buttonID, enabled == true ? 1 : 0);
         }
 
         internal void UpdateRadioButtonEnabled(int buttonID, bool enabled)
         {
             AssertCurrentlyShowing();
-            SendMessageHelper(TaskDialogNativeMethods.TaskDialogMessages.EnableRadioButton,
+            _ = SendMessageHelper(TaskDialogNativeMethods.TaskDialogMessages.EnableRadioButton,
                 buttonID, enabled == true ? 1 : 0);
         }
 
-        internal void AssertCurrentlyShowing()
-        {
-            Debug.Assert(ShowState == DialogShowState.Showing,
+        internal void AssertCurrentlyShowing() => Debug.Assert(ShowState == DialogShowState.Showing,
                 "Update*() methods should only be called while native dialog is showing");
-        }
 
         #endregion
 
