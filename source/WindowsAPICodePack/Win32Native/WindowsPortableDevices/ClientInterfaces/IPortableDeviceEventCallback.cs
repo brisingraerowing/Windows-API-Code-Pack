@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CollectionInterfaces;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfaces
+namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 {
     [ComImport,
         Guid(Win32Native.Guids.PortableDevices.IPortableDeviceEventCallback),

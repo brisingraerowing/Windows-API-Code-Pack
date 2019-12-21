@@ -1,7 +1,5 @@
 ﻿using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
-using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfaces;
-using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CollectionInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CoClasses.ClientClasses
+namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 {
     [ComImport,
         Guid(Win32Native.Guids.PortableDevices.PortableDeviceFTM),

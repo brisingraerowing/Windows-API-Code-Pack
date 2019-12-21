@@ -1,5 +1,4 @@
-﻿using Microsoft.WindowsAPICodePack.Win32Native.MediaDevices.ClientInterfaces;
-using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
+﻿using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;

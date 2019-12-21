@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices.ClientInterfaces
+namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
 {
     [ComImport,
         Guid(Guids.MediaDevices.IWMDMMetaData),

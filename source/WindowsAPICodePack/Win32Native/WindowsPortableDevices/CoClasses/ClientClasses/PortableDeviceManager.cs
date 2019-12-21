@@ -6,9 +6,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
-using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfaces;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CoClasses.ClientClasses
+namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 {
     [ComImport,
         Guid(Win32Native.Guids.PortableDevices.PortableDeviceManager),

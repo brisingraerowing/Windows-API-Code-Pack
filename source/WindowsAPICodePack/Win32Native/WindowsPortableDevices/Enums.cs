@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfaces;
-using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CollectionInterfaces;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 {

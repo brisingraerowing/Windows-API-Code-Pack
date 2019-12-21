@@ -43,6 +43,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
         public const string IPortableDeviceValues = "6848f6f2-3155-4f86-b6f5-263eeeab3143";
         public const string IPortableDeviceValuesCollection = "6e3f2d79-4e07-48c4-8208-d8c2e5af4a99";
 
+        public const string IWpdSerializer = "b32f4002-bb27-45ff-af4f-06631c1e8dad";
+
         public const string PortableDeviceFTM = "f7c0039a-4762-488a-b4b3-760ef9a1ba9b";
         [Obsolete("This CLSID does not aggregates the free-threaded marshaler and is here for legacy reasons. Use the IPortableDeviceFTM constant instead.")]
         public const string PortableDevice = "728a21c5-3d9e-48d7-9810-864848f0f404";

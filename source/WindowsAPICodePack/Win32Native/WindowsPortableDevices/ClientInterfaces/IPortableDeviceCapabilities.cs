@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CollectionInterfaces;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfaces
+namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 {
     /// <summary>
     /// The <see cref="IPortableDeviceCapabilities"/> interface a variety of device capabilities, including supported formats, commands, and functional objects. You can retrieve this interface from a device by calling <see cref="IPortableDevice.Capabilities"/>.

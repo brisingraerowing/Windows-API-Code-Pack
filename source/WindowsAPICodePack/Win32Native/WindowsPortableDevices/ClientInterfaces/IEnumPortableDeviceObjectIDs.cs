@@ -4,7 +4,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfaces;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CollectionInterfaces
+namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 {
     /// <summary>
     /// The <see cref="IEnumPortableDeviceObjectIDs"/> interface enumerates the objects on a portable device. Get this interface initially by calling <see cref="IPortableDeviceContent.EnumObjects"/> on a device.

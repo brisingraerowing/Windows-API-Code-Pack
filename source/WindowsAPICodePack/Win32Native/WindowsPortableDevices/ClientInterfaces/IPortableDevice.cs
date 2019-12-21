@@ -5,11 +5,10 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
-using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CollectionInterfaces;
 
 // todo: for portable and media devices: implement interfaces for service providers
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfaces
+namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 {
     /// <summary>
     /// <para>The <see cref="IPortableDevice"/> interface provides access to a portable device.</para>

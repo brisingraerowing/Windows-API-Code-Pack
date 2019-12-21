@@ -7,22 +7,22 @@ using System.Text;
 namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
 {
     [ComImport,
-        Guid(Guids.MediaDevices.IWMDMEnumStorage),
+        Guid(Guids.MediaDevices.IMDSPEnumStorage),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IWMDMEnumStorage
+    public interface IMDSPEnumStorage
     {
         HResult Next(
             [In] uint celt,
-            [Out, MarshalAs(UnmanagedType.Interface)] out IWMDMStorage ppStorage,
+            [Out] out IMDSPStorage ppStorage,
             [Out] out uint pceltFetched);
-        
-        HResult  Skip(
-            [In] uint celt,
+
+        HResult Skip(
+           [In] uint celt,
             [Out] out uint pceltFetched);
-        
+
         HResult Reset();
-        
+
         HResult Clone(
-            [Out,MarshalAs(UnmanagedType.Interface)] IWMDMEnumStorage ppEnumStorage);
+            [Out] out IMDSPEnumStorage ppEnumStorage);
     }
 }

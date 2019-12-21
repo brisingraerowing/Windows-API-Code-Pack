@@ -118,6 +118,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\ClientInterfaces\IWMDMStorageGlobals.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\Consts.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\Enums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\ServiceProviderInterfaces\IMDServiceProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\ServiceProviderInterfaces\IMDSPDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\ServiceProviderInterfaces\IMDSPDeviceControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\ServiceProviderInterfaces\IMDSPDirectTransfer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\ServiceProviderInterfaces\IMDSPEnumDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\ServiceProviderInterfaces\IMDSPEnumStorage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\ServiceProviderInterfaces\IMDSPObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\Structures.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\ClientInterfaces\IEnumPortableDeviceObjectIDs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\ClientInterfaces\IPortableDevice.cs" />
@@ -143,6 +150,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CollectionInterfaces\IPortableDevicePropVariantCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CollectionInterfaces\IPortableDeviceValues.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CollectionInterfaces\IPortableDeviceValuesCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\DriverInterfaces\IWpdSerializer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\Enums.cs" />
   </ItemGroup>
   <ItemGroup>

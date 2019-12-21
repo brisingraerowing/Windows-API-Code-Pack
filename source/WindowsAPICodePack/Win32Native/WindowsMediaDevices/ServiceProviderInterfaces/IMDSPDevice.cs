@@ -5,60 +5,60 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
+namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
 {
     [ComImport,
-        Guid(Win32Native.Guids.MediaDevices.IWMDMDevice),
+        Guid(Guids.MediaDevices.IMDSPDevice),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IWMDMDevice
+    public interface IMDSPDevice
     {
         HResult GetName(
             [Out, MarshalAs(UnmanagedType.LPWStr)] out string pwszName,
             [In] ushort nMaxChars);
-
+        
         HResult GetManufacturer(
-            [Out, MarshalAs(UnmanagedType.LPWStr)] out string pwszName,
+            [Out,MarshalAs(UnmanagedType.LPWStr)] out string pwszName,
             [In] ushort nMaxChars);
-
+        
         HResult GetVersion(
             [Out] out uint pdwVersion);
-
+        
         HResult GetType(
             [Out] out uint pdwType);
-
+        
         HResult GetSerialNumber(
-            [Out] out WMDMID pSerialNumber,
-            [Out, In] ref StringBuilder abMac);
+            [Out] out PWMDMID pSerialNumber,
+            [Out,In] ref StringBuilder abMac);
 
         HResult GetPowerSource(
-            [Out] out uint pdwPowerSource,
-            [Out] out uint pdwPercentRemaining);
+            [Out] uint pdwPowerSource,
+            [Out] uint pdwPercentRemaining);
 
         HResult GetStatus(
             [Out] uint pdwStatus);
 
         HResult GetDeviceIcon(
-            [Out] out uint hIcon);
+            [Out] uint hIcon);
 
         HResult EnumStorage(
-            [Out, MarshalAs(UnmanagedType.Interface)] out IWMDMEnumStorage ppEnumStorage);
+            [Out] out IMDSPEnumStorage ppEnumStorage);
 
         HResult GetFormatSupport(
-            [Out] out WAVEFORMATEX ppFormatEx,
+            [Out] out WAVEFORMATEX pFormatEx,
             [Out] out ushort pnFormatCount,
             [Out, MarshalAs(UnmanagedType.LPWStr)] out string pppwszMimeType,
             [Out] out ushort pnMimeTypeCount);
-        
+
         HResult SendOpaqueCommand(
             [Out, In] ref OPAQUECOMMAND pCommand);
     }
 
-    public interface IWMDMDevice2 : IWMDMDevice
+    public interface IMDSPDevice2 : IMDSPDevice
 
     {
         HResult GetStorage(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszStorageName,
-            [Out,MarshalAs(UnmanagedType.Interface)] out IWMDMStorage ppStorage);
+            [Out] out IMDSPStorage ppStorage);
         
         HResult GetFormatSupport2(
             [In] uint dwFlags,
@@ -70,7 +70,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
             [Out] out ushort pnFileTypeCount);
         
         HResult GetSpecifyPropertyPages(
-            [Out,MarshalAs(UnmanagedType.Interface)] out ISpecifyPropertyPages ppSpecifyPropPages,
+            [Out] out ISpecifyPropertyPages ppSpecifyPropPages,
             [Out, MarshalAs(UnmanagedType.IUnknown)] out object pppUnknowns,
             [Out] out uint pcUnks);
         
@@ -80,15 +80,15 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
 
     }
 
-    public interface IWMDMDevice3 : IWMDMDevice2
+    public interface IMDSPDevice3 : IMDSPDevice2
 
     {
         HResult GetProperty(
-            [In,MarshalAs(UnmanagedType.LPWStr)] string pwszPropName,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pwszPropName,
             [Out] out PropVariant pValue);
         
         HResult SetProperty(
-            [In,MarshalAs(UnmanagedType.LPWStr)] string pwszPropName,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pwszPropName,
             [In] in PropVariant pValue);
 
         HResult GetFormatCapability(
@@ -97,15 +97,15 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
         
         HResult DeviceIoControl(
             [In] uint dwIoControlCode,
-            [In] char[] lpInBuffer,
+            [In] ref StringBuilder lpInBuffer,
             [In] uint nInBufferSize,
-            [Out] out char[] lpOutBuffer,
-            [In,Out] ref uint pnOutBufferSize);
+            [Out] out StringBuilder lpOutBuffer,
+            [Out, In] ref uint pnOutBufferSize);
         
         HResult FindStorage(
-            [In] WMDM_FIND_SCOPE findScope,
+           [In] WMDM_FIND_SCOPE findScope,
             [In, MarshalAs(UnmanagedType.LPWStr)] string pwszUniqueID,
-            [Out, MarshalAs(UnmanagedType.Interface)] out IWMDMStorage ppStorage);
+            [Out] out IMDSPStorage ppStorage);
 
     }
 }
