@@ -144,6 +144,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
         public Guid guidCommand;
         public uint dwDataLen;
         public char pData;
-        public char[] abMAC;
+        public StringBuilder abMAC;
     }
 }

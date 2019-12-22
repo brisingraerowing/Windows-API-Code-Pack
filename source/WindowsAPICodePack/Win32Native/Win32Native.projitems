@@ -125,6 +125,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\ServiceProviderInterfaces\IMDSPEnumDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\ServiceProviderInterfaces\IMDSPEnumStorage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\ServiceProviderInterfaces\IMDSPObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\ServiceProviderInterfaces\IMDSPObjectInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\ServiceProviderInterfaces\IMDSPRevoked.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\ServiceProviderInterfaces\IMDSPStorage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\ServiceProviderInterfaces\IMDSPStorageGlobals.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\Structures.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\ClientInterfaces\IEnumPortableDeviceObjectIDs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\ClientInterfaces\IPortableDevice.cs" />
