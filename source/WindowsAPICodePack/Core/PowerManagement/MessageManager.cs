@@ -147,11 +147,11 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                 if (m.Msg == PowerManagementNativeMethods.PowerBroadcastMessage && 
                     (int)m.WParam == PowerManagementNativeMethods.PowerSettingChangeMessage)
                 {
-                    PowerManagementNativeMethods.PowerBroadcastSetting ps =
+                    var ps =
                          (PowerManagementNativeMethods.PowerBroadcastSetting)Marshal.PtrToStructure(
                              m.LParam, typeof(PowerManagementNativeMethods.PowerBroadcastSetting));
 
-                    IntPtr pData = new IntPtr(m.LParam.ToInt64() + Marshal.SizeOf(ps));
+                    var pData = new IntPtr(m.LParam.ToInt64() + Marshal.SizeOf(ps));
                     Guid currentEvent = ps.PowerSetting;
                                         
                     // IsMonitorOn
@@ -160,7 +160,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                     {
                         int monitorStatus = (int)Marshal.PtrToStructure(pData, typeof(int));
                         PowerManager.IsMonitorOn = monitorStatus != 0;
-                        EventManager.monitorOnReset.Set();
+                        _ = EventManager.monitorOnReset.Set();
                     }
 
                     if (!EventManager.IsMessageCaught(currentEvent))

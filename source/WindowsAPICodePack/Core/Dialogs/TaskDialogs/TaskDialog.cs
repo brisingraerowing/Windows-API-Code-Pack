@@ -230,7 +230,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             {
                 // Set local value, then update native dialog if showing.
                 icon = value;
-                if (NativeDialogShowing) { nativeDialog.UpdateMainIcon(icon); }
+                if (NativeDialogShowing) nativeDialog.UpdateMainIcon(icon);
             }
         }
 
@@ -246,7 +246,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             {
                 // Set local value, then update native dialog if showing.
                 footerIcon = value;
-                if (NativeDialogShowing) { nativeDialog.UpdateFooterIcon(footerIcon); }
+                if (NativeDialogShowing) nativeDialog.UpdateFooterIcon(footerIcon);
             }
         }
 
@@ -301,7 +301,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             {
                 // Set local value, then update native dialog if showing.
                 footerCheckBoxChecked = value;
-                if (NativeDialogShowing) { nativeDialog.UpdateCheckBoxChecked(footerCheckBoxChecked.Value); }
+                if (NativeDialogShowing) nativeDialog.UpdateCheckBoxChecked(footerCheckBoxChecked.Value);
             }
         }
 
@@ -345,13 +345,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             {
                 ThrowIfDialogShowing(LocalizedMessages.ProgressBarCannotBeChanged);
                 if (value != null)
-                {
-                    if (value.HostingDialog != null)
 
-                        throw new InvalidOperationException(LocalizedMessages.ProgressBarCannotBeHostedInMultipleDialogs);
+                    value.HostingDialog = value.HostingDialog == null ? this : throw new InvalidOperationException(LocalizedMessages.ProgressBarCannotBeHostedInMultipleDialogs);
 
-                    value.HostingDialog = this;
-                }
                 progressBar = value;
             }
         }
@@ -464,7 +460,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
                 // Create settings object for new dialog, 
                 // based on current state.
-                NativeTaskDialogSettings settings = new NativeTaskDialogSettings();
+                var settings = new NativeTaskDialogSettings();
                 ApplyCoreSettings(settings);
                 ApplySupplementalSettings(settings);
 
@@ -515,13 +511,15 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             // Make sure we don't have buttons AND 
             // command-links - the Win32 API treats them as different
             // flavors of a single button struct.
-            if (buttons.Count > 0 && commandLinks.Count > 0)
+            if (buttons.Count > 0)
 
-                throw new NotSupportedException(LocalizedMessages.TaskDialogSupportedButtonsAndLinks);
+                if (commandLinks.Count > 0)
 
-            if (buttons.Count > 0 && standardButtons != TaskDialogStandardButtons.None)
+                    throw new NotSupportedException(LocalizedMessages.TaskDialogSupportedButtonsAndLinks);
 
-                throw new NotSupportedException(LocalizedMessages.TaskDialogSupportedButtonsAndButtons);
+                else if (standardButtons != TaskDialogStandardButtons.None)
+
+                    throw new NotSupportedException(LocalizedMessages.TaskDialogSupportedButtonsAndButtons);
         }
 
         // Analyzes the final state of the NativeTaskDialog instance and creates the 
@@ -660,16 +658,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         {
             // Deal with progress bars/marquees.
             if (progressBar != null)
-            {
-                if (progressBar.State == TaskDialogProgressBarState.Marquee)
-                {
-                    settings.NativeConfiguration.taskDialogFlags |= TaskDialogNativeMethods.TaskDialogOptions.ShowMarqueeProgressBar;
-                }
-                else
-                {
-                    settings.NativeConfiguration.taskDialogFlags |= TaskDialogNativeMethods.TaskDialogOptions.ShowProgressBar;
-                }
-            }
+
+                settings.NativeConfiguration.taskDialogFlags |= progressBar.State == TaskDialogProgressBarState.Marquee ? TaskDialogNativeMethods.TaskDialogOptions.ShowMarqueeProgressBar : TaskDialogNativeMethods.TaskDialogOptions.ShowProgressBar;
 
             // Build the native struct arrays that NativeTaskDialog 
             // needs - though NTD will handle
@@ -686,9 +676,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 // Apply option flag that forces all 
                 // custom buttons to render as command links.
                 if (commandLinks.Count > 0)
-                {
+
                     settings.NativeConfiguration.taskDialogFlags |= TaskDialogNativeMethods.TaskDialogOptions.UseCommandLinks;
-                }
 
                 // Set default button and add elevation icons 
                 // to appropriate buttons.
@@ -706,9 +695,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 settings.NativeConfiguration.defaultRadioButtonIndex = defaultRadioButton;
 
                 if (defaultRadioButton == TaskDialogNativeMethods.NoDefaultButtonSpecified)
-                {
+
                     settings.NativeConfiguration.taskDialogFlags |= TaskDialogNativeMethods.TaskDialogOptions.NoDefaultRadioButton;
-                }
             }
         }
 
@@ -731,43 +719,31 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         // the default control, or 0 if no default was specified.
         private static int FindDefaultButtonId(List<TaskDialogButtonBase> controls)
         {
-            var defaults = controls.FindAll(control => control.Default);
+            List<TaskDialogButtonBase> defaults = controls.FindAll(control => control.Default);
 
-            if (defaults.Count == 1) { return defaults[0].Id; }
-            else if (defaults.Count > 1)
-            {
-                throw new InvalidOperationException(LocalizedMessages.TaskDialogOnlyOneDefaultControl);
-            }
-
-            return TaskDialogNativeMethods.NoDefaultButtonSpecified;
+            return defaults.Count == 1 ? defaults[0].Id : defaults.Count > 1 ? throw new InvalidOperationException(LocalizedMessages.TaskDialogOnlyOneDefaultControl) : TaskDialogNativeMethods.NoDefaultButtonSpecified;
         }
 
         private static void ApplyElevatedIcons(NativeTaskDialogSettings settings, List<TaskDialogButtonBase> controls)
         {
             foreach (TaskDialogButton control in controls)
-            {
+
                 if (control.UseElevationIcon)
-                {
-                    if (settings.ElevatedButtons == null) { settings.ElevatedButtons = new List<int>(); }
-                    settings.ElevatedButtons.Add(control.Id);
-                }
-            }
+
+                    (settings.ElevatedButtons ?? (settings.ElevatedButtons = new List<int>())).Add(control.Id);
         }
 
         private void ApplySupplementalSettings(NativeTaskDialogSettings settings)
         {
-            if (progressBar != null)
+            if (progressBar?.State != TaskDialogProgressBarState.Marquee)
             {
-                if (progressBar.State != TaskDialogProgressBarState.Marquee)
-                {
                     settings.ProgressBarMinimum = progressBar.Minimum;
                     settings.ProgressBarMaximum = progressBar.Maximum;
                     settings.ProgressBarValue = progressBar.Value;
                     settings.ProgressBarState = progressBar.State;
-                }
             }
 
-            if (HelpInvoked != null) { settings.InvokeHelp = true; }
+            if (HelpInvoked != null) settings.InvokeHelp = true;
         }
 
         // Here we walk our controls collection and 
@@ -776,43 +752,38 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         {
             foreach (TaskDialogControl control in Controls)
             {
-                TaskDialogButtonBase buttonBase = control as TaskDialogButtonBase;
-                TaskDialogCommandLink commandLink = control as TaskDialogCommandLink;
+                var buttonBase = control as TaskDialogButtonBase;
+                var commandLink = control as TaskDialogCommandLink;
 
                 if (buttonBase != null && string.IsNullOrEmpty(buttonBase.Text) &&
                     commandLink != null && string.IsNullOrEmpty(commandLink.Instruction))
-                {
+                
                     throw new InvalidOperationException(LocalizedMessages.TaskDialogButtonTextEmpty);
-                }
-
-                TaskDialogRadioButton radButton;
-                TaskDialogProgressBar progBar;
 
                 // Loop through child controls 
                 // and sort the controls based on type.
                 if (commandLink != null)
-                {
+                
                     commandLinks.Add(commandLink);
-                }
-                else if ((radButton = control as TaskDialogRadioButton) != null)
+                
+                else if (control is TaskDialogRadioButton radButton)
                 {
-                    if (radioButtons == null) { radioButtons = new List<TaskDialogButtonBase>(); }
+                    if (radioButtons == null) radioButtons = new List<TaskDialogButtonBase>();
                     radioButtons.Add(radButton);
                 }
                 else if (buttonBase != null)
                 {
-                    if (buttons == null) { buttons = new List<TaskDialogButtonBase>(); }
+                    if (buttons == null) buttons = new List<TaskDialogButtonBase>();
                     buttons.Add(buttonBase);
                 }
-                else if ((progBar = control as TaskDialogProgressBar) != null)
-                {
+                else if (control is TaskDialogProgressBar progBar)
+                
                     progressBar = progBar;
-                }
+                
                 else
-                {
+                
                     throw new InvalidOperationException(LocalizedMessages.TaskDialogUnkownControl);
-                }
-            }
+                            }
         }
 
         #endregion
@@ -855,7 +826,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
         private void ThrowIfDialogShowing(string message)
         {
-            if (NativeDialogShowing) { throw new NotSupportedException(message); }
+            if (NativeDialogShowing) throw new NotSupportedException(message);
         }
 
         private bool NativeDialogShowing => (nativeDialog != null)
@@ -957,8 +928,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             // native dialog when it actually exists.
             if (NativeDialogShowing)
             {
-                TaskDialogButton button;
-                TaskDialogRadioButton radioButton;
                 if (control is TaskDialogProgressBar)
                 {
                     if (!progressBar.HasValidValues)
@@ -982,7 +951,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                             break;
                     }
                 }
-                else if ((button = control as TaskDialogButton) != null)
+                else if (control is TaskDialogButton button)
 
                     switch (propertyName)
                     {
@@ -997,7 +966,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                             break;
                     }
 
-                else if ((radioButton = control as TaskDialogRadioButton) != null)
+                else if (control is TaskDialogRadioButton radioButton)
 
                     switch (propertyName)
                     {
@@ -1033,7 +1002,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             // If a custom button was found, 
             // raise the event - if not, it's a standard button, and
             // we don't support custom event handling for the standard buttons
-            if (button != null) { button.RaiseClickEvent(); }
+            if (button != null) button.RaiseClickEvent();
         }
 
         internal void RaiseHyperlinkClickEvent(string link) => HyperlinkClick?.Invoke(this, new TaskDialogHyperlinkClickedEventArgs(link));
@@ -1050,7 +1019,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             if (handler != null)
             {
                 TaskDialogButtonBase customButton = null;
-                TaskDialogClosingEventArgs e = new TaskDialogClosingEventArgs();
+                var e = new TaskDialogClosingEventArgs();
 
                 // Try to identify the button - is it a standard one?
                 TaskDialogStandardButtons buttonClicked = MapButtonIdToStandardButton(id);
@@ -1111,9 +1080,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             progressBar = null;
 
             // Have the native dialog clean up the rest.
-            if (nativeDialog != null)
-
-                nativeDialog.Dispose();
+                nativeDialog?.Dispose();
         }
 
 

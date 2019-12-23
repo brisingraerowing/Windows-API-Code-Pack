@@ -17,31 +17,29 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         internal static PowerManagementNativeMethods.SystemPowerCapabilities
             GetSystemPowerCapabilities()
         {
-            PowerManagementNativeMethods.SystemPowerCapabilities powerCap;
 
             if (PowerManagementNativeMethods.CallNtPowerInformation(
               PowerManagementNativeMethods.PowerInformationLevel.SystemPowerCapabilities,
-              IntPtr.Zero, 0, out powerCap,
+              IntPtr.Zero, 0, out PowerManagementNativeMethods.SystemPowerCapabilities powerCap,
               (uint)Marshal.SizeOf(typeof(PowerManagementNativeMethods.SystemPowerCapabilities))
               ) == CoreNativeMethods.StatusAccessDenied)
-            
+
                 throw new UnauthorizedAccessException(LocalizedMessages.PowerInsufficientAccessCapabilities);
-            
+
             return powerCap;
         }
 
         internal static PowerManagementNativeMethods.SystemBatteryState GetSystemBatteryState()
         {
-            PowerManagementNativeMethods.SystemBatteryState batteryState;
 
             if (PowerManagementNativeMethods.CallNtPowerInformation(
               PowerManagementNativeMethods.PowerInformationLevel.SystemBatteryState,
-              IntPtr.Zero, 0, out batteryState,
+              IntPtr.Zero, 0, out PowerManagementNativeMethods.SystemBatteryState batteryState,
               (uint)Marshal.SizeOf(typeof(PowerManagementNativeMethods.SystemBatteryState))
               ) == CoreNativeMethods.StatusAccessDenied)
-            
+
                 throw new UnauthorizedAccessException(LocalizedMessages.PowerInsufficientAccessBatteryState);
-            
+
             return batteryState;
         }
 

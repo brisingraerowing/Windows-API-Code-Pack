@@ -87,7 +87,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             if (HostingDialog != null)
 
                 // This will throw if the property change is not allowed.
-                HostingDialog.IsControlPropertyChangeAllowed(propName, this);
+                _ = HostingDialog.IsControlPropertyChangeAllowed(propName, this);
 
         }
 
@@ -115,15 +115,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// </summary>
         /// <param name="obj">The object to compare against.</param>
         /// <returns>A <see cref="System.Boolean"/> value.</returns>
-        public override bool Equals(object obj)
-        {
-            DialogControl control = obj as DialogControl;
-
-            if (control != null)
-                return Id == control.Id;
-
-            return false;
-        }
+        public override bool Equals(object obj) => obj is DialogControl control ? Id == control.Id : false;
 
         /// <summary>
         /// Serves as a hash function for a particular type. 

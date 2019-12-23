@@ -25,14 +25,8 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
             ChargeRate = (int)state.Rate;
 
             uint estimatedTime = state.EstimatedTime;
-            if (estimatedTime != uint.MaxValue) // uint.MaxValue signifies indefinite estimated time (plugged in)
+            EstimatedTimeRemaining = estimatedTime != uint.MaxValue ? new TimeSpan(0, 0, (int)estimatedTime) : TimeSpan.MaxValue;
 
-                EstimatedTimeRemaining = new TimeSpan(0, 0, (int)estimatedTime);
-
-            else
-            
-                EstimatedTimeRemaining = TimeSpan.MaxValue;
-            
             SuggestedCriticalBatteryCharge = (int)state.DefaultAlert1;
             SuggestedBatteryWarningCharge = (int)state.DefaultAlert2;
         }

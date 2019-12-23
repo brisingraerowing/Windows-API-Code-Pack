@@ -299,7 +299,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                 }
                 finally
                 {
-                    CoreNativeMethods.LocalFree(ref guid);
+                    _ = CoreNativeMethods.LocalFree(ref guid);
                 }
             }
         }
@@ -335,7 +335,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// Gets a value that indictates whether the monitor is on. 
         /// </summary>
         /// <exception cref="System.PlatformNotSupportedException">Requires Vista/Windows Server 2008.</exception>
-        /// <value>A <see cref="System.Boolean"/> value.</value>
+        /// <value>A <see cref="bool"/> value.</value>
         public static bool IsMonitorOn
         {
             get
@@ -350,7 +350,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                         IsMonitorOnChanged += dummy;
                         // Wait until Windows updates the power source 
                         // (through RegisterPowerSettingNotification)
-                        EventManager.monitorOnReset.WaitOne();
+                        _ = EventManager.monitorOnReset.WaitOne();
                     }
 
                 return (bool)isMonitorOn;
@@ -384,9 +384,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// <exception cref="Win32Exception">Thrown if the SetThreadExecutionState call fails.</exception>
         public static void SetThreadExecutionState(ExecutionStates executionStateOptions)
         {
-            ExecutionStates ret = PowerManagementNativeMethods.SetThreadExecutionState(executionStateOptions);
-
-            if (ret == ExecutionStates.None)
+            if (PowerManagementNativeMethods.SetThreadExecutionState(executionStateOptions) == ExecutionStates.None)
 
                 throw new Win32Exception(LocalizedMessages.PowerExecutionStateFailed);
         }
