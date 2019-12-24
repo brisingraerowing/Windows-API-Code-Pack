@@ -28,108 +28,75 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Core
         /// <summary>
         /// Catastrophic failure (E_UNEXPECTED)
         /// </summary>
-        Unexpected = -2147418113,
+        Unexpected = unchecked((int) 0x8000FFFF),
 
         /// <summary>
         /// Not implemented (E_NOTIMPL)
         /// </summary>
-        NotImplemented = -2147467263,
+        NotImplemented = unchecked((int)0x80004001),
 
         /// <summary>
         /// Ran out of memory (E_OUTOFMEMORY)
         /// </summary>
-        OutOfMemory = -2147024882,
+        OutOfMemory = unchecked((int)0x8007000E),
 
         /// <summary>
         /// One or more arguments are invalid (E_INVALIDARG)
         /// </summary>
-        InvalidArguments = -2147024809,
+        InvalidArguments = unchecked((int)0x80070057),
 
         /// <summary>
         /// No such interface supported (E_NOINTERFACE)
         /// </summary>
-        NoInterface = -2147467262,
+        NoInterface = unchecked((int)0x80004002),
 
         /// <summary>
         /// Invalid pointer (E_POINTER)
         /// </summary>
-        InvalidPointer = -2147467261,
-
-        /// <summary>
-        /// Invalid handle (E_HANDLE)
-        /// </summary>
-        InvalidHandle = -2147024890,
+        InvalidPointer = unchecked((int)0x80004003),
 
         /// <summary>
         /// Operation aborted (E_ABORT)
         /// </summary>
-        OperationAborted = -2147467260,
+        OperationAborted = unchecked((int)0x80004004),
 
         /// <summary>
         /// Unspecified error (E_FAIL)
         /// </summary>
-        Fail = -2147467259,
+        Fail = unchecked((int)0x80004005),
 
         /// <summary>
-        /// E_ELEMENTNOTFOUND
-        /// </summary>
-        ElementNotFound = unchecked((int)0x80070490),
-
-        /// <summary>
-        /// TYPE_E_ELEMENTNOTFOUND
+        /// TYPE_E_ELEMENTNOTFOUND (TYPE_E_ELEMENTNOTFOUND)
         /// </summary>
         TypeElementNotFound = unchecked((int)0x8002802B),
 
         /// <summary>
-        /// NO_OBJECT
+        /// No object for moniker. (MK_E_NOOBJECT)
         /// </summary>
         NoObject = unchecked((int)0x800401E5),
 
         /// <summary>
-        /// ERROR_CANCELLED
-        /// </summary>
-        Win32ErrorCanceled = 1223,
-
-        /// <summary>
-        /// ERROR_CANCELLED
-        /// </summary>
-        Canceled = unchecked((int)0x800704C7),
-
-        /// <summary>
-        /// The requested resource is in use
-        /// </summary>
-        ResourceInUse = unchecked((int)0x800700AA),
-
-        /// <summary>
-        /// The requested resources is read-only.
+        /// Access denied. (STG_E_ACCESSDENIED)
         /// </summary>
         AccessDenied = unchecked((int)0x80030005),
 
-        E_UNEXPECTED = unchecked((int)0x8000FFFF),
-
-        E_NOTIMPL = unchecked((int)0x80004001),
-
-        E_OUTOFMEMORY = unchecked((int)0x8007000E),
-
-        E_INVALIDARG = unchecked((int)0x80070057),
-
         /// <summary>
-        /// OpenClipboard Failed
+        /// OpenClipboard failed.
         /// </summary>
         CLIPBRD_E_CANT_OPEN = unchecked((int)0x800401D0),
 
         /// <summary>
-        /// EmptyClipboard Failed
+        /// EmptyClipboard failed.
         /// </summary>
         CLIPBRD_E_CANT_EMPTY = unchecked((int)0x800401D1),
 
         /// <summary>
-        /// CloseClipboard Failed
+        /// CloseClipboard failed.
         /// </summary>
         CLIPBRD_E_CANT_CLOSE = unchecked((int)0x800401D4),
 
         /// <summary>
-        /// SetClipboard Failed
+        /// SetClipboard failed.
         /// </summary>
         CLIPBRD_E_CANT_SET = unchecked((int)0x800401D2)
     }

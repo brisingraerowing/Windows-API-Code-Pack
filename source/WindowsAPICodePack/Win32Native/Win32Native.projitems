@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\CoreHelpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\CoreNativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\ExecutionState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\ISpecifyPropertyPages.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\NetworkList\INetwork.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\NetworkList\INetworkConnection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\NetworkList\INetworkListManager.cs" />

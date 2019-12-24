@@ -123,6 +123,14 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.Core
 
 {
 
+    public static class COM
+
+    {
+
+        public const string ISpecifyPropertyPages = "B196B28B-BAB4-101A-B69C-00AA00341D07";
+    
+    }
+
     public static class Net
 
     {
