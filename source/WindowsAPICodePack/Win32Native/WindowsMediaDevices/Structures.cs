@@ -1,8 +1,10 @@
-﻿using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
+﻿using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Windows;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
 {
@@ -133,8 +135,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
         /// Count of enumerated values.
         /// </summary>
         public ushort cEnumValues;
+
         /// <summary>
-        /// An array of values. The size of the array is equal to the value of cEnumValues.
+        /// An array of values. The size of the array is equal to the value of <see cref="cEnumValues"/>.
         /// </summary>
         public PropVariant[] pValues;
     }
@@ -145,5 +148,42 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
         public uint dwDataLen;
         public char pData;
         public StringBuilder abMAC;
+    }
+
+    public struct VIDEOINFOHEADER
+    {
+        public RECT rcSource;
+        public RECT rcTarget;
+        public uint dwBitRate;
+        public uint dwBitErrorRate;
+        public long AvgTimePerFrame;
+        public BITMAPINFOHEADER bmiHeader;
+    }
+
+    public struct BITMAPINFOHEADER
+    {
+        public uint biSize;
+        public int biWidth;
+        public int biHeight;
+        public ushort biPlanes;
+        public ushort biBitCount;
+        public uint biCompression;
+        public uint biSizeImage;
+        public int biXPelsPerMeter;
+        public int biYPelsPerMeter;
+        public uint biClrUsed;
+        public uint biClrImportant;
+    }
+
+    public struct WMFILECAPABILITIES
+    {
+        [MarshalAs(UnmanagedType.LPWStr)] public string pwszMimeType;
+        public uint dwReserved;
+    }
+
+    public struct WMDM_FORMAT_CAPABILITY
+    {
+        public ushort nPropConfig;
+        public IntPtr pConfigs;
     }
 }

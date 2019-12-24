@@ -6,6 +6,14 @@ using System.Text;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Core
 {
+    public struct RECT
+    {
+        public int left;
+        public int top;
+        public int right;
+        public int bottom;
+    }
+
     /// <summary>
     /// Wrappers for Native Methods and Structs.
     /// This type is intended for public use only
