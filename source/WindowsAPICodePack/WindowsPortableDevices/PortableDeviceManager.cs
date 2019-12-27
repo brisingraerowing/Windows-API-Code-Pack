@@ -11,7 +11,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
     public class PortableDeviceManager : IPortableDeviceManager
     {
 
-        internal Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ClientInterfaces.IPortableDeviceManager _manager = null;
+        internal Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.IPortableDeviceManager Manager { get; set; } = null;
 
         private List<PortableDevice> _portableDevices = null;
 
@@ -25,7 +25,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         {
 
-            _manager = new Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CoClasses.ClientClasses.PortableDeviceManager();
+            Manager = new Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PortableDeviceManager();
 
             _portableDevices = new List<PortableDevice>();
 
@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         }
 
-        public void RefreshDeviceList() => Marshal.ThrowExceptionForHR((int)_manager.RefreshDeviceList());
+        public void RefreshDeviceList() => Marshal.ThrowExceptionForHR((int)Manager.RefreshDeviceList());
 
         public void GetDevices()
 
@@ -45,7 +45,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             uint count = 1;
 
-            Marshal.ThrowExceptionForHR((int)_manager.GetDevices(null, ref count)); // We get the PortableDevices.
+            Marshal.ThrowExceptionForHR((int)Manager.GetDevices(null, ref count)); // We get the PortableDevices.
 
             if (count == 0)
 
@@ -59,7 +59,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             string[] deviceIDs = new string[count];
 
-            Marshal.ThrowExceptionForHR((int)_manager.GetDevices(deviceIDs, ref count));
+            Marshal.ThrowExceptionForHR((int)Manager.GetDevices(deviceIDs, ref count));
 
             if (count == 0)
 
@@ -81,7 +81,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             uint count = 1;
 
-            Marshal.ThrowExceptionForHR((int)_manager.GetPrivateDevices(null, ref count)); // We get the PortableDevices.
+            Marshal.ThrowExceptionForHR((int)Manager.GetPrivateDevices(null, ref count)); // We get the PortableDevices.
 
             if (count == 0)
 
@@ -95,7 +95,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             string[] deviceIDs = new string[count];
 
-            Marshal.ThrowExceptionForHR((int)_manager.GetPrivateDevices(deviceIDs, ref count));
+            Marshal.ThrowExceptionForHR((int)Manager.GetPrivateDevices(deviceIDs, ref count));
 
             if (count == 0)
 

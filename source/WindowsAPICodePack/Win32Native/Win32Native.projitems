@@ -59,7 +59,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\NativePoint.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\NativeRect.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMClasses.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMGuids.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMInterfaces.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellEnums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellException.cs" />
@@ -78,7 +77,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Shell\KnownFolders\FolderProperties.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\KnownFolders\FoldersIdentifiers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\KnownFolders\FolderTypes.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Shell\KnownFolders\KnownFoldersCOMGuids.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\KnownFolders\KnownFoldersCOMInterfaces.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\KnownFolders\KnownFoldersNativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\KnownFolders\RedirectionCapabilities.cs" />

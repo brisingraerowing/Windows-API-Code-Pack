@@ -176,6 +176,254 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell
         }
     }
 
+    public static class ShellIIDGuid
+    {
+
+        // IID GUID strings for relevant Shell COM interfaces.
+        public const string IModalWindow = "B4DB1657-70D7-485E-8E3E-6FCB5A5C1802";
+        public const string IFileDialog = "42F85136-DB7E-439C-85F1-E4075D135FC8";
+        public const string IFileOpenDialog = "D57C7288-D4AD-4768-BE02-9D969532D960";
+        public const string IFileSaveDialog = "84BCCD23-5FDE-4CDB-AEA4-AF64B83D78AB";
+        public const string IFileDialogEvents = "973510DB-7D7F-452B-8975-74A85828D354";
+        public const string IFileDialogControlEvents = "36116642-D713-4B97-9B83-7484A9D00433";
+        public const string IFileDialogCustomize = "E6FDD21A-163F-4975-9C8C-A69F1BA37034";
+
+        public const string IShellItem = "43826D1E-E718-42EE-BC55-A1E261C37BFE";
+        public const string IShellItem2 = "7E9FB0D3-919F-4307-AB2E-9B1860310C93";
+        public const string IShellItemArray = "B63EA76D-1F85-456F-A19C-48159EFA858B";
+        public const string IShellLibrary = "11A66EFA-382E-451A-9234-1E0E12EF3085";
+        public const string IThumbnailCache = "F676C15D-596A-4ce2-8234-33996F445DB1";
+        public const string ISharedBitmap = "091162a4-bc96-411f-aae8-c5122cd03363";
+        public const string IShellFolder = "000214E6-0000-0000-C000-000000000046";
+        public const string IShellFolder2 = "93F2F68C-1D1B-11D3-A30E-00C04F79ABD1";
+        public const string IEnumIDList = "000214F2-0000-0000-C000-000000000046";
+        public const string IShellLinkW = "000214F9-0000-0000-C000-000000000046";
+        public const string CShellLink = "00021401-0000-0000-C000-000000000046";
+
+        public const string IPropertyStore = "886D8EEB-8CF2-4446-8D02-CDBA1DBDCF99";
+        public const string IPropertyStoreCache = "3017056d-9a91-4e90-937d-746c72abbf4f";
+        public const string IPropertyDescription = "6F79D558-3E96-4549-A1D1-7D75D2288814";
+        public const string IPropertyDescription2 = "57D2EDED-5062-400E-B107-5DAE79FE57A6";
+        public const string IPropertyDescriptionList = "1F9FC1D0-C39B-4B26-817F-011967D3440E";
+        public const string IPropertyEnumType = "11E1FBF9-2D56-4A6B-8DB3-7CD193A471F2";
+        public const string IPropertyEnumType2 = "9B6E051C-5DDD-4321-9070-FE2ACB55E794";
+        public const string IPropertyEnumTypeList = "A99400F4-3D84-4557-94BA-1242FB2CC9A6";
+        public const string IPropertyStoreCapabilities = "c8e2d566-186e-4d49-bf41-6909ead56acc";
+
+        public const string ICondition = "0FC988D4-C935-4b97-A973-46282EA175C8";
+        public const string ISearchFolderItemFactory = "a0ffbc28-5482-4366-be27-3e81e78e06c2";
+        public const string IConditionFactory = "A5EFE073-B16F-474f-9F3E-9F8B497A3E08";
+        public const string IRichChunk = "4FDEF69C-DBC9-454e-9910-B34F3C64B510";
+        public const string IPersistStream = "00000109-0000-0000-C000-000000000046";
+        public const string IPersist = "0000010c-0000-0000-C000-000000000046";
+        public const string IEnumUnknown = "00000100-0000-0000-C000-000000000046";
+        public const string IQuerySolution = "D6EBC66B-8921-4193-AFDD-A1789FB7FF57";
+        public const string IQueryParser = "2EBDEE67-3505-43f8-9946-EA44ABC8E5B0";
+        public const string IQueryParserManager = "A879E3C4-AF77-44fb-8F37-EBD1487CF920";
+        public const string IEntity = "24264891-E80B-4fd3-B7CE-4FF2FAE8931F";
+        public const string IFileOperation = "947AAB5F-0A5C-4C13-B4D6-4BF7836FC9F8";
+    }
+
+    public static class ShellCLSIDGuid
+    {
+
+        // CLSID GUID strings for relevant coclasses.
+        public const string FileOpenDialog = "DC1C5A9C-E88A-4DDE-A5A1-60F82A20AEF7";
+        public const string FileSaveDialog = "C0B4E2F3-BA21-4773-8DBA-335EC946EB8B";
+        public const string KnownFolderManager = "4DF0C730-DF9D-4AE3-9153-AA6B82E9795A";
+        public const string ShellLibrary = "D9B3211D-E57F-4426-AAEF-30A806ADD397";
+        public const string SearchFolderItemFactory = "14010e02-bbbd-41f0-88e3-eda371216584";
+        public const string ConditionFactory = "E03E85B0-7BE3-4000-BA98-6C13DE9FA486";
+        public const string QueryParserManager = "5088B39A-29B4-4d9d-8245-4EE289222F66";
+    }
+
+    public static class ShellKFIDGuid
+    {
+
+        public const string ComputerFolder = "0AC0837C-BBF8-452A-850D-79D08E667CA7";
+        public const string Favorites = "1777F761-68AD-4D8A-87BD-30B759FA33DD";
+        public const string Documents = "FDD39AD0-238F-46AF-ADB4-6C85480369C7";
+        public const string Profile = "5E6C858F-0E22-4760-9AFE-EA3317B67173";
+
+        public const string GenericLibrary = "5c4f28b5-f869-4e84-8e60-f11db97c5cc7";
+        public const string DocumentsLibrary = "7d49d726-3c21-4f05-99aa-fdc2c9474656";
+        public const string MusicLibrary = "94d6ddcc-4a68-4175-a374-bd584a510b78";
+        public const string PicturesLibrary = "b3690e58-e961-423b-b687-386ebfd83239";
+        public const string VideosLibrary = "5fa96407-7e77-483c-ac93-691d05850de8";
+
+        public const string Libraries = "1B3EA5DC-B587-4786-B4EF-BD1DC332AEAE";
+    }
+
+    public static class ShellBHIDGuid
+    {
+        public const string ShellFolderObject = "3981e224-f559-11d3-8e3a-00c04f6837d5";
+    }
+
+    public static class KnownFoldersIIDGuid
+    {
+        // IID GUID strings for relevant Shell COM interfaces.
+        public const string IKnownFolder = "3AA7AF7E-9B36-420c-A8E3-F77D4674A488";
+        public const string IKnownFolderManager = "8BE2D872-86AA-4d47-B776-32CCA40C7018";
+    }
+
+    public static class KnownFoldersCLSIDGuid
+    {
+        // CLSID GUID strings for relevant coclasses.
+        public const string KnownFolderManager = "4df0c730-df9d-4ae3-9153-aa6b82e9795a";
+    }
+
+    public static class KnownFoldersKFIDGuid
+    {
+        public const string ComputerFolder = "0AC0837C-BBF8-452A-850D-79D08E667CA7";
+        public const string Favorites = "1777F761-68AD-4D8A-87BD-30B759FA33DD";
+        public const string Documents = "FDD39AD0-238F-46AF-ADB4-6C85480369C7";
+        public const string Profile = "5E6C858F-0E22-4760-9AFE-EA3317B67173";
+    }
+
+    public static class FolderTypes
+    {
+        /// <summary>
+        /// No particular content type has been detected or specified. This value is not supported in Windows 7 and later systems.
+        /// </summary>
+        public static string NotSpecified = "0x5c4f28b5-0xf869-0x4e84-0x8e-0x60-0xf1-0x1d-0xb9-0x7c-0x5c-0xc7";
+
+        /// <summary>
+        /// The folder is invalid. There are several things that can cause this judgement: hard disk errors-file system errors-and compression errors among them.
+        /// </summary>
+        public static string Invalid = "0x57807898-0x8c4f-0x4462-0xbb-0x63-0x71-0x04-0x23-0x80-0xb1-0x09";
+
+        /// <summary>
+        /// The folder contains document files. These can be of mixed format.doc-.txt-and others.
+        /// </summary>
+        public static string Documents = "0x7d49d726-0x3c21-0x4f05-0x99-0xaa-0xfd-0xc2-0xc9-0x47-0x46-0x56";
+
+        /// <summary>
+        /// Image files-such as .jpg-.tif-or .png files.
+        /// </summary>
+        public static string Pictures = "0xb3690e58-0xe961-0x423b-0xb6-0x87-0x38-0x6e-0xbf-0xd8-0x32-0x39";
+
+        /// <summary>
+        /// Windows 7 and later. The folder contains audio files-such as .mp3 and .wma files.
+        /// </summary>
+        public static string Music = "0xaf9c03d6-0x7db9-0x4a15-0x94-0x64-0x13-0xbf-0x9f-0xb6-0x9a-0x2a";
+
+        /// <summary>
+        /// A list of music files displayed in Icons view. This value is not supported in Windows 7 and later systems.
+        /// </summary>
+        public static string MusicIcons = "0x0b7467fb-0x84ba-0x4aae-0xa0-0x9b-0x15-0xb7-0x10-0x97-0xaf-0x9e";
+
+        /// <summary>
+        /// The folder is the Games folder found in the Start menu.
+        /// </summary>
+        public static string Games = "0xb689b0d0-0x76d3-0x4cbb-0x87-0xf7-0x58-0x5d-0x0e-0x0c-0xe0-0x70";
+
+        /// <summary>
+        /// The Control Panel in category view. This is a virtual folder.
+        /// </summary>
+        public static string ControlPanelCategory = "0xde4f0660-0xfa10-0x4b8f-0xa4-0x94-0x06-0x8b-0x20-0xb2-0x23-0x07";
+
+        /// <summary>
+        /// The Control Panel in classic view. This is a virtual folder.
+        /// </summary>
+        public static string ControlPanelClassic = "0x0c3794f3-0xb545-0x43aa-0xa3-0x29-0xc3-0x74-0x30-0xc5-0x8d-0x2a";
+
+        /// <summary>
+        /// Printers that have been added to the system. This is a virtual folder.
+        /// </summary>
+        public static string Printers = "0x2c7bbec6-0xc844-0x4a0a-0x91-0xfa-0xce-0xf6-0xf5-0x9c-0xfd-0xa1";
+
+        /// <summary>
+        /// The Recycle Bin. This is a virtual folder.
+        /// </summary>
+        public static string RecycleBin = "0xd6d9e004-0xcd87-0x442b-0x9d-0x57-0x5e-0x0a-0xeb-0x4f-0x6f-0x72";
+
+        /// <summary>
+        /// The software explorer window used by the Add or Remove Programs control panel icon.
+        /// </summary>
+        public static string SoftwareExplorer = "0xd674391b-0x52d9-0x4e07-0x83-0x4e-0x67-0xc9-0x86-0x10-0xf3-0x9d";
+
+        /// <summary>
+        /// The folder is a compressed archive-such as a compressed file with a .zip file name extension.
+        /// </summary>
+        public static string CompressedFolder = "0x80213e82-0xbcfd-0x4c4f-0x88-0x17-0xbb-0x27-0x60-0x12-0x67-0xa9";
+
+        /// <summary>
+        /// An e-mail-related folder that contains contact information.
+        /// </summary>
+        public static string Contacts = "0xde2b70ec-0x9bf7-0x4a93-0xbd-0x3d-0x24-0x3f-0x78-0x81-0xd4-0x92";
+
+        /// <summary>
+        /// A default library view without a more specific template. This value is not supported in Windows 7 and later systems.
+        /// </summary>
+        public static string Library = "0x4badfc68-0xc4ac-0x4716-0xa0-0xa0-0x4d-0x5d-0xaa-0x6b-0x0f-0x3e";
+
+        /// <summary>
+        /// The Network Explorer folder.
+        /// </summary>
+        public static string NetworkExplorer = "0x25cc242b-0x9a7c-0x4f51-0x80-0xe0-0x7a-0x29-0x28-0xfe-0xbe-0x42";
+
+        /// <summary>
+        /// The folder is the FOLDERID_UsersFiles folder.
+        /// </summary>
+        public static string UserFiles = "0xcd0fc69b-0x71e2-0x46e5-0x96-0x90-0x5b-0xcd-0x9f-0x57-0xaa-0xb3";
+
+        /// <summary>
+        /// Windows 7 and later. The folder contains search results-but they are of mixed or no specific type.
+        /// </summary>
+        public static string GenericSearchResults = "0x7fde1a1e-0x8b31-0x49a5-0x93-0xb8-0x6b-0xe1-0x4c-0xfa-0x49-0x43";
+
+        /// <summary>
+        /// Windows 7 and later. The folder is a library-but of no specified type.
+        /// </summary>
+        public static string GenericLibrary = "0x5f4eab9a-0x6833-0x4f61-0x89-0x9d-0x31-0xcf-0x46-0x97-0x9d-0x49";
+
+        /// <summary>
+        /// Windows 7 and later. The folder contains video files. These can be of mixed format.wmv-.mov-and others.
+        /// </summary>
+        public static string Videos = "0x5fa96407-0x7e77-0x483c-0xac-0x93-0x69-0x1d-0x05-0x85-0x0d-0xe8";
+
+        /// <summary>
+        /// Windows 7 and later. The view shown when the user clicks the Windows Explorer button on the taskbar.
+        /// </summary>
+        public static string UsersLibraries = "0xc4d98f09-0x6124-0x4fe0-0x99-0x42-0x82-0x64-0x16-0x8-0x2d-0xa9";
+
+        /// <summary>
+        /// Windows 7 and later. The homegroup view.
+        /// </summary>
+        public static string OtherUsers = "0xb337fd00-0x9dd5-0x4635-0xa6-0xd4-0xda-0x33-0xfd-0x10-0x2b-0x7a";
+
+        /// <summary>
+        /// Windows 7 and later. A folder that contains communication-related files such as e-mails-calendar information-and contact information.
+        /// </summary>
+        public static string Communications = "0x91475fe5-0x586b-0x4eba-0x8d-0x75-0xd1-0x74-0x34-0xb8-0xcd-0xf6";
+
+        /// <summary>
+        /// Windows 7 and later. The folder contains recorded television broadcasts.
+        /// </summary>
+        public static string RecordedTV = "0x5557a28f-0x5da6-0x4f83-0x88-0x09-0xc2-0xc9-0x8a-0x11-0xa6-0xfa";
+
+        /// <summary>
+        /// Windows 7 and later. The folder contains saved game states.
+        /// </summary>
+        public static string SavedGames = "0xd0363307-0x28cb-0x4106-0x9f-0x23-0x29-0x56-0xe3-0xe5-0xe0-0xe7";
+
+        /// <summary>
+        /// Windows 7 and later. The folder contains federated search OpenSearch results.
+        /// </summary>
+        public static string OpenSearch = "0x8faf9629-0x1980-0x46ff-0x80-0x23-0x9d-0xce-0xab-0x9c-0x3e-0xe3";
+
+        /// <summary>
+        /// Windows 7 and later. Before you search.
+        /// </summary>
+        public static string SearchConnector = "0x982725ee-0x6f47-0x479e-0xb4-0x47-0x81-0x2b-0xfa-0x7d-0x2e-0x8f";
+
+        /// <summary>
+        /// Windows 7 and later. A user's Searches folder-normally found at C:\Users\username\Searches.
+        /// </summary>
+        public static string Searches = "0x0b0ba2e3-0x405f-0x415e-0xa6-0xee-0xca-0xd6-0x25-0x20-0x78-0x53";
+
+    }
+
 }
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers
@@ -773,3 +1021,4 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.ExtendedLinguisticServi
     }
 
 }
+

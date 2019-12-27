@@ -1,4 +1,5 @@
 ﻿using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using System;
 using System.Collections.Generic;
@@ -152,8 +153,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
 
     public struct VIDEOINFOHEADER
     {
-        public RECT rcSource;
-        public RECT rcTarget;
+        public NativeRect rcSource;
+        public NativeRect rcTarget;
         public uint dwBitRate;
         public uint dwBitErrorRate;
         public long AvgTimePerFrame;
