@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Dialogs
 {
@@ -39,6 +40,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
             }
         }
+
         private Collection<string> filenames;
         internal readonly Collection<IShellItem> items;
         internal DialogShowState showState = DialogShowState.PreShow;

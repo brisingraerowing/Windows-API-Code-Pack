@@ -23,26 +23,27 @@ namespace Microsoft.WindowsAPICodePack.Shell
             HResult hr = NativeSearchCondition.GetConditionType(out conditionType);
 
             if (!CoreErrorHelper.Succeeded(hr))
-            
+
                 throw new ShellException(hr);
-            
+
             if (ConditionType == SearchConditionType.Leaf)
-            
-                using (PropVariant propVar = new PropVariant())
+
+                using (var propVar = new PropVariant())
                 {
                     hr = NativeSearchCondition.GetComparisonInfo(out canonicalName, out conditionOperation, propVar);
 
                     if (!CoreErrorHelper.Succeeded(hr))
-                    
+
                         throw new ShellException(hr);
-                    
+
                     PropertyValue = propVar.Value.ToString();
                 }
-                    }
+        }
 
         internal ICondition NativeSearchCondition { get; set; }
 
-        private string canonicalName;
+        private readonly string canonicalName;
+
         /// <summary>
         /// The name of a property to be compared or NULL for an unspecified property.
         /// </summary>
@@ -50,6 +51,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         private PropertyKey propertyKey;
         private PropertyKey emptyPropertyKey = new PropertyKey();
+
         /// <summary>
         /// The property key for the property that is to be compared.
         /// </summary>        
@@ -60,21 +62,22 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 if (propertyKey == emptyPropertyKey)
                 {
                     int hr = PropertySystemNativeMethods.PSGetPropertyKeyFromName(PropertyCanonicalName, out propertyKey);
+
                     if (!CoreErrorHelper.Succeeded(hr))
-                    
+
                         throw new ShellException(hr);
-                                    }
+                }
 
                 return propertyKey;
-            }            
+            }
         }
 
         /// <summary>
         /// A value (in <see cref="string"/> format) to which the property is compared.
         /// </summary>
         public string PropertyValue { get; internal set; }
-        
-        private SearchConditionOperation conditionOperation = SearchConditionOperation.Implicit;
+
+        private readonly SearchConditionOperation conditionOperation = SearchConditionOperation.Implicit;
 
         /// <summary>
         /// Search condition operation to be performed on the property/value combination.
@@ -82,7 +85,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>        
         public SearchConditionOperation ConditionOperation => conditionOperation;
 
-        private SearchConditionType conditionType = SearchConditionType.Leaf;
+        private readonly SearchConditionType conditionType = SearchConditionType.Leaf;
 
         /// <summary>
         /// Represents the condition type for the given node. 
@@ -95,22 +98,21 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public IEnumerable<SearchCondition> GetSubConditions()
         {
             // Our list that we'll return
-            List<SearchCondition> subConditionsList = new List<SearchCondition>();
+            var subConditionsList = new List<SearchCondition>();
 
             // Get the sub-conditions from the native API
-            object subConditionObj;
-            Guid guid = new Guid( Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell. ShellIIDGuid.IEnumUnknown);
+            var guid = new Guid(Win32Native.Guids.Shell.ShellIIDGuid.IEnumUnknown);
 
-            HResult hr = NativeSearchCondition.GetSubConditions(ref guid, out subConditionObj);
+            HResult hr = NativeSearchCondition.GetSubConditions(ref guid, out object subConditionObj);
 
             if (!CoreErrorHelper.Succeeded(hr))
-            
+
                 throw new ShellException(hr);
-            
+
             // Convert each ICondition to SearchCondition
             if (subConditionObj != null)
             {
-                IEnumUnknown enumUnknown = subConditionObj as IEnumUnknown;
+                var enumUnknown = subConditionObj as IEnumUnknown;
 
                 IntPtr buffer = IntPtr.Zero;
                 uint fetched = 0;
@@ -120,9 +122,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     hr = enumUnknown.Next(1, ref buffer, ref fetched);
 
                     if (hr == HResult.Ok && fetched == 1)
-                    
+
                         subConditionsList.Add(new SearchCondition((ICondition)Marshal.GetObjectForIUnknown(buffer)));
-                                    }
+                }
             }
 
             return subConditionsList;
@@ -130,9 +132,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         #region IDisposable Members
 
-        /// <summary>
-        /// 
-        /// </summary>
         ~SearchCondition()
         {
             Dispose(false);
@@ -155,7 +154,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             if (NativeSearchCondition != null)
             {
-                Marshal.ReleaseComObject(NativeSearchCondition);
+                _ = Marshal.ReleaseComObject(NativeSearchCondition);
                 NativeSearchCondition = null;
             }
         }

@@ -12,21 +12,21 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
     public interface IWMDMMetaData
     {
         HResult AddItem(
-            [In] WMDM_TAG_DATATYPE Type,
+            [In] DataType Type,
             [In,MarshalAs(UnmanagedType.LPWStr)] string pwszTagName,
             [In] ref StringBuilder pValue,
             [In] ushort iLength);
         
         HResult QueryByName(
             [In,MarshalAs(UnmanagedType.LPWStr)] string pwszTagName,
-            [Out] out WMDM_TAG_DATATYPE pType,
+            [Out] out DataType pType,
             [Out] out StringBuilder pValue,
             [Out] out ushort pcbLength);
         
         HResult QueryByIndex(
             [In] ushort iIndex,
             [Out] out IntPtr ppwszName,
-            [Out] out WMDM_TAG_DATATYPE pType,
+            [Out] out DataType pType,
             [Out] out char[] ppValue,
             [Out] out ushort pcbLength);
         

@@ -8,6 +8,7 @@ using System.Threading;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -25,20 +26,19 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             // Need to make sure we're running on Vista or higher
             if (!CoreHelpers.RunningOnVista)
-            
+
                 throw new PlatformNotSupportedException(LocalizedMessages.ShellObjectFactoryPlatformNotSupported);
-            
+
             // A lot of APIs need IShellItem2, so just keep a copy of it here
-            IShellItem2 nativeShellItem2 = nativeShellItem as IShellItem2;
+            var nativeShellItem2 = nativeShellItem as IShellItem2;
 
             // Get the System.ItemType property
             string itemType = ShellHelper.GetItemType(nativeShellItem2);
 
-            if (!string.IsNullOrEmpty(itemType))  itemType = itemType.ToUpperInvariant(); 
+            if (!string.IsNullOrEmpty(itemType)) itemType = itemType.ToUpperInvariant();
 
             // Get some IShellItem attributes
-            ShellNativeMethods.ShellFileGetAttributesOptions sfgao;
-            nativeShellItem2.GetAttributes(ShellNativeMethods.ShellFileGetAttributesOptions.FileSystem | ShellNativeMethods.ShellFileGetAttributesOptions.Folder, out sfgao);
+            nativeShellItem2.GetAttributes(ShellNativeMethods.ShellFileGetAttributesOptions.FileSystem | ShellNativeMethods.ShellFileGetAttributesOptions.Folder, out ShellNativeMethods.ShellFileGetAttributesOptions sfgao);
 
             // Is this item a FileSystem item?
             bool isFileSystem = (sfgao & ShellNativeMethods.ShellFileGetAttributesOptions.FileSystem) != 0;
@@ -53,32 +53,31 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             // 1. First check if this is a Shell Link
             if (itemType == ".lnk")
-            
+
                 return new ShellLink(nativeShellItem2);
-            
+
             // 2. Check if this is a container or a single item (entity)
             else if (isFolder)
             {
                 // 3. If this is a folder, check for types: Shell Library, Shell Folder or Search Container
-                if (itemType == ".library-ms" && (shellLibrary = ShellLibrary.FromShellItem(nativeShellItem2, true)) != null)
-                
-                    return shellLibrary; // we already created this above while checking for Library
-                
-                else if (itemType == ".searchconnector-ms")
-                
-                    return new ShellSearchConnector(nativeShellItem2);
-                
-                else if (itemType == ".search-ms")
-                
-                    return new ShellSavedSearchCollection(nativeShellItem2);
-                
+                switch (itemType)
+                {
+                    case ".library-ms" when (shellLibrary = ShellLibrary.FromShellItem(nativeShellItem2, true)) != null:
+                        return shellLibrary; // we already created this above while checking for Library
+                    case ".searchconnector-ms":
+                        return new ShellSearchConnector(nativeShellItem2);
+                    case ".search-ms":
+                        return new ShellSavedSearchCollection(nativeShellItem2);
+                }
+
                 // 4. It's a ShellFolder
                 if (isFileSystem)
                 {
                     // 5. Is it a (File-System / Non-Virtual) Known Folder
                     if (!IsVirtualKnownFolder(nativeShellItem2))
                     { //needs to check if it is a known folder and not virtual
-                        FileSystemKnownFolder kf = new FileSystemKnownFolder(nativeShellItem2);
+                        var kf = new FileSystemKnownFolder(nativeShellItem2);
+
                         return kf;
                     }
 
@@ -88,7 +87,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 // 5. Is it a (Non File-System / Virtual) Known Folder
                 if (IsVirtualKnownFolder(nativeShellItem2))
                 { //needs to check if known folder is virtual
-                    NonFileSystemKnownFolder kf = new NonFileSystemKnownFolder(nativeShellItem2);
+                    var kf = new NonFileSystemKnownFolder(nativeShellItem2);
+
                     return kf;
                 }
 
@@ -96,19 +96,18 @@ namespace Microsoft.WindowsAPICodePack.Shell
             }
 
             // 6. If this is an entity (single item), check if its filesystem or not
-            if (isFileSystem)  return new ShellFile(nativeShellItem2); 
-
-            return new ShellNonFileSystemItem(nativeShellItem2);
+            return isFileSystem ? new ShellFile(nativeShellItem2) : (ShellObject)new ShellNonFileSystemItem(nativeShellItem2);
         }
 
         // This is a work around for the STA thread bug.  This will execute the call on a non-sta thread, then return the result
         private static bool IsVirtualKnownFolder(IShellItem2 nativeShellItem2)
         {
             IntPtr pidl = IntPtr.Zero;
+
             try
             {
                 IKnownFolderNative nativeFolder = null;
-                KnownFoldersSafeNativeMethods.NativeFolderDefinition definition = new KnownFoldersSafeNativeMethods.NativeFolderDefinition();
+                var definition = new KnownFoldersSafeNativeMethods.NativeFolderDefinition();
 
                 // We found a bug where the enumeration of shell folders was
                 // not reliable when called from a STA thread - it would return
@@ -121,6 +120,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 // to get a list of pidl's in 1 step, then look up their information in a 2nd, rather than
                 // looking them up as we get them.  This would replace the need for the work around.
                 object padlock = new object();
+
                 lock (padlock)
                 {
                     IntPtr unknown = Marshal.GetIUnknownForObject(nativeShellItem2);
@@ -134,15 +134,14 @@ namespace Microsoft.WindowsAPICodePack.Shell
                             new KnownFolderManagerClass().FindFolderFromIDList(pidl, out nativeFolder);
 
                             if (nativeFolder != null)
-                            {
+                            
                                 nativeFolder.GetFolderDefinition(out definition);
-                            }
-
+                            
                             Monitor.Pulse(padlock);
                         }
                     });
 
-                    Monitor.Wait(padlock);
+                    _ = Monitor.Wait(padlock);
                 }
 
                 return nativeFolder != null && definition.category == FolderCategory.Virtual;
@@ -161,20 +160,14 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public static ShellObject Create(string parsingName)
         {
             if (string.IsNullOrEmpty(parsingName))
-            {
-                throw new ArgumentNullException("parsingName");
-            }
+            
+                throw new ArgumentNullException(nameof(parsingName));
 
             // Create a native shellitem from our path
-            IShellItem2 nativeShellItem;
-            Guid guid = new Guid(ShellIIDGuid.IShellItem2);
-            int retCode = ShellNativeMethods.SHCreateItemFromParsingName(parsingName, IntPtr.Zero, ref guid, out nativeShellItem);
+            var guid = new Guid(ShellIIDGuid.IShellItem2);
+            int retCode = ShellNativeMethods.SHCreateItemFromParsingName(parsingName, IntPtr.Zero, ref guid, out IShellItem2 nativeShellItem);
 
-            if (!CoreErrorHelper.Succeeded(retCode))
-            {
-                throw new ShellException(LocalizedMessages.ShellObjectFactoryUnableToCreateItem, Marshal.GetExceptionForHR(retCode));
-            }
-            return ShellObjectFactory.Create(nativeShellItem);
+            return CoreErrorHelper.Succeeded(retCode) ? ShellObjectFactory.Create(nativeShellItem) : throw new ShellException(LocalizedMessages.ShellObjectFactoryUnableToCreateItem, Marshal.GetExceptionForHR(retCode));
         }
 
         /// <summary>
@@ -187,13 +180,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
             // Throw exception if not running on Win7 or newer.
             CoreHelpers.ThrowIfNotVista();
 
-            Guid guid = new Guid(ShellIIDGuid.IShellItem2);
+            var guid = new Guid(ShellIIDGuid.IShellItem2);
 
-            IShellItem2 nativeShellItem;
-            int retCode = ShellNativeMethods.SHCreateItemFromIDList(idListPtr, ref guid, out nativeShellItem);
+            int retCode = ShellNativeMethods.SHCreateItemFromIDList(idListPtr, ref guid, out IShellItem2 nativeShellItem);
 
-            if (!CoreErrorHelper.Succeeded(retCode)) { return null; }
-            return ShellObjectFactory.Create(nativeShellItem);
+            return CoreErrorHelper.Succeeded(retCode) ? Create(nativeShellItem) : null;
         }
 
         /// <summary>
@@ -204,16 +195,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <returns></returns>
         public static ShellObject Create(IntPtr idListPtr, ShellContainer parent)
         {
-            IShellItem nativeShellItem;
-
             int retCode = ShellNativeMethods.SHCreateShellItem(
                 IntPtr.Zero,
                 parent.NativeShellFolder,
-                idListPtr, out nativeShellItem);
+                idListPtr, out IShellItem nativeShellItem);
 
-            if (!CoreErrorHelper.Succeeded(retCode)) { return null; }
-
-            return ShellObjectFactory.Create(nativeShellItem);
+            return CoreErrorHelper.Succeeded(retCode) ? Create(nativeShellItem) : null;
         }
     }
 }

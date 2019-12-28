@@ -55,7 +55,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\ShellSearchFolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ShellThumbnail.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SingleInstance.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DesktopWindowManager\DesktopWindowManagerNativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DesktopWindowManager\GlassEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DesktopWindowManager\GlassForm.cs">
       <SubType>Form</SubType>

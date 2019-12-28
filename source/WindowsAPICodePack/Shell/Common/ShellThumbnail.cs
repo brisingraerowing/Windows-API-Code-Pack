@@ -40,7 +40,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             if (shellObject == null || shellObject.NativeShellItem == null)
             
-                throw new ArgumentNullException("shellObject");
+                throw new ArgumentNullException(nameof(shellObject));
             
             shellItemNative = shellObject.NativeShellItem;
         }
@@ -64,14 +64,14 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 // Check for 0; negative number check not required as System.Windows.Size only allows positive numbers.
                 if (value.Height == 0 || value.Width == 0)
                 
-                    throw new ArgumentOutOfRangeException("value", LocalizedMessages.ShellThumbnailSizeCannotBe0);
+                    throw new ArgumentOutOfRangeException(nameof(value), LocalizedMessages.ShellThumbnailSizeCannotBe0);
                 
                 System.Windows.Size size = (FormatOption == ShellThumbnailFormatOption.IconOnly) ?
                     DefaultIconSize.Maximum : DefaultThumbnailSize.Maximum;
 
                 if (value.Height > size.Height || value.Width > size.Width)
                 
-                    throw new ArgumentOutOfRangeException("value",
+                    throw new ArgumentOutOfRangeException(nameof(value),
                         string.Format(System.Globalization.CultureInfo.InvariantCulture,
                         LocalizedMessages.ShellThumbnailCurrentSizeRange, size.ToString()));
                 
@@ -155,7 +155,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Gets the thumbnail or icon in Extra Large size and <see cref="System.Drawing.Icon"/> format.
         /// </summary>
-        public Icon ExtraLargeIcon { get { return Icon.FromHandle(ExtraLargeBitmap.GetHicon()); } }
+        public Icon ExtraLargeIcon => Icon.FromHandle(ExtraLargeBitmap.GetHicon());
 
         /// <summary>
         /// Gets or sets a value that determines if the current retrieval option is cache or extract, cache only, or from memory only.
@@ -235,16 +235,14 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         private IntPtr GetHBitmap(System.Windows.Size size)
         {
-            IntPtr hbitmap ;
-
             // Create a size structure to pass to the native method
-            CoreNativeMethods.Size nativeSIZE = new CoreNativeMethods.Size();
+            var nativeSIZE = new CoreNativeMethods.Size();
             nativeSIZE.Width = Convert.ToInt32(size.Width);
             nativeSIZE.Height = Convert.ToInt32(size.Height);
 
             // Use IShellItemImageFactory to get an icon
             // Options passed in: Resize to fit
-            HResult hr = ((IShellItemImageFactory)shellItemNative).GetImage(nativeSIZE, CalculateFlags(), out hbitmap);
+            HResult hr = ((IShellItemImageFactory)shellItemNative).GetImage(nativeSIZE, CalculateFlags(), out IntPtr hbitmap);
 
             if (hr == HResult.Ok)  return hbitmap; 
             else if ((uint)hr == 0x8004B200 && FormatOption == ShellThumbnailFormatOption.ThumbnailOnly)
@@ -269,7 +267,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             Bitmap returnValue = Image.FromHbitmap(hBitmap);
 
             // delete HBitmap to avoid memory leaks
-            ShellNativeMethods.DeleteObject(hBitmap);
+            _ = ShellNativeMethods.DeleteObject(hBitmap);
 
             return returnValue;
         }
@@ -289,7 +287,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 BitmapSizeOptions.FromEmptyOptions());
 
             // delete HBitmap to avoid memory leaks
-            ShellNativeMethods.DeleteObject(hBitmap);
+            _ = ShellNativeMethods.DeleteObject(hBitmap);
 
             return returnValue;
         }

@@ -12,12 +12,12 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
     public interface IWMDMDeviceSession
     {
         HResult BeginSession(
-            [In] WMDM_SESSION_TYPE type,
+            [In] SessionType type,
             [In] ref StringBuilder pCtx,
             [In] uint dwSizeCtx);
         
         HResult EndSession(
-            [In] WMDM_SESSION_TYPE type,
+            [In] SessionType type,
             [In] ref StringBuilder pCtx,
             [In] uint dwSizeCtx);
     }

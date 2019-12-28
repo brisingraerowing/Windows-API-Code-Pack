@@ -28,6 +28,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public HResult GetCount(out uint pdwNumItems)
         {
             pdwNumItems = (uint)shellItemsList.Count;
+
             return HResult.Ok;
         }
 
@@ -38,11 +39,13 @@ namespace Microsoft.WindowsAPICodePack.Shell
             if (index < shellItemsList.Count)
             {
                 ppsi = shellItemsList[index];
+
                 return HResult.Ok;
             }
             else
             {
                 ppsi = null;
+
                 return HResult.Fail;
             }
         }

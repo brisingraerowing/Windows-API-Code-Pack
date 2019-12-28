@@ -11,6 +11,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -91,13 +92,14 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 if (nativeShellItem == null && ParsingName != null)
                 {
-                    Guid guid = new Guid(ShellIIDGuid.IShellItem2);
+                    var guid = new Guid(ShellIIDGuid.IShellItem2);
                     int retCode = ShellNativeMethods.SHCreateItemFromParsingName(ParsingName, IntPtr.Zero, ref guid, out nativeShellItem);
 
                     if (nativeShellItem == null || !CoreErrorHelper.Succeeded(retCode))
 
                         throw new ShellException(LocalizedMessages.ShellObjectCreationFailed, Marshal.GetExceptionForHR(retCode));
                 }
+
                 return nativeShellItem;
             }
         }
@@ -147,17 +149,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Gets an object that allows the manipulation of ShellProperties for this shell item.
         /// </summary>
-        public ShellProperties Properties
-        {
-            get
-            {
-                if (properties == null)
-
-                    properties = new ShellProperties(this);
-
-                return properties;
-            }
-        }
+        public ShellProperties Properties => properties ?? (properties = new ShellProperties(this));
 
         /// <summary>
         /// Gets the parsing name for this ShellItem.
@@ -238,11 +230,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 hr = NativeShellItem2.GetDisplayName((ShellNativeMethods.ShellItemDesignNameOptions)displayNameType, out returnValue);
 
-            if (hr != HResult.Ok)
-
-                throw new ShellException(LocalizedMessages.ShellObjectCannotGetDisplayName, hr);
-
-            return returnValue;
+            return hr == HResult.Ok ? returnValue : throw new ShellException(LocalizedMessages.ShellObjectCannotGetDisplayName, hr);
         }
 
         /// <summary>
@@ -255,6 +243,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 try
                 {
                     NativeShellItem.GetAttributes(ShellNativeMethods.ShellFileGetAttributesOptions.Link, out ShellNativeMethods.ShellFileGetAttributesOptions sfgao);
+
                     return (sfgao & ShellNativeMethods.ShellFileGetAttributesOptions.Link) != 0;
                 }
                 catch (Exception ex) when (ex is FileNotFoundException || ex is NullReferenceException /*NativeShellItem is null*/)
@@ -274,6 +263,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 try
                 {
                     NativeShellItem.GetAttributes(ShellNativeMethods.ShellFileGetAttributesOptions.FileSystem, out ShellNativeMethods.ShellFileGetAttributesOptions sfgao);
+
                     return (sfgao & ShellNativeMethods.ShellFileGetAttributesOptions.FileSystem) != 0;
                 }
                 catch (Exception ex) when (ex is FileNotFoundException || ex is NullReferenceException /*NativeShellItem is null*/)
@@ -293,6 +283,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             get
             {
                 if (thumbnail == null) thumbnail = new ShellThumbnail(this);
+
                 return thumbnail;
             }
         }
@@ -310,18 +301,17 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 {
                     HResult hr = NativeShellItem2.GetParent(out IShellItem parentShellItem);
 
-                    if (hr == HResult.Ok && parentShellItem != null)
-
-                        parentShellObject = ShellObjectFactory.Create(parentShellItem);
-
-                    else if (hr == HResult.NoObject)
-
-                        // Should return null if the parent is desktop
-                        return null;
-
-                    else
-
-                        throw new ShellException(hr);
+                    switch (hr)
+                    {
+                        case HResult.Ok when parentShellItem != null:
+                            parentShellObject = ShellObjectFactory.Create(parentShellItem);
+                            break;
+                        case HResult.NoObject:
+                            // Should return null if the parent is desktop
+                            return null;
+                        default:
+                            throw new ShellException(hr);
+                    }
                 }
 
                 return parentShellObject;
@@ -360,13 +350,13 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (nativeShellItem != null)
             {
-                Marshal.ReleaseComObject(nativeShellItem);
+                _ = Marshal.ReleaseComObject(nativeShellItem);
                 nativeShellItem = null;
             }
 
             if (NativePropertyStore != null)
             {
-                Marshal.ReleaseComObject(NativePropertyStore);
+                _ = Marshal.ReleaseComObject(NativePropertyStore);
                 NativePropertyStore = null;
             }
         }
@@ -401,6 +391,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             if (!hashValue.HasValue)
             {
                 uint size = ShellNativeMethods.ILGetSize(PIDL);
+
                 if (size != 0)
                 {
                     byte[] pidlData = new byte[size];
@@ -414,6 +405,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             }
             return hashValue.Value;
         }
+
         private static MD5CryptoServiceProvider hashProvider = new MD5CryptoServiceProvider();
         private int? hashValue;
 
@@ -430,6 +422,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 IShellItem ifirst = NativeShellItem;
                 IShellItem isecond = other.NativeShellItem;
+
                 if (ifirst != null && isecond != null)
                 {
                     HResult hr = ifirst.Compare(

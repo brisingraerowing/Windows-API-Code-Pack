@@ -1,4 +1,5 @@
 ﻿using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native.Core.COM;
 using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using System;
 using System.Collections.Generic;
@@ -92,7 +93,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
             [In] in PropVariant pValue);
 
         HResult GetFormatCapability(
-            [In] WMDM_FORMATCODE format,
+            [In] FormatCode format,
             [Out] out WMDM_FORMAT_CAPABILITY pFormatSupport);
         
         HResult DeviceIoControl(
@@ -103,7 +104,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
             [Out, In] ref uint pnOutBufferSize);
         
         HResult FindStorage(
-           [In] WMDM_FIND_SCOPE findScope,
+           [In] FindScope findScope,
             [In, MarshalAs(UnmanagedType.LPWStr)] string pwszUniqueID,
             [Out] out IMDSPStorage ppStorage);
 

@@ -9,6 +9,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -89,10 +90,10 @@ namespace Microsoft.WindowsAPICodePack.Shell
             private set
             {
                 searchScopePaths = value.ToArray();
-                List<IShellItem> shellItems = new List<IShellItem>(searchScopePaths.Length);
+                var shellItems = new List<IShellItem>(searchScopePaths.Length);
 
-                Guid shellItemGuid = new Guid(ShellIIDGuid.IShellItem);
-                Guid shellItemArrayGuid = new Guid(ShellIIDGuid.IShellItemArray);
+                var shellItemGuid = new Guid(ShellIIDGuid.IShellItem);
+                // Guid shellItemArrayGuid = new Guid(ShellIIDGuid.IShellItemArray);
 
                 // Create IShellItem for all the scopes we were given
                 foreach (string path in searchScopePaths)
@@ -118,15 +119,13 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             get
             {
-                Guid guid = new Guid(ShellIIDGuid.IShellItem);
+                var guid = new Guid(ShellIIDGuid.IShellItem);
 
                 if (NativeSearchFolderItemFactory == null) return null;
 
                 int hr = NativeSearchFolderItemFactory.GetShellItem(ref guid, out IShellItem shellItem);
 
-                if (!CoreErrorHelper.Succeeded(hr)) throw new ShellException(hr);
-
-                return shellItem;
+                 return CoreErrorHelper.Succeeded(hr) ? shellItem : throw new ShellException(hr) ; 
             }
         }
 
@@ -139,8 +138,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <exception cref="System.ArgumentException">If one of the given canonical names is invalid.</exception>
         public void SetStacks(params string[] canonicalNames)
         {
-            if (canonicalNames == null) throw new ArgumentNullException("canonicalNames");
-            List<PropertyKey> propertyKeyList = new List<PropertyKey>();
+            if (canonicalNames == null) throw new ArgumentNullException(nameof(canonicalNames));
+
+            var propertyKeyList = new List<PropertyKey>();
 
             foreach (string prop in canonicalNames)
             {

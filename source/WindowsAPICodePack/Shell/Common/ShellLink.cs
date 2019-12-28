@@ -1,5 +1,6 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using System;
 using System.Runtime.InteropServices.ComTypes;
@@ -31,7 +32,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         {
 
-            IShellLinkW lnk = Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid(ShellIIDGuid.CShellLink), true)) as IShellLinkW;
+            var lnk = Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid(ShellIIDGuid.CShellLink), true)) as IShellLinkW;
             lnk.SetPath(sourcePath);
             string linkPath = destPath + "\\\\" + System.IO.Path.GetFileNameWithoutExtension(sourcePath) + ".lnk";
             ((IPersistFile)lnk).Save(linkPath, true);
@@ -68,21 +69,21 @@ namespace Microsoft.WindowsAPICodePack.Shell
             get
             {
                 if (string.IsNullOrEmpty(internalTargetLocation) && NativeShellItem2 != null)
-                
+
                     internalTargetLocation = Properties.System.Link.TargetParsingPath.Value;
-                
+
                 return internalTargetLocation;
             }
             set
             {
-                if (value == null)  return; 
+                if (value == null) return;
 
                 internalTargetLocation = value;
 
                 if (NativeShellItem2 != null)
-                
+
                     Properties.System.Link.TargetParsingPath.Value = internalTargetLocation;
-                
+
             }
         }
 
@@ -101,13 +102,13 @@ namespace Microsoft.WindowsAPICodePack.Shell
             set
             {
                 if (value == null)
-                
-                    throw new ArgumentNullException("value");
-                
+
+                    throw new ArgumentNullException(nameof(value));
+
                 if (NativeShellItem2 != null)
-                
+
                     Properties.System.Title.Value = value;
-                            }
+            }
         }
 
         private string internalArguments;
@@ -120,9 +121,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
             get
             {
                 if (string.IsNullOrEmpty(internalArguments) && NativeShellItem2 != null)
-                
+
                     internalArguments = Properties.System.Link.Arguments.Value;
-                
+
                 return internalArguments;
             }
         }
@@ -137,9 +138,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
             get
             {
                 if (string.IsNullOrEmpty(internalComments) && NativeShellItem2 != null)
-                
+
                     internalComments = Properties.System.Comment.Value;
-                
+
                 return internalComments;
             }
         }

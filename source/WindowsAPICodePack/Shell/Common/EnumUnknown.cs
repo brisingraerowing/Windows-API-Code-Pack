@@ -40,18 +40,21 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 return HResult.False;
             
             current = temp;
+
             return HResult.Ok;
         }
 
         public HResult Reset()
         {
             current = -1;
+
             return HResult.Ok;
         }
 
         public HResult Clone(out IEnumUnknown result)
         {
             result = new EnumUnknownClass(conditionList.ToArray());
+
             return HResult.Ok;
         }
 

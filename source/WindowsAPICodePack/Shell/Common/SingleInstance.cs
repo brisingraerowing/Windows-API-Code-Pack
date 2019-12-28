@@ -196,7 +196,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="channelName">Application's IPC channel name.</param>
         private static void CreateRemoteService(string channelName)
         {
-            BinaryServerFormatterSinkProvider serverProvider = new BinaryServerFormatterSinkProvider();
+            var serverProvider = new BinaryServerFormatterSinkProvider();
             serverProvider.TypeFilterLevel = TypeFilterLevel.Full;
             IDictionary props = new Dictionary<string, string>();
 
@@ -211,8 +211,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
             ChannelServices.RegisterChannel(channel, true);
 
             // Expose the remote service with the REMOTE_SERVICE_NAME
-            IPCRemoteService remoteService = new IPCRemoteService();
-            RemotingServices.Marshal(remoteService, RemoteServiceName);
+            var remoteService = new IPCRemoteService();
+            _ = RemotingServices.Marshal(remoteService, RemoteServiceName);
         }
 
         /// <summary>
@@ -226,13 +226,13 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </param>
         private static void SignalFirstInstance(string channelName, IList<string> args)
         {
-            IpcClientChannel secondInstanceChannel = new IpcClientChannel();
+            var secondInstanceChannel = new IpcClientChannel();
             ChannelServices.RegisterChannel(secondInstanceChannel, true);
 
             string remotingServiceUrl = IpcProtocol + channelName + "/" + RemoteServiceName;
 
             // Obtain a reference to the remoting service exposed by the server i.e the first instance of the application
-            IPCRemoteService firstInstanceRemoteServiceReference = (IPCRemoteService)RemotingServices.Connect(typeof(IPCRemoteService), remotingServiceUrl);
+            var firstInstanceRemoteServiceReference = (IPCRemoteService)RemotingServices.Connect(typeof(IPCRemoteService), remotingServiceUrl);
 
             // Check that the remote service exists, in some cases the first instance may not yet have created one, in which case
             // the second instance should just exit
@@ -251,7 +251,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         private static object ActivateFirstInstanceCallback(object arg)
         {
             // Get command line args to be passed to first instance
-            IList<string> args = arg as IList<string>;
+            var args = arg as IList<string>;
             ActivateFirstInstance(args);
             return null;
         }
@@ -267,7 +267,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 return;
 
-            ((TApplication)Application.Current).SignalExternalCommandLineArgs(args);
+            _ = ((TApplication)Application.Current).SignalExternalCommandLineArgs(args);
         }
 
         #endregion
@@ -289,7 +289,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 if (Application.Current != null)
 
                     // Do an asynchronous call to ActivateFirstInstance function
-                    Application.Current.Dispatcher.BeginInvoke(
+                    _ = Application.Current.Dispatcher.BeginInvoke(
                         DispatcherPriority.Normal, new DispatcherOperationCallback(ActivateFirstInstanceCallback), args);
             }
 

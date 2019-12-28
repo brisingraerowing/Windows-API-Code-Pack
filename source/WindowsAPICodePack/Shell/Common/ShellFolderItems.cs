@@ -31,13 +31,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (!CoreErrorHelper.Succeeded(hr))
 
-                if (hr == HResult.Canceled)
-
-                    throw new System.IO.FileNotFoundException();
-
-                else
-
-                    throw new ShellException(hr);
+                throw hr == HResult.Canceled ? new System.IO.FileNotFoundException() : throw new ShellException(hr);
         }
 
         #endregion
@@ -54,7 +48,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             if (nativeEnumIdList != null)
             {
-                Marshal.ReleaseComObject(nativeEnumIdList);
+                _ = Marshal.ReleaseComObject(nativeEnumIdList);
                 nativeEnumIdList = null;
             }
         }
@@ -65,18 +59,13 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         object IEnumerator.Current => Current;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         public bool MoveNext()
         {
-            if (nativeEnumIdList == null)  return false; 
+            if (nativeEnumIdList == null) return false;
 
-            IntPtr item;
-            uint numItemsReturned;
             uint itemsRequested = 1;
-            HResult hr = nativeEnumIdList.Next(itemsRequested, out item, out numItemsReturned);
+
+            HResult hr = nativeEnumIdList.Next(itemsRequested, out IntPtr item, out uint numItemsReturned);
 
             if (numItemsReturned < itemsRequested || hr != HResult.Ok) return false;
 
@@ -85,15 +74,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
             return true;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public void Reset()
         {
             if (nativeEnumIdList != null)
-            
+
                 nativeEnumIdList.Reset();
-                    }
+        }
 
 
         #endregion

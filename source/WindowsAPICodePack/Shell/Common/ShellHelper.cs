@@ -22,8 +22,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             string path = null;
 
-            IntPtr pszPath;
-            HResult hr = shellItem.GetDisplayName(ShellNativeMethods.ShellItemDesignNameOptions.DesktopAbsoluteParsing, out pszPath);
+            HResult hr = shellItem.GetDisplayName(ShellNativeMethods.ShellItemDesignNameOptions.DesktopAbsoluteParsing, out IntPtr pszPath);
 
             if (hr != HResult.Ok && hr != HResult.InvalidArguments)
 
@@ -46,17 +45,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         internal static string GetItemType(IShellItem2 shellItem) => shellItem != null && shellItem.GetString(ref ItemTypePropertyKey, out string itemType) == HResult.Ok ? itemType : null;
 
-        internal static IntPtr PidlFromParsingName(string name)
-        {
-            IntPtr pidl;
-
-            ShellNativeMethods.ShellFileGetAttributesOptions sfgao;
-            int retCode = ShellNativeMethods.SHParseDisplayName(
-                name, IntPtr.Zero, out pidl, 0,
-                out sfgao);
-
-            return (CoreErrorHelper.Succeeded(retCode) ? pidl : IntPtr.Zero);
-        }
+        internal static IntPtr PidlFromParsingName(string name) => (CoreErrorHelper.Succeeded(ShellNativeMethods.SHParseDisplayName(
+                name, IntPtr.Zero, out IntPtr pidl, 0,
+                out _)) ? pidl : IntPtr.Zero);
 
         internal static IntPtr PidlFromShellItem(IShellItem nativeShellItem) => PidlFromUnknown(Marshal.GetIUnknownForObject(nativeShellItem));
 

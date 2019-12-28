@@ -78,7 +78,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
             [Out, MarshalAs(UnmanagedType.Interface)] out IWMDMMetaData ppMetadata);
         
         HResult SetEnumPreference(
-            [In,Out] ref WMDM_STORAGE_ENUM_MODE pMode,
+            [In,Out] ref StorageEnumMode pMode,
             [In] uint nViews,
             [In] ref WMDMMetadataView pViews);
 
@@ -106,7 +106,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
             [Out] out IWMDMMetaData ppMetadata);
         
         HResult FindStorage(
-            [In] WMDM_FIND_SCOPE findScope,
+            [In] FindScope findScope,
             [In,MarshalAs(UnmanagedType.LPWStr)] string pwszUniqueID,
             [Out, MarshalAs(UnmanagedType.Interface)] out IWMDMStorage ppStorage);
         

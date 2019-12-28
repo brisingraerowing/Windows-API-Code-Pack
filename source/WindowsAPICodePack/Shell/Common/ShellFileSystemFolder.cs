@@ -40,15 +40,18 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     string.Format(System.Globalization.CultureInfo.InvariantCulture,
                     LocalizedMessages.FilePathNotExist, path));
             
-            ShellFileSystemFolder folder = new ShellFileSystemFolder();
+            var folder = new ShellFileSystemFolder();
+
             try
             {
                 folder.ParsingName = absPath;
+
                 return folder;
             }
             catch
             {
                 folder.Dispose();
+
                 throw;
             }
 
@@ -64,6 +67,5 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public virtual string Path => ParsingName;
 
         #endregion
-
     }
 }
