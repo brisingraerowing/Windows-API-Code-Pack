@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
+namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Resources
 {
     [ComImport,
         Guid(Win32Native.Guids.PortableDevices.IPortableDeviceResources),

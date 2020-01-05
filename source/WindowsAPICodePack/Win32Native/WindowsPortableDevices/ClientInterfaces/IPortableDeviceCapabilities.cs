@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 {

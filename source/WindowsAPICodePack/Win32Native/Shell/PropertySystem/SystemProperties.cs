@@ -150,7 +150,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Type: DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {2CBAA8F5-D81F-47CA-B17A-F8D822300131}, 100</para>
             /// </summary>
-            public static PropertyKey DateAcquired => new PropertyKey(new Guid("{2CBAA8F5-D81F-47CA-B17A-F8D822300131}"), 100);
+            public static PropertyKey DateAcquired => new PropertyKey(new Guid(SystemPropertiesGuids.DateAcquired), 100);
 
             /// <summary>
             /// <para>Name: System.DateArchived -- PKEY_DateArchived</para>
@@ -158,7 +158,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Type: DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {43F8D7B7-A444-4F87-9383-52271C9B915C}, 100</para>
             /// </summary>
-            public static PropertyKey DateArchived => new PropertyKey(new Guid("{43F8D7B7-A444-4F87-9383-52271C9B915C}"), 100);
+            public static PropertyKey DateArchived => new PropertyKey(new Guid(SystemPropertiesGuids.DateArchived), 100);
 
             /// <summary>
             /// <para>Name: System.DateCompleted -- PKEY_DateCompleted</para>
@@ -166,7 +166,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Type: DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {72FAB781-ACDA-43E5-B155-B2434F85E678}, 100</para>
             /// </summary>
-            public static PropertyKey DateCompleted => new PropertyKey(new Guid("{72FAB781-ACDA-43E5-B155-B2434F85E678}"), 100);
+            public static PropertyKey DateCompleted => new PropertyKey(new Guid(SystemPropertiesGuids.DateCompleted), 100);
 
             /// <summary>
             /// <para>Name: System.DateCreated -- PKEY_DateCreated</para>
@@ -210,7 +210,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Type: DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {3F8472B5-E0AF-4DB2-8071-C53FE76AE7CE}, 100</para>
             /// </summary>
-            public static PropertyKey DueDate => new PropertyKey(new Guid("{3F8472B5-E0AF-4DB2-8071-C53FE76AE7CE}"), 100);
+            public static PropertyKey DueDate => new PropertyKey(new Guid(SystemPropertiesGuids.DueDate), 100);
 
             /// <summary>
             /// <para>Name: System.EndDate -- PKEY_EndDate</para>
@@ -218,7 +218,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Type: DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {C75FAA05-96FD-49E7-9CB4-9F601082D553}, 100</para>
             /// </summary>
-            public static PropertyKey EndDate => new PropertyKey(new Guid("{C75FAA05-96FD-49E7-9CB4-9F601082D553}"), 100);
+            public static PropertyKey EndDate => new PropertyKey(new Guid(SystemPropertiesGuids.EndDate), 100);
 
             /// <summary>
             /// <para>Name: System.FileAllocationSize -- PKEY_FileAllocationSize</para>
@@ -280,7 +280,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
             /// <para>FormatID: {E4F10A3C-49E6-405D-8288-A23BD4EEAA6C}, 100</para>
             /// </summary>
-            public static PropertyKey FileExtension => new PropertyKey(new Guid("{E4F10A3C-49E6-405D-8288-A23BD4EEAA6C}"), 100);
+            public static PropertyKey FileExtension => new PropertyKey(new Guid(SystemPropertiesGuids.FileExtension), 100);
 
             /// <summary>
             /// <para>Name: System.FileFRN -- PKEY_FileFRN</para>
@@ -319,7 +319,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
             /// <para>FormatID: {41CF5AE0-F75A-4806-BD87-59C7D9248EB9}, 100</para>
             /// </summary>
-            public static PropertyKey FileName => new PropertyKey(new Guid("{41CF5AE0-F75A-4806-BD87-59C7D9248EB9}"), 100);
+            public static PropertyKey FileName => new PropertyKey(new Guid(SystemPropertiesGuids.FileName), 100);
 
             /// <summary>
             /// <para>Name: System.FileOwner -- PKEY_FileOwner</para>
@@ -355,7 +355,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Type: UInt16 -- VT_UI2</para>
             /// <para>FormatID: {67DF94DE-0CA7-4D6F-B792-053A3E4F03CF}, 100</para>
             /// </summary>
-            public static PropertyKey FlagColor => new PropertyKey(new Guid("{67DF94DE-0CA7-4D6F-B792-053A3E4F03CF}"), 100);
+            public static PropertyKey FlagColor => new PropertyKey(new Guid(SystemPropertiesGuids.FlagColor), 100);
 
             /// <summary>
             /// <para>Name: System.FlagColorText -- PKEY_FlagColorText</para>
@@ -365,7 +365,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
             /// <para>FormatID: {45EAE747-8E2A-40AE-8CBF-CA52ABA6152A}, 100</para>
             /// </summary>
-            public static PropertyKey FlagColorText => new PropertyKey(new Guid("{45EAE747-8E2A-40AE-8CBF-CA52ABA6152A}"), 100);
+            public static PropertyKey FlagColorText => new PropertyKey(new Guid(SystemPropertiesGuids.FlagColorText), 100);
 
             /// <summary>
             /// <para>Name: System.FlagStatus -- PKEY_FlagStatus</para>
@@ -374,7 +374,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Type: Int32 -- VT_I4</para>
             /// <para>FormatID: {E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}, 12</para>
             /// </summary>
-            public static PropertyKey FlagStatus => new PropertyKey(new Guid("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}"), 12);
+            public static PropertyKey FlagStatus => new PropertyKey(new Guid(SystemPropertiesGuids.FlagStatus), 12);
 
             /// <summary>
             /// <para>Name: System.FlagStatusText -- PKEY_FlagStatusText</para>
@@ -384,7 +384,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
             /// <para>FormatID: {DC54FD2E-189D-4871-AA01-08C2F57A4ABC}, 100</para>
             /// </summary>
-            public static PropertyKey FlagStatusText => new PropertyKey(new Guid("{DC54FD2E-189D-4871-AA01-08C2F57A4ABC}"), 100);
+            public static PropertyKey FlagStatusText => new PropertyKey(new Guid(SystemPropertiesGuids.FlagStatusText), 100);
 
             /// <summary>
             /// <para>Name: System.FreeSpace -- PKEY_FreeSpace</para>
@@ -404,7 +404,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
             /// <para>FormatID: {1E3EE840-BC2B-476C-8237-2ACD1A839B22}, 6</para>
             /// </summary>
-            public static PropertyKey FullText => new PropertyKey(new Guid("{1E3EE840-BC2B-476C-8237-2ACD1A839B22}"), 6);
+            public static PropertyKey FullText => new PropertyKey(new Guid(SystemPropertiesGuids.FullText), 6);
 
             /// <summary>
             /// <para>Name: System.Identity -- PKEY_Identity</para>
@@ -412,7 +412,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
             /// <para>FormatID: {A26F4AFC-7346-4299-BE47-EB1AE613139F}, 100</para>
             /// </summary>
-            public static PropertyKey IdentityProperty => new PropertyKey(new Guid("{A26F4AFC-7346-4299-BE47-EB1AE613139F}"), 100);
+            public static PropertyKey IdentityProperty => new PropertyKey(new Guid(SystemPropertiesGuids.IdentityProperty), 100);
 
             /// <summary>
             /// <para>Name: System.ImageParsingName -- PKEY_ImageParsingName</para>
@@ -420,7 +420,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Type: Multivalue String -- VT_VECTOR | VT_LPWSTR  (For variants: VT_ARRAY | VT_BSTR)</para>
             /// <para>FormatID: {D7750EE0-C6A4-48EC-B53E-B87B52E6D073}, 100</para>
             /// </summary>
-            public static PropertyKey ImageParsingName => new PropertyKey(new Guid("{D7750EE0-C6A4-48EC-B53E-B87B52E6D073}"), 100);
+            public static PropertyKey ImageParsingName => new PropertyKey(new Guid(SystemPropertiesGuids.ImageParsingName), 100);
 
             /// <summary>
             /// <para>Name: System.Importance -- PKEY_Importance</para>
@@ -428,7 +428,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Type: Int32 -- VT_I4</para>
             /// <para>FormatID: {E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}, 11</para>
             /// </summary>
-            public static PropertyKey Importance => new PropertyKey(new Guid("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}"), 11);
+            public static PropertyKey Importance => new PropertyKey(new Guid(SystemPropertiesGuids.Importance), 11);
 
             /// <summary>
             /// <para>Name: System.ImportanceText -- PKEY_ImportanceText</para>
@@ -438,7 +438,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
             /// <para>FormatID: {A3B29791-7713-4E1D-BB40-17DB85F01831}, 100</para>
             /// </summary>
-            public static PropertyKey ImportanceText => new PropertyKey(new Guid("{A3B29791-7713-4E1D-BB40-17DB85F01831}"), 100);
+            public static PropertyKey ImportanceText => new PropertyKey(new Guid(SystemPropertiesGuids.ImportanceText), 100);
 
             /// <summary>
             /// <para>Name: System.InfoTipText -- PKEY_InfoTipText</para>
@@ -447,7 +447,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Type: String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
             /// <para>FormatID: {C9944A21-A406-48FE-8225-AEC7E24C211B}, 17</para>
             /// </summary>
-            public static PropertyKey InfoTipText => new PropertyKey(new Guid("{C9944A21-A406-48FE-8225-AEC7E24C211B}"), 17);
+            public static PropertyKey InfoTipText => new PropertyKey(new Guid(SystemPropertiesGuids.InfoTipText), 17);
 
             /// <summary>
             /// <para>Name: System.InternalName -- PKEY_InternalName</para>
@@ -465,7 +465,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Type: Boolean -- VT_BOOL</para>
             /// <para>FormatID: {F23F425C-71A1-4FA8-922F-678EA4A60408}, 100</para>
             /// </summary>
-            public static PropertyKey IsAttachment => new PropertyKey(new Guid("{F23F425C-71A1-4FA8-922F-678EA4A60408}"), 100);
+            public static PropertyKey IsAttachment => new PropertyKey(new Guid(SystemPropertiesGuids.IsAttachment), 100);
 
             /// <summary>
             /// <para>Name: System.IsDefaultNonOwnerSaveLocation -- PKEY_IsDefaultNonOwnerSaveLocation</para>
@@ -474,7 +474,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Type: Boolean -- VT_BOOL</para>
             /// <para>FormatID: {5D76B67F-9B3D-44BB-B6AE-25DA4F638A67}, 5</para>
             /// </summary>
-            public static PropertyKey IsDefaultNonOwnerSaveLocation => new PropertyKey(new Guid("{5D76B67F-9B3D-44BB-B6AE-25DA4F638A67}"), 5);
+            public static PropertyKey IsDefaultNonOwnerSaveLocation => new PropertyKey(new Guid(SystemPropertiesGuids.IsDefaultNonOwnerSaveLocation), 5);
 
             /// <summary>
             /// <para>Name: System.IsDefaultSaveLocation -- PKEY_IsDefaultSaveLocation</para>
@@ -483,7 +483,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Type: Boolean -- VT_BOOL</para>
             /// <para>FormatID: {5D76B67F-9B3D-44BB-B6AE-25DA4F638A67}, 3</para>
             /// </summary>
-            public static PropertyKey IsDefaultSaveLocation => new PropertyKey(new Guid("{5D76B67F-9B3D-44BB-B6AE-25DA4F638A67}"), 3);
+            public static PropertyKey IsDefaultSaveLocation => new PropertyKey(new Guid(SystemPropertiesGuids.IsDefaultSaveLocation), 3);
 
             /// <summary>
             /// <para>Name: System.IsDeleted -- PKEY_IsDeleted</para>
@@ -491,7 +491,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Type: Boolean -- VT_BOOL</para>
             /// <para>FormatID: {5CDA5FC8-33EE-4FF3-9094-AE7BD8868C4D}, 100</para>
             /// </summary>
-            public static PropertyKey IsDeleted => new PropertyKey(new Guid("{5CDA5FC8-33EE-4FF3-9094-AE7BD8868C4D}"), 100);
+            public static PropertyKey IsDeleted => new PropertyKey(new Guid(SystemPropertiesGuids.IsDeleted), 100);
 
             /// <summary>
             /// <para>Name: System.IsEncrypted -- PKEY_IsEncrypted</para>
@@ -500,7 +500,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Type: Boolean -- VT_BOOL</para>
             /// <para>FormatID: {90E5E14E-648B-4826-B2AA-ACAF790E3513}, 10</para>
             /// </summary>
-            public static PropertyKey IsEncrypted => new PropertyKey(new Guid("{90E5E14E-648B-4826-B2AA-ACAF790E3513}"), 10);
+            public static PropertyKey IsEncrypted => new PropertyKey(new Guid(SystemPropertiesGuids.IsEncrypted), 10);
 
             /// <summary>
             /// <para>Name: System.IsFlagged -- PKEY_IsFlagged</para>
@@ -508,7 +508,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             /// <para>Type: Boolean -- VT_BOOL</para>
             /// <para>FormatID: {5DA84765-E3FF-4278-86B0-A27967FBDD03}, 100</para>
             /// </summary>
-            public static PropertyKey IsFlagged => new PropertyKey(new Guid("{5DA84765-E3FF-4278-86B0-A27967FBDD03}"), 100);
+            public static PropertyKey IsFlagged => new PropertyKey(new Guid(SystemPropertiesGuids.IsFlagged), 100);
 
             /// <summary>
             /// <para>Name: System.IsFlaggedComplete -- PKEY_IsFlaggedComplete</para>

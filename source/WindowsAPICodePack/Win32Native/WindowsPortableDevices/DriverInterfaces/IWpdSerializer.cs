@@ -1,4 +1,5 @@
 ﻿using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;

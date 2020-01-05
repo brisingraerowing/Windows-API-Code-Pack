@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
+using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Resources;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 {
@@ -56,5 +58,16 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
             [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection pObjectIDs,
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszDestinationFolderObjectID,
             [In, Out, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection ppResults);
+    }
+
+    [ComImport,
+        Guid(Win32Native.Guids.PortableDevices.IPortableDeviceContent2)]
+    public interface IPortableDeviceContent2 : IPortableDeviceContent
+    {
+        HResult UpdateObjectWithPropertiesAndData(
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
+            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pProperties,
+            [Out, MarshalAs(UnmanagedType.Interface)] out System.Runtime.InteropServices.ComTypes.IStream ppData,
+            [In, Out] ref uint pdwOptimalWriteBufferSize);
     }
 }

@@ -76,6 +76,16 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Core
         NoObject = unchecked((int)0x800401E5),
 
         /// <summary>
+        /// Win32 Error code: ERROR_CANCELLED
+        /// </summary>
+        Win32ErrorCanceled = 1223,
+
+        /// <summary>
+        /// ERROR_CANCELLED
+        /// </summary>
+        Canceled = unchecked((int)0x800704C7),
+
+        /// <summary>
         /// Access denied. (STG_E_ACCESSDENIED)
         /// </summary>
         AccessDenied = unchecked((int)0x80030005),
