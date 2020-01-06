@@ -34,17 +34,17 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
         HResult Begin3(
             [In] Guid EventId,
             [In] uint dwEstimatedTicks,
-            [Out,In] ref OPAQUECOMMAND pContext);
+            [Out,In] ref OpaqueCommand pContext);
         
         HResult Progress3(
             [In] Guid EventId,
             [In] uint dwTranspiredTicks,
-            [Out,In] ref OPAQUECOMMAND pContext);
+            [Out,In] ref OpaqueCommand pContext);
         
         HResult End3(
             [In] Guid EventId,
             [In] HResult hrCompletionCode,
-            [Out,In] ref OPAQUECOMMAND pContext);
+            [Out,In] ref OpaqueCommand pContext);
 
     }
 }

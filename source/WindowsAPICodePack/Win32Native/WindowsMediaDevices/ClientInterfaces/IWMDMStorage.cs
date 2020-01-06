@@ -13,28 +13,28 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
     {
         HResult SetAttributes(
             [In] uint dwAttributes,
-            [In] ref WAVEFORMATEX pFormat);
+            [In] ref WaveFormatEx pFormat);
         
         HResult GetStorageGlobals(
             [Out, MarshalAs(UnmanagedType.Interface)] out IWMDMStorageGlobals ppStorageGlobals);
         
         HResult GetAttributes(
             [Out] out uint pdwAttributes,
-            [In,Out] ref WAVEFORMATEX pFormat);
+            [In,Out] ref WaveFormatEx pFormat);
         
         HResult GetName(
             [Out,MarshalAs(UnmanagedType.LPWStr)] out string pwszName,
             [In] ushort nMaxChars);
         
         HResult GetDate(
-            [Out] out PWMDMDATETIME pDateTimeUTC);
+            [Out] out WMDMDateTime pDateTimeUTC);
         
         HResult GetSize(
             [Out] out uint pdwSizeLow,
             [Out] out uint pdwSizeHigh);
         
         HResult GetRights(
-            [Out] out PWMDMRIGHTS ppRights,
+            [Out] out WMDMRights ppRights,
             [Out] out ushort pnRightsCount,
             [In,Out] ref char[] abMac);
         
@@ -42,7 +42,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
             [Out, MarshalAs(UnmanagedType.Interface)] out IWMDMEnumStorage pEnumStorage);
         
         HResult SendOpaqueCommand(
-            [In,Out] ref OPAQUECOMMAND pCommand);
+            [In,Out] ref OpaqueCommand pCommand);
     }
 
     public interface IWMDMStorage2 : IWMDMStorage
@@ -54,14 +54,14 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
         HResult SetAttributes2(
             [In] uint dwAttributes,
             [In] uint dwAttributesEx,
-            [In] ref WAVEFORMATEX pFormat,
-            [In] ref VIDEOINFOHEADER pVideoFormat);
+            [In] ref WaveFormatEx pFormat,
+            [In] ref VideoInfoHeader pVideoFormat);
         
         HResult GetAttributes2(
             [Out] out uint pdwAttributes,
             [Out] out uint pdwAttributesEx,
-            [In,Out] ref WAVEFORMATEX pAudioFormat,
-            [In,Out] ref VIDEOINFOHEADER pVideoFormat);
+            [In,Out] ref WaveFormatEx pAudioFormat,
+            [In,Out] ref VideoInfoHeader pVideoFormat);
 
     }
 
@@ -80,7 +80,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
         HResult SetEnumPreference(
             [In,Out] ref StorageEnumMode pMode,
             [In] uint nViews,
-            [In] ref WMDMMetadataView pViews);
+            [In] ref MetadataView pViews);
 
     }
 
@@ -97,7 +97,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
         
         HResult GetRightsWithProgress(
             [In, MarshalAs(UnmanagedType.Interface)] ref IWMDMProgress3 pIProgressCallback,
-            [Out] out PWMDMRIGHTS ppRights,
+            [Out] out WMDMRights ppRights,
             [Out] out ushort pnRightsCount);
         
         HResult GetSpecifiedMetadata(

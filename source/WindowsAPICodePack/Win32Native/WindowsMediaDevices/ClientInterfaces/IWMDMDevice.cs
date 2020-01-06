@@ -45,13 +45,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
             [Out, MarshalAs(UnmanagedType.Interface)] out IWMDMEnumStorage ppEnumStorage);
 
         HResult GetFormatSupport(
-            [Out] out WAVEFORMATEX ppFormatEx,
+            [Out] out WaveFormatEx ppFormatEx,
             [Out] out ushort pnFormatCount,
             [Out, MarshalAs(UnmanagedType.LPWStr)] out string pppwszMimeType,
             [Out] out ushort pnMimeTypeCount);
         
         HResult SendOpaqueCommand(
-            [Out, In] ref OPAQUECOMMAND pCommand);
+            [Out, In] ref OpaqueCommand pCommand);
     }
 
     public interface IWMDMDevice2 : IWMDMDevice
@@ -63,11 +63,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
         
         HResult GetFormatSupport2(
             [In] uint dwFlags,
-            [Out] out WAVEFORMATEX ppAudioFormatEx,
+            [Out] out WaveFormatEx ppAudioFormatEx,
             [Out] out ushort pnAudioFormatCount,
-            [Out] out VIDEOINFOHEADER ppVideoFormatEx,
+            [Out] out VideoInfoHeader ppVideoFormatEx,
             [Out] out ushort pnVideoFormatCount,
-            [Out] out WMFILECAPABILITIES ppFileType,
+            [Out] out FileCapabilities ppFileType,
             [Out] out ushort pnFileTypeCount);
         
         HResult GetSpecifyPropertyPages(
@@ -94,7 +94,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
 
         HResult GetFormatCapability(
             [In] FormatCode format,
-            [Out] out WMDM_FORMAT_CAPABILITY pFormatSupport);
+            [Out] out FormatCapability pFormatSupport);
         
         HResult DeviceIoControl(
             [In] uint dwIoControlCode,

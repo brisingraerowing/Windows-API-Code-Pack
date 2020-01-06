@@ -13,34 +13,34 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
     {
         HResult SetAttributes(
             [In] uint dwAttributes,
-            [In] ref WAVEFORMATEX pFormat);
+            [In] ref WaveFormatEx pFormat);
         
         HResult GetStorageGlobals(
             [Out] out IMDSPStorageGlobals ppStorageGlobals);
         
         HResult GetAttributes(
             [Out] out uint pdwAttributes,
-            [Out, In] ref WAVEFORMATEX pFormat);
+            [Out, In] ref WaveFormatEx pFormat);
         
         HResult GetName(
             [Out, MarshalAs(UnmanagedType.LPWStr)] string pwszName,
             [In] ushort nMaxChars);
         
         HResult GetDate(
-            [Out] out WMDMDATETIME pDateTimeUTC);
+            [Out] out WMDMDateTime pDateTimeUTC);
         
         HResult GetSize(
             [Out] out uint pdwSizeLow,
             [Out] out uint pdwSizeHigh);
         
         HResult GetRights(
-            [Out] out WMDMRIGHTS ppRights,
+            [Out] out WMDMRights ppRights,
             [Out] out ushort pnRightsCount,
             [Out, In] ref StringBuilder abMac);
         
         HResult CreateStorage(
             [In] uint dwAttributes,
-            [In] ref WAVEFORMATEX pFormat,
+            [In] ref WaveFormatEx pFormat,
             [In, MarshalAs(UnmanagedType.LPWStr)] string pwszName,
             [Out] out IMDSPStorage ppNewStorage);
         
@@ -48,7 +48,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
             [Out] out IMDSPEnumStorage ppEnumStorage);
         
         HResult SendOpaqueCommand(
-            [Out, In] ref OPAQUECOMMAND pCommand);
+            [Out, In] ref OpaqueCommand pCommand);
     }
 
     public interface IMDSPStorage2 : IMDSPStorage
@@ -60,8 +60,8 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
         HResult CreateStorage2(
             [In] uint dwAttributes,
             [In] uint dwAttributesEx,
-            [In] ref WAVEFORMATEX pAudioFormat,
-            [In] ref VIDEOINFOHEADER pVideoFormat,
+            [In] ref WaveFormatEx pAudioFormat,
+            [In] ref VideoInfoHeader pVideoFormat,
             [In, MarshalAs(UnmanagedType.LPWStr)] string pwszName,
             [In] ulong qwFileSize,
             [Out] out IMDSPStorage ppNewStorage);
@@ -69,14 +69,14 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
         HResult SetAttributes2(
             [In] uint dwAttributes,
             [In] uint dwAttributesEx,
-            [In] ref WAVEFORMATEX pAudioFormat,
-            [In] ref VIDEOINFOHEADER pVideoFormat);
+            [In] ref WaveFormatEx pAudioFormat,
+            [In] ref VideoInfoHeader pVideoFormat);
         
         HResult GetAttributes2(
             [Out] out uint pdwAttributes,
             [Out] out uint pdwAttributesEx,
-            [Out, In] ref WAVEFORMATEX pAudioFormat,
-            [Out, In] ref VIDEOINFOHEADER pVideoFormat);
+            [Out, In] ref WaveFormatEx pAudioFormat,
+            [Out, In] ref VideoInfoHeader pVideoFormat);
     }
 
     public interface IMDSPStorage3 : IMDSPStorage2
@@ -111,7 +111,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
             [In] ref IWMDMMetaData pMetadata);
         
         HResult FindStorage(
-            [In] WMDM_FIND_SCOPE findScope,
+            [In] FindScope findScope,
             [In, MarshalAs(UnmanagedType.LPWStr)] string pwszUniqueID,
             [Out] out IMDSPStorage ppStorage);
         

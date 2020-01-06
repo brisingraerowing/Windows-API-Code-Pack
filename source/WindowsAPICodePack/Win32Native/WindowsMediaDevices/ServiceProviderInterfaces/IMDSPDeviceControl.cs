@@ -20,7 +20,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
         HResult Play();
         
         HResult Record(
-            [In] ref WAVEFORMATEX pFormat);
+            [In] ref WaveFormatEx pFormat);
         
         HResult Pause();
         

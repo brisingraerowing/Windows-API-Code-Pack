@@ -15,7 +15,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
             [Out] out uint pdwCapabilities);
         
         HResult GetSerialNumber(
-            [Out] out PWMDMID pSerialNum,
+            [Out] out WMDMID pSerialNum,
             [Out,In] ref StringBuilder abMac);
         
         HResult GetTotalSize(

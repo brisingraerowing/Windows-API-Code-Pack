@@ -33,12 +33,12 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
     }
 
     /// <summary>
-    /// The <see cref="WAVEFORMATEX"/> structure defines the format of waveform-audio data.
+    /// The <see cref="WaveFormatEx"/> structure defines the format of waveform-audio data.
     /// </summary>
-    public struct WAVEFORMATEX
+    public struct WaveFormatEx
     {
         /// <summary>
-        /// Must be set to a format or formats supported by the device. Note that previous versions of the Windows Media Device Manager recommended using WMDM_WAVE_FORMAT_ALL to indicate support for all formats. However, this is no longer recommended, as different media players will interpret this in different ways, and few devices can truly play any file format. It is now recommended that you use the <see cref="PropValidValuesForm.Any"/> value of the <see cref="PropValidValuesForm"/> enumeration, or better yet specify a range of formats with the <see cref="WMDM_PROP_VALUES_RANGE"/> structure.
+        /// Must be set to a format or formats supported by the device. Note that previous versions of the Windows Media Device Manager recommended using WMDM_WAVE_FORMAT_ALL to indicate support for all formats. However, this is no longer recommended, as different media players will interpret this in different ways, and few devices can truly play any file format. It is now recommended that you use the <see cref="PropValidValuesForm.Any"/> value of the <see cref="PropValidValuesForm"/> enumeration, or better yet specify a range of formats with the <see cref="PropValuesRange"/> structure.
         /// </summary>
         public PropValidValuesForm wFormatTag;
         public ushort nChannels;
@@ -50,17 +50,17 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
     }
 
     /// <summary>
-    /// The <see cref="WMDM_PROP_VALUES_RANGE"/> structure describes a range of valid values for a particular property in a particular property configuration.
+    /// The <see cref="PropValuesRange"/> structure describes a range of valid values for a particular property in a particular property configuration.
     /// </summary>
-    /// <remarks>This structure is used in the <see cref="WMDM_PROP_DESC"/> structure to describe a range of valid values. A range of valid values is applicable when <see cref="PropValidValuesForm.Enum"/> is selected from the <see cref="PropValidValuesForm"/> enumeration.</remarks>
+    /// <remarks>This structure is used in the <see cref="PropDesc"/> structure to describe a range of valid values. A range of valid values is applicable when <see cref="PropValidValuesForm.Enum"/> is selected from the <see cref="PropValidValuesForm"/> enumeration.</remarks>
     /// <seealso cref="IWMDMDevice3.GetFormatCapability"/>
     /// <seealso cref="PropValidValuesForm"/>
-    /// <seealso cref="WMDM_FORMAT_CAPABILITY"/>
+    /// <seealso cref="FormatCapability"/>
     /// <seealso cref="WMDM_PROP_CONFIG"/>
-    /// <seealso cref="WMDM_PROP_DESC"/>
-    /// <seealso cref="WMDM_PROP_VALUES_ENUM"/>
+    /// <seealso cref="PropDesc"/>
+    /// <seealso cref="PropValuesEnum"/>
     /// <seealso href="https://docs.microsoft.com/fr-fr/windows/win32/wmdm/structures"/>
-    public struct WMDM_PROP_VALUES_RANGE
+    public struct PropValuesRange
     {
         /// <summary>
         /// Minimum value in the range.
@@ -77,11 +77,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
     }
 
     /// <summary>
-    /// The <see cref="WMDM_PROP_DESC"/> structure describes valid values of a property in a particular property configuration.
+    /// The <see cref="PropDesc"/> structure describes valid values of a property in a particular property configuration.
     /// </summary>
-    /// <remarks><para>The <see cref="WMDM_PROP_DESC"/> structure contains a property description that consists of a property name and its valid values in a particular configuration.</para>
-    /// <para>The caller is required to free the memory used by <see cref="WMDM_PROP_DESC_ValidValues.ValidValuesRange"/> or <see cref="WMDM_PROP_DESC_ValidValues.EnumeratedValidValues"/>. For an example of how to do this, see <see cref="WMDM_FORMAT_CAPABILITY"/>.</para></remarks>
-    public struct WMDM_PROP_DESC
+    /// <remarks><para>The <see cref="PropDesc"/> structure contains a property description that consists of a property name and its valid values in a particular configuration.</para>
+    /// <para>The caller is required to free the memory used by <see cref="PropDescValidValues.ValidValuesRange"/> or <see cref="PropDescValidValues.EnumeratedValidValues"/>. For an example of how to do this, see <see cref="FormatCapability"/>.</para></remarks>
+    public struct PropDesc
     {
         /// <summary>
         /// Name of the property. The application must free this memory when it is done using it.
@@ -93,44 +93,44 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
         /// </summary>
         public PropValidValuesForm ValidValuesForm;
         /// <summary>
-        /// See <see cref="WMDM_PROP_DESC_ValidValues"/>.
+        /// See <see cref="PropDescValidValues"/>.
         /// </summary>
-        public WMDM_PROP_DESC_ValidValues ValidValues;
+        public PropDescValidValues ValidValues;
     }
 
     /// <summary>
-    /// Holds the valid values of the property in a particular property configuration. This member holds one of three items: the enumeration value <see cref="PropValidValuesForm.Any"/>; the member <see cref="ValidValuesRange"/>; or the member <see cref="EnumeratedValidValues"/>. The value or member is indicated by <see cref="WMDM_PROP_DESC.ValidValuesForm"/>.
+    /// Holds the valid values of the property in a particular property configuration. This member holds one of three items: the enumeration value <see cref="PropValidValuesForm.Any"/>; the member <see cref="ValidValuesRange"/>; or the member <see cref="EnumeratedValidValues"/>. The value or member is indicated by <see cref="PropDesc.ValidValuesForm"/>.
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
-    public struct WMDM_PROP_DESC_ValidValues
+    public struct PropDescValidValues
 
     {
 
         /// <summary>
-        /// A <see cref="WMDM_PROP_VALUES_RANGE"/> structure containing a range of valid values. This is present only when <see cref="WMDM_PROP_DESC.ValidValuesForm"/> is set to <see cref="PropValidValuesForm.Range"/>. See the Remarks section of the <see cref="WMDM_PROP_DESC"/> structure.
+        /// A <see cref="PropValuesRange"/> structure containing a range of valid values. This is present only when <see cref="PropDesc.ValidValuesForm"/> is set to <see cref="PropValidValuesForm.Range"/>. See the Remarks section of the <see cref="PropDesc"/> structure.
         /// </summary>
         [FieldOffset(0)]
-        public WMDM_PROP_VALUES_RANGE ValidValuesRange;
+        public PropValuesRange ValidValuesRange;
         /// <summary>
-        /// A <see cref="WMDM_PROP_VALUES_ENUM"/> structure containing an enumerated set of valid values. This is present only when <see cref="WMDM_PROP_DESC.ValidValuesForm"/> is set to <see cref="PropValidValuesForm.Enum"/>. See the Remarks section of the <see cref="WMDM_PROP_DESC"/> structure.
+        /// A <see cref="PropValuesEnum"/> structure containing an enumerated set of valid values. This is present only when <see cref="PropDesc.ValidValuesForm"/> is set to <see cref="PropValidValuesForm.Enum"/>. See the Remarks section of the <see cref="PropDesc"/> structure.
         /// </summary>
         [FieldOffset(0)]
-        public WMDM_PROP_VALUES_ENUM EnumeratedValidValues;
+        public PropValuesEnum EnumeratedValidValues;
 
     }
     /// <summary>
-    /// The <see cref="WMDM_PROP_VALUES_ENUM"/> structure contains an enumerated set of valid values for a particular property in a particular property configuration.
+    /// The <see cref="PropValuesEnum"/> structure contains an enumerated set of valid values for a particular property in a particular property configuration.
     /// </summary>
-    /// <remarks><para>This structure is used in the <see cref="WMDM_PROP_DESC"/> structure to describe an enumerated set of valid values. An enumerated set of valid values is applicable when <see cref="PropValidValuesForm.Enum"/> is selected from the <see cref="PropValidValuesForm"/> enumeration.</para>
+    /// <remarks><para>This structure is used in the <see cref="PropDesc"/> structure to describe an enumerated set of valid values. An enumerated set of valid values is applicable when <see cref="PropValidValuesForm.Enum"/> is selected from the <see cref="PropValidValuesForm"/> enumeration.</para>
     /// <para>The caller is required to free the memory used by pValues. For an example of how to do this, see <a href="https://docs.microsoft.com/fr-fr/windows/win32/wmdm/wmdm-format-capability">WMDM_FORMAT_CAPABILITY</a>.</para></remarks>
     /// <seealso cref="IWMDMDevice3.GetFormatCapability"/>
     /// <seealso cref="PropValidValuesForm"/>
-    /// <seealso cref="WMDM_FORMAT_CAPABILITY"/>
+    /// <seealso cref="FormatCapability"/>
     /// <seealso cref="WMDM_PROP_CONFIG"/>
-    /// <seealso cref="WMDM_PROP_DESC"/>
-    /// <seealso cref="WMDM_PROP_VALUES_RANGE"/>
+    /// <seealso cref="PropDesc"/>
+    /// <seealso cref="PropValuesRange"/>
     /// <seealso cref="https://docs.microsoft.com/fr-fr/windows/win32/wmdm/structures"/>
-    public struct WMDM_PROP_VALUES_ENUM
+    public struct PropValuesEnum
     {
         /// <summary>
         /// Count of enumerated values.
@@ -143,7 +143,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
         public PropVariant[] pValues;
     }
 
-    public struct OPAQUECOMMAND
+    public struct OpaqueCommand
     {
         public Guid guidCommand;
         public uint dwDataLen;
@@ -151,17 +151,17 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
         public StringBuilder abMAC;
     }
 
-    public struct VIDEOINFOHEADER
+    public struct VideoInfoHeader
     {
         public NativeRect rcSource;
         public NativeRect rcTarget;
         public uint dwBitRate;
         public uint dwBitErrorRate;
         public long AvgTimePerFrame;
-        public BITMAPINFOHEADER bmiHeader;
+        public BitmapInfoHeader bmiHeader;
     }
 
-    public struct BITMAPINFOHEADER
+    public struct BitmapInfoHeader
     {
         public uint biSize;
         public int biWidth;
@@ -176,15 +176,44 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
         public uint biClrImportant;
     }
 
-    public struct WMFILECAPABILITIES
+    public struct FileCapabilities
     {
-        [MarshalAs(UnmanagedType.LPWStr)] public string pwszMimeType;
+        [MarshalAs(UnmanagedType.LPWStr)] 
+        public string pwszMimeType;
         public uint dwReserved;
     }
 
-    public struct WMDM_FORMAT_CAPABILITY
+    public struct FormatCapability
     {
         public ushort nPropConfig;
         public IntPtr pConfigs;
+    }
+
+    public struct MetadataView
+    {
+        public StringBuilder pwszViewName;
+        public ushort nDepth;
+        public StringBuilder ppwszTags;
+    }
+
+    public struct WMDMRights
+    {
+        public ushort cbSize;
+        public uint dwContentType;
+        public uint fuFlags;
+        public uint fuRights;
+        public uint dwAppSec;
+        public uint dwPlaybackCount;
+        public WMDMDateTime ExpirationDate;
+    }
+
+    public struct WMDMDateTime
+    {
+        public ushort wYear;
+        public ushort wMonth;
+        public ushort wDay;
+        public ushort wHour;
+        public ushort wMinute;
+        public ushort wSecond;
     }
 }

@@ -11,14 +11,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
     /// The <see cref="PropValidValuesForm"/> enumeration type describes possible forms of valid values for a property.
     /// </summary>
     /// <remarks>
-    /// This enumeration is used in the <see cref="WMDM_PROP_DESC"/> structure to specify the form of valid values for a property.
+    /// This enumeration is used in the <see cref="PropDesc"/> structure to specify the form of valid values for a property.
     /// </remarks>
     /// <seealso cref="IWMDMDevice3.GetFormatCapability"/>
-    /// <seealso cref="WMDM_FORMAT_CAPABILITY"/>
-    /// <seealso cref="WMDM_PROP_CONFIG"/>
-    /// <seealso cref="WMDM_PROP_DESC"/>
-    /// <seealso cref="WMDM_PROP_VALUES_ENUM"/>
-    /// <seealso cref="WMDM_PROP_VALUES_RANGE"/>
+    /// <seealso cref="FormatCapability"/>
+    /// <seealso cref="PropDesc"/>
+    /// <seealso cref="PropValuesEnum"/>
+    /// <seealso cref="PropValuesRange"/>
     public enum PropValidValuesForm
     {
         /// <summary>
@@ -26,11 +25,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
         /// </summary>
         Any,
         /// <summary>
-        /// Valid values are expressed as a range. For detailed information, see the <see cref="WMDM_PROP_VALUES_RANGE"/> structure.
+        /// Valid values are expressed as a range. For detailed information, see the <see cref="PropValuesRange"/> structure.
         /// </summary>
         Range,
         /// <summary>
-        /// Valid values are an enumerated set. For detailed information, see the <see cref="WMDM_PROP_VALUES_ENUM"/> structure.
+        /// Valid values are an enumerated set. For detailed information, see the <see cref="PropValuesEnum"/> structure.
         /// </summary>
         Enum
     }

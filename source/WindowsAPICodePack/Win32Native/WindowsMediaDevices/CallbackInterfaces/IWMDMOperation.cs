@@ -25,11 +25,11 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
         
         HResult GetObjectAttributes(
             [Out] out uint pdwAttributes,
-            [Out,In] ref WAVEFORMATEX pFormat);
+            [Out,In] ref WaveFormatEx pFormat);
         
         HResult SetObjectAttributes(
             [In] uint dwAttributes,
-            [In] ref WAVEFORMATEX pFormat);
+            [In] ref WaveFormatEx pFormat);
         
         HResult GetObjectTotalSize(
             [Out] out uint pdwSize,
@@ -55,14 +55,14 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
         HResult SetObjectAttributes2(
             [In] uint dwAttributes,
             [In] uint dwAttributesEx,
-            [In] ref WAVEFORMATEX pFormat,
-            [In] ref VIDEOINFOHEADER pVideoFormat);
+            [In] ref WaveFormatEx pFormat,
+            [In] ref VideoInfoHeader pVideoFormat);
         
         HResult GetObjectAttributes2(
             [Out] out uint pdwAttributes,
             [Out] out uint pdwAttributesEx,
-            [Out,In] ref WAVEFORMATEX pAudioFormat,
-            [Out,In] ref VIDEOINFOHEADER pVideoFormat);
+            [Out,In] ref WaveFormatEx pAudioFormat,
+            [Out,In] ref VideoInfoHeader pVideoFormat);
 
     }
 
