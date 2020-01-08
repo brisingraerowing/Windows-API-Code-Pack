@@ -1,4 +1,5 @@
 ﻿using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Shell.Registry;
 using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
 using System;
@@ -70,6 +71,32 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
 
             _portableDevice = new Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PortableDevice();
+
+        }
+
+        public void GetDeviceDeviceProperty(string propertyName, object defaultValue, out RegistryValueKind valueKind)
+
+        {
+
+            uint pcbData = 0;
+
+            RegistryValueKind _valueKind = RegistryValueKind.None;
+
+            // todo: if (HRESULT_FROM_WIN32(ERROR_INSUFFICIENT_BUFFER))
+
+            PortableDeviceManager.Manager.GetDeviceProperty(DeviceId, propertyName, null, ref pcbData, _valueKind);
+
+            byte[] bytes = new byte[pcbData];
+
+            if (    PortableDeviceManager.Manager.GetDeviceProperty(DeviceId, propertyName, ref bytes, ref pcbData, _valueKind) == HResult.Ok )
+
+                switch (_valueKind)
+
+                {
+
+                    case RegistryValueKind.String:
+
+                }
 
         }
     }

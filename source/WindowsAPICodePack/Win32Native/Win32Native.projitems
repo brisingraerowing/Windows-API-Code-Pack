@@ -87,6 +87,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Shell\PropertySystem\ShellPropertyEnums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\PropertySystem\ShellPropertyFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\PropertySystem\SystemProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\RegistryValueKind.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Resources\LocalizedMessages.Designer.cs">
       <DependentUpon>LocalizedMessages.resx</DependentUpon>
       <DesignTime>True</DesignTime>

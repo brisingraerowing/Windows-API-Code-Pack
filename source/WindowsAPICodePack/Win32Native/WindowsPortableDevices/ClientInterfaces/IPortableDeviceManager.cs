@@ -1,4 +1,5 @@
-﻿using Microsoft.WindowsAPICodePack.Win32Native.Core;
+﻿using Microsoft.WindowsAPICodePack.Shell.Registry;
+using Microsoft.WindowsAPICodePack.Win32Native.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,9 +38,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         HResult GetDeviceProperty(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszPnPDeviceID,
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszDevicePropertyName,
-            [In, Out] ref byte pData,
+            [In, Out] ref byte[] pData,
             [In, Out] ref uint pcbData,
-            [In, Out] ref uint pdwType);
+            [In, Out] ref RegistryValueKind pdwType);
 
         HResult GetPrivateDevices(
             [In, Out, MarshalAs( UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPWStr)] string[] pPnPDeviceIDs,
