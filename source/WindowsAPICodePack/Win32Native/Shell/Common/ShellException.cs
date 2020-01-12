@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Core;
-using Microsoft.WindowsAPICodePack.Win32Native.Core.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
 using LocalizedMessages = Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages;
 

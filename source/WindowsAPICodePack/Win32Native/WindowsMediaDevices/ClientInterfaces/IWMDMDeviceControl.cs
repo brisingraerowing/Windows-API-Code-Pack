@@ -1,4 +1,4 @@
-﻿using Microsoft.WindowsAPICodePack.Win32Native.Core;
+﻿using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.MediaDevices;
 using System;
 using System.Collections.Generic;

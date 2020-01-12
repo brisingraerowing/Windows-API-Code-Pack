@@ -4,7 +4,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.Core
+namespace Microsoft.WindowsAPICodePack.Win32Native
 {
     /// <summary>
     /// Wrappers for Native Methods and Structs.

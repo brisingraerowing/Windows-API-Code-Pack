@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
-using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 using MS.WindowsAPICodePack.Internal;
@@ -406,7 +406,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             if (customCategoriesCollection != null)
             {
                 IntPtr pszString = IntPtr.Zero;
-                HResult hr = item.GetDisplayName(ShellNativeMethods.ShellItemDesignNameOptions.FileSystemPath, out pszString);
+                HResult hr = item.GetDisplayName(ShellItemDesignNameOptions.FileSystemPath, out pszString);
                 if (hr == HResult.Ok && pszString != IntPtr.Zero)
                 {
                     path = Marshal.PtrToStringAuto(pszString);

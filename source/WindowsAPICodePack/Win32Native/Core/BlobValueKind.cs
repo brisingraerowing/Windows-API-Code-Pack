@@ -1,8 +1,8 @@
-﻿namespace Microsoft.WindowsAPICodePack.Shell.Registry
+﻿namespace Microsoft.WindowsAPICodePack
 
 {
 
-    public enum RegistryValueKind : uint
+    public enum BlobValueKind : uint
 
     {
 

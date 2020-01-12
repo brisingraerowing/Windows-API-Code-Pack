@@ -7,9 +7,10 @@ using Microsoft.WindowsAPICodePack.Sensors.Resources;
 using System.Linq;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
-using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Sensors;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
+using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.Sensors
 {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.Core
+namespace Microsoft.WindowsAPICodePack.Win32Native
 {
 
 

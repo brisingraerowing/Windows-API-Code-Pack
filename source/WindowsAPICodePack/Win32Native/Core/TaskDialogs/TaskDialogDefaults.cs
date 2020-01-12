@@ -1,8 +1,8 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.Win32Native.Core.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.Resources;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.Core.Dialogs
+namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
 {
     public static class TaskDialogDefaults
     {

@@ -1,12 +1,12 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.Win32Native.Core.NetworkList;
+using Microsoft.WindowsAPICodePack.Win32Native.NetworkList;
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.Core.Net
+namespace Microsoft.WindowsAPICodePack.Win32Native.Net
 {
     [ComImport]
     [TypeLibType((short)0x1040)]

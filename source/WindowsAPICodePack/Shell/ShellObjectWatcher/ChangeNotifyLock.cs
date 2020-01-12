@@ -6,7 +6,8 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using MS.WindowsAPICodePack.Internal;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -16,75 +17,64 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         internal ChangeNotifyLock(Message message)
         {
-            IntPtr pidl;
             IntPtr lockId = ShellNativeMethods.SHChangeNotification_Lock(
-                    message.WParam, (int)message.LParam, out pidl, out _event);
+                    message.WParam, (int)message.LParam, out IntPtr pidl, out _event);
+
             try
             {
                 Trace.TraceInformation("Message: {0}", (ShellObjectChangeTypes)_event);
 
-                var notifyStruct = pidl.MarshalAs<ShellNativeMethods.ShellNotifyStruct>();
+                ShellNativeMethods.ShellNotifyStruct notifyStruct = pidl.MarshalAs<ShellNativeMethods.ShellNotifyStruct>();
 
-                Guid guid = new Guid(ShellIIDGuid.IShellItem2);
+                var guid = new Guid(ShellIIDGuid.IShellItem2);
+
                 if (notifyStruct.item1 != IntPtr.Zero &&
                     (((ShellObjectChangeTypes)_event) & ShellObjectChangeTypes.SystemImageUpdate) == ShellObjectChangeTypes.None)
                 {
-                    IShellItem2 nativeShellItem;
+
                     if (CoreErrorHelper.Succeeded(ShellNativeMethods.SHCreateItemFromIDList(
-                        notifyStruct.item1, ref guid, out nativeShellItem)))
+                        notifyStruct.item1, ref guid, out IShellItem2 nativeShellItem)))
                     {
-                        string name;
-                        nativeShellItem.GetDisplayName(ShellNativeMethods.ShellItemDesignNameOptions.FileSystemPath,
-                            out name);                        
+                        _ = nativeShellItem.GetDisplayName(ShellItemDesignNameOptions.FileSystemPath,
+                            out string name);
                         ItemName = name;
 
                         Trace.TraceInformation("Item1: {0}", ItemName);
                     }
                 }
                 else
-                {
+
                     ImageIndex = notifyStruct.item1.ToInt32();
-                }
 
                 if (notifyStruct.item2 != IntPtr.Zero)
-                {
-                    IShellItem2 nativeShellItem;
+
                     if (CoreErrorHelper.Succeeded(ShellNativeMethods.SHCreateItemFromIDList(
-                        notifyStruct.item2, ref guid, out nativeShellItem)))
-                    {                        
-                        string name;
-                        nativeShellItem.GetDisplayName(ShellNativeMethods.ShellItemDesignNameOptions.FileSystemPath,
-                            out name);
+                        notifyStruct.item2, ref guid, out IShellItem2 nativeShellItem)))
+                    {
+                        _ = nativeShellItem.GetDisplayName(ShellItemDesignNameOptions.FileSystemPath,
+                            out string name);
                         ItemName2 = name;
 
                         Trace.TraceInformation("Item2: {0}", ItemName2);
                     }
-                }
             }
             finally
             {
                 if (lockId != IntPtr.Zero)
-                {
-                    ShellNativeMethods.SHChangeNotification_Unlock(lockId);
-                }
-            }
+
+                    _ = ShellNativeMethods.SHChangeNotification_Unlock(lockId);
+                            }
 
         }
 
-        public bool FromSystemInterrupt
-        {
-            get
-            {
-                return ((ShellObjectChangeTypes)_event & ShellObjectChangeTypes.FromInterrupt)
+        public bool FromSystemInterrupt => ((ShellObjectChangeTypes)_event & ShellObjectChangeTypes.FromInterrupt)
                     != ShellObjectChangeTypes.None;
-            }
-        }
 
         public int ImageIndex { get; private set; }
         public string ItemName { get; private set; }
         public string ItemName2 { get; private set; }
 
-        public ShellObjectChangeTypes ChangeType { get { return (ShellObjectChangeTypes)_event; } }
+        public ShellObjectChangeTypes ChangeType => (ShellObjectChangeTypes)_event;
 
 
     }

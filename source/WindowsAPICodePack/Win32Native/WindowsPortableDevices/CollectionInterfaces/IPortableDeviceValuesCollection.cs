@@ -1,4 +1,4 @@
-﻿using Microsoft.WindowsAPICodePack.Win32Native.Core;
+﻿using Microsoft.WindowsAPICodePack.Win32Native;
 using System;
 using System.Collections.Generic;
 using System.Linq;

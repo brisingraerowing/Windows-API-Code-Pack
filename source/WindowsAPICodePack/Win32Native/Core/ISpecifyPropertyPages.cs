@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.Core.COM
+namespace Microsoft.WindowsAPICodePack.Win32Native.COM
 {
     /// <summary>
     /// Specifies a counted array of <see cref="Guid"/> types used to receive an array of CLSIDs for the property pages that the object wants to display.

@@ -1,5 +1,5 @@
-﻿using Microsoft.WindowsAPICodePack.Win32Native.Core;
-using Microsoft.WindowsAPICodePack.Win32Native.Core.COM;
+﻿using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.COM;
 using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using System;
 using System.Collections.Generic;

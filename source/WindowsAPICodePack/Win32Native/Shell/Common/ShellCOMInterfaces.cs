@@ -8,7 +8,7 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
@@ -62,7 +62,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         [PreserveSig]
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         HResult GetDisplayName(
-            [In] ShellNativeMethods.ShellItemDesignNameOptions sigdnName,
+            [In] ShellItemDesignNameOptions sigdnName,
             out IntPtr ppszName);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
@@ -97,7 +97,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         [PreserveSig]
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         HResult GetDisplayName(
-            [In] ShellNativeMethods.ShellItemDesignNameOptions sigdnName,
+            [In] ShellItemDesignNameOptions sigdnName,
             [MarshalAs(UnmanagedType.LPWStr)] out string ppszName);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]

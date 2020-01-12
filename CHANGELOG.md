@@ -7,8 +7,9 @@ WindowsAPICodePack CHANGELOG
 Win32Native 2.0
 ---------------
 
-- Move some types to the Microsoft.WindowsAPICodePack.Win32Native.* namespace.
+- Move some types to the Microsoft.WindowsAPICodePack.Win32Native.* and Microsoft.WindowsAPICodePack namespaces.
 - Move GUIDs to the new Win32NativeGuids project.
+- Add the BlobHelper and the BlobValueKind types to process binary data easier. This is particularly useful for data retrieved from Win32 APIs like the Windows Registry, Portable Devices, ...
 
 Win32NativeGuids 2.0
 --------------------

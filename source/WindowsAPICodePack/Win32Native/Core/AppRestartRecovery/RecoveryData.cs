@@ -2,7 +2,7 @@
 
 using System;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.Core.ApplicationServices
+namespace Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices
 {
     /// <summary>
     /// The <see cref="Delegate"/> that represents the callback method invoked

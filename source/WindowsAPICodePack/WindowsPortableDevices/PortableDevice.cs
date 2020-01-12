@@ -1,6 +1,5 @@
 ﻿using Microsoft.WindowsAPICodePack.Shell;
-using Microsoft.WindowsAPICodePack.Shell.Registry;
-using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
 using System;
 using System.Collections;
@@ -74,30 +73,49 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         }
 
-        public void GetDeviceDeviceProperty(string propertyName, object defaultValue, out RegistryValueKind valueKind)
+        public object GetDeviceDeviceProperty(string propertyName, object defaultValue, bool doNotExpand, out BlobValueKind valueKind)
 
         {
 
             uint pcbData = 0;
 
-            RegistryValueKind _valueKind = RegistryValueKind.None;
+            BlobValueKind _valueKind = BlobValueKind.None;
 
-            // todo: if (HRESULT_FROM_WIN32(ERROR_INSUFFICIENT_BUFFER))
+            HResult hr;
 
-            PortableDeviceManager.Manager.GetDeviceProperty(DeviceId, propertyName, null, ref pcbData, _valueKind);
+            if ((hr = PortableDeviceManager.Manager.GetDeviceProperty(DeviceId, propertyName, null, ref pcbData, ref _valueKind)) == CoreErrorHelper.HResultFromWin32(ErrorCode.InsufficientBuffer))
 
-            byte[] bytes = new byte[pcbData];
+            {
 
-            if (    PortableDeviceManager.Manager.GetDeviceProperty(DeviceId, propertyName, ref bytes, ref pcbData, _valueKind) == HResult.Ok )
+                byte[] bytes = new byte[pcbData];
 
-                switch (_valueKind)
+                hr = PortableDeviceManager.Manager.GetDeviceProperty(DeviceId, propertyName, bytes, ref pcbData, ref _valueKind);
+
+                if (hr == HResult.Ok)
+
+                    return BlobHelper.ToDotNetType(bytes, (valueKind = _valueKind), doNotExpand);
+
+                else if (hr == CoreErrorHelper.HResultFromWin32(ErrorCode.InsufficientBuffer))
 
                 {
 
-                    case RegistryValueKind.String:
+                    valueKind = BlobValueKind.None;
+
+                    return defaultValue;
 
                 }
 
+                else Marshal.ThrowExceptionForHR((int)hr);
+
+            }
+
+            Marshal.ThrowExceptionForHR((int)hr);
+
+            valueKind = BlobValueKind.None;
+
+            return null;
+
         }
+
     }
 }

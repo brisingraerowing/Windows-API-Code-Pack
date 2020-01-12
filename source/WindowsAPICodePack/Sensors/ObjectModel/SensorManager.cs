@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Threading;
 using Microsoft.WindowsAPICodePack.Sensors.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Sensors;
 
 namespace Microsoft.WindowsAPICodePack.Sensors

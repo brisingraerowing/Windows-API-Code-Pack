@@ -1,4 +1,4 @@
-﻿using Microsoft.WindowsAPICodePack.Win32Native.Core;
+﻿using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using System;

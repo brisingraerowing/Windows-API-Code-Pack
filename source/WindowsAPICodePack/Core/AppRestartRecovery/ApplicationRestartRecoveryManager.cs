@@ -5,8 +5,8 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Core;
-using Microsoft.WindowsAPICodePack.Win32Native.Core.ApplicationServices;
+using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices;
 using MS.WindowsAPICodePack.Internal;
 
 namespace Microsoft.WindowsAPICodePack.ApplicationServices

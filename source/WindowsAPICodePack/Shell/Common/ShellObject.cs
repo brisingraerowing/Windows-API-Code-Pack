@@ -8,7 +8,7 @@ using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
 using System.Runtime.InteropServices.ComTypes;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
@@ -176,7 +176,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 if (_internalName == null && NativeShellItem != null)
 
-                    if (NativeShellItem.GetDisplayName(ShellNativeMethods.ShellItemDesignNameOptions.Normal, out IntPtr pszString) == HResult.Ok && pszString != IntPtr.Zero)
+                    if (NativeShellItem.GetDisplayName(ShellItemDesignNameOptions.Normal, out IntPtr pszString) == HResult.Ok && pszString != IntPtr.Zero)
                     {
                         _internalName = Marshal.PtrToStringAuto(pszString);
 
@@ -228,7 +228,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (NativeShellItem2 != null)
 
-                hr = NativeShellItem2.GetDisplayName((ShellNativeMethods.ShellItemDesignNameOptions)displayNameType, out returnValue);
+                hr = NativeShellItem2.GetDisplayName((ShellItemDesignNameOptions)displayNameType, out returnValue);
 
             return hr == HResult.Ok ? returnValue : throw new ShellException(LocalizedMessages.ShellObjectCannotGetDisplayName, hr);
         }

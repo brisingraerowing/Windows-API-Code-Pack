@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.Core
+namespace Microsoft.WindowsAPICodePack.Win32Native
 {
     public enum WindowMessage
     {

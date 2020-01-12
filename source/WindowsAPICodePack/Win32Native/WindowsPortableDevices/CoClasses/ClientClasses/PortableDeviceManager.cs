@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 {
@@ -45,9 +45,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         public extern virtual HResult GetDeviceProperty(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszPnPDeviceID, 
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszDevicePropertyName, 
-            [In,Out, MarshalAs(UnmanagedType.LPWStr)] ref byte pData, 
+            [In,Out] byte[] pData, 
             [In,Out] ref uint pcbData, 
-            [In,Out] ref uint pdwType);
+            [In,Out] ref BlobValueKind pdwType);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         public extern virtual HResult GetPrivateDevices(

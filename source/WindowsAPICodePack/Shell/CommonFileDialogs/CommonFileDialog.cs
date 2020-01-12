@@ -16,7 +16,7 @@ using MS.WindowsAPICodePack.Internal;
 using System.Collections.Generic;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
-using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Dialogs
@@ -952,7 +952,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         {
             string filename = null;
             IntPtr pszString;
-            HResult hr = item.GetDisplayName(ShellNativeMethods.ShellItemDesignNameOptions.DesktopAbsoluteParsing, out pszString);
+            HResult hr = item.GetDisplayName(ShellItemDesignNameOptions.DesktopAbsoluteParsing, out pszString);
             if (hr == HResult.Ok && pszString != IntPtr.Zero)
             {
                 filename = Marshal.PtrToStringAuto(pszString);

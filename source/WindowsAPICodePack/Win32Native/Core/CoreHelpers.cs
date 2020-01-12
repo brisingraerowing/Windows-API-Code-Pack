@@ -3,9 +3,9 @@
 using System;
 using System.Globalization;
 using System.Text;
-using Microsoft.WindowsAPICodePack.Win32Native.Core.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.Resources;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.Core
+namespace Microsoft.WindowsAPICodePack.Win32Native
 {
     /// <summary>
     /// Common Helper methods

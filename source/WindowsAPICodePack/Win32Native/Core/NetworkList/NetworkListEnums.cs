@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.Core.NetworkList
+namespace Microsoft.WindowsAPICodePack.Win32Native.NetworkList
 {
     /// <summary>
     /// Specifies types of network connectivity.

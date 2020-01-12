@@ -1,7 +1,7 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using System;
-namespace Microsoft.WindowsAPICodePack.Win32Native.Core
+namespace Microsoft.WindowsAPICodePack.Win32Native
 {
     /// <summary>
     /// Enumeration of execution states.

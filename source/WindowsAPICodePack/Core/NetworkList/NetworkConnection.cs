@@ -1,7 +1,7 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.Win32Native.Core.Net;
-using Microsoft.WindowsAPICodePack.Win32Native.Core.NetworkList;
+using Microsoft.WindowsAPICodePack.Win32Native.Net;
+using Microsoft.WindowsAPICodePack.Win32Native.NetworkList;
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;

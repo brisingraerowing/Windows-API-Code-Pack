@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using IDataObject = System.Runtime.InteropServices.ComTypes.IDataObject;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.Core.Clipboard
+namespace Microsoft.WindowsAPICodePack.Win32Native.Clipboard
 {
     public static class ClipboardNativeMethods
     {

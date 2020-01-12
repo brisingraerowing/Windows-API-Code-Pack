@@ -1,6 +1,6 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.Core
+namespace Microsoft.WindowsAPICodePack.Win32Native
 {
 
     // todo: to add the other error codes
@@ -66,6 +66,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Core
         Fail = unchecked((int)0x80004005),
 
         /// <summary>
+        /// E_ELEMENTNOTFOUND
+        /// </summary>
+        ElementNotFound = unchecked((int)0x80070490),
+
+        /// <summary>
         /// TYPE_E_ELEMENTNOTFOUND (TYPE_E_ELEMENTNOTFOUND)
         /// </summary>
         TypeElementNotFound = unchecked((int)0x8002802B),
@@ -84,6 +89,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Core
         /// ERROR_CANCELLED
         /// </summary>
         Canceled = unchecked((int)0x800704C7),
+
+        /// <summary>
+        /// The requested resource is in use
+        /// </summary>
+        ResourceInUse = unchecked((int)0x800700AA),
 
         /// <summary>
         /// Access denied. (STG_E_ACCESSDENIED)
@@ -113,7 +123,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Core
 
     // todo: to add the other codes
 
-    public enum ErrorCodes
+    public enum ErrorCode
     {
 
         /// <summary>
@@ -2111,8 +2121,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Core
         /// </summary>
         NoSuchDevice = 433,
 
-
-
         /// <summary>
         /// <para>MessageId: ERROR_CAPAUTHZ_NOT_DEVUNLOCKED</para>
         /// <para>MessageText: Neither developer unlocked mode nor side loading mode is enabled on the device.</para>
@@ -3823,595 +3831,595 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Core
         /// </summary>
         QuotaActivity = 810,
 
+        /// <summary>
+        /// <para>MessageId: ERROR_HANDLE_REVOKED</para>
+        /// <para>MessageText: Access to the specified handle has been revoked.</para>
+        /// </summary>
+        HandleRevoked = 811,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_CALLBACK_INVOKE_INLINE</para>
+        /// <para>MessageText: The callback function must be invoked inline.</para>
+        /// </summary>
+        CallbackInvokeInline = 812,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_CPU_SET_INVALID</para>
+        /// <para>MessageText: The specified CPU Set IDs are invalid.</para>
+        /// </summary>
+        CPUSetInvalid = 813,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_ENCLAVE_NOT_TERMINATED</para>
+        /// <para>MessageText: The specified enclave has not yet been terminated.</para>
+        /// </summary>
+        EnclaveNotTerminated = 814,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_ENCLAVE_VIOLATION</para>
+        /// <para>MessageText: An attempt was made to access protected memory in violation of its secure access policy.</para>
+        /// </summary>
+        EnclaveViolation = 815,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_EA_ACCESS_DENIED</para>
+        /// <para>MessageText: Access to the extended attribute was denied.</para>
+        /// </summary>
+        EAAccessDenied = 994,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_OPERATION_ABORTED</para>
+        /// <para>MessageText: The I/O operation has been aborted because of either a thread exit or an application request.</para>
+        /// </summary>
+        OperationAborted = 995,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_IO_INCOMPLETE</para>
+        /// <para>MessageText: Overlapped I/O event is not in a signaled state.</para>
+        /// </summary>
+        IOIncomplete = 996,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_IO_PENDING</para>
+        /// <para>MessageText: Overlapped I/O operation is in progress.</para>
+        /// </summary>
+        IOPending = 997,    // dderror
+
+        /// <summary>
+        /// <para>MessageId: ERROR_NOACCESS</para>
+        /// <para>MessageText: Invalid access to memory location.</para>
+        /// </summary>
+        NoAccess = 998,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SWAPERROR</para>
+        /// <para>MessageText: Error performing inpage operation.</para>
+        /// </summary>
+        SwapError = 999,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_STACK_OVERFLOW</para>
+        /// <para>MessageText: Recursion too deep; the stack overflowed.</para>
+        /// </summary>
+        StackOverflow = 1001,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_INVALID_MESSAGE</para>
+        /// <para>MessageText: The window cannot act on the sent message.</para>
+        /// </summary>
+        InvalidMessage = 1002,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_CAN_NOT_COMPLETE</para>
+        /// <para>MessageText: Cannot complete this function.</para>
+        /// </summary>
+        CanNotComplete = 1003,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_INVALID_FLAGS</para>
+        /// <para>MessageText: Invalid flags.</para>
+        /// </summary>
+        InvalidFlags = 1004,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_UNRECOGNIZED_VOLUME</para>
+        /// <para>MessageText: The volume does not contain a recognized file system.</para>
+        /// </summary>
+        UnrecognizedVolume = 1005,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_FILE_INVALID</para>
+        /// <para>MessageText: The volume for a file has been externally altered so that the opened file is no longer valid.</para>
+        /// </summary>
+        FileInvalid = 1006,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_FULLSCREEN_MODE</para>
+        /// <para>MessageText: The requested operation cannot be performed in full-screen mode.</para>
+        /// </summary>
+        FullScreenMode = 1007,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_NO_TOKEN</para>
+        /// <para>MessageText: An attempt was made to reference a token that does not exist.</para>
+        /// </summary>
+        NoToken = 1008,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_BADDB</para>
+        /// <para>MessageText: The configuration registry database is corrupt.</para>
+        /// </summary>
+        BadDB = 1009,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_BADKEY</para>
+        /// <para>MessageText: The configuration registry key is invalid.</para>
+        /// </summary>
+        BadKey = 1010,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_CANTOPEN</para>
+        /// <para>MessageText: The configuration registry key could not be opened.</para>
+        /// </summary>
+        CantOpen = 1011,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_CANTREAD</para>
+        /// <para>MessageText: The configuration registry key could not be read.</para>
+        /// </summary>
+        CantRead = 1012,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_CANTWRITE</para>
+        /// <para>MessageText: The configuration registry key could not be written.</para>
+        /// </summary>
+        CantWrite = 1013,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_REGISTRY_RECOVERED</para>
+        /// <para>MessageText: One of the files in the registry database had to be recovered by use of a log or alternate copy. The recovery was successful.</para>
+        /// </summary>
+        RegistryRecovered = 1014,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_REGISTRY_CORRUPT</para>
+        /// <para>MessageText: The registry is corrupted. The structure of one of the files containing registry data is corrupted, or the system's memory image of the file is corrupted, or the file could not be recovered because the alternate copy or log was absent or corrupted.</para>
+        /// </summary>
+        RegistryCorrupt = 1015,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_REGISTRY_IO_FAILED</para>
+        /// <para>MessageText: An I/O operation initiated by the registry failed unrecoverably. The registry could not read in, or write out, or flush, one of the files that contain the system's image of the registry.</para>
+        /// </summary>
+        RegistryIOFailed = 1016,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_NOT_REGISTRY_FILE</para>
+        /// <para>MessageText: The system has attempted to load or restore a file into the registry, but the specified file is not in a registry file format.</para>
+        /// </summary>
+        NotRegistryFile = 1017,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_KEY_DELETED</para>
+        /// <para>MessageText: Illegal operation attempted on a registry key that has been marked for deletion.</para>
+        /// </summary>
+        KeyDeleted = 1018,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_NO_LOG_SPACE</para>
+        /// <para>MessageText: System could not allocate the required space in a registry log.</para>
+        /// </summary>
+        NoLogSpace = 1019,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_KEY_HAS_CHILDREN</para>
+        /// <para>MessageText: Cannot create a symbolic link in a registry key that already has subkeys or values.</para>
+        /// </summary>
+        KeyHasChildren = 1020,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_CHILD_MUST_BE_VOLATILE</para>
+        /// <para>MessageText: Cannot create a stable subkey under a volatile parent key.</para>
+        /// </summary>
+        ChildMustBeVolatile = 1021,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_NOTIFY_ENUM_DIR</para>
+        /// <para>MessageText: A notify change request is being completed and the information is not being returned in the caller's buffer. The caller now needs to enumerate the files to find the changes.</para>
+        /// </summary>
+        NotifyEnumDir = 1022,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_DEPENDENT_SERVICES_RUNNING</para>
+        /// <para>MessageText: A stop control has been sent to a service that other running services are dependent on.</para>
+        /// </summary>
+        DependentServicesRunning = 1051,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_INVALID_SERVICE_CONTROL</para>
+        /// <para>MessageText: The requested control is not valid for this service.</para>
+        /// </summary>
+        InvalidServiceControl = 1052,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SERVICE_REQUEST_TIMEOUT</para>
+        /// <para>MessageText: The service did not respond to the start or control request in a timely fashion.</para>
+        /// </summary>
+        ServiceRequestTimeout = 1053,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SERVICE_NO_THREAD</para>
+        /// <para>MessageText: A thread could not be created for the service.</para>
+        /// </summary>
+        ServiceNoThread = 1054,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SERVICE_DATABASE_LOCKED</para>
+        /// <para>MessageText: The service database is locked.</para>
+        /// </summary>
+        ServiceDatabaseLocked = 1055,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SERVICE_ALREADY_RUNNING</para>
+        /// <para>MessageText: An instance of the service is already running.</para>
+        /// </summary>
+        ServiceAlreadyRunning = 1056,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_INVALID_SERVICE_ACCOUNT</para>
+        /// <para>MessageText: The account name is invalid or does not exist, or the password is invalid for the account name specified.</para>
+        /// </summary>
+        InvalidServiceAccount = 1057,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SERVICE_DISABLED</para>
+        /// <para>MessageText: The service cannot be started, either because it is disabled or because it has no enabled devices associated with it.</para>
+        /// </summary>
+        ServiceDisabled = 1058,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_CIRCULAR_DEPENDENCY</para>
+        /// <para>MessageText: Circular service dependency was specified.</para>
+        /// </summary>
+        CircularDependency = 1059,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SERVICE_DOES_NOT_EXIST</para>
+        /// <para>MessageText: The specified service does not exist as an installed service.</para>
+        /// </summary>
+        ServiceDoesNotExist = 1060,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SERVICE_CANNOT_ACCEPT_CTRL</para>
+        /// <para>MessageText: The service cannot accept control messages at this time.</para>
+        /// </summary>
+        ServiceCannotAcceptCtrl = 1061,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SERVICE_NOT_ACTIVE</para>
+        /// <para>MessageText: The service has not been started.</para>
+        /// </summary>
+        ServiceNotActive = 1062,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_FAILED_SERVICE_CONTROLLER_CONNECT</para>
+        /// <para>MessageText: The service process could not connect to the service controller.</para>
+        /// </summary>
+        FailedServiceControllerConnect = 1063,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_EXCEPTION_IN_SERVICE</para>
+        /// <para>MessageText: An exception occurred in the service when handling the control request.</para>
+        /// </summary>
+        ExceptionInService = 1064,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_DATABASE_DOES_NOT_EXIST</para>
+        /// <para>MessageText: The database specified does not exist.</para>
+        /// </summary>
+        DatabaseDoesNotExist = 1065,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SERVICE_SPECIFIC_ERROR</para>
+        /// <para>MessageText: The service has returned a service-specific error code.</para>
+        /// </summary>
+        ServiceSpecificError = 1066,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_PROCESS_ABORTED</para>
+        /// <para>MessageText: The process terminated unexpectedly.</para>
+        /// </summary>
+        ProcessAborted = 1067,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SERVICE_DEPENDENCY_FAIL</para>
+        /// <para>MessageText: The dependency service or group failed to start.</para>
+        /// </summary>
+        ServiceDependencyFail = 1068,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SERVICE_LOGON_FAILED</para>
+        /// <para>MessageText: The service did not start due to a logon failure.</para>
+        /// </summary>
+        ServiceLogonFailed = 1069,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SERVICE_START_HANG</para>
+        /// <para>MessageText: After starting, the service hung in a start-pending state.</para>
+        /// </summary>
+        ServiceStartHang = 1070,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_INVALID_SERVICE_LOCK</para>
+        /// <para>MessageText: The specified service database lock is invalid.</para>
+        /// </summary>
+        InvalidServiceLock = 1071,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SERVICE_MARKED_FOR_DELETE</para>
+        /// <para>MessageText: The specified service has been marked for deletion.</para>
+        /// </summary>
+        ServiceMarkedForDelete = 1072,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SERVICE_EXISTS</para>
+        /// <para>MessageText: The specified service already exists.</para>
+        /// </summary>
+        ServiceExists = 1073,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_ALREADY_RUNNING_LKG</para>
+        /// <para>MessageText: The system is currently running with the last-known-good configuration.</para>
+        /// </summary>
+        AlreadyRunningLKG = 1074,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SERVICE_DEPENDENCY_DELETED</para>
+        /// <para>MessageText: The dependency service does not exist or has been marked for deletion.</para>
+        /// </summary>
+        ServiceDependencyDeleted = 1075,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_BOOT_ALREADY_ACCEPTED</para>
+        /// <para>MessageText: The current boot has already been accepted for use as the last-known-good control set.</para>
+        /// </summary>
+        BootAlreadyAccepted = 1076,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SERVICE_NEVER_STARTED</para>
+        /// <para>MessageText: No attempts to start the service have been made since the last boot.</para>
+        /// </summary>
+        ServiceNeverStarted = 1077,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_DUPLICATE_SERVICE_NAME</para>
+        /// <para>MessageText: The name is already in use as either a service name or a service display name.</para>
+        /// </summary>
+        DuplicateServiceName = 1078,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_DIFFERENT_SERVICE_ACCOUNT</para>
+        /// <para>MessageText: The account specified for this service is different from the account specified for other services running in the same process.</para>
+        /// </summary>
+        DifferentServiceAccount = 1079,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_CANNOT_DETECT_DRIVER_FAILURE</para>
+        /// <para>MessageText: Failure actions can only be set for Win32 services, not for drivers.</para>
+        /// </summary>
+        CannotDetectDriverFailure = 1080,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_CANNOT_DETECT_PROCESS_ABORT</para>
+        /// <para>MessageText: This service runs in the same process as the service control manager.</para>
+        /// </summary>
+        CannotDetectProcessAbort = 1081,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_NO_RECOVERY_PROGRAM</para>
+        /// <para>MessageText: No recovery program has been configured for this service.</para>
+        /// </summary>
+        NoRecoveryProgram = 1082,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SERVICE_NOT_IN_EXE</para>
+        /// <para>MessageText: The executable program that this service is configured to run in does not implement the service.</para>
+        /// </summary>
+        ServiceNotInExe = 1083,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_NOT_SAFEBOOT_SERVICE</para>
+        /// <para>MessageText: This service cannot be started in Safe Mode</para>
+        /// </summary>
+        NotSafebootService = 1084,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_END_OF_MEDIA</para>
+        /// <para>MessageText: The physical end of the tape has been reached.</para>
+        /// </summary>
+        EndOfMedia = 1100,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_FILEMARK_DETECTED</para>
+        /// <para>MessageText: A tape access reached a filemark.</para>
+        /// </summary>
+        FilemarkDetected = 1101,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_BEGINNING_OF_MEDIA</para>
+        /// <para>MessageText: The beginning of the tape or a partition was encountered.</para>
+        /// </summary>
+        BeginningOfMedia = 1102,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SETMARK_DETECTED</para>
+        /// <para>MessageText: A tape access reached the end of a set of files.</para>
+        /// </summary>
+        SetmarkDetected = 1103,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_NO_DATA_DETECTED</para>
+        /// <para>MessageText: No more data is on the tape.</para>
+        /// </summary>
+        NoDataDetected = 1104,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_PARTITION_FAILURE</para>
+        /// <para>MessageText: Tape could not be partitioned.</para>
+        /// </summary>
+        PartitionFailure = 1105,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_INVALID_BLOCK_LENGTH</para>
+        /// <para>MessageText: When accessing a new tape of a multivolume partition, the current block size is incorrect.</para>
+        /// </summary>
+        InvalidBlockLength = 1106,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_DEVICE_NOT_PARTITIONED</para>
+        /// <para>MessageText: Tape partition information could not be found when loading a tape.</para>
+        /// </summary>
+        DeviceNotPartitioned = 1107,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_UNABLE_TO_LOCK_MEDIA</para>
+        /// <para>MessageText: Unable to lock the media eject mechanism.</para>
+        /// </summary>
+        UnableToLockMedia = 1108,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_UNABLE_TO_UNLOAD_MEDIA</para>
+        /// <para>MessageText: Unable to unload the media.</para>
+        /// </summary>
+        UnableToUnloadMedia = 1109,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_MEDIA_CHANGED</para>
+        /// <para>MessageText: The media in the drive may have changed.</para>
+        /// </summary>
+        MediaChanged = 1110,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_BUS_RESET</para>
+        /// <para>MessageText: The I/O bus was reset.</para>
+        /// </summary>
+        BusReset = 1111,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_NO_MEDIA_IN_DRIVE</para>
+        /// <para>MessageText: No media in drive.</para>
+        /// </summary>
+        NoMediaInDrive = 1112,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_NO_UNICODE_TRANSLATION</para>
+        /// <para>MessageText: No mapping for the Unicode character exists in the target multi-byte code page.</para>
+        /// </summary>
+        NoUnicodeTranslation = 1113,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_DLL_INIT_FAILED</para>
+        /// <para>MessageText: A dynamic link library (DLL) initialization routine failed.</para>
+        /// </summary>
+        DllInitFailed = 1114,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SHUTDOWN_IN_PROGRESS</para>
+        /// <para>MessageText: A system shutdown is in progress.</para>
+        /// </summary>
+        ShutdownInProgress = 1115,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_NO_SHUTDOWN_IN_PROGRESS</para>
+        /// <para>MessageText: Unable to abort the system shutdown because no shutdown was in progress.</para>
+        /// </summary>
+        NoShutdownInProgress = 1116,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_IO_DEVICE</para>
+        /// <para>MessageText: The request could not be performed because of an I/O device error.</para>
+        /// </summary>
+        IODevice = 1117,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SERIAL_NO_DEVICE</para>
+        /// <para>MessageText: No serial device was successfully initialized. The serial driver will unload.</para>
+        /// </summary>
+        SerialNoDevice = 1118,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_IRQ_BUSY</para>
+        /// <para>MessageText: Unable to open a device that was sharing an interrupt request (IRQ) with other devices. At least one other device that uses that IRQ was already opened.</para>
+        /// </summary>
+        IRQBusy = 1119,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_MORE_WRITES</para>
+        /// <para>MessageText: A serial I/O operation was completed by another write to the serial port.</para>
+        /// </summary>
+        MoreWrites = 1120,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_COUNTER_TIMEOUT</para>
+        /// <para>MessageText: A serial I/O operation completed because the timeout period expired.</para>
+        /// </summary>
+        CounterTimeout = 1121,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_FLOPPY_ID_MARK_NOT_FOUND</para>
+        /// <para>MessageText: No ID address mark was found on the floppy disk.</para>
+        /// </summary>
+        FloppyIdMarkNotFound = 1122,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_FLOPPY_WRONG_CYLINDER</para>
+        /// <para>MessageText: Mismatch between the floppy disk sector ID field and the floppy disk controller track address.</para>
+        /// </summary>
+        FloppyWrongCylinder = 1123,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_FLOPPY_UNKNOWN_ERROR</para>
+        /// <para>MessageText: The floppy disk controller reported an error that is not recognized by the floppy disk driver.</para>
+        /// </summary>
+        FloppyUnknownError = 1124,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_FLOPPY_BAD_REGISTERS</para>
+        /// <para>MessageText: The floppy disk controller returned inconsistent results in its registers.</para>
+        /// </summary>
+        FloppyBadRegisters = 1125,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_DISK_RECALIBRATE_FAILED</para>
+        /// <para>MessageText: While accessing the hard disk, a recalibrate operation failed, even after retries.</para>
+        /// </summary>
+        DiskRecalibrateFailed = 1126,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_DISK_OPERATION_FAILED</para>
+        /// <para>MessageText: While accessing the hard disk, a disk operation failed even after retries.</para>
+        /// </summary>
+        DiskOperationFailed = 1127,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_DISK_RESET_FAILED</para>
+        /// <para>MessageText: While accessing the hard disk, a disk controller reset was needed, but even that failed.</para>
+        /// </summary>
+        DiskResetFailed = 1128,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_EOM_OVERFLOW</para>
+        /// <para>MessageText: Physical end of tape encountered.</para>
+        /// </summary>
+        EOMOverflow = 1129,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_NOT_ENOUGH_SERVER_MEMORY</para>
+        /// <para>MessageText: Not enough server memory resources are available to process this command.</para>
+        /// </summary>
+        NotEnoughServerMemory = 1130,
+
         // todo: to check
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_HANDLE_REVOKED</para>
-        //        /// <para>MessageText: Access to the specified handle has been revoked.</para>
-        //        /// </summary>
-        //        HandleRevoked = 811,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_CALLBACK_INVOKE_INLINE</para>
-        //        /// <para>MessageText: The callback function must be invoked inline.</para>
-        //        /// </summary>
-        //        CallbackInvokeInline = 812,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_CPU_SET_INVALID</para>
-        //        /// <para>MessageText: The specified CPU Set IDs are invalid.</para>
-        //        /// </summary>
-        //        CpuSetInvalid = 813,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_ENCLAVE_NOT_TERMINATED</para>
-        //        /// <para>MessageText: The specified enclave has not yet been terminated.</para>
-        //        /// </summary>
-        //        EnclaveNotTerminated = 814,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_ENCLAVE_VIOLATION</para>
-        //        /// <para>MessageText: An attempt was made to access protected memory in violation of its secure access policy.</para>
-        //        /// </summary>
-        //        EnclaveViolation = 815,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_EA_ACCESS_DENIED</para>
-        //        /// <para>MessageText: Access to the extended attribute was denied.</para>
-        //        /// </summary>
-        //        EaAccessDenied = 994,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_OPERATION_ABORTED</para>
-        //        /// <para>MessageText: The I/O operation has been aborted because of either a thread exit or an application request.</para>
-        //        /// </summary>
-        //        OperationAborted = 995,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_IO_INCOMPLETE</para>
-        //        /// <para>MessageText: Overlapped I/O event is not in a signaled state.</para>
-        //        /// </summary>
-        //        IoIncomplete = 996,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_IO_PENDING</para>
-        //        /// <para>MessageText: Overlapped I/O operation is in progress.</para>
-        //        /// </summary>
-        //        IoPending = 997,    // dderror
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_NOACCESS</para>
-        //        /// <para>MessageText: Invalid access to memory location.</para>
-        //        /// </summary>
-        //        Noaccess = 998,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SWAPERROR</para>
-        //        /// <para>MessageText: Error performing inpage operation.</para>
-        //        /// </summary>
-        //        Swaperror = 999,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_STACK_OVERFLOW</para>
-        //        /// <para>MessageText: Recursion too deep; the stack overflowed.</para>
-        //        /// </summary>
-        //        StackOverflow = 1001,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_INVALID_MESSAGE</para>
-        //        /// <para>MessageText: The window cannot act on the sent message.</para>
-        //        /// </summary>
-        //        InvalidMessage = 1002,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_CAN_NOT_COMPLETE</para>
-        //        /// <para>MessageText: Cannot complete this function.</para>
-        //        /// </summary>
-        //        CanNotComplete = 1003,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_INVALID_FLAGS</para>
-        //        /// <para>MessageText: Invalid flags.</para>
-        //        /// </summary>
-        //        InvalidFlags = 1004,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_UNRECOGNIZED_VOLUME</para>
-        //        /// <para>MessageText: The volume does not contain a recognized file system.</para>
-        //        /// </summary>
-        //        UnrecognizedVolume = 1005,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_FILE_INVALID</para>
-        //        /// <para>MessageText: The volume for a file has been externally altered so that the opened file is no longer valid.</para>
-        //        /// </summary>
-        //        FileInvalid = 1006,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_FULLSCREEN_MODE</para>
-        //        /// <para>MessageText: The requested operation cannot be performed in full-screen mode.</para>
-        //        /// </summary>
-        //        FullscreenMode = 1007,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_NO_TOKEN</para>
-        //        /// <para>MessageText: An attempt was made to reference a token that does not exist.</para>
-        //        /// </summary>
-        //        NoToken = 1008,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_BADDB</para>
-        //        /// <para>MessageText: The configuration registry database is corrupt.</para>
-        //        /// </summary>
-        //        Baddb = 1009,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_BADKEY</para>
-        //        /// <para>MessageText: The configuration registry key is invalid.</para>
-        //        /// </summary>
-        //        Badkey = 1010,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_CANTOPEN</para>
-        //        /// <para>MessageText: The configuration registry key could not be opened.</para>
-        //        /// </summary>
-        //        Cantopen = 1011,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_CANTREAD</para>
-        //        /// <para>MessageText: The configuration registry key could not be read.</para>
-        //        /// </summary>
-        //        Cantread = 1012,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_CANTWRITE</para>
-        //        /// <para>MessageText: The configuration registry key could not be written.</para>
-        //        /// </summary>
-        //        Cantwrite = 1013,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_REGISTRY_RECOVERED</para>
-        //        /// <para>MessageText: One of the files in the registry database had to be recovered by use of a log or alternate copy. The recovery was successful.</para>
-        //        /// </summary>
-        //        RegistryRecovered = 1014,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_REGISTRY_CORRUPT</para>
-        //        /// <para>MessageText: The registry is corrupted. The structure of one of the files containing registry data is corrupted, or the system's memory image of the file is corrupted, or the file could not be recovered because the alternate copy or log was absent or corrupted.</para>
-        //        /// </summary>
-        //        RegistryCorrupt = 1015,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_REGISTRY_IO_FAILED</para>
-        //        /// <para>MessageText: An I/O operation initiated by the registry failed unrecoverably. The registry could not read in, or write out, or flush, one of the files that contain the system's image of the registry.</para>
-        //        /// </summary>
-        //        RegistryIoFailed = 1016,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_NOT_REGISTRY_FILE</para>
-        //        /// <para>MessageText: The system has attempted to load or restore a file into the registry, but the specified file is not in a registry file format.</para>
-        //        /// </summary>
-        //        NotRegistryFile = 1017,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_KEY_DELETED</para>
-        //        /// <para>MessageText: Illegal operation attempted on a registry key that has been marked for deletion.</para>
-        //        /// </summary>
-        //        KeyDeleted = 1018,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_NO_LOG_SPACE</para>
-        //        /// <para>MessageText: System could not allocate the required space in a registry log.</para>
-        //        /// </summary>
-        //        NoLogSpace = 1019,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_KEY_HAS_CHILDREN</para>
-        //        /// <para>MessageText: Cannot create a symbolic link in a registry key that already has subkeys or values.</para>
-        //        /// </summary>
-        //        KeyHasChildren = 1020,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_CHILD_MUST_BE_VOLATILE</para>
-        //        /// <para>MessageText: Cannot create a stable subkey under a volatile parent key.</para>
-        //        /// </summary>
-        //        ChildMustBeVolatile = 1021,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_NOTIFY_ENUM_DIR</para>
-        //        /// <para>MessageText: A notify change request is being completed and the information is not being returned in the caller's buffer. The caller now needs to enumerate the files to find the changes.</para>
-        //        /// </summary>
-        //        NotifyEnumDir = 1022,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_DEPENDENT_SERVICES_RUNNING</para>
-        //        /// <para>MessageText: A stop control has been sent to a service that other running services are dependent on.</para>
-        //        /// </summary>
-        //        DependentServicesRunning = 1051,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_INVALID_SERVICE_CONTROL</para>
-        //        /// <para>MessageText: The requested control is not valid for this service.</para>
-        //        /// </summary>
-        //        InvalidServiceControl = 1052,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SERVICE_REQUEST_TIMEOUT</para>
-        //        /// <para>MessageText: The service did not respond to the start or control request in a timely fashion.</para>
-        //        /// </summary>
-        //        ServiceRequestTimeout = 1053,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SERVICE_NO_THREAD</para>
-        //        /// <para>MessageText: A thread could not be created for the service.</para>
-        //        /// </summary>
-        //        ServiceNoThread = 1054,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SERVICE_DATABASE_LOCKED</para>
-        //        /// <para>MessageText: The service database is locked.</para>
-        //        /// </summary>
-        //        ServiceDatabaseLocked = 1055,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SERVICE_ALREADY_RUNNING</para>
-        //        /// <para>MessageText: An instance of the service is already running.</para>
-        //        /// </summary>
-        //        ServiceAlreadyRunning = 1056,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_INVALID_SERVICE_ACCOUNT</para>
-        //        /// <para>MessageText: The account name is invalid or does not exist, or the password is invalid for the account name specified.</para>
-        //        /// </summary>
-        //        InvalidServiceAccount = 1057,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SERVICE_DISABLED</para>
-        //        /// <para>MessageText: The service cannot be started, either because it is disabled or because it has no enabled devices associated with it.</para>
-        //        /// </summary>
-        //        ServiceDisabled = 1058,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_CIRCULAR_DEPENDENCY</para>
-        //        /// <para>MessageText: Circular service dependency was specified.</para>
-        //        /// </summary>
-        //        CircularDependency = 1059,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SERVICE_DOES_NOT_EXIST</para>
-        //        /// <para>MessageText: The specified service does not exist as an installed service.</para>
-        //        /// </summary>
-        //        ServiceDoesNotExist = 1060,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SERVICE_CANNOT_ACCEPT_CTRL</para>
-        //        /// <para>MessageText: The service cannot accept control messages at this time.</para>
-        //        /// </summary>
-        //        ServiceCannotAcceptCtrl = 1061,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SERVICE_NOT_ACTIVE</para>
-        //        /// <para>MessageText: The service has not been started.</para>
-        //        /// </summary>
-        //        ServiceNotActive = 1062,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_FAILED_SERVICE_CONTROLLER_CONNECT</para>
-        //        /// <para>MessageText: The service process could not connect to the service controller.</para>
-        //        /// </summary>
-        //        FailedServiceControllerConnect = 1063,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_EXCEPTION_IN_SERVICE</para>
-        //        /// <para>MessageText: An exception occurred in the service when handling the control request.</para>
-        //        /// </summary>
-        //        ExceptionInService = 1064,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_DATABASE_DOES_NOT_EXIST</para>
-        //        /// <para>MessageText: The database specified does not exist.</para>
-        //        /// </summary>
-        //        DatabaseDoesNotExist = 1065,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SERVICE_SPECIFIC_ERROR</para>
-        //        /// <para>MessageText: The service has returned a service-specific error code.</para>
-        //        /// </summary>
-        //        ServiceSpecificError = 1066,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_PROCESS_ABORTED</para>
-        //        /// <para>MessageText: The process terminated unexpectedly.</para>
-        //        /// </summary>
-        //        ProcessAborted = 1067,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SERVICE_DEPENDENCY_FAIL</para>
-        //        /// <para>MessageText: The dependency service or group failed to start.</para>
-        //        /// </summary>
-        //        ServiceDependencyFail = 1068,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SERVICE_LOGON_FAILED</para>
-        //        /// <para>MessageText: The service did not start due to a logon failure.</para>
-        //        /// </summary>
-        //        ServiceLogonFailed = 1069,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SERVICE_START_HANG</para>
-        //        /// <para>MessageText: After starting, the service hung in a start-pending state.</para>
-        //        /// </summary>
-        //        ServiceStartHang = 1070,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_INVALID_SERVICE_LOCK</para>
-        //        /// <para>MessageText: The specified service database lock is invalid.</para>
-        //        /// </summary>
-        //        InvalidServiceLock = 1071,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SERVICE_MARKED_FOR_DELETE</para>
-        //        /// <para>MessageText: The specified service has been marked for deletion.</para>
-        //        /// </summary>
-        //        ServiceMarkedForDelete = 1072,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SERVICE_EXISTS</para>
-        //        /// <para>MessageText: The specified service already exists.</para>
-        //        /// </summary>
-        //        ServiceExists = 1073,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_ALREADY_RUNNING_LKG</para>
-        //        /// <para>MessageText: The system is currently running with the last-known-good configuration.</para>
-        //        /// </summary>
-        //        AlreadyRunningLkg = 1074,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SERVICE_DEPENDENCY_DELETED</para>
-        //        /// <para>MessageText: The dependency service does not exist or has been marked for deletion.</para>
-        //        /// </summary>
-        //        ServiceDependencyDeleted = 1075,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_BOOT_ALREADY_ACCEPTED</para>
-        //        /// <para>MessageText: The current boot has already been accepted for use as the last-known-good control set.</para>
-        //        /// </summary>
-        //        BootAlreadyAccepted = 1076,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SERVICE_NEVER_STARTED</para>
-        //        /// <para>MessageText: No attempts to start the service have been made since the last boot.</para>
-        //        /// </summary>
-        //        ServiceNeverStarted = 1077,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_DUPLICATE_SERVICE_NAME</para>
-        //        /// <para>MessageText: The name is already in use as either a service name or a service display name.</para>
-        //        /// </summary>
-        //        DuplicateServiceName = 1078,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_DIFFERENT_SERVICE_ACCOUNT</para>
-        //        /// <para>MessageText: The account specified for this service is different from the account specified for other services running in the same process.</para>
-        //        /// </summary>
-        //        DifferentServiceAccount = 1079,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_CANNOT_DETECT_DRIVER_FAILURE</para>
-        //        /// <para>MessageText: Failure actions can only be set for Win32 services, not for drivers.</para>
-        //        /// </summary>
-        //        CannotDetectDriverFailure = 1080,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_CANNOT_DETECT_PROCESS_ABORT</para>
-        //        /// <para>MessageText: This service runs in the same process as the service control manager.</para>
-        //        /// </summary>
-        //        CannotDetectProcessAbort = 1081,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_NO_RECOVERY_PROGRAM</para>
-        //        /// <para>MessageText: No recovery program has been configured for this service.</para>
-        //        /// </summary>
-        //        NoRecoveryProgram = 1082,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SERVICE_NOT_IN_EXE</para>
-        //        /// <para>MessageText: The executable program that this service is configured to run in does not implement the service.</para>
-        //        /// </summary>
-        //        ServiceNotInExe = 1083,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_NOT_SAFEBOOT_SERVICE</para>
-        //        /// <para>MessageText: This service cannot be started in Safe Mode</para>
-        //        /// </summary>
-        //        NotSafebootService = 1084,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_END_OF_MEDIA</para>
-        //        /// <para>MessageText: The physical end of the tape has been reached.</para>
-        //        /// </summary>
-        //        EndOfMedia = 1100,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_FILEMARK_DETECTED</para>
-        //        /// <para>MessageText: A tape access reached a filemark.</para>
-        //        /// </summary>
-        //        FilemarkDetected = 1101,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_BEGINNING_OF_MEDIA</para>
-        //        /// <para>MessageText: The beginning of the tape or a partition was encountered.</para>
-        //        /// </summary>
-        //        BeginningOfMedia = 1102,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SETMARK_DETECTED</para>
-        //        /// <para>MessageText: A tape access reached the end of a set of files.</para>
-        //        /// </summary>
-        //        SetmarkDetected = 1103,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_NO_DATA_DETECTED</para>
-        //        /// <para>MessageText: No more data is on the tape.</para>
-        //        /// </summary>
-        //        NoDataDetected = 1104,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_PARTITION_FAILURE</para>
-        //        /// <para>MessageText: Tape could not be partitioned.</para>
-        //        /// </summary>
-        //        PartitionFailure = 1105,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_INVALID_BLOCK_LENGTH</para>
-        //        /// <para>MessageText: When accessing a new tape of a multivolume partition, the current block size is incorrect.</para>
-        //        /// </summary>
-        //        InvalidBlockLength = 1106,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_DEVICE_NOT_PARTITIONED</para>
-        //        /// <para>MessageText: Tape partition information could not be found when loading a tape.</para>
-        //        /// </summary>
-        //        DeviceNotPartitioned = 1107,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_UNABLE_TO_LOCK_MEDIA</para>
-        //        /// <para>MessageText: Unable to lock the media eject mechanism.</para>
-        //        /// </summary>
-        //        UnableToLockMedia = 1108,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_UNABLE_TO_UNLOAD_MEDIA</para>
-        //        /// <para>MessageText: Unable to unload the media.</para>
-        //        /// </summary>
-        //        UnableToUnloadMedia = 1109,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_MEDIA_CHANGED</para>
-        //        /// <para>MessageText: The media in the drive may have changed.</para>
-        //        /// </summary>
-        //        MediaChanged = 1110,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_BUS_RESET</para>
-        //        /// <para>MessageText: The I/O bus was reset.</para>
-        //        /// </summary>
-        //        BusReset = 1111,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_NO_MEDIA_IN_DRIVE</para>
-        //        /// <para>MessageText: No media in drive.</para>
-        //        /// </summary>
-        //        NoMediaInDrive = 1112,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_NO_UNICODE_TRANSLATION</para>
-        //        /// <para>MessageText: No mapping for the Unicode character exists in the target multi-byte code page.</para>
-        //        /// </summary>
-        //        NoUnicodeTranslation = 1113,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_DLL_INIT_FAILED</para>
-        //        /// <para>MessageText: A dynamic link library (DLL) initialization routine failed.</para>
-        //        /// </summary>
-        //        DllInitFailed = 1114,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SHUTDOWN_IN_PROGRESS</para>
-        //        /// <para>MessageText: A system shutdown is in progress.</para>
-        //        /// </summary>
-        //        ShutdownInProgress = 1115,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_NO_SHUTDOWN_IN_PROGRESS</para>
-        //        /// <para>MessageText: Unable to abort the system shutdown because no shutdown was in progress.</para>
-        //        /// </summary>
-        //        NoShutdownInProgress = 1116,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_IO_DEVICE</para>
-        //        /// <para>MessageText: The request could not be performed because of an I/O device error.</para>
-        //        /// </summary>
-        //        IoDevice = 1117,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SERIAL_NO_DEVICE</para>
-        //        /// <para>MessageText: No serial device was successfully initialized. The serial driver will unload.</para>
-        //        /// </summary>
-        //        SerialNoDevice = 1118,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_IRQ_BUSY</para>
-        //        /// <para>MessageText: Unable to open a device that was sharing an interrupt request (IRQ) with other devices. At least one other device that uses that IRQ was already opened.</para>
-        //        /// </summary>
-        //        IrqBusy = 1119,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_MORE_WRITES</para>
-        //        /// <para>MessageText: A serial I/O operation was completed by another write to the serial port.</para>
-        //        /// </summary>
-        //        MoreWrites = 1120,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_COUNTER_TIMEOUT</para>
-        //        /// <para>MessageText: A serial I/O operation completed because the timeout period expired.</para>
-        //        /// </summary>
-        //        CounterTimeout = 1121,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_FLOPPY_ID_MARK_NOT_FOUND</para>
-        //        /// <para>MessageText: No ID address mark was found on the floppy disk.</para>
-        //        /// </summary>
-        //        FloppyIdMarkNotFound = 1122,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_FLOPPY_WRONG_CYLINDER</para>
-        //        /// <para>MessageText: Mismatch between the floppy disk sector ID field and the floppy disk controller track address.</para>
-        //        /// </summary>
-        //        FloppyWrongCylinder = 1123,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_FLOPPY_UNKNOWN_ERROR</para>
-        //        /// <para>MessageText: The floppy disk controller reported an error that is not recognized by the floppy disk driver.</para>
-        //        /// </summary>
-        //        FloppyUnknownError = 1124,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_FLOPPY_BAD_REGISTERS</para>
-        //        /// <para>MessageText: The floppy disk controller returned inconsistent results in its registers.</para>
-        //        /// </summary>
-        //        FloppyBadRegisters = 1125,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_DISK_RECALIBRATE_FAILED</para>
-        //        /// <para>MessageText: While accessing the hard disk, a recalibrate operation failed, even after retries.</para>
-        //        /// </summary>
-        //        DiskRecalibrateFailed = 1126,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_DISK_OPERATION_FAILED</para>
-        //        /// <para>MessageText: While accessing the hard disk, a disk operation failed even after retries.</para>
-        //        /// </summary>
-        //        DiskOperationFailed = 1127,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_DISK_RESET_FAILED</para>
-        //        /// <para>MessageText: While accessing the hard disk, a disk controller reset was needed, but even that failed.</para>
-        //        /// </summary>
-        //        DiskResetFailed = 1128,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_EOM_OVERFLOW</para>
-        //        /// <para>MessageText: Physical end of tape encountered.</para>
-        //        /// </summary>
-        //        EomOverflow = 1129,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_NOT_ENOUGH_SERVER_MEMORY</para>
-        //        /// <para>MessageText: Not enough server memory resources are available to process this command.</para>
-        //        /// </summary>
-        //        NotEnoughServerMemory = 1130,
 
         //        /// <summary>
         //        /// <para>MessageId: ERROR_POSSIBLE_DEADLOCK</para>
@@ -18664,6 +18672,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Core
             return win32ErrorCode;
 
         }
+
+        public static HResult HResultFromWin32(ErrorCode win32ErrorCode) => (HResult) HResultFromWin32((int)win32ErrorCode);
 
         /// <summary>
         /// This is intended for Library Internal use only.
