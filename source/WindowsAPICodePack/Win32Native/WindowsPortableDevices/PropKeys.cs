@@ -12,7 +12,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
         #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_NULL. This category is used exclusively for the NULL property key define.
 
         //   [ VT_EMPTY ] A NULL property key.
-        public static PropertyKey WPD_PROPERTY_NULL => new PropertyKey("0x00000000-0x0000-0x0000-0x00-0x00-0x00-0x00-0x00-0x00-0x00-0x00", 0);
+        public static PropertyKey PropertyNull => new PropertyKey("0x00000000-0x0000-0x0000-0x00-0x00-0x00-0x00-0x00-0x00-0x00-0x00", 0);
         #endregion
 
         /// <summary>
