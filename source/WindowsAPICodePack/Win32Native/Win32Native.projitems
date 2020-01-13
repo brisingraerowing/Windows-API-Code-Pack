@@ -34,7 +34,7 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Core\SecurityImpersonationLevel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Enums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\TaskDialogs\NativeTaskDialogSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\TaskDialogs\TaskDialogDefaults.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\TaskDialogs\TaskDialogNativeMethods.cs" />

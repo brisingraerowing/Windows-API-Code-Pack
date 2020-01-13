@@ -323,53 +323,100 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
         public static class Client
 
         {
-            //
-            // WPD_CLIENT_NAME  
-            //   [ VT_LPWSTR ] Specifies the name the client uses to identify itself.
+            /// <summary>
+            /// <para>Name: WPD_CLIENT_NAME</para>
+            /// <para>Description: Specifies the name the client uses to identify itself.</para>
+            /// <para>Type: VT_LPWSTR</para>
+            /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>, 2</para>
+            /// </summary>
             public static PropertyKey Name => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationPropertiesV1, 2);
-            //
-            // WPD_CLIENT_MAJOR_VERSION  
-            //   [ VT_UI4 ] Specifies the major version of the client.
+
+            /// <summary>
+            /// <para>Name: WPD_CLIENT_MAJOR_VERSION</para>
+            /// <para>Description: Specifies the major version of the client.</para>
+            /// <para>Type: VT_UI4</para>
+            /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>, 3</para>
+            /// </summary>
             public static PropertyKey MajorVersion => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationPropertiesV1, 3);
-            //
-            // WPD_CLIENT_MINOR_VERSION  
-            //   [ VT_UI4 ] Specifies the major version of the client.
+
+            /// <summary>
+            /// <para>Name: WPD_CLIENT_MINOR_VERSION</para>
+            /// <para>Description: Specifies the major version of the client.</para>
+            /// <para>Type: VT_UI4</para>
+            /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>, 4</para>
+            /// </summary>
             public static PropertyKey MinorVersion => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationPropertiesV1, 4);
-            //
-            // WPD_CLIENT_REVISION  
-            //   [ VT_UI4 ] Specifies the revision (or build number) of the client.
+
+            /// <summary>
+            /// <para>Name: WPD_CLIENT_REVISION</para>
+            /// <para>Description: Specifies the revision (or build number) of the client.</para>
+            /// <para>Type: VT_UI4</para>
+            /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>, 5</para>
+            /// </summary>
             public static PropertyKey Revision => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationPropertiesV1, 5);
-            //
-            // WPD_CLIENT_WMDRM_APPLICATION_PRIVATE_KEY  
-            //   [ VT_VECTOR | VT_UI1 ] Specifies the Windows Media DRM application private key of the client.
+
+            /// <summary>
+            /// <para>Name: WPD_CLIENT_WMDRM_APPLICATION_PRIVATE_KEY</para>
+            /// <para>Description: Specifies the Windows Media DRM application private key of the client.</para>
+            /// <para>Type: VT_VECTOR | VT_UI1</para>
+            /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>, 6</para>
+            /// </summary>
             public static PropertyKey WMDRMApplicationPrivateKey => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationPropertiesV1, 6);
-            //
-            // WPD_CLIENT_WMDRM_APPLICATION_CERTIFICATE  
-            //   [ VT_VECTOR | VT_UI1 ] Specifies the Windows Media DRM application certificate of the client.
+
+            /// <summary>
+            /// <para>Name: WPD_CLIENT_WMDRM_APPLICATION_CERTIFICATE</para>
+            /// <para>Description: Specifies the Windows Media DRM application certificate of the client.</para>
+            /// <para>Type: VT_VECTOR | VT_UI1</para>
+            /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>, 7</para>
+            /// </summary>
             public static PropertyKey WMDRMApplicationCertificate => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationPropertiesV1, 7);
-            //
-            // WPD_CLIENT_SECURITY_QUALITY_OF_SERVICE  
-            //   [ VT_UI4 ] Specifies the Security Quality of Service for the connection to the driver. This relates to the Security Quality of Service flags for CreateFile. For example-these allow or disallow a driver to impersonate the client.
+
+            /// <summary>
+            /// <para>Name: WPD_CLIENT_SECURITY_QUALITY_OF_SERVICE</para>
+            /// <para>Description: Specifies the Security Quality of Service for the connection to the driver. This relates to the Security Quality of Service flags for CreateFile. For example-these allow or disallow a driver to impersonate the client.</para>
+            /// <para>Type: VT_UI4</para>
+            /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>, 8</para>
+            /// </summary>
             public static PropertyKey SecurityQualityOfService => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationPropertiesV1, 8);
-            //
-            // WPD_CLIENT_DESIRED_ACCESS  
-            //   [ VT_UI4 ] Specifies the desired access the client is requesting to this driver. The possible values are the same as for CreateFile (e.g. GENERIC_READ-GENERIC_WRITE etc.).
+
+            /// <summary>
+            /// <para>Name: WPD_CLIENT_DESIRED_ACCESS</para>
+            /// <para>Description: Specifies the desired access the client is requesting to this driver. The possible values are the same as for CreateFile (e.g. GENERIC_READ-GENERIC_WRITE etc.).</para>
+            /// <para>Type: VT_UI4</para>
+            /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>, 9</para>
+            /// </summary>
             public static PropertyKey DesiredAccess => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationPropertiesV1, 9);
-            //
-            // WPD_CLIENT_SHARE_MODE  
-            //   [ VT_UI4 ] Specifies the share mode the client is requesting to this driver. The possible values are the same as for CreateFile (e.g. FILE_SHARE_READ-FILE_SHARE_WRITE etc.).
+
+            /// <summary>
+            /// <para>Name: WPD_CLIENT_SHARE_MODE</para>
+            /// <para>Description: Specifies the share mode the client is requesting to this driver. The possible values are the same as for CreateFile (e.g. FILE_SHARE_READ-FILE_SHARE_WRITE etc.).</para>
+            /// <para>Type: VT_UI4</para>
+            /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>, 10</para>
+            /// </summary>
             public static PropertyKey ShareMode => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationPropertiesV1, 10);
-            //
-            // WPD_CLIENT_EVENT_COOKIE  
-            //   [ VT_LPWSTR ] Client supplied cookie returned by the driver in events posted as a direct result of operations issued by this client.
+
+            /// <summary>
+            /// <para>Name: WPD_CLIENT_EVENT_COOKIE</para>
+            /// <para>Description: Client supplied cookie returned by the driver in events posted as a direct result of operations issued by this client.</para>
+            /// <para>Type: VT_LPWSTR</para>
+            /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>, 11</para>
+            /// </summary>
             public static PropertyKey EventCookie => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationPropertiesV1, 11);
-            //
-            // WPD_CLIENT_MINIMUM_RESULTS_BUFFER_SIZE  
-            //   [ VT_UI4 ] Specifies the minimum buffer size (in bytes) used for sending commands to the driver.
+
+            /// <summary>
+            /// <para>Name: WPD_CLIENT_MINIMUM_RESULTS_BUFFER_SIZE</para>
+            /// <para>Description: Specifies the minimum buffer size (in bytes) used for sending commands to the driver.</para>
+            /// <para>Type: VT_UI4</para>
+            /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>, 12</para>
+            /// </summary>
             public static PropertyKey MinimumResultsBufferSize => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationPropertiesV1, 12);
-            //
-            // WPD_CLIENT_MANUAL_CLOSE_ON_DISCONNECT  
-            //   [ VT_BOOL ] An advanced option for clients that wish to manually call IPortableDevice::Close or IPortableDeviceService::Close for each object on device disconnect-instead of relying on the API to call Close on its behalf.
+
+            /// <summary>
+            /// <para>Name: WPD_CLIENT_MANUAL_CLOSE_ON_DISCONNECT</para>
+            /// <para>Description: An advanced option for clients that wish to manually call <see cref="IPortableDevice.Close"/> or <see cref="IPortableDeviceService.Close"/> for each object on device disconnect-instead of relying on the API to call Close on its behalf.</para>
+            /// <para>Type: VT_BOOL</para>
+            /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>, 13</para>
+            /// </summary>
             public static PropertyKey ManualCloseOnDisconnect => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationPropertiesV1, 13);
 
         }

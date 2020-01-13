@@ -29,4 +29,30 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         SecurityImpersonation,
         SecurityDelegation
     }
+
+    /// <summary>
+    /// The generic rights.
+    /// </summary>
+    [Flags]
+    public enum GenericRights : uint
+
+    {
+
+        All = 0x10000000,
+        Execute = 0x20000000,
+        Write = 0x40000000,
+        Read = 0x80000000
+
+    }
+
+    [Flags]
+    public enum FileShareOptions : uint
+
+    {
+
+        Read = 0x00000001,
+        Write = 0x00000002,
+        Delete = 0x00000004
+
+    }
 }

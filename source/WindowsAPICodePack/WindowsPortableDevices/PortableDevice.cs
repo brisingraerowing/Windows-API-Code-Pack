@@ -16,13 +16,16 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
     public struct ClientVersion
     {
+        public string ClientName { get; }
         public uint MajorVersion { get; }
         public uint MinorVersion { get; }
         public uint Revision { get; }
 
-        public ClientVersion(uint majorVersion, uint minorVersion, uint revision)
+        public ClientVersion(in string clientName, in uint majorVersion, in uint minorVersion, in uint revision)
 
         {
+
+            ClientName = clientName;
 
             MajorVersion = majorVersion;
 
@@ -33,6 +36,29 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         }
     }
 
+    public struct PortableDeviceOpeningOptions
+    {
+
+        public GenericRights GenericRights { get; }
+
+        public FileShareOptions FileShare { get; }
+
+        public bool ManualCloseOnDisconnect { get; }
+
+        public PortableDeviceOpeningOptions(in GenericRights genericRights, in FileShareOptions fileShare, in bool manualCloseOnDisconnect)
+
+        {
+
+            GenericRights = genericRights;
+
+            FileShare = fileShare;
+
+            ManualCloseOnDisconnect = manualCloseOnDisconnect;
+
+        }
+
+    }
+
     [DebuggerDisplay("{FriendlyName}, {DeviceDescription}, {Manufacturer}")]
     public class PortableDevice : IPortableDevice
     {
@@ -41,7 +67,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         IPortableDeviceManager IPortableDevice.PortableDeviceManager => PortableDeviceManager;
 
-        private Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.IPortableDevice _portableDevice = null;
+        private readonly Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.IPortableDevice _portableDevice = null;
 
         public string DeviceId { get; }
 
@@ -51,7 +77,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         public string DeviceManufacturer { get; internal set; }
 
-        internal PortableDevice(PortableDeviceManager portableDeviceManager, string deviceId)
+        internal PortableDevice(in PortableDeviceManager portableDeviceManager, in string deviceId)
 
         {
 
@@ -95,12 +121,12 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         }
 
-        public void Open(string clientName, ClientVersion clientVersion)
+        public void Open(in ClientVersion clientVersion, in PortableDeviceOpeningOptions portableDeviceOpeningOptions)
 
         {
 
             HResult hr = HResult.Ok;
-            Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.IPortableDeviceValues pClientInformation = null;
+            IPortableDeviceValues pClientInformation = null;
 
             //if ((wszPnPDeviceID == null) || (ppDevice == null))
             //{
@@ -109,29 +135,27 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             //}
 
             // CoCreate an IPortableDeviceValues interface to hold the client information.
-            pClientInformation = new Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.PortableDeviceValues();
+            pClientInformation = new PortableDeviceValues();
 
             // if (CoreErrorHelper.Succeeded(hr))
             // {
 
-            HResult ClientInfoHR = HResult.Ok;
-
             // Attempt to set all properties for client information. If we fail to set
             // any of the properties below it is OK. Failing to set a property in the
             // client information isn't a fatal error.
-            ClientInfoHR = pClientInformation.SetStringValue(Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.Name, clientName);
+            _ = pClientInformation.SetStringValue(Properties.Client.Name, clientVersion.ClientName);
 
             // Marshal.ThrowExceptionForHR((int)ClientInfoHR);
 
-            ClientInfoHR = pClientInformation.SetUnsignedIntegerValue(Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.MajorVersion, clientVersion.MajorVersion);
+            _ = pClientInformation.SetUnsignedIntegerValue(Properties.Client.MajorVersion, clientVersion.MajorVersion);
 
             // Marshal.ThrowExceptionForHR((int)ClientInfoHR);
 
-            ClientInfoHR = pClientInformation.SetUnsignedIntegerValue(Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.MinorVersion, clientVersion.MinorVersion);
+            _ = pClientInformation.SetUnsignedIntegerValue(Properties.Client.MinorVersion, clientVersion.MinorVersion);
 
             // Marshal.ThrowExceptionForHR((int)ClientInfoHR);
 
-            ClientInfoHR = pClientInformation.SetUnsignedIntegerValue(Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.Revision, clientVersion.Revision);
+            _ = pClientInformation.SetUnsignedIntegerValue(Properties.Client.Revision, clientVersion.Revision);
 
             // Marshal.ThrowExceptionForHR((int)ClientInfoHR);
 
@@ -140,54 +164,64 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             // Failed to CoCreateInstance Win32Native.Guids.PortableDevices.PortableDeviceValues for client information
             // }
 
-            ClientInfoHR = pClientInformation.SetUnsignedIntegerValue(Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.SecurityQualityOfService,   (uint) Microsoft.WindowsAPICodePack.Win32Native.SecurityImpersonationLevel.SecurityImpersonation << 16);
+            Marshal.ThrowExceptionForHR((int)pClientInformation.SetUnsignedIntegerValue(Properties.Client.SecurityQualityOfService, (uint)SecurityImpersonationLevel.SecurityImpersonation << 16));
 
-            Marshal.ThrowExceptionForHR( (int) ClientInfoHR);
+            // todo: to add an option for retrying this assignment if a higher rights setting fails (bool retryIfHigherRightsSettingFails = false)
 
-            if (CoreErrorHelper.Succeeded(hr))
-            {
+            Marshal.ThrowExceptionForHR((int)pClientInformation.SetUnsignedIntegerValue(Properties.Client.DesiredAccess, (uint)portableDeviceOpeningOptions.GenericRights));
 
-                //if (CoreErrorHelper.Succeeded(hr))
-                //{
-                // Attempt to open the device using the PnPDeviceID string given
-                // to this function and the newly created client information.
-                // Note that we're attempting to open the device the first 
-                // time using the default (read/write) access. If this fails
-                // with HResult.AccessDenied, we'll attempt to open a second time
-                // with read-only access.
-                hr = _portableDevice. Open(DeviceId, pClientInformation);
+            Marshal.ThrowExceptionForHR((int)pClientInformation.SetUnsignedIntegerValue(Properties.Client.ShareMode, (uint)portableDeviceOpeningOptions.FileShare));
 
-                if (hr == HResult.AccessDenied)
-                {
+            Marshal.ThrowExceptionForHR((int)pClientInformation.SetBoolValue(Properties.Client.ManualCloseOnDisconnect, portableDeviceOpeningOptions.ManualCloseOnDisconnect));
 
-                    // Attempt to open for read-only access
-                    pClientInformation.SetUnsignedIntegerValue(
-                                                               Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.DesiredAccess,
-                                                               GENERIC_READ);
+            //if (CoreErrorHelper.Succeeded(hr))
+            //{
 
-                    hr = _portableDevice.Open(DeviceId, pClientInformation);
+            //if (CoreErrorHelper.Succeeded(hr))
+            //{
+            // Attempt to open the device using the PnPDeviceID string given
+            // to this function and the newly created client information.
+            // Note that we're attempting to open the device the first 
+            // time using the default (read/write) access. If this fails
+            // with HResult.AccessDenied, we'll attempt to open a second time
+            // with read-only access.
+            Marshal.ThrowExceptionForHR((int) _portableDevice.Open(DeviceId, pClientInformation));
 
-                }
+            //if (hr == HResult.AccessDenied)
+            //{
 
-                if (CoreErrorHelper.Succeeded(hr))
-                {
-                    // The device successfully opened, obtain an instance of the Device into
-                    // ppDevice so the caller can be returned an opened IPortableDevice.
-                    // hr = pDevice.QueryInterface(Win32Native.Guids.PortableDevices.IPortableDevice, ref ppDevice);
+            // Attempt to open for read-only access
+            //ClientInfoHR = pClientInformation.SetUnsignedIntegerValue(
+            //Properties.Client.DesiredAccess,
+            //(uint)GenericRights.Read);
 
-                    // if (CoreErrorHelper.Failed(hr))
-                    // {
-                        // Failed to QueryInterface the opened IPortableDevice
-                    // }
+            //Marshal.ThrowExceptionForHR((int)ClientInfoHR);
 
-                }
+            //hr = _portableDevice.Open(DeviceId, pClientInformation);
 
-                //}
-                //else
-                //{
-                //    // Failed to CoCreateInstance Win32Native.Guids.PortableDevices.PortableDevice
-                //}
-            }
+            //Marshal.ThrowExceptionForHR((int)hr);
+
+            //}
+
+            // if (CoreErrorHelper.Succeeded(hr))
+            // {
+            // The device successfully opened, obtain an instance of the Device into
+            // ppDevice so the caller can be returned an opened IPortableDevice.
+            // hr = pDevice.QueryInterface(Win32Native.Guids.PortableDevices.IPortableDevice, ref ppDevice);
+
+            // if (CoreErrorHelper.Failed(hr))
+            // {
+            // Failed to QueryInterface the opened IPortableDevice
+            // }
+
+            // }
+
+            //}
+            //else
+            //{
+            //    // Failed to CoCreateInstance Win32Native.Guids.PortableDevices.PortableDevice
+            //}
+            //}
 
             // Release the IPortableDevice when finished
             //if (pDevice != null)
@@ -204,53 +238,53 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             }
 
             // return hr;
-        // }
-
-    }
-
-    public object GetDeviceProperty(string propertyName, object defaultValue, bool doNotExpand, out BlobValueKind valueKind)
-
-    {
-
-        uint pcbData = 0;
-
-        BlobValueKind _valueKind = BlobValueKind.None;
-
-        HResult hr;
-
-        if ((hr = PortableDeviceManager.Manager.GetDeviceProperty(DeviceId, propertyName, null, ref pcbData, ref _valueKind)) == CoreErrorHelper.HResultFromWin32(ErrorCode.InsufficientBuffer))
-
-        {
-
-            byte[] bytes = new byte[pcbData];
-
-            hr = PortableDeviceManager.Manager.GetDeviceProperty(DeviceId, propertyName, bytes, ref pcbData, ref _valueKind);
-
-            if (hr == HResult.Ok)
-
-                return BlobHelper.ToDotNetType(bytes, (valueKind = _valueKind), doNotExpand);
-
-            else if (hr == CoreErrorHelper.HResultFromWin32(ErrorCode.InsufficientBuffer))
-
-            {
-
-                valueKind = BlobValueKind.None;
-
-                return defaultValue;
-
-            }
-
-            else Marshal.ThrowExceptionForHR((int)hr);
+            // }
 
         }
 
-        Marshal.ThrowExceptionForHR((int)hr);
+        public object GetDeviceProperty(string propertyName, object defaultValue, bool doNotExpand, out BlobValueKind valueKind)
 
-        valueKind = BlobValueKind.None;
+        {
 
-        return null;
+            uint pcbData = 0;
+
+            BlobValueKind _valueKind = BlobValueKind.None;
+
+            HResult hr;
+
+            if ((hr = PortableDeviceManager.Manager.GetDeviceProperty(DeviceId, propertyName, null, ref pcbData, ref _valueKind)) == CoreErrorHelper.HResultFromWin32(ErrorCode.InsufficientBuffer))
+
+            {
+
+                byte[] bytes = new byte[pcbData];
+
+                hr = PortableDeviceManager.Manager.GetDeviceProperty(DeviceId, propertyName, bytes, ref pcbData, ref _valueKind);
+
+                if (hr == HResult.Ok)
+
+                    return BlobHelper.ToDotNetType(bytes, (valueKind = _valueKind), doNotExpand);
+
+                else if (hr == CoreErrorHelper.HResultFromWin32(ErrorCode.InsufficientBuffer))
+
+                {
+
+                    valueKind = BlobValueKind.None;
+
+                    return defaultValue;
+
+                }
+
+                else Marshal.ThrowExceptionForHR((int)hr);
+
+            }
+
+            Marshal.ThrowExceptionForHR((int)hr);
+
+            valueKind = BlobValueKind.None;
+
+            return null;
+
+        }
 
     }
-
-}
 }

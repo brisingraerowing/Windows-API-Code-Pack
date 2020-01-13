@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
+﻿namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem
 {
     /// <summary>
     /// This enum describes options that are supported by a device when deleting an object.
@@ -182,7 +176,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         /// <summary>
         /// The image should be black and white.
         /// </summary>
-        Black_and_white = 2,
+        BlackAndWhite = 2,
 
         /// <summary>
         /// The image should be sepia.
