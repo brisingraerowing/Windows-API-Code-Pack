@@ -9,7 +9,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
     public interface IPortableDevice
     {
 
-        PortableDeviceManager PortableDeviceManager { get; }
+        IPortableDeviceManager PortableDeviceManager { get; }
 
         string DeviceFriendlyName { get; }
 

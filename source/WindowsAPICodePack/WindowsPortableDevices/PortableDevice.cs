@@ -19,6 +19,8 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         public PortableDeviceManager PortableDeviceManager { get; internal set; }
 
+        IPortableDeviceManager IPortableDevice.PortableDeviceManager => PortableDeviceManager;
+
         private Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.IPortableDevice _portableDevice = null;
 
         public string DeviceId { get; }
@@ -73,7 +75,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         }
 
-        public object GetDeviceDeviceProperty(string propertyName, object defaultValue, bool doNotExpand, out BlobValueKind valueKind)
+        public object GetDeviceProperty(string propertyName, object defaultValue, bool doNotExpand, out BlobValueKind valueKind)
 
         {
 
