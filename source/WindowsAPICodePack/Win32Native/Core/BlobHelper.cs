@@ -20,23 +20,36 @@ namespace Microsoft.WindowsAPICodePack
 
                 if (array.Length % 2 == 1)
 
-                        // todo: add a byte to the array to re-load the array from the source instead of throwing an exception
+                    // todo: add a byte to the array to re-load the array from the source instead of throwing an exception
 
                     // if (array.Length < int.MaxValue)
 
-                        // length++;
+                    // length++;
 
-                        throw new IOException("The given array does not have a valid length. Maybe corrupt data ?");
+                    throw new IOException("The given array does not have a valid length. Maybe corrupt data ?");
 
-                    // else throw new IOException("The IO operation cannot complete because of a memory overflow.");
+                // else throw new IOException("The IO operation cannot complete because of a memory overflow.");
 
                 unsafe
-
                 {
                     fixed (byte* b = &array[0])
                     {
 
-                        return new string((char*)b);
+                        return array.Length > 1 && BitConverter.ToChar(new byte[] {
+
+                        #if NETCORE
+                            
+                            array[^2], array[^1]
+                            
+#else
+                        
+                        array[array.Length - 2], array[array.Length - 1]
+
+#endif
+                        
+                        }, 0) == (char)0
+                            ? new string((char*)b, 0, (array.Length / 2) - 1)
+                            : new string((char*)b);
 
                     }
 
