@@ -12,6 +12,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Ev
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 {
+
     /// <summary>
     /// <para>The <see cref="IPortableDevice"/> interface provides access to a portable device.</para>
     /// <para>To create and open this interface, first call <see cref="CoCreateInstance"/> with <see cref="Win32Native.Guids.PortableDevices.PortableDeviceFTM"/> or <see cref="Win32Native.Guids.PortableDevices.PortableDevice"/> to retrieve an <see cref="IPortableDevice"/> interface, and then call <see cref="Open"/> to open a connection to the device.</para>

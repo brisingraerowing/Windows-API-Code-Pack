@@ -398,7 +398,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                             var propVal = new PropVariant();
 
                             var propKey = new PropertyKey();
-                            valuesCollection.GetAt(i, ref propKey, ref propVal);
+                            _ = valuesCollection.GetAt(i, ref propKey, ref propVal);
                             data.Add(propKey, propVal.Value);
                         }
                     }
@@ -434,13 +434,13 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                 {
                     uint elements = 0;
 
-                    collection.GetCount(ref elements);
+                    _ = collection.GetCount(ref elements);
 
                     if (elements == 0) return null;
 
                     for (uint element = 0; element < elements; element++)
                     {
-                        PropertyKey key = new PropertyKey();
+                        var key = new PropertyKey();
 
                         if (collection.GetAt(element, ref key) == HResult.Ok)
 
@@ -481,7 +481,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                 for (int i = 0; i < propIndexes.Length; i++)
                 {
                     var propKey = new PropertyKey(TypeId.Value, propIndexes[i]);
-                    keyCollection.Add(ref propKey);
+                    _ = keyCollection.Add(ref propKey);
                     propKeyToIdx.Add(propKey, i);
                 }
 
@@ -495,14 +495,14 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                         if (valuesCollection == null) return data;
 
                         uint count = 0;
-                        valuesCollection.GetCount(ref count);
+                        _ = valuesCollection.GetCount(ref count);
 
                         for (uint i = 0; i < count; i++)
                         {
                             var propKey = new PropertyKey();
                             var propVal = new PropVariant();
 
-                            valuesCollection.GetAt(i, ref propKey, propVal);
+                            _ = valuesCollection.GetAt(i, ref propKey, propVal);
 
                             int idx = propKeyToIdx[propKey];
                             data[idx] = propVal.Value;
@@ -527,14 +527,15 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// Sets the values of multiple properties.
         /// </summary>
         /// <param name="data">An array that contains the property keys and values.</param>
-        /// <returns>A dictionary of the new values for the properties. Actual values may not match the requested values.</returns>                
+        /// <returns>A dictionary of the new values for the properties. Actual values may not match the requested values.</returns>
         public IDictionary<PropertyKey, object> SetProperties(DataFieldInfo[] data)
         {
+
             if (data == null || data.Length == 0)
 
                 throw new ArgumentException(LocalizedMessages.SensorEmptyData, nameof(data));
 
-            IPortableDeviceValues pdv = new PortableDeviceValues();
+            IPortableDeviceValues pdv = new Win32Native.PortableDevices.PropertySystem.PortableDeviceValues();
 
             PropertyKey propKey;
 
@@ -556,21 +557,22 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                     // not be converted to an appropriate PropVariant.
                     using (var pv = PropVariant.FromObject(value))
 
-                        pdv.SetValue(ref propKey, pv);
+                        _ = pdv.SetValue(ref propKey, pv);
                 }
                 catch (ArgumentException)
                 {
-                    if (value is Guid guid)
-
-                        pdv.SetGuidValue(ref propKey, ref guid);
-
-                    else if (value is byte[] buffer)
-
-                        pdv.SetBufferValue(ref propKey, buffer, (uint)buffer.Length);
-
-                    else
-
-                        pdv.SetIUnknownValue(ref propKey, value);
+                    switch (value)
+                    {
+                        case Guid guid:
+                            _ = pdv.SetGuidValue(ref propKey, ref guid);
+                            break;
+                        case byte[] buffer:
+                            _ = pdv.SetBufferValue(ref propKey, buffer, (uint)buffer.Length);
+                            break;
+                        default:
+                            _ = pdv.SetIUnknownValue(ref propKey, value);
+                            break;
+                    }
                 }
             }
 
@@ -582,14 +584,14 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                 try
                 {
                     uint count = 0;
-                    pdv2.GetCount(ref count);
+                    _ = pdv2.GetCount(ref count);
 
                     for (uint i = 0; i < count; i++)
                     {
                         using (var propVal = new PropVariant())
                         {
                             propKey = new PropertyKey();
-                            pdv2.GetAt(i, ref propKey, propVal);
+                            _ = pdv2.GetAt(i, ref propKey, propVal);
                             results.Add(propKey, propVal.Value);
                         }
                     }

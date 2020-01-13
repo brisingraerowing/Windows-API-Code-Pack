@@ -49,6 +49,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
         [Obsolete("This CLSID does not aggregates the free-threaded marshaler and is here for legacy reasons. Use the IPortableDeviceFTM constant instead.")]
         public const string PortableDevice = "728a21c5-3d9e-48d7-9810-864848f0f404";
         public const string PortableDeviceManager = "0af10cec-2ecd-4b92-9581-34f6ae0637f3";
+        public const string PortableDeviceValues = "0c15d503-d017-47ce-9016-7b3f978721cc";
 
         public static class Properties
 

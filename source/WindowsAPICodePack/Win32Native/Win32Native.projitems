@@ -34,6 +34,7 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Core\SecurityImpersonationLevel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\TaskDialogs\NativeTaskDialogSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\TaskDialogs\TaskDialogDefaults.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\TaskDialogs\TaskDialogNativeMethods.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\ClientInterfaces\IPortableDeviceUnitsStream.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CoClasses\ClientClasses\PortableDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CoClasses\ClientClasses\PortableDeviceManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CoClasses\ClientClasses\PortableDeviceValues.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CollectionInterfaces\IPortableDeviceKeyCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CollectionInterfaces\IPortableDevicePropVariantCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CollectionInterfaces\IPortableDeviceValues.cs" />
