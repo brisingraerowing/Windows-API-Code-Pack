@@ -29,7 +29,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Commands
         }
 
         [Flags]
-        public enum Properties
+        public enum Property
         {
 
             GetSupported = 1,
@@ -42,7 +42,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Commands
         }
 
         [Flags]
-        public enum PropertiesBulk
+        public enum PropertyBulk
         {
 
             GetValuesByObjectListStart = 1,
@@ -58,7 +58,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Commands
         }
 
         [Flags]
-        public enum Resources
+        public enum Resource
         {
 
             GetSupported = 1,
@@ -95,7 +95,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Commands
     }
 
     [Flags]
-    public enum Capabilities
+    public enum Capability
     {
 
         GetSupportedCommands = 1,
@@ -147,7 +147,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Commands
     }
 
     [Flags]
-    public enum DeviceHints
+    public enum DeviceHint
     {
 
         GetContentLocation = 1

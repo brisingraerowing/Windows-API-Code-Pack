@@ -1454,7 +1454,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
         }
         #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_CAPABILITIES. This command category is used to query capabilities of the device.
 
-        public static class Capabilities
+        public static class Capability
 
         {
 
@@ -1838,7 +1838,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
         #endregion
         #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_DEVICE_HINTS. The commands in this category relate to hints that a device can provide to improve end-user experience.
 
-        public static class DeviceHints
+        public static class DeviceHint
 
         {
 
@@ -2812,360 +2812,163 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
 
         {
 
-            #region This section defines the legacy WPD Properties
-            //
-            // WPD_OBJECT_ID 
-            //   [ VT_LPWSTR ] Uniquely identifies object on the Portable Device.
-            //   Recommended Device Services Property: PKEY_GenericObj_ObjectID
-            public static PropertyKey Id => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 2);
-            //
-            // WPD_OBJECT_PARENT_ID 
-            //   [ VT_LPWSTR ] Object identifier indicating the parent object.
-            //   Recommended Device Services Property: PKEY_GenericObj_ParentID
-            public static PropertyKey ParentId => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 3);
-            //
-            // WPD_OBJECT_NAME 
-            //   [ VT_LPWSTR ] The display name for this object.
-            //   Recommended Device Services Property: PKEY_GenericObj_Name
-            public static PropertyKey Name => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 4);
-            //
-            // WPD_OBJECT_PERSISTENT_UNIQUE_ID 
-            //   [ VT_LPWSTR ] Uniquely identifies the object on the Portable Device-similar to WPD_OBJECT_ID-but this ID will not change between sessions.
-            //   Recommended Device Services Property: PKEY_GenericObj_PersistentUID
-            public static PropertyKey PersistentUniqueId => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 5);
-            //
-            // WPD_OBJECT_FORMAT 
-            //   [ VT_CLSID ] Indicates the format of the object's data.
-            //   Recommended Device Services Property: PKEY_GenericObj_ObjectFormat
-            public static PropertyKey Format => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 6);
-            //
-            // WPD_OBJECT_ISHIDDEN 
-            //   [ VT_BOOL ] Indicates whether the object should be hidden.
-            //   Recommended Device Services Property: PKEY_GenericObj_Hidden
-            public static PropertyKey IsHidden => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 9);
-            //
-            // WPD_OBJECT_ISSYSTEM 
-            //   [ VT_BOOL ] Indicates whether the object represents system data.
-            //   Recommended Device Services Property: PKEY_GenericObj_SystemObject
-            public static PropertyKey IsSystem => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 10);
-            //
-            // WPD_OBJECT_SIZE 
-            //   [ VT_UI8 ] The size of the object data.
-            //   Recommended Device Services Property: PKEY_GenericObj_ObjectSize
-            public static PropertyKey Size => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 11);
-            //
-            // WPD_OBJECT_ORIGINAL_FILE_NAME 
-            //   [ VT_LPWSTR ] Contains the name of the file this object represents.
-            //   Recommended Device Services Property: PKEY_GenericObj_ObjectFileName
-            public static PropertyKey OriginalFileName => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 12);
-            //
-            // WPD_OBJECT_NON_CONSUMABLE 
-            //   [ VT_BOOL ] This property determines whether or not this object is intended to be understood by the device-or whether it has been placed on the device just for storage.
-            //   Recommended Device Services Property: PKEY_GenericObj_NonConsumable
-            public static PropertyKey NonConsumable => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 13);
-            //
-            // WPD_OBJECT_KEYWORDS 
-            //   [ VT_LPWSTR ] String containing a list of keywords associated with this object.
-            //   Recommended Device Services Property: PKEY_GenericObj_Keywords
-            public static PropertyKey Keywords => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 15);
-            //
-            // WPD_OBJECT_SYNC_ID 
-            //   [ VT_LPWSTR ] Opaque string set by client to retain state between sessions without retaining a catalogue of connected device content.
-            //   Recommended Device Services Property: PKEY_GenericObj_SyncID
-            public static PropertyKey SyncId => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 16);
-            //
-            // WPD_OBJECT_IS_DRM_PROTECTED 
-            //   [ VT_BOOL ] Indicates whether the media data is DRM protected.
-            //   Recommended Device Services Property: PKEY_GenericObj_DRMStatus
-            public static PropertyKey IsDRMProtected => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 17);
-            //
-            // WPD_OBJECT_DATE_CREATED 
-            //   [ VT_DATE ] Indicates the date and time the object was created on the device.
-            //   Recommended Device Services Property: PKEY_GenericObj_DateCreated
-            public static PropertyKey DateCreated => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 18);
-            //
-            // WPD_OBJECT_DATE_MODIFIED 
-            //   [ VT_DATE ] Indicates the date and time the object was modified on the device.
-            //   Recommended Device Services Property: PKEY_GenericObj_DateModified
-            public static PropertyKey DateModified => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 19);
-            //
-            // WPD_OBJECT_DATE_AUTHORED 
-            //   [ VT_DATE ] Indicates the date and time the object was authored (e.g. for music-this would be the date the music was recorded).
-            //   Recommended Device Services Property: PKEY_GenericObj_DateAuthored
-            public static PropertyKey DateAuthored => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 20);
-            //
-            // WPD_OBJECT_BACK_REFERENCES 
-            //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection of type VT_LPWSTR indicating a list of ObjectIDs.
-            //   Recommended Device Services Property: PKEY_GenericObj_ReferenceParentID
-            public static PropertyKey BackReferences => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 21);
-            //
-            // WPD_OBJECT_CAN_DELETE 
-            //   [ VT_BOOL ] Indicates whether the object can be deleted-or not.
-            //   Recommended Device Services Property: PKEY_GenericObj_ProtectionStatus
-            public static PropertyKey CanDelete => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 26);
-            //
-            // WPD_OBJECT_LANGUAGE_LOCALE 
-            //   [ VT_LPWSTR ] Identifies the language of this object. If multiple languages are contained in this object-it should identify the primary language (if any).
-            //   Recommended Device Services Property: PKEY_GenericObj_LanguageLocale
-            public static PropertyKey LanguageLocale => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 27);
+            public static class Common
 
-        }
+            {
 
-        //
-        // WPD_FOLDER_CONTENT_TYPES_ALLOWED 
-        //   [ VT_UNKNOWN ] Indicates the subset of content types that can be created in this folder directly (i.e. children may have different restrictions).
-        //   Recommended Device Services Property: None
-        public static PropertyKey FolderContentTypesAllowed => new PropertyKey("0x7E9A7ABF-0xE568-0x4B34-0xAA-0x2F-0x13-0xBB-0x12-0xAB-0x17-0x7D", 2);
+                #region This section defines the legacy WPD Properties
+                //
+                // WPD_OBJECT_ID 
+                //   [ VT_LPWSTR ] Uniquely identifies object on the Portable Device.
+                //   Recommended Device Services Property: PKEY_GenericObj_ObjectID
+                public static PropertyKey Id => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 2);
+                //
+                // WPD_OBJECT_PARENT_ID 
+                //   [ VT_LPWSTR ] Object identifier indicating the parent object.
+                //   Recommended Device Services Property: PKEY_GenericObj_ParentID
+                public static PropertyKey ParentId => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 3);
+                //
+                // WPD_OBJECT_NAME 
+                //   [ VT_LPWSTR ] The display name for this object.
+                //   Recommended Device Services Property: PKEY_GenericObj_Name
+                public static PropertyKey Name => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 4);
+                //
+                // WPD_OBJECT_PERSISTENT_UNIQUE_ID 
+                //   [ VT_LPWSTR ] Uniquely identifies the object on the Portable Device-similar to WPD_OBJECT_ID-but this ID will not change between sessions.
+                //   Recommended Device Services Property: PKEY_GenericObj_PersistentUID
+                public static PropertyKey PersistentUniqueId => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 5);
+                //
+                // WPD_OBJECT_FORMAT 
+                //   [ VT_CLSID ] Indicates the format of the object's data.
+                //   Recommended Device Services Property: PKEY_GenericObj_ObjectFormat
+                public static PropertyKey Format => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 6);
+                //
+                // WPD_OBJECT_ISHIDDEN 
+                //   [ VT_BOOL ] Indicates whether the object should be hidden.
+                //   Recommended Device Services Property: PKEY_GenericObj_Hidden
+                public static PropertyKey IsHidden => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 9);
+                //
+                // WPD_OBJECT_ISSYSTEM 
+                //   [ VT_BOOL ] Indicates whether the object represents system data.
+                //   Recommended Device Services Property: PKEY_GenericObj_SystemObject
+                public static PropertyKey IsSystem => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 10);
+                //
+                // WPD_OBJECT_SIZE 
+                //   [ VT_UI8 ] The size of the object data.
+                //   Recommended Device Services Property: PKEY_GenericObj_ObjectSize
+                public static PropertyKey Size => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 11);
+                //
+                // WPD_OBJECT_ORIGINAL_FILE_NAME 
+                //   [ VT_LPWSTR ] Contains the name of the file this object represents.
+                //   Recommended Device Services Property: PKEY_GenericObj_ObjectFileName
+                public static PropertyKey OriginalFileName => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 12);
+                //
+                // WPD_OBJECT_NON_CONSUMABLE 
+                //   [ VT_BOOL ] This property determines whether or not this object is intended to be understood by the device-or whether it has been placed on the device just for storage.
+                //   Recommended Device Services Property: PKEY_GenericObj_NonConsumable
+                public static PropertyKey NonConsumable => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 13);
+                //
+                // WPD_OBJECT_KEYWORDS 
+                //   [ VT_LPWSTR ] String containing a list of keywords associated with this object.
+                //   Recommended Device Services Property: PKEY_GenericObj_Keywords
+                public static PropertyKey Keywords => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 15);
+                //
+                // WPD_OBJECT_SYNC_ID 
+                //   [ VT_LPWSTR ] Opaque string set by client to retain state between sessions without retaining a catalogue of connected device content.
+                //   Recommended Device Services Property: PKEY_GenericObj_SyncID
+                public static PropertyKey SyncId => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 16);
+                //
+                // WPD_OBJECT_IS_DRM_PROTECTED 
+                //   [ VT_BOOL ] Indicates whether the media data is DRM protected.
+                //   Recommended Device Services Property: PKEY_GenericObj_DRMStatus
+                public static PropertyKey IsDRMProtected => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 17);
+                //
+                // WPD_OBJECT_DATE_CREATED 
+                //   [ VT_DATE ] Indicates the date and time the object was created on the device.
+                //   Recommended Device Services Property: PKEY_GenericObj_DateCreated
+                public static PropertyKey DateCreated => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 18);
+                //
+                // WPD_OBJECT_DATE_MODIFIED 
+                //   [ VT_DATE ] Indicates the date and time the object was modified on the device.
+                //   Recommended Device Services Property: PKEY_GenericObj_DateModified
+                public static PropertyKey DateModified => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 19);
+                //
+                // WPD_OBJECT_DATE_AUTHORED 
+                //   [ VT_DATE ] Indicates the date and time the object was authored (e.g. for music-this would be the date the music was recorded).
+                //   Recommended Device Services Property: PKEY_GenericObj_DateAuthored
+                public static PropertyKey DateAuthored => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 20);
+                //
+                // WPD_OBJECT_BACK_REFERENCES 
+                //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection of type VT_LPWSTR indicating a list of ObjectIDs.
+                //   Recommended Device Services Property: PKEY_GenericObj_ReferenceParentID
+                public static PropertyKey BackReferences => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 21);
+                //
+                // WPD_OBJECT_CAN_DELETE 
+                //   [ VT_BOOL ] Indicates whether the object can be deleted-or not.
+                //   Recommended Device Services Property: PKEY_GenericObj_ProtectionStatus
+                public static PropertyKey CanDelete => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 26);
+                //
+                // WPD_OBJECT_LANGUAGE_LOCALE 
+                //   [ VT_LPWSTR ] Identifies the language of this object. If multiple languages are contained in this object-it should identify the primary language (if any).
+                //   Recommended Device Services Property: PKEY_GenericObj_LanguageLocale
+                public static PropertyKey LanguageLocale => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 27);
 
-        public static class ImageObject
-
-        {
+            }
 
             //
-            // WPD_IMAGE_BITDEPTH 
-            //   [ VT_UI4 ] Indicates the bitdepth of an image
-            //   Recommended Device Services Property: PKEY_ImageObj_ImageBitDepth
-            public static PropertyKey BitDepth => new PropertyKey("0x63D64908-0x9FA1-0x479F-0x85-0xBA-0x99-0x52-0x21-0x64-0x47-0xDB", 3);
-            //
-            // WPD_IMAGE_CROPPED_STATUS 
-            //   [ VT_UI4 ] Signals whether the file has been cropped.
-            //   Recommended Device Services Property: PKEY_ImageObj_IsCropped
-            public static PropertyKey CroppedStatus => new PropertyKey("0x63D64908-0x9FA1-0x479F-0x85-0xBA-0x99-0x52-0x21-0x64-0x47-0xDB", 4);
-            //
-            // WPD_IMAGE_COLOR_CORRECTED_STATUS 
-            //   [ VT_UI4 ] Signals whether the file has been color corrected.
-            //   Recommended Device Services Property: PKEY_ImageObj_IsColorCorrected
-            public static PropertyKey ColorCorrectedStatus => new PropertyKey("0x63D64908-0x9FA1-0x479F-0x85-0xBA-0x99-0x52-0x21-0x64-0x47-0xDB", 5);
-            //
-            // WPD_IMAGE_FNUMBER 
-            //   [ VT_UI4 ] Identifies the aperture setting of the lens when this image was captured.
-            //   Recommended Device Services Property: PKEY_ImageObj_Aperature
-            public static PropertyKey FNumber => new PropertyKey("0x63D64908-0x9FA1-0x479F-0x85-0xBA-0x99-0x52-0x21-0x64-0x47-0xDB", 6);
-            //
-            // WPD_IMAGE_EXPOSURE_TIME 
-            //   [ VT_UI4 ] Identifies the shutter speed of the device when this image was captured.
-            //   Recommended Device Services Property: PKEY_ImageObj_Exposure
-            public static PropertyKey ExposureTime => new PropertyKey("0x63D64908-0x9FA1-0x479F-0x85-0xBA-0x99-0x52-0x21-0x64-0x47-0xDB", 7);
-            //
-            // WPD_IMAGE_EXPOSURE_INDEX 
-            //   [ VT_UI4 ] Identifies the emulation of film speed settings when this image was captured.
-            //   Recommended Device Services Property: PKEY_ImageObj_ISOSpeed
-            public static PropertyKey ExposureIndex => new PropertyKey("0x63D64908-0x9FA1-0x479F-0x85-0xBA-0x99-0x52-0x21-0x64-0x47-0xDB", 8);
-            //
-            // WPD_IMAGE_HORIZONTAL_RESOLUTION 
-            //   [ VT_R8 ] Indicates the horizontal resolution (DPI) of an image
+            // WPD_FOLDER_CONTENT_TYPES_ALLOWED 
+            //   [ VT_UNKNOWN ] Indicates the subset of content types that can be created in this folder directly (i.e. children may have different restrictions).
             //   Recommended Device Services Property: None
-            public static PropertyKey HorizontalResolution => new PropertyKey("0x63D64908-0x9FA1-0x479F-0x85-0xBA-0x99-0x52-0x21-0x64-0x47-0xDB", 9);
-            //
-            // WPD_IMAGE_VERTICAL_RESOLUTION 
-            //   [ VT_R8 ] Indicates the vertical resolution (DPI) of an image
-            //   Recommended Device Services Property: None
-            public static PropertyKey VerticalResolution => new PropertyKey("0x63D64908-0x9FA1-0x479F-0x85-0xBA-0x99-0x52-0x21-0x64-0x47-0xDB", 10);
+            public static PropertyKey FolderContentTypesAllowed => new PropertyKey("0x7E9A7ABF-0xE568-0x4B34-0xAA-0x2F-0x13-0xBB-0x12-0xAB-0x17-0x7D", 2);
 
-        }
+            public static class Image
 
-        public static class Media
+            {
 
-        {
-            //
-            // WPD_MEDIA_TOTAL_BITRATE 
-            //   [ VT_UI4 ] The total number of bits that one second will consume.
-            //   Recommended Device Services Property: PKEY_MediaObj_TotalBitRate
-            public static PropertyKey TotalBitRate => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 2);
-            //
-            // WPD_MEDIA_BITRATE_TYPE 
-            //   [ VT_UI4 ] Further qualifies the bitrate of audio or video data.
-            //   Recommended Device Services Property: PKEY_MediaObj_BitRateType
-            public static PropertyKey BitRateType => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 3);
-            //
-            // WPD_MEDIA_COPYRIGHT 
-            //   [ VT_LPWSTR ] Indicates the copyright information.
-            //   Recommended Device Services Property: PKEY_GenericObj_Copyright
-            public static PropertyKey Copyright => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 4);
-            //
-            // WPD_MEDIA_SUBSCRIPTION_CONTENT_ID 
-            //   [ VT_LPWSTR ] Provides additional information to identify a piece of content relative to an online subscription service.
-            //   Recommended Device Services Property: PKEY_MediaObj_SubscriptionContentID
-            public static PropertyKey SubscriptionContentId => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 5);
-            //
-            // WPD_MEDIA_USE_COUNT 
-            //   [ VT_UI4 ] Indicates the total number of times this media has been played or viewed on the device.
-            //   Recommended Device Services Property: PKEY_MediaObj_UseCount
-            public static PropertyKey UseCount => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 6);
-            //
-            // WPD_MEDIA_SKIP_COUNT 
-            //   [ VT_UI4 ] Indicates the total number of times this media was setup to be played or viewed but was manually skipped by the user.
-            //   Recommended Device Services Property: PKEY_MediaObj_SkipCount
-            public static PropertyKey SkipCount => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 7);
-            //
-            // WPD_MEDIA_LAST_ACCESSED_TIME 
-            //   [ VT_DATE ] Indicates the date and time the media was last accessed on the device.
-            //   Recommended Device Services Property: PKEY_GenericObj_DateAccessed
-            public static PropertyKey LastAccessedTime => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 8);
-            //
-            // WPD_MEDIA_PARENTAL_RATING 
-            //   [ VT_LPWSTR ] Indicates the parental rating of the media file.
-            //   Recommended Device Services Property: PKEY_MediaObj_ParentalRating
-            public static PropertyKey ParentalRating => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 9);
-            //
-            // WPD_MEDIA_META_GENRE 
-            //   [ VT_UI4 ] Further qualifies a piece of media in a contextual way.
-            //   Recommended Device Services Property: PKEY_MediaObj_MediaType
-            public static PropertyKey MetaGenre => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 10);
-            //
-            // WPD_MEDIA_COMPOSER 
-            //   [ VT_LPWSTR ] Identifies the composer when the composer is not the artist who performed it.
-            //   Recommended Device Services Property: PKEY_MediaObj_Composer
-            public static PropertyKey Composer => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 11);
-            //
-            // WPD_MEDIA_EFFECTIVE_RATING 
-            //   [ VT_UI4 ] Contains an assigned rating for media not set by the user-but is generated based upon usage statistics.
-            //   Recommended Device Services Property: PKEY_MediaObj_EffectiveRating
-            public static PropertyKey EffectiveRating => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 12);
-            //
-            // WPD_MEDIA_SUB_TITLE 
-            //   [ VT_LPWSTR ] Further qualifies the title when the title is ambiguous or general.
-            //   Recommended Device Services Property: PKEY_MediaObj_Subtitle
-            public static PropertyKey SubTitle => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 13);
-            //
-            // WPD_MEDIA_RELEASE_DATE 
-            //   [ VT_DATE ] Indicates when the media was released.
-            //   Recommended Device Services Property: PKEY_MediaObj_DateOriginalRelease
-            public static PropertyKey ReleaseDate => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 14);
-            //
-            // WPD_MEDIA_SAMPLE_RATE 
-            //   [ VT_UI4 ] Indicates the number of times media selection was sampled per second during encoding.
-            //   Recommended Device Services Property: PKEY_MediaObj_SampleRate
-            public static PropertyKey SampleRate => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 15);
-            //
-            // WPD_MEDIA_STAR_RATING 
-            //   [ VT_UI4 ] Indicates the star rating for this media.
-            //   Recommended Device Services Property: None
-            public static PropertyKey StarRating => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 16);
-            //
-            // WPD_MEDIA_USER_EFFECTIVE_RATING 
-            //   [ VT_UI4 ] Indicates the rating for this media.
-            //   Recommended Device Services Property: PKEY_MediaObj_UserRating
-            public static PropertyKey UserEffectiveRating => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 17);
-            //
-            // WPD_MEDIA_TITLE 
-            //   [ VT_LPWSTR ] Indicates the title of this media.
-            //   Recommended Device Services Property: None
-            public static PropertyKey Title => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 18);
-            //
-            // WPD_MEDIA_DURATION 
-            //   [ VT_UI8 ] Indicates the duration of this media in milliseconds.
-            //   Recommended Device Services Property: PKEY_MediaObj_Duration
-            public static PropertyKey Duration => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 19);
-            //
-            // WPD_MEDIA_BUY_NOW 
-            //   [ VT_BOOL ] TBD
-            //   Recommended Device Services Property: None
-            public static PropertyKey BuyNow => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 20);
-            //
-            // WPD_MEDIA_ENCODING_PROFILE 
-            //   [ VT_LPWSTR ] Media codecs may be encoded in accordance with a profile-which defines a particular encoding algorithm or optimization process.
-            //   Recommended Device Services Property: PKEY_MediaObj_EncodingProfile
-            public static PropertyKey EncodingProfile => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 21);
-            //
-            // WPD_MEDIA_WIDTH 
-            //   [ VT_UI4 ] Indicates the width of an object in pixels
-            //   Recommended Device Services Property: PKEY_MediaObj_Width
-            public static PropertyKey Width => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 22);
-            //
-            // WPD_MEDIA_HEIGHT 
-            //   [ VT_UI4 ] Indicates the height of an object in pixels
-            //   Recommended Device Services Property: PKEY_MediaObj_Height
-            public static PropertyKey Height => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 23);
-            //
-            // WPD_MEDIA_ARTIST 
-            //   [ VT_LPWSTR ] Indicates the artist for this media.
-            //   Recommended Device Services Property: PKEY_MediaObj_Artist
-            public static PropertyKey Artist => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 24);
-            //
-            // WPD_MEDIA_ALBUM_ARTIST 
-            //   [ VT_LPWSTR ] Indicates the artist of the entire album rather than for a particular track.
-            //   Recommended Device Services Property: PKEY_MediaObj_AlbumArtist
-            public static PropertyKey AlbumArtist => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 25);
-            //
-            // WPD_MEDIA_OWNER 
-            //   [ VT_LPWSTR ] Indicates the e-mail address of the owner for this media.
-            //   Recommended Device Services Property: PKEY_MediaObj_Owner
-            public static PropertyKey Owner => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 26);
-            //
-            // WPD_MEDIA_MANAGING_EDITOR 
-            //   [ VT_LPWSTR ] Indicates the e-mail address of the managing editor for this media.
-            //   Recommended Device Services Property: PKEY_MediaObj_Editor
-            public static PropertyKey ManagingEditor => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 27);
-            //
-            // WPD_MEDIA_WEBMASTER 
-            //   [ VT_LPWSTR ] Indicates the e-mail address of the Webmaster for this media.
-            //   Recommended Device Services Property: PKEY_MediaObj_WebMaster
-            public static PropertyKey WebMaster => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 28);
-            //
-            // WPD_MEDIA_SOURCE_URL 
-            //   [ VT_LPWSTR ] Identifies the source URL for this object.
-            //   Recommended Device Services Property: PKEY_MediaObj_URLSource
-            public static PropertyKey SourceUrl => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 29);
-            //
-            // WPD_MEDIA_DESTINATION_URL 
-            //   [ VT_LPWSTR ] Identifies the URL that an object is linked to if a user clicks on it.
-            //   Recommended Device Services Property: PKEY_MediaObj_URLLink
-            public static PropertyKey DestinationUrl => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 30);
-            //
-            // WPD_MEDIA_DESCRIPTION 
-            //   [ VT_LPWSTR ] Contains a description of the media content for this object.
-            //   Recommended Device Services Property: PKEY_GenericObj_Description
-            public static PropertyKey Description => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 31);
-            //
-            // WPD_MEDIA_GENRE 
-            //   [ VT_LPWSTR ] A text field indicating the genre this media belongs to.
-            //   Recommended Device Services Property: PKEY_MediaObj_Genre
-            public static PropertyKey Genre => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 32);
-            //
-            // WPD_MEDIA_TIME_BOOKMARK 
-            //   [ VT_UI8 ] Indicates a bookmark (in milliseconds) of the last position played or viewed on media that have duration.
-            //   Recommended Device Services Property: PKEY_MediaObj_BookmarkTime
-            public static PropertyKey TimeBookmark => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 33);
-            //
-            // WPD_MEDIA_OBJECT_BOOKMARK 
-            //   [ VT_LPWSTR ] Indicates a WPD_OBJECT_ID of the last object viewed or played for those objects that refer to a list of objects (such as playlists or media casts).
-            //   Recommended Device Services Property: PKEY_MediaObj_BookmarkObject
-            public static PropertyKey ObjectBookmark => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 34);
-            //
-            // WPD_MEDIA_LAST_BUILD_DATE 
-            //   [ VT_DATE ] Indicates the last time a series in a media cast was changed or edited.
-            //   Recommended Device Services Property: PKEY_GenericObj_DateRevised
-            public static PropertyKey LastBuildDate => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 35);
-            //
-            // WPD_MEDIA_BYTE_BOOKMARK 
-            //   [ VT_UI8 ] Indicates a bookmark (as a zero-based byte offset) of the last position played or viewed on this media object.
-            //   Recommended Device Services Property: PKEY_MediaObj_BookmarkByte
-            public static PropertyKey ByteBookmark => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 36);
-            //
-            // WPD_MEDIA_TIME_TO_LIVE 
-            //   [ VT_UI8 ] It is the number of minutes that indicates how long a channel can be cached before refreshing from the source. Applies to WPD_CONTENT_TYPE_MEDIA_CAST objects.
-            //   Recommended Device Services Property: PKEY_GenericObj_TimeToLive
-            public static PropertyKey TimeToLive => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 37);
-            //
-            // WPD_MEDIA_GUID 
-            //   [ VT_LPWSTR ] A text field indicating the GUID of this media.
-            //   Recommended Device Services Property: PKEY_MediaObj_MediaUID
-            public static PropertyKey Guid => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 38);
-            //
-            // WPD_MEDIA_SUB_DESCRIPTION 
-            //   [ VT_LPWSTR ] Contains a sub description of the media content for this object.
-            //   Recommended Device Services Property: PKEY_GenericObj_SubDescription
-            public static PropertyKey SubDescription => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 39);
-            //
-            // WPD_MEDIA_AUDIO_ENCODING_PROFILE 
-            //   [ VT_LPWSTR ] Media codecs may be encoded in accordance with a profile-which defines a particular encoding algorithm or optimization process.
-            //   Recommended Device Services Property: PKEY_MediaObj_AudioEncodingProfile
-            public static PropertyKey AudioEncodingProfile => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 49);
+                //
+                // WPD_IMAGE_BITDEPTH 
+                //   [ VT_UI4 ] Indicates the bitdepth of an image
+                //   Recommended Device Services Property: PKEY_ImageObj_ImageBitDepth
+                public static PropertyKey BitDepth => new PropertyKey("0x63D64908-0x9FA1-0x479F-0x85-0xBA-0x99-0x52-0x21-0x64-0x47-0xDB", 3);
+                //
+                // WPD_IMAGE_CROPPED_STATUS 
+                //   [ VT_UI4 ] Signals whether the file has been cropped.
+                //   Recommended Device Services Property: PKEY_ImageObj_IsCropped
+                public static PropertyKey CroppedStatus => new PropertyKey("0x63D64908-0x9FA1-0x479F-0x85-0xBA-0x99-0x52-0x21-0x64-0x47-0xDB", 4);
+                //
+                // WPD_IMAGE_COLOR_CORRECTED_STATUS 
+                //   [ VT_UI4 ] Signals whether the file has been color corrected.
+                //   Recommended Device Services Property: PKEY_ImageObj_IsColorCorrected
+                public static PropertyKey ColorCorrectedStatus => new PropertyKey("0x63D64908-0x9FA1-0x479F-0x85-0xBA-0x99-0x52-0x21-0x64-0x47-0xDB", 5);
+                //
+                // WPD_IMAGE_FNUMBER 
+                //   [ VT_UI4 ] Identifies the aperture setting of the lens when this image was captured.
+                //   Recommended Device Services Property: PKEY_ImageObj_Aperature
+                public static PropertyKey FNumber => new PropertyKey("0x63D64908-0x9FA1-0x479F-0x85-0xBA-0x99-0x52-0x21-0x64-0x47-0xDB", 6);
+                //
+                // WPD_IMAGE_EXPOSURE_TIME 
+                //   [ VT_UI4 ] Identifies the shutter speed of the device when this image was captured.
+                //   Recommended Device Services Property: PKEY_ImageObj_Exposure
+                public static PropertyKey ExposureTime => new PropertyKey("0x63D64908-0x9FA1-0x479F-0x85-0xBA-0x99-0x52-0x21-0x64-0x47-0xDB", 7);
+                //
+                // WPD_IMAGE_EXPOSURE_INDEX 
+                //   [ VT_UI4 ] Identifies the emulation of film speed settings when this image was captured.
+                //   Recommended Device Services Property: PKEY_ImageObj_ISOSpeed
+                public static PropertyKey ExposureIndex => new PropertyKey("0x63D64908-0x9FA1-0x479F-0x85-0xBA-0x99-0x52-0x21-0x64-0x47-0xDB", 8);
+                //
+                // WPD_IMAGE_HORIZONTAL_RESOLUTION 
+                //   [ VT_R8 ] Indicates the horizontal resolution (DPI) of an image
+                //   Recommended Device Services Property: None
+                public static PropertyKey HorizontalResolution => new PropertyKey("0x63D64908-0x9FA1-0x479F-0x85-0xBA-0x99-0x52-0x21-0x64-0x47-0xDB", 9);
+                //
+                // WPD_IMAGE_VERTICAL_RESOLUTION 
+                //   [ VT_R8 ] Indicates the vertical resolution (DPI) of an image
+                //   Recommended Device Services Property: None
+                public static PropertyKey VerticalResolution => new PropertyKey("0x63D64908-0x9FA1-0x479F-0x85-0xBA-0x99-0x52-0x21-0x64-0x47-0xDB", 10);
 
-        }
+            }
 
-        public static class ContactObject
+        public static class Contact
 
         {
             //
@@ -3481,7 +3284,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
 
         }
 
-        public static class MediaObject
+        public static class Media
 
         {
             //
@@ -3534,7 +3337,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
 
         #region This section defines all Commands-Parameters and Options associated with: WPD_VIDEO_OBJECT_PROPERTIES_V1. This category is for properties common to all video objects.
 
-        public static class VideoObject
+        public static class Video
 
         {
             //
@@ -3602,7 +3405,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
 
         #region This section defines all Commands-Parameters and Options associated with: WPD_COMMON_INFORMATION_OBJECT_PROPERTIES_V1. This category is properties that pertain to informational objects such as appointments-tasks-memos and even documents.
 
-        public static class InformationObject
+        public static class Information
 
         {
             //
@@ -3638,7 +3441,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
 
         }
 
-        public static class EmailObject
+        public static class Email
 
         {
 
@@ -3680,7 +3483,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
 
         }
 
-        public static class AppointmentObject
+        public static class Appointment
 
         {
 
@@ -3727,7 +3530,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
 
         }
 
-        public static class TaskObject
+        public static class Task
 
         {
             //
@@ -3753,7 +3556,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
 
         }
 
-        public static class SMSObject
+        public static class SMS
 
         {
 
@@ -3780,7 +3583,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
 
         }
 
-        public static class SectionObject
+        public static class Section
 
         {
             //
@@ -3803,6 +3606,209 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
             //   [ VT_UNKNOWN ] This is an IPortableDeviceKeyCollection containing a single value-which is the key identifying the resource on the referenced object which the WPD_SECTION_DATA_OFFSET and WPD_SECTION_DATA_LENGTH apply to.
             //   Recommended Device Services Property: None
             public static PropertyKey DataReferencedObjectResource => new PropertyKey("0x516AFD2B-0xC64E-0x44F0-0x98-0xDC-0xBE-0xE1-0xC8-0x8F-0x7D-0x66", 5);
+
+        }
+
+        }
+
+        public static class Media
+
+        {
+            //
+            // WPD_MEDIA_TOTAL_BITRATE 
+            //   [ VT_UI4 ] The total number of bits that one second will consume.
+            //   Recommended Device Services Property: PKEY_MediaObj_TotalBitRate
+            public static PropertyKey TotalBitRate => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 2);
+            //
+            // WPD_MEDIA_BITRATE_TYPE 
+            //   [ VT_UI4 ] Further qualifies the bitrate of audio or video data.
+            //   Recommended Device Services Property: PKEY_MediaObj_BitRateType
+            public static PropertyKey BitRateType => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 3);
+            //
+            // WPD_MEDIA_COPYRIGHT 
+            //   [ VT_LPWSTR ] Indicates the copyright information.
+            //   Recommended Device Services Property: PKEY_GenericObj_Copyright
+            public static PropertyKey Copyright => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 4);
+            //
+            // WPD_MEDIA_SUBSCRIPTION_CONTENT_ID 
+            //   [ VT_LPWSTR ] Provides additional information to identify a piece of content relative to an online subscription service.
+            //   Recommended Device Services Property: PKEY_MediaObj_SubscriptionContentID
+            public static PropertyKey SubscriptionContentId => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 5);
+            //
+            // WPD_MEDIA_USE_COUNT 
+            //   [ VT_UI4 ] Indicates the total number of times this media has been played or viewed on the device.
+            //   Recommended Device Services Property: PKEY_MediaObj_UseCount
+            public static PropertyKey UseCount => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 6);
+            //
+            // WPD_MEDIA_SKIP_COUNT 
+            //   [ VT_UI4 ] Indicates the total number of times this media was setup to be played or viewed but was manually skipped by the user.
+            //   Recommended Device Services Property: PKEY_MediaObj_SkipCount
+            public static PropertyKey SkipCount => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 7);
+            //
+            // WPD_MEDIA_LAST_ACCESSED_TIME 
+            //   [ VT_DATE ] Indicates the date and time the media was last accessed on the device.
+            //   Recommended Device Services Property: PKEY_GenericObj_DateAccessed
+            public static PropertyKey LastAccessedTime => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 8);
+            //
+            // WPD_MEDIA_PARENTAL_RATING 
+            //   [ VT_LPWSTR ] Indicates the parental rating of the media file.
+            //   Recommended Device Services Property: PKEY_MediaObj_ParentalRating
+            public static PropertyKey ParentalRating => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 9);
+            //
+            // WPD_MEDIA_META_GENRE 
+            //   [ VT_UI4 ] Further qualifies a piece of media in a contextual way.
+            //   Recommended Device Services Property: PKEY_MediaObj_MediaType
+            public static PropertyKey MetaGenre => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 10);
+            //
+            // WPD_MEDIA_COMPOSER 
+            //   [ VT_LPWSTR ] Identifies the composer when the composer is not the artist who performed it.
+            //   Recommended Device Services Property: PKEY_MediaObj_Composer
+            public static PropertyKey Composer => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 11);
+            //
+            // WPD_MEDIA_EFFECTIVE_RATING 
+            //   [ VT_UI4 ] Contains an assigned rating for media not set by the user-but is generated based upon usage statistics.
+            //   Recommended Device Services Property: PKEY_MediaObj_EffectiveRating
+            public static PropertyKey EffectiveRating => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 12);
+            //
+            // WPD_MEDIA_SUB_TITLE 
+            //   [ VT_LPWSTR ] Further qualifies the title when the title is ambiguous or general.
+            //   Recommended Device Services Property: PKEY_MediaObj_Subtitle
+            public static PropertyKey SubTitle => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 13);
+            //
+            // WPD_MEDIA_RELEASE_DATE 
+            //   [ VT_DATE ] Indicates when the media was released.
+            //   Recommended Device Services Property: PKEY_MediaObj_DateOriginalRelease
+            public static PropertyKey ReleaseDate => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 14);
+            //
+            // WPD_MEDIA_SAMPLE_RATE 
+            //   [ VT_UI4 ] Indicates the number of times media selection was sampled per second during encoding.
+            //   Recommended Device Services Property: PKEY_MediaObj_SampleRate
+            public static PropertyKey SampleRate => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 15);
+            //
+            // WPD_MEDIA_STAR_RATING 
+            //   [ VT_UI4 ] Indicates the star rating for this media.
+            //   Recommended Device Services Property: None
+            public static PropertyKey StarRating => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 16);
+            //
+            // WPD_MEDIA_USER_EFFECTIVE_RATING 
+            //   [ VT_UI4 ] Indicates the rating for this media.
+            //   Recommended Device Services Property: PKEY_MediaObj_UserRating
+            public static PropertyKey UserEffectiveRating => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 17);
+            //
+            // WPD_MEDIA_TITLE 
+            //   [ VT_LPWSTR ] Indicates the title of this media.
+            //   Recommended Device Services Property: None
+            public static PropertyKey Title => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 18);
+            //
+            // WPD_MEDIA_DURATION 
+            //   [ VT_UI8 ] Indicates the duration of this media in milliseconds.
+            //   Recommended Device Services Property: PKEY_MediaObj_Duration
+            public static PropertyKey Duration => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 19);
+            //
+            // WPD_MEDIA_BUY_NOW 
+            //   [ VT_BOOL ] TBD
+            //   Recommended Device Services Property: None
+            public static PropertyKey BuyNow => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 20);
+            //
+            // WPD_MEDIA_ENCODING_PROFILE 
+            //   [ VT_LPWSTR ] Media codecs may be encoded in accordance with a profile-which defines a particular encoding algorithm or optimization process.
+            //   Recommended Device Services Property: PKEY_MediaObj_EncodingProfile
+            public static PropertyKey EncodingProfile => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 21);
+            //
+            // WPD_MEDIA_WIDTH 
+            //   [ VT_UI4 ] Indicates the width of an object in pixels
+            //   Recommended Device Services Property: PKEY_MediaObj_Width
+            public static PropertyKey Width => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 22);
+            //
+            // WPD_MEDIA_HEIGHT 
+            //   [ VT_UI4 ] Indicates the height of an object in pixels
+            //   Recommended Device Services Property: PKEY_MediaObj_Height
+            public static PropertyKey Height => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 23);
+            //
+            // WPD_MEDIA_ARTIST 
+            //   [ VT_LPWSTR ] Indicates the artist for this media.
+            //   Recommended Device Services Property: PKEY_MediaObj_Artist
+            public static PropertyKey Artist => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 24);
+            //
+            // WPD_MEDIA_ALBUM_ARTIST 
+            //   [ VT_LPWSTR ] Indicates the artist of the entire album rather than for a particular track.
+            //   Recommended Device Services Property: PKEY_MediaObj_AlbumArtist
+            public static PropertyKey AlbumArtist => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 25);
+            //
+            // WPD_MEDIA_OWNER 
+            //   [ VT_LPWSTR ] Indicates the e-mail address of the owner for this media.
+            //   Recommended Device Services Property: PKEY_MediaObj_Owner
+            public static PropertyKey Owner => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 26);
+            //
+            // WPD_MEDIA_MANAGING_EDITOR 
+            //   [ VT_LPWSTR ] Indicates the e-mail address of the managing editor for this media.
+            //   Recommended Device Services Property: PKEY_MediaObj_Editor
+            public static PropertyKey ManagingEditor => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 27);
+            //
+            // WPD_MEDIA_WEBMASTER 
+            //   [ VT_LPWSTR ] Indicates the e-mail address of the Webmaster for this media.
+            //   Recommended Device Services Property: PKEY_MediaObj_WebMaster
+            public static PropertyKey WebMaster => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 28);
+            //
+            // WPD_MEDIA_SOURCE_URL 
+            //   [ VT_LPWSTR ] Identifies the source URL for this object.
+            //   Recommended Device Services Property: PKEY_MediaObj_URLSource
+            public static PropertyKey SourceUrl => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 29);
+            //
+            // WPD_MEDIA_DESTINATION_URL 
+            //   [ VT_LPWSTR ] Identifies the URL that an object is linked to if a user clicks on it.
+            //   Recommended Device Services Property: PKEY_MediaObj_URLLink
+            public static PropertyKey DestinationUrl => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 30);
+            //
+            // WPD_MEDIA_DESCRIPTION 
+            //   [ VT_LPWSTR ] Contains a description of the media content for this object.
+            //   Recommended Device Services Property: PKEY_GenericObj_Description
+            public static PropertyKey Description => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 31);
+            //
+            // WPD_MEDIA_GENRE 
+            //   [ VT_LPWSTR ] A text field indicating the genre this media belongs to.
+            //   Recommended Device Services Property: PKEY_MediaObj_Genre
+            public static PropertyKey Genre => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 32);
+            //
+            // WPD_MEDIA_TIME_BOOKMARK 
+            //   [ VT_UI8 ] Indicates a bookmark (in milliseconds) of the last position played or viewed on media that have duration.
+            //   Recommended Device Services Property: PKEY_MediaObj_BookmarkTime
+            public static PropertyKey TimeBookmark => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 33);
+            //
+            // WPD_MEDIA_OBJECT_BOOKMARK 
+            //   [ VT_LPWSTR ] Indicates a WPD_OBJECT_ID of the last object viewed or played for those objects that refer to a list of objects (such as playlists or media casts).
+            //   Recommended Device Services Property: PKEY_MediaObj_BookmarkObject
+            public static PropertyKey ObjectBookmark => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 34);
+            //
+            // WPD_MEDIA_LAST_BUILD_DATE 
+            //   [ VT_DATE ] Indicates the last time a series in a media cast was changed or edited.
+            //   Recommended Device Services Property: PKEY_GenericObj_DateRevised
+            public static PropertyKey LastBuildDate => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 35);
+            //
+            // WPD_MEDIA_BYTE_BOOKMARK 
+            //   [ VT_UI8 ] Indicates a bookmark (as a zero-based byte offset) of the last position played or viewed on this media object.
+            //   Recommended Device Services Property: PKEY_MediaObj_BookmarkByte
+            public static PropertyKey ByteBookmark => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 36);
+            //
+            // WPD_MEDIA_TIME_TO_LIVE 
+            //   [ VT_UI8 ] It is the number of minutes that indicates how long a channel can be cached before refreshing from the source. Applies to WPD_CONTENT_TYPE_MEDIA_CAST objects.
+            //   Recommended Device Services Property: PKEY_GenericObj_TimeToLive
+            public static PropertyKey TimeToLive => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 37);
+            //
+            // WPD_MEDIA_GUID 
+            //   [ VT_LPWSTR ] A text field indicating the GUID of this media.
+            //   Recommended Device Services Property: PKEY_MediaObj_MediaUID
+            public static PropertyKey Guid => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 38);
+            //
+            // WPD_MEDIA_SUB_DESCRIPTION 
+            //   [ VT_LPWSTR ] Contains a sub description of the media content for this object.
+            //   Recommended Device Services Property: PKEY_GenericObj_SubDescription
+            public static PropertyKey SubDescription => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 39);
+            //
+            // WPD_MEDIA_AUDIO_ENCODING_PROFILE 
+            //   [ VT_LPWSTR ] Media codecs may be encoded in accordance with a profile-which defines a particular encoding algorithm or optimization process.
+            //   Recommended Device Services Property: PKEY_MediaObj_AudioEncodingProfile
+            public static PropertyKey AudioEncodingProfile => new PropertyKey("0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8", 49);
 
         }
 
