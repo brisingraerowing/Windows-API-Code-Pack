@@ -24,7 +24,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         /// The <see cref="GetSupportedCommands"/> method retrieves a list of all the supported commands for this device.
         /// </summary>
         /// <param name="ppCommands">Reference to an <see cref="IPortableDeviceKeyCollection"/> interface that holds all the valid commands. For a list of commands that are defined by Windows Portable Devices, see <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/commands">Commands</a>. The caller must release this interface when it is done with it.</param>
-        /// <returns><para>The method returns an HResult. Possible values include, but are not limited to, those in the following list.</para>
+        /// <returns><para>The method returns an <see cref="HResult"/>. Possible values include, but are not limited to, those in the following list.</para>
         /// <para><ul><li><see cref="HResult.Ok"/></li></ul></para></returns>
         HResult GetSupportedCommands(
             [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceKeyCollection ppCommands);

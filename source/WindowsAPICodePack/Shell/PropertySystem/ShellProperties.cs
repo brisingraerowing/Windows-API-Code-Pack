@@ -59,32 +59,12 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// <summary>
         /// Gets all the properties for the system through an accessor.
         /// </summary>
-        public PropertySystem System
-        {
-            get
-            {
-                if (propertySystem == null)
-                
-                    propertySystem = new PropertySystem(ParentShellObject);
-
-                return propertySystem;
-            }
-        }
+        public PropertySystem System => propertySystem ?? (propertySystem = new PropertySystem(ParentShellObject));
 
         /// <summary>
         /// Gets the collection of all the default properties for this item.
         /// </summary>
-        public ShellPropertyCollection DefaultPropertyCollection
-        {
-            get
-            {
-                if (defaultPropertyCollection == null)
-                
-                    defaultPropertyCollection = new ShellPropertyCollection(ParentShellObject);
-                
-                return defaultPropertyCollection;
-            }
-        }
+        public ShellPropertyCollection DefaultPropertyCollection => defaultPropertyCollection ?? (defaultPropertyCollection = new ShellPropertyCollection(ParentShellObject));
 
         /// <summary>
         /// Returns the shell property writer used when writing multiple properties.
@@ -95,28 +75,19 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// and dispose the writer</remarks>
         public ShellPropertyWriter GetPropertyWriter() => new ShellPropertyWriter(ParentShellObject);
 
-        internal IShellProperty CreateTypedProperty<T>(PropertyKey propKey)
-        {
-            ShellPropertyDescription desc = ShellPropertyDescriptionsCache.Cache.GetPropertyDescription(propKey);
-            return new ShellProperty<T>(propKey, desc, ParentShellObject);
-        }
+        internal IShellProperty CreateTypedProperty<T>(PropertyKey propKey) => new ShellProperty<T>(propKey, ShellPropertyDescriptionsCache.Cache.GetPropertyDescription(propKey), ParentShellObject);
 
         internal IShellProperty CreateTypedProperty(PropertyKey propKey) => ShellPropertyFactory.CreateShellProperty(propKey, ParentShellObject);
 
         internal IShellProperty CreateTypedProperty(string canonicalName)
         {
             // Otherwise, call the native PropertyStore method
-            PropertyKey propKey;
 
-            int result = PropertySystemNativeMethods.PSGetPropertyKeyFromName(canonicalName, out propKey);
-
-            if (!CoreErrorHelper.Succeeded(result))
+            int result = PropertySystemNativeMethods.PSGetPropertyKeyFromName(canonicalName, out PropertyKey propKey);
             
-                throw new ArgumentException(
+            return CoreErrorHelper.Succeeded(result) ? CreateTypedProperty(propKey) : throw new ArgumentException(
                     LocalizedMessages.ShellInvalidCanonicalName,
                     Marshal.GetExceptionForHR(result));
-            
-            return CreateTypedProperty(propKey);
         }
 
         #region IDisposable Members

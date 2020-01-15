@@ -544,12 +544,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
         #endregion
     }
 
-    public static class Commands
+    namespace Commands
 
     {
 
-        #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_COMMON
-
+        /// <summary>
+        /// Commands, parameters and options associated with the <see cref="Guids.PortableDevices.CommandCategory.Common"/> (WPD_CATEGORY_COMMON) command category.
+        /// </summary>
         public static class Common
 
         {
@@ -655,800 +656,802 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
 
         }
 
-        #endregion
-
-        #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_ENUMERATION. The commands in this category are used for basic object enumeration.
-
-        public static class ObjectEnumeration
+        namespace Object
 
         {
 
-            public static class Commands
+            /// <summary>
+            /// Commands, parameters and options associated to the <see cref="Guids.PortableDevices.CommandCategory.ObjectEnumeration"/> (WPD_CATEGORY_OBJECT_ENUMERATION) command category. The commands in this category are used for basic object enumeration.
+            /// </summary>
+            public static class Enumeration
 
             {
 
-                // ======== Commands ========
-                //
-                // WPD_COMMAND_OBJECT_ENUMERATION_START_FIND 
-                //    The driver receives this command when a client wishes to start enumeration. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_ENUMERATION_PARENT_ID 
-                //     [ Optional ]  WPD_PROPERTY_OBJECT_ENUMERATION_FILTER 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_ENUMERATION_CONTEXT 
-                public static PropertyKey StartFind => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectEnumeration, 2);
-                //
-                // WPD_COMMAND_OBJECT_ENUMERATION_FIND_NEXT 
-                //    This command is used when the client requests the next batch of ObjectIDs during enumeration. Only objects that match the constraints set up in WPD_COMMAND_OBJECT_ENUMERATION_START_FIND should be returned. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_ENUMERATION_CONTEXT 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_ENUMERATION_NUM_OBJECTS_REQUESTED 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_ENUMERATION_OBJECT_IDS 
-                public static PropertyKey FindNext => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectEnumeration, 3);
-                //
-                // WPD_COMMAND_OBJECT_ENUMERATION_END_FIND 
-                //    The driver should destroy any resources associated with this enumeration context. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_ENUMERATION_CONTEXT 
-                // Results:
-                //     None
-                public static PropertyKey EndFind => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectEnumeration, 4);
+                public static class Commands
+
+                {
+
+                    // ======== Commands ========
+                    //
+                    // WPD_COMMAND_OBJECT_ENUMERATION_START_FIND 
+                    //    The driver receives this command when a client wishes to start enumeration. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_ENUMERATION_PARENT_ID 
+                    //     [ Optional ]  WPD_PROPERTY_OBJECT_ENUMERATION_FILTER 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_ENUMERATION_CONTEXT 
+                    public static PropertyKey StartFind => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectEnumeration, 2);
+                    //
+                    // WPD_COMMAND_OBJECT_ENUMERATION_FIND_NEXT 
+                    //    This command is used when the client requests the next batch of ObjectIDs during enumeration. Only objects that match the constraints set up in WPD_COMMAND_OBJECT_ENUMERATION_START_FIND should be returned. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_ENUMERATION_CONTEXT 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_ENUMERATION_NUM_OBJECTS_REQUESTED 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_ENUMERATION_OBJECT_IDS 
+                    public static PropertyKey FindNext => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectEnumeration, 3);
+                    //
+                    // WPD_COMMAND_OBJECT_ENUMERATION_END_FIND 
+                    //    The driver should destroy any resources associated with this enumeration context. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_ENUMERATION_CONTEXT 
+                    // Results:
+                    //     None
+                    public static PropertyKey EndFind => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectEnumeration, 4);
+
+                }
+
+                public static class Parameters
+
+                {
+
+                    // ======== Command Parameters ======== 
+
+                    //
+                    // WPD_PROPERTY_OBJECT_ENUMERATION_PARENT_ID  
+                    //   [ VT_LPWSTR ] The ObjectID specifying the parent object where enumeration should start.
+                    public static PropertyKey ParentId => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectEnumeration, 1001);
+                    //
+                    // WPD_PROPERTY_OBJECT_ENUMERATION_FILTER  
+                    //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which specifies the properties used to filter on. If the caller does not want filtering-then this value will not be set.
+                    public static PropertyKey Filter => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectEnumeration, 1002);
+                    //
+                    // WPD_PROPERTY_OBJECT_ENUMERATION_OBJECT_IDS  
+                    //   [ VT_UNKNOWN ] This is an IPortableDevicePropVariantCollection of ObjectIDs (of type VT_LPWSTR). If 0 objects are returned-this should be an empty collection-not NULL.
+                    public static PropertyKey ObjectIds => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectEnumeration, 1003);
+                    //
+                    // WPD_PROPERTY_OBJECT_ENUMERATION_CONTEXT  
+                    //   [ VT_LPWSTR ] This is a driver-specified identifier for the context associated with this enumeration.
+                    public static PropertyKey Context => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectEnumeration, 1004);
+                    //
+                    // WPD_PROPERTY_OBJECT_ENUMERATION_NUM_OBJECTS_REQUESTED  
+                    //   [ VT_UI4 ] The maximum number of ObjectIDs to return back to the client.
+                    public static PropertyKey NumObjectsRequested => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectEnumeration, 1005);
+
+                }
 
             }
 
-            public static class Parameters
+            /// <summary>
+            /// Commands, parameters and options associated with the <see cref="Guids.PortableDevices.CommandCategory.ObjectProperties"/> (WPD_CATEGORY_OBJECT_PROPERTIES) command category. This category of commands is used to perform basic property operations such as Reading/Writing values-listing supported values and so on.
+            /// </summary>
+            public static class Property
 
             {
 
-                // ======== Command Parameters ======== 
+                public static class Commands
 
-                //
-                // WPD_PROPERTY_OBJECT_ENUMERATION_PARENT_ID  
-                //   [ VT_LPWSTR ] The ObjectID specifying the parent object where enumeration should start.
-                public static PropertyKey ParentId => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectEnumeration, 1001);
-                //
-                // WPD_PROPERTY_OBJECT_ENUMERATION_FILTER  
-                //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which specifies the properties used to filter on. If the caller does not want filtering-then this value will not be set.
-                public static PropertyKey Filter => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectEnumeration, 1002);
-                //
-                // WPD_PROPERTY_OBJECT_ENUMERATION_OBJECT_IDS  
-                //   [ VT_UNKNOWN ] This is an IPortableDevicePropVariantCollection of ObjectIDs (of type VT_LPWSTR). If 0 objects are returned-this should be an empty collection-not NULL.
-                public static PropertyKey ObjectIds => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectEnumeration, 1003);
-                //
-                // WPD_PROPERTY_OBJECT_ENUMERATION_CONTEXT  
-                //   [ VT_LPWSTR ] This is a driver-specified identifier for the context associated with this enumeration.
-                public static PropertyKey Context => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectEnumeration, 1004);
-                //
-                // WPD_PROPERTY_OBJECT_ENUMERATION_NUM_OBJECTS_REQUESTED  
-                //   [ VT_UI4 ] The maximum number of ObjectIDs to return back to the client.
-                public static PropertyKey NumObjectsRequested => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectEnumeration, 1005);
+                {
+
+                    // ======== Commands ========
+                    //
+                    // WPD_COMMAND_OBJECT_PROPERTIES_GET_SUPPORTED 
+                    //    This command is used when the client requests the list of properties supported by the specified object. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_OBJECT_ID 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_KEYS 
+                    public static PropertyKey GetSupported => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectProperties, 2);
+                    //
+                    // WPD_COMMAND_OBJECT_PROPERTIES_GET_ATTRIBUTES 
+                    //    This command is used when the client requests the property attributes for the specified object properties. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_OBJECT_ID 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_KEYS 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_ATTRIBUTES 
+                    public static PropertyKey GetAttributes => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectProperties, 3);
+                    //
+                    // WPD_COMMAND_OBJECT_PROPERTIES_GET 
+                    //    This command is used when the client requests a set of property values for the specified object. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_OBJECT_ID 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_KEYS 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_VALUES 
+                    public static PropertyKey Get => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectProperties, 4);
+                    //
+                    // WPD_COMMAND_OBJECT_PROPERTIES_SET 
+                    //    This command is used when the client requests to write a set of property values on the specified object. 
+                    // Access:
+                    //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_OBJECT_ID 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_VALUES 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_WRITE_RESULTS 
+                    public static PropertyKey Set => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectProperties, 5);
+                    //
+                    // WPD_COMMAND_OBJECT_PROPERTIES_GET_ALL 
+                    //    This command is used when the client requests all property values for the specified object. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_OBJECT_ID 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_VALUES 
+                    public static PropertyKey GetAll => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectProperties, 6);
+                    //
+                    // WPD_COMMAND_OBJECT_PROPERTIES_DELETE 
+                    //    This command is sent when the caller wants to delete properties from the specified object. 
+                    // Access:
+                    //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_OBJECT_ID 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_KEYS 
+                    // Results:
+                    //     [ Optional ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_DELETE_RESULTS 
+                    public static PropertyKey Delete => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectProperties, 7);
+
+                }
+
+                public static class Parameters
+
+                {
+
+                    // ======== Command Parameters ======== 
+
+                    //
+                    // WPD_PROPERTY_OBJECT_PROPERTIES_OBJECT_ID  
+                    //   [ VT_LPWSTR ] The ObjectID specifying the object whose properties are being queried/manipulated.
+                    public static PropertyKey ObjectId => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectProperties, 1001);
+                    //
+                    // WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_KEYS  
+                    //   [ VT_UNKNOWN ] An IPortableDeviceKeyCollection identifying which specific property values we are querying/manipulating.
+                    public static PropertyKey PropertyKeys => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectProperties, 1002);
+                    //
+                    // WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_ATTRIBUTES  
+                    //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which contains the attributes for each property requested.
+                    public static PropertyKey PropertyAttributes => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectProperties, 1003);
+                    //
+                    // WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_VALUES  
+                    //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which contains the values read. For any property whose value could not be read-the type must be set to VT_ERROR-and the 'scode' field must contain the failure HRESULT.
+                    public static PropertyKey PropertyValues => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectProperties, 1004);
+                    //
+                    // WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_WRITE_RESULTS  
+                    //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which contains the result of each property write operation.
+                    public static PropertyKey PropertyWriteResults => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectProperties, 1005);
+                    //
+                    // WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_DELETE_RESULTS  
+                    //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which contains the result of each property delete operation.
+                    public static PropertyKey PropertyDeleteResults => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectProperties, 1006);
+
+                }
 
             }
+
+            /// <summary>
+            /// Commands, parameters and options associated with the <see cref="Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk"/> (WPD_CATEGORY_OBJECT_PROPERTIES_BULK) command category. This category contains commands and properties for property operations across multiple objects.
+            /// </summary>
+            public static class PropertyBulk
+
+            {
+
+                public static class Commands
+
+                {
+
+                    // ======== Commands ========
+                    //
+                    // WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_LIST_START 
+                    //    Initializes the operation to get the property values for all caller-specified objects. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_OBJECT_IDS 
+                    //     [ Optional ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_PROPERTY_KEYS 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
+                    public static PropertyKey GetValuesByObjectListStart => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 2);
+                    //
+                    // WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_LIST_NEXT 
+                    //    Get the next set of property values. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_VALUES 
+                    public static PropertyKey GetValuesByObjectListNext => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 3);
+                    //
+                    // WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_LIST_END 
+                    //    Ends the bulk property operation for getting property values by object list. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
+                    // Results:
+                    //     None
+                    public static PropertyKey GetValuesByObjectListEnd => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 4);
+                    //
+                    // WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_FORMAT_START 
+                    //    Initializes the operation to get the property values for objects of the specified format 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_OBJECT_FORMAT 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_PARENT_OBJECT_ID 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_DEPTH 
+                    //     [ Optional ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_PROPERTY_KEYS 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
+                    public static PropertyKey GetValuesByObjectFormatStart => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 5);
+                    //
+                    // WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_FORMAT_NEXT 
+                    //    Get the next set of property values. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_VALUES 
+                    public static PropertyKey GetValuesByObjectFormatNext => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 6);
+                    //
+                    // WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_FORMAT_END 
+                    //    Ends the bulk property operation for getting property values by object format. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
+                    // Results:
+                    //     None
+                    public static PropertyKey GetValuesByObjectFormatEnd => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 7);
+                    //
+                    // WPD_COMMAND_OBJECT_PROPERTIES_BULK_SET_VALUES_BY_OBJECT_LIST_START 
+                    //    Initializes the operation to set the property values for specified objects. 
+                    // Access:
+                    //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_VALUES 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
+                    public static PropertyKey SetValuesByObjectListStart => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 8);
+                    //
+                    // WPD_COMMAND_OBJECT_PROPERTIES_BULK_SET_VALUES_BY_OBJECT_LIST_NEXT 
+                    //    Set the next set of property values. 
+                    // Access:
+                    //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_WRITE_RESULTS 
+                    public static PropertyKey SetValuesByObjectListNext => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 9);
+                    //
+                    // WPD_COMMAND_OBJECT_PROPERTIES_BULK_SET_VALUES_BY_OBJECT_LIST_END 
+                    //    Ends the bulk property operation for setting property values by object list. 
+                    // Access:
+                    //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
+                    // Results:
+                    //     None
+                    public static PropertyKey SetValuesByObjectListEnd => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 10);
+
+                }
+
+                public static class Parameters
+
+                {
+
+                    // ======== Command Parameters ======== 
+
+                    //
+                    // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_OBJECT_IDS  
+                    //   [ VT_UNKNOWN ] A collection of ObjectIDs for which supported property list must be returned.
+                    public static PropertyKey ObjectIds => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 1001);
+                    //
+                    // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT  
+                    //   [ VT_LPWSTR ] The driver-specified context identifying this particular bulk operation.
+                    public static PropertyKey Context => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 1002);
+                    //
+                    // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_VALUES  
+                    //   [ VT_UNKNOWN ] Contains an IPortableDeviceValuesCollection specifying the next set of IPortableDeviceValues elements.
+                    public static PropertyKey Values => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 1003);
+                    //
+                    // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_PROPERTY_KEYS  
+                    //   [ VT_UNKNOWN ] Contains an IPortableDeviceKeyCollection specifying which properties the caller wants to return. May not exist-which indicates caller wants ALL properties.
+                    public static PropertyKey PropertyKeys => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 1004);
+                    //
+                    // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_DEPTH  
+                    //   [ VT_UI4 ] Contains a value specifying the hierarchical depth from the parent to include in this operation.
+                    public static PropertyKey Depth => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 1005);
+                    //
+                    // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_PARENT_OBJECT_ID  
+                    //   [ VT_LPWSTR ] Contains the ObjectID of the object to start the operation from.
+                    public static PropertyKey ParentObjectId => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 1006);
+                    //
+                    // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_OBJECT_FORMAT  
+                    //   [ VT_CLSID ] Specifies the object format the client is interested in.
+                    public static PropertyKey ObjectFormat => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 1007);
+                    //
+                    // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_WRITE_RESULTS  
+                    //   [ VT_UNKNOWN ] Contains an IPortableDeviceValuesCollection specifying the set of IPortableDeviceValues elements indicating the write results for each property set.
+                    public static PropertyKey WriteResults => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 1008);
+
+                }
+
+            }
+
+            #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_RESOURCES. The commands in this category are used for basic object resource enumeration and transfer.
+
+            public static class Resource
+
+            {
+
+                public static class Commands
+
+                {
+
+                    // ======== Commands ========
+                    //
+                    // WPD_COMMAND_OBJECT_RESOURCES_GET_SUPPORTED 
+                    //    This command is sent when a client wants to get the list of resources supported on a particular object. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_OBJECT_ID 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_KEYS 
+                    public static PropertyKey GetSupported => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 2);
+                    //
+                    // WPD_COMMAND_OBJECT_RESOURCES_GET_ATTRIBUTES 
+                    //    This command is used when the client requests the attributes for the specified object resource. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_OBJECT_ID 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_KEYS 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_ATTRIBUTES 
+                    public static PropertyKey GetAttributes => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 3);
+                    //
+                    // WPD_COMMAND_OBJECT_RESOURCES_OPEN 
+                    //    This command is sent when a client wants to use a particular resource on an object. 
+                    // Access:
+                    //     Dependent on the value of WPD_PROPERTY_OBJECT_RESOURCES_ACCESS_MODE.  STGM_READ will indicate FILE_READ_ACCESS for the command-anything else will indicate (FILE_READ_ACCESS | FILE_WRITE_ACCESS).
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_OBJECT_ID 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_KEYS 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_ACCESS_MODE 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_OPTIMAL_TRANSFER_BUFFER_SIZE 
+                    //     [ Optional ]  WPD_PROPERTY_OBJECT_RESOURCES_SUPPORTS_UNITS 
+                    public static PropertyKey Open => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 4);
+                    //
+                    // WPD_COMMAND_OBJECT_RESOURCES_READ 
+                    //    This command is sent when a client wants to read the next band of data from a previously opened object resource. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_TO_READ 
+                    //     [ Required except when the driver returns TRUE for the WPD_OPTION_OBJECT_RESOURCES_NO_INPUT_BUFFER_ON_READ option. ]  WPD_PROPERTY_OBJECT_RESOURCES_DATA 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_READ 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_DATA 
+                    public static PropertyKey Read => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 5);
+                    //
+                    // WPD_COMMAND_OBJECT_RESOURCES_WRITE 
+                    //    This command is sent when a client wants to write the next band of data to a previously opened object resource. 
+                    // Access:
+                    //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_TO_WRITE 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_DATA 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_WRITTEN 
+                    public static PropertyKey Write => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 6);
+                    //
+                    // WPD_COMMAND_OBJECT_RESOURCES_CLOSE 
+                    //    This command is sent when a client is finished transferring data to a previously opened object resource. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT 
+                    // Results:
+                    //     None
+                    public static PropertyKey Close => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 7);
+                    //
+                    // WPD_COMMAND_OBJECT_RESOURCES_DELETE 
+                    //    This command is sent when the client wants to delete the data associated with the specified resources from the specified object. 
+                    // Access:
+                    //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_OBJECT_ID 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_KEYS 
+                    // Results:
+                    //     None
+                    public static PropertyKey Delete => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 8);
+                    //
+                    // WPD_COMMAND_OBJECT_RESOURCES_CREATE_RESOURCE 
+                    //    This command is sent when a client wants to create a new object resource on the device. 
+                    // Access:
+                    //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_ATTRIBUTES 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_OPTIMAL_TRANSFER_BUFFER_SIZE 
+                    public static PropertyKey CreateResource => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 9);
+                    //
+                    // WPD_COMMAND_OBJECT_RESOURCES_REVERT 
+                    //    This command is sent when a client wants to cancel the resource creation request that is currently still in progress. 
+                    // Access:
+                    //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT 
+                    // Results:
+                    //     None
+                    public static PropertyKey Revert => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 10);
+                    //
+                    // WPD_COMMAND_OBJECT_RESOURCES_SEEK 
+                    //    This command is sent when a client wants to seek to a specific offset in the data stream. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_SEEK_OFFSET 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_SEEK_ORIGIN_FLAG 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_POSITION_FROM_START 
+                    public static PropertyKey Seek => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 11);
+                    //
+                    // WPD_COMMAND_OBJECT_RESOURCES_COMMIT 
+                    //    This command is sent when a client wants to commit changes to a data stream. 
+                    // Access:
+                    //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT 
+                    // Results:
+                    //     None
+                    public static PropertyKey Commit => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 12);
+                    //
+                    // WPD_COMMAND_OBJECT_RESOURCES_SEEK_IN_UNITS 
+                    //    This command is sent when a client wants to seek to a specific offset in the data stream using alternate units. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_SEEK_OFFSET 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_STREAM_UNITS 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_SEEK_ORIGIN_FLAG 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_POSITION_FROM_START 
+                    public static PropertyKey SeekInUnits => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 13);
+
+                }
+
+                public static class Parameters
+
+                {
+
+                    // ======== Command Parameters ======== 
+
+                    //
+                    // WPD_PROPERTY_OBJECT_RESOURCES_OBJECT_ID  
+                    //   [ VT_LPWSTR ] 
+                    public static PropertyKey ObjectId => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1001);
+                    //
+                    // WPD_PROPERTY_OBJECT_RESOURCES_ACCESS_MODE  
+                    //   [ VT_UI4 ] Specifies the type of access the client is requesting for the resource.
+                    public static PropertyKey AccessMode => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1002);
+                    //
+                    // WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_KEYS  
+                    //   [ VT_UNKNOWN ] 
+                    public static PropertyKey ResourceKeys => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1003);
+                    //
+                    // WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_ATTRIBUTES  
+                    //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which contains the attributes for the resource requested.
+                    public static PropertyKey ResourceAttributes => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1004);
+                    //
+                    // WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT  
+                    //   [ VT_LPWSTR ] This is a driver-specified identifier for the context associated with the resource operation.
+                    public static PropertyKey Context => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1005);
+                    //
+                    // WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_TO_READ  
+                    //   [ VT_UI4 ] Specifies the number of bytes the client is requesting to read.
+                    public static PropertyKey NumBytesToRead => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1006);
+                    //
+                    // WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_READ  
+                    //   [ VT_UI4 ] Specifies the number of bytes actually read from the resource.
+                    public static PropertyKey NumBytesRead => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1007);
+                    //
+                    // WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_TO_WRITE  
+                    //   [ VT_UI4 ] Specifies the number of bytes the client is requesting to write.
+                    public static PropertyKey NumBytesToWrite => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1008);
+                    //
+                    // WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_WRITTEN  
+                    //   [ VT_UI4 ] Driver sets this to let caller know how many bytes were actually written.
+                    public static PropertyKey NumBytesWritten => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1009);
+                    //
+                    // WPD_PROPERTY_OBJECT_RESOURCES_DATA  
+                    //   [ VT_VECTOR | VT_UI1 ] 
+                    public static PropertyKey Data => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1010);
+                    //
+                    // WPD_PROPERTY_OBJECT_RESOURCES_OPTIMAL_TRANSFER_BUFFER_SIZE  
+                    //   [ VT_UI4 ] Indicates the optimal transfer buffer size (in bytes) that clients should use when reading/writing this resource.
+                    public static PropertyKey OptimalTransferBufferSize => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1011);
+                    //
+                    // WPD_PROPERTY_OBJECT_RESOURCES_SEEK_OFFSET  
+                    //   [ VT_I8 ] Displacement to be added to the location indicated by the WPD_PROPERTY_OBJECT_RESOURCES_SEEK_ORIGIN_FLAG parameter.
+                    public static PropertyKey SeekOffset => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1012);
+                    //
+                    // WPD_PROPERTY_OBJECT_RESOURCES_SEEK_ORIGIN_FLAG  
+                    //   [ VT_UI4 ] Specifies the origin of the displacement for the seek operation.
+                    public static PropertyKey SeekOriginFlag => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1013);
+                    //
+                    // WPD_PROPERTY_OBJECT_RESOURCES_POSITION_FROM_START  
+                    //   [ VT_UI8 ] Value of the new seek pointer from the beginning of the data stream.
+                    public static PropertyKey PositionFromStart => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1014);
+                    //
+                    // WPD_PROPERTY_OBJECT_RESOURCES_SUPPORTS_UNITS  
+                    //   [ VT_BOOL ] A Boolean value that specifies whether this resource supports operations (such as seek) using alternate units. This occurs if the driver can understand WPD_COMMAND_OBJECT_RESOURCES_SEEK_IN_UNITS.
+                    public static PropertyKey SupportsUnits => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1015);
+                    //
+                    // WPD_PROPERTY_OBJECT_RESOURCES_STREAM_UNITS  
+                    //   [ VT_UI4 ] The units for the WPD_PROPERTY_OBJECT_SEEK_OFFSET parameter and the WPD_PROPERTY_OBJECT_RESOURCES_POSITION_FROM_START result.
+                    public static PropertyKey StreamUnits => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1016);
+
+                }
+
+                public static class Options
+
+                {
+
+                    // ======== Command Options ========
+                    //
+                    // WPD_OPTION_OBJECT_RESOURCES_SEEK_ON_READ_SUPPORTED 
+                    //   [ VT_BOOL ]  Indicates whether the driver can Seek on a resource opened for Read access. 
+                    public static PropertyKey SeekOnReadSupported => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 5001);
+                    //
+                    // WPD_OPTION_OBJECT_RESOURCES_SEEK_ON_WRITE_SUPPORTED 
+                    //   [ VT_BOOL ]  Indicates whether the driver can Seek on a resource opened for Write access. 
+                    public static PropertyKey SeekOnWriteSupported => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 5002);
+                    //
+                    // WPD_OPTION_OBJECT_RESOURCES_NO_INPUT_BUFFER_ON_READ 
+                    //   [ VT_BOOL ]  Indicates whether the driver requires an input buffer for WPD_COMMAND_OBJECT_RESOURCES_READ. If not set-defaults to False. 
+                    public static PropertyKey NoInputBufferOnRead => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 5003);
+
+                }
+
+            }
+
+            #endregion
+            #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_MANAGEMENT. The commands specified in this category are used to Create/Delete objects on the device.
+
+            public static class Management
+
+            {
+
+                public static class Commands
+
+                {
+
+                    // ======== Commands ========
+                    //
+                    // WPD_COMMAND_OBJECT_MANAGEMENT_CREATE_OBJECT_WITH_PROPERTIES_ONLY 
+                    //    This command is sent when a client wants to create a new object on the device-specified only by properties. 
+                    // Access:
+                    //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_CREATION_PROPERTIES 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_ID 
+                    public static PropertyKey CreateObjectWithPropertiesOnly => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 2);
+                    //
+                    // WPD_COMMAND_OBJECT_MANAGEMENT_CREATE_OBJECT_WITH_PROPERTIES_AND_DATA 
+                    //    This command is sent when a client wants to create a new object on the device-specified by properties and data. 
+                    // Access:
+                    //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_CREATION_PROPERTIES 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_CONTEXT 
+                    public static PropertyKey CreateObjectWithPropertiesAndData => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 3);
+                    //
+                    // WPD_COMMAND_OBJECT_MANAGEMENT_WRITE_OBJECT_DATA 
+                    //    This command is sent when a client wants to write the next band of data to a newly created object or an object being updated. 
+                    // Access:
+                    //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_CONTEXT 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_NUM_BYTES_TO_WRITE 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_DATA 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_NUM_BYTES_WRITTEN 
+                    public static PropertyKey WriteObjectData => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 4);
+                    //
+                    // WPD_COMMAND_OBJECT_MANAGEMENT_COMMIT_OBJECT 
+                    //    This command is sent when a client has finished sending all the data associated with an object creation or update request-and wishes to ensure that the object is saved to the device. 
+                    // Access:
+                    //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_CONTEXT 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_ID 
+                    public static PropertyKey CommitObject => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 5);
+                    //
+                    // WPD_COMMAND_OBJECT_MANAGEMENT_REVERT_OBJECT 
+                    //    This command is sent when a client wants to cancel the object creation or update request that is currently still in progress. 
+                    // Access:
+                    //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_CONTEXT 
+                    // Results:
+                    //     None
+                    public static PropertyKey RevertObject => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 6);
+                    //
+                    // WPD_COMMAND_OBJECT_MANAGEMENT_DELETE_OBJECTS 
+                    //    This command is sent when the client wishes to remove a set of objects from the device. 
+                    // Access:
+                    //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_DELETE_OPTIONS 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_IDS 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_DELETE_RESULTS 
+                    public static PropertyKey DeleteObjects => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 7);
+                    //
+                    // WPD_COMMAND_OBJECT_MANAGEMENT_MOVE_OBJECTS 
+                    //    This command will move the specified objects to the destination folder. 
+                    // Access:
+                    //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_IDS 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_DESTINATION_FOLDER_OBJECT_ID 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_MOVE_RESULTS 
+                    public static PropertyKey MoveObjects => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 8);
+                    //
+                    // WPD_COMMAND_OBJECT_MANAGEMENT_COPY_OBJECTS 
+                    //    This command will copy the specified objects to the destination folder. 
+                    // Access:
+                    //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_IDS 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_DESTINATION_FOLDER_OBJECT_ID 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_COPY_RESULTS 
+                    public static PropertyKey CopyObjects => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 9);
+                    //
+                    // WPD_COMMAND_OBJECT_MANAGEMENT_UPDATE_OBJECT_WITH_PROPERTIES_AND_DATA 
+                    //    This command is sent when a client wants to update the object's data and dependent properties simultaneously. 
+                    // Access:
+                    //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_ID 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_UPDATE_PROPERTIES 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_CONTEXT 
+                    //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_OPTIMAL_TRANSFER_BUFFER_SIZE 
+                    public static PropertyKey UpdateObjectWithPropertiesAndData => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 10);
+
+                }
+
+                public static class Parameters
+
+                {
+
+                    // ======== Command Parameters ======== 
+
+                    //
+                    // WPD_PROPERTY_OBJECT_MANAGEMENT_CREATION_PROPERTIES  
+                    //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which specifies the properties used to create the new object.
+                    public static PropertyKey CreationProperties => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1001);
+                    //
+                    // WPD_PROPERTY_OBJECT_MANAGEMENT_CONTEXT  
+                    //   [ VT_LPWSTR ] This is a driver-specified identifier for the context associated with this 'create object' operation.
+                    public static PropertyKey Context => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1002);
+                    //
+                    // WPD_PROPERTY_OBJECT_MANAGEMENT_NUM_BYTES_TO_WRITE  
+                    //   [ VT_UI4 ] Specifies the number of bytes the client is requesting to write.
+                    public static PropertyKey NumBytesToWrite => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1003);
+                    //
+                    // WPD_PROPERTY_OBJECT_MANAGEMENT_NUM_BYTES_WRITTEN  
+                    //   [ VT_UI4 ] Indicates the number of bytes written for the object.
+                    public static PropertyKey NumBytesWritten => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1004);
+                    //
+                    // WPD_PROPERTY_OBJECT_MANAGEMENT_DATA  
+                    //   [ VT_VECTOR | VT_UI1 ] Indicates binary data of the object being created on the device.
+                    public static PropertyKey Data => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1005);
+                    //
+                    // WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_ID  
+                    //   [ VT_LPWSTR ] Identifies a newly created object on the device.
+                    public static PropertyKey ObjectId => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1006);
+                    //
+                    // WPD_PROPERTY_OBJECT_MANAGEMENT_DELETE_OPTIONS  
+                    //   [ VT_UI4 ] Indicates if the delete operation should be recursive or not.
+                    public static PropertyKey DeleteOptions => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1007);
+                    //
+                    // WPD_PROPERTY_OBJECT_MANAGEMENT_OPTIMAL_TRANSFER_BUFFER_SIZE  
+                    //   [ VT_UI4 ] Indicates the optimal transfer buffer size (in bytes) that clients should use when writing this object's data.
+                    public static PropertyKey OptimalTransferBufferSize => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1008);
+                    //
+                    // WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_IDS  
+                    //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection of type VT_LPWSTR-containing the ObjectIDs to delete.
+                    public static PropertyKey ObjectIds => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1009);
+                    //
+                    // WPD_PROPERTY_OBJECT_MANAGEMENT_DELETE_RESULTS  
+                    //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection of type VT_ERROR-where each element is the HRESULT indicating the success or failure of the operation.
+                    public static PropertyKey DeleteResults => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1010);
+                    //
+                    // WPD_PROPERTY_OBJECT_MANAGEMENT_DESTINATION_FOLDER_OBJECT_ID  
+                    //   [ VT_LPWSTR ] Indicates the destination folder for the move operation.
+                    public static PropertyKey DestinationFolderObjectId => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1011);
+                    //
+                    // WPD_PROPERTY_OBJECT_MANAGEMENT_MOVE_RESULTS  
+                    //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection of type VT_ERROR-where each element is the HRESULT indicating the success or failure of the operation.
+                    public static PropertyKey MoveResults => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1012);
+                    //
+                    // WPD_PROPERTY_OBJECT_MANAGEMENT_COPY_RESULTS  
+                    //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection of type VT_ERROR-where each element is the HRESULT indicating the success or failure of the operation.
+                    public static PropertyKey CopyResults => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1013);
+                    //
+                    // WPD_PROPERTY_OBJECT_MANAGEMENT_UPDATE_PROPERTIES  
+                    //   [ VT_UNKNOWN ] IPortableDeviceValues containing the object properties to update.
+                    public static PropertyKey UpdateProperties => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1014);
+                    //
+                    // WPD_PROPERTY_OBJECT_MANAGEMENT_PROPERTY_KEYS  
+                    //   [ VT_UNKNOWN ] IPortableDeviceKeyCollection containing the property keys required to update this object.
+                    public static PropertyKey PropertyKeys => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1015);
+                    //
+                    // WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_FORMAT  
+                    //   [ VT_CLSID ] Indicates the object format the caller is interested in.
+                    public static PropertyKey ObjectFormat => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1016);
+
+                }
+
+                public static class Options
+
+                {
+
+                    // ======== Command Options ========
+                    //
+                    // WPD_OPTION_OBJECT_MANAGEMENT_RECURSIVE_DELETE_SUPPORTED 
+                    //   [ VT_BOOL ]  Indicates whether the driver supports recursive deletion. 
+                    public static PropertyKey RecursiveDeleteSupported => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 5001);
+
+                }
+
+            }
+
+            #endregion
 
         }
-
-        #endregion
-
-        #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_PROPERTIES. This category of commands is used to perform basic property operations such as Reading/Writing values-listing supported values and so on.
-
-        public static class ObjectProperty
-
-        {
-
-            public static class Commands
-
-            {
-
-                // ======== Commands ========
-                //
-                // WPD_COMMAND_OBJECT_PROPERTIES_GET_SUPPORTED 
-                //    This command is used when the client requests the list of properties supported by the specified object. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_OBJECT_ID 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_KEYS 
-                public static PropertyKey GetSupported => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectProperties, 2);
-                //
-                // WPD_COMMAND_OBJECT_PROPERTIES_GET_ATTRIBUTES 
-                //    This command is used when the client requests the property attributes for the specified object properties. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_OBJECT_ID 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_KEYS 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_ATTRIBUTES 
-                public static PropertyKey GetAttributes => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectProperties, 3);
-                //
-                // WPD_COMMAND_OBJECT_PROPERTIES_GET 
-                //    This command is used when the client requests a set of property values for the specified object. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_OBJECT_ID 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_KEYS 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_VALUES 
-                public static PropertyKey Get => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectProperties, 4);
-                //
-                // WPD_COMMAND_OBJECT_PROPERTIES_SET 
-                //    This command is used when the client requests to write a set of property values on the specified object. 
-                // Access:
-                //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_OBJECT_ID 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_VALUES 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_WRITE_RESULTS 
-                public static PropertyKey Set => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectProperties, 5);
-                //
-                // WPD_COMMAND_OBJECT_PROPERTIES_GET_ALL 
-                //    This command is used when the client requests all property values for the specified object. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_OBJECT_ID 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_VALUES 
-                public static PropertyKey GetAll => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectProperties, 6);
-                //
-                // WPD_COMMAND_OBJECT_PROPERTIES_DELETE 
-                //    This command is sent when the caller wants to delete properties from the specified object. 
-                // Access:
-                //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_OBJECT_ID 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_KEYS 
-                // Results:
-                //     [ Optional ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_DELETE_RESULTS 
-                public static PropertyKey Delete => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectProperties, 7);
-
-            }
-
-            public static class Parameters
-
-            {
-
-                // ======== Command Parameters ======== 
-
-                //
-                // WPD_PROPERTY_OBJECT_PROPERTIES_OBJECT_ID  
-                //   [ VT_LPWSTR ] The ObjectID specifying the object whose properties are being queried/manipulated.
-                public static PropertyKey ObjectId => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectProperties, 1001);
-                //
-                // WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_KEYS  
-                //   [ VT_UNKNOWN ] An IPortableDeviceKeyCollection identifying which specific property values we are querying/manipulating.
-                public static PropertyKey PropertyKeys => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectProperties, 1002);
-                //
-                // WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_ATTRIBUTES  
-                //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which contains the attributes for each property requested.
-                public static PropertyKey PropertyAttributes => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectProperties, 1003);
-                //
-                // WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_VALUES  
-                //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which contains the values read. For any property whose value could not be read-the type must be set to VT_ERROR-and the 'scode' field must contain the failure HRESULT.
-                public static PropertyKey PropertyValues => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectProperties, 1004);
-                //
-                // WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_WRITE_RESULTS  
-                //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which contains the result of each property write operation.
-                public static PropertyKey PropertyWriteResults => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectProperties, 1005);
-                //
-                // WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_DELETE_RESULTS  
-                //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which contains the result of each property delete operation.
-                public static PropertyKey PropertyDeleteResults => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectProperties, 1006);
-
-            }
-
-        }
-
-        #endregion
-
-        #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_PROPERTIES_BULK. This category contains commands and properties for property operations across multiple objects.
-
-        public static class ObjectPropertyBulk
-
-        {
-
-            public static class Commands
-
-            {
-
-                // ======== Commands ========
-                //
-                // WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_LIST_START 
-                //    Initializes the operation to get the property values for all caller-specified objects. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_OBJECT_IDS 
-                //     [ Optional ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_PROPERTY_KEYS 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
-                public static PropertyKey GetValuesByObjectListStart => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 2);
-                //
-                // WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_LIST_NEXT 
-                //    Get the next set of property values. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_VALUES 
-                public static PropertyKey GetValuesByObjectListNext => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 3);
-                //
-                // WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_LIST_END 
-                //    Ends the bulk property operation for getting property values by object list. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
-                // Results:
-                //     None
-                public static PropertyKey GetValuesByObjectListEnd => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 4);
-                //
-                // WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_FORMAT_START 
-                //    Initializes the operation to get the property values for objects of the specified format 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_OBJECT_FORMAT 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_PARENT_OBJECT_ID 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_DEPTH 
-                //     [ Optional ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_PROPERTY_KEYS 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
-                public static PropertyKey GetValuesByObjectFormatStart => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 5);
-                //
-                // WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_FORMAT_NEXT 
-                //    Get the next set of property values. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_VALUES 
-                public static PropertyKey GetValuesByObjectFormatNext => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 6);
-                //
-                // WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_FORMAT_END 
-                //    Ends the bulk property operation for getting property values by object format. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
-                // Results:
-                //     None
-                public static PropertyKey GetValuesByObjectFormatEnd => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 7);
-                //
-                // WPD_COMMAND_OBJECT_PROPERTIES_BULK_SET_VALUES_BY_OBJECT_LIST_START 
-                //    Initializes the operation to set the property values for specified objects. 
-                // Access:
-                //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_VALUES 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
-                public static PropertyKey SetValuesByObjectListStart => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 8);
-                //
-                // WPD_COMMAND_OBJECT_PROPERTIES_BULK_SET_VALUES_BY_OBJECT_LIST_NEXT 
-                //    Set the next set of property values. 
-                // Access:
-                //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_WRITE_RESULTS 
-                public static PropertyKey SetValuesByObjectListNext => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 9);
-                //
-                // WPD_COMMAND_OBJECT_PROPERTIES_BULK_SET_VALUES_BY_OBJECT_LIST_END 
-                //    Ends the bulk property operation for setting property values by object list. 
-                // Access:
-                //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
-                // Results:
-                //     None
-                public static PropertyKey SetValuesByObjectListEnd => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 10);
-
-            }
-
-            public static class Parameters
-
-            {
-
-                // ======== Command Parameters ======== 
-
-                //
-                // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_OBJECT_IDS  
-                //   [ VT_UNKNOWN ] A collection of ObjectIDs for which supported property list must be returned.
-                public static PropertyKey ObjectIds => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 1001);
-                //
-                // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT  
-                //   [ VT_LPWSTR ] The driver-specified context identifying this particular bulk operation.
-                public static PropertyKey Context => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 1002);
-                //
-                // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_VALUES  
-                //   [ VT_UNKNOWN ] Contains an IPortableDeviceValuesCollection specifying the next set of IPortableDeviceValues elements.
-                public static PropertyKey Values => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 1003);
-                //
-                // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_PROPERTY_KEYS  
-                //   [ VT_UNKNOWN ] Contains an IPortableDeviceKeyCollection specifying which properties the caller wants to return. May not exist-which indicates caller wants ALL properties.
-                public static PropertyKey PropertyKeys => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 1004);
-                //
-                // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_DEPTH  
-                //   [ VT_UI4 ] Contains a value specifying the hierarchical depth from the parent to include in this operation.
-                public static PropertyKey Depth => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 1005);
-                //
-                // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_PARENT_OBJECT_ID  
-                //   [ VT_LPWSTR ] Contains the ObjectID of the object to start the operation from.
-                public static PropertyKey ParentObjectId => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 1006);
-                //
-                // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_OBJECT_FORMAT  
-                //   [ VT_CLSID ] Specifies the object format the client is interested in.
-                public static PropertyKey ObjectFormat => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 1007);
-                //
-                // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_WRITE_RESULTS  
-                //   [ VT_UNKNOWN ] Contains an IPortableDeviceValuesCollection specifying the set of IPortableDeviceValues elements indicating the write results for each property set.
-                public static PropertyKey WriteResults => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectPropertiesBulk, 1008);
-
-            }
-
-        }
-
-        #endregion
-        #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_RESOURCES. The commands in this category are used for basic object resource enumeration and transfer.
-
-        public static class ObjectResource
-
-        {
-
-            public static class Commands
-
-            {
-
-                // ======== Commands ========
-                //
-                // WPD_COMMAND_OBJECT_RESOURCES_GET_SUPPORTED 
-                //    This command is sent when a client wants to get the list of resources supported on a particular object. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_OBJECT_ID 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_KEYS 
-                public static PropertyKey GetSupported => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 2);
-                //
-                // WPD_COMMAND_OBJECT_RESOURCES_GET_ATTRIBUTES 
-                //    This command is used when the client requests the attributes for the specified object resource. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_OBJECT_ID 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_KEYS 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_ATTRIBUTES 
-                public static PropertyKey GetAttributes => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 3);
-                //
-                // WPD_COMMAND_OBJECT_RESOURCES_OPEN 
-                //    This command is sent when a client wants to use a particular resource on an object. 
-                // Access:
-                //     Dependent on the value of WPD_PROPERTY_OBJECT_RESOURCES_ACCESS_MODE.  STGM_READ will indicate FILE_READ_ACCESS for the command-anything else will indicate (FILE_READ_ACCESS | FILE_WRITE_ACCESS).
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_OBJECT_ID 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_KEYS 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_ACCESS_MODE 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_OPTIMAL_TRANSFER_BUFFER_SIZE 
-                //     [ Optional ]  WPD_PROPERTY_OBJECT_RESOURCES_SUPPORTS_UNITS 
-                public static PropertyKey Open => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 4);
-                //
-                // WPD_COMMAND_OBJECT_RESOURCES_READ 
-                //    This command is sent when a client wants to read the next band of data from a previously opened object resource. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_TO_READ 
-                //     [ Required except when the driver returns TRUE for the WPD_OPTION_OBJECT_RESOURCES_NO_INPUT_BUFFER_ON_READ option. ]  WPD_PROPERTY_OBJECT_RESOURCES_DATA 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_READ 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_DATA 
-                public static PropertyKey Read => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 5);
-                //
-                // WPD_COMMAND_OBJECT_RESOURCES_WRITE 
-                //    This command is sent when a client wants to write the next band of data to a previously opened object resource. 
-                // Access:
-                //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_TO_WRITE 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_DATA 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_WRITTEN 
-                public static PropertyKey Write => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 6);
-                //
-                // WPD_COMMAND_OBJECT_RESOURCES_CLOSE 
-                //    This command is sent when a client is finished transferring data to a previously opened object resource. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT 
-                // Results:
-                //     None
-                public static PropertyKey Close => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 7);
-                //
-                // WPD_COMMAND_OBJECT_RESOURCES_DELETE 
-                //    This command is sent when the client wants to delete the data associated with the specified resources from the specified object. 
-                // Access:
-                //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_OBJECT_ID 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_KEYS 
-                // Results:
-                //     None
-                public static PropertyKey Delete => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 8);
-                //
-                // WPD_COMMAND_OBJECT_RESOURCES_CREATE_RESOURCE 
-                //    This command is sent when a client wants to create a new object resource on the device. 
-                // Access:
-                //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_ATTRIBUTES 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_OPTIMAL_TRANSFER_BUFFER_SIZE 
-                public static PropertyKey CreateResource => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 9);
-                //
-                // WPD_COMMAND_OBJECT_RESOURCES_REVERT 
-                //    This command is sent when a client wants to cancel the resource creation request that is currently still in progress. 
-                // Access:
-                //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT 
-                // Results:
-                //     None
-                public static PropertyKey Revert => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 10);
-                //
-                // WPD_COMMAND_OBJECT_RESOURCES_SEEK 
-                //    This command is sent when a client wants to seek to a specific offset in the data stream. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_SEEK_OFFSET 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_SEEK_ORIGIN_FLAG 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_POSITION_FROM_START 
-                public static PropertyKey Seek => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 11);
-                //
-                // WPD_COMMAND_OBJECT_RESOURCES_COMMIT 
-                //    This command is sent when a client wants to commit changes to a data stream. 
-                // Access:
-                //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT 
-                // Results:
-                //     None
-                public static PropertyKey Commit => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 12);
-                //
-                // WPD_COMMAND_OBJECT_RESOURCES_SEEK_IN_UNITS 
-                //    This command is sent when a client wants to seek to a specific offset in the data stream using alternate units. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_SEEK_OFFSET 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_STREAM_UNITS 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_SEEK_ORIGIN_FLAG 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_POSITION_FROM_START 
-                public static PropertyKey SeekInUnits => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 13);
-
-            }
-
-            public static class Parameters
-
-            {
-
-                // ======== Command Parameters ======== 
-
-                //
-                // WPD_PROPERTY_OBJECT_RESOURCES_OBJECT_ID  
-                //   [ VT_LPWSTR ] 
-                public static PropertyKey ObjectId => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1001);
-                //
-                // WPD_PROPERTY_OBJECT_RESOURCES_ACCESS_MODE  
-                //   [ VT_UI4 ] Specifies the type of access the client is requesting for the resource.
-                public static PropertyKey AccessMode => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1002);
-                //
-                // WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_KEYS  
-                //   [ VT_UNKNOWN ] 
-                public static PropertyKey ResourceKeys => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1003);
-                //
-                // WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_ATTRIBUTES  
-                //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which contains the attributes for the resource requested.
-                public static PropertyKey ResourceAttributes => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1004);
-                //
-                // WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT  
-                //   [ VT_LPWSTR ] This is a driver-specified identifier for the context associated with the resource operation.
-                public static PropertyKey Context => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1005);
-                //
-                // WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_TO_READ  
-                //   [ VT_UI4 ] Specifies the number of bytes the client is requesting to read.
-                public static PropertyKey NumBytesToRead => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1006);
-                //
-                // WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_READ  
-                //   [ VT_UI4 ] Specifies the number of bytes actually read from the resource.
-                public static PropertyKey NumBytesRead => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1007);
-                //
-                // WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_TO_WRITE  
-                //   [ VT_UI4 ] Specifies the number of bytes the client is requesting to write.
-                public static PropertyKey NumBytesToWrite => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1008);
-                //
-                // WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_WRITTEN  
-                //   [ VT_UI4 ] Driver sets this to let caller know how many bytes were actually written.
-                public static PropertyKey NumBytesWritten => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1009);
-                //
-                // WPD_PROPERTY_OBJECT_RESOURCES_DATA  
-                //   [ VT_VECTOR | VT_UI1 ] 
-                public static PropertyKey Data => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1010);
-                //
-                // WPD_PROPERTY_OBJECT_RESOURCES_OPTIMAL_TRANSFER_BUFFER_SIZE  
-                //   [ VT_UI4 ] Indicates the optimal transfer buffer size (in bytes) that clients should use when reading/writing this resource.
-                public static PropertyKey OptimalTransferBufferSize => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1011);
-                //
-                // WPD_PROPERTY_OBJECT_RESOURCES_SEEK_OFFSET  
-                //   [ VT_I8 ] Displacement to be added to the location indicated by the WPD_PROPERTY_OBJECT_RESOURCES_SEEK_ORIGIN_FLAG parameter.
-                public static PropertyKey SeekOffset => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1012);
-                //
-                // WPD_PROPERTY_OBJECT_RESOURCES_SEEK_ORIGIN_FLAG  
-                //   [ VT_UI4 ] Specifies the origin of the displacement for the seek operation.
-                public static PropertyKey SeekOriginFlag => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1013);
-                //
-                // WPD_PROPERTY_OBJECT_RESOURCES_POSITION_FROM_START  
-                //   [ VT_UI8 ] Value of the new seek pointer from the beginning of the data stream.
-                public static PropertyKey PositionFromStart => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1014);
-                //
-                // WPD_PROPERTY_OBJECT_RESOURCES_SUPPORTS_UNITS  
-                //   [ VT_BOOL ] A Boolean value that specifies whether this resource supports operations (such as seek) using alternate units. This occurs if the driver can understand WPD_COMMAND_OBJECT_RESOURCES_SEEK_IN_UNITS.
-                public static PropertyKey SupportsUnits => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1015);
-                //
-                // WPD_PROPERTY_OBJECT_RESOURCES_STREAM_UNITS  
-                //   [ VT_UI4 ] The units for the WPD_PROPERTY_OBJECT_SEEK_OFFSET parameter and the WPD_PROPERTY_OBJECT_RESOURCES_POSITION_FROM_START result.
-                public static PropertyKey StreamUnits => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 1016);
-
-            }
-
-            public static class Options
-
-            {
-
-                // ======== Command Options ========
-                //
-                // WPD_OPTION_OBJECT_RESOURCES_SEEK_ON_READ_SUPPORTED 
-                //   [ VT_BOOL ]  Indicates whether the driver can Seek on a resource opened for Read access. 
-                public static PropertyKey SeekOnReadSupported => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 5001);
-                //
-                // WPD_OPTION_OBJECT_RESOURCES_SEEK_ON_WRITE_SUPPORTED 
-                //   [ VT_BOOL ]  Indicates whether the driver can Seek on a resource opened for Write access. 
-                public static PropertyKey SeekOnWriteSupported => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 5002);
-                //
-                // WPD_OPTION_OBJECT_RESOURCES_NO_INPUT_BUFFER_ON_READ 
-                //   [ VT_BOOL ]  Indicates whether the driver requires an input buffer for WPD_COMMAND_OBJECT_RESOURCES_READ. If not set-defaults to False. 
-                public static PropertyKey NoInputBufferOnRead => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectResources, 5003);
-
-            }
-
-        }
-
-        #endregion
-        #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_MANAGEMENT. The commands specified in this category are used to Create/Delete objects on the device.
-
-        public static class ObjectManagement
-
-        {
-
-            public static class Commands
-
-            {
-
-                // ======== Commands ========
-                //
-                // WPD_COMMAND_OBJECT_MANAGEMENT_CREATE_OBJECT_WITH_PROPERTIES_ONLY 
-                //    This command is sent when a client wants to create a new object on the device-specified only by properties. 
-                // Access:
-                //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_CREATION_PROPERTIES 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_ID 
-                public static PropertyKey CreateObjectWithPropertiesOnly => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 2);
-                //
-                // WPD_COMMAND_OBJECT_MANAGEMENT_CREATE_OBJECT_WITH_PROPERTIES_AND_DATA 
-                //    This command is sent when a client wants to create a new object on the device-specified by properties and data. 
-                // Access:
-                //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_CREATION_PROPERTIES 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_CONTEXT 
-                public static PropertyKey CreateObjectWithPropertiesAndData => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 3);
-                //
-                // WPD_COMMAND_OBJECT_MANAGEMENT_WRITE_OBJECT_DATA 
-                //    This command is sent when a client wants to write the next band of data to a newly created object or an object being updated. 
-                // Access:
-                //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_CONTEXT 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_NUM_BYTES_TO_WRITE 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_DATA 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_NUM_BYTES_WRITTEN 
-                public static PropertyKey WriteObjectData => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 4);
-                //
-                // WPD_COMMAND_OBJECT_MANAGEMENT_COMMIT_OBJECT 
-                //    This command is sent when a client has finished sending all the data associated with an object creation or update request-and wishes to ensure that the object is saved to the device. 
-                // Access:
-                //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_CONTEXT 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_ID 
-                public static PropertyKey CommitObject => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 5);
-                //
-                // WPD_COMMAND_OBJECT_MANAGEMENT_REVERT_OBJECT 
-                //    This command is sent when a client wants to cancel the object creation or update request that is currently still in progress. 
-                // Access:
-                //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_CONTEXT 
-                // Results:
-                //     None
-                public static PropertyKey RevertObject => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 6);
-                //
-                // WPD_COMMAND_OBJECT_MANAGEMENT_DELETE_OBJECTS 
-                //    This command is sent when the client wishes to remove a set of objects from the device. 
-                // Access:
-                //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_DELETE_OPTIONS 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_IDS 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_DELETE_RESULTS 
-                public static PropertyKey DeleteObjects => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 7);
-                //
-                // WPD_COMMAND_OBJECT_MANAGEMENT_MOVE_OBJECTS 
-                //    This command will move the specified objects to the destination folder. 
-                // Access:
-                //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_IDS 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_DESTINATION_FOLDER_OBJECT_ID 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_MOVE_RESULTS 
-                public static PropertyKey MoveObjects => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 8);
-                //
-                // WPD_COMMAND_OBJECT_MANAGEMENT_COPY_OBJECTS 
-                //    This command will copy the specified objects to the destination folder. 
-                // Access:
-                //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_IDS 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_DESTINATION_FOLDER_OBJECT_ID 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_COPY_RESULTS 
-                public static PropertyKey CopyObjects => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 9);
-                //
-                // WPD_COMMAND_OBJECT_MANAGEMENT_UPDATE_OBJECT_WITH_PROPERTIES_AND_DATA 
-                //    This command is sent when a client wants to update the object's data and dependent properties simultaneously. 
-                // Access:
-                //     (FILE_READ_ACCESS | FILE_WRITE_ACCESS)
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_ID 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_UPDATE_PROPERTIES 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_CONTEXT 
-                //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_OPTIMAL_TRANSFER_BUFFER_SIZE 
-                public static PropertyKey UpdateObjectWithPropertiesAndData => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 10);
-
-            }
-
-            public static class Parameters
-
-            {
-
-                // ======== Command Parameters ======== 
-
-                //
-                // WPD_PROPERTY_OBJECT_MANAGEMENT_CREATION_PROPERTIES  
-                //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which specifies the properties used to create the new object.
-                public static PropertyKey CreationProperties => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1001);
-                //
-                // WPD_PROPERTY_OBJECT_MANAGEMENT_CONTEXT  
-                //   [ VT_LPWSTR ] This is a driver-specified identifier for the context associated with this 'create object' operation.
-                public static PropertyKey Context => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1002);
-                //
-                // WPD_PROPERTY_OBJECT_MANAGEMENT_NUM_BYTES_TO_WRITE  
-                //   [ VT_UI4 ] Specifies the number of bytes the client is requesting to write.
-                public static PropertyKey NumBytesToWrite => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1003);
-                //
-                // WPD_PROPERTY_OBJECT_MANAGEMENT_NUM_BYTES_WRITTEN  
-                //   [ VT_UI4 ] Indicates the number of bytes written for the object.
-                public static PropertyKey NumBytesWritten => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1004);
-                //
-                // WPD_PROPERTY_OBJECT_MANAGEMENT_DATA  
-                //   [ VT_VECTOR | VT_UI1 ] Indicates binary data of the object being created on the device.
-                public static PropertyKey Data => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1005);
-                //
-                // WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_ID  
-                //   [ VT_LPWSTR ] Identifies a newly created object on the device.
-                public static PropertyKey ObjectId => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1006);
-                //
-                // WPD_PROPERTY_OBJECT_MANAGEMENT_DELETE_OPTIONS  
-                //   [ VT_UI4 ] Indicates if the delete operation should be recursive or not.
-                public static PropertyKey DeleteOptions => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1007);
-                //
-                // WPD_PROPERTY_OBJECT_MANAGEMENT_OPTIMAL_TRANSFER_BUFFER_SIZE  
-                //   [ VT_UI4 ] Indicates the optimal transfer buffer size (in bytes) that clients should use when writing this object's data.
-                public static PropertyKey OptimalTransferBufferSize => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1008);
-                //
-                // WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_IDS  
-                //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection of type VT_LPWSTR-containing the ObjectIDs to delete.
-                public static PropertyKey ObjectIds => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1009);
-                //
-                // WPD_PROPERTY_OBJECT_MANAGEMENT_DELETE_RESULTS  
-                //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection of type VT_ERROR-where each element is the HRESULT indicating the success or failure of the operation.
-                public static PropertyKey DeleteResults => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1010);
-                //
-                // WPD_PROPERTY_OBJECT_MANAGEMENT_DESTINATION_FOLDER_OBJECT_ID  
-                //   [ VT_LPWSTR ] Indicates the destination folder for the move operation.
-                public static PropertyKey DestinationFolderObjectId => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1011);
-                //
-                // WPD_PROPERTY_OBJECT_MANAGEMENT_MOVE_RESULTS  
-                //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection of type VT_ERROR-where each element is the HRESULT indicating the success or failure of the operation.
-                public static PropertyKey MoveResults => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1012);
-                //
-                // WPD_PROPERTY_OBJECT_MANAGEMENT_COPY_RESULTS  
-                //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection of type VT_ERROR-where each element is the HRESULT indicating the success or failure of the operation.
-                public static PropertyKey CopyResults => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1013);
-                //
-                // WPD_PROPERTY_OBJECT_MANAGEMENT_UPDATE_PROPERTIES  
-                //   [ VT_UNKNOWN ] IPortableDeviceValues containing the object properties to update.
-                public static PropertyKey UpdateProperties => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1014);
-                //
-                // WPD_PROPERTY_OBJECT_MANAGEMENT_PROPERTY_KEYS  
-                //   [ VT_UNKNOWN ] IPortableDeviceKeyCollection containing the property keys required to update this object.
-                public static PropertyKey PropertyKeys => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1015);
-                //
-                // WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_FORMAT  
-                //   [ VT_CLSID ] Indicates the object format the caller is interested in.
-                public static PropertyKey ObjectFormat => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 1016);
-
-            }
-
-            public static class Options
-
-            {
-
-                // ======== Command Options ========
-                //
-                // WPD_OPTION_OBJECT_MANAGEMENT_RECURSIVE_DELETE_SUPPORTED 
-                //   [ VT_BOOL ]  Indicates whether the driver supports recursive deletion. 
-                public static PropertyKey RecursiveDeleteSupported => new PropertyKey(Guids.PortableDevices.CommandCategory.ObjectManagement, 5001);
-
-            }
-
-        }
-
-        #endregion
         #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_CAPABILITIES. This command category is used to query capabilities of the device.
 
         public static class Capabilities
@@ -1716,6 +1719,12 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
                 //     None
                 public static PropertyKey Send => new PropertyKey(Guids.PortableDevices.CommandCategory.SMS, 2);
 
+            }
+
+            public static class Parameters
+
+            {
+
                 // ======== Command Parameters ======== 
 
                 //
@@ -1734,6 +1743,12 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
                 // WPD_PROPERTY_SMS_BINARY_MESSAGE  
                 //   [ VT_VECTOR | VT_UI1 ] if WPD_PROPERTY_SMS_MESSAGE_TYPE == SMS_BINARY_MESSAGE-then this will contain the binary message body.
                 public static PropertyKey BinaryMessage => new PropertyKey(Guids.PortableDevices.CommandCategory.SMS, 1004);
+
+            }
+
+            public static class Options
+
+            {
 
                 // ======== Command Options ========
                 //
@@ -1766,13 +1781,14 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
                 //     [ Required ]  WPD_PROPERTY_COMMON_COMMAND_TARGET 
                 // Results:
                 //     None
-                public static PropertyKey StillImageCaptureInitiate => new PropertyKey(Guids.PortableDevices.CommandCategory.StillImageCapture, 2);
+                public static PropertyKey Initiate => new PropertyKey(Guids.PortableDevices.CommandCategory.StillImageCapture, 2);
 
             }
 
         }
 
         #endregion
+
         #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_MEDIA_CAPTURE
 
         public static class MediaCapture
@@ -1865,7 +1881,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
 
         #endregion
 
-        public static class ClassExtensionV1
+        public static class ClassExtension
 
         {
 
@@ -1887,38 +1903,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
                 //     [ Required ]  WPD_PROPERTY_CLASS_EXTENSION_DEVICE_INFORMATION_WRITE_RESULTS 
                 public static PropertyKey WriteDeviceInformation => new PropertyKey(Guids.PortableDevices.Properties.ClassExtensionV1, 2);
 
-            }
-
-            public static class Parameters
-
-            {
-
-                // ======== Command Parameters ======== 
-
-                //
-                // WPD_PROPERTY_CLASS_EXTENSION_DEVICE_INFORMATION_VALUES  
-                //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which contains the values.
-                public static PropertyKey DeviceInformationValues => new PropertyKey(Guids.PortableDevices.Properties.ClassExtensionV1, 1001);
-                //
-                // WPD_PROPERTY_CLASS_EXTENSION_DEVICE_INFORMATION_WRITE_RESULTS  
-                //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which contains the result of each value write operation.
-                public static PropertyKey DeviceInformationWriteResults => new PropertyKey(Guids.PortableDevices.Properties.ClassExtensionV1, 1002);
-
-            }
-
-        }
-
-        #endregion
-
-        #region This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_V2. The commands in this category relate to the WPD device class extension.
-
-        public static class ClassExtensionV2
-
-        {
-
-            public static class Commands
-
-            {
+                #region This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_V2. The commands in this category relate to the WPD device class extension.
 
                 // ======== Commands ========
                 //
@@ -1953,6 +1938,17 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
                 // ======== Command Parameters ======== 
 
                 //
+                // WPD_PROPERTY_CLASS_EXTENSION_DEVICE_INFORMATION_VALUES  
+                //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which contains the values.
+                public static PropertyKey DeviceInformationValues => new PropertyKey(Guids.PortableDevices.Properties.ClassExtensionV1, 1001);
+                //
+                // WPD_PROPERTY_CLASS_EXTENSION_DEVICE_INFORMATION_WRITE_RESULTS  
+                //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which contains the result of each value write operation.
+                public static PropertyKey DeviceInformationWriteResults => new PropertyKey(Guids.PortableDevices.Properties.ClassExtensionV1, 1002);
+
+                // ======== Command Parameters ======== 
+
+                //
                 // WPD_PROPERTY_CLASS_EXTENSION_SERVICE_OBJECT_ID  
                 //   [ VT_LPWSTR ] The Object ID of the service.
                 public static PropertyKey ServiceObjectId => new PropertyKey(Guids.PortableDevices.Properties.ClassExtensionV2, 1001);
@@ -1968,6 +1964,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
             }
 
         }
+
+        #endregion
 
         public static class NetworkConfiguration
 
@@ -2026,294 +2024,300 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
 
         }
 
-        public static class ServiceCommon
+        namespace Service
 
         {
 
-            public static class Commands
+            public static class Common
 
             {
 
-                // ======== Commands ========
-                //
-                // WPD_COMMAND_SERVICE_COMMON_GET_SERVICE_OBJECT_ID 
-                //    This command is used to get the service object identifier. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     None
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_OBJECT_ID 
-                public static PropertyKey GetServiceObjectId => new PropertyKey("0x322F071D-0x36EF-0x477F-0xB4-0xB5-0x6F-0x52-0xD7-0x34-0xBA-0xEE", 2);
+                public static class Commands
+
+                {
+
+                    // ======== Commands ========
+                    //
+                    // WPD_COMMAND_SERVICE_COMMON_GET_SERVICE_OBJECT_ID 
+                    //    This command is used to get the service object identifier. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     None
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_OBJECT_ID 
+                    public static PropertyKey GetServiceObjectId => new PropertyKey("0x322F071D-0x36EF-0x477F-0xB4-0xB5-0x6F-0x52-0xD7-0x34-0xBA-0xEE", 2);
+
+                }
+
+                public static class CommandParameters
+
+                {
+
+                    // ======== Command Parameters ======== 
+
+                    //
+                    // WPD_PROPERTY_SERVICE_OBJECT_ID  
+                    //   [ VT_LPWSTR ] Contains the service object identifier.
+                    public static PropertyKey ObjectId => new PropertyKey("0x322F071D-0x36EF-0x477F-0xB4-0xB5-0x6F-0x52-0xD7-0x34-0xBA-0xEE", 1001);
+
+                }
 
             }
 
-            public static class CommandParameters
+            public static class Capability
 
             {
 
-                // ======== Command Parameters ======== 
+                public static class Commands
 
-                //
-                // WPD_PROPERTY_SERVICE_OBJECT_ID  
-                //   [ VT_LPWSTR ] Contains the service object identifier.
-                public static PropertyKey ObjectId => new PropertyKey("0x322F071D-0x36EF-0x477F-0xB4-0xB5-0x6F-0x52-0xD7-0x34-0xBA-0xEE", 1001);
+                {
 
-            }
+                    // ======== Commands ========
+                    //
+                    // WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_METHODS 
+                    //    This command is used to get the methods that apply to a service. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     None
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_METHODS 
+                    public static PropertyKey GetSupportedMethods => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 2);
+                    //
+                    // WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_METHODS_BY_FORMAT 
+                    //    This command is used to get the methods that apply to a format of a service. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_METHODS 
+                    public static PropertyKey GetSupportedMethodsByFormat => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 3);
+                    //
+                    // WPD_COMMAND_SERVICE_CAPABILITIES_GET_METHOD_ATTRIBUTES 
+                    //    This command is used to get the attributes of a method. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_METHOD 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_METHOD_ATTRIBUTES 
+                    public static PropertyKey GetMethodAttributes => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 4);
+                    //
+                    // WPD_COMMAND_SERVICE_CAPABILITIES_GET_METHOD_PARAMETER_ATTRIBUTES 
+                    //    This command is used to get the attributes of a parameter used in a method. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_METHOD 
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_PARAMETER 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_PARAMETER_ATTRIBUTES 
+                    public static PropertyKey GetMethodParameterAttributes => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 5);
+                    //
+                    // WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_FORMATS 
+                    //    This command is used to get formats supported by this service. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     None
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_FORMATS 
+                    public static PropertyKey GetSupportedFormats => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 6);
+                    //
+                    // WPD_COMMAND_SERVICE_CAPABILITIES_GET_FORMAT_ATTRIBUTES 
+                    //    This command is used to get attributes of a format-such as the format name. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT_ATTRIBUTES 
+                    public static PropertyKey GetFormatAttributes => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 7);
+                    //
+                    // WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_FORMAT_PROPERTIES 
+                    //    This command is used to get supported properties of a format. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_PROPERTY_KEYS 
+                    public static PropertyKey GetSupportedFormatProperties => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 8);
+                    //
+                    // WPD_COMMAND_SERVICE_CAPABILITIES_GET_FORMAT_PROPERTY_ATTRIBUTES 
+                    //    This command is used to get the property attributes that are same for all objects of a given format on the service. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT 
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_PROPERTY_KEYS 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_PROPERTY_ATTRIBUTES 
+                    public static PropertyKey GetFormatPropertyAttributes => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 9);
+                    //
+                    // WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_EVENTS 
+                    //    This command is used to get the supported events of the service. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     None
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_EVENTS 
+                    public static PropertyKey GetSupportedEvents => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 10);
+                    //
+                    // WPD_COMMAND_SERVICE_CAPABILITIES_GET_EVENT_ATTRIBUTES 
+                    //    This command is used to get the attributes of an event. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_EVENT 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_EVENT_ATTRIBUTES 
+                    public static PropertyKey GetEventAttributes => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 11);
+                    //
+                    // WPD_COMMAND_SERVICE_CAPABILITIES_GET_EVENT_PARAMETER_ATTRIBUTES 
+                    //    This command is used to get the attributes of a parameter used in an event. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_EVENT 
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_PARAMETER 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_PARAMETER_ATTRIBUTES 
+                    public static PropertyKey GetEventParameterAttributes => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 12);
+                    //
+                    // WPD_COMMAND_SERVICE_CAPABILITIES_GET_INHERITED_SERVICES 
+                    //    This command is used to get the inherited services. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_INHERITANCE_TYPE 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_INHERITED_SERVICES 
+                    public static PropertyKey GetInheritedServices => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 13);
+                    //
+                    // WPD_COMMAND_SERVICE_CAPABILITIES_GET_FORMAT_RENDERING_PROFILES 
+                    //    This command is used to get the resource rendering profiles for a format. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_RENDERING_PROFILES 
+                    public static PropertyKey GetFormatRenderingProfiles => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 14);
+                    //
+                    // WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_COMMANDS 
+                    //    Return all commands supported by this driver for a service. This includes custom commands-if any. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     None
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_COMMANDS 
+                    public static PropertyKey GetSupportedCommands => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 15);
+                    //
+                    // WPD_COMMAND_SERVICE_CAPABILITIES_GET_COMMAND_OPTIONS 
+                    //    Returns the supported options for the specified command. 
+                    // Access:
+                    //     FILE_READ_ACCESS
+                    // Parameters:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_COMMAND 
+                    // Results:
+                    //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_COMMAND_OPTIONS 
+                    public static PropertyKey GetCommandOptions => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x8", 16);
 
-        }
+                }
 
-        public static class ServiceCapabilities
+                public static class CommandParameters
 
-        {
+                {
 
-            public static class Commands
+                    // ======== Command Parameters ======== 
 
-            {
+                    //
+                    // WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_METHODS  
+                    //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection (of type VT_CLSID) containing methods that apply to a service.
+                    public static PropertyKey SupportedMethods => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1001);
+                    //
+                    // WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT  
+                    //   [ VT_CLSID ] Indicates the format the caller is interested in.
+                    public static PropertyKey Format => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1002);
+                    //
+                    // WPD_PROPERTY_SERVICE_CAPABILITIES_METHOD  
+                    //   [ VT_CLSID ] Indicates the method the caller is interested in.
+                    public static PropertyKey Method => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1003);
+                    //
+                    // WPD_PROPERTY_SERVICE_CAPABILITIES_METHOD_ATTRIBUTES  
+                    //   [ VT_UNKNOWN ] IPortableDeviceValues containing the method attributes.
+                    public static PropertyKey MethodAttributes => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1004);
+                    //
+                    // WPD_PROPERTY_SERVICE_CAPABILITIES_PARAMETER  
+                    //   [ VT_UNKNOWN ] IPortableDeviceKeyCollection containing the parameter the caller is interested in.
+                    public static PropertyKey Parameter => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1005);
+                    //
+                    // WPD_PROPERTY_SERVICE_CAPABILITIES_PARAMETER_ATTRIBUTES  
+                    //   [ VT_UNKNOWN ] IPortableDeviceValues containing the parameter attributes.
+                    public static PropertyKey ParameterAttributes => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1006);
+                    //
+                    // WPD_PROPERTY_SERVICE_CAPABILITIES_FORMATS  
+                    //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection (of type VT_CLSID) containing the formats.
+                    public static PropertyKey Formats => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1007);
+                    //
+                    // WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT_ATTRIBUTES  
+                    //   [ VT_UNKNOWN ] IPortableDeviceValues containing the format attributes-such as the format name and MIME Type.
+                    public static PropertyKey FormatAttributes => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1008);
+                    //
+                    // WPD_PROPERTY_SERVICE_CAPABILITIES_PROPERTY_KEYS  
+                    //   [ VT_UNKNOWN ] IPortableDeviceKeyCollection containing the supported property keys.
+                    public static PropertyKey PropertyKeys => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1009);
+                    //
+                    // WPD_PROPERTY_SERVICE_CAPABILITIES_PROPERTY_ATTRIBUTES  
+                    //   [ VT_UNKNOWN ] IPortableDeviceValues containing the property attributes.
+                    public static PropertyKey PropertyAttributes => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1010);
+                    //
+                    // WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_EVENTS  
+                    //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection (of type VT_CLSID) containing all events supported by the service.
+                    public static PropertyKey SupportedEvents => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1011);
+                    //
+                    // WPD_PROPERTY_SERVICE_CAPABILITIES_EVENT  
+                    //   [ VT_CLSID ] Indicates the event the caller is interested in.
+                    public static PropertyKey Event => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1012);
+                    //
+                    // WPD_PROPERTY_SERVICE_CAPABILITIES_EVENT_ATTRIBUTES  
+                    //   [ VT_UNKNOWN ] IPortableDeviceValues containing the event attributes.
+                    public static PropertyKey EventAttributes => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1013);
+                    //
+                    // WPD_PROPERTY_SERVICE_CAPABILITIES_INHERITANCE_TYPE  
+                    //   [ VT_UI4 ] Indicates the inheritance type the caller is interested in.
+                    public static PropertyKey InheritanceType => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1014);
+                    //
+                    // WPD_PROPERTY_SERVICE_CAPABILITIES_INHERITED_SERVICES  
+                    //   [ VT_UNKNOWN ] Contains the list of inherited services.
+                    public static PropertyKey InheritedServices => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1015);
+                    //
+                    // WPD_PROPERTY_SERVICE_CAPABILITIES_RENDERING_PROFILES  
+                    //   [ VT_UNKNOWN ] Contains the list of format rendering profiles.
+                    public static PropertyKey RenderingProfiles => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1016);
+                    //
+                    // WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_COMMANDS  
+                    //   [ VT_UNKNOWN ] IPortableDeviceKeyCollection containing all commands a driver supports for a service.
+                    public static PropertyKey SupportedCommands => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1017);
+                    //
+                    // WPD_PROPERTY_SERVICE_CAPABILITIES_COMMAND  
+                    //   [ VT_UNKNOWN ] Indicates the command whose options the caller is interested in.
+                    public static PropertyKey Command => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1018);
+                    //
+                    // WPD_PROPERTY_SERVICE_CAPABILITIES_COMMAND_OPTIONS  
+                    //   [ VT_UNKNOWN ] Contains an IPortableDeviceValues with the relevant command options.
+                    public static PropertyKey CommandOptions => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1019);
 
-                // ======== Commands ========
-                //
-                // WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_METHODS 
-                //    This command is used to get the methods that apply to a service. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     None
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_METHODS 
-                public static PropertyKey GetSupportedMethods => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 2);
-                //
-                // WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_METHODS_BY_FORMAT 
-                //    This command is used to get the methods that apply to a format of a service. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_METHODS 
-                public static PropertyKey GetSupportedMethodsByFormat => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 3);
-                //
-                // WPD_COMMAND_SERVICE_CAPABILITIES_GET_METHOD_ATTRIBUTES 
-                //    This command is used to get the attributes of a method. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_METHOD 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_METHOD_ATTRIBUTES 
-                public static PropertyKey GetMethodAttributes => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 4);
-                //
-                // WPD_COMMAND_SERVICE_CAPABILITIES_GET_METHOD_PARAMETER_ATTRIBUTES 
-                //    This command is used to get the attributes of a parameter used in a method. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_METHOD 
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_PARAMETER 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_PARAMETER_ATTRIBUTES 
-                public static PropertyKey GetMethodParameterAttributes => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 5);
-                //
-                // WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_FORMATS 
-                //    This command is used to get formats supported by this service. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     None
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_FORMATS 
-                public static PropertyKey GetSupportedFormats => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 6);
-                //
-                // WPD_COMMAND_SERVICE_CAPABILITIES_GET_FORMAT_ATTRIBUTES 
-                //    This command is used to get attributes of a format-such as the format name. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT_ATTRIBUTES 
-                public static PropertyKey GetFormatAttributes => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 7);
-                //
-                // WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_FORMAT_PROPERTIES 
-                //    This command is used to get supported properties of a format. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_PROPERTY_KEYS 
-                public static PropertyKey GetSupportedFormatProperties => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 8);
-                //
-                // WPD_COMMAND_SERVICE_CAPABILITIES_GET_FORMAT_PROPERTY_ATTRIBUTES 
-                //    This command is used to get the property attributes that are same for all objects of a given format on the service. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT 
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_PROPERTY_KEYS 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_PROPERTY_ATTRIBUTES 
-                public static PropertyKey GetFormatPropertyAttributes => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 9);
-                //
-                // WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_EVENTS 
-                //    This command is used to get the supported events of the service. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     None
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_EVENTS 
-                public static PropertyKey GetSupportedEvents => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 10);
-                //
-                // WPD_COMMAND_SERVICE_CAPABILITIES_GET_EVENT_ATTRIBUTES 
-                //    This command is used to get the attributes of an event. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_EVENT 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_EVENT_ATTRIBUTES 
-                public static PropertyKey GetEventAttributes => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 11);
-                //
-                // WPD_COMMAND_SERVICE_CAPABILITIES_GET_EVENT_PARAMETER_ATTRIBUTES 
-                //    This command is used to get the attributes of a parameter used in an event. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_EVENT 
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_PARAMETER 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_PARAMETER_ATTRIBUTES 
-                public static PropertyKey GetEventParameterAttributes => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 12);
-                //
-                // WPD_COMMAND_SERVICE_CAPABILITIES_GET_INHERITED_SERVICES 
-                //    This command is used to get the inherited services. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_INHERITANCE_TYPE 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_INHERITED_SERVICES 
-                public static PropertyKey GetInheritedServices => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 13);
-                //
-                // WPD_COMMAND_SERVICE_CAPABILITIES_GET_FORMAT_RENDERING_PROFILES 
-                //    This command is used to get the resource rendering profiles for a format. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_RENDERING_PROFILES 
-                public static PropertyKey GetFormatRenderingProfiles => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 14);
-                //
-                // WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_COMMANDS 
-                //    Return all commands supported by this driver for a service. This includes custom commands-if any. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     None
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_COMMANDS 
-                public static PropertyKey GetSupportedCommands => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 15);
-                //
-                // WPD_COMMAND_SERVICE_CAPABILITIES_GET_COMMAND_OPTIONS 
-                //    Returns the supported options for the specified command. 
-                // Access:
-                //     FILE_READ_ACCESS
-                // Parameters:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_COMMAND 
-                // Results:
-                //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_COMMAND_OPTIONS 
-                public static PropertyKey GetCommandOptions => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x8", 16);
-
-            }
-
-            public static class CommandParameters
-
-            {
-
-                // ======== Command Parameters ======== 
-
-                //
-                // WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_METHODS  
-                //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection (of type VT_CLSID) containing methods that apply to a service.
-                public static PropertyKey SupportedMethods => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1001);
-                //
-                // WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT  
-                //   [ VT_CLSID ] Indicates the format the caller is interested in.
-                public static PropertyKey Format => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1002);
-                //
-                // WPD_PROPERTY_SERVICE_CAPABILITIES_METHOD  
-                //   [ VT_CLSID ] Indicates the method the caller is interested in.
-                public static PropertyKey Method => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1003);
-                //
-                // WPD_PROPERTY_SERVICE_CAPABILITIES_METHOD_ATTRIBUTES  
-                //   [ VT_UNKNOWN ] IPortableDeviceValues containing the method attributes.
-                public static PropertyKey MethodAttributes => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1004);
-                //
-                // WPD_PROPERTY_SERVICE_CAPABILITIES_PARAMETER  
-                //   [ VT_UNKNOWN ] IPortableDeviceKeyCollection containing the parameter the caller is interested in.
-                public static PropertyKey Parameter => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1005);
-                //
-                // WPD_PROPERTY_SERVICE_CAPABILITIES_PARAMETER_ATTRIBUTES  
-                //   [ VT_UNKNOWN ] IPortableDeviceValues containing the parameter attributes.
-                public static PropertyKey ParameterAttributes => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1006);
-                //
-                // WPD_PROPERTY_SERVICE_CAPABILITIES_FORMATS  
-                //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection (of type VT_CLSID) containing the formats.
-                public static PropertyKey Formats => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1007);
-                //
-                // WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT_ATTRIBUTES  
-                //   [ VT_UNKNOWN ] IPortableDeviceValues containing the format attributes-such as the format name and MIME Type.
-                public static PropertyKey FormatAttributes => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1008);
-                //
-                // WPD_PROPERTY_SERVICE_CAPABILITIES_PROPERTY_KEYS  
-                //   [ VT_UNKNOWN ] IPortableDeviceKeyCollection containing the supported property keys.
-                public static PropertyKey PropertyKeys => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1009);
-                //
-                // WPD_PROPERTY_SERVICE_CAPABILITIES_PROPERTY_ATTRIBUTES  
-                //   [ VT_UNKNOWN ] IPortableDeviceValues containing the property attributes.
-                public static PropertyKey PropertyAttributes => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1010);
-                //
-                // WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_EVENTS  
-                //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection (of type VT_CLSID) containing all events supported by the service.
-                public static PropertyKey SupportedEvents => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1011);
-                //
-                // WPD_PROPERTY_SERVICE_CAPABILITIES_EVENT  
-                //   [ VT_CLSID ] Indicates the event the caller is interested in.
-                public static PropertyKey Event => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1012);
-                //
-                // WPD_PROPERTY_SERVICE_CAPABILITIES_EVENT_ATTRIBUTES  
-                //   [ VT_UNKNOWN ] IPortableDeviceValues containing the event attributes.
-                public static PropertyKey EventAttributes => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1013);
-                //
-                // WPD_PROPERTY_SERVICE_CAPABILITIES_INHERITANCE_TYPE  
-                //   [ VT_UI4 ] Indicates the inheritance type the caller is interested in.
-                public static PropertyKey InheritanceType => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1014);
-                //
-                // WPD_PROPERTY_SERVICE_CAPABILITIES_INHERITED_SERVICES  
-                //   [ VT_UNKNOWN ] Contains the list of inherited services.
-                public static PropertyKey InheritedServices => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1015);
-                //
-                // WPD_PROPERTY_SERVICE_CAPABILITIES_RENDERING_PROFILES  
-                //   [ VT_UNKNOWN ] Contains the list of format rendering profiles.
-                public static PropertyKey RenderingProfiles => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1016);
-                //
-                // WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_COMMANDS  
-                //   [ VT_UNKNOWN ] IPortableDeviceKeyCollection containing all commands a driver supports for a service.
-                public static PropertyKey SupportedCommands => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1017);
-                //
-                // WPD_PROPERTY_SERVICE_CAPABILITIES_COMMAND  
-                //   [ VT_UNKNOWN ] Indicates the command whose options the caller is interested in.
-                public static PropertyKey Command => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1018);
-                //
-                // WPD_PROPERTY_SERVICE_CAPABILITIES_COMMAND_OPTIONS  
-                //   [ VT_UNKNOWN ] Contains an IPortableDeviceValues with the relevant command options.
-                public static PropertyKey CommandOptions => new PropertyKey("0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89", 1019);
+                }
 
             }
 
-            public static class ServiceMethods
+            public static class Method
 
             {
 

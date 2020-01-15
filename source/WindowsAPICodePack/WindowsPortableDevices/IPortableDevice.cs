@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
-    public interface IPortableDevice
+    public interface IPortableDevice : IDisposable
     {
 
         IPortableDeviceManager PortableDeviceManager { get; }
@@ -16,6 +16,8 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         string DeviceDescription { get; }
 
         string DeviceManufacturer { get; }
+
+        void GetCapabilities();
 
     }
 }

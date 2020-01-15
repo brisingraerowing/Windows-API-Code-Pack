@@ -950,11 +950,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
 
         {
 
-            #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_COMMON
-
+            /// <summary>
+            /// All Commands-Parameters and Options associated with: WPD_CATEGORY_COMMON.
+            /// </summary>
             public const string Common = "0xF0422A9C-0x5DC8-0x4440-0xB5-0xBD-0x5D-0xF2-0x88-0x35-0x65-0x8A";
 
-            #endregion
             #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_ENUMERATION. The commands in this category are used for basic object enumeration.
 
             public const string ObjectEnumeration = "0xB7474E91-0xE7F8-0x4AD9-0xB4-0x00-0xAD-0x1A-0x4B-0x58-0xEE-0xEC";
