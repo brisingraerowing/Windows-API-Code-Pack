@@ -67,7 +67,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         IPortableDeviceManager IPortableDevice.PortableDeviceManager => PortableDeviceManager;
 
-        private readonly Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.IPortableDevice _portableDevice = null;
+        private Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.IPortableDevice _portableDevice = null;
 
         public string DeviceId { get; }
 
@@ -76,6 +76,8 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         public string DeviceDescription { get; internal set; }
 
         public string DeviceManufacturer { get; internal set; }
+
+        public bool IsOpen { get; private set; }
 
         internal PortableDevice(in PortableDeviceManager portableDeviceManager, in string deviceId)
 
@@ -125,8 +127,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         {
 
-            HResult hr = HResult.Ok;
-            IPortableDeviceValues pClientInformation = null;
+            if (IsDisposed)
+
+                throw new InvalidOperationException("The current object is disposed.");
+
+            if (IsOpen) return;
 
             //if ((wszPnPDeviceID == null) || (ppDevice == null))
             //{
@@ -135,7 +140,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             //}
 
             // CoCreate an IPortableDeviceValues interface to hold the client information.
-            pClientInformation = new PortableDeviceValues();
+            IPortableDeviceValues pClientInformation = new PortableDeviceValues();
 
             // if (CoreErrorHelper.Succeeded(hr))
             // {
@@ -185,7 +190,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             // time using the default (read/write) access. If this fails
             // with HResult.AccessDenied, we'll attempt to open a second time
             // with read-only access.
-            Marshal.ThrowExceptionForHR((int) _portableDevice.Open(DeviceId, pClientInformation));
+            Marshal.ThrowExceptionForHR((int)_portableDevice.Open(DeviceId, pClientInformation));
 
             //if (hr == HResult.AccessDenied)
             //{
@@ -234,11 +239,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             if (pClientInformation != null)
             {
                 // pClientInformation.Release();
-                Marshal.ReleaseComObject(pClientInformation);
+                _ = Marshal.ReleaseComObject(pClientInformation);
             }
 
             // return hr;
             // }
+
+            IsOpen = true;
 
         }
 
@@ -285,6 +292,40 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             return null;
 
         }
+
+        #region IDisposable Support
+
+        public bool IsDisposed { get; private set; }
+
+        protected virtual void Dispose(bool disposing)
+        {
+
+            if (!IsDisposed)
+            {
+                if (disposing)
+                {
+                    _ = PortableDeviceManager._portableDevices.Remove(this);
+                    _ = PortableDeviceManager._privatePortableDevices.Remove(this);
+                }
+
+                _ = Marshal.ReleaseComObject(_portableDevice);
+                _portableDevice = null;
+
+                IsDisposed = true;
+            }
+        }
+
+        ~PortableDevice()
+        {
+            Dispose(false);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion
 
     }
 }

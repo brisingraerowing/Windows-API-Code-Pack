@@ -13,11 +13,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         internal Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.IPortableDeviceManager Manager { get; set; } = null;
 
-        private List<PortableDevice> _portableDevices = null;
+        internal List<PortableDevice> _portableDevices = null;
 
         public IReadOnlyCollection<PortableDevice> PortableDevices { get; }
 
-        private List<PortableDevice> _privatePortableDevices = null;
+        internal List<PortableDevice> _privatePortableDevices = null;
 
         public IReadOnlyCollection<PortableDevice> PrivatePortableDevices { get; }
 

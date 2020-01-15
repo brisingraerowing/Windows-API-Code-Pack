@@ -9,6 +9,7 @@
     <Import_RootNamespace>WindowsPortableDevices</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Command.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IPortableDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IPortableDeviceManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NotConnectedException.cs" />
