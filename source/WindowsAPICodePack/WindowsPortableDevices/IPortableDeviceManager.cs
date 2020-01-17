@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
-    public interface IPortableDeviceManager
+    public interface IPortableDeviceManager : IDisposable
     {
         IReadOnlyCollection<PortableDevice> PortableDevices { get; }
 

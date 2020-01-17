@@ -89,7 +89,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
                     throw new PropertySystemException(LocalizedMessages.ShellPropertySetValue, Marshal.GetExceptionForHR((int)result));
 
-                writablePropStore.Commit();
+                _ = writablePropStore.Commit();
 
             }
             catch (InvalidComObjectException e)
@@ -365,11 +365,11 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                         _ = Marshal.ReleaseComObject(store);
                         store = null;
                     }
-                    else if (NativePropertyStore != null)
+                    else
+
+                        _ = NativePropertyStore?.GetValue(ref propertyKey, propVar);
                     
-                        NativePropertyStore.GetValue(ref propertyKey, propVar);
-                    
-                    return propVar != null ? propVar.Value : null;
+                    return propVar?.Value;
                 }
             }
         }

@@ -27,6 +27,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\PowerManagement\PowerManagementNativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropertyChange.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropertyKey.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropertyKeyAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropVariant.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropVariantNativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Resources\LocalizedMessages.Designer.cs">
@@ -152,7 +153,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\ClientInterfaces\IPortableDeviceUnitsStream.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CoClasses\ClientClasses\PortableDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CoClasses\ClientClasses\PortableDeviceManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CoClasses\ClientClasses\PortableDeviceValues.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CoClasses\CollectionClasses\PortableDevicePropVariantCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CoClasses\CollectionClasses\PortableDeviceValues.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CollectionInterfaces\IPortableDeviceKeyCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CollectionInterfaces\IPortableDevicePropVariantCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CollectionInterfaces\IPortableDeviceValues.cs" />

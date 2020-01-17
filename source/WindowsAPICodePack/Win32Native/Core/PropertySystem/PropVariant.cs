@@ -12,7 +12,7 @@ namespace MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem
 {
     /// <summary>
     /// Represents the OLE struct PROPVARIANT.
-    /// This class is intended for internal use only.
+    /// This class is intended for unmanaged code use only.
     /// </summary>
     /// <remarks>
     /// Originally sourced from http://blogs.msdn.com/adamroot/pages/interop-with-propvariants-in-net.aspx

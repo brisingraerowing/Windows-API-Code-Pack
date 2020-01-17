@@ -67,7 +67,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         IPortableDeviceManager IPortableDevice.PortableDeviceManager => PortableDeviceManager;
 
-        private Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.IPortableDevice _portableDevice = null;
+        internal Win32Native.PortableDevices.IPortableDevice _portableDevice = null;
 
         public string DeviceId { get; }
 
@@ -89,37 +89,37 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             uint length = 0;
 
-            Marshal.ThrowExceptionForHR((int)PortableDeviceManager.Manager.GetDeviceFriendlyName(DeviceId, null, length));
+            Marshal.ThrowExceptionForHR((int)PortableDeviceManager._Manager.GetDeviceFriendlyName(DeviceId, null, length));
 
             var stringBuilder = new StringBuilder((int)length);
 
-            Marshal.ThrowExceptionForHR((int)PortableDeviceManager.Manager.GetDeviceFriendlyName(DeviceId, stringBuilder, ref length));
+            Marshal.ThrowExceptionForHR((int)PortableDeviceManager._Manager.GetDeviceFriendlyName(DeviceId, stringBuilder, ref length));
 
             DeviceFriendlyName = stringBuilder.ToString();
 
             length = 0;
 
-            Marshal.ThrowExceptionForHR((int)PortableDeviceManager.Manager.GetDeviceDescription(DeviceId, null, length));
+            Marshal.ThrowExceptionForHR((int)PortableDeviceManager._Manager.GetDeviceDescription(DeviceId, null, length));
 
             stringBuilder = new StringBuilder((int)length);
 
-            Marshal.ThrowExceptionForHR((int)PortableDeviceManager.Manager.GetDeviceDescription(DeviceId, stringBuilder, ref length));
+            Marshal.ThrowExceptionForHR((int)PortableDeviceManager._Manager.GetDeviceDescription(DeviceId, stringBuilder, ref length));
 
             DeviceDescription = stringBuilder.ToString();
 
             length = 0;
 
-            Marshal.ThrowExceptionForHR((int)PortableDeviceManager.Manager.GetDeviceManufacturer(DeviceId, null, length));
+            Marshal.ThrowExceptionForHR((int)PortableDeviceManager._Manager.GetDeviceManufacturer(DeviceId, null, length));
 
             stringBuilder = new StringBuilder((int)length);
 
-            Marshal.ThrowExceptionForHR((int)PortableDeviceManager.Manager.GetDeviceManufacturer(DeviceId, stringBuilder, ref length));
+            Marshal.ThrowExceptionForHR((int)PortableDeviceManager._Manager.GetDeviceManufacturer(DeviceId, stringBuilder, ref length));
 
             DeviceManufacturer = stringBuilder.ToString();
 
 
 
-            _portableDevice = new Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PortableDevice();
+            _portableDevice = new Win32Native.PortableDevices.PortableDevice();
 
         }
 
@@ -240,6 +240,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             {
                 // pClientInformation.Release();
                 _ = Marshal.ReleaseComObject(pClientInformation);
+                pClientInformation = null;
             }
 
             // return hr;
@@ -249,7 +250,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         }
 
-        public object GetDeviceProperty(string propertyName, object defaultValue, bool doNotExpand, out BlobValueKind valueKind)
+        public object GetDeviceProperty(in string propertyName, in object defaultValue, in bool doNotExpand, out BlobValueKind valueKind)
 
         {
 
@@ -259,13 +260,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             HResult hr;
 
-            if ((hr = PortableDeviceManager.Manager.GetDeviceProperty(DeviceId, propertyName, null, ref pcbData, ref _valueKind)) == CoreErrorHelper.HResultFromWin32(ErrorCode.InsufficientBuffer))
+            if ((hr = PortableDeviceManager._Manager.GetDeviceProperty(DeviceId, propertyName, null, ref pcbData, ref _valueKind)) == CoreErrorHelper.HResultFromWin32(ErrorCode.InsufficientBuffer))
 
             {
 
                 byte[] bytes = new byte[pcbData];
 
-                hr = PortableDeviceManager.Manager.GetDeviceProperty(DeviceId, propertyName, bytes, ref pcbData, ref _valueKind);
+                hr = PortableDeviceManager._Manager.GetDeviceProperty(DeviceId, propertyName, bytes, ref pcbData, ref _valueKind);
 
                 if (hr == HResult.Ok)
 
@@ -295,24 +296,24 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         #region IDisposable Support
 
-        public bool IsDisposed { get; private set; }
+        public bool IsDisposed { get; private set; } = false;
 
         protected virtual void Dispose(bool disposing)
         {
 
-            if (!IsDisposed)
+            if (IsDisposed) return;
+
+            if (disposing)
             {
-                if (disposing)
-                {
-                    _ = PortableDeviceManager._portableDevices.Remove(this);
-                    _ = PortableDeviceManager._privatePortableDevices.Remove(this);
-                }
-
-                _ = Marshal.ReleaseComObject(_portableDevice);
-                _portableDevice = null;
-
-                IsDisposed = true;
+                IsOpen = false;
+                _ = PortableDeviceManager._portableDevices.Remove(this);
+                _ = PortableDeviceManager._privatePortableDevices.Remove(this);
             }
+
+            _ = Marshal.ReleaseComObject(_portableDevice);
+            _portableDevice = null;
+            IsDisposed = true;
+
         }
 
         ~PortableDevice()

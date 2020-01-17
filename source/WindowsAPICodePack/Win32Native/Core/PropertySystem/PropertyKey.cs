@@ -19,6 +19,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
         #endregion
 
         #region Public Properties
+
         /// <summary>
         /// A unique GUID for the property
         /// </summary>
@@ -27,7 +28,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
         /// <summary>
         ///  Property identifier (PID)
         /// </summary>
-        public int PropertyId { get; }
+        public uint PropertyId { get; }
 
         #endregion
 
@@ -38,7 +39,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
         /// </summary>
         /// <param name="formatId">A unique GUID for the property</param>
         /// <param name="propertyId">Property identifier (PID)</param>
-        public PropertyKey(Guid formatId, int propertyId)
+        public PropertyKey(Guid formatId, uint propertyId)
         {
             this.formatId = formatId;
             PropertyId = propertyId;
@@ -49,7 +50,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
         /// </summary>
         /// <param name="formatId">A string represenstion of a GUID for the property</param>
         /// <param name="propertyId">Property identifier (PID)</param>
-        public PropertyKey(string formatId, int propertyId)
+        public PropertyKey(string formatId, uint propertyId)
         {
             this.formatId = new Guid(formatId);
             PropertyId = propertyId;
@@ -74,7 +75,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
         /// Returns the hash code of the object. This is vital for performance of value types.
         /// </summary>
         /// <returns></returns>
-        public override int GetHashCode() => formatId.GetHashCode() ^ PropertyId;
+        public override int GetHashCode() => formatId.GetHashCode() ^ (int) PropertyId;
 
         /// <summary>
         /// Returns whether this object is equal to another. This is vital for performance of value types.

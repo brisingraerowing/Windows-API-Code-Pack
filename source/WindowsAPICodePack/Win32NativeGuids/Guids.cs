@@ -50,69 +50,240 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
         public const string PortableDevice = "728a21c5-3d9e-48d7-9810-864848f0f404";
         public const string PortableDeviceManager = "0af10cec-2ecd-4b92-9581-34f6ae0637f3";
         public const string PortableDeviceValues = "0c15d503-d017-47ce-9016-7b3f978721cc";
+        public const string PortableDevicePropVariantCollection = "08a99e2f-6d6d-4b80-af5a-baf2bcbe4cb9";
+
+        /// <summary>
+        /// This class defines all WPD Events.
+        /// </summary>
+        public static class Events
+
+        {
+
+            /// <summary>
+            /// This GUID is used to identify all WPD driver events to the event sub-system. The driver uses this as the GUID identifier when it queues an event with IWdfDevice::PostEvent(). Applications never use this value.
+            /// </summary>
+            public const string Notification = "0x2BA2E40A-0x6B4C-0x4295-0xBB-0x43-0x26-0x32-0x2B-0x99-0xAE-0xB2";
+
+            /// <summary>
+            /// This event is sent after a new object is available on the device.
+            /// </summary>
+            public const string ObjectAdded = "0xA726DA95-0xE207-0x4B02-0x8D-0x44-0xBE-0xF2-0xE8-0x6C-0xBF-0xFC";
+
+            /// <summary>
+            /// This event is sent after a previously existing object has been removed from the device.
+            /// </summary>
+            public const string ObjectRemoved = "0xBE82AB88-0xA52C-0x4823-0x96-0xE5-0xD0-0x27-0x26-0x71-0xFC-0x38";
+
+            /// <summary>
+            /// This event is sent after an object has been updated such that any connected client should refresh its view of that object.
+            /// </summary>
+            public const string ObjectUpdated = "0x1445A759-0x2E01-0x485D-0x9F-0x27-0xFF-0x07-0xDA-0xE6-0x97-0xAB";
+
+            /// <summary>
+            /// This event indicates that the device is about to be reset-and all connected clients should close their connection to the device.
+            /// </summary>
+            public const string DeviceReset = "0x7755CF53-0xC1ED-0x44F3-0xB5-0xA2-0x45-0x1E-0x2C-0x37-0x6B-0x27";
+
+            /// <summary>
+            /// This event indicates that the device capabilities have changed. Clients should re-query the device if they have made any decisions based on device capabilities.
+            /// </summary>
+            public const string DeviceCapabilitiesUpdated = "0x36885AA1-0xCD54-0x4DAA-0xB3-0xD0-0xAF-0xB3-0xE0-0x3F-0x59-0x99";
+
+            /// <summary>
+            /// This event indicates the progress of a format operation on a storage object.
+            /// </summary>
+            public const string StorageFormat = "0x3782616B-0x22BC-0x4474-0xA2-0x51-0x30-0x70-0xF8-0xD3-0x88-0x57";
+
+            /// <summary>
+            /// This event is sent to request an application to transfer a particular object from the device.
+            /// </summary>
+            public const string ObjectTransferRequested = "0x8D16A0A1-0xF2C6-0x41DA-0x8F-0x19-0x5E-0x53-0x72-0x1A-0xDB-0xF2";
+
+            /// <summary>
+            /// This event is sent when a driver for a device is being unloaded. This is typically a result of the device being unplugged.
+            /// </summary>
+            public const string DeviceRemoved = "0xE4CBCA1B-0x6918-0x48B9-0x85-0xEE-0x02-0xBE-0x7C-0x85-0x0A-0xF9";
+
+            /// <summary>
+            /// This event is sent when a driver has completed invoking a service method. This event must be sent even when the method fails.
+            /// </summary>
+            public const string ServiceMethodComplete = "0x8A33F5F8-0x0ACC-0x4D9B-0x9C-0xC4-0x11-0x2D-0x35-0x3B-0x86-0xCA";
+
+        }
 
         public static class Properties
 
         {
 
             /// <summary>
-            /// This class defines all WPD Events.
+            /// This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_OPTIONS_V1. This category of properties relates to options used for the WPD device class extension
             /// </summary>
-            public static class Events
+            public const string ClassExtensionOptionsV1 = "0x6309FFEF-0xA87C-0x4CA7-0x84-0x34-0x79-0x75-0x76-0xE4-0x0A-0x96";
 
-            {
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_OPTIONS_V2. This category of properties relates to options used for the WPD device class extension
+            /// </summary>
+            public const string ClassExtensionOptionsV2 = "0x3E3595DA-0x4D71-0x49FE-0xA0-0xB4-0xD4-0x40-0x6C-0x3A-0xE9-0x3F";
 
-                /// <summary>
-                /// This GUID is used to identify all WPD driver events to the event sub-system. The driver uses this as the GUID identifier when it queues an event with IWdfDevice::PostEvent(). Applications never use this value.
-                /// </summary>
-                public const string Notification = "0x2BA2E40A-0x6B4C-0x4295-0xBB-0x43-0x26-0x32-0x2B-0x99-0xAE-0xB2";
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_OPTIONS_V3. This category of properties relates to options used for the WPD device class extension
+            /// </summary>
+            public const string ClassExtensionOptionsV3 = "0x65C160F8-0x1367-0x4CE2-0x93-0x9D-0x83-0x10-0x83-0x9F-0x0D-0x30";
 
-                /// <summary>
-                /// This event is sent after a new object is available on the device.
-                /// </summary>
-                public const string ObjectAdded = "0xA726DA95-0xE207-0x4B02-0x8D-0x44-0xBE-0xF2-0xE8-0x6C-0xBF-0xFC";
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_RESOURCE_ATTRIBUTES_V1
+            /// </summary>
+            public const string ResourceAttributesV1 = "0x1EB6F604-0x9278-0x429F-0x93-0xCC-0x5B-0xB8-0xC0-0x66-0x56-0xB6";
 
-                /// <summary>
-                /// This event is sent after a previously existing object has been removed from the device.
-                /// </summary>
-                public const string ObjectRemoved = "0xBE82AB88-0xA52C-0x4823-0x96-0xE5-0xD0-0x27-0x26-0x71-0xFC-0x38";
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_EVENT_OPTIONS_V1 The properties in this category describe event options.
+            /// </summary>
+            public const string EventOptionsV1 = "0xB3D8DAD7-0xA361-0x4B83-0x8A-0x48-0x5B-0x02-0xCE-0x10-0x71-0x3B";
 
-                /// <summary>
-                /// This event is sent after an object has been updated such that any connected client should refresh its view of that object.
-                /// </summary>
-                public const string ObjectUpdated = "0x1445A759-0x2E01-0x485D-0x9F-0x27-0xFF-0x07-0xDA-0xE6-0x97-0xAB";
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_EVENT_ATTRIBUTES_V1 The properties in this category describe event attributes.
+            /// </summary>
+            public const string EventAttributesV1 = "0x10C96578-0x2E81-0x4111-0xAD-0xDE-0xE0-0x8C-0xA6-0x13-0x8F-0x6D";
 
-                /// <summary>
-                /// This event indicates that the device is about to be reset-and all connected clients should close their connection to the device.
-                /// </summary>
-                public const string DeviceReset = "0x7755CF53-0xC1ED-0x44F3-0xB5-0xA2-0x45-0x1E-0x2C-0x37-0x6B-0x27";
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_API_OPTIONS_V1 The properties in this category describe API options.
+            /// </summary>
+            public const string APIOptionsV1 = "0x10E54A3E-0x052D-0x4777-0xA1-0x3C-0xDE-0x76-0x14-0xBE-0x2B-0xC4";
 
-                /// <summary>
-                /// This event indicates that the device capabilities have changed. Clients should re-query the device if they have made any decisions based on device capabilities.
-                /// </summary>
-                public const string DeviceCapabilitiesUpdated = "0x36885AA1-0xCD54-0x4DAA-0xB3-0xD0-0xAF-0xB3-0xE0-0x3F-0x59-0x99";
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_FORMAT_ATTRIBUTES_V1 The properties in this category describe format attributes.
+            /// </summary>
+            public const string FormatAttributesV1 = "0xA0A02000-0xBCAF-0x4BE8-0xB3-0xF5-0x23-0x3F-0x23-0x1C-0xF5-0x8F";
 
-                /// <summary>
-                /// This event indicates the progress of a format operation on a storage object.
-                /// </summary>
-                public const string StorageFormat = "0x3782616B-0x22BC-0x4474-0xA2-0x51-0x30-0x70-0xF8-0xD3-0x88-0x57";
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_METHOD_ATTRIBUTES_V1 The properties in this category describe method attributes.
+            /// </summary>
+            public const string MethodAttributesV1 = "0xF17A5071-0xF039-0x44AF-0x8E-0xFE-0x43-0x2C-0xF3-0x2E-0x43-0x2A";
 
-                /// <summary>
-                /// This event is sent to request an application to transfer a particular object from the device.
-                /// </summary>
-                public const string ObjectTransferRequested = "0x8D16A0A1-0xF2C6-0x41DA-0x8F-0x19-0x5E-0x53-0x72-0x1A-0xDB-0xF2";
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_PARAMETER_ATTRIBUTES_V1 The properties in this category describe parameter attributes.
+            /// </summary>
+            public const string ParameterAttributesV1 = "0xE6864DD7-0xF325-0x45EA-0xA1-0xD5-0x97-0xCF-0x73-0xB6-0xCA-0x58";
 
-                /// <summary>
-                /// This event is sent when a driver for a device is being unloaded. This is typically a result of the device being unplugged.
-                /// </summary>
-                public const string DeviceRemoved = "0xE4CBCA1B-0x6918-0x48B9-0x85-0xEE-0x02-0xBE-0x7C-0x85-0x0A-0xF9";
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_DEVICE_PROPERTIES_V1
+            /// </summary>
+            public const string DevicePropertiesV1 = "0x26D4979A-0xE643-0x4626-0x9E-0x2B-0x73-0x6D-0xC0-0xC9-0x2F-0xDC";
 
-                /// <summary>
-                /// This event is sent when a driver has completed invoking a service method. This event must be sent even when the method fails.
-                /// </summary>
-                public const string ServiceMethodComplete = "0x8A33F5F8-0x0ACC-0x4D9B-0x9C-0xC4-0x11-0x2D-0x35-0x3B-0x86-0xCA";
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_DEVICE_PROPERTIES_V2
+            /// </summary>
+            public const string DevicePropertiesV2 = "0x463DD662-0x7FC4-0x4291-0x91-0x1C-0x7F-0x4C-0x9C-0xCA-0x97-0x99";
 
-            }
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_DEVICE_PROPERTIES_V3
+            /// </summary>
+            public const string DevicePropertiesV3 = "0x6C2B878C-0xC2EC-0x490D-0xB4-0x25-0xD7-0xA7-0x5E-0x23-0xE5-0xED";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_SERVICE_PROPERTIES_V1
+            /// </summary>
+            public const string ServicePropertiesV1 = "0x7510698A-0xCB54-0x481C-0xB8-0xDB-0x0D-0x75-0xC9-0x3F-0x1C-0x06";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_FOLDER_OBJECT_PROPERTIES_V1. This category is for properties common to all folder objects.
+            /// </summary>
+            public const string FolderObjectPropertiesV1 = "0x7E9A7ABF-0xE568-0x4B34-0xAA-0x2F-0x13-0xBB-0x12-0xAB-0x17-0x7D";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_IMAGE_OBJECT_PROPERTIES_V1. This category is for properties common to all image objects.
+            /// </summary>
+            public const string ImageObjectPropertiesV1 = "0x63D64908-0x9FA1-0x479F-0x85-0xBA-0x99-0x52-0x21-0x64-0x47-0xDB";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_DOCUMENT_OBJECT_PROPERTIES_V1. This category is for properties common to all document objects.
+            /// </summary>
+            public const string DocumentObjectPropertiesV1 = "0x0B110203-0xEB95-0x4F02-0x93-0xE0-0x97-0xC6-0x31-0x49-0x3A-0xD5";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_MEDIA_PROPERTIES_V1. This category is for properties common to media objects(e.g.audio and video).
+            /// </summary>
+            public const string MediaPropertiesV1 = "0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_CONTACT_OBJECT_PROPERTIES_V1. This category is for properties common to all contact objects.
+            /// </summary>
+            public const string ContactObjectPropertiesV1 = "0xFBD4FDAB-0x987D-0x4777-0xB3-0xF9-0x72-0x61-0x85-0xA9-0x31-0x2B";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_MUSIC_OBJECT_PROPERTIES_V1. This category is for properties common to all music objects.
+            /// </summary>
+            public const string MusicObjectPropertiesV1 = "0xB324F56A-0xDC5D-0x46E5-0xB6-0xDF-0xD2-0xEA-0x41-0x48-0x88-0xC6";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_VIDEO_OBJECT_PROPERTIES_V1. This category is for properties common to all video objects.
+            /// </summary>
+            public const string VideoObjectPropertiesV1 = "0x346F2163-0xF998-0x4146-0x8B-0x01-0xD1-0x9B-0x4C-0x00-0xDE-0x9A";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_COMMON_INFORMATION_OBJECT_PROPERTIES_V1. This category is properties that pertain to informational objects such as appointments-tasks-memos and even documents.
+            /// </summary>
+            public const string CommonInformationObjectPropertiesV1 = "0xB28AE94B-0x05A4-0x4E8E-0xBE-0x01-0x72-0xCC-0x7E-0x09-0x9D-0x8F";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_MEMO_OBJECT_PROPERTIES_V1. This category is for properties common to all memo objects.
+            /// </summary>
+            public const string MemoObjectPropertiesV1 = "0x5FFBFC7B-0x7483-0x41AD-0xAF-0xB9-0xDA-0x3F-0x4E-0x59-0x2B-0x8D";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_EMAIL_OBJECT_PROPERTIES_V1. This category is for properties common to all email objects.
+            /// </summary>
+            public const string EmailObjectPropertiesV1 = "0x41F8F65A-0x5484-0x4782-0xB1-0x3D-0x47-0x40-0xDD-0x7C-0x37-0xC5";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_APPOINTMENT_OBJECT_PROPERTIES_V1. This category is for properties common to all appointment objects.
+            /// </summary>
+            public const string AppointmentObjectPropertiesV1 = "0xF99EFD03-0x431D-0x40D8-0xA1-0xC9-0x4E-0x22-0x0D-0x9C-0x88-0xD3";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_TASK_OBJECT_PROPERTIES_V1. This category is for properties common to all task objects.
+            /// </summary>
+            public const string TaskObjectPropertiesV1 = "0xE354E95E-0xD8A0-0x4637-0xA0-0x3A-0x0C-0xB2-0x68-0x38-0xDB-0xC7";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_SMS_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_SMS
+            /// </summary>
+            public const string SMSObjectPropertiesV1 = "0x7E1074CC-0x50FF-0x4DD1-0xA7-0x42-0x53-0xBE-0x6F-0x09-0x3A-0x0D";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_SECTION_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose content type is WPD_CONTENT_TYPE_SECTION
+            /// </summary>
+            public const string SectionObjectPropertiesV1 = "0x516AFD2B-0xC64E-0x44F0-0x98-0xDC-0xBE-0xE1-0xC8-0x8F-0x7D-0x66";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_FUNCTIONAL_OBJECT_PROPERTIES_V1. This category is for properties common to all functional objects.
+            /// </summary>
+            public const string FunctionalObjectPropertiesV1 = "0x8F052D93-0xABCA-0x4FC5-0xA5-0xAC-0xB0-0x1D-0xF4-0xDB-0xE5-0x98";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_STORAGE_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_STORAGE.
+            /// </summary>
+            public const string StorageObjectPropertiesV1 = "0x01A3057A-0x74D6-0x4E80-0xBE-0xA7-0xDC-0x4C-0x21-0x2C-0xE5-0x0A";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_NETWORK_ASSOCIATION_PROPERTIES_V1. This category is for properties common to all network association objects.
+            /// </summary>
+            public const string NetworkAssociationPropertiesV1 = "0xE4C93C1F-0xB203-0x43F1-0xA1-0x00-0x5A-0x07-0xD1-0x1B-0x02-0x74";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_STILL_IMAGE_CAPTURE_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_STILL_IMAGE_CAPTURE
+            /// </summary>
+            public const string StillImageCaptureObjectPropertiesV1 = "0x58C571EC-0x1BCB-0x42A7-0x8A-0xC5-0xBB-0x29-0x15-0x73-0xA2-0x60";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_RENDERING_INFORMATION_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_AUDIO_RENDERING_INFORMATION
+            /// </summary>
+            public const string RenderingInformationObjectPropertiesV1 = "0xC53D039F-0xEE23-0x4A31-0x85-0x90-0x76-0x39-0x87-0x98-0x70-0xB4";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_CLIENT_INFORMATION_PROPERTIES_V1.
+            /// </summary>
+            public const string ClientInformationPropertiesV1 = "0x204D9F0C-0x2292-0x4080-0x9F-0x42-0x40-0x66-0x4E-0x70-0xF8-0x59";
 
             /// <summary>
             /// This class defines all WPD content types.
@@ -384,173 +555,36 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
 
             }
 
-            // #region This section defines all Commands-Parameters and Options associated with: WPD_OBJECT_PROPERTIES_V1. This category is for all common object properties.
-
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_OBJECT_PROPERTIES_V1. This category is for all common object properties.
+            /// </summary>
             public const string ObjectPropertiesV1 = "0xEF6B490D-0x5CD8-0x437A-0xAF-0xFC-0xDA-0x8B-0x60-0xEE-0x4A-0x3C";
 
-            // #endregion
-
-            // #region This section defines all Commands-Parameters and Options associated with: WPD_OBJECT_PROPERTIES_V2. This category is for all common object properties.
-
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_OBJECT_PROPERTIES_V2. This category is for all common object properties.
+            /// </summary>
             public const string ObjectPropertiesV2 = "0x0373CD3D-0x4A46-0x40D7-0xB4-0xD8-0x73-0xE8-0xDA-0x74-0xE7-0x75";
 
-            // #endregion
-
-            // #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_NULL. This category is used exclusively for the NULL property key define.
-
-            public const string CategoryNull = "0x00000000-0x0000-0x0000-0x00-0x00-0x00-0x00-0x00-0x00-0x00-0x00";
-
-            // #endregion
-
-            // #region This section defines all Commands-Parameters and Options associated with: WPD_FUNCTIONAL_OBJECT_PROPERTIES_V1. This category is for properties common to all functional objects.
-
-            public const string FunctionalObjectPropertiesV1 = "0x8F052D93-0xABCA-0x4FC5-0xA5-0xAC-0xB0-0x1D-0xF4-0xDB-0xE5-0x98";
-
-            // #endregion
-
-            // #region This section defines all Commands-Parameters and Options associated with: WPD_STORAGE_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_STORAGE.
-
-            public const string StorageObjectPropertiesV1 = "0x01A3057A-0x74D6-0x4E80-0xBE-0xA7-0xDC-0x4C-0x21-0x2C-0xE5-0x0A";
-
-            // #endregion
-
-            // #region This section defines all Commands-Parameters and Options associated with: WPD_NETWORK_ASSOCIATION_PROPERTIES_V1. This category is for properties common to all network association objects.
-
-            public const string NetworkAssociationPropertiesV1 = "0xE4C93C1F-0xB203-0x43F1-0xA1-0x00-0x5A-0x07-0xD1-0x1B-0x02-0x74";
-
-            // #endregion
-
-            // #region This section defines all Commands-Parameters and Options associated with: WPD_STILL_IMAGE_CAPTURE_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_STILL_IMAGE_CAPTURE
-
-            public const string StillImageCaptureObjectPropertiesV1 = "0x58C571EC-0x1BCB-0x42A7-0x8A-0xC5-0xBB-0x29-0x15-0x73-0xA2-0x60";
-
-            // #endregion
-
-            // #region This section defines all Commands-Parameters and Options associated with: WPD_RENDERING_INFORMATION_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_AUDIO_RENDERING_INFORMATION
-
-            public const string RenderingInformationObjectPropertiesV1 = "0xC53D039F-0xEE23-0x4A31-0x85-0x90-0x76-0x39-0x87-0x98-0x70-0xB4";
-
-            // #endregion
-
-            // #region This section defines all Commands-Parameters and Options associated with: WPD_CLIENT_INFORMATION_PROPERTIES_V1.
-
-            public const string ClientInformationPropertiesV1 = "0x204D9F0C-0x2292-0x4080-0x9F-0x42-0x40-0x66-0x4E-0x70-0xF8-0x59";
-
-            // #endregion
-
-            // #region This section defines all Commands-Parameters and Options associated with: WPD_PROPERTY_ATTRIBUTES_V1
-
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_PROPERTY_ATTRIBUTES_V1
+            /// </summary>
             public const string PropertyAttributesV1 = "0xAB7943D8-0x6332-0x445F-0xA0-0x0D-0x8D-0x5E-0xF1-0xE9-0x6F-0x37";
 
-            // #endregion
-
-            // #region This section defines all Commands-Parameters and Options associated with: WPD_PROPERTY_ATTRIBUTES_V2. This category defines additional property attributes used by device services.
-
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_PROPERTY_ATTRIBUTES_V2. This category defines additional property attributes used by device services.
+            /// </summary>
             public const string PropertyAttributesV2 = "0x5D9DA160-0x74AE-0x43CC-0x85-0xA9-0xFE-0x55-0x5A-0x80-0x79-0x8E";
 
-            // #endregion
-
-            // #region This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_OPTIONS_V1. This category of properties relates to options used for the WPD device class extension
-
-            public const string ClassExtensionOptionsV1 = "0x6309FFEF-0xA87C-0x4CA7-0x84-0x34-0x79-0x75-0x76-0xE4-0x0A-0x96";
-
-            // #endregion
-
-            // #region This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_OPTIONS_V2. This category of properties relates to options used for the WPD device class extension
-
-            public const string ClassExtensionOptionsV2 = "0x3E3595DA-0x4D71-0x49FE-0xA0-0xB4-0xD4-0x40-0x6C-0x3A-0xE9-0x3F";
-
-            // #endregion
-
-            // #region This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_OPTIONS_V3. This category of properties relates to options used for the WPD device class extension
-
-            public const string ClassExtensionOptionsV3 = "0x65C160F8-0x1367-0x4CE2-0x93-0x9D-0x83-0x10-0x83-0x9F-0x0D-0x30";
-
-            //#endregion
-
-            #region This section defines all Commands-Parameters and Options associated with: WPD_RESOURCE_ATTRIBUTES_V1
-
-            public const string ResourceAttributesV1 = "0x1EB6F604-0x9278-0x429F-0x93-0xCC-0x5B-0xB8-0xC0-0x66-0x56-0xB6";
-
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_DEVICE_PROPERTIES_V1
-            public const string DevicePropertiesV1 = "0x26D4979A-0xE643-0x4626-0x9E-0x2B-0x73-0x6D-0xC0-0xC9-0x2F-0xDC";
-
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_DEVICE_PROPERTIES_V2
-            public const string DevicePropertiesV2 = "0x463DD662-0x7FC4-0x4291-0x91-0x1C-0x7F-0x4C-0x9C-0xCA-0x97-0x99";
-
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_DEVICE_PROPERTIES_V3
-            public const string DevicePropertiesV3 = "0x6C2B878C-0xC2EC-0x490D-0xB4-0x25-0xD7-0xA7-0x5E-0x23-0xE5-0xED";
-
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_SERVICE_PROPERTIES_V1
-            public const string ServicePropertiesV1 = "0x7510698A-0xCB54-0x481C-0xB8-0xDB-0x0D-0x75-0xC9-0x3F-0x1C-0x06";
-
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_EVENT_PROPERTIES_V1 The properties in this category are for properties that may be needed for event processing-but do not have object property equivalents(i.e.they are not exposed as object properties-but rather-used only as event parameters).
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_EVENT_PROPERTIES_V1 The properties in this category are for properties that may be needed for event processing-but do not have object property equivalents(i.e.they are not exposed as object properties-but rather-used only as event parameters).
+            /// </summary>
             public const string EventPropertiesV1 = "0x15AB1953-0xF817-0x4FEF-0xA9-0x21-0x56-0x76-0xE8-0x38-0xF6-0xE0";
 
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_EVENT_PROPERTIES_V2 The properties in this category are for properties that may be needed for event processing-but do not have object property equivalents(i.e.they are not exposed as object properties-but rather-used only as event parameters).
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_EVENT_PROPERTIES_V2 The properties in this category are for properties that may be needed for event processing-but do not have object property equivalents(i.e.they are not exposed as object properties-but rather-used only as event parameters).
+            /// </summary>
             public const string EventPropertiesV2 = "0x52807B8A-0x4914-0x4323-0x9B-0x9A-0x74-0xF6-0x54-0xB2-0xB8-0x46";
 
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_EVENT_OPTIONS_V1 The properties in this category describe event options.
-            public const string EventOptionsV1 = "0xB3D8DAD7-0xA361-0x4B83-0x8A-0x48-0x5B-0x02-0xCE-0x10-0x71-0x3B";
-
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_EVENT_ATTRIBUTES_V1 The properties in this category describe event attributes.
-            public const string EventAttributesV1 = "0x10C96578-0x2E81-0x4111-0xAD-0xDE-0xE0-0x8C-0xA6-0x13-0x8F-0x6D";
-
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_API_OPTIONS_V1 The properties in this category describe API options.
-            public const string APIOptionsV1 = "0x10E54A3E-0x052D-0x4777-0xA1-0x3C-0xDE-0x76-0x14-0xBE-0x2B-0xC4";
-
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_FORMAT_ATTRIBUTES_V1 The properties in this category describe format attributes.
-            public const string FormatAttributesV1 = "0xA0A02000-0xBCAF-0x4BE8-0xB3-0xF5-0x23-0x3F-0x23-0x1C-0xF5-0x8F";
-
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_METHOD_ATTRIBUTES_V1 The properties in this category describe method attributes.
-            public const string MethodAttributesV1 = "0xF17A5071-0xF039-0x44AF-0x8E-0xFE-0x43-0x2C-0xF3-0x2E-0x43-0x2A";
-
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_PARAMETER_ATTRIBUTES_V1 The properties in this category describe parameter attributes.
-            public const string ParameterAttributesV1 = "0xE6864DD7-0xF325-0x45EA-0xA1-0xD5-0x97-0xCF-0x73-0xB6-0xCA-0x58";
-
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_V1. The commands in this category relate to the WPD device class extension.
-
-            public const string ClassExtensionV1 = "0x33FB0D11-0x64A3-0x4FAC-0xB4-0xC7-0x3D-0xFE-0xAA-0x99-0xB0-0x51";
-
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_V2. The commands in this category relate to the WPD device class extension.
-
-            public const string ClassExtensionV2 = "0x7F0779B5-0xFA2B-0x4766-0x9C-0xB2-0xF7-0x3B-0xA3-0x0B-0x67-0x58";
-
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_NETWORK_CONFIGURATION. The commands in this category are used for Network Association and WiFi Configuration.
-
-            public const string NetworkConfiguration = "0x78F9C6FC-0x79B8-0x473C-0x90-0x60-0x6B-0xD2-0x3D-0xD0-0x72-0xC4";
-
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SERVICE_COMMON. The commands in this category relate to a device service.
-
-            public const string ServiceCommon = "0x322F071D-0x36EF-0x477F-0xB4-0xB5-0x6F-0x52-0xD7-0x34-0xBA-0xEE";
-
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SERVICE_CAPABILITIES. The commands in this category relate to capabilities of a device service.
-
-            public const string ServiceCapabilities = "0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89";
-
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SERVICE_METHODS. The commands in this category relate to methods of a device service.
-
-            public const string ServiceMethods = "0x2D521CA8-0xC1B0-0x4268-0xA3-0x42-0xCF-0x19-0x32-0x15-0x69-0xBC";
-
-            #endregion
             #region This section defines the legacy WPD definitions. When WPD_SERVICES_STRICT mode is defined-these definitions are removed from this header file. You may find replacements or equivalents in the Device Services headers (for example-BridgeDeviceService.h).
             // # ifndef WPD_SERVICES_STRICT
 
@@ -883,62 +917,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
                 }
 
                 #endregion
-                #region This section defines all Commands-Parameters and Options associated with: WPD_FOLDER_OBJECT_PROPERTIES_V1. This category is for properties common to all folder objects.
-                public const string FolderObjectPropertiesV1 = "0x7E9A7ABF-0xE568-0x4B34-0xAA-0x2F-0x13-0xBB-0x12-0xAB-0x17-0x7D";
-
-                #endregion
-                #region This section defines all Commands-Parameters and Options associated with: WPD_IMAGE_OBJECT_PROPERTIES_V1. This category is for properties common to all image objects.
-                public const string ImageObjectPropertiesV1 = "0x63D64908-0x9FA1-0x479F-0x85-0xBA-0x99-0x52-0x21-0x64-0x47-0xDB";
-
-                #endregion
-                #region This section defines all Commands-Parameters and Options associated with: WPD_DOCUMENT_OBJECT_PROPERTIES_V1. This category is for properties common to all document objects.
-                public const string DocumentObjectPropertiesV1 = "0x0B110203-0xEB95-0x4F02-0x93-0xE0-0x97-0xC6-0x31-0x49-0x3A-0xD5";
-
-                #endregion
-                #region This section defines all Commands-Parameters and Options associated with: WPD_MEDIA_PROPERTIES_V1. This category is for properties common to media objects(e.g.audio and video).
-                public const string MediaPropertiesV1 = "0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8";
-
-                #endregion
-                #region This section defines all Commands-Parameters and Options associated with: WPD_CONTACT_OBJECT_PROPERTIES_V1. This category is for properties common to all contact objects.
-                public const string ContactObjectPropertiesV1 = "0xFBD4FDAB-0x987D-0x4777-0xB3-0xF9-0x72-0x61-0x85-0xA9-0x31-0x2B";
-
-                #endregion
-                #region This section defines all Commands-Parameters and Options associated with: WPD_MUSIC_OBJECT_PROPERTIES_V1. This category is for properties common to all music objects.
-                public const string MusicObjectPropertiesV1 = "0xB324F56A-0xDC5D-0x46E5-0xB6-0xDF-0xD2-0xEA-0x41-0x48-0x88-0xC6";
-
-                #endregion
-                #region This section defines all Commands-Parameters and Options associated with: WPD_VIDEO_OBJECT_PROPERTIES_V1. This category is for properties common to all video objects.
-                public const string VideoObjectPropertiesV1 = "0x346F2163-0xF998-0x4146-0x8B-0x01-0xD1-0x9B-0x4C-0x00-0xDE-0x9A";
-
-                #endregion
-                #region This section defines all Commands-Parameters and Options associated with: WPD_COMMON_INFORMATION_OBJECT_PROPERTIES_V1. This category is properties that pertain to informational objects such as appointments-tasks-memos and even documents.
-                public const string CommonInformationObjectPropertiesV1 = "0xB28AE94B-0x05A4-0x4E8E-0xBE-0x01-0x72-0xCC-0x7E-0x09-0x9D-0x8F";
-
-                #endregion
-                #region This section defines all Commands-Parameters and Options associated with: WPD_MEMO_OBJECT_PROPERTIES_V1. This category is for properties common to all memo objects.
-                public const string MemoObjectPropertiesV1 = "0x5FFBFC7B-0x7483-0x41AD-0xAF-0xB9-0xDA-0x3F-0x4E-0x59-0x2B-0x8D";
-
-                #endregion
-                #region This section defines all Commands-Parameters and Options associated with: WPD_EMAIL_OBJECT_PROPERTIES_V1. This category is for properties common to all email objects.
-                public const string EmailObjectPropertiesV1 = "0x41F8F65A-0x5484-0x4782-0xB1-0x3D-0x47-0x40-0xDD-0x7C-0x37-0xC5";
-
-                #endregion
-                #region This section defines all Commands-Parameters and Options associated with: WPD_APPOINTMENT_OBJECT_PROPERTIES_V1. This category is for properties common to all appointment objects.
-                public const string ObjectPropertiesV1 = "0xF99EFD03-0x431D-0x40D8-0xA1-0xC9-0x4E-0x22-0x0D-0x9C-0x88-0xD3";
-
-                #endregion
-                #region This section defines all Commands-Parameters and Options associated with: WPD_TASK_OBJECT_PROPERTIES_V1. This category is for properties common to all task objects.
-                public const string TaskObjectPropertiesV1 = "0xE354E95E-0xD8A0-0x4637-0xA0-0x3A-0x0C-0xB2-0x68-0x38-0xDB-0xC7";
-
-                #endregion
-                #region This section defines all Commands-Parameters and Options associated with: WPD_SMS_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_SMS
-                public const string SMSObjectPropertiesV1 = "0x7E1074CC-0x50FF-0x4DD1-0xA7-0x42-0x53-0xBE-0x6F-0x09-0x3A-0x0D";
-
-                #endregion
-                #region This section defines all Commands-Parameters and Options associated with: WPD_SECTION_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose content type is WPD_CONTENT_TYPE_SECTION
-                public const string SectionObjectPropertiesV1 = "0x516AFD2B-0xC64E-0x44F0-0x98-0xDC-0xBE-0xE1-0xC8-0x8F-0x7D-0x66";
-
-                #endregion
 
                 // #endif // WPD_SERVICES_STRICT
 
@@ -946,7 +924,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
 
         }
 
-        public static class CommandCategory
+        public static class CommandCategories
 
         {
 
@@ -955,58 +933,107 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
             /// </summary>
             public const string Common = "0xF0422A9C-0x5DC8-0x4440-0xB5-0xBD-0x5D-0xF2-0x88-0x35-0x65-0x8A";
 
-            #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_ENUMERATION. The commands in this category are used for basic object enumeration.
+            public static class Object
 
-            public const string ObjectEnumeration = "0xB7474E91-0xE7F8-0x4AD9-0xB4-0x00-0xAD-0x1A-0x4B-0x58-0xEE-0xEC";
+            {
 
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_PROPERTIES. This category of commands is used to perform basic property operations such as Reading/Writing values-listing supported values and so on.
+                /// <summary>
+                /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_ENUMERATION. The commands in this category are used for basic object enumeration.
+                /// </summary>
+                public const string Enumeration = "0xB7474E91-0xE7F8-0x4AD9-0xB4-0x00-0xAD-0x1A-0x4B-0x58-0xEE-0xEC";
 
-            public const string ObjectProperties = "0x9E5582E4-0x0814-0x44E6-0x98-0x1A-0xB2-0x99-0x8D-0x58-0x38-0x04";
+                /// <summary>
+                /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_PROPERTIES. This category of commands is used to perform basic property operations such as Reading/Writing values-listing supported values and so on.
+                /// </summary>
+                public const string Properties = "0x9E5582E4-0x0814-0x44E6-0x98-0x1A-0xB2-0x99-0x8D-0x58-0x38-0x04";
 
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_PROPERTIES_BULK. This category contains commands and properties for property operations across multiple objects.
+                /// <summary>
+                /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_PROPERTIES_BULK. This category contains commands and properties for property operations across multiple objects.
+                /// </summary>
+                public const string PropertiesBulk = "0x11C824DD-0x04CD-0x4E4E-0x8C-0x7B-0xF6-0xEF-0xB7-0x94-0xD8-0x4E";
 
-            public const string ObjectPropertiesBulk = "0x11C824DD-0x04CD-0x4E4E-0x8C-0x7B-0xF6-0xEF-0xB7-0x94-0xD8-0x4E";
+                /// <summary>
+                /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_RESOURCES. The commands in this category are used for basic object resource enumeration and transfer.
+                /// </summary>
+                public const string Resources = "0xB3A2B22D-0xA595-0x4108-0xBE-0x0A-0xFC-0x3C-0x96-0x5F-0x3D-0x4A";
 
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_RESOURCES. The commands in this category are used for basic object resource enumeration and transfer.
+                /// <summary>
+                /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_MANAGEMENT. The commands specified in this category are used to Create/Delete objects on the device.
+                /// </summary>
+                public const string Management = "0xEF1E43DD-0xA9ED-0x4341-0x8B-0xCC-0x18-0x61-0x92-0xAE-0xA0-0x89";
 
-            public const string ObjectResources = "0xB3A2B22D-0xA595-0x4108-0xBE-0x0A-0xFC-0x3C-0x96-0x5F-0x3D-0x4A";
+            }
 
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_MANAGEMENT. The commands specified in this category are used to Create/Delete objects on the device.
-
-            public const string ObjectManagement = "0xEF1E43DD-0xA9ED-0x4341-0x8B-0xCC-0x18-0x61-0x92-0xAE-0xA0-0x89";
-
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_CAPABILITIES. This command category is used to query capabilities of the device.
-
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_CAPABILITIES. This command category is used to query capabilities of the device.
+            /// </summary>
             public const string Capabilities = "0x0CABEC78-0x6B74-0x41C6-0x92-0x16-0x26-0x39-0xD1-0xFC-0xE3-0x56";
 
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_STORAGE. This category is for commands and parameters for storage functional objects.
-
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_STORAGE. This category is for commands and parameters for storage functional objects.
+            /// </summary>
             public const string Storage = "0xD8F907A6-0x34CC-0x45FA-0x97-0xFB-0xD0-0x07-0xFA-0x47-0xEC-0x94";
 
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SMS. The commands in this category relate to Short-Message-Service functionality-typically exposed on mobile phones.
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SMS. The commands in this category relate to Short-Message-Service functionality-typically exposed on mobile phones.
+            /// </summary>
             public const string SMS = "0xAFC25D66-0xFE0D-0x4114-0x90-0x97-0x97-0x0C-0x93-0xE9-0x20-0xD1";
 
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_STILL_IMAGE_CAPTURE
-
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_STILL_IMAGE_CAPTURE
+            /// </summary>
             public const string StillImageCapture = "0x4FCD6982-0x22A2-0x4B05-0xA4-0x8B-0x62-0xD3-0x8B-0xF2-0x7B-0x32";
 
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_MEDIA_CAPTURE
-
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_MEDIA_CAPTURE
+            /// </summary>
             public const string MediaCapture = "0x59B433BA-0xFE44-0x4D8D-0x80-0x8C-0x6B-0xCB-0x9B-0x0F-0x15-0xE8";
 
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_DEVICE_HINTS. The commands in this category relate to hints that a device can provide to improve end-user experience.
-
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_DEVICE_HINTS. The commands in this category relate to hints that a device can provide to improve end-user experience.
+            /// </summary>
             public const string DeviceHints = "0x0D5FB92B-0xCB46-0x4C4F-0x83-0x43-0x0B-0xC3-0xD3-0xF1-0x7C-0x84";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_V1. The commands in this category relate to the WPD device class extension.
+            /// </summary>
+            public const string ClassExtensionV1 = "0x33FB0D11-0x64A3-0x4FAC-0xB4-0xC7-0x3D-0xFE-0xAA-0x99-0xB0-0x51";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_V2. The commands in this category relate to the WPD device class extension.
+            /// </summary>
+            public const string ClassExtensionV2 = "0x7F0779B5-0xFA2B-0x4766-0x9C-0xB2-0xF7-0x3B-0xA3-0x0B-0x67-0x58";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_NULL. This category is used exclusively for the NULL property key define.
+            /// </summary>
+            public const string CategoryNull = "0x00000000-0x0000-0x0000-0x00-0x00-0x00-0x00-0x00-0x00-0x00-0x00";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_NETWORK_CONFIGURATION. The commands in this category are used for Network Association and WiFi Configuration.
+            /// </summary>
+            public const string NetworkConfiguration = "0x78F9C6FC-0x79B8-0x473C-0x90-0x60-0x6B-0xD2-0x3D-0xD0-0x72-0xC4";
+
+            public static class Service
+
+            {
+
+                /// <summary>
+                /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SERVICE_COMMON. The commands in this category relate to a device service.
+                /// </summary>
+                public const string Common = "0x322F071D-0x36EF-0x477F-0xB4-0xB5-0x6F-0x52-0xD7-0x34-0xBA-0xEE";
+
+                /// <summary>
+                /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SERVICE_CAPABILITIES. The commands in this category relate to capabilities of a device service.
+                /// </summary>
+                public const string Capabilities = "0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89";
+
+                /// <summary>
+                /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SERVICE_METHODS. The commands in this category relate to methods of a device service.
+                /// </summary>
+                public const string Methods = "0x2D521CA8-0xC1B0-0x4268-0xA3-0x42-0xCF-0x19-0x32-0x15-0x69-0xBC";
+
+            }
 
         }
 
@@ -2004,5 +2031,3 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.ExtendedLinguisticServi
     }
 
 }
-
-#endregion

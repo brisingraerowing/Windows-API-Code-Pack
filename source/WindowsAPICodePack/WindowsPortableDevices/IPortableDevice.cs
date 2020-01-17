@@ -20,9 +20,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         bool IsOpen { get; }
 
-        GenericRights OpenRights { get; }
+        GenericRights OpeningRights { get; }
 
-        FileShareOptions OpenFileShareOptions { get; }
+        FileShareOptions OpeningFileShareOptions { get; }
 
         void Open(in ClientVersion clientVersion, in PortableDeviceOpeningOptions portableDeviceOpeningOptions);
 

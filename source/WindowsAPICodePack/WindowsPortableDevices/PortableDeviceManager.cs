@@ -11,7 +11,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
     public class PortableDeviceManager : IPortableDeviceManager
     {
 
-        internal Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.IPortableDeviceManager Manager { get; set; } = null;
+        internal Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.IPortableDeviceManager _Manager { get; set; } = null;
 
         internal List<PortableDevice> _portableDevices = null;
 
@@ -25,7 +25,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         {
 
-            Manager = new Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PortableDeviceManager();
+            _Manager = new Win32Native.PortableDevices.PortableDeviceManager();
 
             _portableDevices = new List<PortableDevice>();
 
@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         }
 
-        public void RefreshDeviceList() => Marshal.ThrowExceptionForHR((int)Manager.RefreshDeviceList());
+        public void RefreshDeviceList() => Marshal.ThrowExceptionForHR((int)_Manager.RefreshDeviceList());
 
         public void GetDevices()
 
@@ -45,7 +45,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             uint count = 1;
 
-            Marshal.ThrowExceptionForHR((int)Manager.GetDevices(null, ref count)); // We get the PortableDevices.
+            Marshal.ThrowExceptionForHR((int)_Manager.GetDevices(null, ref count)); // We get the PortableDevices.
 
             if (count == 0)
 
@@ -59,7 +59,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             string[] deviceIDs = new string[count];
 
-            Marshal.ThrowExceptionForHR((int)Manager.GetDevices(deviceIDs, ref count));
+            Marshal.ThrowExceptionForHR((int)_Manager.GetDevices(deviceIDs, ref count));
 
             if (count == 0)
 
@@ -81,7 +81,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             uint count = 1;
 
-            Marshal.ThrowExceptionForHR((int)Manager.GetPrivateDevices(null, ref count)); // We get the PortableDevices.
+            Marshal.ThrowExceptionForHR((int)_Manager.GetPrivateDevices(null, ref count)); // We get the PortableDevices.
 
             if (count == 0)
 
@@ -95,7 +95,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             string[] deviceIDs = new string[count];
 
-            Marshal.ThrowExceptionForHR((int)Manager.GetPrivateDevices(deviceIDs, ref count));
+            Marshal.ThrowExceptionForHR((int)_Manager.GetPrivateDevices(deviceIDs, ref count));
 
             if (count == 0)
 
@@ -111,7 +111,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         }
 
-        protected virtual void OnUpdatingPortableDevices(string[] deviceIDs, bool privateDevices)
+        protected virtual void OnUpdatingPortableDevices(string[] deviceIDs, in bool privateDevices)
 
         {
 
@@ -119,7 +119,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             int i = 0;
 
-            portableDevices.RemoveAll(d => !deviceIDs.Contains(d.DeviceId));
+            _ = portableDevices.RemoveAll(d => !deviceIDs.Contains(d.DeviceId));
 
             while (deviceIDs.Length > 0)
 
@@ -139,9 +139,41 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         }
 
-        protected virtual void OnAddingPortableDevice(string deviceId, bool isPrivateDevice) => OnAddingPortableDevice(new PortableDevice(this, deviceId), isPrivateDevice);
+        protected virtual void OnAddingPortableDevice(in string deviceId, in bool isPrivateDevice) => OnAddingPortableDevice(new PortableDevice(this, deviceId), isPrivateDevice);
 
-        protected virtual void OnAddingPortableDevice(PortableDevice portableDevice, bool isPrivateDevice) => (isPrivateDevice ? _privatePortableDevices : _portableDevices).Add(portableDevice);
+        protected virtual void OnAddingPortableDevice(in PortableDevice portableDevice, in bool isPrivateDevice) => (isPrivateDevice ? _privatePortableDevices : _portableDevices).Add(portableDevice);
+
+        #region IDisposable Support
+        public bool IsDisposed { get; private set; } = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (IsDisposed) return;
+
+            if (disposing)
+            {
+                _portableDevices.Clear();
+                _privatePortableDevices.Clear();
+            }
+
+            _ = Marshal.ReleaseComObject(_Manager);
+            _Manager = null;
+
+            IsDisposed = true;
+
+        }
+
+        ~PortableDeviceManager()
+        {
+            Dispose(false);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion
 
     }
 }
