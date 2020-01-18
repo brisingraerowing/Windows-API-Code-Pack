@@ -59,22 +59,45 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
     }
 
+    public class DeviceCapabilities
+
+    {
+
+
+
+    }
+
     [DebuggerDisplay("{FriendlyName}, {DeviceDescription}, {Manufacturer}")]
     public class PortableDevice : IPortableDevice
     {
 
+        /// <summary>
+        /// If the current <see cref="PortableDevice"/> has been created by a <see cref="PortableDevices.PortableDeviceManager"/>, gets that manager, otherwise this property gets <see langword="null"/>.
+        /// </summary>
         public PortableDeviceManager PortableDeviceManager { get; internal set; }
 
         IPortableDeviceManager IPortableDevice.PortableDeviceManager => PortableDeviceManager;
 
         internal Win32Native.PortableDevices.IPortableDevice _portableDevice = null;
 
+        /// <summary>
+        /// Gets the device id of the current <see cref="PortableDevice"/>.
+        /// </summary>
         public string DeviceId { get; }
 
+        /// <summary>
+        /// If the current <see cref="PortableDevice"/> has been created by a <see cref="PortableDevices.PortableDeviceManager"/>, gets the device friendly name of the current <see cref="PortableDevice"/>, otherwise gets <see langword="null"/>.
+        /// </summary>
         public string DeviceFriendlyName { get; internal set; }
 
+        /// <summary>
+        /// If the current <see cref="PortableDevice"/> has been created by a <see cref="PortableDevices.PortableDeviceManager"/>, gets the device description of the current <see cref="PortableDevice"/>, otherwise gets <see langword="null"/>.
+        /// </summary>
         public string DeviceDescription { get; internal set; }
 
+        /// <summary>
+        /// If the current <see cref="PortableDevice"/> has been created by a <see cref="PortableDevices.PortableDeviceManager"/>, gets the device manufacturer of the current <see cref="PortableDevice"/>, otherwise gets <see langword="null"/>.
+        /// </summary>
         public string DeviceManufacturer { get; internal set; }
 
         public bool IsOpen { get; private set; }
@@ -122,6 +145,8 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             _portableDevice = new Win32Native.PortableDevices.PortableDevice();
 
         }
+
+        public PortableDevice(in string deviceId) => DeviceId = deviceId;
 
         public void Open(in ClientVersion clientVersion, in PortableDeviceOpeningOptions portableDeviceOpeningOptions)
 
@@ -250,9 +275,20 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         }
 
+        public void Close()
+        {
+            Marshal.ThrowExceptionForHR((int)_portableDevice.Close());
+
+            IsOpen = false;
+        }
+
         public object GetDeviceProperty(in string propertyName, in object defaultValue, in bool doNotExpand, out BlobValueKind valueKind)
 
         {
+
+            if (PortableDeviceManager is null)
+
+                throw new InvalidOperationException("This PortableDevice object has not been created by a PortableDeviceManager.");
 
             uint pcbData = 0;
 

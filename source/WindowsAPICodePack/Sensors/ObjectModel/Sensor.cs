@@ -357,7 +357,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// </summary>
         /// <param name="propIndex">A property index.</param>
         /// <returns>A property value.</returns>
-        public object GetProperty(int propIndex) => GetProperty(new PropertyKey(SensorPropertyKeys.SensorPropertyCommonGuid, propIndex));
+        public object GetProperty(int propIndex) => GetProperty(new PropertyKey(SensorPropertyKeys.SensorPropertyCommonGuid, (uint) propIndex));
 
         /// <summary>
         /// Retrieves the values of multiple properties by property key.
@@ -480,7 +480,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
                 for (int i = 0; i < propIndexes.Length; i++)
                 {
-                    var propKey = new PropertyKey(TypeId.Value, propIndexes[i]);
+                    var propKey = new PropertyKey(TypeId.Value, (uint) propIndexes[i]);
                     _ = keyCollection.Add(ref propKey);
                     propKeyToIdx.Add(propKey, i);
                 }

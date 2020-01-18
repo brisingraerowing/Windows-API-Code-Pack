@@ -26,6 +26,8 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         void Open(in ClientVersion clientVersion, in PortableDeviceOpeningOptions portableDeviceOpeningOptions);
 
+        void Close();
+
         object GetDeviceProperty(string propertyName, object defaultValue, bool doNotExpand, out BlobValueKind valueKind);
 
     }

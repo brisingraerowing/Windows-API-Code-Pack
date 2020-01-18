@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
+using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Core.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
 using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
@@ -309,28 +310,34 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
 
     }
 
-    public abstract class Commands
+    public static class Commands
     {
 
-        protected void SendCommand(PortableDevice portableDevice, IPortableDeviceValues parameters, out IPortableDeviceValues results)
+        /// <summary>
+        /// This method is used to send command to portable devices. This method takes two parameters of unmanaged type. If no managed wrapper is available in this code pack, you can use this method to create your own managed wrapper. Otherwise, if a managed wrapper exists, it is recommended to use these wrappers.
+        /// </summary>
+        /// <param name="portableDevice">The <see cref="PortableDevice"/> to send the command to.</param>
+        /// <param name="parameters">The parameters of the command.</param>
+        /// <param name="results">The results of the command.</param>
+        public static void SendCommand(PortableDevice portableDevice, IPortableDeviceValues parameters, out IPortableDeviceValues results)
 
         {
 
-            if (portableDevice is null)
+            Marshal.ThrowExceptionForHR((int)(portableDevice ?? throw new ArgumentNullException(nameof(portableDevice)))._portableDevice.SendCommand(0, parameters, out results));
 
-                throw new ArgumentNullException(nameof(portableDevice));
+            Marshal.ThrowExceptionForHR((int)results.GetErrorValue(Win32Native.PortableDevices.Commands.Common.Parameters.HResult, out HResult result));
 
-            portableDevice._portableDevice.SendCommand(0, parameters, out results);
+            Marshal.ThrowExceptionForHR((int)result);
 
         }
 
     }
 
-    public class CommonCommands : Commands
+    public static class CommonCommands
 
     {
 
-        public void ResetDevice(PortableDevice portableDevice)
+        public static void ResetDevice(PortableDevice portableDevice)
 
         {
 
@@ -340,15 +347,19 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
 
             _ = values.SetUnsignedIntegerValue(Win32Native.PortableDevices.Commands.Common.Parameters.CommandId, Win32Native.PortableDevices.Commands.Common.Commands.ResetDevice.PropertyId);
 
-            SendCommand(portableDevice, values, out _);
+            Commands. SendCommand(portableDevice, values, out _);
 
             _ = Marshal.ReleaseComObject(values);
 
         }
 
-        public string[] GetObjectIdsFromPersistentUniqueIds(PortableDevice portableDevice, string[] persistentUniqueIds)
+        public static string[] GetObjectIdsFromPersistentUniqueIds(PortableDevice portableDevice, string[] persistentUniqueIds)
 
         {
+
+            if (portableDevice is null)
+
+                throw new ArgumentNullException(nameof(portableDevice));
 
             if (persistentUniqueIds is null)
 
@@ -368,7 +379,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
 
             _ = values.SetIPortableDevicePropVariantCollectionValue(Win32Native.PortableDevices.Commands.Common.Parameters.PersistentUniqueIds, parameters);
 
-            SendCommand(portableDevice, values, out IPortableDeviceValues results);
+            Commands. SendCommand(portableDevice, values, out IPortableDeviceValues results);
 
             _ = results.GetIPortableDevicePropVariantCollectionValue(Win32Native.PortableDevices.Commands.Common.Parameters.ObjectIds, out IPortableDevicePropVariantCollection _results);
 

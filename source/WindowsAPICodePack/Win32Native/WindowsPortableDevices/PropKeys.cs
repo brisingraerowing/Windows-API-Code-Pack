@@ -20,7 +20,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
             #endregion
 
             /// <summary>
-            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.Properties.ObjectPropertiesV1"/> and <see cref="Guids.PortableDevices.Properties.ObjectPropertiesV2"/>. This category is for all common object properties.
+            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.Properties.ObjectV1"/> and <see cref="Guids.PortableDevices.Properties.ObjectV2"/>. This category is for all common object properties.
             /// </summary>
             public static class Object
 
@@ -31,42 +31,42 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
                 /// <para>Description: The abstract type for the object content-indicating the kinds of properties and data that may be supported on the object.</para>
                 /// <para>Type: VT_CLSID</para>
                 /// </summary>
-                public static PropertyKey ContentType => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 7);
+                public static PropertyKey ContentType => new PropertyKey(Guids.PortableDevices.Properties.ObjectV1, 7);
 
                 /// <summary>
                 /// <para>Name: WPD_OBJECT_REFERENCES</para>
                 /// <para>Description: <see cref="IPortableDevicePropVariantCollection"/> of type VT_LPWSTR indicating a list of ObjectIDs.</para>
                 /// <para>Type: VT_UNKNOWN</para>
                 /// </summary>
-                public static PropertyKey References => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 14);
+                public static PropertyKey References => new PropertyKey(Guids.PortableDevices.Properties.ObjectV1, 14);
 
                 /// <summary>
                 /// <para>Name: WPD_OBJECT_CONTAINER_FUNCTIONAL_OBJECT_ID</para>
                 /// <para>Description: Indicates the Object ID of the closest functional object ancestor. For example-objects that represent files/folders under a Storage functional object-will have this property set to the object ID of the storage functional object.</para>
                 /// <para>Type: VT_LPWSTR</para>
                 /// </summary>
-                public static PropertyKey ContainerFunctionalObjectId => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 23);
+                public static PropertyKey ContainerFunctionalObjectId => new PropertyKey(Guids.PortableDevices.Properties.ObjectV1, 23);
 
                 /// <summary>
                 /// <para>Name: WPD_OBJECT_GENERATE_THUMBNAIL_FROM_RESOURCE</para>
                 /// <para>Description: Indicates whether the thumbnail for this object should be generated from the default resource.</para>
                 /// <para>Type: VT_BOOL</para>
                 /// </summary>
-                public static PropertyKey GenerateThumbnailFromResource => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 24);
+                public static PropertyKey GenerateThumbnailFromResource => new PropertyKey(Guids.PortableDevices.Properties.ObjectV1, 24);
 
                 /// <summary>
                 /// <para>Name: WPD_OBJECT_HINT_LOCATION_DISPLAY_NAME</para>
                 /// <para>Description: If this object appears as a hint location-this property indicates the hint-specific name to display instead of the object name.</para>
                 /// <para>Type: VT_LPWSTR</para>
                 /// </summary>
-                public static PropertyKey HintLocationDisplayName => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 25);
+                public static PropertyKey HintLocationDisplayName => new PropertyKey(Guids.PortableDevices.Properties.ObjectV1, 25);
 
                 /// <summary>
                 /// <para>Name: WPD_OBJECT_SUPPORTED_UNITS</para>
                 /// <para>Description: Indicates the units supported on this object.</para>
                 /// <para>Type: VT_UI4</para>
                 /// </summary>
-                public static PropertyKey SupportedUnits => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV2, 2);
+                public static PropertyKey SupportedUnits => new PropertyKey(Guids.PortableDevices.Properties.ObjectV2, 2);
 
             }
 
@@ -75,10 +75,10 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
             /// <para>Description: Indicates the object's functional category.</para>
             /// <para>Type: VT_CLSID</para>
             /// </summary>
-            public static PropertyKey Category => new PropertyKey(Guids.PortableDevices.Properties.FunctionalObjectPropertiesV1, 2);
+            public static PropertyKey Category => new PropertyKey(Guids.PortableDevices.Properties.FunctionalObjectV1, 2);
 
             /// <summary>
-            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.Properties.StorageObjectPropertiesV1"/>. This category is for properties common to all objects whose functional category is <see cref="Guids.PortableDevices.Properties.FunctionalCategory.Storage"/>.
+            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.Properties.StorageObjectV1"/>. This category is for properties common to all objects whose functional category is <see cref="Guids.PortableDevices.Properties.FunctionalCategory.Storage"/>.
             /// </summary>
             public static class Storage
 
@@ -89,63 +89,63 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
                 /// <para>Description: Indicates the type of storage e.g. fixed-removable etc.</para>
                 /// <para>Type: VT_UI4</para>
                 /// </summary>
-                public static PropertyKey Type => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectPropertiesV1, 2);
+                public static PropertyKey Type => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectV1, 2);
 
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_FILE_SYSTEM_TYPE</para>
                 /// <para>Description: Indicates the file system type e.g. "FAT32" or "NTFS" or "My Special File System"</para>
                 /// <para>Type: VT_LPWSTR</para>
                 /// </summary>
-                public static PropertyKey FileSystemType => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectPropertiesV1, 3);
+                public static PropertyKey FileSystemType => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectV1, 3);
 
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_CAPACITY</para>
                 /// <para>Description: Indicates the total storage capacity in bytes.</para>
                 /// <para>Type: VT_UI8</para>
                 /// </summary>
-                public static PropertyKey Capacity => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectPropertiesV1, 4);
+                public static PropertyKey Capacity => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectV1, 4);
 
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_FREE_SPACE_IN_BYTES</para>
                 /// <para>Description: Indicates the available space in bytes.</para>
                 /// <para>Type: VT_UI8</para>
                 /// </summary>
-                public static PropertyKey FreeSpaceInBytes => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectPropertiesV1, 5);
+                public static PropertyKey FreeSpaceInBytes => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectV1, 5);
 
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_FREE_SPACE_IN_OBJECTS</para>
                 /// <para>Description: Indicates the available space in objects e.g. available slots on a SIM card.</para>
                 /// <para>Type: VT_UI8</para>
                 /// </summary>
-                public static PropertyKey FreeSpaceInObjects => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectPropertiesV1, 6);
+                public static PropertyKey FreeSpaceInObjects => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectV1, 6);
 
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_DESCRIPTION</para>
                 /// <para>Description: Contains a description of the storage.</para>
                 /// <para>Type: VT_LPWSTR</para>
                 /// </summary>
-                public static PropertyKey Description => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectPropertiesV1, 7);
+                public static PropertyKey Description => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectV1, 7);
 
                 //   [ VT_LPWSTR ] Contains the serial number of the storage.
                 // WPD_STORAGE_SERIAL_NUMBER
-                public static PropertyKey SerialNumber => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectPropertiesV1, 8);
+                public static PropertyKey SerialNumber => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectV1, 8);
 
                 //   [ VT_UI8 ] Specifies the maximum size of a single object (in bytes) that can be placed on this storage.
                 // WPD_STORAGE_MAX_OBJECT_SIZE
-                public static PropertyKey MaxObjectSize => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectPropertiesV1, 9);
+                public static PropertyKey MaxObjectSize => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectV1, 9);
 
                 //   [ VT_UI8 ] Indicates the total storage capacity in objects e.g. available slots on a SIM card.
                 // WPD_STORAGE_CAPACITY_IN_OBJECTS
-                public static PropertyKey CapacityInObjects => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectPropertiesV1, 10);
+                public static PropertyKey CapacityInObjects => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectV1, 10);
 
                 //   [ VT_UI4 ] This property identifies any write-protection that globally affects this storage. This takes precedence over access specified on individual objects.
                 // WPD_STORAGE_ACCESS_CAPABILITY
-                public static PropertyKey AccessCapability => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectPropertiesV1, 11);
+                public static PropertyKey AccessCapability => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectV1, 11);
 
             }
 
             /// <summary>
-            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1"/>. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_STILL_IMAGE_CAPTURE
+            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.Properties.StillImageCaptureObjectV1"/>. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_STILL_IMAGE_CAPTURE
             /// </summary>
             public static class StillImageCapture
 
@@ -154,128 +154,128 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
                 //
                 // WPD_STILL_IMAGE_CAPTURE_RESOLUTION  
                 //   [ VT_LPWSTR ] Controls the size of the image dimensions to capture in pixel width and height.
-                public static PropertyKey Resolution => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 2);
+                public static PropertyKey Resolution => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 2);
                 //
                 // WPD_STILL_IMAGE_CAPTURE_FORMAT  
                 //   [ VT_CLSID ] Controls the format of the image to capture.
-                public static PropertyKey Format => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 3);
+                public static PropertyKey Format => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 3);
                 //
                 // WPD_STILL_IMAGE_COMPRESSION_SETTING  
                 //   [ VT_UI8 ] Controls the device-specific quality setting.
-                public static PropertyKey CompressionSetting => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 4);
+                public static PropertyKey CompressionSetting => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 4);
                 //
                 // WPD_STILL_IMAGE_WHITE_BALANCE  
                 //   [ VT_UI4 ] Controls how the device weights color channels.
-                public static PropertyKey WhiteBalance => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 5);
+                public static PropertyKey WhiteBalance => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 5);
                 //
                 // WPD_STILL_IMAGE_RGB_GAIN  
                 //   [ VT_LPWSTR ] Controls the RGB gain.
-                public static PropertyKey RGBGain => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 6);
+                public static PropertyKey RGBGain => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 6);
                 //
                 // WPD_STILL_IMAGE_FNUMBER  
                 //   [ VT_UI4 ] Controls the aperture of the lens.
-                public static PropertyKey FNumber => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 7);
+                public static PropertyKey FNumber => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 7);
                 //
                 // WPD_STILL_IMAGE_FOCAL_LENGTH  
                 //   [ VT_UI4 ] Controls the 35mm equivalent focal length.
-                public static PropertyKey FocalLength => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 8);
+                public static PropertyKey FocalLength => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 8);
                 //
                 // WPD_STILL_IMAGE_FOCUS_DISTANCE  
                 //   [ VT_UI4 ] This property corresponds to the focus distance in millimeters
-                public static PropertyKey FocusDistance => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 9);
+                public static PropertyKey FocusDistance => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 9);
                 //
                 // WPD_STILL_IMAGE_FOCUS_MODE  
                 //   [ VT_UI4 ] Identifies the focusing mode used by the device for image capture.
-                public static PropertyKey FocusMode => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 10);
+                public static PropertyKey FocusMode => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 10);
                 //
                 // WPD_STILL_IMAGE_EXPOSURE_METERING_MODE  
                 //   [ VT_UI4 ] Identifies the exposure metering mode used by the device for image capture.
-                public static PropertyKey ExposureMeteringMode => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 11);
+                public static PropertyKey ExposureMeteringMode => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 11);
                 //
                 // WPD_STILL_IMAGE_FLASH_MODE  
                 //   [ VT_UI4 ] 
-                public static PropertyKey FlashMode => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 12);
+                public static PropertyKey FlashMode => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 12);
                 //
                 // WPD_STILL_IMAGE_EXPOSURE_TIME  
                 //   [ VT_UI4 ] Controls the shutter speed of the device.
-                public static PropertyKey ExposureTime => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 13);
+                public static PropertyKey ExposureTime => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 13);
                 //
                 // WPD_STILL_IMAGE_EXPOSURE_PROGRAM_MODE  
                 //   [ VT_UI4 ] Controls the exposure program mode of the device.
-                public static PropertyKey ExposureProgramMode => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 14);
+                public static PropertyKey ExposureProgramMode => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 14);
                 //
                 // WPD_STILL_IMAGE_EXPOSURE_INDEX  
                 //   [ VT_UI4 ] Controls the emulation of film speed settings.
-                public static PropertyKey ExposureIndex => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 15);
+                public static PropertyKey ExposureIndex => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 15);
                 //
                 // WPD_STILL_IMAGE_EXPOSURE_BIAS_COMPENSATION  
                 //   [ VT_I4 ] Controls the adjustment of the auto exposure control.
-                public static PropertyKey ExposureBiasCompensation => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 16);
+                public static PropertyKey ExposureBiasCompensation => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 16);
                 //
                 // WPD_STILL_IMAGE_CAPTURE_DELAY  
                 //   [ VT_UI4 ] Controls the amount of time delay between the capture trigger and the actual data capture (in milliseconds).
-                public static PropertyKey CaptureDelay => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 17);
+                public static PropertyKey CaptureDelay => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 17);
                 //
                 // WPD_STILL_IMAGE_CAPTURE_MODE  
                 //   [ VT_UI4 ] Controls the type of still image capture.
-                public static PropertyKey CaptureMode => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 18);
+                public static PropertyKey CaptureMode => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 18);
                 //
                 // WPD_STILL_IMAGE_CONTRAST  
                 //   [ VT_UI4 ] Controls the perceived contrast of captured images.
-                public static PropertyKey Contrast => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 19);
+                public static PropertyKey Contrast => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 19);
                 //
                 // WPD_STILL_IMAGE_SHARPNESS  
                 //   [ VT_UI4 ] Controls the perceived sharpness of the captured image.
-                public static PropertyKey Sharpness => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 20);
+                public static PropertyKey Sharpness => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 20);
                 //
                 // WPD_STILL_IMAGE_DIGITAL_ZOOM  
                 //   [ VT_UI4 ] Controls the effective zoom ratio of a digital camera's acquired image scaled by a factor of 10.
-                public static PropertyKey DigitalZoom => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 21);
+                public static PropertyKey DigitalZoom => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 21);
                 //
                 // WPD_STILL_IMAGE_EFFECT_MODE  
                 //   [ VT_UI4 ] Controls the special effect mode of the capture.
-                public static PropertyKey EffectMode => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 22);
+                public static PropertyKey EffectMode => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 22);
                 //
                 // WPD_STILL_IMAGE_BURST_NUMBER  
                 //   [ VT_UI4 ] Controls the number of images that the device will attempt to capture upon initiation of a burst operation.
-                public static PropertyKey BurstNumber => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 23);
+                public static PropertyKey BurstNumber => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 23);
                 //
                 // WPD_STILL_IMAGE_BURST_INTERVAL  
                 //   [ VT_UI4 ] Controls the time delay between captures upon initiation of a burst operation.
-                public static PropertyKey BurstInterval => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 24);
+                public static PropertyKey BurstInterval => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 24);
                 //
                 // WPD_STILL_IMAGE_TIMELAPSE_NUMBER  
                 //   [ VT_UI4 ] Controls the number of images that the device will attempt to capture upon initiation of a time-lapse capture.
-                public static PropertyKey TimelapseNumber => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 25);
+                public static PropertyKey TimelapseNumber => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 25);
                 //
                 // WPD_STILL_IMAGE_TIMELAPSE_INTERVAL  
                 //   [ VT_UI4 ] Controls the time delay between captures upon initiation of a time-lapse operation.
-                public static PropertyKey TimelapseInterval => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 26);
+                public static PropertyKey TimelapseInterval => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 26);
                 //
                 // WPD_STILL_IMAGE_FOCUS_METERING_MODE  
                 //   [ VT_UI4 ] Controls which automatic focus mechanism is used by the device.
-                public static PropertyKey FocusMeteringMode => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 27);
+                public static PropertyKey FocusMeteringMode => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 27);
                 //
                 // WPD_STILL_IMAGE_UPLOAD_URL  
                 //   [ VT_LPWSTR ] Used to describe the URL that the device may use to upload images upon capture.
-                public static PropertyKey UploadUrl => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 28);
+                public static PropertyKey UploadUrl => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 28);
                 //
                 // WPD_STILL_IMAGE_ARTIST  
                 //   [ VT_LPWSTR ] Contains the owner/user of the device-which may be inserted as meta-data into any images that are captured.
-                public static PropertyKey Artist => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 29);
+                public static PropertyKey Artist => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 29);
                 //
                 // WPD_STILL_IMAGE_CAMERA_MODEL  
                 //   [ VT_LPWSTR ] Contains the model of the device
-                public static PropertyKey CameraModel => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 30);
+                public static PropertyKey CameraModel => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 30);
                 //
                 // WPD_STILL_IMAGE_CAMERA_MANUFACTURER  
                 //   [ VT_LPWSTR ] Contains the manufacturer of the device
-                public static PropertyKey CameraManufacturer => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectPropertiesV1, 31);
+                public static PropertyKey CameraManufacturer => new PropertyKey(Guids.PortableDevices.Properties.StillImageCaptureObjectV1, 31);
 
             }
 
             /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.Properties.RenderingInformationObjectPropertiesV1"/>. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_AUDIO_RENDERING_INFORMATION.
+            /// This section defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.Properties.RenderingInformationObjectV1"/>. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_AUDIO_RENDERING_INFORMATION.
             /// </summary>
             public static class AudioRendering
 
@@ -284,37 +284,37 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
                 //
                 // WPD_RENDERING_INFORMATION_PROFILES  
                 //   [ VT_UNKNOWN ] IPortableDeviceValuesCollection-where each element indicates the property settings for a supported profile.
-                public static PropertyKey Profiles => new PropertyKey(Guids.PortableDevices.Properties.RenderingInformationObjectPropertiesV1, 2);
+                public static PropertyKey Profiles => new PropertyKey(Guids.PortableDevices.Properties.RenderingInformationObjectV1, 2);
                 //
                 // WPD_RENDERING_INFORMATION_PROFILE_ENTRY_TYPE  
                 //   [ VT_UI4 ] Indicates whether a given entry (i.e. an IPortableDeviceValues) in WPD_RENDERING_INFORMATION_PROFILES relates to an Object or a Resource.
-                public static PropertyKey ProfileEntryType => new PropertyKey(Guids.PortableDevices.Properties.RenderingInformationObjectPropertiesV1, 3);
+                public static PropertyKey ProfileEntryType => new PropertyKey(Guids.PortableDevices.Properties.RenderingInformationObjectV1, 3);
                 //
                 // WPD_RENDERING_INFORMATION_PROFILE_ENTRY_CREATABLE_RESOURCES  
                 //   [ VT_UNKNOWN ] This is an IPortableDeviceKeyCollection identifying the resources that can be created on an object with this rendering profile.
-                public static PropertyKey ProfileEntryCreatableResources => new PropertyKey(Guids.PortableDevices.Properties.RenderingInformationObjectPropertiesV1, 4);
-
-            }
-
-            public static class NetworkAssociation
-
-            {
-
-                #region This section defines all Commands-Parameters and Options associated with: WPD_NETWORK_ASSOCIATION_PROPERTIES_V1. This category is for properties common to all network association objects.
-                //
-                // WPD_NETWORK_ASSOCIATION_HOST_NETWORK_IDENTIFIERS  
-                //   [ VT_VECTOR | VT_UI1 ] The list of EUI-64 host identifiers valid for this association.
-                public static PropertyKey HostNetworkIdentifiers => new PropertyKey(Guids.PortableDevices.Properties.NetworkAssociationPropertiesV1, 2);
-                //
-                // WPD_NETWORK_ASSOCIATION_X509V3SEQUENCE  
-                //   [ VT_VECTOR | VT_UI1 ] The sequence of X.509 v3 certificates to be provided for TLS server authentication.
-                public static PropertyKey X509v3Sequence => new PropertyKey(Guids.PortableDevices.Properties.NetworkAssociationPropertiesV1, 3);
-                #endregion
+                public static PropertyKey ProfileEntryCreatableResources => new PropertyKey(Guids.PortableDevices.Properties.RenderingInformationObjectV1, 4);
 
             }
 
             /// <summary>
-            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>.
+            /// This section defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.Properties.NetworkAssociationV1"/>. This category is for properties common to all network association objects.
+            /// </summary>
+            public static class NetworkAssociation
+
+            {
+                //
+                // WPD_NETWORK_ASSOCIATION_HOST_NETWORK_IDENTIFIERS  
+                //   [ VT_VECTOR | VT_UI1 ] The list of EUI-64 host identifiers valid for this association.
+                public static PropertyKey HostNetworkIdentifiers => new PropertyKey(Guids.PortableDevices.Properties.NetworkAssociationV1, 2);
+                //
+                // WPD_NETWORK_ASSOCIATION_X509V3SEQUENCE  
+                //   [ VT_VECTOR | VT_UI1 ] The sequence of X.509 v3 certificates to be provided for TLS server authentication.
+                public static PropertyKey X509v3Sequence => new PropertyKey(Guids.PortableDevices.Properties.NetworkAssociationV1, 3);
+
+            }
+
+            /// <summary>
+            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.Properties.ClientInformationV1"/>.
             /// </summary>
             public static class Client
 
@@ -323,102 +323,102 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
                 /// <para>Name: WPD_CLIENT_NAME</para>
                 /// <para>Description: Specifies the name the client uses to identify itself.</para>
                 /// <para>Type: VT_LPWSTR</para>
-                /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>, 2</para>
+                /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationV1"/>, 2</para>
                 /// </summary>
-                public static PropertyKey Name => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationPropertiesV1, 2);
+                public static PropertyKey Name => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationV1, 2);
 
                 /// <summary>
                 /// <para>Name: WPD_CLIENT_MAJOR_VERSION</para>
                 /// <para>Description: Specifies the major version of the client.</para>
                 /// <para>Type: VT_UI4</para>
-                /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>, 3</para>
+                /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationV1"/>, 3</para>
                 /// </summary>
-                public static PropertyKey MajorVersion => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationPropertiesV1, 3);
+                public static PropertyKey MajorVersion => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationV1, 3);
 
                 /// <summary>
                 /// <para>Name: WPD_CLIENT_MINOR_VERSION</para>
                 /// <para>Description: Specifies the major version of the client.</para>
                 /// <para>Type: VT_UI4</para>
-                /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>, 4</para>
+                /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationV1"/>, 4</para>
                 /// </summary>
-                public static PropertyKey MinorVersion => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationPropertiesV1, 4);
+                public static PropertyKey MinorVersion => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationV1, 4);
 
                 /// <summary>
                 /// <para>Name: WPD_CLIENT_REVISION</para>
                 /// <para>Description: Specifies the revision (or build number) of the client.</para>
                 /// <para>Type: VT_UI4</para>
-                /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>, 5</para>
+                /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationV1"/>, 5</para>
                 /// </summary>
-                public static PropertyKey Revision => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationPropertiesV1, 5);
+                public static PropertyKey Revision => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationV1, 5);
 
                 /// <summary>
                 /// <para>Name: WPD_CLIENT_WMDRM_APPLICATION_PRIVATE_KEY</para>
                 /// <para>Description: Specifies the Windows Media DRM application private key of the client.</para>
                 /// <para>Type: VT_VECTOR | VT_UI1</para>
-                /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>, 6</para>
+                /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationV1"/>, 6</para>
                 /// </summary>
-                public static PropertyKey WMDRMApplicationPrivateKey => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationPropertiesV1, 6);
+                public static PropertyKey WMDRMApplicationPrivateKey => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationV1, 6);
 
                 /// <summary>
                 /// <para>Name: WPD_CLIENT_WMDRM_APPLICATION_CERTIFICATE</para>
                 /// <para>Description: Specifies the Windows Media DRM application certificate of the client.</para>
                 /// <para>Type: VT_VECTOR | VT_UI1</para>
-                /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>, 7</para>
+                /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationV1"/>, 7</para>
                 /// </summary>
-                public static PropertyKey WMDRMApplicationCertificate => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationPropertiesV1, 7);
+                public static PropertyKey WMDRMApplicationCertificate => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationV1, 7);
 
                 /// <summary>
                 /// <para>Name: WPD_CLIENT_SECURITY_QUALITY_OF_SERVICE</para>
                 /// <para>Description: Specifies the Security Quality of Service for the connection to the driver. This relates to the Security Quality of Service flags for CreateFile. For example-these allow or disallow a driver to impersonate the client.</para>
                 /// <para>Type: VT_UI4</para>
-                /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>, 8</para>
+                /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationV1"/>, 8</para>
                 /// </summary>
-                public static PropertyKey SecurityQualityOfService => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationPropertiesV1, 8);
+                public static PropertyKey SecurityQualityOfService => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationV1, 8);
 
                 /// <summary>
                 /// <para>Name: WPD_CLIENT_DESIRED_ACCESS</para>
                 /// <para>Description: Specifies the desired access the client is requesting to this driver. The possible values are the same as for CreateFile (e.g. GENERIC_READ-GENERIC_WRITE etc.).</para>
                 /// <para>Type: VT_UI4</para>
-                /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>, 9</para>
+                /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationV1"/>, 9</para>
                 /// </summary>
-                public static PropertyKey DesiredAccess => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationPropertiesV1, 9);
+                public static PropertyKey DesiredAccess => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationV1, 9);
 
                 /// <summary>
                 /// <para>Name: WPD_CLIENT_SHARE_MODE</para>
                 /// <para>Description: Specifies the share mode the client is requesting to this driver. The possible values are the same as for CreateFile (e.g. FILE_SHARE_READ-FILE_SHARE_WRITE etc.).</para>
                 /// <para>Type: VT_UI4</para>
-                /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>, 10</para>
+                /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationV1"/>, 10</para>
                 /// </summary>
-                public static PropertyKey ShareMode => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationPropertiesV1, 10);
+                public static PropertyKey ShareMode => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationV1, 10);
 
                 /// <summary>
                 /// <para>Name: WPD_CLIENT_EVENT_COOKIE</para>
                 /// <para>Description: Client supplied cookie returned by the driver in events posted as a direct result of operations issued by this client.</para>
                 /// <para>Type: VT_LPWSTR</para>
-                /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>, 11</para>
+                /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationV1"/>, 11</para>
                 /// </summary>
-                public static PropertyKey EventCookie => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationPropertiesV1, 11);
+                public static PropertyKey EventCookie => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationV1, 11);
 
                 /// <summary>
                 /// <para>Name: WPD_CLIENT_MINIMUM_RESULTS_BUFFER_SIZE</para>
                 /// <para>Description: Specifies the minimum buffer size (in bytes) used for sending commands to the driver.</para>
                 /// <para>Type: VT_UI4</para>
-                /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>, 12</para>
+                /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationV1"/>, 12</para>
                 /// </summary>
-                public static PropertyKey MinimumResultsBufferSize => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationPropertiesV1, 12);
+                public static PropertyKey MinimumResultsBufferSize => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationV1, 12);
 
                 /// <summary>
                 /// <para>Name: WPD_CLIENT_MANUAL_CLOSE_ON_DISCONNECT</para>
                 /// <para>Description: An advanced option for clients that wish to manually call <see cref="IPortableDevice.Close"/> or <see cref="IPortableDeviceService.Close"/> for each object on device disconnect-instead of relying on the API to call Close on its behalf.</para>
                 /// <para>Type: VT_BOOL</para>
-                /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationPropertiesV1"/>, 13</para>
+                /// <para>FormatID: <see cref="Guids.PortableDevices.Properties.ClientInformationV1"/>, 13</para>
                 /// </summary>
-                public static PropertyKey ManualCloseOnDisconnect => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationPropertiesV1, 13);
+                public static PropertyKey ManualCloseOnDisconnect => new PropertyKey(Guids.PortableDevices.Properties.ClientInformationV1, 13);
 
             }
 
             /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.Properties.DevicePropertiesV1"/>, <see cref="Guids.PortableDevices.Properties.DevicePropertiesV2"/> and <see cref="Guids.PortableDevices.Properties.DevicePropertiesV3"/>.
+            /// This section defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.Properties.DeviceV1"/>, <see cref="Guids.PortableDevices.Properties.DeviceV2"/> and <see cref="Guids.PortableDevices.Properties.DeviceV3"/>.
             /// </summary>
             public static class DeviceProperty
 
@@ -426,83 +426,83 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
                 //
                 // WPD_DEVICE_SYNC_PARTNER  
                 //   [ VT_LPWSTR ] Indicates a human-readable description of a synchronization partner for the device.
-                public static PropertyKey SyncPartner => new PropertyKey(Guids.PortableDevices.Properties.DevicePropertiesV1, 2);
+                public static PropertyKey SyncPartner => new PropertyKey(Guids.PortableDevices.Properties.DeviceV1, 2);
                 //
                 // WPD_DEVICE_FIRMWARE_VERSION  
                 //   [ VT_LPWSTR ] Indicates the firmware version for the device.
-                public static PropertyKey FirmwareVersion => new PropertyKey(Guids.PortableDevices.Properties.DevicePropertiesV1, 3);
+                public static PropertyKey FirmwareVersion => new PropertyKey(Guids.PortableDevices.Properties.DeviceV1, 3);
                 //
                 // WPD_DEVICE_POWER_LEVEL  
                 //   [ VT_UI4 ] Indicates the power level of the device's battery.
-                public static PropertyKey PowerLevel => new PropertyKey(Guids.PortableDevices.Properties.DevicePropertiesV1, 4);
+                public static PropertyKey PowerLevel => new PropertyKey(Guids.PortableDevices.Properties.DeviceV1, 4);
                 //
                 // WPD_DEVICE_POWER_SOURCE  
                 //   [ VT_UI4 ] Indicates the power source of the device e.g. whether it is battery or external.
-                public static PropertyKey PowerSource => new PropertyKey(Guids.PortableDevices.Properties.DevicePropertiesV1, 5);
+                public static PropertyKey PowerSource => new PropertyKey(Guids.PortableDevices.Properties.DeviceV1, 5);
                 //
                 // WPD_DEVICE_PROTOCOL  
                 //   [ VT_LPWSTR ] Identifies the device protocol being used.
-                public static PropertyKey Protocol => new PropertyKey(Guids.PortableDevices.Properties.DevicePropertiesV1, 6);
+                public static PropertyKey Protocol => new PropertyKey(Guids.PortableDevices.Properties.DeviceV1, 6);
                 //
                 // WPD_DEVICE_MANUFACTURER  
                 //   [ VT_LPWSTR ] Identifies the device manufacturer.
-                public static PropertyKey Manufacturer => new PropertyKey(Guids.PortableDevices.Properties.DevicePropertiesV1, 7);
+                public static PropertyKey Manufacturer => new PropertyKey(Guids.PortableDevices.Properties.DeviceV1, 7);
                 //
                 // WPD_DEVICE_MODEL  
                 //   [ VT_LPWSTR ] Identifies the device model.
-                public static PropertyKey Model => new PropertyKey(Guids.PortableDevices.Properties.DevicePropertiesV1, 8);
+                public static PropertyKey Model => new PropertyKey(Guids.PortableDevices.Properties.DeviceV1, 8);
                 //
                 // WPD_DEVICE_SERIAL_NUMBER  
                 //   [ VT_LPWSTR ] Identifies the serial number of the device.
-                public static PropertyKey SerialNumber => new PropertyKey(Guids.PortableDevices.Properties.DevicePropertiesV1, 9);
+                public static PropertyKey SerialNumber => new PropertyKey(Guids.PortableDevices.Properties.DeviceV1, 9);
                 //
                 // WPD_DEVICE_SUPPORTS_NON_CONSUMABLE  
                 //   [ VT_BOOL ] Indicates whether the device supports non-consumable objects.
-                public static PropertyKey SupportsNonConsumable => new PropertyKey(Guids.PortableDevices.Properties.DevicePropertiesV1, 10);
+                public static PropertyKey SupportsNonConsumable => new PropertyKey(Guids.PortableDevices.Properties.DeviceV1, 10);
                 //
                 // WPD_DEVICE_DATETIME  
                 //   [ VT_DATE ] Represents the current date and time settings of the device.
-                public static PropertyKey DateTime => new PropertyKey(Guids.PortableDevices.Properties.DevicePropertiesV1, 11);
+                public static PropertyKey DateTime => new PropertyKey(Guids.PortableDevices.Properties.DeviceV1, 11);
                 //
                 // WPD_DEVICE_FRIENDLY_NAME  
                 //   [ VT_LPWSTR ] Represents the friendly name set by the user on the device.
-                public static PropertyKey FriendlyName => new PropertyKey(Guids.PortableDevices.Properties.DevicePropertiesV1, 12);
+                public static PropertyKey FriendlyName => new PropertyKey(Guids.PortableDevices.Properties.DeviceV1, 12);
                 //
                 // WPD_DEVICE_SUPPORTED_DRM_SCHEMES  
                 //   [ VT_UNKNOWN ] An IPortableDevicePropVariantCollection of VT_LPWSTR values indicating the Digital Rights Management schemes supported by the driver.
-                public static PropertyKey SupportedDRMSchemes => new PropertyKey(Guids.PortableDevices.Properties.DevicePropertiesV1, 13);
+                public static PropertyKey SupportedDRMSchemes => new PropertyKey(Guids.PortableDevices.Properties.DeviceV1, 13);
                 //
                 // WPD_DEVICE_SUPPORTED_FORMATS_ARE_ORDERED  
                 //   [ VT_BOOL ] Indicates whether the supported formats returned from the device are in a preferred order. (First format in the list is most preferred by the device-while the last is the least preferred.)
-                public static PropertyKey SupportedFormatsAreOrdered => new PropertyKey(Guids.PortableDevices.Properties.DevicePropertiesV1, 14);
+                public static PropertyKey SupportedFormatsAreOrdered => new PropertyKey(Guids.PortableDevices.Properties.DeviceV1, 14);
                 //
                 // WPD_DEVICE_TYPE  
                 //   [ VT_UI4 ] Indicates the device type-used for representation purposes only. Functional characteristics of the device are decided through functional objects.
-                public static PropertyKey Type => new PropertyKey(Guids.PortableDevices.Properties.DevicePropertiesV1, 15);
+                public static PropertyKey Type => new PropertyKey(Guids.PortableDevices.Properties.DeviceV1, 15);
                 //
                 // WPD_DEVICE_NETWORK_IDENTIFIER  
                 //   [ VT_UI8 ] Indicates the EUI-64 network identifier of the device-used for out-of-band Network Association operations.
-                public static PropertyKey NetworkIdentifier => new PropertyKey(Guids.PortableDevices.Properties.DevicePropertiesV1, 16);
+                public static PropertyKey NetworkIdentifier => new PropertyKey(Guids.PortableDevices.Properties.DeviceV1, 16);
                 //
                 // WPD_DEVICE_FUNCTIONAL_UNIQUE_ID  
                 //   [ VT_VECTOR | VT_UI1 ] Indicates a unique 16 byte identifier common across multiple transports supported by the device.
-                public static PropertyKey FunctionalUniqueId => new PropertyKey(Guids.PortableDevices.Properties.DevicePropertiesV2, 2);
+                public static PropertyKey FunctionalUniqueId => new PropertyKey(Guids.PortableDevices.Properties.DeviceV2, 2);
                 //
                 // WPD_DEVICE_MODEL_UNIQUE_ID  
                 //   [ VT_VECTOR | VT_UI1 ] Indicates a unique 16 byte identifier for cosmetic differentiation among different models of the device.
-                public static PropertyKey ModelUniqueId => new PropertyKey(Guids.PortableDevices.Properties.DevicePropertiesV2, 3);
+                public static PropertyKey ModelUniqueId => new PropertyKey(Guids.PortableDevices.Properties.DeviceV2, 3);
                 //
                 // WPD_DEVICE_TRANSPORT  
                 //   [ VT_UI4 ] Indicates the transport type (USB-IP-Bluetooth-etc.).
-                public static PropertyKey Transport => new PropertyKey(Guids.PortableDevices.Properties.DevicePropertiesV2, 4);
+                public static PropertyKey Transport => new PropertyKey(Guids.PortableDevices.Properties.DeviceV2, 4);
                 //
                 // WPD_DEVICE_USE_DEVICE_STAGE  
                 //   [ VT_BOOL ] If this property exists and is set to TRUE-the device can be used with Device Stage.
-                public static PropertyKey UseDeviceStage => new PropertyKey(Guids.PortableDevices.Properties.DevicePropertiesV2, 5);
+                public static PropertyKey UseDeviceStage => new PropertyKey(Guids.PortableDevices.Properties.DeviceV2, 5);
                 //
                 // WPD_DEVICE_EDP_IDENTITY  
                 //   [ VT_LPWSTR ] Represents EDP identity of the device.
-                public static PropertyKey EDPIdentity => new PropertyKey(Guids.PortableDevices.Properties.DevicePropertiesV3, 1);
+                public static PropertyKey EDPIdentity => new PropertyKey(Guids.PortableDevices.Properties.DeviceV3, 1);
 
             }
 
@@ -510,7 +510,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
             //
             // WPD_SERVICE_VERSION  
             //   [ VT_LPWSTR ] Indicates the implementation version of a service.
-            public static PropertyKey ServiceVersion => new PropertyKey(Guids.PortableDevices.Properties.ServicePropertiesV1, 2);
+            public static PropertyKey ServiceVersion => new PropertyKey(Guids.PortableDevices.Properties.ServiceV1, 2);
             #endregion
 
             /// <summary>
@@ -702,8 +702,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 
                 }
 
-                #region This section defines all Commands-Parameters and Options associated with: WPD_METHOD_ATTRIBUTES_V1 The properties in this category describe method attributes.
-
+                /// <summary>
+                /// This section defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.Properties.MethodAttributesV1"/>. The properties in this category describe method attributes.
+                /// </summary>
                 public static class MethodAttribute
 
                 {
@@ -727,9 +728,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 
                 }
 
-                #endregion
-                #region This section defines all Commands-Parameters and Options associated with: WPD_PARAMETER_ATTRIBUTES_V1 The properties in this category describe parameter attributes.
-
+                /// <summary>
+                /// This section defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.Properties.ParameterAttributesV1"/>. The properties in this category describe parameter attributes.
+                /// </summary>
                 public static class ParameterAttribute
 
                 {
@@ -785,61 +786,57 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 
                 }
 
-                #endregion
-
             }
 
             public static class Event
 
             {
 
+                /// <summary>
+                /// This section defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.Properties.EventV1"/> and <see cref="Guids.PortableDevices.Properties.EventV2"/>. The properties in this category are for properties that may be needed for event processing-but do not have object property equivalents(i.e.they are not exposed as object properties-but rather-used only as event parameters).
+                /// </summary>
                 public static class Parameter
 
                 {
-
-                    #region This section defines all Commands-Parameters and Options associated with: WPD_EVENT_PROPERTIES_V1 The properties in this category are for properties that may be needed for event processing-but do not have object property equivalents(i.e.they are not exposed as object properties-but rather-used only as event parameters).
                     //
                     // WPD_EVENT_PARAMETER_PNP_DEVICE_ID  
                     //   [ VT_LPWSTR ] Indicates the device that originated the event.
-                    public static PropertyKey PNPDeviceId => new PropertyKey(Guids.PortableDevices.Properties.EventPropertiesV1, 2);
+                    public static PropertyKey PNPDeviceId => new PropertyKey(Guids.PortableDevices.Properties.EventV1, 2);
                     //
                     // WPD_EVENT_PARAMETER_EVENT_ID  
                     //   [ VT_CLSID ] Indicates the event sent.
-                    public static PropertyKey EventId => new PropertyKey(Guids.PortableDevices.Properties.EventPropertiesV1, 3);
+                    public static PropertyKey EventId => new PropertyKey(Guids.PortableDevices.Properties.EventV1, 3);
                     //
                     // WPD_EVENT_PARAMETER_OPERATION_STATE  
                     //   [ VT_UI4 ] Indicates the current state of the operation (e.g. started-running-stopped etc.).
-                    public static PropertyKey OperationState => new PropertyKey(Guids.PortableDevices.Properties.EventPropertiesV1, 4);
+                    public static PropertyKey OperationState => new PropertyKey(Guids.PortableDevices.Properties.EventV1, 4);
                     //
                     // WPD_EVENT_PARAMETER_OPERATION_PROGRESS  
                     //   [ VT_UI4 ] Indicates the progress of a currently executing operation. Value is from 0 to 100-with 100 indicating that the operation is complete.
-                    public static PropertyKey OperationProgress => new PropertyKey(Guids.PortableDevices.Properties.EventPropertiesV1, 5);
+                    public static PropertyKey OperationProgress => new PropertyKey(Guids.PortableDevices.Properties.EventV1, 5);
                     //
                     // WPD_EVENT_PARAMETER_OBJECT_PARENT_PERSISTENT_UNIQUE_ID  
                     //   [ VT_LPWSTR ] Uniquely identifies the parent object-similar to WPD_OBJECT_PARENT_ID-but this ID will not change between sessions.
-                    public static PropertyKey ObjectParentPersistentUniqueId => new PropertyKey(Guids.PortableDevices.Properties.EventPropertiesV1, 6);
+                    public static PropertyKey ObjectParentPersistentUniqueId => new PropertyKey(Guids.PortableDevices.Properties.EventV1, 6);
                     //
                     // WPD_EVENT_PARAMETER_OBJECT_CREATION_COOKIE  
                     //   [ VT_LPWSTR ] This is the cookie handed back to a client when it requested an object creation using the IPortableDeviceContent::CreateObjectWithPropertiesAndData method.
-                    public static PropertyKey ObjectCreationCookie => new PropertyKey(Guids.PortableDevices.Properties.EventPropertiesV1, 7);
+                    public static PropertyKey ObjectCreationCookie => new PropertyKey(Guids.PortableDevices.Properties.EventV1, 7);
                     //
                     // WPD_EVENT_PARAMETER_CHILD_HIERARCHY_CHANGED  
                     //   [ VT_BOOL ] Indicates that the child hiearchy for the object has changed.
-                    public static PropertyKey ChildHierarchyChanged => new PropertyKey(Guids.PortableDevices.Properties.EventPropertiesV1, 8);
-
-                    #endregion
-                    #region This section defines all Commands-Parameters and Options associated with: WPD_EVENT_PROPERTIES_V2 The properties in this category are for properties that may be needed for event processing-but do not have object property equivalents(i.e.they are not exposed as object properties-but rather-used only as event parameters).
+                    public static PropertyKey ChildHierarchyChanged => new PropertyKey(Guids.PortableDevices.Properties.EventV1, 8);
+                    
                     //
                     // WPD_EVENT_PARAMETER_SERVICE_METHOD_CONTEXT  
                     //   [ VT_LPWSTR ] Indicates the service method invocation context.
-                    public static PropertyKey ServiceMethodContext => new PropertyKey(Guids.PortableDevices.Properties.EventPropertiesV2, 2);
-
-                    #endregion
+                    public static PropertyKey ServiceMethodContext => new PropertyKey(Guids.PortableDevices.Properties.EventV2, 2);
 
                 }
 
-                #region This section defines all Commands-Parameters and Options associated with: WPD_EVENT_OPTIONS_V1 The properties in this category describe event options.
-
+                /// <summary>
+                /// This section defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.Properties.EventOptionsV1"/>. The properties in this category describe event options.
+                /// </summary>
                 public class Option
 
                 {
@@ -855,9 +852,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 
                 }
 
-                #endregion
-                #region This section defines all Commands-Parameters and Options associated with: WPD_EVENT_ATTRIBUTES_V1 The properties in this category describe event attributes.
-
+                /// <summary>
+                /// This section defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.Properties.EventAttributesV1"/>. The properties in this category describe event attributes.
+                /// </summary>
                 public static class Attribute
 
                 {
@@ -899,97 +896,97 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
                     // WPD_OBJECT_ID 
                     //   [ VT_LPWSTR ] Uniquely identifies object on the Portable Device.
                     //   Recommended Device Services Property: PKEY_GenericObj_ObjectID
-                    public static PropertyKey Id => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 2);
+                    public static PropertyKey Id => new PropertyKey(Guids.PortableDevices.Properties.ObjectV1, 2);
                     //
                     // WPD_OBJECT_PARENT_ID 
                     //   [ VT_LPWSTR ] Object identifier indicating the parent object.
                     //   Recommended Device Services Property: PKEY_GenericObj_ParentID
-                    public static PropertyKey ParentId => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 3);
+                    public static PropertyKey ParentId => new PropertyKey(Guids.PortableDevices.Properties.ObjectV1, 3);
                     //
                     // WPD_OBJECT_NAME 
                     //   [ VT_LPWSTR ] The display name for this object.
                     //   Recommended Device Services Property: PKEY_GenericObj_Name
-                    public static PropertyKey Name => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 4);
+                    public static PropertyKey Name => new PropertyKey(Guids.PortableDevices.Properties.ObjectV1, 4);
                     //
                     // WPD_OBJECT_PERSISTENT_UNIQUE_ID 
                     //   [ VT_LPWSTR ] Uniquely identifies the object on the Portable Device-similar to WPD_OBJECT_ID-but this ID will not change between sessions.
                     //   Recommended Device Services Property: PKEY_GenericObj_PersistentUID
-                    public static PropertyKey PersistentUniqueId => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 5);
+                    public static PropertyKey PersistentUniqueId => new PropertyKey(Guids.PortableDevices.Properties.ObjectV1, 5);
                     //
                     // WPD_OBJECT_FORMAT 
                     //   [ VT_CLSID ] Indicates the format of the object's data.
                     //   Recommended Device Services Property: PKEY_GenericObj_ObjectFormat
-                    public static PropertyKey Format => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 6);
+                    public static PropertyKey Format => new PropertyKey(Guids.PortableDevices.Properties.ObjectV1, 6);
                     //
                     // WPD_OBJECT_ISHIDDEN 
                     //   [ VT_BOOL ] Indicates whether the object should be hidden.
                     //   Recommended Device Services Property: PKEY_GenericObj_Hidden
-                    public static PropertyKey IsHidden => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 9);
+                    public static PropertyKey IsHidden => new PropertyKey(Guids.PortableDevices.Properties.ObjectV1, 9);
                     //
                     // WPD_OBJECT_ISSYSTEM 
                     //   [ VT_BOOL ] Indicates whether the object represents system data.
                     //   Recommended Device Services Property: PKEY_GenericObj_SystemObject
-                    public static PropertyKey IsSystem => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 10);
+                    public static PropertyKey IsSystem => new PropertyKey(Guids.PortableDevices.Properties.ObjectV1, 10);
                     //
                     // WPD_OBJECT_SIZE 
                     //   [ VT_UI8 ] The size of the object data.
                     //   Recommended Device Services Property: PKEY_GenericObj_ObjectSize
-                    public static PropertyKey Size => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 11);
+                    public static PropertyKey Size => new PropertyKey(Guids.PortableDevices.Properties.ObjectV1, 11);
                     //
                     // WPD_OBJECT_ORIGINAL_FILE_NAME 
                     //   [ VT_LPWSTR ] Contains the name of the file this object represents.
                     //   Recommended Device Services Property: PKEY_GenericObj_ObjectFileName
-                    public static PropertyKey OriginalFileName => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 12);
+                    public static PropertyKey OriginalFileName => new PropertyKey(Guids.PortableDevices.Properties.ObjectV1, 12);
                     //
                     // WPD_OBJECT_NON_CONSUMABLE 
                     //   [ VT_BOOL ] This property determines whether or not this object is intended to be understood by the device-or whether it has been placed on the device just for storage.
                     //   Recommended Device Services Property: PKEY_GenericObj_NonConsumable
-                    public static PropertyKey NonConsumable => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 13);
+                    public static PropertyKey NonConsumable => new PropertyKey(Guids.PortableDevices.Properties.ObjectV1, 13);
                     //
                     // WPD_OBJECT_KEYWORDS 
                     //   [ VT_LPWSTR ] String containing a list of keywords associated with this object.
                     //   Recommended Device Services Property: PKEY_GenericObj_Keywords
-                    public static PropertyKey Keywords => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 15);
+                    public static PropertyKey Keywords => new PropertyKey(Guids.PortableDevices.Properties.ObjectV1, 15);
                     //
                     // WPD_OBJECT_SYNC_ID 
                     //   [ VT_LPWSTR ] Opaque string set by client to retain state between sessions without retaining a catalogue of connected device content.
                     //   Recommended Device Services Property: PKEY_GenericObj_SyncID
-                    public static PropertyKey SyncId => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 16);
+                    public static PropertyKey SyncId => new PropertyKey(Guids.PortableDevices.Properties.ObjectV1, 16);
                     //
                     // WPD_OBJECT_IS_DRM_PROTECTED 
                     //   [ VT_BOOL ] Indicates whether the media data is DRM protected.
                     //   Recommended Device Services Property: PKEY_GenericObj_DRMStatus
-                    public static PropertyKey IsDRMProtected => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 17);
+                    public static PropertyKey IsDRMProtected => new PropertyKey(Guids.PortableDevices.Properties.ObjectV1, 17);
                     //
                     // WPD_OBJECT_DATE_CREATED 
                     //   [ VT_DATE ] Indicates the date and time the object was created on the device.
                     //   Recommended Device Services Property: PKEY_GenericObj_DateCreated
-                    public static PropertyKey DateCreated => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 18);
+                    public static PropertyKey DateCreated => new PropertyKey(Guids.PortableDevices.Properties.ObjectV1, 18);
                     //
                     // WPD_OBJECT_DATE_MODIFIED 
                     //   [ VT_DATE ] Indicates the date and time the object was modified on the device.
                     //   Recommended Device Services Property: PKEY_GenericObj_DateModified
-                    public static PropertyKey DateModified => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 19);
+                    public static PropertyKey DateModified => new PropertyKey(Guids.PortableDevices.Properties.ObjectV1, 19);
                     //
                     // WPD_OBJECT_DATE_AUTHORED 
                     //   [ VT_DATE ] Indicates the date and time the object was authored (e.g. for music-this would be the date the music was recorded).
                     //   Recommended Device Services Property: PKEY_GenericObj_DateAuthored
-                    public static PropertyKey DateAuthored => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 20);
+                    public static PropertyKey DateAuthored => new PropertyKey(Guids.PortableDevices.Properties.ObjectV1, 20);
                     //
                     // WPD_OBJECT_BACK_REFERENCES 
                     //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection of type VT_LPWSTR indicating a list of ObjectIDs.
                     //   Recommended Device Services Property: PKEY_GenericObj_ReferenceParentID
-                    public static PropertyKey BackReferences => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 21);
+                    public static PropertyKey BackReferences => new PropertyKey(Guids.PortableDevices.Properties.ObjectV1, 21);
                     //
                     // WPD_OBJECT_CAN_DELETE 
                     //   [ VT_BOOL ] Indicates whether the object can be deleted-or not.
                     //   Recommended Device Services Property: PKEY_GenericObj_ProtectionStatus
-                    public static PropertyKey CanDelete => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 26);
+                    public static PropertyKey CanDelete => new PropertyKey(Guids.PortableDevices.Properties.ObjectV1, 26);
                     //
                     // WPD_OBJECT_LANGUAGE_LOCALE 
                     //   [ VT_LPWSTR ] Identifies the language of this object. If multiple languages are contained in this object-it should identify the primary language (if any).
                     //   Recommended Device Services Property: PKEY_GenericObj_LanguageLocale
-                    public static PropertyKey LanguageLocale => new PropertyKey(Guids.PortableDevices.Properties.ObjectPropertiesV1, 27);
+                    public static PropertyKey LanguageLocale => new PropertyKey(Guids.PortableDevices.Properties.ObjectV1, 27);
 
                 }
 
@@ -997,7 +994,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
                 // WPD_FOLDER_CONTENT_TYPES_ALLOWED 
                 //   [ VT_UNKNOWN ] Indicates the subset of content types that can be created in this folder directly (i.e. children may have different restrictions).
                 //   Recommended Device Services Property: None
-                public static PropertyKey FolderContentTypesAllowed => new PropertyKey(Guids.PortableDevices.Properties.FolderObjectPropertiesV1, 2);
+                public static PropertyKey FolderContentTypesAllowed => new PropertyKey(Guids.PortableDevices.Properties.FolderObjectV1, 2);
 
                 public static class Image
 
@@ -1007,42 +1004,42 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
                     // WPD_IMAGE_BITDEPTH 
                     //   [ VT_UI4 ] Indicates the bitdepth of an image
                     //   Recommended Device Services Property: PKEY_ImageObj_ImageBitDepth
-                    public static PropertyKey BitDepth => new PropertyKey(Guids.PortableDevices.Properties.ImageObjectPropertiesV1, 3);
+                    public static PropertyKey BitDepth => new PropertyKey(Guids.PortableDevices.Properties.ImageObjectV1, 3);
                     //
                     // WPD_IMAGE_CROPPED_STATUS 
                     //   [ VT_UI4 ] Signals whether the file has been cropped.
                     //   Recommended Device Services Property: PKEY_ImageObj_IsCropped
-                    public static PropertyKey CroppedStatus => new PropertyKey(Guids.PortableDevices.Properties.ImageObjectPropertiesV1, 4);
+                    public static PropertyKey CroppedStatus => new PropertyKey(Guids.PortableDevices.Properties.ImageObjectV1, 4);
                     //
                     // WPD_IMAGE_COLOR_CORRECTED_STATUS 
                     //   [ VT_UI4 ] Signals whether the file has been color corrected.
                     //   Recommended Device Services Property: PKEY_ImageObj_IsColorCorrected
-                    public static PropertyKey ColorCorrectedStatus => new PropertyKey(Guids.PortableDevices.Properties.ImageObjectPropertiesV1, 5);
+                    public static PropertyKey ColorCorrectedStatus => new PropertyKey(Guids.PortableDevices.Properties.ImageObjectV1, 5);
                     //
                     // WPD_IMAGE_FNUMBER 
                     //   [ VT_UI4 ] Identifies the aperture setting of the lens when this image was captured.
                     //   Recommended Device Services Property: PKEY_ImageObj_Aperature
-                    public static PropertyKey FNumber => new PropertyKey(Guids.PortableDevices.Properties.ImageObjectPropertiesV1, 6);
+                    public static PropertyKey FNumber => new PropertyKey(Guids.PortableDevices.Properties.ImageObjectV1, 6);
                     //
                     // WPD_IMAGE_EXPOSURE_TIME 
                     //   [ VT_UI4 ] Identifies the shutter speed of the device when this image was captured.
                     //   Recommended Device Services Property: PKEY_ImageObj_Exposure
-                    public static PropertyKey ExposureTime => new PropertyKey(Guids.PortableDevices.Properties.ImageObjectPropertiesV1, 7);
+                    public static PropertyKey ExposureTime => new PropertyKey(Guids.PortableDevices.Properties.ImageObjectV1, 7);
                     //
                     // WPD_IMAGE_EXPOSURE_INDEX 
                     //   [ VT_UI4 ] Identifies the emulation of film speed settings when this image was captured.
                     //   Recommended Device Services Property: PKEY_ImageObj_ISOSpeed
-                    public static PropertyKey ExposureIndex => new PropertyKey(Guids.PortableDevices.Properties.ImageObjectPropertiesV1, 8);
+                    public static PropertyKey ExposureIndex => new PropertyKey(Guids.PortableDevices.Properties.ImageObjectV1, 8);
                     //
                     // WPD_IMAGE_HORIZONTAL_RESOLUTION 
                     //   [ VT_R8 ] Indicates the horizontal resolution (DPI) of an image
                     //   Recommended Device Services Property: None
-                    public static PropertyKey HorizontalResolution => new PropertyKey(Guids.PortableDevices.Properties.ImageObjectPropertiesV1, 9);
+                    public static PropertyKey HorizontalResolution => new PropertyKey(Guids.PortableDevices.Properties.ImageObjectV1, 9);
                     //
                     // WPD_IMAGE_VERTICAL_RESOLUTION 
                     //   [ VT_R8 ] Indicates the vertical resolution (DPI) of an image
                     //   Recommended Device Services Property: None
-                    public static PropertyKey VerticalResolution => new PropertyKey(Guids.PortableDevices.Properties.ImageObjectPropertiesV1, 10);
+                    public static PropertyKey VerticalResolution => new PropertyKey(Guids.PortableDevices.Properties.ImageObjectV1, 10);
 
                 }
 
@@ -1053,312 +1050,312 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
                     // WPD_CONTACT_DISPLAY_NAME 
                     //   [ VT_LPWSTR ] Indicates the display name of the contact (e.g "John Doe")
                     //   Recommended Device Services Property: None
-                    public static PropertyKey DisplayName => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 2);
+                    public static PropertyKey DisplayName => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 2);
                     //
                     // WPD_CONTACT_FIRST_NAME 
                     //   [ VT_LPWSTR ] Indicates the first name of the contact (e.g. "John")
                     //   Recommended Device Services Property: PKEY_ContactObj_GivenName
-                    public static PropertyKey FirstName => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 3);
+                    public static PropertyKey FirstName => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 3);
                     //
                     // WPD_CONTACT_MIDDLE_NAMES 
                     //   [ VT_LPWSTR ] Indicates the middle name of the contact
                     //   Recommended Device Services Property: PKEY_ContactObj_MiddleNames
-                    public static PropertyKey MiddleNames => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 4);
+                    public static PropertyKey MiddleNames => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 4);
                     //
                     // WPD_CONTACT_LAST_NAME 
                     //   [ VT_LPWSTR ] Indicates the last name of the contact (e.g. "Doe")
                     //   Recommended Device Services Property: PKEY_ContactObj_FamilyName
-                    public static PropertyKey LastName => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 5);
+                    public static PropertyKey LastName => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 5);
                     //
                     // WPD_CONTACT_PREFIX 
                     //   [ VT_LPWSTR ] Indicates the prefix of the name of the contact (e.g. "Mr.")
                     //   Recommended Device Services Property: PKEY_ContactObj_Title
-                    public static PropertyKey Prefix => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 6);
+                    public static PropertyKey Prefix => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 6);
                     //
                     // WPD_CONTACT_SUFFIX 
                     //   [ VT_LPWSTR ] Indicates the suffix of the name of the contact (e.g. "Jr.")
                     //   Recommended Device Services Property: PKEY_ContactObj_Suffix
-                    public static PropertyKey Suffix => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 7);
+                    public static PropertyKey Suffix => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 7);
                     //
                     // WPD_CONTACT_PHONETIC_FIRST_NAME 
                     //   [ VT_LPWSTR ] The phonetic guide for pronouncing the contact's first name.
                     //   Recommended Device Services Property: PKEY_ContactObj_PhoneticGivenName
-                    public static PropertyKey PhoneticFirstName => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 8);
+                    public static PropertyKey PhoneticFirstName => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 8);
                     //
                     // WPD_CONTACT_PHONETIC_LAST_NAME 
                     //   [ VT_LPWSTR ] The phonetic guide for pronouncing the contact's last name.
                     //   Recommended Device Services Property: PKEY_ContactObj_PhoneticFamilyName
-                    public static PropertyKey PhoneticLastName => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 9);
+                    public static PropertyKey PhoneticLastName => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 9);
                     //
                     // WPD_CONTACT_PERSONAL_FULL_POSTAL_ADDRESS 
                     //   [ VT_LPWSTR ] Indicates the full postal address of the contact (e.g. "555 Dial Drive-PhoneLand-WA 12345")
                     //   Recommended Device Services Property: PKEY_ContactObj_PersonalAddressFull
-                    public static PropertyKey PersonalFullPostalAddress => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 10);
+                    public static PropertyKey PersonalFullPostalAddress => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 10);
                     //
                     // WPD_CONTACT_PERSONAL_POSTAL_ADDRESS_LINE1 
                     //   [ VT_LPWSTR ] Indicates the first line of a postal address of the contact (e.g. "555 Dial Drive")
                     //   Recommended Device Services Property: PKEY_ContactObj_PersonalAddressStreet
-                    public static PropertyKey PersonalPostalAddressLine1 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 11);
+                    public static PropertyKey PersonalPostalAddressLine1 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 11);
                     //
                     // WPD_CONTACT_PERSONAL_POSTAL_ADDRESS_LINE2 
                     //   [ VT_LPWSTR ] Indicates the second line of a postal address of the contact
                     //   Recommended Device Services Property: PKEY_ContactObj_PersonalAddressLine2
-                    public static PropertyKey PersonalPostalAddressLine2 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 12);
+                    public static PropertyKey PersonalPostalAddressLine2 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 12);
                     //
                     // WPD_CONTACT_PERSONAL_POSTAL_ADDRESS_CITY 
                     //   [ VT_LPWSTR ] Indicates the city of a postal address of the contact (e.g. "PhoneLand")
                     //   Recommended Device Services Property: PKEY_ContactObj_PersonalAddressCity
-                    public static PropertyKey PersonalPostalAddressCity => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 13);
+                    public static PropertyKey PersonalPostalAddressCity => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 13);
                     //
                     // WPD_CONTACT_PERSONAL_POSTAL_ADDRESS_REGION 
                     //   [ VT_LPWSTR ] Indicates the region of a postal address of the contact
                     //   Recommended Device Services Property: PKEY_ContactObj_PersonalAddressRegion
-                    public static PropertyKey PersonalPostalAddressRegion => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 14);
+                    public static PropertyKey PersonalPostalAddressRegion => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 14);
                     //
                     // WPD_CONTACT_PERSONAL_POSTAL_ADDRESS_POSTAL_CODE 
                     //   [ VT_LPWSTR ] Indicates the postal code of the address.
                     //   Recommended Device Services Property: PKEY_ContactObj_PersonalAddressPostalCode
-                    public static PropertyKey PersonalPostalAddressPostalCode => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 15);
+                    public static PropertyKey PersonalPostalAddressPostalCode => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 15);
                     //
                     // WPD_CONTACT_PERSONAL_POSTAL_ADDRESS_COUNTRY 
                     //   [ VT_LPWSTR ] 
                     //   Recommended Device Services Property: PKEY_ContactObj_PersonalAddressCountry
-                    public static PropertyKey PersonalPostalAddressCountry => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 16);
+                    public static PropertyKey PersonalPostalAddressCountry => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 16);
                     //
                     // WPD_CONTACT_BUSINESS_FULL_POSTAL_ADDRESS 
                     //   [ VT_LPWSTR ] Indicates the full postal address of the contact (e.g. "555 Dial Drive-PhoneLand-WA 12345")
                     //   Recommended Device Services Property: PKEY_ContactObj_BusinessAddressFull
-                    public static PropertyKey BusinessFullPostalAddress => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 17);
+                    public static PropertyKey BusinessFullPostalAddress => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 17);
                     //
                     // WPD_CONTACT_BUSINESS_POSTAL_ADDRESS_LINE1 
                     //   [ VT_LPWSTR ] Indicates the first line of a postal address of the contact (e.g. "555 Dial Drive")
                     //   Recommended Device Services Property: PKEY_ContactObj_BusinessAddressStreet
-                    public static PropertyKey BusinessPostalAddressLine1 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 18);
+                    public static PropertyKey BusinessPostalAddressLine1 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 18);
                     //
                     // WPD_CONTACT_BUSINESS_POSTAL_ADDRESS_LINE2 
                     //   [ VT_LPWSTR ] Indicates the second line of a postal address of the contact
                     //   Recommended Device Services Property: PKEY_ContactObj_BusinessAddressLine2
-                    public static PropertyKey BusinessPostalAddressLine2 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 19);
+                    public static PropertyKey BusinessPostalAddressLine2 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 19);
                     //
                     // WPD_CONTACT_BUSINESS_POSTAL_ADDRESS_CITY 
                     //   [ VT_LPWSTR ] Indicates the city of a postal address of the contact (e.g. "PhoneLand")
                     //   Recommended Device Services Property: PKEY_ContactObj_BusinessAddressCity
-                    public static PropertyKey BusinessPostalAddressCity => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 20);
+                    public static PropertyKey BusinessPostalAddressCity => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 20);
                     //
                     // WPD_CONTACT_BUSINESS_POSTAL_ADDRESS_REGION 
                     //   [ VT_LPWSTR ] 
                     //   Recommended Device Services Property: PKEY_ContactObj_BusinessAddressRegion
-                    public static PropertyKey BusinessPostalAddressRegion => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 21);
+                    public static PropertyKey BusinessPostalAddressRegion => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 21);
                     //
                     // WPD_CONTACT_BUSINESS_POSTAL_ADDRESS_POSTAL_CODE 
                     //   [ VT_LPWSTR ] Indicates the postal code of the address.
                     //   Recommended Device Services Property: PKEY_ContactObj_BusinessAddressPostalCode
-                    public static PropertyKey BusinessPostalAddressPostalCode => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 22);
+                    public static PropertyKey BusinessPostalAddressPostalCode => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 22);
                     //
                     // WPD_CONTACT_BUSINESS_POSTAL_ADDRESS_COUNTRY 
                     //   [ VT_LPWSTR ] 
                     //   Recommended Device Services Property: PKEY_ContactObj_BusinessAddressCountry
-                    public static PropertyKey BusinessPostalAddressCountry => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 23);
+                    public static PropertyKey BusinessPostalAddressCountry => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 23);
                     //
                     // WPD_CONTACT_OTHER_FULL_POSTAL_ADDRESS 
                     //   [ VT_LPWSTR ] Indicates the full postal address of the contact (e.g. "555 Dial Drive-PhoneLand-WA 12345").
                     //   Recommended Device Services Property: PKEY_ContactObj_OtherAddressFull
-                    public static PropertyKey OtherFullPostalAddress => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 24);
+                    public static PropertyKey OtherFullPostalAddress => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 24);
                     //
                     // WPD_CONTACT_OTHER_POSTAL_ADDRESS_LINE1 
                     //   [ VT_LPWSTR ] Indicates the first line of a postal address of the contact (e.g. "555 Dial Drive").
                     //   Recommended Device Services Property: PKEY_ContactObj_OtherAddressStreet
-                    public static PropertyKey OtherPostalAddressLine1 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 25);
+                    public static PropertyKey OtherPostalAddressLine1 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 25);
                     //
                     // WPD_CONTACT_OTHER_POSTAL_ADDRESS_LINE2 
                     //   [ VT_LPWSTR ] Indicates the second line of a postal address of the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_OtherAddressLine2
-                    public static PropertyKey OtherPostalAddressLine2 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 26);
+                    public static PropertyKey OtherPostalAddressLine2 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 26);
                     //
                     // WPD_CONTACT_OTHER_POSTAL_ADDRESS_CITY 
                     //   [ VT_LPWSTR ] Indicates the city of a postal address of the contact (e.g. "PhoneLand").
                     //   Recommended Device Services Property: PKEY_ContactObj_OtherAddressCity
-                    public static PropertyKey OtherPostalAddressCity => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 27);
+                    public static PropertyKey OtherPostalAddressCity => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 27);
                     //
                     // WPD_CONTACT_OTHER_POSTAL_ADDRESS_REGION 
                     //   [ VT_LPWSTR ] Indicates the region of a postal address of the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_OtherAddressRegion
-                    public static PropertyKey OtherPostalAddressRegion => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 28);
+                    public static PropertyKey OtherPostalAddressRegion => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 28);
                     //
                     // WPD_CONTACT_OTHER_POSTAL_ADDRESS_POSTAL_CODE 
                     //   [ VT_LPWSTR ] Indicates the postal code of the address.
                     //   Recommended Device Services Property: PKEY_ContactObj_OtherAddressPostalCode
-                    public static PropertyKey OtherPostalAddressPostalCode => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 29);
+                    public static PropertyKey OtherPostalAddressPostalCode => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 29);
                     //
                     // WPD_CONTACT_OTHER_POSTAL_ADDRESS_POSTAL_COUNTRY 
                     //   [ VT_LPWSTR ] Indicates the country/region of the postal address.
                     //   Recommended Device Services Property: PKEY_ContactObj_OtherAddressCountry
-                    public static PropertyKey OtherPostalAddressPostalCountry => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 30);
+                    public static PropertyKey OtherPostalAddressPostalCountry => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 30);
                     //
                     // WPD_CONTACT_PRIMARY_EMAIL_ADDRESS 
                     //   [ VT_LPWSTR ] Indicates the primary email address for the contact e.g. "someone@example.com"
                     //   Recommended Device Services Property: PKEY_ContactObj_Email
-                    public static PropertyKey PrimaryEmailAddress => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 31);
+                    public static PropertyKey PrimaryEmailAddress => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 31);
                     //
                     // WPD_CONTACT_PERSONAL_EMAIL 
                     //   [ VT_LPWSTR ] Indicates the personal email address for the contact e.g. "someone@example.com"
                     //   Recommended Device Services Property: PKEY_ContactObj_PersonalEmail
-                    public static PropertyKey PersonalEmail => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 32);
+                    public static PropertyKey PersonalEmail => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 32);
                     //
                     // WPD_CONTACT_PERSONAL_EMAIL2 
                     //   [ VT_LPWSTR ] Indicates an alternate personal email address for the contact e.g. "someone@example.com"
                     //   Recommended Device Services Property: PKEY_ContactObj_PersonalEmail2
-                    public static PropertyKey PersonalEmail2 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 33);
+                    public static PropertyKey PersonalEmail2 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 33);
                     //
                     // WPD_CONTACT_BUSINESS_EMAIL 
                     //   [ VT_LPWSTR ] Indicates the business email address for the contact e.g. "someone@example.com"
                     //   Recommended Device Services Property: PKEY_ContactObj_BusinessEmail
-                    public static PropertyKey BusinessEmail => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 34);
+                    public static PropertyKey BusinessEmail => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 34);
                     //
                     // WPD_CONTACT_BUSINESS_EMAIL2 
                     //   [ VT_LPWSTR ] Indicates an alternate business email address for the contact e.g. "someone@example.com"
                     //   Recommended Device Services Property: PKEY_ContactObj_BusinessEmail2
-                    public static PropertyKey BusinessEmail2 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 35);
+                    public static PropertyKey BusinessEmail2 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 35);
                     //
                     // WPD_CONTACT_OTHER_EMAILS 
                     //   [ VT_UNKNOWN ] An IPortableDevicePropVariantCollection of type VT_LPWSTR-where each element is an alternate email addresses for the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_OtherEmail
-                    public static PropertyKey OtherEmails => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 36);
+                    public static PropertyKey OtherEmails => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 36);
                     //
                     // WPD_CONTACT_PRIMARY_PHONE 
                     //   [ VT_LPWSTR ] Indicates the primary phone number for the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_Phone
-                    public static PropertyKey PrimaryPhone => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 37);
+                    public static PropertyKey PrimaryPhone => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 37);
                     //
                     // WPD_CONTACT_PERSONAL_PHONE 
                     //   [ VT_LPWSTR ] Indicates the personal phone number for the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_PersonalPhone
-                    public static PropertyKey PersonalPhone => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 38);
+                    public static PropertyKey PersonalPhone => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 38);
                     //
                     // WPD_CONTACT_PERSONAL_PHONE2 
                     //   [ VT_LPWSTR ] Indicates an alternate personal phone number for the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_PersonalPhone2
-                    public static PropertyKey PersonalPhone2 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 39);
+                    public static PropertyKey PersonalPhone2 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 39);
                     //
                     // WPD_CONTACT_BUSINESS_PHONE 
                     //   [ VT_LPWSTR ] Indicates the business phone number for the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_BusinessPhone
-                    public static PropertyKey BusinessPhone => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 40);
+                    public static PropertyKey BusinessPhone => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 40);
                     //
                     // WPD_CONTACT_BUSINESS_PHONE2 
                     //   [ VT_LPWSTR ] Indicates an alternate business phone number for the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_BusinessPhone2
-                    public static PropertyKey BusinessPhone2 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 41);
+                    public static PropertyKey BusinessPhone2 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 41);
                     //
                     // WPD_CONTACT_MOBILE_PHONE 
                     //   [ VT_LPWSTR ] Indicates the mobile phone number for the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_MobilePhone
-                    public static PropertyKey MobilePhone => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 42);
+                    public static PropertyKey MobilePhone => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 42);
                     //
                     // WPD_CONTACT_MOBILE_PHONE2 
                     //   [ VT_LPWSTR ] Indicates an alternate mobile phone number for the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_MobilePhone2
-                    public static PropertyKey MobilePhone2 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 43);
+                    public static PropertyKey MobilePhone2 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 43);
                     //
                     // WPD_CONTACT_PERSONAL_FAX 
                     //   [ VT_LPWSTR ] Indicates the personal fax number for the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_PersonalFax
-                    public static PropertyKey PersonalFax => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 44);
+                    public static PropertyKey PersonalFax => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 44);
                     //
                     // WPD_CONTACT_BUSINESS_FAX 
                     //   [ VT_LPWSTR ] Indicates the business fax number for the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_BusinessFax
-                    public static PropertyKey BusinessFax => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 45);
+                    public static PropertyKey BusinessFax => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 45);
                     //
                     // WPD_CONTACT_PAGER 
                     //   [ VT_LPWSTR ] 
                     //   Recommended Device Services Property: PKEY_ContactObj_Pager
-                    public static PropertyKey Pager => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 46);
+                    public static PropertyKey Pager => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 46);
                     //
                     // WPD_CONTACT_OTHER_PHONES 
                     //   [ VT_UNKNOWN ] An IPortableDevicePropVariantCollection of type VT_LPWSTR-where each element is an alternate phone number for the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_OtherPhone
-                    public static PropertyKey OtherPhones => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 47);
+                    public static PropertyKey OtherPhones => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 47);
                     //
                     // WPD_CONTACT_PRIMARY_WEB_ADDRESS 
                     //   [ VT_LPWSTR ] Indicates the primary web address for the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_WebAddress
-                    public static PropertyKey PrimaryWebAddress => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 48);
+                    public static PropertyKey PrimaryWebAddress => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 48);
                     //
                     // WPD_CONTACT_PERSONAL_WEB_ADDRESS 
                     //   [ VT_LPWSTR ] Indicates the personal web address for the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_PersonalWebAddress
-                    public static PropertyKey PersonalWebAddress => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 49);
+                    public static PropertyKey PersonalWebAddress => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 49);
                     //
                     // WPD_CONTACT_BUSINESS_WEB_ADDRESS 
                     //   [ VT_LPWSTR ] Indicates the business web address for the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_BusinessWebAddress
-                    public static PropertyKey BusinessWebAddress => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 50);
+                    public static PropertyKey BusinessWebAddress => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 50);
                     //
                     // WPD_CONTACT_INSTANT_MESSENGER 
                     //   [ VT_LPWSTR ] Indicates the instant messenger address for the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_IMAddress
-                    public static PropertyKey InstantMessenger => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 51);
+                    public static PropertyKey InstantMessenger => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 51);
                     //
                     // WPD_CONTACT_INSTANT_MESSENGER2 
                     //   [ VT_LPWSTR ] Indicates an alternate instant messenger address for the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_IMAddress2
-                    public static PropertyKey InstantMessenger2 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 52);
+                    public static PropertyKey InstantMessenger2 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 52);
                     //
                     // WPD_CONTACT_INSTANT_MESSENGER3 
                     //   [ VT_LPWSTR ] Indicates an alternate instant messenger address for the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_IMAddress3
-                    public static PropertyKey InstantMessenger3 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 53);
+                    public static PropertyKey InstantMessenger3 => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 53);
                     //
                     // WPD_CONTACT_COMPANY_NAME 
                     //   [ VT_LPWSTR ] Indicates the company name for the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_Organization
-                    public static PropertyKey CompanyName => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 54);
+                    public static PropertyKey CompanyName => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 54);
                     //
                     // WPD_CONTACT_PHONETIC_COMPANY_NAME 
                     //   [ VT_LPWSTR ] The phonetic guide for pronouncing the contact's company name.
                     //   Recommended Device Services Property: PKEY_ContactObj_PhoneticOrganization
-                    public static PropertyKey PhoneticCompanyName => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 55);
+                    public static PropertyKey PhoneticCompanyName => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 55);
                     //
                     // WPD_CONTACT_ROLE 
                     //   [ VT_LPWSTR ] Indicates the role for the contact e.g. "Software Engineer".
                     //   Recommended Device Services Property: PKEY_ContactObj_Role
-                    public static PropertyKey Role => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 56);
+                    public static PropertyKey Role => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 56);
                     //
                     // WPD_CONTACT_BIRTHDATE 
                     //   [ VT_DATE ] Indicates the birthdate for the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_Birthdate
-                    public static PropertyKey BirthDate => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 57);
+                    public static PropertyKey BirthDate => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 57);
                     //
                     // WPD_CONTACT_PRIMARY_FAX 
                     //   [ VT_LPWSTR ] Indicates the primary fax number for the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_Fax
-                    public static PropertyKey PrimaryFax => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 58);
+                    public static PropertyKey PrimaryFax => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 58);
                     //
                     // WPD_CONTACT_SPOUSE 
                     //   [ VT_LPWSTR ] Indicates the full name of the spouse/domestic partner for the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_Spouse
-                    public static PropertyKey Spouse => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 59);
+                    public static PropertyKey Spouse => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 59);
                     //
                     // WPD_CONTACT_CHILDREN 
                     //   [ VT_UNKNOWN ] An IPortableDevicePropVariantCollection of type VT_LPWSTR-where each element is the full name of a child of the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_Children
-                    public static PropertyKey Children => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 60);
+                    public static PropertyKey Children => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 60);
                     //
                     // WPD_CONTACT_ASSISTANT 
                     //   [ VT_LPWSTR ] Indicates the full name of the assistant for the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_Assistant
-                    public static PropertyKey Assistant => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 61);
+                    public static PropertyKey Assistant => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 61);
                     //
                     // WPD_CONTACT_ANNIVERSARY_DATE 
                     //   [ VT_DATE ] Indicates the anniversary date for the contact.
                     //   Recommended Device Services Property: PKEY_ContactObj_AnniversaryDate
-                    public static PropertyKey AnniversaryDate => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 62);
+                    public static PropertyKey AnniversaryDate => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 62);
                     //
                     // WPD_CONTACT_RINGTONE 
                     //   [ VT_LPWSTR ] Indicates an object id of a ringtone file on the device.
                     //   Recommended Device Services Property: PKEY_ContactObj_Ringtone
-                    public static PropertyKey Ringtone => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectPropertiesV1, 63);
+                    public static PropertyKey Ringtone => new PropertyKey(Guids.PortableDevices.Properties.ContactObjectV1, 63);
 
                 }
 
@@ -1369,52 +1366,52 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
                     // WPD_MUSIC_ALBUM 
                     //   [ VT_LPWSTR ] Indicates the album of the music file.
                     //   Recommended Device Services Property: PKEY_MediaObj_AlbumName
-                    public static PropertyKey MusicAlbum => new PropertyKey(Guids.PortableDevices.Properties.MusicObjectPropertiesV1, 3);
+                    public static PropertyKey MusicAlbum => new PropertyKey(Guids.PortableDevices.Properties.MusicObjectV1, 3);
                     //
                     // WPD_MUSIC_TRACK 
                     //   [ VT_UI4 ] Indicates the track number for the music file.
                     //   Recommended Device Services Property: PKEY_MediaObj_Track
-                    public static PropertyKey MusicTrack => new PropertyKey(Guids.PortableDevices.Properties.MusicObjectPropertiesV1, 4);
+                    public static PropertyKey MusicTrack => new PropertyKey(Guids.PortableDevices.Properties.MusicObjectV1, 4);
                     //
                     // WPD_MUSIC_LYRICS 
                     //   [ VT_LPWSTR ] Indicates the lyrics for the music file.
                     //   Recommended Device Services Property: PKEY_AudioObj_Lyrics
-                    public static PropertyKey MusicLyrics => new PropertyKey(Guids.PortableDevices.Properties.MusicObjectPropertiesV1, 6);
+                    public static PropertyKey MusicLyrics => new PropertyKey(Guids.PortableDevices.Properties.MusicObjectV1, 6);
                     //
                     // WPD_MUSIC_MOOD 
                     //   [ VT_LPWSTR ] Indicates the mood for the music file.
                     //   Recommended Device Services Property: PKEY_MediaObj_Mood
-                    public static PropertyKey MusicMood => new PropertyKey(Guids.PortableDevices.Properties.MusicObjectPropertiesV1, 8);
+                    public static PropertyKey MusicMood => new PropertyKey(Guids.PortableDevices.Properties.MusicObjectV1, 8);
                     //
                     // WPD_AUDIO_BITRATE 
                     //   [ VT_UI4 ] Indicates the bit rate for the audio data-specified in bits per second.
                     //   Recommended Device Services Property: PKEY_AudioObj_AudioBitRate
-                    public static PropertyKey AudioBitRate => new PropertyKey(Guids.PortableDevices.Properties.MusicObjectPropertiesV1, 9);
+                    public static PropertyKey AudioBitRate => new PropertyKey(Guids.PortableDevices.Properties.MusicObjectV1, 9);
                     //
                     // WPD_AUDIO_CHANNEL_COUNT 
                     //   [ VT_R4 ] Indicates the number of channels in this audio file e.g. 1-2-5.1 etc.
                     //   Recommended Device Services Property: PKEY_AudioObj_Channels
-                    public static PropertyKey AudioChannelCount => new PropertyKey(Guids.PortableDevices.Properties.MusicObjectPropertiesV1, 10);
+                    public static PropertyKey AudioChannelCount => new PropertyKey(Guids.PortableDevices.Properties.MusicObjectV1, 10);
                     //
                     // WPD_AUDIO_FORMAT_CODE 
                     //   [ VT_UI4 ] Indicates the registered WAVE format code.
                     //   Recommended Device Services Property: PKEY_AudioObj_AudioFormatCode
-                    public static PropertyKey AudioFormatCode => new PropertyKey(Guids.PortableDevices.Properties.MusicObjectPropertiesV1, 11);
+                    public static PropertyKey AudioFormatCode => new PropertyKey(Guids.PortableDevices.Properties.MusicObjectV1, 11);
                     //
                     // WPD_AUDIO_BIT_DEPTH 
                     //   [ VT_UI4 ] This property identifies the bit-depth of the audio.
                     //   Recommended Device Services Property: PKEY_AudioObj_AudioBitDepth
-                    public static PropertyKey AudioBitDepth => new PropertyKey(Guids.PortableDevices.Properties.MusicObjectPropertiesV1, 12);
+                    public static PropertyKey AudioBitDepth => new PropertyKey(Guids.PortableDevices.Properties.MusicObjectV1, 12);
                     //
                     // WPD_AUDIO_BLOCK_ALIGNMENT 
                     //   [ VT_UI4 ] This property identifies the audio block alignment
                     //   Recommended Device Services Property: PKEY_AudioObj_AudioBlockAlignment
-                    public static PropertyKey AudioBlockAlignment => new PropertyKey(Guids.PortableDevices.Properties.MusicObjectPropertiesV1, 13);
+                    public static PropertyKey AudioBlockAlignment => new PropertyKey(Guids.PortableDevices.Properties.MusicObjectV1, 13);
 
                 }
 
                 /// <summary>
-                /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.Properties.VideoObjectPropertiesV1"/>. This category is for properties common to all video objects.
+                /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.Properties.VideoObjectV1"/>. This category is for properties common to all video objects.
                 /// </summary>
                 public static class Video
 
@@ -1423,67 +1420,67 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
                     // WPD_VIDEO_AUTHOR 
                     //   [ VT_LPWSTR ] Indicates the author of the video file.
                     //   Recommended Device Services Property: PKEY_MediaObj_Producer
-                    public static PropertyKey Author => new PropertyKey(Guids.PortableDevices.Properties.VideoObjectPropertiesV1, 2);
+                    public static PropertyKey Author => new PropertyKey(Guids.PortableDevices.Properties.VideoObjectV1, 2);
                     //
                     // WPD_VIDEO_RECORDEDTV_STATION_NAME 
                     //   [ VT_LPWSTR ] Indicates the TV station the video was recorded from.
                     //   Recommended Device Services Property: PKEY_VideoObj_Source
-                    public static PropertyKey RecordedTVStationName => new PropertyKey(Guids.PortableDevices.Properties.VideoObjectPropertiesV1, 4);
+                    public static PropertyKey RecordedTVStationName => new PropertyKey(Guids.PortableDevices.Properties.VideoObjectV1, 4);
                     //
                     // WPD_VIDEO_RECORDEDTV_CHANNEL_NUMBER 
                     //   [ VT_UI4 ] Indicates the TV channel number the video was recorded from.
                     //   Recommended Device Services Property: None
-                    public static PropertyKey RecordedTVChannelNumber => new PropertyKey(Guids.PortableDevices.Properties.VideoObjectPropertiesV1, 5);
+                    public static PropertyKey RecordedTVChannelNumber => new PropertyKey(Guids.PortableDevices.Properties.VideoObjectV1, 5);
                     //
                     // WPD_VIDEO_RECORDEDTV_REPEAT 
                     //   [ VT_BOOL ] Indicates whether the recorded TV program was a repeat showing.
                     //   Recommended Device Services Property: None
-                    public static PropertyKey RecordedTVRepeat => new PropertyKey(Guids.PortableDevices.Properties.VideoObjectPropertiesV1, 7);
+                    public static PropertyKey RecordedTVRepeat => new PropertyKey(Guids.PortableDevices.Properties.VideoObjectV1, 7);
                     //
                     // WPD_VIDEO_BUFFER_SIZE 
                     //   [ VT_UI4 ] Indicates the video buffer size.
                     //   Recommended Device Services Property: PKEY_MediaObj_BufferSize
-                    public static PropertyKey BufferSize => new PropertyKey(Guids.PortableDevices.Properties.VideoObjectPropertiesV1, 8);
+                    public static PropertyKey BufferSize => new PropertyKey(Guids.PortableDevices.Properties.VideoObjectV1, 8);
                     //
                     // WPD_VIDEO_CREDITS 
                     //   [ VT_LPWSTR ] Indicates the credit text for the video file.
                     //   Recommended Device Services Property: PKEY_MediaObj_Credits
-                    public static PropertyKey Credits => new PropertyKey(Guids.PortableDevices.Properties.VideoObjectPropertiesV1, 9);
+                    public static PropertyKey Credits => new PropertyKey(Guids.PortableDevices.Properties.VideoObjectV1, 9);
                     //
                     // WPD_VIDEO_KEY_FRAME_DISTANCE 
                     //   [ VT_UI4 ] Indicates the interval between key frames in milliseconds.
                     //   Recommended Device Services Property: PKEY_VideoObj_KeyFrameDistance
-                    public static PropertyKey KeyFrameDistance => new PropertyKey(Guids.PortableDevices.Properties.VideoObjectPropertiesV1, 10);
+                    public static PropertyKey KeyFrameDistance => new PropertyKey(Guids.PortableDevices.Properties.VideoObjectV1, 10);
                     //
                     // WPD_VIDEO_QUALITY_SETTING 
                     //   [ VT_UI4 ] Indicates the quality setting for the video file.
                     //   Recommended Device Services Property: PKEY_MediaObj_EncodingQuality
-                    public static PropertyKey QualitySetting => new PropertyKey(Guids.PortableDevices.Properties.VideoObjectPropertiesV1, 11);
+                    public static PropertyKey QualitySetting => new PropertyKey(Guids.PortableDevices.Properties.VideoObjectV1, 11);
                     //
                     // WPD_VIDEO_SCAN_TYPE 
                     //   [ VT_UI4 ] This property identifies the video scan information.
                     //   Recommended Device Services Property: PKEY_VideoObj_ScanType
-                    public static PropertyKey ScanType => new PropertyKey(Guids.PortableDevices.Properties.VideoObjectPropertiesV1, 12);
+                    public static PropertyKey ScanType => new PropertyKey(Guids.PortableDevices.Properties.VideoObjectV1, 12);
                     //
                     // WPD_VIDEO_BITRATE 
                     //   [ VT_UI4 ] Indicates the bitrate for the video data.
                     //   Recommended Device Services Property: PKEY_VideoObj_VideoBitRate
-                    public static PropertyKey BitRate => new PropertyKey(Guids.PortableDevices.Properties.VideoObjectPropertiesV1, 13);
+                    public static PropertyKey BitRate => new PropertyKey(Guids.PortableDevices.Properties.VideoObjectV1, 13);
                     //
                     // WPD_VIDEO_FOURCC_CODE 
                     //   [ VT_UI4 ] The registered FourCC code indicating the codec used for the video file.
                     //   Recommended Device Services Property: PKEY_VideoObj_VideoFormatCode
-                    public static PropertyKey FourCCCode => new PropertyKey(Guids.PortableDevices.Properties.VideoObjectPropertiesV1, 14);
+                    public static PropertyKey FourCCCode => new PropertyKey(Guids.PortableDevices.Properties.VideoObjectV1, 14);
                     //
                     // WPD_VIDEO_FRAMERATE 
                     //   [ VT_UI4 ] Indicates the frame rate for the video data.
                     //   Recommended Device Services Property: PKEY_VideoObj_VideoFrameRate
-                    public static PropertyKey FrameRate => new PropertyKey(Guids.PortableDevices.Properties.VideoObjectPropertiesV1, 15);
+                    public static PropertyKey FrameRate => new PropertyKey(Guids.PortableDevices.Properties.VideoObjectV1, 15);
 
                 }
 
                 /// <summary>
-                /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.Properties.CommonInformationObjectPropertiesV1"/>. This category is properties that pertain to informational objects such as appointments-tasks-memos and even documents.
+                /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.Properties.CommonInformationObjectV1"/>. This category is properties that pertain to informational objects such as appointments-tasks-memos and even documents.
                 /// </summary>
                 public static class Information
 
@@ -1492,32 +1489,32 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
                     // WPD_COMMON_INFORMATION_SUBJECT 
                     //   [ VT_LPWSTR ] Indicates the subject field of this object.
                     //   Recommended Device Services Property: PKEY_MessageObj_Subject
-                    public static PropertyKey Subject => new PropertyKey(Guids.PortableDevices.Properties.CommonInformationObjectPropertiesV1, 2);
+                    public static PropertyKey Subject => new PropertyKey(Guids.PortableDevices.Properties.CommonInformationObjectV1, 2);
                     //
                     // WPD_COMMON_INFORMATION_BODY_TEXT 
                     //   [ VT_LPWSTR ] This property contains the body text of an object-in plaintext or HTML format.
                     //   Recommended Device Services Property: PKEY_MessageObj_Body
-                    public static PropertyKey BodyText => new PropertyKey(Guids.PortableDevices.Properties.CommonInformationObjectPropertiesV1, 3);
+                    public static PropertyKey BodyText => new PropertyKey(Guids.PortableDevices.Properties.CommonInformationObjectV1, 3);
                     //
                     // WPD_COMMON_INFORMATION_PRIORITY 
                     //   [ VT_UI4 ] Indicates the priority of this object.
                     //   Recommended Device Services Property: PKEY_MessageObj_Priority
-                    public static PropertyKey Priority => new PropertyKey(Guids.PortableDevices.Properties.CommonInformationObjectPropertiesV1, 4);
+                    public static PropertyKey Priority => new PropertyKey(Guids.PortableDevices.Properties.CommonInformationObjectV1, 4);
                     //
                     // WPD_COMMON_INFORMATION_START_DATETIME 
                     //   [ VT_DATE ] For appointments-tasks and similar objects-this indicates the date/time that this item is scheduled to start.
                     //   Recommended Device Services Property: PKEY_MessageObj_PatternValidStartDate
-                    public static PropertyKey StartDatetime => new PropertyKey(Guids.PortableDevices.Properties.CommonInformationObjectPropertiesV1, 5);
+                    public static PropertyKey StartDatetime => new PropertyKey(Guids.PortableDevices.Properties.CommonInformationObjectV1, 5);
                     //
                     // WPD_COMMON_INFORMATION_END_DATETIME 
                     //   [ VT_DATE ] For appointments-tasks and similar objects-this indicates the date/time that this item is scheduled to end.
                     //   Recommended Device Services Property: PKEY_MessageObj_PatternValidEndDate
-                    public static PropertyKey EndDatetime => new PropertyKey(Guids.PortableDevices.Properties.CommonInformationObjectPropertiesV1, 6);
+                    public static PropertyKey EndDatetime => new PropertyKey(Guids.PortableDevices.Properties.CommonInformationObjectV1, 6);
                     //
                     // WPD_COMMON_INFORMATION_NOTES 
                     //   [ VT_LPWSTR ] For appointments-tasks and similar objects-this indicates any notes for this object.
                     //   Recommended Device Services Property: None
-                    public static PropertyKey Notes => new PropertyKey(Guids.PortableDevices.Properties.CommonInformationObjectPropertiesV1, 7);
+                    public static PropertyKey Notes => new PropertyKey(Guids.PortableDevices.Properties.CommonInformationObjectV1, 7);
 
                 }
 
@@ -1529,37 +1526,37 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
                     // WPD_EMAIL_TO_LINE 
                     //   [ VT_LPWSTR ] Indicates the normal recipients for the message.
                     //   Recommended Device Services Property: PKEY_MessageObj_To
-                    public static PropertyKey EmailToLine => new PropertyKey(Guids.PortableDevices.Properties.EmailObjectPropertiesV1, 2);
+                    public static PropertyKey EmailToLine => new PropertyKey(Guids.PortableDevices.Properties.EmailObjectV1, 2);
                     //
                     // WPD_EMAIL_CC_LINE 
                     //   [ VT_LPWSTR ] Indicates the copied recipients for the message.
                     //   Recommended Device Services Property: PKEY_MessageObj_CC
-                    public static PropertyKey EmailCCLine => new PropertyKey(Guids.PortableDevices.Properties.EmailObjectPropertiesV1, 3);
+                    public static PropertyKey EmailCCLine => new PropertyKey(Guids.PortableDevices.Properties.EmailObjectV1, 3);
                     //
                     // WPD_EMAIL_BCC_LINE 
                     //   [ VT_LPWSTR ] Indicates the recipients for the message who receive a "blind copy".
                     //   Recommended Device Services Property: PKEY_MessageObj_BCC
-                    public static PropertyKey EmailBCCLine => new PropertyKey(Guids.PortableDevices.Properties.EmailObjectPropertiesV1, 4);
+                    public static PropertyKey EmailBCCLine => new PropertyKey(Guids.PortableDevices.Properties.EmailObjectV1, 4);
                     //
                     // WPD_EMAIL_HAS_BEEN_READ 
                     //   [ VT_BOOL ] Indicates whether the user has read this message.
                     //   Recommended Device Services Property: PKEY_MessageObj_Read
-                    public static PropertyKey EmailHasBeenRead => new PropertyKey(Guids.PortableDevices.Properties.EmailObjectPropertiesV1, 7);
+                    public static PropertyKey EmailHasBeenRead => new PropertyKey(Guids.PortableDevices.Properties.EmailObjectV1, 7);
                     //
                     // WPD_EMAIL_RECEIVED_TIME 
                     //   [ VT_DATE ] Indicates at what time the message was received.
                     //   Recommended Device Services Property: PKEY_MessageObj_ReceivedTime
-                    public static PropertyKey EmailReceivedTime => new PropertyKey(Guids.PortableDevices.Properties.EmailObjectPropertiesV1, 8);
+                    public static PropertyKey EmailReceivedTime => new PropertyKey(Guids.PortableDevices.Properties.EmailObjectV1, 8);
                     //
                     // WPD_EMAIL_HAS_ATTACHMENTS 
                     //   [ VT_BOOL ] Indicates whether this message has attachments.
                     //   Recommended Device Services Property: None
-                    public static PropertyKey EmailHasAttachments => new PropertyKey(Guids.PortableDevices.Properties.EmailObjectPropertiesV1, 9);
+                    public static PropertyKey EmailHasAttachments => new PropertyKey(Guids.PortableDevices.Properties.EmailObjectV1, 9);
                     //
                     // WPD_EMAIL_SENDER_ADDRESS 
                     //   [ VT_LPWSTR ] Indicates who sent the message.
                     //   Recommended Device Services Property: PKEY_MessageObj_Sender
-                    public static PropertyKey EmailSenderAddress => new PropertyKey(Guids.PortableDevices.Properties.EmailObjectPropertiesV1, 10);
+                    public static PropertyKey EmailSenderAddress => new PropertyKey(Guids.PortableDevices.Properties.EmailObjectV1, 10);
 
                 }
 
@@ -1571,42 +1568,42 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
                     // WPD_APPOINTMENT_LOCATION 
                     //   [ VT_LPWSTR ] Indicates the location of the appointment e.g. "Building 5-Conf. room 7".
                     //   Recommended Device Services Property: PKEY_CalendarObj_Location
-                    public static PropertyKey Location => new PropertyKey(Guids.PortableDevices.Properties.AppointmentObjectPropertiesV1, 3);
+                    public static PropertyKey Location => new PropertyKey(Guids.PortableDevices.Properties.AppointmentObjectV1, 3);
                     //
                     // WPD_APPOINTMENT_TYPE 
                     //   [ VT_LPWSTR ] Indicates the type of appointment e.g. "Personal"-"Business" etc.
                     //   Recommended Device Services Property: None
-                    public static PropertyKey Type => new PropertyKey(Guids.PortableDevices.Properties.AppointmentObjectPropertiesV1, 7);
+                    public static PropertyKey Type => new PropertyKey(Guids.PortableDevices.Properties.AppointmentObjectV1, 7);
                     //
                     // WPD_APPOINTMENT_REQUIRED_ATTENDEES 
                     //   [ VT_LPWSTR ] Semi-colon separated list of required attendees.
                     //   Recommended Device Services Property: None
-                    public static PropertyKey RequiredAttendees => new PropertyKey(Guids.PortableDevices.Properties.AppointmentObjectPropertiesV1, 8);
+                    public static PropertyKey RequiredAttendees => new PropertyKey(Guids.PortableDevices.Properties.AppointmentObjectV1, 8);
                     //
                     // WPD_APPOINTMENT_OPTIONAL_ATTENDEES 
                     //   [ VT_LPWSTR ] Semi-colon separated list of optional attendees.
                     //   Recommended Device Services Property: None
-                    public static PropertyKey OptionalAttendees => new PropertyKey(Guids.PortableDevices.Properties.AppointmentObjectPropertiesV1, 9);
+                    public static PropertyKey OptionalAttendees => new PropertyKey(Guids.PortableDevices.Properties.AppointmentObjectV1, 9);
                     //
                     // WPD_APPOINTMENT_ACCEPTED_ATTENDEES 
                     //   [ VT_LPWSTR ] Semi-colon separated list of attendees who have accepted the appointment.
                     //   Recommended Device Services Property: PKEY_CalendarObj_Accepted
-                    public static PropertyKey AcceptedAttendees => new PropertyKey(Guids.PortableDevices.Properties.AppointmentObjectPropertiesV1, 10);
+                    public static PropertyKey AcceptedAttendees => new PropertyKey(Guids.PortableDevices.Properties.AppointmentObjectV1, 10);
                     //
                     // WPD_APPOINTMENT_RESOURCES 
                     //   [ VT_LPWSTR ] Semi-colon separated list of resources needed for the appointment.
                     //   Recommended Device Services Property: None
-                    public static PropertyKey Resources => new PropertyKey(Guids.PortableDevices.Properties.AppointmentObjectPropertiesV1, 11);
+                    public static PropertyKey Resources => new PropertyKey(Guids.PortableDevices.Properties.AppointmentObjectV1, 11);
                     //
                     // WPD_APPOINTMENT_TENTATIVE_ATTENDEES 
                     //   [ VT_LPWSTR ] Semi-colon separated list of attendees who have tentatively accepted the appointment.
                     //   Recommended Device Services Property: PKEY_CalendarObj_Tentative
-                    public static PropertyKey TentativeAttendees => new PropertyKey(Guids.PortableDevices.Properties.AppointmentObjectPropertiesV1, 12);
+                    public static PropertyKey TentativeAttendees => new PropertyKey(Guids.PortableDevices.Properties.AppointmentObjectV1, 12);
                     //
                     // WPD_APPOINTMENT_DECLINED_ATTENDEES 
                     //   [ VT_LPWSTR ] Semi-colon separated list of attendees who have declined the appointment.
                     //   Recommended Device Services Property: PKEY_CalendarObj_Declined
-                    public static PropertyKey DeclinedAttendees => new PropertyKey(Guids.PortableDevices.Properties.AppointmentObjectPropertiesV1, 13);
+                    public static PropertyKey DeclinedAttendees => new PropertyKey(Guids.PortableDevices.Properties.AppointmentObjectV1, 13);
 
                 }
 
@@ -1617,22 +1614,22 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
                     // WPD_TASK_STATUS 
                     //   [ VT_LPWSTR ] Indicates the status of the task e.g. "In Progress".
                     //   Recommended Device Services Property: None
-                    public static PropertyKey Status => new PropertyKey(Guids.PortableDevices.Properties.TaskObjectPropertiesV1, 6);
+                    public static PropertyKey Status => new PropertyKey(Guids.PortableDevices.Properties.TaskObjectV1, 6);
                     //
                     // WPD_TASK_PERCENT_COMPLETE 
                     //   [ VT_UI4 ] Indicates how much of the task has been completed.
                     //   Recommended Device Services Property: PKEY_TaskObj_Complete
-                    public static PropertyKey PercentComplete => new PropertyKey(Guids.PortableDevices.Properties.TaskObjectPropertiesV1, 8);
+                    public static PropertyKey PercentComplete => new PropertyKey(Guids.PortableDevices.Properties.TaskObjectV1, 8);
                     //
                     // WPD_TASK_REMINDER_DATE 
                     //   [ VT_DATE ] Indicates the date and time set for the reminder. If this value is 0-then it is assumed that this task has no reminder.
                     //   Recommended Device Services Property: PKEY_TaskObj_ReminderDateTime
-                    public static PropertyKey ReminderDate => new PropertyKey(Guids.PortableDevices.Properties.TaskObjectPropertiesV1, 10);
+                    public static PropertyKey ReminderDate => new PropertyKey(Guids.PortableDevices.Properties.TaskObjectV1, 10);
                     //
                     // WPD_TASK_OWNER 
                     //   [ VT_LPWSTR ] Indicates the owner of the task.
                     //   Recommended Device Services Property: None
-                    public static PropertyKey Owner => new PropertyKey(Guids.PortableDevices.Properties.TaskObjectPropertiesV1, 11);
+                    public static PropertyKey Owner => new PropertyKey(Guids.PortableDevices.Properties.TaskObjectV1, 11);
 
                 }
 
@@ -1644,22 +1641,22 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
                     // WPD_SMS_PROVIDER 
                     //   [ VT_LPWSTR ] Indicates the service provider name.
                     //   Recommended Device Services Property: None
-                    public static PropertyKey Provider => new PropertyKey(Guids.PortableDevices.Properties.SMSObjectPropertiesV1, 2);
+                    public static PropertyKey Provider => new PropertyKey(Guids.PortableDevices.Properties.SMSObjectV1, 2);
                     //
                     // WPD_SMS_TIMEOUT 
                     //   [ VT_UI4 ] Indicates the number of milliseconds until a timeout is returned.
                     //   Recommended Device Services Property: None
-                    public static PropertyKey TimeOut => new PropertyKey(Guids.PortableDevices.Properties.SMSObjectPropertiesV1, 3);
+                    public static PropertyKey TimeOut => new PropertyKey(Guids.PortableDevices.Properties.SMSObjectV1, 3);
                     //
                     // WPD_SMS_MAX_PAYLOAD 
                     //   [ VT_UI4 ] Indicates the maximum number of bytes that can be contained in a message.
                     //   Recommended Device Services Property: None
-                    public static PropertyKey MaxPayLoad => new PropertyKey(Guids.PortableDevices.Properties.SMSObjectPropertiesV1, 4);
+                    public static PropertyKey MaxPayLoad => new PropertyKey(Guids.PortableDevices.Properties.SMSObjectV1, 4);
                     //
                     // WPD_SMS_ENCODING 
                     //   [ VT_UI4 ] Indicates how the driver will encode the text message sent by the client.
                     //   Recommended Device Services Property: None
-                    public static PropertyKey Encoding => new PropertyKey(Guids.PortableDevices.Properties.SMSObjectPropertiesV1, 5);
+                    public static PropertyKey Encoding => new PropertyKey(Guids.PortableDevices.Properties.SMSObjectV1, 5);
 
                 }
 
@@ -1670,22 +1667,22 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
                     // WPD_SECTION_DATA_OFFSET 
                     //   [ VT_UI8 ] Indicates the zero-based offset of the data for the referenced object.
                     //   Recommended Device Services Property: None
-                    public static PropertyKey DataOffset => new PropertyKey(Guids.PortableDevices.Properties.SectionObjectPropertiesV1, 2);
+                    public static PropertyKey DataOffset => new PropertyKey(Guids.PortableDevices.Properties.SectionObjectV1, 2);
                     //
                     // WPD_SECTION_DATA_LENGTH 
                     //   [ VT_UI8 ] Indicates the length of data for the referenced object.
                     //   Recommended Device Services Property: None
-                    public static PropertyKey DataLength => new PropertyKey(Guids.PortableDevices.Properties.SectionObjectPropertiesV1, 3);
+                    public static PropertyKey DataLength => new PropertyKey(Guids.PortableDevices.Properties.SectionObjectV1, 3);
                     //
                     // WPD_SECTION_DATA_UNITS 
                     //   [ VT_UI4 ] Indicates the units for WPD_SECTION_DATA_OFFSET and WPD_SECTION_DATA_LENGTH properties on this object (e.g. offset in bytes-offset in milliseconds etc.).
                     //   Recommended Device Services Property: None
-                    public static PropertyKey DataUnits => new PropertyKey(Guids.PortableDevices.Properties.SectionObjectPropertiesV1, 4);
+                    public static PropertyKey DataUnits => new PropertyKey(Guids.PortableDevices.Properties.SectionObjectV1, 4);
                     //
                     // WPD_SECTION_DATA_REFERENCED_OBJECT_RESOURCE 
                     //   [ VT_UNKNOWN ] This is an IPortableDeviceKeyCollection containing a single value-which is the key identifying the resource on the referenced object which the WPD_SECTION_DATA_OFFSET and WPD_SECTION_DATA_LENGTH apply to.
                     //   Recommended Device Services Property: None
-                    public static PropertyKey DataReferencedObjectResource => new PropertyKey(Guids.PortableDevices.Properties.SectionObjectPropertiesV1, 5);
+                    public static PropertyKey DataReferencedObjectResource => new PropertyKey(Guids.PortableDevices.Properties.SectionObjectV1, 5);
 
                 }
 
@@ -1698,197 +1695,197 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
                 // WPD_MEDIA_TOTAL_BITRATE 
                 //   [ VT_UI4 ] The total number of bits that one second will consume.
                 //   Recommended Device Services Property: PKEY_MediaObj_TotalBitRate
-                public static PropertyKey TotalBitRate => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 2);
+                public static PropertyKey TotalBitRate => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 2);
                 //
                 // WPD_MEDIA_BITRATE_TYPE 
                 //   [ VT_UI4 ] Further qualifies the bitrate of audio or video data.
                 //   Recommended Device Services Property: PKEY_MediaObj_BitRateType
-                public static PropertyKey BitRateType => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 3);
+                public static PropertyKey BitRateType => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 3);
                 //
                 // WPD_MEDIA_COPYRIGHT 
                 //   [ VT_LPWSTR ] Indicates the copyright information.
                 //   Recommended Device Services Property: PKEY_GenericObj_Copyright
-                public static PropertyKey Copyright => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 4);
+                public static PropertyKey Copyright => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 4);
                 //
                 // WPD_MEDIA_SUBSCRIPTION_CONTENT_ID 
                 //   [ VT_LPWSTR ] Provides additional information to identify a piece of content relative to an online subscription service.
                 //   Recommended Device Services Property: PKEY_MediaObj_SubscriptionContentID
-                public static PropertyKey SubscriptionContentId => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 5);
+                public static PropertyKey SubscriptionContentId => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 5);
                 //
                 // WPD_MEDIA_USE_COUNT 
                 //   [ VT_UI4 ] Indicates the total number of times this media has been played or viewed on the device.
                 //   Recommended Device Services Property: PKEY_MediaObj_UseCount
-                public static PropertyKey UseCount => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 6);
+                public static PropertyKey UseCount => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 6);
                 //
                 // WPD_MEDIA_SKIP_COUNT 
                 //   [ VT_UI4 ] Indicates the total number of times this media was setup to be played or viewed but was manually skipped by the user.
                 //   Recommended Device Services Property: PKEY_MediaObj_SkipCount
-                public static PropertyKey SkipCount => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 7);
+                public static PropertyKey SkipCount => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 7);
                 //
                 // WPD_MEDIA_LAST_ACCESSED_TIME 
                 //   [ VT_DATE ] Indicates the date and time the media was last accessed on the device.
                 //   Recommended Device Services Property: PKEY_GenericObj_DateAccessed
-                public static PropertyKey LastAccessedTime => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 8);
+                public static PropertyKey LastAccessedTime => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 8);
                 //
                 // WPD_MEDIA_PARENTAL_RATING 
                 //   [ VT_LPWSTR ] Indicates the parental rating of the media file.
                 //   Recommended Device Services Property: PKEY_MediaObj_ParentalRating
-                public static PropertyKey ParentalRating => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 9);
+                public static PropertyKey ParentalRating => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 9);
                 //
                 // WPD_MEDIA_META_GENRE 
                 //   [ VT_UI4 ] Further qualifies a piece of media in a contextual way.
                 //   Recommended Device Services Property: PKEY_MediaObj_MediaType
-                public static PropertyKey MetaGenre => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 10);
+                public static PropertyKey MetaGenre => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 10);
                 //
                 // WPD_MEDIA_COMPOSER 
                 //   [ VT_LPWSTR ] Identifies the composer when the composer is not the artist who performed it.
                 //   Recommended Device Services Property: PKEY_MediaObj_Composer
-                public static PropertyKey Composer => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 11);
+                public static PropertyKey Composer => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 11);
                 //
                 // WPD_MEDIA_EFFECTIVE_RATING 
                 //   [ VT_UI4 ] Contains an assigned rating for media not set by the user-but is generated based upon usage statistics.
                 //   Recommended Device Services Property: PKEY_MediaObj_EffectiveRating
-                public static PropertyKey EffectiveRating => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 12);
+                public static PropertyKey EffectiveRating => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 12);
                 //
                 // WPD_MEDIA_SUB_TITLE 
                 //   [ VT_LPWSTR ] Further qualifies the title when the title is ambiguous or general.
                 //   Recommended Device Services Property: PKEY_MediaObj_Subtitle
-                public static PropertyKey SubTitle => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 13);
+                public static PropertyKey SubTitle => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 13);
                 //
                 // WPD_MEDIA_RELEASE_DATE 
                 //   [ VT_DATE ] Indicates when the media was released.
                 //   Recommended Device Services Property: PKEY_MediaObj_DateOriginalRelease
-                public static PropertyKey ReleaseDate => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 14);
+                public static PropertyKey ReleaseDate => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 14);
                 //
                 // WPD_MEDIA_SAMPLE_RATE 
                 //   [ VT_UI4 ] Indicates the number of times media selection was sampled per second during encoding.
                 //   Recommended Device Services Property: PKEY_MediaObj_SampleRate
-                public static PropertyKey SampleRate => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 15);
+                public static PropertyKey SampleRate => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 15);
                 //
                 // WPD_MEDIA_STAR_RATING 
                 //   [ VT_UI4 ] Indicates the star rating for this media.
                 //   Recommended Device Services Property: None
-                public static PropertyKey StarRating => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 16);
+                public static PropertyKey StarRating => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 16);
                 //
                 // WPD_MEDIA_USER_EFFECTIVE_RATING 
                 //   [ VT_UI4 ] Indicates the rating for this media.
                 //   Recommended Device Services Property: PKEY_MediaObj_UserRating
-                public static PropertyKey UserEffectiveRating => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 17);
+                public static PropertyKey UserEffectiveRating => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 17);
                 //
                 // WPD_MEDIA_TITLE 
                 //   [ VT_LPWSTR ] Indicates the title of this media.
                 //   Recommended Device Services Property: None
-                public static PropertyKey Title => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 18);
+                public static PropertyKey Title => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 18);
                 //
                 // WPD_MEDIA_DURATION 
                 //   [ VT_UI8 ] Indicates the duration of this media in milliseconds.
                 //   Recommended Device Services Property: PKEY_MediaObj_Duration
-                public static PropertyKey Duration => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 19);
+                public static PropertyKey Duration => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 19);
                 //
                 // WPD_MEDIA_BUY_NOW 
                 //   [ VT_BOOL ] TBD
                 //   Recommended Device Services Property: None
-                public static PropertyKey BuyNow => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 20);
+                public static PropertyKey BuyNow => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 20);
                 //
                 // WPD_MEDIA_ENCODING_PROFILE 
                 //   [ VT_LPWSTR ] Media codecs may be encoded in accordance with a profile-which defines a particular encoding algorithm or optimization process.
                 //   Recommended Device Services Property: PKEY_MediaObj_EncodingProfile
-                public static PropertyKey EncodingProfile => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 21);
+                public static PropertyKey EncodingProfile => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 21);
                 //
                 // WPD_MEDIA_WIDTH 
                 //   [ VT_UI4 ] Indicates the width of an object in pixels
                 //   Recommended Device Services Property: PKEY_MediaObj_Width
-                public static PropertyKey Width => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 22);
+                public static PropertyKey Width => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 22);
                 //
                 // WPD_MEDIA_HEIGHT 
                 //   [ VT_UI4 ] Indicates the height of an object in pixels
                 //   Recommended Device Services Property: PKEY_MediaObj_Height
-                public static PropertyKey Height => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 23);
+                public static PropertyKey Height => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 23);
                 //
                 // WPD_MEDIA_ARTIST 
                 //   [ VT_LPWSTR ] Indicates the artist for this media.
                 //   Recommended Device Services Property: PKEY_MediaObj_Artist
-                public static PropertyKey Artist => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 24);
+                public static PropertyKey Artist => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 24);
                 //
                 // WPD_MEDIA_ALBUM_ARTIST 
                 //   [ VT_LPWSTR ] Indicates the artist of the entire album rather than for a particular track.
                 //   Recommended Device Services Property: PKEY_MediaObj_AlbumArtist
-                public static PropertyKey AlbumArtist => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 25);
+                public static PropertyKey AlbumArtist => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 25);
                 //
                 // WPD_MEDIA_OWNER 
                 //   [ VT_LPWSTR ] Indicates the e-mail address of the owner for this media.
                 //   Recommended Device Services Property: PKEY_MediaObj_Owner
-                public static PropertyKey Owner => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 26);
+                public static PropertyKey Owner => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 26);
                 //
                 // WPD_MEDIA_MANAGING_EDITOR 
                 //   [ VT_LPWSTR ] Indicates the e-mail address of the managing editor for this media.
                 //   Recommended Device Services Property: PKEY_MediaObj_Editor
-                public static PropertyKey ManagingEditor => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 27);
+                public static PropertyKey ManagingEditor => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 27);
                 //
                 // WPD_MEDIA_WEBMASTER 
                 //   [ VT_LPWSTR ] Indicates the e-mail address of the Webmaster for this media.
                 //   Recommended Device Services Property: PKEY_MediaObj_WebMaster
-                public static PropertyKey WebMaster => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 28);
+                public static PropertyKey WebMaster => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 28);
                 //
                 // WPD_MEDIA_SOURCE_URL 
                 //   [ VT_LPWSTR ] Identifies the source URL for this object.
                 //   Recommended Device Services Property: PKEY_MediaObj_URLSource
-                public static PropertyKey SourceUrl => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 29);
+                public static PropertyKey SourceUrl => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 29);
                 //
                 // WPD_MEDIA_DESTINATION_URL 
                 //   [ VT_LPWSTR ] Identifies the URL that an object is linked to if a user clicks on it.
                 //   Recommended Device Services Property: PKEY_MediaObj_URLLink
-                public static PropertyKey DestinationUrl => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 30);
+                public static PropertyKey DestinationUrl => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 30);
                 //
                 // WPD_MEDIA_DESCRIPTION 
                 //   [ VT_LPWSTR ] Contains a description of the media content for this object.
                 //   Recommended Device Services Property: PKEY_GenericObj_Description
-                public static PropertyKey Description => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 31);
+                public static PropertyKey Description => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 31);
                 //
                 // WPD_MEDIA_GENRE 
                 //   [ VT_LPWSTR ] A text field indicating the genre this media belongs to.
                 //   Recommended Device Services Property: PKEY_MediaObj_Genre
-                public static PropertyKey Genre => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 32);
+                public static PropertyKey Genre => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 32);
                 //
                 // WPD_MEDIA_TIME_BOOKMARK 
                 //   [ VT_UI8 ] Indicates a bookmark (in milliseconds) of the last position played or viewed on media that have duration.
                 //   Recommended Device Services Property: PKEY_MediaObj_BookmarkTime
-                public static PropertyKey TimeBookmark => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 33);
+                public static PropertyKey TimeBookmark => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 33);
                 //
                 // WPD_MEDIA_OBJECT_BOOKMARK 
                 //   [ VT_LPWSTR ] Indicates a WPD_OBJECT_ID of the last object viewed or played for those objects that refer to a list of objects (such as playlists or media casts).
                 //   Recommended Device Services Property: PKEY_MediaObj_BookmarkObject
-                public static PropertyKey ObjectBookmark => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 34);
+                public static PropertyKey ObjectBookmark => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 34);
                 //
                 // WPD_MEDIA_LAST_BUILD_DATE 
                 //   [ VT_DATE ] Indicates the last time a series in a media cast was changed or edited.
                 //   Recommended Device Services Property: PKEY_GenericObj_DateRevised
-                public static PropertyKey LastBuildDate => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 35);
+                public static PropertyKey LastBuildDate => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 35);
                 //
                 // WPD_MEDIA_BYTE_BOOKMARK 
                 //   [ VT_UI8 ] Indicates a bookmark (as a zero-based byte offset) of the last position played or viewed on this media object.
                 //   Recommended Device Services Property: PKEY_MediaObj_BookmarkByte
-                public static PropertyKey ByteBookmark => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 36);
+                public static PropertyKey ByteBookmark => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 36);
                 //
                 // WPD_MEDIA_TIME_TO_LIVE 
                 //   [ VT_UI8 ] It is the number of minutes that indicates how long a channel can be cached before refreshing from the source. Applies to WPD_CONTENT_TYPE_MEDIA_CAST objects.
                 //   Recommended Device Services Property: PKEY_GenericObj_TimeToLive
-                public static PropertyKey TimeToLive => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 37);
+                public static PropertyKey TimeToLive => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 37);
                 //
                 // WPD_MEDIA_GUID 
                 //   [ VT_LPWSTR ] A text field indicating the GUID of this media.
                 //   Recommended Device Services Property: PKEY_MediaObj_MediaUID
-                public static PropertyKey Guid => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 38);
+                public static PropertyKey Guid => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 38);
                 //
                 // WPD_MEDIA_SUB_DESCRIPTION 
                 //   [ VT_LPWSTR ] Contains a sub description of the media content for this object.
                 //   Recommended Device Services Property: PKEY_GenericObj_SubDescription
-                public static PropertyKey SubDescription => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 39);
+                public static PropertyKey SubDescription => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 39);
                 //
                 // WPD_MEDIA_AUDIO_ENCODING_PROFILE 
                 //   [ VT_LPWSTR ] Media codecs may be encoded in accordance with a profile-which defines a particular encoding algorithm or optimization process.
                 //   Recommended Device Services Property: PKEY_MediaObj_AudioEncodingProfile
-                public static PropertyKey AudioEncodingProfile => new PropertyKey(Guids.PortableDevices.Properties.MediaPropertiesV1, 49);
+                public static PropertyKey AudioEncodingProfile => new PropertyKey(Guids.PortableDevices.Properties.MediaV1, 49);
 
             }
 
@@ -2356,8 +2353,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 
             }
 
-            #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_RESOURCES. The commands in this category are used for basic object resource enumeration and transfer.
-
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.CommandCategories.Object.Resources"/>. The commands in this category are used for basic object resource enumeration and transfer.
+            /// </summary>
             public static class Resource
 
             {
@@ -2602,9 +2600,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 
             }
 
-            #endregion
-            #region This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_MANAGEMENT. The commands specified in this category are used to Create/Delete objects on the device.
-
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.CommandCategories.Object.Management"/>. The commands specified in this category are used to Create/Delete objects on the device.
+            /// </summary>
             public static class Management
 
             {
@@ -2800,8 +2798,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
                 }
 
             }
-
-            #endregion
 
         }
 
@@ -3046,8 +3042,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 
         }
 
-        #endregion
-
         /// <summary>
         /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.CommandCategories.SMS"/>. The commands in this category relate to Short-Message-Service functionality-typically exposed on mobile phones.
         /// </summary>
@@ -3234,11 +3228,12 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 
         }
 
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.CommandCategories.ClassExtensionV1"/> and <see cref="Guids.PortableDevices.CommandCategories.ClassExtensionV2"/>. The commands in this category relate to the WPD device class extension.
+        /// </summary>
         public static class ClassExtension
 
         {
-
-            #region This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_V1. The commands in this category relate to the WPD device class extension.
 
             public static class Commands
 
@@ -3255,8 +3250,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
                 // Results:
                 //     [ Required ]  WPD_PROPERTY_CLASS_EXTENSION_DEVICE_INFORMATION_WRITE_RESULTS 
                 public static PropertyKey WriteDeviceInformation => new PropertyKey(Guids.PortableDevices.CommandCategories.ClassExtensionV1, 2);
-
-                #region This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_V2. The commands in this category relate to the WPD device class extension.
 
                 // ======== Commands ========
                 //
@@ -3317,8 +3310,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
             }
 
         }
-
-        #endregion
 
         public static class NetworkConfiguration
 
@@ -3796,9 +3787,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
             //  WPD_RESOURCE_BRANDING_ART 
             // Represents the product branding artwork or logo for an object. This resource is typically found on-but not limited to the device object. 
             public static PropertyKey BrandingArt => new PropertyKey("0xB633B1AE-0x6CAF-0x4A87-0x95-0x89-0x22-0xDE-0xD6-0xDD-0x58-0x99", 0);
-
-
-            #endregion
 
         }
 
