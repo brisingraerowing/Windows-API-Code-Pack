@@ -25,6 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\NetworkList\NetworkListEnums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\NetworkList\NetworkListManagerClass.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PowerManagement\PowerManagementNativeMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\GuidAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropertyChange.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropertyKey.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropertyKeyAttribute.cs" />

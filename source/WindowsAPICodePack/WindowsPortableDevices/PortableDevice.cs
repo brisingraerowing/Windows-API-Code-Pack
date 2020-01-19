@@ -1,16 +1,22 @@
-﻿using Microsoft.WindowsAPICodePack.Shell;
+﻿using Microsoft.WindowsAPICodePack.PortableDevices.Commands;
+using Microsoft.WindowsAPICodePack.PortableDevices.Commands.Object;
+using Microsoft.WindowsAPICodePack.PortableDevices.Commands.Service;
+using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using GuidAttribute = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.GuidAttribute;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
@@ -59,11 +65,257 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
     }
 
-    public class DeviceCapabilities
+    public class SupportedCommands
+
+    {
+        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Common)]
+        private readonly CommonCommands _commonCommands;
+        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Capabilities)]
+        private readonly Commands.Capability _capability;
+        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Storage)]
+        private readonly Storage _storage;
+        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.SMS)]
+        private readonly SMS _sms;
+        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.StillImageCapture)]
+        private readonly StillImageCapture _stillImageCapture;
+        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.MediaCapture)]
+        private readonly MediaCapture _mediaCapture;
+        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.DeviceHints)]
+        private readonly DeviceHint _deviceHint;
+        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.ClassExtensionV1)]
+        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.ClassExtensionV2)]
+        private readonly ClassExtension _classExtension;
+        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.NetworkConfiguration)]
+        private readonly NetworkConfiguration _networkConfiguration;
+
+        public class ObjectCommands
+
+        {
+            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Object.Enumeration)]
+            private readonly Enumeration _enumeration;
+            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Object.Properties)]
+            private readonly Property _property;
+            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Object.PropertiesBulk)]
+            private readonly PropertyBulk _propertyBulk;
+            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Object.Resources)]
+            private readonly Resource _resource;
+            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Object.Management)]
+            private readonly Management _management;
+
+            public Enumeration Enumeration => _enumeration;
+
+            public Property Property => _property;
+
+            public PropertyBulk PropertyBulk => _propertyBulk;
+
+            public Resource Resource => _resource;
+
+            public Management Management => _management;
+
+            public ObjectCommands() { }
+
+            public ObjectCommands(Enumeration enumeration, Property property, PropertyBulk propertyBulk, Resource resource, Management management)
+
+            {
+
+                _enumeration = enumeration;
+
+                _property = property;
+
+                _propertyBulk = propertyBulk;
+
+                _resource = resource;
+
+                _management = management;
+
+            }
+
+        }
+
+        public class ServiceCommands
+
+        {
+            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Service.Common)]
+            private readonly Common _common;
+            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Service.Capabilities)]
+            private readonly Commands.Service.Capability _capability;
+            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Service.Methods)]
+            private readonly Method _method;
+
+            public Common Common => _common;
+
+            public Commands.Service.Capability Capability => _capability;
+
+            public Method Method => _method;
+
+            public ServiceCommands() { }
+
+            public ServiceCommands(Common common, Commands.Service.Capability capability, Method method)
+
+            {
+
+                _common = common;
+
+                _capability = capability;
+
+                _method = method;
+
+            }
+
+        }
+
+        public CommonCommands CommonCommands => _commonCommands;
+
+        public ObjectCommands Object { get; }
+
+        public Commands.Capability Capability => _capability;
+
+        public Storage Storage => _storage;
+
+        public SMS SMS => _sms;
+
+        public StillImageCapture StillImageCapture => _stillImageCapture;
+
+        public MediaCapture MediaCapture => _mediaCapture;
+
+        public DeviceHint DeviceHint => _deviceHint;
+
+        public ClassExtension ClassExtension => _classExtension;
+
+        public NetworkConfiguration NetworkConfiguration => _networkConfiguration;
+
+        public ServiceCommands Service { get; }
+
+        public SupportedCommands() { Object = new ObjectCommands(); Service = new ServiceCommands(); }
+
+        public SupportedCommands(CommonCommands commonCommands, ObjectCommands @object, Commands.Capability capability, Storage storage, SMS sms, StillImageCapture stillImageCapture, MediaCapture mediaCapture, DeviceHint deviceHint, ClassExtension classExtension, NetworkConfiguration networkConfiguration, ServiceCommands service)
+
+        {
+
+            CommonCommands = commonCommands;
+
+            Object = @object;
+
+            _capability = capability;
+
+            _storage = storage;
+
+            _sms = sms;
+
+            _stillImageCapture = stillImageCapture;
+
+            _mediaCapture = mediaCapture;
+
+            _deviceHint = deviceHint;
+
+            _classExtension = classExtension;
+
+            _networkConfiguration = networkConfiguration;
+
+            Service = service;
+
+        }
+
+    }
+
+    public class DeviceCapabilities : IDisposable
 
     {
 
+        private readonly PortableDevice _portableDevice;
 
+        private readonly IPortableDeviceCapabilities _portableDeviceCapabilities;
+
+        public DeviceCapabilities(PortableDevice portableDevice)
+        {
+            _portableDevice = portableDevice ?? throw new ArgumentNullException(nameof(portableDevice));
+
+            Marshal.ThrowExceptionForHR((int)_portableDevice._portableDevice.Capabilities(out _portableDeviceCapabilities));
+        }
+
+        private SupportedCommands _commands;
+
+        public SupportedCommands Commands
+
+        {
+
+            get
+
+            {
+
+                if (_commands is null)
+
+                {
+
+                    Marshal.ThrowExceptionForHR((int)_portableDeviceCapabilities.GetSupportedCommands(out IPortableDeviceKeyCollection supportedCommands));
+
+                    uint count = 0;
+
+                    Marshal.ThrowExceptionForHR((int)supportedCommands.GetCount(ref count));
+
+                    PropertyKey propertyKey;
+
+                    PropertyKeyAttribute propertyKeyAttribute;
+
+                    string @namespace = typeof(Microsoft.WindowsAPICodePack.PortableDevices.Commands.Commands).Namespace;
+
+                    List<TypeInfo> commandEnums = Assembly.GetExecutingAssembly().DefinedTypes.Where(t => t.IsEnum && t.Namespace.StartsWith(@namespace, StringComparison.Ordinal)).ToList();
+
+                    var commands = new SupportedCommands();
+
+                    for (uint i = 0; i < count; i++)
+
+                    {
+
+                        propertyKey = new PropertyKey();
+
+                        Marshal.ThrowExceptionForHR((int)supportedCommands.GetAt(i, ref propertyKey));
+
+                        foreach (TypeInfo t in commandEnums)
+
+                            foreach (FieldInfo f in t.GetFields())
+
+                            {
+
+                                propertyKeyAttribute = f.GetCustomAttributes<PropertyKeyAttribute>().First();
+
+                                if (propertyKeyAttribute.Guid == propertyKey.FormatId.ToString() && propertyKeyAttribute.PId == propertyKey.PropertyId)
+
+                                {
+
+                                    var supportedCommandsType = typeof(SupportedCommands);
+
+                                    foreach (var _f in supportedCommandsType.GetFields(BindingFlags.NonPublic | BindingFlags.Instance))
+
+                                        if (_f.GetCustomAttributes<GuidAttribute>().First().Guid == propertyKeyAttribute.Guid)
+
+                                        {
+
+                                            _f.SetValue(commands, (uint)_f.GetValue(commands) | (uint)f.GetValue(null));
+
+                                            break;
+
+                                        }
+
+                                    // TODO: Nested types
+
+                                    break;
+
+                                }
+
+                            }
+
+                    }
+
+                    _commands = commands;
+
+                }
+
+                return _commands;
+
+            }
+
+        }
 
     }
 

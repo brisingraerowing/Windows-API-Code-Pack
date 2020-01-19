@@ -126,20 +126,32 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
                 /// </summary>
                 public static PropertyKey Description => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectV1, 7);
 
-                //   [ VT_LPWSTR ] Contains the serial number of the storage.
-                // WPD_STORAGE_SERIAL_NUMBER
+                /// <summary>
+                /// <para>Name: WPD_STORAGE_SERIAL_NUMBER</para>
+                /// <para>Description: Contains the serial number of the storage.</para>
+                /// <para>Type: VT_LPWSTR</para>
+                /// </summary>
                 public static PropertyKey SerialNumber => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectV1, 8);
 
-                //   [ VT_UI8 ] Specifies the maximum size of a single object (in bytes) that can be placed on this storage.
-                // WPD_STORAGE_MAX_OBJECT_SIZE
+                /// <summary>
+                /// <para>Name: WPD_STORAGE_MAX_OBJECT_SIZE</para>
+                /// <para>Description: Specifies the maximum size of a single object (in bytes) that can be placed on this storage.</para>
+                /// <para>Type: VT_UI8</para>
+                /// </summary>
                 public static PropertyKey MaxObjectSize => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectV1, 9);
 
-                //   [ VT_UI8 ] Indicates the total storage capacity in objects e.g. available slots on a SIM card.
-                // WPD_STORAGE_CAPACITY_IN_OBJECTS
+                /// <summary>
+                /// <para>Name: WPD_STORAGE_CAPACITY_IN_OBJECTS</para>
+                /// <para>Description: Indicates the total storage capacity in objects e.g. available slots on a SIM card.</para>
+                /// <para>Type: VT_UI8</para>
+                /// </summary>
                 public static PropertyKey CapacityInObjects => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectV1, 10);
 
-                //   [ VT_UI4 ] This property identifies any write-protection that globally affects this storage. This takes precedence over access specified on individual objects.
-                // WPD_STORAGE_ACCESS_CAPABILITY
+                /// <summary>
+                /// <para>Name: WPD_STORAGE_ACCESS_CAPABILITY</para>
+                /// <para>Description: This property identifies any write-protection that globally affects this storage. This takes precedence over access specified on individual objects.</para>
+                /// <para>Type: VT_UI4</para>
+                /// </summary>
                 public static PropertyKey AccessCapability => new PropertyKey(Guids.PortableDevices.Properties.StorageObjectV1, 11);
 
             }

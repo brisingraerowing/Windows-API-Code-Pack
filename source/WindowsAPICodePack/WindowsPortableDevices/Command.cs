@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Core.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
 using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using static Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices;
@@ -11,7 +11,7 @@ using static Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices;
 namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
 {
     [Flags]
-    public enum CommonCommandCategory
+    public enum CommonCommands:uint
     {
 
         [PropertyKey(CommandCategories.Common, 2)]
@@ -28,7 +28,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
     {
 
         [Flags]
-        public enum Enumeration
+        public enum Enumeration : uint
         {
 
             [PropertyKey(CommandCategories.Object.Enumeration, 2)]
@@ -41,7 +41,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
         }
 
         [Flags]
-        public enum Property
+        public enum Property : uint
         {
 
             [PropertyKey(CommandCategories.Object.Properties, 2)]
@@ -60,7 +60,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
         }
 
         [Flags]
-        public enum PropertyBulk
+        public enum PropertyBulk : uint
         {
 
             [PropertyKey(CommandCategories.Object.PropertiesBulk, 2)]
@@ -85,7 +85,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
         }
 
         [Flags]
-        public enum Resource
+        public enum Resource : uint
         {
 
             [PropertyKey(CommandCategories.Object.Resources, 2)]
@@ -116,7 +116,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
         }
 
         [Flags]
-        public enum Management
+        public enum Management : uint
         {
 
             [PropertyKey(CommandCategories.Object.Management, 2)]
@@ -143,7 +143,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
     }
 
     [Flags]
-    public enum Capability
+    public enum Capability : uint
     {
 
         [PropertyKey(CommandCategories.Capabilities, 2)]
@@ -170,7 +170,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
     }
 
     [Flags]
-    public enum Storage
+    public enum Storage : uint
     {
 
         [PropertyKey(CommandCategories.Storage, 2)]
@@ -181,7 +181,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
     }
 
     [Flags]
-    public enum SMS
+    public enum SMS : uint
     {
 
         [PropertyKey(CommandCategories.SMS, 2)]
@@ -191,7 +191,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
     }
 
     [Flags]
-    public enum StillImageCapture
+    public enum StillImageCapture : uint
     {
 
         [PropertyKey(CommandCategories.StillImageCapture, 2)]
@@ -199,7 +199,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
 
     }
     [Flags]
-    public enum MediaCapture
+    public enum MediaCapture : uint
     {
 
         [PropertyKey(CommandCategories.MediaCapture, 2)]
@@ -212,7 +212,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
     }
 
     [Flags]
-    public enum DeviceHint
+    public enum DeviceHint : uint
     {
 
         [PropertyKey(CommandCategories.DeviceHints, 2)]
@@ -221,7 +221,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
     }
 
     [Flags]
-    public enum ClassExtension
+    public enum ClassExtension : uint
     {
 
         [PropertyKey(CommandCategories.ClassExtensionV1, 2)]
@@ -234,7 +234,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
     }
 
     [Flags]
-    public enum NetworkConfiguration
+    public enum NetworkConfiguration : uint
     {
 
         [PropertyKey(CommandCategories.NetworkConfiguration, 2)]
@@ -251,7 +251,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
     {
 
         [Flags]
-        public enum Common
+        public enum Common : uint
         {
             [PropertyKey(CommandCategories.Service.Common, 2)]
             GetServiceObjectId = 1
@@ -259,7 +259,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
         }
 
         [Flags]
-        public enum Capability
+        public enum Capability : uint
         {
 
             [PropertyKey(CommandCategories.Service.Capabilities, 2)]
@@ -296,7 +296,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
         }
 
         [Flags]
-        public enum Method
+        public enum Method : uint
         {
 
             [PropertyKey(CommandCategories.Service.Methods, 2)]
