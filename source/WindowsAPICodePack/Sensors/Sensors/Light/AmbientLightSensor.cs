@@ -14,7 +14,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// Gets an array representing the light response curve.
         /// </summary>
         /// <returns>Array representing the light response curve.</returns>
-        public uint[] GetLightResponseCurve() => (uint[])GetProperty(SensorPropertyKeys.SensorPropertyLightResponseCurve);
+        public uint[] GetLightResponseCurve() => (uint[])GetProperty(SensorPropertyKeys.LightResponseCurve);
 
         /// <summary>
         /// Gets the current luminous intensity of the sensor.
@@ -38,10 +38,10 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             if (report == null)  throw new ArgumentNullException(nameof(report)); 
 
             if (report.Values != null &&
-                report.Values.ContainsKey(SensorPropertyKeys.SensorDataTypeLightLux.FormatId))
+                report.Values.ContainsKey(SensorPropertyKeys.SensorDataType.LightLux.FormatId))
             
                 Intensity =
-                    (float)report.Values[SensorPropertyKeys.SensorDataTypeLightLux.FormatId][0];
+                    (float)report.Values[SensorPropertyKeys.SensorDataType.LightLux.FormatId][0];
         }
 
         /// <summary>

@@ -48,11 +48,11 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             if (report == null)  throw new ArgumentNullException(nameof(report)); 
 
             acceleration[(int)AccelerationAxis.XAxis] =
-                (float)report.Values[SensorPropertyKeys.SensorDataTypeAccelerationXG.FormatId][0];
+                (float)report.Values[SensorPropertyKeys.SensorDataType.AccelerationXG.FormatId][0];
             acceleration[(int)AccelerationAxis.YAxis] =
-                (float)report.Values[SensorPropertyKeys.SensorDataTypeAccelerationYG.FormatId][1];
+                (float)report.Values[SensorPropertyKeys.SensorDataType.AccelerationYG.FormatId][1];
             acceleration[(int)AccelerationAxis.ZAxis] =
-                (float)report.Values[SensorPropertyKeys.SensorDataTypeAccelerationZG.FormatId][2];
+                (float)report.Values[SensorPropertyKeys.SensorDataType.AccelerationZG.FormatId][2];
         }
 
         /// <summary>

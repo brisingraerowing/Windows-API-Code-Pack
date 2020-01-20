@@ -52,6 +52,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Sensors\ISensorManagerEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sensors\PortableDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sensors\SensorNativeMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sensors\SensorPropertyKeys.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ShellExtensions\HandlerNativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\CopyFileFlags.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\CopyProgressCallbackReason.cs" />
