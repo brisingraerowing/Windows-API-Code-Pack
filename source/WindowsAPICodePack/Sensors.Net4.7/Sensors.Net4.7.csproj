@@ -183,6 +183,10 @@
       <Project>{6c1ad76c-8eeb-4b2d-b6b4-f9b7234a92fb}</Project>
       <Name>Win32Native</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Win32NativeGuids.Net4.7\Win32NativeGuids.Net4.7.csproj">
+      <Project>{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}</Project>
+      <Name>Win32NativeGuids.Net4.7</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.8\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />

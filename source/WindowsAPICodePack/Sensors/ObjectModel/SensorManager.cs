@@ -6,8 +6,8 @@ using System.Reflection;
 using System.Threading;
 using Microsoft.WindowsAPICodePack.Sensors.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Sensors;
+using static Microsoft.WindowsAPICodePack.Win32Native.Guids.Sensors;
 
 namespace Microsoft.WindowsAPICodePack.Sensors
 {
@@ -65,7 +65,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// </summary>
         /// <returns>A list of all sensors.</returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
-        public static SensorList<Sensor> GetAllSensors() => GetSensorsByCategoryId(SensorCategories.All);
+        public static SensorList<Sensor> GetAllSensors() => GetSensorsByCategoryId(new Guid(SensorCategories.All));
 
         /// <summary>
         /// Retrieves a collection of sensors filtered by category ID.

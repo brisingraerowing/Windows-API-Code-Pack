@@ -18,7 +18,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
     /// </summary>
     /// <remarks>Either call CoCreateInstance with a class identifier (CLSID) of CLSID_PropertyChangeArray or call PSCreatePropertyChangeArray to obtain a standard implementation of this interface. This is a container interface that allows multiple changes to be passed to a single file operation to prevent accessing a file multiple times.</remarks>
     [ComImport,
-        Guid(Guids.Shell.PropertySystem.IPropertyChangeArray),
+        System.Runtime.InteropServices.Guid(Guids.Shell.PropertySystem.IPropertyChangeArray),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyChangeArray
     {
@@ -81,7 +81,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
     /// Exposes a method that encapsulates a change to a single property.
     /// </summary>
     [ComImport,
-        Guid(Guids.Shell.PropertySystem.IPropertyChange),
+        System.Runtime.InteropServices.Guid(Guids.Shell.PropertySystem.IPropertyChange),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyChange
     {

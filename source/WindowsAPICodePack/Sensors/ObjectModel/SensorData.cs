@@ -3,7 +3,8 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.CollectionInterfaces;
+using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
+using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Sensors;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
@@ -31,7 +32,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             {
                 var propValue = new PropVariant();
 
-                PropertyKey key = new PropertyKey();
+                var key = new PropertyKey();
 
                 _ = keyCollection.GetAt(index, ref key);
                 valuesCollection.GetValue(ref key, out propValue);
