@@ -9,15 +9,15 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
     {
         public string Guid { get; }
 
-        public short PId { get; }
+        public short PropertyId { get; }
 
-        public PropertyKeyAttribute(string guid, short pid)
+        public PropertyKeyAttribute(string guid, short propertyId)
 
         {
 
             Guid = guid;
 
-            PId = pid;
+            PropertyId = propertyId;
 
         }
     }

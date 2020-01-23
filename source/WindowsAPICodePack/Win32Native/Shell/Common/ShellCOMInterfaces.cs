@@ -8,12 +8,12 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using FileAttributes = Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes;
 using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
+using GuidAttribute = System.Runtime.InteropServices.GuidAttribute;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
+using GuidAttribute = System.Runtime.InteropServices.GuidAttribute;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem
 {

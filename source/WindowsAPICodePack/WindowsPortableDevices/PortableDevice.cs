@@ -16,6 +16,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using Common = Microsoft.WindowsAPICodePack.PortableDevices.Commands.Common;
 using GuidAttribute = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.GuidAttribute;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
@@ -65,11 +66,12 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
     }
 
+#pragma warning disable CA2243 // Attribute string literals should parse correctly
     public class SupportedCommands
 
     {
         [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Common)]
-        private readonly CommonCommands _commonCommands;
+        private readonly Common _common;
         [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Capabilities)]
         private readonly Commands.Capability _capability;
         [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Storage)]
@@ -136,13 +138,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         {
             [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Service.Common)]
-            private readonly Common _common;
+            private readonly Commands.Service.Common _common;
             [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Service.Capabilities)]
             private readonly Commands.Service.Capability _capability;
             [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Service.Methods)]
             private readonly Method _method;
 
-            public Common Common => _common;
+            public Commands.Service.Common Common => _common;
 
             public Commands.Service.Capability Capability => _capability;
 
@@ -150,7 +152,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             public ServiceCommands() { }
 
-            public ServiceCommands(Common common, Commands.Service.Capability capability, Method method)
+            public ServiceCommands(Commands.Service.Common common, Commands.Service.Capability capability, Method method)
 
             {
 
@@ -164,7 +166,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         }
 
-        public CommonCommands CommonCommands => _commonCommands;
+        public Common Common => _common;
 
         public ObjectCommands Object { get; }
 
@@ -188,11 +190,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         public SupportedCommands() { Object = new ObjectCommands(); Service = new ServiceCommands(); }
 
-        public SupportedCommands(CommonCommands commonCommands, ObjectCommands @object, Commands.Capability capability, Storage storage, SMS sms, StillImageCapture stillImageCapture, MediaCapture mediaCapture, DeviceHint deviceHint, ClassExtension classExtension, NetworkConfiguration networkConfiguration, ServiceCommands service)
+        public SupportedCommands(Common common, ObjectCommands @object, Commands.Capability capability, Storage storage, SMS sms, StillImageCapture stillImageCapture, MediaCapture mediaCapture, DeviceHint deviceHint, ClassExtension classExtension, NetworkConfiguration networkConfiguration, ServiceCommands service)
 
         {
 
-            CommonCommands = commonCommands;
+            _common = common;
 
             Object = @object;
 
@@ -217,6 +219,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         }
 
     }
+#pragma warning restore CA2243 // Attribute string literals should parse correctly
 
     public class DeviceCapabilities : IDisposable
 
@@ -263,47 +266,73 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                     var commands = new SupportedCommands();
 
-                    for (uint i = 0; i < count; i++)
+                    var supportedCommandsType = typeof(SupportedCommands);
+
+                    var nestedSupportedCommandsTypes = typeof(SupportedCommands).GetNestedTypes();
+
+                    for (uint i = 0; i < count; i++) // We browse all the given property keys.
 
                     {
 
                         propertyKey = new PropertyKey();
 
-                        Marshal.ThrowExceptionForHR((int)supportedCommands.GetAt(i, ref propertyKey));
+                        Marshal.ThrowExceptionForHR((int)supportedCommands.GetAt(i, ref propertyKey)); // We get the property key at the current index.
 
-                        foreach (TypeInfo t in commandEnums)
+                        void setSupportedCommand()
 
-                            foreach (FieldInfo f in t.GetFields())
+                        {
+
+                            foreach (TypeInfo t in commandEnums) // We browse the enums of the commands namespace.
 
                             {
 
-                                propertyKeyAttribute = f.GetCustomAttributes<PropertyKeyAttribute>().First();
+                                var fields = t.GetFields();
 
-                                if (propertyKeyAttribute.Guid == propertyKey.FormatId.ToString() && propertyKeyAttribute.PId == propertyKey.PropertyId)
+                                foreach (FieldInfo f in fields) // We browse the fields (the enum values) of the current enum.
 
                                 {
 
-                                    var supportedCommandsType = typeof(SupportedCommands);
+                                    propertyKeyAttribute = f.GetCustomAttributes<PropertyKeyAttribute>().FirstOrDefault(); // As only one PropertyKeyAttribute is allowed by field, we get the first PropertyKeyAttribute of the current enum field.
 
-                                    foreach (var _f in supportedCommandsType.GetFields(BindingFlags.NonPublic | BindingFlags.Instance))
+                                    if (propertyKeyAttribute?.Guid == propertyKey.FormatId.ToString() && propertyKeyAttribute.PropertyId == propertyKey.PropertyId) // If the property keys are equal, we know that the command corresponding to the current enum field is supported.
 
-                                        if (_f.GetCustomAttributes<GuidAttribute>().First().Guid == propertyKeyAttribute.Guid)
+                                    {
+
+                                        bool browseFields(IEnumerable<FieldInfo> _fields, object obj)
 
                                         {
 
-                                            _f.SetValue(commands, (uint)_f.GetValue(commands) | (uint)f.GetValue(null));
+                                            foreach (var _f in _fields) // We browse the fields of the SupportedCommands class.
 
-                                            break;
+                                                if (_f.GetCustomAttributes<GuidAttribute>().Where(a => a.Guid == propertyKeyAttribute.Guid).FirstOrDefault() is object) // If a field has a GuidAttribute whose the Guid is the same as the Guid of the enum field's PropertyKeyAttribute,
+
+                                                {
+
+                                                    _f.SetValue(obj, (uint)_f.GetValue(obj) | (uint)f.GetValue(null)); // we set this field with the previous value of this field combined with the value of the current enum field.
+
+                                                    return true;
+
+                                                }
+
+                                            return false;
 
                                         }
 
-                                    // TODO: Nested types
+                                        if (!browseFields(supportedCommandsType.GetFields(BindingFlags.NonPublic | BindingFlags.Instance), commands))
 
-                                    break;
+                                            foreach (var nestedSupportedCommandsType in nestedSupportedCommandsTypes)
+
+                                                if (browseFields(nestedSupportedCommandsType.GetFields(BindingFlags.NonPublic | BindingFlags.Instance), supportedCommandsType.GetProperty(nestedSupportedCommandsType.Name.Remove(nestedSupportedCommandsType.Name.Length - "Commands".Length)).GetValue(commands)))
+
+                                                    return;
+
+                                    }
 
                                 }
 
                             }
+
+                        }
 
                     }
 

@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
+using GuidAttribute = System.Runtime.InteropServices.GuidAttribute;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Sensors
 {
