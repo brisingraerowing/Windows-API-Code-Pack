@@ -126,9 +126,9 @@
     <None Include="Win32Native.snk" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Win32NativeGuids.Net4.7\Win32NativeGuids.Net4.7.csproj">
+    <ProjectReference Include="..\Win32NativeGuids.Net4.7\Win32NativeConsts.Net4.7.csproj">
       <Project>{fe2c0c65-e1d7-4431-91ca-ea041b2f8ec3}</Project>
-      <Name>Win32NativeGuids</Name>
+      <Name>Win32NativeConsts.Net4.7</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

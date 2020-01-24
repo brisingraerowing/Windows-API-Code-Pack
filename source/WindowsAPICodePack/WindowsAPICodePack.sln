@@ -12,9 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\..\README.md = ..\..\README.md
 	EndProjectSection
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Win32NativeGuids", "Win32NativeGuids\Win32NativeGuids.shproj", "{29C2519C-BFF3-4667-A6D7-9200879F1B04}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Win32NativeConsts", "Win32NativeGuids\Win32NativeConsts.shproj", "{29C2519C-BFF3-4667-A6D7-9200879F1B04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win32NativeGuids.Net4.7", "Win32NativeGuids.Net4.7\Win32NativeGuids.Net4.7.csproj", "{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win32NativeConsts.Net4.7", "Win32NativeGuids.Net4.7\Win32NativeConsts.Net4.7.csproj", "{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Win32Native", "Win32Native\Win32Native.shproj", "{EECA348E-F9E7-44D5-9C50-A307C7F44D48}"
 EndProject

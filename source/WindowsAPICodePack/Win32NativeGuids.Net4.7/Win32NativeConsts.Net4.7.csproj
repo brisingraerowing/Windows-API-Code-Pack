@@ -13,8 +13,8 @@
     <ProjectGuid>{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Microsoft.WindowsAPICodePack.Win32Native.Guids</RootNamespace>
-    <AssemblyName>Microsoft.WindowsAPICodePack.Win32Native.Guids</AssemblyName>
+    <RootNamespace>Microsoft.WindowsAPICodePack.Win32Native</RootNamespace>
+    <AssemblyName>Microsoft.WindowsAPICodePack.Win32Native.Consts</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -30,7 +30,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Microsoft.WindowsAPICodePack.Win32Native.Guids.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\Microsoft.WindowsAPICodePack.Win32Native.Consts.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -154,4 +154,4 @@
     <Error Condition="!Exists('..\packages\Microsoft.SourceLink.GitHub.1.0.0\build\Microsoft.SourceLink.GitHub.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.SourceLink.GitHub.1.0.0\build\Microsoft.SourceLink.GitHub.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.SourceLink.GitHub.1.0.0\build\Microsoft.SourceLink.GitHub.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.SourceLink.GitHub.1.0.0\build\Microsoft.SourceLink.GitHub.targets'))" />
   </Target>
-  </Project>
+</Project>

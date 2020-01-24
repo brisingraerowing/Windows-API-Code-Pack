@@ -116,7 +116,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             public ObjectCommands() { }
 
-            public ObjectCommands(Enumeration enumeration, Property property, PropertyBulk propertyBulk, Resource resource, Management management)
+            public ObjectCommands(in Enumeration enumeration, in Property property, in PropertyBulk propertyBulk, in Resource resource, in Management management)
 
             {
 
@@ -152,7 +152,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             public ServiceCommands() { }
 
-            public ServiceCommands(Commands.Service.Common common, Commands.Service.Capability capability, Method method)
+            public ServiceCommands(in Commands.Service.Common common, in Commands.Service.Capability capability, in Method method)
 
             {
 
@@ -190,7 +190,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         public SupportedCommands() { Object = new ObjectCommands(); Service = new ServiceCommands(); }
 
-        public SupportedCommands(Common common, ObjectCommands @object, Commands.Capability capability, Storage storage, SMS sms, StillImageCapture stillImageCapture, MediaCapture mediaCapture, DeviceHint deviceHint, ClassExtension classExtension, NetworkConfiguration networkConfiguration, ServiceCommands service)
+        public SupportedCommands(in Common common, in ObjectCommands @object, in Commands.Capability capability, in Storage storage, in SMS sms, in StillImageCapture stillImageCapture, in MediaCapture mediaCapture, in DeviceHint deviceHint, in ClassExtension classExtension, in NetworkConfiguration networkConfiguration, in ServiceCommands service)
 
         {
 
@@ -229,7 +229,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         private readonly IPortableDeviceCapabilities _portableDeviceCapabilities;
 
-        public DeviceCapabilities(PortableDevice portableDevice)
+        public DeviceCapabilities(in PortableDevice portableDevice)
         {
             _portableDevice = portableDevice ?? throw new ArgumentNullException(nameof(portableDevice));
 
@@ -298,7 +298,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                                     {
 
-                                        bool browseFields(IEnumerable<FieldInfo> _fields, object obj)
+                                        bool browseFields(in IEnumerable<FieldInfo> _fields, in object obj)
 
                                         {
 
@@ -334,9 +334,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                         }
 
+                        setSupportedCommand();
+
                     }
 
                     _commands = commands;
+
+                    _ = Marshal.FinalReleaseComObject(supportedCommands);
 
                 }
 
@@ -360,6 +364,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         IPortableDeviceManager IPortableDevice.PortableDeviceManager => PortableDeviceManager;
 
         internal Win32Native.PortableDevices.IPortableDevice _portableDevice = null;
+
+        private DeviceCapabilities _deviceCapabilities = null;
+
+        public DeviceCapabilities DeviceCapabilities => _deviceCapabilities ?? (_deviceCapabilities = new DeviceCapabilities(this));
 
         /// <summary>
         /// Gets the device id of the current <see cref="PortableDevice"/>.
@@ -615,7 +623,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         public bool IsDisposed { get; private set; } = false;
 
-        protected virtual void Dispose(bool disposing)
+        protected virtual void Dispose(in bool disposing)
         {
 
             if (IsDisposed) return;

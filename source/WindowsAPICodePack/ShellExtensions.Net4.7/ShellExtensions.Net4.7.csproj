@@ -184,11 +184,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Core.Net4.7\Core.Net4.7.csproj">
       <Project>{2e1fb0df-f9bb-4909-9f32-2d9d022a8e57}</Project>
-      <Name>Core</Name>
+      <Name>Core.Net4.7</Name>
     </ProjectReference>
     <ProjectReference Include="..\Win32Native.Net4.7\Win32Native.Net4.7.csproj">
       <Project>{6c1ad76c-8eeb-4b2d-b6b4-f9b7234a92fb}</Project>
-      <Name>Win32Native</Name>
+      <Name>Win32Native.Net4.7</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

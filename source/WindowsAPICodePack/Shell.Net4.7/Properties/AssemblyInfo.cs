@@ -15,7 +15,7 @@ using System.Security;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Pierre Sprimont")]
 [assembly: AssemblyProduct("Microsoft Windows API Code Pack for .NET Framework")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2019")]
+[assembly: AssemblyCopyright("Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

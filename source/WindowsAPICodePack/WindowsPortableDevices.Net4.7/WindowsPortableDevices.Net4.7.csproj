@@ -113,7 +113,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Core.Net4.7\Core.Net4.7.csproj">
       <Project>{2e1fb0df-f9bb-4909-9f32-2d9d022a8e57}</Project>
-      <Name>Core</Name>
+      <Name>Core.Net4.7</Name>
     </ProjectReference>
     <ProjectReference Include="..\Shell.Net4.7\Shell.Net4.7.csproj">
       <Project>{9dd9cf03-2d27-4868-8a8a-0727b8805188}</Project>
@@ -121,11 +121,11 @@
     </ProjectReference>
     <ProjectReference Include="..\Win32Native.Net4.7\Win32Native.Net4.7.csproj">
       <Project>{6c1ad76c-8eeb-4b2d-b6b4-f9b7234a92fb}</Project>
-      <Name>Win32Native</Name>
+      <Name>Win32Native.Net4.7</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Win32NativeGuids.Net4.7\Win32NativeGuids.Net4.7.csproj">
+    <ProjectReference Include="..\Win32NativeGuids.Net4.7\Win32NativeConsts.Net4.7.csproj">
       <Project>{fe2c0c65-e1d7-4431-91ca-ea041b2f8ec3}</Project>
-      <Name>Win32NativeGuids.Net4.7</Name>
+      <Name>Win32NativeConsts.Net4.7</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

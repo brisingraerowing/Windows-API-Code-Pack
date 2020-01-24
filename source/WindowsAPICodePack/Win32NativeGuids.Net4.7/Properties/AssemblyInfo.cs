@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // Les informations générales relatives à un assembly dépendent de
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("Microsoft.WindowsAPICodePack.Win32Native.Guids")]
+[assembly: AssemblyTitle("Microsoft.WindowsAPICodePack.Win32Native.Consts")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Win32NativeGuids")]
-[assembly: AssemblyCopyright("Copyright © Pierre Sprimont 2019")]
+[assembly: AssemblyProduct("Microsoft Windows API Code Pack for .NET Framework")]
+[assembly: AssemblyCopyright("Copyright © Pierre Sprimont 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

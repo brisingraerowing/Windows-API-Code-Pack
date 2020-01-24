@@ -9,6 +9,7 @@
     <Import_RootNamespace>Win32NativeGuids</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Consts.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Guids.cs" />
   </ItemGroup>
 </Project>

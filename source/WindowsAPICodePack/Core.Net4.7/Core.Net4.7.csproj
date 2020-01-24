@@ -240,7 +240,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Win32Native.Net4.7\Win32Native.Net4.7.csproj">
       <Project>{6c1ad76c-8eeb-4b2d-b6b4-f9b7234a92fb}</Project>
-      <Name>Win32Native</Name>
+      <Name>Win32Native.Net4.7</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
