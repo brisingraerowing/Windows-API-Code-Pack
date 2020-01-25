@@ -342,8 +342,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         internal const string FileExtension = ".library-ms";
 
-        // todo: should not be used directly
-        public override IShellItem NativeShellItem => NativeShellItem2;
+        internal override IShellItem NativeShellItem => NativeShellItem2;
 
         internal override IShellItem2 NativeShellItem2 => nativeShellItem;
 

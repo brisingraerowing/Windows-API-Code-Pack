@@ -8,7 +8,6 @@ using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
 using System.Runtime.InteropServices.ComTypes;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
@@ -107,7 +106,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Return the native ShellFolder object. This property should not be used directly except on Win32 API reimplementation.
         /// </summary>
-        virtual public IShellItem NativeShellItem => NativeShellItem2;
+        virtual internal IShellItem NativeShellItem => NativeShellItem2;
 
         /// <summary>
         /// Gets access to the native IPropertyStore (if one is already
@@ -129,15 +128,17 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="bindContext">Bind context object</param>
         public void Update(IBindCtx bindContext)
         {
-            HResult hr = HResult.Ok;
-
             if (NativeShellItem2 != null)
 
-                hr = NativeShellItem2.Update(bindContext);
+            {
 
-            if (CoreErrorHelper.Failed(hr))
+                HResult hr = NativeShellItem2.Update(bindContext);
 
-                throw new ShellException(hr);
+                if (CoreErrorHelper.Failed(hr))
+
+                    throw new ShellException(hr);
+
+            }
         }
 
         #endregion
@@ -278,15 +279,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Gets the thumbnail of the ShellObject.
         /// </summary>
-        public ShellThumbnail Thumbnail
-        {
-            get
-            {
-                if (thumbnail == null) thumbnail = new ShellThumbnail(this);
-
-                return thumbnail;
-            }
-        }
+        public ShellThumbnail Thumbnail => thumbnail ?? (thumbnail = new ShellThumbnail(this));
 
         private ShellObject parentShellObject;
         /// <summary>
@@ -338,9 +331,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 parentShellObject = null;
             }
 
-            if (properties != null)
-
-                properties.Dispose();
+            properties?.Dispose();
 
             if (_internalPIDL != IntPtr.Zero)
             {
@@ -406,7 +397,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             return hashValue.Value;
         }
 
-        private static MD5CryptoServiceProvider hashProvider = new MD5CryptoServiceProvider();
+        private static readonly SHA256 hashProvider = SHA256.Create();
         private int? hashValue;
 
         /// <summary>

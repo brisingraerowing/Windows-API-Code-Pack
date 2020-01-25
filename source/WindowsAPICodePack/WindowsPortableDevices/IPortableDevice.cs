@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
-    public interface IPortableDevice : IDisposable
+    public interface IPortableDevice : IDisposable, IEnumerable<IPortableDeviceObject>
     {
 
         IPortableDeviceManager PortableDeviceManager { get; }
@@ -31,4 +31,12 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         object GetDeviceProperty(string propertyName, object defaultValue, bool doNotExpand, out BlobValueKind valueKind);
 
     }
+}
+
+public interface IPortableDeviceObject : IDisposable, IEnumerable<IPortableDeviceObject>
+
+{
+
+
+
 }

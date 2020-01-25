@@ -113,9 +113,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             }
         }
 
-        // todo: should not be used directly
-
-        public override IShellItem NativeShellItem
+        internal override IShellItem NativeShellItem
         {
             get
             {
