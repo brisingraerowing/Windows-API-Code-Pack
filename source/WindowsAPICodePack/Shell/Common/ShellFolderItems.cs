@@ -76,9 +76,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         public void Reset()
         {
-            if (nativeEnumIdList != null)
+            if (nativeEnumIdList is object)
 
-                nativeEnumIdList.Reset();
+                Marshal.ThrowExceptionForHR( (int) nativeEnumIdList.Reset());
         }
 
 

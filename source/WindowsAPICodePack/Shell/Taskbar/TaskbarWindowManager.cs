@@ -165,24 +165,21 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         internal static TaskbarWindow GetTaskbarWindow(IntPtr userWindowHandle, TaskbarProxyWindowType taskbarProxyWindowType)
         {
             if (userWindowHandle == IntPtr.Zero)
-            {
-                throw new ArgumentException(LocalizedMessages.CommonFileDialogInvalidHandle, "userWindowHandle");
-            }
+
+                throw new ArgumentException(LocalizedMessages.CommonFileDialogInvalidHandle, nameof(userWindowHandle));
 
             TaskbarWindow toReturn = _taskbarWindowList.FirstOrDefault(window => window.UserWindowHandle == userWindowHandle);
 
             // If its not in the list, return null so it can be added.            
             if (toReturn != null)
-            {
+
                 if (taskbarProxyWindowType == TaskbarProxyWindowType.ThumbnailToolbar)
-                {
+
                     toReturn.EnableThumbnailToolbars = true;
-                }
+
                 else if (taskbarProxyWindowType == TaskbarProxyWindowType.TabbedThumbnail)
-                {
+
                     toReturn.EnableTabbedThumbnails = true;
-                }
-            }
 
             return toReturn;
         }
@@ -237,7 +234,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             {
                 int width = (int)((long)m.LParam >> 16);
                 int height = (int)(((long)m.LParam) & (0xFFFF));
-                Size requestedSize = new Size(width, height);
+                var requestedSize = new Size(width, height);
 
                 // Fire an event to let the user update their bitmap
                 taskbarWindow.TabbedThumbnail.OnTabbedThumbnailBitmapRequested();
@@ -245,62 +242,54 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 IntPtr hBitmap = IntPtr.Zero;
 
                 // Default size for the thumbnail
-                Size realWindowSize = new Size(200, 200);
+                var realWindowSize = new Size(200, 200);
 
                 // Get the size of teh control or UIElement
                 if (taskbarWindow.TabbedThumbnail.WindowHandle != IntPtr.Zero)
-                {
+
                     TabbedThumbnailNativeMethods.GetClientSize(taskbarWindow.TabbedThumbnail.WindowHandle, out realWindowSize);
-                }
+
                 else if (taskbarWindow.TabbedThumbnail.WindowsControl != null)
-                {
+
                     realWindowSize = new Size(
                         Convert.ToInt32(taskbarWindow.TabbedThumbnail.WindowsControl.RenderSize.Width),
                         Convert.ToInt32(taskbarWindow.TabbedThumbnail.WindowsControl.RenderSize.Height));
-                }
 
                 if (realWindowSize.Height == -1 && realWindowSize.Width == -1)
-                {
+
                     realWindowSize.Width = realWindowSize.Height = 199;
-                }
 
                 // capture the bitmap for the given control
                 // If the user has already specified us a bitmap to use, use that.
                 if (taskbarWindow.TabbedThumbnail.ClippingRectangle != null &&
                     taskbarWindow.TabbedThumbnail.ClippingRectangle.Value != Rectangle.Empty)
                 {
-                    if (taskbarWindow.TabbedThumbnail.CurrentHBitmap == IntPtr.Zero)
-                    {
-                        hBitmap = GrabBitmap(taskbarWindow, realWindowSize);
-                    }
-                    else
-                    {
-                        hBitmap = taskbarWindow.TabbedThumbnail.CurrentHBitmap;
-                    }
+                    hBitmap = taskbarWindow.TabbedThumbnail.CurrentHBitmap == IntPtr.Zero
+                        ? GrabBitmap(taskbarWindow, realWindowSize)
+                        : taskbarWindow.TabbedThumbnail.CurrentHBitmap;
 
                     // Clip the bitmap we just got.
-                    Bitmap bmp = Bitmap.FromHbitmap(hBitmap);
+                    var bmp = Bitmap.FromHbitmap(hBitmap);
 
                     Rectangle clippingRectangle = taskbarWindow.TabbedThumbnail.ClippingRectangle.Value;
 
                     // If our clipping rect is out of bounds, update it
                     if (clippingRectangle.Height > requestedSize.Height)
-                    {
+
                         clippingRectangle.Height = requestedSize.Height;
-                    }
+
                     if (clippingRectangle.Width > requestedSize.Width)
-                    {
+
                         clippingRectangle.Width = requestedSize.Width;
-                    }
 
                     // NOTE: Is this a memory leak?
                     bmp = bmp.Clone(clippingRectangle, bmp.PixelFormat);
 
                     // Make sure we dispose the bitmap before assigning, otherwise we'll have a memory leak
                     if (hBitmap != IntPtr.Zero && taskbarWindow.TabbedThumbnail.CurrentHBitmap == IntPtr.Zero)
-                    {
+
                         ShellNativeMethods.DeleteObject(hBitmap);
-                    }
+
                     hBitmap = bmp.GetHbitmap();
                     bmp.Dispose();
                 }
@@ -313,9 +302,8 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
                     // If no bitmap, capture one using the utility
                     if (hBitmap == IntPtr.Zero)
-                    {
+
                         hBitmap = GrabBitmap(taskbarWindow, realWindowSize);
-                    }
                 }
 
                 // Only set the thumbnail if it's not null. 
@@ -327,9 +315,8 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                         hBitmap, requestedSize.Width, requestedSize.Height, true);
 
                     if (taskbarWindow.TabbedThumbnail.CurrentHBitmap == IntPtr.Zero)
-                    {
+
                         ShellNativeMethods.DeleteObject(hBitmap);
-                    }
 
                     hBitmap = temp.GetHbitmap();
                     TabbedThumbnailNativeMethods.SetIconicThumbnail(taskbarWindow.WindowToTellTaskbarAbout, hBitmap);
@@ -339,9 +326,8 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 // If the bitmap we have is not coming from the user (i.e. we created it here),
                 // then make sure we delete it as we don't need it now.
                 if (taskbarWindow.TabbedThumbnail.CurrentHBitmap == IntPtr.Zero)
-                {
+
                     ShellNativeMethods.DeleteObject(hBitmap);
-                }
 
                 return true;
             }
@@ -357,28 +343,26 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 int height = (int)(((long)m.LParam) & (0xFFFF));
 
                 // Default size for the thumbnail
-                Size realWindowSize = new Size(200, 200);
+                var realWindowSize = new Size(200, 200);
 
                 if (taskbarWindow.TabbedThumbnail.WindowHandle != IntPtr.Zero)
-                {
+
                     TabbedThumbnailNativeMethods.GetClientSize(taskbarWindow.TabbedThumbnail.WindowHandle, out realWindowSize);
-                }
+
                 else if (taskbarWindow.TabbedThumbnail.WindowsControl != null)
-                {
+
                     realWindowSize = new Size(
                         Convert.ToInt32(taskbarWindow.TabbedThumbnail.WindowsControl.RenderSize.Width),
                         Convert.ToInt32(taskbarWindow.TabbedThumbnail.WindowsControl.RenderSize.Height));
-                }
 
                 // If we don't have a valid height/width, use the original window's size
                 if (width <= 0)
-                {
+
                     width = realWindowSize.Width;
-                }
+
                 if (height <= 0)
-                {
+
                     height = realWindowSize.Height;
-                }
 
                 // Fire an event to let the user update their bitmap
                 // Raise the event
@@ -393,38 +377,28 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 // correctly on the app window
                 if (taskbarWindow.TabbedThumbnail.ParentWindowHandle != IntPtr.Zero && taskbarWindow.TabbedThumbnail.WindowHandle != IntPtr.Zero)
                 {
-                    System.Drawing.Point offset = new System.Drawing.Point();
 
                     // if we don't have a offset specified already by the user...
-                    if (!taskbarWindow.TabbedThumbnail.PeekOffset.HasValue)
-                    
-                        offset = WindowUtilities.GetParentOffsetOfChild(taskbarWindow.TabbedThumbnail.WindowHandle, taskbarWindow.TabbedThumbnail.ParentWindowHandle);
-                    
-                    else
-                    
-                        offset = new System.Drawing.Point(Convert.ToInt32(taskbarWindow.TabbedThumbnail.PeekOffset.Value.X),
+                    var offset = !taskbarWindow.TabbedThumbnail.PeekOffset.HasValue
+                        ? WindowUtilities.GetParentOffsetOfChild(taskbarWindow.TabbedThumbnail.WindowHandle, taskbarWindow.TabbedThumbnail.ParentWindowHandle)
+                        : new System.Drawing.Point(Convert.ToInt32(taskbarWindow.TabbedThumbnail.PeekOffset.Value.X),
                             Convert.ToInt32(taskbarWindow.TabbedThumbnail.PeekOffset.Value.Y));
 
                     // Only set the peek bitmap if it's not null. 
                     // If it's null (either we didn't get the bitmap or size was 0),
                     // let DWM handle it
-                    if (hBitmap != IntPtr.Zero)
-                    {
-                        if (offset.X >= 0 && offset.Y >= 0)
-                        {
-                            TabbedThumbnailNativeMethods.SetPeekBitmap(
-                                taskbarWindow.WindowToTellTaskbarAbout,
-                                hBitmap, offset,
-                                taskbarWindow.TabbedThumbnail.DisplayFrameAroundBitmap);
-                        }
-                    }
+                    if (hBitmap != IntPtr.Zero && offset.X >= 0 && offset.Y >= 0)
+
+                        TabbedThumbnailNativeMethods.SetPeekBitmap(
+                            taskbarWindow.WindowToTellTaskbarAbout,
+                            hBitmap, offset,
+                            taskbarWindow.TabbedThumbnail.DisplayFrameAroundBitmap);
 
                     // If the bitmap we have is not coming from the user (i.e. we created it here),
                     // then make sure we delete it as we don't need it now.
                     if (taskbarWindow.TabbedThumbnail.CurrentHBitmap == IntPtr.Zero)
-                    {
+
                         ShellNativeMethods.DeleteObject(hBitmap);
-                    }
 
                     return true;
                 }
@@ -523,13 +497,12 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             {
                 // Raise the event
                 taskbarWindow.TabbedThumbnail.OnTabbedThumbnailClosed();
-                
+
                 // Remove the taskbar window from our internal list
                 if (_taskbarWindowList.Contains(taskbarWindow))
-                {
+                
                     _taskbarWindowList.Remove(taskbarWindow);
-                }
-
+                
                 taskbarWindow.Dispose();
 
                 return true;
@@ -644,29 +617,26 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             IntPtr hBitmap = IntPtr.Zero;
 
             if (taskbarWindow.TabbedThumbnail.WindowHandle != IntPtr.Zero)
-            { //TabbedThumbnail is linked to WinformsControl
+
+                //TabbedThumbnail is linked to WinformsControl
                 if (taskbarWindow.TabbedThumbnail.CurrentHBitmap == IntPtr.Zero)
-                {
+
                     using (Bitmap bmp = TabbedThumbnailScreenCapture.GrabWindowBitmap(
                         taskbarWindow.TabbedThumbnail.WindowHandle, requestedSize))
-                    {
 
                         hBitmap = bmp.GetHbitmap();
-                    }
-                }
+
                 else
-                {
+
                     using (Image img = Image.FromHbitmap(taskbarWindow.TabbedThumbnail.CurrentHBitmap))
-                    {
-                        using (Bitmap bmp = new Bitmap(img, requestedSize))
-                        {
-                            hBitmap = bmp != null ? bmp.GetHbitmap() : IntPtr.Zero;
-                        }
-                    }
-                }
-            }
+
+                    using (var bmp = new Bitmap(img, requestedSize))
+
+                        hBitmap = bmp != null ? bmp.GetHbitmap() : IntPtr.Zero;
+
             else if (taskbarWindow.TabbedThumbnail.WindowsControl != null)
-            { //TabbedThumbnail is linked to a WPF UIElement
+
+                //TabbedThumbnail is linked to a WPF UIElement
                 if (taskbarWindow.TabbedThumbnail.CurrentHBitmap == IntPtr.Zero)
                 {
                     Bitmap bmp = TabbedThumbnailScreenCapture.GrabWindowBitmap(
@@ -680,17 +650,12 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                     }
                 }
                 else
-                {
-                    using (Image img = Image.FromHbitmap(taskbarWindow.TabbedThumbnail.CurrentHBitmap))
-                    {
-                        using (Bitmap bmp = new Bitmap(img, requestedSize))
-                        {
 
-                            hBitmap = bmp != null ? bmp.GetHbitmap() : IntPtr.Zero;
-                        }
-                    }
-                }
-            }
+                    using (Image img = Image.FromHbitmap(taskbarWindow.TabbedThumbnail.CurrentHBitmap))
+
+                    using (Bitmap bmp = new Bitmap(img, requestedSize))
+
+                        hBitmap = bmp != null ? bmp.GetHbitmap() : IntPtr.Zero;
 
             return hBitmap;
         }
@@ -698,27 +663,26 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         internal static void SetActiveTab(TaskbarWindow taskbarWindow)
         {
             if (taskbarWindow != null)
-            {
+
                 TaskbarList.Instance.SetTabActive(
                     taskbarWindow.WindowToTellTaskbarAbout,
                     taskbarWindow.TabbedThumbnail.ParentWindowHandle, 0);
-            }
         }
 
         internal static void UnregisterTab(TaskbarWindow taskbarWindow)
         {
             if (taskbarWindow != null)
-            
+
                 TaskbarList.Instance.UnregisterTab(taskbarWindow.WindowToTellTaskbarAbout);
         }
 
         internal static void InvalidatePreview(TaskbarWindow taskbarWindow)
         {
             if (taskbarWindow != null)
-            
+
                 TabbedThumbnailNativeMethods.DwmInvalidateIconicBitmaps(
                     taskbarWindow.WindowToTellTaskbarAbout);
-                    }
+        }
 
         private static void AddButtons(TaskbarWindow taskbarWindow)
         {
@@ -731,54 +695,39 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             HResult hr = TaskbarList.Instance.ThumbBarAddButtons(taskbarWindow.WindowToTellTaskbarAbout, (uint)taskbarWindow.ThumbnailButtons.Length, nativeButtons);
 
             if (!CoreErrorHelper.Succeeded(hr))
-            
+
                 throw new ShellException(hr);
-            
+
             _buttonsAdded = true;
 
             foreach (ThumbnailToolBarButton button in taskbarWindow.ThumbnailButtons)
-            
+
                 button.AddedToTaskbar = _buttonsAdded;
-                    }
-        
+        }
+
         #region Event handlers
 
         private static void thumbnailPreview_TooltipChanged(object sender, EventArgs e)
         {
-            TabbedThumbnail preview = sender as TabbedThumbnail;
+            var preview = sender as TabbedThumbnail;
 
-            TaskbarWindow taskbarWindow = null;
-
-            if (preview.WindowHandle == IntPtr.Zero)
-            {
-                taskbarWindow = GetTaskbarWindow(preview.WindowsControl, TaskbarProxyWindowType.TabbedThumbnail);
-            }
-            else
-            {
-                taskbarWindow = GetTaskbarWindow(preview.WindowHandle, TaskbarProxyWindowType.TabbedThumbnail);
-            }
+            TaskbarWindow taskbarWindow = preview.WindowHandle == IntPtr.Zero
+                ? GetTaskbarWindow(preview.WindowsControl, TaskbarProxyWindowType.TabbedThumbnail)
+                : GetTaskbarWindow(preview.WindowHandle, TaskbarProxyWindowType.TabbedThumbnail);
 
             // Update the proxy window for the tabbed thumbnail            
             if (taskbarWindow != null)
-            {
+
                 TaskbarList.Instance.SetThumbnailTooltip(taskbarWindow.WindowToTellTaskbarAbout, preview.Tooltip);
-            }
         }
 
         private static void thumbnailPreview_TitleChanged(object sender, EventArgs e)
         {
-            TabbedThumbnail preview = sender as TabbedThumbnail;
+            var preview = sender as TabbedThumbnail;
 
-            TaskbarWindow taskbarWindow = null;
-
-            if (preview.WindowHandle == IntPtr.Zero)
-            {
-                taskbarWindow = GetTaskbarWindow(preview.WindowsControl, TaskbarProxyWindowType.TabbedThumbnail);
-            }
-            else
-            {
-                taskbarWindow = GetTaskbarWindow(preview.WindowHandle, TaskbarProxyWindowType.TabbedThumbnail);
-            }
+            TaskbarWindow taskbarWindow = preview.WindowHandle == IntPtr.Zero
+                ? GetTaskbarWindow(preview.WindowsControl, TaskbarProxyWindowType.TabbedThumbnail)
+                : GetTaskbarWindow(preview.WindowHandle, TaskbarProxyWindowType.TabbedThumbnail);
 
             // Update the proxy window for the tabbed thumbnail
             if (taskbarWindow != null)

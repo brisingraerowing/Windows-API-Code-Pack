@@ -25,7 +25,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             ParentShellObject = parent;
 
             // Open the property store for this shell object...
-            Guid guid = new Guid(ShellIIDGuid.IPropertyStore);
+            var guid = new Guid(ShellIIDGuid.IPropertyStore);
 
             try
             {
@@ -88,7 +88,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             if (writablePropStore == null)
                 throw new InvalidOperationException("Writeable store has been closed.");
 
-            using (PropVariant propVar = PropVariant.FromObject(value))
+            using (var propVar = PropVariant.FromObject(value))
             {
                 HResult result = writablePropStore.SetValue(ref key, propVar);
 
@@ -97,10 +97,10 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     // At this point we can't revert back the commit
                     // so don't commit, close the property store and throw an exception
                     // to let the user know.
-                    Marshal.ReleaseComObject(writablePropStore);
+                    _=Marshal.ReleaseComObject(writablePropStore);
                     writablePropStore = null;
 
-                    throw new ArgumentOutOfRangeException("value", LocalizedMessages.ShellPropertyValueTruncated);
+                    throw new ArgumentOutOfRangeException(nameof(value), LocalizedMessages.ShellPropertyValueTruncated);
                 }
 
                 if (!CoreErrorHelper.Succeeded(result))
@@ -143,10 +143,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// </summary>
         /// <param name="shellProperty">The property name.</param>
         /// <param name="value">The property value.</param>
-        public void WriteProperty(IShellProperty shellProperty, object value)
-        {
-            WriteProperty(shellProperty, value, true);
-        }
+        public void WriteProperty(IShellProperty shellProperty, object value) => WriteProperty(shellProperty, value, true);
 
         /// <summary>
         /// Writes the specified property given an IShellProperty and a value. To allow truncation of the given value, set allowTruncatedValue

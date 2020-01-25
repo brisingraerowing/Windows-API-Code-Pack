@@ -22,9 +22,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         #region Private Fields
 
         private INativeShellLibrary nativeShellLibrary;
-        private IKnownFolder knownFolder;
+        private readonly IKnownFolder knownFolder;
 
-        private static Guid[] FolderTypesGuids =
+        private static readonly Guid[] FolderTypesGuids =
         {
             new Guid(ShellKFIDGuid.GenericLibrary),
             new Guid(ShellKFIDGuid.DocumentsLibrary),
@@ -119,7 +119,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             if (string.IsNullOrEmpty(libraryName))
 
-                throw new ArgumentException(LocalizedMessages.ShellLibraryEmptyName, "libraryName");
+                throw new ArgumentException(LocalizedMessages.ShellLibraryEmptyName, nameof(libraryName));
 
             knownFolder = sourceKnownFolder;
 
@@ -386,7 +386,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 AccessModes flags = isReadOnly ?
                         AccessModes.Read :
                         AccessModes.ReadWrite;
-                nativeShellLibrary.LoadLibraryFromItem(nativeShellItem, flags);
+                Marshal.ThrowExceptionForHR( (int) nativeShellLibrary.LoadLibraryFromItem(nativeShellItem, flags));
 
                 var library = new ShellLibrary(nativeShellLibrary);
 
@@ -426,7 +426,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             AccessModes flags = isReadOnly ?
                     AccessModes.Read :
                     AccessModes.ReadWrite;
-            nativeShellLibrary.LoadLibraryFromItem(nativeShellItem, flags);
+            Marshal.ThrowExceptionForHR((int) nativeShellLibrary.LoadLibraryFromItem(nativeShellItem, flags));
 
             var library = new ShellLibrary(nativeShellLibrary);
 
@@ -461,10 +461,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     AccessModes.Read :
                     AccessModes.ReadWrite;
 
-            nativeShellLibrary.LoadLibraryFromItem(nativeShellItem, flags);
+            Marshal.ThrowExceptionForHR((int) nativeShellLibrary.LoadLibraryFromItem(nativeShellItem, flags));
 
-            var library = new ShellLibrary(nativeShellLibrary);
-            library.nativeShellItem = (IShellItem2)nativeShellItem;
+            var library = new ShellLibrary(nativeShellLibrary)
+            {
+                nativeShellItem = (IShellItem2)nativeShellItem
+            };
 
             return library;
         }
@@ -485,17 +487,14 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             int hr = 0;
 
-            var staWorker = new Thread(() =>
-            {
-                hr = ShellNativeMethods.SHShowManageLibraryUI(
+            var staWorker = new Thread(() => hr = ShellNativeMethods.SHShowManageLibraryUI(
                     shellLibrary.NativeShellItem,
                     windowHandle,
                     title,
                     instruction,
                     allowAllLocations ?
                        ShellNativeMethods.LibraryManageDialogOptions.NonIndexableLocationWarning :
-                       ShellNativeMethods.LibraryManageDialogOptions.Default);
-            });
+                       ShellNativeMethods.LibraryManageDialogOptions.Default));
 
             staWorker.SetApartmentState(ApartmentState.STA);
             staWorker.Start();
@@ -680,11 +679,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (!CoreErrorHelper.Succeeded(hr)) return list;
 
-            itemArray.GetCount(out uint count);
+            Marshal.ThrowExceptionForHR((int) itemArray.GetCount(out uint count));
 
             for (uint i = 0; i < count; ++i)
             {
-                itemArray.GetItemAt(i, out IShellItem shellItem);
+                Marshal.ThrowExceptionForHR((int) itemArray.GetItemAt(i, out IShellItem shellItem));
                 list.Add(new ShellFileSystemFolder(shellItem as IShellItem2));
             }
 

@@ -47,9 +47,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
 
             set
             {
-                if (customizedDialog != null)
+                if (customizedDialog is object)
 
-                    customizedDialog.SetEditBoxText(this.Id, value);
+                    customizedDialog.SetEditBoxText(Id, value);
 
                 base.Text = value;
             }
@@ -70,7 +70,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
             Debug.Assert(dialog != null, "CommonFileDialogTextBox.Attach: dialog parameter can not be null");
 
             // Add a text entry control
-            dialog.AddEditBox(this.Id, this.Text);
+            dialog.AddEditBox(Id, Text);
 
             // Set to local instance in order to gate access to same.
             customizedDialog = dialog;
@@ -88,10 +88,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
             // otherwise, use the native call to get the text value, 
             // setting the textValue member variable then return it.
 
-            if (customizedDialog != null)
+            if (customizedDialog is object)
             {
-                string textValue;
-                customizedDialog.GetEditBoxText(this.Id, out textValue);
+                customizedDialog.GetEditBoxText(Id, out string textValue);
 
                 base.Text = textValue;
             }

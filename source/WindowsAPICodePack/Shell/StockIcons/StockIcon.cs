@@ -181,28 +181,30 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             // Based on the current settings, update the flags
             if (CurrentSize == StockIconSize.Small)
-            
+
                 flags |= StockIconsNativeMethods.StockIconOptions.Small;
-            
+
             else if (CurrentSize == StockIconSize.ShellSize)
-            
+
                 flags |= StockIconsNativeMethods.StockIconOptions.ShellSize;
-            
+
             else
-            
+
                 flags |= StockIconsNativeMethods.StockIconOptions.Large;  // default
-            
+
             if (Selected)
-            
+
                 flags |= StockIconsNativeMethods.StockIconOptions.Selected;
-            
+
             if (LinkOverlay)
-            
+
                 flags |= StockIconsNativeMethods.StockIconOptions.LinkOverlay;
-            
+
             // Create a StockIconInfo structure to pass to the native method.
-            StockIconsNativeMethods.StockIconInfo info = new StockIconsNativeMethods.StockIconInfo();
-            info.StuctureSize = (uint)Marshal.SizeOf(typeof(StockIconsNativeMethods.StockIconInfo));
+            var info = new StockIconsNativeMethods.StockIconInfo
+            {
+                StuctureSize = (uint)Marshal.SizeOf(typeof(StockIconsNativeMethods.StockIconInfo))
+            };
 
             // Pass the struct to the native method
             HResult hr = StockIconsNativeMethods.SHGetStockIconInfo(identifier, flags, ref info);
@@ -212,12 +214,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
             if (hr != HResult.Ok)
             {
                 if (hr == HResult.InvalidArguments)
-                
+
                     throw new InvalidOperationException(
                         string.Format(System.Globalization.CultureInfo.InvariantCulture,
                         LocalizedMessages.StockIconInvalidGuid,
                         identifier));
-                
+
                 return IntPtr.Zero;
             }
 
@@ -232,13 +234,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Release the native and managed objects
         /// </summary>
-        /// <param name="disposing">Indicates that this is being called from Dispose(), rather than the finalizer.</param>
-        protected virtual void Dispose(bool disposing)
+        protected virtual void DisposeOverride()
         {
-            if (disposing)
-            {
-                // dispose managed resources here
-            }
+            //if (disposing)
+            //{
+            //    // dispose managed resources here
+            //}
 
             // Unmanaged resources
             if (hIcon != IntPtr.Zero)
@@ -250,7 +251,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         public void Dispose()
         {
-            Dispose(true);
+            DisposeOverride();
             GC.SuppressFinalize(this);
         }
 
@@ -259,7 +260,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         ~StockIcon()
         {
-            Dispose(false);
+            DisposeOverride();
         }
 
         #endregion

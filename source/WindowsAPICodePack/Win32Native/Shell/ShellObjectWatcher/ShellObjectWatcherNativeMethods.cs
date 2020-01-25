@@ -170,11 +170,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         public override int GetHashCode()
         {
             int hash = WindowHandle.GetHashCode();
-            hash = hash * 31 + Msg.GetHashCode();
-            hash = hash * 31 + WParam.GetHashCode();
-            hash = hash * 31 + LParam.GetHashCode();
-            hash = hash * 31 + Time.GetHashCode();
-            hash = hash * 31 + Point.GetHashCode();
+            hash = (hash * 31) + Msg.GetHashCode();
+            hash = (hash * 31) + WParam.GetHashCode();
+            hash = (hash * 31) + LParam.GetHashCode();
+            hash = (hash * 31) + Time.GetHashCode();
+            hash = (hash * 31) + Point.GetHashCode();
             return hash;
         }
     }

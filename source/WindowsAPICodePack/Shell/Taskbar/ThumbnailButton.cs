@@ -27,7 +27,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         // Internal bool to track whether we should be updating the taskbar 
         // if any of our properties change or if it's just an internal update
         // on the properties (via the constructor)
-        private bool internalUpdate = false;
+        private readonly bool internalUpdate = false;
 
         /// <summary>
         /// Initializes an instance of this class
@@ -44,7 +44,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             Id = nextId;
 
             // increment the ID
-            if (nextId == Int32.MaxValue)
+            if (nextId == int.MaxValue)
                 nextId = 101; // our starting point
             else
                 nextId++;
@@ -118,7 +118,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         {
             get
             {
-                return (this.Flags & ThumbButtonOptions.Hidden) == 0;
+                return (Flags & ThumbButtonOptions.Hidden) == 0;
             }
             set
             {
@@ -127,14 +127,13 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                     visible = value;
 
                     if (value)
-                    {
-                        this.Flags &= ~(ThumbButtonOptions.Hidden);
-                    }
+                    
+                        Flags &= ~(ThumbButtonOptions.Hidden);
+                    
                     else
-                    {
+                    
                         this.Flags |= ThumbButtonOptions.Hidden;
-                    }
-
+                    
                     UpdateThumbnailButton();
                 }
 

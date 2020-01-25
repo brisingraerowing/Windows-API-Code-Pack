@@ -26,7 +26,7 @@ namespace MS.WindowsAPICodePack.Internal
 
         private Guid IID_DShellFolderViewEvents = new Guid(ExplorerBrowserIIDGuid.DShellFolderViewEvents);
         private Guid IID_IDispatch = new Guid(ExplorerBrowserIIDGuid.IDispatch);
-        private ExplorerBrowser parent;
+        private readonly ExplorerBrowser parent;
         #endregion
 
         #region contstruction
@@ -62,10 +62,9 @@ namespace MS.WindowsAPICodePack.Internal
                     ref nullPtr);
 
                 if (hr != HResult.Ok)
-                {
-                    Marshal.ReleaseComObject(viewDispatch);
-                }
-            }
+                
+                    _ = Marshal.ReleaseComObject(viewDispatch);
+                            }
         }
 
         internal void DisconnectFromView()
@@ -80,7 +79,7 @@ namespace MS.WindowsAPICodePack.Internal
                     ref viewConnectionPointCookie,
                     ref nullPtr);
 
-                Marshal.ReleaseComObject(viewDispatch);
+                _ = Marshal.ReleaseComObject(viewDispatch);
                 viewDispatch = null;
                 viewConnectionPointCookie = 0;
             }
@@ -94,37 +93,25 @@ namespace MS.WindowsAPICodePack.Internal
         /// The view selection has changed
         /// </summary>
         [DispId(ExplorerBrowserViewDispatchIds.SelectionChanged)]
-        public void ViewSelectionChanged()
-        {
-            parent.FireSelectionChanged();
-        }
+        public void ViewSelectionChanged() => parent.FireSelectionChanged();
 
         /// <summary>
         /// The contents of the view have changed
         /// </summary>
         [DispId(ExplorerBrowserViewDispatchIds.ContentsChanged)]
-        public void ViewContentsChanged()
-        {
-            parent.FireContentChanged();
-        }
+        public void ViewContentsChanged() => parent.FireContentChanged();
 
         /// <summary>
         /// The enumeration of files in the view is complete
         /// </summary>
         [DispId(ExplorerBrowserViewDispatchIds.FileListEnumDone)]
-        public void ViewFileListEnumDone()
-        {
-            parent.FireContentEnumerationComplete();
-        }
+        public void ViewFileListEnumDone() => parent.FireContentEnumerationComplete();
 
         /// <summary>
         /// The selected item in the view has changed (not the same as the selection has changed)
         /// </summary>
         [DispId(ExplorerBrowserViewDispatchIds.SelectedItemChanged)]
-        public void ViewSelectedItemChanged()
-        {
-            parent.FireSelectedItemChanged();
-        }
+        public void ViewSelectedItemChanged() => parent.FireSelectedItemChanged();
         #endregion
 
         /// <summary>

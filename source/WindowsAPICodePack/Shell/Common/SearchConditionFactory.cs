@@ -172,7 +172,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </remarks>
         public static SearchCondition CreateLeafCondition(PropertyKey propertyKey, string value, SearchConditionOperation operation)
         {
-            PropertySystemNativeMethods.PSGetNameFromPropertyKey(ref propertyKey, out string canonicalName);
+            Marshal.ThrowExceptionForHR( PropertySystemNativeMethods.PSGetNameFromPropertyKey(ref propertyKey, out string canonicalName));
 
             if (string.IsNullOrEmpty(canonicalName))
 

@@ -16,14 +16,14 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices
 
         private static uint RecoveryHandler(IntPtr parameter)
         {
-            ApplicationRecoveryInProgress(out bool cancelled);
+            Marshal.ThrowExceptionForHR( (int) ApplicationRecoveryInProgress(out _));
 
-            GCHandle handle = GCHandle.FromIntPtr(parameter);
-            RecoveryData data = handle.Target as RecoveryData;
+            var handle = GCHandle.FromIntPtr(parameter);
+            var data = handle.Target as RecoveryData;
             data.Invoke();
             handle.Free();
 
-            return (0);
+            return 0;
         }
 
 

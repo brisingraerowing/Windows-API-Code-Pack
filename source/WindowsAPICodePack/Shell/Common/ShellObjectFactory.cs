@@ -125,21 +125,19 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 {
                     IntPtr unknown = Marshal.GetIUnknownForObject(nativeShellItem2);
 
-                    ThreadPool.QueueUserWorkItem(obj =>
-                    {
-                        lock (padlock)
-                        {
-                            pidl = ShellHelper.PidlFromUnknown(unknown);
+                    _ = ThreadPool.QueueUserWorkItem(obj =>
+                      {
+                          lock (padlock)
+                          {
+                              pidl = ShellHelper.PidlFromUnknown(unknown);
 
-                            new KnownFolderManagerClass().FindFolderFromIDList(pidl, out nativeFolder);
+                              new KnownFolderManagerClass().FindFolderFromIDList(pidl, out nativeFolder);
 
-                            if (nativeFolder != null)
-                            
-                                nativeFolder.GetFolderDefinition(out definition);
-                            
-                            Monitor.Pulse(padlock);
-                        }
-                    });
+                                  nativeFolder?.GetFolderDefinition(out definition);
+
+                              Monitor.Pulse(padlock);
+                          }
+                      });
 
                     _ = Monitor.Wait(padlock);
                 }

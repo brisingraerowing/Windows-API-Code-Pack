@@ -152,7 +152,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Taskbar
             IPropertyStore propStore = GetWindowPropertyStore(hwnd);
 
             // Set the value
-            using (PropVariant pv = new PropVariant(value))
+            using (var pv = new PropVariant(value))
             {
                 HResult result = propStore.SetValue(ref propkey, pv);
                 if (!CoreErrorHelper.Succeeded(result))
@@ -167,7 +167,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Taskbar
 
         public static IPropertyStore GetWindowPropertyStore(IntPtr hwnd)
         {
-            Guid guid = new Guid(ShellIIDGuid.IPropertyStore);
+            var guid = new Guid(ShellIIDGuid.IPropertyStore);
             int rc = SHGetPropertyStoreForWindow(
                 hwnd,
                 ref guid,

@@ -8,24 +8,24 @@
 // </summary>
 //-----------------------------------------------------------------------
 
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Remoting;
+using System.Runtime.Remoting.Channels;
+using System.Runtime.Remoting.Channels.Ipc;
+using System.Runtime.Serialization.Formatters;
+using System.Threading;
+using System.Windows;
+using System.Windows.Threading;
+using System.Xml.Serialization;
+using System.Security;
+using System.Runtime.InteropServices;
+using System.ComponentModel;
+
 namespace Microsoft.WindowsAPICodePack.Shell
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Runtime.Remoting;
-    using System.Runtime.Remoting.Channels;
-    using System.Runtime.Remoting.Channels.Ipc;
-    using System.Runtime.Serialization.Formatters;
-    using System.Threading;
-    using System.Windows;
-    using System.Windows.Threading;
-    using System.Xml.Serialization;
-    using System.Security;
-    using System.Runtime.InteropServices;
-    using System.ComponentModel;
-
     public interface ISingleInstanceApp
     {
         bool SignalExternalCommandLineArgs(IList<string> args);
@@ -183,11 +183,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     }
             }
 
-            if (args == null)
-
-                args = new string[] { };
-
-            return new List<string>(args);
+            return new List<string>(args??Array.Empty<string>());
         }
 
         /// <summary>
@@ -196,13 +192,16 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="channelName">Application's IPC channel name.</param>
         private static void CreateRemoteService(string channelName)
         {
-            var serverProvider = new BinaryServerFormatterSinkProvider();
-            serverProvider.TypeFilterLevel = TypeFilterLevel.Full;
-            IDictionary props = new Dictionary<string, string>();
-
-            props["name"] = channelName;
-            props["portName"] = channelName;
-            props["exclusiveAddressUse"] = "false";
+            var serverProvider = new BinaryServerFormatterSinkProvider
+            {
+                TypeFilterLevel = TypeFilterLevel.Full
+            };
+            IDictionary props = new Dictionary<string, string>
+            {
+                ["name"] = channelName,
+                ["portName"] = channelName,
+                ["exclusiveAddressUse"] = "false"
+            };
 
             // Create the IPC Server channel with the channel properties
             channel = new IpcServerChannel(props, serverProvider);

@@ -62,7 +62,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 if (nativePropertyStore != null)
                 {
-                    Marshal.ReleaseComObject(nativePropertyStore);
+                    _=Marshal.ReleaseComObject(nativePropertyStore);
                     nativePropertyStore = null;
                 }
             }
@@ -84,14 +84,11 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
         private void AddProperties(IPropertyStore nativePropertyStore)
         {
-            uint propertyCount;
-            PropertyKey propKey;
-
             // Populate the property collection
-            nativePropertyStore.GetCount(out propertyCount);
+            nativePropertyStore.GetCount(out uint propertyCount);
             for (uint i = 0; i < propertyCount; i++)
             {
-                nativePropertyStore.GetAt(i, out propKey);
+                nativePropertyStore.GetAt(i, out PropertyKey propKey);
 
                 Items.Add(ParentShellObject != null ? ParentShellObject.Properties.CreateTypedProperty(propKey) : CreateTypedProperty(propKey, NativePropertyStore));
             }
@@ -99,13 +96,11 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
         public static IPropertyStore CreateDefaultPropertyStore(ShellObject shellObj)
         {
-            IPropertyStore nativePropertyStore = null;
-
-            Guid guid = new Guid(ShellIIDGuid.IPropertyStore);
+            var guid = new Guid(ShellIIDGuid.IPropertyStore);
             int hr = shellObj.NativeShellItem2.GetPropertyStore(
                    ShellNativeMethods.GetPropertyStoreOptions.BestEffort,
                    ref guid,
-                   out nativePropertyStore);
+                   out IPropertyStore nativePropertyStore);
 
             // throw on failure 
             if (nativePropertyStore == null || !CoreErrorHelper.Succeeded(hr))
@@ -132,7 +127,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         {
             if (string.IsNullOrEmpty(canonicalName))
 
-                throw new ArgumentException(LocalizedMessages.PropertyCollectionNullCanonicalName, "canonicalName");
+                throw new ArgumentException(LocalizedMessages.PropertyCollectionNullCanonicalName, nameof(canonicalName));
 
             return Items.Any(p => p.CanonicalName == canonicalName);
 
@@ -160,7 +155,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 if (string.IsNullOrEmpty(canonicalName))
 
-                    throw new ArgumentException(LocalizedMessages.PropertyCollectionNullCanonicalName, "canonicalName");
+                    throw new ArgumentException(LocalizedMessages.PropertyCollectionNullCanonicalName, nameof(canonicalName));
 
                 IShellProperty prop = Items.FirstOrDefault(p => p.CanonicalName == canonicalName);
                 if (prop == null)

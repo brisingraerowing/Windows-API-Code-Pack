@@ -401,12 +401,12 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void GetControlState(
             [In] int dwIDCtl,
-            [Out] out ShellNativeMethods.ControlState pdwState);
+            [Out] out ControlState pdwState);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void SetControlState(
             [In] int dwIDCtl,
-            [In] ShellNativeMethods.ControlState dwState);
+            [In] ControlState dwState);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void GetEditBoxText(

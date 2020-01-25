@@ -39,7 +39,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         {
             if (string.IsNullOrEmpty(extensionList))
 
-                throw new ArgumentNullException("extensionList");
+                throw new ArgumentNullException(nameof(extensionList));
 
             this.rawDisplayName = rawDisplayName;
 
@@ -48,10 +48,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             // Can support leading "." or "*." - these will be stripped.
             string[] rawExtensions = extensionList.Split(',', ';');
             foreach (string extension in rawExtensions)
-            {
+            
                 Extensions.Add(NormalizeExtension(extension));
-            }
-        }
+                    }
         /// <summary>
         /// Gets or sets the display name for this filter.
         /// </summary>
@@ -61,26 +60,14 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// </permission>        
         public string DisplayName
         {
-            get
-            {
-                if (ShowExtensions)
-
-                    return string.Format(System.Globalization.CultureInfo.InvariantCulture,
+            get => ShowExtensions
+                    ? string.Format(System.Globalization.CultureInfo.InvariantCulture,
                         "{0} ({1})",
                         rawDisplayName,
-                        GetDisplayExtensionList(Extensions));
+                        GetDisplayExtensionList(Extensions))
+                    : rawDisplayName;
 
-                return rawDisplayName;
-            }
-
-            set
-            {
-                if (string.IsNullOrEmpty(value))
-
-                    throw new ArgumentNullException("value");
-
-                rawDisplayName = value;
-            }
+            set => rawDisplayName = string.IsNullOrEmpty(value) ? throw new ArgumentNullException(nameof(value)) : value;
         }
 
         /// <summary>
@@ -104,12 +91,12 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
         private static string GetDisplayExtensionList(Collection<string> extensions)
         {
-            StringBuilder extensionList = new StringBuilder();
+            var extensionList = new StringBuilder();
             foreach (string extension in extensions)
             {
-                if (extensionList.Length > 0) { extensionList.Append(", "); }
-                extensionList.Append("*.");
-                extensionList.Append(extension);
+                if (extensionList.Length > 0)  _ = extensionList.Append(", "); 
+                _ = extensionList.Append("*.");
+                _ = extensionList.Append(extension);
             }
 
             return extensionList.ToString();
@@ -123,13 +110,13 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// 
         internal ShellNativeMethods.FilterSpec GetFilterSpec()
         {
-            StringBuilder filterList = new StringBuilder();
+            var filterList = new StringBuilder();
             foreach (string extension in Extensions)
             {
-                if (filterList.Length > 0) { filterList.Append(";"); }
+                if (filterList.Length > 0) _ = filterList.Append(";"); 
 
-                filterList.Append("*.");
-                filterList.Append(extension);
+                _ = filterList.Append("*.");
+                _ = filterList.Append(extension);
 
             }
             return new ShellNativeMethods.FilterSpec(DisplayName, filterList.ToString());
@@ -139,13 +126,10 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// Returns a string representation for this filter that includes
         /// the display name and the list of extensions.
         /// </summary>
-        /// <returns>A <see cref="System.String"/>.</returns>
-        public override string ToString()
-        {
-            return string.Format(System.Globalization.CultureInfo.InvariantCulture,
+        /// <returns>A <see cref="string"/>.</returns>
+        public override string ToString() => string.Format(System.Globalization.CultureInfo.InvariantCulture,
                 "{0} ({1})",
                 rawDisplayName,
-                CommonFileDialogFilter.GetDisplayExtensionList(Extensions));
-        }
+                GetDisplayExtensionList(Extensions));
     }
 }

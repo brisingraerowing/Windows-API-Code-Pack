@@ -70,7 +70,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 searchCondition = value;
 
-                NativeSearchFolderItemFactory.SetCondition(searchCondition.NativeSearchCondition);
+                Marshal.ThrowExceptionForHR((int) NativeSearchFolderItemFactory.SetCondition(searchCondition.NativeSearchCondition));
             }
         }
 
@@ -83,7 +83,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             get
             {
-                foreach (var scopePath in searchScopePaths)
+                foreach (string scopePath in searchScopePaths)
 
                     yield return scopePath;
             }
@@ -147,7 +147,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 if (!CoreErrorHelper.Succeeded(result))
 
-                    throw new ArgumentException(Win32Native.Shell.Resources.LocalizedMessages.ShellInvalidCanonicalName, "canonicalNames", Marshal.GetExceptionForHR(result));
+                    throw new ArgumentException(Win32Native.Shell.Resources.LocalizedMessages.ShellInvalidCanonicalName, nameof(canonicalNames), Marshal.GetExceptionForHR(result));
 
                 propertyKeyList.Add(propKey);
             }
@@ -166,7 +166,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             if (propertyKeys != null && propertyKeys.Length > 0)
 
-                NativeSearchFolderItemFactory.SetStacks((uint)propertyKeys.Length, propertyKeys);
+                Marshal.ThrowExceptionForHR((int) NativeSearchFolderItemFactory.SetStacks((uint)propertyKeys.Length, propertyKeys));
         }
 
         /// <summary>

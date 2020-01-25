@@ -14,7 +14,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 
         private string moduleName;
         private string referencePath;
-        static private char[] commaSeparator = new char[] { ',' };
+        private static readonly char[] commaSeparator = new char[] { ',' };
 
         #endregion
 
@@ -45,13 +45,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         {
             if (string.IsNullOrEmpty(refPath))
 
-                throw new ArgumentNullException("refPath");
+                throw new ArgumentNullException(nameof(refPath));
 
             string[] refParams = refPath.Split(commaSeparator);
 
             if (refParams.Length != 2 || string.IsNullOrEmpty(refParams[0]) || string.IsNullOrEmpty(refParams[1]))
 
-                throw new ArgumentException(LocalizedMessages.InvalidReferencePath, "refPath");
+                throw new ArgumentException(LocalizedMessages.InvalidReferencePath, nameof(refPath));
 
             moduleName = refParams[0];
             ResourceId = int.Parse(refParams[1], System.Globalization.CultureInfo.InvariantCulture);
@@ -69,7 +69,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
             {
                 if (string.IsNullOrEmpty(value))
 
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
 
                 moduleName = value;
             }
@@ -90,13 +90,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
             {
                 if (string.IsNullOrEmpty(value))
 
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
 
                 string[] refParams = value.Split(commaSeparator);
 
                 if (refParams.Length != 2 || string.IsNullOrEmpty(refParams[0]) || string.IsNullOrEmpty(refParams[1]))
 
-                    throw new ArgumentException(LocalizedMessages.InvalidReferencePath, "value");
+                    throw new ArgumentException(LocalizedMessages.InvalidReferencePath, nameof(value));
 
                 ModuleName = refParams[0];
                 ResourceId = int.Parse(refParams[1], System.Globalization.CultureInfo.InvariantCulture);

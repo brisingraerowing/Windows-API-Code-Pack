@@ -27,8 +27,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             Debug.Assert(knownFolderNative != null);
 
-            KnownFoldersSafeNativeMethods.NativeFolderDefinition nativeFolderDefinition;
-            knownFolderNative.GetFolderDefinition(out nativeFolderDefinition);
+            knownFolderNative.GetFolderDefinition(out KnownFoldersSafeNativeMethods.NativeFolderDefinition nativeFolderDefinition);
 
             try
             {
@@ -47,8 +46,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 knownFolderProperties.folderTypeId = nativeFolderDefinition.folderTypeId;
                 knownFolderProperties.folderType = FolderTypes.GetFolderType(knownFolderProperties.folderTypeId);
 
-                bool pathExists;
-                knownFolderProperties.path = GetPath(out pathExists, knownFolderNative);
+                knownFolderProperties.path = GetPath(out bool pathExists, knownFolderNative);
                 knownFolderProperties.pathExists = pathExists;
 
                 knownFolderProperties.redirection = knownFolderNative.GetRedirectionCapabilities();
@@ -84,7 +82,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </param>
         /// <param name="knownFolderNative">Native IKnownFolder reference</param>
         /// <returns>
-        /// A <see cref="System.String"/> containing the path, or <see cref="System.String.Empty"/> if this known folder does not exist.
+        /// A <see cref="System.String"/> containing the path, or <see cref="string.Empty"/> if this known folder does not exist.
         /// </returns>
         private string GetPath(out bool fileExists, IKnownFolderNative knownFolderNative)
         {

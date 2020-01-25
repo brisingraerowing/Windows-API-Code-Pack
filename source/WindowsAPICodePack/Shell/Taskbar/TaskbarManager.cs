@@ -22,7 +22,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         }
 
         // Best practice recommends defining a private object to lock on
-        private static object _syncLock = new object();
+        private static readonly object _syncLock = new object();
 
         private static TaskbarManager _instance;
         /// <summary>
@@ -210,17 +210,13 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// </summary>
         public string ApplicationId
         {
-            get
-            {
-                return GetCurrentProcessAppId();
-            }
+            get => GetCurrentProcessAppId();
             set
             {
                 if (string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentNullException("value");
-                }
-
+                
+                    throw new ArgumentNullException(nameof(value));
+                
                 SetCurrentProcessAppId(value);
                 ApplicationIdSetProcessWide = true;
             }
@@ -237,13 +233,12 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             {
                 if (_ownerHandle == IntPtr.Zero)
                 {
-                    Process currentProcess = Process.GetCurrentProcess();
+                    var currentProcess = Process.GetCurrentProcess();
 
                     if (currentProcess == null || currentProcess.MainWindowHandle == IntPtr.Zero)
-                    {
+                    
                         throw new InvalidOperationException(LocalizedMessages.TaskbarManagerValidWindowRequired);
-                    }
-
+                    
                     _ownerHandle = currentProcess.MainWindowHandle;
                 }
 

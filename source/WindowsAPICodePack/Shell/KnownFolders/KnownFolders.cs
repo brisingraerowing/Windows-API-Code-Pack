@@ -26,14 +26,13 @@ namespace Microsoft.WindowsAPICodePack.Shell
             // and return the read-only collection.
 
             IList<IKnownFolder> foldersList = new List<IKnownFolder>();
-            uint count;
             IntPtr folders = IntPtr.Zero;
 
             try
             {
 
-                KnownFolderManagerClass knownFolderManager = new KnownFolderManagerClass();
-                knownFolderManager.GetFolderIds(out folders, out count);
+                var knownFolderManager = new KnownFolderManagerClass();
+                knownFolderManager.GetFolderIds(out folders, out uint count);
 
                 if (count > 0 && folders != IntPtr.Zero)
                 {
@@ -41,7 +40,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     for (int i = 0; i < count; i++)
                     {
                         // Read the current pointer
-                        IntPtr current = new IntPtr(folders.ToInt64() + (Marshal.SizeOf(typeof(Guid)) * i));
+                        var current = new IntPtr(folders.ToInt64() + (Marshal.SizeOf(typeof(Guid)) * i));
 
                         // Convert to Guid
                         Guid knownFolderID = (Guid)Marshal.PtrToStructure(current, typeof(Guid));

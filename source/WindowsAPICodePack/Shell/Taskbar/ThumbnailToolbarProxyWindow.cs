@@ -12,31 +12,24 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
     internal class ThumbnailToolbarProxyWindow : NativeWindow, IDisposable
     {
         private ThumbnailToolBarButton[] _thumbnailButtons;
-        private IntPtr _internalWindowHandle;
+        private readonly IntPtr _internalWindowHandle;
 
         internal System.Windows.UIElement WindowsControl { get; set; }
 
-        internal IntPtr WindowToTellTaskbarAbout
-        {
-            get
-            {
-                return _internalWindowHandle != IntPtr.Zero ? _internalWindowHandle : this.Handle;
-            }
-        }
+        internal IntPtr WindowToTellTaskbarAbout => _internalWindowHandle != IntPtr.Zero ? _internalWindowHandle : Handle;
 
         internal TaskbarWindow TaskbarWindow { get; set; }
 
         internal ThumbnailToolbarProxyWindow(IntPtr windowHandle, ThumbnailToolBarButton[] buttons)
         {
             if (windowHandle == IntPtr.Zero)
-            {
+            
                 throw new ArgumentException(LocalizedMessages.CommonFileDialogInvalidHandle, "windowHandle");
-            }
+            
             if (buttons != null && buttons.Length == 0)
-            {
-                throw new ArgumentException(LocalizedMessages.ThumbnailToolbarManagerNullEmptyArray, "buttons");
-            }
-
+            
+                throw new ArgumentException(LocalizedMessages.ThumbnailToolbarManagerNullEmptyArray, nameof(buttons));
+            
             _internalWindowHandle = windowHandle;
             _thumbnailButtons = buttons;
 
@@ -45,7 +38,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
             // Assign the window handle (coming from the user) to this native window
             // so we can intercept the window messages sent from the taskbar to this window.
-            this.AssignHandle(windowHandle);
+            AssignHandle(windowHandle);
         }
 
         internal ThumbnailToolbarProxyWindow(System.Windows.UIElement windowsControl, ThumbnailToolBarButton[] buttons)

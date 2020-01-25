@@ -17,9 +17,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
         internal ShellNativeMethods.FilterSpec[] GetAllFilterSpecs()
         {
-            ShellNativeMethods.FilterSpec[] filterSpecs = new ShellNativeMethods.FilterSpec[this.Count];
+            var filterSpecs = new ShellNativeMethods.FilterSpec[Count];
 
-            for (int i = 0; i < this.Count; i++)
+            for (int i = 0; i < Count; i++)
 
                 filterSpecs[i] = this[i].GetFilterSpec();
 

@@ -16,7 +16,7 @@ namespace Microsoft.WindowsAPICodePack.Net
     {
         #region Private Fields
 
-        static NetworkListManagerClass manager = new NetworkListManagerClass();
+        static readonly NetworkListManagerClass manager = new NetworkListManagerClass();
 
         #endregion // Private Fields
 

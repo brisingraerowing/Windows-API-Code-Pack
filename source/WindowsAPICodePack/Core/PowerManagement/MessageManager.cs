@@ -16,7 +16,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
     /// </summary>
     internal static class MessageManager
     {
-        private static object lockObject = new object();
+        private static readonly object lockObject = new object();
         private static PowerRegWindow window;
 
         #region Internal static methods
@@ -66,8 +66,8 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// </summary>
         internal class PowerRegWindow : Form
         {
-            private Hashtable eventList = new Hashtable();
-            private ReaderWriterLock readerWriterLock = new ReaderWriterLock();
+            private readonly Hashtable eventList = new Hashtable();
+            private readonly ReaderWriterLock readerWriterLock = new ReaderWriterLock();
 
             internal PowerRegWindow()
                 : base()
@@ -88,15 +88,15 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                 readerWriterLock.AcquireWriterLock(Timeout.Infinite);
                 if (!eventList.Contains(eventId))
                 {
-                    Power.RegisterPowerSettingNotification(Handle, eventId);
-                    ArrayList newList = new ArrayList();
-                    newList.Add(eventToRegister);
+                    _ = Power.RegisterPowerSettingNotification(Handle, eventId);
+                    var newList = new ArrayList();
+                    _ = newList.Add(eventToRegister);
                     eventList.Add(eventId, newList);
                 }
                 else
                 {
-                    ArrayList currList = (ArrayList)eventList[eventId];
-                    currList.Add(eventToRegister);
+                    var currList = (ArrayList)eventList[eventId];
+                    _ = currList.Add(eventToRegister);
                 }
                 readerWriterLock.ReleaseWriterLock();
             }
@@ -113,7 +113,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                 readerWriterLock.AcquireWriterLock(Timeout.Infinite);
                 if (eventList.Contains(eventId))
                 {
-                    ArrayList currList = (ArrayList)eventList[eventId];
+                    var currList = (ArrayList)eventList[eventId];
                     currList.Remove(eventToUnregister);
                 }
                 else

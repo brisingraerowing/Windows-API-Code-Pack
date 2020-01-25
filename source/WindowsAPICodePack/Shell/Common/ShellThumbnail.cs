@@ -21,7 +21,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Native shellItem
         /// </summary>
-        private IShellItem shellItemNative;
+        private readonly IShellItem shellItemNative;
 
         /// <summary>
         /// Internal member to keep track of the current size
@@ -140,7 +140,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Gets the thumbnail or icon in Large size and <see cref="System.Drawing.Icon"/> format.
         /// </summary>
-        public Icon LargeIcon { get { return Icon.FromHandle(LargeBitmap.GetHicon()); } }
+        public Icon LargeIcon => Icon.FromHandle(LargeBitmap.GetHicon());
 
         /// <summary>
         /// Gets the thumbnail or icon in extra large size and <see cref="System.Drawing.Bitmap"/> format.
@@ -236,9 +236,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
         private IntPtr GetHBitmap(System.Windows.Size size)
         {
             // Create a size structure to pass to the native method
-            var nativeSIZE = new CoreNativeMethods.Size();
-            nativeSIZE.Width = Convert.ToInt32(size.Width);
-            nativeSIZE.Height = Convert.ToInt32(size.Height);
+            var nativeSIZE = new CoreNativeMethods.Size
+            {
+                Width = Convert.ToInt32(size.Width),
+                Height = Convert.ToInt32(size.Height)
+            };
 
             // Use IShellItemImageFactory to get an icon
             // Options passed in: Resize to fit

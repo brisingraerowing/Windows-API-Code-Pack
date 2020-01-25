@@ -14,7 +14,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
     /// <typeparam name="T">DialogControl</typeparam>
     public sealed class CommonFileDialogControlCollection<T> : Collection<T> where T : DialogControl
     {
-        private IDialogControlHost hostingDialog;
+        private readonly IDialogControlHost hostingDialog;
 
         internal CommonFileDialogControlCollection(IDialogControlHost host) => hostingDialog = host;
 
@@ -84,7 +84,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
             {
                 if (string.IsNullOrEmpty(name))
 
-                    throw new ArgumentException(LocalizedMessages.DialogControlCollectionEmptyName, "name");
+                    throw new ArgumentException(LocalizedMessages.DialogControlCollectionEmptyName, nameof(name));
 
                 foreach (T control in Items)
 
@@ -139,8 +139,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
                 if (control.Id == id) return control;
 
                 // Search GroupBox child items
-                CommonFileDialogGroupBox groupBox = control as CommonFileDialogGroupBox;
-                if (groupBox != null)
+                if (control is CommonFileDialogGroupBox groupBox)
                 {
                     DialogControl temp = GetSubControlbyId(groupBox.Items, id);
                     if (temp != null) return temp;

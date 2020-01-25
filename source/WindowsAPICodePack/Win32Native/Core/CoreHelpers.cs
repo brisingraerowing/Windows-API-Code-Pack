@@ -143,7 +143,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
             parts[1] = parts[1].Replace("-", string.Empty);
             index = int.Parse(parts[1], CultureInfo.InvariantCulture);
 
-            StringBuilder stringValue = new StringBuilder(255);
+            var stringValue = new StringBuilder(255);
 
             return CoreNativeMethods.LoadString(handle, index, stringValue, 255) != 0 ? stringValue.ToString() : null;
         }

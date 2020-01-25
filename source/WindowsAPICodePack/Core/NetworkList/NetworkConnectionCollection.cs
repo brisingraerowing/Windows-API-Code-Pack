@@ -17,7 +17,7 @@ namespace Microsoft.WindowsAPICodePack.Net
     {
         #region Private Fields
 
-        IEnumerable networkConnectionEnumerable;
+        readonly IEnumerable networkConnectionEnumerable;
 
         #endregion // Private Fields
 

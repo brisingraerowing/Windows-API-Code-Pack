@@ -16,7 +16,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
     /// </summary>
     public class ShellObjectCollection : IEnumerable, IDisposable, IList<ShellObject>
     {
-        private List<ShellObject> content = new List<ShellObject>();
+        private readonly List<ShellObject> content = new List<ShellObject>();
         private bool isDisposed;
 
         #region construction/disposal/finialization
@@ -33,12 +33,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 try
                 {
-                    iArray.GetCount(out uint itemCount);
+                    Marshal.ThrowExceptionForHR((int) iArray.GetCount(out uint itemCount));
                     content.Capacity = (int)itemCount;
 
                     for (uint index = 0; index < itemCount; index++)
                     {
-                        iArray.GetItemAt(index, out IShellItem iShellItem);
+                        Marshal.ThrowExceptionForHR((int) iArray.GetItemAt(index, out IShellItem iShellItem));
                         content.Add(ShellObjectFactory.Create(iShellItem));
                     }
                 }

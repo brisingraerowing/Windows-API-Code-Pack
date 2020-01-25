@@ -439,7 +439,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="leftShellObject">First object to compare.</param>
         /// <param name="rightShellObject">Second object to compare.</param>
         /// <returns>True if leftShellObject equals rightShellObject; false otherwise.</returns>
-        public static bool operator ==(ShellObject leftShellObject, ShellObject rightShellObject) => (object)leftShellObject == null ? (object)rightShellObject == null : leftShellObject.Equals(rightShellObject);
+        public static bool operator ==(ShellObject leftShellObject, ShellObject rightShellObject) => leftShellObject is null ? rightShellObject is null : leftShellObject.Equals(rightShellObject);
 
         /// <summary>
         /// Implements the != (inequality) operator.

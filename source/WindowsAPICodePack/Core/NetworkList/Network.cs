@@ -19,7 +19,7 @@ namespace Microsoft.WindowsAPICodePack.Net
     {
         #region Private Fields
 
-        INetwork network;
+        readonly INetwork network;
 
         #endregion // Private Fields
 
@@ -47,8 +47,7 @@ namespace Microsoft.WindowsAPICodePack.Net
         {
             get
             {
-                uint low, high, dummy1, dummy2;
-                network.GetTimeCreatedAndConnected(out dummy1, out dummy2, out low, out high);
+                network.GetTimeCreatedAndConnected(out _, out _, out uint low, out uint high);
                 long time = high;
                 // Shift the day info into the high order bits.
                 time <<= 32;
@@ -81,8 +80,7 @@ namespace Microsoft.WindowsAPICodePack.Net
         {
             get
             {
-                uint low, high, dummy1, dummy2;
-                network.GetTimeCreatedAndConnected(out low, out high, out dummy1, out dummy2);
+                network.GetTimeCreatedAndConnected(out uint low, out uint high, out _, out _);
                 long time = high;
                 //Shift the value into the high order bits.
                 time <<= 32;

@@ -16,7 +16,7 @@ namespace Microsoft.WindowsAPICodePack.Controls
     public class ExplorerBrowserContentOptions
     {
         #region construction
-        ExplorerBrowser eb;
+        readonly ExplorerBrowser eb;
         internal ExplorerBrowserContentOptions(ExplorerBrowser eb) => this.eb = eb;
         #endregion
 
@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAPICodePack.Controls
 
                 if (eb.explorerBrowserControl != null)
 
-                    eb.explorerBrowserControl.SetFolderSettings(folderSettings);
+                    Marshal.ThrowExceptionForHR((int) eb.explorerBrowserControl.SetFolderSettings(folderSettings));
             }
         }
         #endregion
@@ -97,139 +97,82 @@ namespace Microsoft.WindowsAPICodePack.Controls
         /// </summary>
         public bool FullRowSelect
         {
-            get
-            {
-                return IsFlagSet(ExplorerBrowserContentSectionOptions.FullRowSelect);
-            }
-            set
-            {
-                SetFlag(ExplorerBrowserContentSectionOptions.FullRowSelect, value);
-            }
+            get => IsFlagSet(ExplorerBrowserContentSectionOptions.FullRowSelect);
+            set => SetFlag(ExplorerBrowserContentSectionOptions.FullRowSelect, value);
         }
         /// <summary>
         /// The view should not display file names
         /// </summary>
         public bool HideFileNames
         {
-            get
-            {
-                return IsFlagSet(ExplorerBrowserContentSectionOptions.HideFileNames);
-            }
-            set
-            {
-                SetFlag(ExplorerBrowserContentSectionOptions.HideFileNames, value);
-            }
+            get => IsFlagSet(ExplorerBrowserContentSectionOptions.HideFileNames);
+            set => SetFlag(ExplorerBrowserContentSectionOptions.HideFileNames, value);
         }
         /// <summary>
         /// The view should not save view state in the browser.
         /// </summary>
         public bool NoBrowserViewState
         {
-            get
-            {
-                return IsFlagSet(ExplorerBrowserContentSectionOptions.NoBrowserViewState);
-            }
-            set
-            {
-                SetFlag(ExplorerBrowserContentSectionOptions.NoBrowserViewState, value);
-            }
+            get => IsFlagSet(ExplorerBrowserContentSectionOptions.NoBrowserViewState);
+            set => SetFlag(ExplorerBrowserContentSectionOptions.NoBrowserViewState, value);
         }
         /// <summary>
         /// Do not display a column header in the view in any view mode.
         /// </summary>
         public bool NoColumnHeader
         {
-            get
-            {
-                return IsFlagSet(ExplorerBrowserContentSectionOptions.NoColumnHeader);
-            }
-            set
-            {
-                SetFlag(ExplorerBrowserContentSectionOptions.NoColumnHeader, value);
-            }
+            get => IsFlagSet(ExplorerBrowserContentSectionOptions.NoColumnHeader);
+            set => SetFlag(ExplorerBrowserContentSectionOptions.NoColumnHeader, value);
         }
         /// <summary>
         /// Only show the column header in details view mode.
         /// </summary>
         public bool NoHeaderInAllViews
         {
-            get
-            {
-                return IsFlagSet(ExplorerBrowserContentSectionOptions.NoHeaderInAllViews);
-            }
-            set
-            {
-                SetFlag(ExplorerBrowserContentSectionOptions.NoHeaderInAllViews, value);
-            }
+            get => IsFlagSet(ExplorerBrowserContentSectionOptions.NoHeaderInAllViews);
+            set => SetFlag(ExplorerBrowserContentSectionOptions.NoHeaderInAllViews, value);
         }
         /// <summary>
         /// The view should not display icons. 
         /// </summary>
         public bool NoIcons
         {
-            get
-            {
-                return IsFlagSet(ExplorerBrowserContentSectionOptions.NoIcons);
-            }
-            set
-            {
-                SetFlag(ExplorerBrowserContentSectionOptions.NoIcons, value);
-            }
+            get => IsFlagSet(ExplorerBrowserContentSectionOptions.NoIcons);
+            set => SetFlag(ExplorerBrowserContentSectionOptions.NoIcons, value);
         }
         /// <summary>
         /// Do not show subfolders. 
         /// </summary>
         public bool NoSubfolders
         {
-            get
-            {
-                return IsFlagSet(ExplorerBrowserContentSectionOptions.NoSubfolders);
-            }
-            set
-            {
-                SetFlag(ExplorerBrowserContentSectionOptions.NoSubfolders, value);
-            }
+            get => IsFlagSet(ExplorerBrowserContentSectionOptions.NoSubfolders);
+            set => SetFlag(ExplorerBrowserContentSectionOptions.NoSubfolders, value);
         }
         /// <summary>
         /// Navigate with a single click
         /// </summary>
         public bool SingleClickActivate
         {
-            get
-            {
-                return IsFlagSet(ExplorerBrowserContentSectionOptions.SingleClickActivate);
-            }
-            set
-            {
-                SetFlag(ExplorerBrowserContentSectionOptions.SingleClickActivate, value);
-            }
+            get => IsFlagSet(ExplorerBrowserContentSectionOptions.SingleClickActivate);
+            set => SetFlag(ExplorerBrowserContentSectionOptions.SingleClickActivate, value);
         }
         /// <summary>
         /// Do not allow more than a single item to be selected.
         /// </summary>
         public bool SingleSelection
         {
-            get
-            {
-                return IsFlagSet(ExplorerBrowserContentSectionOptions.SingleSelection);
-            }
-            set
-            {
-                SetFlag(ExplorerBrowserContentSectionOptions.SingleSelection, value);
-            }
+            get => IsFlagSet(ExplorerBrowserContentSectionOptions.SingleSelection);
+            set => SetFlag(ExplorerBrowserContentSectionOptions.SingleSelection, value);
         }
 
-        private bool IsFlagSet(ExplorerBrowserContentSectionOptions flag)
-        {
-            return (folderSettings.Options & (FolderOptions)flag) != 0;
-        }
+        private bool IsFlagSet(ExplorerBrowserContentSectionOptions flag) => (folderSettings.Options & (FolderOptions)flag) != 0;
 
         private void SetFlag(ExplorerBrowserContentSectionOptions flag, bool value)
         {
             if (value)
                 folderSettings.Options |= (FolderOptions)flag;
             else
-                folderSettings.Options = folderSettings.Options & ~(FolderOptions)flag;
+                folderSettings.Options &= ~(FolderOptions)flag;
 
             if (eb.explorerBrowserControl != null)
                 eb.explorerBrowserControl.SetFolderSettings(folderSettings);
@@ -251,15 +194,14 @@ namespace Microsoft.WindowsAPICodePack.Controls
                 {
                     try
                     {
-                        int fvm = 0;
-                        HResult hr = iFV2.GetViewModeAndIconSize(out fvm, out iconSize);
+                        HResult hr = iFV2.GetViewModeAndIconSize(out int fvm, out iconSize);
                         if (hr != HResult.Ok)
                         
                             throw new CommonControlException(LocalizedMessages.ExplorerBrowserIconSize, hr);
                                             }
                     finally
                     {
-                        Marshal.ReleaseComObject(iFV2);
+                        _ = Marshal.ReleaseComObject(iFV2);
                         iFV2 = null;
                     }
                 }
@@ -273,9 +215,7 @@ namespace Microsoft.WindowsAPICodePack.Controls
                 {
                     try
                     {
-                        int fvm = 0;
-                        int iconSize = 0;
-                        HResult hr = iFV2.GetViewModeAndIconSize(out fvm, out iconSize);
+                        HResult hr = iFV2.GetViewModeAndIconSize(out int fvm, out int iconSize);
                         if (hr != HResult.Ok)
                         
                             throw new CommonControlException(LocalizedMessages.ExplorerBrowserIconSize, hr);
@@ -287,7 +227,7 @@ namespace Microsoft.WindowsAPICodePack.Controls
                                             }
                     finally
                     {
-                        Marshal.ReleaseComObject(iFV2);
+                        _ = Marshal.ReleaseComObject(iFV2);
                         iFV2 = null;
                     }
                 }

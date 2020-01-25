@@ -477,7 +477,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         {
             if (nativePropertyDescription != null)
             {
-                Marshal.ReleaseComObject(nativePropertyDescription);
+                _=Marshal.ReleaseComObject(nativePropertyDescription);
                 nativePropertyDescription = null;
             }
 

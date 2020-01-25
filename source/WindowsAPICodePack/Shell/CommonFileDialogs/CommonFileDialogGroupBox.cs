@@ -54,7 +54,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
             Debug.Assert(dialog != null, "CommonFileDialogGroupBox.Attach: dialog parameter can not be null");
 
             // Start a visual group
-            dialog.StartVisualGroup(Id, this.Text);
+            dialog.StartVisualGroup(Id, Text);
 
             // Add child controls
             foreach (CommonFileDialogControl item in Items)

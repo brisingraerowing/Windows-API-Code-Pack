@@ -46,15 +46,15 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
             Debug.Assert(dialog != null, "CommonFileDialogMenu.Attach: dialog parameter can not be null");
 
             // Add the menu control
-            dialog.AddMenu(this.Id, this.Text);
+            dialog.AddMenu(Id, Text);
 
             // Add the menu items
-            foreach (CommonFileDialogMenuItem item in this.Items)
-                dialog.AddControlItem(this.Id, item.Id, item.Text);
+            foreach (CommonFileDialogMenuItem item in Items)
+                dialog.AddControlItem(Id, item.Id, item.Text);
 
             // Make prominent as needed
             if (IsProminent)
-                dialog.MakeProminent(this.Id);
+                dialog.MakeProminent(Id);
 
             // Sync unmanaged properties with managed properties
             SyncUnmanagedProperties();

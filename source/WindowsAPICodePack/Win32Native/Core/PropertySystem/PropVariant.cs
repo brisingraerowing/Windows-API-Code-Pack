@@ -29,87 +29,124 @@ namespace MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         private static Dictionary<Type, Action<PropVariant, Array, uint>> GenerateVectorActions()
         {
-            Dictionary<Type, Action<PropVariant, Array, uint>> cache = new Dictionary<Type, Action<PropVariant, Array, uint>>();
-
-            cache.Add(typeof(short), (pv, array, i) =>
+            var cache = new Dictionary<Type, Action<PropVariant, Array, uint>>
             {
-                PropVariantNativeMethods.PropVariantGetInt16Elem(pv, i, out short val);
-                array.SetValue(val, i);
-            });
+                {
+                    typeof(short),
+                    (pv, array, i) =>
+    {
+        PropVariantNativeMethods.PropVariantGetInt16Elem(pv, i, out short val);
+        array.SetValue(val, i);
+    }
+                },
 
-            cache.Add(typeof(ushort), (pv, array, i) =>
-            {
-                PropVariantNativeMethods.PropVariantGetUInt16Elem(pv, i, out ushort val);
-                array.SetValue(val, i);
-            });
+                {
+                    typeof(ushort),
+                    (pv, array, i) =>
+   {
+       PropVariantNativeMethods.PropVariantGetUInt16Elem(pv, i, out ushort val);
+       array.SetValue(val, i);
+   }
+                },
 
-            cache.Add(typeof(int), (pv, array, i) =>
-            {
-                PropVariantNativeMethods.PropVariantGetInt32Elem(pv, i, out int val);
-                array.SetValue(val, i);
-            });
+                {
+                    typeof(int),
+                    (pv, array, i) =>
+      {
+          PropVariantNativeMethods.PropVariantGetInt32Elem(pv, i, out int val);
+          array.SetValue(val, i);
+      }
+                },
 
-            cache.Add(typeof(uint), (pv, array, i) =>
-            {
-                PropVariantNativeMethods.PropVariantGetUInt32Elem(pv, i, out uint val);
-                array.SetValue(val, i);
-            });
+                {
+                    typeof(uint),
+                    (pv, array, i) =>
+     {
+         PropVariantNativeMethods.PropVariantGetUInt32Elem(pv, i, out uint val);
+         array.SetValue(val, i);
+     }
+                },
 
-            cache.Add(typeof(long), (pv, array, i) =>
-            {
-                PropVariantNativeMethods.PropVariantGetInt64Elem(pv, i, out long val);
-                array.SetValue(val, i);
-            });
+                {
+                    typeof(long),
+                    (pv, array, i) =>
+     {
+         PropVariantNativeMethods.PropVariantGetInt64Elem(pv, i, out long val);
+         array.SetValue(val, i);
+     }
+                },
 
-            cache.Add(typeof(ulong), (pv, array, i) =>
-            {
-                PropVariantNativeMethods.PropVariantGetUInt64Elem(pv, i, out ulong val);
-                array.SetValue(val, i);
-            });
+                {
+                    typeof(ulong),
+                    (pv, array, i) =>
+    {
+        PropVariantNativeMethods.PropVariantGetUInt64Elem(pv, i, out ulong val);
+        array.SetValue(val, i);
+    }
+                },
 
-            cache.Add(typeof(DateTime), (pv, array, i) =>
-            {
-                PropVariantNativeMethods.PropVariantGetFileTimeElem(pv, i, out System.Runtime.InteropServices.ComTypes.FILETIME val);
+                {
+                    typeof(DateTime),
+                    (pv, array, i) =>
+ {
+     PropVariantNativeMethods.PropVariantGetFileTimeElem(pv, i, out System.Runtime.InteropServices.ComTypes.FILETIME val);
 
-                array.SetValue(DateTime.FromFileTime(GetFileTimeAsLong(ref val)), i);
-            });
+     array.SetValue(DateTime.FromFileTime(GetFileTimeAsLong(ref val)), i);
+ }
+                },
 
-            cache.Add(typeof(bool), (pv, array, i) =>
-            {
-                PropVariantNativeMethods.PropVariantGetBooleanElem(pv, i, out bool val);
-                array.SetValue(val, i);
-            });
+                {
+                    typeof(bool),
+                    (pv, array, i) =>
+     {
+         PropVariantNativeMethods.PropVariantGetBooleanElem(pv, i, out bool val);
+         array.SetValue(val, i);
+     }
+                },
 
-            cache.Add(typeof(double), (pv, array, i) =>
-            {
-                PropVariantNativeMethods.PropVariantGetDoubleElem(pv, i, out double val);
-                array.SetValue(val, i);
-            });
+                {
+                    typeof(double),
+                    (pv, array, i) =>
+   {
+       PropVariantNativeMethods.PropVariantGetDoubleElem(pv, i, out double val);
+       array.SetValue(val, i);
+   }
+                },
 
-            cache.Add(typeof(float), (pv, array, i) => // float
-            {
-                float[] val = new float[1];
-                Marshal.Copy(pv._ptr2, val, (int)i, 1);
-                array.SetValue(val[0], (int)i);
-            });
+                {
+                    typeof(float),
+                    (pv, array, i) => // float
+                    {
+                        float[] val = new float[1];
+                        Marshal.Copy(pv._ptr2, val, (int)i, 1);
+                        array.SetValue(val[0], (int)i);
+                    }
+                },
 
-            cache.Add(typeof(decimal), (pv, array, i) =>
-            {
-                int[] val = new int[4];
-                for (int a = 0; a < val.Length; a++)
+                {
+                    typeof(decimal),
+                    (pv, array, i) =>
+  {
+      int[] val = new int[4];
+      for (int a = 0; a < val.Length; a++)
 
-                    val[a] = Marshal.ReadInt32(pv._ptr2,
-                        (int)i * sizeof(decimal) + a * sizeof(int)); //index * size + offset quarter
+          val[a] = Marshal.ReadInt32(pv._ptr2,
+              ((int)i * sizeof(decimal)) + (a * sizeof(int))); //index * size + offset quarter
 
                 array.SetValue(new decimal(val), i);
-            });
+  }
+                },
 
-            cache.Add(typeof(string), (pv, array, i) =>
-            {
-                string val = string.Empty;
-                PropVariantNativeMethods.PropVariantGetStringElem(pv, i, ref val);
-                array.SetValue(val, i);
-            });
+                {
+                    typeof(string),
+                    (pv, array, i) =>
+   {
+       string val = string.Empty;
+       PropVariantNativeMethods.PropVariantGetStringElem(pv, i, ref val);
+       array.SetValue(val, i);
+   }
+                }
+            };
 
             return cache;
         }
@@ -124,8 +161,8 @@ namespace MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem
         public static PropVariant FromObject(object value) => value == null ? new PropVariant() : GetDynamicConstructor(value.GetType())(value);
 
         // A dictionary and lock to contain compiled expression trees for constructors
-        private static Dictionary<Type, Func<object, PropVariant>> _cache = new Dictionary<Type, Func<object, PropVariant>>();
-        private static object _padlock = new object();
+        private static readonly Dictionary<Type, Func<object, PropVariant>> _cache = new Dictionary<Type, Func<object, PropVariant>>();
+        private static readonly object _padlock = new object();
 
         // Retrieves a cached constructor expression.
         // If no constructor has been cached, it attempts to find/add it.  If it cannot be found
@@ -136,8 +173,7 @@ namespace MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem
             lock (_padlock)
             {
                 // initial check, if action is found, return it
-                Func<object, PropVariant> action;
-                if (!_cache.TryGetValue(type, out action))
+                if (!_cache.TryGetValue(type, out Func<object, PropVariant> action))
                 {
                     // iterates through all constructors
                     ConstructorInfo constructor = typeof(PropVariant)
@@ -169,7 +205,7 @@ namespace MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem
         #region Fields
 
         [FieldOffset(0)]
-        decimal _decimal;
+        readonly decimal _decimal;
 
         // This is actually a VarEnum value, but the VarEnum type
         // requires 4 bytes instead of the expected 2.
@@ -343,7 +379,7 @@ namespace MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem
         public PropVariant(DateTime[] value)
         {
             if (value == null) throw new ArgumentNullException(nameof(value));
-            System.Runtime.InteropServices.ComTypes.FILETIME[] fileTimeArr =
+            var fileTimeArr =
                 new System.Runtime.InteropServices.ComTypes.FILETIME[value.Length];
 
             for (int i = 0; i < value.Length; i++)
@@ -446,7 +482,7 @@ namespace MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem
         /// <param name="value">Decimal array to wrap.</param>
         public PropVariant(decimal[] value)
         {
-            if (value == null) throw new ArgumentNullException("value");
+            if (value == null) throw new ArgumentNullException(nameof(value));
 
             _valueType = (ushort)(VarEnum.VT_DECIMAL | VarEnum.VT_VECTOR);
             _int32 = value.Length;
@@ -672,10 +708,12 @@ namespace MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem
         private static System.Runtime.InteropServices.ComTypes.FILETIME DateTimeToFileTime(DateTime value)
         {
             long hFT = value.ToFileTime();
-            System.Runtime.InteropServices.ComTypes.FILETIME ft =
-                new System.Runtime.InteropServices.ComTypes.FILETIME();
-            ft.dwLowDateTime = (int)(hFT & 0xFFFFFFFF);
-            ft.dwHighDateTime = (int)(hFT >> 32);
+            var ft =
+                new System.Runtime.InteropServices.ComTypes.FILETIME
+                {
+                    dwLowDateTime = (int)(hFT & 0xFFFFFFFF),
+                    dwHighDateTime = (int)(hFT >> 32)
+                };
             return ft;
         }
 
@@ -700,8 +738,7 @@ namespace MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem
 
                     _vectorActions = GenerateVectorActions();
 
-            Action<PropVariant, Array, uint> action;
-            if (!_vectorActions.TryGetValue(typeof(T), out action))
+            if (!_vectorActions.TryGetValue(typeof(T), out Action<PropVariant, Array, uint> action))
 
                 throw new InvalidCastException(LocalizedMessages.PropVariantUnsupportedType);
 

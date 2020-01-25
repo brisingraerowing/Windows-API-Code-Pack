@@ -113,15 +113,15 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
         internal override void CleanUpNativeFileDialog()
         {
-            if (openDialogCoClass != null)
+            if (openDialogCoClass is object)
 
-                Marshal.ReleaseComObject(openDialogCoClass);
+                _ = Marshal.ReleaseComObject(openDialogCoClass);
         }
 
         internal override void PopulateWithFileNames(Collection<string> names)
         {
             openDialogCoClass.GetResults(out IShellItemArray resultsArray);
-            resultsArray.GetCount(out uint count);
+            Marshal.ThrowExceptionForHR((int) resultsArray.GetCount(out uint count));
             names.Clear();
             for (int i = 0; i < count; i++)
 
@@ -131,7 +131,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         internal override void PopulateWithIShellItems(Collection<IShellItem> items)
         {
             openDialogCoClass.GetResults(out IShellItemArray resultsArray);
-            resultsArray.GetCount(out uint count);
+            Marshal.ThrowExceptionForHR( (int) resultsArray.GetCount(out uint count));
             items.Clear();
             for (int i = 0; i < count; i++)
 

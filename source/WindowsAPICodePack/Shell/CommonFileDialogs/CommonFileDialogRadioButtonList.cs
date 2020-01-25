@@ -99,17 +99,17 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
             Debug.Assert(dialog != null, "CommonFileDialogRadioButtonList.Attach: dialog parameter can not be null");
 
             // Add the radio button list control
-            dialog.AddRadioButtonList(this.Id);
+            dialog.AddRadioButtonList(Id);
 
             // Add the radio button list items
             for (int index = 0; index < Items.Count; index++)
 
-                dialog.AddControlItem(this.Id, index, Items[index].Text);
+                dialog.AddControlItem(Id, index, Items[index].Text);
 
             // Set the currently selected item
             if (selectedIndex >= 0 && selectedIndex < Items.Count)
 
-                dialog.SetSelectedControlItem(this.Id, this.selectedIndex);
+                dialog.SetSelectedControlItem(Id, selectedIndex);
 
             else if (selectedIndex != -1)
 

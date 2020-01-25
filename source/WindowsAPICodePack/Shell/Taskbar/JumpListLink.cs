@@ -105,7 +105,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             {
                 if (nativeShellLink != null)
                 {
-                    Marshal.ReleaseComObject(nativeShellLink);
+                    _ = Marshal.ReleaseComObject(nativeShellLink);
                     nativeShellLink = null;
                 }
 
@@ -113,7 +113,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
                 if (nativePropertyStore != null)
                 {
-                    Marshal.ReleaseComObject(nativePropertyStore);
+                    _ = Marshal.ReleaseComObject(nativePropertyStore);
                     nativePropertyStore = null;
                 }
 
@@ -135,7 +135,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
                 nativeShellLink.SetShowCmd( (uint) ShowCommand);
 
-                using (PropVariant propVariant = new PropVariant(Title))
+                using (var propVariant = new PropVariant(Title))
                 {
                     HResult result = nativePropertyStore.SetValue(ref PKEY_Title, propVariant);
                     if (!CoreErrorHelper.Succeeded(result))
@@ -163,13 +163,13 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             
             if (nativePropertyStore != null)
             {
-                Marshal.ReleaseComObject(nativePropertyStore);
+                _ = Marshal.ReleaseComObject(nativePropertyStore);
                 nativePropertyStore = null;
             }
 
             if (nativeShellLink != null)
             {
-                Marshal.ReleaseComObject(nativeShellLink);
+                _ = Marshal.ReleaseComObject(nativeShellLink);
                 nativeShellLink = null;
             }
         }

@@ -86,7 +86,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop
         /// <param name="bitmapHandle"></param>
         /// <param name="bitmapType"></param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "2#"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "1#")]
-        void GetThumbnail(uint squareLength, [Out] out IntPtr bitmapHandle, [Out] out UInt32 bitmapType);
+        void GetThumbnail(uint squareLength, [Out] out IntPtr bitmapHandle, [Out] out uint bitmapType);
     }
 
     /// <summary>

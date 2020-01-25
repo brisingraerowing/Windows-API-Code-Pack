@@ -126,13 +126,12 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         {
             if (item == null)
 
-                throw new ArgumentNullException("item");
+                throw new ArgumentNullException(nameof(item));
 
             InitializeNativeFileDialog();
-            IFileSaveDialog nativeDialog = GetNativeFileDialog() as IFileSaveDialog;
 
             // Get the native IShellItem from ShellObject
-            if (nativeDialog != null)
+            if (GetNativeFileDialog() is IFileSaveDialog nativeDialog)
 
                 nativeDialog.SetSaveAsItem(item.NativeShellItem);
         }
@@ -157,16 +156,16 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             // The string we pass to PSGetPropertyDescriptionListFromString must
             // start with "prop:", followed a list of canonical names for each 
             // property that is to collected.
-            if (propertyList != null && propertyList.Length > 0 && propertyList[0] != null)
+            if (propertyList is object && propertyList.Length > 0 && propertyList[0] != null)
             {
-                StringBuilder sb = new StringBuilder("prop:");
+                var sb = new StringBuilder("prop:");
                 foreach (PropertyKey key in propertyList)
                 {
                     string canonicalName = ShellPropertyDescriptionsCache.Cache.GetPropertyDescription(key).CanonicalName;
-                    if (!string.IsNullOrEmpty(canonicalName)) { sb.AppendFormat("{0};", canonicalName); }
+                    if (!string.IsNullOrEmpty(canonicalName)) _ = sb.AppendFormat("{0};", canonicalName);
                 }
 
-                Guid guid = new Guid(ShellIIDGuid.IPropertyDescriptionList);
+                var guid = new Guid(ShellIIDGuid.IPropertyDescriptionList);
                 IPropertyDescriptionList propertyDescriptionList = null;
 
                 try
@@ -191,11 +190,12 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                         }
                     }
                 }
+
                 finally
                 {
-                    if (propertyDescriptionList != null)
+                    if (propertyDescriptionList is object)
 
-                        Marshal.ReleaseComObject(propertyDescriptionList);
+                        _ = Marshal.ReleaseComObject(propertyDescriptionList);
                 }
             }
         }
@@ -272,7 +272,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         {
             if (saveDialogCoClass != null)
 
-                Marshal.ReleaseComObject(saveDialogCoClass);
+                _=Marshal.ReleaseComObject(saveDialogCoClass);
         }
 
         internal override ShellNativeMethods.FileOpenOptions GetDerivedOptionFlags(ShellNativeMethods.FileOpenOptions flags)
