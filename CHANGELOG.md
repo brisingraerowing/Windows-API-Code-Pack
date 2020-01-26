@@ -11,6 +11,10 @@ Win32Native 2.0
 - Move GUIDs to the new Win32NativeGuids project.
 - Add the BlobHelper and the BlobValueKind types to process binary data easier. This is particularly useful for data retrieved from Win32 APIs like the Windows Registry, Portable Devices, ...
 - Some classes and interfaces of the Sensor package or the Win32Native package's Sensor section has changed or has been removed.
+- The following properties of the Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources class have changed:
+    - from: FolderTypeSearchResults to: FolderTypeGenericSearchResults
+    - from: FolderTypeClassic to: FolderTypeControlPanelClassic
+    - from: FolderTypeControlPanelCategory to: FolderTypeCategory
 
 Win32NativeGuids 2.0
 --------------------

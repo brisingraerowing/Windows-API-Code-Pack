@@ -50,7 +50,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Sensors\ISensorManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sensors\ISensorManagerEnums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sensors\ISensorManagerEvents.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Sensors\PortableDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sensors\SensorNativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sensors\SensorPropertyKeys.cs">
       <SubType>Code</SubType>
