@@ -320,7 +320,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                                         if (!browseFields(supportedCommandsType.GetFields(BindingFlags.NonPublic | BindingFlags.Instance), commands))
 
-                                            foreach (var nestedSupportedCommandsType in nestedSupportedCommandsTypes)
+                                            foreach (Type nestedSupportedCommandsType in nestedSupportedCommandsTypes)
 
                                                 if (browseFields(nestedSupportedCommandsType.GetFields(BindingFlags.NonPublic | BindingFlags.Instance), supportedCommandsType.GetProperty(nestedSupportedCommandsType.Name.Remove(nestedSupportedCommandsType.Name.Length - "Commands".Length)).GetValue(commands)))
 

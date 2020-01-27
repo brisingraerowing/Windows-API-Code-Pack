@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
-    public interface IPortableDevice : IDisposable, IEnumerable<IPortableDeviceObject>
+    public interface IPortableDevice : IDisposable, IEnumerable<IPortableDeviceContentObject>
     {
 
         IPortableDeviceManager PortableDeviceManager { get; }
@@ -33,7 +33,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
     }
 }
 
-public interface IPortableDeviceObject : IDisposable, IEnumerable<IPortableDeviceObject>
+public interface IPortableDeviceContentObject : IDisposable, IEnumerable<IPortableDeviceContentObject>
 
 {
 
