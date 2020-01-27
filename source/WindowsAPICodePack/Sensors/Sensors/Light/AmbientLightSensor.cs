@@ -35,9 +35,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// <returns></returns>
         public LuminousIntensity(SensorReport report)
         {
-            if (report == null)  throw new ArgumentNullException(nameof(report)); 
-
-            if (report.Values != null &&
+            if ((report ?? throw new ArgumentNullException(nameof(report))).Values != null &&
                 report.Values.ContainsKey(SensorPropertyKeys.SensorDataType.LightLux.FormatId))
             
                 Intensity =

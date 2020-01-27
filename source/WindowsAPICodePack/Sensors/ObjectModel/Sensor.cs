@@ -59,68 +59,28 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// <summary>
         /// Gets a value that specifies the GUID for the sensor instance.
         /// </summary>
-        public Guid? SensorId
-        {
-            get
-            {
-                if (sensorId == null && nativeISensor.GetID(out Guid id) == HResult.Ok)
-
-                    sensorId = id;
-
-                return sensorId;
-            }
-        }
+        public Guid? SensorId => sensorId == null && nativeISensor.GetID(out Guid id) == HResult.Ok ? (sensorId = id) : sensorId;
 
         private Guid? sensorId;
 
         /// <summary>
         /// Gets a value that specifies the GUID for the sensor category.
         /// </summary>
-        public Guid? CategoryId
-        {
-            get
-            {
-                if (categoryId == null && nativeISensor.GetCategory(out Guid id) == HResult.Ok)
-
-                    categoryId = id;
-
-                return categoryId;
-            }
-        }
+        public Guid? CategoryId => categoryId == null && nativeISensor.GetCategory(out Guid id) == HResult.Ok ? (categoryId = id) : categoryId;
 
         private Guid? categoryId;
 
         /// <summary>
         /// Gets a value that specifies the GUID for the sensor type.
         /// </summary>
-        public Guid? TypeId
-        {
-            get
-            {
-                if (typeId == null && nativeISensor.GetType(out Guid id) == HResult.Ok)
-
-                    typeId = id;
-
-                return typeId;
-            }
-        }
+        public Guid? TypeId => typeId == null && nativeISensor.GetType(out Guid id) == HResult.Ok ? (typeId = id) : typeId;
 
         private Guid? typeId;
 
         /// <summary>
         /// Gets a value that specifies the sensor's friendly name.
         /// </summary>
-        public string FriendlyName
-        {
-            get
-            {
-                if (friendlyName == null && nativeISensor.GetFriendlyName(out string name) == HResult.Ok)
-
-                    friendlyName = name;
-
-                return friendlyName;
-            }
-        }
+        public string FriendlyName => friendlyName == null && nativeISensor.GetFriendlyName(out string name) == HResult.Ok ? (friendlyName = name) : friendlyName;
 
         private string friendlyName;
 
@@ -238,22 +198,19 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             HResult hr = nativeISensor.GetData(out ISensorDataReport iReport);
 
             if (hr == HResult.Ok)
-            {
+            
                 try
                 {
                     DataReport = SensorReport.FromNativeReport(this, iReport);
 
-                    if (DataReportChanged != null)
-
-                        DataReportChanged.Invoke(this, EventArgs.Empty);
+                        DataReportChanged?.Invoke(this, EventArgs.Empty);
 
                 }
                 finally
                 {
                     _ = Marshal.ReleaseComObject(iReport);
                 }
-            }
-
+            
             return hr;
 
         }
@@ -483,11 +440,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             for (int i = 0; i < data.Length; i++)
             {
                 propKey = data[i].Key;
-                object value = data[i].Value;
-
-                if (value == null)
-
-                    throw new ArgumentException(
+                object value = data[i].Value ?? throw new ArgumentException(
                         string.Format(System.Globalization.CultureInfo.InvariantCulture,
                             LocalizedMessages.SensorNullValueAtIndex, i),
                         nameof(data));

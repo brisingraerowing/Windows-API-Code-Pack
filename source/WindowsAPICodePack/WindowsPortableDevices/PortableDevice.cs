@@ -619,6 +619,82 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         }
 
+        private List<IPortableDeviceObject> _items;
+
+        private List<IPortableDeviceObject> _Items
+
+        {
+
+            get
+
+            {
+
+                if (_items is null)
+
+                    GetItems();
+
+                return _items;
+
+            }
+
+        }
+
+        public IPortableDeviceObject this[int index] => _Items[index];
+
+        private void GetItems()
+
+        {
+
+            _portableDevice.Content(out IPortableDeviceContent portableDeviceContent);
+
+            if (CoreErrorHelper.Succeeded(portableDeviceContent.EnumObjects(0, Consts.DeviceObjectId, null, out IEnumPortableDeviceObjectIDs enumPortableDeviceObjectIDs)))
+
+            {
+
+                var items = new LinkedList<IPortableDeviceObject>();
+
+                while (true)
+
+                {
+
+                    string[] objectIDs = new string[10];
+
+                    if (CoreErrorHelper.Succeeded(enumPortableDeviceObjectIDs.Next(10, objectIDs, out uint fetched)))
+
+                        for (uint i = 0; i < fetched; i++)
+
+                            items.AddLast(new PortableDeviceObject(this, objectIDs[i]));
+
+                    else break;
+
+                }
+
+                _items = new List<IPortableDeviceObject>(items.Count);
+
+                if (items.Count > 0)
+
+                {
+
+                    _items[0] = items.First.Value;
+
+                    if (items.Count > 1)
+
+                        for (int i = 1; i < items.Count; i++)
+
+                        {
+
+                            items.RemoveFirst();
+
+                            _items[i] = items.First.Value;
+
+                        }
+
+                }
+
+            }
+
+        }
+
         #region IDisposable Support
 
         public bool IsDisposed { get; private set; } = false;
@@ -651,6 +727,12 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+        #endregion
+
+        #region IEnumerable Support
+
+        public IEnumerator<IPortableDeviceObject> GetEnumerator() => _items.GetEnumerator();
+
         #endregion
 
     }

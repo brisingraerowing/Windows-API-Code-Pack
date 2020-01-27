@@ -26,16 +26,14 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
             uint items = 0;
 
-            keyCollection.GetCount(ref items);
+            _ = keyCollection.GetCount(ref items);
 
             for (uint index = 0; index < items; index++)
             {
-                var propValue = new PropVariant();
-
                 var key = new PropertyKey();
 
                 _ = keyCollection.GetAt(index, ref key);
-                valuesCollection.GetValue(ref key, out propValue);
+                _ = valuesCollection.GetValue(ref key, out PropVariant propValue);
 
                 if (data.ContainsKey(key.FormatId))
 
