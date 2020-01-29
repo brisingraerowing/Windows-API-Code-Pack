@@ -11,7 +11,13 @@ namespace Microsoft.WindowsAPICodePack.Sensors
     /// <typeparam name="TSensor">The type of sensor in the list.</typeparam>        
     public class SensorList<TSensor> : IList<TSensor> where TSensor : Sensor
     {
-        private readonly List<TSensor> sensorList = new List<TSensor>();
+        private readonly List<TSensor> sensorList;
+
+        public SensorList() => sensorList = new List<TSensor>();
+
+        public SensorList(int capacity) => sensorList = new List<TSensor>(capacity);
+
+        public SensorList(IEnumerable<TSensor> collection) => sensorList = new List<TSensor>(collection);
 
         #region IList<S> Members
 

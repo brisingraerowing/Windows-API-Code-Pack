@@ -12,12 +12,15 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
     public interface IWMDeviceManager
 
     {
+        [PreserveSig]
         HResult GetRevision(
             [Out] out uint pdwRevision);
-        
+
+        [PreserveSig]
         HResult GetDeviceCount(
             [Out] out uint pdwCount) ;
-        
+
+        [PreserveSig]
         HResult EnumDevices(
             [Out, MarshalAs(UnmanagedType.Interface)] out IWMDMEnumDevice ppEnumDevice);
     }
@@ -27,13 +30,16 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
     public interface IWMDeviceManager2 : IWMDeviceManager
 
     {
+        [PreserveSig]
         HResult GetDeviceFromCanonicalName(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pwszCanonicalName,
             [Out, MarshalAs(UnmanagedType.Interface)] out IWMDMDevice ppDevice);
-        
+
+        [PreserveSig]
         HResult EnumDevices2(
             [Out, MarshalAs(UnmanagedType.Interface)] out IWMDMEnumDevice ppEnumDevice);
-        
+
+        [PreserveSig]
         HResult Reinitialize();
 
     }
@@ -43,6 +49,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
     public interface IWMDeviceManager3 : IWMDeviceManager2
 
     {
+        [PreserveSig]
         HResult SetDeviceEnumPreference(
             [In] uint dwEnumPref);
 

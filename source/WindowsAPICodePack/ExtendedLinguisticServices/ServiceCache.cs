@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             _cacheLock.EnterReadLock();
             try
             {
-                _guidToService.TryGetValue(guid, out IntPtr result);
+                _ = _guidToService.TryGetValue(guid, out IntPtr result);
                 return result;
             }
             finally
@@ -91,7 +91,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             {
                 var guid = (Guid)Marshal.PtrToStructure(
                     (IntPtr)((ulong)pServices + InteropTools.OffsetOfGuidInService), InteropTools.TypeOfGuid);
-                _guidToService.TryGetValue(guid, out IntPtr cachedValue);
+                _ = _guidToService.TryGetValue(guid, out IntPtr cachedValue);
                 if (cachedValue == IntPtr.Zero)
                 {
                     _guidToService.Add(guid, pServices);
@@ -103,11 +103,10 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
                 pServices = (IntPtr)((ulong)pServices + InteropTools.SizeOfService);
             }
             if (addedToCache)
-            {
+            
                 // This means that at least one of the services was stored in the cache.
                 // So we must keep the original pointer in our cleanup list.
                 _servicePointers.Add(originalPtr);
-            }
         }
 
         private void RollBack(IntPtr pServices, int length)
@@ -117,7 +116,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             {
                 // First, remove the original pointer from the cleanup list.
                 // The caller of RegisterServices() will take care of freeing it.
-                _servicePointers.Remove(pServices);
+                _ = _servicePointers.Remove(pServices);
                 // Then, attempt to recover the state of the _guidToService Dictionary.
                 // This should not fail.
                 for (int i = 0; i < length; ++i)
@@ -125,7 +124,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
                     var guid = (Guid)Marshal.PtrToStructure(
                         (IntPtr)((ulong)pServices + InteropTools.OffsetOfGuidInService),
                         InteropTools.TypeOfGuid);
-                    _guidToService.Remove(guid);
+                    _ = _guidToService.Remove(guid);
                     pServices = (IntPtr)((ulong)pServices + InteropTools.SizeOfService);
                 }
                 succeeded = true;

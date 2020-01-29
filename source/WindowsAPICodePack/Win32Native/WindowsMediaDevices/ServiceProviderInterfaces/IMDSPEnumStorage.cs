@@ -11,17 +11,21 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMDSPEnumStorage
     {
+        [PreserveSig]
         HResult Next(
             [In] uint celt,
             [Out] out IMDSPStorage ppStorage,
             [Out] out uint pceltFetched);
 
+        [PreserveSig]
         HResult Skip(
            [In] uint celt,
             [Out] out uint pceltFetched);
 
+        [PreserveSig]
         HResult Reset();
 
+        [PreserveSig]
         HResult Clone(
             [Out] out IMDSPEnumStorage ppEnumStorage);
     }

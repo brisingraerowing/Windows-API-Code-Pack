@@ -167,6 +167,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         ///     return hr;
         /// }</code>
         /// </example>
+        [PreserveSig]
         HResult Open(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszPnPDeviceID,
             [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pClientInfo);
@@ -182,6 +183,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         /// <returns><para>The returned value indicates success or failure to send a command and return a result from the driver; it does not indicate whether the driver supports the command or if it encountered some error in processing the command. (For more information, see Remarks.) These errors are returned in the <see cref="HResult"/> values of the <paramref name="ppResults"/> parameter. The possible <see cref="HResult"/> values returned by this method include, but are not limited to, those in the following list.</para>
         /// <para><ul><li><see cref="HResult.Ok"/></li>
         /// <li><see cref="HResult.Pointer"/></li></ul></para></returns>
+        [PreserveSig]
         /// <remarks>TODO</remarks>
         /// <example><code>TODO</code></example>
         HResult SendCommand(
@@ -196,6 +198,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         /// <returns><para>The method returns an <see cref="HResult"/>. Possible values include, but are not limited to, those in the following list.</para>
         /// <para><ul><li><see cref="HResult.OK"/></li>
         /// <li><see cref="HResult.Pointer"/></li></ul></para></returns>
+        [PreserveSig]
         HResult Content(
             [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceContent ppContent);
 
@@ -206,6 +209,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         /// <returns><para>The method returns an <see cref="HResult"/>. Possible values include, but are not limited to, those in the following list.</para>
         /// <para><ul><li><see cref="HResult.OK"/></li>
         /// <li><see cref="HResult.Pointer"/></li></ul></para></returns>
+        [PreserveSig]
         HResult Capabilities(
             [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceCapabilities ppCapabilities);
 
@@ -217,6 +221,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         /// <remarks><para>If your application invokes the WPD API from multiple threads, each thread should create a new instance of the <see cref="IPortableDevice"/> interface. Doing this ensures that any cancel operation affects only the I/O for the affected thread.</para>
         /// <para>If an <see cref="System.Runtime.InteropServices.ComTypes.IStream"/> write operation is underway when the <see cref="Cancel"/> method is invoked, your application should discard all changes by invoking the <see cref="System.Runtime.InteropServices.ComTypes.IStream.Revert"/> method. Once the changes are discarded, the application should also close the stream by invoking the IUnknown.Release method.</para>
         /// <para>Also, note that if the <see cref="Cancel"/> method is invoked before an <see cref="System.Runtime.InteropServices.ComTypes.IStream.Write"/> method has completed, the data being written may be corrupted.</para></remarks>
+        [PreserveSig]
         HResult Cancel();
 
         /// <summary>
@@ -225,6 +230,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         /// <returns><para>The method returns an <see cref="HResult"/>. Possible values include, but are not limited to, those in the following list.</para>
         /// <para><ul><li><see cref="HResult.Ok"/></li></ul></para></returns>
         /// <remarks>You should not usually need to call this method yourself. When the last reference to the <see cref="IPortableDevice"/> interface is released, Windows Portable Devices calls <see cref="Close"/> for you. Calling this method manually forces the connection to the device to close, and any Windows Portable Devices objects hosted on this device will cease to function. You can call <see cref="Open"/> to reopen the connection.</remarks>
+        [PreserveSig]
         HResult Close();
 
         /// <summary>
@@ -236,6 +242,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         /// <param name="ppszCookie">A string that represents a unique context ID. This is used to unregister for callbacks when calling <see cref="Unadvise"/>.</param>
         /// <returns><para>The method returns an <see cref="HResult"/>. Possible values include, but are not limited to, those in the following list.</para>
         /// <para><ul><li><see cref="HResult.Ok"/></li></ul></para></returns>
+        [PreserveSig]
         HResult Advise(
             [In] uint dwFlags,
             [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceEventCallback pCallback,
@@ -248,6 +255,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         /// <param name="pszCookie">Reference to a null-terminated string that is a unique context ID. This was retrieved in the initial call to <see cref="Advise"/>.</param>
         /// <returns><para>The method returns an <see cref="HResult"/>. Possible values include, but are not limited to, those in the following list.</para>
         /// <para><ul><li><see cref="HResult.Ok"/></li></ul></para></returns>
+        [PreserveSig]
         HResult Unadvise(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszCookie);
 
@@ -260,6 +268,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         /// <li><see cref="HResult.DeviceNotOpen"/></li></ul></para></returns>
         /// <remarks><para>After the application is through using the string returned by this method, it must call the <see cref="CoTaskMemFree"/> function to free the string.</para>
         /// <para>The <paramref name="ppszPnPDeviceID"/> argument must not be set to <see langword="null"/>.</para></remarks>
+        [PreserveSig]
         HResult GetPnPDeviceID(
             [Out, MarshalAs(UnmanagedType.LPWStr)] out string ppszPnPDeviceID);
     }

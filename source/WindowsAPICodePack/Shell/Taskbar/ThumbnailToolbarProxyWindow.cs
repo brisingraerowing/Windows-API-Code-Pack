@@ -23,13 +23,13 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         internal ThumbnailToolbarProxyWindow(IntPtr windowHandle, ThumbnailToolBarButton[] buttons)
         {
             if (windowHandle == IntPtr.Zero)
-            
+
                 throw new ArgumentException(LocalizedMessages.CommonFileDialogInvalidHandle, "windowHandle");
-            
+
             if (buttons != null && buttons.Length == 0)
-            
+
                 throw new ArgumentException(LocalizedMessages.ThumbnailToolbarManagerNullEmptyArray, nameof(buttons));
-            
+
             _internalWindowHandle = windowHandle;
             _thumbnailButtons = buttons;
 
@@ -43,14 +43,12 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
         internal ThumbnailToolbarProxyWindow(System.Windows.UIElement windowsControl, ThumbnailToolBarButton[] buttons)
         {
-            if (windowsControl == null) { throw new ArgumentNullException("windowsControl"); }
             if (buttons != null && buttons.Length == 0)
-            {
-                throw new ArgumentException(LocalizedMessages.ThumbnailToolbarManagerNullEmptyArray, "buttons");
-            }
 
+                throw new ArgumentException(LocalizedMessages.ThumbnailToolbarManagerNullEmptyArray, nameof(buttons));
+
+            WindowsControl = windowsControl ?? throw new ArgumentNullException(nameof(windowsControl));
             _internalWindowHandle = IntPtr.Zero;
-            WindowsControl = windowsControl;
             _thumbnailButtons = buttons;
 
             // Set the window handle on the buttons (for future updates)
@@ -65,28 +63,18 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
         protected override void WndProc(ref Message m)
         {
-            bool handled = false;
-
-            handled = TaskbarWindowManager.DispatchMessage(ref m, TaskbarWindow);
+            bool handled = TaskbarWindowManager.DispatchMessage(ref m, TaskbarWindow);
 
             // If it's a WM_Destroy message, then also forward it to the base class (our native window)
-            if ((m.Msg == (int)WindowMessage.Destroy) ||
+            if (((m.Msg == (int)WindowMessage.Destroy) ||
                (m.Msg == (int)WindowMessage.NCDestroy) ||
-               ((m.Msg == (int)WindowMessage.SystemCommand) && (((int)m.WParam) == TabbedThumbnailNativeMethods.ScClose)))
-            {
+               ((m.Msg == (int)WindowMessage.SystemCommand) && (((int)m.WParam) == TabbedThumbnailNativeMethods.ScClose))) ^ !handled)
+            
                 base.WndProc(ref m);
-            }
-            else if (!handled)
-            {
-                base.WndProc(ref m);
-            }
-        }
+                    }
 
         #region IDisposable Members
 
-        /// <summary>
-        /// 
-        /// </summary>
         ~ThumbnailToolbarProxyWindow()
         {
             Dispose(false);

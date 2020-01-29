@@ -18,10 +18,8 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// <param name="dataRange">The <see cref="MappingDataRange">MappingDataRange</see> to convert</param>
         /// <returns>The resulting string</returns>
         public string Format(MappingDataRange dataRange)
-        {            
-            if (dataRange == null) throw new ArgumentNullException(nameof(dataRange));
-
-            byte[] data = dataRange.GetData();
+        {       
+            byte[] data = (dataRange ?? throw new ArgumentNullException(nameof(dataRange))).GetData();
 
             if ((data.Length & 1) != 0)
             
@@ -47,9 +45,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// <returns>An array of strings, one per <see cref="MappingDataRange">MappingDataRange</see>.</returns>
         public string[] FormatAll(MappingPropertyBag bag)
         {
-            if (bag == null) throw new ArgumentNullException(nameof(bag));
-
-            MappingDataRange[] dataRanges = bag.GetResultRanges();
+            MappingDataRange[] dataRanges = (bag ?? throw new ArgumentNullException(nameof(bag))).GetResultRanges();
             string[] results = new string[dataRanges.Length];
             for (int i = 0; i < results.Length; ++i)
             

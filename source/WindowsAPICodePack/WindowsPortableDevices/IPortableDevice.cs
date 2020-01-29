@@ -1,4 +1,5 @@
-﻿using Microsoft.WindowsAPICodePack.Win32Native;
+﻿using Microsoft.WindowsAPICodePack.PortableDevices;
+using Microsoft.WindowsAPICodePack.Win32Native;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,8 @@ public interface IPortableDeviceContentObject : IDisposable, IEnumerable<IPortab
 
 {
 
+    IPortableDevice ParentPortableDevice { get; }
 
+    IPortableDeviceObject Parent { get; }
 
 }

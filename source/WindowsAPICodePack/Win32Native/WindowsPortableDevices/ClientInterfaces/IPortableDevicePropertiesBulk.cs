@@ -14,12 +14,14 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDevicePropertiesBulk
     {
+        [PreserveSig]
         HResult QueueGetValuesByObjectList(
             [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection pObjectIDs,
             [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection pKeys,
             [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropertiesBulkCallback pCallback,
             [Out] out Guid pContext);
 
+        [PreserveSig]
         HResult QueueGetValuesByObjectFormat(
             [In] ref Guid pguidObjectFormat,
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszParentObjectID,
@@ -28,14 +30,17 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
             [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropertiesBulkCallback pCallback,
             [Out] out Guid pContext);
 
+        [PreserveSig]
         HResult QueueSetValuesByObjectList(
             [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValuesCollection pObjectValues,
             [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropertiesBulkCallback pCallback,
             [Out] out Guid pContext);
 
+        [PreserveSig]
         HResult Start(
             [In] ref Guid pContext);
 
+        [PreserveSig]
         HResult Cancel(
             [In] ref Guid pContext);
     }

@@ -849,7 +849,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
                 /// <summary>
                 /// This section defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.Properties.EventOptionsV1"/>. The properties in this category describe event options.
                 /// </summary>
-                public class Option
+                public static class Option
 
                 {
 

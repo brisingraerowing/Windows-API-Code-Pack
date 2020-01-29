@@ -199,11 +199,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 return new IconReference(iconRef);
             }
 
-            set
-            {
-                nativeShellLibrary.SetIcon(value.ReferencePath);
-                nativeShellLibrary.Commit();
-            }
+            set => nativeShellLibrary.SetIcon(value.ReferencePath);
         }
 
         /// <summary>
@@ -216,14 +212,13 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 nativeShellLibrary.GetFolderType(out Guid folderTypeGuid);
 
-                return GetFolderTypefromGuid(folderTypeGuid);
+                return GetFolderTypeFromGuid(folderTypeGuid);
             }
 
             set
             {
                 Guid guid = FolderTypesGuids[(int)value];
                 nativeShellLibrary.SetFolderType(ref guid);
-                nativeShellLibrary.Commit();
             }
         }
 
@@ -241,7 +236,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             }
         }
 
-        private static LibraryFolderType GetFolderTypefromGuid(Guid folderTypeGuid)
+        private static LibraryFolderType GetFolderTypeFromGuid(Guid folderTypeGuid)
         {
             for (int i = 0; i < FolderTypesGuids.Length; i++)
 
@@ -291,8 +286,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 nativeShellLibrary.SetDefaultSaveFolder(
                     ShellNativeMethods.DefaultSaveFolderType.Detect,
                     saveFolderItem);
-
-                nativeShellLibrary.Commit();
             }
         }
 
@@ -323,7 +316,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     flags &= ~ShellNativeMethods.LibraryOptions.PinnedToNavigationPane;
 
                 nativeShellLibrary.SetOptions(ShellNativeMethods.LibraryOptions.PinnedToNavigationPane, flags);
-                nativeShellLibrary.Commit();
             }
         }
 
@@ -386,7 +378,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 AccessModes flags = isReadOnly ?
                         AccessModes.Read :
                         AccessModes.ReadWrite;
-                Marshal.ThrowExceptionForHR( (int) nativeShellLibrary.LoadLibraryFromItem(nativeShellItem, flags));
+                Marshal.ThrowExceptionForHR((int)nativeShellLibrary.LoadLibraryFromItem(nativeShellItem, flags));
 
                 var library = new ShellLibrary(nativeShellLibrary);
 
@@ -426,7 +418,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             AccessModes flags = isReadOnly ?
                     AccessModes.Read :
                     AccessModes.ReadWrite;
-            Marshal.ThrowExceptionForHR((int) nativeShellLibrary.LoadLibraryFromItem(nativeShellItem, flags));
+            Marshal.ThrowExceptionForHR((int)nativeShellLibrary.LoadLibraryFromItem(nativeShellItem, flags));
 
             var library = new ShellLibrary(nativeShellLibrary);
 
@@ -434,6 +426,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 library.nativeShellItem = (IShellItem2)nativeShellItem;
                 library.Name = libraryName;
+
+                item.Dispose(false, false);
 
                 return library;
             }
@@ -461,7 +455,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     AccessModes.Read :
                     AccessModes.ReadWrite;
 
-            Marshal.ThrowExceptionForHR((int) nativeShellLibrary.LoadLibraryFromItem(nativeShellItem, flags));
+            Marshal.ThrowExceptionForHR((int)nativeShellLibrary.LoadLibraryFromItem(nativeShellItem, flags));
 
             var library = new ShellLibrary(nativeShellLibrary)
             {
@@ -577,7 +571,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
             if (item == null) throw new ArgumentNullException(nameof(item));
 
             nativeShellLibrary.AddFolder(item.NativeShellItem);
-            nativeShellLibrary.Commit();
         }
 
         /// <summary>
@@ -590,7 +583,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 throw new DirectoryNotFoundException(LocalizedMessages.ShellLibraryFolderNotFound);
 
-            Add(ShellFileSystemFolder.FromFolderPath(folderPath));
+            using (var item = ShellFileSystemFolder.FromFolderPath(folderPath))
+
+                Add(item);
         }
 
         /// <summary>
@@ -603,8 +598,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
             foreach (ShellFileSystemFolder folder in list)
 
                 nativeShellLibrary.RemoveFolder(folder.NativeShellItem);
-
-            nativeShellLibrary.Commit();
         }
 
         /// <summary>
@@ -619,7 +612,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
             try
             {
                 nativeShellLibrary.RemoveFolder(item.NativeShellItem);
-                nativeShellLibrary.Commit();
             }
             catch (COMException)
             {
@@ -634,9 +626,16 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         /// <param name="folderPath">The path of the item to remove.</param>
         /// <returns><B>true</B> if the item was removed.</returns>
-        public bool Remove(string folderPath) => Remove(ShellFileSystemFolder.FromFolderPath(folderPath));
+        public bool Remove(string folderPath)
+        {
+            using (var item = ShellFileSystemFolder.FromFolderPath(folderPath))
+
+                return Remove(item);
+        }
 
         #endregion
+
+        public void Commit() => Marshal.ThrowExceptionForHR( (int) nativeShellLibrary.Commit() ) ; 
 
         #region Disposable Pattern
 
@@ -679,11 +678,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (!CoreErrorHelper.Succeeded(hr)) return list;
 
-            Marshal.ThrowExceptionForHR((int) itemArray.GetCount(out uint count));
+            Marshal.ThrowExceptionForHR((int)itemArray.GetCount(out uint count));
 
             for (uint i = 0; i < count; ++i)
             {
-                Marshal.ThrowExceptionForHR((int) itemArray.GetItemAt(i, out IShellItem shellItem));
+                Marshal.ThrowExceptionForHR((int)itemArray.GetItemAt(i, out IShellItem shellItem));
                 list.Add(new ShellFileSystemFolder(shellItem as IShellItem2));
             }
 
@@ -768,7 +767,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="item">The FileSystemFolder to insert.</param>
         void IList<ShellFileSystemFolder>.Insert(int index, ShellFileSystemFolder item) =>
             // Index related options are not supported by IShellLibrary doesn't support them.
-            throw new NotImplementedException();
+            throw new NotSupportedException();
 
         /// <summary>
         /// Removes an item at the specified index.
@@ -776,7 +775,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="index">The index to remove.</param>
         void IList<ShellFileSystemFolder>.RemoveAt(int index) =>
             // Index related options are not supported by IShellLibrary doesn't support them.
-            throw new NotImplementedException();
+            throw new NotSupportedException();
 
         /// <summary>
         /// Retrieves the folder at the specified index
@@ -789,7 +788,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             set =>
                 // Index related options are not supported by IShellLibrary
                 // doesn't support them.
-                throw new NotImplementedException();
+                throw new NotSupportedException();
         }
         #endregion
 
@@ -800,7 +799,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         /// <param name="array">The array to copy to.</param>
         /// <param name="arrayIndex">The index in the array at which to start the copy.</param>
-        void ICollection<ShellFileSystemFolder>.CopyTo(ShellFileSystemFolder[] array, int arrayIndex) => throw new NotImplementedException();
+        void ICollection<ShellFileSystemFolder>.CopyTo(ShellFileSystemFolder[] array, int arrayIndex) => throw new NotSupportedException();
 
         /// <summary>
         /// The count of the items in the list.

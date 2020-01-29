@@ -27,6 +27,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         /// <param name="ppCommands">Reference to an <see cref="IPortableDeviceKeyCollection"/> interface that holds all the valid commands. For a list of commands that are defined by Windows Portable Devices, see <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/commands">Commands</a>. The caller must release this interface when it is done with it.</param>
         /// <returns><para>The method returns an <see cref="HResult"/>. Possible values include, but are not limited to, those in the following list.</para>
         /// <para><ul><li><see cref="HResult.Ok"/></li></ul></para></returns>
+        [PreserveSig]
         HResult GetSupportedCommands(
             [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceKeyCollection ppCommands);
 
@@ -40,6 +41,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         /// <remarks><para>This method is called by applications that want to call a command directly on the driver by calling <see cref="IPortableDevice.SendCommand"/>. Some commands allow the caller to specify additional options. For example, some drivers support recursive child deletion when deleting an object using the WPD_COMMAND_OBJECT_MANAGEMENT_DELETE_OBJECTS command.</para>
         /// <para>If an option is a simple <see cref="bool"/> value, the key of the retrieved <see cref="IPortableDeviceValues"/> interface will be the name of the option, and the <see cref="PropVariant"/> value will be a <see cref="bool"/> value of <see langword="true"/> or <see langword="false"/>. If an option has several values, the retrieved <see cref="PropVariant"/> value will be a collection type that holds the supported values.</para>
         /// <para>If this method is called for the WPD_COMMAND_STORAGE_FORMAT command and the ppOptions parameter is set to WPD_OPTION_VALID_OBJECT_IDS, the driver will return an IPortableDevicePropVariant collection of type <see cref="string"/> that specifies the identifiers for each object on the device that can be formatted. (If this option does not exist, the format command is available for all objects.)</para></remarks>
+        [PreserveSig]
         HResult GetCommandOptions(
             [In] ref PropertyKey Command,
             [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppOptions);
@@ -52,6 +54,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         /// <para><ul><li><see cref="HResult.Ok"/></li></ul></para></returns>
         /// <remarks><para>Functional categories describe the types of functions that a device can perform, such as image capture, audio capture, and storage. This method is typically very fast, because the driver usually queries the device only on startup and caches the results.</para>
         /// <para>For an example of how to use this method see <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/retrieving-the-functional-categories-supported-by-a-device">Retrieving the Functional Categories Supported by a Device</a>.</para></remarks>
+        [PreserveSig]
         HResult GetFunctionalCategories(
             [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDevicePropVariantCollection ppCategories);
 
@@ -64,6 +67,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         /// <para><ul><li><see cref="HResult.Ok"/></li></ul></para></returns>
         /// <remarks><para>This operation is usually fast, because the driver does not need to perform a full content enumeration, and the number of retrieved functional objects is typically less than 10. If no objects of the requested type are found, this method will not return an error, but returns an empty collection for <paramref name="ppObjectIDs"/>.</para>
         /// <para>For an example of how to use this method, see <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/retrieving-the-functional-object-identifiers-for-a-device">Retrieving the Functional Object Identifiers for a Device</a></para></remarks>
+        [PreserveSig]
         HResult GetFunctionalObjects(
             [In] ref Guid Category,
             [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDevicePropVariantCollection ppObjectIDs);
@@ -75,14 +79,17 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         /// <param name="ppContentTypes">Reference to an <see cref="IPortableDevicePropVariantCollection"/> interface that lists all the supported object types for the specified functional object category. These object types will be <see cref="Guid"/> values of type VT_CLSID in the retrieved <see cref="PropVariant"/> items. See <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/requirements-for-objects">Requirements for Objects</a> for a list of object types defined by Windows Portable Devices. The caller must release this interface when it is done with it.</param>
         /// <returns><para>The method returns an HResult. Possible values include, but are not limited to, those in the following list.</para>
         /// <para><ul><li><see cref="HResult.Ok"/></li></ul></para></returns>
+        [PreserveSig]
         HResult GetSupportedContentTypes(
             [In] ref Guid Category,
             [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDevicePropVariantCollection ppContentTypes);
 
+        [PreserveSig]
         HResult GetSupportedFormats(
             [In] ref Guid ContentType,
             [Out] out IPortableDevicePropVariantCollection ppFormats);
 
+        [PreserveSig]
         HResult GetSupportedFormatProperties(
             [In] ref Guid Format,
             [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceKeyCollection ppKeys);
@@ -97,6 +104,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         /// <para><ul><li><see cref="HResult.Ok"/></li></ul></para></returns>
         /// <remarks><para>You can specify WPD_OBJECT_FORMAT_ALL for the Format parameter to retrieve the complete set of property attributes.</para>
         /// <para>Attributes describe properties. Example attributes are WPD_PROPERTY_ATTRIBUTE_CAN_READ and WPD_PROPERTY_ATTRIBUTE_CAN_WRITE. This method does not retrieve resource attributes.</para></remarks>
+        [PreserveSig]
         HResult GetFixedPropertyAttributes(
             [In] ref Guid Format,
             [In] ref PropertyKey Key,
@@ -107,8 +115,10 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         /// </summary>
         /// <returns><para>The method returns an HResult. Possible values include, but are not limited to, those in the following list.</para></returns>
         /// <remarks>This method cancels all pending operations on the current device handle, which corresponds to a session associated with an <see cref="IPortableDevice"/> interface. The Windows Portable Devices (WPD) API does not support targeted cancellation of specific operations.</remarks>
+        [PreserveSig]
         HResult Cancel();
 
+        [PreserveSig]
         HResult GetSupportedEvents(
             [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDevicePropVariantCollection ppEvents);
 
@@ -120,6 +130,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         /// <returns><para>The method returns an HResult. Possible values include, but are not limited to, those in the following list.</para>
         /// <para><ul><li><see cref="HResult.Ok"/></li>
         /// <li><see cref="HResult.Pointer"/></li></ul></para></returns>
+        [PreserveSig]
         HResult GetEventOptions(
             [In] ref Guid Event,
             [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppOptions);

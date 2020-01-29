@@ -15,18 +15,23 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceKeyCollection
     {
+        [PreserveSig]
         HResult GetCount(
             [In] ref uint pcElems);
 
+        [PreserveSig]
         HResult GetAt(
             [In] uint dwIndex,
             [In] ref PropertyKey pKey);
 
+        [PreserveSig]
         HResult Add(
             [In] ref PropertyKey Key);
 
+        [PreserveSig]
         HResult Clear();
 
+        [PreserveSig]
         HResult RemoveAt(
             [In] uint dwIndex);
     }

@@ -52,17 +52,15 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             }
             catch
             {
-                if (parent != null)
-                {
-                    parent.Dispose();
-                }
+                parent?.Dispose();
+
                 throw;
             }
             finally
             {
                 if (nativePropertyStore != null)
                 {
-                    _=Marshal.ReleaseComObject(nativePropertyStore);
+                    _ = Marshal.ReleaseComObject(nativePropertyStore);
                     nativePropertyStore = null;
                 }
             }
@@ -85,10 +83,10 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         private void AddProperties(IPropertyStore nativePropertyStore)
         {
             // Populate the property collection
-            nativePropertyStore.GetCount(out uint propertyCount);
+            _ = nativePropertyStore.GetCount(out uint propertyCount);
             for (uint i = 0; i < propertyCount; i++)
             {
-                nativePropertyStore.GetAt(i, out PropertyKey propKey);
+                _ = nativePropertyStore.GetAt(i, out PropertyKey propKey);
 
                 Items.Add(ParentShellObject != null ? ParentShellObject.Properties.CreateTypedProperty(propKey) : CreateTypedProperty(propKey, NativePropertyStore));
             }
@@ -104,9 +102,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
             // throw on failure 
             if (nativePropertyStore == null || !CoreErrorHelper.Succeeded(hr))
-            {
+
                 throw new ShellException(hr);
-            }
 
             return nativePropertyStore;
         }
@@ -157,12 +154,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
                     throw new ArgumentException(LocalizedMessages.PropertyCollectionNullCanonicalName, nameof(canonicalName));
 
-                IShellProperty prop = Items.FirstOrDefault(p => p.CanonicalName == canonicalName);
-                if (prop == null)
-
-                    throw new IndexOutOfRangeException(LocalizedMessages.PropertyCollectionCanonicalInvalidIndex);
-
-                return prop;
+                return Items.FirstOrDefault(p => p.CanonicalName == canonicalName) ?? throw new IndexOutOfRangeException(LocalizedMessages.PropertyCollectionCanonicalInvalidIndex);
             }
         }
 

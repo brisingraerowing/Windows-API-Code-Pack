@@ -11,6 +11,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMDSPRevoked
     {
+        [PreserveSig]
         HResult GetRevocationURL(
             [Out,In,MarshalAs(UnmanagedType.LPWStr)] ref string ppwszRevocationURL,
             [Out,In] ref uint pdwBufferLen);

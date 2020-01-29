@@ -13,27 +13,33 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceManager
     {
+        [PreserveSig]
         HResult GetDevices(
             [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPWStr)] string[] pPnPDeviceIDs,
             [In, Out] ref uint pcPnPDeviceIDs);
 
+        [PreserveSig]
         HResult RefreshDeviceList();
 
+        [PreserveSig]
         HResult GetDeviceFriendlyName(
             [In, MarshalAs(UnmanagedType.LPWStr)]  string pszPnPDeviceID,
             [In, Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pDeviceFriendlyName,
             [In, Out] ref uint pcchDeviceFriendlyName);
 
+        [PreserveSig]
         HResult GetDeviceDescription(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszPnPDeviceID,
             [In, Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pDeviceDescription,
             [In, Out] ref uint pcchDeviceDescription);
 
+        [PreserveSig]
         HResult GetDeviceManufacturer(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszPnPDeviceID,
             [In, Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pDeviceManufacturer,
             [In, Out] ref uint pcchDeviceManufacturer);
 
+        [PreserveSig]
         HResult GetDeviceProperty(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszPnPDeviceID,
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszDevicePropertyName,
@@ -41,6 +47,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
             [In, Out] ref uint pcbData,
             [In, Out] ref BlobValueKind pdwType);
 
+        [PreserveSig]
         HResult GetPrivateDevices(
             [In, Out, MarshalAs( UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPWStr)] string[] pPnPDeviceIDs,
             [In, Out] ref uint pcPnPDeviceIDs);

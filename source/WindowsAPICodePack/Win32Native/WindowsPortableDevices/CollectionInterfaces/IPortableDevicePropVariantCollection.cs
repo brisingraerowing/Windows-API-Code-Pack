@@ -14,24 +14,31 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDevicePropVariantCollection
     {
+        [PreserveSig]
         HResult GetCount(
             [In] ref uint pcElems);
 
+        [PreserveSig]
         HResult GetAt(
             [In] uint dwIndex, 
             [In] ref PropVariant pValue);
 
+        [PreserveSig]
         HResult Add(
             [In] ref PropVariant pValue);
 
+        [PreserveSig]
         HResult GetType(
             [Out] out ushort pvt);
 
+        [PreserveSig]
         HResult ChangeType(
             [In] ushort vt);
 
+        [PreserveSig]
         HResult Clear();
 
+        [PreserveSig]
         HResult RemoveAt(
             [In] uint dwIndex);
     }

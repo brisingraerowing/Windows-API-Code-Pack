@@ -4,11 +4,21 @@ WindowsAPICodePack CHANGELOG
 ???? 2.0
 ========
 
+Shell 2.0
+---------
+
+- The following methods and properties throw a NotSupportedException instead of a NotImplementedException:
+    - ShellLibrary.this[int]
+    - ShellLibrary.Insert(int, ShellFileSystemFolder)
+    - ShellLibrary.RemoveAt(int)
+    - ShellLibrary implementation of ICollection<ShellFileSystemFolder>.CopyTo(ShellFileSystemFolder[], int)
+- The ShellLibrary does not commit changes automatically anymore. Use the Commit method to commit changes.
+
 Win32Native 2.0
 ---------------
 
 - Move some types to the Microsoft.WindowsAPICodePack.Win32Native.* and Microsoft.WindowsAPICodePack namespaces.
-- Move GUIDs to the new Win32NativeGuids project.
+- Move GUIDs to the new Win32NativeConsts project.
 - Add the BlobHelper and the BlobValueKind types to process binary data easier. This is particularly useful for data retrieved from Win32 APIs like the Windows Registry, Portable Devices, ...
 - Some classes and interfaces of the Sensor package or the Win32Native package's Sensor section has changed or has been removed.
 - The following properties of the Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources class have changed:
@@ -16,12 +26,12 @@ Win32Native 2.0
     - from: FolderTypeClassic to: FolderTypeControlPanelClassic
     - from: FolderTypeControlPanelCategory to: FolderTypeCategory
 
-Win32NativeGuids 2.0
+Win32NativeConsts 2.0
 --------------------
 
 First release
 
-WindowsPortableDevices
+WindowsPortableDevices 2.0
 ----------------------
 
 First release

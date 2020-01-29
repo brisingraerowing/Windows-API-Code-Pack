@@ -272,8 +272,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void SetIcon([In, MarshalAs(UnmanagedType.LPWStr)] string icon);
 
+        [PreserveSig]
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void Commit();
+        HResult Commit();
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void Save(

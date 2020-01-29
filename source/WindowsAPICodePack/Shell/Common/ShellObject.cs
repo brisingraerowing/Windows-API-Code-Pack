@@ -194,7 +194,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Gets the PID List (PIDL) for this ShellItem. This property should not be used directly except on Win32 API reimplementation.
         /// </summary>
-        public virtual IntPtr PIDL
+        internal virtual IntPtr PIDL
         {
             get
             {
@@ -205,7 +205,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 return _internalPIDL;
             }
-            protected set => _internalPIDL = value;
+            set => _internalPIDL = value;
         }
 
         /// <summary>
@@ -320,7 +320,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// Release the native and managed objects
         /// </summary>
         /// <param name="disposing">Indicates that this is being called from Dispose(), rather than the finalizer.</param>
-        protected virtual void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing) => Dispose(disposing, true);
+
+        internal void Dispose(bool disposing, bool nativeShellItem)
         {
             if (disposing)
             {
@@ -339,11 +341,21 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 _internalPIDL = IntPtr.Zero;
             }
 
-            if (nativeShellItem != null)
+            if (nativeShellItem)
+
             {
-                _ = Marshal.ReleaseComObject(nativeShellItem);
-                nativeShellItem = null;
+
+                if (this.nativeShellItem != null)
+                {
+                    _ = Marshal.ReleaseComObject(nativeShellItem);
+                    this.nativeShellItem = null;
+                }
+
             }
+
+            else
+
+                GC.SuppressFinalize(this);
 
             if (NativePropertyStore != null)
             {

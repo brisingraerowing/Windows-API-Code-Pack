@@ -407,7 +407,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
 
             _ = _results.GetCount(count);
 
-            var __results = new string[count];
+            string[] __results = new string[count];
 
             for (uint i = 0; i < count; i++)
 

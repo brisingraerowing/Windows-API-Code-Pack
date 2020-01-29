@@ -13,43 +13,54 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMDSPDevice
     {
+        [PreserveSig]
         HResult GetName(
             [Out, MarshalAs(UnmanagedType.LPWStr)] out string pwszName,
             [In] ushort nMaxChars);
-        
+
+        [PreserveSig]
         HResult GetManufacturer(
             [Out,MarshalAs(UnmanagedType.LPWStr)] out string pwszName,
             [In] ushort nMaxChars);
-        
+
+        [PreserveSig]
         HResult GetVersion(
             [Out] out uint pdwVersion);
-        
+
+        [PreserveSig]
         HResult GetType(
             [Out] out uint pdwType);
-        
+
+        [PreserveSig]
         HResult GetSerialNumber(
             [Out] out WMDMID pSerialNumber,
             [Out,In] ref StringBuilder abMac);
 
+        [PreserveSig]
         HResult GetPowerSource(
             [Out] uint pdwPowerSource,
             [Out] uint pdwPercentRemaining);
 
+        [PreserveSig]
         HResult GetStatus(
             [Out] uint pdwStatus);
 
+        [PreserveSig]
         HResult GetDeviceIcon(
             [Out] uint hIcon);
 
+        [PreserveSig]
         HResult EnumStorage(
             [Out] out IMDSPEnumStorage ppEnumStorage);
 
+        [PreserveSig]
         HResult GetFormatSupport(
             [Out] out WaveFormatEx pFormatEx,
             [Out] out ushort pnFormatCount,
             [Out, MarshalAs(UnmanagedType.LPWStr)] out string pppwszMimeType,
             [Out] out ushort pnMimeTypeCount);
 
+        [PreserveSig]
         HResult SendOpaqueCommand(
             [Out, In] ref OpaqueCommand pCommand);
     }
@@ -57,10 +68,12 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
     public interface IMDSPDevice2 : IMDSPDevice
 
     {
+        [PreserveSig]
         HResult GetStorage(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszStorageName,
             [Out] out IMDSPStorage ppStorage);
-        
+
+        [PreserveSig]
         HResult GetFormatSupport2(
             [In] uint dwFlags,
             [Out] out WaveFormatEx ppAudioFormatEx,
@@ -69,12 +82,14 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
             [Out] out ushort pnVideoFormatCount,
             [Out] out FileCapabilities ppFileType,
             [Out] out ushort pnFileTypeCount);
-        
+
+        [PreserveSig]
         HResult GetSpecifyPropertyPages(
             [Out] out ISpecifyPropertyPages ppSpecifyPropPages,
             [Out, MarshalAs(UnmanagedType.IUnknown)] out object pppUnknowns,
             [Out] out uint pcUnks);
-        
+
+        [PreserveSig]
         HResult GetCanonicalName(
             [Out, MarshalAs(UnmanagedType.LPWStr)] out string pwszPnPName,
             [In] ushort nMaxChars);
@@ -84,25 +99,30 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
     public interface IMDSPDevice3 : IMDSPDevice2
 
     {
+        [PreserveSig]
         HResult GetProperty(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pwszPropName,
             [Out] out PropVariant pValue);
-        
+
+        [PreserveSig]
         HResult SetProperty(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pwszPropName,
             [In] in PropVariant pValue);
 
+        [PreserveSig]
         HResult GetFormatCapability(
             [In] FormatCode format,
             [Out] out FormatCapability pFormatSupport);
-        
+
+        [PreserveSig]
         HResult DeviceIoControl(
             [In] uint dwIoControlCode,
             [In] ref StringBuilder lpInBuffer,
             [In] uint nInBufferSize,
             [Out] out StringBuilder lpOutBuffer,
             [Out, In] ref uint pnOutBufferSize);
-        
+
+        [PreserveSig]
         HResult FindStorage(
            [In] FindScope findScope,
             [In, MarshalAs(UnmanagedType.LPWStr)] string pwszUniqueID,

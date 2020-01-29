@@ -16,12 +16,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// </summary>
         /// <param name="dataRange">The <see cref="MappingDataRange">MappingDataRange</see> to convert</param>
         /// <returns>The resulting string</returns>
-        public string Format(MappingDataRange dataRange)
-        {
-            if (dataRange == null) throw new ArgumentNullException(nameof(dataRange));
-
-            return Encoding.Unicode.GetString(dataRange.GetData());
-        }
+        public string Format(MappingDataRange dataRange) => Encoding.Unicode.GetString((dataRange ?? throw new ArgumentNullException(nameof(dataRange))).GetData());
 
         /// <summary>
         /// Uses <see cref="Format(MappingDataRange)">Format</see> to format all the ranges of the supplied

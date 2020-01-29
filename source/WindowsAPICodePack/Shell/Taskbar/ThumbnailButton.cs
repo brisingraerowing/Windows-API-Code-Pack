@@ -76,10 +76,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// </summary>
         public Icon Icon
         {
-            get
-            {
-                return icon;
-            }
+            get => icon;
             set
             {
                 if (icon != value)
@@ -96,10 +93,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// </summary>
         public string Tooltip
         {
-            get
-            {
-                return tooltip;
-            }
+            get => tooltip;
             set
             {
                 if (tooltip != value)
@@ -116,10 +110,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// </summary>
         public bool Visible
         {
-            get
-            {
-                return (Flags & ThumbButtonOptions.Hidden) == 0;
-            }
+            get => (Flags & ThumbButtonOptions.Hidden) == 0;
             set
             {
                 if (visible != value)
@@ -127,13 +118,13 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                     visible = value;
 
                     if (value)
-                    
+
                         Flags &= ~(ThumbButtonOptions.Hidden);
-                    
+
                     else
-                    
-                        this.Flags |= ThumbButtonOptions.Hidden;
-                    
+
+                        Flags |= ThumbButtonOptions.Hidden;
+
                     UpdateThumbnailButton();
                 }
 
@@ -147,10 +138,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// </summary>
         public bool Enabled
         {
-            get
-            {
-                return (this.Flags & ThumbButtonOptions.Disabled) == 0;
-            }
+            get => (Flags & ThumbButtonOptions.Disabled) == 0;
             set
             {
                 if (value != enabled)
@@ -158,13 +146,12 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                     enabled = value;
 
                     if (value)
-                    {
-                        this.Flags &= ~(ThumbButtonOptions.Disabled);
-                    }
+
+                        Flags &= ~ThumbButtonOptions.Disabled;
+
                     else
-                    {
-                        this.Flags |= ThumbButtonOptions.Disabled;
-                    }
+
+                        Flags |= ThumbButtonOptions.Disabled;
 
                     UpdateThumbnailButton();
                 }
@@ -178,10 +165,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// </summary>
         public bool DismissOnClick
         {
-            get
-            {
-                return (this.Flags & ThumbButtonOptions.DismissOnClick) == 0;
-            }
+            get => (Flags & ThumbButtonOptions.DismissOnClick) == 0;
             set
             {
                 if (value != dismissOnClick)
@@ -189,13 +173,12 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                     dismissOnClick = value;
 
                     if (value)
-                    {
-                        this.Flags |= ThumbButtonOptions.DismissOnClick;
-                    }
+
+                        Flags |= ThumbButtonOptions.DismissOnClick;
+
                     else
-                    {
-                        this.Flags &= ~(ThumbButtonOptions.DismissOnClick);
-                    }
+
+                        Flags &= ~ThumbButtonOptions.DismissOnClick;
 
                     UpdateThumbnailButton();
                 }
@@ -213,10 +196,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// </remarks>
         public bool IsInteractive
         {
-            get
-            {
-                return (this.Flags & ThumbButtonOptions.NonInteractive) == 0;
-            }
+            get => (Flags & ThumbButtonOptions.NonInteractive) == 0;
             set
             {
                 if (value != isInteractive)
@@ -224,13 +204,12 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                     isInteractive = value;
 
                     if (value)
-                    {
-                        this.Flags &= ~(ThumbButtonOptions.NonInteractive);
-                    }
+
+                        Flags &= ~ThumbButtonOptions.NonInteractive;
+
                     else
-                    {
-                        this.Flags |= ThumbButtonOptions.NonInteractive;
-                    }
+
+                        Flags |= ThumbButtonOptions.NonInteractive;
 
                     UpdateThumbnailButton();
                 }
@@ -260,13 +239,12 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
                 win32ThumbButton.Mask = ThumbButtonMask.THB_FLAGS;
                 if (Tooltip != null)
-                {
+
                     win32ThumbButton.Mask |= ThumbButtonMask.Tooltip;
-                }
+
                 if (Icon != null)
-                {
+
                     win32ThumbButton.Mask |= ThumbButtonMask.Icon;
-                }
 
                 return win32ThumbButton;
             }
@@ -280,16 +258,14 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         internal void FireClick(TaskbarWindow taskbarWindow)
         {
             if (Click != null && taskbarWindow != null)
-            {
+
                 if (taskbarWindow.UserWindowHandle != IntPtr.Zero)
-                {
+
                     Click(this, new ThumbnailButtonClickedEventArgs(taskbarWindow.UserWindowHandle, this));
-                }
+
                 else if (taskbarWindow.WindowsControl != null)
-                {
+
                     Click(this, new ThumbnailButtonClickedEventArgs(taskbarWindow.WindowsControl, this));
-                }
-            }
         }
 
         /// <summary>
@@ -313,14 +289,14 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
         internal void UpdateThumbnailButton()
         {
-            if (internalUpdate || !AddedToTaskbar) { return; }
+            if (internalUpdate || !AddedToTaskbar) return; 
 
             // Get the array of thumbnail buttons in native format
             ThumbButton[] nativeButtons = { Win32ThumbButton };
 
             HResult hr = TaskbarList.Instance.ThumbBarUpdateButtons(WindowHandle, 1, nativeButtons);
 
-            if (!CoreErrorHelper.Succeeded(hr)) { throw new ShellException(hr); }
+            if (!CoreErrorHelper.Succeeded(hr)) throw new ShellException(hr); 
         }
 
         #endregion

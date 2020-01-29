@@ -14,6 +14,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceUnitsStream
     {
+        [PreserveSig]
         HResult SeekInUnits(
             [In] long dlibMove,
             [In] StreamUnits units,

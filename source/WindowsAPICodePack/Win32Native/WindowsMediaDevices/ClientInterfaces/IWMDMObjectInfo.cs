@@ -11,24 +11,31 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IWMDMObjectInfo
     {
+        [PreserveSig]
         HResult GetPlayLength(
             [Out] out uint pdwLength);
-        
+
+        [PreserveSig]
         HResult SetPlayLength(
             [In] uint dwLength);
-        
+
+        [PreserveSig]
         HResult GetPlayOffset(
             [Out] out uint pdwOffset);
-        
+
+        [PreserveSig]
         HResult SetPlayOffset(
             [In] uint dwOffset);
-        
+
+        [PreserveSig]
         HResult GetTotalLength(
             [Out] out uint pdwLength);
-        
+
+        [PreserveSig]
         HResult GetLastPlayPosition(
             [Out] out uint pdwLastPos);
-        
+
+        [PreserveSig]
         HResult GetLongestPlayPosition(
             [Out] out uint pdwLongestPos);
     }
