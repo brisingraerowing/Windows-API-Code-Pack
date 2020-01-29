@@ -629,9 +629,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         }
 
-        private List<IPortableDeviceObject> _items;
+        private List<IPortableDeviceContentObject> _items;
 
-        private List<IPortableDeviceObject> _Items
+        private List<IPortableDeviceContentObject> _Items
 
         {
 
@@ -647,7 +647,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                     else
 
-                        _items = new List<IPortableDeviceObject>();
+                        _items = new List<IPortableDeviceContentObject>();
 
                 return _items;
 
@@ -655,7 +655,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         }
 
-        public IPortableDeviceObject this[int index] => _Items[index];
+        public IPortableDeviceContentObject this[int index] => _Items[index];
 
         private void GetItems()
 
@@ -667,7 +667,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             {
 
-                var items = new LinkedList<IPortableDeviceObject>();
+                var items = new LinkedList<IPortableDeviceContentObject>();
 
                 while (true)
 
@@ -679,13 +679,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                         for (uint i = 0; i < fetched; i++)
 
-                            _ = items.AddLast(new PortableDeviceObject(objectIDs[i], this, null));
+                            _ = items.AddLast(new PortableDeviceContentObject(objectIDs[i], this, null));
 
                     else break;
 
                 }
 
-                _items = new List<IPortableDeviceObject>(items.Count);
+                _items = new List<IPortableDeviceContentObject>(items.Count);
 
                 if (items.Count > 0)
 
@@ -747,13 +747,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         #region IEnumerable Support
 
-        public IEnumerator<IPortableDeviceObject> GetEnumerator() => _Items.GetEnumerator();
+        public IEnumerator<IPortableDeviceContentObject> GetEnumerator() => _Items.GetEnumerator();
 
         #endregion
 
     }
 
-    public class PortableDeviceObject : IPortableDeviceObject
+    public class PortableDeviceContentObject : IPortableDeviceContentObject
 
     {
 
@@ -761,9 +761,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         public IPortableDevice ParentPortableDevice { get; }
 
-        public IPortableDeviceObject Parent { get; }
+        public IPortableDeviceContentObject Parent { get; }
 
-        internal PortableDeviceObject(string id, IPortableDevice parentPortableDevice, IPortableDeviceObject parent)
+        internal PortableDeviceContentObject(string id, IPortableDevice parentPortableDevice, IPortableDeviceContentObject parent)
 
         {
 

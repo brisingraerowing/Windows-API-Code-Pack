@@ -19,13 +19,13 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
     /// </summary>
     public class ShellPropertyCollection : ReadOnlyCollection<IShellProperty>, IDisposable
     {
-        #region public Constructor
+        #region Internal Constructor
 
         /// <summary>
         /// Creates a new Property collection given an IPropertyStore object
         /// </summary>
         /// <param name="nativePropertyStore">IPropertyStore</param>
-        public ShellPropertyCollection(IPropertyStore nativePropertyStore)
+        internal ShellPropertyCollection(IPropertyStore nativePropertyStore)
             : base(new List<IShellProperty>())
         {
             NativePropertyStore = nativePropertyStore;
@@ -92,7 +92,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             }
         }
 
-        public static IPropertyStore CreateDefaultPropertyStore(ShellObject shellObj)
+        internal static IPropertyStore CreateDefaultPropertyStore(ShellObject shellObj)
         {
             var guid = new Guid(ShellIIDGuid.IPropertyStore);
             int hr = shellObj.NativeShellItem2.GetPropertyStore(
@@ -194,7 +194,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         {
             if (NativePropertyStore != null)
             {
-                Marshal.ReleaseComObject(NativePropertyStore);
+                _ = Marshal.ReleaseComObject(NativePropertyStore);
                 NativePropertyStore = null;
             }
         }

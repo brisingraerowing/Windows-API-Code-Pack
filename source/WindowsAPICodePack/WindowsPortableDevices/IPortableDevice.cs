@@ -38,8 +38,10 @@ public interface IPortableDeviceContentObject : IDisposable, IEnumerable<IPortab
 
 {
 
+    string Id { get; }
+
     IPortableDevice ParentPortableDevice { get; }
 
-    IPortableDeviceObject Parent { get; }
+    IPortableDeviceContentObject Parent { get; }
 
 }
