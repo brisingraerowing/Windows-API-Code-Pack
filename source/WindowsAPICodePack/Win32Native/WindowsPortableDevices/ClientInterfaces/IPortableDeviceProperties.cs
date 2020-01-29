@@ -16,29 +16,35 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceProperties
     {
+        [PreserveSig]
         HResult GetSupportedProperties(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
             [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceKeyCollection ppKeys);
 
+        [PreserveSig]
         HResult GetPropertyAttributes(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
             [In] ref PropertyKey Key,
             [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppAttributes);
 
+        [PreserveSig]
         HResult GetValues(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
             [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection pKeys,
             [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppValues);
 
+        [PreserveSig]
         HResult SetValues(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
             [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pValues,
             [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppResults);
 
+        [PreserveSig]
         HResult Delete(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
             [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection pKeys);
 
+        [PreserveSig]
         HResult Cancel();
     }
 }

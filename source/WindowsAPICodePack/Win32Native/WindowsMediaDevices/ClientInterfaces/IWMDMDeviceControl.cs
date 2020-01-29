@@ -12,23 +12,31 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IWMDMDeviceControl
     {
+        [PreserveSig]
         HResult GetStatus(
             [Out] out uint pdwStatus);
-        
+
+        [PreserveSig]
         HResult GetCapabilities(
             [Out] out uint pdwCapabilitiesMask);
-        
+
+        [PreserveSig]
         HResult Play();
-        
+
+        [PreserveSig]
         HResult Record(
             [In] ref WaveFormatEx pFormat);
-        
+
+        [PreserveSig]
         HResult Pause();
-        
+
+        [PreserveSig]
         HResult Resume();
-        
+
+        [PreserveSig]
         HResult Stop();
-        
+
+        [PreserveSig]
         HResult Seek(
             [In] ushort fuMode,
             [In] short nOffset);

@@ -560,6 +560,8 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             // return hr;
             // }
 
+                _items = null; // We have to reset the _items field in order to re-load it with the portable device's items when needed.
+
             IsOpen = true;
 
         }
@@ -631,7 +633,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                 if (_items is null)
 
-                    GetItems();
+                    if (IsOpen)
+
+                        GetItems();
+
+                    else
+
+                        _items = new List<IPortableDeviceObject>();
 
                 return _items;
 
@@ -645,7 +653,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         {
 
-            _portableDevice.Content(out IPortableDeviceContent portableDeviceContent);
+            _ = _portableDevice.Content(out IPortableDeviceContent portableDeviceContent);
 
             if (CoreErrorHelper.Succeeded(portableDeviceContent.EnumObjects(0, Consts.DeviceObjectId, null, out IEnumPortableDeviceObjectIDs enumPortableDeviceObjectIDs)))
 
@@ -731,9 +739,21 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         #region IEnumerable Support
 
-        public IEnumerator<IPortableDeviceObject> GetEnumerator() => _items.GetEnumerator();
+        public IEnumerator<IPortableDeviceObject> GetEnumerator() => _Items.GetEnumerator();
 
         #endregion
+
+    }
+
+    public class PortableDeviceObject
+
+    {
+
+        public IPortableDevice ParentPortableDevice { get; }
+
+        public IPortableDeviceObject Parent { get; }
+
+        internal PortableDeviceObject(IPortableDevice parentPortableDevice, IPortableDeviceObject parent)
 
     }
 }

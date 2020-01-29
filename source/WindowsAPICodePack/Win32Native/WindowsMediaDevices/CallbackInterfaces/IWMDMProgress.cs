@@ -11,18 +11,22 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IWMDMProgress
     {
+        [PreserveSig]
         HResult Begin(
             [In] uint dwEstimatedTicks);
-        
+
+        [PreserveSig]
         HResult Progress(
             [In] uint dwTranspiredTicks);
-        
+
+        [PreserveSig]
         HResult End();
     }
 
     public interface IWMDMProgress2 : IWMDMProgress
 
     {
+        [PreserveSig]
         HResult End2(
             [In] HResult hrCompletionCode);
 
@@ -31,16 +35,19 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
     public interface IWMDMProgress3 : IWMDMProgress2
 
     {
+        [PreserveSig]
         HResult Begin3(
             [In] Guid EventId,
             [In] uint dwEstimatedTicks,
             [Out,In] ref OpaqueCommand pContext);
-        
+
+        [PreserveSig]
         HResult Progress3(
             [In] Guid EventId,
             [In] uint dwTranspiredTicks,
             [Out,In] ref OpaqueCommand pContext);
-        
+
+        [PreserveSig]
         HResult End3(
             [In] Guid EventId,
             [In] HResult hrCompletionCode,

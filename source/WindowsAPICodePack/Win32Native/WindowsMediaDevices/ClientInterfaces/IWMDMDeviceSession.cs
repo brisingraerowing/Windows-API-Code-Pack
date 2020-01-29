@@ -11,11 +11,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IWMDMDeviceSession
     {
+        [PreserveSig]
         HResult BeginSession(
             [In] SessionType type,
             [In] ref StringBuilder pCtx,
             [In] uint dwSizeCtx);
-        
+
+        [PreserveSig]
         HResult EndSession(
             [In] SessionType type,
             [In] ref StringBuilder pCtx,

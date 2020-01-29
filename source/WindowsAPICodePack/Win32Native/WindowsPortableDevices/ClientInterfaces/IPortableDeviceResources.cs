@@ -16,15 +16,18 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceResources
     {
+        [PreserveSig]
         HResult GetSupportedResources(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
             [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceKeyCollection ppKeys);
 
+        [PreserveSig]
         HResult GetResourceAttributes(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
             [In] ref PropertyKey Key,
             [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppResourceAttributes);
 
+        [PreserveSig]
         HResult GetStream(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
             [In] ref PropertyKey Key,
@@ -32,12 +35,15 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
             [In, Out] ref uint pdwOptimalBufferSize,
             [Out, MarshalAs(UnmanagedType.Interface)] out System.Runtime.InteropServices.ComTypes.IStream ppStream);
 
+        [PreserveSig]
         HResult Delete(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
             [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection pKeys);
 
+        [PreserveSig]
         HResult Cancel();
 
+        [PreserveSig]
         HResult CreateResource(
             [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pResourceAttributes,
             [Out, MarshalAs(UnmanagedType.Interface)] out System.Runtime.InteropServices.ComTypes.IStream ppData,

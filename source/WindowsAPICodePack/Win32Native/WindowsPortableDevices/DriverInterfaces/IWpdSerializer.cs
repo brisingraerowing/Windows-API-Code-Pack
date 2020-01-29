@@ -12,22 +12,26 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IWpdSerializer
     {
+        [PreserveSig]
         HResult GetIPortableDeviceValuesFromBuffer(
             [In] ref StringBuilder pBuffer,
             [In] uint dwInputBufferLength,
             [Out] out IPortableDeviceValues ppParams);
 
+        [PreserveSig]
         HResult WriteIPortableDeviceValuesToBuffer(
             [In] uint dwOutputBufferLength,
             [In] ref IPortableDeviceValues pResults,
             [Out] out StringBuilder pBuffer,
             [Out] out uint pdwBytesWritten);
-        
+
+        [PreserveSig]
         HResult GetBufferFromIPortableDeviceValues(
             [In] ref IPortableDeviceValues pSource,
             [Out] out StringBuilder ppBuffer,
             [Out] out uint pdwBufferSize);
-        
+
+        [PreserveSig]
         HResult GetSerializedSize(
             [In] ref IPortableDeviceValues pSource,
             [Out] out uint pdwSize);

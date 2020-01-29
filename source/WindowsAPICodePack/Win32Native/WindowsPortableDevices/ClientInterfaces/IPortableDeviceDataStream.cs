@@ -12,9 +12,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         Guid(Win32Native.Guids.PortableDevices.IPortableDeviceDataStream)]
     public interface IPortableDeviceDataStream : System.Runtime.InteropServices.ComTypes.IStream
     {
+        [PreserveSig]
         HResult GetObjectID(
             [Out, MarshalAs(UnmanagedType.LPWStr)] out string ppszObjectID);
 
+        [PreserveSig]
         HResult Cancel();
     }
 }

@@ -14,19 +14,19 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
         TypeLibType(TypeLibTypeFlags.FCanCreate)]
     public class PortableDevicePropVariantCollection : IPortableDevicePropVariantCollection
     {
-        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+        [PreserveSig]
         public extern HResult GetCount([In] ref uint pcElems);
-        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+        [PreserveSig]
         public extern HResult GetAt([In] uint dwIndex, [In] ref PropVariant pValue);
-        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+        [PreserveSig]
         public extern HResult Add([In] ref PropVariant pValue);
-        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+        [PreserveSig]
         public extern HResult GetType([Out] out ushort pvt);
-        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+        [PreserveSig]
         public extern HResult ChangeType([In] ushort vt);
-        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+        [PreserveSig]
         public extern HResult Clear();
-        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+        [PreserveSig]
         public extern HResult RemoveAt([In] uint dwIndex);
     }
 }

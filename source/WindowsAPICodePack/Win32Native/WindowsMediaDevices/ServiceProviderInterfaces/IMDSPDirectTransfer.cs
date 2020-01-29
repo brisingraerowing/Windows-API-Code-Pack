@@ -11,6 +11,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMDSPDirectTransfer
     {
+        [PreserveSig]
         HResult TransferToDevice(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pwszSourceFilePath,
             [In] ref IWMDMOperation pSourceOperation,

@@ -11,9 +11,11 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMDServiceProvider
     {
+        [PreserveSig]
         HResult GetDeviceCount(
             [Out] out uint pdwCount);
-        
+
+        [PreserveSig]
         HResult EnumDevices(
             [Out] out IMDSPEnumDevice ppEnumDevice);
 
@@ -22,6 +24,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
     public interface IMDServiceProvider2 : IMDServiceProvider
 
     {
+        [PreserveSig]
         HResult CreateDevice(
             [In,MarshalAs(UnmanagedType.LPWStr)] string pwszDevicePath,
             [Out] out uint pdwCount,
@@ -32,6 +35,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
     public interface IMDServiceProvider3 : IMDServiceProvider2
 
     {
+        [PreserveSig]
         HResult SetDeviceEnumPreference(
             [In] uint dwEnumPref);
 

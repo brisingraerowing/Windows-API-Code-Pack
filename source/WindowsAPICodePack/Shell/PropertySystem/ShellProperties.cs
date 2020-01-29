@@ -107,9 +107,15 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         protected virtual void Dispose(bool disposed)
         {
             if (disposed && defaultPropertyCollection != null)
-            {
+            
                 defaultPropertyCollection.Dispose();
-            }
+                    }
+
+        ~ShellProperties()
+        {
+
+            Dispose(false);
+
         }
 
         #endregion

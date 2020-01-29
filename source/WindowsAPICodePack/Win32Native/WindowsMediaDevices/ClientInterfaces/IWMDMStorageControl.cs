@@ -11,28 +11,33 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IWMDMStorageControl
     {
+        [PreserveSig]
         HResult Insert(
             [In] ushort fuMode,
             [In,MarshalAs(UnmanagedType.LPWStr)] string pwszFile,
             [In,MarshalAs(UnmanagedType.Interface)] ref IWMDMOperation pOperation,
             [In,MarshalAs(UnmanagedType.Interface)] ref IWMDMProgress pProgress,
             [Out,MarshalAs(UnmanagedType.Interface)] out IWMDMStorage ppNewObject);
-        
+
+        [PreserveSig]
         HResult Delete(
             [In] ushort fuMode,
             [In,MarshalAs(UnmanagedType.Interface)] ref IWMDMProgress pProgress);
-        
+
+        [PreserveSig]
         HResult Rename(
             [In] ushort fuMode,
             [In,MarshalAs(UnmanagedType.LPWStr)] string pwszNewName,
             [In,MarshalAs(UnmanagedType.Interface)] ref IWMDMProgress pProgress);
-        
+
+        [PreserveSig]
         HResult Read(
             [In] ushort fuMode,
             [In, MarshalAs(UnmanagedType.LPWStr)] string pwszFile,
             [In,MarshalAs(UnmanagedType.Interface)] ref IWMDMProgress pProgress,
             [In,MarshalAs(UnmanagedType.Interface)] ref IWMDMOperation pOperation);
-        
+
+        [PreserveSig]
         HResult Move(
             [In] ushort fuMode,
             [In,MarshalAs(UnmanagedType.Interface)] ref IWMDMStorage pTargetObject,
@@ -42,6 +47,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
     public interface IWMDMStorageControl2 : IWMDMStorageControl
 
     {
+        [PreserveSig]
         HResult Insert2(
             [In] ushort fuMode,
             [In,MarshalAs(UnmanagedType.LPWStr)] string pwszFileSource,
@@ -56,6 +62,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
     public interface IWMDMStorageControl3 : IWMDMStorageControl2
 
     {
+        [PreserveSig]
         HResult Insert3(
             [In] ushort fuMode,
             [In] ushort fuType,

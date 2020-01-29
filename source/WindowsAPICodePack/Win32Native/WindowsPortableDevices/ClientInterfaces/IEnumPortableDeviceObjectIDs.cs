@@ -21,6 +21,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         /// <returns><para>The method returns an <see cref="HResult"/>. Possible values include, but are not limited to, those in the following list.</para>
         /// <para><ul><li><see cref="HResult.Ok"/></li><li><see cref="HResult.False"/></li></ul></para></returns>
         /// <remarks>If fewer than the requested number of elements remain in the sequence, this method retrieves the remaining elements. The number of elements that are actually retrieved is returned through pcFetched (unless the caller passed in NULL for that parameter). Enumerated objects are all peers—that is, enumerating children of an object will enumerate only direct children, not grandchild or deeper objects.</remarks>
+        [PreserveSig]
         HResult Next(
             [In] uint cObjects,
             [In, Out, MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPWStr)] string[] pObjIDs,
@@ -32,6 +33,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         /// <param name="cObjects">The number of objects to skip.</param>
         /// <returns><para>The method returns an <see cref="HResult"/>. Possible values include, but are not limited to, those in the following list.</para>
         /// <para><ul><li><see cref="HResult.Ok"/></li><li><see cref="HResult.False"/></li></ul></para></returns>
+        [PreserveSig]
         HResult Skip(
             [In] uint cObjects);
 
@@ -41,6 +43,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         /// <returns><para>The method returns an <see cref="HResult"/>. Possible values include, but are not limited to, those in the following list.</para>
         /// <para><ul><li><see cref="HResult.Ok"/></li></ul></para></returns>
         /// <remarks>There is no guarantee that the same objects will be enumerated after this method is called. This is because objects that were enumerated previously might have been deleted or new objects might have been added.</remarks>
+        [PreserveSig]
         HResult Reset();
 
         /// <summary>
@@ -50,6 +53,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         /// <param name="ppEnum">Variable that receives a reference to an enumeration interface. The caller must release this interface when it is finished with the interface.</param>
         /// <returns><para>The method returns an <see cref="HResult"/>. Possible values include, but are not limited to, those in the following list.</para>
         /// <para><ul><li><see cref="HResult.NotImplemented"/></li></ul></para></returns>
+        [PreserveSig]
         HResult Clone(
             [Out, MarshalAs(UnmanagedType.Interface)] out IEnumPortableDeviceObjectIDs ppEnum);
 
@@ -59,6 +63,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         /// <returns><para>The method returns an <see cref="HResult"/>. Possible values include, but are not limited to, those in the following list.</para>
         /// <para><ul><li><see cref="HResult.Ok"/></li>
         /// <li><see cref="HResult.DeviceNotOpen"/></li></ul></para></returns>
+        [PreserveSig]
         /// <remarks>This method cancels all pending operations on the current device handle, which corresponds to a session associated with an <see cref="IPortableDevice"/> interface. The Windows Portable Devices (WPD) API does not support targeted cancellation of specific operations.</remarks>
         HResult Cancel();
     }

@@ -11,6 +11,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.MediaDevices
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IWMDMNotification
     {
+        [PreserveSig]
         HResult WMDMMessage(
             [In] uint dwMessageType,
             [In,MarshalAs(UnmanagedType.LPWStr)] string pwszCanonicalName);

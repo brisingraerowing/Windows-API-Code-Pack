@@ -13,27 +13,18 @@ namespace Microsoft.WindowsAPICodePack.Shell
     {
         #region Internal Constructor
 
-        // todo: should not be used directly; re-set to private and import types that are using this constructor
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ShellFile(string path)
+        private ShellFile(string path)
         {
             // Get the absolute path
             string absPath = ShellHelper.GetAbsolutePath(path);
-
-            // Make sure this is valid
-            if (!File.Exists(absPath))
             
-                throw new FileNotFoundException(
+            ParsingName = File.Exists(absPath) ? absPath : throw new FileNotFoundException(
                     string.Format(System.Globalization.CultureInfo.InvariantCulture,
-                    LocalizedMessages.FilePathNotExist, path));
-            
-            ParsingName = absPath;
+                    LocalizedMessages.FilePathNotExist, path)); // Make sure this is valid
         }
 
-        // todo: should not be used directly; re-set to private and import types that are using this constructor
-
-        public ShellFile(IShellItem2 shellItem) => nativeShellItem = shellItem;
+        internal ShellFile(IShellItem2 shellItem) => nativeShellItem = shellItem;
 
         #endregion
 
