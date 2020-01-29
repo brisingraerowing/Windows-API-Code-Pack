@@ -39,8 +39,16 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             MinorVersion = minorVersion;
 
             Revision = revision;
-
+            
         }
+
+        public override bool Equals(object obj) => obj is ClientVersion _obj ? _obj.ClientName == ClientName && _obj.MajorVersion == MajorVersion && _obj.MinorVersion == MinorVersion && _obj.Revision == Revision : false;
+
+        public override int GetHashCode() => ClientName.GetHashCode() ^ MajorVersion.GetHashCode() ^ MinorVersion.GetHashCode() ^ Revision.GetHashCode();
+
+        public static bool operator ==(ClientVersion left, ClientVersion right) => left.Equals(right);
+
+        public static bool operator !=(ClientVersion left, ClientVersion right) => !(left == right);
     }
 
     public struct PortableDeviceOpeningOptions
@@ -266,9 +274,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                     var commands = new SupportedCommands();
 
-                    var supportedCommandsType = typeof(SupportedCommands);
+                    Type supportedCommandsType = typeof(SupportedCommands);
 
-                    var nestedSupportedCommandsTypes = typeof(SupportedCommands).GetNestedTypes();
+                    Type[] nestedSupportedCommandsTypes = typeof(SupportedCommands).GetNestedTypes();
 
                     for (uint i = 0; i < count; i++) // We browse all the given property keys.
 
@@ -286,7 +294,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                             {
 
-                                var fields = t.GetFields();
+                                FieldInfo[] fields = t.GetFields();
 
                                 foreach (FieldInfo f in fields) // We browse the fields (the enum values) of the current enum.
 
@@ -302,7 +310,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                                         {
 
-                                            foreach (var _f in _fields) // We browse the fields of the SupportedCommands class.
+                                            foreach (FieldInfo _f in _fields) // We browse the fields of the SupportedCommands class.
 
                                                 if (_f.GetCustomAttributes<GuidAttribute>().Where(a => a.Guid == propertyKeyAttribute.Guid).FirstOrDefault() is object) // If a field has a GuidAttribute whose the Guid is the same as the Guid of the enum field's PropertyKeyAttribute,
 
@@ -320,7 +328,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                                         if (!browseFields(supportedCommandsType.GetFields(BindingFlags.NonPublic | BindingFlags.Instance), commands))
 
-                                            foreach (var nestedSupportedCommandsType in nestedSupportedCommandsTypes)
+                                            foreach (Type nestedSupportedCommandsType in nestedSupportedCommandsTypes)
 
                                                 if (browseFields(nestedSupportedCommandsType.GetFields(BindingFlags.NonPublic | BindingFlags.Instance), supportedCommandsType.GetProperty(nestedSupportedCommandsType.Name.Remove(nestedSupportedCommandsType.Name.Length - "Commands".Length)).GetValue(commands)))
 
@@ -560,7 +568,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             // return hr;
             // }
 
-                _items = null; // We have to reset the _items field in order to re-load it with the portable device's items when needed.
+            _items = null; // We have to reset the _items field in order to re-load it with the portable device's items when needed.
 
             IsOpen = true;
 
@@ -671,7 +679,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                         for (uint i = 0; i < fetched; i++)
 
-                            items.AddLast(new PortableDeviceObject(this, objectIDs[i]));
+                            _ = items.AddLast(new PortableDeviceObject(objectIDs[i], this, null));
 
                     else break;
 
@@ -745,15 +753,27 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
     }
 
-    public class PortableDeviceObject
+    public class PortableDeviceObject : IPortableDeviceObject
 
     {
+
+        public string Id { get; }
 
         public IPortableDevice ParentPortableDevice { get; }
 
         public IPortableDeviceObject Parent { get; }
 
-        internal PortableDeviceObject(IPortableDevice parentPortableDevice, IPortableDeviceObject parent)
+        internal PortableDeviceObject(string id, IPortableDevice parentPortableDevice, IPortableDeviceObject parent)
+
+        {
+
+            Id = id;
+
+            ParentPortableDevice = parentPortableDevice;
+
+            Parent = parent;
+
+        }
 
     }
 }
