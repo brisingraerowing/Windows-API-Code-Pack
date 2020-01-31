@@ -331,7 +331,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
         /// <summary>
         /// This class defines all WPD Events.
         /// </summary>
-        public static class Events
+        public static class EventSystem
 
         {
 
@@ -387,7 +387,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
 
         }
 
-        public static class Properties
+        public static class PropertySystem
 
         {
 
@@ -742,8 +742,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
                 /// </summary>
                 public const string All = "80E170D2-1055-4A3E-B952-82CC4F8A8689";
 
-            }
-
             /// <summary>
             /// This class defines all WPD Functional Categories
             /// </summary>
@@ -787,6 +785,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
                 // WPD_FUNCTIONAL_CATEGORY_ALL
                 // This functional category is only valid as a parameter to API functions and driver commands. It should not be reported as a supported functional category by the driver. 
                 public const string All = "2D8A6512-A74C-448E-BA8A-F4AC07C49399";
+
+            }
 
             }
 
@@ -1200,7 +1200,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
 
         }
 
-        public static class CommandCategories
+        public static class CommandSystem
 
         {
 

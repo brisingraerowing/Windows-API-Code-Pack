@@ -78,38 +78,38 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
     public class SupportedCommands
 
     {
-        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Common)]
+        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Common)]
         private readonly Common _common;
-        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Capabilities)]
+        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities)]
         private readonly Commands.Capability _capability;
-        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Storage)]
+        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Storage)]
         private readonly Storage _storage;
-        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.SMS)]
+        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.SMS)]
         private readonly SMS _sms;
-        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.StillImageCapture)]
+        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.StillImageCapture)]
         private readonly StillImageCapture _stillImageCapture;
-        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.MediaCapture)]
+        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.MediaCapture)]
         private readonly MediaCapture _mediaCapture;
-        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.DeviceHints)]
+        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.DeviceHints)]
         private readonly DeviceHint _deviceHint;
-        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.ClassExtensionV1)]
-        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.ClassExtensionV2)]
+        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.ClassExtensionV1)]
+        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.ClassExtensionV2)]
         private readonly ClassExtension _classExtension;
-        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.NetworkConfiguration)]
+        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.NetworkConfiguration)]
         private readonly NetworkConfiguration _networkConfiguration;
 
         public class ObjectCommands
 
         {
-            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Object.Enumeration)]
+            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Enumeration)]
             private readonly Enumeration _enumeration;
-            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Object.Properties)]
+            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Properties)]
             private readonly Property _property;
-            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Object.PropertiesBulk)]
+            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.PropertiesBulk)]
             private readonly PropertyBulk _propertyBulk;
-            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Object.Resources)]
+            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources)]
             private readonly Resource _resource;
-            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Object.Management)]
+            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management)]
             private readonly Management _management;
 
             public Enumeration Enumeration => _enumeration;
@@ -145,11 +145,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         public class ServiceCommands
 
         {
-            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Service.Common)]
+            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Common)]
             private readonly Commands.Service.Common _common;
-            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Service.Capabilities)]
+            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities)]
             private readonly Commands.Service.Capability _capability;
-            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandCategories.Service.Methods)]
+            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Methods)]
             private readonly Method _method;
 
             public Commands.Service.Common Common => _common;

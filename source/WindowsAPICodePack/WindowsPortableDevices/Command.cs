@@ -16,11 +16,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
     {
 
         None=0,
-        [PropertyKey(CommandCategories.Common, 2)]
+        [PropertyKey(CommandSystem.Common, 2)]
         ResetDevice = 1,
-        [PropertyKey(CommandCategories.Common, 3)]
+        [PropertyKey(CommandSystem.Common, 3)]
         GetObjectIdsFromPersistentUniqueIds = 2,
-        [PropertyKey(CommandCategories.Common, 4)]
+        [PropertyKey(CommandSystem.Common, 4)]
         SaveClientInformation = 4
 
     }
@@ -34,11 +34,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
         {
 
             None = 0,
-            [PropertyKey(CommandCategories.Object.Enumeration, 2)]
+            [PropertyKey(CommandSystem.Object.Enumeration, 2)]
             StartFind = 1,
-            [PropertyKey(CommandCategories.Object.Enumeration, 3)]
+            [PropertyKey(CommandSystem.Object.Enumeration, 3)]
             FindNext = 2,
-            [PropertyKey(CommandCategories.Object.Enumeration, 4)]
+            [PropertyKey(CommandSystem.Object.Enumeration, 4)]
             EndFind = 4
 
         }
@@ -48,17 +48,17 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
         {
 
             None = 0,
-            [PropertyKey(CommandCategories.Object.Properties, 2)]
+            [PropertyKey(CommandSystem.Object.Properties, 2)]
             GetSupported = 1,
-            [PropertyKey(CommandCategories.Object.Properties, 3)]
+            [PropertyKey(CommandSystem.Object.Properties, 3)]
             GetAttributes = 2,
-            [PropertyKey(CommandCategories.Object.Properties, 4)]
+            [PropertyKey(CommandSystem.Object.Properties, 4)]
             Get = 4,
-            [PropertyKey(CommandCategories.Object.Properties, 5)]
+            [PropertyKey(CommandSystem.Object.Properties, 5)]
             Set = 8,
-            [PropertyKey(CommandCategories.Object.Properties, 6)]
+            [PropertyKey(CommandSystem.Object.Properties, 6)]
             GetAll = 16,
-            [PropertyKey(CommandCategories.Object.Properties, 7)]
+            [PropertyKey(CommandSystem.Object.Properties, 7)]
             Delete = 32
 
         }
@@ -68,23 +68,23 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
         {
 
             None = 0,
-            [PropertyKey(CommandCategories.Object.PropertiesBulk, 2)]
+            [PropertyKey(CommandSystem.Object.PropertiesBulk, 2)]
             GetValuesByObjectListStart = 1,
-            [PropertyKey(CommandCategories.Object.PropertiesBulk, 3)]
+            [PropertyKey(CommandSystem.Object.PropertiesBulk, 3)]
             GetValuesByObjectListNext = 2,
-            [PropertyKey(CommandCategories.Object.PropertiesBulk, 4)]
+            [PropertyKey(CommandSystem.Object.PropertiesBulk, 4)]
             GetValuesByObjectListEnd = 4,
-            [PropertyKey(CommandCategories.Object.PropertiesBulk, 5)]
+            [PropertyKey(CommandSystem.Object.PropertiesBulk, 5)]
             GetValuesByObjectFormatStart = 8,
-            [PropertyKey(CommandCategories.Object.PropertiesBulk, 6)]
+            [PropertyKey(CommandSystem.Object.PropertiesBulk, 6)]
             GetValuesByObjectFormatNext = 16,
-            [PropertyKey(CommandCategories.Object.PropertiesBulk, 7)]
+            [PropertyKey(CommandSystem.Object.PropertiesBulk, 7)]
             GetValuesByObjectFormatEnd = 32,
-            [PropertyKey(CommandCategories.Object.PropertiesBulk, 8)]
+            [PropertyKey(CommandSystem.Object.PropertiesBulk, 8)]
             SetValuesByObjectListStart = 64,
-            [PropertyKey(CommandCategories.Object.PropertiesBulk, 9)]
+            [PropertyKey(CommandSystem.Object.PropertiesBulk, 9)]
             SetValuesByObjectListNext = 128,
-            [PropertyKey(CommandCategories.Object.PropertiesBulk, 10)]
+            [PropertyKey(CommandSystem.Object.PropertiesBulk, 10)]
             SetValuesByObjectListEnd = 256,
 
         }
@@ -94,29 +94,29 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
         {
 
             None = 0,
-            [PropertyKey(CommandCategories.Object.Resources, 2)]
+            [PropertyKey(CommandSystem.Object.Resources, 2)]
             GetSupported = 1,
-            [PropertyKey(CommandCategories.Object.Resources, 3)]
+            [PropertyKey(CommandSystem.Object.Resources, 3)]
             GetAttributes = 2,
-            [PropertyKey(CommandCategories.Object.Resources, 4)]
+            [PropertyKey(CommandSystem.Object.Resources, 4)]
             Open = 4,
-            [PropertyKey(CommandCategories.Object.Resources, 5)]
+            [PropertyKey(CommandSystem.Object.Resources, 5)]
             Read = 8,
-            [PropertyKey(CommandCategories.Object.Resources, 6)]
+            [PropertyKey(CommandSystem.Object.Resources, 6)]
             Write = 16,
-            [PropertyKey(CommandCategories.Object.Resources, 7)]
+            [PropertyKey(CommandSystem.Object.Resources, 7)]
             Close = 32,
-            [PropertyKey(CommandCategories.Object.Resources, 8)]
+            [PropertyKey(CommandSystem.Object.Resources, 8)]
             Delete = 64,
-            [PropertyKey(CommandCategories.Object.Resources, 9)]
+            [PropertyKey(CommandSystem.Object.Resources, 9)]
             CreateResource = 128,
-            [PropertyKey(CommandCategories.Object.Resources, 10)]
+            [PropertyKey(CommandSystem.Object.Resources, 10)]
             Revert = 256,
-            [PropertyKey(CommandCategories.Object.Resources, 11)]
+            [PropertyKey(CommandSystem.Object.Resources, 11)]
             Seek = 512,
-            [PropertyKey(CommandCategories.Object.Resources, 12)]
+            [PropertyKey(CommandSystem.Object.Resources, 12)]
             Commit = 1024,
-            [PropertyKey(CommandCategories.Object.Resources, 13)]
+            [PropertyKey(CommandSystem.Object.Resources, 13)]
             SeekInUnits = 2048
 
         }
@@ -126,23 +126,23 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
         {
 
             None = 0,
-            [PropertyKey(CommandCategories.Object.Management, 2)]
+            [PropertyKey(CommandSystem.Object.Management, 2)]
             CreateObjectWithPropertiesOnly = 1,
-            [PropertyKey(CommandCategories.Object.Management, 3)]
+            [PropertyKey(CommandSystem.Object.Management, 3)]
             CreateObjectWithPropertiesAndData = 2,
-            [PropertyKey(CommandCategories.Object.Management, 4)]
+            [PropertyKey(CommandSystem.Object.Management, 4)]
             WriteObjectData = 4,
-            [PropertyKey(CommandCategories.Object.Management, 5)]
+            [PropertyKey(CommandSystem.Object.Management, 5)]
             CommitObject = 8,
-            [PropertyKey(CommandCategories.Object.Management, 6)]
+            [PropertyKey(CommandSystem.Object.Management, 6)]
             RevertObject = 16,
-            [PropertyKey(CommandCategories.Object.Management, 7)]
+            [PropertyKey(CommandSystem.Object.Management, 7)]
             DeleteObjects = 32,
-            [PropertyKey(CommandCategories.Object.Management, 8)]
+            [PropertyKey(CommandSystem.Object.Management, 8)]
             MoveObjects = 64,
-            [PropertyKey(CommandCategories.Object.Management, 9)]
+            [PropertyKey(CommandSystem.Object.Management, 9)]
             CopyObjects = 128,
-            [PropertyKey(CommandCategories.Object.Management, 10)]
+            [PropertyKey(CommandSystem.Object.Management, 10)]
             UpdateObjectWithPropertiesAndData = 256
 
         }
@@ -154,25 +154,25 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
     {
 
         None = 0,
-        [PropertyKey(CommandCategories.Capabilities, 2)]
+        [PropertyKey(CommandSystem.Capabilities, 2)]
         GetSupportedCommands = 1,
-        [PropertyKey(CommandCategories.Capabilities, 3)]
+        [PropertyKey(CommandSystem.Capabilities, 3)]
         GetCommandOptions = 2,
-        [PropertyKey(CommandCategories.Capabilities, 4)]
+        [PropertyKey(CommandSystem.Capabilities, 4)]
         GetSupportedFunctionalCategories = 4,
-        [PropertyKey(CommandCategories.Capabilities, 5)]
+        [PropertyKey(CommandSystem.Capabilities, 5)]
         GetFunctionalObjects = 8,
-        [PropertyKey(CommandCategories.Capabilities, 6)]
+        [PropertyKey(CommandSystem.Capabilities, 6)]
         GetSupportedContentTypes = 16,
-        [PropertyKey(CommandCategories.Capabilities, 7)]
+        [PropertyKey(CommandSystem.Capabilities, 7)]
         GetSupportedFormats = 32,
-        [PropertyKey(CommandCategories.Capabilities, 8)]
+        [PropertyKey(CommandSystem.Capabilities, 8)]
         GetSupportedFormatProperties = 64,
-        [PropertyKey(CommandCategories.Capabilities, 9)]
+        [PropertyKey(CommandSystem.Capabilities, 9)]
         GetFixedPropertyAttributes = 128,
-        [PropertyKey(CommandCategories.Capabilities, 10)]
+        [PropertyKey(CommandSystem.Capabilities, 10)]
         GetSupportedEvents = 256,
-        [PropertyKey(CommandCategories.Capabilities, 11)]
+        [PropertyKey(CommandSystem.Capabilities, 11)]
         GetEventOptions = 512
 
     }
@@ -182,9 +182,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
     {
 
         None = 0,
-        [PropertyKey(CommandCategories.Storage, 2)]
+        [PropertyKey(CommandSystem.Storage, 2)]
         Format = 1,
-        [PropertyKey(CommandCategories.Storage, 4)]
+        [PropertyKey(CommandSystem.Storage, 4)]
         Eject = 2
 
     }
@@ -194,7 +194,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
     {
 
         None = 0,
-        [PropertyKey(CommandCategories.SMS, 2)]
+        [PropertyKey(CommandSystem.SMS, 2)]
         Send = 1
 
 
@@ -205,7 +205,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
     {
 
         None = 0,
-        [PropertyKey(CommandCategories.StillImageCapture, 2)]
+        [PropertyKey(CommandSystem.StillImageCapture, 2)]
         Initiate = 1
 
     }
@@ -215,11 +215,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
     {
 
         None = 0,
-        [PropertyKey(CommandCategories.MediaCapture, 2)]
+        [PropertyKey(CommandSystem.MediaCapture, 2)]
         Start = 1,
-        [PropertyKey(CommandCategories.MediaCapture, 3)]
+        [PropertyKey(CommandSystem.MediaCapture, 3)]
         Stop = 2,
-        [PropertyKey(CommandCategories.MediaCapture, 4)]
+        [PropertyKey(CommandSystem.MediaCapture, 4)]
         Pause = 4
 
     }
@@ -229,7 +229,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
     {
 
         None = 0,
-        [PropertyKey(CommandCategories.DeviceHints, 2)]
+        [PropertyKey(CommandSystem.DeviceHints, 2)]
         GetContentLocation = 1
 
     }
@@ -239,11 +239,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
     {
 
         None = 0,
-        [PropertyKey(CommandCategories.ClassExtensionV1, 2)]
+        [PropertyKey(CommandSystem.ClassExtensionV1, 2)]
         WriteDeviceInformation = 1,
-        [PropertyKey(CommandCategories.ClassExtensionV2, 2)]
+        [PropertyKey(CommandSystem.ClassExtensionV2, 2)]
         RegisterServiceInterfaces = 2,
-        [PropertyKey(CommandCategories.ClassExtensionV2, 3)]
+        [PropertyKey(CommandSystem.ClassExtensionV2, 3)]
         UnregisterServiceInterfaces = 4
 
     }
@@ -253,11 +253,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
     {
 
         None = 0,
-        [PropertyKey(CommandCategories.NetworkConfiguration, 2)]
+        [PropertyKey(CommandSystem.NetworkConfiguration, 2)]
         GenerateKeyPair = 1,
-        [PropertyKey(CommandCategories.NetworkConfiguration, 3)]
+        [PropertyKey(CommandSystem.NetworkConfiguration, 3)]
         CommitKeyPair = 2,
-        [PropertyKey(CommandCategories.NetworkConfiguration, 4)]
+        [PropertyKey(CommandSystem.NetworkConfiguration, 4)]
         ProcessWirelessProfile = 4
 
     }
@@ -270,7 +270,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
         public enum Common : uint
         {
             None = 0,
-            [PropertyKey(CommandCategories.Service.Common, 2)]
+            [PropertyKey(CommandSystem.Service.Common, 2)]
             GetServiceObjectId = 1
 
         }
@@ -280,35 +280,35 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
         {
 
             None = 0,
-            [PropertyKey(CommandCategories.Service.Capabilities, 2)]
+            [PropertyKey(CommandSystem.Service.Capabilities, 2)]
             GetSupportedMethods = 1,
-            [PropertyKey(CommandCategories.Service.Capabilities, 3)]
+            [PropertyKey(CommandSystem.Service.Capabilities, 3)]
             GetSupportedMethodsByFormat = 2,
-            [PropertyKey(CommandCategories.Service.Capabilities, 4)]
+            [PropertyKey(CommandSystem.Service.Capabilities, 4)]
             GetMethodAttributes = 4,
-            [PropertyKey(CommandCategories.Service.Capabilities, 5)]
+            [PropertyKey(CommandSystem.Service.Capabilities, 5)]
             GetMethodParameterAttributes = 8,
-            [PropertyKey(CommandCategories.Service.Capabilities, 6)]
+            [PropertyKey(CommandSystem.Service.Capabilities, 6)]
             GetSupportedFormats = 16,
-            [PropertyKey(CommandCategories.Service.Capabilities, 7)]
+            [PropertyKey(CommandSystem.Service.Capabilities, 7)]
             GetFormatAttributes = 32,
-            [PropertyKey(CommandCategories.Service.Capabilities, 8)]
+            [PropertyKey(CommandSystem.Service.Capabilities, 8)]
             GetSupportedFormatProperties = 64,
-            [PropertyKey(CommandCategories.Service.Capabilities, 9)]
+            [PropertyKey(CommandSystem.Service.Capabilities, 9)]
             GetFormatPropertyAttributes = 128,
-            [PropertyKey(CommandCategories.Service.Capabilities, 10)]
+            [PropertyKey(CommandSystem.Service.Capabilities, 10)]
             GetSupportedEvents = 256,
-            [PropertyKey(CommandCategories.Service.Capabilities, 11)]
+            [PropertyKey(CommandSystem.Service.Capabilities, 11)]
             GetEventAttributes = 512,
-            [PropertyKey(CommandCategories.Service.Capabilities, 12)]
+            [PropertyKey(CommandSystem.Service.Capabilities, 12)]
             GetEventParameterAttributes = 1024,
-            [PropertyKey(CommandCategories.Service.Capabilities, 13)]
+            [PropertyKey(CommandSystem.Service.Capabilities, 13)]
             GetInheritedServices = 2048,
-            [PropertyKey(CommandCategories.Service.Capabilities, 14)]
+            [PropertyKey(CommandSystem.Service.Capabilities, 14)]
             GetFormatRenderingProfiles = 4096,
-            [PropertyKey(CommandCategories.Service.Capabilities, 15)]
+            [PropertyKey(CommandSystem.Service.Capabilities, 15)]
             GetSupportedCommands = 8192,
-            [PropertyKey(CommandCategories.Service.Capabilities, 16)]
+            [PropertyKey(CommandSystem.Service.Capabilities, 16)]
             GetCommandOptions = 16384
 
         }
@@ -318,11 +318,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
         {
 
             None = 0,
-            [PropertyKey(CommandCategories.Service.Methods, 2)]
+            [PropertyKey(CommandSystem.Service.Methods, 2)]
             StartInvoke = 1,
-            [PropertyKey(CommandCategories.Service.Methods, 3)]
+            [PropertyKey(CommandSystem.Service.Methods, 3)]
             CancelInvoke = 2,
-            [PropertyKey(CommandCategories.Service.Methods, 4)]
+            [PropertyKey(CommandSystem.Service.Methods, 4)]
             EndInvoke = 4
 
         }
@@ -363,7 +363,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
 
             var values = new PortableDeviceValues();
 
-            _ = values.SetGuidValue(Win32Native.PortableDevices.CommandSystem.Common.Parameters.CommandCategory, new Guid(CommandCategories.Common));
+            _ = values.SetGuidValue(Win32Native.PortableDevices.CommandSystem.Common.Parameters.CommandCategory, new Guid(CommandSystem.Common));
 
             _ = values.SetUnsignedIntegerValue(Win32Native.PortableDevices.CommandSystem.Common.Parameters.CommandId, Win32Native.PortableDevices.CommandSystem.Common.Commands.ResetDevice.PropertyId);
 
@@ -387,7 +387,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
 
             var values = new PortableDeviceValues();
 
-            _ = values.SetGuidValue(Win32Native.PortableDevices.CommandSystem.Common.Parameters.CommandCategory, new Guid(CommandCategories.Common));
+            _ = values.SetGuidValue(Win32Native.PortableDevices.CommandSystem.Common.Parameters.CommandCategory, new Guid(CommandSystem.Common));
 
             _ = values.SetUnsignedIntegerValue(Win32Native.PortableDevices.CommandSystem.Common.Parameters.CommandId, Win32Native.PortableDevices.CommandSystem.Common.Commands.GetObjectIdsFromPersistentUniqueIds.PropertyId);
 
