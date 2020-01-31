@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using GuidAttribute = System.Runtime.InteropServices.GuidAttribute;
+using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Resources
+namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.ResourceSystem
 {
     [ComImport,
         Guid(Win32Native.Guids.PortableDevices.IPortableDeviceResources),

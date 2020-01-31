@@ -11,15 +11,15 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     {
         public static System.Drawing.Point GetParentOffsetOfChild(IntPtr hwnd, IntPtr hwndParent)
         {
-            NativePoint childScreenCoord = new NativePoint();
+            var childScreenCoord = new NativePoint();
 
-            TabbedThumbnailNativeMethods.ClientToScreen(hwnd, ref childScreenCoord);
+            _ = TabbedThumbnailNativeMethods.ClientToScreen(hwnd, ref childScreenCoord);
 
-            NativePoint parentScreenCoord = new NativePoint();
+            var parentScreenCoord = new NativePoint();
 
-            TabbedThumbnailNativeMethods.ClientToScreen(hwndParent, ref parentScreenCoord);
+            _ = TabbedThumbnailNativeMethods.ClientToScreen(hwndParent, ref parentScreenCoord);
 
-            System.Drawing.Point offset = new System.Drawing.Point(
+            var offset = new System.Drawing.Point(
                 childScreenCoord.X - parentScreenCoord.X,
                 childScreenCoord.Y - parentScreenCoord.Y);
 
@@ -28,13 +28,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 
         public static System.Drawing.Size GetNonClientArea(IntPtr hwnd)
         {
-            NativePoint c = new NativePoint();
+            var c = new NativePoint();
 
-            TabbedThumbnailNativeMethods.ClientToScreen(hwnd, ref c);
+            _ = TabbedThumbnailNativeMethods.ClientToScreen(hwnd, ref c);
 
-            NativeRect r = new NativeRect();
+            var r = new NativeRect();
 
-            TabbedThumbnailNativeMethods.GetWindowRect(hwnd, ref r);
+            _ = TabbedThumbnailNativeMethods.GetWindowRect(hwnd, ref r);
 
             return new System.Drawing.Size(c.X - r.Left, c.Y - r.Top);
         }

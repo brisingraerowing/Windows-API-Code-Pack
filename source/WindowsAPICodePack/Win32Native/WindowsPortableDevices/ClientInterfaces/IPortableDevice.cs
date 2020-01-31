@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.EventSystem;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
-using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Events;
 
 // todo: for portable and media devices: implement interfaces for service providers
 

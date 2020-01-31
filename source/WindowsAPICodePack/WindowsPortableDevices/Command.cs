@@ -345,7 +345,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
 
             Marshal.ThrowExceptionForHR((int)(portableDevice ?? throw new ArgumentNullException(nameof(portableDevice)))._portableDevice.SendCommand(0, parameters, out results));
 
-            Marshal.ThrowExceptionForHR((int)results.GetErrorValue(Win32Native.PortableDevices.Commands.Common.Parameters.HResult, out HResult result));
+            Marshal.ThrowExceptionForHR((int)results.GetErrorValue(Win32Native.PortableDevices.CommandSystem.Common.Parameters.HResult, out HResult result));
 
             Marshal.ThrowExceptionForHR((int)result);
 
@@ -363,9 +363,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
 
             var values = new PortableDeviceValues();
 
-            _ = values.SetGuidValue(Win32Native.PortableDevices.Commands.Common.Parameters.CommandCategory, new Guid(CommandCategories.Common));
+            _ = values.SetGuidValue(Win32Native.PortableDevices.CommandSystem.Common.Parameters.CommandCategory, new Guid(CommandCategories.Common));
 
-            _ = values.SetUnsignedIntegerValue(Win32Native.PortableDevices.Commands.Common.Parameters.CommandId, Win32Native.PortableDevices.Commands.Common.Commands.ResetDevice.PropertyId);
+            _ = values.SetUnsignedIntegerValue(Win32Native.PortableDevices.CommandSystem.Common.Parameters.CommandId, Win32Native.PortableDevices.CommandSystem.Common.Commands.ResetDevice.PropertyId);
 
             Commands. SendCommand(portableDevice, values, out _);
 
@@ -387,9 +387,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
 
             var values = new PortableDeviceValues();
 
-            _ = values.SetGuidValue(Win32Native.PortableDevices.Commands.Common.Parameters.CommandCategory, new Guid(CommandCategories.Common));
+            _ = values.SetGuidValue(Win32Native.PortableDevices.CommandSystem.Common.Parameters.CommandCategory, new Guid(CommandCategories.Common));
 
-            _ = values.SetUnsignedIntegerValue(Win32Native.PortableDevices.Commands.Common.Parameters.CommandId, Win32Native.PortableDevices.Commands.Common.Commands.GetObjectIdsFromPersistentUniqueIds.PropertyId);
+            _ = values.SetUnsignedIntegerValue(Win32Native.PortableDevices.CommandSystem.Common.Parameters.CommandId, Win32Native.PortableDevices.CommandSystem.Common.Commands.GetObjectIdsFromPersistentUniqueIds.PropertyId);
 
             var parameters = new PortableDevicePropVariantCollection();
 
@@ -397,11 +397,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
 
                 _ = parameters.Add(new PropVariant(persistentUniqueId));
 
-            _ = values.SetIPortableDevicePropVariantCollectionValue(Win32Native.PortableDevices.Commands.Common.Parameters.PersistentUniqueIds, parameters);
+            _ = values.SetIPortableDevicePropVariantCollectionValue(Win32Native.PortableDevices.CommandSystem.Common.Parameters.PersistentUniqueIds, parameters);
 
             Commands. SendCommand(portableDevice, values, out IPortableDeviceValues results);
 
-            _ = results.GetIPortableDevicePropVariantCollectionValue(Win32Native.PortableDevices.Commands.Common.Parameters.ObjectIds, out IPortableDevicePropVariantCollection _results);
+            _ = results.GetIPortableDevicePropVariantCollectionValue(Win32Native.PortableDevices.CommandSystem.Common.Parameters.ObjectIds, out IPortableDevicePropVariantCollection _results);
 
             uint count = 0;
 

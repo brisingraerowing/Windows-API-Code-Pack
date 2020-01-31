@@ -71,7 +71,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             }
 
-            OnUpdatingPortableDevices(deviceIDs, false);
+            OnUpdatePortableDevices(deviceIDs, false);
 
         }
 
@@ -107,13 +107,17 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             }
 
-            OnUpdatingPortableDevices(deviceIDs, true);
+            OnUpdatePortableDevices(deviceIDs, true);
 
         }
 
-        protected virtual void OnUpdatingPortableDevices(string[] deviceIDs, in bool privateDevices)
+        protected virtual void OnUpdatePortableDevices(string[] deviceIDs, in bool privateDevices)
 
         {
+
+            if (deviceIDs is null)
+
+                throw new ArgumentNullException(nameof(deviceIDs));
 
             List<PortableDevice> portableDevices = privateDevices ? _privatePortableDevices : _portableDevices;
 
@@ -129,7 +133,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                     continue;
 
-                OnAddingPortableDevice(deviceIDs[i], privateDevices);
+                OnAddPortableDevice(deviceIDs[i], privateDevices);
 
                 deviceIDs[i] = null;
 
@@ -139,22 +143,28 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         }
 
-        protected virtual void OnAddingPortableDevice(in string deviceId, in bool isPrivateDevice) => OnAddingPortableDevice(new PortableDevice(this, deviceId), isPrivateDevice);
+        protected virtual void OnAddPortableDevice(in string deviceId, in bool isPrivateDevice) => OnAddPortableDevice(new PortableDevice(this, deviceId), isPrivateDevice);
 
-        protected virtual void OnAddingPortableDevice(in PortableDevice portableDevice, in bool isPrivateDevice) => (isPrivateDevice ? _privatePortableDevices : _portableDevices).Add(portableDevice);
+        protected virtual void OnAddPortableDevice(in PortableDevice portableDevice, in bool isPrivateDevice) => (isPrivateDevice ? _privatePortableDevices : _portableDevices).Add(portableDevice);
 
         #region IDisposable Support
         public bool IsDisposed { get; private set; } = false;
 
-        protected virtual void Dispose(bool disposing)
+        protected virtual void Dispose(in bool disposing)
         {
             if (IsDisposed) return;
 
-            if (disposing)
-            {
-                _portableDevices.Clear();
-                _privatePortableDevices.Clear();
-            }
+            foreach (PortableDevice portableDevice in _portableDevices)
+
+                portableDevice.Dispose();
+
+            _portableDevices.Clear();
+
+            foreach (PortableDevice privatePortableDevice in _privatePortableDevices)
+
+                privatePortableDevice.Dispose();
+
+            _privatePortableDevices.Clear();
 
             _ = Marshal.ReleaseComObject(_Manager);
             _Manager = null;

@@ -19,7 +19,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
         /// <summary>
         /// The common Guid used by the property keys.
         /// </summary>
-        public const string SensorPropertyCommonGuid = "0X7F8383EC-0XD3EC-0X495C-0XA8-0XCF-0XB8-0XBB-0XE8-0X5C-0X29-0X20";
+        public const string SensorPropertyCommonGuid = "7F8383EC-D3EC-495C-A8CF-B8BBE85C2920";
 
         /// <summary>
         /// Contains a list of well known sensor types. This class will be removed once wrappers are developed.
@@ -30,192 +30,192 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
             /// <summary>
             /// The GPS location sensor type property key.
             /// </summary>
-            public const string LocationGps = "0xED4CA589-0x327A-0x4FF9-0xA5-0x60-0x91-0xDA-0x4B-0x48-0x27-0x5E";
+            public const string LocationGps = "ED4CA589-327A-4FF9-A560-91DA4B48275E";
 
             /// <summary>
             /// The environmental temperature sensor type property key.
             /// </summary>
-            public const string EnvironmentalTemperature = "0x04FD0EC4-0xD5DA-0x45FA-0x95-0xA9-0x5D-0xB3-0x8E-0xE1-0x93-0x06";
+            public const string EnvironmentalTemperature = "04FD0EC4-D5DA-45FA-95A9-5DB38EE19306";
 
             /// <summary>
             /// The environmental atmostpheric pressure sensor type property key.
             /// </summary>
-            public const string EnvironmentalAtmosphericPressure = "0xE903829-0xFF8A-0x4A93-0x97-0xDF-0x3D-0xCB-0xDE-0x40-0x22-0x88";
+            public const string EnvironmentalAtmosphericPressure = "E903829-FF8A-4A93-97DF-3DCBDE402288";
 
             /// <summary>
             /// The environmental humidity sensor type property key.
             /// </summary>
-            public const string EnvironmentalHumidity = "0x5C72BF67-0xBD7E-0x4257-0x99-0xB-0x98-0xA3-0xBA-0x3B-0x40-0xA";
+            public const string EnvironmentalHumidity = "5C72BF67-BD7E-4257-99B-98A3BA3B40A";
 
             /// <summary>
             /// The environmental wind speed sensor type property key.
             /// </summary>
-            public const string EnvironmentalWindSpeed = "0xDD50607B-0xA45F-0x42CD-0x8E-0xFD-0xEC-0x61-0x76-0x1C-0x42-0x26";
+            public const string EnvironmentalWindSpeed = "DD50607B-A45F-42CD-8EFD-EC61761C4226";
 
             /// <summary>
             /// The environmental wind direction sensor type property key.
             /// </summary>
-            public const string EnvironmentalWindDirection = "0x9EF57A35-0x9306-0x434D-0xAF-0x9-0x37-0xFA-0x5A-0x9C-0x0-0xBD";
+            public const string EnvironmentalWindDirection = "9EF57A35-9306-434D-AF9-37FA5A9C0BD";
 
             /// <summary>
             /// The accelerometer sensor type property key.
             /// </summary>
-            public const string Accelerometer1D = "0xC04D2387-0x7340-0x4CC2-0x99-0x1E-0x3B-0x18-0xCB-0x8E-0xF2-0xF4";
+            public const string Accelerometer1D = "C04D2387-7340-4CC2-991E-3B18CB8EF2F4";
 
             /// <summary>
             /// The 2D accelerometer sensor type property key.
             /// </summary>
-            public const string Accelerometer2D = "0xB2C517A8-0xF6B5-0x4BA6-0xA4-0x23-0x5D-0xF5-0x60-0xB4-0xCC-0x7";
+            public const string Accelerometer2D = "B2C517A8-F6B5-4BA6-A423-5DF560B4CC7";
 
             /// <summary>
             /// The 3D accelerometer sensor type property key.
             /// </summary>
-            public const string Accelerometer3D = "0xC2FB0F5F-0xE2D2-0x4C78-0xBC-0xD0-0x35-0x2A-0x95-0x82-0x81-0x9D";
+            public const string Accelerometer3D = "C2FB0F5F-E2D2-4C78-BCD0-352A9582819D";
 
             /// <summary>
             /// The motion sensor type property key.
             /// </summary>
-            public const string MotionDetector = "0x5C7C1A12-0x30A5-0x43B9-0xA4-0xB2-0xCF-0x9-0xEC-0x5B-0x7B-0xE8";
+            public const string MotionDetector = "5C7C1A12-30A5-43B9-A4B2-CF9EC5B7BE8";
 
             /// <summary>
             /// The gyrometer sensor type property key.
             /// </summary>
-            public const string Gyrometer1D = "0xFA088734-0xF552-0x4584-0x83-0x24-0xED-0xFA-0xF6-0x49-0x65-0x2C";
+            public const string Gyrometer1D = "FA088734-F552-4584-8324-EDFAF649652C";
 
             /// <summary>
             /// The 2D gyrometer sensor type property key.
             /// </summary>
-            public const string Gyrometer2D = "0x31EF4F83-0x919B-0x48BF-0x8D-0xE0-0x5D-0x7A-0x9D-0x24-0x5-0x56";
+            public const string Gyrometer2D = "31EF4F83-919B-48BF-8DE0-5D7A9D24556";
 
             /// <summary>
             /// The 3D gyrometer sensor type property key.
             /// </summary>
-            public const string Gyrometer3D = "0x9485F5A-0x759E-0x42C2-0xBD-0x4B-0xA3-0x49-0xB7-0x5C-0x86-0x43";
+            public const string Gyrometer3D = "9485F5A-759E-42C2-BD4B-A349B75C8643";
 
             /// <summary>
             /// The speedometer sensor type property key.
             /// </summary>
-            public const string Speedometer = "0x6BD73C1F-0xBB4-0x4310-0x81-0xB2-0xDF-0xC1-0x8A-0x52-0xBF-0x94";
+            public const string Speedometer = "6BD73C1F-BB4-4310-81B2-DFC18A52BF94";
 
             /// <summary>
             /// The compass sensor type property key.
             /// </summary>
-            public const string Compass1D = "0xA415F6C5-0xCB50-0x49D0-0x8E-0x62-0xA8-0x27-0xB-0xD7-0xA2-0x6C";
+            public const string Compass1D = "A415F6C5-CB50-49D0-8E62-A827BD7A26C";
 
             /// <summary>
             /// The 2D compass sensor type property key.
             /// </summary>
-            public const string Compass2D = "0x15655CC0-0x997A-0x4D30-0x84-0xDB-0x57-0xCA-0xBA-0x36-0x48-0xBB";
+            public const string Compass2D = "15655CC0-997A-4D30-84DB-57CABA3648BB";
 
             /// <summary>
             /// The 3D compass sensor type property key.
             /// </summary>
-            public const string Compass3D = "0x76B5CE0D-0x17DD-0x414D-0x93-0xA1-0xE1-0x27-0xF4-0xB-0xDF-0x6E";
+            public const string Compass3D = "76B5CE0D-17DD-414D-93A1-E127F4BDF6E";
 
             /// <summary>
             /// The inclinometer sensor type property key.
             /// </summary>
-            public const string Inclinometer1D = "0xB96F98C5-0x7A75-0x4BA7-0x94-0xE9-0xAC-0x86-0x8C-0x96-0x6D-0xD8";
+            public const string Inclinometer1D = "B96F98C5-7A75-4BA7-94E9-AC868C966DD8";
 
             /// <summary>
             /// The 2D inclinometer sensor type property key.
             /// </summary>
-            public const string Inclinometer2D = "0xAB140F6D-0x83EB-0x4264-0xB7-0xB-0xB1-0x6A-0x5B-0x25-0x6A-0x1";
+            public const string Inclinometer2D = "AB140F6D-83EB-4264-B7B-B16A5B256A1";
 
             /// <summary>
             /// The 3D inclinometer sensor type property key.
             /// </summary>
-            public const string Inclinometer3D = "0xB84919FB-0xEA85-0x4976-0x84-0x44-0x6F-0x6F-0x5C-0x6D-0x31-0xDB";
+            public const string Inclinometer3D = "B84919FB-EA85-4976-8444-6F6F5C6D31DB";
 
             /// <summary>
             /// The distance sensor type property key.
             /// </summary>
-            public const string Distance1D = "0x5F14AB2F-0x1407-0x4306-0xA9-0x3F-0xB1-0xDB-0xAB-0xE4-0xF9-0xC0";
+            public const string Distance1D = "5F14AB2F-1407-4306-A93F-B1DBABE4F9C0";
 
             /// <summary>
             /// The 2D sensor type property key.
             /// </summary>
-            public const string Distance2D = "0x5CF9A46C-0xA9A2-0x4E55-0xB6-0xA1-0xA0-0x4A-0xAF-0xA9-0x5A-0x92";
+            public const string Distance2D = "5CF9A46C-A9A2-4E55-B6A1-A04AAFA95A92";
 
             /// <summary>
             /// The 3D distance sensor type property key.
             /// </summary>
-            public const string Distance3D = "0xA20CAE31-0xE25-0x4772-0x9F-0xE5-0x96-0x60-0x8A-0x13-0x54-0xB2";
+            public const string Distance3D = "A20CAE31-E25-4772-9FE5-96608A1354B2";
 
             /// <summary>
             /// The electrical voltage sensor type property key.
             /// </summary>
-            public const string Voltage = "0xC5484637-0x4FB7-0x4953-0x98-0xB8-0xA5-0x6D-0x8A-0xA1-0xFB-0x1E";
+            public const string Voltage = "C5484637-4FB7-4953-98B8-A56D8AA1FB1E";
 
             /// <summary>
             /// The electrical current sensor type property key.
             /// </summary>
-            public const string Current = "0x5ADC9FCE-0x15A0-0x4BBE-0xA1-0xAD-0x2D-0x38-0xA9-0xAE-0x83-0x1C";
+            public const string Current = "5ADC9FCE-15A0-4BBE-A1AD-2D38A9AE831C";
 
             /// <summary>
             /// The boolean switch sensor type property key.
             /// </summary>
-            public const string BooleanSwitch = "0x9C7E371F-0x1041-0x460B-0x8D-0x5C-0x71-0xE4-0x75-0x2E-0x35-0xC";
+            public const string BooleanSwitch = "9C7E371F-1041-460B-8D5C-71E4752E35C";
 
             /// <summary>
             /// The boolean switch array sensor property key.
             /// </summary>
-            public const string BooleanSwitchArray = "0X545C8BA5-0XB143-0X4545-0X86-0X8F-0XCA-0X7F-0XD9-0X86-0XB4-0XF6";
+            public const string BooleanSwitchArray = "545C8BA5-B143-4545-868F-CA7FD986B4F6";
 
             /// <summary>
             /// The multiple value switch sensor type property key.
             /// </summary>       
-            public const string MultivalueSwitch = "0xB3EE4D76-0x37A4-0x4402-0xB2-0x5E-0x99-0xC6-0xA-0x77-0x5F-0xA1";
+            public const string MultivalueSwitch = "B3EE4D76-37A4-4402-B25E-99C6A775FA1";
 
             /// <summary>
             /// The force sensor type property key.
             /// </summary>
-            public const string Force = "0xC2AB2B02-0x1A1C-0x4778-0xA8-0x1B-0x95-0x4A-0x17-0x88-0xCC-0x75";
+            public const string Force = "C2AB2B02-1A1C-4778-A81B-954A1788CC75";
 
             /// <summary>
             /// The scale sensor type property key.
             /// </summary>
-            public const string Scale = "0xC06DD92C-0x7FEB-0x438E-0x9B-0xF6-0x82-0x20-0x7F-0xFF-0x5B-0xB8";
+            public const string Scale = "C06DD92C-7FEB-438E-9BF6-82207FFF5BB8";
 
             /// <summary>
             /// The pressure sensor type property key.
             /// </summary>
-            public const string Pressure = "0x26D31F34-0x6352-0x41CF-0xB7-0x93-0xEA-0x7-0x13-0xD5-0x3D-0x77";
+            public const string Pressure = "26D31F34-6352-41CF-B793-EA713D53D77";
 
             /// <summary>
             /// The strain sensor type property key.
             /// </summary>
-            public const string Strain = "0xC6D1EC0E-0x6803-0x4361-0xAD-0x3D-0x85-0xBC-0xC5-0x8C-0x6D-0x29";
+            public const string Strain = "C6D1EC0E-6803-4361-AD3D-85BCC58C6D29";
 
             /// <summary>
             /// The Human presence sensor type property key.
             /// </summary>
-            public const string HumanPresence = "0xC138C12B-0xAD52-0x451C-0x93-0x75-0x87-0xF5-0x18-0xFF-0x10-0xC6";
+            public const string HumanPresence = "C138C12B-AD52-451C-9375-87F518FF10C6";
 
             /// <summary>
             /// The human proximity sensor type property key.
             /// </summary>
-            public const string HumanProximity = "0x5220DAE9-0x3179-0x4430-0x9F-0x90-0x6-0x26-0x6D-0x2A-0x34-0xDE";
+            public const string HumanProximity = "5220DAE9-3179-4430-9F90-6266D2A34DE";
 
             /// <summary>
             /// The touch sensor type property key.
             /// </summary>
-            public const string Touch = "0x17DB3018-0x6C4-0x4F7D-0x81-0xAF-0x92-0x74-0xB7-0x59-0x9C-0x27";
+            public const string Touch = "17DB3018-6C4-4F7D-81AF-9274B7599C27";
 
             /// <summary>
             /// The ambient light sensor type property key.
             /// </summary>
-            public const string AmbientLight = "0x97F115C8-0x599A-0x4153-0x88-0x94-0xD2-0xD1-0x28-0x99-0x91-0x8A";
+            public const string AmbientLight = "97F115C8-599A-4153-8894-D2D12899918A";
 
             /// <summary>
             /// The RFID sensor type property key.
             /// </summary>
-            public const string RfidScanner = "0x44328EF5-0x2DD-0x4E8D-0xAD-0x5D-0x92-0x49-0x83-0x2B-0x2E-0xCA";
+            public const string RfidScanner = "44328EF5-2DD-4E8D-AD5D-9249832B2ECA";
 
             /// <summary>
             /// The bar code scanner sensor type property key.
             /// </summary>
-            public const string BarcodeScanner = "0x990B3D8F-0x85BB-0x45FF-0x91-0x4D-0x99-0x8C-0x4-0xF3-0x72-0xDF";
+            public const string BarcodeScanner = "990B3D8F-85BB-45FF-914D-998C4F372DF";
         }
 
         /// <summary>
@@ -226,12 +226,12 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
             /// <summary>
             /// Register for asynchronous sensor data updates. This has power management implications.
             /// </summary>
-            public const string DataUpdated = "0x2ED0F2A4-0x0087-0x41D3-0x87-0xDB-0x67-0x73-0x37-0x0B-0x3C-0x88";
+            public const string DataUpdated = "2ED0F2A4-0087-41D3-87DB-6773370B3C88";
 
             /// <summary>
             /// Register for sensor state change notifications.
             /// </summary>
-            public const string StateChanged = "0xBFD96016-0x6BD7-0x4560-0xAD-0x34-0xF2-0xF6-0x60-0x7E-0x8F-0x81";
+            public const string StateChanged = "BFD96016-6BD7-4560-AD34-F2F6607E8F81";
         }
 
         /// <summary>
@@ -242,52 +242,52 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
             /// <summary>
             /// The sensor categoryId for all categories.
             /// </summary>
-            public const string All = "0xC317C286-0xC468-0x4288-0x99-0x75-0xD4-0xC4-0x58-0x7C-0x44-0x2C";
+            public const string All = "C317C286-C468-4288-9975-D4C4587C442C";
 
             /// <summary>
             /// The sensor location categoryId property key.
             /// </summary>
-            public const string Location = "0xBFA794E4-0xF964-0x4FDB-0x90-0xF6-0x51-0x5-0x6B-0xFE-0x4B-0x44";
+            public const string Location = "BFA794E4-F964-4FDB-90F6-5156BFE4B44";
 
             /// <summary>
             /// The environmental sensor cagetory property key.
             /// </summary>
-            public const string Environmental = "0x323439AA-0x7F66-0x492B-0xBA-0xC-0x73-0xE9-0xAA-0xA-0x65-0xD5";
+            public const string Environmental = "323439AA-7F66-492B-BAC-73E9AAA65D5";
 
             /// <summary>
             /// The motion sensor cagetory property key.
             /// </summary>
-            public const string Motion = "0xCD09DAF1-0x3B2E-0x4C3D-0xB5-0x98-0xB5-0xE5-0xFF-0x93-0xFD-0x46";
+            public const string Motion = "CD09DAF1-3B2E-4C3D-B598-B5E5FF93FD46";
 
             /// <summary>
             /// The orientation sensor cagetory property key.
             /// </summary>
-            public const string Orientation = "0x9E6C04B6-0x96FE-0x4954-0xB7-0x26-0x68-0x68-0x2A-0x47-0x3F-0x69";
+            public const string Orientation = "9E6C04B6-96FE-4954-B726-68682A473F69";
 
             /// <summary>
             /// The mechanical sensor cagetory property key.
             /// </summary>
-            public const string Mechanical = "0x8D131D68-0x8EF7-0x4656-0x80-0xB5-0xCC-0xCB-0xD9-0x37-0x91-0xC5";
+            public const string Mechanical = "8D131D68-8EF7-4656-80B5-CCCBD93791C5";
 
             /// <summary>
             /// The electrical sensor cagetory property key.
             /// </summary>
-            public const string Electrical = "0xFB73FCD8-0xFC4A-0x483C-0xAC-0x58-0x27-0xB6-0x91-0xC6-0xBE-0xFF";
+            public const string Electrical = "FB73FCD8-FC4A-483C-AC58-27B691C6BEFF";
 
             /// <summary>
             /// The bio-metric sensor cagetory property key.
             /// </summary>        
-            public const string Biometric = "0xCA19690F-0xA2C7-0x477D-0xA9-0x9E-0x99-0xEC-0x6E-0x2B-0x56-0x48";
+            public const string Biometric = "CA19690F-A2C7-477D-A99E-99EC6E2B5648";
 
             /// <summary>
             /// The light sensor cagetory property key.
             /// </summary>
-            public const string Light = "0x17A665C0-0x9063-0x4216-0xB2-0x02-0x5C-0x7A-0x25-0x5E-0x18-0xCE";
+            public const string Light = "17A665C0-9063-4216-B202-5C7A255E18CE";
 
             /// <summary>
             /// The scanner sensor cagetory property key.
             /// </summary>
-            public const string Scanner = "0xB000E77E-0xF5B5-0x420F-0x81-0x5D-0x2-0x70-0xA7-0x26-0xF2-0x70";
+            public const string Scanner = "B000E77E-F5B5-420F-815D-270A726F270";
         }
 
     }
@@ -338,52 +338,52 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
             /// <summary>
             /// This GUID is used to identify all WPD driver events to the event sub-system. The driver uses this as the GUID identifier when it queues an event with IWdfDevice::PostEvent(). Applications never use this value.
             /// </summary>
-            public const string Notification = "0x2BA2E40A-0x6B4C-0x4295-0xBB-0x43-0x26-0x32-0x2B-0x99-0xAE-0xB2";
+            public const string Notification = "2BA2E40A-6B4C-4295-BB43-26322B99AEB2";
 
             /// <summary>
             /// This event is sent after a new object is available on the device.
             /// </summary>
-            public const string ObjectAdded = "0xA726DA95-0xE207-0x4B02-0x8D-0x44-0xBE-0xF2-0xE8-0x6C-0xBF-0xFC";
+            public const string ObjectAdded = "A726DA95-E207-4B02-8D44-BEF2E86CBFFC";
 
             /// <summary>
             /// This event is sent after a previously existing object has been removed from the device.
             /// </summary>
-            public const string ObjectRemoved = "0xBE82AB88-0xA52C-0x4823-0x96-0xE5-0xD0-0x27-0x26-0x71-0xFC-0x38";
+            public const string ObjectRemoved = "BE82AB88-A52C-4823-96E5-D0272671FC38";
 
             /// <summary>
             /// This event is sent after an object has been updated such that any connected client should refresh its view of that object.
             /// </summary>
-            public const string ObjectUpdated = "0x1445A759-0x2E01-0x485D-0x9F-0x27-0xFF-0x07-0xDA-0xE6-0x97-0xAB";
+            public const string ObjectUpdated = "1445A759-2E01-485D-9F27-FF07DAE697AB";
 
             /// <summary>
             /// This event indicates that the device is about to be reset-and all connected clients should close their connection to the device.
             /// </summary>
-            public const string DeviceReset = "0x7755CF53-0xC1ED-0x44F3-0xB5-0xA2-0x45-0x1E-0x2C-0x37-0x6B-0x27";
+            public const string DeviceReset = "7755CF53-C1ED-44F3-B5A2-451E2C376B27";
 
             /// <summary>
             /// This event indicates that the device capabilities have changed. Clients should re-query the device if they have made any decisions based on device capabilities.
             /// </summary>
-            public const string DeviceCapabilitiesUpdated = "0x36885AA1-0xCD54-0x4DAA-0xB3-0xD0-0xAF-0xB3-0xE0-0x3F-0x59-0x99";
+            public const string DeviceCapabilitiesUpdated = "36885AA1-CD54-4DAA-B3D0-AFB3E03F5999";
 
             /// <summary>
             /// This event indicates the progress of a format operation on a storage object.
             /// </summary>
-            public const string StorageFormat = "0x3782616B-0x22BC-0x4474-0xA2-0x51-0x30-0x70-0xF8-0xD3-0x88-0x57";
+            public const string StorageFormat = "3782616B-22BC-4474-A251-3070F8D38857";
 
             /// <summary>
             /// This event is sent to request an application to transfer a particular object from the device.
             /// </summary>
-            public const string ObjectTransferRequested = "0x8D16A0A1-0xF2C6-0x41DA-0x8F-0x19-0x5E-0x53-0x72-0x1A-0xDB-0xF2";
+            public const string ObjectTransferRequested = "8D16A0A1-F2C6-41DA-8F19-5E53721ADBF2";
 
             /// <summary>
             /// This event is sent when a driver for a device is being unloaded. This is typically a result of the device being unplugged.
             /// </summary>
-            public const string DeviceRemoved = "0xE4CBCA1B-0x6918-0x48B9-0x85-0xEE-0x02-0xBE-0x7C-0x85-0x0A-0xF9";
+            public const string DeviceRemoved = "E4CBCA1B-6918-48B9-85EE-02BE7C850AF9";
 
             /// <summary>
             /// This event is sent when a driver has completed invoking a service method. This event must be sent even when the method fails.
             /// </summary>
-            public const string ServiceMethodComplete = "0x8A33F5F8-0x0ACC-0x4D9B-0x9C-0xC4-0x11-0x2D-0x35-0x3B-0x86-0xCA";
+            public const string ServiceMethodComplete = "8A33F5F8-0ACC-4D9B-9CC4-112D353B86CA";
 
         }
 
@@ -394,172 +394,172 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_OPTIONS_V1. This category of properties relates to options used for the WPD device class extension
             /// </summary>
-            public const string ClassExtensionOptionsV1 = "0x6309FFEF-0xA87C-0x4CA7-0x84-0x34-0x79-0x75-0x76-0xE4-0x0A-0x96";
+            public const string ClassExtensionOptionsV1 = "6309FFEF-A87C-4CA7-8434-797576E40A96";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_OPTIONS_V2. This category of properties relates to options used for the WPD device class extension
             /// </summary>
-            public const string ClassExtensionOptionsV2 = "0x3E3595DA-0x4D71-0x49FE-0xA0-0xB4-0xD4-0x40-0x6C-0x3A-0xE9-0x3F";
+            public const string ClassExtensionOptionsV2 = "3E3595DA-4D71-49FE-A0B4-D4406C3AE93F";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_OPTIONS_V3. This category of properties relates to options used for the WPD device class extension
             /// </summary>
-            public const string ClassExtensionOptionsV3 = "0x65C160F8-0x1367-0x4CE2-0x93-0x9D-0x83-0x10-0x83-0x9F-0x0D-0x30";
+            public const string ClassExtensionOptionsV3 = "65C160F8-1367-4CE2-939D-8310839F0D30";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_RESOURCE_ATTRIBUTES_V1
             /// </summary>
-            public const string ResourceAttributesV1 = "0x1EB6F604-0x9278-0x429F-0x93-0xCC-0x5B-0xB8-0xC0-0x66-0x56-0xB6";
+            public const string ResourceAttributesV1 = "1EB6F604-9278-429F-93CC-5BB8C06656B6";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_EVENT_OPTIONS_V1 The properties in this category describe event options.
             /// </summary>
-            public const string EventOptionsV1 = "0xB3D8DAD7-0xA361-0x4B83-0x8A-0x48-0x5B-0x02-0xCE-0x10-0x71-0x3B";
+            public const string EventOptionsV1 = "B3D8DAD7-A361-4B83-8A48-5B02CE10713B";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_EVENT_ATTRIBUTES_V1 The properties in this category describe event attributes.
             /// </summary>
-            public const string EventAttributesV1 = "0x10C96578-0x2E81-0x4111-0xAD-0xDE-0xE0-0x8C-0xA6-0x13-0x8F-0x6D";
+            public const string EventAttributesV1 = "10C96578-2E81-4111-ADDE-E08CA6138F6D";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_API_OPTIONS_V1 The properties in this category describe API options.
             /// </summary>
-            public const string APIOptionsV1 = "0x10E54A3E-0x052D-0x4777-0xA1-0x3C-0xDE-0x76-0x14-0xBE-0x2B-0xC4";
+            public const string APIOptionsV1 = "10E54A3E-052D-4777-A13C-DE7614BE2BC4";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_FORMAT_ATTRIBUTES_V1 The properties in this category describe format attributes.
             /// </summary>
-            public const string FormatAttributesV1 = "0xA0A02000-0xBCAF-0x4BE8-0xB3-0xF5-0x23-0x3F-0x23-0x1C-0xF5-0x8F";
+            public const string FormatAttributesV1 = "A0A02000-BCAF-4BE8-B3F5-233F231CF58F";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_METHOD_ATTRIBUTES_V1 The properties in this category describe method attributes.
             /// </summary>
-            public const string MethodAttributesV1 = "0xF17A5071-0xF039-0x44AF-0x8E-0xFE-0x43-0x2C-0xF3-0x2E-0x43-0x2A";
+            public const string MethodAttributesV1 = "F17A5071-F039-44AF-8EFE-432CF32E432A";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_PARAMETER_ATTRIBUTES_V1 The properties in this category describe parameter attributes.
             /// </summary>
-            public const string ParameterAttributesV1 = "0xE6864DD7-0xF325-0x45EA-0xA1-0xD5-0x97-0xCF-0x73-0xB6-0xCA-0x58";
+            public const string ParameterAttributesV1 = "E6864DD7-F325-45EA-A1D5-97CF73B6CA58";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_DEVICE_PROPERTIES_V1
             /// </summary>
-            public const string DeviceV1 = "0x26D4979A-0xE643-0x4626-0x9E-0x2B-0x73-0x6D-0xC0-0xC9-0x2F-0xDC";
+            public const string DeviceV1 = "26D4979A-E643-4626-9E2B-736DC0C92FDC";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_DEVICE_PROPERTIES_V2
             /// </summary>
-            public const string DeviceV2 = "0x463DD662-0x7FC4-0x4291-0x91-0x1C-0x7F-0x4C-0x9C-0xCA-0x97-0x99";
+            public const string DeviceV2 = "463DD662-7FC4-4291-911C-7F4C9CCA9799";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_DEVICE_PROPERTIES_V3
             /// </summary>
-            public const string DeviceV3 = "0x6C2B878C-0xC2EC-0x490D-0xB4-0x25-0xD7-0xA7-0x5E-0x23-0xE5-0xED";
+            public const string DeviceV3 = "6C2B878C-C2EC-490D-B425-D7A75E23E5ED";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_SERVICE_PROPERTIES_V1
             /// </summary>
-            public const string ServiceV1 = "0x7510698A-0xCB54-0x481C-0xB8-0xDB-0x0D-0x75-0xC9-0x3F-0x1C-0x06";
+            public const string ServiceV1 = "7510698A-CB54-481C-B8DB-0D75C93F1C06";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_FOLDER_OBJECT_PROPERTIES_V1. This category is for properties common to all folder objects.
             /// </summary>
-            public const string FolderObjectV1 = "0x7E9A7ABF-0xE568-0x4B34-0xAA-0x2F-0x13-0xBB-0x12-0xAB-0x17-0x7D";
+            public const string FolderObjectV1 = "7E9A7ABF-E568-4B34-AA2F-13BB12AB177D";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_IMAGE_OBJECT_PROPERTIES_V1. This category is for properties common to all image objects.
             /// </summary>
-            public const string ImageObjectV1 = "0x63D64908-0x9FA1-0x479F-0x85-0xBA-0x99-0x52-0x21-0x64-0x47-0xDB";
+            public const string ImageObjectV1 = "63D64908-9FA1-479F-85BA-9952216447DB";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_DOCUMENT_OBJECT_PROPERTIES_V1. This category is for properties common to all document objects.
             /// </summary>
-            public const string DocumentObjectV1 = "0x0B110203-0xEB95-0x4F02-0x93-0xE0-0x97-0xC6-0x31-0x49-0x3A-0xD5";
+            public const string DocumentObjectV1 = "0B110203-EB95-4F02-93E0-97C631493AD5";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_MEDIA_PROPERTIES_V1. This category is for properties common to media objects(e.g.audio and video).
             /// </summary>
-            public const string MediaV1 = "0x2ED8BA05-0x0AD3-0x42DC-0xB0-0xD0-0xBC-0x95-0xAC-0x39-0x6A-0xC8";
+            public const string MediaV1 = "2ED8BA05-0AD3-42DC-B0D0-BC95AC396AC8";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_CONTACT_OBJECT_PROPERTIES_V1. This category is for properties common to all contact objects.
             /// </summary>
-            public const string ContactObjectV1 = "0xFBD4FDAB-0x987D-0x4777-0xB3-0xF9-0x72-0x61-0x85-0xA9-0x31-0x2B";
+            public const string ContactObjectV1 = "FBD4FDAB-987D-4777-B3F9-726185A9312B";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_MUSIC_OBJECT_PROPERTIES_V1. This category is for properties common to all music objects.
             /// </summary>
-            public const string MusicObjectV1 = "0xB324F56A-0xDC5D-0x46E5-0xB6-0xDF-0xD2-0xEA-0x41-0x48-0x88-0xC6";
+            public const string MusicObjectV1 = "B324F56A-DC5D-46E5-B6DF-D2EA414888C6";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_VIDEO_OBJECT_PROPERTIES_V1. This category is for properties common to all video objects.
             /// </summary>
-            public const string VideoObjectV1 = "0x346F2163-0xF998-0x4146-0x8B-0x01-0xD1-0x9B-0x4C-0x00-0xDE-0x9A";
+            public const string VideoObjectV1 = "346F2163-F998-4146-8B01-D19B4C00DE9A";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_COMMON_INFORMATION_OBJECT_PROPERTIES_V1. This category is properties that pertain to informational objects such as appointments-tasks-memos and even documents.
             /// </summary>
-            public const string CommonInformationObjectV1 = "0xB28AE94B-0x05A4-0x4E8E-0xBE-0x01-0x72-0xCC-0x7E-0x09-0x9D-0x8F";
+            public const string CommonInformationObjectV1 = "B28AE94B-05A4-4E8E-BE01-72CC7E099D8F";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_MEMO_OBJECT_PROPERTIES_V1. This category is for properties common to all memo objects.
             /// </summary>
-            public const string MemoObjectV1 = "0x5FFBFC7B-0x7483-0x41AD-0xAF-0xB9-0xDA-0x3F-0x4E-0x59-0x2B-0x8D";
+            public const string MemoObjectV1 = "5FFBFC7B-7483-41AD-AFB9-DA3F4E592B8D";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_EMAIL_OBJECT_PROPERTIES_V1. This category is for properties common to all email objects.
             /// </summary>
-            public const string EmailObjectV1 = "0x41F8F65A-0x5484-0x4782-0xB1-0x3D-0x47-0x40-0xDD-0x7C-0x37-0xC5";
+            public const string EmailObjectV1 = "41F8F65A-5484-4782-B13D-4740DD7C37C5";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_APPOINTMENT_OBJECT_PROPERTIES_V1. This category is for properties common to all appointment objects.
             /// </summary>
-            public const string AppointmentObjectV1 = "0xF99EFD03-0x431D-0x40D8-0xA1-0xC9-0x4E-0x22-0x0D-0x9C-0x88-0xD3";
+            public const string AppointmentObjectV1 = "F99EFD03-431D-40D8-A1C9-4E220D9C88D3";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_TASK_OBJECT_PROPERTIES_V1. This category is for properties common to all task objects.
             /// </summary>
-            public const string TaskObjectV1 = "0xE354E95E-0xD8A0-0x4637-0xA0-0x3A-0x0C-0xB2-0x68-0x38-0xDB-0xC7";
+            public const string TaskObjectV1 = "E354E95E-D8A0-4637-A03A-0CB26838DBC7";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_SMS_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_SMS
             /// </summary>
-            public const string SMSObjectV1 = "0x7E1074CC-0x50FF-0x4DD1-0xA7-0x42-0x53-0xBE-0x6F-0x09-0x3A-0x0D";
+            public const string SMSObjectV1 = "7E1074CC-50FF-4DD1-A742-53BE6F093A0D";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_SECTION_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose content type is WPD_CONTENT_TYPE_SECTION
             /// </summary>
-            public const string SectionObjectV1 = "0x516AFD2B-0xC64E-0x44F0-0x98-0xDC-0xBE-0xE1-0xC8-0x8F-0x7D-0x66";
+            public const string SectionObjectV1 = "516AFD2B-C64E-44F0-98DC-BEE1C88F7D66";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_FUNCTIONAL_OBJECT_PROPERTIES_V1. This category is for properties common to all functional objects.
             /// </summary>
-            public const string FunctionalObjectV1 = "0x8F052D93-0xABCA-0x4FC5-0xA5-0xAC-0xB0-0x1D-0xF4-0xDB-0xE5-0x98";
+            public const string FunctionalObjectV1 = "8F052D93-ABCA-4FC5-A5AC-B01DF4DBE598";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_STORAGE_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_STORAGE.
             /// </summary>
-            public const string StorageObjectV1 = "0x01A3057A-0x74D6-0x4E80-0xBE-0xA7-0xDC-0x4C-0x21-0x2C-0xE5-0x0A";
+            public const string StorageObjectV1 = "01A3057A-74D6-4E80-BEA7-DC4C212CE50A";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_NETWORK_ASSOCIATION_PROPERTIES_V1. This category is for properties common to all network association objects.
             /// </summary>
-            public const string NetworkAssociationV1 = "0xE4C93C1F-0xB203-0x43F1-0xA1-0x00-0x5A-0x07-0xD1-0x1B-0x02-0x74";
+            public const string NetworkAssociationV1 = "E4C93C1F-B203-43F1-A100-5A07D11B0274";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_STILL_IMAGE_CAPTURE_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_STILL_IMAGE_CAPTURE
             /// </summary>
-            public const string StillImageCaptureObjectV1 = "0x58C571EC-0x1BCB-0x42A7-0x8A-0xC5-0xBB-0x29-0x15-0x73-0xA2-0x60";
+            public const string StillImageCaptureObjectV1 = "58C571EC-1BCB-42A7-8AC5-BB291573A260";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_RENDERING_INFORMATION_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_AUDIO_RENDERING_INFORMATION
             /// </summary>
-            public const string RenderingInformationObjectV1 = "0xC53D039F-0xEE23-0x4A31-0x85-0x90-0x76-0x39-0x87-0x98-0x70-0xB4";
+            public const string RenderingInformationObjectV1 = "C53D039F-EE23-4A31-8590-7639879870B4";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_CLIENT_INFORMATION_PROPERTIES_V1.
             /// </summary>
-            public const string ClientInformationV1 = "0x204D9F0C-0x2292-0x4080-0x9F-0x42-0x40-0x66-0x4E-0x70-0xF8-0x59";
+            public const string ClientInformationV1 = "204D9F0C-2292-4080-9F42-40664E70F859";
 
             /// <summary>
             /// This class defines all WPD content types.
@@ -572,175 +572,175 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
                 /// <para>Name: WPD_CONTENT_TYPE_FUNCTIONAL_OBJECT</para>
                 /// <para>Description: Indicates this object represents a functional object-not content data on the device.</para>
                 /// </summary>
-                public const string FunctionalObject = "0x99ED0160-0x17FF-0x4C44-0x9D-0x98-0x1D-0x7A-0x6F-0x94-0x19-0x21";
+                public const string FunctionalObject = "99ED0160-17FF-4C44-9D98-1D7A6F941921";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_FOLDER</para>
                 /// <para>Description: Indicates this object is a folder.</para>
                 /// </summary>
-                public const string Folder = "0x27E2E392-0xA111-0x48E0-0xAB-0x0C-0xE1-0x77-0x05-0xA0-0x5F-0x85";
+                public const string Folder = "27E2E392-A111-48E0-AB0C-E17705A05F85";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_IMAGE</para>
                 /// <para>Description: Indicates this object represents image data (e.g. a JPEG file)</para>
                 /// </summary>
-                public const string Image = "0xef2107d5-0xa52a-0x4243-0xa2-0x6b-0x62-0xd4-0x17-0x6d-0x76-0x03";
+                public const string Image = "ef2107d5-a52a-4243-a26b-62d4176d7603";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_DOCUMENT</para>
                 /// <para>Description: Indicates this object represents document data (e.g. a MS WORD file-TEXT file-etc.)</para>
                 /// </summary>
-                public const string Document = "0x680ADF52-0x950A-0x4041-0x9B-0x41-0x65-0xE3-0x93-0x64-0x81-0x55";
+                public const string Document = "680ADF52-950A-4041-9B41-65E393648155";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_CONTACT</para>
                 /// <para>Description: Indicates this object represents contact data (e.g. name/number-or a VCARD file)</para>
                 /// </summary>
-                public const string Contact = "0xEABA8313-0x4525-0x4707-0x9F-0x0E-0x87-0xC6-0x80-0x8E-0x94-0x35";
+                public const string Contact = "EABA8313-4525-4707-9F0E-87C6808E9435";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_CONTACT_GROUP</para>
                 /// <para>Description: Indicates this object represents a group of contacts.</para>
                 /// </summary>
-                public const string ContactGroup = "0x346B8932-0x4C36-0x40D8-0x94-0x15-0x18-0x28-0x29-0x1F-0x9D-0xE9";
+                public const string ContactGroup = "346B8932-4C36-40D8-9415-1828291F9DE9";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_AUDIO</para>
                 /// <para>Description: Indicates this object represents audio data (e.g. a WMA or MP3 file)</para>
                 /// </summary>
-                public const string Audio = "0x4AD2C85E-0x5E2D-0x45E5-0x88-0x64-0x4F-0x22-0x9E-0x3C-0x6C-0xF0";
+                public const string Audio = "4AD2C85E-5E2D-45E5-8864-4F229E3C6CF0";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_VIDEO</para>
                 /// <para>Description: Indicates this object represents video data (e.g. a WMV or AVI file)</para>
                 /// </summary>
-                public const string Video = "0x9261B03C-0x3D78-0x4519-0x85-0xE3-0x02-0xC5-0xE1-0xF5-0x0B-0xB9";
+                public const string Video = "9261B03C-3D78-4519-85E3-02C5E1F50BB9";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_TELEVISION</para>
                 /// <para>Description: Indicates this object represents a television recording.</para>
                 /// </summary>
-                public const string Television = "0x60A169CF-0xF2AE-0x4E21-0x93-0x75-0x96-0x77-0xF1-0x1C-0x1C-0x6E";
+                public const string Television = "60A169CF-F2AE-4E21-9375-9677F11C1C6E";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_PLAYLIST</para>
                 /// <para>Description: Indicates this object represents a playlist.</para>
                 /// </summary>
-                public const string Playlist = "0x1A33F7E4-0xAF13-0x48F5-0x99-0x4E-0x77-0x36-0x9D-0xFE-0x04-0xA3";
+                public const string Playlist = "1A33F7E4-AF13-48F5-994E-77369DFE04A3";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_MIXED_CONTENT_ALBUM</para>
                 /// <para>Description: Indicates this object represents an album-which may contain objects of different content types (typically-MUSIC-IMAGE and VIDEO).</para>
                 /// </summary>
-                public const string MixedContentAlbum = "0x00F0C3AC-0xA593-0x49AC-0x92-0x19-0x24-0xAB-0xCA-0x5A-0x25-0x63";
+                public const string MixedContentAlbum = "00F0C3AC-A593-49AC-9219-24ABCA5A2563";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_AUDIO_ALBUM</para>
                 /// <para>Description: Indicates this object represents an audio album.</para>
                 /// </summary>
-                public const string AudioAlbum = "0xAA18737E-0x5009-0x48FA-0xAE-0x21-0x85-0xF2-0x43-0x83-0xB4-0xE6";
+                public const string AudioAlbum = "AA18737E-5009-48FA-AE21-85F24383B4E6";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_IMAGE_ALBUM</para>
                 /// <para>Description: Indicates this object represents an image album.</para>
                 /// </summary>
-                public const string ImageAlbum = "0x75793148-0x15F5-0x4A30-0xA8-0x13-0x54-0xED-0x8A-0x37-0xE2-0x26";
+                public const string ImageAlbum = "75793148-15F5-4A30-A813-54ED8A37E226";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_VIDEO_ALBUM</para>
                 /// <para>Description: Indicates this object represents a video album.</para>
                 /// </summary>
-                public const string VideoAlbum = "0x012B0DB7-0xD4C1-0x45D6-0xB0-0x81-0x94-0xB8-0x77-0x79-0x61-0x4F";
+                public const string VideoAlbum = "012B0DB7-D4C1-45D6-B081-94B87779614F";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_MEMO</para>
                 /// <para>Description: Indicates this object represents memo data</para>
                 /// </summary>
-                public const string Memo = "0x9CD20ECF-0x3B50-0x414F-0xA6-0x41-0xE4-0x73-0xFF-0xE4-0x57-0x51";
+                public const string Memo = "9CD20ECF-3B50-414F-A641-E473FFE45751";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_EMAIL</para>
                 /// <para>Description: Indicates this object represents e-mail data</para>
                 /// </summary>
-                public const string Email = "0x8038044A-0x7E51-0x4F8F-0x88-0x3D-0x1D-0x06-0x23-0xD1-0x45-0x33";
+                public const string Email = "8038044A-7E51-4F8F-883D-1D0623D14533";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_APPOINTMENT</para>
                 /// <para>Description: Indicates this object represents an appointment in a calendar</para>
                 /// </summary>
-                public const string Appointment = "0x0FED060E-0x8793-0x4B1E-0x90-0xC9-0x48-0xAC-0x38-0x9A-0xC6-0x31";
+                public const string Appointment = "0FED060E-8793-4B1E-90C9-48AC389AC631";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_TASK</para>
                 /// <para>Description: Indicates this object represents a task for tracking (e.g. a TODO list)</para>
                 /// </summary>
-                public const string Task = "0x63252F2C-0x887F-0x4CB6-0xB1-0xAC-0xD2-0x98-0x55-0xDC-0xEF-0x6C";
+                public const string Task = "63252F2C-887F-4CB6-B1AC-D29855DCEF6C";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_PROGRAM</para>
                 /// <para>Description: Indicates this object represents a file that can be run. This could be a script-executable and so on.</para>
                 /// </summary>
-                public const string Program = "0xD269F96A-0x247C-0x4BFF-0x98-0xFB-0x97-0xF3-0xC4-0x92-0x20-0xE6";
+                public const string Program = "D269F96A-247C-4BFF-98FB-97F3C49220E6";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_GENERIC_FILE</para>
                 /// <para>Description: Indicates this object represents a file that does not fall into any of the other predefined WPD types for files.</para>
                 /// </summary>
-                public const string GenericFile = "0x0085E0A6-0x8D34-0x45D7-0xBC-0x5C-0x44-0x7E-0x59-0xC7-0x3D-0x48";
+                public const string GenericFile = "0085E0A6-8D34-45D7-BC5C-447E59C73D48";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_CALENDAR</para>
                 /// <para>Description: Indicates this object represents a calendar</para>
                 /// </summary>
-                public const string Calendar = "0xA1FD5967-0x6023-0x49A0-0x9D-0xF1-0xF8-0x06-0x0B-0xE7-0x51-0xB0";
+                public const string Calendar = "A1FD5967-6023-49A0-9DF1-F8060BE751B0";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_GENERIC_MESSAGE</para>
                 /// <para>Description: Indicates this object represents a message (e.g. SMS message-E-Mail message-etc.)</para>
                 /// </summary>
-                public const string GenericMessage = "0xE80EAAF8-0xB2DB-0x4133-0xB6-0x7E-0x1B-0xEF-0x4B-0x4A-0x6E-0x5F";
+                public const string GenericMessage = "E80EAAF8-B2DB-4133-B67E-1BEF4B4A6E5F";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_NETWORK_ASSOCIATION</para>
                 /// <para>Description: Indicates this object represents an association between a host and a device.</para>
                 /// </summary>
-                public const string NetworkAssociation = "0x031DA7EE-0x18C8-0x4205-0x84-0x7E-0x89-0xA1-0x12-0x61-0xD0-0xF3";
+                public const string NetworkAssociation = "031DA7EE-18C8-4205-847E-89A11261D0F3";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_CERTIFICATE</para>
                 /// <para>Description: Indicates this object represents certificate used for authentication.</para>
                 /// </summary>
-                public const string Certificate = "0xDC3876E8-0xA948-0x4060-0x90-0x50-0xCB-0xD7-0x7E-0x8A-0x3D-0x87";
+                public const string Certificate = "DC3876E8-A948-4060-9050-CBD77E8A3D87";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_WIRELESS_PROFILE</para>
                 /// <para>Description: Indicates this object represents wireless network access information.</para>
                 /// </summary>
-                public const string WirelessProfile = "0x0BAC070A-0x9F5F-0x4DA4-0xA8-0xF6-0x3D-0xE4-0x4D-0x68-0xFD-0x6C";
+                public const string WirelessProfile = "0BAC070A-9F5F-4DA4-A8F6-3DE44D68FD6C";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_MEDIA_CAST</para>
                 /// <para>Description: Indicates this object represents a media cast. A media cast object can be though of as a container object that groups related content-similar to how a playlist groups songs to play. Often-a media cast object is used to group media content originally published online.</para>
                 /// </summary>
-                public const string MediaCast = "0x5E88B3CC-0x3E65-0x4E62-0xBF-0xFF-0x22-0x94-0x95-0x25-0x3A-0xB0";
+                public const string MediaCast = "5E88B3CC-3E65-4E62-BFFF-229495253AB0";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_SECTION</para>
                 /// <para>Description: Indicates this object describes a section of data contained in another object. The WPD_OBJECT_REFERENCES property indicates which object contains the actual data.</para>
                 /// </summary>
-                public const string Section = "0x821089F5-0x1D91-0x4DC9-0xBE-0x3C-0xBB-0xB1-0xB3-0x5B-0x18-0xCE";
+                public const string Section = "821089F5-1D91-4DC9-BE3C-BBB1B35B18CE";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_UNSPECIFIED</para>
                 /// <para>Description: Indicates this object doesn't fall into the predefined WPD content types</para>
                 /// </summary>
-                public const string Unspecified = "0x28D8D31E-0x249C-0x454E-0xAA-0xBC-0x34-0x88-0x31-0x68-0xE6-0x34";
+                public const string Unspecified = "28D8D31E-249C-454E-AABC-34883168E634";
 
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_ALL</para>
                 /// <para>Description: This content type is only valid as a parameter to API functions and driver commands. It should not be reported as a supported content type by the driver.</para>
                 /// </summary>
-                public const string All = "0x80E170D2-0x1055-0x4A3E-0xB9-0x52-0x82-0xCC-0x4F-0x8A-0x86-0x89";
+                public const string All = "80E170D2-1055-4A3E-B952-82CC4F8A8689";
 
             }
 
@@ -754,39 +754,39 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
                 //
                 // WPD_FUNCTIONAL_CATEGORY_DEVICE
                 // Used for the device object-which is always the top-most object of the device. 
-                public const string Device = "0x08EA466B-0xE3A4-0x4336-0xA1-0xF3-0xA4-0x4D-0x2B-0x5C-0x43-0x8C";
+                public const string Device = "08EA466B-E3A4-4336-A1F3-A44D2B5C438C";
                 //
                 // WPD_FUNCTIONAL_CATEGORY_STORAGE
                 // Indicates this object encapsulates storage functionality on the device (e.g. memory cards-internal memory) 
-                public const string Storage = "0x23F05BBC-0x15DE-0x4C2A-0xA5-0x5B-0xA9-0xAF-0x5C-0xE4-0x12-0xEF";
+                public const string Storage = "23F05BBC-15DE-4C2A-A55B-A9AF5CE412EF";
                 //
                 // WPD_FUNCTIONAL_CATEGORY_STILL_IMAGE_CAPTURE
                 // Indicates this object encapsulates still image capture functionality on the device (e.g. camera or camera attachment) 
-                public const string StillImageCapture = "0x613CA327-0xAB93-0x4900-0xB4-0xFA-0x89-0x5B-0xB5-0x87-0x4B-0x79";
+                public const string StillImageCapture = "613CA327-AB93-4900-B4FA-895BB5874B79";
                 //
                 // WPD_FUNCTIONAL_CATEGORY_AUDIO_CAPTURE
                 // Indicates this object encapsulates audio capture functionality on the device (e.g. voice recorder or other audio recording component) 
-                public const string AudioCapture = "0x3F2A1919-0xC7C2-0x4A00-0x85-0x5D-0xF5-0x7C-0xF0-0x6D-0xEB-0xBB";
+                public const string AudioCapture = "3F2A1919-C7C2-4A00-855D-F57CF06DEBBB";
                 //
                 // WPD_FUNCTIONAL_CATEGORY_VIDEO_CAPTURE
                 // Indicates this object encapsulates video capture functionality on the device (e.g. video recorder or video recording component) 
-                public const string VideoCapture = "0xE23E5F6B-0x7243-0x43AA-0x8D-0xF1-0x0E-0xB3-0xD9-0x68-0xA9-0x18";
+                public const string VideoCapture = "E23E5F6B-7243-43AA-8DF1-0EB3D968A918";
                 //
                 // WPD_FUNCTIONAL_CATEGORY_SMS
                 // Indicates this object encapsulates SMS sending functionality on the device (not the receiving or saved SMS messages since those are represented as content objects on the device) 
-                public const string SMS = "0x0044A0B1-0xC1E9-0x4AFD-0xB3-0x58-0xA6-0x2C-0x61-0x17-0xC9-0xCF";
+                public const string SMS = "0044A0B1-C1E9-4AFD-B358-A62C6117C9CF";
                 //
                 // WPD_FUNCTIONAL_CATEGORY_RENDERING_INFORMATION
                 // Indicates this object provides information about the rendering characteristics of the device. 
-                public const string RenderingInformation = "0x08600BA4-0xA7BA-0x4A01-0xAB-0x0E-0x00-0x65-0xD0-0xA3-0x56-0xD3";
+                public const string RenderingInformation = "08600BA4-A7BA-4A01-AB0E-0065D0A356D3";
                 //
                 // WPD_FUNCTIONAL_CATEGORY_NETWORK_CONFIGURATION
                 // Indicates this object encapsulates network configuration functionality on the device (e.g. WiFi Profiles-Partnerships). 
-                public const string NetworkConfiguration = "0x48F4DB72-0x7C6A-0x4AB0-0x9E-0x1A-0x47-0x0E-0x3C-0xDB-0xF2-0x6A";
+                public const string NetworkConfiguration = "48F4DB72-7C6A-4AB0-9E1A-470E3CDBF26A";
                 //
                 // WPD_FUNCTIONAL_CATEGORY_ALL
                 // This functional category is only valid as a parameter to API functions and driver commands. It should not be reported as a supported functional category by the driver. 
-                public const string All = "0x2D8A6512-0xA74C-0x448E-0xBA-0x8A-0xF4-0xAC-0x07-0xC4-0x93-0x99";
+                public const string All = "2D8A6512-A74C-448E-BA8A-F4AC07C49399";
 
             }
 
@@ -799,67 +799,67 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
                 //
                 // WPD_OBJECT_FORMAT_ICON
                 //   Standard Windows ICON format 
-                public const string Icon = "0x077232ED-0x102C-0x4638-0x9C-0x22-0x83-0xF1-0x42-0xBF-0xC8-0x22";
+                public const string Icon = "077232ED-102C-4638-9C22-83F142BFC822";
                 //
                 // WPD_OBJECT_FORMAT_M4A
                 //   Audio file format 
-                public const string M4A = "0x30ABA7AC-0x6FFD-0x4C23-0xA3-0x59-0x3E-0x9B-0x52-0xF3-0xF1-0xC8";
+                public const string M4A = "30ABA7AC-6FFD-4C23-A359-3E9B52F3F1C8";
                 //
                 // WPD_OBJECT_FORMAT_NETWORK_ASSOCIATION
                 //   Network Association file format. 
-                public const string NetworkAssociation = "0xB1020000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                public const string NetworkAssociation = "B1020000-AE6C-4804-98BA-C57B46965FE7";
                 //
                 // WPD_OBJECT_FORMAT_X509V3CERTIFICATE
                 //   X.509 V3 Certificate file format. 
-                public const string X509v3Certificate = "0xB1030000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                public const string X509v3Certificate = "B1030000-AE6C-4804-98BA-C57B46965FE7";
                 //
                 // WPD_OBJECT_FORMAT_MICROSOFT_WFC
                 //   Windows Connect Now file format. 
-                public const string MicrosoftWFC = "0xB1040000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                public const string MicrosoftWFC = "B1040000-AE6C-4804-98BA-C57B46965FE7";
                 //
                 // WPD_OBJECT_FORMAT_3GPA
                 //   Audio file format 
-                public const string ThreeGPA = "0xE5172730-0xF971-0x41EF-0xA1-0x0B-0x22-0x71-0xA0-0x01-0x9D-0x7A";
+                public const string ThreeGPA = "E5172730-F971-41EF-A10B-2271A0019D7A";
                 //
                 // WPD_OBJECT_FORMAT_3G2A
                 //   Audio file format 
-                public const string ThreeG2A = "0x1A11202D-0x8759-0x4E34-0xBA-0x5E-0xB1-0x21-0x10-0x87-0xEE-0xE4";
+                public const string ThreeG2A = "1A11202D-8759-4E34-BA5E-B1211087EEE4";
                 //
                 // WPD_OBJECT_FORMAT_ALL
                 //   This format is only valid as a parameter to API functions and driver commands. It should not be reported as a supported format by the driver. 
-                public const string All = "0xC1F62EB2-0x4BB3-0x479C-0x9C-0xFA-0x05-0xB5-0xF3-0xA5-0x7B-0x22";
+                public const string All = "C1F62EB2-4BB3-479C-9CFA-05B5F3A57B22";
 
             }
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_OBJECT_PROPERTIES_V1. This category is for all common object properties.
             /// </summary>
-            public const string ObjectV1 = "0xEF6B490D-0x5CD8-0x437A-0xAF-0xFC-0xDA-0x8B-0x60-0xEE-0x4A-0x3C";
+            public const string ObjectV1 = "EF6B490D-5CD8-437A-AFFC-DA8B60EE4A3C";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_OBJECT_PROPERTIES_V2. This category is for all common object properties.
             /// </summary>
-            public const string ObjectV2 = "0x0373CD3D-0x4A46-0x40D7-0xB4-0xD8-0x73-0xE8-0xDA-0x74-0xE7-0x75";
+            public const string ObjectV2 = "0373CD3D-4A46-40D7-B4D8-73E8DA74E775";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_PROPERTY_ATTRIBUTES_V1
             /// </summary>
-            public const string PropertyAttributesV1 = "0xAB7943D8-0x6332-0x445F-0xA0-0x0D-0x8D-0x5E-0xF1-0xE9-0x6F-0x37";
+            public const string PropertyAttributesV1 = "AB7943D8-6332-445F-A00D-8D5EF1E96F37";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_PROPERTY_ATTRIBUTES_V2. This category defines additional property attributes used by device services.
             /// </summary>
-            public const string PropertyAttributesV2 = "0x5D9DA160-0x74AE-0x43CC-0x85-0xA9-0xFE-0x55-0x5A-0x80-0x79-0x8E";
+            public const string PropertyAttributesV2 = "5D9DA160-74AE-43CC-85A9-FE555A80798E";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_EVENT_PROPERTIES_V1 The properties in this category are for properties that may be needed for event processing-but do not have object property equivalents(i.e.they are not exposed as object properties-but rather-used only as event parameters).
             /// </summary>
-            public const string EventV1 = "0x15AB1953-0xF817-0x4FEF-0xA9-0x21-0x56-0x76-0xE8-0x38-0xF6-0xE0";
+            public const string EventV1 = "15AB1953-F817-4FEF-A921-5676E838F6E0";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_EVENT_PROPERTIES_V2 The properties in this category are for properties that may be needed for event processing-but do not have object property equivalents(i.e.they are not exposed as object properties-but rather-used only as event parameters).
             /// </summary>
-            public const string EventV2 = "0x52807B8A-0x4914-0x4323-0x9B-0x9A-0x74-0xF6-0x54-0xB2-0xB8-0x46";
+            public const string EventV2 = "52807B8A-4914-4323-9B9A-74F654B2B846";
 
             #region This section defines the legacy WPD definitions. When WPD_SERVICES_STRICT mode is defined-these definitions are removed from this header file. You may find replacements or equivalents in the Device Services headers (for example-BridgeDeviceService.h).
             // # ifndef WPD_SERVICES_STRICT
@@ -880,317 +880,317 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
                     // WPD_OBJECT_FORMAT_PROPERTIES_ONLY
                     //   This object has no data stream and is completely specified by properties only.
                     //   Device Services Format: FORMAT_Association
-                    public const string PropertiesOnly = "0x30010000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string PropertiesOnly = "30010000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_UNSPECIFIED
                     //   An undefined object format on the device (e.g. objects that can not be classified by the other defined WPD format codes)
                     //   Device Services Format: FORMAT_Undefined
-                    public const string Unspecified = "0x30000000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string Unspecified = "30000000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_SCRIPT
                     //   A device model-specific script
                     //   Device Services Format: FORMAT_DeviceScript
-                    public const string Script = "0x30020000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string Script = "30020000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_EXECUTABLE
                     //   A device model-specific binary executable
                     //   Device Services Format: FORMAT_DeviceExecutable
-                    public const string Executable = "0x30030000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string Executable = "30030000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_TEXT
                     //   A text file
                     //   Device Services Format: FORMAT_TextDocument
-                    public const string Text = "0x30040000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string Text = "30040000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_HTML
                     //   A HyperText Markup Language file (text)
                     //   Device Services Format: FORMAT_HTMLDocument
-                    public const string HTML = "0x30050000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string HTML = "30050000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_DPOF
                     //   A Digital Print Order File (text)
                     //   Device Services Format: FORMAT_DPOFDocument
-                    public const string DPOF = "0x30060000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string DPOF = "30060000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_AIFF
                     //   Audio file format
                     //   Device Services Format: FORMAT_AIFFFile
-                    public const string AIFF = "0x30070000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string AIFF = "30070000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_WAVE
                     //   Audio file format
                     //   Device Services Format: FORMAT_WAVFile
-                    public const string WAV = "0x30080000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string WAV = "30080000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_MP3
                     //   Audio file format
                     //   Device Services Format: FORMAT_MP3File
-                    public const string MP3 = "0x30090000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string MP3 = "30090000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_AVI
                     //   Video file format
                     //   Device Services Format: FORMAT_AVIFile
-                    public const string AVI = "0x300A0000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string AVI = "300A0000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_MPEG
                     //   Video file format
                     //   Device Services Format: FORMAT_MPEGFile
-                    public const string MPEG = "0x300B0000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string MPEG = "300B0000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_ASF
                     //   Video file format (Microsoft Advanced Streaming Format)
                     //   Device Services Format: FORMAT_ASFFile
-                    public const string ASF = "0x300C0000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string ASF = "300C0000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_EXIF
                     //   Image file format (Exchangeable File Format)-JEIDA standard
                     //   Device Services Format: FORMAT_EXIFImage
-                    public const string EXIF = "0x38010000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string EXIF = "38010000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_TIFFEP
                     //   Image file format (Tag Image File Format for Electronic Photography)
                     //   Device Services Format: FORMAT_TIFFEPImage
-                    public const string TIFFEP = "0x38020000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string TIFFEP = "38020000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_FLASHPIX
                     //   Image file format (Structured Storage Image Format)
                     //   Device Services Format: FORMAT_FlashPixImage
-                    public const string FlashPIX = "0x38030000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string FlashPIX = "38030000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_BMP
                     //   Image file format (Microsoft Windows Bitmap file)
                     //   Device Services Format: FORMAT_BMPImage
-                    public const string BMP = "0x38040000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string BMP = "38040000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_CIFF
                     //   Image file format (Canon Camera Image File Format)
                     //   Device Services Format: FORMAT_CIFFImage
-                    public const string CIFF = "0x38050000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string CIFF = "38050000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_GIF
                     //   Image file format (Graphics Interchange Format)
                     //   Device Services Format: FORMAT_GIFImage
-                    public const string GIF = "0x38070000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string GIF = "38070000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_JFIF
                     //   Image file format (JPEG Interchange Format)
                     //   Device Services Format: FORMAT_JFIFImage
-                    public const string JFIF = "0x38080000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string JFIF = "38080000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_PCD
                     //   Image file format (PhotoCD Image Pac)
                     //   Device Services Format: FORMAT_PCDImage
-                    public const string PCD = "0x38090000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string PCD = "38090000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_PICT
                     //   Image file format (Quickdraw Image Format)
                     //   Device Services Format: FORMAT_PICTImage
-                    public const string PICT = "0x380A0000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string PICT = "380A0000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_PNG
                     //   Image file format (Portable Network Graphics)
                     //   Device Services Format: FORMAT_PNGImage
-                    public const string PNG = "0x380B0000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string PNG = "380B0000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_TIFF
                     //   Image file format (Tag Image File Format)
                     //   Device Services Format: FORMAT_TIFFImage
-                    public const string TIFF = "0x380D0000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string TIFF = "380D0000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_TIFFIT
                     //   Image file format (Tag Image File Format for Informational Technology) Graphic Arts
                     //   Device Services Format: FORMAT_TIFFITImage
-                    public const string TIFFIT = "0x380E0000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string TIFFIT = "380E0000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_JP2
                     //   Image file format (JPEG2000 Baseline File Format)
                     //   Device Services Format: FORMAT_JP2Image
-                    public const string JP2 = "0x380F0000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string JP2 = "380F0000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_JPX
                     //   Image file format (JPEG2000 Extended File Format)
                     //   Device Services Format: FORMAT_JPXImage
-                    public const string JPX = "0x38100000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string JPX = "38100000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_WBMP
                     //   Image file format (Wireless Application Protocol Bitmap Format)
                     //   Device Services Format: FORMAT_WBMPImage
-                    public const string WBMP = "0xB8030000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string WBMP = "B8030000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_JPEGXR
                     //   Image file format (JPEG XR-also known as HD Photo)
                     //   Device Services Format: FORMAT_JPEGXRImage
-                    public const string JPEGXR = "0xB8040000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string JPEGXR = "B8040000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_WINDOWSIMAGEFORMAT
                     //   Image file format
                     //   Device Services Format: FORMAT_HDPhotoImage
-                    public const string WindowsImageFormat = "0xB8810000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string WindowsImageFormat = "B8810000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_WMA
                     //   Audio file format (Windows Media Audio)
                     //   Device Services Format: FORMAT_WMAFile
-                    public const string WMA = "0xB9010000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string WMA = "B9010000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_WMV
                     //   Video file format (Windows Media Video)
                     //   Device Services Format: FORMAT_WMVFile
-                    public const string WMV = "0xB9810000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string WMV = "B9810000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_WPLPLAYLIST
                     //   Playlist file format
                     //   Device Services Format: FORMAT_WPLPlaylist
-                    public const string WPLPlaylist = "0xBA100000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string WPLPlaylist = "BA100000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_M3UPLAYLIST
                     //   Playlist file format
                     //   Device Services Format: FORMAT_M3UPlaylist
-                    public const string M3UPlaylist = "0xBA110000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string M3UPlaylist = "BA110000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_MPLPLAYLIST
                     //   Playlist file format
                     //   Device Services Format: FORMAT_MPLPlaylist
-                    public const string MPLPlaylist = "0xBA120000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string MPLPlaylist = "BA120000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_ASXPLAYLIST
                     //   Playlist file format
                     //   Device Services Format: FORMAT_ASXPlaylist
-                    public const string ASXPlaylist = "0xBA130000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string ASXPlaylist = "BA130000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_PLSPLAYLIST
                     //   Playlist file format
                     //   Device Services Format: FORMAT_PSLPlaylist
-                    public const string PLSPlaylist = "0xBA140000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string PLSPlaylist = "BA140000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_ABSTRACT_CONTACT_GROUP
                     //   Generic format for contact group objects
                     //   Device Services Format: FORMAT_AbstractContactGroup
-                    public const string AbstractContactGroup = "0xBA060000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string AbstractContactGroup = "BA060000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_ABSTRACT_MEDIA_CAST
                     //   MediaCast file format
                     //   Device Services Format: FORMAT_AbstractMediacast
-                    public const string AbstractMediaCast = "0xBA0B0000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string AbstractMediaCast = "BA0B0000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_VCALENDAR1
                     //   VCALENDAR file format (VCALENDAR Version 1)
                     //   Device Services Format: FORMAT_VCalendar1
-                    public const string VCalendar1 = "0xBE020000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string VCalendar1 = "BE020000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_ICALENDAR
                     //   ICALENDAR file format (VCALENDAR Version 2)
                     //   Device Services Format: FORMAT_ICalendar
-                    public const string ICalendar = "0xBE030000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string ICalendar = "BE030000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_ABSTRACT_CONTACT
                     //   Abstract contact file format
                     //   Device Services Format: FORMAT_AbstractContact
-                    public const string AbstractContact = "0xBB810000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string AbstractContact = "BB810000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_VCARD2
                     //   VCARD file format (VCARD Version 2)
                     //   Device Services Format: FORMAT_VCard2Contact
-                    public const string VCard2 = "0xBB820000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string VCard2 = "BB820000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_VCARD3
                     //   VCARD file format (VCARD Version 3)
                     //   Device Services Format: FORMAT_VCard3Contact
-                    public const string VCard3 = "0xBB830000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string VCard3 = "BB830000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_XML
                     //   XML file format.
                     //   Device Services Format: FORMAT_XMLDocument
-                    public const string XML = "0xBA820000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string XML = "BA820000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_AAC
                     //   Audio file format
                     //   Device Services Format: FORMAT_AACFile
-                    public const string AAC = "0xB9030000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string AAC = "B9030000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_AUDIBLE
                     //   Audio file format
                     //   Device Services Format: FORMAT_AudibleFile
-                    public const string Audible = "0xB9040000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string Audible = "B9040000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_FLAC
                     //   Audio file format
                     //   Device Services Format: FORMAT_FLACFile
-                    public const string FLAC = "0xB9060000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string FLAC = "B9060000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_QCELP
                     //   Audio file format (Qualcomm Code Excited Linear Prediction)
                     //   Device Services Format: FORMAT_QCELPFile
-                    public const string QCELP = "0xB9070000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string QCELP = "B9070000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_AMR
                     //   Audio file format (Adaptive Multi-Rate audio codec)
                     //   Device Services Format: FORMAT_AMRFile
-                    public const string AMR = "0xB9080000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string AMR = "B9080000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_OGG
                     //   Audio file format
                     //   Device Services Format: FORMAT_OGGFile
-                    public const string OGG = "0xB9020000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string OGG = "B9020000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_MP4
                     //   Audio or Video file format
                     //   Device Services Format: FORMAT_MPEG4File
-                    public const string MP4 = "0xB9820000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string MP4 = "B9820000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_MP2
                     //   Audio or Video file format
                     //   Device Services Format: FORMAT_MPEG2File
-                    public const string MP2 = "0xB9830000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string MP2 = "B9830000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_MICROSOFT_WORD
                     //   Microsoft Office Word Document file format.
                     //   Device Services Format: FORMAT_WordDocument
-                    public const string MicrosoftWord = "0xBA830000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string MicrosoftWord = "BA830000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_MHT_COMPILED_HTML
                     //   MHT Compiled HTML Document file format.
                     //   Device Services Format: FORMAT_MHTDocument
-                    public const string MHTCompiledHTML = "0xBA840000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string MHTCompiledHTML = "BA840000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_MICROSOFT_EXCEL
                     //   Microsoft Office Excel Document file format.
                     //   Device Services Format: FORMAT_ExcelDocument
-                    public const string MicrosoftExcel = "0xBA850000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string MicrosoftExcel = "BA850000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_MICROSOFT_POWERPOINT
                     //   Microsoft Office PowerPoint Document file format.
                     //   Device Services Format: FORMAT_PowerPointDocument
-                    public const string MicrosoftPowerPoint = "0xBA860000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string MicrosoftPowerPoint = "BA860000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_3GP
                     //   Audio or Video file format
                     //   Device Services Format: FORMAT_3GPPFile
-                    public const string ThreeGP = "0xB9840000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string ThreeGP = "B9840000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_3G2
                     //   Audio or Video file format
                     //   Device Services Format: FORMAT_3GPP2File
-                    public const string ThreeG2 = "0xB9850000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string ThreeG2 = "B9850000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_AVCHD
                     //   Audio or Video file format
                     //   Device Services Format: FORMAT_AVCHDFile
-                    public const string AVCHD = "0xB9860000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string AVCHD = "B9860000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_ATSCTS
                     //   Audio or Video file format
                     //   Device Services Format: FORMAT_ATSCTSFile
-                    public const string ATSCTS = "0xB9870000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string ATSCTS = "B9870000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_DVBTS
                     //   Audio or Video file format
                     //   Device Services Format: FORMAT_DVBTSFile
-                    public const string DVBTS = "0xB9880000-0xAE6C-0x4804-0x98-0xBA-0xC5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string DVBTS = "B9880000-AE6C-4804-98BA-C57B46965FE7";
                     //
                     // WPD_OBJECT_FORMAT_MKV
                     //   Audio or Video file format
                     //   Device Services Format: FORMAT_MKVFile
-                    public const string MKV = "0xB9900000-0xAE6C-0x4804-0x98-0xBA-0xc5-0x7B-0x46-0x96-0x5F-0xE7";
+                    public const string MKV = "B9900000-AE6C-4804-98BA-c57B46965FE7";
 
                 }
 
@@ -1207,7 +1207,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
             /// <summary>
             /// All Commands-Parameters and Options associated with: WPD_CATEGORY_COMMON.
             /// </summary>
-            public const string Common = "0xF0422A9C-0x5DC8-0x4440-0xB5-0xBD-0x5D-0xF2-0x88-0x35-0x65-0x8A";
+            public const string Common = "F0422A9C-5DC8-4440-B5BD-5DF28835658A";
 
             public static class Object
 
@@ -1216,79 +1216,79 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
                 /// <summary>
                 /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_ENUMERATION. The commands in this category are used for basic object enumeration.
                 /// </summary>
-                public const string Enumeration = "0xB7474E91-0xE7F8-0x4AD9-0xB4-0x00-0xAD-0x1A-0x4B-0x58-0xEE-0xEC";
+                public const string Enumeration = "B7474E91-E7F8-4AD9-B400-AD1A4B58EEEC";
 
                 /// <summary>
                 /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_PROPERTIES. This category of commands is used to perform basic property operations such as Reading/Writing values-listing supported values and so on.
                 /// </summary>
-                public const string Properties = "0x9E5582E4-0x0814-0x44E6-0x98-0x1A-0xB2-0x99-0x8D-0x58-0x38-0x04";
+                public const string Properties = "9E5582E4-0814-44E6-981A-B2998D583804";
 
                 /// <summary>
                 /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_PROPERTIES_BULK. This category contains commands and properties for property operations across multiple objects.
                 /// </summary>
-                public const string PropertiesBulk = "0x11C824DD-0x04CD-0x4E4E-0x8C-0x7B-0xF6-0xEF-0xB7-0x94-0xD8-0x4E";
+                public const string PropertiesBulk = "11C824DD-04CD-4E4E-8C7B-F6EFB794D84E";
 
                 /// <summary>
                 /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_RESOURCES. The commands in this category are used for basic object resource enumeration and transfer.
                 /// </summary>
-                public const string Resources = "0xB3A2B22D-0xA595-0x4108-0xBE-0x0A-0xFC-0x3C-0x96-0x5F-0x3D-0x4A";
+                public const string Resources = "B3A2B22D-A595-4108-BE0A-FC3C965F3D4A";
 
                 /// <summary>
                 /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_MANAGEMENT. The commands specified in this category are used to Create/Delete objects on the device.
                 /// </summary>
-                public const string Management = "0xEF1E43DD-0xA9ED-0x4341-0x8B-0xCC-0x18-0x61-0x92-0xAE-0xA0-0x89";
+                public const string Management = "EF1E43DD-A9ED-4341-8BCC-186192AEA089";
 
             }
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_CAPABILITIES. This command category is used to query capabilities of the device.
             /// </summary>
-            public const string Capabilities = "0x0CABEC78-0x6B74-0x41C6-0x92-0x16-0x26-0x39-0xD1-0xFC-0xE3-0x56";
+            public const string Capabilities = "0CABEC78-6B74-41C6-9216-2639D1FCE356";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_STORAGE. This category is for commands and parameters for storage functional objects.
             /// </summary>
-            public const string Storage = "0xD8F907A6-0x34CC-0x45FA-0x97-0xFB-0xD0-0x07-0xFA-0x47-0xEC-0x94";
+            public const string Storage = "D8F907A6-34CC-45FA-97FB-D007FA47EC94";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SMS. The commands in this category relate to Short-Message-Service functionality-typically exposed on mobile phones.
             /// </summary>
-            public const string SMS = "0xAFC25D66-0xFE0D-0x4114-0x90-0x97-0x97-0x0C-0x93-0xE9-0x20-0xD1";
+            public const string SMS = "AFC25D66-FE0D-4114-9097-970C93E920D1";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_STILL_IMAGE_CAPTURE
             /// </summary>
-            public const string StillImageCapture = "0x4FCD6982-0x22A2-0x4B05-0xA4-0x8B-0x62-0xD3-0x8B-0xF2-0x7B-0x32";
+            public const string StillImageCapture = "4FCD6982-22A2-4B05-A48B-62D38BF27B32";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_MEDIA_CAPTURE
             /// </summary>
-            public const string MediaCapture = "0x59B433BA-0xFE44-0x4D8D-0x80-0x8C-0x6B-0xCB-0x9B-0x0F-0x15-0xE8";
+            public const string MediaCapture = "59B433BA-FE44-4D8D-808C-6BCB9B0F15E8";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_DEVICE_HINTS. The commands in this category relate to hints that a device can provide to improve end-user experience.
             /// </summary>
-            public const string DeviceHints = "0x0D5FB92B-0xCB46-0x4C4F-0x83-0x43-0x0B-0xC3-0xD3-0xF1-0x7C-0x84";
+            public const string DeviceHints = "0D5FB92B-CB46-4C4F-8343-0BC3D3F17C84";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_V1. The commands in this category relate to the WPD device class extension.
             /// </summary>
-            public const string ClassExtensionV1 = "0x33FB0D11-0x64A3-0x4FAC-0xB4-0xC7-0x3D-0xFE-0xAA-0x99-0xB0-0x51";
+            public const string ClassExtensionV1 = "33FB0D11-64A3-4FAC-B4C7-3DFEAA99B051";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_V2. The commands in this category relate to the WPD device class extension.
             /// </summary>
-            public const string ClassExtensionV2 = "0x7F0779B5-0xFA2B-0x4766-0x9C-0xB2-0xF7-0x3B-0xA3-0x0B-0x67-0x58";
+            public const string ClassExtensionV2 = "7F0779B5-FA2B-4766-9CB2-F73BA30B6758";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_NULL. This category is used exclusively for the NULL property key define.
             /// </summary>
-            public const string CategoryNull = "0x00000000-0x0000-0x0000-0x00-0x00-0x00-0x00-0x00-0x00-0x00-0x00";
+            public const string CategoryNull = "00000000-0000-0000-0000-000000000000";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_NETWORK_CONFIGURATION. The commands in this category are used for Network Association and WiFi Configuration.
             /// </summary>
-            public const string NetworkConfiguration = "0x78F9C6FC-0x79B8-0x473C-0x90-0x60-0x6B-0xD2-0x3D-0xD0-0x72-0xC4";
+            public const string NetworkConfiguration = "78F9C6FC-79B8-473C-9060-6BD23DD072C4";
 
             public static class Service
 
@@ -1297,17 +1297,17 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
                 /// <summary>
                 /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SERVICE_COMMON. The commands in this category relate to a device service.
                 /// </summary>
-                public const string Common = "0x322F071D-0x36EF-0x477F-0xB4-0xB5-0x6F-0x52-0xD7-0x34-0xBA-0xEE";
+                public const string Common = "322F071D-36EF-477F-B4B5-6F52D734BAEE";
 
                 /// <summary>
                 /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SERVICE_CAPABILITIES. The commands in this category relate to capabilities of a device service.
                 /// </summary>
-                public const string Capabilities = "0x24457E74-0x2E9F-0x44F9-0x8C-0x57-0x1D-0x1B-0xCB-0x17-0x0B-0x89";
+                public const string Capabilities = "24457E74-2E9F-44F9-8C57-1D1BCB170B89";
 
                 /// <summary>
                 /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SERVICE_METHODS. The commands in this category relate to methods of a device service.
                 /// </summary>
-                public const string Methods = "0x2D521CA8-0xC1B0-0x4268-0xA3-0x42-0xCF-0x19-0x32-0x15-0x69-0xBC";
+                public const string Methods = "2D521CA8-C1B0-4268-A342-CF19321569BC";
 
             }
 
@@ -1571,142 +1571,142 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell
         /// <summary>
         /// No particular content type has been detected or specified. This value is not supported in Windows 7 and later systems.
         /// </summary>
-        public const string NotSpecified = "0x5c4f28b5-0xf869-0x4e84-0x8e-0x60-0xf1-0x1d-0xb9-0x7c-0x5c-0xc7";
+        public const string NotSpecified = "5c4f28b5-f869-4e84-8e60-f11db97c5cc7";
 
         /// <summary>
         /// The folder is invalid. There are several things that can cause this judgement: hard disk errors-file system errors-and compression errors among them.
         /// </summary>
-        public const string Invalid = "0x57807898-0x8c4f-0x4462-0xbb-0x63-0x71-0x04-0x23-0x80-0xb1-0x09";
+        public const string Invalid = "57807898-8c4f-4462-bb63-71042380b109";
 
         /// <summary>
         /// The folder contains document files. These can be of mixed format.doc-.txt-and others.
         /// </summary>
-        public const string Documents = "0x7d49d726-0x3c21-0x4f05-0x99-0xaa-0xfd-0xc2-0xc9-0x47-0x46-0x56";
+        public const string Documents = "7d49d726-3c21-4f05-99aa-fdc2c9474656";
 
         /// <summary>
         /// Image files-such as .jpg-.tif-or .png files.
         /// </summary>
-        public const string Pictures = "0xb3690e58-0xe961-0x423b-0xb6-0x87-0x38-0x6e-0xbf-0xd8-0x32-0x39";
+        public const string Pictures = "b3690e58-e961-423b-b687-386ebfd83239";
 
         /// <summary>
         /// Windows 7 and later. The folder contains audio files-such as .mp3 and .wma files.
         /// </summary>
-        public const string Music = "0xaf9c03d6-0x7db9-0x4a15-0x94-0x64-0x13-0xbf-0x9f-0xb6-0x9a-0x2a";
+        public const string Music = "af9c03d6-7db9-4a15-9464-13bf9fb69a2a";
 
         /// <summary>
         /// A list of music files displayed in Icons view. This value is not supported in Windows 7 and later systems.
         /// </summary>
-        public const string MusicIcons = "0x0b7467fb-0x84ba-0x4aae-0xa0-0x9b-0x15-0xb7-0x10-0x97-0xaf-0x9e";
+        public const string MusicIcons = "0b7467fb-84ba-4aae-a09b-15b71097af9e";
 
         /// <summary>
         /// The folder is the Games folder found in the Start menu.
         /// </summary>
-        public const string Games = "0xb689b0d0-0x76d3-0x4cbb-0x87-0xf7-0x58-0x5d-0x0e-0x0c-0xe0-0x70";
+        public const string Games = "b689b0d0-76d3-4cbb-87f7-585d0e0ce070";
 
         /// <summary>
         /// The Control Panel in category view. This is a virtual folder.
         /// </summary>
-        public const string ControlPanelCategory = "0xde4f0660-0xfa10-0x4b8f-0xa4-0x94-0x06-0x8b-0x20-0xb2-0x23-0x07";
+        public const string ControlPanelCategory = "de4f0660-fa10-4b8f-a494-068b20b22307";
 
         /// <summary>
         /// The Control Panel in classic view. This is a virtual folder.
         /// </summary>
-        public const string ControlPanelClassic = "0x0c3794f3-0xb545-0x43aa-0xa3-0x29-0xc3-0x74-0x30-0xc5-0x8d-0x2a";
+        public const string ControlPanelClassic = "0c3794f3-b545-43aa-a329-c37430c58d2a";
 
         /// <summary>
         /// Printers that have been added to the system. This is a virtual folder.
         /// </summary>
-        public const string Printers = "0x2c7bbec6-0xc844-0x4a0a-0x91-0xfa-0xce-0xf6-0xf5-0x9c-0xfd-0xa1";
+        public const string Printers = "2c7bbec6-c844-4a0a-91fa-cef6f59cfda1";
 
         /// <summary>
         /// The Recycle Bin. This is a virtual folder.
         /// </summary>
-        public const string RecycleBin = "0xd6d9e004-0xcd87-0x442b-0x9d-0x57-0x5e-0x0a-0xeb-0x4f-0x6f-0x72";
+        public const string RecycleBin = "d6d9e004-cd87-442b-9d57-5e0aeb4f6f72";
 
         /// <summary>
         /// The software explorer window used by the Add or Remove Programs control panel icon.
         /// </summary>
-        public const string SoftwareExplorer = "0xd674391b-0x52d9-0x4e07-0x83-0x4e-0x67-0xc9-0x86-0x10-0xf3-0x9d";
+        public const string SoftwareExplorer = "d674391b-52d9-4e07-834e-67c98610f39d";
 
         /// <summary>
         /// The folder is a compressed archive-such as a compressed file with a .zip file name extension.
         /// </summary>
-        public const string CompressedFolder = "0x80213e82-0xbcfd-0x4c4f-0x88-0x17-0xbb-0x27-0x60-0x12-0x67-0xa9";
+        public const string CompressedFolder = "80213e82-bcfd-4c4f-8817-bb27601267a9";
 
         /// <summary>
         /// An e-mail-related folder that contains contact information.
         /// </summary>
-        public const string Contacts = "0xde2b70ec-0x9bf7-0x4a93-0xbd-0x3d-0x24-0x3f-0x78-0x81-0xd4-0x92";
+        public const string Contacts = "de2b70ec-9bf7-4a93-bd3d-243f7881d492";
 
         /// <summary>
         /// A default library view without a more specific template. This value is not supported in Windows 7 and later systems.
         /// </summary>
-        public const string Library = "0x4badfc68-0xc4ac-0x4716-0xa0-0xa0-0x4d-0x5d-0xaa-0x6b-0x0f-0x3e";
+        public const string Library = "4badfc68-c4ac-4716-a0a0-4d5daa6b0f3e";
 
         /// <summary>
         /// The Network Explorer folder.
         /// </summary>
-        public const string NetworkExplorer = "0x25cc242b-0x9a7c-0x4f51-0x80-0xe0-0x7a-0x29-0x28-0xfe-0xbe-0x42";
+        public const string NetworkExplorer = "25cc242b-9a7c-4f51-80e0-7a2928febe42";
 
         /// <summary>
         /// The folder is the FOLDERID_UsersFiles folder.
         /// </summary>
-        public const string UserFiles = "0xcd0fc69b-0x71e2-0x46e5-0x96-0x90-0x5b-0xcd-0x9f-0x57-0xaa-0xb3";
+        public const string UserFiles = "cd0fc69b-71e2-46e5-9690-5bcd9f57aab3";
 
         /// <summary>
         /// Windows 7 and later. The folder contains search results-but they are of mixed or no specific type.
         /// </summary>
-        public const string GenericSearchResults = "0x7fde1a1e-0x8b31-0x49a5-0x93-0xb8-0x6b-0xe1-0x4c-0xfa-0x49-0x43";
+        public const string GenericSearchResults = "7fde1a1e-8b31-49a5-93b8-6be14cfa4943";
 
         /// <summary>
         /// Windows 7 and later. The folder is a library-but of no specified type.
         /// </summary>
-        public const string GenericLibrary = "0x5f4eab9a-0x6833-0x4f61-0x89-0x9d-0x31-0xcf-0x46-0x97-0x9d-0x49";
+        public const string GenericLibrary = "5f4eab9a-6833-4f61-899d-31cf46979d49";
 
         /// <summary>
         /// Windows 7 and later. The folder contains video files. These can be of mixed format.wmv-.mov-and others.
         /// </summary>
-        public const string Videos = "0x5fa96407-0x7e77-0x483c-0xac-0x93-0x69-0x1d-0x05-0x85-0x0d-0xe8";
+        public const string Videos = "5fa96407-7e77-483c-ac93-691d05850de8";
 
         /// <summary>
         /// Windows 7 and later. The view shown when the user clicks the Windows Explorer button on the taskbar.
         /// </summary>
-        public const string UsersLibraries = "0xc4d98f09-0x6124-0x4fe0-0x99-0x42-0x82-0x64-0x16-0x8-0x2d-0xa9";
+        public const string UsersLibraries = "c4d98f09-6124-4fe0-9942-82641682da9";
 
         /// <summary>
         /// Windows 7 and later. The homegroup view.
         /// </summary>
-        public const string OtherUsers = "0xb337fd00-0x9dd5-0x4635-0xa6-0xd4-0xda-0x33-0xfd-0x10-0x2b-0x7a";
+        public const string OtherUsers = "b337fd00-9dd5-4635-a6d4-da33fd102b7a";
 
         /// <summary>
         /// Windows 7 and later. A folder that contains communication-related files such as e-mails-calendar information-and contact information.
         /// </summary>
-        public const string Communications = "0x91475fe5-0x586b-0x4eba-0x8d-0x75-0xd1-0x74-0x34-0xb8-0xcd-0xf6";
+        public const string Communications = "91475fe5-586b-4eba-8d75-d17434b8cdf6";
 
         /// <summary>
         /// Windows 7 and later. The folder contains recorded television broadcasts.
         /// </summary>
-        public const string RecordedTV = "0x5557a28f-0x5da6-0x4f83-0x88-0x09-0xc2-0xc9-0x8a-0x11-0xa6-0xfa";
+        public const string RecordedTV = "5557a28f-5da6-4f83-8809-c2c98a11a6fa";
 
         /// <summary>
         /// Windows 7 and later. The folder contains saved game states.
         /// </summary>
-        public const string SavedGames = "0xd0363307-0x28cb-0x4106-0x9f-0x23-0x29-0x56-0xe3-0xe5-0xe0-0xe7";
+        public const string SavedGames = "d0363307-28cb-4106-9f23-2956e3e5e0e7";
 
         /// <summary>
         /// Windows 7 and later. The folder contains federated search OpenSearch results.
         /// </summary>
-        public const string OpenSearch = "0x8faf9629-0x1980-0x46ff-0x80-0x23-0x9d-0xce-0xab-0x9c-0x3e-0xe3";
+        public const string OpenSearch = "8faf9629-1980-46ff-8023-9dceab9c3ee3";
 
         /// <summary>
         /// Windows 7 and later. Before you search.
         /// </summary>
-        public const string SearchConnector = "0x982725ee-0x6f47-0x479e-0xb4-0x47-0x81-0x2b-0xfa-0x7d-0x2e-0x8f";
+        public const string SearchConnector = "982725ee-6f47-479e-b447-812bfa7d2e8f";
 
         /// <summary>
         /// Windows 7 and later. A user's Searches folder-normally found at C:\Users\username\Searches.
         /// </summary>
-        public const string Searches = "0x0b0ba2e3-0x405f-0x415e-0xa6-0xee-0xca-0xd6-0x25-0x20-0x78-0x53";
+        public const string Searches = "0b0ba2e3-405f-415e-a6ee-cad625207853";
 
     }
 
@@ -1725,442 +1725,442 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers
         /// <summary>
         /// Computer
         /// </summary>
-        public const string Computer = "0x0AC0837C-0xBBF8-0x452A-0x85-0x0D-0x79-0xD0-0x8E-0x66-0x7C-0xA7";
+        public const string Computer = "0AC0837C-BBF8-452A-850D-79D08E667CA7";
 
         /// <summary>
         /// Conflicts
         /// </summary>
-        public const string Conflict = "0x4bfefb45-0x347d-0x4006-0xa5-0xbe-0xac-0x0c-0xb0-0x56-0x71-0x92";
+        public const string Conflict = "4bfefb45-347d-4006-a5be-ac0cb0567192";
 
         /// <summary>
         /// Control Panel
         /// </summary>
-        public const string ControlPanel = "0x82A74AEB-0xAEB4-0x465C-0xA0-0x14-0xD0-0x97-0xEE-0x34-0x6D-0x63";
+        public const string ControlPanel = "82A74AEB-AEB4-465C-A014-D097EE346D63";
 
         /// <summary>
         /// Desktop
         /// </summary>
-        public const string Desktop = "0xB4BFCC3A-0xDB2C-0x424C-0xB0-0x29-0x7F-0xE9-0x9A-0x87-0xC6-0x41";
+        public const string Desktop = "B4BFCC3A-DB2C-424C-B029-7FE99A87C641";
 
         /// <summary>
         /// Internet Explorer
         /// </summary>
-        public const string Internet = "0x4D9F7874-0x4E0C-0x4904-0x96-0x7B-0x40-0xB0-0xD2-0x0C-0x3E-0x4B";
+        public const string Internet = "4D9F7874-4E0C-4904-967B-40B0D20C3E4B";
 
         /// <summary>
         /// Network
         /// </summary>
-        public const string Network = "0xD20BEEC4-0x5CA8-0x4905-0xAE-0x3B-0xBF-0x25-0x1E-0xA0-0x9B-0x53";
+        public const string Network = "D20BEEC4-5CA8-4905-AE3B-BF251EA09B53";
 
         /// <summary>
         /// Printers
         /// </summary>
-        public const string Printers = "0x76FC4E2D-0xD6AD-0x4519-0xA6-0x63-0x37-0xBD-0x56-0x06-0x81-0x85";
+        public const string Printers = "76FC4E2D-D6AD-4519-A663-37BD56068185";
 
         /// <summary>
         /// Sync Center
         /// </summary>
-        public const string SyncManager = "0x43668BF8-0xC14E-0x49B2-0x97-0xC9-0x74-0x77-0x84-0xD7-0x84-0xB7";
+        public const string SyncManager = "43668BF8-C14E-49B2-97C9-747784D784B7";
 
         /// <summary>
         /// Network Connections
         /// </summary>
-        public const string Connections = "0x6F0CD92B-0x2E97-0x45D1-0x88-0xFF-0xB0-0xD1-0x86-0xB8-0xDE-0xDD";
+        public const string Connections = "6F0CD92B-2E97-45D1-88FF-B0D186B8DEDD";
 
         /// <summary>
         /// Sync Setup
         /// </summary>
-        public const string SyncSetup = "0xf214138-0xb1d3-0x4a90-0xbb-0xa9-0x27-0xcb-0xc0-0xc5-0x38-0x9a";
+        public const string SyncSetup = "f214138-b1d3-4a90-bba9-27cbc0c5389a";
 
         /// <summary>
         /// Sync Results
         /// </summary>
-        public const string SyncResults = "0x289a9a43-0xbe44-0x4057-0xa4-0x1b-0x58-0x7a-0x76-0xd7-0xe7-0xf9";
+        public const string SyncResults = "289a9a43-be44-4057-a41b-587a76d7e7f9";
 
         /// <summary>
         /// Recycle Bin
         /// </summary>
-        public const string RecycleBin = "0xB7534046-0x3ECB-0x4C18-0xBE-0x4E-0x64-0xCD-0x4C-0xB7-0xD6-0xAC";
+        public const string RecycleBin = "B7534046-3ECB-4C18-BE4E-64CD4CB7D6AC";
 
         /// <summary>
         /// Fonts
         /// </summary>
-        public const string Fonts = "0xFD228CB7-0xAE11-0x4AE3-0x86-0x4C-0x16-0xF3-0x91-0x0A-0xB8-0xFE";
+        public const string Fonts = "FD228CB7-AE11-4AE3-864C-16F3910AB8FE";
 
         /// <summary>
         /// Startup
         /// </summary>
-        public const string Startup = "0xB97D20BB-0xF46A-0x4C97-0xBA-0x10-0x5E-0x36-0x08-0x43-0x08-0x54";
+        public const string Startup = "B97D20BB-F46A-4C97-BA10-5E3608430854";
 
         /// <summary>
         /// Programs
         /// </summary>
-        public const string Programs = "0xA77F5D77-0x2E2B-0x44C3-0xA6-0xA2-0xAB-0xA6-0x01-0x05-0x4A-0x51";
+        public const string Programs = "A77F5D77-2E2B-44C3-A6A2-ABA601054A51";
 
         /// <summary>
         /// Start Menu
         /// </summary>
-        public const string StartMenu = "0x625B53C3-0xAB48-0x4EC1-0xBA-0x1F-0xA1-0xEF-0x41-0x46-0xFC-0x19";
+        public const string StartMenu = "625B53C3-AB48-4EC1-BA1F-A1EF4146FC19";
 
         /// <summary>
         /// Recent Items
         /// </summary>
-        public const string Recent = "0xAE50C081-0xEBD2-0x438A-0x86-0x55-0x8A-0x09-0x2E-0x34-0x98-0x7A";
+        public const string Recent = "AE50C081-EBD2-438A-8655-8A092E34987A";
 
         /// <summary>
         /// SendTo
         /// </summary>
-        public const string SendTo = "0x8983036C-0x27C0-0x404B-0x8F-0x08-0x10-0x2D-0x10-0xDC-0xFD-0x74";
+        public const string SendTo = "8983036C-27C0-404B-8F08-102D10DCFD74";
 
         /// <summary>
         /// Documents
         /// </summary>
-        public const string Documents = "0xFDD39AD0-0x238F-0x46AF-0xAD-0xB4-0x6C-0x85-0x48-0x03-0x69-0xC7";
+        public const string Documents = "FDD39AD0-238F-46AF-ADB4-6C85480369C7";
 
         /// <summary>
         /// Favorites
         /// </summary>
-        public const string Favorites = "0x1777F761-0x68AD-0x4D8A-0x87-0xBD-0x30-0xB7-0x59-0xFA-0x33-0xDD";
+        public const string Favorites = "1777F761-68AD-4D8A-87BD-30B759FA33DD";
 
         /// <summary>
         /// Network Shortcuts
         /// </summary>
-        public const string NetHood = "0xC5ABBF53-0xE17F-0x4121-0x89-0x00-0x86-0x62-0x6F-0xC2-0xC9-0x73";
+        public const string NetHood = "C5ABBF53-E17F-4121-8900-86626FC2C973";
 
         /// <summary>
         /// Printer Shortcuts
         /// </summary>
-        public const string PrintHood = "0x9274BD8D-0xCFD1-0x41C3-0xB3-0x5E-0xB1-0x3F-0x55-0xA7-0x58-0xF4";
+        public const string PrintHood = "9274BD8D-CFD1-41C3-B35E-B13F55A758F4";
 
         /// <summary>
         /// Templates
         /// </summary>
-        public const string Templates = "0xA63293E8-0x664E-0x48DB-0xA0-0x79-0xDF-0x75-0x9E-0x05-0x09-0xF7";
+        public const string Templates = "A63293E8-664E-48DB-A079-DF759E0509F7";
 
         /// <summary>
         /// Startup
         /// </summary>
-        public const string CommonStartup = "0x82A5EA35-0xD9CD-0x47C5-0x96-0x29-0xE1-0x5D-0x2F-0x71-0x4E-0x6E";
+        public const string CommonStartup = "82A5EA35-D9CD-47C5-9629-E15D2F714E6E";
 
         /// <summary>
         /// Programs
         /// </summary>
-        public const string CommonPrograms = "0x0139D44E-0x6AFE-0x49F2-0x86-0x90-0x3D-0xAF-0xCA-0xE6-0xFF-0xB8";
+        public const string CommonPrograms = "0139D44E-6AFE-49F2-8690-3DAFCAE6FFB8";
 
         /// <summary>
         /// Start Menu
         /// </summary>
-        public const string CommonStartMenu = "0xA4115719-0xD62E-0x491D-0xAA-0x7C-0xE7-0x4B-0x8B-0xE3-0xB0-0x67";
+        public const string CommonStartMenu = "A4115719-D62E-491D-AA7C-E74B8BE3B067";
 
         /// <summary>
         /// Public Desktop
         /// </summary>
-        public const string PublicDesktop = "0xC4AA340D-0xF20F-0x4863-0xAF-0xEF-0xF8-0x7E-0xF2-0xE6-0xBA-0x25";
+        public const string PublicDesktop = "C4AA340D-F20F-4863-AFEF-F87EF2E6BA25";
 
         /// <summary>
         /// ProgramData
         /// </summary>
-        public const string ProgramData = "0x62AB5D82-0xFDC1-0x4DC3-0xA9-0xDD-0x07-0x0D-0x1D-0x49-0x5D-0x97";
+        public const string ProgramData = "62AB5D82-FDC1-4DC3-A9DD-070D1D495D97";
 
         /// <summary>
         /// Templates
         /// </summary>
-        public const string CommonTemplates = "0xB94237E7-0x57AC-0x4347-0x91-0x51-0xB0-0x8C-0x6C-0x32-0xD1-0xF7";
+        public const string CommonTemplates = "B94237E7-57AC-4347-9151-B08C6C32D1F7";
 
         /// <summary>
         /// Public Documents
         /// </summary>
-        public const string PublicDocuments = "0xED4824AF-0xDCE4-0x45A8-0x81-0xE2-0xFC-0x79-0x65-0x08-0x36-0x34";
+        public const string PublicDocuments = "ED4824AF-DCE4-45A8-81E2-FC7965083634";
 
         /// <summary>
         /// Roaming
         /// </summary>
-        public const string RoamingAppData = "0x3EB685DB-0x65F9-0x4CF6-0xA0-0x3A-0xE3-0xEF-0x65-0x72-0x9F-0x3D";
+        public const string RoamingAppData = "3EB685DB-65F9-4CF6-A03A-E3EF65729F3D";
 
         /// <summary>
         /// Local
         /// </summary>
-        public const string LocalAppData = "0xF1B32785-0x6FBA-0x4FCF-0x9D-0x55-0x7B-0x8E-0x7F-0x15-0x70-0x91";
+        public const string LocalAppData = "F1B32785-6FBA-4FCF-9D55-7B8E7F157091";
 
         /// <summary>
         /// LocalLow
         /// </summary>
-        public const string LocalAppDataLow = "0xA520A1A4-0x1780-0x4FF6-0xBD-0x18-0x16-0x73-0x43-0xC5-0xAF-0x16";
+        public const string LocalAppDataLow = "A520A1A4-1780-4FF6-BD18-167343C5AF16";
 
         /// <summary>
         /// Temporary Internet Files
         /// </summary>
-        public const string InternetCache = "0x352481E8-0x33BE-0x4251-0xBA-0x85-0x60-0x07-0xCA-0xED-0xCF-0x9D";
+        public const string InternetCache = "352481E8-33BE-4251-BA85-6007CAEDCF9D";
 
         /// <summary>
         /// Cookies
         /// </summary>
-        public const string Cookies = "0x2B0F765D-0xC0E9-0x4171-0x90-0x8E-0x08-0xA6-0x11-0xB8-0x4F-0xF6";
+        public const string Cookies = "2B0F765D-C0E9-4171-908E-08A611B84FF6";
 
         /// <summary>
         /// History
         /// </summary>
-        public const string History = "0xD9DC8A3B-0xB784-0x432E-0xA7-0x81-0x5A-0x11-0x30-0xA7-0x59-0x63";
+        public const string History = "D9DC8A3B-B784-432E-A781-5A1130A75963";
 
         /// <summary>
         /// System32
         /// </summary>
-        public const string System = "0x1AC14E77-0x02E7-0x4E5D-0xB7-0x44-0x2E-0xB1-0xAE-0x51-0x98-0xB7";
+        public const string System = "1AC14E77-02E7-4E5D-B744-2EB1AE5198B7";
 
         /// <summary>
         /// System32
         /// </summary>
-        public const string SystemX86 = "0xD65231B0-0xB2F1-0x4857-0xA4-0xCE-0xA8-0xE7-0xC6-0xEA-0x7D-0x27";
+        public const string SystemX86 = "D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27";
 
         /// <summary>
         /// Windows
         /// </summary>
-        public const string Windows = "0xF38BF404-0x1D43-0x42F2-0x93-0x05-0x67-0xDE-0x0B-0x28-0xFC-0x23";
+        public const string Windows = "F38BF404-1D43-42F2-9305-67DE0B28FC23";
 
         /// <summary>
         /// The user's username (%USERNAME%"
         /// </summary>
-        public const string Profile = "0x5E6C858F-0x0E22-0x4760-0x9A-0xFE-0xEA-0x33-0x17-0xB6-0x71-0x73";
+        public const string Profile = "5E6C858F-0E22-4760-9AFE-EA3317B67173";
 
         /// <summary>
         /// Pictures
         /// </summary>
-        public const string Pictures = "0x33E28130-0x4E1E-0x4676-0x83-0x5A-0x98-0x39-0x5C-0x3B-0xC3-0xBB";
+        public const string Pictures = "33E28130-4E1E-4676-835A-98395C3BC3BB";
 
         /// <summary>
         /// Program Files
         /// </summary>
-        public const string ProgramFilesX86 = "0x7C5A40EF-0xA0FB-0x4BFC-0x87-0x4A-0xC0-0xF2-0xE0-0xB9-0xFA-0x8E";
+        public const string ProgramFilesX86 = "7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E";
 
         /// <summary>
         /// Common Files
         /// </summary>
-        public const string ProgramFilesCommonX86 = "0xDE974D24-0xD9C6-0x4D3E-0xBF-0x91-0xF4-0x45-0x51-0x20-0xB9-0x17";
+        public const string ProgramFilesCommonX86 = "DE974D24-D9C6-4D3E-BF91-F4455120B917";
 
         /// <summary>
         /// Program Files
         /// </summary>
-        public const string ProgramFilesX64 = "0x6d809377-0x6af0-0x444b-0x89-0x57-0xa3-0x77-0x3f-0x02-0x20-0x0e";
+        public const string ProgramFilesX64 = "6d809377-6af0-444b-8957-a3773f02200e";
 
         /// <summary>
         /// Common Files
         /// </summary>
-        public const string ProgramFilesCommonX64 = "0x6365d5a7-0xf0d-0x45e5-0x87-0xf6-0xd-0xa5-0x6b-0x6a-0x4f-0x7d";
+        public const string ProgramFilesCommonX64 = "6365d5a7-f0d-45e5-87f6-da56b6a4f7d";
 
         /// <summary>
         /// Program Files
         /// </summary>
-        public const string ProgramFiles = "0x905e63b6-0xc1bf-0x494e-0xb2-0x9c-0x65-0xb7-0x32-0xd3-0xd2-0x1a";
+        public const string ProgramFiles = "905e63b6-c1bf-494e-b29c-65b732d3d21a";
 
         /// <summary>
         /// Common Files
         /// </summary>
-        public const string ProgramFilesCommon = "0xF7F1ED05-0x9F6D-0x47A2-0xAA-0xAE-0x29-0xD3-0x17-0xC6-0xF0-0x66";
+        public const string ProgramFilesCommon = "F7F1ED05-9F6D-47A2-AAAE-29D317C6F066";
 
         /// <summary>
         /// Administrative Tools
         /// </summary>
-        public const string AdminTools = "0x724EF170-0xA42D-0x4FEF-0x9F-0x26-0xB6-0x0E-0x84-0x6F-0xBA-0x4F";
+        public const string AdminTools = "724EF170-A42D-4FEF-9F26-B60E846FBA4F";
 
         /// <summary>
         /// Administrative Tools
         /// </summary>
-        public const string CommonAdminTools = "0xD0384E7D-0xBAC3-0x4797-0x8F-0x14-0xCB-0xA2-0x29-0xB3-0x92-0xB5";
+        public const string CommonAdminTools = "D0384E7D-BAC3-4797-8F14-CBA229B392B5";
 
         /// <summary>
         /// Music
         /// </summary>
-        public const string Music = "0x4BD8D571-0x6D19-0x48D3-0xBE-0x97-0x42-0x22-0x20-0x08-0x0E-0x43";
+        public const string Music = "4BD8D571-6D19-48D3-BE97-422220080E43";
 
         /// <summary>
         /// Videos
         /// </summary>
-        public const string Videos = "0x18989B1D-0x99B5-0x455B-0x84-0x1C-0xAB-0x7C-0x74-0xE4-0xDD-0xFC";
+        public const string Videos = "18989B1D-99B5-455B-841C-AB7C74E4DDFC";
 
         /// <summary>
         /// Public Pictures
         /// </summary>
-        public const string PublicPictures = "0xB6EBFB86-0x6907-0x413C-0x9A-0xF7-0x4F-0xC2-0xAB-0xF0-0x7C-0xC5";
+        public const string PublicPictures = "B6EBFB86-6907-413C-9AF7-4FC2ABF07CC5";
 
         /// <summary>
         /// Public Music
         /// </summary>
-        public const string PublicMusic = "0x3214FAB5-0x9757-0x4298-0xBB-0x61-0x92-0xA9-0xDE-0xAA-0x44-0xFF";
+        public const string PublicMusic = "3214FAB5-9757-4298-BB61-92A9DEAA44FF";
 
         /// <summary>
         /// Public Videos
         /// </summary>
-        public const string PublicVideos = "0x2400183A-0x6185-0x49FB-0xA2-0xD8-0x4A-0x39-0x2A-0x60-0x2B-0xA3";
+        public const string PublicVideos = "2400183A-6185-49FB-A2D8-4A392A602BA3";
 
         /// <summary>
         /// Resources
         /// </summary>
-        public const string ResourceDir = "0x8AD10C31-0x2ADB-0x4296-0xA8-0xF7-0xE4-0x70-0x12-0x32-0xC9-0x72";
+        public const string ResourceDir = "8AD10C31-2ADB-4296-A8F7-E4701232C972";
 
         /// <summary>
         /// None
         /// </summary>
-        public const string LocalizedResourcesDir = "0x2A00375E-0x224C-0x49DE-0xB8-0xD1-0x44-0x0D-0xF7-0xEF-0x3D-0xDC";
+        public const string LocalizedResourcesDir = "2A00375E-224C-49DE-B8D1-440DF7EF3DDC";
 
         /// <summary>
         /// OEM Links
         /// </summary>
-        public const string CommonOEMLinks = "0xC1BAE2D0-0x10DF-0x4334-0xBE-0xDD-0x7A-0xA2-0x0B-0x22-0x7A-0x9D";
+        public const string CommonOEMLinks = "C1BAE2D0-10DF-4334-BEDD-7AA20B227A9D";
 
         /// <summary>
         /// Temporary Burn Folder
         /// </summary>
-        public const string CDBurning = "0x9E52AB10-0xF80D-0x49DF-0xAC-0xB8-0x43-0x30-0xF5-0x68-0x78-0x55";
+        public const string CDBurning = "9E52AB10-F80D-49DF-ACB8-4330F5687855";
 
         /// <summary>
         /// Users
         /// </summary>
-        public const string UserProfiles = "0x0762D272-0xC50A-0x4BB0-0xA3-0x82-0x69-0x7D-0xCD-0x72-0x9B-0x80";
+        public const string UserProfiles = "0762D272-C50A-4BB0-A382-697DCD729B80";
 
         /// <summary>
         /// Playlists
         /// </summary>
-        public const string Playlists = "0xDE92C1C7-0x837F-0x4F69-0xA3-0xBB-0x86-0xE6-0x31-0x20-0x4A-0x23";
+        public const string Playlists = "DE92C1C7-837F-4F69-A3BB-86E631204A23";
 
         /// <summary>
         /// Sample Playlists
         /// </summary>
-        public const string SamplePlaylists = "0x15CA69B3-0x30EE-0x49C1-0xAC-0xE1-0x6B-0x5E-0xC3-0x72-0xAF-0xB5";
+        public const string SamplePlaylists = "15CA69B3-30EE-49C1-ACE1-6B5EC372AFB5";
 
         /// <summary>
         /// Sample Music
         /// </summary>
-        public const string SampleMusic = "0xB250C668-0xF57D-0x4EE1-0xA6-0x3C-0x29-0x0E-0xE7-0xD1-0xAA-0x1F";
+        public const string SampleMusic = "B250C668-F57D-4EE1-A63C-290EE7D1AA1F";
 
         /// <summary>
         /// Sample Pictures
         /// </summary>
-        public const string SamplePictures = "0xC4900540-0x2379-0x4C75-0x84-0x4B-0x64-0xE6-0xFA-0xF8-0x71-0x6B";
+        public const string SamplePictures = "C4900540-2379-4C75-844B-64E6FAF8716B";
 
         /// <summary>
         /// Sample Videos
         /// </summary>
-        public const string SampleVideos = "0x859EAD94-0x2E85-0x48AD-0xA7-0x1A-0x09-0x69-0xCB-0x56-0xA6-0xCD";
+        public const string SampleVideos = "859EAD94-2E85-48AD-A71A-0969CB56A6CD";
 
         /// <summary>
         /// Slide Shows
         /// </summary>
-        public const string PhotoAlbums = "0x69D2CF90-0xFC33-0x4FB7-0x9A-0x0C-0xEB-0xB0-0xF0-0xFC-0xB4-0x3C";
+        public const string PhotoAlbums = "69D2CF90-FC33-4FB7-9A0C-EBB0F0FCB43C";
 
         /// <summary>
         /// Public
         /// </summary>
-        public const string Public = "0xDFDF76A2-0xC82A-0x4D63-0x90-0x6A-0x56-0x44-0xAC-0x45-0x73-0x85";
+        public const string Public = "DFDF76A2-C82A-4D63-906A-5644AC457385";
 
         /// <summary>
         /// Programs and Features
         /// </summary>
-        public const string ChangeRemovePrograms = "0xdf7266ac-0x9274-0x4867-0x8d-0x55-0x3b-0xd6-0x61-0xde-0x87-0x2d";
+        public const string ChangeRemovePrograms = "df7266ac-9274-4867-8d55-3bd661de872d";
 
         /// <summary>
         /// Installed Updates
         /// </summary>
-        public const string AppUpdates = "0xa305ce99-0xf527-0x492b-0x8b-0x1a-0x7e-0x76-0xfa-0x98-0xd6-0xe4";
+        public const string AppUpdates = "a305ce99-f527-492b-8b1a-7e76fa98d6e4";
 
         /// <summary>
         /// Get Programs
         /// </summary>
-        public const string AddNewPrograms = "0xde61d971-0x5ebc-0x4f02-0xa3-0xa9-0x6c-0x82-0x89-0x5e-0x5c-0x04";
+        public const string AddNewPrograms = "de61d971-5ebc-4f02-a3a9-6c82895e5c04";
 
         /// <summary>
         /// Downloads
         /// </summary>
-        public const string Downloads = "0x374de290-0x123f-0x4565-0x91-0x64-0x39-0xc4-0x92-0x5e-0x46-0x7b";
+        public const string Downloads = "374de290-123f-4565-9164-39c4925e467b";
 
         /// <summary>
         /// Public Downloads
         /// </summary>
-        public const string PublicDownloads = "0x3d644c9b-0x1fb8-0x4f30-0x9b-0x45-0xf6-0x70-0x23-0x5f-0x79-0xc0";
+        public const string PublicDownloads = "3d644c9b-1fb8-4f30-9b45-f670235f79c0";
 
         /// <summary>
         /// Searches
         /// </summary>
-        public const string SavedSearches = "0x7d1d3a04-0xdebb-0x4115-0x95-0xcf-0x2f-0x29-0xda-0x29-0x20-0xda";
+        public const string SavedSearches = "7d1d3a04-debb-4115-95cf-2f29da2920da";
 
         /// <summary>
         /// Quick Launch
         /// </summary>
-        public const string QuickLaunch = "0x52a4f021-0x7b75-0x48a9-0x9f-0x6b-0x4b-0x87-0xa2-0x10-0xbc-0x8f";
+        public const string QuickLaunch = "52a4f021-7b75-48a9-9f6b-4b87a210bc8f";
 
         /// <summary>
         /// Contacts
         /// </summary>
-        public const string Contacts = "0x56784854-0xc6cb-0x462b-0x81-0x69-0x88-0xe3-0x50-0xac-0xb8-0x82";
+        public const string Contacts = "56784854-c6cb-462b-8169-88e350acb882";
 
         /// <summary>
         /// Gadgets
         /// </summary>
-        public const string SidebarParts = "0xa75d362e-0x50fc-0x4fb7-0xac-0x2c-0xa8-0xbe-0xaa-0x31-0x44-0x93";
+        public const string SidebarParts = "a75d362e-50fc-4fb7-ac2c-a8beaa314493";
 
         /// <summary>
         /// Gadgets
         /// </summary>
-        public const string SidebarDefaultParts = "0x7b396e54-0x9ec5-0x4300-0xbe-0xa-0x24-0x82-0xeb-0xae-0x1a-0x26";
+        public const string SidebarDefaultParts = "7b396e54-9ec5-4300-bea-2482ebae1a26";
 
         /// <summary>
         /// Tree property value folder
         /// </summary>
-        public const string TreeProperties = "0x5b3749ad-0xb49f-0x49c1-0x83-0xeb-0x15-0x37-0x0f-0xbd-0x48-0x82";
+        public const string TreeProperties = "5b3749ad-b49f-49c1-83eb-15370fbd4882";
 
         /// <summary>
         /// GameExplorer
         /// </summary>
-        public const string PublicGameTasks = "0xdebf2536-0xe1a8-0x4c59-0xb6-0xa2-0x41-0x45-0x86-0x47-0x6a-0xea";
+        public const string PublicGameTasks = "debf2536-e1a8-4c59-b6a2-414586476aea";
 
         /// <summary>
         /// GameExplorer
         /// </summary>
-        public const string GameTasks = "0x54fae61-0x4dd8-0x4787-0x80-0xb6-0x9-0x2-0x20-0xc4-0xb7-0x0";
+        public const string GameTasks = "54fae61-4dd8-4787-80b6-9220c4b70";
 
         /// <summary>
         /// Saved Games
         /// </summary>
-        public const string SavedGames = "0x4c5c32ff-0xbb9d-0x43b0-0xb5-0xb4-0x2d-0x72-0xe5-0x4e-0xaa-0xa4";
+        public const string SavedGames = "4c5c32ff-bb9d-43b0-b5b4-2d72e54eaaa4";
 
         /// <summary>
         /// Games
         /// </summary>
-        public const string Games = "0xcac52c1a-0xb53d-0x4edc-0x92-0xd7-0x6b-0x2e-0x8a-0xc1-0x94-0x34";
+        public const string Games = "cac52c1a-b53d-4edc-92d7-6b2e8ac19434";
 
         /// <summary>
         /// Recorded TV
         /// </summary>
-        public const string RecordedTV = "0xbd85e001-0x112e-0x431e-0x98-0x3b-0x7b-0x15-0xac-0x09-0xff-0xf1";
+        public const string RecordedTV = "bd85e001-112e-431e-983b-7b15ac09fff1";
 
         /// <summary>
         /// Microsoft Office Outlook
         /// </summary>
-        public const string SearchMapi = "0x98ec0e18-0x2098-0x4d44-0x86-0x44-0x66-0x97-0x93-0x15-0xa2-0x81";
+        public const string SearchMapi = "98ec0e18-2098-4d44-8644-66979315a281";
 
         /// <summary>
         /// Offline Files
         /// </summary>
-        public const string SearchCsc = "0xee32e446-0x31ca-0x4aba-0x81-0x4f-0xa5-0xeb-0xd2-0xfd-0x6d-0x5e";
+        public const string SearchCsc = "ee32e446-31ca-4aba-814f-a5ebd2fd6d5e";
 
         /// <summary>
         /// Links
         /// </summary>
-        public const string Links = "0xbfb9d5e0-0xc6a9-0x404c-0xb2-0xb2-0xae-0x6d-0xb6-0xaf-0x49-0x68";
+        public const string Links = "bfb9d5e0-c6a9-404c-b2b2-ae6db6af4968";
 
         /// <summary>
         /// The user's full name (for instance-Jean Philippe Bagel" entered when the user account was created.
         /// </summary>
-        public const string UsersFiles = "0xf3ce0f7c-0x4901-0x4acc-0x86-0x48-0xd5-0xd4-0x4b-0x04-0xef-0x8f";
+        public const string UsersFiles = "f3ce0f7c-4901-4acc-8648-d5d44b04ef8f";
 
         /// <summary>
         /// Search home
         /// </summary>
-        public const string SearchHome = "0x190337d1-0xb8ca-0x4121-0xa6-0x39-0x6d-0x47-0x2d-0x16-0x97-0x2a";
+        public const string SearchHome = "190337d1-b8ca-4121-a639-6d472d16972a";
 
         /// <summary>
         /// Original Images
         /// </summary>
-        public const string OriginalImages = "0x2C36C0AA-0x5812-0x4b87-0xbf-0xd0-0x4c-0xd0-0xdf-0xb1-0x9b-0x39";
+        public const string OriginalImages = "2C36C0AA-5812-4b87-bfd0-4cd0dfb19b39";
 
         #endregion
 
@@ -2173,42 +2173,42 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers
             /// <summary>
             /// UserProgramFiles
             /// </summary>
-            public const string UserProgramFiles = "0x5cd7aee2-0x2219-0x4a67-0xb8-0x5d-0x6c-0x9c-0xe1-0x56-0x60-0xcb";
+            public const string UserProgramFiles = "5cd7aee2-2219-4a67-b85d-6c9ce15660cb";
 
             /// <summary>
             /// UserProgramFilesCommon
             /// </summary>
-            public const string UserProgramFilesCommon = "0xbcbd3057-0xca5c-0x4622-0xb4-0x2d-0xbc-0x56-0xdb-0x0a-0xe5-0x16";
+            public const string UserProgramFilesCommon = "bcbd3057-ca5c-4622-b42d-bc56db0ae516";
 
             /// <summary>
             /// Ringtones
             /// </summary>
-            public const string Ringtones = "0xC870044B-0xF49E-0x4126-0xA9-0xC3-0xB5-0x2A-0x1F-0xF4-0x11-0xE8";
+            public const string Ringtones = "C870044B-F49E-4126-A9C3-B52A1FF411E8";
 
             /// <summary>
             /// PublicRingtones
             /// </summary>
-            public const string PublicRingtones = "0xE555AB60-0x153B-0x4D17-0x9F-0x04-0xA5-0xFE-0x99-0xFC-0x15-0xEC";
+            public const string PublicRingtones = "E555AB60-153B-4D17-9F04-A5FE99FC15EC";
 
             /// <summary>
             /// UsersLibraries
             /// </summary>
-            public const string UsersLibraries = "0xa302545d-0xdeff-0x464b-0xab-0xe8-0x61-0xc8-0x64-0x8d-0x93-0x9b";
+            public const string UsersLibraries = "a302545d-deff-464b-abe8-61c8648d939b";
 
             /// <summary>
             /// DocumentsLibrary
             /// </summary>
-            public const string DocumentsLibrary = "0x7b0db17d-0x9cd2-0x4a93-0x97-0x33-0x46-0xcc-0x89-0x02-0x2e-0x7c";
+            public const string DocumentsLibrary = "7b0db17d-9cd2-4a93-9733-46cc89022e7c";
 
             /// <summary>
             /// MusicLibrary
             /// </summary>
-            public const string MusicLibrary = "0x2112ab0a-0xc86a-0x4ffe-0xa3-0x68-0xd-0xe9-0x6e-0x47-0x1-0x2e";
+            public const string MusicLibrary = "2112ab0a-c86a-4ffe-a368-de96e4712e";
 
             /// <summary>
             /// PicturesLibrary
             /// </summary>
-            public const string PicturesLibrary = "0xa990ae9f-0xa03b-0x4e80-0x94-0xbc-0x99-0x12-0xd7-0x50-0x41-0x4";
+            public const string PicturesLibrary = "a990ae9f-a03b-4e80-94bc-9912d750414";
 
             public const string CameraRollLibrary = "2b20df75-1eda-4039-8097-38798227d5b7";
 
@@ -2217,37 +2217,37 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers
             /// <summary>
             /// VideosLibrary
             /// </summary>
-            public const string VideosLibrary = "0x491e922f-0x5643-0x4af4-0xa7-0xeb-0x4e-0x7a-0x13-0x8d-0x81-0x74";
+            public const string VideosLibrary = "491e922f-5643-4af4-a7eb-4e7a138d8174";
 
             /// <summary>
             /// RecordedTVLibrary
             /// </summary>
-            public const string RecordedTVLibrary = "0x1a6fdba2-0xf42d-0x4358-0xa7-0x98-0xb7-0x4d-0x74-0x59-0x26-0xc5";
+            public const string RecordedTVLibrary = "1a6fdba2-f42d-4358-a798-b74d745926c5";
 
             /// <summary>
             /// OtherUsers
             /// </summary>
-            public const string OtherUsers = "0x52528a6b-0xb9e3-0x4add-0xb6-0xd-0x58-0x8c-0x2d-0xba-0x84-0x2d";
+            public const string OtherUsers = "52528a6b-b9e3-4add-b6d-588c2dba842d";
 
             /// <summary>
             /// DeviceMetadataStore
             /// </summary>
-            public const string DeviceMetadataStore = "0x5ce4a5e9-0xe4eb-0x479d-0xb8-0x9f-0x13-0x0c-0x02-0x88-0x61-0x55";
+            public const string DeviceMetadataStore = "5ce4a5e9-e4eb-479d-b89f-130c02886155";
 
             /// <summary>
             /// Libraries
             /// </summary>
-            public const string Libraries = "0x1b3ea5dc-0xb587-0x4786-0xb4-0xef-0xbd-0x1d-0xc3-0x32-0xae-0xae";
+            public const string Libraries = "1b3ea5dc-b587-4786-b4ef-bd1dc332aeae";
 
             /// <summary>
             /// UserPinned
             /// </summary>
-            public const string UserPinned = "0x9e3995ab-0x1f9c-0x4f13-0xb8-0x27-0x48-0xb2-0x4b-0x6c-0x71-0x74";
+            public const string UserPinned = "9e3995ab-1f9c-4f13-b827-48b24b6c7174";
 
             /// <summary>
             /// ImplicitAppShortcuts
             /// </summary>
-            public const string ImplicitAppShortcuts = "0xbcb5256f-0x79f6-0x4cee-0xb7-0x25-0xdc-0x34-0xe4-0x2-0xfd-0x46";
+            public const string ImplicitAppShortcuts = "bcb5256f-79f6-4cee-b725-dc34e42fd46";
 
             #endregion
 

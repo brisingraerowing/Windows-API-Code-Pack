@@ -5709,9 +5709,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.BatteryPlusCharging;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<byte?>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<byte?>;
                 }
@@ -5731,9 +5730,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.BatteryPlusChargingText;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<string>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<string>;
                 }
@@ -5753,9 +5751,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.Category;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<string[]>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<string[]>;
                 }
@@ -5775,9 +5772,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.CategoryGroup;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<string[]>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<string[]>;
                 }
@@ -5797,9 +5793,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.CategoryPlural;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<string[]>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<string[]>;
                 }
@@ -5819,9 +5814,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.ChargingState;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<byte?>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<byte?>;
                 }
@@ -5841,9 +5835,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.Connected;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<bool?>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<bool?>;
                 }
@@ -5863,9 +5856,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.ContainerId;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<IntPtr?>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<IntPtr?>;
                 }
@@ -5885,9 +5877,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.DefaultTooltip;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<string>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<string>;
                 }
@@ -5907,9 +5898,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.DeviceDescription1;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<string>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<string>;
                 }
@@ -5929,9 +5919,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.DeviceDescription2;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<string>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<string>;
                 }
@@ -5951,9 +5940,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.DiscoveryMethod;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<string[]>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<string[]>;
                 }
@@ -5973,9 +5961,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.FriendlyName;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<string>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<string>;
                 }
@@ -5995,9 +5982,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.FunctionPaths;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<string[]>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<string[]>;
                 }
@@ -6017,9 +6003,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.InterfacePaths;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<string[]>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<string[]>;
                 }
@@ -6039,9 +6024,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.IsDefault;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<bool?>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<bool?>;
                 }
@@ -6061,9 +6045,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.IsNetworkConnected;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<bool?>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<bool?>;
                 }
@@ -6083,9 +6066,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.IsShared;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<bool?>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<bool?>;
                 }
@@ -6105,9 +6087,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.IsSoftwareInstalling;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<bool?>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<bool?>;
                 }
@@ -6127,9 +6108,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.LaunchDeviceStageFromExplorer;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<bool?>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<bool?>;
                 }
@@ -6149,9 +6129,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.LocalMachine;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<bool?>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<bool?>;
                 }
@@ -6171,9 +6150,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.Manufacturer;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<string>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<string>;
                 }
@@ -6193,9 +6171,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.MissedCalls;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<byte?>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<byte?>;
                 }
@@ -6215,9 +6192,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.ModelName;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<string>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<string>;
                 }
@@ -6237,9 +6213,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.ModelNumber;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<string>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<string>;
                 }
@@ -6259,9 +6234,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.NetworkedTooltip;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<string>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<string>;
                 }
@@ -6281,9 +6255,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.NetworkName;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<string>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<string>;
                 }
@@ -6303,9 +6276,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.Devices.NetworkType;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<string>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<string>;
                 }
@@ -6697,9 +6669,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                 get
                 {
                     if (internalPropertyDevicesNotifications == null)
-                    {
+                    
                         internalPropertyDevicesNotifications = new PropertyDevicesNotifications(shellObjectParent);
-                    }
 
                     return internalPropertyDevicesNotifications;
                 }
@@ -6717,10 +6688,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             private readonly ShellObject shellObjectParent;
             private readonly Hashtable hashtable = new Hashtable();
 
-            internal PropertyDevicesNotifications(ShellObject parent)
-            {
-                shellObjectParent = parent;
-            }
+            internal PropertyDevicesNotifications(ShellObject parent) => shellObjectParent = parent;
 
             #region Properties
 
@@ -6868,10 +6836,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             private readonly ShellObject shellObjectParent;
             private readonly Hashtable hashtable = new Hashtable();
 
-            internal PropertySystemDocument(ShellObject parent)
-            {
-                shellObjectParent = parent;
-            }
+            internal PropertySystemDocument(ShellObject parent) => shellObjectParent = parent;
 
             #region Properties
 
@@ -7432,10 +7397,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             private readonly ShellObject shellObjectParent;
             private readonly Hashtable hashtable = new Hashtable();
 
-            internal PropertySystemDRM(ShellObject parent)
-            {
-                shellObjectParent = parent;
-            }
+            internal PropertySystemDRM(ShellObject parent) => shellObjectParent = parent;
 
             #region Properties
 
@@ -7561,10 +7523,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             private readonly ShellObject shellObjectParent;
             private readonly Hashtable hashtable = new Hashtable();
 
-            internal PropertySystemGPS(ShellObject parent)
-            {
-                shellObjectParent = parent;
-            }
+            internal PropertySystemGPS(ShellObject parent) => shellObjectParent = parent;
 
             #region Properties
 
@@ -7583,9 +7542,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.GPS.Altitude;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<double?>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<double?>;
                 }
@@ -7605,9 +7563,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.GPS.AltitudeDenominator;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<uint?>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<uint?>;
                 }
@@ -7627,9 +7584,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.GPS.AltitudeNumerator;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<uint?>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<uint?>;
                 }
@@ -7649,9 +7605,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.GPS.AltitudeRef;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<byte?>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<byte?>;
                 }
@@ -7671,9 +7626,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.GPS.AreaInformation;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<string>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<string>;
                 }
@@ -7693,9 +7647,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     PropertyKey key = Win32Native.Shell.PropertySystem.SystemProperties.System.GPS.Date;
 
                     if (!hashtable.ContainsKey(key))
-                    {
+                    
                         hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<DateTime?>(key));
-                    }
 
                     return hashtable[key] as ShellProperty<DateTime?>;
                 }
