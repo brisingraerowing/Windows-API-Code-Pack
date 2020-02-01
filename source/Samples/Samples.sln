@@ -83,7 +83,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkDemo", "NetworkDemo\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerMgmtDemo", "PowerMgmtDemo\CS\PowerMgmtDemo\PowerMgmtDemo.csproj", "{1767FA65-426B-4555-9049-01DB8DCEA5A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccelerationMeasurement", "Sensors\CS\AccelerationMeasurement\AccelerationMeasurement.csproj", "{3F23C7FA-1E3C-4FE1-A727-D204F54D3883}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccelerationMeasurement.Net4.7", "Sensors\CS\AccelerationMeasurement\AccelerationMeasurement.Net4.7.csproj", "{3F23C7FA-1E3C-4FE1-A727-D204F54D3883}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmbientLightMeasurement", "Sensors\CS\AmbientLightMeasurement\AmbientLightMeasurement.csproj", "{E17BF7BD-6E9A-49C6-AFA7-BF36458B5A17}"
 EndProject

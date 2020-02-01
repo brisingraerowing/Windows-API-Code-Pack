@@ -169,7 +169,7 @@
     </ProjectReference>
     <ProjectReference Include="..\RegistrationHelper\RegistrationHelper.csproj">
       <Project>{03F9F5A8-F3F4-499A-8B15-57ADBA5148CC}</Project>
-      <Name>RegistrationHelper %28Samples\CS\RegistrationHelper%29</Name>
+      <Name>RegistrationHelper</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

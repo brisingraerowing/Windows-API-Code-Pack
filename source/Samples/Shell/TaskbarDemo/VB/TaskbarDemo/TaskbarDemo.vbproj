@@ -176,7 +176,7 @@
     </ProjectReference>
     <ProjectReference Include="..\..\CS\RegistrationHelper\RegistrationHelper.csproj">
       <Project>{03F9F5A8-F3F4-499A-8B15-57ADBA5148CC}</Project>
-      <Name>RegistrationHelper %28Samples\CS\RegistrationHelper%29</Name>
+      <Name>RegistrationHelper</Name>
     </ProjectReference>
     <ProjectReference Include="..\RegistrationHelper\RegistrationHelper.vbproj">
       <Project>{A1AC4592-6309-492C-B0F1-C9241886718F}</Project>
