@@ -64,7 +64,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
         private void StorePropVariantValue(PropVariant propVar)
         {
-            var guid = new Guid( Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell. ShellIIDGuid.IPropertyStore);
+            var guid = new Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.ShellIIDGuid.IPropertyStore);
             IPropertyStore writablePropStore = null;
 
             try
@@ -219,14 +219,14 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                 }
 
                 if (ParentShellObject != null)
-                
+
                     using (ShellPropertyWriter propertyWriter = ParentShellObject.Properties.GetPropertyWriter())
                     {
                         propertyWriter.WriteProperty<T>(this, value, AllowSetTruncatedValue);
                     }
-                
+
                 else if (NativePropertyStore != null)
-                
+
                     throw new InvalidOperationException(LocalizedMessages.ShellPropertyCannotSetProperty);
             }
         }
@@ -338,9 +338,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         public void ClearValue()
         {
             using (var propVar = new PropVariant())
-            {
+
                 StorePropVariantValue(propVar);
-            }
         }
 
         /// <summary>
@@ -368,7 +367,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     else
 
                         _ = NativePropertyStore?.GetValue(ref propertyKey, propVar);
-                    
+
                     return propVar?.Value;
                 }
             }
@@ -396,9 +395,9 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             get
             {
                 if (!CoreHelpers.RunningOnWin7)
-                
+
                     throw new PlatformNotSupportedException(LocalizedMessages.ShellPropertyWindows7);
-                
+
                 GetImageReference();
 
                 return new IconReference(imageReferencePath, imageReferenceIconIndex ?? -1);

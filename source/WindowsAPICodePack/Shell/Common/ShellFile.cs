@@ -14,7 +14,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         #region Internal Constructor
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        private ShellFile(string path)
+        internal ShellFile(string path)
         {
             // Get the absolute path
             string absPath = ShellHelper.GetAbsolutePath(path);

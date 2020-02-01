@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using MS.WindowsAPICodePack.Internal;
-
+using MS.WindowsAPICodePack.Win32Native.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {

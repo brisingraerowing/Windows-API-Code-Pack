@@ -84,7 +84,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             // Otherwise, call the native PropertyStore method
 
             int result = PropertySystemNativeMethods.PSGetPropertyKeyFromName(canonicalName, out PropertyKey propKey);
-            
+
             return CoreErrorHelper.Succeeded(result) ? CreateTypedProperty(propKey) : throw new ArgumentException(
                     LocalizedMessages.ShellInvalidCanonicalName,
                     Marshal.GetExceptionForHR(result));
@@ -106,10 +106,10 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// </summary>
         protected virtual void Dispose(bool disposed)
         {
-            if (disposed && defaultPropertyCollection != null)
-            
-                defaultPropertyCollection.Dispose();
-                    }
+            if (disposed)
+
+                defaultPropertyCollection?.Dispose();
+        }
 
         ~ShellProperties()
         {

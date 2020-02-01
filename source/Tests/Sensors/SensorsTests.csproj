@@ -95,12 +95,6 @@
     <Compile Include="Sensors\UnknownSensorTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\WindowsAPICodePack\Sensors\Sensors.csproj">
-      <Project>{31421787-1A3C-427C-A8AD-C7E2561B2956}</Project>
-      <Name>Sensors</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>

@@ -4,6 +4,7 @@ using System.Windows.Media;
 using MS.WindowsAPICodePack.Internal;
 using System.Windows;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+using MS.WindowsAPICodePack.Win32Native.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
