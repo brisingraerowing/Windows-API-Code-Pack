@@ -126,12 +126,6 @@
     <None Include="Win32Native.snk" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Win32NativeGuids.Net4.7\Win32NativeConsts.Net4.7.csproj">
-      <Project>{fe2c0c65-e1d7-4431-91ca-ea041b2f8ec3}</Project>
-      <Name>Win32NativeConsts.Net4.7</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.8\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.8\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.8\analyzers\dotnet\cs\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll" />
