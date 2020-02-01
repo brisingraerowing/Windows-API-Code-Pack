@@ -10,7 +10,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Net
 {
     [ComImport]
     [TypeLibType((short)0x1040)]
-    [Guid(Guids.Core.Net.INetworkConnection)]
+    [Guid(Guids.Net.INetworkConnection)]
     public interface INetworkConnection
     {
         [return: MarshalAs(UnmanagedType.Interface)]

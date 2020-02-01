@@ -40,14 +40,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsPortableDevices.Net4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shell.Net4.7", "Shell.Net4.7\Shell.Net4.7.csproj", "{9DD9CF03-2D27-4868-8A8A-0727B8805188}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Win32NativeConsts", "Win32NativeConsts\Win32NativeConsts.shproj", "{29C2519C-BFF3-4667-A6D7-9200879F1B04}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win32NativeConsts.Net4.7", "Win32NativeConsts.Net4.7\Win32NativeConsts.Net4.7.csproj", "{FE2C0C65-E1D7-4431-91CA-EA041B2F8EC3}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Win32NativeConsts", "Win32NativeConsts\Win32NativeConsts.shproj", "{19C5A1C1-C3E0-4998-82B6-1AE4A6C234AE}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Win32NativeConsts\Win32NativeConsts.projitems*{19c5a1c1-c3e0-4998-82b6-1ae4a6c234ae}*SharedItemsImports = 13
 		WindowsPortableDevices\WindowsPortableDevices.projitems*{2945cb31-1559-4bd9-a7c4-64475eb0f33b}*SharedItemsImports = 4
-		Win32NativeConsts\Win32NativeGuids.projitems*{29c2519c-bff3-4667-a6d7-9200879f1b04}*SharedItemsImports = 13
 		Core\Core.projitems*{2e1fb0df-f9bb-4909-9f32-2d9d022a8e57}*SharedItemsImports = 4
 		Sensors\Sensors.projitems*{31421787-1a3c-427c-a8ad-c7e2561b2956}*SharedItemsImports = 4
 		Core\Core.projitems*{3c3964dd-26d2-4497-a8ee-aad7dc73a52d}*SharedItemsImports = 13

@@ -594,7 +594,7 @@ namespace MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem
 
         #endregion
 
-        #region public Properties
+        #region Public Properties
 
         /// <summary>
         /// Gets or sets the variant type.

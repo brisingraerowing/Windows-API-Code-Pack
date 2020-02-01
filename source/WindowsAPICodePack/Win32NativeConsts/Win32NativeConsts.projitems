@@ -3,10 +3,10 @@
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <SharedGUID>29c2519c-bff3-4667-a6d7-9200879f1b04</SharedGUID>
+    <SharedGUID>19c5a1c1-c3e0-4998-82b6-1ae4a6c234ae</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>Win32NativeGuids</Import_RootNamespace>
+    <Import_RootNamespace>Win32NativeConsts</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Consts.cs" />

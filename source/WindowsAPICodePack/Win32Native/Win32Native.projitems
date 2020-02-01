@@ -24,7 +24,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\NetworkList\INetworkListManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\NetworkList\NetworkListEnums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\NetworkList\NetworkListManagerClass.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\PowerManagement\PersonalityGuids.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PowerManagement\PowerManagementNativeMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\PowerManagement\PowerPersonality.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\GuidAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropertyChange.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropertyKey.cs" />
@@ -75,7 +77,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Shell\DesktopWindowManager\DesktopWindowManagerNativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Dialogs\DialogsCOMClasses.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Dialogs\DialogsCOMInterfaces.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Shell\ExplorerBrowser\ExplorerBrowserCOMGuids.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\ExplorerBrowser\ExplorerBrowserCOMInterfaces.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\ExplorerBrowser\ExplorerBrowserNativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\KnownFolders\DefinitionOptions.cs" />

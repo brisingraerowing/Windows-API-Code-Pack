@@ -6,6 +6,7 @@ using Microsoft.WindowsAPICodePack.Controls;
 using Microsoft.WindowsAPICodePack.Controls.WindowsForms;
 using Microsoft.WindowsAPICodePack.Win32Native.Controls;
 using Microsoft.WindowsAPICodePack.Win32Native;
+using static Microsoft.WindowsAPICodePack.Win32Native.Controls.ExplorerBrowserViewDispatchIds.Consts;
 
 namespace MS.WindowsAPICodePack.Internal
 {
@@ -62,9 +63,9 @@ namespace MS.WindowsAPICodePack.Internal
                     ref nullPtr);
 
                 if (hr != HResult.Ok)
-                
+
                     _ = Marshal.ReleaseComObject(viewDispatch);
-                            }
+            }
         }
 
         internal void DisconnectFromView()
@@ -92,25 +93,25 @@ namespace MS.WindowsAPICodePack.Internal
         /// <summary>
         /// The view selection has changed
         /// </summary>
-        [DispId(ExplorerBrowserViewDispatchIds.SelectionChanged)]
+        [DispId(SelectionChanged)]
         public void ViewSelectionChanged() => parent.FireSelectionChanged();
 
         /// <summary>
         /// The contents of the view have changed
         /// </summary>
-        [DispId(ExplorerBrowserViewDispatchIds.ContentsChanged)]
+        [DispId(ContentsChanged)]
         public void ViewContentsChanged() => parent.FireContentChanged();
 
         /// <summary>
         /// The enumeration of files in the view is complete
         /// </summary>
-        [DispId(ExplorerBrowserViewDispatchIds.FileListEnumDone)]
+        [DispId(FileListEnumDone)]
         public void ViewFileListEnumDone() => parent.FireContentEnumerationComplete();
 
         /// <summary>
         /// The selected item in the view has changed (not the same as the selection has changed)
         /// </summary>
-        [DispId(ExplorerBrowserViewDispatchIds.SelectedItemChanged)]
+        [DispId(SelectedItemChanged)]
         public void ViewSelectedItemChanged() => parent.FireSelectedItemChanged();
         #endregion
 
@@ -140,10 +141,9 @@ namespace MS.WindowsAPICodePack.Internal
         protected virtual void Dispose(bool disposed)
         {
             if (disposed)
-            {
+            
                 DisconnectFromView();
-            }
-        }
+                    }
 
         #endregion
     }

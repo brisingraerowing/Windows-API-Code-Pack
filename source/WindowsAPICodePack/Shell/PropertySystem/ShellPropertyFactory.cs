@@ -19,7 +19,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
     internal static class ShellPropertyFactory
     {
         // Constructor cache.  It takes object as the third param so a single function will suffice for both constructors.
-        private static Dictionary<int, Func<PropertyKey, ShellPropertyDescription, object, IShellProperty>> _storeCache
+        private static readonly Dictionary<int, Func<PropertyKey, ShellPropertyDescription, object, IShellProperty>> _storeCache
             = new Dictionary<int, Func<PropertyKey, ShellPropertyDescription, object, IShellProperty>>();
 
         /// <summary>
@@ -50,8 +50,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             // The hash for the function is based off the generic type and which type (constructor) we're using.
             int hash = GetTypeHash(type, thirdType);
 
-            Func<PropertyKey, ShellPropertyDescription, object, IShellProperty> ctor;
-            if (!_storeCache.TryGetValue(hash, out ctor))
+            if (!_storeCache.TryGetValue(hash, out Func<PropertyKey, ShellPropertyDescription, object, IShellProperty> ctor))
             {
                 Type[] argTypes = { typeof(PropertyKey), typeof(ShellPropertyDescription), thirdType };
                 ctor = ExpressConstructor(type, argTypes);
@@ -95,7 +94,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             int hash = 0;
             foreach (Type type in types)
 
-                hash = hash * 31 + type.GetHashCode();
+                hash = (hash * 31) + type.GetHashCode();
 
             return hash;
         }

@@ -295,7 +295,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
 
                 try
                 {
-                    return PowerPersonalityGuids.GuidToEnum(guid);
+                    return PowerPersonalityGuids.GuidToEnum(guid.ToString());
                 }
                 finally
                 {
