@@ -339,7 +339,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
         void OnShareViolation(
             [In, MarshalAs(UnmanagedType.Interface)] IFileDialog pfd,
             [In, MarshalAs(UnmanagedType.Interface)] IShellItem psi,
-            out ShellNativeMethods.FileDialogEventShareViolationResponse pResponse);
+            out FileDialogEventShareViolationResponse pResponse);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void OnTypeChange([In, MarshalAs(UnmanagedType.Interface)] IFileDialog pfd);
@@ -347,7 +347,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void OnOverwrite([In, MarshalAs(UnmanagedType.Interface)] IFileDialog pfd,
             [In, MarshalAs(UnmanagedType.Interface)] IShellItem psi,
-            out ShellNativeMethods.FileDialogEventOverwriteResponse pResponse);
+            out FileDialogEventOverwriteResponse pResponse);
     }
 
     [ComImport,
