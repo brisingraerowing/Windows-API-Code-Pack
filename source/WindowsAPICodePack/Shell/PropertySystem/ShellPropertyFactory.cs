@@ -50,8 +50,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             // The hash for the function is based off the generic type and which type (constructor) we're using.
             int hash = GetTypeHash(type, thirdType);
 
-            Func<PropertyKey, ShellPropertyDescription, object, IShellProperty> ctor;
-            if (!_storeCache.TryGetValue(hash, out ctor))
+            if (!_storeCache.TryGetValue(hash, out Func<PropertyKey, ShellPropertyDescription, object, IShellProperty> ctor))
             {
                 Type[] argTypes = { typeof(PropertyKey), typeof(ShellPropertyDescription), thirdType };
                 ctor = ExpressConstructor(type, argTypes);
@@ -74,7 +73,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
             if (ctorInfo == null)
 
-                throw new ArgumentException(LocalizedMessages.ShellPropertyFactoryConstructorNotFound, "type");
+                throw new ArgumentException(LocalizedMessages.ShellPropertyFactoryConstructorNotFound, nameof(type));
 
             ParameterExpression key = Expression.Parameter(argTypes[0], "propKey");
             ParameterExpression desc = Expression.Parameter(argTypes[1], "desc");
@@ -95,7 +94,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             int hash = 0;
             foreach (Type type in types)
 
-                hash = hash * 31 + type.GetHashCode();
+                hash = (hash * 31) + type.GetHashCode();
 
             return hash;
         }

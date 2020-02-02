@@ -190,9 +190,6 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             GC.SuppressFinalize(this);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         ~ShellPropertyWriter()
         {
             Dispose(false);
@@ -216,7 +213,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 writablePropStore.Commit();
 
-                Marshal.ReleaseComObject(writablePropStore);
+                _ = Marshal.ReleaseComObject(writablePropStore);
                 writablePropStore = null;
             }
 

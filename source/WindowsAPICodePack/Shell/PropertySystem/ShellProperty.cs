@@ -83,7 +83,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
                 if (!AllowSetTruncatedValue && (int)result == ShellNativeMethods.InPlaceStringTruncated)
 
-                    throw new ArgumentOutOfRangeException("propVar", LocalizedMessages.ShellPropertyValueTruncated);
+                    throw new ArgumentOutOfRangeException(nameof(propVar), LocalizedMessages.ShellPropertyValueTruncated);
 
                 if (!CoreErrorHelper.Succeeded(result))
 
@@ -183,7 +183,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
                     else if (NativePropertyStore != null)
 
-                        NativePropertyStore.GetValue(ref propertyKey, propVar);
+                        _ = NativePropertyStore.GetValue(ref propertyKey, propVar);
 
                     //Get the value
                     return propVar.Value != null ? (T)propVar.Value : default;
@@ -195,12 +195,11 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                 Debug.Assert(ValueType == Win32Native.Shell.PropertySystem.ShellPropertyFactory.VarEnumToSystemType(Description.VarEnumType));
 
                 if (typeof(T) != ValueType)
-                {
+                
                     throw new NotSupportedException(
                         string.Format(System.Globalization.CultureInfo.InvariantCulture,
                         LocalizedMessages.ShellPropertyWrongType, ValueType.Name));
-                }
-
+                
                 if (value is Nullable)
                 {
                     Type t = typeof(T);
@@ -221,10 +220,9 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                 if (ParentShellObject != null)
 
                     using (ShellPropertyWriter propertyWriter = ParentShellObject.Properties.GetPropertyWriter())
-                    {
+                    
                         propertyWriter.WriteProperty<T>(this, value, AllowSetTruncatedValue);
-                    }
-
+                    
                 else if (NativePropertyStore != null)
 
                     throw new InvalidOperationException(LocalizedMessages.ShellPropertyCannotSetProperty);

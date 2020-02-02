@@ -17,11 +17,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         private PropEnumType? enumType;
         private object minValue, setValue, enumerationValue;
 
-        private IPropertyEnumType NativePropertyEnumType
-        {
-            set;
-            get;
-        }
+        private IPropertyEnumType NativePropertyEnumType { get; set; }
 
         #endregion
 
@@ -41,9 +37,9 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             get
             {
                 if (displayText == null)
-                
+
                     NativePropertyEnumType.GetDisplayText(out displayText);
-                
+
                 return displayText;
             }
         }
@@ -72,13 +68,13 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             get
             {
                 if (minValue == null)
-                
-                    using (PropVariant propVar = new PropVariant())
+
+                    using (var propVar = new PropVariant())
                     {
                         NativePropertyEnumType.GetRangeMinValue(propVar);
                         minValue = propVar.Value;
                     }
-                
+
                 return minValue;
 
             }
@@ -92,13 +88,13 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             get
             {
                 if (setValue == null)
-                
-                    using (PropVariant propVar = new PropVariant())
+
+                    using (var propVar = new PropVariant())
                     {
                         NativePropertyEnumType.GetRangeSetValue(propVar);
                         setValue = propVar.Value;
                     }
-                
+
                 return setValue;
 
             }
@@ -112,13 +108,13 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             get
             {
                 if (enumerationValue == null)
-                
-                    using (PropVariant propVar = new PropVariant())
+
+                    using (var propVar = new PropVariant())
                     {
                         NativePropertyEnumType.GetValue(propVar);
                         enumerationValue = propVar.Value;
                     }
-                
+
                 return enumerationValue;
             }
         }

@@ -43,7 +43,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         public ShellPropertyCollection(ShellObject parent)
             : base(new List<IShellProperty>())
         {
-            ParentShellObject = parent;
+            ParentShellObject = parent ?? throw new ArgumentNullException(nameof(parent));
             IPropertyStore nativePropertyStore = null;
             try
             {

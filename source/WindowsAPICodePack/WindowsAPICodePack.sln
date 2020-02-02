@@ -47,7 +47,6 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		WindowsPortableDevices\WindowsPortableDevices.projitems*{2945cb31-1559-4bd9-a7c4-64475eb0f33b}*SharedItemsImports = 4
-		Win32NativeConsts\Win32NativeGuids.projitems*{29c2519c-bff3-4667-a6d7-9200879f1b04}*SharedItemsImports = 13
 		Core\Core.projitems*{2e1fb0df-f9bb-4909-9f32-2d9d022a8e57}*SharedItemsImports = 4
 		Sensors\Sensors.projitems*{31421787-1a3c-427c-a8ad-c7e2561b2956}*SharedItemsImports = 4
 		Core\Core.projitems*{3c3964dd-26d2-4497-a8ee-aad7dc73a52d}*SharedItemsImports = 13
