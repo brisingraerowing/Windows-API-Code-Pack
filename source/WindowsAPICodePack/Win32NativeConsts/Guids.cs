@@ -742,51 +742,51 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
                 /// </summary>
                 public const string All = "80E170D2-1055-4A3E-B952-82CC4F8A8689";
 
-            /// <summary>
-            /// This class defines all WPD Functional Categories
-            /// </summary>
-            public static class FunctionalCategory
+                /// <summary>
+                /// This class defines all WPD Functional Categories
+                /// </summary>
+                public static class FunctionalCategory
 
-            {
+                {
 
-                //
-                // WPD_FUNCTIONAL_CATEGORY_DEVICE
-                // Used for the device object-which is always the top-most object of the device. 
-                public const string Device = "08EA466B-E3A4-4336-A1F3-A44D2B5C438C";
-                //
-                // WPD_FUNCTIONAL_CATEGORY_STORAGE
-                // Indicates this object encapsulates storage functionality on the device (e.g. memory cards-internal memory) 
-                public const string Storage = "23F05BBC-15DE-4C2A-A55B-A9AF5CE412EF";
-                //
-                // WPD_FUNCTIONAL_CATEGORY_STILL_IMAGE_CAPTURE
-                // Indicates this object encapsulates still image capture functionality on the device (e.g. camera or camera attachment) 
-                public const string StillImageCapture = "613CA327-AB93-4900-B4FA-895BB5874B79";
-                //
-                // WPD_FUNCTIONAL_CATEGORY_AUDIO_CAPTURE
-                // Indicates this object encapsulates audio capture functionality on the device (e.g. voice recorder or other audio recording component) 
-                public const string AudioCapture = "3F2A1919-C7C2-4A00-855D-F57CF06DEBBB";
-                //
-                // WPD_FUNCTIONAL_CATEGORY_VIDEO_CAPTURE
-                // Indicates this object encapsulates video capture functionality on the device (e.g. video recorder or video recording component) 
-                public const string VideoCapture = "E23E5F6B-7243-43AA-8DF1-0EB3D968A918";
-                //
-                // WPD_FUNCTIONAL_CATEGORY_SMS
-                // Indicates this object encapsulates SMS sending functionality on the device (not the receiving or saved SMS messages since those are represented as content objects on the device) 
-                public const string SMS = "0044A0B1-C1E9-4AFD-B358-A62C6117C9CF";
-                //
-                // WPD_FUNCTIONAL_CATEGORY_RENDERING_INFORMATION
-                // Indicates this object provides information about the rendering characteristics of the device. 
-                public const string RenderingInformation = "08600BA4-A7BA-4A01-AB0E-0065D0A356D3";
-                //
-                // WPD_FUNCTIONAL_CATEGORY_NETWORK_CONFIGURATION
-                // Indicates this object encapsulates network configuration functionality on the device (e.g. WiFi Profiles-Partnerships). 
-                public const string NetworkConfiguration = "48F4DB72-7C6A-4AB0-9E1A-470E3CDBF26A";
-                //
-                // WPD_FUNCTIONAL_CATEGORY_ALL
-                // This functional category is only valid as a parameter to API functions and driver commands. It should not be reported as a supported functional category by the driver. 
-                public const string All = "2D8A6512-A74C-448E-BA8A-F4AC07C49399";
+                    //
+                    // WPD_FUNCTIONAL_CATEGORY_DEVICE
+                    // Used for the device object-which is always the top-most object of the device. 
+                    public const string Device = "08EA466B-E3A4-4336-A1F3-A44D2B5C438C";
+                    //
+                    // WPD_FUNCTIONAL_CATEGORY_STORAGE
+                    // Indicates this object encapsulates storage functionality on the device (e.g. memory cards-internal memory) 
+                    public const string Storage = "23F05BBC-15DE-4C2A-A55B-A9AF5CE412EF";
+                    //
+                    // WPD_FUNCTIONAL_CATEGORY_STILL_IMAGE_CAPTURE
+                    // Indicates this object encapsulates still image capture functionality on the device (e.g. camera or camera attachment) 
+                    public const string StillImageCapture = "613CA327-AB93-4900-B4FA-895BB5874B79";
+                    //
+                    // WPD_FUNCTIONAL_CATEGORY_AUDIO_CAPTURE
+                    // Indicates this object encapsulates audio capture functionality on the device (e.g. voice recorder or other audio recording component) 
+                    public const string AudioCapture = "3F2A1919-C7C2-4A00-855D-F57CF06DEBBB";
+                    //
+                    // WPD_FUNCTIONAL_CATEGORY_VIDEO_CAPTURE
+                    // Indicates this object encapsulates video capture functionality on the device (e.g. video recorder or video recording component) 
+                    public const string VideoCapture = "E23E5F6B-7243-43AA-8DF1-0EB3D968A918";
+                    //
+                    // WPD_FUNCTIONAL_CATEGORY_SMS
+                    // Indicates this object encapsulates SMS sending functionality on the device (not the receiving or saved SMS messages since those are represented as content objects on the device) 
+                    public const string SMS = "0044A0B1-C1E9-4AFD-B358-A62C6117C9CF";
+                    //
+                    // WPD_FUNCTIONAL_CATEGORY_RENDERING_INFORMATION
+                    // Indicates this object provides information about the rendering characteristics of the device. 
+                    public const string RenderingInformation = "08600BA4-A7BA-4A01-AB0E-0065D0A356D3";
+                    //
+                    // WPD_FUNCTIONAL_CATEGORY_NETWORK_CONFIGURATION
+                    // Indicates this object encapsulates network configuration functionality on the device (e.g. WiFi Profiles-Partnerships). 
+                    public const string NetworkConfiguration = "48F4DB72-7C6A-4AB0-9E1A-470E3CDBF26A";
+                    //
+                    // WPD_FUNCTIONAL_CATEGORY_ALL
+                    // This functional category is only valid as a parameter to API functions and driver commands. It should not be reported as a supported functional category by the driver. 
+                    public const string All = "2D8A6512-A74C-448E-BA8A-F4AC07C49399";
 
-            }
+                }
 
             }
 
@@ -1380,12 +1380,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
 
     }
 
-}
-
-namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.Core
-
-{
-
     public static class COM
 
     {
@@ -1403,6 +1397,33 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.Core
         public const string INetworkListManager = "DCB00000-570F-4A9B-8D69-199FDBA5723B";
         public const string NetworkListManagerClass = "DCB00C01-570F-4A9B-8D69-199FDBA5723B";
 
+    }
+
+}
+
+namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.ApplicationServices
+
+{
+    public static class PowerPersonalityGuids
+    {
+
+        public const string HighPerformance = "8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c";
+        public const string PowerSaver = "a1841308-3541-4fab-bc81-f71556f20b4a";
+        public const string Automatic = "381b4222-f694-41f0-9685-ff5bb260df2e";
+
+        public const string All = "68A1E95E-13EA-41E1-8011-0C496CA490B0";
+
+    }
+
+}
+
+namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
+
+{
+    public static class Taskbar
+    {
+        public const string IObjectArray = "92CA9DCD-5622-4BBA-A805-5E9F541BD8C9";
+        public const string IUnknown = "00000000-0000-0000-C000-000000000046";
     }
 
 }
@@ -1709,6 +1730,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell
         public const string Searches = "0b0ba2e3-405f-415e-a6ee-cad625207853";
 
     }
+
 
 }
 
@@ -2255,6 +2277,48 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers
 
     }
 
+}
+
+namespace Microsoft.WindowsAPICodePack.Win32Native.Controls
+{
+    public static class ExplorerBrowserIIDGuid
+    {
+        // IID GUID strings for relevant Shell COM interfaces.
+        public const string IExplorerBrowser = "DFD3B6B5-C10C-4BE9-85F6-A66969F402F6";
+        public const string IKnownFolderManager = "8BE2D872-86AA-4d47-B776-32CCA40C7018";
+        public const string IFolderView = "cde725b0-ccc9-4519-917e-325d72fab4ce";
+        public const string IFolderView2 = "1af3a467-214f-4298-908e-06b03e0b39f9";
+        public const string IServiceProvider = "6d5140c1-7436-11ce-8034-00aa006009fa";
+        public const string IExplorerPaneVisibility = "e07010ec-bc17-44c0-97b0-46c7c95b9edc";
+        public const string IExplorerBrowserEvents = "361bbdc7-e6ee-4e13-be58-58e2240c810f";
+        public const string IInputObject = "68284fAA-6A48-11D0-8c78-00C04fd918b4";
+        public const string IShellView = "000214E3-0000-0000-C000-000000000046";
+        public const string IDispatch = "00020400-0000-0000-C000-000000000046";
+        public const string DShellFolderViewEvents = "62112AA2-EBE4-11cf-A5FB-0020AFE7292D";
+
+        public const string ICommDlgBrowser = "000214F1-0000-0000-C000-000000000046";
+        public const string ICommDlgBrowser2 = "10339516-2894-11d2-9039-00C04F8EEB3E";
+        public const string ICommDlgBrowser3 = "c8ad25a1-3294-41ee-8165-71174bd01c57";
+
+    }
+
+    public static class ExplorerBrowserViewPanes
+    {
+        public const string Navigation = "cb316b22-25f7-42b8-8a09-540d23a43c2f";
+        public const string Commands = "d9745868-ca5f-4a76-91cd-f5a129fbb076";
+        public const string CommandsOrganize = "72e81700-e3ec-4660-bf24-3c3b7b648806";
+        public const string CommandsView = "21f7c32d-eeaa-439b-bb51-37b96fd6a943";
+        public const string Details = "43abf98b-89b8-472d-b9ce-e69b8229f019";
+        public const string Preview = "893c63d1-45c8-4d17-be19-223be71be365";
+        public const string Query = "65bcde4f-4f07-4f27-83a7-1afca4df7ddd";
+        public const string AdvancedQuery = "b4e9db8b-34ba-4c39-b5cc-16a1bd2c411c";
+    }
+
+    public static class ExplorerBrowserCLSIDGuid
+    {
+        // CLSID GUID strings for relevant coclasses.
+        public const string ExplorerBrowser = "71F96385-DDD6-48D3-A0C1-AE06E8B055FB";
+    }
 }
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.ExtendedLinguisticServices

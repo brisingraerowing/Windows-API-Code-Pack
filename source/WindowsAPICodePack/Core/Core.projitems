@@ -43,11 +43,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)PowerManagement\BatteryState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PowerManagement\EventManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PowerManagement\MessageManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)PowerManagement\PersonalityGuids.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PowerManagement\Power.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PowerManagement\PowerManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PowerManagement\PowerManagerException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)PowerManagement\PowerPersonality.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PowerManagement\PowerSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SafeHandles\SafeIconHandle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SafeHandles\SafeRegionHandle.cs" />

@@ -76,3 +76,33 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         }
     }
 }
+
+namespace Microsoft.WindowsAPICodePack.Win32Native.Controls.ExplorerBrowserViewDispatchIds
+{
+
+    public static class Consts
+    {
+        public const int SelectionChanged = 200;
+        public const int ContentsChanged = 207;
+        public const int FileListEnumDone = 201;
+        public const int SelectedItemChanged = 220;
+    }
+
+}
+
+namespace Microsoft.WindowsAPICodePack.Win32Native.Taskbar
+
+{
+
+    public static class Consts
+
+    {
+
+        public const int WmCommand = 0x0111;
+
+        public const uint WmDwmSendIconThumbnail = 0x0323;
+        public const uint WmDwmSendIconicLivePreviewBitmap = 0x0326;
+
+    }
+
+}
