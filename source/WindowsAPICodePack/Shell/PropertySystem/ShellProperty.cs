@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
@@ -81,7 +82,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
                 HResult result = writablePropStore.SetValue(ref propertyKey, propVar);
 
-                if (!AllowSetTruncatedValue && (int)result == ShellNativeMethods.InPlaceStringTruncated)
+                if (!AllowSetTruncatedValue && result == HResult.InPlaceStringTruncated)
 
                     throw new ArgumentOutOfRangeException(nameof(propVar), LocalizedMessages.ShellPropertyValueTruncated);
 
@@ -166,7 +167,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             get
             {
                 // Make sure we load the correct type
-                Debug.Assert(ValueType == Win32Native.Shell.PropertySystem.ShellPropertyFactory.VarEnumToSystemType(Description.VarEnumType));
+                Debug.Assert(ValueType == NativePropertyHelper.VarEnumToSystemType(Description.VarEnumType));
 
                 using (var propVar = new PropVariant())
                 {
@@ -192,7 +193,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             set
             {
                 // Make sure we use the correct type
-                Debug.Assert(ValueType == Win32Native.Shell.PropertySystem.ShellPropertyFactory.VarEnumToSystemType(Description.VarEnumType));
+                Debug.Assert(ValueType == NativePropertyHelper.VarEnumToSystemType(Description.VarEnumType));
 
                 if (typeof(T) != ValueType)
                 

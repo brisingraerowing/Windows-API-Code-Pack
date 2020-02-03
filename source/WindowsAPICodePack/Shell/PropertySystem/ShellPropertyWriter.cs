@@ -92,7 +92,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 HResult result = writablePropStore.SetValue(ref key, propVar);
 
-                if (!allowTruncatedValue && ((int)result == ShellNativeMethods.InPlaceStringTruncated))
+                if (!allowTruncatedValue && (result == HResult.InPlaceStringTruncated))
                 {
                     // At this point we can't revert back the commit
                     // so don't commit, close the property store and throw an exception

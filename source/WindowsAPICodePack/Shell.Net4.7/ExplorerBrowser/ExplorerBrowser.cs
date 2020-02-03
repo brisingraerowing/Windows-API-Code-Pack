@@ -135,7 +135,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
                 HResult hr = explorerBrowserControl.BrowseToObject(shellObject.NativeShellItem, 0);
                 if (hr != HResult.Ok)
 
-                    if ((hr == HResult.ResourceInUse || hr == HResult.Canceled) && NavigationFailed != null)
+                    if ((hr ==  (HResult) unchecked((int)0x800700AA) || hr == HResult.Canceled) && NavigationFailed != null)
                     {
                         NavigationFailedEventArgs args = new NavigationFailedEventArgs();
                         args.FailedLocation = shellObject;

@@ -9,6 +9,7 @@ using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
+using static Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.NativePropertyHelper;
 
 namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 {
@@ -119,7 +120,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// Gets the .NET system type for a value of this property, or
         /// null if the value is empty.
         /// </summary>
-        public Type ValueType => valueType ?? (valueType = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.ShellPropertyFactory.VarEnumToSystemType(VarEnumType));
+        public Type ValueType => valueType ?? (valueType = VarEnumToSystemType(VarEnumType));
 
         /// <summary>
         /// Gets the current data type used to display the property.

@@ -10,9 +10,9 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
+namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 {
-    public static class ShellPropertyFactory
+    public static class NativePropertyHelper
     {
 
         /// <summary>

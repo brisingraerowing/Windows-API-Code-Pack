@@ -668,29 +668,29 @@ namespace MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem
                         return _decimal;
                     case VarEnum.VT_ARRAY | VarEnum.VT_UNKNOWN:
                         return CrackSingleDimSafeArray(_ptr);
-                    case (VarEnum.VT_VECTOR | VarEnum.VT_LPWSTR):
+                    case VarEnum.VT_VECTOR | VarEnum.VT_LPWSTR:
                         return GetVector<string>();
-                    case (VarEnum.VT_VECTOR | VarEnum.VT_I2):
+                    case VarEnum.VT_VECTOR | VarEnum.VT_I2:
                         return GetVector<short>();
-                    case (VarEnum.VT_VECTOR | VarEnum.VT_UI2):
+                    case VarEnum.VT_VECTOR | VarEnum.VT_UI2:
                         return GetVector<ushort>();
-                    case (VarEnum.VT_VECTOR | VarEnum.VT_I4):
+                    case VarEnum.VT_VECTOR | VarEnum.VT_I4:
                         return GetVector<int>();
-                    case (VarEnum.VT_VECTOR | VarEnum.VT_UI4):
+                    case VarEnum.VT_VECTOR | VarEnum.VT_UI4:
                         return GetVector<uint>();
-                    case (VarEnum.VT_VECTOR | VarEnum.VT_I8):
+                    case VarEnum.VT_VECTOR | VarEnum.VT_I8:
                         return GetVector<long>();
-                    case (VarEnum.VT_VECTOR | VarEnum.VT_UI8):
+                    case VarEnum.VT_VECTOR | VarEnum.VT_UI8:
                         return GetVector<ulong>();
-                    case (VarEnum.VT_VECTOR | VarEnum.VT_R4):
+                    case VarEnum.VT_VECTOR | VarEnum.VT_R4:
                         return GetVector<float>();
-                    case (VarEnum.VT_VECTOR | VarEnum.VT_R8):
+                    case VarEnum.VT_VECTOR | VarEnum.VT_R8:
                         return GetVector<double>();
-                    case (VarEnum.VT_VECTOR | VarEnum.VT_BOOL):
+                    case VarEnum.VT_VECTOR | VarEnum.VT_BOOL:
                         return GetVector<bool>();
-                    case (VarEnum.VT_VECTOR | VarEnum.VT_FILETIME):
+                    case VarEnum.VT_VECTOR | VarEnum.VT_FILETIME:
                         return GetVector<DateTime>();
-                    case (VarEnum.VT_VECTOR | VarEnum.VT_DECIMAL):
+                    case VarEnum.VT_VECTOR | VarEnum.VT_DECIMAL:
                         return GetVector<decimal>();
                     default:
                         // if the value cannot be marshaled

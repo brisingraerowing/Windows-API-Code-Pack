@@ -6,10 +6,8 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
-using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
-using MS.WindowsAPICodePack.Internal;
+using MS.WindowsAPICodePack;
 
 namespace Microsoft.WindowsAPICodePack.Dialogs
 {
@@ -568,11 +566,11 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                     radioButtonArray = IntPtr.Zero;
                 }
 
-                if (disposing)
-                {
+                //if (disposing)
+                //{
                     // Clean up managed resources - currently there are none
                     // that are interesting.
-                }
+                //}
             }
         }
 

@@ -91,7 +91,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Shell\PropertySystem\PropertySystemException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\PropertySystem\PropertySystemNativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\PropertySystem\ShellPropertyEnums.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Shell\PropertySystem\ShellPropertyFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\NativePropertyHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\PropertySystem\SystemProperties.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\BlobValueKind.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\BlobHelper.cs" />
@@ -124,7 +124,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\ClientInterfaces\IWMDMStorage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\ClientInterfaces\IWMDMStorageControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\ClientInterfaces\IWMDMStorageGlobals.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\Consts.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\Enums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\ServiceProviderInterfaces\IMDServiceProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsMediaDevices\ServiceProviderInterfaces\IMDSPDevice.cs" />

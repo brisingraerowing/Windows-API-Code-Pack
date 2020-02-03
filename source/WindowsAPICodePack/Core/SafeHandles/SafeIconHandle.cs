@@ -1,9 +1,8 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native;
 
-namespace MS.WindowsAPICodePack.Internal
+namespace MS.WindowsAPICodePack
 {
     /// <summary>
     /// Safe Icon Handle

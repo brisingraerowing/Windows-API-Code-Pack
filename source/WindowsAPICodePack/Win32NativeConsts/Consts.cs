@@ -106,3 +106,29 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Taskbar
     }
 
 }
+
+namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
+{
+    public static class Consts
+    {
+        public const short WMDMID_LENGTH = 128;
+    }
+}
+
+namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.Consts
+
+{
+
+    public static class CommandLinkDefinitions
+
+    {
+
+        public const int CommandLink = 0x0000000E;
+        public const uint SetNote = 0x00001609;
+        public const uint GetNote = 0x0000160A;
+        public const uint GetNoteLength = 0x0000160B;
+        public const uint SetShield = 0x0000160C;
+
+    }
+
+}

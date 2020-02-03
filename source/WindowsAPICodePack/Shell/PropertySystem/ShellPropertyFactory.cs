@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
-using static Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.ShellPropertyFactory;
+using static Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.NativePropertyHelper;
 
 namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 {

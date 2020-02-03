@@ -3,9 +3,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.WindowsAPICodePack.Resources;
-using MS.WindowsAPICodePack.Internal;
 using System.ComponentModel;
-using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices;
 

@@ -1082,16 +1082,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 
         #endregion
 
-        #region Command Link Definitions
-
-        public const int CommandLink = 0x0000000E;
-        public const uint SetNote = 0x00001609;
-        public const uint GetNote = 0x0000160A;
-        public const uint GetNoteLength = 0x0000160B;
-        public const uint SetShield = 0x0000160C;
-
-        #endregion
-
         #region Shell notification definitions
         public const int MaxPath = 260;
 
@@ -1153,7 +1143,5 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 
 
         #endregion
-
-        public const int InPlaceStringTruncated = 0x00401A0;
     }
 }
