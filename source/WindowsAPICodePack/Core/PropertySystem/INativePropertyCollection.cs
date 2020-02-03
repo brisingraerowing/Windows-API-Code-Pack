@@ -9,6 +9,10 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 {
     public interface INativePropertyCollection
     {
+        HResult GetAt(uint index, ref PropertyKey propertyKey);
+
+        HResult GetCount(out uint count);
+
         HResult GetValue(ref PropertyKey propertyKey, out PropVariant propVariant);
 
         HResult GetAttributes(ref PropertyKey propertyKey, out INativePropertyAttributeCollection nativePropertyAttributeCollection);

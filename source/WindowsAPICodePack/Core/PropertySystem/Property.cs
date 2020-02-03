@@ -16,22 +16,26 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
     /// <summary>
     /// This class wraps native <see cref="PropVariant"/> types into managed type. Please note that the Shell API, however, has its own managed wrapper, the <c>ShellProperty</c> class.
     /// </summary>
-    public class ObjectProperty
+    public class ObjectProperty : IDisposable
     {
-        #region Private Fields
 
-        private readonly PropertyKey propertyKey;
-        private readonly INativePropertyCollection nativePropertyCollection;
+        private readonly INativePropertyCollection _nativePropertyCollection;
 
-        #endregion
+        internal ObjectProperty(INativePropertyCollection nativePropertyCollection, PropertyKey propertyKey)
 
-        #region Private Methods
+        {
+
+            _nativePropertyCollection = nativePropertyCollection;
+
+            PropertyKey = propertyKey;
+
+        }
 
         private void StorePropVariantValue(ref PropVariant propVar, out bool stringTruncated)
         {
-            PropertyKey propertyKey = this.propertyKey;
+            PropertyKey propertyKey = PropertyKey;
 
-            HResult result = nativePropertyCollection.SetValue(ref propertyKey, ref propVar);
+            HResult result = _nativePropertyCollection.SetValue(ref propertyKey, ref propVar);
 
             if (!CoreErrorHelper.Succeeded(result))
 
@@ -40,10 +44,6 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             stringTruncated = result == HResult.InPlaceStringTruncated ? true : false;
         }
 
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
         /// Gets or sets the strongly-typed value of this property.
         /// The value of the property is cleared if the value is set to null.
@@ -51,9 +51,9 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         public (Type, object) GetValue()
         {
 
-            PropertyKey propertyKey = this.propertyKey;
+            PropertyKey propertyKey = PropertyKey;
 
-            Marshal.ThrowExceptionForHR((int)nativePropertyCollection.GetValue(ref propertyKey, out PropVariant propVariant));
+            Marshal.ThrowExceptionForHR((int)_nativePropertyCollection.GetValue(ref propertyKey, out PropVariant propVariant));
 
             (Type, object) result = (NativePropertyHelper.VarEnumToSystemType(propVariant.VarType), propVariant.Value);
 
@@ -89,15 +89,10 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             StorePropVariantValue(ref propVariant, out stringTruncated);
         }
 
-
-        #endregion
-
-        #region IProperty Members
-
         /// <summary>
         /// Gets the property key identifying this property.
         /// </summary>
-        public PropertyKey PropertyKey => propertyKey;
+        public PropertyKey PropertyKey { get; }
 
         /// <summary>
         /// Clears the value of the property.
@@ -108,8 +103,6 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
             StorePropVariantValue(ref propVar, out _);
         }
-
-        #endregion
 
     }
 }

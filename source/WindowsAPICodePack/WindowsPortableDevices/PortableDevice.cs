@@ -399,6 +399,8 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         public bool IsOpen { get; private set; }
 
+        private 
+
         internal PortableDevice(in PortableDeviceManager portableDeviceManager, in string deviceId)
 
         {

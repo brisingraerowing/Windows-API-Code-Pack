@@ -49,6 +49,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)PowerManagement\PowerSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\INativePropertyCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\Property.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\PropertyCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SafeHandles\SafeIconHandle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SafeHandles\SafeRegionHandle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SafeHandles\SafeWindowHandle.cs" />
