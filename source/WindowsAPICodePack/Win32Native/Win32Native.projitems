@@ -156,6 +156,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\ClientInterfaces\IPortableDeviceUnitsStream.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CoClasses\ClientClasses\PortableDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CoClasses\ClientClasses\PortableDeviceManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CoClasses\CollectionClasses\PortableDeviceKeyCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CoClasses\CollectionClasses\PortableDevicePropVariantCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CoClasses\CollectionClasses\PortableDeviceValues.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WindowsPortableDevices\CollectionInterfaces\IPortableDeviceKeyCollection.cs" />

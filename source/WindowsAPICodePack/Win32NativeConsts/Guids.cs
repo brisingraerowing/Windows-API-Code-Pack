@@ -327,6 +327,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
         public const string PortableDeviceManager = "0af10cec-2ecd-4b92-9581-34f6ae0637f3";
         public const string PortableDeviceValues = "0c15d503-d017-47ce-9016-7b3f978721cc";
         public const string PortableDevicePropVariantCollection = "08a99e2f-6d6d-4b80-af5a-baf2bcbe4cb9";
+        public const string PortableDeviceKeyCollection = "de2d022d-2480-43be-97f0-d1fa2cf98f4f";
 
         /// <summary>
         /// This class defines all WPD Events.

@@ -7,6 +7,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
 using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using static Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices;
+using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
 {

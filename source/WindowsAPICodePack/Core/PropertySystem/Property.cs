@@ -19,7 +19,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
     public class ObjectProperty : IDisposable
     {
 
-        private readonly INativePropertyCollection _nativePropertyCollection;
+        private INativePropertyCollection _nativePropertyCollection;
 
         internal ObjectProperty(INativePropertyCollection nativePropertyCollection, PropertyKey propertyKey)
 
@@ -45,8 +45,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         }
 
         /// <summary>
-        /// Gets or sets the strongly-typed value of this property.
-        /// The value of the property is cleared if the value is set to null.
+        /// Gets the value of this property.
         /// </summary>
         public (Type, object) GetValue()
         {
@@ -63,6 +62,10 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
         }
 
+        /// <summary>
+        /// Sets the value of this property.
+        /// The value of the property is cleared if the value is set to null.
+        /// </summary>
         public void SetValue(object value, out bool stringTruncated)
         {
 
@@ -103,6 +106,29 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
             StorePropVariantValue(ref propVar, out _);
         }
+
+        #region IDisposable Support
+        public bool IsDisposed { get; private set; } = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!IsDisposed)
+            {
+                if (disposing)
+
+                    _nativePropertyCollection = null;
+
+                IsDisposed = true;
+            }
+        }
+
+        // ~ObjectProperty()
+        // {
+        //   Dispose(false);
+        // }
+
+        public void Dispose() => Dispose(true);// GC.SuppressFinalize(this);
+        #endregion
 
     }
 }

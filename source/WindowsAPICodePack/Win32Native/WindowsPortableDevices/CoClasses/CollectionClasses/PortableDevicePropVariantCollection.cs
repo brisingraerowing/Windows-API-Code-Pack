@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem
+namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 {
     [ComImport,
         Guid(Guids.PortableDevices.PortableDevicePropVariantCollection),

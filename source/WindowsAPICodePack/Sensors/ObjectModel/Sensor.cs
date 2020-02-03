@@ -12,6 +12,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.Sensors;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
 using static Microsoft.WindowsAPICodePack.Win32Native.Guids.Sensors;
+using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.Sensors
 {
@@ -204,7 +205,6 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                     DataReport = SensorReport.FromNativeReport(this, iReport);
 
                         DataReportChanged?.Invoke(this, EventArgs.Empty);
-
                 }
                 finally
                 {
@@ -433,7 +433,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
                 throw new ArgumentException(LocalizedMessages.SensorEmptyData, nameof(data));
 
-            IPortableDeviceValues pdv = new Win32Native.PortableDevices.PropertySystem.PortableDeviceValues();
+            IPortableDeviceValues pdv = new PortableDeviceValues();
 
             PropertyKey propKey;
 

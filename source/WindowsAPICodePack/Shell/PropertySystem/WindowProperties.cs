@@ -4,6 +4,7 @@ using System;
 using System.Windows;
 using System.Windows.Interop;
 using Microsoft.WindowsAPICodePack.Taskbar;
+using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 
