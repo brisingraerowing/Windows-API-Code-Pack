@@ -40,7 +40,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             MinorVersion = minorVersion;
 
             Revision = revision;
-            
+
         }
 
         public override bool Equals(object obj) => obj is ClientVersion _obj ? _obj.ClientName == ClientName && _obj.MajorVersion == MajorVersion && _obj.MinorVersion == MinorVersion && _obj.Revision == Revision : false;
@@ -399,8 +399,6 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         public string DeviceManufacturer { get; internal set; }
 
         public bool IsOpen { get; private set; }
-
-        private 
 
         internal PortableDevice(in PortableDeviceManager portableDeviceManager, in string deviceId)
 

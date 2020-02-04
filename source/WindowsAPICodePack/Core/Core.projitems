@@ -47,7 +47,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)PowerManagement\PowerManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PowerManagement\PowerManagerException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PowerManagement\PowerSource.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\INativePropertyCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\Property.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\PropertyCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SafeHandles\SafeIconHandle.cs" />

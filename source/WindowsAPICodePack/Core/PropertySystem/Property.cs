@@ -16,7 +16,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
     /// <summary>
     /// This class wraps native <see cref="PropVariant"/> types into managed type. Please note that the Shell API, however, has its own managed wrapper, the <c>ShellProperty</c> class.
     /// </summary>
-    public class ObjectProperty : IDisposable
+    public sealed class ObjectProperty : IDisposable
     {
 
         private INativePropertyCollection _nativePropertyCollection;
