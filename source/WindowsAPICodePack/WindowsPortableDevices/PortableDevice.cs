@@ -1,6 +1,7 @@
 ﻿using Microsoft.WindowsAPICodePack.PortableDevices.Commands;
 using Microsoft.WindowsAPICodePack.PortableDevices.Commands.Object;
 using Microsoft.WindowsAPICodePack.PortableDevices.Commands.Service;
+using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
@@ -378,6 +379,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         public DeviceCapabilities DeviceCapabilities => _deviceCapabilities ?? (_deviceCapabilities = new DeviceCapabilities(this));
 
+        private PropertyCollection _properties = null;
+
+        public PropertyCollection Properties => _properties ?? (_properties = new PropertyCollection(new PortableDeviceProperties))
+
         /// <summary>
         /// Gets the device id of the current <see cref="PortableDevice"/>.
         /// </summary>
@@ -680,7 +685,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                         for (uint i = 0; i < fetched; i++)
 
-                            _ = items.AddLast(new PortableDeviceObject(objectIDs[i], this, null));
+                            _ = items.AddLast(new PortableDeviceObject(objectIDs[i], this));
 
                     else break;
 
@@ -762,17 +767,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         public IPortableDevice ParentPortableDevice { get; }
 
-        public IPortableDeviceObject Parent { get; }
-
-        internal PortableDeviceObject(string id, IPortableDevice parentPortableDevice, IPortableDeviceObject parent)
+        internal PortableDeviceObject(string id, IPortableDevice parentPortableDevice)
 
         {
 
             Id = id;
 
             ParentPortableDevice = parentPortableDevice;
-
-            Parent = parent;
 
         }
 

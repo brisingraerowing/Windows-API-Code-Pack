@@ -23,20 +23,20 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         }
     }
 
-    public interface INativePropertyCollection
+    public interface INativePropertiesCollection
     {
-        HResult GetAt(in uint index, ref PropertyKey propertyKey);
+        HResult GetAt(uint index, ref PropertyKey propertyKey);
 
         HResult GetCount(out uint count);
 
-        HResult GetValues(out INativePropertyValueCollection values);
+        HResult GetValues(out IReadOnlyNativePropertyValuesCollection values);
 
-        HResult GetAttributes( ref PropertyKey propertyKey, out INativePropertyValueCollection attributes);
+        HResult GetAttributes(ref PropertyKey propertyKey, out IReadOnlyNativePropertyValuesCollection attributes);
 
-        HResult SetValues(ref IEnumerable<NativeObjectProperty> values, out INativePropertyValueCollection results);
+        HResult SetValues(ref IEnumerable<NativeObjectProperty> values, out IReadOnlyNativePropertyValuesCollection results);
     }
 
-    public interface INativePropertyValueCollection
+    public interface IReadOnlyNativePropertyValuesCollection
 
     {
         HResult GetAt(uint index, ref PropertyKey propertyKey, ref PropVariant propVariant);
@@ -44,6 +44,12 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         HResult GetCount(out uint count);
 
         HResult GetValue(ref PropertyKey propertyKey, out PropVariant propVariant);
+
+    }
+
+    public interface INativePropertyValuesCollection : IReadOnlyNativePropertyValuesCollection
+
+    {
 
         HResult SetValue(ref PropertyKey propertyKey, ref PropVariant propVariant);
 

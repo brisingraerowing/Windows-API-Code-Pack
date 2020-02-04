@@ -11,7 +11,7 @@ using System.Text;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
-    public sealed class PortableDeviceProperties : INativePropertyCollection, IDisposable
+    public sealed class PortableDeviceProperties : INativePropertiesCollection, IDisposable
     {
         private IPortableDeviceKeyCollection _nativePortableDeviceKeyCollection;
         private IPortableDeviceProperties _nativePortableDeviceProperties;
@@ -21,6 +21,19 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         {
             _nativePortableDeviceKeyCollection = null;
             _nativePortableDeviceProperties = null;
+            _objectId = null;
+        }
+
+        public PortableDeviceProperties(in string objectId, in IPortableDeviceKeyCollection nativePortableDeviceKeyCollection, in IPortableDeviceProperties nativePortableDeviceProperties)
+
+        {
+
+            _objectId = objectId;
+
+            _nativePortableDeviceKeyCollection = nativePortableDeviceKeyCollection;
+
+            _nativePortableDeviceProperties = nativePortableDeviceProperties;
+
         }
 
         ~PortableDeviceProperties()
@@ -30,9 +43,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         }
 
-        HResult INativePropertyCollection.GetAt(in uint index, ref PropertyKey propertyKey) => _nativePortableDeviceKeyCollection.GetAt(index, ref propertyKey);
+        HResult INativePropertiesCollection.GetAt(uint index, ref PropertyKey propertyKey) => _nativePortableDeviceKeyCollection.GetAt(index, ref propertyKey);
 
-        HResult INativePropertyCollection.GetAttributes(ref PropertyKey propertyKey, out INativePropertyValueCollection attributes)
+        HResult INativePropertiesCollection.GetAttributes(ref PropertyKey propertyKey, out IReadOnlyNativePropertyValuesCollection attributes)
 
         {
 
@@ -44,7 +57,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         }
 
-        HResult INativePropertyCollection.GetCount(out uint count)
+        HResult INativePropertiesCollection.GetCount(out uint count)
         {
 
             uint _count = 0;
@@ -56,7 +69,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             return hr;
         }
 
-        HResult INativePropertyCollection.GetValues(out INativePropertyValueCollection values)
+        HResult INativePropertiesCollection.GetValues(out IReadOnlyNativePropertyValuesCollection values)
 
         {
 
@@ -68,7 +81,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         }
 
-        HResult INativePropertyCollection.SetValues(ref IEnumerable<NativeObjectProperty> values, out INativePropertyValueCollection results)
+        HResult INativePropertiesCollection.SetValues(ref IEnumerable<NativeObjectProperty> values, out IReadOnlyNativePropertyValuesCollection results)
         {
             var _values = new PortableDeviceValues();
 
@@ -96,15 +109,15 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         }
     }
 
-    public sealed class PortableDeviceValuesCollection : INativePropertyValueCollection
+    public sealed class PortableDeviceValuesCollection : INativePropertyValuesCollection
     {
         private IPortableDeviceValues _nativePortableDeviceValues;
 
-        public PortableDeviceValuesCollection(IPortableDeviceValues portableDeviceValues) => _nativePortableDeviceValues = portableDeviceValues;
+        public PortableDeviceValuesCollection( in IPortableDeviceValues portableDeviceValues) => _nativePortableDeviceValues = portableDeviceValues;
 
-        HResult INativePropertyValueCollection.GetAt(uint index, ref PropertyKey propertyKey, ref PropVariant propVariant) => _nativePortableDeviceValues.GetAt(index, ref propertyKey, ref propVariant);
+        HResult IReadOnlyNativePropertyValuesCollection.GetAt(uint index, ref PropertyKey propertyKey, ref PropVariant propVariant) => _nativePortableDeviceValues.GetAt(index, ref propertyKey, ref propVariant);
 
-        HResult INativePropertyValueCollection.GetCount(out uint count)
+        HResult IReadOnlyNativePropertyValuesCollection.GetCount(out uint count)
         {
 
             uint _count = 0;
@@ -117,8 +130,8 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         }
 
-        HResult INativePropertyValueCollection.GetValue(ref PropertyKey propertyKey, out PropVariant propVariant) => _nativePortableDeviceValues.GetValue(ref propertyKey, out propVariant);
+        HResult IReadOnlyNativePropertyValuesCollection.GetValue(ref PropertyKey propertyKey, out PropVariant propVariant) => _nativePortableDeviceValues.GetValue(ref propertyKey, out propVariant);
 
-        HResult INativePropertyValueCollection.SetValue(ref PropertyKey propertyKey, ref PropVariant propVariant) => _nativePortableDeviceValues.SetValue(ref propertyKey, ref propVariant);
+        HResult INativePropertyValuesCollection.SetValue(ref PropertyKey propertyKey, ref PropVariant propVariant) => _nativePortableDeviceValues.SetValue(ref propertyKey, ref propVariant);
     }
 }

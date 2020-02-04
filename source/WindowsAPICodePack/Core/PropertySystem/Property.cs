@@ -19,13 +19,19 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
     public sealed class ObjectProperty : IDisposable
     {
 
-        private INativePropertyValueCollection _nativePropertyValueCollection;
+        private INativePropertiesCollection _nativePropertiesCollection;
+        private IReadOnlyNativePropertyValuesCollection _nativePropertyValuesCollection;
+        private IReadOnlyNativePropertyValuesCollection _nativePropertyAttributesCollection = null;
 
-        internal ObjectProperty(INativePropertyCollection nativePropertyCollection, PropertyKey propertyKey)
+        public
+
+        internal ObjectProperty(in INativePropertiesCollection nativePropertiesCollection, in IReadOnlyNativePropertyValuesCollection nativePropertyValuesCollection, in PropertyKey propertyKey)
 
         {
 
-            _nativePropertyValueCollection = nativePropertyValueCollection;
+            _nativePropertiesCollection = nativePropertiesCollection;
+
+            _nativePropertyValuesCollection = nativePropertyValuesCollection;
 
             PropertyKey = propertyKey;
 
@@ -35,7 +41,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         {
             PropertyKey propertyKey = PropertyKey;
 
-            HResult result = _nativePropertyValueCollection.SetValue(ref propertyKey, ref propVar);
+            HResult result = _nativePropertyValuesCollection.SetValue(ref propertyKey, ref propVar);
 
             if (!CoreErrorHelper.Succeeded(result))
 
@@ -52,7 +58,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
             PropertyKey propertyKey = PropertyKey;
 
-            Marshal.ThrowExceptionForHR((int)_nativePropertyValueCollection.GetValue(ref propertyKey, out PropVariant propVariant));
+            Marshal.ThrowExceptionForHR((int)_nativePropertyValuesCollection.GetValue(ref propertyKey, out PropVariant propVariant));
 
             (Type, object) result = (NativePropertyHelper.VarEnumToSystemType(propVariant.VarType), propVariant.Value);
 
@@ -110,24 +116,79 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         #region IDisposable Support
         public bool IsDisposed { get; private set; } = false;
 
-        protected virtual void Dispose(bool disposing)
+        // ~ObjectProperty()
+        // {
+        //   Dispose(false);
+        // }
+
+        public void Dispose()
         {
             if (!IsDisposed)
             {
-                if (disposing)
-
-                    _nativePropertyValueCollection = null;
+                _nativePropertyValuesCollection = null;
 
                 IsDisposed = true;
             }
+
+            // GC.SuppressFinalize(this);
         }
+        #endregion
+
+    }
+
+    public sealed class ObjectPropertyAttribute : IDisposable
+    {
+
+        private ObjectProperty _objectProperty;
+
+        internal ObjectPropertyAttribute(in INativePropertiesCollection nativePropertiesCollection, in IReadOnlyNativePropertyValuesCollection nativePropertyValuesCollection, in PropertyKey propertyKey)
+
+        {
+
+            _nativePropertiesCollection = nativePropertiesCollection;
+
+            _nativePropertyValuesCollection = nativePropertyValuesCollection;
+
+            PropertyKey = propertyKey;
+
+        }
+
+        public (Type type, object value) GetValue()
+        {
+
+            PropertyKey propertyKey = PropertyKey;
+
+            Marshal.ThrowExceptionForHR((int)_nativePropertyValuesCollection.GetValue(ref propertyKey, out PropVariant propVariant));
+
+            (Type, object) result = (NativePropertyHelper.VarEnumToSystemType(propVariant.VarType), propVariant.Value);
+
+            propVariant.Dispose();
+
+            return result;
+
+        }
+
+        public PropertyKey PropertyKey { get; }
+
+        #region IDisposable Support
+        public bool IsDisposed { get; private set; } = false;
 
         // ~ObjectProperty()
         // {
         //   Dispose(false);
         // }
 
-        public void Dispose() => Dispose(true);// GC.SuppressFinalize(this);
+        public void Dispose()
+        {
+            if (!IsDisposed)
+            {
+                _nativePropertyValuesCollection = null;
+
+                IsDisposed = true;
+            }
+
+            // GC.SuppressFinalize(this);
+        }
         #endregion
 
     }
