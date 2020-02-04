@@ -12,7 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Command.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IPortableDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IPortableDeviceManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NativeCollectionWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDeviceProperties.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PortableDeviceException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PortableDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PortableDeviceManager.cs" />

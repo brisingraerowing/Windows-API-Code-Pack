@@ -19,13 +19,13 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
     public sealed class ObjectProperty : IDisposable
     {
 
-        private INativePropertyCollection _nativePropertyCollection;
+        private INativePropertyValueCollection _nativePropertyValueCollection;
 
         internal ObjectProperty(INativePropertyCollection nativePropertyCollection, PropertyKey propertyKey)
 
         {
 
-            _nativePropertyCollection = nativePropertyCollection;
+            _nativePropertyValueCollection = nativePropertyValueCollection;
 
             PropertyKey = propertyKey;
 
@@ -35,7 +35,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         {
             PropertyKey propertyKey = PropertyKey;
 
-            HResult result = _nativePropertyCollection.SetValue(ref propertyKey, ref propVar);
+            HResult result = _nativePropertyValueCollection.SetValue(ref propertyKey, ref propVar);
 
             if (!CoreErrorHelper.Succeeded(result))
 
@@ -47,12 +47,12 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         /// <summary>
         /// Gets the value of this property.
         /// </summary>
-        public (Type, object) GetValue()
+        public (Type type, object value) GetValue()
         {
 
             PropertyKey propertyKey = PropertyKey;
 
-            Marshal.ThrowExceptionForHR((int)_nativePropertyCollection.GetValue(ref propertyKey, out PropVariant propVariant));
+            Marshal.ThrowExceptionForHR((int)_nativePropertyValueCollection.GetValue(ref propertyKey, out PropVariant propVariant));
 
             (Type, object) result = (NativePropertyHelper.VarEnumToSystemType(propVariant.VarType), propVariant.Value);
 
@@ -116,7 +116,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             {
                 if (disposing)
 
-                    _nativePropertyCollection = null;
+                    _nativePropertyValueCollection = null;
 
                 IsDisposed = true;
             }
