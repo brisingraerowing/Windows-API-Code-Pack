@@ -6,7 +6,6 @@ using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Sensors.Resources;
 using System.Linq;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
-using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Sensors;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;

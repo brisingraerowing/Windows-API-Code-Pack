@@ -1,6 +1,6 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
-using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using System;
 using System.Runtime.InteropServices;
 

@@ -476,19 +476,19 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             // Attempt to set all properties for client information. If we fail to set
             // any of the properties below it is OK. Failing to set a property in the
             // client information isn't a fatal error.
-            _ = pClientInformation.SetStringValue(Properties.Client.Name, clientVersion.ClientName);
+            _ = pClientInformation.SetStringValue(Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.Name, clientVersion.ClientName);
 
             // Marshal.ThrowExceptionForHR((int)ClientInfoHR);
 
-            _ = pClientInformation.SetUnsignedIntegerValue(Properties.Client.MajorVersion, clientVersion.MajorVersion);
+            _ = pClientInformation.SetUnsignedIntegerValue(Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.MajorVersion, clientVersion.MajorVersion);
 
             // Marshal.ThrowExceptionForHR((int)ClientInfoHR);
 
-            _ = pClientInformation.SetUnsignedIntegerValue(Properties.Client.MinorVersion, clientVersion.MinorVersion);
+            _ = pClientInformation.SetUnsignedIntegerValue(Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.MinorVersion, clientVersion.MinorVersion);
 
             // Marshal.ThrowExceptionForHR((int)ClientInfoHR);
 
-            _ = pClientInformation.SetUnsignedIntegerValue(Properties.Client.Revision, clientVersion.Revision);
+            _ = pClientInformation.SetUnsignedIntegerValue(Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.Revision, clientVersion.Revision);
 
             // Marshal.ThrowExceptionForHR((int)ClientInfoHR);
 
@@ -497,15 +497,15 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             // Failed to CoCreateInstance Win32Native.Guids.PortableDevices.PortableDeviceValues for client information
             // }
 
-            Marshal.ThrowExceptionForHR((int)pClientInformation.SetUnsignedIntegerValue(Properties.Client.SecurityQualityOfService, (uint)SecurityImpersonationLevel.SecurityImpersonation << 16));
+            Marshal.ThrowExceptionForHR((int)pClientInformation.SetUnsignedIntegerValue(Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.SecurityQualityOfService, (uint)SecurityImpersonationLevel.SecurityImpersonation << 16));
 
             // todo: to add an option for retrying this assignment if a higher rights setting fails (bool retryIfHigherRightsSettingFails = false)
 
-            Marshal.ThrowExceptionForHR((int)pClientInformation.SetUnsignedIntegerValue(Properties.Client.DesiredAccess, (uint)portableDeviceOpeningOptions.GenericRights));
+            Marshal.ThrowExceptionForHR((int)pClientInformation.SetUnsignedIntegerValue(Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.DesiredAccess, (uint)portableDeviceOpeningOptions.GenericRights));
 
-            Marshal.ThrowExceptionForHR((int)pClientInformation.SetUnsignedIntegerValue(Properties.Client.ShareMode, (uint)portableDeviceOpeningOptions.FileShare));
+            Marshal.ThrowExceptionForHR((int)pClientInformation.SetUnsignedIntegerValue(Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.ShareMode, (uint)portableDeviceOpeningOptions.FileShare));
 
-            Marshal.ThrowExceptionForHR((int)pClientInformation.SetBoolValue(Properties.Client.ManualCloseOnDisconnect, portableDeviceOpeningOptions.ManualCloseOnDisconnect));
+            Marshal.ThrowExceptionForHR((int)pClientInformation.SetBoolValue(Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.ManualCloseOnDisconnect, portableDeviceOpeningOptions.ManualCloseOnDisconnect));
 
             //if (CoreErrorHelper.Succeeded(hr))
             //{
@@ -525,7 +525,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             // Attempt to open for read-only access
             //ClientInfoHR = pClientInformation.SetUnsignedIntegerValue(
-            //Properties.Client.DesiredAccess,
+            //Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.DesiredAccess,
             //(uint)GenericRights.Read);
 
             //Marshal.ThrowExceptionForHR((int)ClientInfoHR);

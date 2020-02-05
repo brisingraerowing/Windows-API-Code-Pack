@@ -3,7 +3,6 @@ using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
-using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;

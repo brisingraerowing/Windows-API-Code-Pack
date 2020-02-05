@@ -8,7 +8,6 @@ using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
-using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
 {

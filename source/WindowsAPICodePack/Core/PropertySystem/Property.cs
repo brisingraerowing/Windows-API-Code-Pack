@@ -6,7 +6,6 @@ using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
-using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
@@ -20,12 +19,13 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
     {
 
         private INativePropertiesCollection _nativePropertiesCollection;
-        private IReadOnlyNativePropertyValuesCollection _nativePropertyValuesCollection;
+        private INativePropertyValuesCollection _nativePropertyValuesCollection;
         private IReadOnlyNativePropertyValuesCollection _nativePropertyAttributesCollection = null;
+        private readonly PropertyKey _propertyKey;
 
         public
 
-        internal ObjectProperty(in INativePropertiesCollection nativePropertiesCollection, in IReadOnlyNativePropertyValuesCollection nativePropertyValuesCollection, in PropertyKey propertyKey)
+        internal ObjectProperty(in INativePropertiesCollection nativePropertiesCollection, in INativePropertyValuesCollection nativePropertyValuesCollection, in PropertyKey propertyKey)
 
         {
 
@@ -33,12 +33,13 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
             _nativePropertyValuesCollection = nativePropertyValuesCollection;
 
-            PropertyKey = propertyKey;
+            _propertyKey = propertyKey;
 
         }
 
         private void StorePropVariantValue(ref PropVariant propVar, out bool stringTruncated)
         {
+
             PropertyKey propertyKey = PropertyKey;
 
             HResult result = _nativePropertyValuesCollection.SetValue(ref propertyKey, ref propVar);
@@ -55,6 +56,10 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         /// </summary>
         public (Type type, object value) GetValue()
         {
+
+            if (IsDisposed)
+
+                throw new InvalidOperationException("The current object is disposed.");
 
             PropertyKey propertyKey = PropertyKey;
 
@@ -74,6 +79,10 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         /// </summary>
         public void SetValue(object value, out bool stringTruncated)
         {
+
+            if (IsDisposed)
+
+                throw new InvalidOperationException("The current object is disposed.");
 
             if (value is Nullable)
             {
@@ -101,13 +110,18 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         /// <summary>
         /// Gets the property key identifying this property.
         /// </summary>
-        public PropertyKey PropertyKey { get; }
+        public PropertyKey PropertyKey => IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : _propertyKey;
 
         /// <summary>
         /// Clears the value of the property.
         /// </summary>
         public void ClearValue()
         {
+
+            if (IsDisposed)
+
+                throw new InvalidOperationException("The current object is disposed.");
+
             var propVar = new PropVariant();
 
             StorePropVariantValue(ref propVar, out _);
@@ -136,42 +150,34 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
     }
 
-    public sealed class ObjectPropertyAttribute : IDisposable
+    public struct ObjectPropertyAttribute : IDisposable
     {
+        private object _value;
+        private Type _type;
+        private PropertyKey? _propertyKey;
 
-        private ObjectProperty _objectProperty;
-
-        internal ObjectPropertyAttribute(in INativePropertiesCollection nativePropertiesCollection, in IReadOnlyNativePropertyValuesCollection nativePropertyValuesCollection, in PropertyKey propertyKey)
+        internal ObjectPropertyAttribute(in PropertyKey propertyKey, in Type type, in object value)
 
         {
 
-            _nativePropertiesCollection = nativePropertiesCollection;
+            _propertyKey = propertyKey;
 
-            _nativePropertyValuesCollection = nativePropertyValuesCollection;
+            _type = type;
 
-            PropertyKey = propertyKey;
+            _value = value;
 
-        }
-
-        public (Type type, object value) GetValue()
-        {
-
-            PropertyKey propertyKey = PropertyKey;
-
-            Marshal.ThrowExceptionForHR((int)_nativePropertyValuesCollection.GetValue(ref propertyKey, out PropVariant propVariant));
-
-            (Type, object) result = (NativePropertyHelper.VarEnumToSystemType(propVariant.VarType), propVariant.Value);
-
-            propVariant.Dispose();
-
-            return result;
+            IsDisposed = false;
 
         }
 
-        public PropertyKey PropertyKey { get; }
+        public object Value { get => IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : _value; private set => _value = value; }
+
+        public Type Type { get => IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : _type; private set => _type = value; }
+
+        public PropertyKey? PropertyKey { get => IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : _propertyKey; private set => _propertyKey = value; }
 
         #region IDisposable Support
-        public bool IsDisposed { get; private set; } = false;
+        public bool IsDisposed { get; private set; }
 
         // ~ObjectProperty()
         // {
@@ -182,7 +188,11 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         {
             if (!IsDisposed)
             {
-                _nativePropertyValuesCollection = null;
+                PropertyKey = null;
+
+                Type = null;
+
+                Value = null;
 
                 IsDisposed = true;
             }

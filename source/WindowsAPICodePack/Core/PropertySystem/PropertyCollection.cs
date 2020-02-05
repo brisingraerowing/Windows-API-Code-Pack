@@ -4,6 +4,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Microsoft.WindowsAPICodePack.PropertySystem
@@ -154,20 +155,6 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             return _innerDictionary.GetEnumerator();
         }
 
-        public ObjectProperty GetValue(in PropertyKey propertyKey)
-
-        {
-
-            if (TryGetValue(propertyKey, out ObjectProperty value))
-
-                return value;
-
-            else
-
-                throw new PropertySystemException("The property was not found.");
-
-        }
-
         public bool TryGetValue(PropertyKey key, out ObjectProperty value)
         {
             if (IsDisposed)
@@ -242,12 +229,12 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         #endregion
     }
 
-    public class PropertyAttributeCollection : IReadOnlyDictionary<PropertyKey, ObjectPropertyAttribute>, IDisposable
+    public class PropertyAttributeCollection : IDisposable
     {
 
-        private Dictionary<PropertyKey, ObjectProperty> _innerDictionary;
+        private INativePropertyValuesCollection _nativePropertyValuesCollection;
 
-        public ObjectProperty this[PropertyKey key]
+        public (Type type, object value) this[PropertyKey key]
         {
             get
             {
@@ -256,54 +243,31 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                     throw new InvalidOperationException("The current object is disposed.");
 
-                if (_innerDictionary.TryGetValue(key, out ObjectProperty value))
-
-                    return value;
-
-                else
-                {
-                    for (uint i = 0; i < Count; i++)
-                    {
-                        var propertyKey = new PropertyKey();
-
-                        _ = _nativePropertyCollection.GetAt(i, ref propertyKey);
-
-                        if (propertyKey == key)
-                        {
-
-                            var objectProperty = new ObjectProperty(_nativePropertyValuesCollection, propertyKey);
-
-                            _innerDictionary.Add(key, objectProperty);
-
-                            return objectProperty;
-                        }
-                    }
-
-                    throw new IndexOutOfRangeException("The key was not found.");
-                }
-            }
-        }
-
-        public IEnumerable<PropertyKey> Keys
-        {
-            get
-            {
                 for (uint i = 0; i < Count; i++)
                 {
-                    if (IsDisposed)
-
-                        throw new InvalidOperationException("The current object is disposed.");
-
                     var propertyKey = new PropertyKey();
 
-                    _ = _nativePropertyCollection.GetAt(i, ref propertyKey);
+                    var propVariant = new PropVariant();
 
-                    yield return propertyKey;
+                    _ = _nativePropertyValuesCollection.GetAt(i, ref propertyKey, ref propVariant);
+
+                    if (propertyKey == key)
+                    {
+                        Type type = NativePropertyHelper.VarEnumToSystemType(propVariant.VarType);
+
+                        object value = propVariant.Value;
+
+                        propVariant.Dispose();
+
+                        return (type, value);
+                    }
                 }
+
+                throw new IndexOutOfRangeException("The key was not found.");
             }
         }
 
-        public IEnumerable<ObjectProperty> Values
+        public ObjectPropertyAttribute this[uint index]
         {
             get
             {
@@ -311,9 +275,19 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                     throw new InvalidOperationException("The current object is disposed.");
 
-                PopulateInnerDictionary();
+                var propertyKey = new PropertyKey();
 
-                return _innerDictionary.Values;
+                var propVariant = new PropVariant();
+
+                Marshal.ThrowExceptionForHR((int)_nativePropertyValuesCollection.GetAt(index, ref propertyKey, ref propVariant));
+
+                var objectPropertyAttribute = new ObjectPropertyAttribute(propertyKey, NativePropertyHelper.VarEnumToSystemType(propVariant.VarType), propVariant.Value);
+
+                propVariant.Dispose();
+
+                return objectPropertyAttribute;
+
+                throw new IndexOutOfRangeException("The key was not found.");
             }
         }
 
@@ -325,23 +299,6 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
             _nativePropertyValuesCollection = nativePropertyValuesCollection;
 
-        }
-
-        private void PopulateInnerDictionary()
-        {
-            if (_innerDictionary.Count != Count)
-
-                for (uint i = 0; i < Count; i++)
-                {
-
-                    var propertyKey = new PropertyKey();
-
-                    _ = _nativePropertyCollection.GetAt(i, ref propertyKey);
-
-                    if (!_innerDictionary.ContainsKey(propertyKey))
-
-                        _innerDictionary.Add(propertyKey, new ObjectProperty(_nativePropertyValuesCollection, propertyKey));
-                }
         }
 
         public int Count
@@ -358,21 +315,6 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             }
         }
 
-        public bool ContainsKey(PropertyKey key)
-        {
-            if (IsDisposed)
-
-                throw new InvalidOperationException("The current object is disposed.");
-
-            foreach (PropertyKey propertyKey in Keys)
-
-                if (propertyKey == key)
-
-                    return true;
-
-            return false;
-        }
-
         public IEnumerator<KeyValuePair<PropertyKey, ObjectProperty>> GetEnumerator()
         {
             if (IsDisposed)
@@ -382,57 +324,6 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             PopulateInnerDictionary();
 
             return _innerDictionary.GetEnumerator();
-        }
-
-        public ObjectProperty GetValue(in PropertyKey propertyKey)
-
-        {
-
-            if (TryGetValue(propertyKey, out ObjectProperty value))
-
-                return value;
-
-            else
-
-                throw new PropertySystemException("The property was not found.");
-
-        }
-
-        public bool TryGetValue(PropertyKey key, out ObjectProperty value)
-        {
-            if (IsDisposed)
-
-                throw new InvalidOperationException("The current object is disposed.");
-
-            foreach (KeyValuePair<PropertyKey, ObjectProperty> _value in _innerDictionary)
-
-                if (_value.Key == key)
-                {
-
-                    value = _value.Value;
-
-                    return true;
-
-                }
-
-            foreach (PropertyKey propertyKey in Keys)
-
-                if (key == propertyKey)
-                {
-
-                    var property = new ObjectProperty(_nativePropertyValuesCollection, propertyKey);
-
-                    _innerDictionary.Add(propertyKey, property);
-
-                    value = property;
-
-                    return true;
-
-                }
-
-            value = null;
-
-            return false;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
