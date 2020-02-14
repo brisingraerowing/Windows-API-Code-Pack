@@ -1,4 +1,5 @@
-﻿using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
+﻿using Microsoft.WindowsAPICodePack.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using System;
@@ -1603,7 +1604,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         /// <summary>
         /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.PropertyAttributesV1"/> and <see cref="Guids.PortableDevices.PropertySystem.PropertyAttributesV2"/>.
         /// </summary>
-        public static class PropertyAttribute
+        public static class Attribute
 
         {
 

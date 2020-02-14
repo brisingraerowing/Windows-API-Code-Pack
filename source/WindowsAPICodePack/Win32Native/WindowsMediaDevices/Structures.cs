@@ -1,6 +1,6 @@
 ﻿using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;

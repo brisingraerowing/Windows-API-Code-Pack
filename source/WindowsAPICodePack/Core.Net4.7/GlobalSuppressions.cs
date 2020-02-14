@@ -98,3 +98,4 @@
 #endregion
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Interoperability", "CA1400:PInvokeEntryPointsShouldExist", Scope = "member", Target = "Microsoft.WindowsAPICodePack.Dialogs.TaskDialogNativeMethods.#TaskDialogIndirect(Microsoft.WindowsAPICodePack.Dialogs.TaskDialogNativeMethods+TaskDialogConfiguration,System.Int32&,System.Int32&,System.Boolean&)", Justification="This does exist, I believe it is caused by FxCop using the wrong version of the DLL.")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "The null-check is performed by the ThrowIfNull method.", Scope = "member", Target = "~M:Microsoft.WindowsAPICodePack.PropertySystem.PropertyCollection.#ctor(Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.INativePropertiesCollection@)")]

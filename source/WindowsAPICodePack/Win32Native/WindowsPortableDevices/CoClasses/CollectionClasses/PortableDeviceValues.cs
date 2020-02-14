@@ -1,4 +1,5 @@
-﻿using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
+﻿using Microsoft.WindowsAPICodePack.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using System;

@@ -4,19 +4,31 @@ using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
+using WinCopies.Collections;
+using IDisposable = WinCopies.Util.DotNetFix.IDisposable;
+using static WinCopies.Util.Util;
 
 namespace Microsoft.WindowsAPICodePack.PropertySystem
 {
-    public class PropertyCollection : IReadOnlyDictionary<PropertyKey, ObjectProperty>, IDisposable
+    // todo: this collection implements the .Net IReadOnlyDictionary interface, but this interface does not support the uint indexing.
+
+    public sealed class PropertyCollection : IReadOnlyDictionary<PropertyKey, ObjectProperty>, IDisposable
     {
+
+        #region Private Fields
 
         private Dictionary<PropertyKey, ObjectProperty> _innerDictionary;
 
-        private readonly INativePropertiesCollection _nativePropertyCollection;
+        private INativePropertiesCollection _nativePropertiesCollection;
 
-        private readonly IReadOnlyNativePropertyValuesCollection _nativePropertyValuesCollection;
+        private INativePropertyValuesCollection _nativePropertyValuesCollection;
+
+        #endregion
+
+        #region Public Properties
 
         public ObjectProperty this[PropertyKey key]
         {
@@ -37,12 +49,12 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
                     {
                         var propertyKey = new PropertyKey();
 
-                        _ = _nativePropertyCollection.GetAt(i, ref propertyKey);
+                        _ = _nativePropertiesCollection.GetAt(i, ref propertyKey);
 
                         if (propertyKey == key)
                         {
 
-                            var objectProperty = new ObjectProperty(_nativePropertyValuesCollection, propertyKey);
+                            var objectProperty = new ObjectProperty(_nativePropertiesCollection, _nativePropertyValuesCollection, propertyKey);
 
                             _innerDictionary.Add(key, objectProperty);
 
@@ -67,7 +79,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                     var propertyKey = new PropertyKey();
 
-                    _ = _nativePropertyCollection.GetAt(i, ref propertyKey);
+                    _ = _nativePropertiesCollection.GetAt(i, ref propertyKey);
 
                     yield return propertyKey;
                 }
@@ -88,15 +100,45 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             }
         }
 
-        public PropertyCollection(in INativePropertiesCollection nativePropertyCollection, in IReadOnlyNativePropertyValuesCollection nativePropertyValuesCollection)
+        public uint Count
+        {
+            get
+            {
+                if (IsDisposed)
+
+                    throw new InvalidOperationException("The current object is disposed.");
+
+                _ = _nativePropertiesCollection.GetCount(out uint count);
+
+                return count;
+            }
+        }
+
+        #endregion
+
+        #region Explicit Interface Implementations
+
+        int IReadOnlyCollection<KeyValuePair<PropertyKey, ObjectProperty>>.Count => (int)Count;
+
+        #endregion
+
+        #region Public Constructors
+
+        public PropertyCollection(in INativePropertiesCollection nativePropertyCollection)
 
         {
 
-            _nativePropertyCollection = nativePropertyCollection;
+            ThrowIfNull(nativePropertyCollection, nameof(nativePropertyCollection));
 
-            _nativePropertyValuesCollection = nativePropertyValuesCollection;
+            _nativePropertiesCollection = nativePropertyCollection;
+
+            Marshal.ThrowExceptionForHR((int)nativePropertyCollection.GetValues(out _nativePropertyValuesCollection));
 
         }
+
+        #endregion
+
+        #region Private Methods
 
         private void PopulateInnerDictionary()
         {
@@ -107,27 +149,17 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                     var propertyKey = new PropertyKey();
 
-                    _ = _nativePropertyCollection.GetAt(i, ref propertyKey);
+                    _ = _nativePropertiesCollection.GetAt(i, ref propertyKey);
 
                     if (!_innerDictionary.ContainsKey(propertyKey))
 
-                        _innerDictionary.Add(propertyKey, new ObjectProperty(_nativePropertyValuesCollection, propertyKey));
+                        _innerDictionary.Add(propertyKey, new ObjectProperty(_nativePropertiesCollection, _nativePropertyValuesCollection, propertyKey));
                 }
         }
 
-        public int Count
-        {
-            get
-            {
-                if (IsDisposed)
+        #endregion
 
-                    throw new InvalidOperationException("The current object is disposed.");
-
-                _ = _nativePropertyCollection.GetCount(out uint count);
-
-                return (int)count;
-            }
-        }
+        #region Public Methods
 
         public bool ContainsKey(PropertyKey key)
         {
@@ -142,17 +174,6 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
                     return true;
 
             return false;
-        }
-
-        public IEnumerator<KeyValuePair<PropertyKey, ObjectProperty>> GetEnumerator()
-        {
-            if (IsDisposed)
-
-                throw new InvalidOperationException("The current object is disposed.");
-
-            PopulateInnerDictionary();
-
-            return _innerDictionary.GetEnumerator();
         }
 
         public bool TryGetValue(PropertyKey key, out ObjectProperty value)
@@ -177,7 +198,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
                 if (key == propertyKey)
                 {
 
-                    var property = new ObjectProperty(_nativePropertyValuesCollection, propertyKey);
+                    var property = new ObjectProperty(_nativePropertiesCollection, _nativePropertyValuesCollection, propertyKey);
 
                     _innerDictionary.Add(propertyKey, property);
 
@@ -192,6 +213,45 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             return false;
         }
 
+        #endregion
+
+        #region IDisposable Support
+        public bool IsDisposed { get; private set; } = false;
+
+        // ~PropertyCollection()
+        // {
+        //   Dispose(false);
+        // }
+
+        public void Dispose()
+        {
+            if (!IsDisposed)
+            {
+                _innerDictionary.Clear();
+                _innerDictionary = null;
+                _nativePropertiesCollection.Dispose();
+                _nativePropertiesCollection = null;
+                _nativePropertyValuesCollection.Dispose();
+                _nativePropertyValuesCollection = null;
+
+                IsDisposed = true;
+            }
+        }
+        #endregion
+
+        #region IEnumerable Support
+
+        public IEnumerator<KeyValuePair<PropertyKey, ObjectProperty>> GetEnumerator()
+        {
+            if (IsDisposed)
+
+                throw new InvalidOperationException("The current object is disposed.");
+
+            PopulateInnerDictionary();
+
+            return _innerDictionary.GetEnumerator();
+        }
+
         IEnumerator IEnumerable.GetEnumerator()
         {
             if (IsDisposed)
@@ -203,36 +263,25 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             return ((IEnumerable)_innerDictionary).GetEnumerator();
         }
 
-        #region IDisposable Support
-        public bool IsDisposed { get; private set; } = false;
-
-        protected virtual void Dispose(in bool disposing)
-        {
-            if (!IsDisposed)
-            {
-                if (disposing)
-                {
-                    _innerDictionary.Clear();
-                    _innerDictionary = null;
-                }
-
-                IsDisposed = true;
-            }
-        }
-
-        // ~PropertyCollection()
-        // {
-        //   Dispose(false);
-        // }
-
-        public void Dispose() => Dispose(true); // GC.SuppressFinalize(this);
         #endregion
     }
 
-    public class PropertyAttributeCollection : IDisposable
+    /// <summary>
+    /// Represents a collection of property attributes.
+    /// </summary>
+    /// <seealso cref="ObjectPropertyAttribute"/>
+    /// <seealso cref="ObjectProperty"/>
+    /// <seealso cref="PropertyCollection"/>
+    public sealed class PropertyAttributeCollection : IEnumerable<ObjectPropertyAttribute>, IUIntIndexedCollection<ObjectPropertyAttribute>, IDisposable
     {
 
-        private INativePropertyValuesCollection _nativePropertyValuesCollection;
+        #region Private Fields
+
+        private IReadOnlyNativePropertyValuesCollection _nativePropertyValuesCollection;
+
+        #endregion
+
+        #region Public Indexers
 
         public (Type type, object value) this[PropertyKey key]
         {
@@ -291,17 +340,17 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             }
         }
 
-        public PropertyCollection(in INativePropertiesCollection nativePropertyCollection, in IReadOnlyNativePropertyValuesCollection nativePropertyValuesCollection)
+        #endregion
 
-        {
+        #region Public Constructors
 
-            _nativePropertyCollection = nativePropertyCollection;
+        public PropertyAttributeCollection(in IReadOnlyNativePropertyValuesCollection nativePropertyValuesCollection) => _nativePropertyValuesCollection = nativePropertyValuesCollection;
 
-            _nativePropertyValuesCollection = nativePropertyValuesCollection;
+        #endregion
 
-        }
+        #region Public Properties
 
-        public int Count
+        public uint Count
         {
             get
             {
@@ -309,57 +358,64 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                     throw new InvalidOperationException("The current object is disposed.");
 
-                _ = _nativePropertyCollection.GetCount(out uint count);
+                _ = _nativePropertyValuesCollection.GetCount(out uint count);
 
-                return (int)count;
+                return count;
             }
         }
 
-        public IEnumerator<KeyValuePair<PropertyKey, ObjectProperty>> GetEnumerator()
+        #endregion
+
+        #region IUIntIndexedCollection Support
+
+        object IUIntIndexedCollection.this[uint index] => this[index];
+
+        #endregion
+
+        #region IEnumerable Support
+
+        private class UIntIndexedCollectionEnumerator : UIntIndexedCollectionEnumeratorBase, IEnumerator<ObjectPropertyAttribute>
+
+        {
+
+            public UIntIndexedCollectionEnumerator(IUIntIndexedCollection<ObjectPropertyAttribute> uIntIndexedCollection) : base(uIntIndexedCollection) { }
+
+            public ObjectPropertyAttribute Current => ((PropertyAttributeCollection)UIntIndexedCollection).IsDisposed ? throw new InvalidOperationException("The collection is disposed.") : ((IUIntIndexedCollection<ObjectPropertyAttribute>)UIntIndexedCollection)[Index.Value];
+
+            object IEnumerator.Current => Current;
+
+        }
+
+        public IEnumerator<ObjectPropertyAttribute> GetEnumerator()
         {
             if (IsDisposed)
 
                 throw new InvalidOperationException("The current object is disposed.");
 
-            PopulateInnerDictionary();
-
-            return _innerDictionary.GetEnumerator();
+            return new UIntIndexedCollectionEnumerator(this);
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            if (IsDisposed)
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-                throw new InvalidOperationException("The current object is disposed.");
-
-            PopulateInnerDictionary();
-
-            return ((IEnumerable)_innerDictionary).GetEnumerator();
-        }
+        #endregion
 
         #region IDisposable Support
         public bool IsDisposed { get; private set; } = false;
-
-        protected virtual void Dispose(in bool disposing)
-        {
-            if (!IsDisposed)
-            {
-                if (disposing)
-                {
-                    _innerDictionary.Clear();
-                    _innerDictionary = null;
-                }
-
-                IsDisposed = true;
-            }
-        }
 
         // ~PropertyCollection()
         // {
         //   Dispose(false);
         // }
 
-        public void Dispose() => Dispose(true); // GC.SuppressFinalize(this);
+        public void Dispose()
+        {
+            if (!IsDisposed)
+            {
+                _nativePropertyValuesCollection = null;
+
+                IsDisposed = true;
+            }
+        }
         #endregion
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
-using MS.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;

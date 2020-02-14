@@ -735,6 +735,8 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             _ = Marshal.ReleaseComObject(_portableDevice);
             _portableDevice = null;
+            _ = Marshal.ReleaseComObject(NativePortableDeviceProperties);
+            NativePortableDeviceProperties = null;
             IsDisposed = true;
 
         }

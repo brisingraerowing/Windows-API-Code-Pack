@@ -5,20 +5,31 @@ using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
-    public sealed class PortableDeviceProperties : INativePropertiesCollection, IDisposable
+    internal sealed class PortableDeviceProperties : INativePropertiesCollection, IDisposable
     {
-        private IPortableDeviceKeyCollection _nativePortableDeviceKeyCollection;
+
         private IPortableDeviceProperties _nativePortableDeviceProperties;
+        private IPortableDeviceKeyCollection _nativePortableDeviceKeyCollection;
+        // private PortableDevice _portableDevice;
         private string _objectId;
 
+        /// <summary>
+        /// Frees all managed and unmanaged data. This method is called by the finalizer and should not be called directly.
+        /// </summary>
         public void Dispose()
         {
+
+            // As this type is internal and calling this method directly is not recommended, implementing a property and checking it at the top of this method to know whether the current object is already disposed is not necessary.
+
+            _ = Marshal.ReleaseComObject(_nativePortableDeviceKeyCollection);
             _nativePortableDeviceKeyCollection = null;
+            Marshal.ReleaseComObject(_nativePortableDeviceProperties);
             _nativePortableDeviceProperties = null;
             _objectId = null;
         }
@@ -42,15 +53,21 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         }
 
-        HResult INativePropertiesCollection.GetAt(uint index, ref PropertyKey propertyKey) => _nativePortableDeviceKeyCollection.GetAt(index, ref propertyKey);
+        HResult INativePropertiesCollection.GetAt(in uint index, ref PropertyKey propertyKey) =>
+
+            // As this type is internal and calling the Dispose method directly is not recommended, implementing a property and checking it at the top of this method to know whether the current object is disposed is not necessary.
+
+            _nativePortableDeviceKeyCollection.GetAt(index, ref propertyKey);
 
         HResult INativePropertiesCollection.GetAttributes(ref PropertyKey propertyKey, out IReadOnlyNativePropertyValuesCollection attributes)
 
         {
 
+            // As this type is internal and calling the Dispose method directly is not recommended, implementing a property and checking it at the top of this method to know whether the current object is disposed is not necessary.
+
             HResult hr = _nativePortableDeviceProperties.GetPropertyAttributes(_objectId, ref propertyKey, out IPortableDeviceValues portableDeviceValues);
 
-            attributes = new PortableDeviceValuesCollection(portableDeviceValues);
+            attributes = new PortableDeviceValuesCollection(portableDeviceValues, null);
 
             return hr;
 
@@ -59,6 +76,8 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         HResult INativePropertiesCollection.GetCount(out uint count)
         {
 
+            // As this type is internal and calling the Dispose method directly is not recommended, implementing a property and checking it at the top of this method to know whether the current object is disposed is not necessary.
+
             uint _count = 0;
 
             HResult hr = _nativePortableDeviceKeyCollection.GetCount(ref _count);
@@ -66,55 +85,90 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             count = _count;
 
             return hr;
+
         }
 
-        HResult INativePropertiesCollection.GetValues(out IReadOnlyNativePropertyValuesCollection values)
+        HResult INativePropertiesCollection.GetValues(out INativePropertyValuesCollection values)
 
         {
 
+            // As this type is internal and calling the Dispose method directly is not recommended, implementing a property and checking it at the top of this method to know whether the current object is disposed is not necessary.
+
             HResult hr = _nativePortableDeviceProperties.GetValues(_objectId, ref _nativePortableDeviceKeyCollection, out IPortableDeviceValues portableDeviceValues);
 
-            values = new PortableDeviceValuesCollection(portableDeviceValues);
+            values = new PortableDeviceValuesCollection(portableDeviceValues, this);
 
             return hr;
 
         }
 
-        HResult INativePropertiesCollection.SetValues(ref IEnumerable<NativeObjectProperty> values, out IReadOnlyNativePropertyValuesCollection results)
+        HResult INativePropertiesCollection.SetValues(ref IEnumerable<IObjectProperty> values, out IReadOnlyNativePropertyValuesCollection results)
         {
+
+            // As this type is internal and calling the Dispose method directly is not recommended, implementing a property and checking it at the top of this method to know whether the current object is disposed is not necessary.
+
             var _values = new PortableDeviceValues();
 
             PropertyKey propertyKey;
 
             PropVariant propVariant;
 
-            foreach (NativeObjectProperty value in values)
+            HResult hr;
+
+            foreach (IObjectProperty value in values)
 
             {
 
                 propertyKey = value.PropertyKey;
 
-                propVariant = value.PropVariant;
+                propVariant = value.GetValue();
 
-                Marshal.ThrowExceptionForHR((int)_values.SetValue(ref propertyKey, ref propVariant));
+                hr = _values.SetValue(ref propertyKey, ref propVariant);
+
+                if (!CoreErrorHelper.Succeeded(hr))
+
+                {
+
+                    results = null;
+
+                    return hr;
+
+                }
 
             }
 
-            HResult hr = _nativePortableDeviceProperties.SetValues(_objectId, _values, out IPortableDeviceValues _results);
+            hr = _nativePortableDeviceProperties.SetValues(_objectId, _values, out IPortableDeviceValues _results);
 
-            results = new PortableDeviceValuesCollection(_results);
+            results = new PortableDeviceValuesCollection(_results, null);
 
             return hr;
+
+        }
+
+        HResult INativePropertiesCollection.IsReadOnly(ref PropertyKey propertyKey, out bool isReadOnly)
+
+        {
+
+            
+
         }
     }
 
-    public sealed class PortableDeviceValuesCollection : INativePropertyValuesCollection
+    internal sealed class PortableDeviceValuesCollection : INativePropertyValuesCollection
     {
         private IPortableDeviceValues _nativePortableDeviceValues;
+        private PortableDeviceProperties _portableDeviceProperties;
 
-        public PortableDeviceValuesCollection( in IPortableDeviceValues portableDeviceValues) => _nativePortableDeviceValues = portableDeviceValues;
+        public bool IsReadOnly => _portableDeviceProperties is null;
 
-        HResult IReadOnlyNativePropertyValuesCollection.GetAt(uint index, ref PropertyKey propertyKey, ref PropVariant propVariant) => _nativePortableDeviceValues.GetAt(index, ref propertyKey, ref propVariant);
+        public PortableDeviceValuesCollection(in IPortableDeviceValues portableDeviceValues, PortableDeviceProperties portableDeviceProperties)
+        {
+            _nativePortableDeviceValues = portableDeviceValues;
+
+            _portableDeviceProperties = portableDeviceProperties;
+        }
+
+        HResult IReadOnlyNativePropertyValuesCollection.GetAt(in uint index, ref PropertyKey propertyKey, ref PropVariant propVariant) => _nativePortableDeviceValues.GetAt(index, ref propertyKey, ref propVariant);
 
         HResult IReadOnlyNativePropertyValuesCollection.GetCount(out uint count)
         {
@@ -131,6 +185,39 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         HResult IReadOnlyNativePropertyValuesCollection.GetValue(ref PropertyKey propertyKey, out PropVariant propVariant) => _nativePortableDeviceValues.GetValue(ref propertyKey, out propVariant);
 
-        HResult INativePropertyValuesCollection.SetValue(ref PropertyKey propertyKey, ref PropVariant propVariant) => _nativePortableDeviceValues.SetValue(ref propertyKey, ref propVariant);
+        HResult INativePropertyValuesCollection.SetValue(ref PropertyKey propertyKey, ref PropVariant propVariant)
+        {
+            if (IsReadOnly)
+
+                throw new InvalidOperationException("This collection is read-only.");
+
+            HResult hr = _nativePortableDeviceValues.SetValue(ref propertyKey, ref propVariant);
+
+            if (!CoreErrorHelper.Succeeded(hr))
+
+                return hr;
+
+            IEnumerable<IObjectProperty> values = new IObjectProperty[] { new Win32Native.PropertySystem.ObjectProperty(propertyKey, propVariant) }.AsEnumerable();
+
+            hr = ((INativePropertiesCollection)_portableDeviceProperties).SetValues(ref values, out IReadOnlyNativePropertyValuesCollection results);
+
+            if (CoreErrorHelper.Succeeded(hr))
+
+            {
+
+                hr = results.GetValue(ref propertyKey, out PropVariant _propVariant);
+
+                if (CoreErrorHelper.Succeeded(hr))
+
+                    hr = (HResult)_propVariant.Value;
+
+                _propVariant.Dispose();
+
+            }
+
+            results.Dispose();
+
+            return hr;
+        }
     }
 }

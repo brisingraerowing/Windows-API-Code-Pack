@@ -4,7 +4,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.Resources;
 using System;
 using System.Runtime.InteropServices;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
+namespace Microsoft.WindowsAPICodePack.PropertySystem
 {
     /// <summary>
     /// Defines a unique key for a Shell Property

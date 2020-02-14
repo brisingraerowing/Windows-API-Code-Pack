@@ -14,6 +14,7 @@ using FileAttributes = Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttrib
 using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 using GuidAttribute = System.Runtime.InteropServices.GuidAttribute;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
+using Microsoft.WindowsAPICodePack.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
