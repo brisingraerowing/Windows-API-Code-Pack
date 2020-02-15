@@ -80,38 +80,38 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
     public class SupportedCommands
 
     {
-        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Common)]
+        [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Common)]
         private readonly Common _common;
-        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities)]
+        [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities)]
         private readonly Commands.Capability _capability;
-        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Storage)]
+        [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Storage)]
         private readonly Storage _storage;
-        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.SMS)]
+        [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.SMS)]
         private readonly SMS _sms;
-        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.StillImageCapture)]
+        [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.StillImageCapture)]
         private readonly StillImageCapture _stillImageCapture;
-        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.MediaCapture)]
+        [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.MediaCapture)]
         private readonly MediaCapture _mediaCapture;
-        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.DeviceHints)]
+        [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.DeviceHints)]
         private readonly DeviceHint _deviceHint;
-        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.ClassExtensionV1)]
-        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.ClassExtensionV2)]
+        [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.ClassExtensionV1)]
+        [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.ClassExtensionV2)]
         private readonly ClassExtension _classExtension;
-        [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.NetworkConfiguration)]
+        [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.NetworkConfiguration)]
         private readonly NetworkConfiguration _networkConfiguration;
 
         public class ObjectCommands
 
         {
-            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Enumeration)]
+            [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Enumeration)]
             private readonly Enumeration _enumeration;
-            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Properties)]
+            [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Properties)]
             private readonly Property _property;
-            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.PropertiesBulk)]
+            [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.PropertiesBulk)]
             private readonly PropertyBulk _propertyBulk;
-            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources)]
+            [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources)]
             private readonly Resource _resource;
-            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management)]
+            [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management)]
             private readonly Management _management;
 
             public Enumeration Enumeration => _enumeration;
@@ -147,11 +147,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         public class ServiceCommands
 
         {
-            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Common)]
+            [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Common)]
             private readonly Commands.Service.Common _common;
-            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities)]
+            [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities)]
             private readonly Commands.Service.Capability _capability;
-            [Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Methods)]
+            [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Methods)]
             private readonly Method _method;
 
             public Commands.Service.Common Common => _common;
@@ -476,19 +476,19 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             // Attempt to set all properties for client information. If we fail to set
             // any of the properties below it is OK. Failing to set a property in the
             // client information isn't a fatal error.
-            _ = pClientInformation.SetStringValue(Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.Name, clientVersion.ClientName);
+            _ = pClientInformation.SetStringValue(PropertySystem.Properties.Client.Name, clientVersion.ClientName);
 
             // Marshal.ThrowExceptionForHR((int)ClientInfoHR);
 
-            _ = pClientInformation.SetUnsignedIntegerValue(Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.MajorVersion, clientVersion.MajorVersion);
+            _ = pClientInformation.SetUnsignedIntegerValue(PropertySystem.Properties.Client.MajorVersion, clientVersion.MajorVersion);
 
             // Marshal.ThrowExceptionForHR((int)ClientInfoHR);
 
-            _ = pClientInformation.SetUnsignedIntegerValue(Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.MinorVersion, clientVersion.MinorVersion);
+            _ = pClientInformation.SetUnsignedIntegerValue(PropertySystem.Properties.Client.MinorVersion, clientVersion.MinorVersion);
 
             // Marshal.ThrowExceptionForHR((int)ClientInfoHR);
 
-            _ = pClientInformation.SetUnsignedIntegerValue(Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.Revision, clientVersion.Revision);
+            _ = pClientInformation.SetUnsignedIntegerValue(PropertySystem.Properties.Client.Revision, clientVersion.Revision);
 
             // Marshal.ThrowExceptionForHR((int)ClientInfoHR);
 
@@ -497,15 +497,15 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             // Failed to CoCreateInstance Win32Native.Guids.PortableDevices.PortableDeviceValues for client information
             // }
 
-            Marshal.ThrowExceptionForHR((int)pClientInformation.SetUnsignedIntegerValue(Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.SecurityQualityOfService, (uint)SecurityImpersonationLevel.SecurityImpersonation << 16));
+            Marshal.ThrowExceptionForHR((int)pClientInformation.SetUnsignedIntegerValue(PropertySystem.Properties.Client.SecurityQualityOfService, (uint)SecurityImpersonationLevel.SecurityImpersonation << 16));
 
             // todo: to add an option for retrying this assignment if a higher rights setting fails (bool retryIfHigherRightsSettingFails = false)
 
-            Marshal.ThrowExceptionForHR((int)pClientInformation.SetUnsignedIntegerValue(Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.DesiredAccess, (uint)portableDeviceOpeningOptions.GenericRights));
+            Marshal.ThrowExceptionForHR((int)pClientInformation.SetUnsignedIntegerValue(PropertySystem.Properties.Client.DesiredAccess, (uint)portableDeviceOpeningOptions.GenericRights));
 
-            Marshal.ThrowExceptionForHR((int)pClientInformation.SetUnsignedIntegerValue(Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.ShareMode, (uint)portableDeviceOpeningOptions.FileShare));
+            Marshal.ThrowExceptionForHR((int)pClientInformation.SetUnsignedIntegerValue(PropertySystem.Properties.Client.ShareMode, (uint)portableDeviceOpeningOptions.FileShare));
 
-            Marshal.ThrowExceptionForHR((int)pClientInformation.SetBoolValue(Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.ManualCloseOnDisconnect, portableDeviceOpeningOptions.ManualCloseOnDisconnect));
+            Marshal.ThrowExceptionForHR((int)pClientInformation.SetBoolValue(PropertySystem.Properties.Client.ManualCloseOnDisconnect, portableDeviceOpeningOptions.ManualCloseOnDisconnect));
 
             //if (CoreErrorHelper.Succeeded(hr))
             //{

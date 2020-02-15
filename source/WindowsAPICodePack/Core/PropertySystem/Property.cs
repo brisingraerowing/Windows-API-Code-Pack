@@ -20,11 +20,10 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
     public sealed class ObjectProperty : IObjectProperty, IEquatable<IObjectProperty>, IEquatable<PropertyKey>
     {
 
-        private INativePropertiesCollection _nativePropertiesCollection;
+        private PropertyCollection _propertyCollection;
         private INativePropertyValuesCollection _nativePropertyValuesCollection;
         private PropertyKey _propertyKey;
         private IUIntIndexedCollection<ObjectPropertyAttribute> _attributes;
-        private INativePropertyInfo _nativePropertyInfo;
 
         public IUIntIndexedCollection<ObjectPropertyAttribute> Attributes
         {
@@ -41,7 +40,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                     PropertyKey propertyKey = _propertyKey;
 
-                    Marshal.ThrowExceptionForHR((int)_nativePropertiesCollection.GetAttributes(ref propertyKey, out IReadOnlyNativePropertyValuesCollection attributes));
+                    Marshal.ThrowExceptionForHR((int)_propertyCollection.NativePropertiesCollection.GetAttributes(ref propertyKey, out IReadOnlyNativePropertyValuesCollection attributes));
 
                     _attributes = new PropertyAttributeCollection(attributes);
 
@@ -51,15 +50,17 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             }
         }
 
-        internal ObjectProperty(in INativePropertiesCollection nativePropertiesCollection, in INativePropertyValuesCollection nativePropertyValuesCollection, INativePropertyInfo nativePropertyInfo, in PropertyKey propertyKey)
+        public IPropertyInfo PropertyInfo { get; private set; }
+
+        internal ObjectProperty(in PropertyCollection propertyCollection, in INativePropertyValuesCollection nativePropertyValuesCollection, in IPropertyInfo propertyInfo, in PropertyKey propertyKey)
 
         {
 
-            _nativePropertiesCollection = nativePropertiesCollection;
+            _propertyCollection = propertyCollection;
 
             _nativePropertyValuesCollection = nativePropertyValuesCollection;
 
-            _nativePropertyInfo = nativePropertyInfo;
+            PropertyInfo = propertyInfo;
 
             _propertyKey = propertyKey;
 
@@ -172,7 +173,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
                 _nativePropertiesCollection = null;
                 _nativePropertyValuesCollection = null;
                 _attributes = null;
-                _nativePropertyInfo = null;
+                PropertyInfo = null;
 
                 IsDisposed = true;
             }
@@ -216,7 +217,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
         public Type Type { get; private set; }
 
-        public PropertyKey PropertyKey { get ; private set ; }
+        public PropertyKey PropertyKey { get; private set; }
 
         public bool Equals(ObjectPropertyAttribute other) => other?.PropertyKey.Equals(PropertyKey) == true;
 

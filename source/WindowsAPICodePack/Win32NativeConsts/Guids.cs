@@ -6,15 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
+namespace Microsoft.WindowsAPICodePack.Sensors
 
 {
 
-    public static class Sensors
+    public static class Guids
 
     {
-
-        public const string ISensor = "5FA08F80-2657-458E-AF75-46F73FA6AC5C";
 
         /// <summary>
         /// The common Guid used by the property keys.
@@ -22,7 +20,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
         public const string SensorPropertyCommonGuid = "7F8383EC-D3EC-495C-A8CF-B8BBE85C2920";
 
         /// <summary>
-        /// Contains a list of well known sensor types. This class will be removed once wrappers are developed.
+        /// Contains a list of well known sensor types.
         /// </summary>
         public static class SensorTypes
         {
@@ -219,7 +217,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
         }
 
         /// <summary>
-        /// Contains a list of well known event interest types. This class will be removed once wrappers are developed.
+        /// Contains a list of well known event interest types.
         /// </summary>
         public static class EventInterestTypes
         {
@@ -292,6 +290,1011 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
 
     }
 
+}
+
+namespace Microsoft.WindowsAPICodePack.PortableDevices.Guids
+
+{
+
+    /// <summary>
+    /// This class defines all WPD Events.
+    /// </summary>
+    public static class EventSystem
+
+    {
+
+        /// <summary>
+        /// This GUID is used to identify all WPD driver events to the event sub-system. The driver uses this as the GUID identifier when it queues an event with IWdfDevice::PostEvent(). Applications never use this value.
+        /// </summary>
+        public const string Notification = "2BA2E40A-6B4C-4295-BB43-26322B99AEB2";
+
+        /// <summary>
+        /// This event is sent after a new object is available on the device.
+        /// </summary>
+        public const string ObjectAdded = "A726DA95-E207-4B02-8D44-BEF2E86CBFFC";
+
+        /// <summary>
+        /// This event is sent after a previously existing object has been removed from the device.
+        /// </summary>
+        public const string ObjectRemoved = "BE82AB88-A52C-4823-96E5-D0272671FC38";
+
+        /// <summary>
+        /// This event is sent after an object has been updated such that any connected client should refresh its view of that object.
+        /// </summary>
+        public const string ObjectUpdated = "1445A759-2E01-485D-9F27-FF07DAE697AB";
+
+        /// <summary>
+        /// This event indicates that the device is about to be reset-and all connected clients should close their connection to the device.
+        /// </summary>
+        public const string DeviceReset = "7755CF53-C1ED-44F3-B5A2-451E2C376B27";
+
+        /// <summary>
+        /// This event indicates that the device capabilities have changed. Clients should re-query the device if they have made any decisions based on device capabilities.
+        /// </summary>
+        public const string DeviceCapabilitiesUpdated = "36885AA1-CD54-4DAA-B3D0-AFB3E03F5999";
+
+        /// <summary>
+        /// This event indicates the progress of a format operation on a storage object.
+        /// </summary>
+        public const string StorageFormat = "3782616B-22BC-4474-A251-3070F8D38857";
+
+        /// <summary>
+        /// This event is sent to request an application to transfer a particular object from the device.
+        /// </summary>
+        public const string ObjectTransferRequested = "8D16A0A1-F2C6-41DA-8F19-5E53721ADBF2";
+
+        /// <summary>
+        /// This event is sent when a driver for a device is being unloaded. This is typically a result of the device being unplugged.
+        /// </summary>
+        public const string DeviceRemoved = "E4CBCA1B-6918-48B9-85EE-02BE7C850AF9";
+
+        /// <summary>
+        /// This event is sent when a driver has completed invoking a service method. This event must be sent even when the method fails.
+        /// </summary>
+        public const string ServiceMethodComplete = "8A33F5F8-0ACC-4D9B-9CC4-112D353B86CA";
+
+    }
+
+    public static class PropertySystem
+
+    {
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_OPTIONS_V1. This category of properties relates to options used for the WPD device class extension
+        /// </summary>
+        public const string ClassExtensionOptionsV1 = "6309FFEF-A87C-4CA7-8434-797576E40A96";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_OPTIONS_V2. This category of properties relates to options used for the WPD device class extension
+        /// </summary>
+        public const string ClassExtensionOptionsV2 = "3E3595DA-4D71-49FE-A0B4-D4406C3AE93F";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_OPTIONS_V3. This category of properties relates to options used for the WPD device class extension
+        /// </summary>
+        public const string ClassExtensionOptionsV3 = "65C160F8-1367-4CE2-939D-8310839F0D30";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_RESOURCE_ATTRIBUTES_V1
+        /// </summary>
+        public const string ResourceAttributesV1 = "1EB6F604-9278-429F-93CC-5BB8C06656B6";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_EVENT_OPTIONS_V1 The properties in this category describe event options.
+        /// </summary>
+        public const string EventOptionsV1 = "B3D8DAD7-A361-4B83-8A48-5B02CE10713B";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_EVENT_ATTRIBUTES_V1 The properties in this category describe event attributes.
+        /// </summary>
+        public const string EventAttributesV1 = "10C96578-2E81-4111-ADDE-E08CA6138F6D";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_API_OPTIONS_V1 The properties in this category describe API options.
+        /// </summary>
+        public const string APIOptionsV1 = "10E54A3E-052D-4777-A13C-DE7614BE2BC4";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_FORMAT_ATTRIBUTES_V1 The properties in this category describe format attributes.
+        /// </summary>
+        public const string FormatAttributesV1 = "A0A02000-BCAF-4BE8-B3F5-233F231CF58F";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_METHOD_ATTRIBUTES_V1 The properties in this category describe method attributes.
+        /// </summary>
+        public const string MethodAttributesV1 = "F17A5071-F039-44AF-8EFE-432CF32E432A";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_PARAMETER_ATTRIBUTES_V1 The properties in this category describe parameter attributes.
+        /// </summary>
+        public const string ParameterAttributesV1 = "E6864DD7-F325-45EA-A1D5-97CF73B6CA58";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_DEVICE_PROPERTIES_V1
+        /// </summary>
+        public const string DeviceV1 = "26D4979A-E643-4626-9E2B-736DC0C92FDC";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_DEVICE_PROPERTIES_V2
+        /// </summary>
+        public const string DeviceV2 = "463DD662-7FC4-4291-911C-7F4C9CCA9799";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_DEVICE_PROPERTIES_V3
+        /// </summary>
+        public const string DeviceV3 = "6C2B878C-C2EC-490D-B425-D7A75E23E5ED";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_SERVICE_PROPERTIES_V1
+        /// </summary>
+        public const string ServiceV1 = "7510698A-CB54-481C-B8DB-0D75C93F1C06";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_FOLDER_OBJECT_PROPERTIES_V1. This category is for properties common to all folder objects.
+        /// </summary>
+        public const string FolderObjectV1 = "7E9A7ABF-E568-4B34-AA2F-13BB12AB177D";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_IMAGE_OBJECT_PROPERTIES_V1. This category is for properties common to all image objects.
+        /// </summary>
+        public const string ImageObjectV1 = "63D64908-9FA1-479F-85BA-9952216447DB";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_DOCUMENT_OBJECT_PROPERTIES_V1. This category is for properties common to all document objects.
+        /// </summary>
+        public const string DocumentObjectV1 = "0B110203-EB95-4F02-93E0-97C631493AD5";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_MEDIA_PROPERTIES_V1. This category is for properties common to media objects(e.g.audio and video).
+        /// </summary>
+        public const string MediaV1 = "2ED8BA05-0AD3-42DC-B0D0-BC95AC396AC8";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_CONTACT_OBJECT_PROPERTIES_V1. This category is for properties common to all contact objects.
+        /// </summary>
+        public const string ContactObjectV1 = "FBD4FDAB-987D-4777-B3F9-726185A9312B";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_MUSIC_OBJECT_PROPERTIES_V1. This category is for properties common to all music objects.
+        /// </summary>
+        public const string MusicObjectV1 = "B324F56A-DC5D-46E5-B6DF-D2EA414888C6";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_VIDEO_OBJECT_PROPERTIES_V1. This category is for properties common to all video objects.
+        /// </summary>
+        public const string VideoObjectV1 = "346F2163-F998-4146-8B01-D19B4C00DE9A";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_COMMON_INFORMATION_OBJECT_PROPERTIES_V1. This category is properties that pertain to informational objects such as appointments-tasks-memos and even documents.
+        /// </summary>
+        public const string CommonInformationObjectV1 = "B28AE94B-05A4-4E8E-BE01-72CC7E099D8F";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_MEMO_OBJECT_PROPERTIES_V1. This category is for properties common to all memo objects.
+        /// </summary>
+        public const string MemoObjectV1 = "5FFBFC7B-7483-41AD-AFB9-DA3F4E592B8D";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_EMAIL_OBJECT_PROPERTIES_V1. This category is for properties common to all email objects.
+        /// </summary>
+        public const string EmailObjectV1 = "41F8F65A-5484-4782-B13D-4740DD7C37C5";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_APPOINTMENT_OBJECT_PROPERTIES_V1. This category is for properties common to all appointment objects.
+        /// </summary>
+        public const string AppointmentObjectV1 = "F99EFD03-431D-40D8-A1C9-4E220D9C88D3";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_TASK_OBJECT_PROPERTIES_V1. This category is for properties common to all task objects.
+        /// </summary>
+        public const string TaskObjectV1 = "E354E95E-D8A0-4637-A03A-0CB26838DBC7";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_SMS_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_SMS
+        /// </summary>
+        public const string SMSObjectV1 = "7E1074CC-50FF-4DD1-A742-53BE6F093A0D";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_SECTION_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose content type is WPD_CONTENT_TYPE_SECTION
+        /// </summary>
+        public const string SectionObjectV1 = "516AFD2B-C64E-44F0-98DC-BEE1C88F7D66";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_FUNCTIONAL_OBJECT_PROPERTIES_V1. This category is for properties common to all functional objects.
+        /// </summary>
+        public const string FunctionalObjectV1 = "8F052D93-ABCA-4FC5-A5AC-B01DF4DBE598";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_STORAGE_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_STORAGE.
+        /// </summary>
+        public const string StorageObjectV1 = "01A3057A-74D6-4E80-BEA7-DC4C212CE50A";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_NETWORK_ASSOCIATION_PROPERTIES_V1. This category is for properties common to all network association objects.
+        /// </summary>
+        public const string NetworkAssociationV1 = "E4C93C1F-B203-43F1-A100-5A07D11B0274";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_STILL_IMAGE_CAPTURE_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_STILL_IMAGE_CAPTURE
+        /// </summary>
+        public const string StillImageCaptureObjectV1 = "58C571EC-1BCB-42A7-8AC5-BB291573A260";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_RENDERING_INFORMATION_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_AUDIO_RENDERING_INFORMATION
+        /// </summary>
+        public const string RenderingInformationObjectV1 = "C53D039F-EE23-4A31-8590-7639879870B4";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_CLIENT_INFORMATION_PROPERTIES_V1.
+        /// </summary>
+        public const string ClientInformationV1 = "204D9F0C-2292-4080-9F42-40664E70F859";
+
+        /// <summary>
+        /// This class defines all WPD content types.
+        /// </summary>
+        public static class ContentType
+
+        {
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_FUNCTIONAL_OBJECT</para>
+            /// <para>Description: Indicates this object represents a functional object-not content data on the device.</para>
+            /// </summary>
+            public const string FunctionalObject = "99ED0160-17FF-4C44-9D98-1D7A6F941921";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_FOLDER</para>
+            /// <para>Description: Indicates this object is a folder.</para>
+            /// </summary>
+            public const string Folder = "27E2E392-A111-48E0-AB0C-E17705A05F85";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_IMAGE</para>
+            /// <para>Description: Indicates this object represents image data (e.g. a JPEG file)</para>
+            /// </summary>
+            public const string Image = "ef2107d5-a52a-4243-a26b-62d4176d7603";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_DOCUMENT</para>
+            /// <para>Description: Indicates this object represents document data (e.g. a MS WORD file-TEXT file-etc.)</para>
+            /// </summary>
+            public const string Document = "680ADF52-950A-4041-9B41-65E393648155";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_CONTACT</para>
+            /// <para>Description: Indicates this object represents contact data (e.g. name/number-or a VCARD file)</para>
+            /// </summary>
+            public const string Contact = "EABA8313-4525-4707-9F0E-87C6808E9435";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_CONTACT_GROUP</para>
+            /// <para>Description: Indicates this object represents a group of contacts.</para>
+            /// </summary>
+            public const string ContactGroup = "346B8932-4C36-40D8-9415-1828291F9DE9";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_AUDIO</para>
+            /// <para>Description: Indicates this object represents audio data (e.g. a WMA or MP3 file)</para>
+            /// </summary>
+            public const string Audio = "4AD2C85E-5E2D-45E5-8864-4F229E3C6CF0";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_VIDEO</para>
+            /// <para>Description: Indicates this object represents video data (e.g. a WMV or AVI file)</para>
+            /// </summary>
+            public const string Video = "9261B03C-3D78-4519-85E3-02C5E1F50BB9";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_TELEVISION</para>
+            /// <para>Description: Indicates this object represents a television recording.</para>
+            /// </summary>
+            public const string Television = "60A169CF-F2AE-4E21-9375-9677F11C1C6E";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_PLAYLIST</para>
+            /// <para>Description: Indicates this object represents a playlist.</para>
+            /// </summary>
+            public const string Playlist = "1A33F7E4-AF13-48F5-994E-77369DFE04A3";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_MIXED_CONTENT_ALBUM</para>
+            /// <para>Description: Indicates this object represents an album-which may contain objects of different content types (typically-MUSIC-IMAGE and VIDEO).</para>
+            /// </summary>
+            public const string MixedContentAlbum = "00F0C3AC-A593-49AC-9219-24ABCA5A2563";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_AUDIO_ALBUM</para>
+            /// <para>Description: Indicates this object represents an audio album.</para>
+            /// </summary>
+            public const string AudioAlbum = "AA18737E-5009-48FA-AE21-85F24383B4E6";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_IMAGE_ALBUM</para>
+            /// <para>Description: Indicates this object represents an image album.</para>
+            /// </summary>
+            public const string ImageAlbum = "75793148-15F5-4A30-A813-54ED8A37E226";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_VIDEO_ALBUM</para>
+            /// <para>Description: Indicates this object represents a video album.</para>
+            /// </summary>
+            public const string VideoAlbum = "012B0DB7-D4C1-45D6-B081-94B87779614F";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_MEMO</para>
+            /// <para>Description: Indicates this object represents memo data</para>
+            /// </summary>
+            public const string Memo = "9CD20ECF-3B50-414F-A641-E473FFE45751";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_EMAIL</para>
+            /// <para>Description: Indicates this object represents e-mail data</para>
+            /// </summary>
+            public const string Email = "8038044A-7E51-4F8F-883D-1D0623D14533";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_APPOINTMENT</para>
+            /// <para>Description: Indicates this object represents an appointment in a calendar</para>
+            /// </summary>
+            public const string Appointment = "0FED060E-8793-4B1E-90C9-48AC389AC631";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_TASK</para>
+            /// <para>Description: Indicates this object represents a task for tracking (e.g. a TODO list)</para>
+            /// </summary>
+            public const string Task = "63252F2C-887F-4CB6-B1AC-D29855DCEF6C";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_PROGRAM</para>
+            /// <para>Description: Indicates this object represents a file that can be run. This could be a script-executable and so on.</para>
+            /// </summary>
+            public const string Program = "D269F96A-247C-4BFF-98FB-97F3C49220E6";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_GENERIC_FILE</para>
+            /// <para>Description: Indicates this object represents a file that does not fall into any of the other predefined WPD types for files.</para>
+            /// </summary>
+            public const string GenericFile = "0085E0A6-8D34-45D7-BC5C-447E59C73D48";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_CALENDAR</para>
+            /// <para>Description: Indicates this object represents a calendar</para>
+            /// </summary>
+            public const string Calendar = "A1FD5967-6023-49A0-9DF1-F8060BE751B0";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_GENERIC_MESSAGE</para>
+            /// <para>Description: Indicates this object represents a message (e.g. SMS message-E-Mail message-etc.)</para>
+            /// </summary>
+            public const string GenericMessage = "E80EAAF8-B2DB-4133-B67E-1BEF4B4A6E5F";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_NETWORK_ASSOCIATION</para>
+            /// <para>Description: Indicates this object represents an association between a host and a device.</para>
+            /// </summary>
+            public const string NetworkAssociation = "031DA7EE-18C8-4205-847E-89A11261D0F3";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_CERTIFICATE</para>
+            /// <para>Description: Indicates this object represents certificate used for authentication.</para>
+            /// </summary>
+            public const string Certificate = "DC3876E8-A948-4060-9050-CBD77E8A3D87";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_WIRELESS_PROFILE</para>
+            /// <para>Description: Indicates this object represents wireless network access information.</para>
+            /// </summary>
+            public const string WirelessProfile = "0BAC070A-9F5F-4DA4-A8F6-3DE44D68FD6C";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_MEDIA_CAST</para>
+            /// <para>Description: Indicates this object represents a media cast. A media cast object can be though of as a container object that groups related content-similar to how a playlist groups songs to play. Often-a media cast object is used to group media content originally published online.</para>
+            /// </summary>
+            public const string MediaCast = "5E88B3CC-3E65-4E62-BFFF-229495253AB0";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_SECTION</para>
+            /// <para>Description: Indicates this object describes a section of data contained in another object. The WPD_OBJECT_REFERENCES property indicates which object contains the actual data.</para>
+            /// </summary>
+            public const string Section = "821089F5-1D91-4DC9-BE3C-BBB1B35B18CE";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_UNSPECIFIED</para>
+            /// <para>Description: Indicates this object doesn't fall into the predefined WPD content types</para>
+            /// </summary>
+            public const string Unspecified = "28D8D31E-249C-454E-AABC-34883168E634";
+
+            /// <summary>
+            /// <para>Name: WPD_CONTENT_TYPE_ALL</para>
+            /// <para>Description: This content type is only valid as a parameter to API functions and driver commands. It should not be reported as a supported content type by the driver.</para>
+            /// </summary>
+            public const string All = "80E170D2-1055-4A3E-B952-82CC4F8A8689";
+
+            /// <summary>
+            /// This class defines all WPD Functional Categories
+            /// </summary>
+            public static class FunctionalCategory
+
+            {
+
+                //
+                // WPD_FUNCTIONAL_CATEGORY_DEVICE
+                // Used for the device object-which is always the top-most object of the device. 
+                public const string Device = "08EA466B-E3A4-4336-A1F3-A44D2B5C438C";
+                //
+                // WPD_FUNCTIONAL_CATEGORY_STORAGE
+                // Indicates this object encapsulates storage functionality on the device (e.g. memory cards-internal memory) 
+                public const string Storage = "23F05BBC-15DE-4C2A-A55B-A9AF5CE412EF";
+                //
+                // WPD_FUNCTIONAL_CATEGORY_STILL_IMAGE_CAPTURE
+                // Indicates this object encapsulates still image capture functionality on the device (e.g. camera or camera attachment) 
+                public const string StillImageCapture = "613CA327-AB93-4900-B4FA-895BB5874B79";
+                //
+                // WPD_FUNCTIONAL_CATEGORY_AUDIO_CAPTURE
+                // Indicates this object encapsulates audio capture functionality on the device (e.g. voice recorder or other audio recording component) 
+                public const string AudioCapture = "3F2A1919-C7C2-4A00-855D-F57CF06DEBBB";
+                //
+                // WPD_FUNCTIONAL_CATEGORY_VIDEO_CAPTURE
+                // Indicates this object encapsulates video capture functionality on the device (e.g. video recorder or video recording component) 
+                public const string VideoCapture = "E23E5F6B-7243-43AA-8DF1-0EB3D968A918";
+                //
+                // WPD_FUNCTIONAL_CATEGORY_SMS
+                // Indicates this object encapsulates SMS sending functionality on the device (not the receiving or saved SMS messages since those are represented as content objects on the device) 
+                public const string SMS = "0044A0B1-C1E9-4AFD-B358-A62C6117C9CF";
+                //
+                // WPD_FUNCTIONAL_CATEGORY_RENDERING_INFORMATION
+                // Indicates this object provides information about the rendering characteristics of the device. 
+                public const string RenderingInformation = "08600BA4-A7BA-4A01-AB0E-0065D0A356D3";
+                //
+                // WPD_FUNCTIONAL_CATEGORY_NETWORK_CONFIGURATION
+                // Indicates this object encapsulates network configuration functionality on the device (e.g. WiFi Profiles-Partnerships). 
+                public const string NetworkConfiguration = "48F4DB72-7C6A-4AB0-9E1A-470E3CDBF26A";
+                //
+                // WPD_FUNCTIONAL_CATEGORY_ALL
+                // This functional category is only valid as a parameter to API functions and driver commands. It should not be reported as a supported functional category by the driver. 
+                public const string All = "2D8A6512-A74C-448E-BA8A-F4AC07C49399";
+
+            }
+
+        }
+
+        /// <summary>
+        /// This class defines all WPD Formats
+        /// </summary>
+        public static class ObjectFormat
+
+        {
+            //
+            // WPD_OBJECT_FORMAT_ICON
+            //   Standard Windows ICON format 
+            public const string Icon = "077232ED-102C-4638-9C22-83F142BFC822";
+            //
+            // WPD_OBJECT_FORMAT_M4A
+            //   Audio file format 
+            public const string M4A = "30ABA7AC-6FFD-4C23-A359-3E9B52F3F1C8";
+            //
+            // WPD_OBJECT_FORMAT_NETWORK_ASSOCIATION
+            //   Network Association file format. 
+            public const string NetworkAssociation = "B1020000-AE6C-4804-98BA-C57B46965FE7";
+            //
+            // WPD_OBJECT_FORMAT_X509V3CERTIFICATE
+            //   X.509 V3 Certificate file format. 
+            public const string X509v3Certificate = "B1030000-AE6C-4804-98BA-C57B46965FE7";
+            //
+            // WPD_OBJECT_FORMAT_MICROSOFT_WFC
+            //   Windows Connect Now file format. 
+            public const string MicrosoftWFC = "B1040000-AE6C-4804-98BA-C57B46965FE7";
+            //
+            // WPD_OBJECT_FORMAT_3GPA
+            //   Audio file format 
+            public const string ThreeGPA = "E5172730-F971-41EF-A10B-2271A0019D7A";
+            //
+            // WPD_OBJECT_FORMAT_3G2A
+            //   Audio file format 
+            public const string ThreeG2A = "1A11202D-8759-4E34-BA5E-B1211087EEE4";
+            //
+            // WPD_OBJECT_FORMAT_ALL
+            //   This format is only valid as a parameter to API functions and driver commands. It should not be reported as a supported format by the driver. 
+            public const string All = "C1F62EB2-4BB3-479C-9CFA-05B5F3A57B22";
+
+        }
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_OBJECT_PROPERTIES_V1. This category is for all common object properties.
+        /// </summary>
+        public const string ObjectV1 = "EF6B490D-5CD8-437A-AFFC-DA8B60EE4A3C";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_OBJECT_PROPERTIES_V2. This category is for all common object properties.
+        /// </summary>
+        public const string ObjectV2 = "0373CD3D-4A46-40D7-B4D8-73E8DA74E775";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_PROPERTY_ATTRIBUTES_V1
+        /// </summary>
+        public const string PropertyAttributesV1 = "AB7943D8-6332-445F-A00D-8D5EF1E96F37";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_PROPERTY_ATTRIBUTES_V2. This category defines additional property attributes used by device services.
+        /// </summary>
+        public const string PropertyAttributesV2 = "5D9DA160-74AE-43CC-85A9-FE555A80798E";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_EVENT_PROPERTIES_V1 The properties in this category are for properties that may be needed for event processing-but do not have object property equivalents(i.e.they are not exposed as object properties-but rather-used only as event parameters).
+        /// </summary>
+        public const string EventV1 = "15AB1953-F817-4FEF-A921-5676E838F6E0";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_EVENT_PROPERTIES_V2 The properties in this category are for properties that may be needed for event processing-but do not have object property equivalents(i.e.they are not exposed as object properties-but rather-used only as event parameters).
+        /// </summary>
+        public const string EventV2 = "52807B8A-4914-4323-9B9A-74F654B2B846";
+
+        #region This section defines the legacy WPD definitions. When WPD_SERVICES_STRICT mode is defined-these definitions are removed from this header file. You may find replacements or equivalents in the Device Services headers (for example-BridgeDeviceService.h).
+        // # ifndef WPD_SERVICES_STRICT
+
+        public static class Legacy
+
+        {
+
+            #endregion
+            /// <summary>
+            /// This class defines the legacy WPD Formats
+            /// </summary>
+            public static class ObjectFormat
+
+            {
+
+                //
+                // WPD_OBJECT_FORMAT_PROPERTIES_ONLY
+                //   This object has no data stream and is completely specified by properties only.
+                //   Device Services Format: FORMAT_Association
+                public const string PropertiesOnly = "30010000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_UNSPECIFIED
+                //   An undefined object format on the device (e.g. objects that can not be classified by the other defined WPD format codes)
+                //   Device Services Format: FORMAT_Undefined
+                public const string Unspecified = "30000000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_SCRIPT
+                //   A device model-specific script
+                //   Device Services Format: FORMAT_DeviceScript
+                public const string Script = "30020000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_EXECUTABLE
+                //   A device model-specific binary executable
+                //   Device Services Format: FORMAT_DeviceExecutable
+                public const string Executable = "30030000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_TEXT
+                //   A text file
+                //   Device Services Format: FORMAT_TextDocument
+                public const string Text = "30040000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_HTML
+                //   A HyperText Markup Language file (text)
+                //   Device Services Format: FORMAT_HTMLDocument
+                public const string HTML = "30050000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_DPOF
+                //   A Digital Print Order File (text)
+                //   Device Services Format: FORMAT_DPOFDocument
+                public const string DPOF = "30060000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_AIFF
+                //   Audio file format
+                //   Device Services Format: FORMAT_AIFFFile
+                public const string AIFF = "30070000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_WAVE
+                //   Audio file format
+                //   Device Services Format: FORMAT_WAVFile
+                public const string WAV = "30080000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_MP3
+                //   Audio file format
+                //   Device Services Format: FORMAT_MP3File
+                public const string MP3 = "30090000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_AVI
+                //   Video file format
+                //   Device Services Format: FORMAT_AVIFile
+                public const string AVI = "300A0000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_MPEG
+                //   Video file format
+                //   Device Services Format: FORMAT_MPEGFile
+                public const string MPEG = "300B0000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_ASF
+                //   Video file format (Microsoft Advanced Streaming Format)
+                //   Device Services Format: FORMAT_ASFFile
+                public const string ASF = "300C0000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_EXIF
+                //   Image file format (Exchangeable File Format)-JEIDA standard
+                //   Device Services Format: FORMAT_EXIFImage
+                public const string EXIF = "38010000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_TIFFEP
+                //   Image file format (Tag Image File Format for Electronic Photography)
+                //   Device Services Format: FORMAT_TIFFEPImage
+                public const string TIFFEP = "38020000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_FLASHPIX
+                //   Image file format (Structured Storage Image Format)
+                //   Device Services Format: FORMAT_FlashPixImage
+                public const string FlashPIX = "38030000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_BMP
+                //   Image file format (Microsoft Windows Bitmap file)
+                //   Device Services Format: FORMAT_BMPImage
+                public const string BMP = "38040000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_CIFF
+                //   Image file format (Canon Camera Image File Format)
+                //   Device Services Format: FORMAT_CIFFImage
+                public const string CIFF = "38050000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_GIF
+                //   Image file format (Graphics Interchange Format)
+                //   Device Services Format: FORMAT_GIFImage
+                public const string GIF = "38070000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_JFIF
+                //   Image file format (JPEG Interchange Format)
+                //   Device Services Format: FORMAT_JFIFImage
+                public const string JFIF = "38080000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_PCD
+                //   Image file format (PhotoCD Image Pac)
+                //   Device Services Format: FORMAT_PCDImage
+                public const string PCD = "38090000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_PICT
+                //   Image file format (Quickdraw Image Format)
+                //   Device Services Format: FORMAT_PICTImage
+                public const string PICT = "380A0000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_PNG
+                //   Image file format (Portable Network Graphics)
+                //   Device Services Format: FORMAT_PNGImage
+                public const string PNG = "380B0000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_TIFF
+                //   Image file format (Tag Image File Format)
+                //   Device Services Format: FORMAT_TIFFImage
+                public const string TIFF = "380D0000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_TIFFIT
+                //   Image file format (Tag Image File Format for Informational Technology) Graphic Arts
+                //   Device Services Format: FORMAT_TIFFITImage
+                public const string TIFFIT = "380E0000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_JP2
+                //   Image file format (JPEG2000 Baseline File Format)
+                //   Device Services Format: FORMAT_JP2Image
+                public const string JP2 = "380F0000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_JPX
+                //   Image file format (JPEG2000 Extended File Format)
+                //   Device Services Format: FORMAT_JPXImage
+                public const string JPX = "38100000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_WBMP
+                //   Image file format (Wireless Application Protocol Bitmap Format)
+                //   Device Services Format: FORMAT_WBMPImage
+                public const string WBMP = "B8030000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_JPEGXR
+                //   Image file format (JPEG XR-also known as HD Photo)
+                //   Device Services Format: FORMAT_JPEGXRImage
+                public const string JPEGXR = "B8040000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_WINDOWSIMAGEFORMAT
+                //   Image file format
+                //   Device Services Format: FORMAT_HDPhotoImage
+                public const string WindowsImageFormat = "B8810000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_WMA
+                //   Audio file format (Windows Media Audio)
+                //   Device Services Format: FORMAT_WMAFile
+                public const string WMA = "B9010000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_WMV
+                //   Video file format (Windows Media Video)
+                //   Device Services Format: FORMAT_WMVFile
+                public const string WMV = "B9810000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_WPLPLAYLIST
+                //   Playlist file format
+                //   Device Services Format: FORMAT_WPLPlaylist
+                public const string WPLPlaylist = "BA100000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_M3UPLAYLIST
+                //   Playlist file format
+                //   Device Services Format: FORMAT_M3UPlaylist
+                public const string M3UPlaylist = "BA110000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_MPLPLAYLIST
+                //   Playlist file format
+                //   Device Services Format: FORMAT_MPLPlaylist
+                public const string MPLPlaylist = "BA120000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_ASXPLAYLIST
+                //   Playlist file format
+                //   Device Services Format: FORMAT_ASXPlaylist
+                public const string ASXPlaylist = "BA130000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_PLSPLAYLIST
+                //   Playlist file format
+                //   Device Services Format: FORMAT_PSLPlaylist
+                public const string PLSPlaylist = "BA140000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_ABSTRACT_CONTACT_GROUP
+                //   Generic format for contact group objects
+                //   Device Services Format: FORMAT_AbstractContactGroup
+                public const string AbstractContactGroup = "BA060000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_ABSTRACT_MEDIA_CAST
+                //   MediaCast file format
+                //   Device Services Format: FORMAT_AbstractMediacast
+                public const string AbstractMediaCast = "BA0B0000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_VCALENDAR1
+                //   VCALENDAR file format (VCALENDAR Version 1)
+                //   Device Services Format: FORMAT_VCalendar1
+                public const string VCalendar1 = "BE020000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_ICALENDAR
+                //   ICALENDAR file format (VCALENDAR Version 2)
+                //   Device Services Format: FORMAT_ICalendar
+                public const string ICalendar = "BE030000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_ABSTRACT_CONTACT
+                //   Abstract contact file format
+                //   Device Services Format: FORMAT_AbstractContact
+                public const string AbstractContact = "BB810000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_VCARD2
+                //   VCARD file format (VCARD Version 2)
+                //   Device Services Format: FORMAT_VCard2Contact
+                public const string VCard2 = "BB820000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_VCARD3
+                //   VCARD file format (VCARD Version 3)
+                //   Device Services Format: FORMAT_VCard3Contact
+                public const string VCard3 = "BB830000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_XML
+                //   XML file format.
+                //   Device Services Format: FORMAT_XMLDocument
+                public const string XML = "BA820000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_AAC
+                //   Audio file format
+                //   Device Services Format: FORMAT_AACFile
+                public const string AAC = "B9030000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_AUDIBLE
+                //   Audio file format
+                //   Device Services Format: FORMAT_AudibleFile
+                public const string Audible = "B9040000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_FLAC
+                //   Audio file format
+                //   Device Services Format: FORMAT_FLACFile
+                public const string FLAC = "B9060000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_QCELP
+                //   Audio file format (Qualcomm Code Excited Linear Prediction)
+                //   Device Services Format: FORMAT_QCELPFile
+                public const string QCELP = "B9070000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_AMR
+                //   Audio file format (Adaptive Multi-Rate audio codec)
+                //   Device Services Format: FORMAT_AMRFile
+                public const string AMR = "B9080000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_OGG
+                //   Audio file format
+                //   Device Services Format: FORMAT_OGGFile
+                public const string OGG = "B9020000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_MP4
+                //   Audio or Video file format
+                //   Device Services Format: FORMAT_MPEG4File
+                public const string MP4 = "B9820000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_MP2
+                //   Audio or Video file format
+                //   Device Services Format: FORMAT_MPEG2File
+                public const string MP2 = "B9830000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_MICROSOFT_WORD
+                //   Microsoft Office Word Document file format.
+                //   Device Services Format: FORMAT_WordDocument
+                public const string MicrosoftWord = "BA830000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_MHT_COMPILED_HTML
+                //   MHT Compiled HTML Document file format.
+                //   Device Services Format: FORMAT_MHTDocument
+                public const string MHTCompiledHTML = "BA840000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_MICROSOFT_EXCEL
+                //   Microsoft Office Excel Document file format.
+                //   Device Services Format: FORMAT_ExcelDocument
+                public const string MicrosoftExcel = "BA850000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_MICROSOFT_POWERPOINT
+                //   Microsoft Office PowerPoint Document file format.
+                //   Device Services Format: FORMAT_PowerPointDocument
+                public const string MicrosoftPowerPoint = "BA860000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_3GP
+                //   Audio or Video file format
+                //   Device Services Format: FORMAT_3GPPFile
+                public const string ThreeGP = "B9840000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_3G2
+                //   Audio or Video file format
+                //   Device Services Format: FORMAT_3GPP2File
+                public const string ThreeG2 = "B9850000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_AVCHD
+                //   Audio or Video file format
+                //   Device Services Format: FORMAT_AVCHDFile
+                public const string AVCHD = "B9860000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_ATSCTS
+                //   Audio or Video file format
+                //   Device Services Format: FORMAT_ATSCTSFile
+                public const string ATSCTS = "B9870000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_DVBTS
+                //   Audio or Video file format
+                //   Device Services Format: FORMAT_DVBTSFile
+                public const string DVBTS = "B9880000-AE6C-4804-98BA-C57B46965FE7";
+                //
+                // WPD_OBJECT_FORMAT_MKV
+                //   Audio or Video file format
+                //   Device Services Format: FORMAT_MKVFile
+                public const string MKV = "B9900000-AE6C-4804-98BA-c57B46965FE7";
+
+            }
+
+            // #endif // WPD_SERVICES_STRICT
+
+        }
+
+    }
+
+    public static class CommandSystem
+
+    {
+
+        /// <summary>
+        /// All Commands-Parameters and Options associated with: WPD_CATEGORY_COMMON.
+        /// </summary>
+        public const string Common = "F0422A9C-5DC8-4440-B5BD-5DF28835658A";
+
+        public static class Object
+
+        {
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_ENUMERATION. The commands in this category are used for basic object enumeration.
+            /// </summary>
+            public const string Enumeration = "B7474E91-E7F8-4AD9-B400-AD1A4B58EEEC";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_PROPERTIES. This category of commands is used to perform basic property operations such as Reading/Writing values-listing supported values and so on.
+            /// </summary>
+            public const string Properties = "9E5582E4-0814-44E6-981A-B2998D583804";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_PROPERTIES_BULK. This category contains commands and properties for property operations across multiple objects.
+            /// </summary>
+            public const string PropertiesBulk = "11C824DD-04CD-4E4E-8C7B-F6EFB794D84E";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_RESOURCES. The commands in this category are used for basic object resource enumeration and transfer.
+            /// </summary>
+            public const string Resources = "B3A2B22D-A595-4108-BE0A-FC3C965F3D4A";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_MANAGEMENT. The commands specified in this category are used to Create/Delete objects on the device.
+            /// </summary>
+            public const string Management = "EF1E43DD-A9ED-4341-8BCC-186192AEA089";
+
+        }
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_CAPABILITIES. This command category is used to query capabilities of the device.
+        /// </summary>
+        public const string Capabilities = "0CABEC78-6B74-41C6-9216-2639D1FCE356";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_STORAGE. This category is for commands and parameters for storage functional objects.
+        /// </summary>
+        public const string Storage = "D8F907A6-34CC-45FA-97FB-D007FA47EC94";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SMS. The commands in this category relate to Short-Message-Service functionality-typically exposed on mobile phones.
+        /// </summary>
+        public const string SMS = "AFC25D66-FE0D-4114-9097-970C93E920D1";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_STILL_IMAGE_CAPTURE
+        /// </summary>
+        public const string StillImageCapture = "4FCD6982-22A2-4B05-A48B-62D38BF27B32";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_MEDIA_CAPTURE
+        /// </summary>
+        public const string MediaCapture = "59B433BA-FE44-4D8D-808C-6BCB9B0F15E8";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_DEVICE_HINTS. The commands in this category relate to hints that a device can provide to improve end-user experience.
+        /// </summary>
+        public const string DeviceHints = "0D5FB92B-CB46-4C4F-8343-0BC3D3F17C84";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_V1. The commands in this category relate to the WPD device class extension.
+        /// </summary>
+        public const string ClassExtensionV1 = "33FB0D11-64A3-4FAC-B4C7-3DFEAA99B051";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_V2. The commands in this category relate to the WPD device class extension.
+        /// </summary>
+        public const string ClassExtensionV2 = "7F0779B5-FA2B-4766-9CB2-F73BA30B6758";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_NULL. This category is used exclusively for the NULL property key define.
+        /// </summary>
+        public const string CategoryNull = "00000000-0000-0000-0000-000000000000";
+
+        /// <summary>
+        /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_NETWORK_CONFIGURATION. The commands in this category are used for Network Association and WiFi Configuration.
+        /// </summary>
+        public const string NetworkConfiguration = "78F9C6FC-79B8-473C-9060-6BD23DD072C4";
+
+        public static class Service
+
+        {
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SERVICE_COMMON. The commands in this category relate to a device service.
+            /// </summary>
+            public const string Common = "322F071D-36EF-477F-B4B5-6F52D734BAEE";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SERVICE_CAPABILITIES. The commands in this category relate to capabilities of a device service.
+            /// </summary>
+            public const string Capabilities = "24457E74-2E9F-44F9-8C57-1D1BCB170B89";
+
+            /// <summary>
+            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SERVICE_METHODS. The commands in this category relate to methods of a device service.
+            /// </summary>
+            public const string Methods = "2D521CA8-C1B0-4268-A342-CF19321569BC";
+
+        }
+
+    }
+
+}
+
+namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
+
+{
+
+    public static class Sensors
+
+    {
+
+        public const string ISensor = "5FA08F80-2657-458E-AF75-46F73FA6AC5C";
+
+    }
+
     public static class PortableDevices
 
     {
@@ -328,991 +1331,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
         public const string PortableDeviceValues = "0c15d503-d017-47ce-9016-7b3f978721cc";
         public const string PortableDevicePropVariantCollection = "08a99e2f-6d6d-4b80-af5a-baf2bcbe4cb9";
         public const string PortableDeviceKeyCollection = "de2d022d-2480-43be-97f0-d1fa2cf98f4f";
-
-        /// <summary>
-        /// This class defines all WPD Events.
-        /// </summary>
-        public static class EventSystem
-
-        {
-
-            /// <summary>
-            /// This GUID is used to identify all WPD driver events to the event sub-system. The driver uses this as the GUID identifier when it queues an event with IWdfDevice::PostEvent(). Applications never use this value.
-            /// </summary>
-            public const string Notification = "2BA2E40A-6B4C-4295-BB43-26322B99AEB2";
-
-            /// <summary>
-            /// This event is sent after a new object is available on the device.
-            /// </summary>
-            public const string ObjectAdded = "A726DA95-E207-4B02-8D44-BEF2E86CBFFC";
-
-            /// <summary>
-            /// This event is sent after a previously existing object has been removed from the device.
-            /// </summary>
-            public const string ObjectRemoved = "BE82AB88-A52C-4823-96E5-D0272671FC38";
-
-            /// <summary>
-            /// This event is sent after an object has been updated such that any connected client should refresh its view of that object.
-            /// </summary>
-            public const string ObjectUpdated = "1445A759-2E01-485D-9F27-FF07DAE697AB";
-
-            /// <summary>
-            /// This event indicates that the device is about to be reset-and all connected clients should close their connection to the device.
-            /// </summary>
-            public const string DeviceReset = "7755CF53-C1ED-44F3-B5A2-451E2C376B27";
-
-            /// <summary>
-            /// This event indicates that the device capabilities have changed. Clients should re-query the device if they have made any decisions based on device capabilities.
-            /// </summary>
-            public const string DeviceCapabilitiesUpdated = "36885AA1-CD54-4DAA-B3D0-AFB3E03F5999";
-
-            /// <summary>
-            /// This event indicates the progress of a format operation on a storage object.
-            /// </summary>
-            public const string StorageFormat = "3782616B-22BC-4474-A251-3070F8D38857";
-
-            /// <summary>
-            /// This event is sent to request an application to transfer a particular object from the device.
-            /// </summary>
-            public const string ObjectTransferRequested = "8D16A0A1-F2C6-41DA-8F19-5E53721ADBF2";
-
-            /// <summary>
-            /// This event is sent when a driver for a device is being unloaded. This is typically a result of the device being unplugged.
-            /// </summary>
-            public const string DeviceRemoved = "E4CBCA1B-6918-48B9-85EE-02BE7C850AF9";
-
-            /// <summary>
-            /// This event is sent when a driver has completed invoking a service method. This event must be sent even when the method fails.
-            /// </summary>
-            public const string ServiceMethodComplete = "8A33F5F8-0ACC-4D9B-9CC4-112D353B86CA";
-
-        }
-
-        public static class PropertySystem
-
-        {
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_OPTIONS_V1. This category of properties relates to options used for the WPD device class extension
-            /// </summary>
-            public const string ClassExtensionOptionsV1 = "6309FFEF-A87C-4CA7-8434-797576E40A96";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_OPTIONS_V2. This category of properties relates to options used for the WPD device class extension
-            /// </summary>
-            public const string ClassExtensionOptionsV2 = "3E3595DA-4D71-49FE-A0B4-D4406C3AE93F";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_OPTIONS_V3. This category of properties relates to options used for the WPD device class extension
-            /// </summary>
-            public const string ClassExtensionOptionsV3 = "65C160F8-1367-4CE2-939D-8310839F0D30";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_RESOURCE_ATTRIBUTES_V1
-            /// </summary>
-            public const string ResourceAttributesV1 = "1EB6F604-9278-429F-93CC-5BB8C06656B6";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_EVENT_OPTIONS_V1 The properties in this category describe event options.
-            /// </summary>
-            public const string EventOptionsV1 = "B3D8DAD7-A361-4B83-8A48-5B02CE10713B";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_EVENT_ATTRIBUTES_V1 The properties in this category describe event attributes.
-            /// </summary>
-            public const string EventAttributesV1 = "10C96578-2E81-4111-ADDE-E08CA6138F6D";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_API_OPTIONS_V1 The properties in this category describe API options.
-            /// </summary>
-            public const string APIOptionsV1 = "10E54A3E-052D-4777-A13C-DE7614BE2BC4";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_FORMAT_ATTRIBUTES_V1 The properties in this category describe format attributes.
-            /// </summary>
-            public const string FormatAttributesV1 = "A0A02000-BCAF-4BE8-B3F5-233F231CF58F";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_METHOD_ATTRIBUTES_V1 The properties in this category describe method attributes.
-            /// </summary>
-            public const string MethodAttributesV1 = "F17A5071-F039-44AF-8EFE-432CF32E432A";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_PARAMETER_ATTRIBUTES_V1 The properties in this category describe parameter attributes.
-            /// </summary>
-            public const string ParameterAttributesV1 = "E6864DD7-F325-45EA-A1D5-97CF73B6CA58";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_DEVICE_PROPERTIES_V1
-            /// </summary>
-            public const string DeviceV1 = "26D4979A-E643-4626-9E2B-736DC0C92FDC";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_DEVICE_PROPERTIES_V2
-            /// </summary>
-            public const string DeviceV2 = "463DD662-7FC4-4291-911C-7F4C9CCA9799";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_DEVICE_PROPERTIES_V3
-            /// </summary>
-            public const string DeviceV3 = "6C2B878C-C2EC-490D-B425-D7A75E23E5ED";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_SERVICE_PROPERTIES_V1
-            /// </summary>
-            public const string ServiceV1 = "7510698A-CB54-481C-B8DB-0D75C93F1C06";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_FOLDER_OBJECT_PROPERTIES_V1. This category is for properties common to all folder objects.
-            /// </summary>
-            public const string FolderObjectV1 = "7E9A7ABF-E568-4B34-AA2F-13BB12AB177D";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_IMAGE_OBJECT_PROPERTIES_V1. This category is for properties common to all image objects.
-            /// </summary>
-            public const string ImageObjectV1 = "63D64908-9FA1-479F-85BA-9952216447DB";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_DOCUMENT_OBJECT_PROPERTIES_V1. This category is for properties common to all document objects.
-            /// </summary>
-            public const string DocumentObjectV1 = "0B110203-EB95-4F02-93E0-97C631493AD5";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_MEDIA_PROPERTIES_V1. This category is for properties common to media objects(e.g.audio and video).
-            /// </summary>
-            public const string MediaV1 = "2ED8BA05-0AD3-42DC-B0D0-BC95AC396AC8";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_CONTACT_OBJECT_PROPERTIES_V1. This category is for properties common to all contact objects.
-            /// </summary>
-            public const string ContactObjectV1 = "FBD4FDAB-987D-4777-B3F9-726185A9312B";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_MUSIC_OBJECT_PROPERTIES_V1. This category is for properties common to all music objects.
-            /// </summary>
-            public const string MusicObjectV1 = "B324F56A-DC5D-46E5-B6DF-D2EA414888C6";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_VIDEO_OBJECT_PROPERTIES_V1. This category is for properties common to all video objects.
-            /// </summary>
-            public const string VideoObjectV1 = "346F2163-F998-4146-8B01-D19B4C00DE9A";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_COMMON_INFORMATION_OBJECT_PROPERTIES_V1. This category is properties that pertain to informational objects such as appointments-tasks-memos and even documents.
-            /// </summary>
-            public const string CommonInformationObjectV1 = "B28AE94B-05A4-4E8E-BE01-72CC7E099D8F";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_MEMO_OBJECT_PROPERTIES_V1. This category is for properties common to all memo objects.
-            /// </summary>
-            public const string MemoObjectV1 = "5FFBFC7B-7483-41AD-AFB9-DA3F4E592B8D";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_EMAIL_OBJECT_PROPERTIES_V1. This category is for properties common to all email objects.
-            /// </summary>
-            public const string EmailObjectV1 = "41F8F65A-5484-4782-B13D-4740DD7C37C5";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_APPOINTMENT_OBJECT_PROPERTIES_V1. This category is for properties common to all appointment objects.
-            /// </summary>
-            public const string AppointmentObjectV1 = "F99EFD03-431D-40D8-A1C9-4E220D9C88D3";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_TASK_OBJECT_PROPERTIES_V1. This category is for properties common to all task objects.
-            /// </summary>
-            public const string TaskObjectV1 = "E354E95E-D8A0-4637-A03A-0CB26838DBC7";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_SMS_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_SMS
-            /// </summary>
-            public const string SMSObjectV1 = "7E1074CC-50FF-4DD1-A742-53BE6F093A0D";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_SECTION_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose content type is WPD_CONTENT_TYPE_SECTION
-            /// </summary>
-            public const string SectionObjectV1 = "516AFD2B-C64E-44F0-98DC-BEE1C88F7D66";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_FUNCTIONAL_OBJECT_PROPERTIES_V1. This category is for properties common to all functional objects.
-            /// </summary>
-            public const string FunctionalObjectV1 = "8F052D93-ABCA-4FC5-A5AC-B01DF4DBE598";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_STORAGE_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_STORAGE.
-            /// </summary>
-            public const string StorageObjectV1 = "01A3057A-74D6-4E80-BEA7-DC4C212CE50A";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_NETWORK_ASSOCIATION_PROPERTIES_V1. This category is for properties common to all network association objects.
-            /// </summary>
-            public const string NetworkAssociationV1 = "E4C93C1F-B203-43F1-A100-5A07D11B0274";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_STILL_IMAGE_CAPTURE_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_STILL_IMAGE_CAPTURE
-            /// </summary>
-            public const string StillImageCaptureObjectV1 = "58C571EC-1BCB-42A7-8AC5-BB291573A260";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_RENDERING_INFORMATION_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_AUDIO_RENDERING_INFORMATION
-            /// </summary>
-            public const string RenderingInformationObjectV1 = "C53D039F-EE23-4A31-8590-7639879870B4";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_CLIENT_INFORMATION_PROPERTIES_V1.
-            /// </summary>
-            public const string ClientInformationV1 = "204D9F0C-2292-4080-9F42-40664E70F859";
-
-            /// <summary>
-            /// This class defines all WPD content types.
-            /// </summary>
-            public static class ContentType
-
-            {
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_FUNCTIONAL_OBJECT</para>
-                /// <para>Description: Indicates this object represents a functional object-not content data on the device.</para>
-                /// </summary>
-                public const string FunctionalObject = "99ED0160-17FF-4C44-9D98-1D7A6F941921";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_FOLDER</para>
-                /// <para>Description: Indicates this object is a folder.</para>
-                /// </summary>
-                public const string Folder = "27E2E392-A111-48E0-AB0C-E17705A05F85";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_IMAGE</para>
-                /// <para>Description: Indicates this object represents image data (e.g. a JPEG file)</para>
-                /// </summary>
-                public const string Image = "ef2107d5-a52a-4243-a26b-62d4176d7603";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_DOCUMENT</para>
-                /// <para>Description: Indicates this object represents document data (e.g. a MS WORD file-TEXT file-etc.)</para>
-                /// </summary>
-                public const string Document = "680ADF52-950A-4041-9B41-65E393648155";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_CONTACT</para>
-                /// <para>Description: Indicates this object represents contact data (e.g. name/number-or a VCARD file)</para>
-                /// </summary>
-                public const string Contact = "EABA8313-4525-4707-9F0E-87C6808E9435";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_CONTACT_GROUP</para>
-                /// <para>Description: Indicates this object represents a group of contacts.</para>
-                /// </summary>
-                public const string ContactGroup = "346B8932-4C36-40D8-9415-1828291F9DE9";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_AUDIO</para>
-                /// <para>Description: Indicates this object represents audio data (e.g. a WMA or MP3 file)</para>
-                /// </summary>
-                public const string Audio = "4AD2C85E-5E2D-45E5-8864-4F229E3C6CF0";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_VIDEO</para>
-                /// <para>Description: Indicates this object represents video data (e.g. a WMV or AVI file)</para>
-                /// </summary>
-                public const string Video = "9261B03C-3D78-4519-85E3-02C5E1F50BB9";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_TELEVISION</para>
-                /// <para>Description: Indicates this object represents a television recording.</para>
-                /// </summary>
-                public const string Television = "60A169CF-F2AE-4E21-9375-9677F11C1C6E";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_PLAYLIST</para>
-                /// <para>Description: Indicates this object represents a playlist.</para>
-                /// </summary>
-                public const string Playlist = "1A33F7E4-AF13-48F5-994E-77369DFE04A3";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_MIXED_CONTENT_ALBUM</para>
-                /// <para>Description: Indicates this object represents an album-which may contain objects of different content types (typically-MUSIC-IMAGE and VIDEO).</para>
-                /// </summary>
-                public const string MixedContentAlbum = "00F0C3AC-A593-49AC-9219-24ABCA5A2563";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_AUDIO_ALBUM</para>
-                /// <para>Description: Indicates this object represents an audio album.</para>
-                /// </summary>
-                public const string AudioAlbum = "AA18737E-5009-48FA-AE21-85F24383B4E6";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_IMAGE_ALBUM</para>
-                /// <para>Description: Indicates this object represents an image album.</para>
-                /// </summary>
-                public const string ImageAlbum = "75793148-15F5-4A30-A813-54ED8A37E226";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_VIDEO_ALBUM</para>
-                /// <para>Description: Indicates this object represents a video album.</para>
-                /// </summary>
-                public const string VideoAlbum = "012B0DB7-D4C1-45D6-B081-94B87779614F";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_MEMO</para>
-                /// <para>Description: Indicates this object represents memo data</para>
-                /// </summary>
-                public const string Memo = "9CD20ECF-3B50-414F-A641-E473FFE45751";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_EMAIL</para>
-                /// <para>Description: Indicates this object represents e-mail data</para>
-                /// </summary>
-                public const string Email = "8038044A-7E51-4F8F-883D-1D0623D14533";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_APPOINTMENT</para>
-                /// <para>Description: Indicates this object represents an appointment in a calendar</para>
-                /// </summary>
-                public const string Appointment = "0FED060E-8793-4B1E-90C9-48AC389AC631";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_TASK</para>
-                /// <para>Description: Indicates this object represents a task for tracking (e.g. a TODO list)</para>
-                /// </summary>
-                public const string Task = "63252F2C-887F-4CB6-B1AC-D29855DCEF6C";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_PROGRAM</para>
-                /// <para>Description: Indicates this object represents a file that can be run. This could be a script-executable and so on.</para>
-                /// </summary>
-                public const string Program = "D269F96A-247C-4BFF-98FB-97F3C49220E6";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_GENERIC_FILE</para>
-                /// <para>Description: Indicates this object represents a file that does not fall into any of the other predefined WPD types for files.</para>
-                /// </summary>
-                public const string GenericFile = "0085E0A6-8D34-45D7-BC5C-447E59C73D48";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_CALENDAR</para>
-                /// <para>Description: Indicates this object represents a calendar</para>
-                /// </summary>
-                public const string Calendar = "A1FD5967-6023-49A0-9DF1-F8060BE751B0";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_GENERIC_MESSAGE</para>
-                /// <para>Description: Indicates this object represents a message (e.g. SMS message-E-Mail message-etc.)</para>
-                /// </summary>
-                public const string GenericMessage = "E80EAAF8-B2DB-4133-B67E-1BEF4B4A6E5F";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_NETWORK_ASSOCIATION</para>
-                /// <para>Description: Indicates this object represents an association between a host and a device.</para>
-                /// </summary>
-                public const string NetworkAssociation = "031DA7EE-18C8-4205-847E-89A11261D0F3";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_CERTIFICATE</para>
-                /// <para>Description: Indicates this object represents certificate used for authentication.</para>
-                /// </summary>
-                public const string Certificate = "DC3876E8-A948-4060-9050-CBD77E8A3D87";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_WIRELESS_PROFILE</para>
-                /// <para>Description: Indicates this object represents wireless network access information.</para>
-                /// </summary>
-                public const string WirelessProfile = "0BAC070A-9F5F-4DA4-A8F6-3DE44D68FD6C";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_MEDIA_CAST</para>
-                /// <para>Description: Indicates this object represents a media cast. A media cast object can be though of as a container object that groups related content-similar to how a playlist groups songs to play. Often-a media cast object is used to group media content originally published online.</para>
-                /// </summary>
-                public const string MediaCast = "5E88B3CC-3E65-4E62-BFFF-229495253AB0";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_SECTION</para>
-                /// <para>Description: Indicates this object describes a section of data contained in another object. The WPD_OBJECT_REFERENCES property indicates which object contains the actual data.</para>
-                /// </summary>
-                public const string Section = "821089F5-1D91-4DC9-BE3C-BBB1B35B18CE";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_UNSPECIFIED</para>
-                /// <para>Description: Indicates this object doesn't fall into the predefined WPD content types</para>
-                /// </summary>
-                public const string Unspecified = "28D8D31E-249C-454E-AABC-34883168E634";
-
-                /// <summary>
-                /// <para>Name: WPD_CONTENT_TYPE_ALL</para>
-                /// <para>Description: This content type is only valid as a parameter to API functions and driver commands. It should not be reported as a supported content type by the driver.</para>
-                /// </summary>
-                public const string All = "80E170D2-1055-4A3E-B952-82CC4F8A8689";
-
-                /// <summary>
-                /// This class defines all WPD Functional Categories
-                /// </summary>
-                public static class FunctionalCategory
-
-                {
-
-                    //
-                    // WPD_FUNCTIONAL_CATEGORY_DEVICE
-                    // Used for the device object-which is always the top-most object of the device. 
-                    public const string Device = "08EA466B-E3A4-4336-A1F3-A44D2B5C438C";
-                    //
-                    // WPD_FUNCTIONAL_CATEGORY_STORAGE
-                    // Indicates this object encapsulates storage functionality on the device (e.g. memory cards-internal memory) 
-                    public const string Storage = "23F05BBC-15DE-4C2A-A55B-A9AF5CE412EF";
-                    //
-                    // WPD_FUNCTIONAL_CATEGORY_STILL_IMAGE_CAPTURE
-                    // Indicates this object encapsulates still image capture functionality on the device (e.g. camera or camera attachment) 
-                    public const string StillImageCapture = "613CA327-AB93-4900-B4FA-895BB5874B79";
-                    //
-                    // WPD_FUNCTIONAL_CATEGORY_AUDIO_CAPTURE
-                    // Indicates this object encapsulates audio capture functionality on the device (e.g. voice recorder or other audio recording component) 
-                    public const string AudioCapture = "3F2A1919-C7C2-4A00-855D-F57CF06DEBBB";
-                    //
-                    // WPD_FUNCTIONAL_CATEGORY_VIDEO_CAPTURE
-                    // Indicates this object encapsulates video capture functionality on the device (e.g. video recorder or video recording component) 
-                    public const string VideoCapture = "E23E5F6B-7243-43AA-8DF1-0EB3D968A918";
-                    //
-                    // WPD_FUNCTIONAL_CATEGORY_SMS
-                    // Indicates this object encapsulates SMS sending functionality on the device (not the receiving or saved SMS messages since those are represented as content objects on the device) 
-                    public const string SMS = "0044A0B1-C1E9-4AFD-B358-A62C6117C9CF";
-                    //
-                    // WPD_FUNCTIONAL_CATEGORY_RENDERING_INFORMATION
-                    // Indicates this object provides information about the rendering characteristics of the device. 
-                    public const string RenderingInformation = "08600BA4-A7BA-4A01-AB0E-0065D0A356D3";
-                    //
-                    // WPD_FUNCTIONAL_CATEGORY_NETWORK_CONFIGURATION
-                    // Indicates this object encapsulates network configuration functionality on the device (e.g. WiFi Profiles-Partnerships). 
-                    public const string NetworkConfiguration = "48F4DB72-7C6A-4AB0-9E1A-470E3CDBF26A";
-                    //
-                    // WPD_FUNCTIONAL_CATEGORY_ALL
-                    // This functional category is only valid as a parameter to API functions and driver commands. It should not be reported as a supported functional category by the driver. 
-                    public const string All = "2D8A6512-A74C-448E-BA8A-F4AC07C49399";
-
-                }
-
-            }
-
-            /// <summary>
-            /// This class defines all WPD Formats
-            /// </summary>
-            public static class ObjectFormat
-
-            {
-                //
-                // WPD_OBJECT_FORMAT_ICON
-                //   Standard Windows ICON format 
-                public const string Icon = "077232ED-102C-4638-9C22-83F142BFC822";
-                //
-                // WPD_OBJECT_FORMAT_M4A
-                //   Audio file format 
-                public const string M4A = "30ABA7AC-6FFD-4C23-A359-3E9B52F3F1C8";
-                //
-                // WPD_OBJECT_FORMAT_NETWORK_ASSOCIATION
-                //   Network Association file format. 
-                public const string NetworkAssociation = "B1020000-AE6C-4804-98BA-C57B46965FE7";
-                //
-                // WPD_OBJECT_FORMAT_X509V3CERTIFICATE
-                //   X.509 V3 Certificate file format. 
-                public const string X509v3Certificate = "B1030000-AE6C-4804-98BA-C57B46965FE7";
-                //
-                // WPD_OBJECT_FORMAT_MICROSOFT_WFC
-                //   Windows Connect Now file format. 
-                public const string MicrosoftWFC = "B1040000-AE6C-4804-98BA-C57B46965FE7";
-                //
-                // WPD_OBJECT_FORMAT_3GPA
-                //   Audio file format 
-                public const string ThreeGPA = "E5172730-F971-41EF-A10B-2271A0019D7A";
-                //
-                // WPD_OBJECT_FORMAT_3G2A
-                //   Audio file format 
-                public const string ThreeG2A = "1A11202D-8759-4E34-BA5E-B1211087EEE4";
-                //
-                // WPD_OBJECT_FORMAT_ALL
-                //   This format is only valid as a parameter to API functions and driver commands. It should not be reported as a supported format by the driver. 
-                public const string All = "C1F62EB2-4BB3-479C-9CFA-05B5F3A57B22";
-
-            }
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_OBJECT_PROPERTIES_V1. This category is for all common object properties.
-            /// </summary>
-            public const string ObjectV1 = "EF6B490D-5CD8-437A-AFFC-DA8B60EE4A3C";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_OBJECT_PROPERTIES_V2. This category is for all common object properties.
-            /// </summary>
-            public const string ObjectV2 = "0373CD3D-4A46-40D7-B4D8-73E8DA74E775";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_PROPERTY_ATTRIBUTES_V1
-            /// </summary>
-            public const string PropertyAttributesV1 = "AB7943D8-6332-445F-A00D-8D5EF1E96F37";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_PROPERTY_ATTRIBUTES_V2. This category defines additional property attributes used by device services.
-            /// </summary>
-            public const string PropertyAttributesV2 = "5D9DA160-74AE-43CC-85A9-FE555A80798E";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_EVENT_PROPERTIES_V1 The properties in this category are for properties that may be needed for event processing-but do not have object property equivalents(i.e.they are not exposed as object properties-but rather-used only as event parameters).
-            /// </summary>
-            public const string EventV1 = "15AB1953-F817-4FEF-A921-5676E838F6E0";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_EVENT_PROPERTIES_V2 The properties in this category are for properties that may be needed for event processing-but do not have object property equivalents(i.e.they are not exposed as object properties-but rather-used only as event parameters).
-            /// </summary>
-            public const string EventV2 = "52807B8A-4914-4323-9B9A-74F654B2B846";
-
-            #region This section defines the legacy WPD definitions. When WPD_SERVICES_STRICT mode is defined-these definitions are removed from this header file. You may find replacements or equivalents in the Device Services headers (for example-BridgeDeviceService.h).
-            // # ifndef WPD_SERVICES_STRICT
-
-            public static class Legacy
-
-            {
-
-                #endregion
-                /// <summary>
-                /// This class defines the legacy WPD Formats
-                /// </summary>
-                public static class ObjectFormat
-
-                {
-
-                    //
-                    // WPD_OBJECT_FORMAT_PROPERTIES_ONLY
-                    //   This object has no data stream and is completely specified by properties only.
-                    //   Device Services Format: FORMAT_Association
-                    public const string PropertiesOnly = "30010000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_UNSPECIFIED
-                    //   An undefined object format on the device (e.g. objects that can not be classified by the other defined WPD format codes)
-                    //   Device Services Format: FORMAT_Undefined
-                    public const string Unspecified = "30000000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_SCRIPT
-                    //   A device model-specific script
-                    //   Device Services Format: FORMAT_DeviceScript
-                    public const string Script = "30020000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_EXECUTABLE
-                    //   A device model-specific binary executable
-                    //   Device Services Format: FORMAT_DeviceExecutable
-                    public const string Executable = "30030000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_TEXT
-                    //   A text file
-                    //   Device Services Format: FORMAT_TextDocument
-                    public const string Text = "30040000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_HTML
-                    //   A HyperText Markup Language file (text)
-                    //   Device Services Format: FORMAT_HTMLDocument
-                    public const string HTML = "30050000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_DPOF
-                    //   A Digital Print Order File (text)
-                    //   Device Services Format: FORMAT_DPOFDocument
-                    public const string DPOF = "30060000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_AIFF
-                    //   Audio file format
-                    //   Device Services Format: FORMAT_AIFFFile
-                    public const string AIFF = "30070000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_WAVE
-                    //   Audio file format
-                    //   Device Services Format: FORMAT_WAVFile
-                    public const string WAV = "30080000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_MP3
-                    //   Audio file format
-                    //   Device Services Format: FORMAT_MP3File
-                    public const string MP3 = "30090000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_AVI
-                    //   Video file format
-                    //   Device Services Format: FORMAT_AVIFile
-                    public const string AVI = "300A0000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_MPEG
-                    //   Video file format
-                    //   Device Services Format: FORMAT_MPEGFile
-                    public const string MPEG = "300B0000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_ASF
-                    //   Video file format (Microsoft Advanced Streaming Format)
-                    //   Device Services Format: FORMAT_ASFFile
-                    public const string ASF = "300C0000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_EXIF
-                    //   Image file format (Exchangeable File Format)-JEIDA standard
-                    //   Device Services Format: FORMAT_EXIFImage
-                    public const string EXIF = "38010000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_TIFFEP
-                    //   Image file format (Tag Image File Format for Electronic Photography)
-                    //   Device Services Format: FORMAT_TIFFEPImage
-                    public const string TIFFEP = "38020000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_FLASHPIX
-                    //   Image file format (Structured Storage Image Format)
-                    //   Device Services Format: FORMAT_FlashPixImage
-                    public const string FlashPIX = "38030000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_BMP
-                    //   Image file format (Microsoft Windows Bitmap file)
-                    //   Device Services Format: FORMAT_BMPImage
-                    public const string BMP = "38040000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_CIFF
-                    //   Image file format (Canon Camera Image File Format)
-                    //   Device Services Format: FORMAT_CIFFImage
-                    public const string CIFF = "38050000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_GIF
-                    //   Image file format (Graphics Interchange Format)
-                    //   Device Services Format: FORMAT_GIFImage
-                    public const string GIF = "38070000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_JFIF
-                    //   Image file format (JPEG Interchange Format)
-                    //   Device Services Format: FORMAT_JFIFImage
-                    public const string JFIF = "38080000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_PCD
-                    //   Image file format (PhotoCD Image Pac)
-                    //   Device Services Format: FORMAT_PCDImage
-                    public const string PCD = "38090000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_PICT
-                    //   Image file format (Quickdraw Image Format)
-                    //   Device Services Format: FORMAT_PICTImage
-                    public const string PICT = "380A0000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_PNG
-                    //   Image file format (Portable Network Graphics)
-                    //   Device Services Format: FORMAT_PNGImage
-                    public const string PNG = "380B0000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_TIFF
-                    //   Image file format (Tag Image File Format)
-                    //   Device Services Format: FORMAT_TIFFImage
-                    public const string TIFF = "380D0000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_TIFFIT
-                    //   Image file format (Tag Image File Format for Informational Technology) Graphic Arts
-                    //   Device Services Format: FORMAT_TIFFITImage
-                    public const string TIFFIT = "380E0000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_JP2
-                    //   Image file format (JPEG2000 Baseline File Format)
-                    //   Device Services Format: FORMAT_JP2Image
-                    public const string JP2 = "380F0000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_JPX
-                    //   Image file format (JPEG2000 Extended File Format)
-                    //   Device Services Format: FORMAT_JPXImage
-                    public const string JPX = "38100000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_WBMP
-                    //   Image file format (Wireless Application Protocol Bitmap Format)
-                    //   Device Services Format: FORMAT_WBMPImage
-                    public const string WBMP = "B8030000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_JPEGXR
-                    //   Image file format (JPEG XR-also known as HD Photo)
-                    //   Device Services Format: FORMAT_JPEGXRImage
-                    public const string JPEGXR = "B8040000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_WINDOWSIMAGEFORMAT
-                    //   Image file format
-                    //   Device Services Format: FORMAT_HDPhotoImage
-                    public const string WindowsImageFormat = "B8810000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_WMA
-                    //   Audio file format (Windows Media Audio)
-                    //   Device Services Format: FORMAT_WMAFile
-                    public const string WMA = "B9010000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_WMV
-                    //   Video file format (Windows Media Video)
-                    //   Device Services Format: FORMAT_WMVFile
-                    public const string WMV = "B9810000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_WPLPLAYLIST
-                    //   Playlist file format
-                    //   Device Services Format: FORMAT_WPLPlaylist
-                    public const string WPLPlaylist = "BA100000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_M3UPLAYLIST
-                    //   Playlist file format
-                    //   Device Services Format: FORMAT_M3UPlaylist
-                    public const string M3UPlaylist = "BA110000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_MPLPLAYLIST
-                    //   Playlist file format
-                    //   Device Services Format: FORMAT_MPLPlaylist
-                    public const string MPLPlaylist = "BA120000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_ASXPLAYLIST
-                    //   Playlist file format
-                    //   Device Services Format: FORMAT_ASXPlaylist
-                    public const string ASXPlaylist = "BA130000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_PLSPLAYLIST
-                    //   Playlist file format
-                    //   Device Services Format: FORMAT_PSLPlaylist
-                    public const string PLSPlaylist = "BA140000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_ABSTRACT_CONTACT_GROUP
-                    //   Generic format for contact group objects
-                    //   Device Services Format: FORMAT_AbstractContactGroup
-                    public const string AbstractContactGroup = "BA060000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_ABSTRACT_MEDIA_CAST
-                    //   MediaCast file format
-                    //   Device Services Format: FORMAT_AbstractMediacast
-                    public const string AbstractMediaCast = "BA0B0000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_VCALENDAR1
-                    //   VCALENDAR file format (VCALENDAR Version 1)
-                    //   Device Services Format: FORMAT_VCalendar1
-                    public const string VCalendar1 = "BE020000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_ICALENDAR
-                    //   ICALENDAR file format (VCALENDAR Version 2)
-                    //   Device Services Format: FORMAT_ICalendar
-                    public const string ICalendar = "BE030000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_ABSTRACT_CONTACT
-                    //   Abstract contact file format
-                    //   Device Services Format: FORMAT_AbstractContact
-                    public const string AbstractContact = "BB810000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_VCARD2
-                    //   VCARD file format (VCARD Version 2)
-                    //   Device Services Format: FORMAT_VCard2Contact
-                    public const string VCard2 = "BB820000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_VCARD3
-                    //   VCARD file format (VCARD Version 3)
-                    //   Device Services Format: FORMAT_VCard3Contact
-                    public const string VCard3 = "BB830000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_XML
-                    //   XML file format.
-                    //   Device Services Format: FORMAT_XMLDocument
-                    public const string XML = "BA820000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_AAC
-                    //   Audio file format
-                    //   Device Services Format: FORMAT_AACFile
-                    public const string AAC = "B9030000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_AUDIBLE
-                    //   Audio file format
-                    //   Device Services Format: FORMAT_AudibleFile
-                    public const string Audible = "B9040000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_FLAC
-                    //   Audio file format
-                    //   Device Services Format: FORMAT_FLACFile
-                    public const string FLAC = "B9060000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_QCELP
-                    //   Audio file format (Qualcomm Code Excited Linear Prediction)
-                    //   Device Services Format: FORMAT_QCELPFile
-                    public const string QCELP = "B9070000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_AMR
-                    //   Audio file format (Adaptive Multi-Rate audio codec)
-                    //   Device Services Format: FORMAT_AMRFile
-                    public const string AMR = "B9080000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_OGG
-                    //   Audio file format
-                    //   Device Services Format: FORMAT_OGGFile
-                    public const string OGG = "B9020000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_MP4
-                    //   Audio or Video file format
-                    //   Device Services Format: FORMAT_MPEG4File
-                    public const string MP4 = "B9820000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_MP2
-                    //   Audio or Video file format
-                    //   Device Services Format: FORMAT_MPEG2File
-                    public const string MP2 = "B9830000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_MICROSOFT_WORD
-                    //   Microsoft Office Word Document file format.
-                    //   Device Services Format: FORMAT_WordDocument
-                    public const string MicrosoftWord = "BA830000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_MHT_COMPILED_HTML
-                    //   MHT Compiled HTML Document file format.
-                    //   Device Services Format: FORMAT_MHTDocument
-                    public const string MHTCompiledHTML = "BA840000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_MICROSOFT_EXCEL
-                    //   Microsoft Office Excel Document file format.
-                    //   Device Services Format: FORMAT_ExcelDocument
-                    public const string MicrosoftExcel = "BA850000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_MICROSOFT_POWERPOINT
-                    //   Microsoft Office PowerPoint Document file format.
-                    //   Device Services Format: FORMAT_PowerPointDocument
-                    public const string MicrosoftPowerPoint = "BA860000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_3GP
-                    //   Audio or Video file format
-                    //   Device Services Format: FORMAT_3GPPFile
-                    public const string ThreeGP = "B9840000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_3G2
-                    //   Audio or Video file format
-                    //   Device Services Format: FORMAT_3GPP2File
-                    public const string ThreeG2 = "B9850000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_AVCHD
-                    //   Audio or Video file format
-                    //   Device Services Format: FORMAT_AVCHDFile
-                    public const string AVCHD = "B9860000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_ATSCTS
-                    //   Audio or Video file format
-                    //   Device Services Format: FORMAT_ATSCTSFile
-                    public const string ATSCTS = "B9870000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_DVBTS
-                    //   Audio or Video file format
-                    //   Device Services Format: FORMAT_DVBTSFile
-                    public const string DVBTS = "B9880000-AE6C-4804-98BA-C57B46965FE7";
-                    //
-                    // WPD_OBJECT_FORMAT_MKV
-                    //   Audio or Video file format
-                    //   Device Services Format: FORMAT_MKVFile
-                    public const string MKV = "B9900000-AE6C-4804-98BA-c57B46965FE7";
-
-                }
-
-                // #endif // WPD_SERVICES_STRICT
-
-            }
-
-        }
-
-        public static class CommandSystem
-
-        {
-
-            /// <summary>
-            /// All Commands-Parameters and Options associated with: WPD_CATEGORY_COMMON.
-            /// </summary>
-            public const string Common = "F0422A9C-5DC8-4440-B5BD-5DF28835658A";
-
-            public static class Object
-
-            {
-
-                /// <summary>
-                /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_ENUMERATION. The commands in this category are used for basic object enumeration.
-                /// </summary>
-                public const string Enumeration = "B7474E91-E7F8-4AD9-B400-AD1A4B58EEEC";
-
-                /// <summary>
-                /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_PROPERTIES. This category of commands is used to perform basic property operations such as Reading/Writing values-listing supported values and so on.
-                /// </summary>
-                public const string Properties = "9E5582E4-0814-44E6-981A-B2998D583804";
-
-                /// <summary>
-                /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_PROPERTIES_BULK. This category contains commands and properties for property operations across multiple objects.
-                /// </summary>
-                public const string PropertiesBulk = "11C824DD-04CD-4E4E-8C7B-F6EFB794D84E";
-
-                /// <summary>
-                /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_RESOURCES. The commands in this category are used for basic object resource enumeration and transfer.
-                /// </summary>
-                public const string Resources = "B3A2B22D-A595-4108-BE0A-FC3C965F3D4A";
-
-                /// <summary>
-                /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_MANAGEMENT. The commands specified in this category are used to Create/Delete objects on the device.
-                /// </summary>
-                public const string Management = "EF1E43DD-A9ED-4341-8BCC-186192AEA089";
-
-            }
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_CAPABILITIES. This command category is used to query capabilities of the device.
-            /// </summary>
-            public const string Capabilities = "0CABEC78-6B74-41C6-9216-2639D1FCE356";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_STORAGE. This category is for commands and parameters for storage functional objects.
-            /// </summary>
-            public const string Storage = "D8F907A6-34CC-45FA-97FB-D007FA47EC94";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SMS. The commands in this category relate to Short-Message-Service functionality-typically exposed on mobile phones.
-            /// </summary>
-            public const string SMS = "AFC25D66-FE0D-4114-9097-970C93E920D1";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_STILL_IMAGE_CAPTURE
-            /// </summary>
-            public const string StillImageCapture = "4FCD6982-22A2-4B05-A48B-62D38BF27B32";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_MEDIA_CAPTURE
-            /// </summary>
-            public const string MediaCapture = "59B433BA-FE44-4D8D-808C-6BCB9B0F15E8";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_DEVICE_HINTS. The commands in this category relate to hints that a device can provide to improve end-user experience.
-            /// </summary>
-            public const string DeviceHints = "0D5FB92B-CB46-4C4F-8343-0BC3D3F17C84";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_V1. The commands in this category relate to the WPD device class extension.
-            /// </summary>
-            public const string ClassExtensionV1 = "33FB0D11-64A3-4FAC-B4C7-3DFEAA99B051";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_V2. The commands in this category relate to the WPD device class extension.
-            /// </summary>
-            public const string ClassExtensionV2 = "7F0779B5-FA2B-4766-9CB2-F73BA30B6758";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_NULL. This category is used exclusively for the NULL property key define.
-            /// </summary>
-            public const string CategoryNull = "00000000-0000-0000-0000-000000000000";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_NETWORK_CONFIGURATION. The commands in this category are used for Network Association and WiFi Configuration.
-            /// </summary>
-            public const string NetworkConfiguration = "78F9C6FC-79B8-473C-9060-6BD23DD072C4";
-
-            public static class Service
-
-            {
-
-                /// <summary>
-                /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SERVICE_COMMON. The commands in this category relate to a device service.
-                /// </summary>
-                public const string Common = "322F071D-36EF-477F-B4B5-6F52D734BAEE";
-
-                /// <summary>
-                /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SERVICE_CAPABILITIES. The commands in this category relate to capabilities of a device service.
-                /// </summary>
-                public const string Capabilities = "24457E74-2E9F-44F9-8C57-1D1BCB170B89";
-
-                /// <summary>
-                /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SERVICE_METHODS. The commands in this category relate to methods of a device service.
-                /// </summary>
-                public const string Methods = "2D521CA8-C1B0-4268-A342-CF19321569BC";
-
-            }
-
-        }
 
     }
 
@@ -1402,10 +1420,10 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
 
 }
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.ApplicationServices
+namespace Microsoft.WindowsAPICodePack.ApplicationServices.Guids
 
 {
-    public static class PowerPersonalityGuids
+    public static class PowerPersonality
     {
 
         public const string HighPerformance = "8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c";
@@ -1429,12 +1447,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
 
 }
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell
+namespace Microsoft.WindowsAPICodePack.Shell.Guids
+
 {
-    public static class PropertySystem
+
+    namespace PropertySystem
+
     {
-        public const string IPropertyChangeArray = "380F5CAD-1B5E-42F2-805D-637FD392D31E";
-        public const string IPropertyChange = "F917BC8A-1BBA-4478-A245-1BDE03EB9431";
 
         public static class SystemProperties
         {
@@ -1482,67 +1501,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell
             }
 
         }
-    }
 
-    public static class ShellIIDGuid
-    {
-
-        // IID GUID strings for relevant Shell COM interfaces.
-        public const string IModalWindow = "B4DB1657-70D7-485E-8E3E-6FCB5A5C1802";
-        public const string IFileDialog = "42F85136-DB7E-439C-85F1-E4075D135FC8";
-        public const string IFileOpenDialog = "D57C7288-D4AD-4768-BE02-9D969532D960";
-        public const string IFileSaveDialog = "84BCCD23-5FDE-4CDB-AEA4-AF64B83D78AB";
-        public const string IFileDialogEvents = "973510DB-7D7F-452B-8975-74A85828D354";
-        public const string IFileDialogControlEvents = "36116642-D713-4B97-9B83-7484A9D00433";
-        public const string IFileDialogCustomize = "E6FDD21A-163F-4975-9C8C-A69F1BA37034";
-
-        public const string IShellItem = "43826D1E-E718-42EE-BC55-A1E261C37BFE";
-        public const string IShellItem2 = "7E9FB0D3-919F-4307-AB2E-9B1860310C93";
-        public const string IShellItemArray = "B63EA76D-1F85-456F-A19C-48159EFA858B";
-        public const string IShellLibrary = "11A66EFA-382E-451A-9234-1E0E12EF3085";
-        public const string IThumbnailCache = "F676C15D-596A-4ce2-8234-33996F445DB1";
-        public const string ISharedBitmap = "091162a4-bc96-411f-aae8-c5122cd03363";
-        public const string IShellFolder = "000214E6-0000-0000-C000-000000000046";
-        public const string IShellFolder2 = "93F2F68C-1D1B-11D3-A30E-00C04F79ABD1";
-        public const string IEnumIDList = "000214F2-0000-0000-C000-000000000046";
-        public const string IShellLinkW = "000214F9-0000-0000-C000-000000000046";
-        public const string CShellLink = "00021401-0000-0000-C000-000000000046";
-
-        public const string IPropertyStore = "886D8EEB-8CF2-4446-8D02-CDBA1DBDCF99";
-        public const string IPropertyStoreCache = "3017056d-9a91-4e90-937d-746c72abbf4f";
-        public const string IPropertyDescription = "6F79D558-3E96-4549-A1D1-7D75D2288814";
-        public const string IPropertyDescription2 = "57D2EDED-5062-400E-B107-5DAE79FE57A6";
-        public const string IPropertyDescriptionList = "1F9FC1D0-C39B-4B26-817F-011967D3440E";
-        public const string IPropertyEnumType = "11E1FBF9-2D56-4A6B-8DB3-7CD193A471F2";
-        public const string IPropertyEnumType2 = "9B6E051C-5DDD-4321-9070-FE2ACB55E794";
-        public const string IPropertyEnumTypeList = "A99400F4-3D84-4557-94BA-1242FB2CC9A6";
-        public const string IPropertyStoreCapabilities = "c8e2d566-186e-4d49-bf41-6909ead56acc";
-
-        public const string ICondition = "0FC988D4-C935-4b97-A973-46282EA175C8";
-        public const string ISearchFolderItemFactory = "a0ffbc28-5482-4366-be27-3e81e78e06c2";
-        public const string IConditionFactory = "A5EFE073-B16F-474f-9F3E-9F8B497A3E08";
-        public const string IRichChunk = "4FDEF69C-DBC9-454e-9910-B34F3C64B510";
-        public const string IPersistStream = "00000109-0000-0000-C000-000000000046";
-        public const string IPersist = "0000010c-0000-0000-C000-000000000046";
-        public const string IEnumUnknown = "00000100-0000-0000-C000-000000000046";
-        public const string IQuerySolution = "D6EBC66B-8921-4193-AFDD-A1789FB7FF57";
-        public const string IQueryParser = "2EBDEE67-3505-43f8-9946-EA44ABC8E5B0";
-        public const string IQueryParserManager = "A879E3C4-AF77-44fb-8F37-EBD1487CF920";
-        public const string IEntity = "24264891-E80B-4fd3-B7CE-4FF2FAE8931F";
-        public const string IFileOperation = "947AAB5F-0A5C-4C13-B4D6-4BF7836FC9F8";
-    }
-
-    public static class ShellCLSIDGuid
-    {
-
-        // CLSID GUID strings for relevant coclasses.
-        public const string FileOpenDialog = "DC1C5A9C-E88A-4DDE-A5A1-60F82A20AEF7";
-        public const string FileSaveDialog = "C0B4E2F3-BA21-4773-8DBA-335EC946EB8B";
-        public const string KnownFolderManager = "4DF0C730-DF9D-4AE3-9153-AA6B82E9795A";
-        public const string ShellLibrary = "D9B3211D-E57F-4426-AAEF-30A806ADD397";
-        public const string SearchFolderItemFactory = "14010e02-bbbd-41f0-88e3-eda371216584";
-        public const string ConditionFactory = "E03E85B0-7BE3-4000-BA98-6C13DE9FA486";
-        public const string QueryParserManager = "5088B39A-29B4-4d9d-8245-4EE289222F66";
     }
 
     public static class ShellKFIDGuid
@@ -1565,19 +1524,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell
     public static class ShellBHIDGuid
     {
         public const string ShellFolderObject = "3981e224-f559-11d3-8e3a-00c04f6837d5";
-    }
-
-    public static class KnownFoldersIIDGuid
-    {
-        // IID GUID strings for relevant Shell COM interfaces.
-        public const string IKnownFolder = "3AA7AF7E-9B36-420c-A8E3-F77D4674A488";
-        public const string IKnownFolderManager = "8BE2D872-86AA-4d47-B776-32CCA40C7018";
-    }
-
-    public static class KnownFoldersCLSIDGuid
-    {
-        // CLSID GUID strings for relevant coclasses.
-        public const string KnownFolderManager = "4df0c730-df9d-4ae3-9153-aa6b82e9795a";
     }
 
     public static class KnownFoldersKFIDGuid
@@ -1730,6 +1676,90 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell
         /// </summary>
         public const string Searches = "0b0ba2e3-405f-415e-a6ee-cad625207853";
 
+    }
+
+}
+
+namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell
+{
+    public static class PropertySystem
+    {
+        public const string IPropertyChangeArray = "380F5CAD-1B5E-42F2-805D-637FD392D31E";
+        public const string IPropertyChange = "F917BC8A-1BBA-4478-A245-1BDE03EB9431";
+    }
+
+    public static class ShellIIDGuid
+    {
+
+        // IID GUID strings for relevant Shell COM interfaces.
+        public const string IModalWindow = "B4DB1657-70D7-485E-8E3E-6FCB5A5C1802";
+        public const string IFileDialog = "42F85136-DB7E-439C-85F1-E4075D135FC8";
+        public const string IFileOpenDialog = "D57C7288-D4AD-4768-BE02-9D969532D960";
+        public const string IFileSaveDialog = "84BCCD23-5FDE-4CDB-AEA4-AF64B83D78AB";
+        public const string IFileDialogEvents = "973510DB-7D7F-452B-8975-74A85828D354";
+        public const string IFileDialogControlEvents = "36116642-D713-4B97-9B83-7484A9D00433";
+        public const string IFileDialogCustomize = "E6FDD21A-163F-4975-9C8C-A69F1BA37034";
+
+        public const string IShellItem = "43826D1E-E718-42EE-BC55-A1E261C37BFE";
+        public const string IShellItem2 = "7E9FB0D3-919F-4307-AB2E-9B1860310C93";
+        public const string IShellItemArray = "B63EA76D-1F85-456F-A19C-48159EFA858B";
+        public const string IShellLibrary = "11A66EFA-382E-451A-9234-1E0E12EF3085";
+        public const string IThumbnailCache = "F676C15D-596A-4ce2-8234-33996F445DB1";
+        public const string ISharedBitmap = "091162a4-bc96-411f-aae8-c5122cd03363";
+        public const string IShellFolder = "000214E6-0000-0000-C000-000000000046";
+        public const string IShellFolder2 = "93F2F68C-1D1B-11D3-A30E-00C04F79ABD1";
+        public const string IEnumIDList = "000214F2-0000-0000-C000-000000000046";
+        public const string IShellLinkW = "000214F9-0000-0000-C000-000000000046";
+        public const string CShellLink = "00021401-0000-0000-C000-000000000046";
+
+        public const string IPropertyStore = "886D8EEB-8CF2-4446-8D02-CDBA1DBDCF99";
+        public const string IPropertyStoreCache = "3017056d-9a91-4e90-937d-746c72abbf4f";
+        public const string IPropertyDescription = "6F79D558-3E96-4549-A1D1-7D75D2288814";
+        public const string IPropertyDescription2 = "57D2EDED-5062-400E-B107-5DAE79FE57A6";
+        public const string IPropertyDescriptionList = "1F9FC1D0-C39B-4B26-817F-011967D3440E";
+        public const string IPropertyEnumType = "11E1FBF9-2D56-4A6B-8DB3-7CD193A471F2";
+        public const string IPropertyEnumType2 = "9B6E051C-5DDD-4321-9070-FE2ACB55E794";
+        public const string IPropertyEnumTypeList = "A99400F4-3D84-4557-94BA-1242FB2CC9A6";
+        public const string IPropertyStoreCapabilities = "c8e2d566-186e-4d49-bf41-6909ead56acc";
+
+        public const string ICondition = "0FC988D4-C935-4b97-A973-46282EA175C8";
+        public const string ISearchFolderItemFactory = "a0ffbc28-5482-4366-be27-3e81e78e06c2";
+        public const string IConditionFactory = "A5EFE073-B16F-474f-9F3E-9F8B497A3E08";
+        public const string IRichChunk = "4FDEF69C-DBC9-454e-9910-B34F3C64B510";
+        public const string IPersistStream = "00000109-0000-0000-C000-000000000046";
+        public const string IPersist = "0000010c-0000-0000-C000-000000000046";
+        public const string IEnumUnknown = "00000100-0000-0000-C000-000000000046";
+        public const string IQuerySolution = "D6EBC66B-8921-4193-AFDD-A1789FB7FF57";
+        public const string IQueryParser = "2EBDEE67-3505-43f8-9946-EA44ABC8E5B0";
+        public const string IQueryParserManager = "A879E3C4-AF77-44fb-8F37-EBD1487CF920";
+        public const string IEntity = "24264891-E80B-4fd3-B7CE-4FF2FAE8931F";
+        public const string IFileOperation = "947AAB5F-0A5C-4C13-B4D6-4BF7836FC9F8";
+    }
+
+    public static class ShellCLSIDGuid
+    {
+
+        // CLSID GUID strings for relevant coclasses.
+        public const string FileOpenDialog = "DC1C5A9C-E88A-4DDE-A5A1-60F82A20AEF7";
+        public const string FileSaveDialog = "C0B4E2F3-BA21-4773-8DBA-335EC946EB8B";
+        public const string KnownFolderManager = "4DF0C730-DF9D-4AE3-9153-AA6B82E9795A";
+        public const string ShellLibrary = "D9B3211D-E57F-4426-AAEF-30A806ADD397";
+        public const string SearchFolderItemFactory = "14010e02-bbbd-41f0-88e3-eda371216584";
+        public const string ConditionFactory = "E03E85B0-7BE3-4000-BA98-6C13DE9FA486";
+        public const string QueryParserManager = "5088B39A-29B4-4d9d-8245-4EE289222F66";
+    }
+
+    public static class KnownFoldersIIDGuid
+    {
+        // IID GUID strings for relevant Shell COM interfaces.
+        public const string IKnownFolder = "3AA7AF7E-9B36-420c-A8E3-F77D4674A488";
+        public const string IKnownFolderManager = "8BE2D872-86AA-4d47-B776-32CCA40C7018";
+    }
+
+    public static class KnownFoldersCLSIDGuid
+    {
+        // CLSID GUID strings for relevant coclasses.
+        public const string KnownFolderManager = "4df0c730-df9d-4ae3-9153-aa6b82e9795a";
     }
 
 

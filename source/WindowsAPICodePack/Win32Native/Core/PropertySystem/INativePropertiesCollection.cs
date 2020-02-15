@@ -48,6 +48,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
     }
 
+    // todo: add a property that retrieves a delegate to initialize the object properties created by the property collection class.
+
     public interface INativePropertiesCollection
     {
         HResult GetAt(in uint index, ref PropertyKey propertyKey);
@@ -61,15 +63,15 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         HResult SetValues(ref IEnumerable<IObjectProperty> values, out IReadOnlyNativePropertyValuesCollection results);
     }
 
-    public interface INativePropertyInfo
+    public interface IPropertyInfo
 
     {
 
-        HResult IsReadable(out bool isReadable);
+        bool IsReadable();
 
-        HResult IsReadOnly(out bool isReadOnly);
+        bool IsReadOnly();
 
-        HResult IsRemovable(out bool isRemovable);
+        bool IsRemovable();
 
     }
 

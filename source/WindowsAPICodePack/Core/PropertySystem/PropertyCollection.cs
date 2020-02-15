@@ -22,7 +22,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
         private Dictionary<PropertyKey, ObjectProperty> _innerDictionary;
 
-        private INativePropertiesCollection _nativePropertiesCollection;
+        internal INativePropertiesCollection NativePropertiesCollection { get; } 
 
         private INativePropertyValuesCollection _nativePropertyValuesCollection;
 
@@ -49,12 +49,12 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
                     {
                         var propertyKey = new PropertyKey();
 
-                        _ = _nativePropertiesCollection.GetAt(i, ref propertyKey);
+                        _ = NativePropertiesCollection.GetAt(i, ref propertyKey);
 
                         if (propertyKey == key)
                         {
 
-                            var objectProperty = new ObjectProperty(_nativePropertiesCollection, _nativePropertyValuesCollection, propertyKey);
+                            var objectProperty = new ObjectProperty(this, _nativePropertyValuesCollection, propertyKey);
 
                             _innerDictionary.Add(key, objectProperty);
 
@@ -79,7 +79,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                     var propertyKey = new PropertyKey();
 
-                    _ = _nativePropertiesCollection.GetAt(i, ref propertyKey);
+                    _ = NativePropertiesCollection.GetAt(i, ref propertyKey);
 
                     yield return propertyKey;
                 }
@@ -108,7 +108,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                     throw new InvalidOperationException("The current object is disposed.");
 
-                _ = _nativePropertiesCollection.GetCount(out uint count);
+                _ = NativePropertiesCollection.GetCount(out uint count);
 
                 return count;
             }
@@ -130,7 +130,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
             ThrowIfNull(nativePropertyCollection, nameof(nativePropertyCollection));
 
-            _nativePropertiesCollection = nativePropertyCollection;
+            NativePropertiesCollection = nativePropertyCollection;
 
             Marshal.ThrowExceptionForHR((int)nativePropertyCollection.GetValues(out _nativePropertyValuesCollection));
 
@@ -149,11 +149,11 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                     var propertyKey = new PropertyKey();
 
-                    _ = _nativePropertiesCollection.GetAt(i, ref propertyKey);
+                    _ = NativePropertiesCollection.GetAt(i, ref propertyKey);
 
                     if (!_innerDictionary.ContainsKey(propertyKey))
 
-                        _innerDictionary.Add(propertyKey, new ObjectProperty(_nativePropertiesCollection, _nativePropertyValuesCollection, propertyKey));
+                        _innerDictionary.Add(propertyKey, new ObjectProperty(this, _nativePropertyValuesCollection, propertyKey));
                 }
         }
 
@@ -198,7 +198,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
                 if (key == propertyKey)
                 {
 
-                    var property = new ObjectProperty(_nativePropertiesCollection, _nativePropertyValuesCollection, propertyKey);
+                    var property = new ObjectProperty(NativePropertiesCollection, _nativePropertyValuesCollection, propertyKey);
 
                     _innerDictionary.Add(propertyKey, property);
 
@@ -229,8 +229,8 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             {
                 _innerDictionary.Clear();
                 _innerDictionary = null;
-                _nativePropertiesCollection.Dispose();
-                _nativePropertiesCollection = null;
+                NativePropertiesCollection.Dispose();
+                NativePropertiesCollection = null;
                 _nativePropertyValuesCollection.Dispose();
                 _nativePropertyValuesCollection = null;
 

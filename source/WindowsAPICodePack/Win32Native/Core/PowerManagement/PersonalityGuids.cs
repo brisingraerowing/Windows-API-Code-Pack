@@ -2,7 +2,7 @@
 
 using Microsoft.WindowsAPICodePack.ApplicationServices;
 using System;
-using static Microsoft.WindowsAPICodePack.Win32Native.Guids.ApplicationServices.PowerPersonalityGuids;
+using static Microsoft.WindowsAPICodePack.ApplicationServices.Guids.PowerPersonality;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices
 {

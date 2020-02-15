@@ -5,7 +5,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using static Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.PropertySystem;
+using static Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
@@ -1898,7 +1898,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     None
                 // Results:
                 //     None
-                public static PropertyKey ResetDevice => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Common, 2);
+                public static PropertyKey ResetDevice => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Common, 2);
                 //
                 // WPD_COMMAND_COMMON_GET_OBJECT_IDS_FROM_PERSISTENT_UNIQUE_IDS 
                 //    This command is sent when a client wants to get current ObjectIDs representing objects specified by previously acquired Persistent Unique IDs. 
@@ -1908,7 +1908,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     [ Required ]  WPD_PROPERTY_COMMON_PERSISTENT_UNIQUE_IDS 
                 // Results:
                 //     [ Required ]  WPD_PROPERTY_COMMON_OBJECT_IDS 
-                public static PropertyKey GetObjectIdsFromPersistentUniqueIds => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Common, 3);
+                public static PropertyKey GetObjectIdsFromPersistentUniqueIds => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Common, 3);
                 //
                 // WPD_COMMAND_COMMON_SAVE_CLIENT_INFORMATION 
                 //    This command is sent when a client first connects to a device. 
@@ -1918,7 +1918,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     [ Required ]  WPD_PROPERTY_COMMON_CLIENT_INFORMATION 
                 // Results:
                 //     [ Optional ]  WPD_PROPERTY_COMMON_CLIENT_INFORMATION_CONTEXT 
-                public static PropertyKey SaveClientInformation => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Common, 4);
+                public static PropertyKey SaveClientInformation => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Common, 4);
 
             }
 
@@ -1931,43 +1931,43 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //
                 // WPD_PROPERTY_COMMON_COMMAND_CATEGORY  
                 //   [ VT_CLSID ] Specifies the command Category (i.e. the GUID portion of the PROPERTYKEY indicating the command).
-                public static PropertyKey CommandCategory => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Common, 1001);
+                public static PropertyKey CommandCategory => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Common, 1001);
                 //
                 // WPD_PROPERTY_COMMON_COMMAND_ID  
                 //   [ VT_UI4 ] Specifies the command ID-which is the PID portion of the PROPERTYKEY indicating the command.
-                public static PropertyKey CommandId => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Common, 1002);
+                public static PropertyKey CommandId => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Common, 1002);
                 //
                 // WPD_PROPERTY_COMMON_HRESULT  
                 //   [ VT_ERROR ] The driver sets this to be the HRESULT of the requested operation.
-                public static PropertyKey HResult => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Common, 1003);
+                public static PropertyKey HResult => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Common, 1003);
                 //
                 // WPD_PROPERTY_COMMON_DRIVER_ERROR_CODE  
                 //   [ VT_UI4 ] Special driver specific code which driver may return on error. Typically only for use with diagnostic tools or vertical solutions.
-                public static PropertyKey DriverErrorCode => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Common, 1004);
+                public static PropertyKey DriverErrorCode => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Common, 1004);
                 //
                 // WPD_PROPERTY_COMMON_COMMAND_TARGET  
                 //   [ VT_LPWSTR ] Identifies the object which the command is intended for.
-                public static PropertyKey CommandTarget => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Common, 1006);
+                public static PropertyKey CommandTarget => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Common, 1006);
                 //
                 // WPD_PROPERTY_COMMON_PERSISTENT_UNIQUE_IDS  
                 //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection of type VT_LPWSTR specifying list of Persistent Unique IDs.
-                public static PropertyKey PersistentUniqueIds => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Common, 1007);
+                public static PropertyKey PersistentUniqueIds => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Common, 1007);
                 //
                 // WPD_PROPERTY_COMMON_OBJECT_IDS  
                 //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection of type VT_LPWSTR specifying list of Objects IDs.
-                public static PropertyKey ObjectIds => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Common, 1008);
+                public static PropertyKey ObjectIds => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Common, 1008);
                 //
                 // WPD_PROPERTY_COMMON_CLIENT_INFORMATION  
                 //   [ VT_UNKNOWN ] IPortableDeviceValues used to identify itself to the driver.
-                public static PropertyKey ClientInformation => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Common, 1009);
+                public static PropertyKey ClientInformation => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Common, 1009);
                 //
                 // WPD_PROPERTY_COMMON_CLIENT_INFORMATION_CONTEXT  
                 //   [ VT_LPWSTR ] Driver specified context which will be sent for the particular client on all subsequent operations.
-                public static PropertyKey ClientInformationContext => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Common, 1010);
+                public static PropertyKey ClientInformationContext => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Common, 1010);
                 //
                 // WPD_PROPERTY_COMMON_ACTIVITY_ID  
                 //   [ VT_CLSID ] An optional ActivityID set either by a client or by WPD API-when ETW tracing is enabled.
-                public static PropertyKey ActivityId => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Common, 1011);
+                public static PropertyKey ActivityId => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Common, 1011);
 
             }
 
@@ -1979,7 +1979,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //
                 // WPD_OPTION_VALID_OBJECT_IDS 
                 //   [ VT_UNKNOWN ]  IPortableDevicePropVariantCollection of type VT_LPWSTR specifying list of Objects IDs of the objects that support the command. 
-                public static PropertyKey ValidObjectIds => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Common, 5001);
+                public static PropertyKey ValidObjectIds => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Common, 5001);
 
             }
 
@@ -2011,7 +2011,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Optional ]  WPD_PROPERTY_OBJECT_ENUMERATION_FILTER 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_ENUMERATION_CONTEXT 
-                    public static PropertyKey StartFind => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Enumeration, 2);
+                    public static PropertyKey StartFind => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Enumeration, 2);
                     //
                     // WPD_COMMAND_OBJECT_ENUMERATION_FIND_NEXT 
                     //    This command is used when the client requests the next batch of ObjectIDs during enumeration. Only objects that match the constraints set up in WPD_COMMAND_OBJECT_ENUMERATION_START_FIND should be returned. 
@@ -2022,7 +2022,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_ENUMERATION_NUM_OBJECTS_REQUESTED 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_ENUMERATION_OBJECT_IDS 
-                    public static PropertyKey FindNext => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Enumeration, 3);
+                    public static PropertyKey FindNext => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Enumeration, 3);
                     //
                     // WPD_COMMAND_OBJECT_ENUMERATION_END_FIND 
                     //    The driver should destroy any resources associated with this enumeration context. 
@@ -2032,7 +2032,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_ENUMERATION_CONTEXT 
                     // Results:
                     //     None
-                    public static PropertyKey EndFind => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Enumeration, 4);
+                    public static PropertyKey EndFind => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Enumeration, 4);
 
                 }
 
@@ -2045,23 +2045,23 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //
                     // WPD_PROPERTY_OBJECT_ENUMERATION_PARENT_ID  
                     //   [ VT_LPWSTR ] The ObjectID specifying the parent object where enumeration should start.
-                    public static PropertyKey ParentId => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Enumeration, 1001);
+                    public static PropertyKey ParentId => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Enumeration, 1001);
                     //
                     // WPD_PROPERTY_OBJECT_ENUMERATION_FILTER  
                     //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which specifies the properties used to filter on. If the caller does not want filtering-then this value will not be set.
-                    public static PropertyKey Filter => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Enumeration, 1002);
+                    public static PropertyKey Filter => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Enumeration, 1002);
                     //
                     // WPD_PROPERTY_OBJECT_ENUMERATION_OBJECT_IDS  
                     //   [ VT_UNKNOWN ] This is an IPortableDevicePropVariantCollection of ObjectIDs (of type VT_LPWSTR). If 0 objects are returned-this should be an empty collection-not NULL.
-                    public static PropertyKey ObjectIds => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Enumeration, 1003);
+                    public static PropertyKey ObjectIds => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Enumeration, 1003);
                     //
                     // WPD_PROPERTY_OBJECT_ENUMERATION_CONTEXT  
                     //   [ VT_LPWSTR ] This is a driver-specified identifier for the context associated with this enumeration.
-                    public static PropertyKey Context => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Enumeration, 1004);
+                    public static PropertyKey Context => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Enumeration, 1004);
                     //
                     // WPD_PROPERTY_OBJECT_ENUMERATION_NUM_OBJECTS_REQUESTED  
                     //   [ VT_UI4 ] The maximum number of ObjectIDs to return back to the client.
-                    public static PropertyKey NumObjectsRequested => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Enumeration, 1005);
+                    public static PropertyKey NumObjectsRequested => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Enumeration, 1005);
 
                 }
 
@@ -2088,7 +2088,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_OBJECT_ID 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_KEYS 
-                    public static PropertyKey GetSupported => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Properties, 2);
+                    public static PropertyKey GetSupported => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Properties, 2);
                     //
                     // WPD_COMMAND_OBJECT_PROPERTIES_GET_ATTRIBUTES 
                     //    This command is used when the client requests the property attributes for the specified object properties. 
@@ -2099,7 +2099,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_KEYS 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_ATTRIBUTES 
-                    public static PropertyKey GetAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Properties, 3);
+                    public static PropertyKey GetAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Properties, 3);
                     //
                     // WPD_COMMAND_OBJECT_PROPERTIES_GET 
                     //    This command is used when the client requests a set of property values for the specified object. 
@@ -2110,7 +2110,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_KEYS 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_VALUES 
-                    public static PropertyKey Get => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Properties, 4);
+                    public static PropertyKey Get => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Properties, 4);
                     //
                     // WPD_COMMAND_OBJECT_PROPERTIES_SET 
                     //    This command is used when the client requests to write a set of property values on the specified object. 
@@ -2121,7 +2121,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_VALUES 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_WRITE_RESULTS 
-                    public static PropertyKey Set => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Properties, 5);
+                    public static PropertyKey Set => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Properties, 5);
                     //
                     // WPD_COMMAND_OBJECT_PROPERTIES_GET_ALL 
                     //    This command is used when the client requests all property values for the specified object. 
@@ -2131,7 +2131,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_OBJECT_ID 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_VALUES 
-                    public static PropertyKey GetAll => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Properties, 6);
+                    public static PropertyKey GetAll => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Properties, 6);
                     //
                     // WPD_COMMAND_OBJECT_PROPERTIES_DELETE 
                     //    This command is sent when the caller wants to delete properties from the specified object. 
@@ -2142,7 +2142,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_KEYS 
                     // Results:
                     //     [ Optional ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_DELETE_RESULTS 
-                    public static PropertyKey Delete => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Properties, 7);
+                    public static PropertyKey Delete => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Properties, 7);
 
                 }
 
@@ -2155,27 +2155,27 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //
                     // WPD_PROPERTY_OBJECT_PROPERTIES_OBJECT_ID  
                     //   [ VT_LPWSTR ] The ObjectID specifying the object whose properties are being queried/manipulated.
-                    public static PropertyKey ObjectId => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Properties, 1001);
+                    public static PropertyKey ObjectId => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Properties, 1001);
                     //
                     // WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_KEYS  
                     //   [ VT_UNKNOWN ] An IPortableDeviceKeyCollection identifying which specific property values we are querying/manipulating.
-                    public static PropertyKey PropertyKeys => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Properties, 1002);
+                    public static PropertyKey PropertyKeys => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Properties, 1002);
                     //
                     // WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_ATTRIBUTES  
                     //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which contains the attributes for each property requested.
-                    public static PropertyKey PropertyAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Properties, 1003);
+                    public static PropertyKey PropertyAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Properties, 1003);
                     //
                     // WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_VALUES  
                     //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which contains the values read. For any property whose value could not be read-the type must be set to VT_ERROR-and the 'scode' field must contain the failure HRESULT.
-                    public static PropertyKey PropertyValues => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Properties, 1004);
+                    public static PropertyKey PropertyValues => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Properties, 1004);
                     //
                     // WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_WRITE_RESULTS  
                     //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which contains the result of each property write operation.
-                    public static PropertyKey PropertyWriteResults => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Properties, 1005);
+                    public static PropertyKey PropertyWriteResults => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Properties, 1005);
                     //
                     // WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_DELETE_RESULTS  
                     //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which contains the result of each property delete operation.
-                    public static PropertyKey PropertyDeleteResults => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Properties, 1006);
+                    public static PropertyKey PropertyDeleteResults => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Properties, 1006);
 
                 }
 
@@ -2203,7 +2203,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Optional ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_PROPERTY_KEYS 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
-                    public static PropertyKey GetValuesByObjectListStart => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.PropertiesBulk, 2);
+                    public static PropertyKey GetValuesByObjectListStart => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.PropertiesBulk, 2);
                     //
                     // WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_LIST_NEXT 
                     //    Get the next set of property values. 
@@ -2213,7 +2213,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_VALUES 
-                    public static PropertyKey GetValuesByObjectListNext => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.PropertiesBulk, 3);
+                    public static PropertyKey GetValuesByObjectListNext => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.PropertiesBulk, 3);
                     //
                     // WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_LIST_END 
                     //    Ends the bulk property operation for getting property values by object list. 
@@ -2223,7 +2223,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
                     // Results:
                     //     None
-                    public static PropertyKey GetValuesByObjectListEnd => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.PropertiesBulk, 4);
+                    public static PropertyKey GetValuesByObjectListEnd => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.PropertiesBulk, 4);
                     //
                     // WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_FORMAT_START 
                     //    Initializes the operation to get the property values for objects of the specified format 
@@ -2236,7 +2236,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Optional ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_PROPERTY_KEYS 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
-                    public static PropertyKey GetValuesByObjectFormatStart => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.PropertiesBulk, 5);
+                    public static PropertyKey GetValuesByObjectFormatStart => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.PropertiesBulk, 5);
                     //
                     // WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_FORMAT_NEXT 
                     //    Get the next set of property values. 
@@ -2246,7 +2246,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_VALUES 
-                    public static PropertyKey GetValuesByObjectFormatNext => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.PropertiesBulk, 6);
+                    public static PropertyKey GetValuesByObjectFormatNext => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.PropertiesBulk, 6);
                     //
                     // WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_FORMAT_END 
                     //    Ends the bulk property operation for getting property values by object format. 
@@ -2256,7 +2256,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
                     // Results:
                     //     None
-                    public static PropertyKey GetValuesByObjectFormatEnd => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.PropertiesBulk, 7);
+                    public static PropertyKey GetValuesByObjectFormatEnd => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.PropertiesBulk, 7);
                     //
                     // WPD_COMMAND_OBJECT_PROPERTIES_BULK_SET_VALUES_BY_OBJECT_LIST_START 
                     //    Initializes the operation to set the property values for specified objects. 
@@ -2266,7 +2266,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_VALUES 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
-                    public static PropertyKey SetValuesByObjectListStart => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.PropertiesBulk, 8);
+                    public static PropertyKey SetValuesByObjectListStart => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.PropertiesBulk, 8);
                     //
                     // WPD_COMMAND_OBJECT_PROPERTIES_BULK_SET_VALUES_BY_OBJECT_LIST_NEXT 
                     //    Set the next set of property values. 
@@ -2276,7 +2276,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_WRITE_RESULTS 
-                    public static PropertyKey SetValuesByObjectListNext => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.PropertiesBulk, 9);
+                    public static PropertyKey SetValuesByObjectListNext => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.PropertiesBulk, 9);
                     //
                     // WPD_COMMAND_OBJECT_PROPERTIES_BULK_SET_VALUES_BY_OBJECT_LIST_END 
                     //    Ends the bulk property operation for setting property values by object list. 
@@ -2286,7 +2286,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT 
                     // Results:
                     //     None
-                    public static PropertyKey SetValuesByObjectListEnd => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.PropertiesBulk, 10);
+                    public static PropertyKey SetValuesByObjectListEnd => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.PropertiesBulk, 10);
 
                 }
 
@@ -2299,35 +2299,35 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //
                     // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_OBJECT_IDS  
                     //   [ VT_UNKNOWN ] A collection of ObjectIDs for which supported property list must be returned.
-                    public static PropertyKey ObjectIds => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.PropertiesBulk, 1001);
+                    public static PropertyKey ObjectIds => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.PropertiesBulk, 1001);
                     //
                     // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_CONTEXT  
                     //   [ VT_LPWSTR ] The driver-specified context identifying this particular bulk operation.
-                    public static PropertyKey Context => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.PropertiesBulk, 1002);
+                    public static PropertyKey Context => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.PropertiesBulk, 1002);
                     //
                     // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_VALUES  
                     //   [ VT_UNKNOWN ] Contains an IPortableDeviceValuesCollection specifying the next set of IPortableDeviceValues elements.
-                    public static PropertyKey Values => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.PropertiesBulk, 1003);
+                    public static PropertyKey Values => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.PropertiesBulk, 1003);
                     //
                     // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_PROPERTY_KEYS  
                     //   [ VT_UNKNOWN ] Contains an IPortableDeviceKeyCollection specifying which properties the caller wants to return. May not exist-which indicates caller wants ALL properties.
-                    public static PropertyKey PropertyKeys => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.PropertiesBulk, 1004);
+                    public static PropertyKey PropertyKeys => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.PropertiesBulk, 1004);
                     //
                     // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_DEPTH  
                     //   [ VT_UI4 ] Contains a value specifying the hierarchical depth from the parent to include in this operation.
-                    public static PropertyKey Depth => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.PropertiesBulk, 1005);
+                    public static PropertyKey Depth => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.PropertiesBulk, 1005);
                     //
                     // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_PARENT_OBJECT_ID  
                     //   [ VT_LPWSTR ] Contains the ObjectID of the object to start the operation from.
-                    public static PropertyKey ParentObjectId => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.PropertiesBulk, 1006);
+                    public static PropertyKey ParentObjectId => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.PropertiesBulk, 1006);
                     //
                     // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_OBJECT_FORMAT  
                     //   [ VT_CLSID ] Specifies the object format the client is interested in.
-                    public static PropertyKey ObjectFormat => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.PropertiesBulk, 1007);
+                    public static PropertyKey ObjectFormat => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.PropertiesBulk, 1007);
                     //
                     // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_WRITE_RESULTS  
                     //   [ VT_UNKNOWN ] Contains an IPortableDeviceValuesCollection specifying the set of IPortableDeviceValues elements indicating the write results for each property set.
-                    public static PropertyKey WriteResults => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.PropertiesBulk, 1008);
+                    public static PropertyKey WriteResults => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.PropertiesBulk, 1008);
 
                 }
 
@@ -2354,7 +2354,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_OBJECT_ID 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_KEYS 
-                    public static PropertyKey GetSupported => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 2);
+                    public static PropertyKey GetSupported => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 2);
                     //
                     // WPD_COMMAND_OBJECT_RESOURCES_GET_ATTRIBUTES 
                     //    This command is used when the client requests the attributes for the specified object resource. 
@@ -2365,7 +2365,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_KEYS 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_ATTRIBUTES 
-                    public static PropertyKey GetAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 3);
+                    public static PropertyKey GetAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 3);
                     //
                     // WPD_COMMAND_OBJECT_RESOURCES_OPEN 
                     //    This command is sent when a client wants to use a particular resource on an object. 
@@ -2379,7 +2379,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT 
                     //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_OPTIMAL_TRANSFER_BUFFER_SIZE 
                     //     [ Optional ]  WPD_PROPERTY_OBJECT_RESOURCES_SUPPORTS_UNITS 
-                    public static PropertyKey Open => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 4);
+                    public static PropertyKey Open => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 4);
                     //
                     // WPD_COMMAND_OBJECT_RESOURCES_READ 
                     //    This command is sent when a client wants to read the next band of data from a previously opened object resource. 
@@ -2392,7 +2392,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_READ 
                     //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_DATA 
-                    public static PropertyKey Read => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 5);
+                    public static PropertyKey Read => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 5);
                     //
                     // WPD_COMMAND_OBJECT_RESOURCES_WRITE 
                     //    This command is sent when a client wants to write the next band of data to a previously opened object resource. 
@@ -2404,7 +2404,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_DATA 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_WRITTEN 
-                    public static PropertyKey Write => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 6);
+                    public static PropertyKey Write => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 6);
                     //
                     // WPD_COMMAND_OBJECT_RESOURCES_CLOSE 
                     //    This command is sent when a client is finished transferring data to a previously opened object resource. 
@@ -2414,7 +2414,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT 
                     // Results:
                     //     None
-                    public static PropertyKey Close => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 7);
+                    public static PropertyKey Close => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 7);
                     //
                     // WPD_COMMAND_OBJECT_RESOURCES_DELETE 
                     //    This command is sent when the client wants to delete the data associated with the specified resources from the specified object. 
@@ -2425,7 +2425,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_KEYS 
                     // Results:
                     //     None
-                    public static PropertyKey Delete => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 8);
+                    public static PropertyKey Delete => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 8);
                     //
                     // WPD_COMMAND_OBJECT_RESOURCES_CREATE_RESOURCE 
                     //    This command is sent when a client wants to create a new object resource on the device. 
@@ -2436,7 +2436,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT 
                     //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_OPTIMAL_TRANSFER_BUFFER_SIZE 
-                    public static PropertyKey CreateResource => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 9);
+                    public static PropertyKey CreateResource => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 9);
                     //
                     // WPD_COMMAND_OBJECT_RESOURCES_REVERT 
                     //    This command is sent when a client wants to cancel the resource creation request that is currently still in progress. 
@@ -2446,7 +2446,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT 
                     // Results:
                     //     None
-                    public static PropertyKey Revert => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 10);
+                    public static PropertyKey Revert => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 10);
                     //
                     // WPD_COMMAND_OBJECT_RESOURCES_SEEK 
                     //    This command is sent when a client wants to seek to a specific offset in the data stream. 
@@ -2458,7 +2458,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_SEEK_ORIGIN_FLAG 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_POSITION_FROM_START 
-                    public static PropertyKey Seek => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 11);
+                    public static PropertyKey Seek => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 11);
                     //
                     // WPD_COMMAND_OBJECT_RESOURCES_COMMIT 
                     //    This command is sent when a client wants to commit changes to a data stream. 
@@ -2468,7 +2468,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT 
                     // Results:
                     //     None
-                    public static PropertyKey Commit => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 12);
+                    public static PropertyKey Commit => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 12);
                     //
                     // WPD_COMMAND_OBJECT_RESOURCES_SEEK_IN_UNITS 
                     //    This command is sent when a client wants to seek to a specific offset in the data stream using alternate units. 
@@ -2481,7 +2481,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_SEEK_ORIGIN_FLAG 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_POSITION_FROM_START 
-                    public static PropertyKey SeekInUnits => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 13);
+                    public static PropertyKey SeekInUnits => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 13);
 
                 }
 
@@ -2494,67 +2494,67 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //
                     // WPD_PROPERTY_OBJECT_RESOURCES_OBJECT_ID  
                     //   [ VT_LPWSTR ] 
-                    public static PropertyKey ObjectId => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 1001);
+                    public static PropertyKey ObjectId => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 1001);
                     //
                     // WPD_PROPERTY_OBJECT_RESOURCES_ACCESS_MODE  
                     //   [ VT_UI4 ] Specifies the type of access the client is requesting for the resource.
-                    public static PropertyKey AccessMode => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 1002);
+                    public static PropertyKey AccessMode => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 1002);
                     //
                     // WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_KEYS  
                     //   [ VT_UNKNOWN ] 
-                    public static PropertyKey ResourceKeys => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 1003);
+                    public static PropertyKey ResourceKeys => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 1003);
                     //
                     // WPD_PROPERTY_OBJECT_RESOURCES_RESOURCE_ATTRIBUTES  
                     //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which contains the attributes for the resource requested.
-                    public static PropertyKey ResourceAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 1004);
+                    public static PropertyKey ResourceAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 1004);
                     //
                     // WPD_PROPERTY_OBJECT_RESOURCES_CONTEXT  
                     //   [ VT_LPWSTR ] This is a driver-specified identifier for the context associated with the resource operation.
-                    public static PropertyKey Context => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 1005);
+                    public static PropertyKey Context => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 1005);
                     //
                     // WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_TO_READ  
                     //   [ VT_UI4 ] Specifies the number of bytes the client is requesting to read.
-                    public static PropertyKey NumBytesToRead => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 1006);
+                    public static PropertyKey NumBytesToRead => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 1006);
                     //
                     // WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_READ  
                     //   [ VT_UI4 ] Specifies the number of bytes actually read from the resource.
-                    public static PropertyKey NumBytesRead => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 1007);
+                    public static PropertyKey NumBytesRead => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 1007);
                     //
                     // WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_TO_WRITE  
                     //   [ VT_UI4 ] Specifies the number of bytes the client is requesting to write.
-                    public static PropertyKey NumBytesToWrite => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 1008);
+                    public static PropertyKey NumBytesToWrite => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 1008);
                     //
                     // WPD_PROPERTY_OBJECT_RESOURCES_NUM_BYTES_WRITTEN  
                     //   [ VT_UI4 ] Driver sets this to let caller know how many bytes were actually written.
-                    public static PropertyKey NumBytesWritten => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 1009);
+                    public static PropertyKey NumBytesWritten => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 1009);
                     //
                     // WPD_PROPERTY_OBJECT_RESOURCES_DATA  
                     //   [ VT_VECTOR | VT_UI1 ] 
-                    public static PropertyKey Data => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 1010);
+                    public static PropertyKey Data => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 1010);
                     //
                     // WPD_PROPERTY_OBJECT_RESOURCES_OPTIMAL_TRANSFER_BUFFER_SIZE  
                     //   [ VT_UI4 ] Indicates the optimal transfer buffer size (in bytes) that clients should use when reading/writing this resource.
-                    public static PropertyKey OptimalTransferBufferSize => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 1011);
+                    public static PropertyKey OptimalTransferBufferSize => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 1011);
                     //
                     // WPD_PROPERTY_OBJECT_RESOURCES_SEEK_OFFSET  
                     //   [ VT_I8 ] Displacement to be added to the location indicated by the WPD_PROPERTY_OBJECT_RESOURCES_SEEK_ORIGIN_FLAG parameter.
-                    public static PropertyKey SeekOffset => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 1012);
+                    public static PropertyKey SeekOffset => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 1012);
                     //
                     // WPD_PROPERTY_OBJECT_RESOURCES_SEEK_ORIGIN_FLAG  
                     //   [ VT_UI4 ] Specifies the origin of the displacement for the seek operation.
-                    public static PropertyKey SeekOriginFlag => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 1013);
+                    public static PropertyKey SeekOriginFlag => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 1013);
                     //
                     // WPD_PROPERTY_OBJECT_RESOURCES_POSITION_FROM_START  
                     //   [ VT_UI8 ] Value of the new seek pointer from the beginning of the data stream.
-                    public static PropertyKey PositionFromStart => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 1014);
+                    public static PropertyKey PositionFromStart => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 1014);
                     //
                     // WPD_PROPERTY_OBJECT_RESOURCES_SUPPORTS_UNITS  
                     //   [ VT_BOOL ] A Boolean value that specifies whether this resource supports operations (such as seek) using alternate units. This occurs if the driver can understand WPD_COMMAND_OBJECT_RESOURCES_SEEK_IN_UNITS.
-                    public static PropertyKey SupportsUnits => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 1015);
+                    public static PropertyKey SupportsUnits => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 1015);
                     //
                     // WPD_PROPERTY_OBJECT_RESOURCES_STREAM_UNITS  
                     //   [ VT_UI4 ] The units for the WPD_PROPERTY_OBJECT_SEEK_OFFSET parameter and the WPD_PROPERTY_OBJECT_RESOURCES_POSITION_FROM_START result.
-                    public static PropertyKey StreamUnits => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 1016);
+                    public static PropertyKey StreamUnits => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 1016);
 
                 }
 
@@ -2566,15 +2566,15 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //
                     // WPD_OPTION_OBJECT_RESOURCES_SEEK_ON_READ_SUPPORTED 
                     //   [ VT_BOOL ]  Indicates whether the driver can Seek on a resource opened for Read access. 
-                    public static PropertyKey SeekOnReadSupported => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 5001);
+                    public static PropertyKey SeekOnReadSupported => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 5001);
                     //
                     // WPD_OPTION_OBJECT_RESOURCES_SEEK_ON_WRITE_SUPPORTED 
                     //   [ VT_BOOL ]  Indicates whether the driver can Seek on a resource opened for Write access. 
-                    public static PropertyKey SeekOnWriteSupported => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 5002);
+                    public static PropertyKey SeekOnWriteSupported => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 5002);
                     //
                     // WPD_OPTION_OBJECT_RESOURCES_NO_INPUT_BUFFER_ON_READ 
                     //   [ VT_BOOL ]  Indicates whether the driver requires an input buffer for WPD_COMMAND_OBJECT_RESOURCES_READ. If not set-defaults to False. 
-                    public static PropertyKey NoInputBufferOnRead => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Resources, 5003);
+                    public static PropertyKey NoInputBufferOnRead => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 5003);
 
                 }
 
@@ -2601,7 +2601,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_CREATION_PROPERTIES 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_ID 
-                    public static PropertyKey CreateObjectWithPropertiesOnly => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 2);
+                    public static PropertyKey CreateObjectWithPropertiesOnly => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 2);
                     //
                     // WPD_COMMAND_OBJECT_MANAGEMENT_CREATE_OBJECT_WITH_PROPERTIES_AND_DATA 
                     //    This command is sent when a client wants to create a new object on the device-specified by properties and data. 
@@ -2611,7 +2611,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_CREATION_PROPERTIES 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_CONTEXT 
-                    public static PropertyKey CreateObjectWithPropertiesAndData => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 3);
+                    public static PropertyKey CreateObjectWithPropertiesAndData => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 3);
                     //
                     // WPD_COMMAND_OBJECT_MANAGEMENT_WRITE_OBJECT_DATA 
                     //    This command is sent when a client wants to write the next band of data to a newly created object or an object being updated. 
@@ -2623,7 +2623,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_DATA 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_NUM_BYTES_WRITTEN 
-                    public static PropertyKey WriteObjectData => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 4);
+                    public static PropertyKey WriteObjectData => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 4);
                     //
                     // WPD_COMMAND_OBJECT_MANAGEMENT_COMMIT_OBJECT 
                     //    This command is sent when a client has finished sending all the data associated with an object creation or update request-and wishes to ensure that the object is saved to the device. 
@@ -2633,7 +2633,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_CONTEXT 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_ID 
-                    public static PropertyKey CommitObject => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 5);
+                    public static PropertyKey CommitObject => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 5);
                     //
                     // WPD_COMMAND_OBJECT_MANAGEMENT_REVERT_OBJECT 
                     //    This command is sent when a client wants to cancel the object creation or update request that is currently still in progress. 
@@ -2643,7 +2643,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_CONTEXT 
                     // Results:
                     //     None
-                    public static PropertyKey RevertObject => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 6);
+                    public static PropertyKey RevertObject => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 6);
                     //
                     // WPD_COMMAND_OBJECT_MANAGEMENT_DELETE_OBJECTS 
                     //    This command is sent when the client wishes to remove a set of objects from the device. 
@@ -2654,7 +2654,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_IDS 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_DELETE_RESULTS 
-                    public static PropertyKey DeleteObjects => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 7);
+                    public static PropertyKey DeleteObjects => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 7);
                     //
                     // WPD_COMMAND_OBJECT_MANAGEMENT_MOVE_OBJECTS 
                     //    This command will move the specified objects to the destination folder. 
@@ -2665,7 +2665,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_DESTINATION_FOLDER_OBJECT_ID 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_MOVE_RESULTS 
-                    public static PropertyKey MoveObjects => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 8);
+                    public static PropertyKey MoveObjects => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 8);
                     //
                     // WPD_COMMAND_OBJECT_MANAGEMENT_COPY_OBJECTS 
                     //    This command will copy the specified objects to the destination folder. 
@@ -2676,7 +2676,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_DESTINATION_FOLDER_OBJECT_ID 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_COPY_RESULTS 
-                    public static PropertyKey CopyObjects => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 9);
+                    public static PropertyKey CopyObjects => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 9);
                     //
                     // WPD_COMMAND_OBJECT_MANAGEMENT_UPDATE_OBJECT_WITH_PROPERTIES_AND_DATA 
                     //    This command is sent when a client wants to update the object's data and dependent properties simultaneously. 
@@ -2688,7 +2688,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_CONTEXT 
                     //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_OPTIMAL_TRANSFER_BUFFER_SIZE 
-                    public static PropertyKey UpdateObjectWithPropertiesAndData => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 10);
+                    public static PropertyKey UpdateObjectWithPropertiesAndData => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 10);
 
                 }
 
@@ -2701,67 +2701,67 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //
                     // WPD_PROPERTY_OBJECT_MANAGEMENT_CREATION_PROPERTIES  
                     //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which specifies the properties used to create the new object.
-                    public static PropertyKey CreationProperties => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 1001);
+                    public static PropertyKey CreationProperties => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 1001);
                     //
                     // WPD_PROPERTY_OBJECT_MANAGEMENT_CONTEXT  
                     //   [ VT_LPWSTR ] This is a driver-specified identifier for the context associated with this 'create object' operation.
-                    public static PropertyKey Context => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 1002);
+                    public static PropertyKey Context => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 1002);
                     //
                     // WPD_PROPERTY_OBJECT_MANAGEMENT_NUM_BYTES_TO_WRITE  
                     //   [ VT_UI4 ] Specifies the number of bytes the client is requesting to write.
-                    public static PropertyKey NumBytesToWrite => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 1003);
+                    public static PropertyKey NumBytesToWrite => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 1003);
                     //
                     // WPD_PROPERTY_OBJECT_MANAGEMENT_NUM_BYTES_WRITTEN  
                     //   [ VT_UI4 ] Indicates the number of bytes written for the object.
-                    public static PropertyKey NumBytesWritten => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 1004);
+                    public static PropertyKey NumBytesWritten => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 1004);
                     //
                     // WPD_PROPERTY_OBJECT_MANAGEMENT_DATA  
                     //   [ VT_VECTOR | VT_UI1 ] Indicates binary data of the object being created on the device.
-                    public static PropertyKey Data => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 1005);
+                    public static PropertyKey Data => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 1005);
                     //
                     // WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_ID  
                     //   [ VT_LPWSTR ] Identifies a newly created object on the device.
-                    public static PropertyKey ObjectId => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 1006);
+                    public static PropertyKey ObjectId => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 1006);
                     //
                     // WPD_PROPERTY_OBJECT_MANAGEMENT_DELETE_OPTIONS  
                     //   [ VT_UI4 ] Indicates if the delete operation should be recursive or not.
-                    public static PropertyKey DeleteOptions => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 1007);
+                    public static PropertyKey DeleteOptions => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 1007);
                     //
                     // WPD_PROPERTY_OBJECT_MANAGEMENT_OPTIMAL_TRANSFER_BUFFER_SIZE  
                     //   [ VT_UI4 ] Indicates the optimal transfer buffer size (in bytes) that clients should use when writing this object's data.
-                    public static PropertyKey OptimalTransferBufferSize => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 1008);
+                    public static PropertyKey OptimalTransferBufferSize => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 1008);
                     //
                     // WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_IDS  
                     //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection of type VT_LPWSTR-containing the ObjectIDs to delete.
-                    public static PropertyKey ObjectIds => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 1009);
+                    public static PropertyKey ObjectIds => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 1009);
                     //
                     // WPD_PROPERTY_OBJECT_MANAGEMENT_DELETE_RESULTS  
                     //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection of type VT_ERROR-where each element is the HRESULT indicating the success or failure of the operation.
-                    public static PropertyKey DeleteResults => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 1010);
+                    public static PropertyKey DeleteResults => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 1010);
                     //
                     // WPD_PROPERTY_OBJECT_MANAGEMENT_DESTINATION_FOLDER_OBJECT_ID  
                     //   [ VT_LPWSTR ] Indicates the destination folder for the move operation.
-                    public static PropertyKey DestinationFolderObjectId => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 1011);
+                    public static PropertyKey DestinationFolderObjectId => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 1011);
                     //
                     // WPD_PROPERTY_OBJECT_MANAGEMENT_MOVE_RESULTS  
                     //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection of type VT_ERROR-where each element is the HRESULT indicating the success or failure of the operation.
-                    public static PropertyKey MoveResults => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 1012);
+                    public static PropertyKey MoveResults => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 1012);
                     //
                     // WPD_PROPERTY_OBJECT_MANAGEMENT_COPY_RESULTS  
                     //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection of type VT_ERROR-where each element is the HRESULT indicating the success or failure of the operation.
-                    public static PropertyKey CopyResults => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 1013);
+                    public static PropertyKey CopyResults => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 1013);
                     //
                     // WPD_PROPERTY_OBJECT_MANAGEMENT_UPDATE_PROPERTIES  
                     //   [ VT_UNKNOWN ] IPortableDeviceValues containing the object properties to update.
-                    public static PropertyKey UpdateProperties => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 1014);
+                    public static PropertyKey UpdateProperties => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 1014);
                     //
                     // WPD_PROPERTY_OBJECT_MANAGEMENT_PROPERTY_KEYS  
                     //   [ VT_UNKNOWN ] IPortableDeviceKeyCollection containing the property keys required to update this object.
-                    public static PropertyKey PropertyKeys => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 1015);
+                    public static PropertyKey PropertyKeys => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 1015);
                     //
                     // WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_FORMAT  
                     //   [ VT_CLSID ] Indicates the object format the caller is interested in.
-                    public static PropertyKey ObjectFormat => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 1016);
+                    public static PropertyKey ObjectFormat => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 1016);
 
                 }
 
@@ -2773,7 +2773,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //
                     // WPD_OPTION_OBJECT_MANAGEMENT_RECURSIVE_DELETE_SUPPORTED 
                     //   [ VT_BOOL ]  Indicates whether the driver supports recursive deletion. 
-                    public static PropertyKey RecursiveDeleteSupported => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Object.Management, 5001);
+                    public static PropertyKey RecursiveDeleteSupported => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 5001);
 
                 }
 
@@ -2802,7 +2802,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     None
                 // Results:
                 //     [ Required ]  WPD_PROPERTY_CAPABILITIES_SUPPORTED_COMMANDS 
-                public static PropertyKey GetSupportedCommands => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 2);
+                public static PropertyKey GetSupportedCommands => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 2);
                 //
                 // WPD_COMMAND_CAPABILITIES_GET_COMMAND_OPTIONS 
                 //    Returns the supported options for the specified command. 
@@ -2812,7 +2812,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     [ Required ]  WPD_PROPERTY_CAPABILITIES_COMMAND 
                 // Results:
                 //     [ Required ]  WPD_PROPERTY_CAPABILITIES_COMMAND_OPTIONS 
-                public static PropertyKey GetCommandOptions => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 3);
+                public static PropertyKey GetCommandOptions => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 3);
                 //
                 // WPD_COMMAND_CAPABILITIES_GET_SUPPORTED_FUNCTIONAL_CATEGORIES 
                 //    This command is used by clients to query the functional categories supported by the driver. 
@@ -2822,7 +2822,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     None
                 // Results:
                 //     [ Required ]  WPD_PROPERTY_CAPABILITIES_FUNCTIONAL_CATEGORIES 
-                public static PropertyKey GetSupportedFunctionalCategories => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 4);
+                public static PropertyKey GetSupportedFunctionalCategories => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 4);
                 //
                 // WPD_COMMAND_CAPABILITIES_GET_FUNCTIONAL_OBJECTS 
                 //    Retrieves the ObjectIDs of the objects belonging to the specified functional category. 
@@ -2832,7 +2832,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     [ Required ]  WPD_PROPERTY_CAPABILITIES_FUNCTIONAL_CATEGORY 
                 // Results:
                 //     [ Required ]  WPD_PROPERTY_CAPABILITIES_FUNCTIONAL_OBJECTS 
-                public static PropertyKey GetFunctionalObjects => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 5);
+                public static PropertyKey GetFunctionalObjects => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 5);
                 //
                 // WPD_COMMAND_CAPABILITIES_GET_SUPPORTED_CONTENT_TYPES 
                 //    Retrieves the list of content types supported by this driver for the specified functional category. 
@@ -2842,7 +2842,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     [ Required ]  WPD_PROPERTY_CAPABILITIES_FUNCTIONAL_CATEGORY 
                 // Results:
                 //     [ Required ]  WPD_PROPERTY_CAPABILITIES_CONTENT_TYPES 
-                public static PropertyKey GetSupportedContentTypes => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 6);
+                public static PropertyKey GetSupportedContentTypes => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 6);
                 //
                 // WPD_COMMAND_CAPABILITIES_GET_SUPPORTED_FORMATS 
                 //    This command is used to query the possible formats supported by the specified content type (e.g. for image objects-the driver may choose to support JPEG and BMP files). 
@@ -2852,7 +2852,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     [ Required ]  WPD_PROPERTY_CAPABILITIES_CONTENT_TYPE 
                 // Results:
                 //     [ Required ]  WPD_PROPERTY_CAPABILITIES_FORMATS 
-                public static PropertyKey GetSupportedFormats => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 7);
+                public static PropertyKey GetSupportedFormats => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 7);
                 //
                 // WPD_COMMAND_CAPABILITIES_GET_SUPPORTED_FORMAT_PROPERTIES 
                 //    Get the list of properties that an object of the given format supports. 
@@ -2862,7 +2862,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     [ Required ]  WPD_PROPERTY_CAPABILITIES_FORMAT 
                 // Results:
                 //     [ Required ]  WPD_PROPERTY_CAPABILITIES_PROPERTY_KEYS 
-                public static PropertyKey GetSupportedFormatProperties => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 8);
+                public static PropertyKey GetSupportedFormatProperties => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 8);
                 //
                 // WPD_COMMAND_CAPABILITIES_GET_FIXED_PROPERTY_ATTRIBUTES 
                 //    Returns the property attributes that are the same for all objects of the given format. 
@@ -2873,7 +2873,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     [ Required ]  WPD_PROPERTY_CAPABILITIES_PROPERTY_KEYS 
                 // Results:
                 //     [ Required ]  WPD_PROPERTY_CAPABILITIES_PROPERTY_ATTRIBUTES 
-                public static PropertyKey GetFixedPropertyAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 9);
+                public static PropertyKey GetFixedPropertyAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 9);
                 //
                 // WPD_COMMAND_CAPABILITIES_GET_SUPPORTED_EVENTS 
                 //    Return all events supported by this driver. This includes custom events-if any. 
@@ -2883,7 +2883,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     None
                 // Results:
                 //     [ Required ]  WPD_PROPERTY_CAPABILITIES_SUPPORTED_EVENTS 
-                public static PropertyKey GetSupportedEvents => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 10);
+                public static PropertyKey GetSupportedEvents => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 10);
                 //
                 // WPD_COMMAND_CAPABILITIES_GET_EVENT_OPTIONS 
                 //    Return extra information about a specified event-such as whether the event is for notification or action purposes. 
@@ -2893,7 +2893,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     [ Required ]  WPD_PROPERTY_CAPABILITIES_EVENT 
                 // Results:
                 //     [ Required ]  WPD_PROPERTY_CAPABILITIES_EVENT_OPTIONS 
-                public static PropertyKey GetEventOptions => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 11);
+                public static PropertyKey GetEventOptions => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 11);
 
             }
 
@@ -2906,63 +2906,63 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //
                 // WPD_PROPERTY_CAPABILITIES_SUPPORTED_COMMANDS  
                 //   [ VT_UNKNOWN ] IPortableDeviceKeyCollection containing all commands a driver supports.
-                public static PropertyKey SupportedCommands => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 1001);
+                public static PropertyKey SupportedCommands => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 1001);
                 //
                 // WPD_PROPERTY_CAPABILITIES_COMMAND  
                 //   [ VT_UNKNOWN ] Indicates the command whose options the caller is interested in.
-                public static PropertyKey Command => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 1002);
+                public static PropertyKey Command => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 1002);
                 //
                 // WPD_PROPERTY_CAPABILITIES_COMMAND_OPTIONS  
                 //   [ VT_UNKNOWN ] Contains an IPortableDeviceValues with the relevant command options.
-                public static PropertyKey CommandOptions => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 1003);
+                public static PropertyKey CommandOptions => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 1003);
                 //
                 // WPD_PROPERTY_CAPABILITIES_FUNCTIONAL_CATEGORIES  
                 //   [ VT_UNKNOWN ] An IPortableDevicePropVariantCollection of type VT_CLSID which indicates the functional categories supported by the driver.
-                public static PropertyKey FunctionalCategories => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 1004);
+                public static PropertyKey FunctionalCategories => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 1004);
                 //
                 // WPD_PROPERTY_CAPABILITIES_FUNCTIONAL_CATEGORY  
                 //   [ VT_CLSID ] The category the caller is interested in.
-                public static PropertyKey FunctionalCategory => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 1005);
+                public static PropertyKey FunctionalCategory => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 1005);
                 //
                 // WPD_PROPERTY_CAPABILITIES_FUNCTIONAL_OBJECTS  
                 //   [ VT_UNKNOWN ] An IPortableDevicePropVariantCollection (of type VT_LPWSTR) containing the ObjectIDs of the functional objects who belong to the specified functional category.
-                public static PropertyKey FunctionalObjects => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 1006);
+                public static PropertyKey FunctionalObjects => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 1006);
                 //
                 // WPD_PROPERTY_CAPABILITIES_CONTENT_TYPES  
                 //   [ VT_UNKNOWN ] Indicates list of content types supported for the specified functional category.
-                public static PropertyKey ContentTypes => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 1007);
+                public static PropertyKey ContentTypes => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 1007);
                 //
                 // WPD_PROPERTY_CAPABILITIES_CONTENT_TYPE  
                 //   [ VT_CLSID ] Indicates the content type whose formats the caller is interested in.
-                public static PropertyKey ContentType => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 1008);
+                public static PropertyKey ContentType => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 1008);
                 //
                 // WPD_PROPERTY_CAPABILITIES_FORMATS  
                 //   [ VT_UNKNOWN ] An IPortableDevicePropVariantCollection of VT_CLSID values indicating the formats supported for the specified content type.
-                public static PropertyKey Formats => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 1009);
+                public static PropertyKey Formats => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 1009);
                 //
                 // WPD_PROPERTY_CAPABILITIES_FORMAT  
                 //   [ VT_CLSID ] Specifies the format the caller is interested in.
-                public static PropertyKey Format => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 1010);
+                public static PropertyKey Format => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 1010);
                 //
                 // WPD_PROPERTY_CAPABILITIES_PROPERTY_KEYS  
                 //   [ VT_UNKNOWN ] An IPortableDeviceKeyCollection containing the property keys.
-                public static PropertyKey PropertyKeys => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 1011);
+                public static PropertyKey PropertyKeys => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 1011);
                 //
                 // WPD_PROPERTY_CAPABILITIES_PROPERTY_ATTRIBUTES  
                 //   [ VT_UNKNOWN ] An IPortableDeviceValues containing the property attributes.
-                public static PropertyKey PropertyAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 1012);
+                public static PropertyKey PropertyAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 1012);
                 //
                 // WPD_PROPERTY_CAPABILITIES_SUPPORTED_EVENTS  
                 //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection of VT_CLSID values containing all events a driver supports.
-                public static PropertyKey SupportedEvents => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 1013);
+                public static PropertyKey SupportedEvents => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 1013);
                 //
                 // WPD_PROPERTY_CAPABILITIES_EVENT  
                 //   [ VT_CLSID ] Indicates the event the caller is interested in.
-                public static PropertyKey Event => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 1014);
+                public static PropertyKey Event => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 1014);
                 //
                 // WPD_PROPERTY_CAPABILITIES_EVENT_OPTIONS  
                 //   [ VT_UNKNOWN ] Contains an IPortableDeviceValues with the relevant event options.
-                public static PropertyKey EventOptions => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Capabilities, 1015);
+                public static PropertyKey EventOptions => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 1015);
 
             }
 
@@ -2989,7 +2989,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     [ Required ]  WPD_PROPERTY_STORAGE_OBJECT_ID 
                 // Results:
                 //     None
-                public static PropertyKey Format => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Storage, 2);
+                public static PropertyKey Format => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Storage, 2);
                 //
                 // WPD_COMMAND_STORAGE_EJECT 
                 //    This will eject the storage-if it is a removable store and is capable of being ejected by the device. 
@@ -2999,7 +2999,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     [ Required ]  WPD_PROPERTY_STORAGE_OBJECT_ID 
                 // Results:
                 //     None
-                public static PropertyKey Eject => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Storage, 4);
+                public static PropertyKey Eject => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Storage, 4);
 
             }
 
@@ -3012,11 +3012,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //
                 // WPD_PROPERTY_STORAGE_OBJECT_ID  
                 //   [ VT_LPWSTR ] Indicates the object to format-move or eject.
-                public static PropertyKey ObjectId => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Storage, 1001);
+                public static PropertyKey ObjectId => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Storage, 1001);
                 //
                 // WPD_PROPERTY_STORAGE_DESTINATION_OBJECT_ID  
                 //   [ VT_LPWSTR ] Indicates the (folder) object destination for a move operation.
-                public static PropertyKey DestinationObjectId => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Storage, 1002);
+                public static PropertyKey DestinationObjectId => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Storage, 1002);
 
             }
 
@@ -3047,7 +3047,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     [ Optional ]  WPD_PROPERTY_SMS_BINARY_MESSAGE 
                 // Results:
                 //     None
-                public static PropertyKey Send => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.SMS, 2);
+                public static PropertyKey Send => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.SMS, 2);
 
             }
 
@@ -3060,19 +3060,19 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //
                 // WPD_PROPERTY_SMS_RECIPIENT  
                 //   [ VT_LPWSTR ] Indicates the recipient's address.
-                public static PropertyKey Recipient => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.SMS, 1001);
+                public static PropertyKey Recipient => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.SMS, 1001);
                 //
                 // WPD_PROPERTY_SMS_MESSAGE_TYPE  
                 //   [ VT_UI4 ] Indicates whether the message is binary or text.
-                public static PropertyKey MessageType => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.SMS, 1002);
+                public static PropertyKey MessageType => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.SMS, 1002);
                 //
                 // WPD_PROPERTY_SMS_TEXT_MESSAGE  
                 //   [ VT_LPWSTR ] if WPD_PROPERTY_SMS_MESSAGE_TYPE == SMS_TEXT_MESSAGE-then this will contain the message body.
-                public static PropertyKey TextMessage => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.SMS, 1003);
+                public static PropertyKey TextMessage => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.SMS, 1003);
                 //
                 // WPD_PROPERTY_SMS_BINARY_MESSAGE  
                 //   [ VT_VECTOR | VT_UI1 ] if WPD_PROPERTY_SMS_MESSAGE_TYPE == SMS_BINARY_MESSAGE-then this will contain the binary message body.
-                public static PropertyKey BinaryMessage => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.SMS, 1004);
+                public static PropertyKey BinaryMessage => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.SMS, 1004);
 
             }
 
@@ -3084,7 +3084,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //
                 // WPD_OPTION_SMS_BINARY_MESSAGE_SUPPORTED 
                 //   [ VT_BOOL ]  Indicates whether the driver can support binary messages as well as text messages. 
-                public static PropertyKey BinaryMessageSupported => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.SMS, 5001);
+                public static PropertyKey BinaryMessageSupported => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.SMS, 5001);
 
             }
 
@@ -3111,7 +3111,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     [ Required ]  WPD_PROPERTY_COMMON_COMMAND_TARGET 
                 // Results:
                 //     None
-                public static PropertyKey Initiate => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.StillImageCapture, 2);
+                public static PropertyKey Initiate => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.StillImageCapture, 2);
 
             }
 
@@ -3138,7 +3138,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     [ Required ]  WPD_PROPERTY_COMMON_COMMAND_TARGET 
                 // Results:
                 //     None
-                public static PropertyKey Start => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.MediaCapture, 2);
+                public static PropertyKey Start => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.MediaCapture, 2);
                 //
                 // WPD_COMMAND_MEDIA_CAPTURE_STOP 
                 //    Ends a media capture operation started by a WPD_COMMAND_MEDIA_CAPTURE_START command. Typically used to end capture of media streams such as audio and video. 
@@ -3148,7 +3148,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     [ Required ]  WPD_PROPERTY_COMMON_COMMAND_TARGET 
                 // Results:
                 //     None
-                public static PropertyKey Stop => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.MediaCapture, 3);
+                public static PropertyKey Stop => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.MediaCapture, 3);
                 //
                 // WPD_COMMAND_MEDIA_CAPTURE_PAUSE 
                 //    Pauses a media capture operation started by a WPD_COMMAND_MEDIA_CAPTURE_START command. Typically used to pause capture of media streams such as audio and video. 
@@ -3158,7 +3158,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     [ Required ]  WPD_PROPERTY_COMMON_COMMAND_TARGET 
                 // Results:
                 //     None
-                public static PropertyKey Pause => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.MediaCapture, 4);
+                public static PropertyKey Pause => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.MediaCapture, 4);
 
             }
 
@@ -3185,7 +3185,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     [ Required ]  WPD_PROPERTY_DEVICE_HINTS_CONTENT_TYPE 
                 // Results:
                 //     [ Required ]  WPD_PROPERTY_DEVICE_HINTS_CONTENT_LOCATIONS 
-                public static PropertyKey GetContentLocation => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.DeviceHints, 2);
+                public static PropertyKey GetContentLocation => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.DeviceHints, 2);
 
             }
 
@@ -3198,11 +3198,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //
                 // WPD_PROPERTY_DEVICE_HINTS_CONTENT_TYPE  
                 //   [ VT_CLSID ] Indicates the WPD content type that the caller is looking for. For example-to get the top-level folder objects that contain images-this parameter would be WPD_CONTENT_TYPE_IMAGE.
-                public static PropertyKey ContentType => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.DeviceHints, 1001);
+                public static PropertyKey ContentType => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.DeviceHints, 1001);
                 //
                 // WPD_PROPERTY_DEVICE_HINTS_CONTENT_LOCATIONS  
                 //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection of type VT_LPWSTR indicating a list of folder ObjectIDs.
-                public static PropertyKey ContentLocations => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.DeviceHints, 1002);
+                public static PropertyKey ContentLocations => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.DeviceHints, 1002);
 
             }
 
@@ -3229,7 +3229,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     [ Required ]  WPD_PROPERTY_CLASS_EXTENSION_DEVICE_INFORMATION_VALUES 
                 // Results:
                 //     [ Required ]  WPD_PROPERTY_CLASS_EXTENSION_DEVICE_INFORMATION_WRITE_RESULTS 
-                public static PropertyKey WriteDeviceInformation => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.ClassExtensionV1, 2);
+                public static PropertyKey WriteDeviceInformation => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.ClassExtensionV1, 2);
 
                 // ======== Commands ========
                 //
@@ -3242,7 +3242,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     [ Required ]  WPD_PROPERTY_CLASS_EXTENSION_SERVICE_INTERFACES 
                 // Results:
                 //     [ Required ]  WPD_PROPERTY_CLASS_EXTENSION_SERVICE_REGISTRATION_RESULTS 
-                public static PropertyKey RegisterServiceInterfaces => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.ClassExtensionV2, 2);
+                public static PropertyKey RegisterServiceInterfaces => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.ClassExtensionV2, 2);
                 //
                 // WPD_COMMAND_CLASS_EXTENSION_UNREGISTER_SERVICE_INTERFACES 
                 //    This command is used to unregister a service's Plug and Play interfaces. 
@@ -3253,7 +3253,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     [ Required ]  WPD_PROPERTY_CLASS_EXTENSION_SERVICE_INTERFACES 
                 // Results:
                 //     [ Required ]  WPD_PROPERTY_CLASS_EXTENSION_SERVICE_REGISTRATION_RESULTS 
-                public static PropertyKey UnregisterServiceInterfaces => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.ClassExtensionV2, 3);
+                public static PropertyKey UnregisterServiceInterfaces => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.ClassExtensionV2, 3);
 
             }
 
@@ -3266,26 +3266,26 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //
                 // WPD_PROPERTY_CLASS_EXTENSION_DEVICE_INFORMATION_VALUES  
                 //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which contains the values.
-                public static PropertyKey DeviceInformationValues => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.ClassExtensionV1, 1001);
+                public static PropertyKey DeviceInformationValues => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.ClassExtensionV1, 1001);
                 //
                 // WPD_PROPERTY_CLASS_EXTENSION_DEVICE_INFORMATION_WRITE_RESULTS  
                 //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which contains the result of each value write operation.
-                public static PropertyKey DeviceInformationWriteResults => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.ClassExtensionV1, 1002);
+                public static PropertyKey DeviceInformationWriteResults => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.ClassExtensionV1, 1002);
 
                 // ======== Command Parameters ======== 
 
                 //
                 // WPD_PROPERTY_CLASS_EXTENSION_SERVICE_OBJECT_ID  
                 //   [ VT_LPWSTR ] The Object ID of the service.
-                public static PropertyKey ServiceObjectId => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.ClassExtensionV2, 1001);
+                public static PropertyKey ServiceObjectId => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.ClassExtensionV2, 1001);
                 //
                 // WPD_PROPERTY_CLASS_EXTENSION_SERVICE_INTERFACES  
                 //   [ VT_UNKNOWN ] This is an IPortablePropVariantCollection of type VT_CLSID which contains the interface GUIDs that this service implements-including the service type GUID.
-                public static PropertyKey ServiceInterfaces => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.ClassExtensionV2, 1002);
+                public static PropertyKey ServiceInterfaces => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.ClassExtensionV2, 1002);
                 //
                 // WPD_PROPERTY_CLASS_EXTENSION_SERVICE_REGISTRATION_RESULTS  
                 //   [ VT_UNKNOWN ] This is an IPortablePropVariantCollection of type VT_ERROR-where each element is the HRESULT indicating the success or failure of the operation.
-                public static PropertyKey ServiceRegistrationResults => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.ClassExtensionV2, 1003);
+                public static PropertyKey ServiceRegistrationResults => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.ClassExtensionV2, 1003);
 
             }
 
@@ -3309,7 +3309,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     None
                 // Results:
                 //     [ Required ]  WPD_PROPERTY_PUBLIC_KEY 
-                public static PropertyKey GenerateKeyPair => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.NetworkConfiguration, 2);
+                public static PropertyKey GenerateKeyPair => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.NetworkConfiguration, 2);
                 //
                 // WPD_COMMAND_COMMIT_KEYPAIR 
                 //    Commits a public/private key pair. 
@@ -3319,7 +3319,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     None
                 // Results:
                 //     None
-                public static PropertyKey CommitKeyPair => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.NetworkConfiguration, 3);
+                public static PropertyKey CommitKeyPair => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.NetworkConfiguration, 3);
                 //
                 // WPD_COMMAND_PROCESS_WIRELESS_PROFILE 
                 //    Initiates the processing of a Wireless Profile file. 
@@ -3329,7 +3329,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //     [ Required ]  WPD_PROPERTY_OBJECT_PROPERTIES_OBJECT_ID 
                 // Results:
                 //     None
-                public static PropertyKey ProcessWirelessProfile => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.NetworkConfiguration, 4);
+                public static PropertyKey ProcessWirelessProfile => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.NetworkConfiguration, 4);
 
             }
 
@@ -3342,7 +3342,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 //
                 // WPD_PROPERTY_PUBLIC_KEY  
                 //   [ VT_VECTOR | VT_UI1 ] A public key generated for RSA key exchange.
-                public static PropertyKey PublicKey => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.NetworkConfiguration, 1001);
+                public static PropertyKey PublicKey => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.NetworkConfiguration, 1001);
 
             }
 
@@ -3370,7 +3370,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     None
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_SERVICE_OBJECT_ID 
-                    public static PropertyKey GetServiceObjectId => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Common, 2);
+                    public static PropertyKey GetServiceObjectId => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Common, 2);
 
                 }
 
@@ -3383,7 +3383,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //
                     // WPD_PROPERTY_SERVICE_OBJECT_ID  
                     //   [ VT_LPWSTR ] Contains the service object identifier.
-                    public static PropertyKey ObjectId => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Common, 1001);
+                    public static PropertyKey ObjectId => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Common, 1001);
 
                 }
 
@@ -3407,7 +3407,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     None
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_METHODS 
-                    public static PropertyKey GetSupportedMethods => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 2);
+                    public static PropertyKey GetSupportedMethods => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 2);
                     //
                     // WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_METHODS_BY_FORMAT 
                     //    This command is used to get the methods that apply to a format of a service. 
@@ -3417,7 +3417,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_METHODS 
-                    public static PropertyKey GetSupportedMethodsByFormat => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 3);
+                    public static PropertyKey GetSupportedMethodsByFormat => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 3);
                     //
                     // WPD_COMMAND_SERVICE_CAPABILITIES_GET_METHOD_ATTRIBUTES 
                     //    This command is used to get the attributes of a method. 
@@ -3427,7 +3427,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_METHOD 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_METHOD_ATTRIBUTES 
-                    public static PropertyKey GetMethodAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 4);
+                    public static PropertyKey GetMethodAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 4);
                     //
                     // WPD_COMMAND_SERVICE_CAPABILITIES_GET_METHOD_PARAMETER_ATTRIBUTES 
                     //    This command is used to get the attributes of a parameter used in a method. 
@@ -3438,7 +3438,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_PARAMETER 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_PARAMETER_ATTRIBUTES 
-                    public static PropertyKey GetMethodParameterAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 5);
+                    public static PropertyKey GetMethodParameterAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 5);
                     //
                     // WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_FORMATS 
                     //    This command is used to get formats supported by this service. 
@@ -3448,7 +3448,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     None
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_FORMATS 
-                    public static PropertyKey GetSupportedFormats => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 6);
+                    public static PropertyKey GetSupportedFormats => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 6);
                     //
                     // WPD_COMMAND_SERVICE_CAPABILITIES_GET_FORMAT_ATTRIBUTES 
                     //    This command is used to get attributes of a format-such as the format name. 
@@ -3458,7 +3458,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT_ATTRIBUTES 
-                    public static PropertyKey GetFormatAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 7);
+                    public static PropertyKey GetFormatAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 7);
                     //
                     // WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_FORMAT_PROPERTIES 
                     //    This command is used to get supported properties of a format. 
@@ -3468,7 +3468,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_PROPERTY_KEYS 
-                    public static PropertyKey GetSupportedFormatProperties => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 8);
+                    public static PropertyKey GetSupportedFormatProperties => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 8);
                     //
                     // WPD_COMMAND_SERVICE_CAPABILITIES_GET_FORMAT_PROPERTY_ATTRIBUTES 
                     //    This command is used to get the property attributes that are same for all objects of a given format on the service. 
@@ -3479,7 +3479,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_PROPERTY_KEYS 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_PROPERTY_ATTRIBUTES 
-                    public static PropertyKey GetFormatPropertyAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 9);
+                    public static PropertyKey GetFormatPropertyAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 9);
                     //
                     // WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_EVENTS 
                     //    This command is used to get the supported events of the service. 
@@ -3489,7 +3489,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     None
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_EVENTS 
-                    public static PropertyKey GetSupportedEvents => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 10);
+                    public static PropertyKey GetSupportedEvents => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 10);
                     //
                     // WPD_COMMAND_SERVICE_CAPABILITIES_GET_EVENT_ATTRIBUTES 
                     //    This command is used to get the attributes of an event. 
@@ -3499,7 +3499,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_EVENT 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_EVENT_ATTRIBUTES 
-                    public static PropertyKey GetEventAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 11);
+                    public static PropertyKey GetEventAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 11);
                     //
                     // WPD_COMMAND_SERVICE_CAPABILITIES_GET_EVENT_PARAMETER_ATTRIBUTES 
                     //    This command is used to get the attributes of a parameter used in an event. 
@@ -3510,7 +3510,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_PARAMETER 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_PARAMETER_ATTRIBUTES 
-                    public static PropertyKey GetEventParameterAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 12);
+                    public static PropertyKey GetEventParameterAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 12);
                     //
                     // WPD_COMMAND_SERVICE_CAPABILITIES_GET_INHERITED_SERVICES 
                     //    This command is used to get the inherited services. 
@@ -3520,7 +3520,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_INHERITANCE_TYPE 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_INHERITED_SERVICES 
-                    public static PropertyKey GetInheritedServices => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 13);
+                    public static PropertyKey GetInheritedServices => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 13);
                     //
                     // WPD_COMMAND_SERVICE_CAPABILITIES_GET_FORMAT_RENDERING_PROFILES 
                     //    This command is used to get the resource rendering profiles for a format. 
@@ -3530,7 +3530,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_RENDERING_PROFILES 
-                    public static PropertyKey GetFormatRenderingProfiles => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 14);
+                    public static PropertyKey GetFormatRenderingProfiles => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 14);
                     //
                     // WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_COMMANDS 
                     //    Return all commands supported by this driver for a service. This includes custom commands-if any. 
@@ -3540,7 +3540,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     None
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_COMMANDS 
-                    public static PropertyKey GetSupportedCommands => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 15);
+                    public static PropertyKey GetSupportedCommands => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 15);
                     //
                     // WPD_COMMAND_SERVICE_CAPABILITIES_GET_COMMAND_OPTIONS 
                     //    Returns the supported options for the specified command. 
@@ -3563,79 +3563,79 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //
                     // WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_METHODS  
                     //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection (of type VT_CLSID) containing methods that apply to a service.
-                    public static PropertyKey SupportedMethods => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 1001);
+                    public static PropertyKey SupportedMethods => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 1001);
                     //
                     // WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT  
                     //   [ VT_CLSID ] Indicates the format the caller is interested in.
-                    public static PropertyKey Format => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 1002);
+                    public static PropertyKey Format => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 1002);
                     //
                     // WPD_PROPERTY_SERVICE_CAPABILITIES_METHOD  
                     //   [ VT_CLSID ] Indicates the method the caller is interested in.
-                    public static PropertyKey Method => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 1003);
+                    public static PropertyKey Method => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 1003);
                     //
                     // WPD_PROPERTY_SERVICE_CAPABILITIES_METHOD_ATTRIBUTES  
                     //   [ VT_UNKNOWN ] IPortableDeviceValues containing the method attributes.
-                    public static PropertyKey MethodAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 1004);
+                    public static PropertyKey MethodAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 1004);
                     //
                     // WPD_PROPERTY_SERVICE_CAPABILITIES_PARAMETER  
                     //   [ VT_UNKNOWN ] IPortableDeviceKeyCollection containing the parameter the caller is interested in.
-                    public static PropertyKey Parameter => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 1005);
+                    public static PropertyKey Parameter => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 1005);
                     //
                     // WPD_PROPERTY_SERVICE_CAPABILITIES_PARAMETER_ATTRIBUTES  
                     //   [ VT_UNKNOWN ] IPortableDeviceValues containing the parameter attributes.
-                    public static PropertyKey ParameterAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 1006);
+                    public static PropertyKey ParameterAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 1006);
                     //
                     // WPD_PROPERTY_SERVICE_CAPABILITIES_FORMATS  
                     //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection (of type VT_CLSID) containing the formats.
-                    public static PropertyKey Formats => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 1007);
+                    public static PropertyKey Formats => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 1007);
                     //
                     // WPD_PROPERTY_SERVICE_CAPABILITIES_FORMAT_ATTRIBUTES  
                     //   [ VT_UNKNOWN ] IPortableDeviceValues containing the format attributes-such as the format name and MIME Type.
-                    public static PropertyKey FormatAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 1008);
+                    public static PropertyKey FormatAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 1008);
                     //
                     // WPD_PROPERTY_SERVICE_CAPABILITIES_PROPERTY_KEYS  
                     //   [ VT_UNKNOWN ] IPortableDeviceKeyCollection containing the supported property keys.
-                    public static PropertyKey PropertyKeys => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 1009);
+                    public static PropertyKey PropertyKeys => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 1009);
                     //
                     // WPD_PROPERTY_SERVICE_CAPABILITIES_PROPERTY_ATTRIBUTES  
                     //   [ VT_UNKNOWN ] IPortableDeviceValues containing the property attributes.
-                    public static PropertyKey PropertyAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 1010);
+                    public static PropertyKey PropertyAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 1010);
                     //
                     // WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_EVENTS  
                     //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection (of type VT_CLSID) containing all events supported by the service.
-                    public static PropertyKey SupportedEvents => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 1011);
+                    public static PropertyKey SupportedEvents => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 1011);
                     //
                     // WPD_PROPERTY_SERVICE_CAPABILITIES_EVENT  
                     //   [ VT_CLSID ] Indicates the event the caller is interested in.
-                    public static PropertyKey Event => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 1012);
+                    public static PropertyKey Event => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 1012);
                     //
                     // WPD_PROPERTY_SERVICE_CAPABILITIES_EVENT_ATTRIBUTES  
                     //   [ VT_UNKNOWN ] IPortableDeviceValues containing the event attributes.
-                    public static PropertyKey EventAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 1013);
+                    public static PropertyKey EventAttributes => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 1013);
                     //
                     // WPD_PROPERTY_SERVICE_CAPABILITIES_INHERITANCE_TYPE  
                     //   [ VT_UI4 ] Indicates the inheritance type the caller is interested in.
-                    public static PropertyKey InheritanceType => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 1014);
+                    public static PropertyKey InheritanceType => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 1014);
                     //
                     // WPD_PROPERTY_SERVICE_CAPABILITIES_INHERITED_SERVICES  
                     //   [ VT_UNKNOWN ] Contains the list of inherited services.
-                    public static PropertyKey InheritedServices => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 1015);
+                    public static PropertyKey InheritedServices => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 1015);
                     //
                     // WPD_PROPERTY_SERVICE_CAPABILITIES_RENDERING_PROFILES  
                     //   [ VT_UNKNOWN ] Contains the list of format rendering profiles.
-                    public static PropertyKey RenderingProfiles => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 1016);
+                    public static PropertyKey RenderingProfiles => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 1016);
                     //
                     // WPD_PROPERTY_SERVICE_CAPABILITIES_SUPPORTED_COMMANDS  
                     //   [ VT_UNKNOWN ] IPortableDeviceKeyCollection containing all commands a driver supports for a service.
-                    public static PropertyKey SupportedCommands => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 1017);
+                    public static PropertyKey SupportedCommands => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 1017);
                     //
                     // WPD_PROPERTY_SERVICE_CAPABILITIES_COMMAND  
                     //   [ VT_UNKNOWN ] Indicates the command whose options the caller is interested in.
-                    public static PropertyKey Command => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 1018);
+                    public static PropertyKey Command => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 1018);
                     //
                     // WPD_PROPERTY_SERVICE_CAPABILITIES_COMMAND_OPTIONS  
                     //   [ VT_UNKNOWN ] Contains an IPortableDeviceValues with the relevant command options.
-                    public static PropertyKey CommandOptions => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Capabilities, 1019);
+                    public static PropertyKey CommandOptions => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 1019);
 
                 }
 
@@ -3660,7 +3660,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_SERVICE_METHOD_PARAMETER_VALUES 
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_SERVICE_METHOD_CONTEXT 
-                    public static PropertyKey StartInvoke => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Methods, 2);
+                    public static PropertyKey StartInvoke => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Methods, 2);
                     //
                     // WPD_COMMAND_SERVICE_METHODS_CANCEL_INVOKE 
                     //    This command is sent when a client wants to cancel a method that is currently still in progress. 
@@ -3670,7 +3670,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_SERVICE_METHOD_CONTEXT 
                     // Results:
                     //     None
-                    public static PropertyKey CancelInvoke => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Methods, 3);
+                    public static PropertyKey CancelInvoke => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Methods, 3);
                     //
                     // WPD_COMMAND_SERVICE_METHODS_END_INVOKE 
                     //    This command is sent in response to a WPD_EVENT_SERVICE_METHOD_COMPLETE event from the driver to retrieve the method results. 
@@ -3681,7 +3681,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_SERVICE_METHOD_RESULT_VALUES 
                     //     [ Required ]  WPD_PROPERTY_SERVICE_METHOD_HRESULT 
-                    public static PropertyKey EndInvoke => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Methods, 4);
+                    public static PropertyKey EndInvoke => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Methods, 4);
 
                 }
 
@@ -3694,23 +3694,23 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //
                     // WPD_PROPERTY_SERVICE_METHOD  
                     //   [ VT_CLSID ] Indicates the method to invoke.
-                    public static PropertyKey ServiceMethod => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Methods, 1001);
+                    public static PropertyKey ServiceMethod => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Methods, 1001);
                     //
                     // WPD_PROPERTY_SERVICE_METHOD_PARAMETER_VALUES  
                     //   [ VT_UNKNOWN ] IPortableDeviceValues containing the method parameters.
-                    public static PropertyKey ParameterValues => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Methods, 1002);
+                    public static PropertyKey ParameterValues => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Methods, 1002);
                     //
                     // WPD_PROPERTY_SERVICE_METHOD_RESULT_VALUES  
                     //   [ VT_UNKNOWN ] IPortableDeviceValues containing the method results.
-                    public static PropertyKey ResultValues => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Methods, 1003);
+                    public static PropertyKey ResultValues => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Methods, 1003);
                     //
                     // WPD_PROPERTY_SERVICE_METHOD_CONTEXT  
                     //   [ VT_LPWSTR ] The unique context identifying this method operation.
-                    public static PropertyKey Context => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Methods, 1004);
+                    public static PropertyKey Context => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Methods, 1004);
                     //
                     // WPD_PROPERTY_SERVICE_METHOD_HRESULT  
                     //   [ VT_ERROR ] Contains the status HRESULT of this method invocation.
-                    public static PropertyKey HResult => new PropertyKey(Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices.CommandSystem.Service.Methods, 1005);
+                    public static PropertyKey HResult => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Methods, 1005);
 
                 }
 

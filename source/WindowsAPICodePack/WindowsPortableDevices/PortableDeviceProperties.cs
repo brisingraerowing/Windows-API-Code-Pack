@@ -144,7 +144,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         }
     }
 
-    internal sealed class PortableDevicePropertyInfo : INativePropertyInfo
+    internal sealed class PortableDevicePropertyInfo : IPropertyInfo
 
     {
 
@@ -152,15 +152,31 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         public PortableDevicePropertyInfo(ObjectProperty objectProperty) => ObjectProperty = objectProperty;
 
-        HResult INativePropertyInfo.IsReadable(out bool isReadable)
+        bool IPropertyInfo.IsReadable() => GetAttributeValue(PropertySystem.Attribute.Property.CanRead);
+
+        bool IPropertyInfo.IsReadOnly() => !GetAttributeValue(PropertySystem.Attribute.Property.CanWrite);
+
+        bool IPropertyInfo.IsRemovable() => GetAttributeValue(PropertySystem.Attribute.Property.CanDelete);
+
+        private bool GetAttributeValue(PropertyKey propertyKey)
         {
+
+            ObjectPropertyAttribute objectPropertyAttribute;
+
             for (uint i = 0; i < ObjectProperty.Attributes.Count; i++)
+            {
 
-                if (ObjectProperty.Attributes[i].Equals(PropertySystem.Attribute.Property.CanRead)) ;
+                objectPropertyAttribute = ObjectProperty.Attributes[i];
+
+                if (objectPropertyAttribute.Equals(propertyKey) && (bool)objectPropertyAttribute.Value)
+
+                    return true;
+
+            }
+
+            return false;
+
         }
-
-        HResult INativePropertyInfo.IsReadOnly(out bool isReadOnly) => throw new NotImplementedException();
-        HResult INativePropertyInfo.IsRemovable(out bool isRemovable) => throw new NotImplementedException();
     }
 
     internal sealed class PortableDeviceValuesCollection : INativePropertyValuesCollection

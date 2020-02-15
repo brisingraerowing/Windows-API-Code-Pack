@@ -9,7 +9,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
 using PropertySystemGuids = Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.PropertySystem;
-using SystemPropertiesGuids = Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.PropertySystem.SystemProperties;
+using SystemPropertiesGuids = Microsoft.WindowsAPICodePack.Shell.Guids.PropertySystem.SystemProperties;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
 {
