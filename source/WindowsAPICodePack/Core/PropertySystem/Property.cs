@@ -9,6 +9,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
+using WinCopies.Collections;
 
 namespace Microsoft.WindowsAPICodePack.PropertySystem
 {
@@ -16,15 +17,16 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
     /// <summary>
     /// This class wraps native <see cref="PropVariant"/> types into managed type. Please note that the Shell API, however, has its own managed wrapper, the <c>ShellProperty</c> class.
     /// </summary>
-    public sealed class ObjectProperty : IObjectProperty, IDisposable
+    public sealed class ObjectProperty : IObjectProperty, IEquatable<IObjectProperty>, IEquatable<PropertyKey>
     {
 
         private INativePropertiesCollection _nativePropertiesCollection;
         private INativePropertyValuesCollection _nativePropertyValuesCollection;
         private PropertyKey _propertyKey;
-        private PropertyAttributeCollection _attributes;
+        private IUIntIndexedCollection<ObjectPropertyAttribute> _attributes;
+        private INativePropertyInfo _nativePropertyInfo;
 
-        public PropertyAttributeCollection Attributes
+        public IUIntIndexedCollection<ObjectPropertyAttribute> Attributes
         {
             get
             {
@@ -49,13 +51,15 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             }
         }
 
-        internal ObjectProperty(in INativePropertiesCollection nativePropertiesCollection, in INativePropertyValuesCollection nativePropertyValuesCollection, in PropertyKey propertyKey)
+        internal ObjectProperty(in INativePropertiesCollection nativePropertiesCollection, in INativePropertyValuesCollection nativePropertyValuesCollection, INativePropertyInfo nativePropertyInfo, in PropertyKey propertyKey)
 
         {
 
             _nativePropertiesCollection = nativePropertiesCollection;
 
             _nativePropertyValuesCollection = nativePropertyValuesCollection;
+
+            _nativePropertyInfo = nativePropertyInfo;
 
             _propertyKey = propertyKey;
 
@@ -167,8 +171,8 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             {
                 _nativePropertiesCollection = null;
                 _nativePropertyValuesCollection = null;
-                _attributes.Dispose();
                 _attributes = null;
+                _nativePropertyInfo = null;
 
                 IsDisposed = true;
             }
@@ -186,56 +190,58 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         }
 
         PropVariant IObjectProperty.GetValue() => GetPropVariant();
+
+        public bool Equals(IObjectProperty other) => other?.PropertyKey.Equals(PropertyKey) == true;
+
+        public bool Equals(PropertyKey other) => other.Equals(PropertyKey);
         #endregion
 
     }
 
-    public struct ObjectPropertyAttribute : IDisposable
+    public sealed class ObjectPropertyAttribute : IEquatable<ObjectPropertyAttribute>, IEquatable<PropertyKey>
     {
-        private object _value;
-        private Type _type;
-        private PropertyKey _propertyKey;
-
         internal ObjectPropertyAttribute(in PropertyKey propertyKey, in Type type, in object value)
 
         {
 
-            _propertyKey = propertyKey;
+            PropertyKey = propertyKey;
 
-            _type = type;
+            Type = type;
 
-            _value = value;
-
-            IsDisposed = false;
+            Value = value;
 
         }
 
-        public object Value { get => IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : _value; private set => _value = value; }
+        public object Value { get; private set; }
 
-        public Type Type { get => IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : _type; private set => _type = value; }
+        public Type Type { get; private set; }
 
-        public PropertyKey PropertyKey { get => IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : _propertyKey; private set => _propertyKey = value; }
+        public PropertyKey PropertyKey { get ; private set ; }
 
-        #region IDisposable Support
-        public bool IsDisposed { get; private set; }
+        public bool Equals(ObjectPropertyAttribute other) => other?.PropertyKey.Equals(PropertyKey) == true;
+
+        public bool Equals(PropertyKey other) => other.Equals(PropertyKey);
+
+        //#region IDisposable Support
+        //public bool IsDisposed { get; private set; }
 
         // ~ObjectProperty()
         // {
         //   Dispose(false);
         // }
 
-        public void Dispose()
-        {
-            if (!IsDisposed)
-            {
-                Type = null;
-                Value = null;
-                IsDisposed = true;
-            }
+        //public void Dispose()
+        //{
+        //    if (!IsDisposed)
+        //    {
+        //        Type = null;
+        //        Value = null;
+        //        IsDisposed = true;
+        //    }
 
-            // GC.SuppressFinalize(this);
-        }
-        #endregion
+        // GC.SuppressFinalize(this);
+        //}
+        //#endregion
 
     }
 }

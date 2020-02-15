@@ -48,7 +48,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
     }
 
-    public interface INativePropertiesCollection : IDisposable
+    public interface INativePropertiesCollection
     {
         HResult GetAt(in uint index, ref PropertyKey propertyKey);
 
@@ -58,16 +58,22 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
         HResult GetAttributes(ref PropertyKey propertyKey, out IReadOnlyNativePropertyValuesCollection attributes);
 
-        HResult IsReadable(ref PropertyKey propertyKey, out bool isReadable);
-
-        HResult IsReadOnly(ref PropertyKey propertyKey, out bool isReadOnly);
-
-        HResult IsRemovable(ref PropertyKey propertyKey, out bool isRemovable);
-
         HResult SetValues(ref IEnumerable<IObjectProperty> values, out IReadOnlyNativePropertyValuesCollection results);
     }
 
-    public interface IReadOnlyNativePropertyValuesCollection : IDisposable
+    public interface INativePropertyInfo
+
+    {
+
+        HResult IsReadable(out bool isReadable);
+
+        HResult IsReadOnly(out bool isReadOnly);
+
+        HResult IsRemovable(out bool isRemovable);
+
+    }
+
+    public interface IReadOnlyNativePropertyValuesCollection
 
     {
         HResult GetAt(in uint index, ref PropertyKey propertyKey, ref PropVariant propVariant);

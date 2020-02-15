@@ -272,7 +272,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
     /// <seealso cref="ObjectPropertyAttribute"/>
     /// <seealso cref="ObjectProperty"/>
     /// <seealso cref="PropertyCollection"/>
-    public sealed class PropertyAttributeCollection : IEnumerable<ObjectPropertyAttribute>, IUIntIndexedCollection<ObjectPropertyAttribute>, IDisposable
+    internal sealed class PropertyAttributeCollection : IEnumerable<ObjectPropertyAttribute>, IUIntIndexedCollection<ObjectPropertyAttribute>
     {
 
         #region Private Fields

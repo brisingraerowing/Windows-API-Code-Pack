@@ -8,10 +8,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using ObjectProperty = Microsoft.WindowsAPICodePack.PropertySystem.ObjectProperty;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
-    internal sealed class PortableDeviceProperties : INativePropertiesCollection, IDisposable
+    internal sealed class PortableDeviceProperties : INativePropertiesCollection
     {
 
         private IPortableDeviceProperties _nativePortableDeviceProperties;
@@ -19,17 +20,14 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         // private PortableDevice _portableDevice;
         private string _objectId;
 
-        /// <summary>
-        /// Frees all managed and unmanaged data. This method is called by the finalizer and should not be called directly.
-        /// </summary>
-        public void Dispose()
+        private void Dispose()
         {
 
             // As this type is internal and calling this method directly is not recommended, implementing a property and checking it at the top of this method to know whether the current object is already disposed is not necessary.
 
             _ = Marshal.ReleaseComObject(_nativePortableDeviceKeyCollection);
             _nativePortableDeviceKeyCollection = null;
-            Marshal.ReleaseComObject(_nativePortableDeviceProperties);
+            _ = Marshal.ReleaseComObject(_nativePortableDeviceProperties);
             _nativePortableDeviceProperties = null;
             _objectId = null;
         }
@@ -144,14 +142,25 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             return hr;
 
         }
+    }
 
-        HResult INativePropertiesCollection.IsReadOnly(ref PropertyKey propertyKey, out bool isReadOnly)
+    internal sealed class PortableDevicePropertyInfo : INativePropertyInfo
 
+    {
+
+        public ObjectProperty ObjectProperty { get; private set; }
+
+        public PortableDevicePropertyInfo(ObjectProperty objectProperty) => ObjectProperty = objectProperty;
+
+        HResult INativePropertyInfo.IsReadable(out bool isReadable)
         {
+            for (uint i = 0; i < ObjectProperty.Attributes.Count; i++)
 
-            
-
+                if (ObjectProperty.Attributes[i].Equals(PropertySystem.Attribute.Property.CanRead)) ;
         }
+
+        HResult INativePropertyInfo.IsReadOnly(out bool isReadOnly) => throw new NotImplementedException();
+        HResult INativePropertyInfo.IsRemovable(out bool isRemovable) => throw new NotImplementedException();
     }
 
     internal sealed class PortableDeviceValuesCollection : INativePropertyValuesCollection
@@ -214,8 +223,6 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 _propVariant.Dispose();
 
             }
-
-            results.Dispose();
 
             return hr;
         }
