@@ -6,6 +6,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+namespace Microsoft.WindowsAPICodePack
+
+{
+
+    public static class DevInterfaceGuids
+
+    {
+
+        public const string Sensor = "BA1BB692-9B7A-4833-9A1E-525ED134E7E2";
+
+    }
+
+}
+
 namespace Microsoft.WindowsAPICodePack.Sensors
 
 {
@@ -14,278 +28,266 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
     {
 
-        /// <summary>
-        /// The common Guid used by the property keys.
-        /// </summary>
-        public const string SensorPropertyCommonGuid = "7F8383EC-D3EC-495C-A8CF-B8BBE85C2920";
+        public static class EventSystem
 
-        /// <summary>
-        /// Contains a list of well known sensor types.
-        /// </summary>
-        public static class SensorTypes
         {
-
-            /// <summary>
-            /// The GPS location sensor type property key.
-            /// </summary>
-            public const string LocationGps = "ED4CA589-327A-4FF9-A560-91DA4B48275E";
-
-            /// <summary>
-            /// The environmental temperature sensor type property key.
-            /// </summary>
-            public const string EnvironmentalTemperature = "04FD0EC4-D5DA-45FA-95A9-5DB38EE19306";
-
-            /// <summary>
-            /// The environmental atmostpheric pressure sensor type property key.
-            /// </summary>
-            public const string EnvironmentalAtmosphericPressure = "E903829-FF8A-4A93-97DF-3DCBDE402288";
-
-            /// <summary>
-            /// The environmental humidity sensor type property key.
-            /// </summary>
-            public const string EnvironmentalHumidity = "5C72BF67-BD7E-4257-99B-98A3BA3B40A";
-
-            /// <summary>
-            /// The environmental wind speed sensor type property key.
-            /// </summary>
-            public const string EnvironmentalWindSpeed = "DD50607B-A45F-42CD-8EFD-EC61761C4226";
-
-            /// <summary>
-            /// The environmental wind direction sensor type property key.
-            /// </summary>
-            public const string EnvironmentalWindDirection = "9EF57A35-9306-434D-AF9-37FA5A9C0BD";
-
-            /// <summary>
-            /// The accelerometer sensor type property key.
-            /// </summary>
-            public const string Accelerometer1D = "C04D2387-7340-4CC2-991E-3B18CB8EF2F4";
-
-            /// <summary>
-            /// The 2D accelerometer sensor type property key.
-            /// </summary>
-            public const string Accelerometer2D = "B2C517A8-F6B5-4BA6-A423-5DF560B4CC7";
-
-            /// <summary>
-            /// The 3D accelerometer sensor type property key.
-            /// </summary>
-            public const string Accelerometer3D = "C2FB0F5F-E2D2-4C78-BCD0-352A9582819D";
-
-            /// <summary>
-            /// The motion sensor type property key.
-            /// </summary>
-            public const string MotionDetector = "5C7C1A12-30A5-43B9-A4B2-CF9EC5B7BE8";
-
-            /// <summary>
-            /// The gyrometer sensor type property key.
-            /// </summary>
-            public const string Gyrometer1D = "FA088734-F552-4584-8324-EDFAF649652C";
-
-            /// <summary>
-            /// The 2D gyrometer sensor type property key.
-            /// </summary>
-            public const string Gyrometer2D = "31EF4F83-919B-48BF-8DE0-5D7A9D24556";
-
-            /// <summary>
-            /// The 3D gyrometer sensor type property key.
-            /// </summary>
-            public const string Gyrometer3D = "9485F5A-759E-42C2-BD4B-A349B75C8643";
-
-            /// <summary>
-            /// The speedometer sensor type property key.
-            /// </summary>
-            public const string Speedometer = "6BD73C1F-BB4-4310-81B2-DFC18A52BF94";
-
-            /// <summary>
-            /// The compass sensor type property key.
-            /// </summary>
-            public const string Compass1D = "A415F6C5-CB50-49D0-8E62-A827BD7A26C";
-
-            /// <summary>
-            /// The 2D compass sensor type property key.
-            /// </summary>
-            public const string Compass2D = "15655CC0-997A-4D30-84DB-57CABA3648BB";
-
-            /// <summary>
-            /// The 3D compass sensor type property key.
-            /// </summary>
-            public const string Compass3D = "76B5CE0D-17DD-414D-93A1-E127F4BDF6E";
-
-            /// <summary>
-            /// The inclinometer sensor type property key.
-            /// </summary>
-            public const string Inclinometer1D = "B96F98C5-7A75-4BA7-94E9-AC868C966DD8";
-
-            /// <summary>
-            /// The 2D inclinometer sensor type property key.
-            /// </summary>
-            public const string Inclinometer2D = "AB140F6D-83EB-4264-B7B-B16A5B256A1";
-
-            /// <summary>
-            /// The 3D inclinometer sensor type property key.
-            /// </summary>
-            public const string Inclinometer3D = "B84919FB-EA85-4976-8444-6F6F5C6D31DB";
-
-            /// <summary>
-            /// The distance sensor type property key.
-            /// </summary>
-            public const string Distance1D = "5F14AB2F-1407-4306-A93F-B1DBABE4F9C0";
-
-            /// <summary>
-            /// The 2D sensor type property key.
-            /// </summary>
-            public const string Distance2D = "5CF9A46C-A9A2-4E55-B6A1-A04AAFA95A92";
-
-            /// <summary>
-            /// The 3D distance sensor type property key.
-            /// </summary>
-            public const string Distance3D = "A20CAE31-E25-4772-9FE5-96608A1354B2";
-
-            /// <summary>
-            /// The electrical voltage sensor type property key.
-            /// </summary>
-            public const string Voltage = "C5484637-4FB7-4953-98B8-A56D8AA1FB1E";
-
-            /// <summary>
-            /// The electrical current sensor type property key.
-            /// </summary>
-            public const string Current = "5ADC9FCE-15A0-4BBE-A1AD-2D38A9AE831C";
-
-            /// <summary>
-            /// The boolean switch sensor type property key.
-            /// </summary>
-            public const string BooleanSwitch = "9C7E371F-1041-460B-8D5C-71E4752E35C";
-
-            /// <summary>
-            /// The boolean switch array sensor property key.
-            /// </summary>
-            public const string BooleanSwitchArray = "545C8BA5-B143-4545-868F-CA7FD986B4F6";
-
-            /// <summary>
-            /// The multiple value switch sensor type property key.
-            /// </summary>       
-            public const string MultivalueSwitch = "B3EE4D76-37A4-4402-B25E-99C6A775FA1";
-
-            /// <summary>
-            /// The force sensor type property key.
-            /// </summary>
-            public const string Force = "C2AB2B02-1A1C-4778-A81B-954A1788CC75";
-
-            /// <summary>
-            /// The scale sensor type property key.
-            /// </summary>
-            public const string Scale = "C06DD92C-7FEB-438E-9BF6-82207FFF5BB8";
-
-            /// <summary>
-            /// The pressure sensor type property key.
-            /// </summary>
-            public const string Pressure = "26D31F34-6352-41CF-B793-EA713D53D77";
-
-            /// <summary>
-            /// The strain sensor type property key.
-            /// </summary>
-            public const string Strain = "C6D1EC0E-6803-4361-AD3D-85BCC58C6D29";
-
-            /// <summary>
-            /// The Human presence sensor type property key.
-            /// </summary>
-            public const string HumanPresence = "C138C12B-AD52-451C-9375-87F518FF10C6";
-
-            /// <summary>
-            /// The human proximity sensor type property key.
-            /// </summary>
-            public const string HumanProximity = "5220DAE9-3179-4430-9F90-6266D2A34DE";
-
-            /// <summary>
-            /// The touch sensor type property key.
-            /// </summary>
-            public const string Touch = "17DB3018-6C4-4F7D-81AF-9274B7599C27";
-
-            /// <summary>
-            /// The ambient light sensor type property key.
-            /// </summary>
-            public const string AmbientLight = "97F115C8-599A-4153-8894-D2D12899918A";
-
-            /// <summary>
-            /// The RFID sensor type property key.
-            /// </summary>
-            public const string RfidScanner = "44328EF5-2DD-4E8D-AD5D-9249832B2ECA";
-
-            /// <summary>
-            /// The bar code scanner sensor type property key.
-            /// </summary>
-            public const string BarcodeScanner = "990B3D8F-85BB-45FF-914D-998C4F372DF";
-        }
-
-        /// <summary>
-        /// Contains a list of well known event interest types.
-        /// </summary>
-        public static class EventInterestTypes
-        {
-            /// <summary>
-            /// Register for asynchronous sensor data updates. This has power management implications.
-            /// </summary>
-            public const string DataUpdated = "2ED0F2A4-0087-41D3-87DB-6773370B3C88";
 
             /// <summary>
             /// Register for sensor state change notifications.
             /// </summary>
             public const string StateChanged = "BFD96016-6BD7-4560-AD34-F2F6607E8F81";
+
+            /// <summary>
+            /// Register for asynchronous sensor data updates. This has power management implications.
+            /// </summary>
+            public const string DataUpdated = "2ED0F2A4-0087-41D3-87DB-6773370B3C88";
+
+            public const string PropertyChanged = "2358F099-84C9-4D3D-90DF-C2421E2B2045";
+
+            public const string AccelerometerShake = "825F5A94-0F48-4396-9CA0-6ECB5C99D915";
+
+            public const string ParameterCommon = "64346E30-8728-4B34-BDF6-4F52442C5C28";
+
         }
 
+        public const string ErrorParameterCommon = "77112BCD-FCE1-4f43-B8B8-A88256ADB4B3";
+
         /// <summary>
-        /// Contains a list of well known sensor categories.
+        /// Sensor Properties
         /// </summary>
-        public static class SensorCategories
+        public static class PropertySystem
+
         {
+
             /// <summary>
-            /// The sensor categoryId for all categories.
+            /// The common Guid used by the property keys.
             /// </summary>
+            public const string PropertyCommon = "7F8383EC-D3EC-495C-A8CF-B8BBE85C2920";
+
+        }
+
+        public static class SensorCategory
+
+        {
+
             public const string All = "C317C286-C468-4288-9975-D4C4587C442C";
 
-            /// <summary>
-            /// The sensor location categoryId property key.
-            /// </summary>
-            public const string Location = "BFA794E4-F964-4FDB-90F6-5156BFE4B44";
+            public const string Location = "BFA794E4-F964-4FDB-90F6-51056BFE4B44";
 
-            /// <summary>
-            /// The environmental sensor cagetory property key.
-            /// </summary>
-            public const string Environmental = "323439AA-7F66-492B-BAC-73E9AAA65D5";
+            public const string Environmental = "323439AA-7F66-492B-BA0C-73E9AA0A65D5";
 
-            /// <summary>
-            /// The motion sensor cagetory property key.
-            /// </summary>
             public const string Motion = "CD09DAF1-3B2E-4C3D-B598-B5E5FF93FD46";
 
-            /// <summary>
-            /// The orientation sensor cagetory property key.
-            /// </summary>
             public const string Orientation = "9E6C04B6-96FE-4954-B726-68682A473F69";
 
-            /// <summary>
-            /// The mechanical sensor cagetory property key.
-            /// </summary>
             public const string Mechanical = "8D131D68-8EF7-4656-80B5-CCCBD93791C5";
 
-            /// <summary>
-            /// The electrical sensor cagetory property key.
-            /// </summary>
             public const string Electrical = "FB73FCD8-FC4A-483C-AC58-27B691C6BEFF";
 
-            /// <summary>
-            /// The bio-metric sensor cagetory property key.
-            /// </summary>        
             public const string Biometric = "CA19690F-A2C7-477D-A99E-99EC6E2B5648";
 
-            /// <summary>
-            /// The light sensor cagetory property key.
-            /// </summary>
             public const string Light = "17A665C0-9063-4216-B202-5C7A255E18CE";
 
-            /// <summary>
-            /// The scanner sensor cagetory property key.
-            /// </summary>
-            public const string Scanner = "B000E77E-F5B5-420F-815D-270A726F270";
+            public const string Scanner = "B000E77E-F5B5-420F-815D-0270A726F270";
+
+            public const string Other = "2C90E7A9-F4C9-4FA2-AF37-56D471FE5A3D";
+
+            public const string Unsupported = "2BEAE7FA-19B0-48C5-A1F6-B5480DC206B0";
+
+        }
+
+        public static class SensorType
+
+        {
+
+            public static class Location
+
+            {
+
+                public const string GPS = "ED4CA589-327A-4FF9-A560-91DA4B48275E";
+
+                public const string Static = "095F8184-0FA9-4445-8E6E-B70F320B6B4C";
+
+                public const string Lookup = "3B2EAE4A-72CE-436D-96D2-3C5B8570E987";
+
+                public const string Triangulation = "691C341A-5406-4FE1-942F-2246CBEB39E0";
+
+                public const string Other = "9B2D0566-0368-4F71-B88D-533F132031DE";
+
+                public const string Broadcast = "D26988CF-5162-4039-BB17-4C58B698E44A";
+
+                public const string DeadReckoning = "1A37D538-F28B-42DA-9FCE-A9D0A2A6D829";
+
+
+            }
+
+            public static class Environmental
+
+            {
+
+                public const string Temperature = "04FD0EC4-D5DA-45FA-95A9-5DB38EE19306";
+
+                public const string AtmosphericPressure = "0E903829-FF8A-4A93-97DF-3DCBDE402288";
+
+                public const string Humidity = "5C72BF67-BD7E-4257-990B-98A3BA3B400A";
+
+                public const string WindSpeed = "DD50607B-A45F-42CD-8EFD-EC61761C4226";
+
+                public const string WindDirection = "9EF57A35-9306-434D-AF09-37FA5A9C00BD";
+
+
+            }
+
+            public static class Motion
+
+            {
+
+                public const string Accelerometer1D = "C04D2387-7340-4CC2-991E-3B18CB8EF2F4";
+
+                public const string Accelerometer2D = "B2C517A8-F6B5-4BA6-A423-5DF560B4CC07";
+
+                public const string Accelerometer3D = "C2FB0F5F-E2D2-4C78-BCD0-352A9582819D";
+
+                public const string MotionDetector = "5C7C1A12-30A5-43B9-A4B2-CF09EC5B7BE8";
+
+                public const string Gyrometer1D = "FA088734-F552-4584-8324-EDFAF649652C";
+
+                public const string Gyrometer2D = "31EF4F83-919B-48BF-8DE0-5D7A9D240556";
+
+                public const string Gyrometer3D = "09485F5A-759E-42C2-BD4B-A349B75C8643";
+
+                public const string Speedometer = "6BD73C1F-0BB4-4310-81B2-DFC18A52BF94";
+
+            }
+
+            public static class Orientation
+
+            {
+
+                public const string Compass1D = "A415F6C5-CB50-49D0-8E62-A8270BD7A26C";
+
+                public const string Compass2D = "15655CC0-997A-4D30-84DB-57CABA3648BB";
+
+                public const string Compass3D = "76B5CE0D-17DD-414D-93A1-E127F40BDF6E";
+
+                public const string Inclinometer1D = "B96F98C5-7A75-4BA7-94E9-AC868C966DD8";
+
+                public const string Inclinometer2D = "AB140F6D-83EB-4264-B70B-B16A5B256A01";
+
+                public const string Inclinometer3D = "B84919FB-EA85-4976-8444-6F6F5C6D31DB";
+
+                public const string Distance1D = "5F14AB2F-1407-4306-A93F-B1DBABE4F9C0";
+
+                public const string Distance2D = "5CF9A46C-A9A2-4E55-B6A1-A04AAFA95A92";
+
+                public const string Distance3D = "A20CAE31-0E25-4772-9FE5-96608A1354B2";
+
+                public const string AggregatedQuadrantOrientation = "9F81F1AF-C4AB-4307-9904-C828BFB90829";
+
+                public const string AggregatedDeviceOrientation = "CDB5D8F7-3CFD-41C8-8542-CCE622CF5D6E";
+
+                public const string AggregatedSimpleDeviceOrientation = "86A19291-0482-402C-BF4C-ADDAC52B1C39";
+
+            }
+
+            public static class Electrical
+
+            {
+
+                public const string Voltage = "C5484637-4FB7-4953-98B8-A56D8AA1FB1E";
+
+                public const string Current = "5ADC9FCE-15A0-4BBE-A1AD-2D38A9AE831C";
+
+                public const string Capacitance = "CA2FFB1C-2317-49C0-A0B4-B63CE63461A0";
+
+                public const string Resistance = "9993D2C8-C157-4A52-A7B5-195C76037231";
+
+                public const string Inductance = "DC1D933F-C435-4C7D-A2FE-607192A524D3";
+
+                public const string ElectricalPower = "212F10F5-14AB-4376-9A43-A7794098C2FE";
+
+                public const string Potentiometer = "2B3681A9-CADC-45AA-A6FF-54957C8BB440";
+
+                public const string Frequency = "8CD2CBB6-73E6-4640-A709-72AE8FB60D7F";
+
+            }
+
+            public static class Mechanical
+
+            {
+
+                public const string BooleanSwitch = "9C7E371F-1041-460B-8D5C-71E4752E350C";
+
+                public const string MultivalueSwitch = "B3EE4D76-37A4-4402-B25E-99C60A775FA1";
+
+                public const string Force = "C2AB2B02-1A1C-4778-A81B-954A1788CC75";
+
+                public const string Scale = "C06DD92C-7FEB-438E-9BF6-82207FFF5BB8";
+
+                public const string Pressure = "26D31F34-6352-41CF-B793-EA0713D53D77";
+
+                public const string Strain = "C6D1EC0E-6803-4361-AD3D-85BCC58C6D29";
+
+                public const string BooleanSwitchArray = "545C8BA5-B143-4545-868F-CA7FD986B4F6";
+
+            }
+
+            public static class Biometric
+
+            {
+
+                public const string HumanPresence = "C138C12B-AD52-451C-9375-87F518FF10C6";
+
+                public const string HumanProximity = "5220DAE9-3179-4430-9F90-06266D2A34DE";
+
+                public const string Touch = "17DB3018-06C4-4F7D-81AF-9274B7599C27";
+
+            }
+
+            public const string AmbientLight = "97F115C8-599A-4153-8894-D2D12899918A";
+
+            public static class Scanner
+
+            {
+
+                public const string RFIDScanner = "44328EF5-02DD-4E8D-AD5D-9249832B2ECA";
+
+                public const string BarcodeScanner = "990B3D8F-85BB-45FF-914D-998C04F372DF";
+
+            }
+
+            public const string Custom = "E83AF229-8640-4D18-A213-E22675EBB2C3";
+
+            public const string Unknown = "10BA83E3-EF4F-41ED-9885-A87D6435A8E1";
+
+        }
+
+        public static class DataType
+
+        {
+
+            public const string Common = "DB5E0CF2-CF1F-4C18-B46C-D86011D62150";
+
+            public const string Location = "055C74D8-CA6F-47D6-95C6-1ED3637A0FF4";
+
+            public const string Environmental = "8B0AA2F1-2D57-42EE-8CC0-4D27622B46C4";
+
+            public const string Motion = "3F8A69A2-07C5-4E48-A965-CD797AAB56D5";
+
+            public const string Orientation = "1637D8A2-4248-4275-865D-558DE84AEDFD";
+
+            public const string Mechanical = "38564A7C-F2F2-49BB-9B2B-BA60F66A58DF";
+
+            public const string Biometric = "2299288A-6D9E-4B0B-B7EC-3528F89E40AF";
+
+            public const string Light = "E4C77CE2-DCB7-46E9-8439-4FEC548833A6";
+
+            public const string Scanner = "D7A59A3C-3421-44AB-8D3A-9DE8AB6C4CAE";
+
+            public const string Electrical = "BBB246D1-E242-4780-A2D3-CDED84F35842";
+
+            public const string Custom = "B14C764F-07CF-41E8-9D82-EBE3D0776A6F";
+
         }
 
     }

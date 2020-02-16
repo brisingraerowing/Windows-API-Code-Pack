@@ -1783,91 +1783,85 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
     {
 
-        public static class Events
+        /// <summary>
+        /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.EventV1"/> and <see cref="Guids.PortableDevices.PropertySystem.EventV2"/>. The properties in this category are for properties that may be needed for event processing-but do not have object property equivalents(i.e.they are not exposed as object properties-but rather-used only as event parameters).
+        /// </summary>
+        public static class Parameter
+
+        {
+            //
+            // WPD_EVENT_PARAMETER_PNP_DEVICE_ID  
+            //   [ VT_LPWSTR ] Indicates the device that originated the event.
+            public static PropertyKey PNPDeviceId => new PropertyKey(EventV1, 2);
+            //
+            // WPD_EVENT_PARAMETER_EVENT_ID  
+            //   [ VT_CLSID ] Indicates the event sent.
+            public static PropertyKey EventId => new PropertyKey(EventV1, 3);
+            //
+            // WPD_EVENT_PARAMETER_OPERATION_STATE  
+            //   [ VT_UI4 ] Indicates the current state of the operation (e.g. started-running-stopped etc.).
+            public static PropertyKey OperationState => new PropertyKey(EventV1, 4);
+            //
+            // WPD_EVENT_PARAMETER_OPERATION_PROGRESS  
+            //   [ VT_UI4 ] Indicates the progress of a currently executing operation. Value is from 0 to 100-with 100 indicating that the operation is complete.
+            public static PropertyKey OperationProgress => new PropertyKey(EventV1, 5);
+            //
+            // WPD_EVENT_PARAMETER_OBJECT_PARENT_PERSISTENT_UNIQUE_ID  
+            //   [ VT_LPWSTR ] Uniquely identifies the parent object-similar to WPD_OBJECT_PARENT_ID-but this ID will not change between sessions.
+            public static PropertyKey ObjectParentPersistentUniqueId => new PropertyKey(EventV1, 6);
+            //
+            // WPD_EVENT_PARAMETER_OBJECT_CREATION_COOKIE  
+            //   [ VT_LPWSTR ] This is the cookie handed back to a client when it requested an object creation using the IPortableDeviceContent::CreateObjectWithPropertiesAndData method.
+            public static PropertyKey ObjectCreationCookie => new PropertyKey(EventV1, 7);
+            //
+            // WPD_EVENT_PARAMETER_CHILD_HIERARCHY_CHANGED  
+            //   [ VT_BOOL ] Indicates that the child hiearchy for the object has changed.
+            public static PropertyKey ChildHierarchyChanged => new PropertyKey(EventV1, 8);
+
+            //
+            // WPD_EVENT_PARAMETER_SERVICE_METHOD_CONTEXT  
+            //   [ VT_LPWSTR ] Indicates the service method invocation context.
+            public static PropertyKey ServiceMethodContext => new PropertyKey(EventV2, 2);
+
+        }
+
+        /// <summary>
+        /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.EventOptionsV1"/>. The properties in this category describe event options.
+        /// </summary>
+        public static class Option
 
         {
 
-            /// <summary>
-            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.EventV1"/> and <see cref="Guids.PortableDevices.PropertySystem.EventV2"/>. The properties in this category are for properties that may be needed for event processing-but do not have object property equivalents(i.e.they are not exposed as object properties-but rather-used only as event parameters).
-            /// </summary>
-            public static class Parameter
+            //
+            // WPD_EVENT_OPTION_IS_BROADCAST_EVENT  
+            //   [ VT_BOOL ] Indicates that the event is broadcast to all clients.
+            public static PropertyKey IsBroadcastEvent => new PropertyKey(EventOptionsV1, 2);
+            //
+            // WPD_EVENT_OPTION_IS_AUTOPLAY_EVENT  
+            //   [ VT_BOOL ] Indicates that the event is sent to and handled by Autoplay.
+            public static PropertyKey IsAutoplayEvent => new PropertyKey(EventOptionsV1, 3);
 
-            {
-                //
-                // WPD_EVENT_PARAMETER_PNP_DEVICE_ID  
-                //   [ VT_LPWSTR ] Indicates the device that originated the event.
-                public static PropertyKey PNPDeviceId => new PropertyKey(EventV1, 2);
-                //
-                // WPD_EVENT_PARAMETER_EVENT_ID  
-                //   [ VT_CLSID ] Indicates the event sent.
-                public static PropertyKey EventId => new PropertyKey(EventV1, 3);
-                //
-                // WPD_EVENT_PARAMETER_OPERATION_STATE  
-                //   [ VT_UI4 ] Indicates the current state of the operation (e.g. started-running-stopped etc.).
-                public static PropertyKey OperationState => new PropertyKey(EventV1, 4);
-                //
-                // WPD_EVENT_PARAMETER_OPERATION_PROGRESS  
-                //   [ VT_UI4 ] Indicates the progress of a currently executing operation. Value is from 0 to 100-with 100 indicating that the operation is complete.
-                public static PropertyKey OperationProgress => new PropertyKey(EventV1, 5);
-                //
-                // WPD_EVENT_PARAMETER_OBJECT_PARENT_PERSISTENT_UNIQUE_ID  
-                //   [ VT_LPWSTR ] Uniquely identifies the parent object-similar to WPD_OBJECT_PARENT_ID-but this ID will not change between sessions.
-                public static PropertyKey ObjectParentPersistentUniqueId => new PropertyKey(EventV1, 6);
-                //
-                // WPD_EVENT_PARAMETER_OBJECT_CREATION_COOKIE  
-                //   [ VT_LPWSTR ] This is the cookie handed back to a client when it requested an object creation using the IPortableDeviceContent::CreateObjectWithPropertiesAndData method.
-                public static PropertyKey ObjectCreationCookie => new PropertyKey(EventV1, 7);
-                //
-                // WPD_EVENT_PARAMETER_CHILD_HIERARCHY_CHANGED  
-                //   [ VT_BOOL ] Indicates that the child hiearchy for the object has changed.
-                public static PropertyKey ChildHierarchyChanged => new PropertyKey(EventV1, 8);
+        }
 
-                //
-                // WPD_EVENT_PARAMETER_SERVICE_METHOD_CONTEXT  
-                //   [ VT_LPWSTR ] Indicates the service method invocation context.
-                public static PropertyKey ServiceMethodContext => new PropertyKey(EventV2, 2);
+        /// <summary>
+        /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.EventAttributesV1"/>. The properties in this category describe event attributes.
+        /// </summary>
+        public static class Attribute
 
-            }
+        {
 
-            /// <summary>
-            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.EventOptionsV1"/>. The properties in this category describe event options.
-            /// </summary>
-            public static class Option
-
-            {
-
-                //
-                // WPD_EVENT_OPTION_IS_BROADCAST_EVENT  
-                //   [ VT_BOOL ] Indicates that the event is broadcast to all clients.
-                public static PropertyKey IsBroadcastEvent => new PropertyKey(EventOptionsV1, 2);
-                //
-                // WPD_EVENT_OPTION_IS_AUTOPLAY_EVENT  
-                //   [ VT_BOOL ] Indicates that the event is sent to and handled by Autoplay.
-                public static PropertyKey IsAutoplayEvent => new PropertyKey(EventOptionsV1, 3);
-
-            }
-
-            /// <summary>
-            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.EventAttributesV1"/>. The properties in this category describe event attributes.
-            /// </summary>
-            public static class Attribute
-
-            {
-
-                //
-                // WPD_EVENT_ATTRIBUTE_NAME  
-                //   [ VT_LPWSTR ] Contains the name of the event.
-                public static PropertyKey Name => new PropertyKey(EventAttributesV1, 2);
-                //
-                // WPD_EVENT_ATTRIBUTE_PARAMETERS  
-                //   [ VT_UNKNOWN ] IPortableDeviceKeyCollection containing the event parameters.
-                public static PropertyKey Parameters => new PropertyKey(EventAttributesV1, 3);
-                //
-                // WPD_EVENT_ATTRIBUTE_OPTIONS  
-                //   [ VT_UNKNOWN ] IPortableDeviceValues containing the event options.
-                public static PropertyKey Options => new PropertyKey(EventAttributesV1, 4);
-
-            }
+            //
+            // WPD_EVENT_ATTRIBUTE_NAME  
+            //   [ VT_LPWSTR ] Contains the name of the event.
+            public static PropertyKey Name => new PropertyKey(EventAttributesV1, 2);
+            //
+            // WPD_EVENT_ATTRIBUTE_PARAMETERS  
+            //   [ VT_UNKNOWN ] IPortableDeviceKeyCollection containing the event parameters.
+            public static PropertyKey Parameters => new PropertyKey(EventAttributesV1, 3);
+            //
+            // WPD_EVENT_ATTRIBUTE_OPTIONS  
+            //   [ VT_UNKNOWN ] IPortableDeviceValues containing the event options.
+            public static PropertyKey Options => new PropertyKey(EventAttributesV1, 4);
 
         }
 
