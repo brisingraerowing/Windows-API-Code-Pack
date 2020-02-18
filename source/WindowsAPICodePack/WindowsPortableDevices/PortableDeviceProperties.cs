@@ -57,7 +57,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             _nativePortableDeviceKeyCollection.GetAt(index, ref propertyKey);
 
-        HResult INativePropertiesCollection.GetAttributes(ref PropertyKey propertyKey, out IReadOnlyNativePropertyValuesCollection attributes)
+        HResult INativePropertiesCollection.GetAttributes(ref PropertyKey propertyKey, out IDisposableReadOnlyNativePropertyValuesCollection attributes)
 
         {
 
@@ -65,7 +65,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             HResult hr = _nativePortableDeviceProperties.GetPropertyAttributes(_objectId, ref propertyKey, out IPortableDeviceValues portableDeviceValues);
 
-            attributes = new PortableDeviceValuesCollection(portableDeviceValues, null);
+            attributes = new DisposablePortableDeviceValuesCollection(portableDeviceValues, null);
 
             return hr;
 
@@ -147,16 +147,19 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
     internal sealed class PortableDevicePropertyInfo : IPropertyInfo
 
     {
+        private bool? _isReadable;
+        private bool? _isReadOnly;
+        private bool? _isRemovable;
 
         public ObjectProperty ObjectProperty { get; private set; }
 
         public PortableDevicePropertyInfo(ObjectProperty objectProperty) => ObjectProperty = objectProperty;
 
-        bool IPropertyInfo.IsReadable() => GetAttributeValue(PropertySystem.Attribute.Property.CanRead);
+        bool IPropertyInfo.IsReadable => (_isReadable ?? (_isReadable = GetAttributeValue(PropertySystem.Attribute.Property.CanRead))).Value;
 
-        bool IPropertyInfo.IsReadOnly() => !GetAttributeValue(PropertySystem.Attribute.Property.CanWrite);
+        bool IPropertyInfo.IsReadOnly => (_isReadOnly ?? (_isReadOnly = !GetAttributeValue(PropertySystem.Attribute.Property.CanWrite))).Value;
 
-        bool IPropertyInfo.IsRemovable() => GetAttributeValue(PropertySystem.Attribute.Property.CanDelete);
+        bool IPropertyInfo.IsRemovable => (_isRemovable ?? (_isRemovable = GetAttributeValue(PropertySystem.Attribute.Property.CanDelete))).Value;
 
         private bool GetAttributeValue(PropertyKey propertyKey)
         {
@@ -179,14 +182,14 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         }
     }
 
-    internal sealed class PortableDeviceValuesCollection : INativePropertyValuesCollection
+    internal abstract class PortableDeviceValuesCollectionAbstract : INativePropertyValuesCollection
     {
-        private IPortableDeviceValues _nativePortableDeviceValues;
-        private PortableDeviceProperties _portableDeviceProperties;
+        protected IPortableDeviceValues _nativePortableDeviceValues;
+        protected PortableDeviceProperties _portableDeviceProperties;
 
         public bool IsReadOnly => _portableDeviceProperties is null;
 
-        public PortableDeviceValuesCollection(in IPortableDeviceValues portableDeviceValues, PortableDeviceProperties portableDeviceProperties)
+        public PortableDeviceValuesCollectionAbstract(in IPortableDeviceValues portableDeviceValues, in PortableDeviceProperties portableDeviceProperties)
         {
             _nativePortableDeviceValues = portableDeviceValues;
 
@@ -241,6 +244,31 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             }
 
             return hr;
+        }
+    }
+
+    internal sealed class PortableDeviceValuesCollection : PortableDeviceValuesCollectionAbstract
+
+    {
+        public PortableDeviceValuesCollection(in IPortableDeviceValues portableDeviceValues, in PortableDeviceProperties portableDeviceProperties) : base(portableDeviceValues, portableDeviceProperties)
+        {
+        }
+    }
+
+    internal sealed class DisposablePortableDeviceValuesCollection : PortableDeviceValuesCollectionAbstract, IDisposableReadOnlyNativePropertyValuesCollection
+
+    {
+        public DisposablePortableDeviceValuesCollection(in IPortableDeviceValues portableDeviceValues, in PortableDeviceProperties portableDeviceProperties) : base(portableDeviceValues, portableDeviceProperties)
+        {
+        }
+
+        public void Dispose()
+        {
+            _ = Marshal.ReleaseComObject(_nativePortableDeviceValues);
+
+            _nativePortableDeviceValues = null;
+
+            _portableDeviceProperties = null;
         }
     }
 }

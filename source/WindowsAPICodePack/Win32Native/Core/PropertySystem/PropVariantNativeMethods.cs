@@ -4,7 +4,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using System;
 using System.Runtime.InteropServices;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
+namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 {
     public static class PropVariantNativeMethods
     {

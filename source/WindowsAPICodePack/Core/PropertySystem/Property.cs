@@ -40,7 +40,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                     PropertyKey propertyKey = _propertyKey;
 
-                    Marshal.ThrowExceptionForHR((int)_propertyCollection.NativePropertiesCollection.GetAttributes(ref propertyKey, out IReadOnlyNativePropertyValuesCollection attributes));
+                    Marshal.ThrowExceptionForHR((int)_propertyCollection.NativePropertiesCollection.GetAttributes(ref propertyKey, out IDisposableReadOnlyNativePropertyValuesCollection attributes));
 
                     _attributes = new PropertyAttributeCollection(attributes);
 
@@ -50,17 +50,15 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             }
         }
 
-        public IPropertyInfo PropertyInfo { get; private set; }
+        public IPropertyInfo PropertyInfo { get; internal set; }
 
-        internal ObjectProperty(in PropertyCollection propertyCollection, in INativePropertyValuesCollection nativePropertyValuesCollection, in IPropertyInfo propertyInfo, in PropertyKey propertyKey)
+        internal ObjectProperty(in PropertyCollection propertyCollection, in INativePropertyValuesCollection nativePropertyValuesCollection, in PropertyKey propertyKey)
 
         {
 
             _propertyCollection = propertyCollection;
 
             _nativePropertyValuesCollection = nativePropertyValuesCollection;
-
-            PropertyInfo = propertyInfo;
 
             _propertyKey = propertyKey;
 
@@ -94,13 +92,11 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                 throw new InvalidOperationException("The current object is disposed.");
 
-            PropertyKey propertyKey = PropertyKey;
+            (Type, object) result;
 
-            PropVariant propVariant = GetPropVariant();
+            using (PropVariant propVariant = GetPropVariant())
 
-            (Type, object) result = (NativePropertyHelper.VarEnumToSystemType(propVariant.VarType), propVariant.Value);
-
-            propVariant.Dispose();
+                result = (NativePropertyHelper.VarEnumToSystemType(propVariant.VarType), propVariant.Value);
 
             return result;
 
@@ -170,7 +166,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         {
             if (!IsDisposed)
             {
-                _nativePropertiesCollection = null;
+                _propertyCollection = null;
                 _nativePropertyValuesCollection = null;
                 _attributes = null;
                 PropertyInfo = null;

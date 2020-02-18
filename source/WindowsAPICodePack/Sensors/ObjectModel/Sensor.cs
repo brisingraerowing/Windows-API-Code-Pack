@@ -199,18 +199,18 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             HResult hr = nativeISensor.GetData(out ISensorDataReport iReport);
 
             if (hr == HResult.Ok)
-            
+
                 try
                 {
                     DataReport = SensorReport.FromNativeReport(this, iReport);
 
-                        DataReportChanged?.Invoke(this, EventArgs.Empty);
+                    DataReportChanged?.Invoke(this, EventArgs.Empty);
                 }
                 finally
                 {
                     _ = Marshal.ReleaseComObject(iReport);
                 }
-            
+
             return hr;
 
         }
@@ -540,7 +540,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             set
             {
                 nativeISensor = value;
-                SetEventInterest(new Guid(EventSystem.StateChanged));
+                SetEventInterest(new Guid(Guids.EventSystem.StateChanged));
                 nativeISensor.SetEventSink(this);
                 Initialize();
             }
@@ -617,7 +617,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                 throw new SensorPlatformException(LocalizedMessages.SensorNotInitialized);
 
             return GetInterestingEvents()
-                .Any(g => string.CompareOrdinal( g.ToString(), eventType) == 0);
+                .Any(g => string.CompareOrdinal(g.ToString(), eventType) == 0);
         }
 
         private Guid[] GetInterestingEvents()

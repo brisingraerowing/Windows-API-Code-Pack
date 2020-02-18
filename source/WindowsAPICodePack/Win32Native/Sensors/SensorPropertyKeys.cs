@@ -193,7 +193,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             public static PropertyKey AngularAccelerationZDegreesPerSecondSquared => new PropertyKey(Guids.DataType.Motion, 7); //[VT_R8]
             public static PropertyKey SpeedMetersPerSecond => new PropertyKey(Guids.DataType.Motion, 8); //[VT_R8]
             public static PropertyKey MotionState => new PropertyKey(Guids.DataType.Motion, 9); //[VT_BOOL]
-                                                                                                 // Additional Motion Data Types
+                                                                                                // Additional Motion Data Types
             public static PropertyKey AngularVelocityXDegreesPerSecond => new PropertyKey(Guids.DataType.Motion, 10); //[VT_R8]
             public static PropertyKey AngularVelocityYDegreesPerSecond => new PropertyKey(Guids.DataType.Motion, 11); //[VT_R8]
             public static PropertyKey AngularVelocityZDegreesPerSecond => new PropertyKey(Guids.DataType.Motion, 12); //[VT_R8]
@@ -208,29 +208,29 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             public static PropertyKey TiltXDegrees => new PropertyKey(Guids.DataType.Orientation, 2); //[VT_R4]
             public static PropertyKey TiltYDegrees => new PropertyKey(Guids.DataType.Orientation, 3); //[VT_R4]
             public static PropertyKey TiltZDegrees => new PropertyKey(Guids.DataType.Orientation, 4); //[VT_R4]
-                                                                                                        // Compass Data Types
+                                                                                                      // Compass Data Types
             public static PropertyKey MagneticHeadingXDegrees => new PropertyKey(Guids.DataType.Orientation, 5); //[VT_R4]
             public static PropertyKey MagneticHeadingYDegrees => new PropertyKey(Guids.DataType.Orientation, 6); //[VT_R4]
             public static PropertyKey MagneticHeadingZDegrees => new PropertyKey(Guids.DataType.Orientation, 7); //[VT_R4]
-                                                                                                                    // Distance Data Types
+                                                                                                                 // Distance Data Types
             public static PropertyKey DistanceXMeters => new PropertyKey(Guids.DataType.Orientation, 8); //[VT_R4]
             public static PropertyKey DistanceYMeters => new PropertyKey(Guids.DataType.Orientation, 9); //[VT_R4]
             public static PropertyKey DistanceZMeters => new PropertyKey(Guids.DataType.Orientation, 10); //[VT_R4]
-                                                                                                            // Additional Compass Data Types
+                                                                                                          // Additional Compass Data Types
             public static PropertyKey MagneticHeadingCompensatedMagneticNorthDegrees => new PropertyKey(Guids.DataType.Orientation, 11); //[VT_R8]
             public static PropertyKey MagneticHeadingCompensatedTrueNorthDegrees => new PropertyKey(Guids.DataType.Orientation, 12); //[VT_R8]
             public static PropertyKey MagneticHeadingMagneticNorthDegrees => new PropertyKey(Guids.DataType.Orientation, 13); //[VT_R8]
             public static PropertyKey MagneticHeadingTrueNorthDegrees => new PropertyKey(Guids.DataType.Orientation, 14); //[VT_R8]
-                                                                                                                              // Additional Orientation Data Types
+                                                                                                                          // Additional Orientation Data Types
             public static PropertyKey QuadrantAngleDegrees => new PropertyKey(Guids.DataType.Orientation, 15); //[VT_R8]
             public static PropertyKey RotationMatrix => new PropertyKey(Guids.DataType.Orientation, 16); //[VT_VECTOR|VT_UI1]
             public static PropertyKey Quaternion => new PropertyKey(Guids.DataType.Orientation, 17); //[VT_VECTOR|VT_UI1]
             public static PropertyKey SimpleDeviceOrientation => new PropertyKey(Guids.DataType.Orientation, 18); //[VT_UI4]
-                                                                                                                    // Compass (Magnetometer) Data Types
+                                                                                                                  // Compass (Magnetometer) Data Types
             public static PropertyKey MagneticFieldStrengthXMilligauss => new PropertyKey(Guids.DataType.Orientation, 19); //[VT_R8]
             public static PropertyKey MagneticFieldStrengthYMilligauss => new PropertyKey(Guids.DataType.Orientation, 20); //[VT_R8]
             public static PropertyKey MagneticFieldStrengthZMilligauss => new PropertyKey(Guids.DataType.Orientation, 21); //[VT_R8]
-                                                                                                                               // Magnetometer Accuracy Data Types
+                                                                                                                           // Magnetometer Accuracy Data Types
             public static PropertyKey Magnetometer_accuracy => new PropertyKey(Guids.DataType.Orientation, 22); //[VT_I4]
 
         }
@@ -374,7 +374,5 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// The sensor distance (Z-axis) data property key.
         /// </summary>
         public static PropertyKey DistanceZMeters => new PropertyKey(new Guid(0XC2FB0F5F, 0XE2D2, 0X4C78, 0XBC, 0XD0, 0X35, 0X2A, 0X95, 0X82, 0X81, 0X9D), 10);
-
     }
-}
 }
