@@ -243,7 +243,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         {
             _portableDevice = portableDevice ?? throw new ArgumentNullException(nameof(portableDevice));
 
-            Marshal.ThrowExceptionForHR((int)_portableDevice._portableDevice.Capabilities(out _portableDeviceCapabilities));
+            Marshal.ThrowExceptionForHR((int)_portableDevice.NativePortableDevice.Capabilities(out _portableDeviceCapabilities));
         }
 
         private SupportedCommands _commands;
@@ -373,15 +373,43 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         IPortableDeviceManager IPortableDevice.PortableDeviceManager => PortableDeviceManager;
 
-        internal Win32Native.PortableDevices.IPortableDevice _portableDevice = null;
+        internal Win32Native.PortableDevices.IPortableDevice NativePortableDevice { get; private set; } = null;
+
+        internal IPortableDeviceProperties NativePortableDeviceProperties { get; private set; }
 
         private DeviceCapabilities _deviceCapabilities = null;
 
         public DeviceCapabilities DeviceCapabilities => _deviceCapabilities ?? (_deviceCapabilities = new DeviceCapabilities(this));
 
+        private IPortableDeviceContent2 _content = null;
+
+        internal IPortableDeviceContent2 Content
+
+        {
+
+            get
+
+            {
+
+                if (_content is null)
+
+                {
+
+                    Marshal.ThrowExceptionForHR((int)NativePortableDevice.Content(out IPortableDeviceContent content));
+
+                    _content = (IPortableDeviceContent2)content;
+
+                }
+
+                return _content;
+
+            }
+
+        }
+
         private PropertyCollection _properties = null;
 
-        public PropertyCollection Properties => _properties ?? (_properties = new PropertyCollection(new PortableDeviceProperties))
+        public PropertyCollection Properties => _properties ?? (_properties = new PropertyCollection(new PortableDeviceProperties(Consts.DeviceObjectId, this)));
 
         /// <summary>
         /// Gets the device id of the current <see cref="PortableDevice"/>.
@@ -445,7 +473,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
 
 
-            _portableDevice = new Win32Native.PortableDevices.PortableDevice();
+            NativePortableDevice = new Win32Native.PortableDevices.PortableDevice();
 
         }
 
@@ -518,7 +546,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             // time using the default (read/write) access. If this fails
             // with HResult.AccessDenied, we'll attempt to open a second time
             // with read-only access.
-            Marshal.ThrowExceptionForHR((int)_portableDevice.Open(DeviceId, pClientInformation));
+            Marshal.ThrowExceptionForHR((int)NativePortableDevice.Open(DeviceId, pClientInformation));
 
             //if (hr == HResult.AccessDenied)
             //{
@@ -582,7 +610,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         public void Close()
         {
-            Marshal.ThrowExceptionForHR((int)_portableDevice.Close());
+            Marshal.ThrowExceptionForHR((int)NativePortableDevice.Close());
 
             IsOpen = false;
         }
@@ -667,9 +695,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         {
 
-            _ = _portableDevice.Content(out IPortableDeviceContent portableDeviceContent);
-
-            if (CoreErrorHelper.Succeeded(portableDeviceContent.EnumObjects(0, Consts.DeviceObjectId, null, out IEnumPortableDeviceObjectIDs enumPortableDeviceObjectIDs)))
+            if (CoreErrorHelper.Succeeded(Content.EnumObjects(0, Consts.DeviceObjectId, null, out IEnumPortableDeviceObjectIDs enumPortableDeviceObjectIDs)))
 
             {
 
@@ -726,15 +752,38 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             if (IsDisposed) return;
 
+            Close();
+
             if (disposing)
             {
-                IsOpen = false;
-                _ = PortableDeviceManager._portableDevices.Remove(this);
-                _ = PortableDeviceManager._privatePortableDevices.Remove(this);
+                if (_items is object)
+
+                {
+
+                    _items.Clear();
+
+                    _items = null;
+
+                }
+
+                if (_deviceCapabilities is object)
+
+                    _deviceCapabilities = null;
             }
 
-            _ = Marshal.ReleaseComObject(_portableDevice);
-            _portableDevice = null;
+            if (_content is object)
+
+            {
+
+                _ = Marshal.ReleaseComObject(_content);
+                _content = null;
+
+            }
+
+            _ = Marshal.ReleaseComObject(NativePortableDeviceProperties);
+            NativePortableDeviceProperties = null;
+            _ = Marshal.ReleaseComObject(NativePortableDevice);
+            NativePortableDevice = null;
             IsDisposed = true;
 
         }

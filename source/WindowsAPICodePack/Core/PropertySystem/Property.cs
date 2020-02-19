@@ -15,16 +15,20 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 {
 
     /// <summary>
-    /// This class wraps native <see cref="PropVariant"/> types into managed type. Please note that the Shell API, however, has its own managed wrapper, the <c>ShellProperty</c> class.
+    /// This class wraps native <see cref="PropVariant"/>s into managed objects. Please note that the Shell API, however, has its own managed wrapper, the <c>ShellProperty</c> class.
     /// </summary>
-    public sealed class ObjectProperty : IObjectProperty, IEquatable<IObjectProperty>, IEquatable<PropertyKey>
+    public sealed class ObjectProperty : IObjectProperty, IEquatable<IObjectProperty>
     {
 
         private PropertyCollection _propertyCollection;
         private INativePropertyValuesCollection _nativePropertyValuesCollection;
         private PropertyKey _propertyKey;
         private IUIntIndexedCollection<ObjectPropertyAttribute> _attributes;
+        private bool _allowSetTruncatedValue;
 
+        /// <summary>
+        /// Gets the attributes for this property.
+        /// </summary>
         public IUIntIndexedCollection<ObjectPropertyAttribute> Attributes
         {
             get
@@ -50,7 +54,32 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             }
         }
 
+        /// <summary>
+        /// Gets the current property info.
+        /// </summary>
         public IPropertyInfo PropertyInfo { get; internal set; }
+
+        /// <summary>
+        /// Gets a value that indicates whether the current property is set.
+        /// </summary>
+        public bool IsSet
+        {
+
+            get
+            {
+
+                bool result;
+
+                using (PropVariant propVariant = GetPropVariant())
+
+                    result = !IsBlank(propVariant);
+
+                return result;
+
+            }
+        }
+
+        private bool IsBlank(in PropVariant propVariant) => propVariant.VarType == VarEnum.VT_HRESULT;
 
         internal ObjectProperty(in PropertyCollection propertyCollection, in INativePropertyValuesCollection nativePropertyValuesCollection, in PropertyKey propertyKey)
 
@@ -80,7 +109,10 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
                 throw new PropertySystemException(LocalizedMessages.ShellPropertySetValue, Marshal.GetExceptionForHR((int)result));
         }
 
-        public bool AllowSetTruncatedValue { get; set; }
+        /// <summary>
+        /// Gets or sets a value that indicates whether the current property supports setting a truncated value.
+        /// </summary>
+        public bool AllowSetTruncatedValue { get => IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : _allowSetTruncatedValue; set => _allowSetTruncatedValue = IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : value; }
 
         /// <summary>
         /// Gets the value of this property.
@@ -92,19 +124,31 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                 throw new InvalidOperationException("The current object is disposed.");
 
+            if (!PropertyInfo.IsReadable)
+
+                throw new PropertySystemException("This property is not readable.");
+
             (Type, object) result;
 
             using (PropVariant propVariant = GetPropVariant())
 
+            {
+
+                if (IsBlank(propVariant))
+
+                    throw new PropertySystemException("This property is not set.");
+
                 result = (NativePropertyHelper.VarEnumToSystemType(propVariant.VarType), propVariant.Value);
+
+            }
 
             return result;
 
         }
 
         /// <summary>
-        /// Sets the value of this property.
-        /// The value of the property is cleared if the value is set to null.
+        /// <para>Sets the value of this property.</para>
+        /// <para>The value of the property is cleared if the value is set to null.</para>
         /// </summary>
         public void SetValue(object value)
         {
@@ -112,6 +156,8 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             if (IsDisposed)
 
                 throw new InvalidOperationException("The current object is disposed.");
+
+            if (!PropertyInfo.IsReadOnly) throw new PropertySystemException("This property is read-only.");
 
             if (value is Nullable)
             {
@@ -154,7 +200,25 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             StorePropVariantValue(ref propVar);
         }
 
+        public void RemoveProperty()
+        {
+
+            if (IsDisposed)
+
+                throw new InvalidOperationException("The current object is disposed.");
+
+            if (!PropertyInfo.IsRemovable)
+
+                throw new PropertySystemException("This property is not removable.");
+
+            _propertyCollection.NativePropertiesCollection.Delete(PropertyKey);
+
+        }
+
         #region IDisposable Support
+        /// <summary>
+        /// Gets a value that indicates whether the current object is disposed.
+        /// </summary>
         public bool IsDisposed { get; private set; } = false;
 
         // ~ObjectProperty()
@@ -162,6 +226,9 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         //   Dispose(false);
         // }
 
+        /// <summary>
+        /// Frees all resources for the current property.
+        /// </summary>
         public void Dispose()
         {
             if (!IsDisposed)
@@ -170,6 +237,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
                 _nativePropertyValuesCollection = null;
                 _attributes = null;
                 PropertyInfo = null;
+                _allowSetTruncatedValue = false;
 
                 IsDisposed = true;
             }
@@ -187,15 +255,23 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         }
 
         PropVariant IObjectProperty.GetValue() => GetPropVariant();
+        #endregion
 
+        #region IEquatable Support
+
+
+        /// <summary>
+        /// Checks if the current property is equal to a given <see cref="IObjectProperty"/>.
+        /// </summary>
+        /// <param name="other">The <see cref="IObjectProperty"/> to check equality.</param>
+        /// <returns><see langword="true"/> if the <paramref name="other"/> is equal to the current <see cref="IObjectProperty"/>, otherwise <see langword="false"/>.</returns>
         public bool Equals(IObjectProperty other) => other?.PropertyKey.Equals(PropertyKey) == true;
 
-        public bool Equals(PropertyKey other) => other.Equals(PropertyKey);
         #endregion
 
     }
 
-    public sealed class ObjectPropertyAttribute : IEquatable<ObjectPropertyAttribute>, IEquatable<PropertyKey>
+    public sealed class ObjectPropertyAttribute : IEquatable<ObjectPropertyAttribute>
     {
         internal ObjectPropertyAttribute(in PropertyKey propertyKey, in Type type, in object value)
 
@@ -209,15 +285,27 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
         }
 
+        /// <summary>
+        /// Gets the current attribute value.
+        /// </summary>
         public object Value { get; private set; }
 
+        /// <summary>
+        /// Gets the current attribute value type.
+        /// </summary>
         public Type Type { get; private set; }
 
+        /// <summary>
+        /// Gets the <see cref="PropertyKey"/> that identifies the current property attribute.
+        /// </summary>
         public PropertyKey PropertyKey { get; private set; }
 
+        /// <summary>
+        /// Checks if the current property is equal to a given property attribute.
+        /// </summary>
+        /// <param name="other">The property attribute to check equality.</param>
+        /// <returns><see langword="true"/> if the <paramref name="other"/> is equal to the current property attribute, otherwise <see langword="false"/>.</returns>
         public bool Equals(ObjectPropertyAttribute other) => other?.PropertyKey.Equals(PropertyKey) == true;
-
-        public bool Equals(PropertyKey other) => other.Equals(PropertyKey);
 
         //#region IDisposable Support
         //public bool IsDisposed { get; private set; }

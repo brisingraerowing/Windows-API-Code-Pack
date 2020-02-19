@@ -15,39 +15,44 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
     internal sealed class PortableDeviceProperties : INativePropertiesCollection
     {
 
-        private IPortableDeviceProperties _nativePortableDeviceProperties;
-        private IPortableDeviceKeyCollection _nativePortableDeviceKeyCollection;
-        // private PortableDevice _portableDevice;
+        private PortableDevice _portableDevice;
         private string _objectId;
+        private IPortableDeviceKeyCollection _nativePortableDeviceKeyCollection;
 
-        private void Dispose()
+        void IDisposable.Dispose() => Dispose(true);
+
+        private void Dispose(bool disposing)
+
         {
 
-            // As this type is internal and calling this method directly is not recommended, implementing a property and checking it at the top of this method to know whether the current object is already disposed is not necessary.
+            if (disposing)
+
+            {
+
+                _portableDevice = null;
+                _objectId = null;
+
+            }
 
             _ = Marshal.ReleaseComObject(_nativePortableDeviceKeyCollection);
             _nativePortableDeviceKeyCollection = null;
-            _ = Marshal.ReleaseComObject(_nativePortableDeviceProperties);
-            _nativePortableDeviceProperties = null;
-            _objectId = null;
+
         }
 
-        public PortableDeviceProperties(in string objectId, in IPortableDeviceKeyCollection nativePortableDeviceKeyCollection, in IPortableDeviceProperties nativePortableDeviceProperties)
+        public PortableDeviceProperties(in string objectId, in PortableDevice portableDevice)
 
         {
 
             _objectId = objectId;
 
-            _nativePortableDeviceKeyCollection = nativePortableDeviceKeyCollection;
-
-            _nativePortableDeviceProperties = nativePortableDeviceProperties;
+            Marshal.ThrowExceptionForHR((int) portableDevice.NativePortableDeviceProperties.GetSupportedProperties(_objectId, out _nativePortableDeviceKeyCollection));
 
         }
 
         ~PortableDeviceProperties()
         {
 
-            Dispose();
+            Dispose(false);
 
         }
 
@@ -63,7 +68,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             // As this type is internal and calling the Dispose method directly is not recommended, implementing a property and checking it at the top of this method to know whether the current object is disposed is not necessary.
 
-            HResult hr = _nativePortableDeviceProperties.GetPropertyAttributes(_objectId, ref propertyKey, out IPortableDeviceValues portableDeviceValues);
+            HResult hr = _portableDevice.NativePortableDeviceProperties.GetPropertyAttributes(_objectId, ref propertyKey, out IPortableDeviceValues portableDeviceValues);
 
             attributes = new DisposablePortableDeviceValuesCollection(portableDeviceValues, null);
 
@@ -92,7 +97,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             // As this type is internal and calling the Dispose method directly is not recommended, implementing a property and checking it at the top of this method to know whether the current object is disposed is not necessary.
 
-            HResult hr = _nativePortableDeviceProperties.GetValues(_objectId, ref _nativePortableDeviceKeyCollection, out IPortableDeviceValues portableDeviceValues);
+            HResult hr = _portableDevice. NativePortableDeviceProperties.GetValues(_objectId, ref _nativePortableDeviceKeyCollection, out IPortableDeviceValues portableDeviceValues);
 
             values = new PortableDeviceValuesCollection(portableDeviceValues, this);
 
@@ -135,11 +140,36 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             }
 
-            hr = _nativePortableDeviceProperties.SetValues(_objectId, _values, out IPortableDeviceValues _results);
+            hr = _portableDevice. NativePortableDeviceProperties.SetValues(_objectId, _values, out IPortableDeviceValues _results);
 
             results = new PortableDeviceValuesCollection(_results, null);
 
             return hr;
+
+        }
+
+        HResult INativePropertiesCollection.Delete(params PropertyKey[] properties) => Delete(properties);
+
+        HResult INativePropertiesCollection.Delete(in IEnumerable<PropertyKey> properties) => Delete(properties);
+
+        private HResult Delete(in IEnumerable<PropertyKey> properties)
+        {
+
+            IPortableDeviceKeyCollection portableDeviceKeyCollection = new PortableDeviceKeyCollection();
+
+            PropertyKey _propertyKey;
+
+            foreach (PropertyKey propertyKey in properties)
+
+            {
+
+                _propertyKey = propertyKey;
+
+                _ = portableDeviceKeyCollection.Add(ref _propertyKey);
+
+            }
+
+            return _portableDevice. NativePortableDeviceProperties.Delete(_objectId, ref portableDeviceKeyCollection);
 
         }
     }

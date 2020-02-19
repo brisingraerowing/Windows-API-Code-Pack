@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
-    public interface IPortableDevice : IDisposable, IEnumerable<IPortableDeviceObject>
+    public interface IPortableDevice : WinCopies.Util.DotNetFix.IDisposable, IEnumerable<IPortableDeviceObject>
     {
 
         IPortableDeviceManager PortableDeviceManager { get; }
@@ -32,16 +32,16 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         object GetDeviceProperty(string propertyName, object defaultValue, bool doNotExpand, out BlobValueKind valueKind);
 
     }
-}
 
-public interface IPortableDeviceObject : IDisposable, IEnumerable<IPortableDeviceObject>
+    public interface IPortableDeviceObject : WinCopies.Util.DotNetFix.IDisposable, IEnumerable<IPortableDeviceObject>
 
-{
+    {
 
-    string Id { get; }
+        string Id { get; }
 
-    IPortableDevice ParentPortableDevice { get; }
+        IPortableDevice ParentPortableDevice { get; }
 
-    IPortableDeviceObject Parent { get; }
+        IPortableDeviceObject Parent { get; }
 
+    }
 }

@@ -48,7 +48,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
     }
 
-    public interface INativePropertiesCollection
+    public interface INativePropertiesCollection : IDisposable
     {
         HResult GetAt(in uint index, ref PropertyKey propertyKey);
 
@@ -59,6 +59,10 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         HResult GetAttributes(ref PropertyKey propertyKey, out IDisposableReadOnlyNativePropertyValuesCollection attributes);
 
         HResult SetValues(ref IEnumerable<IObjectProperty> values, out IReadOnlyNativePropertyValuesCollection results);
+
+        HResult Delete(params PropertyKey[] properties);
+
+        HResult Delete(in IEnumerable<PropertyKey> properties);
     }
 
     public interface IPropertyInfo

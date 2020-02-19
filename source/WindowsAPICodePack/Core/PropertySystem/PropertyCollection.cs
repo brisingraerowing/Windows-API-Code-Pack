@@ -82,7 +82,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
         private INativePropertyValuesCollection _nativePropertyValuesCollection;
 
-        internal Func<ObjectProperty, IPropertyInfo> _propertyInfoDelegate;
+        internal Func<ObjectProperty, IPropertyInfo> PropertyInfoDelegate { get; private set; }
 
         private uint? _count;
 
@@ -120,7 +120,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                             var objectProperty = new ObjectProperty(this, _nativePropertyValuesCollection, propertyKey);
 
-                            objectProperty.PropertyInfo = _propertyInfoDelegate(objectProperty);
+                            objectProperty.PropertyInfo = PropertyInfoDelegate(objectProperty);
 
                             _innerDictionary.Add(key, objectProperty);
 
@@ -160,9 +160,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                     throw new InvalidOperationException("The current object is disposed.");
 
-                PopulateDictionary();
-
-                return _innerDictionary.Values;
+                return _getDictionaryDelegate().Values;
             }
         }
 
@@ -204,7 +202,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
             ThrowIfNull(nativePropertyCollection, nameof(nativePropertyCollection));
 
-            _innerDictionary = new Dictionary<ObjectProperty>((int)Count, () => _propertyInfoDelegate = null);
+            _innerDictionary = new Dictionary<ObjectProperty>((int)Count, () => PropertyInfoDelegate = null);
 
             _getDictionaryDelegate = () =>
 
@@ -323,6 +321,8 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             {
                 ((ICollection<KeyValuePair<PropertyKey, ObjectProperty>>)_innerDictionary).Clear();
                 _innerDictionary = null;
+                _getDictionaryDelegate = null;
+                NativePropertiesCollection.Dispose();
                 _nativePropertyValuesCollection = null;
 
                 IsDisposed = true;
@@ -338,9 +338,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                 throw new InvalidOperationException("The current object is disposed.");
 
-            PopulateDictionary();
-
-            return _innerDictionary.GetEnumerator();
+            return _getDictionaryDelegate().GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -349,9 +347,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                 throw new InvalidOperationException("The current object is disposed.");
 
-            PopulateDictionary();
-
-            return ((IEnumerable)_innerDictionary).GetEnumerator();
+            return ((IEnumerable)_getDictionaryDelegate()).GetEnumerator();
         }
 
         #endregion
