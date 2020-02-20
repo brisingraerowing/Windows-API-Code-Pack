@@ -14,6 +14,11 @@ Release notes
 
 See [CHANGELOG](https://github.com/pierresprim/Windows-API-Code-Pack-1.1/blob/master/CHANGELOG) for latest changes.
 
+Contributing
+------------
+
+Any contributor to this project has to read [this code of conduct](https://github.com/pierresprim/WinCopies-framework/blob/master/CODE_OF_CONDUCT.md) before contributing and has to follow the rules described in it for any contribution to this project.
+
 Bugs
 ----
 
