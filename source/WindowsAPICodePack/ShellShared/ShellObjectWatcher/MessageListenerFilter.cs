@@ -19,14 +19,14 @@ namespace Microsoft.WindowsAPICodePack.Shell
             lock (_registerLock)
             {
                 uint message = 0;
-                var package = _packages.FirstOrDefault(x => x.TryRegister(callback, out message));
+                RegisteredListener package = _packages.FirstOrDefault(x => x.TryRegister(callback, out message));
                 if (package == null)
                 {
                     package = new RegisteredListener();
                     if (!package.TryRegister(callback, out message))
-                    {   // this should never happen
+                        // this should never happen
                         throw new ShellException(LocalizedMessages.MessageListenerFilterUnableToRegister);
-                    }
+
                     _packages.Add(package);
                 }
 
@@ -40,12 +40,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             lock (_registerLock)
             {
-                var package = _packages.FirstOrDefault(x => x.Listener.WindowHandle == listenerHandle);
+                RegisteredListener package = _packages.FirstOrDefault(x => x.Listener.WindowHandle == listenerHandle);
                 if (package == null || !package.Callbacks.Remove(message))
-                {
+
                     throw new ArgumentException(LocalizedMessages.MessageListenerFilterUnknownListenerHandle);
-                }
-                
+
                 if (package.Callbacks.Count == 0)
                 {
                     package.Listener.Dispose();
@@ -69,11 +68,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             private void MessageReceived(object sender, WindowMessageEventArgs e)
             {
-                Action<WindowMessageEventArgs> action;
-                if (Callbacks.TryGetValue(e.Message.Msg, out action))
-                {
+                if (Callbacks.TryGetValue(e.Message.Msg, out Action<WindowMessageEventArgs> action))
+
                     action(e);
-                }
             }
 
             private uint _lastMessage = MessageListener.BaseUserMessage;
@@ -85,7 +82,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     uint i = _lastMessage + 1;
                     while (i != _lastMessage)
                     {
-                        if (i > ushort.MaxValue) { i = MessageListener.BaseUserMessage; }
+                        if (i > ushort.MaxValue) i = MessageListener.BaseUserMessage;
 
                         if (!Callbacks.ContainsKey(i))
                         {

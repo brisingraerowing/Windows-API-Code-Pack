@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.0;net472</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.1;net472</TargetFrameworks>
     <AssemblyName>WinCopies.WindowsAPICodePack.Shell</AssemblyName>
     <RootNamespace>Microsoft.WindowsAPICodePack.Shell</RootNamespace>
     <SignAssembly>true</SignAssembly>
@@ -38,6 +38,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\Win32Native\Win32Native.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Resources\LocalizedMessages.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -50,6 +55,15 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LocalizedMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Controls\CommandLinkWPF.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ExplorerBrowser\ExplorerBrowser.WPF.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
 
   <Import Project="..\ShellShared\Shell.projitems" Label="Shared" />

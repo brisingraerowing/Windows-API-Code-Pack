@@ -33,15 +33,12 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             get
             {
                 if (_instance == null)
-                {
+                
                     lock (_syncLock)
-                    {
+                    
                         if (_instance == null)
-                        {
+                        
                             _instance = new TaskbarManager();
-                        }
-                    }
-                }
 
                 return _instance;
             }

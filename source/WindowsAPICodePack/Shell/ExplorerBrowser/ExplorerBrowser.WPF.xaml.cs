@@ -19,16 +19,12 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// <summary>
         /// The underlying WinForms control
         /// </summary>
-        public Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser ExplorerBrowserControl
-        {
-            get;
-            set;
-        }
+        public WindowsForms.ExplorerBrowser ExplorerBrowserControl { get; set; }
 
-        private ObservableCollection<ShellObject> selectedItems;
-        private ObservableCollection<ShellObject> items;
-        private ObservableCollection<ShellObject> navigationLog;
-        private DispatcherTimer dtCLRUpdater = new DispatcherTimer();
+        private readonly ObservableCollection<ShellObject> selectedItems;
+        private readonly ObservableCollection<ShellObject> items;
+        private readonly ObservableCollection<ShellObject> navigationLog;
+        private readonly DispatcherTimer dtCLRUpdater = new DispatcherTimer();
 
         private ShellObject initialNavigationTarget;
         private ExplorerBrowserViewMode? initialViewMode;
@@ -60,7 +56,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
             ExplorerBrowserControl.NavigationLog.NavigationLogChanged += new EventHandler<NavigationLogEventArgs>(NavigationLogChanged);
 
             // host the control           
-            WindowsFormsHost host = new WindowsFormsHost();
+            var host = new WindowsFormsHost();
             try
             {
                 host.Child = ExplorerBrowserControl;
@@ -82,8 +78,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         void ExplorerBrowserControl_ViewEnumerationComplete(object sender, EventArgs e)
         {
-            itemsChanged.Set();
-            selectionChanged.Set();
+            _ = itemsChanged.Set();
+            _ = selectionChanged.Set();
         }
 
         /// <summary>
@@ -150,15 +146,14 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
             {
                 items.Clear();
                 foreach (ShellObject obj in ExplorerBrowserControl.Items)
-                {
+
                     items.Add(obj);
-                }
             }
 
             if (selectionChanged.WaitOne(1, false))
-            {
+
                 selectionChangeWaitCount = 4;
-            }
+
             else if (selectionChangeWaitCount > 0)
             {
                 selectionChangeWaitCount--;
@@ -167,9 +162,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
                 {
                     selectedItems.Clear();
                     foreach (ShellObject obj in ExplorerBrowserControl.SelectedItems)
-                    {
+
                         selectedItems.Add(obj);
-                    }
                 }
             }
         }
@@ -183,9 +177,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         {
             navigationLog.Clear();
             foreach (ShellObject obj in ExplorerBrowserControl.NavigationLog.Locations)
-            {
+
                 navigationLog.Add(obj);
-            }
         }
 
         /// <summary>
@@ -193,30 +186,18 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void SelectionChanged(object sender, EventArgs e)
-        {
-            selectionChanged.Set();
-        }
+        void SelectionChanged(object sender, EventArgs e) => selectionChanged.Set();
 
         // Synchronize ItemsCollection to dependency collection
-        void ItemsChanged(object sender, EventArgs e)
-        {
-            itemsChanged.Set();
-        }
+        void ItemsChanged(object sender, EventArgs e) => itemsChanged.Set();
 
         /// <summary>
         /// The items in the ExplorerBrowser window
         /// </summary>
         public ObservableCollection<ShellObject> Items
         {
-            get
-            {
-                return (ObservableCollection<ShellObject>)GetValue(ItemsProperty);
-            }
-            set
-            {
-                SetValue(ItemsPropertyKey, value);
-            }
+            get => (ObservableCollection<ShellObject>)GetValue(ItemsProperty);
+            set => SetValue(ItemsPropertyKey, value);
         }
 
         private static readonly DependencyPropertyKey ItemsPropertyKey =
@@ -235,14 +216,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public ObservableCollection<ShellObject> SelectedItems
         {
-            get
-            {
-                return (ObservableCollection<ShellObject>)GetValue(SelectedItemsProperty);
-            }
-            internal set
-            {
-                SetValue(SelectedItemsPropertyKey, value);
-            }
+            get => (ObservableCollection<ShellObject>)GetValue(SelectedItemsProperty);
+            internal set => SetValue(SelectedItemsPropertyKey, value);
         }
 
         private static readonly DependencyPropertyKey SelectedItemsPropertyKey =
@@ -256,14 +231,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public ObservableCollection<ShellObject> NavigationLog
         {
-            get
-            {
-                return (ObservableCollection<ShellObject>)GetValue(NavigationLogProperty);
-            }
-            internal set
-            {
-                SetValue(NavigationLogPropertyKey, value);
-            }
+            get => (ObservableCollection<ShellObject>)GetValue(NavigationLogProperty);
+            internal set => SetValue(NavigationLogPropertyKey, value);
         }
 
         private static readonly DependencyPropertyKey NavigationLogPropertyKey =
@@ -288,14 +257,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public ShellObject NavigationTarget
         {
-            get
-            {
-                return (ShellObject)GetValue(NavigationTargetProperty);
-            }
-            set
-            {
-                SetValue(NavigationTargetProperty, value);
-            }
+            get => (ShellObject)GetValue(NavigationTargetProperty);
+            set => SetValue(NavigationTargetProperty, value);
         }
 
         /// <summary>
@@ -309,16 +272,15 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void navigationTargetChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
 
-            if (instance.ExplorerBrowserControl.explorerBrowserControl != null)
-            {
-                instance.ExplorerBrowserControl.Navigate((ShellObject)e.NewValue);
-            }
-            else
-            {
+            if (instance.ExplorerBrowserControl.explorerBrowserControl == null)
+
                 instance.initialNavigationTarget = (ShellObject)e.NewValue;
-            }
+
+            else
+
+                instance.ExplorerBrowserControl.Navigate((ShellObject)e.NewValue);
         }
 
         /// <summary>
@@ -326,8 +288,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public bool AlignLeft
         {
-            get { return (bool)GetValue(AlignLeftProperty); }
-            set { SetValue(AlignLeftProperty, value); }
+            get => (bool)GetValue(AlignLeftProperty);
+            set => SetValue(AlignLeftProperty, value);
         }
 
         internal static DependencyProperty AlignLeftProperty =
@@ -338,7 +300,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnAlignLeftChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
                 instance.ExplorerBrowserControl.ContentOptions.AlignLeft = (bool)e.NewValue;
         }
@@ -349,8 +311,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public bool AutoArrange
         {
-            get { return (bool)GetValue(AutoArrangeProperty); }
-            set { SetValue(AutoArrangeProperty, value); }
+            get => (bool)GetValue(AutoArrangeProperty);
+            set => SetValue(AutoArrangeProperty, value);
         }
 
         internal static DependencyProperty AutoArrangeProperty =
@@ -361,7 +323,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnAutoArrangeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
                 instance.ExplorerBrowserControl.ContentOptions.AutoArrange = (bool)e.NewValue;
         }
@@ -371,8 +333,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public bool CheckSelect
         {
-            get { return (bool)GetValue(CheckSelectProperty); }
-            set { SetValue(CheckSelectProperty, value); }
+            get => (bool)GetValue(CheckSelectProperty);
+            set => SetValue(CheckSelectProperty, value);
         }
 
         internal static DependencyProperty CheckSelectProperty =
@@ -383,20 +345,18 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnCheckSelectChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
-            {
                 instance.ExplorerBrowserControl.ContentOptions.CheckSelect = (bool)e.NewValue;
-            }
         }
-    
+
         /// <summary>
         /// When the view is in "tile view mode" the layout of a single item should be extended to the width of the view.
         /// </summary>
         public bool ExtendedTiles
         {
-            get { return (bool)GetValue(ExtendedTilesProperty); }
-            set { SetValue(ExtendedTilesProperty, value); }
+            get => (bool)GetValue(ExtendedTilesProperty);
+            set => SetValue(ExtendedTilesProperty, value);
         }
 
         internal static DependencyProperty ExtendedTilesProperty =
@@ -407,7 +367,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnExtendedTilesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
                 instance.ExplorerBrowserControl.ContentOptions.ExtendedTiles = (bool)e.NewValue;
         }
@@ -417,8 +377,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public bool FullRowSelect
         {
-            get { return (bool)GetValue(FullRowSelectProperty); }
-            set { SetValue(FullRowSelectProperty, value); }
+            get => (bool)GetValue(FullRowSelectProperty);
+            set => SetValue(FullRowSelectProperty, value);
         }
 
         internal static DependencyProperty FullRowSelectProperty =
@@ -429,11 +389,9 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnFullRowSelectChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
-            {
                 instance.ExplorerBrowserControl.ContentOptions.FullRowSelect = (bool)e.NewValue;
-            }
         }
 
         /// <summary>
@@ -441,8 +399,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public bool HideFileNames
         {
-            get { return (bool)GetValue(HideFileNamesProperty); }
-            set { SetValue(HideFileNamesProperty, value); }
+            get => (bool)GetValue(HideFileNamesProperty);
+            set => SetValue(HideFileNamesProperty, value);
         }
 
         internal static DependencyProperty HideFileNamesProperty =
@@ -453,11 +411,9 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnHideFileNamesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
-            {
                 instance.ExplorerBrowserControl.ContentOptions.HideFileNames = (bool)e.NewValue;
-            }
         }
 
         /// <summary>
@@ -465,8 +421,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public bool NoBrowserViewState
         {
-            get { return (bool)GetValue(NoBrowserViewStateProperty); }
-            set { SetValue(NoBrowserViewStateProperty, value); }
+            get => (bool)GetValue(NoBrowserViewStateProperty);
+            set => SetValue(NoBrowserViewStateProperty, value);
         }
 
         internal static DependencyProperty NoBrowserViewStateProperty =
@@ -477,11 +433,9 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnNoBrowserViewStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
-            {
                 instance.ExplorerBrowserControl.ContentOptions.NoBrowserViewState = (bool)e.NewValue;
-            }
         }
 
         /// <summary>
@@ -489,8 +443,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public bool NoColumnHeader
         {
-            get { return (bool)GetValue(NoColumnHeaderProperty); }
-            set { SetValue(NoColumnHeaderProperty, value); }
+            get => (bool)GetValue(NoColumnHeaderProperty);
+            set => SetValue(NoColumnHeaderProperty, value);
         }
 
         internal static DependencyProperty NoColumnHeaderProperty =
@@ -501,7 +455,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnNoColumnHeaderChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
                 instance.ExplorerBrowserControl.ContentOptions.NoColumnHeader = (bool)e.NewValue;
         }
@@ -511,8 +465,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public bool NoHeaderInAllViews
         {
-            get { return (bool)GetValue(NoHeaderInAllViewsProperty); }
-            set { SetValue(NoHeaderInAllViewsProperty, value); }
+            get => (bool)GetValue(NoHeaderInAllViewsProperty);
+            set => SetValue(NoHeaderInAllViewsProperty, value);
         }
 
         internal static DependencyProperty NoHeaderInAllViewsProperty =
@@ -523,11 +477,9 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnNoHeaderInAllViewsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
-            {
                 instance.ExplorerBrowserControl.ContentOptions.NoHeaderInAllViews = (bool)e.NewValue;
-            }
         }
 
         /// <summary>
@@ -535,8 +487,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public bool NoIcons
         {
-            get { return (bool)GetValue(NoIconsProperty); }
-            set { SetValue(NoIconsProperty, value); }
+            get => (bool)GetValue(NoIconsProperty);
+            set => SetValue(NoIconsProperty, value);
         }
 
         internal static DependencyProperty NoIconsProperty =
@@ -547,11 +499,9 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnNoIconsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
-            {
                 instance.ExplorerBrowserControl.ContentOptions.NoIcons = (bool)e.NewValue;
-            }
         }
 
         /// <summary>
@@ -559,8 +509,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public bool NoSubfolders
         {
-            get { return (bool)GetValue(NoSubfoldersProperty); }
-            set { SetValue(NoSubfoldersProperty, value); }
+            get => (bool)GetValue(NoSubfoldersProperty);
+            set => SetValue(NoSubfoldersProperty, value);
         }
 
         internal static DependencyProperty NoSubfoldersProperty =
@@ -571,11 +521,9 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnNoSubfoldersChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
-            {
                 instance.ExplorerBrowserControl.ContentOptions.NoSubfolders = (bool)e.NewValue;
-            }
         }
 
         /// <summary>
@@ -583,8 +531,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public bool SingleClickActivate
         {
-            get { return (bool)GetValue(SingleClickActivateProperty); }
-            set { SetValue(SingleClickActivateProperty, value); }
+            get => (bool)GetValue(SingleClickActivateProperty);
+            set => SetValue(SingleClickActivateProperty, value);
         }
 
         internal static DependencyProperty SingleClickActivateProperty =
@@ -595,11 +543,9 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnSingleClickActivateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
-            {
                 instance.ExplorerBrowserControl.ContentOptions.SingleClickActivate = (bool)e.NewValue;
-            }
         }
 
         /// <summary>
@@ -607,8 +553,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public bool SingleSelection
         {
-            get { return (bool)GetValue(SingleSelectionProperty); }
-            set { SetValue(SingleSelectionProperty, value); }
+            get => (bool)GetValue(SingleSelectionProperty);
+            set => SetValue(SingleSelectionProperty, value);
         }
 
         internal static DependencyProperty SingleSelectionProperty =
@@ -619,11 +565,9 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnSingleSelectionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
-            {
                 instance.ExplorerBrowserControl.ContentOptions.SingleSelection = (bool)e.NewValue;
-            }
         }
 
         /// <summary>
@@ -631,8 +575,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public int ThumbnailSize
         {
-            get { return (int)GetValue(ThumbnailSizeProperty); }
-            set { SetValue(ThumbnailSizeProperty, value); }
+            get => (int)GetValue(ThumbnailSizeProperty);
+            set => SetValue(ThumbnailSizeProperty, value);
         }
 
         internal static DependencyProperty ThumbnailSizeProperty =
@@ -643,11 +587,9 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnThumbnailSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
-            {
                 instance.ExplorerBrowserControl.ContentOptions.ThumbnailSize = (int)e.NewValue;
-            }
         }
 
 
@@ -657,8 +599,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public ExplorerBrowserViewMode ViewMode
         {
-            get { return (ExplorerBrowserViewMode)GetValue(ViewModeProperty); }
-            set { SetValue(ViewModeProperty, value); }
+            get => (ExplorerBrowserViewMode)GetValue(ViewModeProperty);
+            set => SetValue(ViewModeProperty, value);
         }
 
         internal static DependencyProperty ViewModeProperty =
@@ -669,19 +611,17 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnViewModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
 
             if (instance.ExplorerBrowserControl != null)
-            {
+
                 if (instance.ExplorerBrowserControl.explorerBrowserControl == null)
-                {
+
                     instance.initialViewMode = (ExplorerBrowserViewMode)e.NewValue;
-                }
+
                 else
-                {
+
                     instance.ExplorerBrowserControl.ContentOptions.ViewMode = (ExplorerBrowserViewMode)e.NewValue;
-                }
-            }
         }
 
 
@@ -690,8 +630,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public bool AlwaysNavigate
         {
-            get { return (bool)GetValue(AlwaysNavigateProperty); }
-            set { SetValue(AlwaysNavigateProperty, value); }
+            get => (bool)GetValue(AlwaysNavigateProperty);
+            set => SetValue(AlwaysNavigateProperty, value);
         }
 
         internal static DependencyProperty AlwaysNavigateProperty =
@@ -702,11 +642,9 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnAlwaysNavigateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
-            {
                 instance.ExplorerBrowserControl.NavigationOptions.AlwaysNavigate = (bool)e.NewValue;
-            }
         }
 
         /// <summary>
@@ -714,8 +652,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public bool NavigateOnce
         {
-            get { return (bool)GetValue(NavigateOnceProperty); }
-            set { SetValue(NavigateOnceProperty, value); }
+            get => (bool)GetValue(NavigateOnceProperty);
+            set => SetValue(NavigateOnceProperty, value);
         }
 
         internal static DependencyProperty NavigateOnceProperty =
@@ -726,11 +664,9 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnNavigateOnceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
-            {
                 instance.ExplorerBrowserControl.NavigationOptions.NavigateOnce = (bool)e.NewValue;
-            }
         }
 
         /// <summary>
@@ -738,8 +674,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public PaneVisibilityState AdvancedQueryPane
         {
-            get { return (PaneVisibilityState)GetValue(AdvancedQueryPaneProperty); }
-            set { SetValue(AdvancedQueryPaneProperty, value); }
+            get => (PaneVisibilityState)GetValue(AdvancedQueryPaneProperty);
+            set => SetValue(AdvancedQueryPaneProperty, value);
         }
 
         internal static DependencyProperty AdvancedQueryPaneProperty =
@@ -750,11 +686,9 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnAdvancedQueryPaneChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
-            {
                 instance.ExplorerBrowserControl.NavigationOptions.PaneVisibility.AdvancedQuery = (PaneVisibilityState)e.NewValue;
-            }
         }
 
         /// <summary>
@@ -762,8 +696,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public PaneVisibilityState CommandsPane
         {
-            get { return (PaneVisibilityState)GetValue(CommandsPaneProperty); }
-            set { SetValue(CommandsPaneProperty, value); }
+            get => (PaneVisibilityState)GetValue(CommandsPaneProperty);
+            set => SetValue(CommandsPaneProperty, value);
         }
 
         internal static DependencyProperty CommandsPaneProperty =
@@ -774,12 +708,10 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnCommandsPaneChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
-            {
-                instance.ExplorerBrowserControl.NavigationOptions.PaneVisibility.Commands = 
+                instance.ExplorerBrowserControl.NavigationOptions.PaneVisibility.Commands =
                     (PaneVisibilityState)e.NewValue;
-            }
         }
 
         /// <summary>
@@ -787,8 +719,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public PaneVisibilityState CommandsOrganizePane
         {
-            get { return (PaneVisibilityState)GetValue(CommandsOrganizePaneProperty); }
-            set { SetValue(CommandsOrganizePaneProperty, value); }
+            get => (PaneVisibilityState)GetValue(CommandsOrganizePaneProperty);
+            set => SetValue(CommandsOrganizePaneProperty, value);
         }
 
         internal static DependencyProperty CommandsOrganizePaneProperty =
@@ -799,12 +731,10 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnCommandsOrganizePaneChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
-            {
-                instance.ExplorerBrowserControl.NavigationOptions.PaneVisibility.CommandsOrganize = 
+                instance.ExplorerBrowserControl.NavigationOptions.PaneVisibility.CommandsOrganize =
                     (PaneVisibilityState)e.NewValue;
-            }
         }
 
         /// <summary>
@@ -812,8 +742,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public PaneVisibilityState CommandsViewPane
         {
-            get { return (PaneVisibilityState)GetValue(CommandsViewPaneProperty); }
-            set { SetValue(CommandsViewPaneProperty, value); }
+            get => (PaneVisibilityState)GetValue(CommandsViewPaneProperty);
+            set => SetValue(CommandsViewPaneProperty, value);
         }
 
         internal static DependencyProperty CommandsViewPaneProperty =
@@ -824,11 +754,9 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnCommandsViewPaneChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
-            {
                 instance.ExplorerBrowserControl.NavigationOptions.PaneVisibility.CommandsView = (PaneVisibilityState)e.NewValue;
-            }
         }
 
         /// <summary>
@@ -836,8 +764,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public PaneVisibilityState DetailsPane
         {
-            get { return (PaneVisibilityState)GetValue(DetailsPaneProperty); }
-            set { SetValue(DetailsPaneProperty, value); }
+            get => (PaneVisibilityState)GetValue(DetailsPaneProperty);
+            set => SetValue(DetailsPaneProperty, value);
         }
 
         internal static DependencyProperty DetailsPaneProperty =
@@ -848,11 +776,9 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnDetailsPaneChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
-            {
                 instance.ExplorerBrowserControl.NavigationOptions.PaneVisibility.Details = (PaneVisibilityState)e.NewValue;
-            }
         }
 
         /// <summary>
@@ -860,8 +786,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public PaneVisibilityState NavigationPane
         {
-            get { return (PaneVisibilityState)GetValue(NavigationPaneProperty); }
-            set { SetValue(NavigationPaneProperty, value); }
+            get => (PaneVisibilityState)GetValue(NavigationPaneProperty);
+            set => SetValue(NavigationPaneProperty, value);
         }
 
         internal static DependencyProperty NavigationPaneProperty =
@@ -872,11 +798,9 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnNavigationPaneChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
-            {
                 instance.ExplorerBrowserControl.NavigationOptions.PaneVisibility.Navigation = (PaneVisibilityState)e.NewValue;
-            }
         }
 
         /// <summary>
@@ -884,8 +808,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public PaneVisibilityState PreviewPane
         {
-            get { return (PaneVisibilityState)GetValue(PreviewPaneProperty); }
-            set { SetValue(PreviewPaneProperty, value); }
+            get => (PaneVisibilityState)GetValue(PreviewPaneProperty);
+            set => SetValue(PreviewPaneProperty, value);
         }
 
         internal static DependencyProperty PreviewPaneProperty =
@@ -896,11 +820,9 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnPreviewPaneChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
-            {
                 instance.ExplorerBrowserControl.NavigationOptions.PaneVisibility.Preview = (PaneVisibilityState)e.NewValue;
-            }
         }
 
         /// <summary>
@@ -908,8 +830,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public PaneVisibilityState QueryPane
         {
-            get { return (PaneVisibilityState)GetValue(QueryPaneProperty); }
-            set { SetValue(QueryPaneProperty, value); }
+            get => (PaneVisibilityState)GetValue(QueryPaneProperty);
+            set => SetValue(QueryPaneProperty, value);
         }
 
         internal static DependencyProperty QueryPaneProperty =
@@ -920,11 +842,9 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnQueryPaneChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
-            {
                 instance.ExplorerBrowserControl.NavigationOptions.PaneVisibility.Query = (PaneVisibilityState)e.NewValue;
-            }
         }
 
 
@@ -933,8 +853,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         /// </summary>
         public int NavigationLogIndex
         {
-            get { return (int)GetValue(NavigationLogIndexProperty); }
-            set { SetValue(NavigationLogIndexProperty, value); }
+            get => (int)GetValue(NavigationLogIndexProperty);
+            set => SetValue(NavigationLogIndexProperty, value);
         }
 
         internal static DependencyProperty NavigationLogIndexProperty =
@@ -945,7 +865,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnNavigationLogIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ExplorerBrowser instance = d as ExplorerBrowser;
+            var instance = d as ExplorerBrowser;
             if (instance.ExplorerBrowserControl != null)
                 instance.ExplorerBrowserControl.NavigationLog.NavigateLog((int)e.NewValue);
         }
@@ -970,15 +890,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         {
             if (disposed)
             {
-                if (itemsChanged != null)
-                {
-                    itemsChanged.Close();
-                }
-
-                if (selectionChanged != null)
-                {
-                    selectionChanged.Close();
-                }
+                itemsChanged?.Close();
+                selectionChanged?.Close();
             }
         }
 

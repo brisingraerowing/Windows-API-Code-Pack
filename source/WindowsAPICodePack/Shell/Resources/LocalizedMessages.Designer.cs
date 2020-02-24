@@ -277,6 +277,15 @@ namespace Microsoft.WindowsAPICodePack.Shell.Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Browsing to object failed..
+        /// </summary>
+        internal static string ExplorerBrowserBrowseToObjectFailed {
+            get {
+                return ResourceManager.GetString("ExplorerBrowserBrowseToObjectFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à ExplorerBrowser failed to get current view..
         /// </summary>
         internal static string ExplorerBrowserFailedToGetView {
@@ -286,11 +295,416 @@ namespace Microsoft.WindowsAPICodePack.Shell.Resources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à .
+        ///   Recherche une chaîne localisée semblable à Unable to get icon size..
         /// </summary>
         internal static string ExplorerBrowserIconSize {
             get {
                 return ResourceManager.GetString("ExplorerBrowserIconSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Unexpected error retrieving item count..
+        /// </summary>
+        internal static string ExplorerBrowserItemCount {
+            get {
+                return ResourceManager.GetString("ExplorerBrowserItemCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Unexpected error retrieving selected item count..
+        /// </summary>
+        internal static string ExplorerBrowserSelectedItemCount {
+            get {
+                return ResourceManager.GetString("ExplorerBrowserSelectedItemCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Unexpected error retrieving selection..
+        /// </summary>
+        internal static string ExplorerBrowserUnexpectedError {
+            get {
+                return ResourceManager.GetString("ExplorerBrowserUnexpectedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Unexpected error retrieving view items..
+        /// </summary>
+        internal static string ExplorerBrowserViewItems {
+            get {
+                return ResourceManager.GetString("ExplorerBrowserViewItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à IsExpandedMode cannot be changed while dialog is showing..
+        /// </summary>
+        internal static string IsExpandedModeCannotBeChanged {
+            get {
+                return ResourceManager.GetString("IsExpandedModeCannotBeChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Custom categories cannot be added while recent documents tracking is turned off..
+        /// </summary>
+        internal static string JumpListCustomCategoriesDisabled {
+            get {
+                return ResourceManager.GetString("JumpListCustomCategoriesDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The file type is not registered with this application..
+        /// </summary>
+        internal static string JumpListFileTypeNotRegistered {
+            get {
+                return ResourceManager.GetString("JumpListFileTypeNotRegistered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à JumpListLink&apos;s path is required and cannot be null..
+        /// </summary>
+        internal static string JumpListLinkPathRequired {
+            get {
+                return ResourceManager.GetString("JumpListLinkPathRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à JumpListLink&apos;s title is required and cannot be null..
+        /// </summary>
+        internal static string JumpListLinkTitleRequired {
+            get {
+                return ResourceManager.GetString("JumpListLinkTitleRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Negative numbers are not allowed for the ordinal position..
+        /// </summary>
+        internal static string JumpListNegativeOrdinalPosition {
+            get {
+                return ResourceManager.GetString("JumpListNegativeOrdinalPosition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Creation of window has failed, view inner exception for details..
+        /// </summary>
+        internal static string MessageListenerCannotCreateWindow {
+            get {
+                return ResourceManager.GetString("MessageListenerCannotCreateWindow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Window class could not be registered, check inner exception for more details..
+        /// </summary>
+        internal static string MessageListenerClassNotRegistered {
+            get {
+                return ResourceManager.GetString("MessageListenerClassNotRegistered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Message filter registration failed..
+        /// </summary>
+        internal static string MessageListenerFilterUnableToRegister {
+            get {
+                return ResourceManager.GetString("MessageListenerFilterUnableToRegister", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à No listener handled of that value is registered..
+        /// </summary>
+        internal static string MessageListenerFilterUnknownListenerHandle {
+            get {
+                return ResourceManager.GetString("MessageListenerFilterUnknownListenerHandle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Cannot create window on the listener thread because there is no existing window on the listener thread..
+        /// </summary>
+        internal static string MessageListenerNoWindowHandle {
+            get {
+                return ResourceManager.GetString("MessageListenerNoWindowHandle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à NavigateToShortcut cannot be changed while dialog is showing..
+        /// </summary>
+        internal static string NavigateToShortcutCannotBeChanged {
+            get {
+                return ResourceManager.GetString("NavigateToShortcutCannotBeChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Parent cannot be null..
+        /// </summary>
+        internal static string NavigationLogNullParent {
+            get {
+                return ResourceManager.GetString("NavigationLogNullParent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The method or operation is not implemented..
+        /// </summary>
+        internal static string NotImplementedException {
+            get {
+                return ResourceManager.GetString("NotImplementedException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à OverwritePrompt cannot be changed while dialog is showing..
+        /// </summary>
+        internal static string OverwritePromptCannotBeChanged {
+            get {
+                return ResourceManager.GetString("OverwritePromptCannotBeChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Index was outside the bounds of the CommonFileDialogRadioButtonList..
+        /// </summary>
+        internal static string RadioButtonListIndexOutOfBounds {
+            get {
+                return ResourceManager.GetString("RadioButtonListIndexOutOfBounds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à RestoreDirectory cannot be changed while dialog is showing..
+        /// </summary>
+        internal static string RestoreDirectoryCannotBeChanged {
+            get {
+                return ResourceManager.GetString("RestoreDirectoryCannotBeChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Retrieved a null shell item from dialog..
+        /// </summary>
+        internal static string SaveFileNullItem {
+            get {
+                return ResourceManager.GetString("SaveFileNullItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à DefaultSaveFolder path not found..
+        /// </summary>
+        internal static string ShellLibraryDefaultSaveFolderNotFound {
+            get {
+                return ResourceManager.GetString("ShellLibraryDefaultSaveFolderNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Destination array too small, or invalid arrayIndex..
+        /// </summary>
+        internal static string ShellObjectCollectionArrayTooSmall {
+            get {
+                return ResourceManager.GetString("ShellObjectCollectionArrayTooSmall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Must have at least one shell object in the collection..
+        /// </summary>
+        internal static string ShellObjectCollectionEmptyCollection {
+            get {
+                return ResourceManager.GetString("ShellObjectCollectionEmptyCollection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Cannot insert items into a read only list..
+        /// </summary>
+        internal static string ShellObjectCollectionInsertReadOnly {
+            get {
+                return ResourceManager.GetString("ShellObjectCollectionInsertReadOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Cannot remove items from a read only list..
+        /// </summary>
+        internal static string ShellObjectCollectionRemoveReadOnly {
+            get {
+                return ResourceManager.GetString("ShellObjectCollectionRemoveReadOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Registration for change notification has failed..
+        /// </summary>
+        internal static string ShellObjectWatcherRegisterFailed {
+            get {
+                return ResourceManager.GetString("ShellObjectWatcherRegisterFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Unable to change watched events while listening..
+        /// </summary>
+        internal static string ShellObjectWatcherUnableToChangeEvents {
+            get {
+                return ResourceManager.GetString("ShellObjectWatcherUnableToChangeEvents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à ShowHiddenItems cannot be changed while dialog is showing..
+        /// </summary>
+        internal static string ShowHiddenItemsCannotBeChanged {
+            get {
+                return ResourceManager.GetString("ShowHiddenItemsCannotBeChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Show places list cannot be changed while dialog is showing..
+        /// </summary>
+        internal static string ShowPlacesListCannotBeChanged {
+            get {
+                return ResourceManager.GetString("ShowPlacesListCannotBeChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The Stock Icon identifier given is invalid ({0})..
+        /// </summary>
+        internal static string StockIconInvalidGuid {
+            get {
+                return ResourceManager.GetString("StockIconInvalidGuid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Child control&apos;s window handle cannot be zero..
+        /// </summary>
+        internal static string TabbedThumbnailZeroChildHandle {
+            get {
+                return ResourceManager.GetString("TabbedThumbnailZeroChildHandle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Parent window handle cannot be zero..
+        /// </summary>
+        internal static string TabbedThumbnailZeroParentHandle {
+            get {
+                return ResourceManager.GetString("TabbedThumbnailZeroParentHandle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à TabbedThumbnailProxyWindow has not been set..
+        /// </summary>
+        internal static string TasbarWindowProxyWindowSet {
+            get {
+                return ResourceManager.GetString("TasbarWindowProxyWindowSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à A valid active Window is needed to update the Taskbar..
+        /// </summary>
+        internal static string TaskbarManagerValidWindowRequired {
+            get {
+                return ResourceManager.GetString("TaskbarManagerValidWindowRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The array of buttons must contain at least 1 item..
+        /// </summary>
+        internal static string TaskbarWindowEmptyButtonArray {
+            get {
+                return ResourceManager.GetString("TaskbarWindowEmptyButtonArray", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Tool bar buttons for this window are already added. Please refer to the Remarks section of the AddButtons method for more information on updating the properties or hiding existing buttons..
+        /// </summary>
+        internal static string TaskbarWindowManagerButtonsAlreadyAdded {
+            get {
+                return ResourceManager.GetString("TaskbarWindowManagerButtonsAlreadyAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Value is already set. It cannot be set more than once..
+        /// </summary>
+        internal static string TaskbarWindowValueSet {
+            get {
+                return ResourceManager.GetString("TaskbarWindowValueSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The given control has not been added to the taskbar..
+        /// </summary>
+        internal static string ThumbnailManagerControlNotAdded {
+            get {
+                return ResourceManager.GetString("ThumbnailManagerControlNotAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Window handle is invalid..
+        /// </summary>
+        internal static string ThumbnailManagerInvalidHandle {
+            get {
+                return ResourceManager.GetString("ThumbnailManagerInvalidHandle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à This preview has already been added..
+        /// </summary>
+        internal static string ThumbnailManagerPreviewAdded {
+            get {
+                return ResourceManager.GetString("ThumbnailManagerPreviewAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The given preview has not been added to the taskbar..
+        /// </summary>
+        internal static string ThumbnailManagerPreviewNotAdded {
+            get {
+                return ResourceManager.GetString("ThumbnailManagerPreviewNotAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Maximum number of buttons allowed is 7..
+        /// </summary>
+        internal static string ThumbnailToolbarManagerMaxButtons {
+            get {
+                return ResourceManager.GetString("ThumbnailToolbarManagerMaxButtons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Null or empty arrays are not allowed..
+        /// </summary>
+        internal static string ThumbnailToolbarManagerNullEmptyArray {
+            get {
+                return ResourceManager.GetString("ThumbnailToolbarManagerNullEmptyArray", resourceCulture);
             }
         }
     }

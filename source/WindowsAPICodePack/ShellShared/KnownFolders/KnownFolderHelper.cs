@@ -39,6 +39,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             var knownFolderManager = new KnownFolderManagerClass();
 
             HResult hr = knownFolderManager.GetFolder(knownFolderId, out IKnownFolderNative knownFolderNative);
+
             if (hr != HResult.Ok) throw new ShellException(hr); 
 
             IKnownFolder kf = GetKnownFolder(knownFolderNative);

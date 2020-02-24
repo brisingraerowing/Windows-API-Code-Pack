@@ -17,16 +17,14 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             get
             {
                 if (_taskbarList == null)
-                {                    
+                                    
                     lock (_syncLock)
-                    {
+                    
                         if (_taskbarList == null)
                         {
                             _taskbarList = (ITaskbarList4)new CTaskbarList();
                             _taskbarList.HrInit();
                         }
-                    }
-                }
 
                 return _taskbarList;
             }
