@@ -1,0 +1,1491 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WinCopies.WindowsAPICodePack.Win32Native.Consts</name>
+    </assembly>
+    <members>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.Consts.ControlFunctionGenericMessage">
+            <summary>
+            WPD specific function number used to construct WPD I/O control codes. Drivers should not use this define directly.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.Consts.DeviceObjectId">
+            <summary>
+            Pre-defined ObjectID for the DEVICE object.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.Consts.PortableDevice.Type">
+            <summary>
+            <para>Pre-defined name of a REG_DWORD value that defines the device type, used for representation purposes only. Functional characteristics of the device are decided through functional objects.</para>
+            <para>This value can be retrieved using IPortableDeviceManager::GetDeviceProperty(...).  See WPD_DEVICE_TYPES enumeration for possible values.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.Consts.PortableDevice.Icon">
+            <summary>
+            <para>Pre-defined name of a REG_SZ/REG_EXPAND_SZ/REG_MULTI_SZ value that indicates the location of the device icon file or device icon resource.</para>
+            <para>This value can be retrieved using IPortableDeviceManager::GetDeviceProperty(...).  This REG_SZ/REG_EXPAND_SZ/REG_MULTI_SZ value is either in the form "file.dll, resourceID" or a full file path to an icon file. e.g.: "x:\file.ico" </para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.Consts.PortableDevice.NamespaceTimeout">
+            <summary>
+            <para>Pre-defined name of a REG_DWORD value that indicates the amount of time in milliseconds the WPD Namespace Extension will keep its reference to the device open under idle conditions.</para>
+            <para>This value can be retrieved using IPortableDeviceManager::GetDeviceProperty(...). </para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.Consts.PortableDevice.NamespaceExcludeFromShell">
+            <summary>
+            <para>Pre-defined name of a REG_DWORD value that is used as a flag to indicate whether the device should, or should not, be shown in the Explorer view.</para>
+            <para>This value can be retrieved using IPortableDeviceManager::GetDeviceProperty(...).  Meaning of values are: 0 = include, 1 = exclude. 0 is assumed if this value doesn't exist.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.Consts.PortableDevice.NamespaceThumbnailContentTypes">
+            <summary>
+            <para>Pre-defined name of a REG_SZ or REG_MULTI_SZ value containing content type guids that are used indicate for what content types the portable device namespace should attempt to automatically generate a thumbnail when placing new content on the device.</para>
+            <para>This value can be retrieved using IPortableDeviceManager::GetDeviceProperty(...).  Values should be a string representation of a GUID, in the form '{00000000-0000-0000-0000-000000000000}'. By default the portable device namespace attempts to automatically generate thumbnails for WPD_CONTENT_TYPE_IMAGE, if a device does not want this behavior it can set this value to an empty string.  </para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.Consts.PortableDevice.IsMassStorage">
+            <summary>
+            <para>Pre-defined name of a REG_DWORD value that indicates whether a Portable Device is a Mass Storage Class (MSC) device. This is used to avoid duplication of the device in certain views and scenarios that include both file system and Portable Devices.</para>
+            <para>This value can be retrieved using IPortableDeviceManager::GetDeviceProperty(...).  Meaning of values are: 0 = device is not mass storage, 1 = device is mass storage. 0 is assumed if this value doesn't exist. </para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.Consts.PortableDevice.DRMSchemeWMDRM10PD">
+            <summary>
+            <para>Pre-defined value identifying the "Windows Media Digital Rights Management 10 for Portable Devices" scheme for protecting content.</para>
+            <para>This value can be used by drivers to indicate they support WMDRM10-PD.  See WPD_DEVICE_SUPPORTED_DRM_SCHEMES. </para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.Consts.PortableDevice.DRMSchemePDDRM">
+            <summary>
+            <para>Pre-defined value identifying the "Portable Device Digital Rights Management" scheme for protecting content.</para>
+            <para>This value can be used by drivers to indicate they support PDDRM.  See WPD_DEVICE_SUPPORTED_DRM_SCHEMES. </para>
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.HResultFacility">
+            <summary>
+            The facility codes
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Win32ErrorCanceled">
+            <summary>
+            Win32 Error code: ERROR_CANCELLED
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Canceled">
+            <summary>
+            ERROR_CANCELLED
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.ElementNotFound">
+            <summary>
+            E_ELEMENTNOTFOUND
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok">
+            <summary>     
+            S_OK          
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.NoError">
+            <summary>
+            NOERROR
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.False">
+            <summary>
+            S_FALSE
+            </summary>        
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Unexpected">
+            <summary>
+            <para>MessageId: E_UNEXPECTED</para>
+            <para>MessageText: Catastrophic failure</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.NotImplemented">
+            <summary>
+            <para>MessageId: E_NOTIMPL</para>
+            <para>MessageText: Not implemented</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.OutOfMemory">
+            <summary>
+            <para>MessageId: E_OUTOFMEMORY</para>
+            <para>MessageText: Ran out of memory</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.InvalidArguments">
+            <summary>
+            <para>MessageId: E_INVALIDARG</para>
+            <para>MessageText: One or more arguments are invalid</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.NoInterface">
+            <summary>
+            <para>MessageId: E_NOINTERFACE</para>
+            <para>MessageText: No such interface supported</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.InvalidPointer">
+            <summary>
+            <para>MessageId: E_POINTER</para>
+            <para>MessageText: Invalid pointer</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.InvalidHandle">
+            <summary>
+            <para>MessageId: E_HANDLE</para>
+            <para>MessageText: Invalid handle</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Abort">
+            <summary>
+            <para>MessageId: E_ABORT</para>
+            <para>MessageText: Operation aborted</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Fail">
+            <summary>
+            <para>MessageId: E_FAIL</para>
+            <para>MessageText: Unspecified error</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.AccessDenied">
+            <summary>
+            <para>MessageId: E_ACCESSDENIED</para>
+            <para>MessageText: General access denied error</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Pending">
+            <summary>
+            <para>MessageId: E_PENDING</para>
+            <para>MessageText: The data necessary to complete this operation is not yet available.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Bounds">
+            <summary>
+            <para>MessageId: E_BOUNDS</para>
+            <para>MessageText: The operation attempted to access data outside the valid range</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.ChangedState">
+            <summary>
+            <para>MessageId: E_CHANGED_STATE</para>
+            <para>MessageText: A concurrent or interleaved operation changed the state of the object, invalidating this operation.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.IllegalStateChange">
+            <summary>
+            <para>MessageId: E_ILLEGAL_STATE_CHANGE</para>
+            <para>MessageText: An illegal state change was requested.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.IllegalMethodCall">
+            <summary>
+            <para>MessageId: E_ILLEGAL_METHOD_CALL</para>
+            <para>MessageText: A method was called at an unexpected time.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.MetadataNameNotFound">
+            <summary>
+            <para>MessageId: RO_E_METADATA_NAME_NOT_FOUND</para>
+            <para>MessageText: Typename or Namespace was not found in metadata file.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.MetadataNameIsNamespace">
+            <summary>
+            <para>MessageId: RO_E_METADATA_NAME_IS_NAMESPACE</para>
+            <para>MessageText: Name is an existing namespace rather than a typename.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.MetadataInvalidTypeFormat">
+            <summary>
+            <para>MessageId: RO_E_METADATA_INVALID_TYPE_FORMAT</para>
+            <para>MessageText: Typename has an invalid format.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.InvalidMetadataFile">
+            <summary>
+            <para>MessageId: RO_E_INVALID_METADATA_FILE</para>
+            <para>MessageText: Metadata file is invalid or corrupted.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.InPlaceStringTruncated">
+            <summary>
+            <para>MessageId: INPLACE_S_TRUNCATED</para>
+            <para>MessageText: Message is too long; some of it had to be truncated before displaying</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.NoObject">
+            <summary>
+            <para>MessageId: MK_E_NOOBJECT</para>
+            <para>MessageText: No object for moniker</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Computer">
+            <summary>
+            Computer
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Conflict">
+            <summary>
+            Conflicts
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.ControlPanel">
+            <summary>
+            Control Panel
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Desktop">
+            <summary>
+            Desktop
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Internet">
+            <summary>
+            Internet Explorer
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Network">
+            <summary>
+            Network
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Printers">
+            <summary>
+            Printers
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SyncManager">
+            <summary>
+            Sync Center
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Connections">
+            <summary>
+            Network Connections
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SyncSetup">
+            <summary>
+            Sync Setup
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SyncResults">
+            <summary>
+            Sync Results
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.RecycleBin">
+            <summary>
+            Recycle Bin
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Fonts">
+            <summary>
+            Fonts
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Startup">
+            <summary>
+            Startup
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Programs">
+            <summary>
+            Programs
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.StartMenu">
+            <summary>
+            Start Menu
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Recent">
+            <summary>
+            Recent Items
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SendTo">
+            <summary>
+            SendTo
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Documents">
+            <summary>
+            Documents
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Favorites">
+            <summary>
+            Favorites
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.NetHood">
+            <summary>
+            Network Shortcuts
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.PrintHood">
+            <summary>
+            Printer Shortcuts
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Templates">
+            <summary>
+            Templates
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.CommonStartup">
+            <summary>
+            Startup
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.CommonPrograms">
+            <summary>
+            Programs
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.CommonStartMenu">
+            <summary>
+            Start Menu
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.PublicDesktop">
+            <summary>
+            Public Desktop
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.ProgramData">
+            <summary>
+            ProgramData
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.CommonTemplates">
+            <summary>
+            Templates
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.PublicDocuments">
+            <summary>
+            Public Documents
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.RoamingAppData">
+            <summary>
+            Roaming
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.LocalAppData">
+            <summary>
+            Local
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.LocalAppDataLow">
+            <summary>
+            LocalLow
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.InternetCache">
+            <summary>
+            Temporary Internet Files
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Cookies">
+            <summary>
+            Cookies
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.History">
+            <summary>
+            History
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.System">
+            <summary>
+            System32
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SystemX86">
+            <summary>
+            System32
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Windows">
+            <summary>
+            Windows
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Profile">
+            <summary>
+            The user's username (%USERNAME%"
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Pictures">
+            <summary>
+            Pictures
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.ProgramFilesX86">
+            <summary>
+            Program Files
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.ProgramFilesCommonX86">
+            <summary>
+            Common Files
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.ProgramFilesX64">
+            <summary>
+            Program Files
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.ProgramFilesCommonX64">
+            <summary>
+            Common Files
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.ProgramFiles">
+            <summary>
+            Program Files
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.ProgramFilesCommon">
+            <summary>
+            Common Files
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.AdminTools">
+            <summary>
+            Administrative Tools
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.CommonAdminTools">
+            <summary>
+            Administrative Tools
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Music">
+            <summary>
+            Music
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Videos">
+            <summary>
+            Videos
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.PublicPictures">
+            <summary>
+            Public Pictures
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.PublicMusic">
+            <summary>
+            Public Music
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.PublicVideos">
+            <summary>
+            Public Videos
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.ResourceDir">
+            <summary>
+            Resources
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.LocalizedResourcesDir">
+            <summary>
+            None
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.CommonOEMLinks">
+            <summary>
+            OEM Links
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.CDBurning">
+            <summary>
+            Temporary Burn Folder
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.UserProfiles">
+            <summary>
+            Users
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Playlists">
+            <summary>
+            Playlists
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SamplePlaylists">
+            <summary>
+            Sample Playlists
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SampleMusic">
+            <summary>
+            Sample Music
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SamplePictures">
+            <summary>
+            Sample Pictures
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SampleVideos">
+            <summary>
+            Sample Videos
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.PhotoAlbums">
+            <summary>
+            Slide Shows
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Public">
+            <summary>
+            Public
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.ChangeRemovePrograms">
+            <summary>
+            Programs and Features
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.AppUpdates">
+            <summary>
+            Installed Updates
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.AddNewPrograms">
+            <summary>
+            Get Programs
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Downloads">
+            <summary>
+            Downloads
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.PublicDownloads">
+            <summary>
+            Public Downloads
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SavedSearches">
+            <summary>
+            Searches
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.QuickLaunch">
+            <summary>
+            Quick Launch
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Contacts">
+            <summary>
+            Contacts
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SidebarParts">
+            <summary>
+            Gadgets
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SidebarDefaultParts">
+            <summary>
+            Gadgets
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.TreeProperties">
+            <summary>
+            Tree property value folder
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.PublicGameTasks">
+            <summary>
+            GameExplorer
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.GameTasks">
+            <summary>
+            GameExplorer
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SavedGames">
+            <summary>
+            Saved Games
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Games">
+            <summary>
+            Games
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.RecordedTV">
+            <summary>
+            Recorded TV
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SearchMapi">
+            <summary>
+            Microsoft Office Outlook
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SearchCsc">
+            <summary>
+            Offline Files
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Links">
+            <summary>
+            Links
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.UsersFiles">
+            <summary>
+            The user's full name (for instance-Jean Philippe Bagel" entered when the user account was created.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SearchHome">
+            <summary>
+            Search home
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.OriginalImages">
+            <summary>
+            Original Images
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.UserProgramFiles">
+            <summary>
+            UserProgramFiles
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.UserProgramFilesCommon">
+            <summary>
+            UserProgramFilesCommon
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.Ringtones">
+            <summary>
+            Ringtones
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.PublicRingtones">
+            <summary>
+            PublicRingtones
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.UsersLibraries">
+            <summary>
+            UsersLibraries
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.DocumentsLibrary">
+            <summary>
+            DocumentsLibrary
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.MusicLibrary">
+            <summary>
+            MusicLibrary
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.PicturesLibrary">
+            <summary>
+            PicturesLibrary
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.VideosLibrary">
+            <summary>
+            VideosLibrary
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.RecordedTVLibrary">
+            <summary>
+            RecordedTVLibrary
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.OtherUsers">
+            <summary>
+            OtherUsers
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.DeviceMetadataStore">
+            <summary>
+            DeviceMetadataStore
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.Libraries">
+            <summary>
+            Libraries
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.UserPinned">
+            <summary>
+            UserPinned
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.ImplicitAppShortcuts">
+            <summary>
+            ImplicitAppShortcuts
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Guids.ExtendedLinguisticServices.MappingAvailableServices">
+            <summary>
+            This class contains constants describing the existing ELS services for Windows 7.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.ExtendedLinguisticServices.MappingAvailableServices.LanguageDetection">
+            <summary>
+            The guid of the Microsoft Language Detection service.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.ExtendedLinguisticServices.MappingAvailableServices.ScriptDetection">
+            <summary>
+            The guid of the Microsoft Script Detection service.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.ExtendedLinguisticServices.MappingAvailableServices.TransliterationHantToHans">
+            <summary>
+            The guid of the Microsoft Traditional Chinese to Simplified Chinese Transliteration service.
+            </summary>        
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.ExtendedLinguisticServices.MappingAvailableServices.TransliterationHansToHant">
+            <summary>
+            The guid of the Microsoft Simplified Chinese to Traditional Chinese Transliteration service.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.ExtendedLinguisticServices.MappingAvailableServices.TransliterationMalayalamToLatin">
+            <summary>
+            The guid of the Microsoft Malayalam to Latin Transliteration service.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.ExtendedLinguisticServices.MappingAvailableServices.TransliterationDevanagariToLatin">
+            <summary>
+            The guid of the Microsoft Devanagari to Latin Transliteration service.
+            </summary>        
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.ExtendedLinguisticServices.MappingAvailableServices.TransliterationCyrillicToLatin">
+            <summary>
+            The guid of the Microsoft Cyrillic to Latin Transliteration service.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.ExtendedLinguisticServices.MappingAvailableServices.TransliterationBengaliToLatin">
+            <summary>
+            The guid of the Microsoft Bengali to Latin Transliteration service.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Sensors.Guids.EventSystem.StateChanged">
+            <summary>
+            Register for sensor state change notifications.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Sensors.Guids.EventSystem.DataUpdated">
+            <summary>
+            Register for asynchronous sensor data updates. This has power management implications.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Sensors.Guids.PropertySystem">
+            <summary>
+            Sensor Properties
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Sensors.Guids.PropertySystem.PropertyCommon">
+            <summary>
+            The common Guid used by the property keys.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.Guids.EventSystem">
+            <summary>
+            This class defines all WPD Events.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.EventSystem.Notification">
+            <summary>
+            This GUID is used to identify all WPD driver events to the event sub-system. The driver uses this as the GUID identifier when it queues an event with IWdfDevice::PostEvent(). Applications never use this value.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.EventSystem.ObjectAdded">
+            <summary>
+            This event is sent after a new object is available on the device.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.EventSystem.ObjectRemoved">
+            <summary>
+            This event is sent after a previously existing object has been removed from the device.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.EventSystem.ObjectUpdated">
+            <summary>
+            This event is sent after an object has been updated such that any connected client should refresh its view of that object.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.EventSystem.DeviceReset">
+            <summary>
+            This event indicates that the device is about to be reset-and all connected clients should close their connection to the device.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.EventSystem.DeviceCapabilitiesUpdated">
+            <summary>
+            This event indicates that the device capabilities have changed. Clients should re-query the device if they have made any decisions based on device capabilities.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.EventSystem.StorageFormat">
+            <summary>
+            This event indicates the progress of a format operation on a storage object.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.EventSystem.ObjectTransferRequested">
+            <summary>
+            This event is sent to request an application to transfer a particular object from the device.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.EventSystem.DeviceRemoved">
+            <summary>
+            This event is sent when a driver for a device is being unloaded. This is typically a result of the device being unplugged.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.EventSystem.ServiceMethodComplete">
+            <summary>
+            This event is sent when a driver has completed invoking a service method. This event must be sent even when the method fails.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ClassExtensionOptionsV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_OPTIONS_V1. This category of properties relates to options used for the WPD device class extension
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ClassExtensionOptionsV2">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_OPTIONS_V2. This category of properties relates to options used for the WPD device class extension
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ClassExtensionOptionsV3">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_OPTIONS_V3. This category of properties relates to options used for the WPD device class extension
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ResourceAttributesV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_RESOURCE_ATTRIBUTES_V1
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.EventOptionsV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_EVENT_OPTIONS_V1 The properties in this category describe event options.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.EventAttributesV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_EVENT_ATTRIBUTES_V1 The properties in this category describe event attributes.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.APIOptionsV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_API_OPTIONS_V1 The properties in this category describe API options.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.FormatAttributesV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_FORMAT_ATTRIBUTES_V1 The properties in this category describe format attributes.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.MethodAttributesV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_METHOD_ATTRIBUTES_V1 The properties in this category describe method attributes.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ParameterAttributesV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_PARAMETER_ATTRIBUTES_V1 The properties in this category describe parameter attributes.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.DeviceV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_DEVICE_PROPERTIES_V1
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.DeviceV2">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_DEVICE_PROPERTIES_V2
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.DeviceV3">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_DEVICE_PROPERTIES_V3
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ServiceV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_SERVICE_PROPERTIES_V1
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.FolderObjectV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_FOLDER_OBJECT_PROPERTIES_V1. This category is for properties common to all folder objects.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ImageObjectV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_IMAGE_OBJECT_PROPERTIES_V1. This category is for properties common to all image objects.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.DocumentObjectV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_DOCUMENT_OBJECT_PROPERTIES_V1. This category is for properties common to all document objects.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.MediaV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_MEDIA_PROPERTIES_V1. This category is for properties common to media objects(e.g.audio and video).
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContactObjectV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_CONTACT_OBJECT_PROPERTIES_V1. This category is for properties common to all contact objects.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.MusicObjectV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_MUSIC_OBJECT_PROPERTIES_V1. This category is for properties common to all music objects.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.VideoObjectV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_VIDEO_OBJECT_PROPERTIES_V1. This category is for properties common to all video objects.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.CommonInformationObjectV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_COMMON_INFORMATION_OBJECT_PROPERTIES_V1. This category is properties that pertain to informational objects such as appointments-tasks-memos and even documents.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.MemoObjectV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_MEMO_OBJECT_PROPERTIES_V1. This category is for properties common to all memo objects.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.EmailObjectV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_EMAIL_OBJECT_PROPERTIES_V1. This category is for properties common to all email objects.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.AppointmentObjectV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_APPOINTMENT_OBJECT_PROPERTIES_V1. This category is for properties common to all appointment objects.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.TaskObjectV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_TASK_OBJECT_PROPERTIES_V1. This category is for properties common to all task objects.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.SMSObjectV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_SMS_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_SMS
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.SectionObjectV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_SECTION_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose content type is WPD_CONTENT_TYPE_SECTION
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.FunctionalObjectV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_FUNCTIONAL_OBJECT_PROPERTIES_V1. This category is for properties common to all functional objects.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.StorageObjectV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_STORAGE_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_STORAGE.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.NetworkAssociationV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_NETWORK_ASSOCIATION_PROPERTIES_V1. This category is for properties common to all network association objects.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.StillImageCaptureObjectV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_STILL_IMAGE_CAPTURE_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_STILL_IMAGE_CAPTURE
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.RenderingInformationObjectV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_RENDERING_INFORMATION_OBJECT_PROPERTIES_V1. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_AUDIO_RENDERING_INFORMATION
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ClientInformationV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_CLIENT_INFORMATION_PROPERTIES_V1.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType">
+            <summary>
+            This class defines all WPD content types.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.FunctionalObject">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_FUNCTIONAL_OBJECT</para>
+            <para>Description: Indicates this object represents a functional object-not content data on the device.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.Folder">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_FOLDER</para>
+            <para>Description: Indicates this object is a folder.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.Image">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_IMAGE</para>
+            <para>Description: Indicates this object represents image data (e.g. a JPEG file)</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.Document">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_DOCUMENT</para>
+            <para>Description: Indicates this object represents document data (e.g. a MS WORD file-TEXT file-etc.)</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.Contact">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_CONTACT</para>
+            <para>Description: Indicates this object represents contact data (e.g. name/number-or a VCARD file)</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.ContactGroup">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_CONTACT_GROUP</para>
+            <para>Description: Indicates this object represents a group of contacts.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.Audio">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_AUDIO</para>
+            <para>Description: Indicates this object represents audio data (e.g. a WMA or MP3 file)</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.Video">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_VIDEO</para>
+            <para>Description: Indicates this object represents video data (e.g. a WMV or AVI file)</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.Television">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_TELEVISION</para>
+            <para>Description: Indicates this object represents a television recording.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.Playlist">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_PLAYLIST</para>
+            <para>Description: Indicates this object represents a playlist.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.MixedContentAlbum">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_MIXED_CONTENT_ALBUM</para>
+            <para>Description: Indicates this object represents an album-which may contain objects of different content types (typically-MUSIC-IMAGE and VIDEO).</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.AudioAlbum">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_AUDIO_ALBUM</para>
+            <para>Description: Indicates this object represents an audio album.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.ImageAlbum">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_IMAGE_ALBUM</para>
+            <para>Description: Indicates this object represents an image album.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.VideoAlbum">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_VIDEO_ALBUM</para>
+            <para>Description: Indicates this object represents a video album.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.Memo">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_MEMO</para>
+            <para>Description: Indicates this object represents memo data</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.Email">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_EMAIL</para>
+            <para>Description: Indicates this object represents e-mail data</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.Appointment">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_APPOINTMENT</para>
+            <para>Description: Indicates this object represents an appointment in a calendar</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.Task">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_TASK</para>
+            <para>Description: Indicates this object represents a task for tracking (e.g. a TODO list)</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.Program">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_PROGRAM</para>
+            <para>Description: Indicates this object represents a file that can be run. This could be a script-executable and so on.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.GenericFile">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_GENERIC_FILE</para>
+            <para>Description: Indicates this object represents a file that does not fall into any of the other predefined WPD types for files.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.Calendar">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_CALENDAR</para>
+            <para>Description: Indicates this object represents a calendar</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.GenericMessage">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_GENERIC_MESSAGE</para>
+            <para>Description: Indicates this object represents a message (e.g. SMS message-E-Mail message-etc.)</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.NetworkAssociation">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_NETWORK_ASSOCIATION</para>
+            <para>Description: Indicates this object represents an association between a host and a device.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.Certificate">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_CERTIFICATE</para>
+            <para>Description: Indicates this object represents certificate used for authentication.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.WirelessProfile">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_WIRELESS_PROFILE</para>
+            <para>Description: Indicates this object represents wireless network access information.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.MediaCast">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_MEDIA_CAST</para>
+            <para>Description: Indicates this object represents a media cast. A media cast object can be though of as a container object that groups related content-similar to how a playlist groups songs to play. Often-a media cast object is used to group media content originally published online.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.Section">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_SECTION</para>
+            <para>Description: Indicates this object describes a section of data contained in another object. The WPD_OBJECT_REFERENCES property indicates which object contains the actual data.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.Unspecified">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_UNSPECIFIED</para>
+            <para>Description: Indicates this object doesn't fall into the predefined WPD content types</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.All">
+            <summary>
+            <para>Name: WPD_CONTENT_TYPE_ALL</para>
+            <para>Description: This content type is only valid as a parameter to API functions and driver commands. It should not be reported as a supported content type by the driver.</para>
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.FunctionalCategory">
+            <summary>
+            This class defines all WPD Functional Categories
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ObjectFormat">
+            <summary>
+            This class defines all WPD Formats
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ObjectV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_OBJECT_PROPERTIES_V1. This category is for all common object properties.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ObjectV2">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_OBJECT_PROPERTIES_V2. This category is for all common object properties.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.PropertyAttributesV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_PROPERTY_ATTRIBUTES_V1
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.PropertyAttributesV2">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_PROPERTY_ATTRIBUTES_V2. This category defines additional property attributes used by device services.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.EventV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_EVENT_PROPERTIES_V1 The properties in this category are for properties that may be needed for event processing-but do not have object property equivalents(i.e.they are not exposed as object properties-but rather-used only as event parameters).
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.EventV2">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_EVENT_PROPERTIES_V2 The properties in this category are for properties that may be needed for event processing-but do not have object property equivalents(i.e.they are not exposed as object properties-but rather-used only as event parameters).
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.Legacy.ObjectFormat">
+            <summary>
+            This class defines the legacy WPD Formats
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Common">
+            <summary>
+            All Commands-Parameters and Options associated with: WPD_CATEGORY_COMMON.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Enumeration">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_ENUMERATION. The commands in this category are used for basic object enumeration.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Properties">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_PROPERTIES. This category of commands is used to perform basic property operations such as Reading/Writing values-listing supported values and so on.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.PropertiesBulk">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_PROPERTIES_BULK. This category contains commands and properties for property operations across multiple objects.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_RESOURCES. The commands in this category are used for basic object resource enumeration and transfer.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_MANAGEMENT. The commands specified in this category are used to Create/Delete objects on the device.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_CAPABILITIES. This command category is used to query capabilities of the device.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Storage">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_STORAGE. This category is for commands and parameters for storage functional objects.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.SMS">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SMS. The commands in this category relate to Short-Message-Service functionality-typically exposed on mobile phones.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.StillImageCapture">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_STILL_IMAGE_CAPTURE
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.MediaCapture">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_MEDIA_CAPTURE
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.DeviceHints">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_DEVICE_HINTS. The commands in this category relate to hints that a device can provide to improve end-user experience.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.ClassExtensionV1">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_V1. The commands in this category relate to the WPD device class extension.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.ClassExtensionV2">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_V2. The commands in this category relate to the WPD device class extension.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.CategoryNull">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_NULL. This category is used exclusively for the NULL property key define.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.NetworkConfiguration">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_NETWORK_CONFIGURATION. The commands in this category are used for Network Association and WiFi Configuration.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Common">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SERVICE_COMMON. The commands in this category relate to a device service.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SERVICE_CAPABILITIES. The commands in this category relate to capabilities of a device service.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Methods">
+            <summary>
+            This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SERVICE_METHODS. The commands in this category relate to methods of a device service.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.NotSpecified">
+            <summary>
+            No particular content type has been detected or specified. This value is not supported in Windows 7 and later systems.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.Invalid">
+            <summary>
+            The folder is invalid. There are several things that can cause this judgement: hard disk errors-file system errors-and compression errors among them.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.Documents">
+            <summary>
+            The folder contains document files. These can be of mixed format.doc-.txt-and others.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.Pictures">
+            <summary>
+            Image files-such as .jpg-.tif-or .png files.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.Music">
+            <summary>
+            Windows 7 and later. The folder contains audio files-such as .mp3 and .wma files.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.MusicIcons">
+            <summary>
+            A list of music files displayed in Icons view. This value is not supported in Windows 7 and later systems.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.Games">
+            <summary>
+            The folder is the Games folder found in the Start menu.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.ControlPanelCategory">
+            <summary>
+            The Control Panel in category view. This is a virtual folder.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.ControlPanelClassic">
+            <summary>
+            The Control Panel in classic view. This is a virtual folder.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.Printers">
+            <summary>
+            Printers that have been added to the system. This is a virtual folder.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.RecycleBin">
+            <summary>
+            The Recycle Bin. This is a virtual folder.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.SoftwareExplorer">
+            <summary>
+            The software explorer window used by the Add or Remove Programs control panel icon.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.CompressedFolder">
+            <summary>
+            The folder is a compressed archive-such as a compressed file with a .zip file name extension.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.Contacts">
+            <summary>
+            An e-mail-related folder that contains contact information.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.Library">
+            <summary>
+            A default library view without a more specific template. This value is not supported in Windows 7 and later systems.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.NetworkExplorer">
+            <summary>
+            The Network Explorer folder.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.UserFiles">
+            <summary>
+            The folder is the FOLDERID_UsersFiles folder.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.GenericSearchResults">
+            <summary>
+            Windows 7 and later. The folder contains search results-but they are of mixed or no specific type.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.GenericLibrary">
+            <summary>
+            Windows 7 and later. The folder is a library-but of no specified type.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.Videos">
+            <summary>
+            Windows 7 and later. The folder contains video files. These can be of mixed format.wmv-.mov-and others.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.UsersLibraries">
+            <summary>
+            Windows 7 and later. The view shown when the user clicks the Windows Explorer button on the taskbar.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.OtherUsers">
+            <summary>
+            Windows 7 and later. The homegroup view.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.Communications">
+            <summary>
+            Windows 7 and later. A folder that contains communication-related files such as e-mails-calendar information-and contact information.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.RecordedTV">
+            <summary>
+            Windows 7 and later. The folder contains recorded television broadcasts.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.SavedGames">
+            <summary>
+            Windows 7 and later. The folder contains saved game states.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.OpenSearch">
+            <summary>
+            Windows 7 and later. The folder contains federated search OpenSearch results.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.SearchConnector">
+            <summary>
+            Windows 7 and later. Before you search.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.Searches">
+            <summary>
+            Windows 7 and later. A user's Searches folder-normally found at C:\Users\username\Searches.
+            </summary>
+        </member>
+    </members>
+</doc>

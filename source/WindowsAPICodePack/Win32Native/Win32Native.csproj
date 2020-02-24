@@ -1,0 +1,59 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp3.0;net472</TargetFrameworks>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <RootNamespace>Microsoft.WindowsAPICodePack.Win32Native</RootNamespace>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Win32Native.snk</AssemblyOriginatorKeyFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>WinCopies.WindowsAPICodePack.Win32Native</PackageId>
+    <Version>2.0.0</Version>
+    <Description>WindowsAPICodePack Win32 and COM Interop</Description>
+    <Company>Pierre Sprimont</Company>
+    <Product>Microsoft Windows API Code Pack for .NET Framework</Product>
+    <Authors>Microsoft, Aybe, Pierre Sprimont</Authors>
+    <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020</Copyright>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://wincopies.com/windows-api-codepack/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/pierresprim/Windows-API-Code-Pack.git</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>Windows API Code Pack</PackageTags>
+    <PackageReleaseNotes>See https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/CHANGELOG.md</PackageReleaseNotes>
+    <DocumentationFile>C:\Users\pierr\source\repositories\Windows-API-Code-Pack\source\WindowsAPICodePack\Win32Native\Win32Native.xml</DocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>WinCopies.WindowsAPICodePack.Win32Native</AssemblyName>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.0|AnyCPU'">
+    <DefineConstants>TRACE;NETCORE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp3.0|AnyCPU'">
+    <DefineConstants>NETCORE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net472|AnyCPU'">
+    <DefineConstants>TRACE;NETFRAMEWORK</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net472|AnyCPU'">
+    <DefineConstants>NETFRAMEWORK</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Win32NativeConsts\Win32NativeConsts.csproj" />
+  </ItemGroup>
+
+  <Import Project="..\Win32NativeShared\Win32NativeShared.projitems" Label="Shared" />
+
+</Project>

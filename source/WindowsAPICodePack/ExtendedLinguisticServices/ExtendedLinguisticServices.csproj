@@ -1,0 +1,69 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp3.0;net472</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyName>WinCopies.WindowsAPICodePack.ExtendedLinguisticServices</AssemblyName>
+    <RootNamespace>Microsoft.WindowsAPICodePack.ExtendedLinguisticServices</RootNamespace>
+    <Version>2.0.0</Version>
+    <Authors>Microsoft, Aybe, Pierre Sprimont</Authors>
+    <Company>Pierre Sprimont</Company>
+    <Description>WindowsAPICodePack for Extended Linguistic Services</Description>
+    <Product>Microsoft Windows API Code Pack for .NET Framework</Product>
+    <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020</Copyright>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://wincopies.com/windows-api-codepack/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/pierresprim/Windows-API-Code-Pack.git</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>Windows API Code Pack</PackageTags>
+    <PackageReleaseNotes>See https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/CHANGELOG.md</PackageReleaseNotes>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>ExtendedLinguisticServices.snk</AssemblyOriginatorKeyFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.0|AnyCPU'">
+    <DefineConstants>TRACE;NETCORE</DefineConstants>
+    <DocumentationFile>C:\Users\pierr\source\repositories\Windows-API-Code-Pack\source\WindowsAPICodePack\ExtendedLinguisticServices\ExtendedLinguisticServices.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp3.0|AnyCPU'">
+    <DefineConstants>NETCORE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net472|AnyCPU'">
+    <DefineConstants>TRACE;NETFRAMEWORK</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net472|AnyCPU'">
+    <DefineConstants>NETFRAMEWORK</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="CustomDictionary.xml" />
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\LocalizedMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LocalizedMessages.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\LocalizedMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LocalizedMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

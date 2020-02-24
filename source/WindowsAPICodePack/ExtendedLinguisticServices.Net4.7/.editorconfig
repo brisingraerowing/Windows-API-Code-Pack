@@ -1,4 +1,0 @@
-﻿[*.cs]
-
-# CA1720: L'identificateur contient le nom de type
-dotnet_diagnostic.CA1720.severity = warning

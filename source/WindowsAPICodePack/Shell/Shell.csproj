@@ -1,0 +1,57 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp3.0;net472</TargetFrameworks>
+    <AssemblyName>WinCopies.WindowsAPICodePack.Shell</AssemblyName>
+    <RootNamespace>Microsoft.WindowsAPICodePack.Shell</RootNamespace>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Shell.snk</AssemblyOriginatorKeyFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Version>2.0.0</Version>
+    <Authors>Microsoft, Aybe, Pierre Sprimont</Authors>
+    <Company>Pierre Sprimont</Company>
+    <Product>Microsoft Windows API Code Pack for .NET Framework</Product>
+    <Description>WindowsAPICodePack for Shell</Description>
+    <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020</Copyright>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://wincopies.com/windows-api-codepack/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/pierresprim/Windows-API-Code-Pack.git</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>Windows API Code Pack</PackageTags>
+    <PackageReleaseNotes>See https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/CHANGELOG.md</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="CustomDictionary.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\LocalizedMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LocalizedMessages.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\LocalizedMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LocalizedMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <Import Project="..\ShellShared\Shell.projitems" Label="Shared" />
+
+</Project>
