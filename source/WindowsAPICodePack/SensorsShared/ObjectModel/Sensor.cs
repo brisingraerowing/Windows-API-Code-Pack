@@ -21,14 +21,14 @@ namespace Microsoft.WindowsAPICodePack.Sensors
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    public delegate void DataReportChangedEventHandler(Sensor sender, EventArgs e);
+    public delegate void DataReportChangedEventHandler(in Sensor sender, in EventArgs e);
 
     /// <summary>
     /// Represents the method that will handle the StatChanged event.
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    public delegate void StateChangedEventHandler(Sensor sender, EventArgs e);
+    public delegate void StateChangedEventHandler(in Sensor sender, in EventArgs e);
 
     /// <summary>
     /// Defines a general wrapper for a sensor.
@@ -234,8 +234,12 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// <returns>A property value.</returns>        
         public object GetProperty(PropertyKey propKey)
         {
+#if NETFRAMEWORK
             using (var pv = new PropVariant())
             {
+#else
+            using var pv = new PropVariant();
+#endif
                 HResult hr = nativeISensor.GetProperty(ref propKey, pv);
 
                 if (hr != HResult.Ok)
@@ -246,7 +250,10 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                 }
 
                 return pv.Value;
+
+#if NETFRAMEWORK
             }
+#endif
         }
 
         /// <summary>
@@ -255,14 +262,19 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// </summary>
         /// <param name="propIndex">A property index.</param>
         /// <returns>A property value.</returns>
-        public object GetProperty(int propIndex) => GetProperty(new PropertyKey(Guids.PropertySystem.PropertyCommon, (uint)propIndex));
+        public object GetProperty(in int propIndex)
+        {
+            var propKey = new PropertyKey(Guids.PropertySystem.PropertyCommon, (uint)propIndex);
+
+            return GetProperty(propKey);
+        }
 
         /// <summary>
         /// Retrieves the values of multiple properties by property key.
         /// </summary>
         /// <param name="propKeys">An array of properties to retrieve.</param>
         /// <returns>A dictionary that contains the property keys and values.</returns>
-        public IDictionary<PropertyKey, object> GetProperties(PropertyKey[] propKeys)
+        public IDictionary<PropertyKey, object> GetProperties(in PropertyKey[] propKeys)
         {
             if (propKeys == null || propKeys.Length == 0)
 
@@ -426,7 +438,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// </summary>
         /// <param name="data">An array that contains the property keys and values.</param>
         /// <returns>A dictionary of the new values for the properties. Actual values may not match the requested values.</returns>
-        public IDictionary<PropertyKey, object> SetProperties(DataFieldInfo[] data)
+        public IDictionary<PropertyKey, object> SetProperties(in DataFieldInfo[] data)
         {
 
             if (data == null || data.Length == 0)
@@ -449,12 +461,16 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                 {
                     // new PropVariant will throw an ArgumentException if the value can 
                     // not be converted to an appropriate PropVariant.
+#if NETFRAMEWORK
                     using (var pv = PropVariant.FromObject(value))
-
+#else
+                    using var pv = PropVariant.FromObject(value);
+#endif
                         _ = pdv.SetValue(ref propKey, pv);
                 }
                 catch (ArgumentException)
                 {
+#if NETFRAMEWORK
                     switch (value)
                     {
                         case Guid guid:
@@ -467,6 +483,14 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                             _ = pdv.SetIUnknownValue(ref propKey, value);
                             break;
                     }
+#else
+                    _ = value switch
+                    {
+                        Guid guid => pdv.SetGuidValue(ref propKey, ref guid),
+                        byte[] buffer => pdv.SetBufferValue(ref propKey, buffer, (uint)buffer.Length),
+                        _ => pdv.SetIUnknownValue(ref propKey, value),
+                    };
+#endif
                 }
             }
 
@@ -482,12 +506,18 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
                     for (uint i = 0; i < count; i++)
                     {
+#if NETFRAMEWORK
                         using (var propVal = new PropVariant())
                         {
+#else
+                        using var propVal = new PropVariant();
+#endif
                             propKey = new PropertyKey();
                             _ = pdv2.GetAt(i, ref propKey, propVal);
                             results.Add(propKey, propVal.Value);
+#if NETFRAMEWORK
                         }
+#endif
                     }
                 }
                 finally
@@ -577,7 +607,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         ///  Informs the sensor driver to clear a specific type of event.
         /// </summary>
         /// <param name="eventType">The type of event of interest.</param>
-        protected void ClearEventInterest(Guid eventType)
+        protected void ClearEventInterest(in Guid eventType)
         {
             if (nativeISensor == null)
 
@@ -625,6 +655,32 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             nativeISensor.GetEventInterest(out IntPtr values, out uint interestCount);
             var interestingEvents = new Guid[interestCount];
 
+#if NETFRAMEWORK
+
+            IntPtr IncrementIntPtr(IntPtr source, int increment)
+            {
+                switch (IntPtr.Size)
+                {
+                    case 8:
+                        return new IntPtr(source.ToInt64() + increment);
+                    case 4:
+                        return new IntPtr(source.ToInt32() + increment);
+                    default:
+                        throw new SensorPlatformException(LocalizedMessages.SensorUnexpectedPointerSize);
+                }
+            }
+
+#else
+
+            static IntPtr IncrementIntPtr(IntPtr source, int increment) => IntPtr.Size switch
+            {
+                8 => new IntPtr(source.ToInt64() + increment),
+                4 => new IntPtr(source.ToInt32() + increment),
+                _ => throw new SensorPlatformException(LocalizedMessages.SensorUnexpectedPointerSize),
+            };
+
+#endif
+
             for (int index = 0; index < interestCount; index++)
             {
                 interestingEvents[index] = (Guid)Marshal.PtrToStructure(values, typeof(Guid));
@@ -632,19 +688,6 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             }
 
             return interestingEvents;
-        }
-
-        private static IntPtr IncrementIntPtr(IntPtr source, int increment)
-        {
-            switch (IntPtr.Size)
-            {
-                case 8:
-                    return new IntPtr(source.ToInt64() + increment);
-                case 4:
-                    return new IntPtr(source.ToInt32() + increment);
-                default:
-                    throw new SensorPlatformException(LocalizedMessages.SensorUnexpectedPointerSize);
-            }
         }
 
         #endregion

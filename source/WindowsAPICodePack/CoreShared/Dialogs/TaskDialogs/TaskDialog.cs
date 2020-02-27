@@ -71,6 +71,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
         // Main content (maps to MessageBox's "message"). 
         private string text;
+
         /// <summary>
         /// Gets or sets a value that contains the message text.
         /// </summary>
@@ -80,12 +81,12 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             set
             {
                 // Set local value, then update native dialog if showing.
-                text = value;
-                if (NativeDialogShowing) nativeDialog.UpdateText(text);
+                if (NativeDialogShowing) nativeDialog.UpdateText(text = value);
             }
         }
 
         private string instructionText;
+
         /// <summary>
         /// Gets or sets a value that contains the instruction text.
         /// </summary>
@@ -95,12 +96,12 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             set
             {
                 // Set local value, then update native dialog if showing.
-                instructionText = value;
-                if (NativeDialogShowing) nativeDialog.UpdateInstruction(instructionText);
+                if (NativeDialogShowing) nativeDialog.UpdateInstruction(instructionText = value);
             }
         }
 
         private string caption;
+
         /// <summary>
         /// Gets or sets a value that contains the caption text.
         /// </summary>
@@ -115,6 +116,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         }
 
         private string footerText;
+
         /// <summary>
         /// Gets or sets a value that contains the footer text.
         /// </summary>
@@ -124,12 +126,12 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             set
             {
                 // Set local value, then update native dialog if showing.
-                footerText = value;
-                if (NativeDialogShowing) nativeDialog.UpdateFooterText(footerText);
+                if (NativeDialogShowing) nativeDialog.UpdateFooterText(footerText = value);
             }
         }
 
         private string checkBoxText;
+
         /// <summary>
         /// Gets or sets a value that contains the footer check box text.
         /// </summary>
@@ -144,6 +146,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         }
 
         private string detailsExpandedText;
+
         /// <summary>
         /// Gets or sets a value that contains the expanded text in the details section.
         /// </summary>
@@ -153,8 +156,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             set
             {
                 // Set local value, then update native dialog if showing.
-                detailsExpandedText = value;
-                if (NativeDialogShowing) nativeDialog.UpdateExpandedText(detailsExpandedText);
+                if (NativeDialogShowing) nativeDialog.UpdateExpandedText(detailsExpandedText = value);
             }
         }
 
@@ -189,6 +191,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         }
 
         private string detailsCollapsedLabel;
+
         /// <summary>
         /// Gets or sets a value that contains the collapsed control text.
         /// </summary>
@@ -203,6 +206,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         }
 
         private bool cancelable;
+
         /// <summary>
         /// Gets or sets a value that determines if Cancelable is set.
         /// </summary>
@@ -217,6 +221,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         }
 
         private TaskDialogStandardIcon icon;
+
         /// <summary>
         /// Gets or sets a value that contains the TaskDialog main icon.
         /// </summary>
@@ -226,8 +231,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             set
             {
                 // Set local value, then update native dialog if showing.
-                icon = value;
-                if (NativeDialogShowing) nativeDialog.UpdateMainIcon(icon);
+                if (NativeDialogShowing) nativeDialog.UpdateMainIcon(icon = value);
             }
         }
 
@@ -242,8 +246,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             set
             {
                 // Set local value, then update native dialog if showing.
-                footerIcon = value;
-                if (NativeDialogShowing) nativeDialog.UpdateFooterIcon(footerIcon);
+                if (NativeDialogShowing) nativeDialog.UpdateFooterIcon(footerIcon = value);
             }
         }
 
@@ -288,6 +291,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         }
 
         private bool? footerCheckBoxChecked = null;
+
         /// <summary>
         /// Gets or sets a value that indicates if the footer checkbox is checked.
         /// </summary>
@@ -331,6 +335,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         }
 
         private TaskDialogProgressBar progressBar;
+
         /// <summary>
         /// Gets or sets the progress bar on the taskdialog. ProgressBar a visual representation 
         /// of the progress of a long running operation.
@@ -373,7 +378,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// </summary>
         /// <param name="text">The text to display.</param>
         /// <returns>The dialog result.</returns>
-        public static TaskDialogResult Show(string text) => ShowCoreStatic(
+        public static TaskDialogResult Show(in string text) => ShowCoreStatic(
                 text,
                 TaskDialogDefaults.MainInstruction,
                 TaskDialogDefaults.Caption);
@@ -384,7 +389,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// <param name="text">The supporting text to display.</param>
         /// <param name="instructionText">The main instruction text to display.</param>
         /// <returns>The dialog result.</returns>
-        public static TaskDialogResult Show(string text, string instructionText) => ShowCoreStatic(
+        public static TaskDialogResult Show(in string text, in string instructionText) => ShowCoreStatic(
                 text,
                 instructionText,
                 TaskDialogDefaults.Caption);
@@ -396,7 +401,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// <param name="instructionText">The main instruction text to display.</param>
         /// <param name="caption">The caption for the dialog.</param>
         /// <returns>The dialog result.</returns>
-        public static TaskDialogResult Show(string text, string instructionText, string caption) => ShowCoreStatic(text, instructionText, caption);
+        public static TaskDialogResult Show(in string text, in string instructionText, in string caption) => ShowCoreStatic(text, instructionText, caption);
         #endregion
 
         #region Instance Show Methods
@@ -521,7 +526,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
         // Analyzes the final state of the NativeTaskDialog instance and creates the 
         // final TaskDialogResult that will be returned from the public API
-        private static TaskDialogResult ConstructDialogResult(NativeTaskDialog native)
+        private static TaskDialogResult ConstructDialogResult(in NativeTaskDialog native)
         {
             Debug.Assert(native.ShowState == DialogShowState.Closed, "dialog result being constructed for unshown dialog.");
 
@@ -551,7 +556,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// </summary>
         /// <param name="closingResult">TaskDialogResult to return from the TaskDialog.Show() method</param>
         /// <exception cref="InvalidOperationException">if TaskDialog is not showing.</exception>
-        public void Close(TaskDialogResult closingResult)
+        public void Close(in TaskDialogResult closingResult)
         {
             if (!NativeDialogShowing)
 
@@ -566,7 +571,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
         #region Configuration Construction
 
-        private void ApplyCoreSettings(NativeTaskDialogSettings settings)
+        private void ApplyCoreSettings(in NativeTaskDialogSettings settings)
         {
             ApplyGeneralNativeConfiguration(settings.NativeConfiguration);
             ApplyTextConfiguration(settings.NativeConfiguration);
@@ -574,7 +579,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             ApplyControlConfiguration(settings);
         }
 
-        private void ApplyGeneralNativeConfiguration(TaskDialogNativeMethods.TaskDialogConfiguration dialogConfig)
+        private void ApplyGeneralNativeConfiguration(in TaskDialogNativeMethods.TaskDialogConfiguration dialogConfig)
         {
             // If an owner wasn't specifically specified, 
             // we'll use the app's main window.
@@ -592,7 +597,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// Sets important text properties.
         /// </summary>
         /// <param name="dialogConfig">An instance of a <see cref="TaskDialogNativeMethods.TaskDialogConfiguration"/> object.</param>
-        private void ApplyTextConfiguration(TaskDialogNativeMethods.TaskDialogConfiguration dialogConfig)
+        private void ApplyTextConfiguration(in TaskDialogNativeMethods.TaskDialogConfiguration dialogConfig)
         {
             // note that nulls or empty strings are fine here.
             dialogConfig.content = text;
@@ -605,7 +610,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             dialogConfig.verificationText = checkBoxText;
         }
 
-        private void ApplyOptionConfiguration(TaskDialogNativeMethods.TaskDialogConfiguration dialogConfig)
+        private void ApplyOptionConfiguration(in TaskDialogNativeMethods.TaskDialogConfiguration dialogConfig)
         {
             // Handle options - start with no options set.
             TaskDialogNativeMethods.TaskDialogOptions options = TaskDialogNativeMethods.TaskDialogOptions.None;
@@ -651,7 +656,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         // expects, by parsing the various control 
         // lists, marshalling to the unmanaged heap, etc.
 
-        private void ApplyControlConfiguration(NativeTaskDialogSettings settings)
+        private void ApplyControlConfiguration(in NativeTaskDialogSettings settings)
         {
             // Deal with progress bars/marquees.
             if (progressBar != null)
@@ -697,7 +702,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             }
         }
 
-        private static TaskDialogNativeMethods.TaskDialogButton[] BuildButtonStructArray(List<TaskDialogButtonBase> controls)
+        private static TaskDialogNativeMethods.TaskDialogButton[] BuildButtonStructArray(in List<TaskDialogButtonBase> controls)
         {
             TaskDialogNativeMethods.TaskDialogButton[] buttonStructs;
             TaskDialogButtonBase button;
@@ -714,14 +719,14 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
         // Searches list of controls and returns the ID of 
         // the default control, or 0 if no default was specified.
-        private static int FindDefaultButtonId(List<TaskDialogButtonBase> controls)
+        private static int FindDefaultButtonId(in List<TaskDialogButtonBase> controls)
         {
             List<TaskDialogButtonBase> defaults = controls.FindAll(control => control.Default);
 
             return defaults.Count == 1 ? defaults[0].Id : defaults.Count > 1 ? throw new InvalidOperationException(LocalizedMessages.TaskDialogOnlyOneDefaultControl) : TaskDialogNativeMethods.NoDefaultButtonSpecified;
         }
 
-        private static void ApplyElevatedIcons(NativeTaskDialogSettings settings, List<TaskDialogButtonBase> controls)
+        private static void ApplyElevatedIcons(in NativeTaskDialogSettings settings, in List<TaskDialogButtonBase> controls)
         {
             foreach (TaskDialogButton control in controls)
 
@@ -730,14 +735,14 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                     (settings.ElevatedButtons ?? (settings.ElevatedButtons = new List<int>())).Add(control.Id);
         }
 
-        private void ApplySupplementalSettings(NativeTaskDialogSettings settings)
+        private void ApplySupplementalSettings(in NativeTaskDialogSettings settings)
         {
             if (progressBar?.State != TaskDialogProgressBarState.Marquee)
             {
-                    settings.ProgressBarMinimum = progressBar.Minimum;
-                    settings.ProgressBarMaximum = progressBar.Maximum;
-                    settings.ProgressBarValue = progressBar.Value;
-                    settings.ProgressBarState = progressBar.State;
+                settings.ProgressBarMinimum = progressBar.Minimum;
+                settings.ProgressBarMaximum = progressBar.Maximum;
+                settings.ProgressBarValue = progressBar.Value;
+                settings.ProgressBarState = progressBar.State;
             }
 
             if (HelpInvoked != null) settings.InvokeHelp = true;
@@ -754,33 +759,31 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
                 if (buttonBase != null && string.IsNullOrEmpty(buttonBase.Text) &&
                     commandLink != null && string.IsNullOrEmpty(commandLink.Instruction))
-                
+
                     throw new InvalidOperationException(LocalizedMessages.TaskDialogButtonTextEmpty);
 
                 // Loop through child controls 
                 // and sort the controls based on type.
                 if (commandLink != null)
-                
+
                     commandLinks.Add(commandLink);
-                
+
                 else if (control is TaskDialogRadioButton radButton)
-                {
-                    if (radioButtons == null) radioButtons = new List<TaskDialogButtonBase>();
-                    radioButtons.Add(radButton);
-                }
+
+                    (radioButtons ?? (radioButtons = new List<TaskDialogButtonBase>())).Add(radButton);
+
                 else if (buttonBase != null)
-                {
-                    if (buttons == null) buttons = new List<TaskDialogButtonBase>();
-                    buttons.Add(buttonBase);
-                }
+
+                    (buttons ?? (buttons = new List<TaskDialogButtonBase>())).Add(buttonBase);
+
                 else if (control is TaskDialogProgressBar progBar)
-                
+
                     progressBar = progBar;
-                
+
                 else
-                
+
                     throw new InvalidOperationException(LocalizedMessages.TaskDialogUnkownControl);
-                            }
+            }
         }
 
         #endregion
@@ -792,7 +795,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         // note that we can't just cast, as the Win32
         // typedefs differ incoming and outgoing.
 
-        private static TaskDialogStandardButtons MapButtonIdToStandardButton(int id)
+#if NETFRAMEWORK
+
+            private static TaskDialogStandardButtons MapButtonIdToStandardButton(int id)
         {
             switch ((TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds)id)
             {
@@ -820,6 +825,25 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                     return TaskDialogStandardButtons.None;
             }
         }
+
+#else
+
+        private static TaskDialogStandardButtons MapButtonIdToStandardButton(in int id) => ((TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds)id) switch
+        {
+            TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Ok => TaskDialogStandardButtons.Ok,
+            TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Cancel => TaskDialogStandardButtons.Cancel,
+            TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Abort => TaskDialogStandardButtons.None,// Included for completeness in API - 
+                                                                                                            // we can't pass in an Abort standard button.
+            TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Retry => TaskDialogStandardButtons.Retry,
+            TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Ignore => TaskDialogStandardButtons.None,// Included for completeness in API - 
+                                                                                                             // we can't pass in an Ignore standard button.
+            TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Yes => TaskDialogStandardButtons.Yes,
+            TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.No => TaskDialogStandardButtons.No,
+            TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Close => TaskDialogStandardButtons.Close,
+            _ => TaskDialogStandardButtons.None,
+        };
+
+#endif
 
         private void ThrowIfDialogShowing(string message)
         {
@@ -865,7 +889,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         // cannot occur while the dialog is showing
         // because the Win32 API has no way for us to 
         // propagate the changes until we re-invoke the Win32 call.
-        bool IDialogControlHost.IsControlPropertyChangeAllowed(string propertyName, DialogControl control)
+        bool IDialogControlHost.IsControlPropertyChangeAllowed(in string propertyName, in DialogControl control)
         {
             Debug.Assert(control is TaskDialogControl,
                 "Property changing for a control that is not a TaskDialogControl-derived type");
@@ -878,15 +902,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
                 // Certain properties can't be changed if the dialog is not showing
                 // we need a handle created before we can set these...
-                switch (propertyName)
-                {
-                    case "Enabled":
-                        canChange = false;
-                        break;
-                    default:
-                        canChange = true;
-                        break;
-                }
+                canChange = propertyName != "Enabled";
 
             else
 
@@ -919,12 +935,12 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         // If there isn't a way to change the Win32 value, then we
         // should have already screened out the property set 
         // in NotifyControlPropertyChanging.        
-        void IDialogControlHost.ApplyControlPropertyChange(string propertyName, DialogControl control)
+        void IDialogControlHost.ApplyControlPropertyChange(in string propertyName, in DialogControl control)
         {
             // We only need to apply changes to the 
             // native dialog when it actually exists.
             if (NativeDialogShowing)
-            {
+
                 if (control is TaskDialogProgressBar)
                 {
                     if (!progressBar.HasValidValues)
@@ -981,7 +997,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                     // note that this shouldn't ever happen, we should have
                     // either thrown on the changing event, or we handle above.
                     Debug.Assert(true, "Control property changed notification not handled properly - being ignored");
-            }
         }
 
         #endregion
@@ -991,18 +1006,15 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         // All Raise*() methods are called by the 
         // NativeTaskDialog when various pseudo-controls
         // are triggered.
-        internal void RaiseButtonClickEvent(int id)
-        {
+        internal void RaiseButtonClickEvent(in int id) =>
             // First check to see if the ID matches a custom button.
-            TaskDialogButtonBase button = GetButtonForId(id);
 
             // If a custom button was found, 
             // raise the event - if not, it's a standard button, and
             // we don't support custom event handling for the standard buttons
-            if (button != null) button.RaiseClickEvent();
-        }
+            GetButtonForId(id)?.RaiseClickEvent();
 
-        internal void RaiseHyperlinkClickEvent(string link) => HyperlinkClick?.Invoke(this, new TaskDialogHyperlinkClickedEventArgs(link));
+        internal void RaiseHyperlinkClickEvent(in string link) => HyperlinkClick?.Invoke(this, new TaskDialogHyperlinkClickedEventArgs(link));
 
         // Gives event subscriber a chance to prevent 
         // the dialog from closing, based on 
@@ -1010,9 +1022,10 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         // used to commit. Note that we don't 
         // have full access at this stage to 
         // the full dialog state.
-        internal int RaiseClosingEvent(int id)
+        internal int RaiseClosingEvent(in int id)
         {
             EventHandler<TaskDialogClosingEventArgs> handler = Closing;
+
             if (handler != null)
             {
                 TaskDialogButtonBase customButton = null;
@@ -1051,11 +1064,11 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
         internal void RaiseOpenedEvent() => Opened?.Invoke(this, EventArgs.Empty);
 
-        internal void RaiseTickEvent(int ticks) => Tick?.Invoke(this, new TaskDialogTickEventArgs(ticks));
+        internal void RaiseTickEvent(in int ticks) => Tick?.Invoke(this, new TaskDialogTickEventArgs(ticks));
 
-        #endregion
+#endregion
 
-        #region Cleanup Code
+#region Cleanup Code
 
         // Cleans up data and structs from a single 
         // native dialog Show() invocation.
@@ -1063,21 +1076,19 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         {
             // Reset values that would be considered 
             // 'volatile' in a given instance.
-            if (progressBar != null)
-
-                progressBar.Reset();
+            progressBar?.Reset();
 
             // Clean out sorted control lists - 
             // though we don't of course clear the main controls collection,
             // so the controls are still around; we'll 
             // resort on next show, since the collection may have changed.
-            if (buttons != null) buttons.Clear();
-            if (commandLinks != null) commandLinks.Clear();
-            if (radioButtons != null) radioButtons.Clear();
+            buttons?.Clear();
+            commandLinks?.Clear();
+            radioButtons?.Clear();
             progressBar = null;
 
             // Have the native dialog clean up the rest.
-                nativeDialog?.Dispose();
+            nativeDialog?.Dispose();
         }
 
 
@@ -1143,7 +1154,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             }
         }
 
-        #endregion
+#endregion
 
         /// <summary>
         /// Indicates whether this feature is supported on the current platform.

@@ -29,7 +29,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// Creates a new instance of a dialog control with the specified name.
         /// </summary>
         /// <param name="name">The name for this dialog.</param>
-        protected DialogControl(string name)
+        protected DialogControl(in string name)
             : this() => Name = name;
 
         /// <summary>
@@ -39,6 +39,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         public IDialogControlHost HostingDialog { get; set; }
 
         private string name;
+
         /// <summary>
         /// Gets the name for this control.
         /// </summary>
@@ -80,14 +81,12 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// there are no restrictions on setting the property.
         /// </summary>
         /// <param name="propName">The name of the property that is changing</param>
-        protected void CheckPropertyChangeAllowed(string propName)
+        protected void CheckPropertyChangeAllowed(in string propName)
         {
             Debug.Assert(!string.IsNullOrEmpty(propName), "Property to change was not specified");
 
-            if (HostingDialog != null)
-
                 // This will throw if the property change is not allowed.
-                _ = HostingDialog.IsControlPropertyChangeAllowed(propName, this);
+                _ = HostingDialog?.IsControlPropertyChangeAllowed(propName, this);
 
         }
 
@@ -100,13 +99,11 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// there are no restrictions on setting the property.
         /// </summary>
         /// <param name="propName">The name of the property that is changing.</param>
-        protected void ApplyPropertyChange(string propName)
+        protected void ApplyPropertyChange(in string propName)
         {
             Debug.Assert(!string.IsNullOrEmpty(propName), "Property changed was not specified");
 
-            if (HostingDialog != null)
-
-                HostingDialog.ApplyControlPropertyChange(propName, this);
+                HostingDialog?.ApplyControlPropertyChange(propName, this);
 
         }
 
@@ -114,7 +111,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// Compares two objects to determine whether they are equal
         /// </summary>
         /// <param name="obj">The object to compare against.</param>
-        /// <returns>A <see cref="System.Boolean"/> value.</returns>
+        /// <returns>A <see cref="bool"/> value.</returns>
         public override bool Equals(object obj) => obj is DialogControl control ? Id == control.Id : false;
 
         /// <summary>

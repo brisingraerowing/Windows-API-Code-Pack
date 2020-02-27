@@ -23,7 +23,7 @@ namespace Microsoft.WindowsAPICodePack.Net
 
         #endregion // Private Fields
 
-        internal Network(INetwork network) => this.network = network;
+        internal Network(in INetwork network) => this.network = network;
 
         /// <summary>
         /// Gets or sets the category of a network. The 

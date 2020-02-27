@@ -26,7 +26,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// callback method must invoke <see cref="ApplicationRecoveryInProgress"/> to 
         /// prevent WER from terminating the application.</param>
         /// <seealso cref="ApplicationRestartRecoveryManager"/>
-        public RecoverySettings(RecoveryData data, uint interval)
+        public RecoverySettings(in RecoveryData data, in uint interval)
         {
             RecoveryData = data;
             PingInterval = interval;

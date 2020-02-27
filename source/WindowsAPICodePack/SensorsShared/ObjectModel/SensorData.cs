@@ -18,7 +18,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
     public class SensorData : IDictionary<Guid, IList<object>>
     {
         #region implementation
-        internal static SensorData FromNativeReport(ISensor iSensor, ISensorDataReport iReport)
+        internal static SensorData FromNativeReport(in ISensor iSensor, in ISensorDataReport iReport)
         {
             var data = new SensorData();
 
@@ -139,7 +139,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// </summary>
         /// <param name="array">The destination collection.</param>
         /// <param name="arrayIndex">The index of the item to copy.</param>
-        public void CopyTo(KeyValuePair<Guid, IList<object>>[] array, int arrayIndex) => (sensorDataDictionary as ICollection<KeyValuePair<Guid, IList<object>>>).CopyTo(array, arrayIndex);
+        public void CopyTo( KeyValuePair<Guid, IList<object>>[] array, int arrayIndex) => (sensorDataDictionary as ICollection<KeyValuePair<Guid, IList<object>>>).CopyTo(array, arrayIndex);
 
         /// <summary>
         /// Returns the number of items in the collection.

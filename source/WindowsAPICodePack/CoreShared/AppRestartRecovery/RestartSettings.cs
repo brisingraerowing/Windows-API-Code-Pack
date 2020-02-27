@@ -25,7 +25,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// values that specify  
         /// when the application should not be restarted.
         /// </param>
-        public RestartSettings(string command, RestartRestrictions restrictions)
+        public RestartSettings(in string command, in RestartRestrictions restrictions)
         {
             Command = command;
             Restrictions = restrictions;

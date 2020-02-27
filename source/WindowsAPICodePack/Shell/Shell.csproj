@@ -1,7 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1;net472</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.0;net472</TargetFrameworks>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
     <AssemblyName>WinCopies.WindowsAPICodePack.Shell</AssemblyName>
     <RootNamespace>Microsoft.WindowsAPICodePack.Shell</RootNamespace>
     <SignAssembly>true</SignAssembly>
@@ -22,6 +24,22 @@
     <PackageReleaseNotes>See https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/CHANGELOG.md</PackageReleaseNotes>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.0|AnyCPU'">
+    <DefineConstants>TRACE;NETCORE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp3.0|AnyCPU'">
+    <DefineConstants>NETCORE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net472|AnyCPU'">
+    <DefineConstants>TRACE;NETFRAMEWORK</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net472|AnyCPU'">
+    <DefineConstants>NETFRAMEWORK</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Remove="CustomDictionary.xml" />
   </ItemGroup>
@@ -35,6 +53,11 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.AppContext" Version="4.3.0" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -64,6 +87,12 @@
     <None Update="ExplorerBrowser\ExplorerBrowser.WPF.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+    <PackageReference Include="Microsoft.Private.CoreFx.NETCoreApp">
+      <Version>4.4.0-beta-25213-0</Version>
+    </PackageReference>
   </ItemGroup>
 
   <Import Project="..\ShellShared\Shell.projitems" Label="Shared" />

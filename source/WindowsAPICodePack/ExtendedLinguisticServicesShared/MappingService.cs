@@ -52,8 +52,10 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
                 try
                 {
                     guidPtr = Marshal.AllocHGlobal(InteropTools.SizeOfGuid);
-                    Win32EnumOptions enumOptions = new Win32EnumOptions();
-                    enumOptions._size = InteropTools.SizeOfWin32EnumOptions;
+                    var enumOptions = new Win32EnumOptions
+                    {
+                        _size = InteropTools.SizeOfWin32EnumOptions
+                    };
                     Marshal.StructureToPtr(serviceIdentifier, guidPtr, false);
                     enumOptions._pGuid = guidPtr;
                     hresult = Win32NativeMethods.MappingGetServices(ref enumOptions, ref servicePointer, ref serviceCount);
@@ -76,7 +78,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 
                             throw new LinguisticException(hresult);
 
-                    IntPtr[] services = new IntPtr[1];
+                    var services = new IntPtr[1];
                     ServiceCache.Instance.RegisterServices(ref servicePointer, services);
                     _service = services[0];
                     _win32Service = InteropTools.Unpack<Win32Service>(_service);
@@ -110,7 +112,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// installed services.</param>
         /// <returns>An array of <see cref="MappingService">MappingService</see> objects matching the criteria supplied in the options
         /// parameter.</returns>
-        public static MappingService[] GetServices(MappingEnumOptions options)
+        public static MappingService[] GetServices(in MappingEnumOptions options)
         {
             ThrowIfNotWin7();
 
@@ -126,7 +128,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
                     Guid? pGuid = options._guid;
                     if (pGuid != null)
                     {
-                        Guid guid = (Guid)pGuid;
+                        var guid = (Guid)pGuid;
                         guidPointer = Marshal.AllocHGlobal(InteropTools.SizeOfGuid);
                         Marshal.StructureToPtr(guid, guidPointer, false);
                         enumOptions._pGuid = guidPointer;
@@ -145,9 +147,10 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 
                     throw new InvalidOperationException();
 
-                IntPtr[] services = new IntPtr[serviceCount];
+                var services = new IntPtr[serviceCount];
                 ServiceCache.Instance.RegisterServices(ref servicePointer, services);
-                MappingService[] result = new MappingService[serviceCount];
+                var result = new MappingService[serviceCount];
+
                 for (int i = 0; i < serviceCount; ++i)
 
                     result[i] = new MappingService(services[i]);
@@ -178,14 +181,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// This parameter can be set to null to use the default mapping options.</param>
         /// <returns>A <see cref="MappingPropertyBag">MappingPropertyBag</see> object in which the service has stored its results. The structure is filled
         /// with information produced by the service during text recognition.</returns>
-        public MappingPropertyBag RecognizeText(string text, MappingOptions options)
-        {
-            if (text == null)
-
-                throw new ArgumentNullException(nameof(text));
-
-            return RecognizeText(text, text.Length, 0, options);
-        }
+        public MappingPropertyBag RecognizeText(in string text, in MappingOptions options) => RecognizeText(text ?? throw new ArgumentNullException(nameof(text)), text.Length, 0, options);
 
         /// <summary>
         /// Calls an ELS service to recognize text. For example, the Microsoft Language Detection service
@@ -202,13 +198,9 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// This parameter can be set to null to use the default mapping options.</param>
         /// <returns>A <see cref="MappingPropertyBag">MappingPropertyBag</see> object in which the service has stored its results. The structure is filled
         /// with information produced by the service during text recognition.</returns>
-        public MappingPropertyBag RecognizeText(string text, int length, int index, MappingOptions options)
+        public MappingPropertyBag RecognizeText(in string text, in int length, in int index, in MappingOptions options)
         {
-            if (text == null)
-
-                throw new ArgumentNullException(nameof(text));
-
-            if (length > text.Length || length < 0)
+            if (length > (text?? throw new ArgumentNullException(nameof(text))).Length || length < 0)
 
                 throw new ArgumentOutOfRangeException(nameof(length));
 
@@ -217,7 +209,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
                 throw new ArgumentOutOfRangeException(nameof(index));
 
             uint hResult;
-            MappingPropertyBag bag = new MappingPropertyBag(options, text);
+            var bag = new MappingPropertyBag(options, text);
             try
             {
                 hResult = Win32NativeMethods.MappingRecognizeText(
@@ -240,8 +232,8 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 
         private void RunRecognizeText(object threadContext)
         {
-            MappingRecognizeAsyncResult asyncResult = (MappingRecognizeAsyncResult)threadContext;
-            MappingResultState resultState = new MappingResultState();
+            var asyncResult = (MappingRecognizeAsyncResult)threadContext;
+            var resultState = new MappingResultState();
             MappingPropertyBag bag = null;
             try
             {
@@ -260,7 +252,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             finally
             {
                 Thread.MemoryBarrier();
-                ((ManualResetEvent)asyncResult.AsyncWaitHandle).Set();
+                _ = ((ManualResetEvent)asyncResult.AsyncWaitHandle).Set();
             }
         }
 
@@ -282,14 +274,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// by a service after text recognition is complete. The application must set this parameter to null to
         /// indicate no private application data.</param>
         /// <returns>A <see cref="MappingRecognizeAsyncResult">MappingRecognizeAsyncResult</see> object describing the asynchronous operation.</returns>
-        public MappingRecognizeAsyncResult BeginRecognizeText(string text, MappingOptions options, AsyncCallback asyncCallback, object callerData)
-        {
-            if (text == null)
-
-                throw new ArgumentNullException(nameof(text));
-
-            return BeginRecognizeText(text, text.Length, 0, options, asyncCallback, callerData);
-        }
+        public MappingRecognizeAsyncResult BeginRecognizeText(in string text, in MappingOptions options, in AsyncCallback asyncCallback, in object callerData) => BeginRecognizeText(text ?? throw new ArgumentNullException(nameof(text)), text.Length, 0, options, asyncCallback, callerData);
 
         /// <summary>
         /// Calls an ELS service to recognize text. For example, the Microsoft Language Detection service
@@ -313,16 +298,16 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// by a service after text recognition is complete. The application must set this parameter to null to
         /// indicate no private application data.</param>
         /// <returns>A <see cref="MappingRecognizeAsyncResult">MappingRecognizeAsyncResult</see> object describing the asynchronous operation.</returns>
-        public MappingRecognizeAsyncResult BeginRecognizeText(string text, int length, int index, MappingOptions options, AsyncCallback asyncCallback, object callerData)
+        public MappingRecognizeAsyncResult BeginRecognizeText(in string text, in int length, in int index, in MappingOptions options, in AsyncCallback asyncCallback, in object callerData)
         {
             if (asyncCallback == null)
 
                 throw new ArgumentNullException(nameof(asyncCallback));
 
-            MappingRecognizeAsyncResult result = new MappingRecognizeAsyncResult(callerData, asyncCallback, text, length, index, options);
+            var result = new MappingRecognizeAsyncResult(callerData, asyncCallback, text, length, index, options);
             try
             {
-                ThreadPool.QueueUserWorkItem(RunRecognizeText, result);
+                _ = ThreadPool.QueueUserWorkItem(RunRecognizeText, result);
                 return result;
             }
             catch
@@ -336,11 +321,11 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// Waits for the asynchronous operation to complete.
         /// </summary>
         /// <param name="asyncResult">The <see cref="MappingRecognizeAsyncResult">MappingRecognizeAsyncResult</see> object associated with the operation.</param>        
-        public static void EndRecognizeText(MappingRecognizeAsyncResult asyncResult)
+        public static void EndRecognizeText(in MappingRecognizeAsyncResult asyncResult)
         {
             if (asyncResult != null && !asyncResult.IsCompleted)
 
-                asyncResult.AsyncWaitHandle.WaitOne();
+                _ = asyncResult.AsyncWaitHandle.WaitOne();
         }
 
         /// <summary>
@@ -354,7 +339,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// text range. This value should be between 0 and the range count.</param>
         /// <param name="actionId">The identifier of the action to perform.
         /// This parameter cannot be set to null.</param>
-        public static void DoAction(MappingPropertyBag bag, int rangeIndex, string actionId)
+        public static void DoAction(in MappingPropertyBag bag, in int rangeIndex, in string actionId)
         {
             if (bag == null) throw new ArgumentNullException(nameof(bag));
 
@@ -371,8 +356,8 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 
         private void RunDoAction(object threadContext)
         {
-            MappingActionAsyncResult asyncResult = (MappingActionAsyncResult)threadContext;
-            MappingResultState resultState = new MappingResultState();
+            var asyncResult = (MappingActionAsyncResult)threadContext;
+            var resultState = new MappingResultState();
             try
             {
                 DoAction(asyncResult.PropertyBag, asyncResult.RangeIndex, asyncResult.ActionId);
@@ -391,7 +376,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             finally
             {
                 Thread.MemoryBarrier();
-                ((ManualResetEvent)asyncResult.AsyncWaitHandle).Set();
+                _ = ((ManualResetEvent)asyncResult.AsyncWaitHandle).Set();
             }
         }
 
@@ -412,12 +397,12 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// by a service after the action operation is complete. The application must set this parameter to null
         /// to indicate no private application data.</param>
         /// <returns>A <see cref="MappingActionAsyncResult">MappingActionAsyncResult</see> object describing the asynchronous operation.</returns>
-        public MappingActionAsyncResult BeginDoAction(MappingPropertyBag bag, int rangeIndex, string actionId, AsyncCallback asyncCallback, object callerData)
+        public MappingActionAsyncResult BeginDoAction(in MappingPropertyBag bag, in int rangeIndex, in string actionId, in AsyncCallback asyncCallback, in object callerData)
         {
-            MappingActionAsyncResult result = new MappingActionAsyncResult(callerData, asyncCallback, bag, rangeIndex, actionId);
+            var result = new MappingActionAsyncResult(callerData, asyncCallback, bag, rangeIndex, actionId);
             try
             {
-                ThreadPool.QueueUserWorkItem(RunDoAction, result);
+                _ = ThreadPool.QueueUserWorkItem(RunDoAction, result);
                 return result;
             }
             catch
@@ -431,11 +416,11 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// Waits for the asynchronous operation to complete.
         /// </summary>
         /// <param name="asyncResult">The MappingActionAsyncResult object associated with the operation.</param>
-        public static void EndDoAction(MappingActionAsyncResult asyncResult)
+        public static void EndDoAction(in MappingActionAsyncResult asyncResult)
         {
             if (asyncResult != null && !asyncResult.IsCompleted)
 
-                asyncResult.AsyncWaitHandle.WaitOne();
+                _ = asyncResult.AsyncWaitHandle.WaitOne();
         }
 
         /// <summary>

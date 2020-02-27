@@ -7,7 +7,6 @@ using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
-using MS.WindowsAPICodePack;
 
 namespace Microsoft.WindowsAPICodePack.Dialogs
 {
@@ -38,7 +37,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         #region Constructors
 
         // Configuration is applied at dialog creation time.
-        internal NativeTaskDialog(NativeTaskDialogSettings settings, TaskDialog outerDialog)
+        internal NativeTaskDialog(in NativeTaskDialogSettings settings, in TaskDialog outerDialog)
         {
             nativeDialogConfig = settings.NativeConfiguration;
             this.settings = settings;
@@ -95,6 +94,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
                 if (CoreErrorHelper.Failed(hresult))
                 {
+#if NETFRAMEWORK
+
+
                     string msg;
                     switch (hresult)
                     {
@@ -110,8 +112,18 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                                 hresult);
                             break;
                     }
-                    Exception e = Marshal.GetExceptionForHR((int)hresult);
-                    throw new Win32Exception(msg, e);
+
+#else
+                    string msg = hresult switch
+                    {
+                        HResult.InvalidArguments => LocalizedMessages.NativeTaskDialogInternalErrorArgs,
+                        HResult.OutOfMemory => LocalizedMessages.NativeTaskDialogInternalErrorComplex,
+                        _ => string.Format(System.Globalization.CultureInfo.InvariantCulture,
+LocalizedMessages.NativeTaskDialogInternalErrorUnexpected,
+hresult),
+                    };
+#endif
+                    throw new Win32Exception(msg, Marshal.GetExceptionForHR((int)hresult));
                 }
 
                 SelectedButtonId = selectedButtonId;
@@ -135,9 +147,10 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         // simply call "Close" and we'll "click" the cancel button. 
         // Note that the cancel button doesn't actually
         // have to exist for this to work.
-        internal void NativeClose(TaskDialogResult result)
+        internal void NativeClose(in TaskDialogResult result)
         {
             ShowState = DialogShowState.Closing;
+#if NETFRAMEWORK
 
             int id;
             switch (result)
@@ -165,6 +178,18 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                     break;
             }
 
+#else
+            int id = result switch
+            {
+                TaskDialogResult.Close => (int)TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Close,
+                TaskDialogResult.CustomButtonClicked => DialogsDefaults.MinimumDialogControlId,// custom buttons
+                TaskDialogResult.No => (int)TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.No,
+                TaskDialogResult.Ok => (int)TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Ok,
+                TaskDialogResult.Retry => (int)TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Retry,
+                TaskDialogResult.Yes => (int)TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Yes,
+                _ => (int)TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Cancel,
+            };
+#endif
             _ = SendMessageHelper(TaskDialogNativeMethods.TaskDialogMessages.ClickButton, id, 0);
         }
 
@@ -352,15 +377,15 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             _ = SendMessageHelper(TaskDialogNativeMethods.TaskDialogMessages.SetProgressBarState, (int)state, 0);
         }
 
-        internal void UpdateText(string text) => UpdateTextCore(text, TaskDialogNativeMethods.TaskDialogElements.Content);
+        internal void UpdateText(in string text) => UpdateTextCore(text, TaskDialogNativeMethods.TaskDialogElements.Content);
 
-        internal void UpdateInstruction(string instruction) => UpdateTextCore(instruction, TaskDialogNativeMethods.TaskDialogElements.MainInstruction);
+        internal void UpdateInstruction(in string instruction) => UpdateTextCore(instruction, TaskDialogNativeMethods.TaskDialogElements.MainInstruction);
 
-        internal void UpdateFooterText(string footerText) => UpdateTextCore(footerText, TaskDialogNativeMethods.TaskDialogElements.Footer);
+        internal void UpdateFooterText(in string footerText) => UpdateTextCore(footerText, TaskDialogNativeMethods.TaskDialogElements.Footer);
 
-        internal void UpdateExpandedText(string expandedText) => UpdateTextCore(expandedText, TaskDialogNativeMethods.TaskDialogElements.ExpandedInformation);
+        internal void UpdateExpandedText(in string expandedText) => UpdateTextCore(expandedText, TaskDialogNativeMethods.TaskDialogElements.ExpandedInformation);
 
-        private void UpdateTextCore(string s, TaskDialogNativeMethods.TaskDialogElements element)
+        private void UpdateTextCore(in string s, in TaskDialogNativeMethods.TaskDialogElements element)
         {
             AssertCurrentlyShowing();
 
@@ -371,11 +396,11 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 (long)MakeNewString(s, element));
         }
 
-        internal void UpdateMainIcon(TaskDialogStandardIcon mainIcon) => UpdateIconCore(mainIcon, TaskDialogNativeMethods.TaskDialogIconElement.Main);
+        internal void UpdateMainIcon(in TaskDialogStandardIcon mainIcon) => UpdateIconCore(mainIcon, TaskDialogNativeMethods.TaskDialogIconElement.Main);
 
-        internal void UpdateFooterIcon(TaskDialogStandardIcon footerIcon) => UpdateIconCore(footerIcon, TaskDialogNativeMethods.TaskDialogIconElement.Footer);
+        internal void UpdateFooterIcon(in TaskDialogStandardIcon footerIcon) => UpdateIconCore(footerIcon, TaskDialogNativeMethods.TaskDialogIconElement.Footer);
 
-        private void UpdateIconCore(TaskDialogStandardIcon icon, TaskDialogNativeMethods.TaskDialogIconElement element)
+        private void UpdateIconCore(in TaskDialogStandardIcon icon, in TaskDialogNativeMethods.TaskDialogIconElement element)
         {
             AssertCurrentlyShowing();
             _ = SendMessageHelper(
@@ -384,16 +409,16 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 (long)icon);
         }
 
-        internal void UpdateCheckBoxChecked(bool cbc)
+        internal void UpdateCheckBoxChecked(in bool cbc)
         {
             AssertCurrentlyShowing();
             _ = SendMessageHelper(
                 TaskDialogNativeMethods.TaskDialogMessages.ClickVerification,
-                (cbc ? 1 : 0),
+                cbc ? 1 : 0,
                 1);
         }
 
-        internal void UpdateElevationIcon(int buttonId, bool showIcon)
+        internal void UpdateElevationIcon(in int buttonId, in bool showIcon)
         {
             AssertCurrentlyShowing();
             _ = SendMessageHelper(
@@ -402,14 +427,14 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 Convert.ToInt32(showIcon));
         }
 
-        internal void UpdateButtonEnabled(int buttonID, bool enabled)
+        internal void UpdateButtonEnabled(in int buttonID, in bool enabled)
         {
             AssertCurrentlyShowing();
             _ = SendMessageHelper(
                 TaskDialogNativeMethods.TaskDialogMessages.EnableButton, buttonID, enabled == true ? 1 : 0);
         }
 
-        internal void UpdateRadioButtonEnabled(int buttonID, bool enabled)
+        internal void UpdateRadioButtonEnabled(in int buttonID, in bool enabled)
         {
             AssertCurrentlyShowing();
             _ = SendMessageHelper(TaskDialogNativeMethods.TaskDialogMessages.EnableRadioButton,
@@ -423,7 +448,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
         #region Helpers
 
-        private int SendMessageHelper(TaskDialogNativeMethods.TaskDialogMessages message, int wparam, long lparam)
+        private int SendMessageHelper(in TaskDialogNativeMethods.TaskDialogMessages message, in int wparam, in long lparam)
         {
             // Be sure to at least assert here - 
             // messages to invalid handles often just disappear silently
@@ -436,12 +461,12 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 new IntPtr(lparam));
         }
 
-        private bool IsOptionSet(TaskDialogNativeMethods.TaskDialogOptions flag) => (nativeDialogConfig.taskDialogFlags & flag) == flag;
+        private bool IsOptionSet(in TaskDialogNativeMethods.TaskDialogOptions flag) => (nativeDialogConfig.taskDialogFlags & flag) == flag;
 
         // Allocates a new string on the unmanaged heap, 
         // and stores the pointer so we can free it later.
 
-        private IntPtr MakeNewString(string text, TaskDialogNativeMethods.TaskDialogElements element)
+        private IntPtr MakeNewString(in string text, in TaskDialogNativeMethods.TaskDialogElements element)
         {
             IntPtr newStringPtr = Marshal.StringToHGlobalUni(text);
             updatedStrings[(int)element] = newStringPtr;
@@ -454,7 +479,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         // MakeNewString(), to prevent
         // leaks from multiple updates calls on the same element 
         // within a single native dialog lifetime.
-        private void FreeOldString(TaskDialogNativeMethods.TaskDialogElements element)
+        private void FreeOldString(in TaskDialogNativeMethods.TaskDialogElements element)
         {
             int elementIndex = (int)element;
             if (updatedStrings[elementIndex] != IntPtr.Zero)
@@ -467,7 +492,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         // Based on the following defines in WinDef.h and WinUser.h:
         // #define MAKELPARAM(l, h) ((LPARAM)(DWORD)MAKELONG(l, h))
         // #define MAKELONG(a, b) ((LONG)(((WORD)(((DWORD_PTR)(a)) & 0xffff)) | ((DWORD)((WORD)(((DWORD_PTR)(b)) & 0xffff))) << 16))
-        private static long MakeLongLParam(int a, int b) => (a << 16) + b;
+        private static long MakeLongLParam(in int a, in int b) => (a << 16) + b;
 
         // Builds the actual configuration that the 
         // NativeTaskDialog (and underlying Win32 API)
@@ -490,13 +515,13 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             }
         }
 
-        private static IntPtr AllocateAndMarshalButtons(TaskDialogNativeMethods.TaskDialogButton[] structs)
+        private static IntPtr AllocateAndMarshalButtons(in TaskDialogNativeMethods.TaskDialogButton[] structs)
         {
             IntPtr initialPtr = Marshal.AllocHGlobal(
                 Marshal.SizeOf(typeof(TaskDialogNativeMethods.TaskDialogButton)) * structs.Length);
 
             IntPtr currentPtr = initialPtr;
-            bool is64Bit = Marshal.SizeOf(typeof (IntPtr)) == 8;
+            bool is64Bit = Marshal.SizeOf(typeof(IntPtr)) == 8;
             foreach (TaskDialogNativeMethods.TaskDialogButton button in structs)
             {
                 Marshal.StructureToPtr(button, currentPtr, false);
@@ -513,19 +538,20 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         private bool disposed;
 
         // Finalizer and IDisposable implementation.
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-        
-        ~NativeTaskDialog()
-        {
-            Dispose(false);
-        }
 
         // Core disposing logic.
-        protected void Dispose(bool disposing)
+        public void Dispose()
+        {
+            DisposeInternal();
+            GC.SuppressFinalize(this);
+        }
+
+        ~NativeTaskDialog()
+        {
+            DisposeInternal();
+        }
+
+        internal void DisposeInternal()
         {
             if (!disposed)
             {
@@ -568,8 +594,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
                 //if (disposing)
                 //{
-                    // Clean up managed resources - currently there are none
-                    // that are interesting.
+                // Clean up managed resources - currently there are none
+                // that are interesting.
                 //}
             }
         }

@@ -90,7 +90,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// <typeparam name="T">The type with which <see cref="IMappingFormatter{T}">IMappingFormatter</see> is parameterized.</typeparam>
         /// <param name="formatter">The formatter to be used in the formatting.</param>
         /// <returns>A formatted version of this <see cref="MappingDataRange">MappingDataRange</see>.</returns>
-        public T FormatData<T>(IMappingFormatter<T> formatter) => formatter == null ? throw new ArgumentNullException(nameof(formatter)) : formatter.Format(this);
+        public T FormatData<T>(in IMappingFormatter<T> formatter) => (formatter ?? throw new ArgumentNullException(nameof(formatter))).Format(this);
     }
 
 }

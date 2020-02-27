@@ -20,14 +20,14 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// Initializes an excpetion with a custom message.
         /// </summary>
         /// <param name="message">A custom message for the exception.</param>
-        public PowerManagerException(string message) : base(message) { }
+        public PowerManagerException(in string message) : base(message) { }
 
         /// <summary>
         /// Initializes an exception with custom message and inner exception.
         /// </summary>
         /// <param name="message">A custom message for the exception.</param>
         /// <param name="innerException">An inner exception on which to base this exception.</param>
-        public PowerManagerException(string message, Exception innerException)
+        public PowerManagerException(in string message, in Exception innerException)
             : base(message, innerException)
         {            
         }
@@ -38,8 +38,8 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// <param name="info">SerializationInfo for the exception.</param>
         /// <param name="context">StreamingContext for the exception.</param>
         protected PowerManagerException(
-            System.Runtime.Serialization.SerializationInfo info, 
-            System.Runtime.Serialization.StreamingContext context)
+            in System.Runtime.Serialization.SerializationInfo info, 
+            in System.Runtime.Serialization.StreamingContext context)
             : base(info, context)
         {
         }

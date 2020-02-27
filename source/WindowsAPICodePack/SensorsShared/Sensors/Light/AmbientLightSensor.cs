@@ -33,7 +33,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// </summary>
         /// <param name="report">The report name.</param>
         /// <returns></returns>
-        public LuminousIntensity(SensorReport report)
+        public LuminousIntensity(in SensorReport report)
         {
             if ((report ?? throw new ArgumentNullException(nameof(report))).Values != null &&
                 report.Values.ContainsKey(PropertySystem.DataType.Light.LevelLux.FormatId))

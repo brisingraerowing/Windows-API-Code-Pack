@@ -2,7 +2,6 @@
 
 using Microsoft.WindowsAPICodePack.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
-using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
 
 namespace Microsoft.WindowsAPICodePack.Dialogs
 {

@@ -17,7 +17,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// </summary>
         /// <param name="info">The System.Runtime.Serialization.SerializationInfo associated with this exception.</param>
         /// <param name="context">A System.Runtime.Serialization.StreamingContext that represents the context of this exception.</param>
-        protected SensorPlatformException(SerializationInfo info, StreamingContext context)
+        protected SensorPlatformException(in SerializationInfo info, in StreamingContext context)
             : base(info, context)
         {
         }
@@ -27,7 +27,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// class with the specified detailed description.
         /// </summary>
         /// <param name="message">A detailed description of the error.</param>
-        public SensorPlatformException(string message)
+        public SensorPlatformException(in string message)
             : base(message)
         {
         }
@@ -47,7 +47,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// </summary>
         /// <param name="message">A detailed description of the error.</param>
         /// <param name="innerException">A reference to the inner exception that is the cause of this exception.</param>
-        public SensorPlatformException(string message, Exception innerException)
+        public SensorPlatformException(in string message, in Exception innerException)
             : base(message, innerException)
         {
         }

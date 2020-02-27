@@ -15,8 +15,8 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         private ManualResetEvent _waitHandle;
 
         internal MappingAsyncResult(
-            object callerData,
-            AsyncCallback asyncCallback)
+in            object callerData,
+  in          AsyncCallback asyncCallback)
         {
             CallerData = callerData;
             AsyncCallback = asyncCallback;
@@ -45,7 +45,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// </summary>
         public object CallerData { get; }
 
-        internal void SetResult(MappingPropertyBag bag, MappingResultState resultState)
+        internal void SetResult(in MappingPropertyBag bag, in MappingResultState resultState)
         {
             _resultState = resultState;
             PropertyBag = bag;
@@ -100,7 +100,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// <summary>
         /// Dispose the MappingAsyncresult
         /// </summary>
-        protected virtual void Dispose(bool disposed)
+        protected virtual void Dispose(in bool disposed)
         {
             if (disposed)
 

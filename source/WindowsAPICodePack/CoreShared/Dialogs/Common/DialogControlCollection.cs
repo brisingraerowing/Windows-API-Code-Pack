@@ -13,9 +13,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
     /// <typeparam name="T">DialogControl</typeparam>
     public sealed class DialogControlCollection<T> : System.Collections.ObjectModel.Collection<T> where T : DialogControl
     {
-        private IDialogControlHost hostingDialog;
+        private readonly IDialogControlHost hostingDialog;
 
-        internal DialogControlCollection(IDialogControlHost host) => hostingDialog = host;
+        internal DialogControlCollection(in IDialogControlHost host) => hostingDialog = host;
 
         /// <summary>
         /// Inserts an dialog control at the specified index.
@@ -84,17 +84,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         ///<exception cref="ArgumentException">
         /// The name cannot be null or a zero-length string.</exception>
         /// <remarks>If there is more than one control with the same name, only the <B>first control</B> will be returned.</remarks>
-        public T this[string name]
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(name))
-
-                    throw new ArgumentException(LocalizedMessages.DialogCollectionControlNameNull, nameof(name));
-
-                return Items.FirstOrDefault(x => x.Name == name);
-            }
-        }
+        public T this[string name] => string.IsNullOrEmpty(name) ? throw new ArgumentException(LocalizedMessages.DialogCollectionControlNameNull, nameof(name)) : Items.FirstOrDefault(x => x.Name == name);
 
         /// <summary>
         /// Searches for the control who's id matches the value

@@ -12,12 +12,12 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
     public class MappingRecognizeAsyncResult : MappingAsyncResult
     {
         internal MappingRecognizeAsyncResult(
-            object callerData,
-            AsyncCallback asyncCallback,
-            string text,
-            int length,
-            int index,
-            MappingOptions options)
+            in object callerData,
+            in AsyncCallback asyncCallback,
+            in string text,
+            in int length,
+            in int index,
+            in MappingOptions options)
             : base(callerData, asyncCallback)
         {
             Text = text;

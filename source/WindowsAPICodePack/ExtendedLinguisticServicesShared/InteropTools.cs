@@ -10,6 +10,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 
     internal static class InteropTools
     {
+        // TODO: put these fields to Win32Native?
         internal static readonly IntPtr SizeOfGuid = (IntPtr)Marshal.SizeOf(typeof(Guid));
         internal static readonly IntPtr SizeOfWin32EnumOptions = (IntPtr)Marshal.SizeOf(typeof(Win32EnumOptions));
         internal static readonly IntPtr SizeOfWin32Options = (IntPtr)Marshal.SizeOf(typeof(Win32Options));

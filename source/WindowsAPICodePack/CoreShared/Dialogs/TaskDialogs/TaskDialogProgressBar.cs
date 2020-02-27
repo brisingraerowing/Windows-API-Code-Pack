@@ -20,7 +20,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// And using the default values: Min = 0, Max = 100, Current = 0
         /// </summary>
         /// <param name="name">The name of the control.</param>        
-        public TaskDialogProgressBar(string name) : base(name) { }
+        public TaskDialogProgressBar(in string name) : base(name) { }
 
         /// <summary>
         /// Creates a new instance of this class with the specified 
@@ -29,7 +29,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// <param name="minimum">The minimum value for this control.</param>
         /// <param name="maximum">The maximum value for this control.</param>
         /// <param name="value">The current value for this control.</param>        
-        public TaskDialogProgressBar(int minimum, int maximum, int value)
+        public TaskDialogProgressBar(in int minimum, in int maximum, in int value)
         {
             Minimum = minimum;
             Maximum = maximum;

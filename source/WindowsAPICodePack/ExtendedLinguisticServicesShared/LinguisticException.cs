@@ -33,7 +33,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// </summary>
         public LinguisticException() { }
 
-        internal LinguisticException(uint hResult)
+        internal LinguisticException(in uint hResult)
             : base((int)hResult) => HResult = (int)hResult;
 
         /// <summary>

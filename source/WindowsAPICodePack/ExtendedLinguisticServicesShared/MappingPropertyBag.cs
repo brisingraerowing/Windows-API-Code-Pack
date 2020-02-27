@@ -70,7 +70,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// <typeparam name="T">The type with which <see cref="IMappingFormatter{T}">IMappingFormatter</see> is parameterized.</typeparam>
         /// <param name="formatter">The formatter to be used in the formatting.</param>
         /// <returns></returns>
-        public T[] FormatData<T>(IMappingFormatter<T> formatter) => formatter == null ? throw new ArgumentNullException(nameof(formatter)) : formatter.FormatAll(this);
+        public T[] FormatData<T>(in IMappingFormatter<T> formatter) => (formatter ?? throw new ArgumentNullException(nameof(formatter))).FormatAll(this);
 
         private bool DisposeInternal()
         {
@@ -96,7 +96,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// Clean up both managed and native resources.
         /// </summary>
         /// <param name="disposed"></param>
-        protected virtual void Dispose(bool disposed)
+        protected virtual void Dispose(in bool disposed)
         {
             if (Interlocked.CompareExchange(ref _isFinalized, 0, 0) == 0 && DisposeInternal())
             {

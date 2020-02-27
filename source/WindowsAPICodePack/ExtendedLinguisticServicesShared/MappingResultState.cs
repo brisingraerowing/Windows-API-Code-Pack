@@ -11,7 +11,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
     /// </summary>
     public struct MappingResultState : IEquatable<MappingResultState>
     {
-        internal MappingResultState(int hResult, string errorMessage)
+        internal MappingResultState(in int hResult, in string errorMessage)
         {
             HResult = hResult;
             ErrorMessage = errorMessage;

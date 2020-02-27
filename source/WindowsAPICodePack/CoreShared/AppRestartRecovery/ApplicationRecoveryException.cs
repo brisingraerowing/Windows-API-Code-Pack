@@ -19,14 +19,14 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// Initializes an exception with a custom message.
         /// </summary>
         /// <param name="message">A custom message for the exception.</param>
-        public ApplicationRecoveryException(string message) : base(message) { }
+        public ApplicationRecoveryException(in string message) : base(message) { }
 
         /// <summary>
         /// Initializes an exception with custom message and inner exception.
         /// </summary>
         /// <param name="message">A custom message for the exception.</param>
         /// <param name="innerException">Inner exception.</param>
-        public ApplicationRecoveryException(string message, Exception innerException)
+        public ApplicationRecoveryException(in string message, in Exception innerException)
             : base(message, innerException)
         {
             // Empty
@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// </summary>
         /// <param name="message">A custom message for the exception.</param>
         /// <param name="errorCode">An error code (hresult) from which to generate the exception.</param>
-        public ApplicationRecoveryException(string message, int errorCode) : base(message, errorCode) { }
+        public ApplicationRecoveryException(in string message, in int errorCode) : base(message, errorCode) { }
 
         /// <summary>
         /// Initializes an exception from serialization info and a context.

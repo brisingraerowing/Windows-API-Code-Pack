@@ -21,7 +21,7 @@ namespace Microsoft.WindowsAPICodePack.Net
 
         #endregion // Private Fields
 
-        internal NetworkCollection(IEnumerable networkEnumerable) => this.networkEnumerable = networkEnumerable;
+        internal NetworkCollection(in IEnumerable networkEnumerable) => this.networkEnumerable = networkEnumerable;
 
         #region IEnumerable<Network> Members
 

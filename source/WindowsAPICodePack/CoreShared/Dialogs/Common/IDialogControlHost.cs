@@ -30,7 +30,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// <param name="propertyName">The name of the property.</param>
         /// <param name="control">The control propertyName applies to.</param>
         /// <returns>true if the property change is allowed.</returns>
-        bool IsControlPropertyChangeAllowed(string propertyName, DialogControl control);
+        bool IsControlPropertyChangeAllowed(in string propertyName, in DialogControl control);
 
         /// <summary>
         /// Called when a control currently in the collection 
@@ -38,6 +38,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// </summary>
         /// <param name="propertyName">The name of the property changed.</param>
         /// <param name="control">The control whose property has changed.</param>
-        void ApplyControlPropertyChange(string propertyName, DialogControl control);
+        void ApplyControlPropertyChange(in string propertyName, in DialogControl control);
     }
 }

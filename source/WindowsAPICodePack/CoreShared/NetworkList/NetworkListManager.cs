@@ -27,7 +27,7 @@ namespace Microsoft.WindowsAPICodePack.Net
         /// <returns>
         /// A <see cref="NetworkCollection"/> of <see cref="Network"/> objects.
         /// </returns>
-        public static NetworkCollection GetNetworks(NetworkConnectivityLevels level)
+        public static NetworkCollection GetNetworks(in NetworkConnectivityLevels level)
         {
             // Throw PlatformNotSupportedException if the user is not running Vista or beyond
             CoreHelpers.ThrowIfNotVista();
@@ -44,7 +44,7 @@ namespace Microsoft.WindowsAPICodePack.Net
         /// <returns>
         /// The <see cref="Network"/> that represents the network identified by the identifier.
         /// </returns>
-        public static Network GetNetwork(Guid networkId)
+        public static Network GetNetwork(in Guid networkId)
         {
             // Throw PlatformNotSupportedException if the user is not running Vista or beyond
             CoreHelpers.ThrowIfNotVista();
@@ -75,7 +75,7 @@ namespace Microsoft.WindowsAPICodePack.Net
         /// <returns>
         /// The <see cref="NetworkConnection"/> identified by the specified identifier.
         /// </returns>
-        public static NetworkConnection GetNetworkConnection(Guid networkConnectionId)
+        public static NetworkConnection GetNetworkConnection(in Guid networkConnectionId)
         {
             // Throw PlatformNotSupportedException if the user is not running Vista or beyond
             CoreHelpers.ThrowIfNotVista();

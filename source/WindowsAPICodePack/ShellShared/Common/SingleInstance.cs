@@ -8,6 +8,8 @@
 // </summary>
 //-----------------------------------------------------------------------
 
+#if !NETCORE
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,6 +25,7 @@ using System.Xml.Serialization;
 using System.Security;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
+using System.ServiceModel;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -152,7 +155,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             string[] args = null;
 
             if (AppDomain.CurrentDomain.ActivationContext == null)
-
+                
                 // The application was not clickonce deployed, get args from standard API's
                 args = Environment.GetCommandLineArgs();
 
@@ -303,3 +306,5 @@ namespace Microsoft.WindowsAPICodePack.Shell
         #endregion
     }
 }
+
+#endif

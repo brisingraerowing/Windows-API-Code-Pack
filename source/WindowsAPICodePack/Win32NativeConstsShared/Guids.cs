@@ -1436,6 +1436,21 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices.Guids
 
     }
 
+    /// <summary>
+    /// Hardcoded GUIDS for each event.
+    /// </summary>
+    public static class EventManager
+
+    {
+
+        public const string PowerPersonalityChange = "245d8541-3943-4422-b025-13A784F679B7";
+        public const string PowerSourceChange = "5d3e9a59-e9D5-4b00-a6bd-ff34ff516548";
+        public const string BatteryCapacityChange = "a7ad8041-b45a-4cae-87a3-eecbb468a9e1";
+        public const string BackgroundTaskNotification = "515c31d8-f734-163d-a0fd-11a08c91e8f1";
+        public const string MonitorPowerStatus = "02731015-4510-4526-99e6-e5a17ebd1aea";
+    
+    }
+
 }
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
@@ -1771,11 +1786,12 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers
 
 {
 
+    /// <summary>
+    /// KnownFolder Guids
+    /// </summary>
     public static class KnownFolders
 
     {
-
-#region KnownFolder Guids
 
         /// <summary>
         /// Computer
@@ -2217,13 +2233,12 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers
         /// </summary>
         public const string OriginalImages = "2C36C0AA-5812-4b87-bfd0-4cd0dfb19b39";
 
-#endregion
-
+        /// <summary>
+        /// Win7 KnownFolders Guids
+        /// </summary>
         public static class Win7
 
         {
-
-#region Win7 KnownFolders Guids
 
             /// <summary>
             /// UserProgramFiles
@@ -2303,8 +2318,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers
             /// ImplicitAppShortcuts
             /// </summary>
             public const string ImplicitAppShortcuts = "bcb5256f-79f6-4cee-b725-dc34e42fd46";
-
-#endregion
 
         }
 

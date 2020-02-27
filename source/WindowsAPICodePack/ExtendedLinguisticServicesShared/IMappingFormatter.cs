@@ -17,7 +17,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// </summary>
         /// <param name="dataRange">The <see cref="MappingDataRange">MappingDataRange</see> object to format.</param>
         /// <returns>The formatted object constructed with the data contained inside the <see cref="MappingDataRange">MappingDataRange</see>.</returns>
-        T Format(MappingDataRange dataRange);
+        T Format(in MappingDataRange dataRange);
 
         /// <summary>
         /// Formats all <see cref="MappingDataRange">MappingDataRanges</see> contained inside the <see cref="MappingPropertyBag">MappingPropertyBag</see>.
@@ -25,7 +25,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// <param name="bag">The <see cref="MappingPropertyBag">MappingPropertyBag</see> to format.</param>
         /// <returns>An array of T objects which represent the data contained inside each <see cref="MappingDataRange">MappingDataRange</see> of the
         /// provided <see cref="MappingPropertyBag">MappingPropertyBag</see> object.</returns>
-        T[] FormatAll(MappingPropertyBag bag);
+        T[] FormatAll(in MappingPropertyBag bag);
     }
 
 }

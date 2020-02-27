@@ -6,6 +6,7 @@ using Microsoft.WindowsAPICodePack.Resources;
 using System.ComponentModel;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices;
+using static Microsoft.WindowsAPICodePack.ApplicationServices.Guids.EventManager;
 
 namespace Microsoft.WindowsAPICodePack.ApplicationServices
 {
@@ -33,7 +34,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
             add
             {
                 MessageManager.RegisterPowerEvent(
-                    EventManager.PowerPersonalityChange, value);
+                    new Guid(PowerPersonalityChange), value);
             }
 
             remove
@@ -41,7 +42,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                 CoreHelpers.ThrowIfNotVista();
 
                 MessageManager.UnregisterPowerEvent(
-                    EventManager.PowerPersonalityChange, value);
+                    new Guid(PowerPersonalityChange), value);
             }
         }
 
@@ -57,7 +58,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                 CoreHelpers.ThrowIfNotVista();
 
                 MessageManager.RegisterPowerEvent(
-                    EventManager.PowerSourceChange, value);
+                    new Guid(PowerSourceChange), value);
             }
 
             remove
@@ -65,7 +66,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                 CoreHelpers.ThrowIfNotVista();
 
                 MessageManager.UnregisterPowerEvent(
-                    EventManager.PowerSourceChange, value);
+                    new Guid(PowerSourceChange), value);
             }
         }
 
@@ -81,14 +82,14 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                 CoreHelpers.ThrowIfNotVista();
 
                 MessageManager.RegisterPowerEvent(
-                    EventManager.BatteryCapacityChange, value);
+                    new Guid(BatteryCapacityChange), value);
             }
             remove
             {
                 CoreHelpers.ThrowIfNotVista();
 
                 MessageManager.UnregisterPowerEvent(
-                    EventManager.BatteryCapacityChange, value);
+                    new Guid(BatteryCapacityChange), value);
             }
         }
 
@@ -104,14 +105,14 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                 CoreHelpers.ThrowIfNotVista();
 
                 MessageManager.RegisterPowerEvent(
-                    EventManager.MonitorPowerStatus, value);
+                    new Guid(MonitorPowerStatus), value);
             }
             remove
             {
                 CoreHelpers.ThrowIfNotVista();
 
                 MessageManager.UnregisterPowerEvent(
-                    EventManager.MonitorPowerStatus, value);
+                    new Guid(MonitorPowerStatus), value);
             }
         }
 
@@ -130,14 +131,14 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                 CoreHelpers.ThrowIfNotVista();
 
                 MessageManager.RegisterPowerEvent(
-                    EventManager.BackgroundTaskNotification, value);
+                    new Guid(BackgroundTaskNotification), value);
             }
             remove
             {
                 CoreHelpers.ThrowIfNotVista();
 
                 MessageManager.UnregisterPowerEvent(
-                    EventManager.BackgroundTaskNotification, value);
+                    new Guid(BackgroundTaskNotification), value);
             }
         }
         #endregion

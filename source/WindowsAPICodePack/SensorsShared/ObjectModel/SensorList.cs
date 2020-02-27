@@ -15,9 +15,9 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
         public SensorList() => sensorList = new List<TSensor>();
 
-        public SensorList(int capacity) => sensorList = new List<TSensor>(capacity);
+        public SensorList(in int capacity) => sensorList = new List<TSensor>(capacity);
 
-        public SensorList(IEnumerable<TSensor> collection) => sensorList = new List<TSensor>(collection);
+        public SensorList(in IEnumerable<TSensor> collection) => sensorList = new List<TSensor>(collection);
 
         #region IList<S> Members
 

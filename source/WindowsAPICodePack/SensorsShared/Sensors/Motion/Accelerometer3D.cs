@@ -43,7 +43,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// Creates a new instance of this class.
         /// </summary>
         /// <param name="report">The sensor report to evaluate.</param>
-        public Acceleration3D(SensorReport report)
+        public Acceleration3D(in SensorReport report)
         {
             if (report == null)  throw new ArgumentNullException(nameof(report)); 
 
@@ -60,7 +60,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// </summary>
         /// <param name="axis">The axis of the acceleration.</param>
         /// <returns></returns>
-        public float this[AccelerationAxis axis] => acceleration[(int)axis];
+        public float this[in AccelerationAxis axis] => acceleration[(int)axis];
 
         private readonly float[] acceleration = new float[3];
     }

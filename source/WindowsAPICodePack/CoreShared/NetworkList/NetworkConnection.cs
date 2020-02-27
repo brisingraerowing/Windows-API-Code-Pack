@@ -22,7 +22,7 @@ namespace Microsoft.WindowsAPICodePack.Net
 
         #endregion // Private Fields
 
-        internal NetworkConnection(INetworkConnection networkConnection) => this.networkConnection = networkConnection;
+        internal NetworkConnection(in INetworkConnection networkConnection) => this.networkConnection = networkConnection;
 
         /// <summary>
         /// Retrieves an object that represents the network 

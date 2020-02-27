@@ -19,7 +19,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         /// Provides the <typeparamref name="Stream"/> to the item from which a preview should be created.        
         /// </summary>
         /// <param name="stream">Stream to the previewed file, this stream is only available in the scope of this method.</param>
-        void Load(Stream stream);
+        void Load(in Stream stream);
     }
 
     /// <summary>
@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         /// Provides the <typeparamref name="FileInfo"/> to the item from which a preview should be created.        
         /// </summary>
         /// <param name="info">File information to the previewed file.</param>
-        void Load(FileInfo info);
+        void Load(in FileInfo info);
     }
 
     /// <summary>
@@ -55,6 +55,6 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         /// Provides the <typeparamref name="ShellObject"/> from which a preview should be created.        
         /// </summary>
         /// <param name="shellObject">ShellObject for the previewed file, this ShellObject is only available in the scope of this method.</param>
-        void Load(ShellObject shellObject);
+        void Load(in ShellObject shellObject);
     }
 }

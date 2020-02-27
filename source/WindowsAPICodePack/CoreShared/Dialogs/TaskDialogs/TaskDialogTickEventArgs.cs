@@ -13,7 +13,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// Initializes the data associated with the TaskDialog tick event.
         /// </summary>
         /// <param name="ticks">The total number of ticks since the control was activated.</param>
-        public TaskDialogTickEventArgs(int ticks) => Ticks = ticks;
+        public TaskDialogTickEventArgs(in int ticks) => Ticks = ticks;
 
         /// <summary>
         /// Gets a value that determines the current number of ticks.

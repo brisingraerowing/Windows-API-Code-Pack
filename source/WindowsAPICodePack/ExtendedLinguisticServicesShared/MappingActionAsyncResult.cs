@@ -13,11 +13,11 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
     {
         
         internal MappingActionAsyncResult(
-            object callerData,
-            AsyncCallback asyncCallback,
-            MappingPropertyBag bag,
-            int rangeIndex,
-            string actionId)
+            in object callerData,
+            in AsyncCallback asyncCallback,
+            in MappingPropertyBag bag,
+            in int rangeIndex,
+            in string actionId)
             : base(callerData, asyncCallback)
         {
             base.SetResult(bag, new MappingResultState());

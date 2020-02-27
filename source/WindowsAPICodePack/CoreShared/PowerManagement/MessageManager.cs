@@ -8,6 +8,8 @@ using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices;
 
+using static Microsoft.WindowsAPICodePack.ApplicationServices.Guids.EventManager;
+
 namespace Microsoft.WindowsAPICodePack.ApplicationServices
 {
     /// <summary>
@@ -26,7 +28,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// </summary>
         /// <param name="eventId">Guid for the event.</param>
         /// <param name="eventToRegister">Event handler for the specified event.</param>
-        internal static void RegisterPowerEvent(Guid eventId, EventHandler eventToRegister)
+        internal static void RegisterPowerEvent(in Guid eventId, in EventHandler eventToRegister)
         {
             EnsureInitialized();
             window.RegisterPowerEvent(eventId, eventToRegister);
@@ -37,7 +39,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// </summary>
         /// <param name="eventId">Guid for the event.</param>
         /// <param name="eventToUnregister">Event handler to unregister.</param>
-        internal static void UnregisterPowerEvent(Guid eventId, EventHandler eventToUnregister)
+        internal static void UnregisterPowerEvent(in Guid eventId, in EventHandler eventToUnregister)
         {
             EnsureInitialized();
             window.UnregisterPowerEvent(eventId, eventToUnregister);
@@ -83,7 +85,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
             /// </summary>
             /// <param name="eventId">Guid for the event.</param>
             /// <param name="eventToRegister">Event handler for the event.</param>
-            internal void RegisterPowerEvent(Guid eventId, EventHandler eventToRegister)
+            internal void RegisterPowerEvent(in Guid eventId, in EventHandler eventToRegister)
             {
                 readerWriterLock.AcquireWriterLock(Timeout.Infinite);
                 if (!eventList.Contains(eventId))
@@ -108,7 +110,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
             /// <param name="eventToUnregister">Event handler to remove.</param>
             /// <exception cref="InvalidOperationException">Cannot unregister 
             /// a function that is not registered.</exception>
-            internal void UnregisterPowerEvent(Guid eventId, EventHandler eventToUnregister)
+            internal void UnregisterPowerEvent(in Guid eventId, in EventHandler eventToUnregister)
             {
                 readerWriterLock.AcquireWriterLock(Timeout.Infinite);
                 if (eventList.Contains(eventId))
@@ -129,7 +131,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
             /// Executes any registered event handlers.
             /// </summary>
             /// <param name="eventHandlerList">ArrayList of event handlers.</param>            
-            private static void ExecuteEvents(ArrayList eventHandlerList)
+            private static void ExecuteEvents(in ArrayList eventHandlerList)
             {
                 foreach (EventHandler handler in eventHandlerList)
 
@@ -152,10 +154,10 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                              m.LParam, typeof(PowerManagementNativeMethods.PowerBroadcastSetting));
 
                     var pData = new IntPtr(m.LParam.ToInt64() + Marshal.SizeOf(ps));
-                    Guid currentEvent = ps.PowerSetting;
+                    string currentEvent = ps.PowerSetting.ToString();
                                         
                     // IsMonitorOn
-                    if (ps.PowerSetting == EventManager.MonitorPowerStatus &&
+                    if (currentEvent == MonitorPowerStatus &&
                         ps.DataLength == Marshal.SizeOf(typeof(int)))
                     {
                         int monitorStatus = (int)Marshal.PtrToStructure(pData, typeof(int));

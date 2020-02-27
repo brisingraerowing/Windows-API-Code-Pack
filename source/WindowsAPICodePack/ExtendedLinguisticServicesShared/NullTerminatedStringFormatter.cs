@@ -17,7 +17,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// </summary>
         /// <param name="dataRange">The <see cref="MappingDataRange">MappingDataRange</see> to convert</param>
         /// <returns>The resulting string</returns>
-        public string Format(MappingDataRange dataRange)
+        public string Format(in MappingDataRange dataRange)
         {       
             byte[] data = (dataRange ?? throw new ArgumentNullException(nameof(dataRange))).GetData();
 
@@ -43,7 +43,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// </summary>
         /// <param name="bag">The property bag to convert.</param>
         /// <returns>An array of strings, one per <see cref="MappingDataRange">MappingDataRange</see>.</returns>
-        public string[] FormatAll(MappingPropertyBag bag)
+        public string[] FormatAll(in MappingPropertyBag bag)
         {
             MappingDataRange[] dataRanges = (bag ?? throw new ArgumentNullException(nameof(bag))).GetResultRanges();
             string[] results = new string[dataRanges.Length];

@@ -29,8 +29,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
         private ShellObject initialNavigationTarget;
         private ExplorerBrowserViewMode? initialViewMode;
 
-        private AutoResetEvent itemsChanged = new AutoResetEvent(false);
-        private AutoResetEvent selectionChanged = new AutoResetEvent(false);
+        private readonly AutoResetEvent itemsChanged = new AutoResetEvent(false);
+        private readonly AutoResetEvent selectionChanged = new AutoResetEvent(false);
         private int selectionChangeWaitCount;
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
             InitializeComponent();
 
             // the ExplorerBrowser WinForms control
-            ExplorerBrowserControl = new Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser();
+            ExplorerBrowserControl = new WindowsForms.ExplorerBrowser();
 
             // back the dependency collection properties with instances
             SelectedItems = selectedItems = new ObservableCollection<ShellObject>();
@@ -60,8 +60,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
             try
             {
                 host.Child = ExplorerBrowserControl;
-                this.root.Children.Clear();
-                this.root.Children.Add(host);
+                root.Children.Clear();
+                _ = root.Children.Add(host);
             }
             catch
             {
@@ -863,12 +863,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
                         typeof(ExplorerBrowser),
                         new PropertyMetadata(0, OnNavigationLogIndexChanged));
 
-        private static void OnNavigationLogIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var instance = d as ExplorerBrowser;
-            if (instance.ExplorerBrowserControl != null)
-                instance.ExplorerBrowserControl.NavigationLog.NavigateLog((int)e.NewValue);
-        }
+        private static void OnNavigationLogIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) => _ = (d as ExplorerBrowser)?.ExplorerBrowserControl?.NavigationLog.NavigateLog((int)e.NewValue);
 
 
         #region IDisposable Members
