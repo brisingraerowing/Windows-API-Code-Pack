@@ -6,6 +6,11 @@ Note: The 'Fix #<number\>' notice indicates that the relative fix is available a
 ???? 2.0
 ========
 
+Global
+------
+
+Some types have been renamed and/or have moved.
+
 Shell 2.0
 ---------
 
