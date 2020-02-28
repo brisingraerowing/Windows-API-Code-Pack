@@ -1,5 +1,5 @@
-Windows-API-Code-Pack-1.1.5.2
-=============================
+Windows-API-Code-Pack
+=====================
 
 README
 ======
