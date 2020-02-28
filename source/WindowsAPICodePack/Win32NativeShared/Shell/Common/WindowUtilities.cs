@@ -13,11 +13,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         {
             var childScreenCoord = new NativePoint();
 
-            _ = TabbedThumbnailNativeMethods.ClientToScreen(hwnd, ref childScreenCoord);
+            _ = HandlerNativeMethods.ClientToScreen(hwnd, ref childScreenCoord);
 
             var parentScreenCoord = new NativePoint();
 
-            _ = TabbedThumbnailNativeMethods.ClientToScreen(hwndParent, ref parentScreenCoord);
+            _ = HandlerNativeMethods.ClientToScreen(hwndParent, ref parentScreenCoord);
 
             var offset = new System.Drawing.Point(
                 childScreenCoord.X - parentScreenCoord.X,
@@ -30,11 +30,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         {
             var c = new NativePoint();
 
-            _ = TabbedThumbnailNativeMethods.ClientToScreen(hwnd, ref c);
+            _ = HandlerNativeMethods.ClientToScreen(hwnd, ref c);
 
-            var r = new NativeRect();
-
-            _ = TabbedThumbnailNativeMethods.GetWindowRect(hwnd, ref r);
+            _ = HandlerNativeMethods.GetWindowRect(hwnd, out NativeRect r);
 
             return new System.Drawing.Size(c.X - r.Left, c.Y - r.Top);
         }

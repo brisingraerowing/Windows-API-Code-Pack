@@ -345,7 +345,10 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
 
                     if (isMonitorOn == null)
                     {
-                        void dummy(object sender, EventArgs args) { }
+#if !NETFRAMEWORK
+                        static
+#endif
+                            void dummy(object sender, EventArgs args) { }
                         IsMonitorOnChanged += dummy;
                         // Wait until Windows updates the power source 
                         // (through RegisterPowerSettingNotification)

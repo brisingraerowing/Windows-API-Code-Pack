@@ -223,6 +223,11 @@
             <para>MessageText: No object for moniker</para>
             </summary>
         </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders">
+            <summary>
+            KnownFolder Guids
+            </summary>
+        </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Computer">
             <summary>
             Computer
@@ -661,6 +666,11 @@
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.OriginalImages">
             <summary>
             Original Images
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7">
+            <summary>
+            Win7 KnownFolders Guids
             </summary>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.UserProgramFiles">
@@ -1345,6 +1355,11 @@
         <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Methods">
             <summary>
             This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SERVICE_METHODS. The commands in this category relate to methods of a device service.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.ApplicationServices.Guids.EventManager">
+            <summary>
+            Hardcoded GUIDS for each event.
             </summary>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes.NotSpecified">

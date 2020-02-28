@@ -2,7 +2,7 @@
 
 using Microsoft.WindowsAPICodePack.Win32Native;
 using System.Security.Permissions;
-namespace MS.WindowsAPICodePack
+namespace Microsoft.WindowsAPICodePack
 {
     /// <summary>
     /// Safe Region Handle

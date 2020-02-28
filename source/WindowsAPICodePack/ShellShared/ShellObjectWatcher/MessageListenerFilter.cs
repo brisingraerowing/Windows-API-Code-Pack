@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MS.WindowsAPICodePack.Internal;
+using Microsoft.WindowsAPICodePack.Internal;
 using System.Threading;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;

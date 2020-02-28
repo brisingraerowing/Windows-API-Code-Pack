@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using MS.WindowsAPICodePack.Internal;
+using Microsoft.WindowsAPICodePack.Internal;
 
 namespace Microsoft.WindowsAPICodePack.Controls
 {

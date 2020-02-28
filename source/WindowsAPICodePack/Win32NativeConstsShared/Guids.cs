@@ -6,6 +6,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+namespace Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions
+
+{
+
+    public static class Guids
+
+    {
+
+        public const string IPreviewHandler = "8895b1c6-b41f-4c1c-a562-0d564250836f";
+        public const string IPreviewHandlerFrame = "fec87aaf-35f9-447a-adb7-20234491401a";
+        public const string IPreviewHandlerVisuals = "8327b13c-b63f-4b24-9b8a-d010dcc3f599";
+        public const string IThumbnailProvider = "e357fccd-a995-4576-b01f-234630154e96";
+
+        public const string IInitializeWithFile = "b7d14566-0509-4cce-a71f-0a554233bd9b";
+        public const string IInitializeWithStream = "b824b49d-22ac-4161-ac8a-9916e8fa3f7f";
+        public const string IInitializeWithItem = "7f73be3f-fb79-493c-a6c7-7ee14e245841";
+
+        public const string IObjectWithSite = "fc4801a3-2ba9-11cf-a229-00aa003d7352";
+        public const string IOleWindow = "00000114-0000-0000-C000-000000000046";
+
+    }
+
+}
+
 namespace Microsoft.WindowsAPICodePack
 
 {
@@ -831,14 +855,14 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Guids
         /// </summary>
         public const string EventV2 = "52807B8A-4914-4323-9B9A-74F654B2B846";
 
-#region This section defines the legacy WPD definitions. When WPD_SERVICES_STRICT mode is defined-these definitions are removed from this header file. You may find replacements or equivalents in the Device Services headers (for example-BridgeDeviceService.h).
+        #region This section defines the legacy WPD definitions. When WPD_SERVICES_STRICT mode is defined-these definitions are removed from this header file. You may find replacements or equivalents in the Device Services headers (for example-BridgeDeviceService.h).
         // # ifndef WPD_SERVICES_STRICT
 
         public static class Legacy
 
         {
 
-#endregion
+            #endregion
             /// <summary>
             /// This class defines the legacy WPD Formats
             /// </summary>
@@ -1406,6 +1430,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
     {
 
         public const string ISpecifyPropertyPages = "B196B28B-BAB4-101A-B69C-00AA00341D07";
+        public const string IMarshal = "00000003-0000-0000-C000-000000000046";
 
     }
 
@@ -1448,7 +1473,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices.Guids
         public const string BatteryCapacityChange = "a7ad8041-b45a-4cae-87a3-eecbb468a9e1";
         public const string BackgroundTaskNotification = "515c31d8-f734-163d-a0fd-11a08c91e8f1";
         public const string MonitorPowerStatus = "02731015-4510-4526-99e6-e5a17ebd1aea";
-    
+
     }
 
 }

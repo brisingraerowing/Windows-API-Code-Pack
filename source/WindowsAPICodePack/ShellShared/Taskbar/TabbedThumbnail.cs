@@ -13,7 +13,9 @@ using Microsoft.WindowsAPICodePack.Shell.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
-using MS.WindowsAPICodePack.Internal;
+using Microsoft.WindowsAPICodePack.Internal;
+
+using static Microsoft.WindowsAPICodePack.Win32Native.Taskbar.Consts.TabbedThumbnail;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar
 {
@@ -33,25 +35,26 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         internal Window WindowsControlParentWindow { get; set; }
 
         private TaskbarWindow _taskbarWindow;
+
         internal TaskbarWindow TaskbarWindow
         {
-            get { return _taskbarWindow; }
+            get => _taskbarWindow;
             set
             {
                 _taskbarWindow = value;
 
                 // If we have a TaskbarWindow assigned, set it's icon
                 if (_taskbarWindow != null && _taskbarWindow.TabbedThumbnailProxyWindow != null)
-                {
+
                     _taskbarWindow.TabbedThumbnailProxyWindow.Icon = Icon;
-                }
             }
         }
 
         private bool _addedToTaskbar;
+
         internal bool AddedToTaskbar
         {
-            get { return _addedToTaskbar; }
+            get => _addedToTaskbar;
             set
             {
                 _addedToTaskbar = value;
@@ -85,7 +88,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
             if (windowHandle == IntPtr.Zero)
 
-                throw new ArgumentException(LocalizedMessages.TabbedThumbnailZeroChildHandle, "windowHandle");
+                throw new ArgumentException(LocalizedMessages.TabbedThumbnailZeroChildHandle, nameof(windowHandle));
 
             WindowHandle = windowHandle;
             ParentWindowHandle = parentWindowHandle;
@@ -108,7 +111,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
             if (control == null)
 
-                throw new ArgumentNullException("control");
+                throw new ArgumentNullException(nameof(control));
 
             WindowHandle = control.Handle;
             ParentWindowHandle = parentWindowHandle;
@@ -139,6 +142,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         #region Public Properties
 
         private string _title = string.Empty;
+
         /// <summary>
         /// Title for the window shown as the taskbar thumbnail.
         /// </summary>
@@ -156,6 +160,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         }
 
         private string _tooltip = string.Empty;
+
         /// <summary>
         /// Tooltip to be shown for this thumbnail on the taskbar. 
         /// By default this is full title of the window shown on the taskbar.
@@ -202,6 +207,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         }
 
         private Rectangle? _clippingRectangle;
+
         /// <summary>
         /// Specifies that only a portion of the window's client area
         /// should be used in the window's thumbnail.
@@ -262,15 +268,29 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             var encoder = new BmpBitmapEncoder();
             encoder.Frames.Add(BitmapFrame.Create(bitmapSource));
 
-            using (var memoryStream = new MemoryStream())
+#if NETFRAMEWORK
+
+            using (MemoryStream memoryStream = new MemoryStream())
             {
                 encoder.Save(memoryStream);
                 memoryStream.Position = 0;
 
-                using (var bmp = new Bitmap(memoryStream))
-
+                using (Bitmap bmp = new Bitmap(memoryStream))
+                {
                     SetImage(bmp.GetHbitmap());
+                }
             }
+
+#else
+
+            using var memoryStream = new MemoryStream();
+            encoder.Save(memoryStream);
+            memoryStream.Position = 0;
+
+            using var bmp = new Bitmap(memoryStream);
+            SetImage(bmp.GetHbitmap());
+
+#endif
         }
 
         /// <summary>
@@ -325,11 +345,11 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// </summary>
         public Vector? PeekOffset { get; set; }
 
-        #endregion
+#endregion
 
 
 
-        #region Events
+#region Events
 
         /// <summary>
         /// This event is raised when the Title property changes.
@@ -369,29 +389,28 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
         internal void OnTabbedThumbnailMaximized()
         {
-            if (TabbedThumbnailMaximized != null)
-            {
-                TabbedThumbnailMaximized(this, GetTabbedThumbnailEventArgs());
-            }
-            else
-            {
+            if (TabbedThumbnailMaximized == null)
+
                 // No one is listening to these events.
                 // Forward the message to the main window
-                _ = CoreNativeMethods.SendMessage(ParentWindowHandle, WindowMessage.SystemCommand, new IntPtr(TabbedThumbnailNativeMethods.ScMaximize), IntPtr.Zero);
-            }
+                _ = CoreNativeMethods.SendMessage(ParentWindowHandle, WindowMessage.SystemCommand, new IntPtr(ScMaximize), IntPtr.Zero);
+
+            else
+
+                TabbedThumbnailMaximized(this, GetTabbedThumbnailEventArgs());
         }
 
         internal void OnTabbedThumbnailMinimized()
         {
-            if (TabbedThumbnailMinimized != null)
-
-                TabbedThumbnailMinimized(this, GetTabbedThumbnailEventArgs());
-
-            else
+            if (TabbedThumbnailMinimized == null)
 
                 // No one is listening to these events.
                 // Forward the message to the main window
-                _ = CoreNativeMethods.SendMessage(ParentWindowHandle, WindowMessage.SystemCommand, new IntPtr(TabbedThumbnailNativeMethods.ScMinimize), IntPtr.Zero);
+                _ = CoreNativeMethods.SendMessage(ParentWindowHandle, WindowMessage.SystemCommand, new IntPtr(ScMinimize), IntPtr.Zero);
+
+            else
+
+                TabbedThumbnailMinimized(this, GetTabbedThumbnailEventArgs());
         }
 
         /// <summary>
@@ -401,7 +420,13 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         internal bool OnTabbedThumbnailClosed()
         {
             EventHandler<TabbedThumbnailClosedEventArgs> closedHandler = TabbedThumbnailClosed;
-            if (closedHandler != null)
+
+            if (closedHandler == null)
+
+                // No one is listening to these events. Forward the message to the main window
+                _ = CoreNativeMethods.SendMessage(ParentWindowHandle, WindowMessage.NCDestroy, IntPtr.Zero, IntPtr.Zero);
+
+            else
             {
                 TabbedThumbnailClosedEventArgs closingEvent = GetTabbedThumbnailClosingEventArgs();
 
@@ -409,10 +434,6 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
                 if (closingEvent.Cancel) return false;
             }
-            else
-
-                // No one is listening to these events. Forward the message to the main window
-                _ = CoreNativeMethods.SendMessage(ParentWindowHandle, WindowMessage.NCDestroy, IntPtr.Zero, IntPtr.Zero);
 
             // Remove it from the internal list as well as the taskbar
             TaskbarManager.Instance.TabbedThumbnail.RemoveThumbnailPreview(this);
@@ -421,15 +442,15 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
         internal void OnTabbedThumbnailActivated()
         {
-            if (TabbedThumbnailActivated != null)
-
-                TabbedThumbnailActivated(this, GetTabbedThumbnailEventArgs());
-
-            else
+            if (TabbedThumbnailActivated == null)
 
                 // No one is listening to these events.
                 // Forward the message to the main window
                 _ = CoreNativeMethods.SendMessage(ParentWindowHandle, WindowMessage.ActivateApplication, new IntPtr(1), new IntPtr(Thread.CurrentThread.GetHashCode()));
+
+            else
+
+                TabbedThumbnailActivated(this, GetTabbedThumbnailEventArgs());
         }
 
         internal void OnTabbedThumbnailBitmapRequested()
@@ -470,19 +491,19 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             TabbedThumbnailEventArgs eventArgs = null;
 
             if (WindowHandle != IntPtr.Zero)
-            
+
                 eventArgs = new TabbedThumbnailEventArgs(WindowHandle);
-            
+
             else if (WindowsControl != null)
-            
+
                 eventArgs = new TabbedThumbnailEventArgs(WindowsControl);
-            
+
             return eventArgs;
         }
 
-        #endregion
+#endregion
 
-        #region IDisposable Members
+#region IDisposable Members
 
         /// <summary>
         /// 
@@ -511,8 +532,11 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             {
                 _taskbarWindow = null;
 
-                if (Icon != null) { Icon.Dispose();
-                Icon = null; }
+                if (Icon != null)
+                {
+                    Icon.Dispose();
+                    Icon = null;
+                }
 
                 _title = null;
                 _tooltip = null;
@@ -526,6 +550,6 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             }
         }
 
-        #endregion
+#endregion
     }
 }

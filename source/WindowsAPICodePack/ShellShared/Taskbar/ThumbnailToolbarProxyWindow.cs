@@ -5,7 +5,9 @@ using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
-using MS.WindowsAPICodePack.Internal;
+using Microsoft.WindowsAPICodePack.Internal;
+
+using static Microsoft.WindowsAPICodePack.Win32Native.Taskbar.Consts.TabbedThumbnail;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar
 {
@@ -24,7 +26,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         {
             if (windowHandle == IntPtr.Zero)
 
-                throw new ArgumentException(LocalizedMessages.CommonFileDialogInvalidHandle, "windowHandle");
+                throw new ArgumentException(LocalizedMessages.CommonFileDialogInvalidHandle, nameof(windowHandle));
 
             if (buttons != null && buttons.Length == 0)
 
@@ -68,7 +70,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             // If it's a WM_Destroy message, then also forward it to the base class (our native window)
             if (((m.Msg == (int)WindowMessage.Destroy) ||
                (m.Msg == (int)WindowMessage.NCDestroy) ||
-               ((m.Msg == (int)WindowMessage.SystemCommand) && (((int)m.WParam) == TabbedThumbnailNativeMethods.ScClose))) ^ !handled)
+               ((m.Msg == (int)WindowMessage.SystemCommand) && (((int)m.WParam) == ScClose))) ^ !handled)
             
                 base.WndProc(ref m);
                     }

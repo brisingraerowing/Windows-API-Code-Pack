@@ -4,7 +4,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 
-namespace MS.WindowsAPICodePack
+namespace Microsoft.WindowsAPICodePack
 {
     /// <summary>
     /// Base class for Safe handles with Null IntPtr as invalid

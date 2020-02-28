@@ -4,15 +4,18 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Windows.Media;
+
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
-using MS.WindowsAPICodePack.Internal;
-using static Microsoft.WindowsAPICodePack.Win32Native.Taskbar.Consts;
+using Microsoft.WindowsAPICodePack.Internal;
+
+using static Microsoft.WindowsAPICodePack.Win32Native.Taskbar.Consts.TabbedThumbnail;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar
 {
@@ -55,7 +58,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             }
             catch
             {
-                if (temp != null) temp.Dispose();
+                temp?.Dispose();
                 throw;
             }
         }
@@ -108,16 +111,31 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             TaskbarList.Instance.SetTabActive(windowHandle, preview.ParentWindowHandle, 0);
 
             // We need to make sure we can set these properties even when running with admin 
-            _ = TabbedThumbnailNativeMethods.ChangeWindowMessageFilter(
-                TabbedThumbnailNativeMethods.WmDwmSendIconicThumbnail,
-                TabbedThumbnailNativeMethods.MsgfltAdd);
 
-            _ = TabbedThumbnailNativeMethods.ChangeWindowMessageFilter(
-                TabbedThumbnailNativeMethods.WmDwmSendIconicLivePreviewBitmap,
-                TabbedThumbnailNativeMethods.MsgfltAdd);
+            var changeFilterResult = new ChangeFilterStruct
+            {
+                cbSize = (uint)Marshal.SizeOf<ChangeFilterStruct>()
+            };
+
+            _ = TabbedThumbnailNativeMethods.ChangeWindowMessageFilterEx(
+                windowHandle,
+                WindowMessage.DWMSendIconicThumbnail,
+                MessageFilterAction.Allow,
+                ref changeFilterResult);
+
+            changeFilterResult = new ChangeFilterStruct
+            {
+                cbSize = (uint)Marshal.SizeOf<ChangeFilterStruct>()
+            };
+
+            _ = TabbedThumbnailNativeMethods.ChangeWindowMessageFilterEx(
+                windowHandle,
+                WindowMessage.DWMSendIconicLivePreviewBitmap,
+                MessageFilterAction.Allow,
+                ref changeFilterResult);
 
             // BUG: There should be somewhere to disable CustomWindowPreview. I didn't find it.
-            TabbedThumbnailNativeMethods.EnableCustomWindowPreview(windowHandle, true);
+            DesktopWindowManagerNativeMethods.EnableCustomWindowPreview(windowHandle, true);
 
             // Make sure we use the initial title set by the user
             // Trigger a "fake" title changed event, so the title is set on the taskbar thumbnail.
@@ -186,7 +204,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
                     AddButtons(taskbarWindow);
 
-                if (m.Msg == Win32Native.Taskbar.Consts.WmCommand &&
+                if (m.Msg == Win32Native.Taskbar.Consts.Common.WmCommand &&
                     CoreNativeMethods.GetHiWord(m.WParam.ToInt64(), 16) == ThumbButton.Clicked)
                 {
                     int buttonId = CoreNativeMethods.GetLoWord(m.WParam.ToInt64());
@@ -217,7 +235,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
         private static bool DispatchSendIconThumbnailMessage(ref System.Windows.Forms.Message m, TaskbarWindow taskbarWindow)
         {
-            if (m.Msg == (int)WmDwmSendIconThumbnail)
+            if (m.Msg == (int)WindowMessage.DWMSendIconicThumbnail)
             {
                 int width = (int)((long)m.LParam >> 16);
                 int height = (int)(((long)m.LParam) & (0xFFFF));
@@ -234,7 +252,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 // Get the size of teh control or UIElement
                 if (taskbarWindow.TabbedThumbnail.WindowHandle != IntPtr.Zero)
 
-                    _ = TabbedThumbnailNativeMethods.GetClientSize(taskbarWindow.TabbedThumbnail.WindowHandle, out realWindowSize);
+                    _ = HandlerNativeMethods.GetClientSize(taskbarWindow.TabbedThumbnail.WindowHandle, out realWindowSize);
 
                 else if (taskbarWindow.TabbedThumbnail.WindowsControl != null)
 
@@ -306,7 +324,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                         _ = ShellNativeMethods.DeleteObject(hBitmap);
 
                     hBitmap = temp.GetHbitmap();
-                    TabbedThumbnailNativeMethods.SetIconicThumbnail(taskbarWindow.WindowToTellTaskbarAbout, hBitmap);
+                    DesktopWindowManagerNativeMethods.SetIconicThumbnail(taskbarWindow.WindowToTellTaskbarAbout, hBitmap);
                     temp.Dispose();
                 }
 
@@ -323,7 +341,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
         private static bool DispatchLivePreviewBitmapMessage(ref System.Windows.Forms.Message m, TaskbarWindow taskbarWindow)
         {
-            if (m.Msg == (int)Win32Native.Taskbar.Consts.WmDwmSendIconicLivePreviewBitmap)
+            if (m.Msg == (int)WindowMessage.DWMSendIconicLivePreviewBitmap)
             {
                 // Try to get the width/height
                 int width = (int)(((long)m.LParam) >> 16);
@@ -334,7 +352,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
                 if (taskbarWindow.TabbedThumbnail.WindowHandle != IntPtr.Zero)
 
-                    _ = TabbedThumbnailNativeMethods.GetClientSize(taskbarWindow.TabbedThumbnail.WindowHandle, out realWindowSize);
+                    _ = HandlerNativeMethods.GetClientSize(taskbarWindow.TabbedThumbnail.WindowHandle, out realWindowSize);
 
                 else if (taskbarWindow.TabbedThumbnail.WindowsControl != null)
 
@@ -376,7 +394,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                     // let DWM handle it
                     if (hBitmap != IntPtr.Zero && offset.X >= 0 && offset.Y >= 0)
 
-                        TabbedThumbnailNativeMethods.SetPeekBitmap(
+                        DesktopWindowManagerNativeMethods.SetPeekBitmap(
                             taskbarWindow.WindowToTellTaskbarAbout,
                             hBitmap, offset,
                             taskbarWindow.TabbedThumbnail.DisplayFrameAroundBitmap);
@@ -415,14 +433,14 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
                         if (offset.X >= 0 && offset.Y >= 0)
 
-                            TabbedThumbnailNativeMethods.SetPeekBitmap(
+                            DesktopWindowManagerNativeMethods.SetPeekBitmap(
                                 taskbarWindow.WindowToTellTaskbarAbout,
                                 hBitmap, new Point((int)offset.X, (int)offset.Y),
                                 taskbarWindow.TabbedThumbnail.DisplayFrameAroundBitmap);
 
                         else
 
-                            TabbedThumbnailNativeMethods.SetPeekBitmap(
+                            DesktopWindowManagerNativeMethods.SetPeekBitmap(
                                 taskbarWindow.WindowToTellTaskbarAbout,
                                 hBitmap,
                                 taskbarWindow.TabbedThumbnail.DisplayFrameAroundBitmap);
@@ -445,7 +463,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                     // let DWM handle it
                     if (hBitmap != null)
 
-                        TabbedThumbnailNativeMethods.SetPeekBitmap(taskbarWindow.WindowToTellTaskbarAbout, hBitmap, taskbarWindow.TabbedThumbnail.DisplayFrameAroundBitmap);
+                        DesktopWindowManagerNativeMethods.SetPeekBitmap(taskbarWindow.WindowToTellTaskbarAbout, hBitmap, taskbarWindow.TabbedThumbnail.DisplayFrameAroundBitmap);
 
                     // If the bitmap we have is not coming from the user (i.e. we created it here),
                     // then make sure we delete it as we don't need it now.
@@ -495,7 +513,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         {
             if (m.Msg == (int)WindowMessage.SystemCommand)
             {
-                if (((int)m.WParam) == TabbedThumbnailNativeMethods.ScClose)
+                if (((int)m.WParam) == ScClose)
 
                     // Raise the event
                     if (taskbarWindow.TabbedThumbnail.OnTabbedThumbnailClosed())
@@ -509,12 +527,12 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                         taskbarWindow = null;
                     }
 
-                    else if (((int)m.WParam) == TabbedThumbnailNativeMethods.ScMaximize)
+                    else if (((int)m.WParam) == ScMaximize)
 
                         // Raise the event
                         taskbarWindow.TabbedThumbnail.OnTabbedThumbnailMaximized();
 
-                    else if (((int)m.WParam) == TabbedThumbnailNativeMethods.ScMinimize)
+                    else if (((int)m.WParam) == ScMinimize)
 
                         // Raise the event
                         taskbarWindow.TabbedThumbnail.OnTabbedThumbnailMinimized();
@@ -651,7 +669,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         {
             if (taskbarWindow != null)
 
-                _ = TabbedThumbnailNativeMethods.DwmInvalidateIconicBitmaps(
+                _ = DesktopWindowManagerNativeMethods.DwmInvalidateIconicBitmaps(
                     taskbarWindow.WindowToTellTaskbarAbout);
         }
 

@@ -17,7 +17,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         internal Win32PropertyBag _win32PropertyBag;
         internal IntPtr _options = IntPtr.Zero;
         internal GCHandle _text;
-        private ServiceCache _serviceCache;
+        private readonly ServiceCache _serviceCache;
         private int _isFinalized;
 
         internal MappingPropertyBag(MappingOptions options, string text)

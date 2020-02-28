@@ -211,7 +211,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                 throw new PropertySystemException("This property is not removable.");
 
-            _propertyCollection.NativePropertiesCollection.Delete(PropertyKey);
+            _ = _propertyCollection.NativePropertiesCollection.Delete(PropertyKey);
 
         }
 

@@ -3,7 +3,7 @@
 using System;
 using System.Diagnostics;
 using System.Windows.Interop;
-using MS.WindowsAPICodePack.Internal;
+using Microsoft.WindowsAPICodePack.Internal;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 using Microsoft.WindowsAPICodePack.Win32Native;

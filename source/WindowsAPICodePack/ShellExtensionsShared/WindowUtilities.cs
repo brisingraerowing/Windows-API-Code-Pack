@@ -1,6 +1,5 @@
 ﻿using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,7 +15,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
 
         public static WindowStyles GetWindowStyles(IntPtr hwnd)
         {
-            int result = HandlerNativeMethods.GetWindowLongPtr(hwnd, GetWindowLong.Style);
+            int result = HandlerNativeMethods.GetWindowLongPtr(hwnd, GetWindowLongEnum.Style);
 
             if (result == 0)
 
@@ -27,7 +26,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
 
         public static WindowStylesEx GetWindowStylesEx(IntPtr hwnd)
         {
-            int result = HandlerNativeMethods.GetWindowLongPtr(hwnd, GetWindowLong.ExStyle);
+            int result = HandlerNativeMethods.GetWindowLongPtr(hwnd, GetWindowLongEnum.ExStyle);
 
             if (result == 0)
 
@@ -38,16 +37,26 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
 
         public static void SetWindowStyles(IntPtr hwnd, WindowStyles styles)
         {
-            if (HandlerNativeMethods.SetWindowLongPtr(hwnd, GetWindowLong.Style, (uint)styles) == 0)
+            if (HandlerNativeMethods.SetWindowLongPtr(hwnd, GetWindowLongEnum.Style, (uint)styles) == 0)
 
                 Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
         }
 
         public static void SetWindowStylesEx(IntPtr hwnd, WindowStylesEx styles)
         {
-            if (HandlerNativeMethods.SetWindowLongPtr(hwnd, GetWindowLong.ExStyle, (uint)styles) == 0)
+            if (HandlerNativeMethods.SetWindowLongPtr(hwnd, GetWindowLongEnum.ExStyle, (uint)styles) == 0)
 
                 Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+        }
+
+        public static void SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, SetWindowPositionOptions windowPositionOptions)
+
+        {
+
+            if (!HandlerNativeMethods.SetWindowPos(hWnd, hWndInsertAfter, x, y, cx, cy, windowPositionOptions))
+
+                Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+
         }
 
         public static void SetWindow(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, WindowStyles styles, WindowStylesEx stylesEx, SetWindowPositionOptions windowPositionOptions)
@@ -55,7 +64,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
 
             SetWindowStyles(hWnd, styles);
             SetWindowStylesEx(hWnd, stylesEx);
-            HandlerNativeMethods.SetWindowPos(hWnd, hWndInsertAfter, x, y, cx, cy, windowPositionOptions);
+            SetWindowPos(hWnd, hWndInsertAfter, x, y, cx, cy, windowPositionOptions);
 
         }
 
@@ -68,18 +77,30 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
 
         }
 
+        // TODO: also return the int given by HandlerNativeMethods.GetWindowThreadProcessId?
+        public static int GetWindowThreadProcessId(IntPtr activatedHandle)
+
+        {
+
+            _ = HandlerNativeMethods.GetWindowThreadProcessId(activatedHandle, out int activeProcId);
+
+            return activeProcId;
+
+        }
+
+        // TODO: should HandlerNativeMethods.GetForegroundWindow() be used directly?
+        public static IntPtr GetForegroundWindow() => HandlerNativeMethods.GetForegroundWindow();
+
         public static bool AreAnyCurrentThreadWindowOnForeground()
         {
 
-            IntPtr activatedHandle = HandlerNativeMethods.GetForegroundWindow();
+            IntPtr activatedHandle = GetForegroundWindow();
 
             if (activatedHandle == null || activatedHandle == IntPtr.Zero) return false;
 
             int procId = Process.GetCurrentProcess().Id;
 
-            HandlerNativeMethods.GetWindowThreadProcessId(activatedHandle, out int activeProcId);
-
-            return activeProcId == procId;
+            return GetWindowThreadProcessId(activatedHandle) == procId;
 
         }
 

@@ -90,18 +90,28 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Controls.ExplorerBrowserViewD
 
 }
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.Taskbar
+namespace Microsoft.WindowsAPICodePack.Win32Native.Taskbar.Consts
 
 {
 
-    public static class Consts
+    public static class Common
 
     {
 
         public const int WmCommand = 0x0111;
 
-        public const uint WmDwmSendIconThumbnail = 0x0323;
-        public const uint WmDwmSendIconicLivePreviewBitmap = 0x0326;
+    }
+
+    public static class TabbedThumbnail
+
+    {
+
+        public const uint WaActive = 1;
+        public const uint WaClickActive = 2;
+
+        public const int ScClose = 0xF060;
+        public const int ScMaximize = 0xF030;
+        public const int ScMinimize = 0xF020;
 
     }
 
@@ -118,6 +128,17 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.Consts
 
 {
+
+    public static class DesktopWindowManager
+
+    {
+
+        public const int DisplayFrame = 0x00000001;
+
+        public const int ForceIconicRepresentation = 7;
+        public const int HasIconicBitmap = 10;
+
+    }
 
     public static class CommandLinkDefinitions
 

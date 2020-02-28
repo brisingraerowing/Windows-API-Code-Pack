@@ -2021,50 +2021,50 @@
             <seealso cref="T:Microsoft.WindowsAPICodePack.PropertySystem.ObjectProperty"/>
             <seealso cref="T:Microsoft.WindowsAPICodePack.PropertySystem.PropertyCollection"/>
         </member>
-        <member name="T:MS.WindowsAPICodePack.SafeIconHandle">
+        <member name="T:Microsoft.WindowsAPICodePack.SafeIconHandle">
             <summary>
             Safe Icon Handle
             </summary>
         </member>
-        <member name="M:MS.WindowsAPICodePack.SafeIconHandle.ReleaseHandle">
+        <member name="M:Microsoft.WindowsAPICodePack.SafeIconHandle.ReleaseHandle">
             <summary>
             Release the handle
             </summary>
             <returns>true if handled is release successfully, false otherwise</returns>
         </member>
-        <member name="T:MS.WindowsAPICodePack.SafeRegionHandle">
+        <member name="T:Microsoft.WindowsAPICodePack.SafeRegionHandle">
             <summary>
             Safe Region Handle
             </summary>
         </member>
-        <member name="M:MS.WindowsAPICodePack.SafeRegionHandle.ReleaseHandle">
+        <member name="M:Microsoft.WindowsAPICodePack.SafeRegionHandle.ReleaseHandle">
             <summary>
             Release the handle
             </summary>
             <returns>true if handled is release successfully, false otherwise</returns>
         </member>
-        <member name="T:MS.WindowsAPICodePack.SafeWindowHandle">
+        <member name="T:Microsoft.WindowsAPICodePack.SafeWindowHandle">
             <summary>
             Safe Window Handle
             </summary>
         </member>
-        <member name="M:MS.WindowsAPICodePack.SafeWindowHandle.ReleaseHandle">
+        <member name="M:Microsoft.WindowsAPICodePack.SafeWindowHandle.ReleaseHandle">
             <summary>
             Release the handle
             </summary>
             <returns>true if handled is release successfully, false otherwise</returns>
         </member>
-        <member name="T:MS.WindowsAPICodePack.ZeroInvalidHandle">
+        <member name="T:Microsoft.WindowsAPICodePack.ZeroInvalidHandle">
             <summary>
             Base class for Safe handles with Null IntPtr as invalid
             </summary>
         </member>
-        <member name="M:MS.WindowsAPICodePack.ZeroInvalidHandle.#ctor">
+        <member name="M:Microsoft.WindowsAPICodePack.ZeroInvalidHandle.#ctor">
             <summary>
             Default constructor
             </summary>
         </member>
-        <member name="P:MS.WindowsAPICodePack.ZeroInvalidHandle.IsInvalid">
+        <member name="P:Microsoft.WindowsAPICodePack.ZeroInvalidHandle.IsInvalid">
             <summary>
             Determines if this is a valid handle
             </summary>

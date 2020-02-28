@@ -8,7 +8,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.Controls;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using static Microsoft.WindowsAPICodePack.Win32Native.Controls.ExplorerBrowserViewDispatchIds.Consts;
 
-namespace MS.WindowsAPICodePack.Internal
+namespace Microsoft.WindowsAPICodePack.Internal
 {
     /// <summary>
     /// This provides a connection point container compatible dispatch interface for
@@ -16,7 +16,7 @@ namespace MS.WindowsAPICodePack.Internal
     /// </summary>    
     [ComVisible(true)]
     [ClassInterface(ClassInterfaceType.AutoDual)]
-    public class ExplorerBrowserViewEvents : IDisposable
+    internal class ExplorerBrowserViewEvents : IDisposable
     {
         #region implementation
         private uint viewConnectionPointCookie;

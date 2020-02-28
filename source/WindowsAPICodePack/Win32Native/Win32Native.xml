@@ -15168,6 +15168,64 @@
             The window is an overlapped window. Same as the WS_TILEDWINDOW style.
             </summary>
         </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManagerNativeMethods">
+            <summary>
+            public class that contains interop declarations for 
+            functions that are not benign and are performance critical. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManagerNativeMethods.SetIconicThumbnail(System.IntPtr,System.IntPtr)">
+            <summary>
+            Sets the specified iconic thumbnail for the specified window.
+            This is typically done in response to a DWM message.
+            </summary>
+            <param name="hwnd">The window handle.</param>
+            <param name="hBitmap">The thumbnail bitmap.</param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManagerNativeMethods.SetPeekBitmap(System.IntPtr,System.IntPtr,System.Boolean)">
+            <summary>
+            Sets the specified peek (live preview) bitmap for the specified
+            window.  This is typically done in response to a DWM message.
+            </summary>
+            <param name="hwnd">The window handle.</param>
+            <param name="bitmap">The thumbnail bitmap.</param>
+            <param name="displayFrame">Whether to display a standard window
+            frame around the bitmap.</param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManagerNativeMethods.SetPeekBitmap(System.IntPtr,System.IntPtr,System.Drawing.Point,System.Boolean)">
+            <summary>
+            Sets the specified peek (live preview) bitmap for the specified
+            window.  This is typically done in response to a DWM message.
+            </summary>
+            <param name="hwnd">The window handle.</param>
+            <param name="bitmap">The thumbnail bitmap.</param>
+            <param name="offset">The client area offset at which to display
+            the specified bitmap.  The rest of the parent window will be
+            displayed as "remembered" by the DWM.</param>
+            <param name="displayFrame">Whether to display a standard window
+            frame around the bitmap.</param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManagerNativeMethods.EnableCustomWindowPreview(System.IntPtr,System.Boolean)">
+            <summary>
+            Call this method to either enable custom previews on the taskbar (second argument as true)
+            or to disable (second argument as false). If called with True, the method will call DwmSetWindowAttribute
+            for the specific window handle and let DWM know that we will be providing a custom bitmap for the thumbnail
+            as well as Aero peek.
+            </summary>
+            <param name="hwnd"></param>
+            <param name="enable"></param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.HandlerNativeMethods.SetWindowLongPtr(System.IntPtr,Microsoft.WindowsAPICodePack.Win32Native.Shell.GetWindowLongEnum,System.UInt32)">
+            <summary>
+            This helper static method is required because the 32-bit version of user32.dll does not contain this API
+            (on any versions of Windows), so linking the method will fail at run-time. The bridge dispatches the request
+            to the correct function (GetWindowLong in 32-bit mode and GetWindowLongPtr in 64-bit mode).
+            </summary>
+            <param name="hWnd">The pointer to the window.</param>
+            <param name="nIndex">The property to set.</param>
+            <param name="dwNewLong">The value to set.</param>
+            <returns></returns>
+        </member>
         <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.DefinitionOptions">
             <summary>
             Specifies behaviors for known folders.
@@ -17079,12 +17137,12 @@
             A COM interop events interface for the ISensor object
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop.IThumbnailProvider">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.IThumbnailProvider">
             <summary>
             ComVisible interface for native IThumbnailProvider
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop.IThumbnailProvider.GetThumbnail(System.UInt32,System.IntPtr@,System.UInt32@)">
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.IThumbnailProvider.GetThumbnail(System.UInt32,System.IntPtr@,System.UInt32@)">
             <summary>
             Gets a pointer to a bitmap to display as a thumbnail
             </summary>
@@ -17092,113 +17150,113 @@
             <param name="bitmapHandle"></param>
             <param name="bitmapType"></param>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop.IInitializeWithFile">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.IInitializeWithFile">
             <summary>
             Provides means by which to initialize with a file.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop.IInitializeWithFile.Initialize(System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.AccessModes)">
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.IInitializeWithFile.Initialize(System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.AccessModes)">
             <summary>
             Initializes with a file.
             </summary>
             <param name="filePath"></param>
             <param name="fileMode"></param>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop.IInitializeWithStream">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.IInitializeWithStream">
             <summary>
             Provides means by which to initialize with a stream.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop.IInitializeWithStream.Initialize(System.Runtime.InteropServices.ComTypes.IStream,Microsoft.WindowsAPICodePack.Win32Native.Shell.AccessModes)">
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.IInitializeWithStream.Initialize(System.Runtime.InteropServices.ComTypes.IStream,Microsoft.WindowsAPICodePack.Win32Native.Shell.AccessModes)">
             <summary>
             Initializes with a stream.
             </summary>
             <param name="stream"></param>
             <param name="fileMode"></param>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop.IInitializeWithItem">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.IInitializeWithItem">
             <summary>
             Provides means by which to initialize with a ShellObject
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop.IInitializeWithItem.Initialize(Microsoft.WindowsAPICodePack.Win32Native.Shell.IShellItem,Microsoft.WindowsAPICodePack.Win32Native.Shell.AccessModes)">
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.IInitializeWithItem.Initialize(Microsoft.WindowsAPICodePack.Win32Native.Shell.IShellItem,Microsoft.WindowsAPICodePack.Win32Native.Shell.AccessModes)">
             <summary>
             Initializes with ShellItem
             </summary>
             <param name="shellItem"></param>
             <param name="accessMode"></param>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop.LogFont">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.LogFont">
             <summary>
             Class for marshaling to native LogFont struct
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop.LogFont.Height">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.LogFont.Height">
             <summary>
             Font height
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop.LogFont.Width">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.LogFont.Width">
             <summary>
             Font width
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop.LogFont.Escapement">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.LogFont.Escapement">
             <summary>
             Font escapement
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop.LogFont.Orientation">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.LogFont.Orientation">
             <summary>
             Font orientation
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop.LogFont.Weight">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.LogFont.Weight">
             <summary>
             Font weight
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop.LogFont.Italic">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.LogFont.Italic">
             <summary>
             Font italic
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop.LogFont.Underline">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.LogFont.Underline">
             <summary>
             Font underline
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop.LogFont.Strikeout">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.LogFont.Strikeout">
             <summary>
             Font strikeout
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop.LogFont.CharacterSet">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.LogFont.CharacterSet">
             <summary>
             Font character set
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop.LogFont.OutPrecision">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.LogFont.OutPrecision">
             <summary>
             Font out precision
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop.LogFont.ClipPrecision">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.LogFont.ClipPrecision">
             <summary>
             Font clip precision
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop.LogFont.Quality">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.LogFont.Quality">
             <summary>
             Font quality
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop.LogFont.PitchAndFamily">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.LogFont.PitchAndFamily">
             <summary>
             Font pitch and family
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop.LogFont.FaceName">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.LogFont.FaceName">
             <summary>
             Font face name
             </summary>
@@ -17337,46 +17395,50 @@
             functions that are not benign and are performance critical. 
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.Taskbar.TabbedThumbnailNativeMethods.SetIconicThumbnail(System.IntPtr,System.IntPtr)">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Taskbar.MessageFilterAction">
             <summary>
-            Sets the specified iconic thumbnail for the specified window.
-            This is typically done in response to a DWM message.
+            The action to be performed by the <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.Taskbar.TabbedThumbnailNativeMethods.ChangeWindowMessageFilterEx(System.IntPtr,Microsoft.WindowsAPICodePack.Win32Native.WindowMessage,Microsoft.WindowsAPICodePack.Win32Native.Taskbar.MessageFilterAction,Microsoft.WindowsAPICodePack.Win32Native.Taskbar.ChangeFilterStruct@)"/>.
             </summary>
-            <param name="hwnd">The window handle.</param>
-            <param name="hBitmap">The thumbnail bitmap.</param>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.Taskbar.TabbedThumbnailNativeMethods.SetPeekBitmap(System.IntPtr,System.IntPtr,System.Boolean)">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Taskbar.MessageFilterAction.Reset">
             <summary>
-            Sets the specified peek (live preview) bitmap for the specified
-            window.  This is typically done in response to a DWM message.
+            Resets the window message filter for hWnd to the default. Any message allowed globally or process-wide will get through, but any message not included in those two categories, and which comes from a lower privileged process, will be blocked.
             </summary>
-            <param name="hwnd">The window handle.</param>
-            <param name="bitmap">The thumbnail bitmap.</param>
-            <param name="displayFrame">Whether to display a standard window
-            frame around the bitmap.</param>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.Taskbar.TabbedThumbnailNativeMethods.SetPeekBitmap(System.IntPtr,System.IntPtr,System.Drawing.Point,System.Boolean)">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Taskbar.MessageFilterAction.Allow">
             <summary>
-            Sets the specified peek (live preview) bitmap for the specified
-            window.  This is typically done in response to a DWM message.
+            Allows the message through the filter. This enables the message to be received by hWnd, regardless of the source of the message, even it comes from a lower privileged process.
             </summary>
-            <param name="hwnd">The window handle.</param>
-            <param name="bitmap">The thumbnail bitmap.</param>
-            <param name="offset">The client area offset at which to display
-            the specified bitmap.  The rest of the parent window will be
-            displayed as "remembered" by the DWM.</param>
-            <param name="displayFrame">Whether to display a standard window
-            frame around the bitmap.</param>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.Taskbar.TabbedThumbnailNativeMethods.EnableCustomWindowPreview(System.IntPtr,System.Boolean)">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Taskbar.MessageFilterAction.Disallow">
             <summary>
-            Call this method to either enable custom previews on the taskbar (second argument as true)
-            or to disable (second argument as false). If called with True, the method will call DwmSetWindowAttribute
-            for the specific window handle and let DWM know that we will be providing a custom bitmap for the thumbnail
-            as well as Aero peek.
+            Blocks the message to be delivered to hWnd if it comes from a lower privileged process, unless the message is allowed process-wide by using the ChangeWindowMessageFilter function or globally.
             </summary>
-            <param name="hwnd"></param>
-            <param name="enable"></param>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Taskbar.MessageResultInfo">
+            <summary>
+            Result info for the <see cref="!:TabbedThumbnailNativeMethods.ChangeWindowMessageFilterEx(IntPtr, ushort, MessageFilterAction, ref ChangeFilterStruct)"/>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Taskbar.MessageResultInfo.None">
+            <summary>
+            See the Remarks section of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Taskbar.ChangeFilterStruct"/> structure. Applies to <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Taskbar.MessageFilterAction.Allow"/> and <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Taskbar.MessageFilterAction.Disallow"/>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Taskbar.MessageResultInfo.AlreadyAllowedForWindow">
+            <summary>
+            The message has already been allowed by this window's message filter, and the function thus succeeded with no change to the window's message filter. Applies to <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Taskbar.MessageFilterAction.Allow"/>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Taskbar.MessageResultInfo.AlreadyDisallowedForWindow">
+            <summary>
+            The message has already been blocked by this window's message filter, and the function thus succeeded with no change to the window's message filter. Applies to <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Taskbar.MessageFilterAction.Disallow"/>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Taskbar.MessageResultInfo.AllowedHigher">
+            <summary>
+            The message is allowed at a scope higher than the window. Applies to <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Taskbar.MessageFilterAction.Disallow"/>.
+            </summary>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Taskbar.ThumbButton.Clicked">
             <summary>
@@ -19949,12 +20011,6 @@
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.ResourceSystem.ResourceAttribute">
             <summary>
             This class defines all Commands-Parameters and Options associated with: <see cref="!:Guids.PortableDevices.PropertySystem.ResourceAttributesV1"/>.
-            </summary>
-        </member>
-        <member name="T:MS.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManagerNativeMethods">
-            <summary>
-            public class that contains interop declarations for 
-            functions that are not benign and are performance critical. 
             </summary>
         </member>
     </members>

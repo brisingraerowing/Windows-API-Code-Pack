@@ -7,16 +7,14 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 {
 
     /// <summary>
-    /// <see cref="System.IAsyncResult">IAsyncResult</see> implementation for use with asynchronous calls to ELS.
+    /// <see cref="IAsyncResult">IAsyncResult</see> implementation for use with asynchronous calls to ELS.
     /// </summary>
     public class MappingAsyncResult : IAsyncResult, IDisposable
     {
-        private MappingResultState _resultState;
-        private ManualResetEvent _waitHandle;
+        private readonly ManualResetEvent _waitHandle;
 
-        internal MappingAsyncResult(
-in            object callerData,
-  in          AsyncCallback asyncCallback)
+        internal MappingAsyncResult(in object callerData,
+                                    in AsyncCallback asyncCallback)
         {
             CallerData = callerData;
             AsyncCallback = asyncCallback;
@@ -28,7 +26,7 @@ in            object callerData,
         /// <summary>
         /// Queries whether the operation completed successfully.
         /// </summary>
-        public bool Succeeded => PropertyBag != null && _resultState.HResult == 0;
+        public bool Succeeded => PropertyBag != null && ResultState.HResult == 0;
 
         /// <summary>
         /// Gets the resulting <see cref="MappingPropertyBag">MappingPropertyBag</see> (if it exists).
@@ -38,7 +36,7 @@ in            object callerData,
         /// <summary>
         /// Returns the current result state associated with this operation.
         /// </summary>
-        public MappingResultState ResultState => _resultState;
+        public MappingResultState ResultState { get; private set; }
 
         /// <summary>
         /// Returns the caller data associated with this operation.
@@ -47,7 +45,7 @@ in            object callerData,
 
         internal void SetResult(in MappingPropertyBag bag, in MappingResultState resultState)
         {
-            _resultState = resultState;
+            ResultState = resultState;
             PropertyBag = bag;
         }
 

@@ -6,7 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using MS.WindowsAPICodePack.Internal;
+using Microsoft.WindowsAPICodePack.Internal;
 
 namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 {

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native
 {
-    public enum WindowMessage
+    public enum WindowMessage : ushort
     {
         Null = 0x00,
         Create = 0x01,
@@ -86,6 +86,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         NCPaint = 0x85,
         NCActivate = 0x86,
         GetDialogCode = 0x87,
+        SyncPaint = 0x0088,
         NCMouseMove = 0xA0,
         NCLeftButtonDown = 0xA1,
         NCLeftButtonUp = 0xA2,
@@ -145,6 +146,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         MiddleButtonUp = 0x208,
         MiddleButtonDoubleClick = 0x209,
         MouseWheel = 0x20A,
+        XBUTTONDOWN = 0x020B,
+        XBUTTONUP = 0x020C,
+        XBUTTONDBLCLK = 0x020D,
         MouseHorizontalWheel = 0x20E,
 
         ParentNotify = 0x210,
@@ -179,6 +183,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         IMECompositionFull = 0x284,
         IMESelect = 0x285,
         IMEChar = 0x286,
+        IMERequest = 0x0288,
         IMEKeyDown = 0x290,
         IMEKeyUp = 0x291,
 
@@ -210,6 +215,16 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         Print = 0x317,
         PrintClient = 0x318,
 
+        DWMCompositionChanged = 0x031E,
+        DWMNCRenderingChanged = 0x031F,
+        DWMColorizationColorChanged = 0x0320,
+        DWMWindowMaximizedChange = 0x0321,
+
+        #region Windows 7
+        DWMSendIconicThumbnail = 0x0323,
+        DWMSendIconicLivePreviewBitmap = 0x0326,
+        #endregion
+
         HandHeldFirst = 0x358,
         HandHeldlast = 0x35F,
         PenWinFirst = 0x380,
@@ -229,6 +244,10 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         DDE_Last = 0x3E8,
 
         User = 0x400,
+
+        // This is the hard-coded message value used by WinForms for Shell_NotifyIcon.
+        // It's relatively safe to reuse.
+        TrayMouseMessage = 0x800, //WM_USER + 1024
         App = 0x8000,
     }
 }

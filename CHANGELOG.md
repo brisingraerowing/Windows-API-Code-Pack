@@ -1,6 +1,8 @@
 WindowsAPICodePack CHANGELOG
 ============================
 
+Note: The 'Fix #<number\>' notice indicates that the relative fix is available at https://github.com/pierresprim/Windows-API-Code-Pack/issues
+
 ???? 2.0
 ========
 
@@ -14,6 +16,13 @@ Shell 2.0
     - ShellLibrary implementation of ICollection<ShellFileSystemFolder>.CopyTo(ShellFileSystemFolder[], int)
 - The ShellLibrary does not commit changes automatically anymore. Use the Commit method to commit changes.
 
+ShellExtensions 2.0
+-------------------
+
+- Fix #5
+- Fix #7
+- Fix #8
+
 Win32Native 2.0
 ---------------
 
@@ -26,6 +35,9 @@ Win32Native 2.0
     - from: FolderTypeSearchResults to: FolderTypeGenericSearchResults
     - from: FolderTypeClassic to: FolderTypeControlPanelClassic
     - from: FolderTypeControlPanelCategory to: FolderTypeCategory
+- Fix #5
+- Fix #6
+- Fix #9
 
 Win32NativeConsts 2.0
 --------------------

@@ -12,7 +12,7 @@ using Microsoft.WindowsAPICodePack.Controls;
 using Microsoft.WindowsAPICodePack.Dialogs.Controls;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
-using MS.WindowsAPICodePack.Internal;
+using Microsoft.WindowsAPICodePack.Internal;
 using System.Collections.Generic;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
@@ -803,7 +803,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// <param name="propertyName">The name of the property.</param>
         /// <param name="control">The control propertyName applies to.</param>
         /// <returns>true if the property change is allowed.</returns>
-        public virtual bool IsControlPropertyChangeAllowed(string propertyName, DialogControl control)
+        public virtual bool IsControlPropertyChangeAllowed(in string propertyName, in DialogControl control)
         {
             GenerateNotImplementedException();
             return false;
@@ -815,7 +815,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// </summary>
         /// <param name="propertyName">The name of the property changed.</param>
         /// <param name="control">The control whose property has changed.</param>
-        public virtual void ApplyControlPropertyChange(string propertyName, DialogControl control)
+        public virtual void ApplyControlPropertyChange(in string propertyName, in DialogControl control)
         {
             if (control == null)
 

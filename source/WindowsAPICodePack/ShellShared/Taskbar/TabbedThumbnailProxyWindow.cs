@@ -5,7 +5,9 @@ using System.Windows;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
-using MS.WindowsAPICodePack.Internal;
+using Microsoft.WindowsAPICodePack.Internal;
+
+using static Microsoft.WindowsAPICodePack.Win32Native.Taskbar.Consts.TabbedThumbnail;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar
 {
@@ -43,7 +45,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             // If it's a WM_Destroy message, then also forward it to the base class (our native window)
             if ((m.Msg == (int)WindowMessage.Destroy) ||
                (m.Msg == (int)WindowMessage.NCDestroy) ||
-               ((m.Msg == (int)WindowMessage.SystemCommand) && (((int)m.WParam) == TabbedThumbnailNativeMethods.ScClose)))
+               ((m.Msg == (int)WindowMessage.SystemCommand) && (((int)m.WParam) == ScClose)))
             
                 base.WndProc(ref m);
             
