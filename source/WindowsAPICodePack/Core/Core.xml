@@ -311,20 +311,20 @@
             Default constructor.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRecoveryException.#ctor(System.String)">
+        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRecoveryException.#ctor(System.String@)">
             <summary>
             Initializes an exception with a custom message.
             </summary>
             <param name="message">A custom message for the exception.</param>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRecoveryException.#ctor(System.String,System.Exception)">
+        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRecoveryException.#ctor(System.String@,System.Exception@)">
             <summary>
             Initializes an exception with custom message and inner exception.
             </summary>
             <param name="message">A custom message for the exception.</param>
             <param name="innerException">Inner exception.</param>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRecoveryException.#ctor(System.String,System.Int32)">
+        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRecoveryException.#ctor(System.String@,System.Int32@)">
             <summary>
             Initializes an exception with custom message and error code.
             </summary>
@@ -345,7 +345,7 @@
             application do some recovery work to save data before the process exits.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRestartRecoveryManager.RegisterForApplicationRecovery(Microsoft.WindowsAPICodePack.ApplicationServices.RecoverySettings)">
+        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRestartRecoveryManager.RegisterForApplicationRecovery(Microsoft.WindowsAPICodePack.ApplicationServices.RecoverySettings@)">
             <summary>
             Registers an application for recovery by Application Restart and Recovery.
             </summary>
@@ -386,7 +386,7 @@
             <exception cref="T:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRecoveryException">
             This method must be called from a registered callback method.</exception>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRestartRecoveryManager.ApplicationRecoveryFinished(System.Boolean)">
+        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRestartRecoveryManager.ApplicationRecoveryFinished(System.Boolean@)">
             <summary>
             Called by an application's <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RecoveryCallback"/> method to 
             indicate that the recovery work is complete.
@@ -400,7 +400,7 @@
             <param name="success"><b>true</b> to indicate the the program was able to complete its recovery
             work before terminating; otherwise <b>false</b>.</param>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRestartRecoveryManager.RegisterForApplicationRestart(Microsoft.WindowsAPICodePack.ApplicationServices.RestartSettings)">
+        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRestartRecoveryManager.RegisterForApplicationRestart(Microsoft.WindowsAPICodePack.ApplicationServices.RestartSettings@)">
             <summary>
             Registers an application for automatic restart if 
             the application 
@@ -425,7 +425,7 @@
             See the <see cref="T:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRestartRecoveryManager"/> class.
             </remarks>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.RecoverySettings.#ctor(Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RecoveryData,System.UInt32)">
+        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.RecoverySettings.#ctor(Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RecoveryData@,System.UInt32@)">
             <summary>
             Initializes a new instance of the <b>RecoverySettings</b> class.
             </summary>
@@ -473,7 +473,7 @@
             will not be restarted if it executed for less than 60 seconds before
             terminating.</remarks>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.RestartSettings.#ctor(System.String,Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RestartRestrictions)">
+        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.RestartSettings.#ctor(System.String@,Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RestartRestrictions@)">
             <summary>
             Creates a new instance of the RestartSettings class.
             </summary>
@@ -575,7 +575,7 @@
             BatteryLifePercentChanged) as a whole.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.EventManager.IsMessageCaught(System.Guid)">
+        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.EventManager.IsMessageCaught(System.String@)">
             <summary>
             Determines if a message should be caught, preventing
             the event handler from executing. 
@@ -591,14 +591,14 @@
             The PowerRegWindow class processes the messages from Windows.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.MessageManager.RegisterPowerEvent(System.Guid,System.EventHandler)">
+        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.MessageManager.RegisterPowerEvent(System.Guid@,System.EventHandler@)">
             <summary>
             Registers a callback for a power event.
             </summary>
             <param name="eventId">Guid for the event.</param>
             <param name="eventToRegister">Event handler for the specified event.</param>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.MessageManager.UnregisterPowerEvent(System.Guid,System.EventHandler)">
+        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.MessageManager.UnregisterPowerEvent(System.Guid@,System.EventHandler@)">
             <summary>
             Unregisters an event handler for a power event.
             </summary>
@@ -617,7 +617,7 @@
             messages.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.MessageManager.PowerRegWindow.RegisterPowerEvent(System.Guid,System.EventHandler)">
+        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.MessageManager.PowerRegWindow.RegisterPowerEvent(System.Guid@,System.EventHandler@)">
             <summary>
             Adds an event handler to call when Windows sends 
             a message for an event.
@@ -625,7 +625,7 @@
             <param name="eventId">Guid for the event.</param>
             <param name="eventToRegister">Event handler for the event.</param>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.MessageManager.PowerRegWindow.UnregisterPowerEvent(System.Guid,System.EventHandler)">
+        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.MessageManager.PowerRegWindow.UnregisterPowerEvent(System.Guid@,System.EventHandler@)">
             <summary>
             Removes an event handler.
             </summary>
@@ -634,7 +634,7 @@
             <exception cref="T:System.InvalidOperationException">Cannot unregister 
             a function that is not registered.</exception>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.MessageManager.PowerRegWindow.ExecuteEvents(System.Collections.ArrayList)">
+        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.MessageManager.PowerRegWindow.ExecuteEvents(System.Collections.ArrayList@)">
             <summary>
             Executes any registered event handlers.
             </summary>
@@ -813,20 +813,20 @@
             Default constructor.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.PowerManagerException.#ctor(System.String)">
+        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.PowerManagerException.#ctor(System.String@)">
             <summary>
             Initializes an excpetion with a custom message.
             </summary>
             <param name="message">A custom message for the exception.</param>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.PowerManagerException.#ctor(System.String,System.Exception)">
+        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.PowerManagerException.#ctor(System.String@,System.Exception@)">
             <summary>
             Initializes an exception with custom message and inner exception.
             </summary>
             <param name="message">A custom message for the exception.</param>
             <param name="innerException">An inner exception on which to base this exception.</param>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.PowerManagerException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.PowerManagerException.#ctor(System.Runtime.Serialization.SerializationInfo@,System.Runtime.Serialization.StreamingContext@)">
             <summary>
             Initializes an exception from serialization info and a context.
             </summary>
@@ -874,7 +874,7 @@
             Creates a new instance of a dialog control
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.DialogControl.#ctor(System.String)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.DialogControl.#ctor(System.String@)">
             <summary>
             Creates a new instance of a dialog control with the specified name.
             </summary>
@@ -898,7 +898,7 @@
             </summary>
             <value>An <see cref="T:System.Int32"/> value.</value>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.DialogControl.CheckPropertyChangeAllowed(System.String)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.DialogControl.CheckPropertyChangeAllowed(System.String@)">
             <summary>
              Calls the hosting dialog, if it exists, to check whether the 
              property can be set in the dialog's current state. 
@@ -908,7 +908,7 @@
              </summary>
              <param name="propName">The name of the property that is changing</param>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.DialogControl.ApplyPropertyChange(System.String)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.DialogControl.ApplyPropertyChange(System.String@)">
             <summary>
              Calls the hosting dialog, if it exists, to
              to indicate that a property has changed, and that 
@@ -999,7 +999,7 @@
             Applies changes to the collection.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.IDialogControlHost.IsControlPropertyChangeAllowed(System.String,Microsoft.WindowsAPICodePack.Dialogs.DialogControl)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.IDialogControlHost.IsControlPropertyChangeAllowed(System.String@,Microsoft.WindowsAPICodePack.Dialogs.DialogControl@)">
             <summary>
             Handle notifications of individual child 
             pseudo-controls' properties changing..
@@ -1012,7 +1012,7 @@
             <param name="control">The control propertyName applies to.</param>
             <returns>true if the property change is allowed.</returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.IDialogControlHost.ApplyControlPropertyChange(System.String,Microsoft.WindowsAPICodePack.Dialogs.DialogControl)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.IDialogControlHost.ApplyControlPropertyChange(System.String@,Microsoft.WindowsAPICodePack.Dialogs.DialogControl@)">
             <summary>
             Called when a control currently in the collection 
             has a property changed.
@@ -1158,14 +1158,14 @@
             Creates a basic TaskDialog window 
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.Show(System.String)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.Show(System.String@)">
             <summary>
             Creates and shows a task dialog with the specified message text.
             </summary>
             <param name="text">The text to display.</param>
             <returns>The dialog result.</returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.Show(System.String,System.String)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.Show(System.String@,System.String@)">
             <summary>
             Creates and shows a task dialog with the specified supporting text and main instruction.
             </summary>
@@ -1173,7 +1173,7 @@
             <param name="instructionText">The main instruction text to display.</param>
             <returns>The dialog result.</returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.Show(System.String,System.String,System.String)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.Show(System.String@,System.String@,System.String@)">
             <summary>
             Creates and shows a task dialog with the specified supporting text, main instruction, and dialog caption.
             </summary>
@@ -1194,14 +1194,14 @@
             </summary>
             <exception cref="T:System.InvalidOperationException">if TaskDialog is not showing.</exception>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.Close(Microsoft.WindowsAPICodePack.Dialogs.TaskDialogResult)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.Close(Microsoft.WindowsAPICodePack.Dialogs.TaskDialogResult@)">
             <summary>
             Close TaskDialog with a given TaskDialogResult
             </summary>
             <param name="closingResult">TaskDialogResult to return from the TaskDialog.Show() method</param>
             <exception cref="T:System.InvalidOperationException">if TaskDialog is not showing.</exception>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.ApplyTextConfiguration(Microsoft.WindowsAPICodePack.Win32Native.Dialogs.TaskDialogNativeMethods.TaskDialogConfiguration)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.ApplyTextConfiguration(Microsoft.WindowsAPICodePack.Win32Native.Dialogs.TaskDialogNativeMethods.TaskDialogConfiguration@)">
             <summary>
             Sets important text properties.
             </summary>
@@ -1238,7 +1238,7 @@
             Creates a new instance of this class.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogBar.#ctor(System.String)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogBar.#ctor(System.String@)">
             <summary>
             Creates a new instance of this class with the specified name.
             </summary>
@@ -1264,7 +1264,7 @@
             Creates a new instance of this class.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogButton.#ctor(System.String,System.String)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogButton.#ctor(System.String@,System.String@)">
             <summary>
             Creates a new instance of this class with the specified property settings.
             </summary>
@@ -1350,14 +1350,14 @@
             Creates a new instance of this class.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogCommandLink.#ctor(System.String,System.String)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogCommandLink.#ctor(System.String@,System.String@)">
             <summary>
             Creates a new instance of this class with the specified name and label.
             </summary>
             <param name="name">The name for this button.</param>
             <param name="text">The label for this button.</param>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogCommandLink.#ctor(System.String,System.String,System.String)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogCommandLink.#ctor(System.String@,System.String@,System.String@)">
             <summary>
             Creates a new instance of this class with the specified name,label, and instruction.
             </summary>
@@ -1386,7 +1386,7 @@
             Creates a new instance of a task dialog control.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogControl.#ctor(System.String)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogControl.#ctor(System.String@)">
             <summary>
             Creates a new instance of a task dialog control with the specified name.
             </summary>
@@ -1438,14 +1438,14 @@
             Creates a new instance of this class.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogProgressBar.#ctor(System.String)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogProgressBar.#ctor(System.String@)">
             <summary>
             Creates a new instance of this class with the specified name.
             And using the default values: Min = 0, Max = 100, Current = 0
             </summary>
             <param name="name">The name of the control.</param>        
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogProgressBar.#ctor(System.Int32,System.Int32,System.Int32)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogProgressBar.#ctor(System.Int32@,System.Int32@,System.Int32@)">
             <summary>
             Creates a new instance of this class with the specified 
             minimum, maximum and current values.
@@ -1490,7 +1490,7 @@
             Creates a new instance of this class.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogRadioButton.#ctor(System.String,System.String)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogRadioButton.#ctor(System.String@,System.String@)">
             <summary>
             Creates a new instance of this class with
             the specified name and text.
@@ -1635,7 +1635,7 @@
             The event data for a TaskDialogTick event.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogTickEventArgs.#ctor(System.Int32)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogTickEventArgs.#ctor(System.Int32@)">
             <summary>
             Initializes the data associated with the TaskDialog tick event.
             </summary>
@@ -1867,7 +1867,7 @@
             Provides access to objects that represent networks and network connections.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Net.NetworkListManager.GetNetworks(Microsoft.WindowsAPICodePack.Win32Native.NetworkList.NetworkConnectivityLevels)">
+        <member name="M:Microsoft.WindowsAPICodePack.Net.NetworkListManager.GetNetworks(Microsoft.WindowsAPICodePack.Win32Native.NetworkList.NetworkConnectivityLevels@)">
             <summary>
             Retrieves a collection of <see cref="T:Microsoft.WindowsAPICodePack.Net.Network"/> objects that represent the networks defined for this machine.
             </summary>
@@ -1878,7 +1878,7 @@
             A <see cref="T:Microsoft.WindowsAPICodePack.Net.NetworkCollection"/> of <see cref="T:Microsoft.WindowsAPICodePack.Net.Network"/> objects.
             </returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Net.NetworkListManager.GetNetwork(System.Guid)">
+        <member name="M:Microsoft.WindowsAPICodePack.Net.NetworkListManager.GetNetwork(System.Guid@)">
             <summary>
             Retrieves the <see cref="T:Microsoft.WindowsAPICodePack.Net.Network"/> identified by the specified network identifier.
             </summary>
@@ -1897,7 +1897,7 @@
             A <see cref="T:Microsoft.WindowsAPICodePack.Net.NetworkConnectionCollection"/> containing the network connections.
             </returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Net.NetworkListManager.GetNetworkConnection(System.Guid)">
+        <member name="M:Microsoft.WindowsAPICodePack.Net.NetworkListManager.GetNetworkConnection(System.Guid@)">
             <summary>
             Retrieves the <see cref="T:Microsoft.WindowsAPICodePack.Net.NetworkConnection"/> identified by the specified connection identifier.
             </summary>

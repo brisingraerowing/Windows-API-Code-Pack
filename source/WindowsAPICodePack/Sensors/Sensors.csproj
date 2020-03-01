@@ -7,7 +7,7 @@
     <RootNamespace>Microsoft.WindowsAPICodePack.Sensors</RootNamespace>
     <AssemblyName>WinCopies.WindowsAPICodePack.Sensors</AssemblyName>
     <Version>2.0.0</Version>
-    <Authors>Microsoft, Aybe, Pierre Sprimont</Authors>
+    <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
     <Company>Pierre Sprimont</Company>
     <Product>Microsoft Windows API Code Pack for .NET Framework</Product>
     <Description>WindowsAPICodePack for Sensors</Description>
@@ -20,7 +20,7 @@
     <RepositoryType>Git</RepositoryType>
     <PackageTags>Windows API Code Pack</PackageTags>
     <PackageReleaseNotes>Seehttps://github.com/pierresprim/Windows-API-Code-Pack/blob/master/CHANGELOG.md</PackageReleaseNotes>
-    <DocumentationFile>C:\Users\pierr\source\repositories\Windows-API-Code-Pack\source\WindowsAPICodePack\Sensors\Sensors.xml</DocumentationFile>
+    <DocumentationFile>Sensors.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.0|AnyCPU'">
@@ -39,7 +39,7 @@
     <DefineConstants>NETFRAMEWORK</DefineConstants>
   </PropertyGroup>
 
-  <Import Project="..\SensorsShared\Sensors.projitems" Label="Shared" />
+  <Import Project="..\SensorsShared\SensorsShared.projitems" Label="Shared" />
 
   <ItemGroup>
     <None Remove="CustomDictionary.xml" />

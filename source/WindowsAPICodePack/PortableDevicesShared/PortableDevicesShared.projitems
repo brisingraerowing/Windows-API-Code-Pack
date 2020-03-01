@@ -6,7 +6,7 @@
     <SharedGUID>dfe309f3-5fc4-48e2-b26d-274f1033b41e</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>WindowsPortableDevices</Import_RootNamespace>
+    <Import_RootNamespace>PortableDevices</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Command.cs" />

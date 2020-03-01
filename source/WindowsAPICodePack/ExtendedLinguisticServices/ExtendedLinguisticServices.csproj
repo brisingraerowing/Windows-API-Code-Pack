@@ -6,7 +6,7 @@
     <AssemblyName>WinCopies.WindowsAPICodePack.ExtendedLinguisticServices</AssemblyName>
     <RootNamespace>Microsoft.WindowsAPICodePack.ExtendedLinguisticServices</RootNamespace>
     <Version>2.0.0</Version>
-    <Authors>Microsoft, Aybe, Pierre Sprimont</Authors>
+    <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
     <Company>Pierre Sprimont</Company>
     <Description>WindowsAPICodePack for Extended Linguistic Services</Description>
     <Product>Microsoft Windows API Code Pack for .NET Framework</Product>
@@ -20,6 +20,7 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>ExtendedLinguisticServices.snk</AssemblyOriginatorKeyFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <DocumentationFile>ExtendedLinguisticServices.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.0|AnyCPU'">
@@ -70,6 +71,6 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <Import Project="..\ExtendedLinguisticServicesShared\ExtendedLinguisticServices.projitems" Label="Shared" />
+  <Import Project="..\ExtendedLinguisticServicesShared\ExtendedLinguisticServicesShared.projitems" Label="Shared" />
 
 </Project>

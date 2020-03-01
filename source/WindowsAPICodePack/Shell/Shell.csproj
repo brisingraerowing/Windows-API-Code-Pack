@@ -11,7 +11,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Version>2.0.0</Version>
-    <Authors>Microsoft, Aybe, Pierre Sprimont</Authors>
+    <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
     <Company>Pierre Sprimont</Company>
     <Product>Microsoft Windows API Code Pack for .NET Framework</Product>
     <Description>WindowsAPICodePack for Shell</Description>
@@ -22,6 +22,7 @@
     <RepositoryType>Git</RepositoryType>
     <PackageTags>Windows API Code Pack</PackageTags>
     <PackageReleaseNotes>See https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/CHANGELOG.md</PackageReleaseNotes>
+    <DocumentationFile>Shell.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.0|AnyCPU'">
@@ -84,6 +85,6 @@
     </None>
   </ItemGroup>
 
-  <Import Project="..\ShellShared\Shell.projitems" Label="Shared" />
+  <Import Project="..\ShellShared\ShellShared.projitems" Label="Shared" />
 
 </Project>

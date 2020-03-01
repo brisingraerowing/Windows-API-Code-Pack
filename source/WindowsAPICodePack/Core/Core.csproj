@@ -5,7 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>WinCopies.WindowsAPICodePack</PackageId>
     <Version>2.0.0</Version>
-    <Authors>Microsoft, Aybe, Pierre Sprimont</Authors>
+    <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
     <Company>Pierre Sprimont</Company>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Core.snk</AssemblyOriginatorKeyFile>
@@ -20,7 +20,7 @@
     <PackageReleaseNotes>See https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/CHANGELOG.md</PackageReleaseNotes>
     <AssemblyName>WinCopies.WindowsAPICodePack</AssemblyName>
     <RootNamespace>Microsoft.WindowsAPICodePack</RootNamespace>
-    <DocumentationFile>C:\Users\pierr\source\repositories\Windows-API-Code-Pack\source\WindowsAPICodePack\Core\Core.xml</DocumentationFile>
+    <DocumentationFile>Core.xml</DocumentationFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
@@ -75,6 +75,6 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <Import Project="..\CoreShared\Core.projitems" Label="Shared" />
+  <Import Project="..\CoreShared\CoreShared.projitems" Label="Shared" />
 
 </Project>
