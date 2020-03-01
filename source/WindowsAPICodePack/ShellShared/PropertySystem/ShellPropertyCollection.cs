@@ -19,7 +19,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
     /// <summary>
     /// Creates a readonly collection of IProperty objects.
     /// </summary>
-    public class ShellPropertyCollection : ReadOnlyCollection<IShellProperty>, IDisposable
+    public class ShellPropertyCollection : System.Collections.ObjectModel.ReadOnlyCollection<IShellProperty>, IDisposable
     {
         #region Internal Constructor
 

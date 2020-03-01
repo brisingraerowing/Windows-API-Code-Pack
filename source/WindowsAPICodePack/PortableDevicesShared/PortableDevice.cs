@@ -227,7 +227,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
     //}
     //#pragma warning restore CA2243 // Attribute string literals should parse correctly
 
-    internal sealed class NativeReadOnlyPropertyKeyCollection : IReadOnlyNativeCollection<PropertyKey>, WinCopies.Util.DotNetFix.IDisposable
+    internal sealed class NativeReadOnlyPropertyKeyCollection : IReadOnlyNativeCollection<PropertyKey>/*, WinCopies.Util.DotNetFix.IDisposable*/
 
     {
 
@@ -235,7 +235,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         private bool _isReadOnly;
 
-        bool IReadOnlyNativeCollection<PropertyKey>.IsReadOnly => _isDisposed ? throw new InvalidOperationException("The current object is disposed.") : _isReadOnly;
+        bool IReadOnlyNativeCollection<PropertyKey>.IsReadOnly => /*_isDisposed ? throw new InvalidOperationException("The current object is disposed.") : */ _isReadOnly;
 
         public NativeReadOnlyPropertyKeyCollection(IPortableDeviceKeyCollection portableDeviceKeyCollection, bool isReadOnly)
         {
@@ -244,26 +244,33 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             _isReadOnly = isReadOnly;
         }
 
-        private bool _isDisposed = false;
+        //private bool _isDisposed = false;
 
-        bool WinCopies.Util.DotNetFix.IDisposable.IsDisposed => _isDisposed;
+        //bool WinCopies.Util.DotNetFix.IDisposable.IsDisposed => _isDisposed;
 
-        private void Dispose(bool disposing)
+        private void Dispose(/*bool disposing*/)
         {
 
-            if (disposing)
+            //if (disposing)
 
-                return;
+            //    return;
 
             _ = Marshal.ReleaseComObject(_portableDeviceKeyCollection);
 
             _portableDeviceKeyCollection = null;
 
+        //    _isDisposed = true;
+
         }
 
-        void IDisposable.Dispose() => Dispose(true);
+        //void IDisposable.Dispose()
+        //{
+        //    Dispose(true);
 
-        ~NativeReadOnlyPropertyKeyCollection() => Dispose(false);
+        //    GC.SuppressFinalize(this);
+        //}
+
+        ~NativeReadOnlyPropertyKeyCollection() => Dispose(/*false*/);
 
         HResult IReadOnlyNativeCollection<PropertyKey>.GetAt(ref uint index, out PropertyKey item)
         {

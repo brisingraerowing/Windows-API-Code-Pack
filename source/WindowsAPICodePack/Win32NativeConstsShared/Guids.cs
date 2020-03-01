@@ -1789,6 +1789,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell
         public const string SearchFolderItemFactory = "14010e02-bbbd-41f0-88e3-eda371216584";
         public const string ConditionFactory = "E03E85B0-7BE3-4000-BA98-6C13DE9FA486";
         public const string QueryParserManager = "5088B39A-29B4-4d9d-8245-4EE289222F66";
+        public const string FileOperationCLSID = "3ad05575-8857-4850-9277-11b85bdb8e09";
     }
 
     public static class KnownFoldersIIDGuid

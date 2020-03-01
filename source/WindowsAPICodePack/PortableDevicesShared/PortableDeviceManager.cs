@@ -29,11 +29,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             _portableDevices = new List<PortableDevice>();
 
-            PortableDevices = new ReadOnlyCollection<PortableDevice>(_portableDevices);
+            PortableDevices = new System.Collections.ObjectModel.ReadOnlyCollection<PortableDevice>(_portableDevices);
 
             _privatePortableDevices = new List<PortableDevice>();
 
-            PrivatePortableDevices = new ReadOnlyCollection<PortableDevice>(_privatePortableDevices);
+            PrivatePortableDevices = new System.Collections.ObjectModel.ReadOnlyCollection<PortableDevice>(_privatePortableDevices);
 
         }
 

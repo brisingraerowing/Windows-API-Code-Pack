@@ -19,7 +19,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         public static ICollection<IKnownFolder> All => GetAllFolders();
 
-        private static ReadOnlyCollection<IKnownFolder> GetAllFolders()
+        private static System.Collections.ObjectModel.ReadOnlyCollection<IKnownFolder> GetAllFolders()
         {
             // Should this method be thread-safe?? (It'll take a while
             // to get a list of all the known folders, create the managed wrapper
@@ -58,7 +58,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 if (folders != IntPtr.Zero) { Marshal.FreeCoTaskMem(folders); }
             }
 
-            return new ReadOnlyCollection<IKnownFolder>(foldersList);
+            return new System.Collections.ObjectModel.ReadOnlyCollection<IKnownFolder>(foldersList);
         }
 
         private static IKnownFolder GetKnownFolder(Guid guid) => KnownFolderHelper.FromKnownFolderId(guid);
@@ -70,7 +70,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
         public static IKnownFolder Computer => GetKnownFolder(
-                    new Guid( Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Computer));
+                    new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Computer));
 
         /// <summary>
         /// Gets the metadata for the <b>Conflict</b> folder.

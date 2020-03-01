@@ -14,8 +14,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Interop;
+
 using static Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellNativeMethods;
 using FileAttributes = Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes;
+
+using static WinCopies.Util.Util;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -70,16 +73,16 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         private readonly List<uint> cookies = new List<uint>();
 
-        public ReadOnlyCollection<uint> Cookies { get; }
+        public System.Collections.ObjectModel.ReadOnlyCollection<uint> Cookies { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileOperation"/> class.
         /// </summary>
         public FileOperation()
         {
-            fileOperation = (IFileOperation)Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid("3ad05575-8857-4850-9277-11b85bdb8e09")));
+            fileOperation = (IFileOperation)Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid(Win32Native.Guids.Shell.ShellCLSIDGuid.FileOperationCLSID)));
 
-            Cookies = new ReadOnlyCollection<uint>(cookies);
+            Cookies = new System.Collections.ObjectModel.ReadOnlyCollection<uint>(cookies);
         }
 
         public void Dispose()
@@ -203,23 +206,23 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         }
 
-        /// <summary>
-        /// Not implemented.
-        /// </summary>
-        /// <param name="pszMessage">The window title.</param>
-        /// <exception cref="ObjectDisposedException">Exception thrown when this object is disposed.</exception>
-        /// <exception cref="Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
-        public void SetProgressMessage(string pszMessage) =>
+        ///// <summary>
+        ///// Not implemented.
+        ///// </summary>
+        ///// <param name="pszMessage">The window title.</param>
+        ///// <exception cref="ObjectDisposedException">Exception thrown when this object is disposed.</exception>
+        ///// <exception cref="Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
+        //public void SetProgressMessage(string pszMessage) =>
 
-            //if (disposed) throw new ObjectDisposedException(nameof(FileOperation));
+        //    //if (disposed) throw new ObjectDisposedException(nameof(FileOperation));
 
-            //HResult hr = fileOperation.SetProgressMessage(pszMessage);
+        //    //HResult hr = fileOperation.SetProgressMessage(pszMessage);
 
-            //if (!CoreErrorHelper.Succeeded(hr))
+        //    //if (!CoreErrorHelper.Succeeded(hr))
 
-            //    Marshal.ThrowExceptionForHR((int)hr);
+        //    //    Marshal.ThrowExceptionForHR((int)hr);
 
-            throw new NotImplementedException();
+        //    throw new NotImplementedException();
 
         // todo: to encapsulate
 
@@ -232,7 +235,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public void SetProgressDialog(IOperationsProgressDialog popd)
         {
 
-            if (popd == null) throw new ArgumentNullException(nameof(popd));
+            ThrowIfNull(popd, nameof(popd));
 
             if (disposed) throw new ObjectDisposedException(nameof(FileOperation));
 

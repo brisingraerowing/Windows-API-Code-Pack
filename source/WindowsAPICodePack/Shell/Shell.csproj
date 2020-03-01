@@ -57,6 +57,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="WinCopies.Util" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj" />
     <ProjectReference Include="..\Win32Native\Win32Native.csproj" />
   </ItemGroup>

@@ -15,7 +15,7 @@ using System.Collections.ObjectModel;
 namespace Microsoft.WindowsAPICodePack
 
 {
-
+    // todo: use the new interfaces of WinCopies.Util instead.
     public interface IUIntIndexedCollection<T> : IEnumerable<T>, IEnumerable
     {
         uint Count { get; }
@@ -26,18 +26,18 @@ namespace Microsoft.WindowsAPICodePack
 
         void Clear();
 
-        bool Contains(ref T item);
+        bool Contains(in T item);
 
-        void CopyTo(ref T[] array, ref uint arrayIndex);
+        void CopyTo(in T[] array, uint arrayIndex);
 
-        bool Remove(ref T item);
+        bool Remove(in T item);
     }
 
     public interface IUIntIndexedList<T> : IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable
     {
         T GetAt(ref uint index);
 
-        uint? IndexOf(ref T item);
+        uint? IndexOf(in T item);
 
         void RemoveAt(ref uint index);
     }
@@ -50,7 +50,7 @@ namespace Microsoft.WindowsAPICodePack
 
         bool IsSynchronized { get; }
 
-        void CopyTo(ref Array array, ref uint index);
+        void CopyTo(in Array array, uint index);
     }
 
     public interface IUIntIndexedList : IUIntIndexedCollection, IEnumerable
@@ -65,11 +65,11 @@ namespace Microsoft.WindowsAPICodePack
 
         void Clear();
 
-        bool Contains(ref object value);
+        bool Contains(in object value);
 
-        uint? IndexOf(ref object value);
+        uint? IndexOf(in object value);
 
-        void Remove(ref object value);
+        void Remove(in object value);
 
         void RemoveAt(ref uint index);
     }
@@ -84,320 +84,465 @@ namespace Microsoft.WindowsAPICodePack
         uint Count { get; }
     }
 
-//    public class Collection<T> : IDisposable, IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUIntIndexedList, IUIntIndexedCollection, IReadOnlyUIntIndexedList<T>, IReadOnlyUIntIndexedCollection<T>, WinCopies.Collections.IUIntIndexedCollection<T>
+    [Serializable]
+    [DebuggerDisplay("Count = {Count}")]
+    public class Collection<T> : /*IDisposable, */ IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUIntIndexedList, IUIntIndexedCollection, IReadOnlyUIntIndexedList<T>, IReadOnlyUIntIndexedCollection<T>, WinCopies.Collections.IUIntIndexedCollection<T>
 
-//    {
-//        private const bool _isReadOnly = false;
+    {
 
-//        protected INativeCollection<T> Items { get; private set; }
+        [NonSerialized]
+        private object _syncRoot;
 
-//        public Collection(INativeCollection<T> items) => Items = (items ?? throw new ArgumentNullException(nameof(items))).IsReadOnly ? throw new ArgumentException("The given collection is read-only.") : items;
+        bool IUIntIndexedCollection.IsSynchronized => false;
 
-//        public T GetAt(ref uint index)
-//        {
-//            _ = Items.GetAt(ref index, out T item);
+        object IUIntIndexedCollection.SyncRoot
+        {
+            get
+            {
+                if (_syncRoot is null)
 
-//            return item;
-//        }
+                    if (Items is IUIntIndexedCollection c)
 
-//        T WinCopies.Collections.IUIntIndexedCollection<T>.this[uint index] => GetAt(ref index);
+                        _syncRoot = c.SyncRoot;
 
-//        object WinCopies.Collections.IUIntIndexedCollection.this[uint index] => GetAt(ref index);
+                    else
 
-//        uint IUIntIndexedList.Add(ref object value)
-//        {
-//            var _value = (T)value;
+                        _ = System.Threading.Interlocked.CompareExchange<object>(ref _syncRoot, new object(), null);
 
-//            AddItem(ref _value);
+                return _syncRoot;
+            }
+        }
 
-//            _ = Items.GetCount(out uint count);
+        private const bool _isReadOnly = false;
 
-//            return count;
-//        }
+        protected INativeCollection<T> Items { get; private set; }
 
-//        bool IUIntIndexedList.Contains(ref object value)
+        public Collection(in INativeCollection<T> items) => Items = (items ?? throw new ArgumentNullException(nameof(items))).IsReadOnly ? throw new ArgumentException("The given collection is read-only.") : items;
 
-//        {
+        public T GetAt(ref uint index)
+        {
+            _ = Items.GetAt(ref index, out T item);
 
-//            if (value is null) return false;
+            return item;
+        }
 
-//            var _value = (T)value;
+        T WinCopies.Collections.IUIntIndexedCollection<T>.this[uint index] => GetAt(ref index);
 
-//            return Contains(ref _value);
+        object WinCopies.Collections.IUIntIndexedCollection.this[uint index] => GetAt(ref index);
 
-//        }
+        uint IUIntIndexedList.Add(ref object value)
+        {
+            var _value = (T)value;
 
-//        uint? IUIntIndexedList.IndexOf(ref object value)
+            AddItem(ref _value);
 
-//        {
+            return Count;
+        }
 
-//            if (value is null) return null;
+        bool IUIntIndexedList.Contains(in object value)
 
-//            var _value = (T)value;
+        {
 
-//            return IndexOf(ref _value);
+            if (value is null) return false;
 
-//        }
+            var _value = (T)value;
 
-//        void IUIntIndexedList.Remove(ref object value)
+            return Contains(_value);
 
-//        {
+        }
 
-//            ThrowIfNull(value, nameof(value));
+        uint? IUIntIndexedList.IndexOf(in object value)
 
-//            var _value = (T)value;
+        {
 
-//            _ = Remove(ref _value);
+            if (value is null) return null;
 
-//        }
+            var _value = (T)value;
 
-//        object IUIntIndexedList.GetAt(ref uint index) => GetAt(ref index);
+            return IndexOf(_value);
 
-//        bool IUIntIndexedCollection<T>.IsReadOnly => _isReadOnly;
+        }
 
-//        bool IUIntIndexedList.IsReadOnly => _isReadOnly;
+        void IUIntIndexedList.Remove(in object value)
 
-//        public bool IsFixedSize => Items.IsFixedSize;
+        {
 
-//        public bool IsDisposed { get; private set; }
+            ThrowIfNull(value, nameof(value));
 
-//        public uint Count
-//        {
-//            get
-//            {
-//                _ = Items.GetCount(out uint count);
+            var _value = (T)value;
 
-//                return count;
-//            }
-//        }
+            _ = Remove(_value);
 
-//        protected virtual void Dispose(bool disposing)
-//        {
-//            if (disposing)
-//            {
-//                Items.Dispose();
+        }
 
-//                Items = null;
-//            }
+        object IUIntIndexedList.GetAt(ref uint index) => GetAt(ref index);
 
-//            IsDisposed = true;
-//        }
+        bool IUIntIndexedCollection<T>.IsReadOnly => _isReadOnly;
 
-//        public void Dispose()
-//        {
-//            Dispose(true);
+        bool IUIntIndexedList.IsReadOnly => _isReadOnly;
 
-//            GC.SuppressFinalize(this);
-//        }
+        public bool IsFixedSize => Items.IsFixedSize;
 
-//        ~Collection() => Dispose(false);
+        //public bool IsDisposed { get; private set; }
 
-//        public void Add(ref T item) => AddItem(ref item);
+        public uint Count
+        {
+            get
+            {
+                _ = Items.GetCount(out uint count);
 
-//        public void Clear() => ClearItems();
+                return count;
+            }
+        }
 
-//        public bool Contains(ref T item)
-//        {
+        //protected virtual void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        Items.Dispose();
 
-//            if (item
+        //        Items = null;
+        //    }
 
-//#if NetCore
+        //    IsDisposed = true;
+        //}
 
-//                is null
+        //public void Dispose()
+        //{
+        //    Dispose(true);
 
-//#else
+        //    GC.SuppressFinalize(this);
+        //}
 
-//                .Equals(null)
+        //~Collection() => Dispose(false);
 
-//#endif
+        public void Add(ref T item) => AddItem(ref item);
 
-//                ) return false;
+        public void Clear() => ClearItems();
 
-//            foreach (T _item in Items)
+        public bool Contains(in T item)
+        {
 
-//                if (_item.Equals(item))
+            if (item
 
-//                    return true;
+#if NETCORE
 
-//            return false;
-//        }
+                is null
 
-//        public void CopyTo(ref T[] array, ref uint index)
+#else
 
-//        {
+                .Equals(null)
 
-//            ThrowIfNull(array, nameof(array));
+#endif
 
-//            _ = Items.GetCount(out uint count);
+                ) return false;
 
-//            if (array.Length <= count + index)
+            foreach (T _item in Items)
 
-//                throw new ArgumentException($"{nameof(array)} does not have the required length.");
+                if (_item.Equals(item))
 
-//            uint i = 0;
+                    return true;
 
-//            _ = Items.GetAt(ref i, out T item);
+            return false;
+        }
 
-//            array[index] = item;
+        public void CopyTo(in T[] array, uint index)
 
-//            for (i = 1; i < count; i++)
+        {
 
-//            {
+            ThrowIfNull(array, nameof(array));
 
-//                _ = Items.GetAt(ref i, out item);
+            if (array.Length <= Count + index)
 
-//                array[++index] = item;
+                throw new ArgumentException($"{nameof(array)} does not have the required length.");
 
-//            }
+            uint i = 0;
 
-//        }
+            _ = Items.GetAt(ref i, out T item);
 
-//        public IEnumerator<T> GetEnumerator() => new WinCopies.Collections.UIntIndexedCollectionEnumerator<T>(this);
+            array[index] = item;
 
-//        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+            for (i = 1; i < Count; i++)
 
-//        public uint? IndexOf(ref T item)
+            {
 
-//        {
+                _ = Items.GetAt(ref i, out item);
 
-//            T _item;
+                array[++index] = item;
 
-//            for (uint i = 0; i < Count; i++)
+            }
 
-//            {
+        }
 
-//                _ = Items.GetAt(ref i, out _item);
+        void IUIntIndexedCollection.CopyTo(in Array array, uint index)
 
-//                if (_item.Equals(item))
+        {
 
-//                    return i;
+            ThrowIfNull(array, nameof(array));
 
-//            }
+            if (array.Length <= Count + index)
 
-//            return null;
+                throw new ArgumentException($"{nameof(array)} does not have the required length.");
 
-//        }
+            uint i = 0;
 
-//        public bool Remove(ref T item)
+            _ = Items.GetAt(ref i, out T item);
 
-//        {
+            array.SetValue(item, index);
 
-//            uint? index = IndexOf(ref item);
+            for (i = 1; i < Count; i++)
 
-//            if (index is null)
+            {
 
-//                return false;
+                _ = Items.GetAt(ref i, out item);
 
-//            uint _index = index.Value;
+                array.SetValue(item, index);
 
-//            Marshal.ThrowExceptionForHR((int)Items.RemoveAt(ref _index));
+            }
 
-//            return true;
+        }
 
-//        }
+        public IEnumerator<T> GetEnumerator() => new WinCopies.Collections.UIntIndexedCollectionEnumerator<T>(this);
 
-//        public void RemoveAt(ref uint index) => Items.RemoveAt(ref index);
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-//        protected virtual void ClearItems() => Items.Clear();
+        public uint? IndexOf(in T item)
 
-//        protected virtual void AddItem(ref T item)
-//        {
-//            ThrowIfNull(item, nameof(item));
+        {
 
-//            Marshal.ThrowExceptionForHR((int)Items.Add(ref item));
-//        }
+            for (uint i = 0; i < Count; i++)
 
-//        protected virtual void RemoveItem(ref uint index) => Marshal.ThrowExceptionForHR((int)Items.RemoveAt(ref index));
-//    }
+            {
 
-    //public class ReadOnlyCollection<T> : IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUIntIndexedList, IUIntIndexedCollection, IReadOnlyUIntIndexedList<T>, IReadOnlyUIntIndexedCollection<T>, IDisposable, WinCopies.Collections.IUIntIndexedCollection<T>
-    //{
-    //    protected IReadOnlyNativeCollection<T> Items { get; private set; }
+                _ = Items.GetAt(ref i, out T _item);
 
-    //    public ReadOnlyCollection(IReadOnlyNativeCollection<T> list) => Items = list;
+                if (_item.Equals(item))
 
-    //    public T GetAt(ref uint index)
-    //    {
-    //        _ = Items.GetAt(ref index, out T item);
+                    return i;
 
-    //        return item;
-    //    }
+            }
 
-    //    T WinCopies.Collections.IUIntIndexedCollection<T>.this[uint index] => GetAt(ref index);
+            return null;
 
-    //    object WinCopies.Collections.IUIntIndexedCollection.this[uint index] => GetAt(ref index);
+        }
 
-    //    public uint Count { get; }
+        public bool Remove(in T item)
 
-    //    public bool Contains(T value)
-    //    {
+        {
 
-    //        foreach (T _value in Items)
+            uint? index = IndexOf(item);
 
-    //            if (_value.Equals(value))
+            if (index is null)
 
-    //                return true;
+                return false;
 
-    //        return false;
+            uint _index = index.Value;
 
-    //    }
+            Marshal.ThrowExceptionForHR((int)Items.RemoveAt(ref _index));
 
-    //    public void CopyTo(ref T[] array, ref uint index)
+            return true;
 
-    //    {
+        }
 
-    //        ThrowIfNull(array, nameof(array));
+        public void RemoveAt(ref uint index) => Items.RemoveAt(ref index);
 
-    //        _ = Items.GetCount(out uint count);
+        protected virtual void ClearItems() => Items.Clear();
 
-    //        if (array.Length <= count + index)
+        protected virtual void AddItem(ref T item)
+        {
+            ThrowIfNull(item, nameof(item));
 
-    //            throw new ArgumentException($"{nameof(array)} does not have the required length.");
+            Marshal.ThrowExceptionForHR((int)Items.Add(ref item));
+        }
 
-    //        uint i = 0;
+        protected virtual void RemoveItem(ref uint index) => Marshal.ThrowExceptionForHR((int)Items.RemoveAt(ref index));
+    }
 
-    //        _ = Items.GetAt(ref i, out T item);
+    [Serializable]
+    [DebuggerDisplay("Count = {Count}")]
+    public class ReadOnlyCollection<T> : IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUIntIndexedList, IUIntIndexedCollection, IReadOnlyUIntIndexedList<T>, IReadOnlyUIntIndexedCollection<T>, WinCopies.Collections.IUIntIndexedCollection<T>
+    {
 
-    //        array[index] = item;
+        [NonSerialized]
+        private object _syncRoot;
 
-    //        for (i = 1; i < count; i++)
+        bool IUIntIndexedCollection.IsSynchronized => false;
 
-    //        {
+        object IUIntIndexedCollection.SyncRoot
+        {
+            get
+            {
+                if (_syncRoot is null)
 
-    //            _ = Items.GetAt(ref i, out item);
+                    if (Items is IUIntIndexedCollection c)
 
-    //            array[++index] = item;
+                        _syncRoot = c.SyncRoot;
 
-    //        }
+                    else
 
-    //    }
+                        _ = System.Threading.Interlocked.CompareExchange<object>(ref _syncRoot, new object(), null);
 
-    //    public IEnumerator<T> GetEnumerator() => new WinCopies.Collections.UIntIndexedCollectionEnumerator<T>(this);
+                return _syncRoot;
+            }
+        }
 
-    //    public uint? IndexOf(ref T item)
+        private const bool _isReadOnly = true;
 
-    //    {
+        bool IUIntIndexedCollection<T>.IsReadOnly => _isReadOnly;
 
-    //        T _item;
+        bool IUIntIndexedList.IsReadOnly => _isReadOnly;
 
-    //        for (uint i = 0; i < Count; i++)
+        bool IUIntIndexedList.IsFixedSize => true;
 
-    //        {
+        protected IReadOnlyNativeCollection<T> Items { get; private set; }
 
-    //            _ = Items.GetAt(ref i, out _item);
+        public ReadOnlyCollection(in IReadOnlyNativeCollection<T> list) => Items = list;
 
-    //            if (_item.Equals(item))
+        public T GetAt(ref uint index)
+        {
+            _ = Items.GetAt(ref index, out T item);
 
-    //                return i;
+            return item;
+        }
 
-    //        }
+        object IUIntIndexedList.GetAt(ref uint index)
+        {
+            _ = Items.GetAt(ref index, out T item);
 
-    //        return null;
+            return item;
+        }
 
-    //    }
+        T WinCopies.Collections.IUIntIndexedCollection<T>.this[uint index] => GetAt(ref index);
 
-    //    public void RemoveAt(ref uint index) => Items.RemoveAt(ref index);
-    //}
+        object WinCopies.Collections.IUIntIndexedCollection.this[uint index] => GetAt(ref index);
+
+        public uint Count { get; }
+
+        public bool Contains(in T value)
+        {
+
+            foreach (T _value in Items)
+
+                if (_value.Equals(value))
+
+                    return true;
+
+            return false;
+
+        }
+
+        public void CopyTo(in T[] array, uint index)
+
+        {
+
+            ThrowIfNull(array, nameof(array));
+
+            _ = Items.GetCount(out uint count);
+
+            if (array.Length <= count + index)
+
+                throw new ArgumentException($"{nameof(array)} does not have the required length.");
+
+            uint i = 0;
+
+            _ = Items.GetAt(ref i, out T item);
+
+            array[index] = item;
+
+            for (i = 1; i < count; i++)
+
+            {
+
+                _ = Items.GetAt(ref i, out item);
+
+                array[++index] = item;
+
+            }
+
+        }
+
+        public IEnumerator<T> GetEnumerator() => new WinCopies.Collections.UIntIndexedCollectionEnumerator<T>(this);
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        public uint? IndexOf(in T item)
+
+        {
+
+            for (uint i = 0; i < Count; i++)
+
+            {
+
+                _ = Items.GetAt(ref i, out T _item);
+
+                if (_item.Equals(item))
+
+                    return i;
+
+            }
+
+            return null;
+
+        }
+
+        uint? IUIntIndexedList.IndexOf(in object value) => value is T _value ? IndexOf(in _value) : null;
+
+        bool IUIntIndexedList.Contains(in object value)
+
+        {
+
+            if (value is null) return false;
+
+            var _value = (T)value;
+
+            return Contains(_value);
+
+        }
+
+        void IUIntIndexedCollection.CopyTo(in Array array, uint index)
+
+        {
+
+            ThrowIfNull(array, nameof(array));
+
+            if (array.Length <= Count + index)
+
+                throw new ArgumentException($"{nameof(array)} does not have the required length.");
+
+            uint i = 0;
+
+            _ = Items.GetAt(ref i, out T item);
+
+            array.SetValue(item, index);
+
+            for (i = 1; i < Count; i++)
+
+            {
+
+                _ = Items.GetAt(ref i, out item);
+
+                array.SetValue(item, index);
+
+            }
+
+        }
+
+        uint IUIntIndexedList.Add(ref object value) => throw new InvalidOperationException("The current collection is read-only.");
+
+        void IUIntIndexedList.Remove(in object value) => throw new InvalidOperationException("The current collection is read-only.");
+
+        void IUIntIndexedList.RemoveAt(ref uint index) => throw new InvalidOperationException("The current collection is read-only.");
+
+        void IUIntIndexedCollection<T>.Clear() => throw new InvalidOperationException("The current collection is read-only.");
+
+        void IUIntIndexedList.Clear() => throw new InvalidOperationException("The current collection is read-only.");
+
+        void IUIntIndexedCollection<T>.Add(ref T item) => throw new InvalidOperationException("The current collection is read-only.");
+
+        bool IUIntIndexedCollection<T>.Remove(in T item) => throw new InvalidOperationException("The current collection is read-only.");
+
+        void IUIntIndexedList<T>.RemoveAt(ref uint index) => throw new InvalidOperationException("The current collection is read-only.");
+    }
 
 }
 
