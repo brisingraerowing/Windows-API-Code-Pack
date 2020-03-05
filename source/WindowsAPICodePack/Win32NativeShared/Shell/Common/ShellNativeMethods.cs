@@ -1020,9 +1020,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 
         [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CopyFileEx(string lpExistingFileName, string lpNewFileName,
-   CopyProgressRoutine lpProgressRoutine, IntPtr lpData, ref bool pbCancel,
-   CopyFileFlags dwCopyFlags);
+        public static extern bool CopyFileEx([In, MarshalAs(UnmanagedType.LPWStr)] string lpExistingFileName, [In, MarshalAs(UnmanagedType.LPWStr)] string lpNewFileName,
+   [In] CopyProgressRoutine lpProgressRoutine, [In] IntPtr lpData, [In, Out, MarshalAs(UnmanagedType.Bool)] ref bool pbCancel,
+   [In, MarshalAs(UnmanagedType.U4)] CopyFileFlags dwCopyFlags);
 
         [DllImport("gdi32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]

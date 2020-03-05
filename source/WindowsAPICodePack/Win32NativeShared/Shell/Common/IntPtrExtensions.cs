@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
+namespace Microsoft.WindowsAPICodePack.Win32Native
 {
     public static class IntPtrExtensions
     {

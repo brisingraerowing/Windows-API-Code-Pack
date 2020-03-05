@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GuidAttribute = System.Runtime.InteropServices.GuidAttribute;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
+namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem
 {
     [ComImport,
         Guid(Win32Native.Guids.PortableDevices.IPortableDeviceKeyCollection),

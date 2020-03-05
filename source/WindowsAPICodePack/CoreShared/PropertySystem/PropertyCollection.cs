@@ -302,7 +302,7 @@ namespace Microsoft.WindowsAPICodePack
 
         }
 
-        public IEnumerator<T> GetEnumerator() => new WinCopies.Collections.UIntIndexedCollectionEnumerator<T>(this);
+        public IEnumerator<T> GetEnumerator() => Items.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
@@ -461,7 +461,7 @@ namespace Microsoft.WindowsAPICodePack
 
         }
 
-        public IEnumerator<T> GetEnumerator() => new WinCopies.Collections.UIntIndexedCollectionEnumerator<T>(this);
+        public IEnumerator<T> GetEnumerator() => Items.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 

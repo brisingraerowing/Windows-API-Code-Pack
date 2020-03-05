@@ -51,9 +51,10 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         //types.Add(new Guid(Guids.Shell.FolderTypes.Videos), LocalizedMessages.FolderTypeVideos);
         //}
 
-        public static string GetFolderType(Guid typeId)
+        public static string GetFolderType(string typeId)
         {
-            FieldInfo fieldInfo = typeof(Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes).GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static).Where(f => f.IsLiteral && !f.IsInitOnly && new Guid((string)f.GetValue(null)) == typeId).FirstOrDefault();
+            // todo: include (sub-)nested types
+            FieldInfo fieldInfo = typeof(Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes).GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static).Where(f => f.IsLiteral && !f.IsInitOnly && (string)f.GetValue(null) == typeId).FirstOrDefault();
 
             if (fieldInfo is null)
 

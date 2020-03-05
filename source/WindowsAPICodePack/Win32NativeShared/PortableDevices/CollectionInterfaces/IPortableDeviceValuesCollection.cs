@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
+namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem
 {
     [ComImport,
         Guid(Win32Native.Guids.PortableDevices.IPortableDeviceValuesCollection),
@@ -14,12 +14,12 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
     public interface IPortableDeviceValuesCollection
     {
         [PreserveSig]
-        HResult GetCount( 
+        HResult GetCount(
             [In] ref uint pcElems);
 
         [PreserveSig]
         HResult GetAt(
-            [In] uint dwIndex, 
+            [In] uint dwIndex,
             [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppValues);
 
         [PreserveSig]

@@ -7,8 +7,9 @@ using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
 using static Microsoft.WindowsAPICodePack.Win32Native.Guids.PortableDevices;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
+using static Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceHelper;
 
-namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
+namespace Microsoft.WindowsAPICodePack.PortableDevices.CommandSystem
 {
     //#pragma warning disable CA2243 // Attribute string literals should parse correctly
     //    [Flags]
@@ -330,28 +331,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.Commands
     //    }
     //#pragma warning restore CA2243 // Attribute string literals should parse correctly
 
-    public static class Commands
-    {
+    //public static class Commands
+    //{
 
-        ///// <summary>
-        ///// This method is used to send command to portable devices. This method takes two parameters of unmanaged type. If no managed wrapper is available in this code pack, you can use this method to create your own managed wrapper. Otherwise, if a managed wrapper exists, it is recommended to use these wrappers.
-        ///// </summary>
-        ///// <param name="portableDevice">The <see cref="PortableDevice"/> to send the command to.</param>
-        ///// <param name="parameters">The parameters of the command.</param>
-        ///// <param name="results">The results of the command.</param>
-        public static void SendCommand(PortableDevice portableDevice, IPortableDeviceValues parameters, out IPortableDeviceValues results)
-
-        {
-
-            Marshal.ThrowExceptionForHR((int)(portableDevice ?? throw new ArgumentNullException(nameof(portableDevice))).NativePortableDevice.SendCommand(0, parameters, out results));
-
-            Marshal.ThrowExceptionForHR((int)results.GetErrorValue(Win32Native.PortableDevices.CommandSystem.Common.Parameters.HResult, out HResult result));
-
-            Marshal.ThrowExceptionForHR((int)result);
-
-        }
-
-    }
+    //}
 
     //public static class CommonCommands
 

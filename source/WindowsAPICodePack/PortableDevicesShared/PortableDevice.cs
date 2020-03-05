@@ -16,6 +16,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using GuidAttribute = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.GuidAttribute;
+using static Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceHelper;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
@@ -227,13 +228,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
     //}
     //#pragma warning restore CA2243 // Attribute string literals should parse correctly
 
-    internal sealed class NativeReadOnlyPropertyKeyCollection : IReadOnlyNativeCollection<PropertyKey>/*, WinCopies.Util.DotNetFix.IDisposable*/
+    internal sealed class NativeReadOnlyPropertyKeyCollection : IReadOnlyNativeCollection<PropertyKey>/*, WinCopies.Util.DotNetFix.IDisposable*/, WinCopies.Collections.IUIntIndexedCollection<PropertyKey>
 
     {
 
         private IPortableDeviceKeyCollection _portableDeviceKeyCollection;
 
-        private bool _isReadOnly;
+        private readonly bool _isReadOnly;
 
         bool IReadOnlyNativeCollection<PropertyKey>.IsReadOnly => /*_isDisposed ? throw new InvalidOperationException("The current object is disposed.") : */ _isReadOnly;
 
@@ -259,7 +260,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             _portableDeviceKeyCollection = null;
 
-        //    _isDisposed = true;
+            //    _isDisposed = true;
 
         }
 
@@ -272,7 +273,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         ~NativeReadOnlyPropertyKeyCollection() => Dispose(/*false*/);
 
-        HResult IReadOnlyNativeCollection<PropertyKey>.GetAt(ref uint index, out PropertyKey item)
+        private HResult GetAt(ref uint index, out PropertyKey item)
         {
             var propertyKey = new PropertyKey();
 
@@ -283,7 +284,23 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             return result;
         }
 
-        HResult IReadOnlyNativeCollection<PropertyKey>.GetCount(out uint count)
+        HResult IReadOnlyNativeCollection<PropertyKey>.GetAt(ref uint index, out PropertyKey item) => GetAt(ref index, out item);
+
+        private PropertyKey this[uint index]
+        {
+            get
+            {
+                _ = GetAt(ref index, out PropertyKey item);
+
+                return item;
+            }
+        }
+
+        PropertyKey WinCopies.Collections.IUIntIndexedCollection<PropertyKey>.this[uint index] => this[index];
+
+        object WinCopies.Collections.IUIntIndexedCollection.this[uint index] => this[index];
+
+        private HResult GetCount(out uint count)
         {
             uint _count = 0;
 
@@ -293,6 +310,30 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             return result;
         }
+
+        HResult IReadOnlyNativeCollection<PropertyKey>.GetCount(out uint count) => GetCount(out count);
+
+        uint WinCopies.Collections.IUIntIndexedCollection.Count
+
+        {
+
+            get
+
+            {
+
+                _ = GetCount(out uint count);
+
+                return count;
+
+            }
+
+        }
+
+        private IEnumerator<PropertyKey> GetEnumerator() => new WinCopies.Collections.UIntIndexedCollectionEnumerator<PropertyKey>(this);
+
+        IEnumerator<PropertyKey> IEnumerable<PropertyKey>.GetEnumerator() => GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 
     public sealed class DeviceCapabilities
@@ -307,7 +348,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         {
             _portableDevice = portableDevice ?? throw new ArgumentNullException(nameof(portableDevice));
 
-            Marshal.ThrowExceptionForHR((int)_portableDevice.NativePortableDevice.Capabilities(out _portableDeviceCapabilities));
+            ThrowWhenFailHResult(_portableDevice.NativePortableDevice.Capabilities(out _portableDeviceCapabilities));
         }
 
         private ReadOnlyCollection<PropertyKey> _commands;
@@ -324,7 +365,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                 {
 
-                    Marshal.ThrowExceptionForHR((int)_portableDeviceCapabilities.GetSupportedCommands(out IPortableDeviceKeyCollection supportedCommands));
+                    ThrowWhenFailHResult(_portableDeviceCapabilities.GetSupportedCommands(out IPortableDeviceKeyCollection supportedCommands));
 
                     _commands = new ReadOnlyCollection<PropertyKey>(new NativeReadOnlyPropertyKeyCollection(supportedCommands, true));
 
@@ -348,12 +389,28 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
     }
 
+    public class PortableDeviceHelper
+
+    {
+
+        public static void ThrowWhenFailHResult(HResult hResult)
+
+        {
+
+            if (!CoreErrorHelper.Succeeded(hResult))
+
+                throw new PortableDeviceException("An operation has not succeeded, see the inner exception.", Marshal.GetExceptionForHR((int)hResult));
+
+        }
+
+    }
+
     [DebuggerDisplay("{FriendlyName}, {DeviceDescription}, {Manufacturer}")]
     public class PortableDevice : IPortableDevice
     {
 
         /// <summary>
-        /// If the current <see cref="PortableDevice"/> has been created by a <see cref="PortableDevices.PortableDeviceManager"/>, gets that manager, otherwise this property gets <see langword="null"/>.
+        /// If the current <see cref="PortableDevice"/> has been created by a <see cref="PortableDevices.PortableDeviceManager"/>, gets that manager; otherwise returns <see langword="null"/>.
         /// </summary>
         public PortableDeviceManager PortableDeviceManager { get; internal set; }
 
@@ -365,6 +422,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         private DeviceCapabilities _deviceCapabilities = null;
 
+        /// <summary>
+        /// Gets the capabilities that are supported by the current <see cref="PortableDevice"/>. These capabilities do not include the supported properties. For supported properties, see the <see cref="Properties"/> property.
+        /// </summary>
         public DeviceCapabilities DeviceCapabilities => _deviceCapabilities ?? (_deviceCapabilities = new DeviceCapabilities(this));
 
         private IPortableDeviceContent2 _content = null;
@@ -381,7 +441,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                 {
 
-                    Marshal.ThrowExceptionForHR((int)NativePortableDevice.Content(out IPortableDeviceContent content));
+                    ThrowWhenFailHResult(NativePortableDevice.Content(out IPortableDeviceContent content));
 
                     _content = (IPortableDeviceContent2)content;
 
@@ -395,6 +455,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         private PropertyCollection _properties = null;
 
+        /// <summary>
+        /// Gets all of the properties that are supported by the current <see cref="PortableDevice"/>.
+        /// </summary>
         public PropertyCollection Properties => _properties ?? (_properties = new PropertyCollection(new PortableDeviceProperties(Consts.DeviceObjectId, this)));
 
         /// <summary>
@@ -429,31 +492,31 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             uint length = 0;
 
-            Marshal.ThrowExceptionForHR((int)PortableDeviceManager._Manager.GetDeviceFriendlyName(DeviceId, null, length));
+            ThrowWhenFailHResult(PortableDeviceManager._Manager.GetDeviceFriendlyName(DeviceId, null, length));
 
             var stringBuilder = new StringBuilder((int)length);
 
-            Marshal.ThrowExceptionForHR((int)PortableDeviceManager._Manager.GetDeviceFriendlyName(DeviceId, stringBuilder, ref length));
+            ThrowWhenFailHResult(PortableDeviceManager._Manager.GetDeviceFriendlyName(DeviceId, stringBuilder, ref length));
 
             DeviceFriendlyName = stringBuilder.ToString();
 
             length = 0;
 
-            Marshal.ThrowExceptionForHR((int)PortableDeviceManager._Manager.GetDeviceDescription(DeviceId, null, length));
+            ThrowWhenFailHResult(PortableDeviceManager._Manager.GetDeviceDescription(DeviceId, null, length));
 
             stringBuilder = new StringBuilder((int)length);
 
-            Marshal.ThrowExceptionForHR((int)PortableDeviceManager._Manager.GetDeviceDescription(DeviceId, stringBuilder, ref length));
+            ThrowWhenFailHResult(PortableDeviceManager._Manager.GetDeviceDescription(DeviceId, stringBuilder, ref length));
 
             DeviceDescription = stringBuilder.ToString();
 
             length = 0;
 
-            Marshal.ThrowExceptionForHR((int)PortableDeviceManager._Manager.GetDeviceManufacturer(DeviceId, null, length));
+            ThrowWhenFailHResult(PortableDeviceManager._Manager.GetDeviceManufacturer(DeviceId, null, length));
 
             stringBuilder = new StringBuilder((int)length);
 
-            Marshal.ThrowExceptionForHR((int)PortableDeviceManager._Manager.GetDeviceManufacturer(DeviceId, stringBuilder, ref length));
+            ThrowWhenFailHResult(PortableDeviceManager._Manager.GetDeviceManufacturer(DeviceId, stringBuilder, ref length));
 
             DeviceManufacturer = stringBuilder.ToString();
 
@@ -482,7 +545,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             //}
 
             // CoCreate an IPortableDeviceValues interface to hold the client information.
-            IPortableDeviceValues pClientInformation = new PortableDeviceValues();
+            Win32Native.PortableDevices. IPortableDeviceValues pClientInformation = new PortableDeviceValues();
 
             // if (CoreErrorHelper.Succeeded(hr))
             // {
@@ -490,36 +553,36 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             // Attempt to set all properties for client information. If we fail to set
             // any of the properties below it is OK. Failing to set a property in the
             // client information isn't a fatal error.
-            _ = pClientInformation.SetStringValue(PropertySystem.Properties.Client.Name, clientVersion.ClientName);
+            ThrowWhenFailHResult( pClientInformation.SetStringValue(PropertySystem.Properties.Client.Name, clientVersion.ClientName));
 
-            // Marshal.ThrowExceptionForHR((int)ClientInfoHR);
+            // ThrowWhenFailHResult(ClientInfoHR);
 
-            _ = pClientInformation.SetUnsignedIntegerValue(PropertySystem.Properties.Client.MajorVersion, clientVersion.MajorVersion);
+            ThrowWhenFailHResult(pClientInformation.SetUnsignedIntegerValue(PropertySystem.Properties.Client.MajorVersion, clientVersion.MajorVersion));
 
-            // Marshal.ThrowExceptionForHR((int)ClientInfoHR);
+            // ThrowWhenFailHResult(ClientInfoHR);
 
-            _ = pClientInformation.SetUnsignedIntegerValue(PropertySystem.Properties.Client.MinorVersion, clientVersion.MinorVersion);
+            ThrowWhenFailHResult(pClientInformation.SetUnsignedIntegerValue(PropertySystem.Properties.Client.MinorVersion, clientVersion.MinorVersion));
 
-            // Marshal.ThrowExceptionForHR((int)ClientInfoHR);
+            // ThrowWhenFailHResult(ClientInfoHR);
 
-            _ = pClientInformation.SetUnsignedIntegerValue(PropertySystem.Properties.Client.Revision, clientVersion.Revision);
+            ThrowWhenFailHResult(pClientInformation.SetUnsignedIntegerValue(PropertySystem.Properties.Client.Revision, clientVersion.Revision));
 
-            // Marshal.ThrowExceptionForHR((int)ClientInfoHR);
+            // ThrowWhenFailHResult(ClientInfoHR);
 
             // else
             // {
             // Failed to CoCreateInstance Win32Native.Guids.PortableDevices.PortableDeviceValues for client information
             // }
 
-            Marshal.ThrowExceptionForHR((int)pClientInformation.SetUnsignedIntegerValue(PropertySystem.Properties.Client.SecurityQualityOfService, (uint)SecurityImpersonationLevel.SecurityImpersonation << 16));
+            ThrowWhenFailHResult(pClientInformation.SetUnsignedIntegerValue(PropertySystem.Properties.Client.SecurityQualityOfService, (uint)SecurityImpersonationLevel.SecurityImpersonation << 16));
 
             // todo: to add an option for retrying this assignment if a higher rights setting fails (bool retryIfHigherRightsSettingFails = false)
 
-            Marshal.ThrowExceptionForHR((int)pClientInformation.SetUnsignedIntegerValue(PropertySystem.Properties.Client.DesiredAccess, (uint)portableDeviceOpeningOptions.GenericRights));
+            ThrowWhenFailHResult(pClientInformation.SetUnsignedIntegerValue(PropertySystem.Properties.Client.DesiredAccess, (uint)portableDeviceOpeningOptions.GenericRights));
 
-            Marshal.ThrowExceptionForHR((int)pClientInformation.SetUnsignedIntegerValue(PropertySystem.Properties.Client.ShareMode, (uint)portableDeviceOpeningOptions.FileShare));
+            ThrowWhenFailHResult(pClientInformation.SetUnsignedIntegerValue(PropertySystem.Properties.Client.ShareMode, (uint)portableDeviceOpeningOptions.FileShare));
 
-            Marshal.ThrowExceptionForHR((int)pClientInformation.SetBoolValue(PropertySystem.Properties.Client.ManualCloseOnDisconnect, portableDeviceOpeningOptions.ManualCloseOnDisconnect));
+            ThrowWhenFailHResult(pClientInformation.SetBoolValue(PropertySystem.Properties.Client.ManualCloseOnDisconnect, portableDeviceOpeningOptions.ManualCloseOnDisconnect));
 
             //if (CoreErrorHelper.Succeeded(hr))
             //{
@@ -532,7 +595,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             // time using the default (read/write) access. If this fails
             // with HResult.AccessDenied, we'll attempt to open a second time
             // with read-only access.
-            Marshal.ThrowExceptionForHR((int)NativePortableDevice.Open(DeviceId, pClientInformation));
+            ThrowWhenFailHResult(NativePortableDevice.Open(DeviceId, pClientInformation));
 
             //if (hr == HResult.AccessDenied)
             //{
@@ -542,11 +605,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             //Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.DesiredAccess,
             //(uint)GenericRights.Read);
 
-            //Marshal.ThrowExceptionForHR((int)ClientInfoHR);
+            //ThrowWhenFailHResult(ClientInfoHR);
 
             //hr = _portableDevice.Open(DeviceId, pClientInformation);
 
-            //Marshal.ThrowExceptionForHR((int)hr);
+            //ThrowWhenFailHResult(hr);
 
             //}
 
@@ -588,15 +651,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             // return hr;
             // }
 
-            _items = null; // We have to reset the _items field in order to re-load it with the portable device's items when needed.
-
             IsOpen = true;
 
         }
 
         public void Close()
         {
-            Marshal.ThrowExceptionForHR((int)NativePortableDevice.Close());
+            ThrowWhenFailHResult(NativePortableDevice.Close());
 
             IsOpen = false;
         }
@@ -637,11 +698,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                 }
 
-                else Marshal.ThrowExceptionForHR((int)hr);
+                else ThrowWhenFailHResult(hr);
 
             }
 
-            Marshal.ThrowExceptionForHR((int)hr);
+            ThrowWhenFailHResult(hr);
 
             valueKind = BlobValueKind.None;
 
@@ -667,7 +728,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                     else
 
-                        _items = new List<IPortableDeviceObject>();
+                        throw new PortableDeviceException("The device is not open.");
 
                 return _items;
 
@@ -726,6 +787,24 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 }
 
             }
+
+        }
+
+        ///// <summary>
+        ///// This method is used to send command to portable devices. This method takes two parameters of unmanaged type. If no managed wrapper is available in this code pack, you can use this method to create your own managed wrapper. Otherwise, if a managed wrapper exists, it is recommended to use these wrappers.
+        ///// </summary>
+        ///// <param name="portableDevice">The <see cref="PortableDevice"/> to send the command to.</param>
+        ///// <param name="parameters">The parameters of the command.</param>
+        ///// <param name="results">The results of the command.</param>
+        public void SendCommand(IPortableDeviceValues parameters, out IPortableDeviceValues results)
+
+        {
+
+            ThrowWhenFailHResult((portableDevice ?? throw new ArgumentNullException(nameof(portableDevice))).NativePortableDevice.SendCommand(0, parameters, out results));
+
+            ThrowWhenFailHResult(results.GetErrorValue(CommandSystem.Common.Parameters.HResult, out HResult result));
+
+            ThrowWhenFailHResult(result);
 
         }
 

@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using GuidAttribute = System.Runtime.InteropServices.GuidAttribute;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
+namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem
 {
     [ComImport,
         Guid(Guids.PortableDevices.PortableDeviceValues),
@@ -72,7 +72,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         [PreserveSig]
         public extern virtual HResult SetBufferValue([In] ref PropertyKey key, [In] byte[] pValue, [In] uint cbValue);
         [PreserveSig]
-        public extern virtual HResult GetBufferValue([In] ref PropertyKey key, [Out] IntPtr ppValue, [Out] out uint pcbValue);
+        public extern virtual HResult GetBufferValue([In] ref PropertyKey key, [Out] out byte[] ppValue, [Out] out uint pcbValue);
         [PreserveSig]
         public extern virtual HResult SetIPortableDeviceValuesValue([In] ref PropertyKey key, [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pValue);
         [PreserveSig]

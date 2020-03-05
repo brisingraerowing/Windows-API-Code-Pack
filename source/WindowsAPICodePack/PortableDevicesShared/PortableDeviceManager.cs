@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceHelper;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
@@ -37,7 +38,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         }
 
-        public void RefreshDeviceList() => Marshal.ThrowExceptionForHR((int)_Manager.RefreshDeviceList());
+        public void RefreshDeviceList() => ThrowWhenFailHResult(_Manager.RefreshDeviceList());
 
         public void GetDevices()
 
@@ -45,7 +46,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             uint count = 1;
 
-            Marshal.ThrowExceptionForHR((int)_Manager.GetDevices(null, ref count)); // We get the PortableDevices.
+            ThrowWhenFailHResult(_Manager.GetDevices(null, ref count)); // We get the PortableDevices.
 
             if (count == 0)
 
@@ -59,7 +60,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             string[] deviceIDs = new string[count];
 
-            Marshal.ThrowExceptionForHR((int)_Manager.GetDevices(deviceIDs, ref count));
+            ThrowWhenFailHResult(_Manager.GetDevices(deviceIDs, ref count));
 
             if (count == 0)
 
@@ -81,7 +82,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             uint count = 1;
 
-            Marshal.ThrowExceptionForHR((int)_Manager.GetPrivateDevices(null, ref count)); // We get the PortableDevices.
+            ThrowWhenFailHResult(_Manager.GetPrivateDevices(null, ref count)); // We get the PortableDevices.
 
             if (count == 0)
 
@@ -95,7 +96,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             string[] deviceIDs = new string[count];
 
-            Marshal.ThrowExceptionForHR((int)_Manager.GetPrivateDevices(deviceIDs, ref count));
+            ThrowWhenFailHResult(_Manager.GetPrivateDevices(deviceIDs, ref count));
 
             if (count == 0)
 

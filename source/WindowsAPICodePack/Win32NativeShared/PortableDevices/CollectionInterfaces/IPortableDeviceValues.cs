@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GuidAttribute = System.Runtime.InteropServices.GuidAttribute;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
+namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem
 {
     [ComImport,
         Guid(Win32Native.Guids.PortableDevices.IPortableDeviceValues),
@@ -150,13 +150,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         [PreserveSig]
         HResult SetBufferValue(
             [In] ref PropertyKey key,
-            [In] byte[] pValue,
+            [In,MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U1)] byte[] pValue,
             [In] uint cbValue);
 
         [PreserveSig]
         HResult GetBufferValue(
             [In] ref PropertyKey key,
-            [Out] IntPtr ppValue,
+            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U1)] out byte[] ppValue,
             [Out] out uint pcbValue);
 
         [PreserveSig]

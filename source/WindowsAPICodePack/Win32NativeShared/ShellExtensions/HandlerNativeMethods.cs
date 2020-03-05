@@ -13,7 +13,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions
     /// ComVisible interface for native IThumbnailProvider
     /// </summary>
     [ComImport]
-    [Guid(Guids.IThumbnailProvider)]
+    [Guid(Guids.ShellExtensions.IThumbnailProvider)]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
    public interface IThumbnailProvider
     {
@@ -32,7 +32,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions
     /// </summary>
     [ComImport]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    [Guid(Guids.IInitializeWithFile)]
+    [Guid(Guids.ShellExtensions.IInitializeWithFile)]
     public interface IInitializeWithFile
     {
         /// <summary>
@@ -48,7 +48,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
     [ComImport]
-    [Guid(Guids.IInitializeWithStream)]
+    [Guid(Guids.ShellExtensions.IInitializeWithStream)]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IInitializeWithStream
     {
@@ -65,7 +65,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions
     /// </summary>
     [ComImport]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    [Guid(Guids.IInitializeWithItem)]
+    [Guid(Guids.ShellExtensions.IInitializeWithItem)]
     public interface IInitializeWithItem
     {
         /// <summary>
@@ -78,7 +78,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions
 
     [ComImport]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    [Guid(Guids.IObjectWithSite)]
+    [Guid(Guids.ShellExtensions.IObjectWithSite)]
     public interface IObjectWithSite
     {
         void SetSite([In, MarshalAs(UnmanagedType.IUnknown)] object pUnkSite);
@@ -86,7 +86,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions
     }
 
     [ComImport]
-    [Guid(Guids.IOleWindow)]
+    [Guid(Guids.ShellExtensions.IOleWindow)]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IOleWindow
     {
@@ -96,7 +96,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions
 
     [ComImport]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    [Guid(Guids.IPreviewHandler)]
+    [Guid(Guids.ShellExtensions.IPreviewHandler)]
     public interface IPreviewHandler
     {
         void SetWindow(IntPtr hwnd, ref NativeRect rect);
@@ -111,7 +111,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions
 
     [ComImport]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    [Guid(Guids.IPreviewHandlerFrame)]
+    [Guid(Guids.ShellExtensions.IPreviewHandlerFrame)]
     public interface IPreviewHandlerFrame
     {
         void GetWindowContext(IntPtr pinfo);
@@ -121,7 +121,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions
 
     [ComImport]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    [Guid(Guids.IPreviewHandlerVisuals)]
+    [Guid(Guids.ShellExtensions.IPreviewHandlerVisuals)]
     public interface IPreviewHandlerVisuals
     {
         void SetBackgroundColor(NativeColorRef color);

@@ -3,11 +3,12 @@
 using System;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.COM;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Taskbar
 {
     [ComImport()]
-    [Guid("6332DEBF-87B5-4670-90C0-5E57B408A49E")]
+    [Guid(Guids.Taskbar.ICustomDestinationList)]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ICustomDestinationList
     {
@@ -36,57 +37,21 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Taskbar
         void AbortList();
     }
 
-    [Guid("77F10CF0-3DB5-4966-B520-B7C54FD35ED6")]
+    [Guid(Guids.Taskbar.CDestinationList)]
     [ClassInterface(ClassInterfaceType.None)]
     [ComImport()]
     public class CDestinationList { }
 
-    [ComImport()]
-    [Guid("92CA9DCD-5622-4BBA-A805-5E9F541BD8C9")]
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IObjectArray
-    {
-        void GetCount(out uint cObjects);
-        void GetAt(
-            uint iIndex,
-            ref Guid riid,
-            [Out(), MarshalAs(UnmanagedType.Interface)] out object ppvObject);
-    }
-
-    [ComImport()]
-    [Guid("5632B1A4-E38A-400A-928A-D4CD63230295")]
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IObjectCollection
-    {
-        // IObjectArray
-        [PreserveSig]
-        void GetCount(out uint cObjects);
-        [PreserveSig]
-        void GetAt(
-            uint iIndex,
-            ref Guid riid,
-            [Out(), MarshalAs(UnmanagedType.Interface)] out object ppvObject);
-
-        // IObjectCollection
-        void AddObject(
-            [MarshalAs(UnmanagedType.Interface)] object pvObject);
-        void AddFromArray(
-            [MarshalAs(UnmanagedType.Interface)] IObjectArray poaSource);
-        void RemoveObject(uint uiIndex);
-        void Clear();
-    }
-
-    [Guid("2D3468C1-36A7-43B6-AC24-D3F02FD9607A")]
+    [Guid(Guids.Taskbar.CEnumerableObjectCollection)]
     [ClassInterface(ClassInterfaceType.None)]
     [ComImport()]
     public class CEnumerableObjectCollection { }
 
     [ComImport()]
-    [Guid("c43dc798-95d1-4bea-9030-bb99e2983a1a")]
+    [Guid(Guids.Taskbar.ITaskbarList)]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface ITaskbarList4
+    public interface ITaskbarList
     {
-        // ITaskbarList
         [PreserveSig]
         void HrInit();
         [PreserveSig]
@@ -97,14 +62,24 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Taskbar
         void ActivateTab(IntPtr hwnd);
         [PreserveSig]
         void SetActiveAlt(IntPtr hwnd);
+    }
 
-        // ITaskbarList2
+    [ComImport()]
+    [Guid(Guids.Taskbar.ITaskbarList2)]
+    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface ITaskbarList2: ITaskbarList
+    {
         [PreserveSig]
         void MarkFullscreenWindow(
-            IntPtr hwnd,
-            [MarshalAs(UnmanagedType.Bool)] bool fFullscreen);
+                IntPtr hwnd,
+                [MarshalAs(UnmanagedType.Bool)] bool fFullscreen);
+    }
 
-        // ITaskbarList3
+    [ComImport()]
+    [Guid(Guids.Taskbar.ITaskbarList3)]
+    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface ITaskbarList3: ITaskbarList2
+    {
         [PreserveSig]
         void SetProgressValue(IntPtr hwnd, ulong ullCompleted, ulong ullTotal);
         [PreserveSig]
@@ -142,12 +117,17 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Taskbar
         void SetThumbnailClip(
             IntPtr hwnd,
             IntPtr prcClip);
-
-        // ITaskbarList4
-        void SetTabProperties(IntPtr hwndTab, SetTabPropertiesOption stpFlags);
     }
 
-    [Guid("56FDF344-FD6D-11d0-958A-006097C9A090")]
+    [ComImport()]
+    [Guid(Guids.Taskbar.ITaskbarList4)]
+    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface ITaskbarList4: ITaskbarList3
+    { 
+    void SetTabProperties(IntPtr hwndTab, SetTabPropertiesOption stpFlags);
+    }
+
+    [Guid(Guids.Taskbar.CTaskbarList)]
     [ClassInterface(ClassInterfaceType.None)]
     [ComImport()]
     public class CTaskbarList { }

@@ -12,35 +12,54 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     /// </summary>
     public static class FolderIdentifiers
     {
-        private static Dictionary<Guid, string> folders;
+        private static readonly Dictionary<Guid, string> folders;
 
         static FolderIdentifiers()
         {
             folders = new Dictionary<Guid, string>();
-            Type folderIDs = typeof(FolderIdentifiers);
+            Type folderIDs = typeof(Microsoft.WindowsAPICodePack.Shell.Guids.KnownFolders);
 
-            FieldInfo[] fields = folderIDs.GetFields(BindingFlags.NonPublic | BindingFlags.Static);
-            foreach (FieldInfo f in fields)
+#if !NETFRAMEWORK
+
+            static
+
+#endif
+
+                void add(in Type type)
+
             {
-                // Ignore dictionary field.
-                if (f.FieldType == typeof(Guid))
 
-                    folders.Add((Guid)f.GetValue(null), f.Name);
+                FieldInfo[] fields = type.GetFields(BindingFlags.NonPublic | BindingFlags.Static);
+                foreach (FieldInfo f in fields)
+
+                    folders.Add(new Guid((string)f.GetValue(null)), f.Name);
+
+            }
+
+            add(folderIDs);
+
+            // todo: parse sub-nested types
+
+            Type[] types = folderIDs.GetNestedTypes();
+
+            foreach (Type t in types)
+
+            {
+
+                if (t.IsClass)
+
+                    add(t);
+
             }
         }
+
         /// <summary>
         /// Returns the friendly name for a specified folder.
         /// </summary>
         /// <param name="folderId">The Guid identifier for a known folder.</param>
         /// <returns>A <see cref="T:System.String"/> value.</returns>
-        public static string NameForGuid(Guid folderId)
-        {
-            if (!folders.TryGetValue(folderId, out string folder))
+        public static string NameForGuid(Guid folderId) => folders.TryGetValue(folderId, out string folder) ? folder : throw new ArgumentException(LocalizedMessages.FolderIdsUnknownGuid, nameof(folderId));
 
-                throw new ArgumentException(LocalizedMessages.FolderIdsUnknownGuid, "folderId");
-
-            return folder;
-        }
         /// <summary>
         /// Returns a sorted list of name, guid pairs for 
         /// all known folders.
@@ -53,7 +72,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
             // are mutable.
             ICollection<Guid> keys = folders.Keys;
 
-            SortedList<string, Guid> slist = new SortedList<string, Guid>();
+            var slist = new SortedList<string, Guid>();
             foreach (Guid g in keys)
 
                 slist.Add(folders[g], g);

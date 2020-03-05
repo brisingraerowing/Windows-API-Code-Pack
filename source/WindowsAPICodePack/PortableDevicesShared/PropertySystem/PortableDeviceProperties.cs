@@ -9,15 +9,16 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using ObjectProperty = Microsoft.WindowsAPICodePack.PropertySystem.ObjectProperty;
+using static Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceHelper;
 
-namespace Microsoft.WindowsAPICodePack.PortableDevices
+namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem
 {
     internal sealed class PortableDeviceProperties : INativePropertiesCollection
     {
 
         private PortableDevice _portableDevice;
         private string _objectId;
-        private IPortableDeviceKeyCollection _nativePortableDeviceKeyCollection;
+        private Win32Native.PortableDevices.PropertySystem. IPortableDeviceKeyCollection _nativePortableDeviceKeyCollection;
 
         void IDisposable.Dispose() => Dispose(true);
 
@@ -45,7 +46,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             _objectId = objectId;
 
-            Marshal.ThrowExceptionForHR((int)portableDevice.NativePortableDeviceProperties.GetSupportedProperties(_objectId, out _nativePortableDeviceKeyCollection));
+            ThrowWhenFailHResult(portableDevice.NativePortableDeviceProperties.GetSupportedProperties(_objectId, out _nativePortableDeviceKeyCollection));
 
         }
 
@@ -68,7 +69,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             // As this type is internal and calling the Dispose method directly is not recommended, implementing a property and checking it at the top of this method to know whether the current object is disposed is not necessary.
 
-            HResult hr = _portableDevice.NativePortableDeviceProperties.GetPropertyAttributes(_objectId, ref propertyKey, out IPortableDeviceValues portableDeviceValues);
+            HResult hr = _portableDevice.NativePortableDeviceProperties.GetPropertyAttributes(_objectId, ref propertyKey, out Win32Native.PortableDevices.PropertySystem. IPortableDeviceValues portableDeviceValues);
 
             attributes = new DisposablePortableDeviceValuesCollection(portableDeviceValues, null);
 
@@ -97,7 +98,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             // As this type is internal and calling the Dispose method directly is not recommended, implementing a property and checking it at the top of this method to know whether the current object is disposed is not necessary.
 
-            HResult hr = _portableDevice.NativePortableDeviceProperties.GetValues(_objectId, ref _nativePortableDeviceKeyCollection, out IPortableDeviceValues portableDeviceValues);
+            HResult hr = _portableDevice.NativePortableDeviceProperties.GetValues(_objectId, ref _nativePortableDeviceKeyCollection, out Win32Native.PortableDevices.PropertySystem. IPortableDeviceValues portableDeviceValues);
 
             values = new PortableDeviceValuesCollection(portableDeviceValues, this);
 
@@ -140,9 +141,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             }
 
-            hr = _portableDevice.NativePortableDeviceProperties.SetValues(_objectId, _values, out IPortableDeviceValues _results);
+            hr = _portableDevice.NativePortableDeviceProperties.SetValues(_objectId, _values, out Win32Native.PortableDevices.PropertySystem. IPortableDeviceValues _results);
 
-            results = new PortableDeviceValuesCollection(_results, null);
+            results = new PortableDeviceValuesCollectionInternal(_results, null);
 
             return hr;
 
@@ -155,7 +156,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         private HResult Delete(in IEnumerable<PropertyKey> properties)
         {
 
-            IPortableDeviceKeyCollection portableDeviceKeyCollection = new PortableDeviceKeyCollection();
+           Win32Native.PortableDevices.PropertySystem. IPortableDeviceKeyCollection portableDeviceKeyCollection = new Win32Native.PortableDevices.PropertySystem. PortableDeviceKeyCollection();
 
             PropertyKey _propertyKey;
 
@@ -214,12 +215,12 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
     internal abstract class PortableDeviceValuesCollectionAbstract : INativePropertyValuesCollection
     {
-        protected IPortableDeviceValues _nativePortableDeviceValues;
+        protected Win32Native.PortableDevices.PropertySystem. IPortableDeviceValues _nativePortableDeviceValues;
         protected PortableDeviceProperties _portableDeviceProperties;
 
         public bool IsReadOnly => _portableDeviceProperties is null;
 
-        public PortableDeviceValuesCollectionAbstract(in IPortableDeviceValues portableDeviceValues, in PortableDeviceProperties portableDeviceProperties)
+        public PortableDeviceValuesCollectionAbstract(in Win32Native.PortableDevices.PropertySystem. IPortableDeviceValues portableDeviceValues, in PortableDeviceProperties portableDeviceProperties)
         {
             _nativePortableDeviceValues = portableDeviceValues;
 
@@ -277,10 +278,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         }
     }
 
-    internal sealed class PortableDeviceValuesCollection : PortableDeviceValuesCollectionAbstract
+    internal sealed class PortableDeviceValuesCollectionInternal : PortableDeviceValuesCollectionAbstract
 
     {
-        public PortableDeviceValuesCollection(in IPortableDeviceValues portableDeviceValues, in PortableDeviceProperties portableDeviceProperties) : base(portableDeviceValues, portableDeviceProperties)
+        public PortableDeviceValuesCollectionInternal(in Win32Native.PortableDevices.PropertySystem. IPortableDeviceValues portableDeviceValues, in PortableDeviceProperties portableDeviceProperties) : base(portableDeviceValues, portableDeviceProperties)
         {
         }
     }
@@ -288,7 +289,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
     internal sealed class DisposablePortableDeviceValuesCollection : PortableDeviceValuesCollectionAbstract, IDisposableReadOnlyNativePropertyValuesCollection
 
     {
-        public DisposablePortableDeviceValuesCollection(in IPortableDeviceValues portableDeviceValues, in PortableDeviceProperties portableDeviceProperties) : base(portableDeviceValues, portableDeviceProperties)
+        public DisposablePortableDeviceValuesCollection(in Win32Native.PortableDevices.PropertySystem. IPortableDeviceValues portableDeviceValues, in PortableDeviceProperties portableDeviceProperties) : base(portableDeviceValues, portableDeviceProperties)
         {
         }
 

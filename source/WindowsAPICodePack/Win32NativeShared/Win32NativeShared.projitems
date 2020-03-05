@@ -14,6 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\AppRestartRecovery\RestartRestrictions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Clipboard\ClipboardNativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Clipboard\StandardClipboardFormat.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\COM\COMInterfaces.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\CoreErrorHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\CoreHelpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\CoreNativeMethods.cs" />

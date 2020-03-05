@@ -126,7 +126,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
             if (!PropertyInfo.IsReadable)
 
-                throw new PropertySystemException("This property is not readable.");
+                throw new PropertySystemException("The property is not readable.");
 
             (Type, object) result;
 
@@ -136,7 +136,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                 if (IsBlank(propVariant))
 
-                    throw new PropertySystemException("This property is not set.");
+                    throw new PropertySystemException("The property is not set.");
 
                 result = (NativePropertyHelper.VarEnumToSystemType(propVariant.VarType), propVariant.Value);
 
