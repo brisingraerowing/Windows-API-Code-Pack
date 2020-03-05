@@ -2160,13 +2160,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
 
     }
 
-    namespace PortableDevices
+    public static class PortableDevices
 
     {
-
-        public static class IID
-
-        {
 
             public const string IEnumPortableDeviceObjectID = "10ece955-cf41-4728-bfa0-41eedf1bbf19";
             public const string IPortableDevice = "625e2df8-6392-4cf0-9ad1-3cfa5f17775c";
@@ -2193,12 +2189,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
 
             public const string IWpdSerializer = "b32f4002-bb27-45ff-af4f-06631c1e8dad";
 
-        }
-
-        public static class CLSID
-
-        {
-
             public const string PortableDeviceFTM = "f7c0039a-4762-488a-b4b3-760ef9a1ba9b";
             [Obsolete("This CLSID does not aggregates the free-threaded marshaler and is here for legacy reasons. Use the IPortableDeviceFTM constant instead.")]
             public const string PortableDevice = "728a21c5-3d9e-48d7-9810-864848f0f404";
@@ -2208,17 +2198,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
             public const string PortableDeviceKeyCollection = "de2d022d-2480-43be-97f0-d1fa2cf98f4f";
             public const string PortableDeviceValuesCollection = "3882134d-14cf-4220-9cb4-435f86d83f60";
 
-        }
-
     }
 
-    namespace MediaDevices
+    public static class MediaDevices
 
     {
-
-        public static class IID
-
-        {
 
             public const string IComponentAuthenticate = "A9889C00-6D2B-11d3-8496-00C04F79DBC0";
             public const string IMDServiceProvider = "1DCB3A10-33ED-11d3-8470-00C04F79DBC0";
@@ -2279,8 +2263,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
             public const string IWMDMStorageGlobals = "1DCB3A07-33ED-11d3-8470-00C04F79DBC0";
             public const string IWMDMLogger = "110A3200-5A79-11d3-8D78-444553540000";
 
-        }
-
     }
 
     public static class COM
@@ -2298,37 +2280,22 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
 
     }
 
-    namespace Net
+    public static class Net
 
     {
-        public static class IID
-
-        {
 
 
             public const string INetwork = "DCB00002-570F-4A9B-8D69-199FDBA5723B";
             public const string INetworkConnection = "DCB00005-570F-4A9B-8D69-199FDBA5723B";
             public const string INetworkListManager = "DCB00000-570F-4A9B-8D69-199FDBA5723B";
 
-        }
-
-        public static class CLSID
-
-        {
-
             public const string NetworkListManager = "DCB00C01-570F-4A9B-8D69-199FDBA5723B";
-
-        }
 
     }
 
-    namespace Taskbar
+    public static class Taskbar
 
     {
-
-        public static class IIDs
-
-        {
 
             public const string ICustomDestinationList = "6332DEBF-87B5-4670-90C0-5E57B408A49E";
             public const string ITaskbarList = "56FDF342-FD6D-11d0-958A-006097C9A090";
@@ -2336,29 +2303,18 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
             public const string ITaskbarList3 = "ea1afb91-9e28-4b86-90e9-9e9f8a5eefaf";
             public const string ITaskbarList4 = "c43dc798-95d1-4bea-9030-bb99e2983a1a";
 
-        }
-
-        public static class CLSIDs
-
-        {
-
             public const string CDestinationList = "77F10CF0-3DB5-4966-B520-B7C54FD35ED6";
             public const string CEnumerableObjectCollection = "2D3468C1-36A7-43B6-AC24-D3F02FD9607A";
             public const string CTaskbarList = "56FDF344-FD6D-11d0-958A-006097C9A090";
 
-        }
-
     }
 
-    namespace Shell
+
+    /// <summary>
+    /// IID GUID strings for relevant Shell COM interfaces and CLSID GUID strings for relevant coclasses.
+    /// </summary>
+    public static class Shell
     {
-
-        /// <summary>
-        /// IID GUID strings for relevant Shell COM interfaces.
-        /// </summary>
-        public static class IIDs
-
-        {
 
             public static class PropertySystem
             {
@@ -2431,14 +2387,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
             public const string IEntity = "24264891-E80B-4fd3-B7CE-4FF2FAE8931F";
             public const string IFileOperation = "947AAB5F-0A5C-4C13-B4D6-4BF7836FC9F8";
 
-        }
-
-        /// <summary>
-        /// CLSID GUID strings for relevant coclasses.
-        /// </summary>
-        public static class CLSIDs
-        {
-
             public const string FileOpenDialog = "DC1C5A9C-E88A-4DDE-A5A1-60F82A20AEF7";
             public const string FileSaveDialog = "C0B4E2F3-BA21-4773-8DBA-335EC946EB8B";
             public const string KnownFolderManager = "4DF0C730-DF9D-4AE3-9153-AA6B82E9795A";
@@ -2448,40 +2396,23 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
             public const string QueryParserManager = "5088B39A-29B4-4d9d-8245-4EE289222F66";
             public const string FileOperation = "3ad05575-8857-4850-9277-11b85bdb8e09";
 
-        }
-
-        namespace KnownFolders
+        /// <summary>
+        /// IID GUID strings for relevant Shell COM interfaces and CLSID GUID strings for relevant coclasses.
+        /// </summary>
+        public static class KnownFolders
         {
-
-            /// <summary>
-            /// IID GUID strings for relevant Shell COM interfaces.
-            /// </summary>
-            public static class IIDs
-
-            {
 
                 public const string IKnownFolder = "3AA7AF7E-9B36-420c-A8E3-F77D4674A488";
                 public const string IKnownFolderManager = "8BE2D872-86AA-4d47-B776-32CCA40C7018";
 
-            }
-
-            /// <summary>
-            /// CLSID GUID strings for relevant coclasses.
-            /// </summary>
-            public static class CLSIDs
-            {
-
                 public const string KnownFolderManager = "4df0c730-df9d-4ae3-9153-aa6b82e9795a";
-            }
         }
 
-        namespace ExplorerBrowser
+        /// <summary>
+        /// IID GUID strings for relevant Shell COM interfaces and CLSID GUID strings for relevant coclasses.
+        /// </summary>
+        public static class ExplorerBrowser
         {
-            /// <summary>
-            /// IID GUID strings for relevant Shell COM interfaces.
-            /// </summary>
-            public static class IIDs
-            {
                 public const string IExplorerBrowser = "DFD3B6B5-C10C-4BE9-85F6-A66969F402F6";
                 public const string IKnownFolderManager = "8BE2D872-86AA-4d47-B776-32CCA40C7018";
                 public const string IFolderView = "cde725b0-ccc9-4519-917e-325d72fab4ce";
@@ -2498,15 +2429,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
                 public const string ICommDlgBrowser2 = "10339516-2894-11d2-9039-00C04F8EEB3E";
                 public const string ICommDlgBrowser3 = "c8ad25a1-3294-41ee-8165-71174bd01c57";
 
-            }
-
-            public static class CLSIDs
-
-            {
-
-                public const string ExplorerBrowser = "71F96385-DDD6-48D3-A0C1-AE06E8B055FB";
-
-            }
+                public const string ExplorerBrowserClass = "71F96385-DDD6-48D3-A0C1-AE06E8B055FB";
         }
 
     }
