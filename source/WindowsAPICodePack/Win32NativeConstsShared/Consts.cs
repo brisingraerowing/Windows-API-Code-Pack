@@ -129,6 +129,14 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.Consts
 
 {
 
+    public static class Common
+
+    {
+
+        public const int MaxPath = 260;
+
+    }
+
     public static class DesktopWindowManager
 
     {

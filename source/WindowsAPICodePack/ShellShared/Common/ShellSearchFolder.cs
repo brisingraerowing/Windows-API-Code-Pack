@@ -9,7 +9,6 @@ using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
-using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 using Microsoft.WindowsAPICodePack.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.Shell
@@ -93,7 +92,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 searchScopePaths = value.ToArray();
                 var shellItems = new List<IShellItem>(searchScopePaths.Length);
 
-                var shellItemGuid = new Guid(ShellIIDGuid.IShellItem);
+                var shellItemGuid = new Guid(Win32Native.Guids.Shell.IShellItem);
                 // Guid shellItemArrayGuid = new Guid(ShellIIDGuid.IShellItemArray);
 
                 // Create IShellItem for all the scopes we were given
@@ -118,7 +117,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             get
             {
-                var guid = new Guid(ShellIIDGuid.IShellItem);
+                var guid = new Guid(Win32Native.Guids.Shell.IShellItem);
 
                 if (NativeSearchFolderItemFactory == null) return null;
 

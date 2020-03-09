@@ -5,7 +5,6 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
@@ -15,7 +14,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 #pragma warning disable 0108
 
     [ComImport,
-    Guid(KnownFoldersIIDGuid.IKnownFolder),
+    Guid(Guids.Shell.KnownFolders.IKnownFolder),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IKnownFolderNative
     {
@@ -64,7 +63,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     }
 
     [ComImport,
-    Guid(KnownFoldersIIDGuid.IKnownFolderManager),
+    Guid(Guids.Shell.KnownFolders.IKnownFolderManager),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IKnownFolderManager
     {

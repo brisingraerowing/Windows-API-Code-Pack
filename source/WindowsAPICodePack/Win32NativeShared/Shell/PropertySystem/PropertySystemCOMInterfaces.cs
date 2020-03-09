@@ -5,7 +5,6 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
@@ -20,7 +19,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
     #region Property System COM Interfaces
 
     [ComImport]
-    [System.Runtime.InteropServices.Guid(ShellIIDGuid.IPropertyStoreCapabilities)]
+    [System.Runtime.InteropServices.Guid(Guids.Shell.IPropertyStoreCapabilities)]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyStoreCapabilities
     {
@@ -31,7 +30,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
     /// An in-memory property store cache
     /// </summary>
     [ComImport]
-    [System.Runtime.InteropServices.Guid(ShellIIDGuid.IPropertyStoreCache)]
+    [System.Runtime.InteropServices.Guid(Guids.Shell.IPropertyStoreCache)]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyStoreCache
     {
@@ -78,7 +77,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
     /// A property store
     /// </summary>
     [ComImport]
-    [System.Runtime.InteropServices.Guid(ShellIIDGuid.IPropertyStore)]
+    [System.Runtime.InteropServices.Guid(Guids.Shell.IPropertyStore)]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyStore
     {
@@ -127,7 +126,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
     }
 
     [ComImport,
-    System.Runtime.InteropServices.Guid(ShellIIDGuid.IPropertyDescriptionList),
+    System.Runtime.InteropServices.Guid(Guids.Shell.IPropertyDescriptionList),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyDescriptionList
     {
@@ -138,7 +137,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
     }
 
     [ComImport,
-    System.Runtime.InteropServices.Guid(ShellIIDGuid.IPropertyDescription),
+    System.Runtime.InteropServices.Guid(Guids.Shell.IPropertyDescription),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyDescription
     {
@@ -202,7 +201,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
     }
 
     [ComImport,
-    System.Runtime.InteropServices.Guid(ShellIIDGuid.IPropertyDescription2),
+    System.Runtime.InteropServices.Guid(Guids.Shell.IPropertyDescription2),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyDescription2 : IPropertyDescription
     {
@@ -272,7 +271,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
     }
 
     [ComImport,
-    System.Runtime.InteropServices.Guid(ShellIIDGuid.IPropertyEnumType),
+    System.Runtime.InteropServices.Guid(Guids.Shell.IPropertyEnumType),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyEnumType
     {
@@ -293,7 +292,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
     }
 
     [ComImport,
-    System.Runtime.InteropServices.Guid(ShellIIDGuid.IPropertyEnumType2),
+    System.Runtime.InteropServices.Guid(Guids.Shell.IPropertyEnumType2),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyEnumType2 : IPropertyEnumType
     {
@@ -318,7 +317,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
 
 
     [ComImport,
-    System.Runtime.InteropServices.Guid(ShellIIDGuid.IPropertyEnumTypeList),
+    System.Runtime.InteropServices.Guid(Guids.Shell.IPropertyEnumTypeList),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyEnumTypeList
     {

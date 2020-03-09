@@ -1928,6 +1928,27 @@
             </summary>
             <value>A <see cref="P:Microsoft.WindowsAPICodePack.Net.NetworkListManager.Connectivity"/> value.</value>
         </member>
+        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.ReadOnlyValueCollection.CopyValuesFromPropertyStore(Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.IPropertyStore@)">
+            <summary>
+            Copies the values from a given <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.IPropertyStore"/> into the current collection. See Remarks section.
+            </summary>
+            <param name="pStore">The <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.IPropertyStore"/> from which to copy the values.</param>
+            <remarks>By using this method, you use the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.IPropertyStore"/> interface, which is an unmanaged type, so be careful to free the COM memory after using this interface.</remarks>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.ReadOnlyValueCollection.CopyValuesToPropertyStore(Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.IPropertyStore@)">
+            <summary>
+            Copies the values from the current collection into a given <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.IPropertyStore"/>. See Remarks section.
+            </summary>
+            <param name="pStore">The <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.IPropertyStore"/> into which to copy the values.</param>
+            <remarks>By using this method, you use the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.IPropertyStore"/> interface, which is an unmanaged type, so be careful to free the COM memory after using this interface.</remarks>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.ReadOnlyValueCollection.GetIUnknownValue(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey@)">
+            <summary>
+            Returns an unmanaged object that inherits from the native IUnknown interface. See Remarks section.
+            </summary>
+            <param name="key">The property at which the value to retrieve is stored.</param>
+            <remarks>By using this method, you use the IUnknown interface, which is an unmanaged type, so be careful to free the COM memory after using this interface.</remarks>
+        </member>
         <member name="T:Microsoft.WindowsAPICodePack.PropertySystem.ObjectProperty">
             <summary>
             This class wraps native <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant"/>s into managed objects. Please note that the Shell API, however, has its own managed wrapper, the <c>ShellProperty</c> class.

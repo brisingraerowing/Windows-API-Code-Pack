@@ -8,7 +8,6 @@ using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
@@ -96,9 +95,9 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
         internal static IPropertyStore CreateDefaultPropertyStore(ShellObject shellObj)
         {
-            var guid = new Guid(ShellIIDGuid.IPropertyStore);
+            var guid = new Guid(Win32Native.Guids.Shell.IPropertyStore);
             int hr = shellObj.NativeShellItem2.GetPropertyStore(
-                   ShellNativeMethods.GetPropertyStoreOptions.BestEffort,
+                   GetPropertyStoreOptions.BestEffort,
                    ref guid,
                    out IPropertyStore nativePropertyStore);
 

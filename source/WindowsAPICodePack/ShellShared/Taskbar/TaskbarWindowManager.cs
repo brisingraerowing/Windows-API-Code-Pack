@@ -117,7 +117,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 cbSize = (uint)Marshal.SizeOf<ChangeFilterStruct>()
             };
 
-            _ = TabbedThumbnailNativeMethods.ChangeWindowMessageFilterEx(
+            _ = HandlerNativeMethods.ChangeWindowMessageFilterEx(
                 windowHandle,
                 WindowMessage.DWMSendIconicThumbnail,
                 MessageFilterAction.Allow,
@@ -128,7 +128,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 cbSize = (uint)Marshal.SizeOf<ChangeFilterStruct>()
             };
 
-            _ = TabbedThumbnailNativeMethods.ChangeWindowMessageFilterEx(
+            _ = HandlerNativeMethods.ChangeWindowMessageFilterEx(
                 windowHandle,
                 WindowMessage.DWMSendIconicLivePreviewBitmap,
                 MessageFilterAction.Allow,

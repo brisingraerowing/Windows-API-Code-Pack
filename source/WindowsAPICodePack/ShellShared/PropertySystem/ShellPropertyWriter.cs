@@ -4,7 +4,6 @@ using System;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
@@ -26,12 +25,12 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             ParentShellObject = parent;
 
             // Open the property store for this shell object...
-            var guid = new Guid(ShellIIDGuid.IPropertyStore);
+            var guid = new Guid(Win32Native.Guids.Shell.IPropertyStore);
 
             try
             {
                 int hr = ParentShellObject.NativeShellItem2.GetPropertyStore(
-                        ShellNativeMethods.GetPropertyStoreOptions.ReadWrite,
+                        GetPropertyStoreOptions.ReadWrite,
                         ref guid,
                         out writablePropStore);
 

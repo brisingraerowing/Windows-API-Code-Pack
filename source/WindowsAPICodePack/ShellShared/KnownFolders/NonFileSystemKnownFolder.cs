@@ -1,6 +1,5 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using System;
 using System.Diagnostics;
@@ -31,7 +30,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             // Set the native shell item
             // and set it on the base class (ShellObject)
-            Guid guid = new Guid(ShellIIDGuid.IShellItem2);
+            Guid guid = new Guid(Win32Native.Guids.Shell.IShellItem2);
             knownFolderNative.GetShellItem(0, ref guid, out nativeShellItem);
         }
 

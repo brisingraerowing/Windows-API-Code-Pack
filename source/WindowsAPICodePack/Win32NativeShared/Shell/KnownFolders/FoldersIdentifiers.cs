@@ -70,7 +70,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
             // Make a copy of the dictionary
             // because the Keys and Values collections
             // are mutable.
-            ICollection<Guid> keys = folders.Keys;
+            System.Collections.Generic.ICollection<Guid> keys = folders.Keys;
 
             var slist = new SortedList<string, Guid>();
             foreach (Guid g in keys)

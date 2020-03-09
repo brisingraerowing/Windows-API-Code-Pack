@@ -2,7 +2,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
 {
@@ -18,14 +17,14 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
     // morphs all 'new CoClass()' calls to 'new CoClassWrapper()'.
 
     [ComImport,
-    Guid(ShellIIDGuid.IFileOpenDialog),
+    Guid(Guids.Shell.IFileOpenDialog),
     CoClass(typeof(FileOpenDialogRCW))]
     public interface NativeFileOpenDialog : IFileOpenDialog
     {
     }
 
     [ComImport,
-    Guid(ShellIIDGuid.IFileSaveDialog),
+    Guid(Guids.Shell.IFileSaveDialog),
     CoClass(typeof(FileSaveDialogRCW))]
     public interface NativeFileSaveDialog : IFileSaveDialog
     {
@@ -35,7 +34,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
     [ComImport,
     ClassInterface(ClassInterfaceType.None),
     TypeLibType(TypeLibTypeFlags.FCanCreate),
-    Guid(ShellCLSIDGuid.FileOpenDialog)]
+    Guid(Guids.Shell.FileOpenDialog)]
     public class FileOpenDialogRCW
     {
     }
@@ -43,7 +42,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
     [ComImport,
     ClassInterface(ClassInterfaceType.None),
     TypeLibType(TypeLibTypeFlags.FCanCreate),
-    Guid(ShellCLSIDGuid.FileSaveDialog)]
+    Guid(Guids.Shell.FileSaveDialog)]
     public class FileSaveDialogRCW
     {
     }

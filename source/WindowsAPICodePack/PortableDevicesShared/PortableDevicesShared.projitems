@@ -9,22 +9,18 @@
     <Import_RootNamespace>PortableDevices</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)CollectionClasses\PortableDeviceKeyCollection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CollectionClasses\PortableDevicePropVariantCollection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CollectionInterfaces\IPortableDeviceKeyCollection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CollectionInterfaces\IPortableDevicePropVariantCollection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CollectionInterfaces\IPortableDeviceValuesCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Old.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\CollectionClasses\PortableDevicePropVariantCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\CollectionClasses\PortableDeviceValuesCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\CollectionInterfaces\IPortableDevicePropVariantCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\CollectionInterfaces\IPortableDeviceValuesCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Command.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IPortableDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IPortableDeviceManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CollectionInterfaces\IPortableDeviceValues.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\PortableDeviceProperties.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PortableDeviceException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PortableDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PortableDeviceManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CollectionClasses\PortableDeviceValues.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)PropertySystem\" />
+    <Compile Include="$(MSBuildThisFileDirectory)Structs.cs" />
   </ItemGroup>
 </Project>

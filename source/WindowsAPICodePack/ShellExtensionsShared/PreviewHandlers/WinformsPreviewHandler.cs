@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.ShellExtensions.Resources;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop;
+using Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions;
 
 namespace Microsoft.WindowsAPICodePack.ShellExtensions
 {
@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         /// <param name="caughtException"></param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", 
             Justification="The object remains reachable through the Controls collection which can be disposed at a later time.")]
-        protected override void HandleInitializeException(Exception caughtException)
+        protected override void HandleInitializeException(in Exception caughtException)
         {
             if (caughtException == null) { throw new ArgumentNullException("caughtException"); }
 
@@ -52,7 +52,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
                 });
         }
 
-        protected override void UpdateBounds(NativeRect bounds)
+        protected override void UpdateBounds(in NativeRect bounds)
         {
             Control.Bounds = Rectangle.FromLTRB(bounds.Left, bounds.Top, bounds.Right, bounds.Bottom);
             Control.Visible = true;
@@ -60,11 +60,11 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
 
         protected override void SetFocus() => Control.Focus();
 
-        protected override void SetBackground(int argb) => Control.BackColor = Color.FromArgb(argb);
+        protected override void SetBackground(in int argb) => Control.BackColor = Color.FromArgb(argb);
 
-        protected override void SetForeground(int argb) => Control.ForeColor = Color.FromArgb(argb);
+        protected override void SetForeground(in int argb) => Control.ForeColor = Color.FromArgb(argb);
 
-        protected override void SetFont(LogFont font) => Control.Font = Font.FromLogFont(font);
+        protected override void SetFont(in LogFont font) => Control.Font = Font.FromLogFont(font);
 
         protected override IntPtr Handle => Control.Handle;
 

@@ -44,7 +44,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 knownFolderProperties.fileAttributes = (FileAttributes)nativeFolderDefinition.attributes;
                 knownFolderProperties.definitionOptions = nativeFolderDefinition.definitionOptions;
                 knownFolderProperties.folderTypeId = nativeFolderDefinition.folderTypeId;
-                knownFolderProperties.folderType = FolderTypes.GetFolderType(knownFolderProperties.folderTypeId);
+                knownFolderProperties.folderType = FolderTypes.GetFolderType(knownFolderProperties.folderTypeId.ToString());
 
                 knownFolderProperties.path = GetPath(out bool pathExists, knownFolderNative);
                 knownFolderProperties.pathExists = pathExists;

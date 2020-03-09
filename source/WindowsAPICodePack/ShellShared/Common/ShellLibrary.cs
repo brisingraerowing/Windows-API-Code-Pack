@@ -9,7 +9,6 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using Microsoft.WindowsAPICodePack.Shell.Guids;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
 
@@ -27,11 +26,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         private static readonly Guid[] FolderTypesGuids =
         {
-            new Guid(ShellKFIDGuid.GenericLibrary),
-            new Guid(ShellKFIDGuid.DocumentsLibrary),
-            new Guid(ShellKFIDGuid.MusicLibrary),
-            new Guid(ShellKFIDGuid.PicturesLibrary),
-            new Guid(ShellKFIDGuid.VideosLibrary)
+            new Guid(ShellKnownFolderID.GenericLibrary),
+            new Guid(ShellKnownFolderID.DocumentsLibrary),
+            new Guid(ShellKnownFolderID.MusicLibrary),
+            new Guid(ShellKnownFolderID.PicturesLibrary),
+            new Guid(ShellKnownFolderID.VideosLibrary)
         };
 
         #endregion
@@ -98,11 +97,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 throw new ArgumentException(LocalizedMessages.ShellLibraryEmptyName, nameof(libraryName));
 
             Name = libraryName;
-            var guid = new Guid(ShellKFIDGuid.Libraries);
+            var guid = new Guid(Guids.KnownFolders.Windows7.Libraries);
 
-            ShellNativeMethods.LibrarySaveOptions flags = overwrite ?
-                    ShellNativeMethods.LibrarySaveOptions.OverrideExisting :
-                    ShellNativeMethods.LibrarySaveOptions.FailIfThere;
+            LibrarySaveOptions flags = overwrite ?
+                    LibrarySaveOptions.OverrideExisting :
+                    LibrarySaveOptions.FailIfThere;
 
             nativeShellLibrary = (INativeShellLibrary)new ShellLibraryCoClass();
             nativeShellLibrary.SaveInKnownFolder(ref guid, libraryName, flags, out nativeShellItem);
@@ -127,9 +126,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
             Name = libraryName;
             Guid guid = knownFolder.FolderId;
 
-            ShellNativeMethods.LibrarySaveOptions flags = overwrite ?
-                    ShellNativeMethods.LibrarySaveOptions.OverrideExisting :
-                    ShellNativeMethods.LibrarySaveOptions.FailIfThere;
+            LibrarySaveOptions flags = overwrite ?
+                    LibrarySaveOptions.OverrideExisting :
+                    LibrarySaveOptions.FailIfThere;
 
             nativeShellLibrary = (INativeShellLibrary)new ShellLibraryCoClass();
             nativeShellLibrary.SaveInKnownFolder(ref guid, libraryName, flags, out nativeShellItem);
@@ -155,11 +154,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             Name = libraryName;
 
-            ShellNativeMethods.LibrarySaveOptions flags = overwrite ?
-                    ShellNativeMethods.LibrarySaveOptions.OverrideExisting :
-                    ShellNativeMethods.LibrarySaveOptions.FailIfThere;
+            LibrarySaveOptions flags = overwrite ?
+                    LibrarySaveOptions.OverrideExisting :
+                    LibrarySaveOptions.FailIfThere;
 
-            var guid = new Guid(ShellIIDGuid.IShellItem);
+            var guid = new Guid(Win32Native.Guids.Shell.IShellItem);
 
             _ = ShellNativeMethods.SHCreateItemFromParsingName(folderPath, IntPtr.Zero, ref guid, out IShellItem shellItemIn);
 
@@ -259,10 +258,10 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             get
             {
-                var guid = new Guid(ShellIIDGuid.IShellItem);
+                var guid = new Guid(Win32Native.Guids.Shell.IShellItem);
 
                 nativeShellLibrary.GetDefaultSaveFolder(
-                    ShellNativeMethods.DefaultSaveFolderType.Detect,
+                    DefaultSaveFolderType.Detect,
                     ref guid,
                     out IShellItem saveFolderItem);
 
@@ -280,12 +279,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 string fullPath = new DirectoryInfo(value).FullName;
 
-                var guid = new Guid(ShellIIDGuid.IShellItem);
+                var guid = new Guid(Win32Native.Guids.Shell.IShellItem);
 
                 _ = ShellNativeMethods.SHCreateItemFromParsingName(fullPath, IntPtr.Zero, ref guid, out IShellItem saveFolderItem);
 
                 nativeShellLibrary.SetDefaultSaveFolder(
-                    ShellNativeMethods.DefaultSaveFolderType.Detect,
+                    DefaultSaveFolderType.Detect,
                     saveFolderItem);
             }
         }
@@ -298,25 +297,25 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             get
             {
-                nativeShellLibrary.GetOptions(out ShellNativeMethods.LibraryOptions flags);
+                nativeShellLibrary.GetOptions(out LibraryOptions flags);
 
                 return
-                    (flags & ShellNativeMethods.LibraryOptions.PinnedToNavigationPane) ==
-                    ShellNativeMethods.LibraryOptions.PinnedToNavigationPane;
+                    (flags & LibraryOptions.PinnedToNavigationPane) ==
+                    LibraryOptions.PinnedToNavigationPane;
             }
             set
             {
-                ShellNativeMethods.LibraryOptions flags = ShellNativeMethods.LibraryOptions.Default;
+                LibraryOptions flags = LibraryOptions.Default;
 
                 if (value)
 
-                    flags |= ShellNativeMethods.LibraryOptions.PinnedToNavigationPane;
+                    flags |= LibraryOptions.PinnedToNavigationPane;
 
                 else
 
-                    flags &= ~ShellNativeMethods.LibraryOptions.PinnedToNavigationPane;
+                    flags &= ~LibraryOptions.PinnedToNavigationPane;
 
-                nativeShellLibrary.SetOptions(ShellNativeMethods.LibraryOptions.PinnedToNavigationPane, flags);
+                nativeShellLibrary.SetOptions(LibraryOptions.PinnedToNavigationPane, flags);
             }
         }
 
@@ -351,7 +350,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             get
             {
                 CoreHelpers.ThrowIfNotWin7();
-                return KnownFolderHelper.FromKnownFolderId(new Guid(ShellKFIDGuid.Libraries));
+                return KnownFolderHelper.FromKnownFolderId(new Guid(Guids.KnownFolders.Windows7.Libraries));
             }
         }
 
@@ -367,7 +366,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             using (IKnownFolder kf = KnownFolders.Libraries)
             {
-                var guid = new Guid(ShellIIDGuid.IShellItem);
+                var guid = new Guid(Win32Native.Guids.Shell.IShellItem);
                 string shellItemPath = Path.Combine((kf != null) ? kf.Path : string.Empty, libraryName + FileExtension);
                 int hr = ShellNativeMethods.SHCreateItemFromParsingName(shellItemPath, IntPtr.Zero, ref guid, out IShellItem nativeShellItem);
 
@@ -488,8 +487,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     title,
                     instruction,
                     allowAllLocations ?
-                       ShellNativeMethods.LibraryManageDialogOptions.NonIndexableLocationWarning :
-                       ShellNativeMethods.LibraryManageDialogOptions.Default));
+                       LibraryManageDialogOptions.NonIndexableLocationWarning :
+                       LibraryManageDialogOptions.Default));
 
             staWorker.SetApartmentState(ApartmentState.STA);
             staWorker.Start();
@@ -673,9 +672,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             var list = new List<ShellFileSystemFolder>();
 
-            var shellItemArrayGuid = new Guid(ShellIIDGuid.IShellItemArray);
+            var shellItemArrayGuid = new Guid(Win32Native.Guids.Shell.IShellItemArray);
 
-            HResult hr = nativeShellLibrary.GetFolders(ShellNativeMethods.LibraryFolderFilter.AllItems, ref shellItemArrayGuid, out IShellItemArray itemArray);
+            HResult hr = nativeShellLibrary.GetFolders(LibraryFolderFilter.AllItems, ref shellItemArrayGuid, out IShellItemArray itemArray);
 
             if (!CoreErrorHelper.Succeeded(hr)) return list;
 
@@ -718,7 +717,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         #endregion
 
-        #region ICollection<ShellFileSystemFolder> Members
+        #region System.Collections.Generic.ICollection<ShellFileSystemFolder> Members
 
 
         /// <summary>
@@ -793,14 +792,14 @@ namespace Microsoft.WindowsAPICodePack.Shell
         }
         #endregion
 
-        #region ICollection<ShellFileSystemFolder> Members
+        #region System.Collections.Generic.ICollection<ShellFileSystemFolder> Members
 
         /// <summary>
         /// Copies the collection to an array.
         /// </summary>
         /// <param name="array">The array to copy to.</param>
         /// <param name="arrayIndex">The index in the array at which to start the copy.</param>
-        void ICollection<ShellFileSystemFolder>.CopyTo(ShellFileSystemFolder[] array, int arrayIndex) => throw new NotSupportedException();
+        void System.Collections.Generic.ICollection<ShellFileSystemFolder>.CopyTo(ShellFileSystemFolder[] array, int arrayIndex) => throw new NotSupportedException();
 
         /// <summary>
         /// The count of the items in the list.

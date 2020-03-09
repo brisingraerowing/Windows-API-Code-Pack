@@ -310,12 +310,12 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
     
                 using (RegistryKey extensionKey = Registry.ClassesRoot.CreateSubKey(extension))
                 using (RegistryKey shellexKey = extensionKey.CreateSubKey("shellex"))
-                using (RegistryKey previewKey = shellexKey.CreateSubKey(new Guid(Guids.IPreviewHandler).ToString("B")))
+                using (RegistryKey previewKey = shellexKey.CreateSubKey(new Guid(Win32Native.Guids.ShellExtensions.IPreviewHandler).ToString("B")))
 
 #else
                 using RegistryKey extensionKey = Registry.ClassesRoot.CreateSubKey(extension);
                 using RegistryKey shellexKey = extensionKey.CreateSubKey("shellex");
-                using RegistryKey previewKey = shellexKey.CreateSubKey(new Guid(Guids.IPreviewHandler).ToString("B"));
+                using RegistryKey previewKey = shellexKey.CreateSubKey(new Guid(Win32Native.Guids.ShellExtensions.IPreviewHandler).ToString("B"));
 
 #endif
 
@@ -334,12 +334,12 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
                 
                 using (RegistryKey shellexKey = Registry.ClassesRoot.OpenSubKey(extension + "\\shellex", true))
                 
-                    shellexKey.DeleteSubKey(Guids.IPreviewHandler, false);
+                    shellexKey.DeleteSubKey(Win32Native.Guids.ShellExtensions.IPreviewHandler, false);
 
 #else
 
                 using RegistryKey shellexKey = Registry.ClassesRoot.OpenSubKey(extension + "\\shellex", true);
-                shellexKey.DeleteSubKey(Guids.IPreviewHandler, false);
+                shellexKey.DeleteSubKey(Win32Native.Guids.ShellExtensions.IPreviewHandler, false);
 
 #endif
 
@@ -389,9 +389,9 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
 
                 return CustomQueryInterfaceResult.Failed;
 
-            return (iid == new Guid(Guids.IInitializeWithStream) && !(this is IPreviewFromStream))
-                || (iid == new Guid(Guids.IInitializeWithItem) && !(this is IPreviewFromShellObject))
-                || (iid == new Guid(Guids.IInitializeWithFile) && !(this is IPreviewFromFile))
+            return (iid == new Guid(Win32Native.Guids.ShellExtensions.IInitializeWithStream) && !(this is IPreviewFromStream))
+                || (iid == new Guid(Win32Native.Guids.ShellExtensions.IInitializeWithItem) && !(this is IPreviewFromShellObject))
+                || (iid == new Guid(Win32Native.Guids.ShellExtensions.IInitializeWithFile) && !(this is IPreviewFromFile))
                 ? CustomQueryInterfaceResult.Failed
                 : CustomQueryInterfaceResult.NotHandled;
         }

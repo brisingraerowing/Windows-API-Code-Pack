@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
 using System;
@@ -76,7 +75,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             Debug.Assert(knownFolderNative != null, "Native IKnownFolder should not be null.");
 
             // Get the native IShellItem2 from the native IKnownFolder
-            var guid = new Guid(ShellIIDGuid.IShellItem2);
+            var guid = new Guid(Win32Native.Guids.Shell.IShellItem2);
             HResult hr = knownFolderNative.GetShellItem(0, ref guid, out IShellItem2 shellItem);
 
             if (!CoreErrorHelper.Succeeded(hr)) return null; 
@@ -86,10 +85,10 @@ namespace Microsoft.WindowsAPICodePack.Shell
             // If we have a valid IShellItem, try to get the FileSystem attribute.
             if (shellItem != null)
             {
-                shellItem.GetAttributes(ShellNativeMethods.ShellFileGetAttributesOptions.FileSystem, out ShellNativeMethods.ShellFileGetAttributesOptions sfgao);
+                shellItem.GetAttributes(ShellFileGetAttributesOptions.FileSystem, out ShellFileGetAttributesOptions sfgao);
 
                 // Is this item a FileSystem item?
-                isFileSystem = (sfgao & ShellNativeMethods.ShellFileGetAttributesOptions.FileSystem) != 0;
+                isFileSystem = (sfgao & ShellFileGetAttributesOptions.FileSystem) != 0;
             }
 
             // If it's FileSystem, create a FileSystemKnownFolder, else NonFileSystemKnownFolder

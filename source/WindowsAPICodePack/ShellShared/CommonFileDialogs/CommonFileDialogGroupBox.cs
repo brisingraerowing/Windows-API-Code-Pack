@@ -17,7 +17,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
         /// <summary>
         /// Gets the collection of controls for this group box.
         /// </summary>
-        public Collection<DialogControl> Items { get; private set; }
+        public System.Collections.ObjectModel.Collection<DialogControl> Items { get; private set; }
 
         /// <summary>
         /// Creates a new instance of this class.
@@ -43,7 +43,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
         /// <summary>
         /// Initializes the item collection for this class.
         /// </summary>
-        private void Initialize() => Items = new Collection<DialogControl>();
+        private void Initialize() => Items = new System.Collections.ObjectModel.Collection<DialogControl>();
 
         /// <summary>
         /// Attach the GroupBox control to the dialog object

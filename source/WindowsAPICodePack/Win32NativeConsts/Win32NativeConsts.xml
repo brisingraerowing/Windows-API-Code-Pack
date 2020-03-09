@@ -4352,10 +4352,238 @@
             <para>MessageText: Not enough server memory resources are available to process this command.</para>
             </summary>
         </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.PossibleDeadlock">
+            <summary>
+            <para>MessageId: ERROR_POSSIBLE_DEADLOCK</para>
+            <para>MessageText: A potential deadlock condition has been detected.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.MappedAlignment">
+            <summary>
+            <para>MessageId: ERROR_MAPPED_ALIGNMENT</para>
+            <para>MessageText: The base address or the file offset specified does not have the proper alignment.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SetPowerStateVetoed">
+            <summary>
+            <para>MessageId: ERROR_SET_POWER_STATE_VETOED</para>
+            <para>MessageText: An attempt to change the system power state was vetoed by another application or driver.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SetPowerStateFailed">
+            <summary>
+            <para>MessageId: ERROR_SET_POWER_STATE_FAILED</para>
+            <para>MessageText: The system BIOS failed an attempt to change the system power state.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.TooManyLinks">
+            <summary>
+            <para>MessageId: ERROR_TOO_MANY_LINKS</para>
+            <para>MessageText: An attempt was made to create more links on a file than the file system supports.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.OldWinVersion">
+            <summary>
+            <para>MessageId: ERROR_OLD_WIN_VERSION</para>
+            <para>MessageText: The specified program requires a newer version of Windows.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.AppWrongOS">
+            <summary>
+            <para>MessageId: ERROR_APP_WRONG_OS</para>
+            <para>MessageText: The specified program is not a Windows or MS-DOS program.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SingleInstanceApp">
+            <summary>
+            <para>MessageId: ERROR_SINGLE_INSTANCE_APP</para>
+            <para>MessageText: Cannot start more than one instance of the specified program.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.RModeApp">
+            <summary>
+            <para>MessageId: ERROR_RMODE_APP</para>
+            <para>MessageText: The specified program was written for an earlier version of Windows.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.InvalidDll">
+            <summary>
+            <para>MessageId: ERROR_INVALID_DLL</para>
+            <para>MessageText: One of the library files needed to run this application is damaged.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.NoAssociation">
+            <summary>
+            <para>MessageId: ERROR_NO_ASSOCIATION</para>
+            <para>MessageText: No application is associated with the specified file for this operation.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.DDEFail">
+            <summary>
+            <para>MessageId: ERROR_DDE_FAIL</para>
+            <para>MessageText: An error occurred in sending the command to the application.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.DllNotFound">
+            <summary>
+            <para>MessageId: ERROR_DLL_NOT_FOUND</para>
+            <para>MessageText: One of the library files needed to run this application cannot be found.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.NoMoreUserHandles">
+            <summary>
+            <para>MessageId: ERROR_NO_MORE_USER_HANDLES</para>
+            <para>MessageText: The current process has used all of its system allowance of handles for Window Manager objects.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.MessageSyncOnly">
+            <summary>
+            <para>MessageId: ERROR_MESSAGE_SYNC_ONLY</para>
+            <para>MessageText: The message can be used only with synchronous operations.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SourceElementEmpty">
+            <summary>
+            <para>MessageId: ERROR_SOURCE_ELEMENT_EMPTY</para>
+            <para>MessageText: The indicated source element has no media.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.DestinationElementFull">
+            <summary>
+            <para>MessageId: ERROR_DESTINATION_ELEMENT_FULL</para>
+            <para>MessageText: The indicated destination element already contains media.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.IllegalElementAddress">
+            <summary>
+            <para>MessageId: ERROR_ILLEGAL_ELEMENT_ADDRESS</para>
+            <para>MessageText: The indicated element does not exist.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.MagazineNotPresent">
+            <summary>
+            <para>MessageId: ERROR_MAGAZINE_NOT_PRESENT</para>
+            <para>MessageText: The indicated element is part of a magazine that is not present.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.DeviceReinitializationNeeded">
+            <summary>
+            <para>MessageId: ERROR_DEVICE_REINITIALIZATION_NEEDED</para>
+            <para>MessageText: The indicated device requires reinitialization due to hardware errors.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.DeviceRequiresCleaning">
+            <summary>
+            <para>MessageId: ERROR_DEVICE_REQUIRES_CLEANING</para>
+            <para>MessageText: The device has indicated that cleaning is required before further operations are attempted.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.DeviceDoorOpen">
+            <summary>
+            <para>MessageId: ERROR_DEVICE_DOOR_OPEN</para>
+            <para>MessageText: The device has indicated that its door is open.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.DeviceNotConnected">
+            <summary>
+            <para>MessageId: ERROR_DEVICE_NOT_CONNECTED</para>
+            <para>MessageText: The device is not connected.</para>
+            </summary>
+        </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.NotFound">
             <summary>
             <para>MessageId: ERROR_NOT_FOUND</para>
             <para>MessageText: Element not found.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.NoMatch">
+            <summary>
+            <para>MessageId: ERROR_NO_MATCH</para>
+            <para>MessageText: There was no match for the specified key in the index.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SetNotFound">
+            <summary>
+            <para>MessageId: ERROR_SET_NOT_FOUND</para>
+            <para>MessageText: The property set specified does not exist on the object.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.PointNotFound">
+            <summary>
+            <para>MessageId: ERROR_POINT_NOT_FOUND</para>
+            <para>MessageText: The point passed to GetMouseMovePoints is not in the buffer.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.NoTrackingService">
+            <summary>
+            <para>MessageId: ERROR_NO_TRACKING_SERVICE</para>
+            <para>MessageText: The tracking (workstation) service is not running.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.NoVolumeId">
+            <summary>
+            <para>MessageId: ERROR_NO_VOLUME_ID</para>
+            <para>MessageText: The Volume ID could not be found.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.UnableToRemoveReplaced">
+            <summary>
+            <para>MessageId: ERROR_UNABLE_TO_REMOVE_REPLACED</para>
+            <para>MessageText: Unable to remove the file to be replaced.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.UnableToMoveReplacement">
+            <summary>
+            <para>MessageId: ERROR_UNABLE_TO_MOVE_REPLACEMENT</para>
+            <para>MessageText: Unable to move the replacement file to the file to be replaced. The file to be replaced has retained its original name.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.UnableToMoveReplacement2">
+            <summary>
+            <para>MessageId: ERROR_UNABLE_TO_MOVE_REPLACEMENT_2</para>
+            <para>MessageText: Unable to move the replacement file to the file to be replaced. The file to be replaced has been renamed using the backup name.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.JournalDeleteInProgress">
+            <summary>
+            <para>MessageId: ERROR_JOURNAL_DELETE_IN_PROGRESS</para>
+            <para>MessageText: The volume change journal is being deleted.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.JournalNotActive">
+            <summary>
+            <para>MessageId: ERROR_JOURNAL_NOT_ACTIVE</para>
+            <para>MessageText: The volume change journal is not active.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.PotentialFileFound">
+            <summary>
+            <para>MessageId: ERROR_POTENTIAL_FILE_FOUND</para>
+            <para>MessageText: A file was found, but it may not be the correct file.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.JournalEntryDeleted">
+            <summary>
+            <para>MessageId: ERROR_JOURNAL_ENTRY_DELETED</para>
+            <para>MessageText: The journal entry has been deleted from the journal.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.ShutdownIsScheduled">
+            <summary>
+            <para>MessageId: ERROR_SHUTDOWN_IS_SCHEDULED</para>
+            <para>MessageText: A system shutdown has already been scheduled.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.ShutdownUsersLoggedOn">
+            <summary>
+            <para>MessageId: ERROR_SHUTDOWN_USERS_LOGGED_ON</para>
+            <para>MessageText: The system shutdown cannot be initiated because there are other users logged on to the computer.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.BadDevice">
+            <summary>
+            <para>MessageId: ERROR_BAD_DEVICE</para>
+            <para>MessageText: The specified device name is invalid.</para>
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Win32Native.HResultFacility">
@@ -4371,6 +4599,11 @@
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Canceled">
             <summary>
             ERROR_CANCELLED
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.NoObject">
+            <summary>
+            NO_OBJECT
             </summary>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.ElementNotFound">
@@ -4519,100 +4752,60 @@
             <para>MessageText: Type mismatch.</para>
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.NoObject">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.MKNoObject">
             <summary>
             <para>MessageId: MK_E_NOOBJECT</para>
             <para>MessageText: No object for moniker</para>
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.ShellIIDGuid">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell">
             <summary>
-            IID GUID strings for relevant Shell COM interfaces.
+            IID GUID strings for relevant Shell COM interfaces and CLSID GUID strings for relevant coclasses.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.ShellIIDGuid.IModalWindow">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.IModalWindow">
             <summary>
             IID GUID for the IModalWindow Shell COM interface.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.ShellIIDGuid.IFileDialog">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.IFileDialog">
             <summary>
             IID GUID for the IFileDialog Shell COM interface.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.ShellIIDGuid.IFileOpenDialog">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.IFileOpenDialog">
             <summary>
             IID GUID for the IFileOpenDialog Shell COM interface.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.ShellIIDGuid.IFileSaveDialog">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.IFileSaveDialog">
             <summary>
             IID GUID for the IFileSaveDialog Shell COM interface.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.ShellIIDGuid.IFileDialogEvents">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.IFileDialogEvents">
             <summary>
             IID GUID for the IFileDialogEvents Shell COM interface.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.ShellIIDGuid.IFileDialogControlEvents">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.IFileDialogControlEvents">
             <summary>
             IID GUID for the IFileDialogControlEvents Shell COM interface.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.ShellIIDGuid.IFileDialogCustomize">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.IFileDialogCustomize">
             <summary>
             IID GUID for the IFileDialogCustomize Shell COM interface.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.Controls.ExplorerBrowserIIDGuid">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.KnownFolders">
             <summary>
-            IID GUID strings for relevant Shell COM interfaces.
+            IID GUID strings for relevant Shell COM interfaces and CLSID GUID strings for relevant coclasses.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Guids.ExtendedLinguisticServices.MappingAvailableServices">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.ExplorerBrowser">
             <summary>
-            This class contains constants describing the existing ELS services for Windows 7.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.ExtendedLinguisticServices.MappingAvailableServices.LanguageDetection">
-            <summary>
-            The guid of the Microsoft Language Detection service.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.ExtendedLinguisticServices.MappingAvailableServices.ScriptDetection">
-            <summary>
-            The guid of the Microsoft Script Detection service.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.ExtendedLinguisticServices.MappingAvailableServices.TransliterationHantToHans">
-            <summary>
-            The guid of the Microsoft Traditional Chinese to Simplified Chinese Transliteration service.
-            </summary>        
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.ExtendedLinguisticServices.MappingAvailableServices.TransliterationHansToHant">
-            <summary>
-            The guid of the Microsoft Simplified Chinese to Traditional Chinese Transliteration service.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.ExtendedLinguisticServices.MappingAvailableServices.TransliterationMalayalamToLatin">
-            <summary>
-            The guid of the Microsoft Malayalam to Latin Transliteration service.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.ExtendedLinguisticServices.MappingAvailableServices.TransliterationDevanagariToLatin">
-            <summary>
-            The guid of the Microsoft Devanagari to Latin Transliteration service.
-            </summary>        
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.ExtendedLinguisticServices.MappingAvailableServices.TransliterationCyrillicToLatin">
-            <summary>
-            The guid of the Microsoft Cyrillic to Latin Transliteration service.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Guids.ExtendedLinguisticServices.MappingAvailableServices.TransliterationBengaliToLatin">
-            <summary>
-            The guid of the Microsoft Bengali to Latin Transliteration service.
+            IID GUID strings for relevant Shell COM interfaces and CLSID GUID strings for relevant coclasses.
             </summary>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Sensors.Guids.EventSystem.StateChanged">
@@ -5847,6 +6040,51 @@
         <member name="F:Microsoft.WindowsAPICodePack.Shell.Guids.KnownFolders.Windows7.ImplicitAppShortcuts">
             <summary>
             ImplicitAppShortcuts
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.Guids.MappingAvailableServices">
+            <summary>
+            This class contains constants describing the existing ELS services for Windows 7.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.Guids.MappingAvailableServices.LanguageDetection">
+            <summary>
+            The guid of the Microsoft Language Detection service.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.Guids.MappingAvailableServices.ScriptDetection">
+            <summary>
+            The guid of the Microsoft Script Detection service.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.Guids.MappingAvailableServices.TransliterationHantToHans">
+            <summary>
+            The guid of the Microsoft Traditional Chinese to Simplified Chinese Transliteration service.
+            </summary>        
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.Guids.MappingAvailableServices.TransliterationHansToHant">
+            <summary>
+            The guid of the Microsoft Simplified Chinese to Traditional Chinese Transliteration service.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.Guids.MappingAvailableServices.TransliterationMalayalamToLatin">
+            <summary>
+            The guid of the Microsoft Malayalam to Latin Transliteration service.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.Guids.MappingAvailableServices.TransliterationDevanagariToLatin">
+            <summary>
+            The guid of the Microsoft Devanagari to Latin Transliteration service.
+            </summary>        
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.Guids.MappingAvailableServices.TransliterationCyrillicToLatin">
+            <summary>
+            The guid of the Microsoft Cyrillic to Latin Transliteration service.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.Guids.MappingAvailableServices.TransliterationBengaliToLatin">
+            <summary>
+            The guid of the Microsoft Bengali to Latin Transliteration service.
             </summary>
         </member>
     </members>

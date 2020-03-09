@@ -29,11 +29,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
 
         [PreserveSig]
         HResult GetType(
-            [Out] out ushort pvt);
+            [Out] out VarEnum pvt);
 
         [PreserveSig]
         HResult ChangeType(
-            [In] ushort vt);
+            [In] VarEnum vt);
 
         [PreserveSig]
         HResult Clear();

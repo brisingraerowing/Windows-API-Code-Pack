@@ -17,264 +17,89 @@ using System.Text;
 using System.Threading.Tasks;
 using GuidAttribute = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.GuidAttribute;
 using static Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceHelper;
+using Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
-    public struct ClientVersion
-    {
-        public string ClientName { get; }
-        public uint MajorVersion { get; }
-        public uint MinorVersion { get; }
-        public uint Revision { get; }
 
-        public ClientVersion(in string clientName, in uint majorVersion, in uint minorVersion, in uint revision)
-
-        {
-
-            ClientName = clientName;
-
-            MajorVersion = majorVersion;
-
-            MinorVersion = minorVersion;
-
-            Revision = revision;
-
-        }
-
-        public override bool Equals(object obj) => obj is ClientVersion _obj ? _obj.ClientName == ClientName && _obj.MajorVersion == MajorVersion && _obj.MinorVersion == MinorVersion && _obj.Revision == Revision : false;
-
-        public override int GetHashCode() => ClientName.GetHashCode() ^ MajorVersion.GetHashCode() ^ MinorVersion.GetHashCode() ^ Revision.GetHashCode();
-
-        public static bool operator ==(ClientVersion left, ClientVersion right) => left.Equals(right);
-
-        public static bool operator !=(ClientVersion left, ClientVersion right) => !(left == right);
-    }
-
-    public struct PortableDeviceOpeningOptions
+    internal interface INativePropertyKeyCollectionProvider
     {
 
-        public GenericRights GenericRights { get; }
-
-        public FileShareOptions FileShare { get; }
-
-        public bool ManualCloseOnDisconnect { get; }
-
-        public PortableDeviceOpeningOptions(in GenericRights genericRights, in FileShareOptions fileShare, in bool manualCloseOnDisconnect)
-
-        {
-
-            GenericRights = genericRights;
-
-            FileShare = fileShare;
-
-            ManualCloseOnDisconnect = manualCloseOnDisconnect;
-
-        }
+        Win32Native.PortableDevices.PropertySystem.IPortableDeviceKeyCollection NativeItems { get; }
 
     }
 
-    //#pragma warning disable CA2243 // Attribute string literals should parse correctly
-    //public class SupportedCommands
-
-    //{
-    //[Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Common)]
-    //private readonly Common _common;
-    //[Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities)]
-    //private readonly Commands.Capability _capability;
-    //[Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Storage)]
-    //private readonly Storage _storage;
-    //[Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.SMS)]
-    //private readonly SMS _sms;
-    //[Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.StillImageCapture)]
-    //private readonly StillImageCapture _stillImageCapture;
-    //[Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.MediaCapture)]
-    //private readonly MediaCapture _mediaCapture;
-    //[Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.DeviceHints)]
-    //private readonly DeviceHint _deviceHint;
-    //[Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.ClassExtensionV1)]
-    //[Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.ClassExtensionV2)]
-    //private readonly ClassExtension _classExtension;
-    //[Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.NetworkConfiguration)]
-    //private readonly NetworkConfiguration _networkConfiguration;
-
-    //public class ObjectCommands
-
-    //{
-    //    [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Enumeration)]
-    //    private readonly Enumeration _enumeration;
-    //    [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Properties)]
-    //    private readonly Property _property;
-    //    [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.PropertiesBulk)]
-    //    private readonly PropertyBulk _propertyBulk;
-    //    [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources)]
-    //    private readonly Resource _resource;
-    //    [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management)]
-    //    private readonly Management _management;
-
-    //    public Enumeration Enumeration => _enumeration;
-
-    //    public Property Property => _property;
-
-    //    public PropertyBulk PropertyBulk => _propertyBulk;
-
-    //    public Resource Resource => _resource;
-
-    //    public Management Management => _management;
-
-    //    public ObjectCommands() { }
-
-    //    public ObjectCommands(in Enumeration enumeration, in Property property, in PropertyBulk propertyBulk, in Resource resource, in Management management)
-
-    //    {
-
-    //        _enumeration = enumeration;
-
-    //        _property = property;
-
-    //        _propertyBulk = propertyBulk;
-
-    //        _resource = resource;
-
-    //        _management = management;
-
-    //    }
-
-    //}
-
-    //public class ServiceCommands
-
-    //{
-    //    [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Common)]
-    //    private readonly Commands.Service.Common _common;
-    //    [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities)]
-    //    private readonly Commands.Service.Capability _capability;
-    //    [Guid(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Methods)]
-    //    private readonly Method _method;
-
-    //    public Commands.Service.Common Common => _common;
-
-    //    public Commands.Service.Capability Capability => _capability;
-
-    //    public Method Method => _method;
-
-    //    public ServiceCommands() { }
-
-    //    public ServiceCommands(in Commands.Service.Common common, in Commands.Service.Capability capability, in Method method)
-
-    //    {
-
-    //        _common = common;
-
-    //        _capability = capability;
-
-    //        _method = method;
-
-    //    }
-
-    //}
-
-    //public Common Common => _common;
-
-    //public ObjectCommands Object { get; }
-
-    //public Commands.Capability Capability => _capability;
-
-    //public Storage Storage => _storage;
-
-    //public SMS SMS => _sms;
-
-    //public StillImageCapture StillImageCapture => _stillImageCapture;
-
-    //public MediaCapture MediaCapture => _mediaCapture;
-
-    //public DeviceHint DeviceHint => _deviceHint;
-
-    //public ClassExtension ClassExtension => _classExtension;
-
-    //public NetworkConfiguration NetworkConfiguration => _networkConfiguration;
-
-    //public ServiceCommands Service { get; }
-
-    //    public SupportedCommands() { Object = new ObjectCommands(); Service = new ServiceCommands(); }
-
-    //    public SupportedCommands(in Common common, in ObjectCommands @object, in Commands.Capability capability, in Storage storage, in SMS sms, in StillImageCapture stillImageCapture, in MediaCapture mediaCapture, in DeviceHint deviceHint, in ClassExtension classExtension, in NetworkConfiguration networkConfiguration, in ServiceCommands service)
-
-    //    {
-
-    //        _common = common;
-
-    //        Object = @object;
-
-    //        _capability = capability;
-
-    //        _storage = storage;
-
-    //        _sms = sms;
-
-    //        _stillImageCapture = stillImageCapture;
-
-    //        _mediaCapture = mediaCapture;
-
-    //        _deviceHint = deviceHint;
-
-    //        _classExtension = classExtension;
-
-    //        _networkConfiguration = networkConfiguration;
-
-    //        Service = service;
-
-    //    }
-
-    //}
-    //#pragma warning restore CA2243 // Attribute string literals should parse correctly
-
-    internal sealed class NativeReadOnlyPropertyKeyCollection : IReadOnlyNativeCollection<PropertyKey>/*, WinCopies.Util.DotNetFix.IDisposable*/, WinCopies.Collections.IUIntIndexedCollection<PropertyKey>
+    internal class NativeReadOnlyPropertyKeyCollection : IReadOnlyNativeCollection<PropertyKey>, WinCopies.Collections.IUIntIndexedCollection<PropertyKey>
 
     {
 
-        private IPortableDeviceKeyCollection _portableDeviceKeyCollection;
+        private Win32Native.PortableDevices.PropertySystem.IPortableDeviceKeyCollection _portableDeviceKeyCollection;
+
+        protected internal Win32Native.PortableDevices.PropertySystem.IPortableDeviceKeyCollection PortableDeviceKeyCollection { get { ThrowIfDisposed(); return _portableDeviceKeyCollection; } }
+
+        //IPortableDeviceKeyCollection INativePropertyKeyCollectionProvider.NativeItems => PortableDeviceKeyCollection;
+
+        // todo: replace by the same method of the WinCopies.Util.Util class.
+
+        private protected void ThrowIfDisposed()
+
+        {
+
+            if (_isDisposed) throw new InvalidOperationException("The collection is disposed.");
+
+        }
 
         private readonly bool _isReadOnly;
 
-        bool IReadOnlyNativeCollection<PropertyKey>.IsReadOnly => /*_isDisposed ? throw new InvalidOperationException("The current object is disposed.") : */ _isReadOnly;
+        bool IReadOnlyNativeCollection<PropertyKey>.IsReadOnly
+        {
+            get
+            {
+                ThrowIfDisposed();
 
-        public NativeReadOnlyPropertyKeyCollection(IPortableDeviceKeyCollection portableDeviceKeyCollection, bool isReadOnly)
+                return _isReadOnly;
+            }
+        }
+
+        public NativeReadOnlyPropertyKeyCollection(Win32Native.PortableDevices.PropertySystem.IPortableDeviceKeyCollection portableDeviceKeyCollection, bool isReadOnly)
         {
             _portableDeviceKeyCollection = portableDeviceKeyCollection;
 
             _isReadOnly = isReadOnly;
         }
 
-        //private bool _isDisposed = false;
+        private bool _isDisposed = false;
 
-        //bool WinCopies.Util.DotNetFix.IDisposable.IsDisposed => _isDisposed;
+        bool WinCopies.Util.DotNetFix.IDisposable.IsDisposed => _isDisposed;
 
-        private void Dispose(/*bool disposing*/)
+        private void Dispose(bool disposing)
         {
 
-            //if (disposing)
+            if (disposing || _isDisposed)
 
-            //    return;
+                return;
 
             _ = Marshal.ReleaseComObject(_portableDeviceKeyCollection);
 
             _portableDeviceKeyCollection = null;
 
-            //    _isDisposed = true;
+            _isDisposed = true;
 
         }
 
-        //void IDisposable.Dispose()
-        //{
-        //    Dispose(true);
+        void IDisposable.Dispose()
+        {
+            Dispose(true);
 
-        //    GC.SuppressFinalize(this);
-        //}
+            GC.SuppressFinalize(this);
+        }
 
-        ~NativeReadOnlyPropertyKeyCollection() => Dispose(/*false*/);
+        ~NativeReadOnlyPropertyKeyCollection() => Dispose(false);
 
         private HResult GetAt(ref uint index, out PropertyKey item)
         {
+            ThrowIfDisposed();
+
             var propertyKey = new PropertyKey();
 
             HResult result = _portableDeviceKeyCollection.GetAt(index, ref propertyKey);
@@ -290,6 +115,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         {
             get
             {
+                if (index < 0 || index >= Count)
+
+                    throw new IndexOutOfRangeException();
+
                 _ = GetAt(ref index, out PropertyKey item);
 
                 return item;
@@ -302,6 +131,8 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         private HResult GetCount(out uint count)
         {
+            ThrowIfDisposed();
+
             uint _count = 0;
 
             HResult result = _portableDeviceKeyCollection.GetCount(ref _count);
@@ -313,7 +144,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         HResult IReadOnlyNativeCollection<PropertyKey>.GetCount(out uint count) => GetCount(out count);
 
-        uint WinCopies.Collections.IUIntIndexedCollection.Count
+        private uint Count
 
         {
 
@@ -329,11 +160,515 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         }
 
-        private IEnumerator<PropertyKey> GetEnumerator() => new WinCopies.Collections.UIntIndexedCollectionEnumerator<PropertyKey>(this);
+        uint WinCopies.Collections.IUIntIndexedCollection.Count => Count;
+
+        private IEnumerator<PropertyKey> GetEnumerator()
+        {
+            ThrowIfDisposed();
+
+            return new WinCopies.Collections.UIntIndexedCollectionEnumerator<PropertyKey>(this);
+        }
 
         IEnumerator<PropertyKey> IEnumerable<PropertyKey>.GetEnumerator() => GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+    }
+
+    internal sealed class NativePropertyKeyCollection : NativeReadOnlyPropertyKeyCollection, INativeCollection<PropertyKey>
+
+    {
+        bool IReadOnlyNativeCollection<PropertyKey>.IsReadOnly
+        {
+            get
+            {
+                ThrowIfDisposed();
+
+                return false;
+            }
+        }
+
+        bool INativeCollection<PropertyKey>.IsFixedSize
+        {
+            get
+            {
+                ThrowIfDisposed();
+
+                return false;
+            }
+        }
+
+        HResult INativeCollection<PropertyKey>.Add(ref PropertyKey value)
+        {
+            ThrowIfDisposed();
+
+            return PortableDeviceKeyCollection.Add(ref value);
+        }
+
+        HResult INativeCollection<PropertyKey>.Clear()
+        {
+            ThrowIfDisposed();
+
+            return PortableDeviceKeyCollection.Clear();
+        }
+
+        HResult INativeCollection<PropertyKey>.RemoveAt(in uint index)
+        {
+            ThrowIfDisposed();
+
+            return PortableDeviceKeyCollection.RemoveAt(index);
+        }
+    }
+
+    internal class NativeReadOnlyValueCollection : IReadOnlyNativeValueCollection
+
+    {
+
+        private Win32Native.PortableDevices.PropertySystem.PortableDeviceValues _portableDeviceValues;
+        //protected Dictionary<PropertyKey, object> Dic = new Dictionary<PropertyKey, object>();
+
+        protected internal Win32Native.PortableDevices.PropertySystem.PortableDeviceValues PortableDeviceValues { get { ThrowIfDisposed(); return _portableDeviceValues; } }
+
+        //IPortableDeviceKeyCollection INativePropertyKeyCollectionProvider.NativeItems => PortableDeviceKeyCollection;
+
+        // todo: replace by the same method of the WinCopies.Util.Util class.
+
+        private protected void ThrowIfDisposed()
+
+        {
+
+            if (_isDisposed) throw new InvalidOperationException("The collection is disposed.");
+
+        }
+
+        private readonly bool _isReadOnly;
+
+        bool IReadOnlyNativeValueCollection.IsReadOnly
+        {
+            get
+            {
+                ThrowIfDisposed();
+
+                return _isReadOnly;
+            }
+        }
+
+        public NativeReadOnlyValueCollection(Win32Native.PortableDevices.PropertySystem.PortableDeviceValues portableDeviceValues, bool isReadOnly)
+        {
+            _portableDeviceValues = portableDeviceValues;
+
+            _isReadOnly = isReadOnly;
+        }
+
+        private bool _isDisposed = false;
+
+        bool WinCopies.Util.DotNetFix.IDisposable.IsDisposed => _isDisposed;
+
+        private void Dispose(bool disposing)
+        {
+
+            if (disposing || _isDisposed)
+
+                return;
+
+            _ = Marshal.ReleaseComObject(_portableDeviceValues);
+
+            _portableDeviceValues = null;
+
+            _isDisposed = true;
+
+        }
+
+        void IDisposable.Dispose()
+        {
+            Dispose(true);
+
+            GC.SuppressFinalize(this);
+        }
+
+        ~NativeReadOnlyValueCollection() => Dispose(false);
+
+        //uint Count
+
+        //{
+
+        //    get
+
+        //    {
+
+        //        uint count = 0;
+
+        //        _ = _portableDeviceValues.GetCount(ref count);
+
+        //        return count;
+
+        //    }
+
+        //}
+
+        //HResult IReadOnlyNativeValueCollection.GetAt(in uint index, ref PropertyKey propertyKey, ref PropVariant propVariant)
+
+        //{
+
+        //    ThrowIfDisposed();
+
+        //    if (index < 0 || index >= Count)
+
+        //        throw new IndexOutOfRangeException();
+
+        //    var propKey = new PropertyKey();
+
+        //    var propVar = new PropVariant();
+
+        //    _ = _portableDeviceValues.GetAt(index, ref propKey, ref propVar);
+
+        //    propertyKey = propKey;
+
+        //    (object value, Type valueType) result;
+
+        //    if (_dic.ContainsKey(propKey))
+
+        //    {
+
+        //        object _result = _dic[propertyKey];
+
+        //        result = (_result, _result.GetType());
+
+        //    }
+
+        //    else
+
+        //        result = (propVar.Value, NativePropertyHelper.VarEnumToSystemType(propVar.VarType));
+
+        //    propVar.Dispose();
+
+        //    valueType = result.valueType;
+
+        //    return result.value;
+
+        //}
+
+        //HResult IReadOnlyNativeCollection<PropertyKey>.GetAt(ref uint index, out PropertyKey item) => GetAt(ref index, out item);
+
+        //private PropertyKey this[PropertyKey key]
+        //{
+        //    get
+        //    {
+        //        _ = GetAt(ref index, out PropertyKey item);
+
+        //        return item;
+        //    }
+        //}
+
+        //PropertyKey WinCopies.Collections.IUIntIndexedCollection<PropertyKey>.this[uint index] => this[index];
+
+        //object WinCopies.Collections.IUIntIndexedCollection.this[uint index] => this[index];
+
+        HResult IReadOnlyNativeValueCollection.GetCount(out uint count)
+        {
+            ThrowIfDisposed();
+
+            uint _count = 0;
+
+            HResult result = _portableDeviceValues.GetCount(ref _count);
+
+            count = _count;
+
+            return result;
+        }
+
+        HResult IReadOnlyNativeValueCollection.GetValue(ref PropertyKey key, out object pValue, out Type valueType)
+
+        {
+            ThrowIfDisposed();
+
+            if (Dic.TryGetValue(key, out object value))
+
+            {
+
+                pValue = value;
+
+                valueType = value.GetType();
+
+                return HResult.Ok;
+
+            }
+
+            HResult hr = _portableDeviceValues.GetValue(ref key, out PropVariant propVariant);
+
+            if (hr == HResult.ElementNotFound)
+
+            {
+
+                propVariant.Dispose();
+
+                pValue = null;
+
+                valueType = null;
+
+                return hr;
+
+            }
+
+            (object value, Type valueType) result = (propVariant.Value, NativePropertyHelper.VarEnumToSystemType(propVariant.VarType));
+
+            propVariant.Dispose();
+
+            pValue = result.value;
+
+            valueType = result.valueType;
+
+            return HResult.Ok;
+        }
+
+        HResult IReadOnlyNativeValueCollection.GetStringValue(ref PropertyKey key, out string pValue) => PortableDeviceValues.GetStringValue(ref key, out pValue);
+
+        HResult IReadOnlyNativeValueCollection.GetUnsignedIntegerValue(ref PropertyKey key, out uint pValue) => PortableDeviceValues.GetUnsignedIntegerValue(ref key, out pValue);
+
+        HResult IReadOnlyNativeValueCollection.GetSignedIntegerValue(ref PropertyKey key, out int pValue) => PortableDeviceValues.GetSignedIntegerValue(ref key, out pValue);
+
+        HResult IReadOnlyNativeValueCollection.GetUnsignedLargeIntegerValue(ref PropertyKey key, out ulong pValue) => PortableDeviceValues.GetUnsignedLargeIntegerValue(ref key, out pValue);
+
+        HResult IReadOnlyNativeValueCollection.GetSignedLargeIntegerValue(ref PropertyKey key, out long pValue) => PortableDeviceValues.GetSignedLargeIntegerValue(ref key, out pValue);
+
+        HResult IReadOnlyNativeValueCollection.GetFloatValue(ref PropertyKey key, out float pValue) => PortableDeviceValues.GetFloatValue(ref key, out pValue);
+
+        HResult IReadOnlyNativeValueCollection.GetErrorValue(ref PropertyKey key, out HResult pValue) => PortableDeviceValues.GetErrorValue(ref key, out pValue);
+
+        HResult IReadOnlyNativeValueCollection.GetKeyValue(ref PropertyKey key, out PropertyKey pValue) => PortableDeviceValues.GetKeyValue(ref key, out pValue);
+
+        HResult IReadOnlyNativeValueCollection.GetBoolValue(ref PropertyKey key, out bool pValue) => PortableDeviceValues.GetBoolValue(ref key, out pValue);
+
+        HResult IReadOnlyNativeValueCollection.GetIUnknownValue(ref PropertyKey key, out object ppValue) => PortableDeviceValues.GetIUnknownValue(ref key, out ppValue);
+
+        HResult IReadOnlyNativeValueCollection.GetGuidValue(ref PropertyKey key, out Guid pValue) => PortableDeviceValues.GetGuidValue(ref key, out pValue);
+
+        HResult IReadOnlyNativeValueCollection.GetBufferValue(ref PropertyKey key, out byte[] ppValue)
+        {
+            HResult hr = PortableDeviceValues.GetBufferValue(ref key,
+                   out ppValue,
+#if DEBUG
+                out uint count
+#else
+                out uint _
+#endif
+                );
+
+#if DEBUG
+
+            if (CoreErrorHelper.Succeeded(hr))
+
+                Debug.Assert(ppValue.Length == count);
+
+#endif 
+
+            return hr;
+        }
+
+        //private HResult GetFromDictionary<T>(in PropertyKey key, out T value) where T : class
+        //{
+
+        //    ThrowIfDisposed();
+
+        //    if (Dic.TryGetValue(key, out object _value))
+
+        //        if (_value is T __value)
+
+        //        {
+
+        //            value = __value;
+
+        //            return HResult.Ok;
+
+        //        }
+
+        //        else
+
+        //        {
+
+        //            value = null;
+
+        //            return HResult.DispTypeMismatch;
+
+        //        }
+
+        //    else
+
+        //    {
+
+        //        value = null;
+
+        //        return HResult.ElementNotFound;
+
+        //    }
+
+        //}
+
+        //HResult IReadOnlyNativeValueCollection.GetIPortableDeviceValuesValue(in PropertyKey key, out IPortableDeviceValues ppValue)
+
+        //{
+
+        //    GetFromDictionary<ICollection<>>
+
+        //}
+
+        //HResult IReadOnlyNativeValueCollection.GetPropVariantCollectionValue(in PropertyKey key, out ICollection<PropVariant> ppValue)
+
+        //{
+
+        //    HResult hr = GetFromDictionary<ICollection<PropVariant>>(key, out ICollection<PropVariant> value);
+
+        //    if (CoreErrorHelper.Succeeded(hr))
+
+        //        ppValue = value;
+
+        //    else if (hr == HResult.ElementNotFound)
+
+        //    {
+
+        //        hr = _portableDeviceValues.GetIPortableDevicePropVariantCollectionValue(key, out IPortableDevicePropVariantCollection portableDevicePropVariantCollection);
+
+        //        if (CoreErrorHelper.Succeeded(hr))
+
+        //        {
+
+        //            Dic.Add(key, new ReadOnlyCollection<PropVariant>(new propvariant(portableDevicePropVariantCollection)));
+
+        //            ppValue = value;
+
+        //        }
+
+        //        else
+
+        //            ppValue = null;
+
+        //    }
+
+        //    else
+
+        //        ppValue = null;
+
+        //    return hr;
+
+        //}
+
+        //HResult IReadOnlyNativeValueCollection.GetPropertyKeyCollectionValue(in PropertyKey key, out ICollection<PropertyKey> ppValue)
+
+        //{
+
+        //    HResult hr = GetFromDictionary<ICollection<PropertyKey>>(key, out ICollection<PropertyKey> value);
+
+        //    if (CoreErrorHelper.Succeeded(hr))
+
+        //        ppValue = value;
+
+        //    else if (hr == HResult.ElementNotFound)
+
+        //    {
+
+        //        hr = _portableDeviceValues.GetIPortableDeviceKeyCollectionValue(key, out IPortableDeviceKeyCollection portableDevicePropVariantCollection);
+
+        //        if (CoreErrorHelper.Succeeded(hr))
+
+        //        {
+
+        //            Dic.Add(key, new ReadOnlyCollection<PropertyKey>(new NativePropertyKeyCollection(portableDevicePropVariantCollection)));
+
+        //            ppValue = value;
+
+        //        }
+
+        //        else
+
+        //            ppValue = null;
+
+        //    }
+
+        //    else
+
+        //        ppValue = null;
+
+        //    return hr;
+
+        //}
+
+        //HResult IReadOnlyNativeValueCollection.GetIPortableDeviceValuesCollectionValue(ref PropertyKey key, out IPortableDeviceValuesCollection ppValue) => throw new NotImplementedException();
+
+        HResult IReadOnlyNativeValueCollection.CopyValuesFromPropertyStore(ref IPropertyStore pStore) => PortableDeviceValues.CopyValuesFromPropertyStore(pStore);
+
+        HResult IReadOnlyNativeValueCollection.CopyValuesToPropertyStore(ref IPropertyStore pStore) => PortableDeviceValues.CopyValuesToPropertyStore(ref pStore);
+    }
+
+    internal sealed class NativeValueCollection : NativeReadOnlyValueCollection, INativeValueCollection
+
+    {
+
+        HResult INativeValueCollection.Clear() => PortableDeviceValues.Clear();
+
+        HResult INativeValueCollection.RemoveValue(ref PropertyKey propertyKey) => PortableDeviceValues.RemoveValue(ref propertyKey);
+
+        HResult INativeValueCollection.SetStringValue(ref PropertyKey key, in string Value) => PortableDeviceValues.SetStringValue(ref key, Value);
+
+        HResult INativeValueCollection.SetUnsignedIntegerValue(ref PropertyKey key, in uint Value) => PortableDeviceValues.SetUnsignedIntegerValue(ref key, Value);
+
+        HResult INativeValueCollection.SetSignedIntegerValue(ref PropertyKey key, in int Value) => PortableDeviceValues.SetSignedIntegerValue(ref key, Value);
+
+        HResult INativeValueCollection.SetUnsignedLargeIntegerValue(ref PropertyKey key, in ulong Value) => PortableDeviceValues.SetUnsignedLargeIntegerValue(ref key, Value);
+
+        HResult INativeValueCollection.SetSignedLargeIntegerValue(ref PropertyKey key, in long Value) => PortableDeviceValues.SetSignedLargeIntegerValue(ref key, Value);
+
+        HResult INativeValueCollection.SetFloatValue(ref PropertyKey key,in float Value) => PortableDeviceValues.SetFloatValue(ref key, Value);
+
+        HResult INativeValueCollection.SetErrorValue(ref PropertyKey key, in HResult Value) => PortableDeviceValues.SetErrorValue(ref key, Value);
+
+        HResult INativeValueCollection.SetKeyValue(ref PropertyKey key, ref PropertyKey Value) => PortableDeviceValues.SetKeyValue(ref key, ref Value);
+
+        HResult INativeValueCollection.SetBoolValue(ref PropertyKey key, in bool Value) => PortableDeviceValues.SetBoolValue(ref key, Value);
+
+        HResult INativeValueCollection.SetIUnknownValue(ref PropertyKey key, ref object pValue) => PortableDeviceValues.SetIUnknownValue(ref key, ref pValue);
+
+        HResult INativeValueCollection.SetGuidValue(ref PropertyKey key, ref Guid Value) => PortableDeviceValues.SetGuidValue(ref key, ref Value);
+
+        HResult INativeValueCollection.SetBufferValue(ref PropertyKey key, in byte[] pValue) => PortableDeviceValues.SetBufferValue(ref key, pValue, (uint) pValue.Length);
+
+        //private HResult SetToDictionary<T>(ref PropertyKey key, T value) where T : class
+
+        //{
+
+        //        else
+
+        //        {
+
+        //            PortableDeviceValues.
+
+        //        }
+
+        //}
+
+        //HResult INativeValueCollection.SetIPortableDeviceValuesValue(ref PropertyKey key, in IPortableDeviceValues pValue) => throw new NotImplementedException();
+
+        //HResult INativeValueCollection.SetPropVariantCollectionValue(ref PropertyKey key, in ICollection<PropVariant> pValue) => throw new NotImplementedException();
+
+        //HResult INativeValueCollection.SetPropertyKeyCollectionValue(ref PropertyKey key, in ICollection<PropertyKey> pValue)
+
+        //{
+
+        //    if (Dic.TryGetValue(key, out object _value))
+
+        //        if (pValue == _value)
+
+        //            return HResult.Ok;
+
+        //        else
+
+        //        { 
+
+        //            Dic[key] = pValue;
+
+        //            PortableDeviceValues.SetIPortableDeviceKeyCollectionValue(ref key, )
+
+        //}
+
+        //HResult INativeValueCollection.SetIPortableDeviceValuesCollectionValue(ref PropertyKey key, in IPortableDeviceValuesCollection pValue) => throw new NotImplementedException();
     }
 
     public sealed class DeviceCapabilities
@@ -365,9 +700,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                 {
 
-                    ThrowWhenFailHResult(_portableDeviceCapabilities.GetSupportedCommands(out IPortableDeviceKeyCollection supportedCommands));
+                    ThrowWhenFailHResult(_portableDeviceCapabilities.GetSupportedCommands(out Win32Native.PortableDevices.PropertySystem.IPortableDeviceKeyCollection supportedCommands));
 
-                    _commands = new ReadOnlyCollection<PropertyKey>(new NativeReadOnlyPropertyKeyCollection(supportedCommands, true));
+                    _commands = new ReadOnlyPropertyKeyCollection(new NativeReadOnlyPropertyKeyCollection(supportedCommands, true));
 
                 }
 
@@ -399,7 +734,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             if (!CoreErrorHelper.Succeeded(hResult))
 
-                throw new PortableDeviceException("An operation has not succeeded, see the inner exception.", Marshal.GetExceptionForHR((int)hResult));
+                throw new PropertySystemException("An operation has not succeeded, see the inner exception.", Marshal.GetExceptionForHR((int)hResult));
 
         }
 
@@ -545,7 +880,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             //}
 
             // CoCreate an IPortableDeviceValues interface to hold the client information.
-            Win32Native.PortableDevices. IPortableDeviceValues pClientInformation = new PortableDeviceValues();
+            Win32Native.PortableDevices.PropertySystem.IPortableDeviceValues pClientInformation = new Win32Native.PortableDevices.PropertySystem.PortableDeviceValues();
 
             // if (CoreErrorHelper.Succeeded(hr))
             // {
@@ -553,7 +888,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             // Attempt to set all properties for client information. If we fail to set
             // any of the properties below it is OK. Failing to set a property in the
             // client information isn't a fatal error.
-            ThrowWhenFailHResult( pClientInformation.SetStringValue(PropertySystem.Properties.Client.Name, clientVersion.ClientName));
+            ThrowWhenFailHResult(pClientInformation.SetStringValue(PropertySystem.Properties.Client.Name, clientVersion.ClientName));
 
             // ThrowWhenFailHResult(ClientInfoHR);
 
@@ -796,15 +1131,17 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         ///// <param name="portableDevice">The <see cref="PortableDevice"/> to send the command to.</param>
         ///// <param name="parameters">The parameters of the command.</param>
         ///// <param name="results">The results of the command.</param>
-        public void SendCommand(IPortableDeviceValues parameters, out IPortableDeviceValues results)
+        public void SendCommand(WindowsAPICodePack.PropertySystem.ValueCollection parameters, out PropertySystem.IPortableDeviceValues results)
 
         {
 
-            ThrowWhenFailHResult((portableDevice ?? throw new ArgumentNullException(nameof(portableDevice))).NativePortableDevice.SendCommand(0, parameters, out results));
+            ThrowWhenFailHResult(NativePortableDevice.SendCommand(0, parameters.._PortableDeviceValues, out WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.IPortableDeviceValues _results));
 
-            ThrowWhenFailHResult(results.GetErrorValue(CommandSystem.Common.Parameters.HResult, out HResult result));
+            _ = _results.GetErrorValue(CommandSystem.Common.Parameters.HResult, out HResult result);
 
             ThrowWhenFailHResult(result);
+
+            results = new PropertySystem.PortableDeviceValues(_results);
 
         }
 

@@ -11,6 +11,7 @@ using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 using Microsoft.WindowsAPICodePack.Internal;
+using Microsoft.WindowsAPICodePack.Win32Native.COM;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar
 {
@@ -123,7 +124,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 // and then abort. If we wait until the user calls RefreshTaskbarlist(), it will be too late.
                 // The user needs to use this number before they update the jumplist.
 
-                var guid = new Guid(Win32Native.Guids.Taskbar.IObjectArray);
+                var guid = new Guid(Win32Native.Guids.COM.IObjectArray);
 
                 // Native call to start adding items to the taskbar destination list
                 HResult hr = customDestinationList.BeginList(
@@ -281,7 +282,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         private void BeginList()
         {
 
-            var guid = new Guid(Win32Native.Guids.Taskbar.IObjectArray);
+            var guid = new Guid(Win32Native.Guids.COM.IObjectArray);
 
             // Get list of removed items from native code
             // Native call to start adding items to the taskbar destination list
@@ -323,7 +324,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         {
             get
             {
-                var guid = new Guid(Win32Native.Guids.Taskbar.IObjectArray);
+                var guid = new Guid( Win32Native.Guids.COM. IObjectArray);
 
                 // Get list of removed items from native code
                 customDestinationList.GetRemovedDestinations(ref guid , out object removedItems);
@@ -341,7 +342,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             // Process each removed item based on its type
             for (uint i = 0; i < count; i++)
             {
-                var guid = new Guid(Win32Native.Guids.Taskbar.IUnknown);
+                var guid = new Guid(Win32Native.Guids.COM.IUnknown);
 
                 // Native call to retrieve objects from IObjectArray
                 removedItems.GetAt(i,

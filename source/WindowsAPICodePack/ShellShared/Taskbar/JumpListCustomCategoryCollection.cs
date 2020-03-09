@@ -11,7 +11,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
     /// Represents a collection of custom categories
     /// </summary>
     internal class JumpListCustomCategoryCollection
-        : ICollection<JumpListCustomCategory>, INotifyCollectionChanged
+        : System.Collections.Generic.ICollection<JumpListCustomCategory>, INotifyCollectionChanged
     {
         private List<JumpListCustomCategory> categories = new List<JumpListCustomCategory>();
 

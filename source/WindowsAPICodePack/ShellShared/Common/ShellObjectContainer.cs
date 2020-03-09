@@ -1,7 +1,6 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using System;
 using System.Collections.Generic;
@@ -32,8 +31,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 if (nativeShellFolder == null)
                 {
-                    var guid = new Guid(ShellIIDGuid.IShellFolder);
-                    var handler = new Guid(ShellBHIDGuid.ShellFolderObject);
+                    var guid = new Guid(Win32Native.Guids.Shell.IShellFolder);
+                    var handler = new Guid(Shell.Guids.ShellBindingHandlerID.ShellFolderObject);
 
                     HResult hr = NativeShellItem.BindToHandler(
                         IntPtr.Zero, ref handler, ref guid, out nativeShellFolder);

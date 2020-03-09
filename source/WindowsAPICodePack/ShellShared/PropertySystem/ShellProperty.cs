@@ -65,13 +65,13 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
         private void StorePropVariantValue(PropVariant propVar)
         {
-            var guid = new Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.ShellIIDGuid.IPropertyStore);
+            var guid = new Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.IPropertyStore);
             IPropertyStore writablePropStore = null;
 
             try
             {
                 int hr = ParentShellObject.NativeShellItem2.GetPropertyStore(
-                        ShellNativeMethods.GetPropertyStoreOptions.ReadWrite,
+                        GetPropertyStoreOptions.ReadWrite,
                         ref guid,
                         out writablePropStore);
 

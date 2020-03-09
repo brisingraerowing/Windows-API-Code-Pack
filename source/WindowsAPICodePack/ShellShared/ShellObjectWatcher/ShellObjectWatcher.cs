@@ -74,14 +74,14 @@ namespace Microsoft.WindowsAPICodePack.Shell
             if (Running)  return; 
 
             #region Registration
-            ShellNativeMethods.SHChangeNotifyEntry entry = new ShellNativeMethods.SHChangeNotifyEntry();
+            var entry = new SHChangeNotifyEntry();
             entry.recursively = _recursive;
 
             entry.pIdl = _shellObject.PIDL;
 
             _registrationId = ShellNativeMethods.SHChangeNotifyRegister(
                 _listenerHandle,
-                ShellNativeMethods.ShellChangeNotifyEventSource.ShellLevel | ShellNativeMethods.ShellChangeNotifyEventSource.InterruptLevel | ShellNativeMethods.ShellChangeNotifyEventSource.NewDelivery,
+                ShellChangeNotifyEventSource.ShellLevel | ShellChangeNotifyEventSource.InterruptLevel | ShellChangeNotifyEventSource.NewDelivery,
                  _manager.RegisteredTypes, //ShellObjectChangeTypes.AllEventsMask,
                 _message,
                 1,

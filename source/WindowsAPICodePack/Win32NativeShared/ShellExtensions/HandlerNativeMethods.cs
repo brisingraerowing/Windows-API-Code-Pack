@@ -78,7 +78,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions
 
     [ComImport]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    [Guid(Guids.ShellExtensions.IObjectWithSite)]
+    [Guid(Guids.COM.IObjectWithSite)]
     public interface IObjectWithSite
     {
         void SetSite([In, MarshalAs(UnmanagedType.IUnknown)] object pUnkSite);
@@ -86,7 +86,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions
     }
 
     [ComImport]
-    [Guid(Guids.ShellExtensions.IOleWindow)]
+    [Guid(Guids.COM.IOleWindow)]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IOleWindow
     {

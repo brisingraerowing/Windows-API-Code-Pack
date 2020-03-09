@@ -7,7 +7,6 @@ using System.Diagnostics;
 using Microsoft.WindowsAPICodePack.Internal;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -24,9 +23,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 Trace.TraceInformation("Message: {0}", (ShellObjectChangeTypes)_event);
 
-                ShellNativeMethods.ShellNotifyStruct notifyStruct = pidl.MarshalAs<ShellNativeMethods.ShellNotifyStruct>();
+                ShellNotifyStruct notifyStruct = pidl.MarshalAs<ShellNotifyStruct>();
 
-                var guid = new Guid(ShellIIDGuid.IShellItem2);
+                var guid = new Guid(Win32Native.Guids.Shell.IShellItem2);
 
                 if (notifyStruct.item1 != IntPtr.Zero &&
                     (((ShellObjectChangeTypes)_event) & ShellObjectChangeTypes.SystemImageUpdate) == ShellObjectChangeTypes.None)

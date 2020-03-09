@@ -2,12 +2,11 @@
 
 using System;
 using System.Runtime.InteropServices;
-using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
     [ComImport,
-    Guid(ShellIIDGuid.IShellLibrary),
+    Guid(Guids.Shell.IShellLibrary),
     CoClass(typeof(ShellLibraryCoClass))]
     public interface INativeShellLibrary : IShellLibrary
     {
@@ -16,7 +15,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     [ComImport,
     ClassInterface(ClassInterfaceType.None),
     TypeLibType(TypeLibTypeFlags.FCanCreate),
-    Guid(ShellCLSIDGuid.ShellLibrary)]
+    Guid(Guids.Shell.ShellLibrary)]
     public class ShellLibraryCoClass
     {
     }

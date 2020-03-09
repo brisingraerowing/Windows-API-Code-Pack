@@ -116,19 +116,37 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// specification for this filter, used by the COM API.
         /// </summary>
         /// <returns>Filter specification for this filter</returns>
-        /// 
-        internal ShellNativeMethods.FilterSpec GetFilterSpec()
+        internal FilterSpec GetFilterSpec()
         {
             var filterList = new StringBuilder();
-            foreach (string extension in Extensions)
-            {
-                if (filterList.Length > 0) _ = filterList.Append(";");
 
-                _ = filterList.Append("*.");
-                _ = filterList.Append(extension);
+            if (Extensions.Count > 0)
+
+            {
+
+                int i = 0;
+
+                void append()
+
+                {
+
+                    _ = filterList.Append("*.");
+                    _ = filterList.Append(Extensions[i]);
+
+                }
+
+                append();
+
+                for (i = 1; i < Extensions.Count; i++)
+                {
+                    _ = filterList.Append(";");
+
+                    append();
+                }
 
             }
-            return new ShellNativeMethods.FilterSpec(DisplayName, filterList.ToString());
+
+            return new FilterSpec(DisplayName, filterList.ToString());
         }
 
         /// <summary>

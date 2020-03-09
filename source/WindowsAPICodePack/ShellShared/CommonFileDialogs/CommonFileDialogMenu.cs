@@ -17,7 +17,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
         /// <summary>
         /// Gets the collection of CommonFileDialogMenuItem objects.
         /// </summary>
-        public Collection<CommonFileDialogMenuItem> Items { get; } = new Collection<CommonFileDialogMenuItem>();
+        public System.Collections.ObjectModel.Collection<CommonFileDialogMenuItem> Items { get; } = new System.Collections.ObjectModel.Collection<CommonFileDialogMenuItem>();
 
         /// <summary>
         /// Creates a new instance of this class.

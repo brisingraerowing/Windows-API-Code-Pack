@@ -10,7 +10,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
     /// Represents a collection of jump list items.
     /// </summary>
     /// <typeparam name="T">The type of elements in this collection.</typeparam>
-    internal class JumpListItemCollection<T> : ICollection<T>, INotifyCollectionChanged
+    internal class JumpListItemCollection<T> : System.Collections.Generic.ICollection<T>, INotifyCollectionChanged
     {
         private List<T> items = new List<T>();
 

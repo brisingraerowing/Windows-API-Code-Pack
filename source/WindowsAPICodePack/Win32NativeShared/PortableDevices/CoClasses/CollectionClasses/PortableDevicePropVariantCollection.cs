@@ -21,9 +21,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
         [PreserveSig]
         public extern HResult Add([In] ref PropVariant pValue);
         [PreserveSig]
-        public extern HResult GetType([Out] out ushort pvt);
+        public extern HResult GetType([Out] out VarEnum pvt);
         [PreserveSig]
-        public extern HResult ChangeType([In] ushort vt);
+        public extern HResult ChangeType([In] VarEnum vt);
         [PreserveSig]
         public extern HResult Clear();
         [PreserveSig]

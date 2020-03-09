@@ -135,7 +135,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Controls
     [ComImport,
      TypeLibType(TypeLibTypeFlags.FCanCreate),
      ClassInterface(ClassInterfaceType.None),
-     Guid( Guids.Shell.Controls. ExplorerBrowserCLSIDGuid.ExplorerBrowser)]
+     Guid( Guids.Shell.ExplorerBrowser.ExplorerBrowserClass)]
     public class ExplorerBrowserClass : IExplorerBrowser
     {
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
@@ -192,7 +192,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Controls
 
     [ComImport,
      InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
-     Guid(Guids.Shell.Controls.ExplorerBrowserIIDGuid.IExplorerBrowser)]
+     Guid(Guids.Shell.ExplorerBrowser.IExplorerBrowser)]
     public interface IExplorerBrowser
     {
         /// <summary>
@@ -345,7 +345,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Controls
     }
 
     [ComImport,
-     Guid(Guids.Shell.Controls.ExplorerBrowserIIDGuid.IServiceProvider),
+     Guid(Guids.Shell.ExplorerBrowser.IServiceProvider),
      InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IServiceProvider
     {
@@ -355,62 +355,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Controls
     };
 
     [ComImport,
-     Guid(Guids.Shell.Controls.ExplorerBrowserIIDGuid.IFolderView),
+     Guid(Guids.Shell.ExplorerBrowser.IFolderView),
      InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFolderView
     {
-        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void GetCurrentViewMode([Out] out uint pViewMode);
-
-        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void SetCurrentViewMode(uint ViewMode);
-
-        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void GetFolder(ref Guid riid, [MarshalAs(UnmanagedType.IUnknown)] out object ppv);
-
-        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void Item(int iItemIndex, out IntPtr ppidl);
-
-        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void ItemCount(uint uFlags, out int pcItems);
-
-        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void Items(uint uFlags, ref Guid riid, [Out, MarshalAs(UnmanagedType.IUnknown)] out object ppv);
-
-        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void GetSelectionMarkedItem(out int piItem);
-
-        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void GetFocusedItem(out int piItem);
-
-        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void GetItemPosition(IntPtr pidl, out NativePoint ppt);
-
-        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void GetSpacing([Out] out NativePoint ppt);
-
-        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void GetDefaultSpacing(out NativePoint ppt);
-
-        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void GetAutoArrange();
-
-        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void SelectItem(int iItem, uint dwFlags);
-
-        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void SelectAndPositionItems(uint cidl, IntPtr apidl, ref NativePoint apt, uint dwFlags);
-    }
-
-    [ComImport,
-     Guid(Guids.Shell.Controls.ExplorerBrowserIIDGuid.IFolderView2),
-     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IFolderView2 : IFolderView
-    {
-        // IFolderView
         [PreserveSig]
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        HResult GetCurrentViewMode(out uint pViewMode);
+        HResult GetCurrentViewMode([Out] out uint pViewMode);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void SetCurrentViewMode(uint ViewMode);
@@ -452,8 +403,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Controls
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void SelectAndPositionItems(uint cidl, IntPtr apidl, ref NativePoint apt, uint dwFlags);
+    }
 
-        // IFolderView2
+    [ComImport,
+     Guid(Guids.Shell.ExplorerBrowser.IFolderView2),
+     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IFolderView2 : IFolderView
+    {
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void SetGroupBy(IntPtr key, bool fAscending);
 
@@ -533,7 +489,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Controls
     }
 
     [ComImport,
-     Guid(Guids.Shell.Controls.ExplorerBrowserIIDGuid.IExplorerPaneVisibility),
+     Guid(Guids.Shell.ExplorerBrowser.IExplorerPaneVisibility),
      InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IExplorerPaneVisibility
     {
@@ -543,7 +499,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Controls
     };
 
     [ComImport,
-     Guid(Guids.Shell.Controls.ExplorerBrowserIIDGuid.IExplorerBrowserEvents),
+     Guid(Guids.Shell.ExplorerBrowser.IExplorerBrowserEvents),
      InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IExplorerBrowserEvents
     {
@@ -635,11 +591,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Controls
     #endregion
 
     [ComImport,
-     Guid(Guids.Shell.Controls.ExplorerBrowserIIDGuid.ICommDlgBrowser3),
+     Guid(Guids.Shell.ExplorerBrowser.ICommDlgBrowser3),
      InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ICommDlgBrowser3
     {
-        // dlg1
+        // todo: dlg1
         [PreserveSig]
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         HResult OnDefaultCommand(IntPtr ppshv);
@@ -694,7 +650,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Controls
     }
 
     [ComImport,
-   Guid(Guids.Shell.Controls.ExplorerBrowserIIDGuid.IInputObject),
+   Guid(Guids.Shell.ExplorerBrowser.IInputObject),
    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IInputObject
     {
@@ -713,7 +669,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Controls
     };
 
     [ComImport,
-     Guid(Guids.Shell.Controls.ExplorerBrowserIIDGuid.IShellView),
+     Guid(Guids.Shell.ExplorerBrowser.IShellView),
      InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IShellView
     {

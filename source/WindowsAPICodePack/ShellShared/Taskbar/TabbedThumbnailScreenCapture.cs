@@ -32,30 +32,29 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             if (bitmapSize.Height <= 0 || bitmapSize.Width <= 0) { return null; }
 
             IntPtr windowDC = IntPtr.Zero;
-             
+
             try
             {
-                windowDC = TabbedThumbnailNativeMethods.GetWindowDC(windowHandle);
+                windowDC = HandlerNativeMethods.GetWindowDC(windowHandle);
 
-                System.Drawing.Size realWindowSize;
-                TabbedThumbnailNativeMethods.GetClientSize(windowHandle, out realWindowSize);
+                _ = HandlerNativeMethods.GetClientSize(windowHandle, out System.Drawing.Size realWindowSize);
 
                 if (realWindowSize == System.Drawing.Size.Empty)
-                {
+                
                     realWindowSize = new System.Drawing.Size(200, 200);
-                }
                 
                 System.Drawing.Size size = (bitmapSize == System.Drawing.Size.Empty) ?
                         realWindowSize : bitmapSize;
-                
+
                 Bitmap targetBitmap = null;
+
                 try
                 {
-                    
+
 
                     targetBitmap = new Bitmap(size.Width, size.Height);
 
-                    using (Graphics targetGr = Graphics.FromImage(targetBitmap))
+                    using (var targetGr = Graphics.FromImage(targetBitmap))
                     {
                         IntPtr targetDC = targetGr.GetHdc();
                         uint operation = 0x00CC0020 /*SRCCOPY*/;
@@ -74,16 +73,16 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 }
                 catch
                 {
-                    if (targetBitmap != null)  targetBitmap.Dispose(); 
+                     targetBitmap?.Dispose();
                     throw;
                 }
             }
             finally
             {
                 if (windowDC != IntPtr.Zero)
-                
-                    TabbedThumbnailNativeMethods.ReleaseDC(windowHandle, windowDC);
-                            }
+
+                    _ = HandlerNativeMethods.ReleaseDC(windowHandle, windowDC);
+            }
         }
 
         /// <summary>
@@ -98,8 +97,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         public static Bitmap GrabWindowBitmap(UIElement element, int dpiX, int dpiY, int width, int height)
         {
             // Special case for HwndHost controls
-            HwndHost host = element as HwndHost;
-            if (host != null)
+            if (element is HwndHost host)
             {
                 IntPtr handle = host.Handle;
                 return GrabWindowBitmap(handle, new System.Drawing.Size(width, height));
@@ -109,16 +107,16 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
             // create the renderer.
             if (bounds.Height == 0 || bounds.Width == 0)
-            
+
                 return null;    // 0 sized element. Probably hidden
 
-            RenderTargetBitmap rendertarget = new RenderTargetBitmap((int)(bounds.Width * dpiX / 96.0),
+            var rendertarget = new RenderTargetBitmap((int)(bounds.Width * dpiX / 96.0),
              (int)(bounds.Height * dpiY / 96.0), dpiX, dpiY, PixelFormats.Default);
 
-            DrawingVisual dv = new DrawingVisual();
+            var dv = new DrawingVisual();
             using (DrawingContext ctx = dv.RenderOpen())
             {
-                VisualBrush vb = new VisualBrush(element);
+                var vb = new VisualBrush(element);
                 ctx.DrawRectangle(vb, null, new Rect(new System.Windows.Point(), bounds.Size));
             }
 
@@ -129,7 +127,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
             Bitmap bmp;
             // Create a MemoryStream with the image.            
-            using (MemoryStream fl = new MemoryStream())
+            using (var fl = new MemoryStream())
             {
                 bmpe.Save(fl);
                 fl.Position = 0;
@@ -154,7 +152,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             try
             {
                 if (resizeIfWider && originalBitmap.Width <= newWidth)
-                
+
                     newWidth = originalBitmap.Width;
 
                 int newHeight = originalBitmap.Height * newWidth / originalBitmap.Width;

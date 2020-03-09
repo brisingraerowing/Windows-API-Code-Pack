@@ -9,7 +9,6 @@ using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
-using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 
@@ -393,7 +392,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             try
             {
                 // First, try to create a new IQueryParser using IQueryParserManager
-                var guid = new Guid(ShellIIDGuid.IQueryParser);
+                var guid = new Guid(Win32Native.Guids.Shell.IQueryParser);
                 HResult hr = nativeQueryParserManager.CreateLoadedParser(
                     "SystemIndex",
                     cultureInfo == null ? (ushort)0 : (ushort)cultureInfo.LCID,

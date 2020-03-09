@@ -25,8 +25,8 @@ namespace Microsoft.WindowsAPICodePack.Internal
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2006:UseSafeHandleToEncapsulateNativeResources")]
         private IntPtr nullPtr = IntPtr.Zero;
 
-        private Guid IID_DShellFolderViewEvents = new Guid(ExplorerBrowserIIDGuid.DShellFolderViewEvents);
-        private Guid IID_IDispatch = new Guid(ExplorerBrowserIIDGuid.IDispatch);
+        private Guid IID_DShellFolderViewEvents = new Guid(Win32Native.Guids.Shell.ExplorerBrowser.DShellFolderViewEvents);
+        private Guid IID_IDispatch = new Guid(Win32Native.Guids.Shell.ExplorerBrowser.IDispatch);
         private readonly ExplorerBrowser parent;
         #endregion
 

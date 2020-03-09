@@ -8,7 +8,6 @@ using System.Threading;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
-using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -38,13 +37,13 @@ namespace Microsoft.WindowsAPICodePack.Shell
             if (!string.IsNullOrEmpty(itemType)) itemType = itemType.ToUpperInvariant();
 
             // Get some IShellItem attributes
-            nativeShellItem2.GetAttributes(ShellNativeMethods.ShellFileGetAttributesOptions.FileSystem | ShellNativeMethods.ShellFileGetAttributesOptions.Folder, out ShellNativeMethods.ShellFileGetAttributesOptions sfgao);
+            nativeShellItem2.GetAttributes(ShellFileGetAttributesOptions.FileSystem | ShellFileGetAttributesOptions.Folder, out ShellFileGetAttributesOptions sfgao);
 
             // Is this item a FileSystem item?
-            bool isFileSystem = (sfgao & ShellNativeMethods.ShellFileGetAttributesOptions.FileSystem) != 0;
+            bool isFileSystem = (sfgao & ShellFileGetAttributesOptions.FileSystem) != 0;
 
             // Is this item a Folder?
-            bool isFolder = (sfgao & ShellNativeMethods.ShellFileGetAttributesOptions.Folder) != 0;
+            bool isFolder = (sfgao & ShellFileGetAttributesOptions.Folder) != 0;
 
             // Shell Library
             ShellLibrary shellLibrary;
@@ -162,7 +161,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 throw new ArgumentNullException(nameof(parsingName));
 
             // Create a native shellitem from our path
-            var guid = new Guid(ShellIIDGuid.IShellItem2);
+            var guid = new Guid(Win32Native.Guids.Shell.IShellItem2);
             int retCode = ShellNativeMethods.SHCreateItemFromParsingName(parsingName, IntPtr.Zero, ref guid, out IShellItem2 nativeShellItem);
 
             return CoreErrorHelper.Succeeded(retCode) ? ShellObjectFactory.Create(nativeShellItem) : throw new ShellException(LocalizedMessages.ShellObjectFactoryUnableToCreateItem, Marshal.GetExceptionForHR(retCode));
@@ -178,7 +177,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             // Throw exception if not running on Win7 or newer.
             CoreHelpers.ThrowIfNotVista();
 
-            var guid = new Guid(ShellIIDGuid.IShellItem2);
+            var guid = new Guid(Win32Native.Guids.Shell.IShellItem2);
 
             int retCode = ShellNativeMethods.SHCreateItemFromIDList(idListPtr, ref guid, out IShellItem2 nativeShellItem);
 

@@ -54,7 +54,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
         #endregion
 
-        #region ICollection<S> Members
+        #region System.Collections.Generic.ICollection<S> Members
 
         /// <summary>
         /// Adds a sensor to the end of the list.
@@ -89,7 +89,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// <summary>
         /// Gets a value that determines if the list is read-only.
         /// </summary>
-        public bool IsReadOnly => (sensorList as ICollection<TSensor>).IsReadOnly;
+        public bool IsReadOnly => (sensorList as System.Collections.Generic.ICollection<TSensor>).IsReadOnly;
 
         /// <summary>
         /// Removes a specific sensor from the list.

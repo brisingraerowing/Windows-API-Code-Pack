@@ -86,7 +86,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Gets a collection of all the system stock icons
         /// </summary>
-        public ICollection<StockIcon> AllStockIcons => GetAllStockIcons();
+        public System.Collections.Generic.ICollection<StockIcon> AllStockIcons => GetAllStockIcons();
 
         /// <summary>
         /// Icon for a document (blank page), no associated program.
@@ -591,7 +591,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         }
 
-                private ICollection<StockIcon> GetAllStockIcons()
+                private System.Collections.Generic.ICollection<StockIcon> GetAllStockIcons()
                 {
                     // Create a list of stock Identifiers
                     var ids = new StockIconIdentifier[stockIconCache.Count];

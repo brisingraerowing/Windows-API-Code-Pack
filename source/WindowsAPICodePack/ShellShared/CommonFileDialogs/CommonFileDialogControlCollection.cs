@@ -12,7 +12,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
     /// Provides a strongly typed collection for dialog controls.
     /// </summary>
     /// <typeparam name="T">DialogControl</typeparam>
-    public sealed class CommonFileDialogControlCollection<T> : Collection<T> where T : DialogControl
+    public sealed class CommonFileDialogControlCollection<T> : System.Collections.ObjectModel.Collection<T> where T : DialogControl
     {
         private readonly IDialogControlHost hostingDialog;
 

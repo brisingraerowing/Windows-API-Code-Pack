@@ -18,7 +18,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
         /// <summary>
         /// Gets the collection of CommonFileDialogComboBoxItem objects.
         /// </summary>
-        public Collection<CommonFileDialogComboBoxItem> Items { get; } = new Collection<CommonFileDialogComboBoxItem>();
+        public System.Collections.ObjectModel.Collection<CommonFileDialogComboBoxItem> Items { get; } = new System.Collections.ObjectModel.Collection<CommonFileDialogComboBoxItem>();
 
         /// <summary>
         /// Creates a new instance of this class.
@@ -120,13 +120,13 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
 
             // Set the currently selected item
             if (selectedIndex >= 0 && selectedIndex < Items.Count)
-            
+
                 dialog.SetSelectedControlItem(Id, selectedIndex);
-            
+
             else if (selectedIndex != -1)
-            
+
                 throw new IndexOutOfRangeException(LocalizedMessages.ComboBoxIndexOutsideBounds);
-            
+
             // Make this control prominent if needed
             if (IsProminent)
                 dialog.MakeProminent(Id);

@@ -17,7 +17,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Gets a strongly-typed read-only collection of all the registered known folders.
         /// </summary>
-        public static ICollection<IKnownFolder> All => GetAllFolders();
+        public static System.Collections.Generic.ICollection<IKnownFolder> All => GetAllFolders();
 
         private static System.Collections.ObjectModel.ReadOnlyCollection<IKnownFolder> GetAllFolders()
         {
@@ -25,40 +25,35 @@ namespace Microsoft.WindowsAPICodePack.Shell
             // to get a list of all the known folders, create the managed wrapper
             // and return the read-only collection.
 
-            IList<IKnownFolder> foldersList = new List<IKnownFolder>();
+            var foldersList = new WinCopies.Collections.ArrayBuilder<IKnownFolder>();
             IntPtr folders = IntPtr.Zero;
 
             try
             {
 
-                var knownFolderManager = new KnownFolderManagerClass();
-                knownFolderManager.GetFolderIds(out folders, out uint count);
+                new KnownFolderManagerClass().GetFolderIds(out folders, out uint count);
 
                 if (count > 0 && folders != IntPtr.Zero)
-                {
+
                     // Loop through all the KnownFolderID elements
                     for (int i = 0; i < count; i++)
                     {
-                        // Read the current pointer
-                        var current = new IntPtr(folders.ToInt64() + (Marshal.SizeOf(typeof(Guid)) * i));
-
                         // Convert to Guid
-                        Guid knownFolderID = (Guid)Marshal.PtrToStructure(current, typeof(Guid));
+                        var knownFolderID = (Guid)Marshal.PtrToStructure(new IntPtr(folders.ToInt64() + (Marshal.SizeOf(typeof(Guid)) * i)), typeof(Guid));
 
                         IKnownFolder kf = KnownFolderHelper.FromKnownFolderIdInternal(knownFolderID);
 
                         // Add to our collection if it's not null (some folders might not exist on the system
                         // or we could have an exception that resulted in the null return from above method call
-                        if (kf != null) { foldersList.Add(kf); }
+                        if (kf != null) _ = foldersList.AddLast(kf);
                     }
-                }
             }
             finally
             {
-                if (folders != IntPtr.Zero) { Marshal.FreeCoTaskMem(folders); }
+                if (folders != IntPtr.Zero) Marshal.FreeCoTaskMem(folders);
             }
 
-            return new System.Collections.ObjectModel.ReadOnlyCollection<IKnownFolder>(foldersList);
+            return new System.Collections.ObjectModel.ReadOnlyCollection<IKnownFolder>(foldersList.ToList());
         }
 
         private static IKnownFolder GetKnownFolder(Guid guid) => KnownFolderHelper.FromKnownFolderId(guid);
@@ -70,543 +65,543 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
         public static IKnownFolder Computer => GetKnownFolder(
-                    new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Computer));
+                    new Guid(Guids.KnownFolders.Computer));
 
         /// <summary>
         /// Gets the metadata for the <b>Conflict</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
         public static IKnownFolder Conflict => GetKnownFolder(
-                    new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Conflict));
+                    new Guid(Guids.KnownFolders.Conflict));
 
         /// <summary>
         /// Gets the metadata for the <b>ControlPanel</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
         public static IKnownFolder ControlPanel => GetKnownFolder(
-                    new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.ControlPanel));
+                    new Guid(Guids.KnownFolders.ControlPanel));
 
         /// <summary>
         /// Gets the metadata for the <b>Desktop</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
         public static IKnownFolder Desktop => GetKnownFolder(
-                    new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Desktop));
+                    new Guid(Guids.KnownFolders.Desktop));
 
         /// <summary>
         /// Gets the metadata for the <b>Internet</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
         public static IKnownFolder Internet => GetKnownFolder(
-                    new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Internet));
+                    new Guid(Guids.KnownFolders.Internet));
 
         /// <summary>
         /// Gets the metadata for the <b>Network</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
         public static IKnownFolder Network => GetKnownFolder(
-                    new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Network));
+                    new Guid(Guids.KnownFolders.Network));
 
         /// <summary>
         /// Gets the metadata for the <b>Printers</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
         public static IKnownFolder Printers => GetKnownFolder(
-                    new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Printers));
+                    new Guid(Guids.KnownFolders.Printers));
 
         /// <summary>
         /// Gets the metadata for the <b>SyncManager</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
         public static IKnownFolder SyncManager => GetKnownFolder(
-                    new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SyncManager));
+                    new Guid(Guids.KnownFolders.SyncManager));
 
         /// <summary>
         /// Gets the metadata for the <b>Connections</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
         public static IKnownFolder Connections => GetKnownFolder(
-                    new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Connections));
+                    new Guid(Guids.KnownFolders.Connections));
 
         /// <summary>
         /// Gets the metadata for the <b>SyncSetup</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
         public static IKnownFolder SyncSetup => GetKnownFolder(
-                    new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SyncSetup));
+                    new Guid(Guids.KnownFolders.SyncSetup));
 
         /// <summary>
         /// Gets the metadata for the <b>SyncResults</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
         public static IKnownFolder SyncResults => GetKnownFolder(
-                    new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SyncResults));
+                    new Guid(Guids.KnownFolders.SyncResults));
 
         /// <summary>
         /// Gets the metadata for the <b>RecycleBin</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
         public static IKnownFolder RecycleBin => GetKnownFolder(
-                    new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.RecycleBin));
+                    new Guid(Guids.KnownFolders.RecycleBin));
 
         /// <summary>
         /// Gets the metadata for the <b>Fonts</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder Fonts => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Fonts));
+        public static IKnownFolder Fonts => GetKnownFolder(new Guid(Guids.KnownFolders.Fonts));
 
         /// <summary>
         /// Gets the metadata for the <b>Startup</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder Startup => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Startup));
+        public static IKnownFolder Startup => GetKnownFolder(new Guid(Guids.KnownFolders.Startup));
 
         /// <summary>
         /// Gets the metadata for the <b>Programs</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder Programs => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Programs));
+        public static IKnownFolder Programs => GetKnownFolder(new Guid(Guids.KnownFolders.Programs));
 
         /// <summary>
         /// Gets the metadata for the per-user <b>StartMenu</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder StartMenu => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.StartMenu));
+        public static IKnownFolder StartMenu => GetKnownFolder(new Guid(Guids.KnownFolders.StartMenu));
 
         /// <summary>
         /// Gets the metadata for the per-user <b>Recent</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder Recent => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Recent));
+        public static IKnownFolder Recent => GetKnownFolder(new Guid(Guids.KnownFolders.Recent));
 
         /// <summary>
         /// Gets the metadata for the per-user <b>SendTo</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder SendTo => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SendTo));
+        public static IKnownFolder SendTo => GetKnownFolder(new Guid(Guids.KnownFolders.SendTo));
 
         /// <summary>
         /// Gets the metadata for the per-user <b>Documents</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder Documents => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Documents));
+        public static IKnownFolder Documents => GetKnownFolder(new Guid(Guids.KnownFolders.Documents));
 
         /// <summary>
         /// Gets the metadata for the per-user <b>Favorites</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder Favorites => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Favorites));
+        public static IKnownFolder Favorites => GetKnownFolder(new Guid(Guids.KnownFolders.Favorites));
 
         /// <summary>
         /// Gets the metadata for the <b>NetHood</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder NetHood => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.NetHood));
+        public static IKnownFolder NetHood => GetKnownFolder(new Guid(Guids.KnownFolders.NetHood));
 
         /// <summary>
         /// Gets the metadata for the <b>PrintHood</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder PrintHood => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.PrintHood));
+        public static IKnownFolder PrintHood => GetKnownFolder(new Guid(Guids.KnownFolders.PrintHood));
 
         /// <summary>
         /// Gets the metadata for the <b>Templates</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder Templates => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Templates));
+        public static IKnownFolder Templates => GetKnownFolder(new Guid(Guids.KnownFolders.Templates));
 
         /// <summary>
         /// Gets the metadata for the <b>CommonStartup</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder CommonStartup => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.CommonStartup));
+        public static IKnownFolder CommonStartup => GetKnownFolder(new Guid(Guids.KnownFolders.CommonStartup));
 
         /// <summary>
         /// Gets the metadata for the <b>CommonPrograms</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder CommonPrograms => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.CommonPrograms));
+        public static IKnownFolder CommonPrograms => GetKnownFolder(new Guid(Guids.KnownFolders.CommonPrograms));
 
         /// <summary>
         /// Gets the metadata for the <b>CommonStartMenu</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder CommonStartMenu => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.CommonStartMenu));
+        public static IKnownFolder CommonStartMenu => GetKnownFolder(new Guid(Guids.KnownFolders.CommonStartMenu));
 
         /// <summary>
         /// Gets the metadata for the <b>PublicDesktop</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder PublicDesktop => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.PublicDesktop));
+        public static IKnownFolder PublicDesktop => GetKnownFolder(new Guid(Guids.KnownFolders.PublicDesktop));
 
         /// <summary>
         /// Gets the metadata for the <b>ProgramData</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder ProgramData => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.ProgramData));
+        public static IKnownFolder ProgramData => GetKnownFolder(new Guid(Guids.KnownFolders.ProgramData));
 
         /// <summary>
         /// Gets the metadata for the <b>CommonTemplates</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder CommonTemplates => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.CommonTemplates));
+        public static IKnownFolder CommonTemplates => GetKnownFolder(new Guid(Guids.KnownFolders.CommonTemplates));
 
         /// <summary>
         /// Gets the metadata for the <b>PublicDocuments</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder PublicDocuments => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.PublicDocuments));
+        public static IKnownFolder PublicDocuments => GetKnownFolder(new Guid(Guids.KnownFolders.PublicDocuments));
 
         /// <summary>
         /// Gets the metadata for the <b>RoamingAppData</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder RoamingAppData => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.RoamingAppData));
+        public static IKnownFolder RoamingAppData => GetKnownFolder(new Guid(Guids.KnownFolders.RoamingAppData));
 
         /// <summary>
         /// Gets the metadata for the per-user <b>LocalAppData</b>  
         /// folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder LocalAppData => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.LocalAppData));
+        public static IKnownFolder LocalAppData => GetKnownFolder(new Guid(Guids.KnownFolders.LocalAppData));
 
         /// <summary>
         /// Gets the metadata for the <b>LocalAppDataLow</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder LocalAppDataLow => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.LocalAppDataLow));
+        public static IKnownFolder LocalAppDataLow => GetKnownFolder(new Guid(Guids.KnownFolders.LocalAppDataLow));
 
         /// <summary>
         /// Gets the metadata for the <b>InternetCache</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder InternetCache => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.InternetCache));
+        public static IKnownFolder InternetCache => GetKnownFolder(new Guid(Guids.KnownFolders.InternetCache));
 
         /// <summary>
         /// Gets the metadata for the <b>Cookies</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder Cookies => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Cookies));
+        public static IKnownFolder Cookies => GetKnownFolder(new Guid(Guids.KnownFolders.Cookies));
 
         /// <summary>
         /// Gets the metadata for the <b>History</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder History => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.History));
+        public static IKnownFolder History => GetKnownFolder(new Guid(Guids.KnownFolders.History));
 
         /// <summary>
         /// Gets the metadata for the <b>System</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder System => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.System));
+        public static IKnownFolder System => GetKnownFolder(new Guid(Guids.KnownFolders.System));
 
         /// <summary>
         /// Gets the metadata for the <b>SystemX86</b>  
         /// folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder SystemX86 => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SystemX86));
+        public static IKnownFolder SystemX86 => GetKnownFolder(new Guid(Guids.KnownFolders.SystemX86));
 
         /// <summary>
         /// Gets the metadata for the <b>Windows</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder Windows => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Windows));
+        public static IKnownFolder Windows => GetKnownFolder(new Guid(Guids.KnownFolders.Windows));
 
         /// <summary>
         /// Gets the metadata for the <b>Profile</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder Profile => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Profile));
+        public static IKnownFolder Profile => GetKnownFolder(new Guid(Guids.KnownFolders.Profile));
 
         /// <summary>
         /// Gets the metadata for the per-user <b>Pictures</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder Pictures => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Pictures));
+        public static IKnownFolder Pictures => GetKnownFolder(new Guid(Guids.KnownFolders.Pictures));
 
         /// <summary>
         /// Gets the metadata for the <b>ProgramFilesX86</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder ProgramFilesX86 => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.ProgramFilesX86));
+        public static IKnownFolder ProgramFilesX86 => GetKnownFolder(new Guid(Guids.KnownFolders.ProgramFilesX86));
 
         /// <summary>
         /// Gets the metadata for the <b>ProgramFilesCommonX86</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder ProgramFilesCommonX86 => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.ProgramFilesCommonX86));
+        public static IKnownFolder ProgramFilesCommonX86 => GetKnownFolder(new Guid(Guids.KnownFolders.ProgramFilesCommonX86));
 
         /// <summary>
         /// Gets the metadata for the <b>ProgramsFilesX64</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder ProgramFilesX64 => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.ProgramFilesX64));
+        public static IKnownFolder ProgramFilesX64 => GetKnownFolder(new Guid(Guids.KnownFolders.ProgramFilesX64));
 
         /// <summary>
         ///  Gets the metadata for the <b> ProgramFilesCommonX64</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder ProgramFilesCommonX64 => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.ProgramFilesCommonX64));
+        public static IKnownFolder ProgramFilesCommonX64 => GetKnownFolder(new Guid(Guids.KnownFolders.ProgramFilesCommonX64));
 
         /// <summary>
         /// Gets the metadata for the <b>ProgramFiles</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder ProgramFiles => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.ProgramFiles));
+        public static IKnownFolder ProgramFiles => GetKnownFolder(new Guid(Guids.KnownFolders.ProgramFiles));
 
         /// <summary>
         /// Gets the metadata for the <b>ProgramFilesCommon</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder ProgramFilesCommon => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.ProgramFilesCommon));
+        public static IKnownFolder ProgramFilesCommon => GetKnownFolder(new Guid(Guids.KnownFolders.ProgramFilesCommon));
 
         /// <summary>
         /// Gets the metadata for the <b>AdminTools</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder AdminTools => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.AdminTools));
+        public static IKnownFolder AdminTools => GetKnownFolder(new Guid(Guids.KnownFolders.AdminTools));
 
         /// <summary>
         /// Gets the metadata for the <b>CommonAdminTools</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder CommonAdminTools => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.CommonAdminTools));
+        public static IKnownFolder CommonAdminTools => GetKnownFolder(new Guid(Guids.KnownFolders.CommonAdminTools));
 
         /// <summary>
         /// Gets the metadata for the per-user <b>Music</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder Music => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Music));
+        public static IKnownFolder Music => GetKnownFolder(new Guid(Guids.KnownFolders.Music));
 
         /// <summary>
         /// Gets the metadata for the <b>Videos</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder Videos => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Videos));
+        public static IKnownFolder Videos => GetKnownFolder(new Guid(Guids.KnownFolders.Videos));
 
         /// <summary>
         /// Gets the metadata for the <b>PublicPictures</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder PublicPictures => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.PublicPictures));
+        public static IKnownFolder PublicPictures => GetKnownFolder(new Guid(Guids.KnownFolders.PublicPictures));
 
         /// <summary>
         /// Gets the metadata for the <b>PublicMusic</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder PublicMusic => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.PublicMusic));
+        public static IKnownFolder PublicMusic => GetKnownFolder(new Guid(Guids.KnownFolders.PublicMusic));
 
         /// <summary>
         /// Gets the metadata for the <b>PublicVideos</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder PublicVideos => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.PublicVideos));
+        public static IKnownFolder PublicVideos => GetKnownFolder(new Guid(Guids.KnownFolders.PublicVideos));
 
         /// <summary>
         /// Gets the metadata for the <b>ResourceDir</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder ResourceDir => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.ResourceDir));
+        public static IKnownFolder ResourceDir => GetKnownFolder(new Guid(Guids.KnownFolders.ResourceDir));
 
         /// <summary>
         /// Gets the metadata for the <b>LocalizedResourcesDir</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder LocalizedResourcesDir => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.LocalizedResourcesDir));
+        public static IKnownFolder LocalizedResourcesDir => GetKnownFolder(new Guid(Guids.KnownFolders.LocalizedResourcesDir));
 
         /// <summary>
         /// Gets the metadata for the <b>CommonOEMLinks</b> folder. 
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder CommonOemLinks => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.CommonOEMLinks));
+        public static IKnownFolder CommonOemLinks => GetKnownFolder(new Guid(Guids.KnownFolders.CommonOEMLinks));
 
         /// <summary>
         /// Gets the metadata for the <b>CDBurning</b> folder. 
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder CDBurning => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.CDBurning));
+        public static IKnownFolder CDBurning => GetKnownFolder(new Guid(Guids.KnownFolders.CDBurning));
 
         /// <summary>
         /// Gets the metadata for the <b>UserProfiles</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder UserProfiles => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.UserProfiles));
+        public static IKnownFolder UserProfiles => GetKnownFolder(new Guid(Guids.KnownFolders.UserProfiles));
 
         /// <summary>
         /// Gets the metadata for the <b>Playlists</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder Playlists => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Playlists));
+        public static IKnownFolder Playlists => GetKnownFolder(new Guid(Guids.KnownFolders.Playlists));
 
         /// <summary>
         /// Gets the metadata for the <b>SamplePlaylists</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder SamplePlaylists => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SamplePlaylists));
+        public static IKnownFolder SamplePlaylists => GetKnownFolder(new Guid(Guids.KnownFolders.SamplePlaylists));
 
         /// <summary>
         /// Gets the metadata for the <b>SampleMusic</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder SampleMusic => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SampleMusic));
+        public static IKnownFolder SampleMusic => GetKnownFolder(new Guid(Guids.KnownFolders.SampleMusic));
 
         /// <summary>
         /// Gets the metadata for the <b>SamplePictures</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder SamplePictures => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SamplePictures));
+        public static IKnownFolder SamplePictures => GetKnownFolder(new Guid(Guids.KnownFolders.SamplePictures));
 
         /// <summary>
         /// Gets the metadata for the <b>SampleVideos</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder SampleVideos => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SampleVideos));
+        public static IKnownFolder SampleVideos => GetKnownFolder(new Guid(Guids.KnownFolders.SampleVideos));
 
         /// <summary>
         /// Gets the metadata for the <b>PhotoAlbums</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder PhotoAlbums => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.PhotoAlbums));
+        public static IKnownFolder PhotoAlbums => GetKnownFolder(new Guid(Guids.KnownFolders.PhotoAlbums));
 
         /// <summary>
         /// Gets the metadata for the <b>Public</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder Public => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Public));
+        public static IKnownFolder Public => GetKnownFolder(new Guid(Guids.KnownFolders.Public));
 
         /// <summary>
         /// Gets the metadata for the <b>ChangeRemovePrograms</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder ChangeRemovePrograms => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.ChangeRemovePrograms));
+        public static IKnownFolder ChangeRemovePrograms => GetKnownFolder(new Guid(Guids.KnownFolders.ChangeRemovePrograms));
 
         /// <summary>
         /// Gets the metadata for the <b>AppUpdates</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder AppUpdates => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.AppUpdates));
+        public static IKnownFolder AppUpdates => GetKnownFolder(new Guid(Guids.KnownFolders.AppUpdates));
 
         /// <summary>
         /// Gets the metadata for the <b>AddNewPrograms</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder AddNewPrograms => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.AddNewPrograms));
+        public static IKnownFolder AddNewPrograms => GetKnownFolder(new Guid(Guids.KnownFolders.AddNewPrograms));
 
         /// <summary>
         /// Gets the metadata for the per-user <b>Downloads</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder Downloads => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Downloads));
+        public static IKnownFolder Downloads => GetKnownFolder(new Guid(Guids.KnownFolders.Downloads));
 
         /// <summary>
         /// Gets the metadata for the <b>PublicDownloads</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder PublicDownloads => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.PublicDownloads));
+        public static IKnownFolder PublicDownloads => GetKnownFolder(new Guid(Guids.KnownFolders.PublicDownloads));
 
         /// <summary>
         /// Gets the metadata for the per-user <b>SavedSearches</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder SavedSearches => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SavedSearches));
+        public static IKnownFolder SavedSearches => GetKnownFolder(new Guid(Guids.KnownFolders.SavedSearches));
 
         /// <summary>
         /// Gets the metadata for the per-user <b>QuickLaunch</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder QuickLaunch => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.QuickLaunch));
+        public static IKnownFolder QuickLaunch => GetKnownFolder(new Guid(Guids.KnownFolders.QuickLaunch));
 
         /// <summary>
         /// Gets the metadata for the <b>Contacts</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder Contacts => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Contacts));
+        public static IKnownFolder Contacts => GetKnownFolder(new Guid(Guids.KnownFolders.Contacts));
 
         /// <summary>
         /// Gets the metadata for the <b>SidebarParts</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder SidebarParts => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SidebarParts));
+        public static IKnownFolder SidebarParts => GetKnownFolder(new Guid(Guids.KnownFolders.SidebarParts));
 
         /// <summary>
         /// Gets the metadata for the <b>SidebarDefaultParts</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder SidebarDefaultParts => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SidebarDefaultParts));
+        public static IKnownFolder SidebarDefaultParts => GetKnownFolder(new Guid(Guids.KnownFolders.SidebarDefaultParts));
 
         /// <summary>
         /// Gets the metadata for the <b>TreeProperties</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder TreeProperties => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.TreeProperties));
+        public static IKnownFolder TreeProperties => GetKnownFolder(new Guid(Guids.KnownFolders.TreeProperties));
 
         /// <summary>
         /// Gets the metadata for the <b>PublicGameTasks</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder PublicGameTasks => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.PublicGameTasks));
+        public static IKnownFolder PublicGameTasks => GetKnownFolder(new Guid(Guids.KnownFolders.PublicGameTasks));
 
         /// <summary>
         /// Gets the metadata for the <b>GameTasks</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder GameTasks => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.GameTasks));
+        public static IKnownFolder GameTasks => GetKnownFolder(new Guid(Guids.KnownFolders.GameTasks));
 
         /// <summary>
         /// Gets the metadata for the per-user <b>SavedGames</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder SavedGames => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SavedGames));
+        public static IKnownFolder SavedGames => GetKnownFolder(new Guid(Guids.KnownFolders.SavedGames));
 
         /// <summary>
         /// Gets the metadata for the <b>Games</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder Games => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Games));
+        public static IKnownFolder Games => GetKnownFolder(new Guid(Guids.KnownFolders.Games));
 
         /// <summary>
         /// Gets the metadata for the <b>RecordedTV</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
         /// <remarks>This folder is not used.</remarks>
-        public static IKnownFolder RecordedTV => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.RecordedTV));
+        public static IKnownFolder RecordedTV => GetKnownFolder(new Guid(Guids.KnownFolders.RecordedTV));
 
         /// <summary>
         /// Gets the metadata for the <b>SearchMapi</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder SearchMapi => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SearchMapi));
+        public static IKnownFolder SearchMapi => GetKnownFolder(new Guid(Guids.KnownFolders.SearchMapi));
 
         /// <summary>
         /// Gets the metadata for the <b>SearchCsc</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder SearchCsc => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SearchCsc));
+        public static IKnownFolder SearchCsc => GetKnownFolder(new Guid(Guids.KnownFolders.SearchCsc));
 
         /// <summary>
         /// Gets the metadata for the per-user <b>Links</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder Links => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Links));
+        public static IKnownFolder Links => GetKnownFolder(new Guid(Guids.KnownFolders.Links));
 
         /// <summary>
         /// Gets the metadata for the <b>UsersFiles</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder UsersFiles => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.UsersFiles));
+        public static IKnownFolder UsersFiles => GetKnownFolder(new Guid(Guids.KnownFolders.UsersFiles));
 
         /// <summary>
         /// Gets the metadata for the <b>SearchHome</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder SearchHome => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.SearchHome));
+        public static IKnownFolder SearchHome => GetKnownFolder(new Guid(Guids.KnownFolders.SearchHome));
 
         /// <summary>
         /// Gets the metadata for the <b>OriginalImages</b> folder.
         /// </summary>
         /// <value>An <see cref="IKnownFolder"/> object.</value>
-        public static IKnownFolder OriginalImages => GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.OriginalImages));
+        public static IKnownFolder OriginalImages => GetKnownFolder(new Guid(Guids.KnownFolders.OriginalImages));
 
         /// <summary>
         /// Gets the metadata for the <b>UserProgramFiles</b> folder.
@@ -616,7 +611,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             get
             {
                 CoreHelpers.ThrowIfNotWin7();
-                return GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.UserProgramFiles));
+                return GetKnownFolder(new Guid(Guids.KnownFolders.Windows7.UserProgramFiles));
             }
         }
 
@@ -628,7 +623,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             get
             {
                 CoreHelpers.ThrowIfNotWin7();
-                return GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.UserProgramFilesCommon));
+                return GetKnownFolder(new Guid(Guids.KnownFolders.Windows7.UserProgramFilesCommon));
             }
         }
 
@@ -640,7 +635,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             get
             {
                 CoreHelpers.ThrowIfNotWin7();
-                return GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.Ringtones));
+                return GetKnownFolder(new Guid(Guids.KnownFolders.Windows7.Ringtones));
             }
         }
 
@@ -652,7 +647,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             get
             {
                 CoreHelpers.ThrowIfNotWin7();
-                return GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.PublicRingtones));
+                return GetKnownFolder(new Guid(Guids.KnownFolders.Windows7.PublicRingtones));
             }
         }
 
@@ -664,7 +659,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             get
             {
                 CoreHelpers.ThrowIfNotWin7();
-                return GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.UsersLibraries));
+                return GetKnownFolder(new Guid(Guids.KnownFolders.Windows7.UsersLibraries));
             }
         }
 
@@ -676,7 +671,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             get
             {
                 CoreHelpers.ThrowIfNotWin7();
-                return GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.DocumentsLibrary));
+                return GetKnownFolder(new Guid(Guids.KnownFolders.Windows7.DocumentsLibrary));
             }
         }
 
@@ -688,7 +683,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             get
             {
                 CoreHelpers.ThrowIfNotWin7();
-                return GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.MusicLibrary));
+                return GetKnownFolder(new Guid(Guids.KnownFolders.Windows7.MusicLibrary));
             }
         }
 
@@ -700,7 +695,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             get
             {
                 CoreHelpers.ThrowIfNotWin7();
-                return GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.PicturesLibrary));
+                return GetKnownFolder(new Guid(Guids.KnownFolders.Windows7.PicturesLibrary));
             }
         }
 
@@ -711,7 +706,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
 
                 CoreHelpers.ThrowIfNotWin7();
-                return GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.CameraRollLibrary));
+                return GetKnownFolder(new Guid(Guids.KnownFolders.Windows7.CameraRollLibrary));
 
             }
 
@@ -724,7 +719,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
 
                 CoreHelpers.ThrowIfNotWin7();
-                return GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.SavedPicturesLibrary));
+                return GetKnownFolder(new Guid(Guids.KnownFolders.Windows7.SavedPicturesLibrary));
 
             }
 
@@ -738,7 +733,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             get
             {
                 CoreHelpers.ThrowIfNotWin7();
-                return GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.VideosLibrary));
+                return GetKnownFolder(new Guid(Guids.KnownFolders.Windows7.VideosLibrary));
             }
         }
 
@@ -750,7 +745,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             get
             {
                 CoreHelpers.ThrowIfNotWin7();
-                return GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.RecordedTVLibrary));
+                return GetKnownFolder(new Guid(Guids.KnownFolders.Windows7.RecordedTVLibrary));
             }
         }
 
@@ -762,7 +757,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             get
             {
                 CoreHelpers.ThrowIfNotWin7();
-                return GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.OtherUsers));
+                return GetKnownFolder(new Guid(Guids.KnownFolders.Windows7.OtherUsers));
             }
         }
 
@@ -774,7 +769,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             get
             {
                 CoreHelpers.ThrowIfNotWin7();
-                return GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.DeviceMetadataStore));
+                return GetKnownFolder(new Guid(Guids.KnownFolders.Windows7.DeviceMetadataStore));
             }
         }
 
@@ -786,7 +781,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             get
             {
                 CoreHelpers.ThrowIfNotWin7();
-                return GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.Libraries));
+                return GetKnownFolder(new Guid(Guids.KnownFolders.Windows7.Libraries));
             }
         }
 
@@ -798,7 +793,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             get
             {
                 CoreHelpers.ThrowIfNotWin7();
-                return GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.UserPinned));
+                return GetKnownFolder(new Guid(Guids.KnownFolders.Windows7.UserPinned));
             }
         }
 
@@ -810,7 +805,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             get
             {
                 CoreHelpers.ThrowIfNotWin7();
-                return GetKnownFolder(new Guid(Win32Native.Guids.Shell.FolderIdentifiers.KnownFolders.Win7.ImplicitAppShortcuts));
+                return GetKnownFolder(new Guid(Guids.KnownFolders.Windows7.ImplicitAppShortcuts));
             }
         }
 

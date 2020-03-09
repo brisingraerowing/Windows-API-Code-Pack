@@ -202,33 +202,33 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         #region Private Methods
 
-        private ShellNativeMethods.SIIGBF CalculateFlags()
+        private SIIGBF CalculateFlags()
         {
-            ShellNativeMethods.SIIGBF flags = 0x0000;
+            SIIGBF flags = 0x0000;
 
             if (AllowBiggerSize)
             
-                flags |= ShellNativeMethods.SIIGBF.BiggerSizeOk;
+                flags |= SIIGBF.BiggerSizeOk;
 
 
             
             if (RetrievalOption == ShellThumbnailRetrievalOption.CacheOnly)
             
-                flags |= ShellNativeMethods.SIIGBF.InCacheOnly;
+                flags |= SIIGBF.InCacheOnly;
             
             else if (RetrievalOption == ShellThumbnailRetrievalOption.MemoryOnly)
             
-                flags |= ShellNativeMethods.SIIGBF.MemoryOnly;
+                flags |= SIIGBF.MemoryOnly;
 
 
             
             if (FormatOption == ShellThumbnailFormatOption.IconOnly)
             
-                flags |= ShellNativeMethods.SIIGBF.IconOnly;
+                flags |= SIIGBF.IconOnly;
             
             else if (FormatOption == ShellThumbnailFormatOption.ThumbnailOnly)
             
-                flags |= ShellNativeMethods.SIIGBF.ThumbnailOnly;
+                flags |= SIIGBF.ThumbnailOnly;
             
             return flags;
         }

@@ -10,7 +10,6 @@ using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
-using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -91,7 +90,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 if (nativeShellItem == null && ParsingName != null)
                 {
-                    var guid = new Guid(ShellIIDGuid.IShellItem2);
+                    var guid = new Guid(Win32Native.Guids.Shell.IShellItem2);
                     int retCode = ShellNativeMethods.SHCreateItemFromParsingName(ParsingName, IntPtr.Zero, ref guid, out nativeShellItem);
 
                     if (nativeShellItem == null || !CoreErrorHelper.Succeeded(retCode))
@@ -243,9 +242,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 try
                 {
-                    NativeShellItem.GetAttributes(ShellNativeMethods.ShellFileGetAttributesOptions.Link, out ShellNativeMethods.ShellFileGetAttributesOptions sfgao);
+                    NativeShellItem.GetAttributes(ShellFileGetAttributesOptions.Link, out ShellFileGetAttributesOptions sfgao);
 
-                    return (sfgao & ShellNativeMethods.ShellFileGetAttributesOptions.Link) != 0;
+                    return (sfgao & ShellFileGetAttributesOptions.Link) != 0;
                 }
                 catch (Exception ex) when (ex is FileNotFoundException || ex is NullReferenceException /*NativeShellItem is null*/)
                 {
@@ -263,9 +262,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 try
                 {
-                    NativeShellItem.GetAttributes(ShellNativeMethods.ShellFileGetAttributesOptions.FileSystem, out ShellNativeMethods.ShellFileGetAttributesOptions sfgao);
+                    NativeShellItem.GetAttributes(ShellFileGetAttributesOptions.FileSystem, out ShellFileGetAttributesOptions sfgao);
 
-                    return (sfgao & ShellNativeMethods.ShellFileGetAttributesOptions.FileSystem) != 0;
+                    return (sfgao & ShellFileGetAttributesOptions.FileSystem) != 0;
                 }
                 catch (Exception ex) when (ex is FileNotFoundException || ex is NullReferenceException /*NativeShellItem is null*/)
                 {

@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+using WinCopies.Collections;
 
 namespace Microsoft.WindowsAPICodePack.Dialogs
 {
@@ -59,7 +60,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// <remarks>This property should only be used when the
         /// <see cref="Multiselect"/>
         /// property is <b>true</b>.</remarks>
-        public ICollection<ShellObject> FilesAsShellObject
+        public System.Collections.Generic.ICollection<ShellObject> FilesAsShellObject
         {
             get
             {
@@ -67,15 +68,15 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 CheckFileItemsAvailable();
 
                 // temp collection to hold our shellobjects
-                ICollection<ShellObject> resultItems = new Collection<ShellObject>();
+                var resultItems = new ArrayBuilder<ShellObject>();
 
                 // Loop through our existing list of filenames, and try to create a concrete type of
                 // ShellObject (e.g. ShellLibrary, FileSystemFolder, ShellFile, etc)
                 foreach (IShellItem si in items)
 
-                    resultItems.Add(ShellObjectFactory.Create(si));
+                    _ = resultItems.AddLast(ShellObjectFactory.Create(si));
 
-                return resultItems;
+                return new System.Collections.ObjectModel.Collection<ShellObject>( resultItems.ToList());
             }
         }
 
@@ -118,45 +119,39 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 _ = Marshal.ReleaseComObject(openDialogCoClass);
         }
 
-        internal override void PopulateWithFileNames(Collection<string> names)
+        internal override void PopulateWithFileNames(System.Collections.ObjectModel.Collection<string> names)
         {
             openDialogCoClass.GetResults(out IShellItemArray resultsArray);
-            Marshal.ThrowExceptionForHR((int) resultsArray.GetCount(out uint count));
+            Marshal.ThrowExceptionForHR((int)resultsArray.GetCount(out uint count));
             names.Clear();
             for (int i = 0; i < count; i++)
 
                 names.Add(GetFileNameFromShellItem(GetShellItemAt(resultsArray, i)));
         }
 
-        internal override void PopulateWithIShellItems(Collection<IShellItem> items)
+        internal override void PopulateWithIShellItems(System.Collections.ObjectModel.Collection<IShellItem> items)
         {
             openDialogCoClass.GetResults(out IShellItemArray resultsArray);
-            Marshal.ThrowExceptionForHR( (int) resultsArray.GetCount(out uint count));
+            Marshal.ThrowExceptionForHR((int)resultsArray.GetCount(out uint count));
             items.Clear();
             for (int i = 0; i < count; i++)
 
                 items.Add(GetShellItemAt(resultsArray, i));
         }
 
-        internal override ShellNativeMethods.FileOpenOptions GetDerivedOptionFlags(ShellNativeMethods.FileOpenOptions flags)
+        internal override FileOpenOptions GetDerivedOptionFlags(FileOpenOptions flags)
         {
             if (Multiselect)
 
-                flags |= ShellNativeMethods.FileOpenOptions.AllowMultiSelect;
+                flags |= FileOpenOptions.AllowMultiSelect;
 
             if (IsFolderPicker)
 
-                flags |= ShellNativeMethods.FileOpenOptions.PickFolders;
+                flags |= FileOpenOptions.PickFolders;
 
 
 
-            if (!AllowNonFileSystemItems)
-
-                flags |= ShellNativeMethods.FileOpenOptions.ForceFilesystem;
-
-            else if (AllowNonFileSystemItems)
-
-                flags |= ShellNativeMethods.FileOpenOptions.AllNonStorageItems;
+            flags |= AllowNonFileSystemItems ? FileOpenOptions.AllNonStorageItems : FileOpenOptions.ForceFilesystem;
 
 
 

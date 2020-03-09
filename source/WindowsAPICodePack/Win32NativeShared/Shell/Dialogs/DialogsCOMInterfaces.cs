@@ -4,7 +4,6 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using GuidAttribute = System.Runtime.InteropServices.GuidAttribute;
@@ -17,7 +16,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
 #pragma warning disable 0108
 
     [ComImport(),
-    Guid(ShellIIDGuid.IFileDialog),
+    Guid(Guids.Shell.IFileDialog),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFileDialog : IModalWindow
     {
@@ -31,7 +30,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void SetFileTypes(
             [In] uint cFileTypes,
-            [In, MarshalAs(UnmanagedType.LPArray)] ShellNativeMethods.FilterSpec[] rgFilterSpec);
+            [In, MarshalAs(UnmanagedType.LPArray)] FilterSpec[] rgFilterSpec);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void SetFileTypeIndex([In] uint iFileType);
@@ -48,10 +47,10 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
         void Unadvise([In] uint dwCookie);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void SetOptions([In] ShellNativeMethods.FileOpenOptions fos);
+        void SetOptions([In] FileOpenOptions fos);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void GetOptions(out ShellNativeMethods.FileOpenOptions pfos);
+        void GetOptions(out FileOpenOptions pfos);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void SetDefaultFolder([In, MarshalAs(UnmanagedType.Interface)] IShellItem psi);
@@ -84,7 +83,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
         void GetResult([MarshalAs(UnmanagedType.Interface)] out IShellItem ppsi);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void AddPlace([In, MarshalAs(UnmanagedType.Interface)] IShellItem psi, ShellNativeMethods.FileDialogAddPlacement fdap);
+        void AddPlace([In, MarshalAs(UnmanagedType.Interface)] IShellItem psi, FileDialogAddPlacement fdap);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void SetDefaultExtension([In, MarshalAs(UnmanagedType.LPWStr)] string pszDefaultExtension);
@@ -104,7 +103,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
     }
 
     [ComImport(),
-    Guid(ShellIIDGuid.IFileOpenDialog),
+    Guid(Guids.Shell.IFileOpenDialog),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFileOpenDialog : IFileDialog
     {
@@ -115,7 +114,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
 
         // Defined on IFileDialog - repeated here due to requirements of COM interop layer.
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void SetFileTypes([In] uint cFileTypes, [In] ref ShellNativeMethods.FilterSpec rgFilterSpec);
+        void SetFileTypes([In] uint cFileTypes, [In] ref FilterSpec rgFilterSpec);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void SetFileTypeIndex([In] uint iFileType);
@@ -132,10 +131,10 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
         void Unadvise([In] uint dwCookie);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void SetOptions([In] ShellNativeMethods.FileOpenOptions fos);
+        void SetOptions([In] FileOpenOptions fos);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void GetOptions(out ShellNativeMethods.FileOpenOptions pfos);
+        void GetOptions(out FileOpenOptions pfos);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void SetDefaultFolder([In, MarshalAs(UnmanagedType.Interface)] IShellItem psi);
@@ -168,7 +167,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
         void GetResult([MarshalAs(UnmanagedType.Interface)] out IShellItem ppsi);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void AddPlace([In, MarshalAs(UnmanagedType.Interface)] IShellItem psi, ShellNativeMethods.FileDialogAddPlacement fdap);
+        void AddPlace([In, MarshalAs(UnmanagedType.Interface)] IShellItem psi, FileDialogAddPlacement fdap);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void SetDefaultExtension([In, MarshalAs(UnmanagedType.LPWStr)] string pszDefaultExtension);
@@ -195,7 +194,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
     }
 
     [ComImport(),
-    Guid(ShellIIDGuid.IFileSaveDialog),
+    Guid(Guids.Shell.IFileSaveDialog),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFileSaveDialog : IFileDialog
     {
@@ -208,7 +207,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void SetFileTypes(
             [In] uint cFileTypes,
-            [In] ref ShellNativeMethods.FilterSpec rgFilterSpec);
+            [In] ref FilterSpec rgFilterSpec);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void SetFileTypeIndex([In] uint iFileType);
@@ -225,10 +224,10 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
         void Unadvise([In] uint dwCookie);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void SetOptions([In] ShellNativeMethods.FileOpenOptions fos);
+        void SetOptions([In] FileOpenOptions fos);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-        void GetOptions(out ShellNativeMethods.FileOpenOptions pfos);
+        void GetOptions(out FileOpenOptions pfos);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void SetDefaultFolder([In, MarshalAs(UnmanagedType.Interface)] IShellItem psi);
@@ -263,7 +262,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void AddPlace(
             [In, MarshalAs(UnmanagedType.Interface)] IShellItem psi,
-            ShellNativeMethods.FileDialogAddPlacement fdap);
+            FileDialogAddPlacement fdap);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void SetDefaultExtension([In, MarshalAs(UnmanagedType.LPWStr)] string pszDefaultExtension);
@@ -310,7 +309,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
     }
 
     [ComImport,
-    Guid(ShellIIDGuid.IFileDialogEvents),
+    Guid(Guids.Shell.IFileDialogEvents),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFileDialogEvents
     {
@@ -351,7 +350,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
     }
 
     [ComImport,
-    Guid(ShellIIDGuid.IFileDialogCustomize),
+    Guid(Guids.Shell.IFileDialogCustomize),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFileDialogCustomize
     {
@@ -446,13 +445,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
         void GetControlItemState(
             [In] int dwIDCtl,
             [In] int dwIDItem,
-            [Out] out ShellNativeMethods.ControlState pdwState);
+            [Out] out ControlState pdwState);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void SetControlItemState(
             [In] int dwIDCtl,
             [In] int dwIDItem,
-            [In] ShellNativeMethods.ControlState dwState);
+            [In] ControlState dwState);
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void GetSelectedControlItem(
@@ -477,7 +476,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
     }
 
     [ComImport,
-    Guid(ShellIIDGuid.IFileDialogControlEvents),
+    Guid(Guids.Shell.IFileDialogControlEvents),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFileDialogControlEvents
     {

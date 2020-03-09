@@ -18,7 +18,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
         /// <summary>
         /// Gets the collection of CommonFileDialogRadioButtonListItem objects
         /// </summary>
-        public Collection<CommonFileDialogRadioButtonListItem> Items { get; } = new Collection<CommonFileDialogRadioButtonListItem>();
+        public System.Collections.ObjectModel.Collection<CommonFileDialogRadioButtonListItem> Items { get; } = new System.Collections.ObjectModel.Collection<CommonFileDialogRadioButtonListItem>();
 
         /// <summary>
         /// Creates a new instance of this class.

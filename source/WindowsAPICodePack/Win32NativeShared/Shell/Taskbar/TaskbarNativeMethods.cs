@@ -2,7 +2,6 @@
 
 using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
@@ -158,7 +157,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Taskbar
 
         public static IPropertyStore GetWindowPropertyStore(IntPtr hwnd)
         {
-            var guid = new Guid(ShellIIDGuid.IPropertyStore);
+            var guid = new Guid(Guids.Shell.IPropertyStore);
             int rc = SHGetPropertyStoreForWindow(
                 hwnd,
                 ref guid,

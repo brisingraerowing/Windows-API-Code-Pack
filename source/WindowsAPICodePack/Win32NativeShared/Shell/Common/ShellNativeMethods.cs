@@ -317,58 +317,143 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
-    public static class ShellNativeMethods
-    {
+
+        #region Shell Structs
+
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+        public struct FilterSpec
+        {
+            [MarshalAs(UnmanagedType.LPWStr)]
+            public string Name;
+            [MarshalAs(UnmanagedType.LPWStr)]
+            public string Spec;
+
+            public FilterSpec(string name, string spec)
+            {
+                Name = name;
+                Spec = spec;
+            }
+        }
+
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+        public struct ThumbnailId
+        {
+            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 16)]
+            public byte rgbKey;
+        }
+
+        /// <summary>
+        /// Contains information about a file object.
+        /// </summary>
+        /// <remarks>This structure is used with the <see cref="SHGetFileInfo"/> function.</remarks>
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+        public struct SHFILEINFO
+        {
+
+            /// <summary>
+            /// A handle to the icon that represents the file. You are responsible for destroying this handle with DestroyIcon when you no longer need it.
+            /// </summary>
+            public IntPtr hIcon;
+
+            /// <summary>
+            /// The index of the icon image within the system image list.
+            /// </summary>
+            public int iIcon;
+
+            /// <summary>
+            /// An array of values that indicates the attributes of the file object. For information about these values, see the <see cref="IShellFolder.GetAttributesOf"/> method.
+            /// </summary>
+            public ShellFileGetAttributesOptions dwAttributes;
+
+            /// <summary>
+            /// A string that contains the name of the file as it appears in the Windows Shell, or the path and file name of the file that contains the icon representing the file.
+            /// </summary>
+            [MarshalAs(UnmanagedType.BStr)]
+            public string szDisplayName;
+
+            /// <summary>
+            /// A string that describes the type of file.
+            /// </summary>
+            [MarshalAs(UnmanagedType.BStr)]
+            public string szTypeName;
+
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct SHQUERYRBINFO
+        {
+            public int cbSize;
+            public long i64Size;
+            public long i64NumItems;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct ShellNotifyStruct
+        {
+            public IntPtr item1;
+            public IntPtr item2;
+        };
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct SHChangeNotifyEntry
+        {
+            public IntPtr pIdl;
+
+            [MarshalAs(UnmanagedType.Bool)]
+            public bool recursively;
+        }
+
+        #endregion
+
+        #region Shell Library Enums
+
+        public enum LibraryFolderFilter
+        {
+            ForceFileSystem = 1,
+            StorageItems = 2,
+            AllItems = 3
+        };
+
+        [Flags]
+        public enum LibraryOptions
+        {
+            Default = 0,
+            PinnedToNavigationPane = 0x1,
+            MaskAll = 0x1
+        };
+
+        public enum DefaultSaveFolderType
+        {
+            Detect = 1,
+            Private = 2,
+            Public = 3
+        };
+
+        public enum LibrarySaveOptions
+        {
+            FailIfThere = 0,
+            OverrideExisting = 1,
+            MakeUniqueName = 2
+        };
+
+        public enum LibraryManageDialogOptions
+        {
+            Default = 0,
+            NonIndexableLocationWarning = 1
+        };
+
+
+        #endregion
+
         #region Shell Enums
 
         [Flags]
-        [Obsolete("Use the same enum of the Microsoft.WindowsAPICodePack.Win32Native.Shell namespace instead.")]
-        public enum FileOpenOptions
+        public enum ShellChangeNotifyEventSource
         {
-            OverwritePrompt = 0x00000002,
-            StrictFileTypes = 0x00000004,
-            NoChangeDirectory = 0x00000008,
-            PickFolders = 0x00000020,
-            // Ensure that items returned are filesystem items.
-            ForceFilesystem = 0x00000040,
-            // Allow choosing items that have no storage.
-            AllNonStorageItems = 0x00000080,
-            NoValidate = 0x00000100,
-            AllowMultiSelect = 0x00000200,
-            PathMustExist = 0x00000800,
-            FileMustExist = 0x00001000,
-            CreatePrompt = 0x00002000,
-            ShareAware = 0x00004000,
-            NoReadOnlyReturn = 0x00008000,
-            NoTestFileCreate = 0x00010000,
-            HideMruPlaces = 0x00020000,
-            HidePinnedPlaces = 0x00040000,
-            NoDereferenceLinks = 0x00100000,
-            DontAddToRecent = 0x02000000,
-            ForceShowHidden = 0x10000000,
-            DefaultNoMiniMode = 0x20000000
-        }
-
-        [Obsolete("Use the same enum of the Microsoft.WindowsAPICodePack.Win32Native.Shell namespace instead.")]
-        public enum ControlState
-        {
-            Inactive = 0x00000000,
-            Enable = 0x00000001,
-            Visible = 0x00000002
-        }
-
-        [Obsolete("Use the same enum of the Microsoft.WindowsAPICodePack.Win32Native.Shell namespace instead.")]
-        public enum ShellItemDesignNameOptions
-        {
-            Normal = 0x00000000,           // SIGDN_NORMAL
-            ParentRelativeParsing = unchecked((int)0x80018001),   // SIGDN_INFOLDER | SIGDN_FORPARSING
-            DesktopAbsoluteParsing = unchecked((int)0x80028000),  // SIGDN_FORPARSING
-            ParentRelativeEditing = unchecked((int)0x80031001),   // SIGDN_INFOLDER | SIGDN_FOREDITING
-            DesktopAbsoluteEditing = unchecked((int)0x8004c000),  // SIGDN_FORPARSING | SIGDN_FORADDRESSBAR
-            FileSystemPath = unchecked((int)0x80058000),             // SIGDN_FORPARSING
-            Url = unchecked((int)0x80068000),                     // SIGDN_FORPARSING
-            ParentRelativeForAddressBar = unchecked((int)0x8007c001),     // SIGDN_INFOLDER | SIGDN_FORPARSING | SIGDN_FORADDRESSBAR
-            ParentRelative = unchecked((int)0x80080001)           // SIGDN_INFOLDER
+            InterruptLevel = 0x0001,
+            ShellLevel = 0x0002,
+            RecursiveInterrupt = 0x1000,
+            NewDelivery = 0x8000
         }
 
         /// <summary>
@@ -511,29 +596,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
             // Note that this can result in poor performance over large arrays and therefore it 
             // should be used only when needed. Cases in which you pass this flag should be extremely rare.
             AllItems = 0x00004000
-        }
-
-        [Obsolete("Use the same enum of the Microsoft.WindowsAPICodePack.Win32Native.Shell namespace instead.")]
-        public enum FileDialogEventShareViolationResponse
-        {
-            Default = 0x00000000,
-            Accept = 0x00000001,
-            Refuse = 0x00000002
-        }
-
-        [Obsolete("Use the same enum of the Microsoft.WindowsAPICodePack.Win32Native.Shell namespace instead.")]
-        public enum FileDialogEventOverwriteResponse
-        {
-            Default = 0x00000000,
-            Accept = 0x00000001,
-            Refuse = 0x00000002
-        }
-
-        [Obsolete("Use the same enum of the Microsoft.WindowsAPICodePack.Win32Native.Shell namespace instead.")]
-        public enum FileDialogAddPlacement
-        {
-            Bottom = 0x00000000,
-            Top = 0x00000001,
         }
 
         [Flags]
@@ -784,76 +846,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 
         #endregion
 
-        #region Shell Structs
-
-        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
-        public struct FilterSpec
-        {
-            [MarshalAs(UnmanagedType.LPWStr)]
-            public string Name;
-            [MarshalAs(UnmanagedType.LPWStr)]
-            public string Spec;
-
-            public FilterSpec(string name, string spec)
-            {
-                Name = name;
-                Spec = spec;
-            }
-        }
-
-        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
-        public struct ThumbnailId
-        {
-            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 16)]
-            public byte rgbKey;
-        }
-
-        /// <summary>
-        /// Contains information about a file object.
-        /// </summary>
-        /// <remarks>This structure is used with the <see cref="SHGetFileInfo"/> function.</remarks>
-        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
-        public struct SHFILEINFO
-        {
-
-            /// <summary>
-            /// A handle to the icon that represents the file. You are responsible for destroying this handle with DestroyIcon when you no longer need it.
-            /// </summary>
-            public IntPtr hIcon;
-
-            /// <summary>
-            /// The index of the icon image within the system image list.
-            /// </summary>
-            public int iIcon;
-
-            /// <summary>
-            /// An array of values that indicates the attributes of the file object. For information about these values, see the <see cref="IShellFolder.GetAttributesOf"/> method.
-            /// </summary>
-            public ShellFileGetAttributesOptions dwAttributes;
-
-            /// <summary>
-            /// A string that contains the name of the file as it appears in the Windows Shell, or the path and file name of the file that contains the icon representing the file.
-            /// </summary>
-            [MarshalAs(UnmanagedType.BStr)]
-            public string szDisplayName;
-
-            /// <summary>
-            /// A string that describes the type of file.
-            /// </summary>
-            [MarshalAs(UnmanagedType.BStr)]
-            public string szTypeName;
-
-        }
-
-        [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        public struct SHQUERYRBINFO
-        {
-            public int cbSize;
-            public long i64Size;
-            public long i64NumItems;
-        }
-
-        #endregion
+    public static class ShellNativeMethods
+    {
 
         #region Shell Helper Methods
 
@@ -1030,46 +1024,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 
         #endregion
 
-        #region Shell Library Enums
-
-        public enum LibraryFolderFilter
-        {
-            ForceFileSystem = 1,
-            StorageItems = 2,
-            AllItems = 3
-        };
-
-        [Flags]
-        public enum LibraryOptions
-        {
-            Default = 0,
-            PinnedToNavigationPane = 0x1,
-            MaskAll = 0x1
-        };
-
-        public enum DefaultSaveFolderType
-        {
-            Detect = 1,
-            Private = 2,
-            Public = 3
-        };
-
-        public enum LibrarySaveOptions
-        {
-            FailIfThere = 0,
-            OverrideExisting = 1,
-            MakeUniqueName = 2
-        };
-
-        public enum LibraryManageDialogOptions
-        {
-            Default = 0,
-            NonIndexableLocationWarning = 1
-        };
-
-
-        #endregion
-
         #region Shell Library Helper Methods
 
         [DllImport("Shell32", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Winapi, SetLastError = true)]
@@ -1083,27 +1037,10 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         #endregion
 
         #region Shell notification definitions
-        public const int MaxPath = 260;
 
         [DllImport("shell32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool SHGetPathFromIDListW(IntPtr pidl, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszPath);
-
-        [StructLayout(LayoutKind.Sequential)]
-        public struct ShellNotifyStruct
-        {
-            public IntPtr item1;
-            public IntPtr item2;
-        };
-
-        [StructLayout(LayoutKind.Sequential)]
-        public struct SHChangeNotifyEntry
-        {
-            public IntPtr pIdl;
-
-            [MarshalAs(UnmanagedType.Bool)]
-            public bool recursively;
-        }
 
         [DllImport("shell32.dll")]
         public static extern uint SHChangeNotifyRegister(
@@ -1128,19 +1065,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         [DllImport("shell32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool SHChangeNotifyDeregister(uint hNotify);
-
-        [Flags]
-        public enum ShellChangeNotifyEventSource
-        {
-            InterruptLevel = 0x0001,
-            ShellLevel = 0x0002,
-            RecursiveInterrupt = 0x1000,
-            NewDelivery = 0x8000
-        }
-
-
-
-
 
         #endregion
     }

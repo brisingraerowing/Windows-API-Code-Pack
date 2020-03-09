@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
-using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
@@ -55,7 +54,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <returns>ShellObjectCollection created from the given IDataObject</returns>
         public static ShellObjectCollection FromDataObject(System.Runtime.InteropServices.ComTypes.IDataObject dataObject)
         {
-            var iid = new Guid(ShellIIDGuid.IShellItemArray);
+            var iid = new Guid(Win32Native.Guids.Shell.IShellItemArray);
             _ = ShellNativeMethods.SHCreateShellItemArrayFromDataObject(dataObject, ref iid, out IShellItemArray shellItemArray);
             return new ShellObjectCollection(shellItemArray, true);
         }
@@ -258,7 +257,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         #endregion
 
-        #region ICollection<ShellObject> Members
+        #region System.Collections.Generic.ICollection<ShellObject> Members
 
         /// <summary>
         /// Adds a ShellObject to the collection,
@@ -313,7 +312,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Retrieves the number of ShellObjects in the collection
         /// </summary>
-        int ICollection<ShellObject>.Count => content.Count;
+        int System.Collections.Generic.ICollection<ShellObject>.Count => content.Count;
 
         /// <summary>
         /// If true, the contents of the collection are immutable.

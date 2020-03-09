@@ -12,7 +12,6 @@ using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell;
 using Microsoft.WindowsAPICodePack.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.Dialogs
@@ -166,7 +165,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                     if (!string.IsNullOrEmpty(canonicalName)) _ = sb.AppendFormat("{0};", canonicalName);
                 }
 
-                var guid = new Guid(ShellIIDGuid.IPropertyDescriptionList);
+                var guid = new Guid(Win32Native.Guids.Shell.IPropertyDescriptionList);
                 IPropertyDescriptionList propertyDescriptionList = null;
 
                 try
@@ -276,23 +275,23 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 _=Marshal.ReleaseComObject(saveDialogCoClass);
         }
 
-        internal override ShellNativeMethods.FileOpenOptions GetDerivedOptionFlags(ShellNativeMethods.FileOpenOptions flags)
+        internal override FileOpenOptions GetDerivedOptionFlags(FileOpenOptions flags)
         {
             if (overwritePrompt)
 
-                flags |= ShellNativeMethods.FileOpenOptions.OverwritePrompt;
+                flags |= FileOpenOptions.OverwritePrompt;
 
             if (createPrompt)
 
-                flags |= ShellNativeMethods.FileOpenOptions.CreatePrompt;
+                flags |= FileOpenOptions.CreatePrompt;
 
             if (!isExpandedMode)
 
-                flags |= ShellNativeMethods.FileOpenOptions.DefaultNoMiniMode;
+                flags |= FileOpenOptions.DefaultNoMiniMode;
 
             if (alwaysAppendDefaultExtension)
 
-                flags |= ShellNativeMethods.FileOpenOptions.StrictFileTypes;
+                flags |= FileOpenOptions.StrictFileTypes;
 
             return flags;
         }

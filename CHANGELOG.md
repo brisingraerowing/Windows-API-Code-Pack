@@ -18,7 +18,7 @@ Shell 2.0
     - ShellLibrary.this[int]
     - ShellLibrary.Insert(int, ShellFileSystemFolder)
     - ShellLibrary.RemoveAt(int)
-    - ShellLibrary implementation of ICollection<ShellFileSystemFolder>.CopyTo(ShellFileSystemFolder[], int)
+    - ShellLibrary implementation ofSystem.Collections.Generic.ICollection<ShellFileSystemFolder>.CopyTo(ShellFileSystemFolder[], int)
 - The ShellLibrary does not commit changes automatically anymore. Use the Commit method to commit changes.
 
 ShellExtensions 2.0

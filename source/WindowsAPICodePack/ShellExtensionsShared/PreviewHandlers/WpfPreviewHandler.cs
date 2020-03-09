@@ -5,7 +5,7 @@ using System.Windows.Media;
 using Microsoft.WindowsAPICodePack.ShellExtensions.Resources;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.Interop;
+using Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions;
 
 namespace Microsoft.WindowsAPICodePack.ShellExtensions
 {
@@ -35,7 +35,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         protected void ThrowIfNoControl()
         {
             if (Control == null)
-            
+
                 throw new InvalidOperationException(LocalizedMessages.PreviewHandlerControlNotInitialized);
         }
 
@@ -52,7 +52,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
                 0, 0, Math.Abs(_bounds.Left - _bounds.Right), Math.Abs(_bounds.Top - _bounds.Bottom), SetWindowPositionOptions.ShowWindow);
             }
         }
-                
+
         protected override void SetParentHandle(IntPtr handle)
         {
             _parentHandle = handle;
@@ -78,29 +78,19 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
             UpdatePlacement();
         }
 
-        protected override IntPtr Handle
-        {
-            get
-            {
-                    if (_source == null)
-                    
-                        throw new InvalidOperationException(LocalizedMessages.WpfPreviewHandlerNoHandle);
-                    
-                    return _source.Handle;
-            }
-        }
+        protected override IntPtr Handle => (_source ?? throw new InvalidOperationException(LocalizedMessages.WpfPreviewHandlerNoHandle)).Handle;
 
-        protected override void UpdateBounds(NativeRect bounds)
+        protected override void UpdateBounds(in NativeRect bounds)
         {
             _bounds = bounds;
             UpdatePlacement();
         }
 
-        protected override void HandleInitializeException(Exception caughtException)
+        protected override void HandleInitializeException(in Exception caughtException)
         {
-            if (caughtException == null)  return; 
+            if (caughtException == null) return;
 
-            TextBox text = new TextBox
+            var text = new TextBox
             {
                 IsReadOnly = true,
                 MaxLines = 20,
@@ -111,28 +101,22 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
 
         protected override void SetFocus() => Control.Focus();
 
-        protected override void SetBackground(int argb)
-        {
-            Control.Background = new SolidColorBrush(Color.FromArgb(
+        protected override void SetBackground(in int argb) => Control.Background = new SolidColorBrush(Color.FromArgb(
                 (byte)((argb >> 24) & 0xFF), //a         
                 (byte)((argb >> 16) & 0xFF), //r
                 (byte)((argb >> 8) & 0xFF), //g
                 (byte)(argb & 0xFF))); //b
-        }
 
-        protected override void SetForeground(int argb)
-        {
-            Control.Foreground = new SolidColorBrush(Color.FromArgb(
+        protected override void SetForeground(in int argb) => Control.Foreground = new SolidColorBrush(Color.FromArgb(
                  (byte)((argb >> 24) & 0xFF), //a                
                  (byte)((argb >> 16) & 0xFF), //r
                  (byte)((argb >> 8) & 0xFF), //g
                  (byte)(argb & 0xFF))); //b                 
-        }
 
-        protected override void SetFont(LogFont font)
+        protected override void SetFont(in LogFont font)
         {
-            if (font == null)  throw new ArgumentNullException("font"); 
-            
+            if (font == null) throw new ArgumentNullException(nameof(font));
+
             Control.FontFamily = new FontFamily(font.FaceName);
             Control.FontSize = font.Height;
             Control.FontWeight = font.Weight > 0 && font.Weight < 1000 ?
@@ -167,7 +151,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         protected virtual void Dispose(bool disposing)
         {
             if (disposing && _source != null)
-            
+
                 _source.Dispose();
         }
 
