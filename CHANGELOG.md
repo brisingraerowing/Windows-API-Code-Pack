@@ -1,7 +1,10 @@
 WindowsAPICodePack CHANGELOG
 ============================
 
-Note: The 'Fix #<number\>' notice indicates that the relative fix is available at https://github.com/pierresprim/Windows-API-Code-Pack/issues
+Note: - The '#<number\>' notice indicates that the relative issue has been opened starting with the relative release.
+      - The 'Fix #<number\>' notice indicates that the relative issue has been fixed starting with the relative release.
+
+      For issue and fix details, visit https://github.com/pierresprim/Windows-API-Code-Pack/issues
 
 ???? 2.0
 ========

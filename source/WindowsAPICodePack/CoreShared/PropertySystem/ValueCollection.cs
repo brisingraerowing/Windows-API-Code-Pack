@@ -20,10 +20,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
         internal IReadOnlyNativeValueCollection Items { get { ThrowIfDisposed(); return Items; } }
 
-        public ReadOnlyValueCollection(IReadOnlyNativeValueCollection items)
-        {
-            _items = items;
-        }
+        public ReadOnlyValueCollection(IReadOnlyNativeValueCollection items) => _items = (items ?? throw new ArgumentNullException(nameof(items))).IsReadOnly ? throw new ArgumentException("The given collection is read-only.") : items.IsDisposed ? throw new ObjectDisposedException(nameof(items)) : items;
 
         // todo: replace by the same WinCopies.Util extension method.
 
@@ -242,6 +239,17 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
     {
 
+        public ValueCollection(INativeValueCollection valueCollection) => _items = (valueCollection ?? throw new ArgumentNullException(nameof(valueCollection))).IsDisposed ? throw new ObjectDisposedException(nameof(valueCollection)) : valueCollection;
+
+        protected ValueCollection(PropertyCollection propertyCollection)
+        {
+            INativeValueCollection valueCollection = InitializeWithPropertyCollection(propertyCollection, propertyCollection.Items);
+
+            _items = (valueCollection ?? throw new ArgumentNullException(nameof(valueCollection))).IsDisposed ? throw new ObjectDisposedException(nameof(valueCollection)) : valueCollection;
+        }
+
+        protected virtual INativeValueCollection InitializeWithPropertyCollection(PropertyCollection propertyCollection, INativePropertiesCollection nativePropertiesCollection) => throw new NotSupportedException("This action is not supported by this collection.");
+
         public bool IsDisposed { get; private set; }
 
         protected virtual void Dispose(bool disposing)
@@ -271,7 +279,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
         private INativeValueCollection _items;
 
-        internal INativeValueCollection Items { get { ThrowIfDisposed(); return Items; } }
+        protected INativeValueCollection Items { get { ThrowIfDisposed(); return Items; } }
 
         // todo: replace by the same WinCopies.Util extension method.
 

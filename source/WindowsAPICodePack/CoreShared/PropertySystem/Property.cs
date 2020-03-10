@@ -44,7 +44,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                     PropertyKey propertyKey = _propertyKey;
 
-                    Marshal.ThrowExceptionForHR((int)_propertyCollection.NativePropertiesCollection.GetAttributes(ref propertyKey, out IDisposableReadOnlyNativePropertyValuesCollection attributes));
+                    Marshal.ThrowExceptionForHR((int)_propertyCollection.Items.GetAttributes(ref propertyKey, out IDisposableReadOnlyNativePropertyValuesCollection attributes));
 
                     _attributes = new PropertyAttributeCollection(attributes);
 
@@ -211,7 +211,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                 throw new PropertySystemException("This property is not removable.");
 
-            _ = _propertyCollection.NativePropertiesCollection.Delete(PropertyKey);
+            _ = _propertyCollection.Items.Delete(PropertyKey);
 
         }
 

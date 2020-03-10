@@ -80,6 +80,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
     public interface IReadOnlyNativePropertyValuesCollection
 
     {
+
+        bool IsReadOnly { get; }
+
         HResult GetAt(in uint index, ref PropertyKey propertyKey, ref PropVariant propVariant);
 
         HResult GetCount(out uint count);
@@ -99,8 +102,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
     public interface INativePropertyValuesCollection : IReadOnlyNativePropertyValuesCollection
 
     {
-
-        bool IsReadOnly { get; }
 
         HResult SetValue(ref PropertyKey propertyKey, ref PropVariant propVariant);
 

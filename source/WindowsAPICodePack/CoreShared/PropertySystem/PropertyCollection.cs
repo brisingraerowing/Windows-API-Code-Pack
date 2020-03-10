@@ -11,8 +11,9 @@ using WinCopies.Collections;
 using IDisposable = WinCopies.Util.DotNetFix.IDisposable;
 using static WinCopies.Util.Util;
 using System.Collections.ObjectModel;
+using static Microsoft.WindowsAPICodePack.PropertySystem.CollectionBridgeCollectionHelper;
 
-namespace Microsoft.WindowsAPICodePack
+namespace Microsoft.WindowsAPICodePack.PropertySystem
 
 {
     // todo: use the new interfaces of WinCopies.Util instead.
@@ -94,7 +95,7 @@ namespace Microsoft.WindowsAPICodePack
 
     [Serializable]
     [DebuggerDisplay("Count = {Count}")]
-    public class Collection<T> : IDisposable, IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUIntIndexedList, IUIntIndexedCollection, IReadOnlyUIntIndexedList<T>, IReadOnlyUIntIndexedCollection<T>, WinCopies.Collections.IUIntIndexedCollection<T>,ICollection<T>
+    public class Collection<T> : IDisposable, IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUIntIndexedList, IUIntIndexedCollection, IReadOnlyUIntIndexedList<T>, IReadOnlyUIntIndexedCollection<T>, WinCopies.Collections.IUIntIndexedCollection<T>, ICollection<T>, ICollectionBridgeCollection
 
     {
 
@@ -140,7 +141,19 @@ namespace Microsoft.WindowsAPICodePack
 
         protected INativeCollection<T> Items { get { ThrowIfDisposed(); return items; } private set { ThrowIfDisposed(); items = value; } }
 
-        public Collection(in INativeCollection<T> items) => this.items = (items ?? throw new ArgumentNullException(nameof(items))).IsReadOnly ? throw new ArgumentException("The given collection is read-only.") : items;
+        public Collection(in INativeCollection<T> items) => this.items = (items ?? throw new ArgumentNullException(nameof(items))).IsReadOnly ? throw new ArgumentException("The given collection is read-only.") : items.IsDisposed ? throw new ObjectDisposedException(nameof(items)) : items;
+
+        private WinCopies.Util.DotNetFix.IDisposable _collectionBridge;
+
+        private IDisposable CollectionBridge { get { ThrowIfDisposed(); return _collectionBridge.IsDisposed ? throw new ObjectDisposedException(nameof(CollectionBridge)) : _collectionBridge; } }
+
+        IDisposable ICollectionBridgeCollection.CollectionBridge => CollectionBridge;
+
+        public Collection(in INativeCollection<T> items, in IDisposable collectionBridge) : this(items) => _collectionBridge = collectionBridge ?? throw new ArgumentNullException(nameof(collectionBridge));
+
+        object ICollectionBridgeCollection.GetNativeItems(in object collectionBridge) => GetNativeItems(this, collectionBridge);
+
+        object ICollectionBridgeCollection.Items => Items;
 
         public T GetAt(ref uint index) => GetItem(ref index);
 
@@ -244,6 +257,8 @@ namespace Microsoft.WindowsAPICodePack
             {
                 if (disposing)
                 {
+                    _collectionBridge = null;
+
                     Items.Dispose();
 
                     Items = null;
@@ -424,7 +439,7 @@ namespace Microsoft.WindowsAPICodePack
 
     [Serializable]
     [DebuggerDisplay("Count = {Count}")]
-    public class ReadOnlyCollection<T> : IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUIntIndexedList, IUIntIndexedCollection, IReadOnlyUIntIndexedList<T>, IReadOnlyUIntIndexedCollection<T>, WinCopies.Collections.IUIntIndexedCollection<T>, WinCopies.Util.DotNetFix.IDisposable,ICollection<T>
+    public class ReadOnlyCollection<T> : IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUIntIndexedList, IUIntIndexedCollection, IReadOnlyUIntIndexedList<T>, IReadOnlyUIntIndexedCollection<T>, WinCopies.Collections.IUIntIndexedCollection<T>, WinCopies.Util.DotNetFix.IDisposable, ICollection<T>, ICollectionBridgeCollection
     {
 
         public bool IsDisposed { get; private set; }
@@ -436,9 +451,11 @@ namespace Microsoft.WindowsAPICodePack
             {
                 if (disposing)
                 {
+                    _collectionBridge = null;
+
                     Items.Dispose();
 
-                    Items = null;
+                    _items = null;
                 }
             }
 
@@ -463,6 +480,9 @@ namespace Microsoft.WindowsAPICodePack
         {
             get
             {
+
+                ThrowIfDisposed();
+
                 if (_syncRoot is null)
 
                     if (Items is IUIntIndexedCollection c)
@@ -479,15 +499,84 @@ namespace Microsoft.WindowsAPICodePack
 
         private const bool _isReadOnly = true;
 
-        bool IUIntIndexedCollection<T>.IsReadOnly => _isReadOnly;
+        bool IUIntIndexedCollection<T>.IsReadOnly
+        {
+            get
+            {
 
-        bool IUIntIndexedList.IsReadOnly => _isReadOnly;
+                ThrowIfDisposed();
 
-        bool IUIntIndexedList.IsFixedSize => true;
+                return _isReadOnly;
+            }
+        }
 
-        protected IReadOnlyNativeCollection<T> Items { get; private set; }
+        bool IUIntIndexedList.IsReadOnly
+        {
+            get
+            {
 
-        public ReadOnlyCollection(in IReadOnlyNativeCollection<T> list) => Items = list;
+                ThrowIfDisposed();
+
+                return _isReadOnly;
+            }
+        }
+
+        bool IUIntIndexedList.IsFixedSize
+        {
+            get
+            {
+
+                ThrowIfDisposed();
+
+                return true;
+            }
+        }
+
+        // todo: replace this by the same method of the WinCopies.Util package
+
+        private void ThrowIfDisposed()
+
+        {
+
+            if (IsDisposed)
+
+                throw new InvalidOperationException("The collection is disposed.");
+
+        }
+
+        private IReadOnlyNativeCollection<T> _items;
+
+        protected IReadOnlyNativeCollection<T> Items
+        {
+            get
+            {
+
+                ThrowIfDisposed();
+
+                return _items;
+            }
+        }
+
+        object ICollectionBridgeCollection.Items => Items;
+
+        public ReadOnlyCollection(in IReadOnlyNativeCollection<T> list) => _items = (list ?? throw new ArgumentNullException(nameof(list))).IsDisposed ? throw new ObjectDisposedException(nameof(list)) : list;
+
+        private IDisposable _collectionBridge;
+
+        IDisposable ICollectionBridgeCollection.CollectionBridge
+        {
+            get
+            {
+
+                ThrowIfDisposed();
+
+                return _collectionBridge;
+            }
+        }
+
+        public ReadOnlyCollection(in IReadOnlyNativeCollection<T> list, IDisposable collectionBridge) : this(list) => _collectionBridge = collectionBridge ?? throw new ArgumentNullException(nameof(collectionBridge));
+
+        object ICollectionBridgeCollection.GetNativeItems(in object collectionBridge) => GetNativeItems(this, collectionBridge);
 
         public T GetAt(ref uint index)
         {
@@ -507,10 +596,26 @@ namespace Microsoft.WindowsAPICodePack
 
         object WinCopies.Collections.IUIntIndexedCollection.this[uint index] => GetAt(ref index);
 
-        public uint Count { get; }
+        public uint Count
+
+        {
+
+            get
+
+            {
+
+                Items.GetCount(out uint count);
+
+                return count;
+
+            }
+
+        }
 
         public bool Contains(in T value)
         {
+
+            ThrowIfDisposed();
 
             foreach (T _value in Items)
 
@@ -525,6 +630,8 @@ namespace Microsoft.WindowsAPICodePack
         public void CopyTo(in T[] array, uint index)
 
         {
+
+            ThrowIfDisposed();
 
             ThrowIfNull(array, nameof(array));
 
@@ -560,6 +667,8 @@ namespace Microsoft.WindowsAPICodePack
 
         {
 
+            ThrowIfDisposed();
+
             for (uint i = 0; i < Count; i++)
 
             {
@@ -576,11 +685,20 @@ namespace Microsoft.WindowsAPICodePack
 
         }
 
-        uint? IUIntIndexedList.IndexOf(in object value) => value is T _value ? IndexOf(in _value) : null;
+        uint? IUIntIndexedList.IndexOf(in object value)
+        {
+
+            ThrowIfDisposed();
+
+            return value is T _value ? IndexOf(in _value) : null;
+
+        }
 
         bool IUIntIndexedList.Contains(in object value)
 
         {
+
+            ThrowIfDisposed();
 
             if (value is null) return false;
 
@@ -593,6 +711,8 @@ namespace Microsoft.WindowsAPICodePack
         void IUIntIndexedCollection.CopyTo(in Array array, uint index)
 
         {
+
+            ThrowIfDisposed();
 
             ThrowIfNull(array, nameof(array));
 
@@ -698,7 +818,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
         public int Count => _innerDictionary.Count;
 
-        bool System.Collections.Generic. ICollection<KeyValuePair<PropertyKey, TValue>>.IsReadOnly => false;
+        bool System.Collections.Generic.ICollection<KeyValuePair<PropertyKey, TValue>>.IsReadOnly => false;
 
         public void Add(PropertyKey key, TValue value) => _addAction(key, value);
         void System.Collections.Generic.ICollection<KeyValuePair<PropertyKey, TValue>>.Add(KeyValuePair<PropertyKey, TValue> item) => _addAction(item.Key, item.Value);
@@ -720,7 +840,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
         #region Private/Internal Fields
 
-        internal INativePropertiesCollection NativePropertiesCollection { get; }
+        internal INativePropertiesCollection Items { get; }
 
         private INativePropertyValuesCollection _nativePropertyValuesCollection;
 
@@ -755,7 +875,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
                     {
                         var propertyKey = new PropertyKey();
 
-                        _ = NativePropertiesCollection.GetAt(i, ref propertyKey);
+                        _ = Items.GetAt(i, ref propertyKey);
 
                         if (propertyKey == key)
                         {
@@ -787,7 +907,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                     var propertyKey = new PropertyKey();
 
-                    _ = NativePropertiesCollection.GetAt(i, ref propertyKey);
+                    _ = Items.GetAt(i, ref propertyKey);
 
                     yield return propertyKey;
                 }
@@ -818,7 +938,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                 {
 
-                    _ = NativePropertiesCollection.GetCount(out uint count);
+                    _ = Items.GetCount(out uint count);
 
                     _count = count;
 
@@ -858,7 +978,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
             };
 
-            NativePropertiesCollection = nativePropertyCollection;
+            Items = nativePropertyCollection;
 
             Marshal.ThrowExceptionForHR((int)nativePropertyCollection.GetValues(out _nativePropertyValuesCollection));
 
@@ -881,7 +1001,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                     propertyKey = new PropertyKey();
 
-                    _ = NativePropertiesCollection.GetAt(i, ref propertyKey);
+                    _ = Items.GetAt(i, ref propertyKey);
 
                     if (!_innerDictionary.ContainsKey(propertyKey))
 
@@ -964,7 +1084,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
                 ((System.Collections.Generic.ICollection<KeyValuePair<PropertyKey, ObjectProperty>>)_innerDictionary).Clear();
                 _innerDictionary = null;
                 _getDictionaryDelegate = null;
-                NativePropertiesCollection.Dispose();
+                Items.Dispose();
                 _nativePropertyValuesCollection = null;
 
                 IsDisposed = true;

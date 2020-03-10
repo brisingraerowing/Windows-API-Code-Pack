@@ -10,10 +10,8 @@ using System.Text;
 
 namespace Microsoft.WindowsAPICodePack.PropertySystem
 {
-    public interface IReadOnlyNativeValueCollection : WinCopies.Util.DotNetFix.IDisposable
+    public interface IReadOnlyNativeValueCollection : WinCopies.Util.DotNetFix.IDisposable, INativePropertyValuesCollection
     {
-
-        bool IsReadOnly { get; }
 
         HResult GetCount(out uint pcelt);
 
