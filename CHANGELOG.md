@@ -1,10 +1,12 @@
 WindowsAPICodePack CHANGELOG
 ============================
 
-Note: - The '#<number\>' notice indicates that the relative issue has been opened starting with the relative release.
-      - The 'Fix #<number\>' notice indicates that the relative issue has been fixed starting with the relative release.
+Please note:
 
-      For issue and fix details, visit https://github.com/pierresprim/Windows-API-Code-Pack/issues
+- The '#<number\>' notice indicates that the relative issue has been opened starting with the relative release.
+- The 'Fix #<number\>' notice indicates that the relative issue has been fixed starting with the relative release.
+
+For issue and fix details, visit https://github.com/pierresprim/Windows-API-Code-Pack/issues
 
 ???? 2.0
 ========
@@ -14,24 +16,25 @@ Global
 
 Some types have been renamed and/or have moved.
 
-Shell 2.0
+WinCopies.WindowsAPICodePack.Shell 2.0
 ---------
 
+- #2
 - The following methods and properties throw a NotSupportedException instead of a NotImplementedException:
     - ShellLibrary.this[int]
     - ShellLibrary.Insert(int, ShellFileSystemFolder)
     - ShellLibrary.RemoveAt(int)
-    - ShellLibrary implementation ofSystem.Collections.Generic.ICollection<ShellFileSystemFolder>.CopyTo(ShellFileSystemFolder[], int)
+    - ShellLibrary implementation of System.Collections.Generic.ICollection<ShellFileSystemFolder>.CopyTo(ShellFileSystemFolder[], int)
 - The ShellLibrary does not commit changes automatically anymore. Use the Commit method to commit changes.
 
-ShellExtensions 2.0
+WinCopies.WindowsAPICodePack.ShellExtensions 2.0
 -------------------
 
 - Fix #5
 - Fix #7
 - Fix #8
 
-Win32Native 2.0
+WinCopies.WindowsAPICodePack.Win32Native 2.0
 ---------------
 
 - Move some types to the Microsoft.WindowsAPICodePack.Win32Native.* and Microsoft.WindowsAPICodePack namespaces.
@@ -47,12 +50,12 @@ Win32Native 2.0
 - Fix #6
 - Fix #9
 
-Win32NativeConsts 2.0
+WinCopies.WindowsAPICodePack.Win32NativeConsts 2.0
 --------------------
 
 First release
 
-WindowsPortableDevices 2.0
+WinCopies.WindowsAPICodePack.PortableDevices 2.0
 ----------------------
 
 First release
