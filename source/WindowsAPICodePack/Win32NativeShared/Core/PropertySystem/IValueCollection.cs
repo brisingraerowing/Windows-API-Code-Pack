@@ -8,10 +8,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Microsoft.WindowsAPICodePack.PropertySystem
+namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 {
-    public interface IReadOnlyNativeValueCollection : WinCopies.Util.DotNetFix.IDisposable, INativePropertyValuesCollection
+    public interface INativeReadOnlyValueCollection : WinCopies.Util.DotNetFix.IDisposable
     {
+
+        bool IsReadOnly { get; }
 
         HResult GetCount(out uint pcelt);
 
@@ -56,7 +58,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         HResult CopyValuesToPropertyStore(ref IPropertyStore pStore);
     }
 
-    public interface INativeValueCollection : IReadOnlyNativeValueCollection
+    public interface INativeValueCollection : INativeReadOnlyValueCollection
 
     {
 

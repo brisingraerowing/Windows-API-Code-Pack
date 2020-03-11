@@ -48,7 +48,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)PowerManagement\PowerManagerException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PowerManagement\PowerSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\CollectionBridge.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\IValueCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\ValueCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\Property.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\PropertyCollection.cs" />

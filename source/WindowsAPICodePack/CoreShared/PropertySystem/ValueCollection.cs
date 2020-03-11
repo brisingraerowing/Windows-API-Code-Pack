@@ -10,17 +10,41 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
 using static Microsoft.WindowsAPICodePack.PropertySystem.PropertySystemHelper;
+using static Microsoft.WindowsAPICodePack.PropertySystem.CollectionBridgeCollectionHelper;
 
 namespace Microsoft.WindowsAPICodePack.PropertySystem
 {
 
-    public class ReadOnlyValueCollection
+    public class ReadOnlyValueCollection : ICollectionBridgeCollectionInternal, ICollectionBridgeCollection
     {
-        private IReadOnlyNativeValueCollection _items;
+        private INativeReadOnlyValueCollection _items;
 
-        internal IReadOnlyNativeValueCollection Items { get { ThrowIfDisposed(); return Items; } }
+        protected internal INativeReadOnlyValueCollection Items { get { ThrowIfDisposed(); return Items; } }
 
-        public ReadOnlyValueCollection(IReadOnlyNativeValueCollection items) => _items = (items ?? throw new ArgumentNullException(nameof(items))).IsReadOnly ? throw new ArgumentException("The given collection is read-only.") : items.IsDisposed ? throw new ObjectDisposedException(nameof(items)) : items;
+        object ICollectionBridgeCollectionInternal.Items => Items;
+
+        private WinCopies.Util.DotNetFix.IDisposable _collectionBridge;
+
+        WinCopies.Util.DotNetFix.IDisposable ICollectionBridgeCollectionInternal.CollectionBridge
+        {
+            get
+            {
+
+                ThrowIfDisposed();
+
+                return _collectionBridge;
+            }
+        }
+
+        object ICollectionBridgeCollectionInternal.GetNativeItems(in object collectionBridge) => GetNativeItems(this, collectionBridge);
+
+        public ReadOnlyValueCollection(in INativeReadOnlyValueCollection items) => _items = (items ?? throw new ArgumentNullException(nameof(items))).IsReadOnly ? throw new ArgumentException("The given collection is read-only.") : items.IsDisposed ? throw new ObjectDisposedException(nameof(items)) : items;
+
+        public ReadOnlyValueCollection(in ValueCollection valueCollection) : this(valueCollection.Items) { }
+
+        public ReadOnlyValueCollection(in INativeReadOnlyValueCollection list, in WinCopies.Util.DotNetFix.IDisposable collectionBridge) : this(list) => _collectionBridge = collectionBridge ?? throw new ArgumentNullException(nameof(collectionBridge));
+
+        public ReadOnlyValueCollection(in ValueCollection valueCollection, in WinCopies.Util.DotNetFix.IDisposable collectionBridge) : this(valueCollection.Items, collectionBridge) { }
 
         // todo: replace by the same WinCopies.Util extension method.
 
@@ -215,8 +239,17 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         {
             if (!IsDisposed)
             {
-                _ = Marshal.ReleaseComObject(_items);
-                _items = null;
+                if (disposing)
+
+                {
+
+                    _collectionBridge = null;
+
+                    _items.Dispose();
+
+                    _items = null;
+
+                }
 
                 IsDisposed = true;
             }
@@ -235,20 +268,30 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         #endregion
     }
 
-    public class ValueCollection
+    public class ValueCollection : ICollectionBridgeCollectionInternal, ICollectionBridgeCollection
 
     {
 
-        public ValueCollection(INativeValueCollection valueCollection) => _items = (valueCollection ?? throw new ArgumentNullException(nameof(valueCollection))).IsDisposed ? throw new ObjectDisposedException(nameof(valueCollection)) : valueCollection;
+        public ValueCollection(in INativeValueCollection valueCollection) => _items = (valueCollection ?? throw new ArgumentNullException(nameof(valueCollection))).IsDisposed ? throw new ObjectDisposedException(nameof(valueCollection)) : valueCollection;
 
-        protected ValueCollection(PropertyCollection propertyCollection)
+        public ValueCollection(in INativeValueCollection valueCollection, in WinCopies.Util.DotNetFix. IDisposable collectionBridge) : this(valueCollection) => _collectionBridge = collectionBridge ?? throw new ArgumentNullException(nameof(collectionBridge));
+
+        object ICollectionBridgeCollectionInternal.Items => Items;
+
+        private WinCopies.Util.DotNetFix.IDisposable _collectionBridge;
+
+        WinCopies.Util.DotNetFix.IDisposable ICollectionBridgeCollectionInternal.CollectionBridge
         {
-            INativeValueCollection valueCollection = InitializeWithPropertyCollection(propertyCollection, propertyCollection.Items);
+            get
+            {
 
-            _items = (valueCollection ?? throw new ArgumentNullException(nameof(valueCollection))).IsDisposed ? throw new ObjectDisposedException(nameof(valueCollection)) : valueCollection;
+                ThrowIfDisposed();
+
+                return _collectionBridge;
+            }
         }
 
-        protected virtual INativeValueCollection InitializeWithPropertyCollection(PropertyCollection propertyCollection, INativePropertiesCollection nativePropertiesCollection) => throw new NotSupportedException("This action is not supported by this collection.");
+        object ICollectionBridgeCollectionInternal.GetNativeItems(in object collectionBridge) => GetNativeItems(this, collectionBridge);
 
         public bool IsDisposed { get; private set; }
 
@@ -259,6 +302,8 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             {
                 if (disposing)
                 {
+                    _collectionBridge = null;
+
                     _items.Dispose();
 
                     _items = null;
@@ -279,7 +324,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
         private INativeValueCollection _items;
 
-        protected INativeValueCollection Items { get { ThrowIfDisposed(); return Items; } }
+        protected internal INativeValueCollection Items { get { ThrowIfDisposed(); return Items; } }
 
         // todo: replace by the same WinCopies.Util extension method.
 

@@ -8,11 +8,13 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
     {
 
-        public static object GetNativeItems(ICollectionBridgeCollection collection, object collectionBridge) => object.ReferenceEquals(collection.CollectionBridge, collectionBridge) ? collection.Items : throw new ArgumentException("The given collection bridge is not associated to this collection.");
+        public static object GetNativeItems(ICollectionBridgeCollectionInternal collection, object collectionBridge) => object.ReferenceEquals(collection.CollectionBridge, collectionBridge) ? collection.Items : throw new ArgumentException("The given collection bridge is not associated to this collection.");
 
     }
 
-    internal interface ICollectionBridgeCollection
+    public interface ICollectionBridgeCollection { }
+
+    internal interface ICollectionBridgeCollectionInternal
 
     {
 
@@ -24,7 +26,15 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
     }
 
-    public sealed class CollectionBridge<T> : WinCopies.Util.DotNetFix.IDisposable where T : class
+    public interface ICollectionBridgeProvider
+
+    {
+
+        object GetCollectionBridge(in object parentCollectionBridge);
+
+    }
+
+    public sealed class CollectionBridge<T> : WinCopies.Util.DotNetFix.IDisposable where T : class, ICollectionBridgeProvider
     {
         public bool IsDisposed { get; private set; } = false;
 
@@ -34,8 +44,12 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
         public CollectionBridge(in T obj) => _object = obj;
 
-        private bool Check(in T obj, in ICollectionBridgeCollection collection)
+        private bool Check(in T obj, in ICollectionBridgeCollectionInternal collection)
         {
+            if (IsDisposed)
+
+                throw new InvalidOperationException("The current object is disposed.");
+
             if (obj is null)
 
                 throw new ArgumentNullException(nameof(obj));
@@ -44,14 +58,14 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                 throw new ArgumentNullException(nameof(collection));
 
-            return object.ReferenceEquals(obj, Object);
+            return object.ReferenceEquals(obj, Object) && object.ReferenceEquals(this, obj.GetCollectionBridge(this));
         }
 
-        private object GetNativeItems(in T obj, in ICollectionBridgeCollection collection) => Check(obj, collection) ? collection.GetNativeItems(this) : throw new ArgumentException("The given object is not associated to this bridge.");
+        private object GetNativeItems(in T obj, in ICollectionBridgeCollectionInternal collection) => Check(obj, collection) ? collection.GetNativeItems(this) : throw new ArgumentException("The given object is not associated to this bridge.");
 
-        public object GetNativeItems<TItems>(in T obj, in Collection<TItems> collection) => GetNativeItems(obj, (ICollectionBridgeCollection)collection);
+        public object GetNativeItems<TItems>(in T obj, in Collection<TItems> collection) => GetNativeItems(obj, (ICollectionBridgeCollectionInternal)collection);
 
-        public object GetNativeItems(in T obj, in ValueCollection valueCollection) => GetNativeItems(obj, (ICollectionBridgeCollection)valueCollection);
+        public object GetNativeItems(in T obj, in ValueCollection valueCollection) => GetNativeItems(obj, (ICollectionBridgeCollectionInternal)valueCollection);
 
         public void Dispose()
 
@@ -62,5 +76,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             IsDisposed = true;
 
         }
+
+        ~CollectionBridge() => Dispose();
     }
 }

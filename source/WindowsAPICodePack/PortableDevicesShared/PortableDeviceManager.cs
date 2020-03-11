@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using static Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceHelper;
+using static Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PortableDeviceHelper;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {

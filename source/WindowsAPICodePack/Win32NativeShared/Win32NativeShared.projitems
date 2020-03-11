@@ -31,6 +31,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\PowerManagement\PowerPersonality.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\GuidAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\INativePropertiesCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\IValueCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropertyChange.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropertyKey.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropertyKeyAttribute.cs" />
@@ -50,6 +51,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExtendedLinguisticServices\Win32NativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtendedLinguisticServices\Win32Structs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\CoClasses\CollectionClasses\PortableDeviceValuesCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\PortableDeviceException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\PortableDeviceHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sensors\ISensor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sensors\ISensorCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sensors\ISensorDataReport.cs" />

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Microsoft.WindowsAPICodePack. Win32Native
 {
-    public interface IReadOnlyNativeCollection<T> : WinCopies.Util.DotNetFix.IDisposable, IEnumerable<T>, IEnumerable
+    public interface INativeReadOnlyCollection<T> : WinCopies.Util.DotNetFix.IDisposable, IEnumerable<T>, IEnumerable
     {
         bool IsReadOnly { get; }
 
@@ -15,7 +15,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native
         HResult GetCount(out uint count);
     }
 
-    public interface INativeCollection<T> : IReadOnlyNativeCollection<T>
+    public interface INativeCollection<T> : INativeReadOnlyCollection<T>
 
     {
 

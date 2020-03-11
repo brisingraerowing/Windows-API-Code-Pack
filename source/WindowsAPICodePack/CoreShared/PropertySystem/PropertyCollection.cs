@@ -95,7 +95,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
     [Serializable]
     [DebuggerDisplay("Count = {Count}")]
-    public class Collection<T> : IDisposable, IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUIntIndexedList, IUIntIndexedCollection, IReadOnlyUIntIndexedList<T>, IReadOnlyUIntIndexedCollection<T>, WinCopies.Collections.IUIntIndexedCollection<T>, ICollection<T>, ICollectionBridgeCollection
+    public class Collection<T> : IDisposable, IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUIntIndexedList, IUIntIndexedCollection, IReadOnlyUIntIndexedList<T>, IReadOnlyUIntIndexedCollection<T>, WinCopies.Collections.IUIntIndexedCollection<T>, ICollection<T>, ICollectionBridgeCollectionInternal, ICollectionBridgeCollection
 
     {
 
@@ -139,7 +139,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
         private const bool _isReadOnly = false;
 
-        protected INativeCollection<T> Items { get { ThrowIfDisposed(); return items; } private set { ThrowIfDisposed(); items = value; } }
+        protected internal INativeCollection<T> Items { get { ThrowIfDisposed(); return items; } private set { ThrowIfDisposed(); items = value; } }
 
         public Collection(in INativeCollection<T> items) => this.items = (items ?? throw new ArgumentNullException(nameof(items))).IsReadOnly ? throw new ArgumentException("The given collection is read-only.") : items.IsDisposed ? throw new ObjectDisposedException(nameof(items)) : items;
 
@@ -147,13 +147,13 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
         private IDisposable CollectionBridge { get { ThrowIfDisposed(); return _collectionBridge.IsDisposed ? throw new ObjectDisposedException(nameof(CollectionBridge)) : _collectionBridge; } }
 
-        IDisposable ICollectionBridgeCollection.CollectionBridge => CollectionBridge;
+        IDisposable ICollectionBridgeCollectionInternal.CollectionBridge => CollectionBridge;
 
         public Collection(in INativeCollection<T> items, in IDisposable collectionBridge) : this(items) => _collectionBridge = collectionBridge ?? throw new ArgumentNullException(nameof(collectionBridge));
 
-        object ICollectionBridgeCollection.GetNativeItems(in object collectionBridge) => GetNativeItems(this, collectionBridge);
+        object ICollectionBridgeCollectionInternal.GetNativeItems(in object collectionBridge) => GetNativeItems(this, collectionBridge);
 
-        object ICollectionBridgeCollection.Items => Items;
+        object ICollectionBridgeCollectionInternal.Items => Items;
 
         public T GetAt(ref uint index) => GetItem(ref index);
 
@@ -439,7 +439,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
     [Serializable]
     [DebuggerDisplay("Count = {Count}")]
-    public class ReadOnlyCollection<T> : IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUIntIndexedList, IUIntIndexedCollection, IReadOnlyUIntIndexedList<T>, IReadOnlyUIntIndexedCollection<T>, WinCopies.Collections.IUIntIndexedCollection<T>, WinCopies.Util.DotNetFix.IDisposable, ICollection<T>, ICollectionBridgeCollection
+    public class ReadOnlyCollection<T> : IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUIntIndexedList, IUIntIndexedCollection, IReadOnlyUIntIndexedList<T>, IReadOnlyUIntIndexedCollection<T>, WinCopies.Collections.IUIntIndexedCollection<T>, WinCopies.Util.DotNetFix.IDisposable, ICollection<T>, ICollectionBridgeCollectionInternal, ICollectionBridgeCollection
     {
 
         public bool IsDisposed { get; private set; }
@@ -544,9 +544,9 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
         }
 
-        private IReadOnlyNativeCollection<T> _items;
+        private INativeReadOnlyCollection<T> _items;
 
-        protected IReadOnlyNativeCollection<T> Items
+        protected INativeReadOnlyCollection<T> Items
         {
             get
             {
@@ -557,13 +557,15 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             }
         }
 
-        object ICollectionBridgeCollection.Items => Items;
+        object ICollectionBridgeCollectionInternal.Items => Items;
 
-        public ReadOnlyCollection(in IReadOnlyNativeCollection<T> list) => _items = (list ?? throw new ArgumentNullException(nameof(list))).IsDisposed ? throw new ObjectDisposedException(nameof(list)) : list;
+        public ReadOnlyCollection(in INativeReadOnlyCollection<T> list) => _items = (list ?? throw new ArgumentNullException(nameof(list))).IsDisposed ? throw new ObjectDisposedException(nameof(list)) : list;
+
+        public ReadOnlyCollection(in Collection<T> collection) : this(collection.Items) { } 
 
         private IDisposable _collectionBridge;
 
-        IDisposable ICollectionBridgeCollection.CollectionBridge
+        IDisposable ICollectionBridgeCollectionInternal.CollectionBridge
         {
             get
             {
@@ -574,9 +576,11 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             }
         }
 
-        public ReadOnlyCollection(in IReadOnlyNativeCollection<T> list, IDisposable collectionBridge) : this(list) => _collectionBridge = collectionBridge ?? throw new ArgumentNullException(nameof(collectionBridge));
+        public ReadOnlyCollection(in INativeReadOnlyCollection<T> list, IDisposable collectionBridge) : this(list) => _collectionBridge = collectionBridge ?? throw new ArgumentNullException(nameof(collectionBridge));
 
-        object ICollectionBridgeCollection.GetNativeItems(in object collectionBridge) => GetNativeItems(this, collectionBridge);
+        public ReadOnlyCollection(in Collection<T> collection, IDisposable collectionBridge) : this(collection) => _collectionBridge = collectionBridge ?? throw new ArgumentNullException(nameof(collectionBridge));
+
+        object ICollectionBridgeCollectionInternal.GetNativeItems(in object collectionBridge) => GetNativeItems(this, collectionBridge);
 
         public T GetAt(ref uint index)
         {
@@ -604,7 +608,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
             {
 
-                Items.GetCount(out uint count);
+                _ = Items.GetCount(out uint count);
 
                 return count;
 

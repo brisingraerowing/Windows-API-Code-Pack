@@ -1,4 +1,6 @@
 ﻿using Microsoft.WindowsAPICodePack.PortableDevices;
+using Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem;
+using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using System;
 using System.Collections.Generic;
@@ -11,13 +13,19 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
     /// <summary>
     /// Represents a portable device.
     /// </summary>
-    public interface IPortableDevice : WinCopies.Util.DotNetFix.IDisposable, IEnumerable<IPortableDeviceObject>
+    public interface IPortableDevice : IEnumerable<IPortableDeviceObject>, WinCopies.Util.DotNetFix. IDisposable
     {
 
         /// <summary>
         /// Gets the <see cref="IPortableDeviceManager"/> for this device.
         /// </summary>
         IPortableDeviceManager PortableDeviceManager { get; }
+
+        IDeviceCapabilities DeviceCapabilities { get; }
+
+        PropertyCollection Properties { get; }
+
+        string DeviceId { get; }
 
         /// <summary>
         /// Gets the device friendly name.
@@ -39,15 +47,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         /// </summary>
         bool IsOpen { get; }
 
-        /// <summary>
-        /// Gets the device opening rights.
-        /// </summary>
-        GenericRights OpeningRights { get; }
+        IPortableDeviceObject this[int index] { get; }
 
-        /// <summary>
-        /// Gets the device opening file share options.
-        /// </summary>
-        FileShareOptions OpeningFileShareOptions { get; }
+        PortableDeviceOpeningOptions PortableDeviceOpeningOptions { get; }
 
         /// <summary>
         /// Opens a connection to the device.
@@ -70,6 +72,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         /// <param name="valueKind">The kind of data that was retrieved.</param>
         /// <returns>If the method succeeds, the value of the property that was requested are returned; otherwise this method returns <paramref name="defaultValue"/>.</returns>
         object GetDeviceProperty(in string propertyName, in object defaultValue, in bool doNotExpand, out BlobValueKind valueKind);
+
+        ReadOnlyPortableDeviceValueCollection SendCommand(in ReadOnlyPortableDeviceValueCollection parameters);
+
+        ReadOnlyPortableDeviceValueCollection SendCommand(in PortableDeviceValueCollection parameters);
 
     }
 

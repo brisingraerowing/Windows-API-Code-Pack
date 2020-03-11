@@ -58,7 +58,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
         HResult GetAttributes(ref PropertyKey propertyKey, out IDisposableReadOnlyNativePropertyValuesCollection attributes);
 
-        HResult SetValues(ref IEnumerable<IObjectProperty> values, out IReadOnlyNativePropertyValuesCollection results);
+        HResult SetValues(ref IEnumerable<IObjectProperty> values, out INativeReadOnlyPropertyValuesCollection results);
 
         HResult Delete(params PropertyKey[] properties);
 
@@ -77,7 +77,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
     }
 
-    public interface IReadOnlyNativePropertyValuesCollection
+    public interface INativeReadOnlyPropertyValuesCollection
 
     {
 
@@ -91,7 +91,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
     }
 
-    public interface IDisposableReadOnlyNativePropertyValuesCollection : IReadOnlyNativePropertyValuesCollection, IDisposable
+    public interface IDisposableReadOnlyNativePropertyValuesCollection : INativeReadOnlyPropertyValuesCollection, IDisposable
 
     {
 
@@ -99,7 +99,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
     }
 
-    public interface INativePropertyValuesCollection : IReadOnlyNativePropertyValuesCollection
+    public interface INativePropertyValuesCollection : INativeReadOnlyPropertyValuesCollection
 
     {
 

@@ -9,34 +9,47 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using ObjectProperty = Microsoft.WindowsAPICodePack.PropertySystem.ObjectProperty;
-using static Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceHelper;
+using static Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PortableDeviceHelper;
 using System.Diagnostics;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem
 {
-    public class ValueCollection : WindowsAPICodePack.PropertySystem.ValueCollection
-
-    {
-
-        private IPortableDeviceValues _nativeItems;
-
-        internal IPortableDeviceValues NativeItems => _nativeItems ?? (_nativeItems = ((INativePortableDeviceValuesCollectionProvider)Items).NativeItems);
-
-        public ValueCollection(PropertyCollection propertyCollection) : base(propertyCollection) { }
-
-        protected override INativeValueCollection InitializeWithPropertyCollection(PropertyCollection propertyCollection, INativePropertiesCollection nativePropertiesCollection)
-        {
-            INativeValueCollection provider = nativePropertiesCollection as INativePortableDeviceValuesCollectionProvider as INativeValueCollection;
-
-            return provider ?? throw new ArgumentException("The given PropertyCollection has not been built from a managed Portable Device class and is not compatible.");
-        }
-    }
 
     internal interface INativePortableDeviceValuesCollectionProvider
 
     {
 
         IPortableDeviceValues NativeItems { get; }
+
+    }
+
+    internal interface INativeReadOnlyPortableDeviceValueCollection : INativePortableDeviceValuesCollectionProvider, INativeReadOnlyValueCollection { }
+
+    public class ReadOnlyPortableDeviceValueCollection : ReadOnlyValueCollection, INativePortableDeviceValuesCollectionProvider
+
+    {
+
+        IPortableDeviceValues INativePortableDeviceValuesCollectionProvider.NativeItems => ((INativePortableDeviceValuesCollectionProvider)Items).NativeItems;
+
+        internal ReadOnlyPortableDeviceValueCollection(in INativeReadOnlyPortableDeviceValueCollection nativeCollection) : base(nativeCollection) { }
+
+        public ReadOnlyPortableDeviceValueCollection(in PortableDeviceValueCollection collection) : this(collection.Items) { } 
+
+    }
+
+    internal interface INativePortableDeviceValueCollection : INativeReadOnlyPortableDeviceValueCollection, INativeValueCollection { }
+
+    public class PortableDeviceValueCollection : ValueCollection, INativePortableDeviceValuesCollectionProvider
+
+    {
+
+        IPortableDeviceValues INativePortableDeviceValuesCollectionProvider.NativeItems => Items.NativeItems;
+
+        internal new INativePortableDeviceValueCollection Items => (INativePortableDeviceValueCollection) base.Items;
+
+        public PortableDeviceValueCollection() : base(new NativeValueCollection(new PortableDeviceValues())) { }
+
+        internal PortableDeviceValueCollection(in INativePortableDeviceValueCollection nativeValueCollection) : base(nativeValueCollection) { }
 
     }
 
@@ -172,7 +185,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem
 
         }
 
-        HResult INativePropertiesCollection.SetValues(ref IEnumerable<IObjectProperty> values, out IReadOnlyNativePropertyValuesCollection results)
+        HResult INativePropertiesCollection.SetValues(ref IEnumerable<IObjectProperty> values, out INativeReadOnlyPropertyValuesCollection results)
         {
 
             // As this type is internal and calling the Dispose method directly is not recommended, implementing a property and checking it at the top of this method to know whether the current object is disposed is not necessary.
@@ -279,7 +292,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem
         }
     }
 
-    internal abstract class PortableDeviceValuesCollectionAbstract : INativePropertyValuesCollection, INativePortableDeviceValuesCollectionProvider, INativeValueCollection
+    internal abstract class PortableDeviceValuesCollectionAbstract : INativePropertyValuesCollection
     {
         private Win32Native.PortableDevices.PropertySystem.IPortableDeviceValues _nativePortableDeviceValues;
         private PortableDeviceProperties _portableDeviceProperties;
@@ -287,8 +300,6 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem
         private bool _disposed = false;
 
         protected Win32Native.PortableDevices.PropertySystem.IPortableDeviceValues NativePortableDeviceValues { get { Debug.Assert(!_disposed); return _nativePortableDeviceValues; } }
-
-        IPortableDeviceValues INativePortableDeviceValuesCollectionProvider.NativeItems => NativePortableDeviceValues;
 
         protected PortableDeviceProperties PortableDeviceProperties { get { Debug.Assert(!_disposed); return _portableDeviceProperties; } }
 
@@ -301,9 +312,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem
             _portableDeviceProperties = portableDeviceProperties;
         }
 
-        HResult IReadOnlyNativePropertyValuesCollection.GetAt(in uint index, ref PropertyKey propertyKey, ref PropVariant propVariant) => _nativePortableDeviceValues.GetAt(index, ref propertyKey, ref propVariant);
+        HResult INativeReadOnlyPropertyValuesCollection.GetAt(in uint index, ref PropertyKey propertyKey, ref PropVariant propVariant) => _nativePortableDeviceValues.GetAt(index, ref propertyKey, ref propVariant);
 
-        HResult IReadOnlyNativePropertyValuesCollection.GetCount(out uint count)
+        HResult INativeReadOnlyPropertyValuesCollection.GetCount(out uint count)
         {
 
             uint _count = 0;
@@ -316,7 +327,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem
 
         }
 
-        HResult IReadOnlyNativePropertyValuesCollection.GetValue(ref PropertyKey propertyKey, out PropVariant propVariant) => _nativePortableDeviceValues.GetValue(ref propertyKey, out propVariant);
+        HResult INativeReadOnlyPropertyValuesCollection.GetValue(ref PropertyKey propertyKey, out PropVariant propVariant) => _nativePortableDeviceValues.GetValue(ref propertyKey, out propVariant);
 
         HResult INativePropertyValuesCollection.SetValue(ref PropertyKey propertyKey, ref PropVariant propVariant)
         {
@@ -332,7 +343,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem
 
             IEnumerable<IObjectProperty> values = new IObjectProperty[] { new Win32Native.PropertySystem.ObjectProperty(propertyKey, propVariant) }.AsEnumerable();
 
-            hr = ((INativePropertiesCollection)_portableDeviceProperties).SetValues(ref values, out IReadOnlyNativePropertyValuesCollection results);
+            hr = ((INativePropertiesCollection)_portableDeviceProperties).SetValues(ref values, out INativeReadOnlyPropertyValuesCollection results);
 
             if (CoreErrorHelper.Succeeded(hr))
 

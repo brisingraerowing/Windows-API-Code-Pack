@@ -15228,115 +15228,32 @@
             </summary>
             <returns>String representing the property key</returns>        
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Sensors.PropertySystem.DataType.AngleXDegrees">
+        <member name="M:Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceException.#ctor">
             <summary>
-            The sensor angle in degrees (X-axis) property key.
+            Initializes a new instance of the <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceException"/> class.
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Sensors.PropertySystem.DataType.AngleYDegrees">
+        <member name="M:Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceException.#ctor(System.String)">
             <summary>
-            The sensor angle in degrees (Y-axis) property key.
+            Initializes a new instance of the <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceException"/> class with a custom error message.
             </summary>
+            <param name="message">Message that describes the error.</param>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Sensors.PropertySystem.DataType.AngleZDegrees">
+        <member name="M:Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceException.#ctor(System.String,System.Exception)">
             <summary>
-            The sensor angle in degrees (Z-axis) property key.
+            Initializes a new instance of the <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceException"/> class with a custom error message and a reference to the inner exception that thrown this exception.
             </summary>
+            <param name="message">Message that describes the error.</param>
+            <param name="innerException">The exception that thrown  the current exception, or a <see langword="null"/> reference (<see langword="Nothing"/> in Visual Basic) if no inner exception is given.</param>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Sensors.PropertySystem.DataType.MagneticHeadingXDegrees">
+        <member name="M:Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
-            The sensor magnetic heading (X-axis) property key.
+            Initializes a new instance of the <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceException"/> class with serialized data.
             </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Sensors.PropertySystem.DataType.MagneticHeadingYDegrees">
-            <summary>
-            The sensor magnetic heading (Y-axis) property key.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Sensors.PropertySystem.DataType.MagneticHeadingZDegrees">
-            <summary>
-            The sensor magnetic heading (Z-axis) property key.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Sensors.PropertySystem.DataType.DistanceXMeters">
-            <summary>
-            The sensor distance (X-axis) data property key.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Sensors.PropertySystem.DataType.DistanceYMeters">
-            <summary>
-            The sensor distance (Y-axis) data property key.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Sensors.PropertySystem.DataType.DistanceZMeters">
-            <summary>
-            The sensor distance (Z-axis) data property key.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.None">
-            <summary>
-            No value type
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.String">
-            <summary>
-            Unicode nul terminated string
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.ExpandString">
-            <summary>
-            Unicode nul terminated string (with environment variable references)
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.Binary">
-            <summary>
-            Free form binary
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.DWord">
-            <summary>
-            32-bit number
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.DWordLittleEndian">
-            <summary>
-            32-bit number (same as <see cref="F:Microsoft.WindowsAPICodePack.BlobValueKind.DWord"/>)
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.DWordBigEndian">
-            <summary>
-            32-bit number
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.Link">
-            <summary>
-            Symbolic Link (unicode)
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.MultiString">
-            <summary>
-            Multiple Unicode strings
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.ResourceList">
-            <summary>
-            Resource list in the resource map
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.FullResourceDescriptor">
-            <summary>
-            Resource list in the hardware description
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.QWord">
-            <summary>
-            64-bit number
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.QWordLittleEndian">
-            <summary>
-            64-bit number (same as <see cref="F:Microsoft.WindowsAPICodePack.BlobValueKind.QWord"/>)
-            </summary>
+            <param name="info"><see cref="T:System.Runtime.Serialization.SerializationInfo"/> that contains the serialized object data about the thrown exception.</param>
+            <param name="context"><see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or the destination.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="info"/> is <see langword="null"/>.</exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">The class name is <see langword="null"/> or <see cref="P:System.Exception.HResult"/> is zero (0).</exception>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Object">
             <summary>
@@ -15721,6 +15638,116 @@
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.ResourceSystem.ResourceAttribute">
             <summary>
             This class defines all Commands-Parameters and Options associated with: <see cref="!:Guids.PortableDevices.PropertySystem.ResourceAttributesV1"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Sensors.PropertySystem.DataType.AngleXDegrees">
+            <summary>
+            The sensor angle in degrees (X-axis) property key.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Sensors.PropertySystem.DataType.AngleYDegrees">
+            <summary>
+            The sensor angle in degrees (Y-axis) property key.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Sensors.PropertySystem.DataType.AngleZDegrees">
+            <summary>
+            The sensor angle in degrees (Z-axis) property key.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Sensors.PropertySystem.DataType.MagneticHeadingXDegrees">
+            <summary>
+            The sensor magnetic heading (X-axis) property key.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Sensors.PropertySystem.DataType.MagneticHeadingYDegrees">
+            <summary>
+            The sensor magnetic heading (Y-axis) property key.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Sensors.PropertySystem.DataType.MagneticHeadingZDegrees">
+            <summary>
+            The sensor magnetic heading (Z-axis) property key.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Sensors.PropertySystem.DataType.DistanceXMeters">
+            <summary>
+            The sensor distance (X-axis) data property key.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Sensors.PropertySystem.DataType.DistanceYMeters">
+            <summary>
+            The sensor distance (Y-axis) data property key.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Sensors.PropertySystem.DataType.DistanceZMeters">
+            <summary>
+            The sensor distance (Z-axis) data property key.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.None">
+            <summary>
+            No value type
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.String">
+            <summary>
+            Unicode nul terminated string
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.ExpandString">
+            <summary>
+            Unicode nul terminated string (with environment variable references)
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.Binary">
+            <summary>
+            Free form binary
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.DWord">
+            <summary>
+            32-bit number
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.DWordLittleEndian">
+            <summary>
+            32-bit number (same as <see cref="F:Microsoft.WindowsAPICodePack.BlobValueKind.DWord"/>)
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.DWordBigEndian">
+            <summary>
+            32-bit number
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.Link">
+            <summary>
+            Symbolic Link (unicode)
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.MultiString">
+            <summary>
+            Multiple Unicode strings
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.ResourceList">
+            <summary>
+            Resource list in the resource map
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.FullResourceDescriptor">
+            <summary>
+            Resource list in the hardware description
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.QWord">
+            <summary>
+            64-bit number
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.BlobValueKind.QWordLittleEndian">
+            <summary>
+            64-bit number (same as <see cref="F:Microsoft.WindowsAPICodePack.BlobValueKind.QWord"/>)
             </summary>
         </member>
     </members>
