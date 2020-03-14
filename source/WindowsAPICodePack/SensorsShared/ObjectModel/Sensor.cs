@@ -280,7 +280,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
                 throw new ArgumentException(LocalizedMessages.SensorEmptyProperties, nameof(propKeys));
 
-            IPortableDeviceKeyCollection keyCollection = new PortableDeviceKeyCollection();
+            var keyCollection = (IPortableDeviceKeyCollection)new PortableDeviceKeyCollection();
 
             try
             {
@@ -308,7 +308,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                             var propVal = new PropVariant();
 
                             var propKey = new PropertyKey();
-                            _ = valuesCollection.GetAt(i, ref propKey, ref propVal);
+                            _ = valuesCollection.GetAt(i, ref propKey, propVal);
                             data.Add(propKey, propVal.Value);
                         }
                     }
@@ -382,7 +382,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
                 throw new ArgumentNullException(nameof(propIndexes));
 
-            IPortableDeviceKeyCollection keyCollection = new PortableDeviceKeyCollection();
+            var keyCollection = (IPortableDeviceKeyCollection)new PortableDeviceKeyCollection();
 
             try
             {
@@ -445,7 +445,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
                 throw new ArgumentException(LocalizedMessages.SensorEmptyData, nameof(data));
 
-            IPortableDeviceValues pdv = new PortableDeviceValues();
+            var pdv = (IPortableDeviceValues)new PortableDeviceValues();
 
             PropertyKey propKey;
 

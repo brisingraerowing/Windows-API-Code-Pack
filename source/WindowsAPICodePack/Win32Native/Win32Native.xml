@@ -95,682 +95,325 @@
               Recherche une chaîne localisée semblable à .
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RecoveryCallback">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages">
             <summary>
-            The <see cref="T:System.Delegate"/> that represents the callback method invoked
-            by the system when an application has registered for 
-            application recovery. 
+              A strongly-typed resource class, for looking up localized strings, etc.
             </summary>
-            <param name="state">An application-defined state object that is passed to the callback method.</param>
-            <remarks>The callback method will be invoked
-            prior to the application being terminated by Windows Error Reporting (WER). To keep WER from terminating the application before 
-            the callback method completes, the callback method must
-            periodically call the <see cref="!:ApplicationRecoveryInProgress"/> method. </remarks>
-            <seealso cref="!:RegisterForApplicationRecovery(RecoverySettings)"/>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RecoveryData">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ResourceManager">
             <summary>
-            Defines a class that contains a callback delegate and properties of the application
-            as defined by the user.
+              Returns the cached ResourceManager instance used by this class.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RecoveryData.#ctor(Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RecoveryCallback,System.Object)">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.Culture">
             <summary>
-            Initializes a recovery data wrapper with a callback method and the current
-            state of the application.
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
             </summary>
-            <param name="callback">The callback delegate.</param>
-            <param name="state">The current state of the application.</param>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RecoveryData.Callback">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FilePathNotExist">
             <summary>
-            Gets or sets a value that determines the recovery callback function.
+              Looks up a localized string similar to The given path does not exist ({0}).
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RecoveryData.State">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderIdsUnknownGuid">
             <summary>
-            Gets or sets a value that determines the application state.
+              Looks up a localized string similar to Guid does not identify a known folder..
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RecoveryData.Invoke">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeCategory">
             <summary>
-            Invokes the recovery callback function.
+              Looks up a localized string similar to ControlPanel Category.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RestartRestrictions">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeClassic">
             <summary>
-            Specifies the conditions when Windows Error Reporting
-            should not restart an application that has registered
-            for automatic restart.
+              Looks up a localized string similar to ControlPanel Classic.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RestartRestrictions.None">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeCommunications">
             <summary>
-            Always restart the application.
+              Looks up a localized string similar to Communications.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RestartRestrictions.NotOnCrash">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeCompressedFolder">
             <summary>
-            Do not restart when the application has crashed.
+              Looks up a localized string similar to Compressed Folder.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RestartRestrictions.NotOnHang">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeContacts">
             <summary>
-            Do not restart when the application is hung.
+              Looks up a localized string similar to Contacts.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RestartRestrictions.NotOnPatch">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeDocuments">
             <summary>
-            Do not restart when the application is terminated
-            due to a system update.
+              Looks up a localized string similar to Documents.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RestartRestrictions.NotOnReboot">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeGames">
             <summary>
-            Do not restart when the application is terminated 
-            because of a system reboot.
+              Looks up a localized string similar to Games.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.PowerManagementNativeMethods.PowerGetActiveScheme(System.IntPtr,System.Guid@)">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeGenericLibrary">
             <summary>
-            Gets the Guid relating to the currently active power scheme.
+              Looks up a localized string similar to Generic Library.
             </summary>
-            <param name="rootPowerKey">Reserved for future use, this must be set to IntPtr.Zero</param>
-            <param name="activePolicy">Returns a Guid referring to the currently active power scheme.</param>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeInvalid">
             <summary>
-            The clipboard formats defined by the system.
+              Looks up a localized string similar to Invalid.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.Bitmap">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeLibrary">
             <summary>
-            A handle to a bitmap (HBITMAP).
+              Looks up a localized string similar to Library.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.Dib">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeMusic">
             <summary>
-            A memory object containing a BITMAPINFO structure followed by the bitmap bits.
+              Looks up a localized string similar to Music.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.DibV5">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeMusicIcons">
             <summary>
-            A memory object containing a BITMAPV5HEADER structure followed by the bitmap color space information and the bitmap bits.
+              Looks up a localized string similar to Music Icons.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.Dif">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeNetworkExplorer">
             <summary>
-            Software Arts' Data Interchange Format.
+              Looks up a localized string similar to Network Explorer.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.DSBitmap">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeNotSpecified">
             <summary>
-            Bitmap display format associated with a private format. The hMem parameter must be a handle to data that can be displayed in bitmap format in lieu of the privately formatted data.
+              Looks up a localized string similar to Not Specified.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.DSPEnhMetaFile">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeOpenSearch">
             <summary>
-            Enhanced metafile display format associated with a private format. The hMem parameter must be a handle to data that can be displayed in enhanced metafile format in lieu of the privately formatted data.
+              Looks up a localized string similar to Open Search.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.DSPMetaFilePicture">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeOtherUsers">
             <summary>
-            Metafile-picture display format associated with a private format. The hMem parameter must be a handle to data that can be displayed in metafile-picture format in lieu of the privately formatted data.
+              Looks up a localized string similar to Other Users.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.DSPText">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypePictures">
             <summary>
-            Text display format associated with a private format. The hMem parameter must be a handle to data that can be displayed in text format in lieu of the privately formatted data.
+              Looks up a localized string similar to Pictures.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.EnhMetaFile">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypePrinters">
             <summary>
-            A handle to an enhanced metafile (HENHMETAFILE).
+              Looks up a localized string similar to Printers.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.GDIObjFirst">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeRecordedTV">
             <summary>
-            Start of a range of integer values for application-defined GDI object clipboard formats. The end of the range is <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.GDIObjLast"/>.
-            Handles associated with clipboard formats in this range are not automatically deleted using the GlobalFree function when the clipboard is emptied. Also, when using values in this range, the hMem parameter is not a handle to a GDI object, but is a handle allocated by the GlobalAlloc function with the GMEM_MOVEABLE flag.
+              Looks up a localized string similar to RecordedTV.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.GDIObjLast">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeRecycleBin">
             <summary>
-            See <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.GDIObjFirst"/>.
+              Looks up a localized string similar to RecycleBin.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.HDrop">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeSavedGames">
             <summary>
-            A handle to type HDROP that identifies a list of files. An application can retrieve information about the files by passing the handle to the DragQueryFile function.
+              Looks up a localized string similar to Saved Games.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.Locale">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeSearchConnector">
             <summary>
-            The data is a handle to the locale identifier associated with text in the clipboard. When you close the clipboard, if it contains <see cref="!:CF_TEXT"/> data but no Locale data, the system automatically sets the Locale format to the current input language. You can use the Locale format to associate a different locale with the clipboard text.
-            An application that pastes text from the clipboard can retrieve this format to determine which character set was used to generate the text.
-            Note that the clipboard does not support plain text in multiple character sets. To achieve this, use a formatted text data type such as RTF instead.
-            The system uses the code page associated with Locale to implicitly convert from <see cref="!:CF_TEXT"/> to <see cref="!:CF_UNICODETEXT"/>. Therefore, the correct code page table is used for the conversion.
+              Looks up a localized string similar to Search Connector.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.MetaFilePicture">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeSearches">
             <summary>
-            Handle to a metafile picture format as defined by the MetaFilePicture structure. When passing a MetaFilePicture handle by means of DDE, the application responsible for deleting hMem should also free the metafile referred to by the MetaFilePicture handle.
+              Looks up a localized string similar to Searches.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.OEMText">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeSearchResults">
             <summary>
-            Text format containing characters in the OEM character set. Each line ends with a carriage return/linefeed (CR-LF) combination. A null character signals the end of the data.
+              Looks up a localized string similar to Generic SearchResults.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.OwnerDisplay">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeSoftwareExplorer">
             <summary>
-            Owner-display format. The clipboard owner must display and update the clipboard viewer window, and receive the WM_ASKCBFORMATNAME, WM_HSCROLLCLIPBOARD, WM_PAINTCLIPBOARD, WM_SIZECLIPBOARD, and WM_VSCROLLCLIPBOARD messages. The hMem parameter must be NULL.
+              Looks up a localized string similar to Software Explorer.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.Palette">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeUserFiles">
             <summary>
-            Handle to a color palette. Whenever an application places data in the clipboard that depends on or assumes a color palette, it should place the palette on the clipboard as well.
-            If the clipboard contains data in the Palette (logical color palette) format, the application should use the SelectPalette and RealizePalette functions to realize (compare) any other data in the clipboard against that logical palette.
-            When displaying clipboard data, the clipboard always uses as its current palette any object on the clipboard that is in the Palette format.
+              Looks up a localized string similar to User Files.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.PenData">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeUserLibraries">
             <summary>
-            Data for the pen extensions to the Microsoft Windows for Pen Computing.
+              Looks up a localized string similar to Users Libraries.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.PrivateFirst">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeVideos">
             <summary>
-            Start of a range of integer values for private clipboard formats.The range ends with <see cref="!:CF_PRIVATELAST"/>. Handles associated with private clipboard formats are not freed automatically; the clipboard owner must free such handles, typically in response to the WM_DESTROYCLIPBOARD message.
+              Looks up a localized string similar to Videos.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.PrivateLast">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.KnownFolderInvalidGuid">
             <summary>
-            See <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.PrivateFirst"/>.
+              Looks up a localized string similar to Given Known Folder ID is invalid..
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.RIFF">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.KnownFolderParsingName">
             <summary>
-            Represents audio data more complex than can be represented in a <see cref="!:CF_WAVE"/> standard wave format.
+              Looks up a localized string similar to Parsing name is invalid..
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.SYLK">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.PropertyCollectionCanonicalInvalidIndex">
             <summary>
-            Microsoft Symbolic Link (SYLK) format.
+              Looks up a localized string similar to This CanonicalName is not a valid index..
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.Text">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.PropertyCollectionInvalidIndex">
             <summary>
-            Text format. Each line ends with a carriage return/linefeed (CR-LF) combination. A null character signals the end of the data.Use this format for ANSI text.
+              Looks up a localized string similar to This PropertyKey is not a valid index..
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.TIFF">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.PropertyCollectionNullCanonicalName">
             <summary>
-            Tagged-image file format.
+              Looks up a localized string similar to Argument CanonicalName cannot be null or empty..
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.UnicodeText">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.SearchConditionFactoryInvalidProperty">
             <summary>
-            Unicode text format.Each line ends with a carriage return/linefeed (CR-LF) combination. A null character signals the end of the data.
+              Looks up a localized string similar to Given property key is invalid..
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.Wave">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellExceptionDefaultText">
             <summary>
-            Represents audio data in one of the standard wave formats, such as 11 kHz or 22 kHz PCM.
+              Looks up a localized string similar to Shell Exception has occurred, look at inner exception for information..
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.COM.CAUUID">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellHelperGetParsingNameFailed">
             <summary>
-            Specifies a counted array of <see cref="T:System.Guid"/> types used to receive an array of CLSIDs for the property pages that the object wants to display.
+              Looks up a localized string similar to GetParsingName has failed..
             </summary>
-            <seealso cref="M:Microsoft.WindowsAPICodePack.Win32Native.COM.ISpecifyPropertyPages.GetPages(Microsoft.WindowsAPICodePack.Win32Native.COM.CAUUID@)"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.COM.CAUUID.cElems">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellInvalidCanonicalName">
             <summary>
-            The size of the array pointed to by <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.COM.CAUUID.pElems"/>.
+              Looks up a localized string similar to The given CanonicalName is not valid..
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.COM.CAUUID.pElems">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellLibraryDefaultSaveFolderNotFound">
             <summary>
-            A pointer to an array of values, each of which specifies a CLSID of a particular property page. This array is allocated by the callee using <see cref="M:System.Runtime.InteropServices.Marshal.AllocCoTaskMem(System.Int32)"/> and is freed by the caller using <see cref="M:System.Runtime.InteropServices.Marshal.FreeCoTaskMem(System.IntPtr)"/>.
+              Looks up a localized string similar to DefaultSaveFolder path not found..
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.COM.ISpecifyPropertyPages">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellLibraryEmptyName">
             <summary>
-            Indicates that an object supports property pages. OLE property pages enable an object to display its properties in a tabbed dialog box known as a property sheet. An end user can then view and change the object's properties. An object can display its property pages independent of its client, or the client can manage the display of property pages from a number of contained objects in a single property sheet. Property pages also provide a means for notifying a client of changes in an object's properties.
+              Looks up a localized string similar to LibraryName cannot be empty..
             </summary>
-            <remarks><para>A property page object manages a particular page within a property sheet. A property page implements at least IPropertyPage and can optionally implement IPropertyPage2 if selection of a specific property is supported.</para>
-            <para>An object specifies its support for property pages by implementing <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.COM.ISpecifyPropertyPages"/>. Through this interface the caller can obtain a list of CLSIDs identifying the specific property pages that the object supports. If the object specifies a property page CLSID, the object must be able to receive property changes from the property page.</para></remarks>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.COM.ISpecifyPropertyPages.GetPages(Microsoft.WindowsAPICodePack.Win32Native.COM.CAUUID@)">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellLibraryFolderNotFound">
             <summary>
-            Retrieves a list of property pages that can be displayed in this object's property sheet.
+              Looks up a localized string similar to Folder path not found..
             </summary>
-            <remarks>A pointer to a caller-allocated <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.COM.CAUUID"/> structure that must be initialized and filled before returning. The pElems member in the structure is allocated by the callee with <see cref="M:System.Runtime.InteropServices.Marshal.AllocCoTaskMem(System.Int32)"/> and freed by the caller with <see cref="M:System.Runtime.InteropServices.Marshal.FreeCoTaskMem(System.IntPtr)"/>.</remarks>
-            <returns><para>This method can return the standard return values <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.OutOfMemory"/> and <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Unexpected"/>, as well as the following values.</para><para><ul><li><see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/></li><li><see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.InvalidPointer"/></li></ul></para></returns>
-            <remarks><para>The <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.COM.CAUUID"/> structure is caller-allocated, but is not initialized by the caller. The <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.COM.ISpecifyPropertyPages.GetPages(Microsoft.WindowsAPICodePack.Win32Native.COM.CAUUID@)"/> method fills the cElements member in the structure. This method also allocates memory for the array pointed to by the pElems member using <see cref="M:System.Runtime.InteropServices.Marshal.AllocCoTaskMem(System.Int32)"/>. Then, it fills the newly allocated array. After this method returns successfully, the structure contains a counted array of UUIDs, each UUID specifying a property page CLSID.</para><para><b>Notes to Callers:</b> The caller must release the memory pointed to by the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.COM.CAUUID.pElems"/> member of <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.COM.CAUUID"/>, using <see cref="M:System.Runtime.InteropServices.Marshal.FreeCoTaskMem(System.IntPtr)"/> when it is no longer needed.</para><para><b>Notes to Implementers:</b> <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.NotImplemented"/> is not allowed as a return value, because an object with no property pages should not expose the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.COM.ISpecifyPropertyPages"/> interface.</para></remarks>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellLibraryInvalidFolderType">
             <summary>
-            Provide Error Message Helper Methods.
-            This is intended for unmanaged code use only.
+              Looks up a localized string similar to Invalid FolderType Guid..
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Ignored">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellLibraryInvalidLibrary">
             <summary>
-            This is intended for Library Internal use only.
+              Looks up a localized string similar to The given known folder is not a valid library..
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.HResultFromWin32(System.Int32)">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellObjectCannotGetDisplayName">
             <summary>
-            This is intended for Library Internal use only.
+              Looks up a localized string similar to Can&apos;t get the display name..
             </summary>
-            <param name="win32ErrorCode">The Windows API error code.</param>
-            <returns>The equivalent HRESULT.</returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Succeeded(System.Int32)">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellObjectCreationFailed">
             <summary>
-            This is intended for Library Internal use only.
+              Looks up a localized string similar to Shell item could not be created..
             </summary>
-            <param name="result">The error code.</param>
-            <returns>True if the error code indicates success.</returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Succeeded(Microsoft.WindowsAPICodePack.Win32Native.HResult)">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellObjectFactoryPlatformNotSupported">
             <summary>
-            This is intended for Library Internal use only.
+              Looks up a localized string similar to Shell Object creation requires Windows Vista or higher operating system..
             </summary>
-            <param name="result">The error code.</param>
-            <returns>True if the error code indicates success.</returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Failed(Microsoft.WindowsAPICodePack.Win32Native.HResult)">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellObjectFactoryUnableToCreateItem">
             <summary>
-            This is intended for Library Internal use only.
+              Looks up a localized string similar to Unable to Create Shell Item..
             </summary>
-            <param name="result">The error code.</param>
-            <returns>True if the error code indicates failure.</returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Failed(System.Int32)">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellPropertyCannotSetProperty">
             <summary>
-            This is intended for Library Internal use only.
+              Looks up a localized string similar to The value on this property cannot be set. To set the property value, use the ShellObject that is associated with this property..
             </summary>
-            <param name="result">The error code.</param>
-            <returns>True if the error code indicates failure.</returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Matches(System.Int32,System.Int32)">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellPropertyFactoryConstructorNotFound">
             <summary>
-            This is intended for Library Internal use only.
+              Looks up a localized string similar to No constructor found matching requested argument types..
             </summary>
-            <param name="result">The COM error code.</param>
-            <param name="win32ErrorCode">The Win32 error code.</param>
-            <returns>Inticates that the Win32 error code corresponds to the COM error code.</returns>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellPropertySetValue">
             <summary>
-            Common Helper methods
+              Looks up a localized string similar to Unable to set property..
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.RunningOnXP">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellPropertyUnableToGetWritableProperty">
             <summary>
-            Determines if the application is running on XP
+              Looks up a localized string similar to Unable to get writable property store for this property..
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.ThrowIfNotXP">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellPropertyValueTruncated">
             <summary>
-            Throws PlatformNotSupportedException if the application is not running on Windows XP
+              Looks up a localized string similar to A value had to be truncated in a string or rounded if a numeric value. Set AllowTruncatedValue to true to prevent this exception..
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.RunningOnVista">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellPropertyWindows7">
             <summary>
-            Determines if the application is running on Vista
+              Looks up a localized string similar to This Property is available on Windows 7 only..
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.ThrowIfNotVista">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellPropertyWrongType">
             <summary>
-            Throws PlatformNotSupportedException if the application is not running on Windows Vista
+              Looks up a localized string similar to This property only accepts a value of type \&quot;{0}\&quot;..
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.RunningOnWin7">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellSearchFolderUnableToSetSortColumns">
             <summary>
-            Determines if the application is running on Windows 7
+              Looks up a localized string similar to Unable to set list of sort columns..
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.ThrowIfNotWin7">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellSearchFolderUnableToSetVisibleColumns">
             <summary>
-            Throws PlatformNotSupportedException if the application is not running on Windows 7
+              Looks up a localized string similar to Unable to set visible columns..
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.RunningOnWin8">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellThumbnailCurrentSizeRange">
             <summary>
-            Determines if the application is running on Windows 8
+              Looks up a localized string similar to CurrentSize (width or height) cannot be greater than the maximum size: {0}..
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.ThrowIfNotWin8">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellThumbnailDoesNotHaveThumbnail">
             <summary>
-            Throws PlatformNotSupportedException if the application is not running on Windows 8
+              Looks up a localized string similar to The current ShellObject does not have a thumbnail. Try using ShellThumbnailFormatOption.Default to get the icon for this item..
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.RunningOnWin8_1">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellThumbnailNoHandler">
             <summary>
-            Determines if the application is running on Windows 8.1
+              Looks up a localized string similar to The current ShellObject does not have a valid thumbnail handler or there was a problem in extracting the thumbnail for this specific shell object..
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.ThrowIfNotWin8_1">
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellThumbnailSizeCannotBe0">
             <summary>
-            Throws PlatformNotSupportedException if the application is not running on Windows 8.1
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.RunningOnWin10">
-            <summary>
-            Determines if the application is running on Windows 10
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.ThrowIfNotWin10">
-            <summary>
-            Throws PlatformNotSupportedException if the application is not running on Windows 10
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.GetStringResource(System.String)">
-            <summary>
-            Get a string resource given a resource Id
-            </summary>
-            <param name="resourceId">The resource Id</param>
-            <returns>The string resource corresponding to the given resource Id. Returns null if the resource id
-            is invalid or the string cannot be retrieved for any other reason.</returns>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods">
-            <summary>
-            Wrappers for Native Methods and Structs.
-            This type is intended for public use only
-            </summary>    
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods.PostMessage(System.IntPtr,Microsoft.WindowsAPICodePack.Win32Native.WindowMessage,System.IntPtr,System.IntPtr)">
-            <summary>
-            Places (posts) a message in the message queue associated with the thread that created
-            the specified window and returns without waiting for the thread to process the message.
-            </summary>
-            <param name="windowHandle">Handle to the window whose window procedure will receive the message. 
-            If this parameter is HWND_BROADCAST, the message is sent to all top-level windows in the system, 
-            including disabled or invisible unowned windows, overlapped windows, and pop-up windows; 
-            but the message is not sent to child windows.
-            </param>
-            <param name="message">Specifies the message to be sent.</param>
-            <param name="wparam">Specifies additional message-specific information.</param>
-            <param name="lparam">Specifies additional message-specific information.</param>
-            <returns>A return code specific to the message being sent.</returns>     
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods.SendMessage(System.IntPtr,Microsoft.WindowsAPICodePack.Win32Native.WindowMessage,System.IntPtr,System.IntPtr)">
-            <summary>
-            Sends the specified message to a window or windows. The SendMessage function calls 
-            the window procedure for the specified window and does not return until the window 
-            procedure has processed the message. 
-            </summary>
-            <param name="windowHandle">Handle to the window whose window procedure will receive the message. 
-            If this parameter is HWND_BROADCAST, the message is sent to all top-level windows in the system, 
-            including disabled or invisible unowned windows, overlapped windows, and pop-up windows; 
-            but the message is not sent to child windows.
-            </param>
-            <param name="message">Specifies the message to be sent.</param>
-            <param name="wparam">Specifies additional message-specific information.</param>
-            <param name="lparam">Specifies additional message-specific information.</param>
-            <returns>A return code specific to the message being sent.</returns>     
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods.SendMessage(System.IntPtr,System.UInt32,System.IntPtr,System.IntPtr)">
-            <summary>
-            Sends the specified message to a window or windows. The SendMessage function calls 
-            the window procedure for the specified window and does not return until the window 
-            procedure has processed the message. 
-            </summary>
-            <param name="windowHandle">Handle to the window whose window procedure will receive the message. 
-            If this parameter is HWND_BROADCAST, the message is sent to all top-level windows in the system, 
-            including disabled or invisible unowned windows, overlapped windows, and pop-up windows; 
-            but the message is not sent to child windows.
-            </param>
-            <param name="message">Specifies the message to be sent.</param>
-            <param name="wparam">Specifies additional message-specific information.</param>
-            <param name="lparam">Specifies additional message-specific information.</param>
-            <returns>A return code specific to the message being sent.</returns>        
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods.SendMessage(System.IntPtr,System.UInt32,System.IntPtr,System.String)">
-            <summary>
-            Sends the specified message to a window or windows. The SendMessage function calls 
-            the window procedure for the specified window and does not return until the window 
-            procedure has processed the message. 
-            </summary>
-            <param name="windowHandle">Handle to the window whose window procedure will receive the message. 
-            If this parameter is HWND_BROADCAST, the message is sent to all top-level windows in the system, 
-            including disabled or invisible unowned windows, overlapped windows, and pop-up windows; 
-            but the message is not sent to child windows.
-            </param>
-            <param name="message">Specifies the message to be sent.</param>
-            <param name="wparam">Specifies additional message-specific information.</param>
-            <param name="lparam">Specifies additional message-specific information.</param>
-            <returns>A return code specific to the message being sent.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods.SendMessage(System.IntPtr,System.UInt32,System.Int32,System.String)">
-            <summary>
-            Sends the specified message to a window or windows. The SendMessage function calls 
-            the window procedure for the specified window and does not return until the window 
-            procedure has processed the message. 
-            </summary>
-            <param name="windowHandle">Handle to the window whose window procedure will receive the message. 
-            If this parameter is HWND_BROADCAST, the message is sent to all top-level windows in the system, 
-            including disabled or invisible unowned windows, overlapped windows, and pop-up windows; 
-            but the message is not sent to child windows.
-            </param>
-            <param name="message">Specifies the message to be sent.</param>
-            <param name="wparam">Specifies additional message-specific information.</param>
-            <param name="lparam">Specifies additional message-specific information.</param>
-            <returns>A return code specific to the message being sent.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods.SendMessage(System.IntPtr,System.UInt32,System.Int32@,System.Text.StringBuilder)">
-            <summary>
-            Sends the specified message to a window or windows. The SendMessage function calls 
-            the window procedure for the specified window and does not return until the window 
-            procedure has processed the message. 
-            </summary>
-            <param name="windowHandle">Handle to the window whose window procedure will receive the message. 
-            If this parameter is HWND_BROADCAST, the message is sent to all top-level windows in the system, 
-            including disabled or invisible unowned windows, overlapped windows, and pop-up windows; 
-            but the message is not sent to child windows.
-            </param>
-            <param name="message">Specifies the message to be sent.</param>
-            <param name="wparam">Specifies additional message-specific information.</param>
-            <param name="lparam">Specifies additional message-specific information.</param>
-            <returns>A return code specific to the message being sent.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods.DestroyIcon(System.IntPtr)">
-            <summary>
-            Destroys an icon and frees any memory the icon occupied.
-            </summary>
-            <param name="hIcon">Handle to the icon to be destroyed. The icon must not be in use. </param>
-            <returns>If the function succeeds, the return value is nonzero. If the function fails, the return value is zero. To get extended error information, call GetLastError. </returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods.GetHiWord(System.Int64,System.Int32)">
-            <summary>
-            Gets the HiWord
-            </summary>
-            <param name="value">The value to get the hi word from.</param>
-            <param name="size">Size</param>
-            <returns>The upper half of the dword.</returns>        
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods.GetLoWord(System.Int64)">
-            <summary>
-            Gets the LoWord
-            </summary>
-            <param name="value">The value to get the low word from.</param>
-            <returns>The lower half of the dword.</returns>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods.Size">
-            <summary>
-            A Wrapper for a SIZE struct
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods.Size.Width">
-            <summary>
-            Width
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods.Size.Height">
-            <summary>
-            Height
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.ExecutionStates">
-            <summary>
-            Enumeration of execution states.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ExecutionStates.None">
-            <summary>
-            No state configured.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ExecutionStates.SystemRequired">
-            <summary>
-            Forces the system to be in the working state by resetting the system idle timer.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ExecutionStates.DisplayRequired">
-            <summary>
-            Forces the display to be on by resetting the display idle timer.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ExecutionStates.AwayModeRequired">
-            <summary>
-            Enables away mode. This value must be specified with ES_CONTINUOUS.
-            Away mode should be used only by media-recording and media-distribution applications that must perform critical background processing on desktop computers while the computer appears to be sleeping. See Remarks.
-            
-            Windows Server 2003 and Windows XP/2000:  ES_AWAYMODE_REQUIRED is not supported.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ExecutionStates.Continuous">
-            <summary>
-            Informs the system that the state being set should remain in effect until the next call that uses ES_CONTINUOUS and one of the other state flags is cleared.
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.ConnectivityStates">
-            <summary>
-            Specifies types of network connectivity.
-            </summary>    
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.ConnectivityStates.None">
-            <summary>
-            The underlying network interfaces have no 
-            connectivity to any network.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.ConnectivityStates.IPv4Internet">
-            <summary>
-            There is connectivity to the Internet 
-            using the IPv4 protocol.
-            </summary>        
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.ConnectivityStates.IPv4LocalNetwork">
-            <summary>
-            There is connectivity to a routed network
-            using the IPv4 protocol.
-            </summary>        
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.ConnectivityStates.IPv4NoTraffic">
-            <summary>
-            There is connectivity to a network, but 
-            the service cannot detect any IPv4 
-            network traffic.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.ConnectivityStates.IPv4Subnet">
-            <summary>
-            There is connectivity to the local 
-            subnet using the IPv4 protocol.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.ConnectivityStates.IPv6Internet">
-            <summary>
-            There is connectivity to the Internet 
-            using the IPv4 protocol.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.ConnectivityStates.IPv6LocalNetwork">
-            <summary>
-            There is connectivity to a local 
-            network using the IPv6 protocol.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.ConnectivityStates.IPv6NoTraffic">
-            <summary>
-            There is connectivity to a network, 
-            but the service cannot detect any 
-            IPv6 network traffic
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.ConnectivityStates.IPv6Subnet">
-            <summary>
-            There is connectivity to the local 
-            subnet using the IPv6 protocol.
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.DomainType">
-            <summary>
-            Specifies the domain type of a network.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.DomainType.NonDomainNetwork">
-            <summary>
-            The network is not an Active Directory network.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.DomainType.DomainNetwork">
-            <summary>
-            The network is an Active Directory network, but this machine is not authenticated against it.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.DomainType.DomainAuthenticated">
-            <summary>
-            The network is an Active Directory network, and this machine is authenticated against it.
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.NetworkCategory">
-            <summary>
-            Specifies the trust level for a 
-            network.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.NetworkCategory.Public">
-            <summary>
-            The network is a public (untrusted) network. 
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.NetworkCategory.Private">
-            <summary>
-            The network is a private (trusted) network. 
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.NetworkCategory.Authenticated">
-            <summary>
-            The network is authenticated against an Active Directory domain.
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.NetworkConnectivityLevels">
-            <summary>
-            Specifies the level of connectivity for 
-            networks returned by the 
-            <see cref="!:NetworkListManager"/> 
-            class.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.NetworkConnectivityLevels.Connected">
-            <summary>
-            Networks that the machine is connected to.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.NetworkConnectivityLevels.Disconnected">
-            <summary>
-            Networks that the machine is not connected to.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.NetworkConnectivityLevels.All">
-            <summary>
-            All networks.
+              Looks up a localized string similar to CurrentSize (width or height) cannot be 0..
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.IPropertyChangeArray">
@@ -11233,327 +10876,6 @@
             application does not have sufficient permissions.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages">
-            <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ResourceManager">
-            <summary>
-              Returns the cached ResourceManager instance used by this class.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.Culture">
-            <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FilePathNotExist">
-            <summary>
-              Looks up a localized string similar to The given path does not exist ({0}).
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderIdsUnknownGuid">
-            <summary>
-              Looks up a localized string similar to Guid does not identify a known folder..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeCategory">
-            <summary>
-              Looks up a localized string similar to ControlPanel Category.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeClassic">
-            <summary>
-              Looks up a localized string similar to ControlPanel Classic.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeCommunications">
-            <summary>
-              Looks up a localized string similar to Communications.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeCompressedFolder">
-            <summary>
-              Looks up a localized string similar to Compressed Folder.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeContacts">
-            <summary>
-              Looks up a localized string similar to Contacts.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeDocuments">
-            <summary>
-              Looks up a localized string similar to Documents.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeGames">
-            <summary>
-              Looks up a localized string similar to Games.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeGenericLibrary">
-            <summary>
-              Looks up a localized string similar to Generic Library.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeInvalid">
-            <summary>
-              Looks up a localized string similar to Invalid.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeLibrary">
-            <summary>
-              Looks up a localized string similar to Library.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeMusic">
-            <summary>
-              Looks up a localized string similar to Music.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeMusicIcons">
-            <summary>
-              Looks up a localized string similar to Music Icons.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeNetworkExplorer">
-            <summary>
-              Looks up a localized string similar to Network Explorer.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeNotSpecified">
-            <summary>
-              Looks up a localized string similar to Not Specified.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeOpenSearch">
-            <summary>
-              Looks up a localized string similar to Open Search.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeOtherUsers">
-            <summary>
-              Looks up a localized string similar to Other Users.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypePictures">
-            <summary>
-              Looks up a localized string similar to Pictures.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypePrinters">
-            <summary>
-              Looks up a localized string similar to Printers.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeRecordedTV">
-            <summary>
-              Looks up a localized string similar to RecordedTV.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeRecycleBin">
-            <summary>
-              Looks up a localized string similar to RecycleBin.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeSavedGames">
-            <summary>
-              Looks up a localized string similar to Saved Games.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeSearchConnector">
-            <summary>
-              Looks up a localized string similar to Search Connector.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeSearches">
-            <summary>
-              Looks up a localized string similar to Searches.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeSearchResults">
-            <summary>
-              Looks up a localized string similar to Generic SearchResults.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeSoftwareExplorer">
-            <summary>
-              Looks up a localized string similar to Software Explorer.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeUserFiles">
-            <summary>
-              Looks up a localized string similar to User Files.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeUserLibraries">
-            <summary>
-              Looks up a localized string similar to Users Libraries.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeVideos">
-            <summary>
-              Looks up a localized string similar to Videos.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.KnownFolderInvalidGuid">
-            <summary>
-              Looks up a localized string similar to Given Known Folder ID is invalid..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.KnownFolderParsingName">
-            <summary>
-              Looks up a localized string similar to Parsing name is invalid..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.PropertyCollectionCanonicalInvalidIndex">
-            <summary>
-              Looks up a localized string similar to This CanonicalName is not a valid index..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.PropertyCollectionInvalidIndex">
-            <summary>
-              Looks up a localized string similar to This PropertyKey is not a valid index..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.PropertyCollectionNullCanonicalName">
-            <summary>
-              Looks up a localized string similar to Argument CanonicalName cannot be null or empty..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.SearchConditionFactoryInvalidProperty">
-            <summary>
-              Looks up a localized string similar to Given property key is invalid..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellExceptionDefaultText">
-            <summary>
-              Looks up a localized string similar to Shell Exception has occurred, look at inner exception for information..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellHelperGetParsingNameFailed">
-            <summary>
-              Looks up a localized string similar to GetParsingName has failed..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellInvalidCanonicalName">
-            <summary>
-              Looks up a localized string similar to The given CanonicalName is not valid..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellLibraryDefaultSaveFolderNotFound">
-            <summary>
-              Looks up a localized string similar to DefaultSaveFolder path not found..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellLibraryEmptyName">
-            <summary>
-              Looks up a localized string similar to LibraryName cannot be empty..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellLibraryFolderNotFound">
-            <summary>
-              Looks up a localized string similar to Folder path not found..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellLibraryInvalidFolderType">
-            <summary>
-              Looks up a localized string similar to Invalid FolderType Guid..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellLibraryInvalidLibrary">
-            <summary>
-              Looks up a localized string similar to The given known folder is not a valid library..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellObjectCannotGetDisplayName">
-            <summary>
-              Looks up a localized string similar to Can&apos;t get the display name..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellObjectCreationFailed">
-            <summary>
-              Looks up a localized string similar to Shell item could not be created..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellObjectFactoryPlatformNotSupported">
-            <summary>
-              Looks up a localized string similar to Shell Object creation requires Windows Vista or higher operating system..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellObjectFactoryUnableToCreateItem">
-            <summary>
-              Looks up a localized string similar to Unable to Create Shell Item..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellPropertyCannotSetProperty">
-            <summary>
-              Looks up a localized string similar to The value on this property cannot be set. To set the property value, use the ShellObject that is associated with this property..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellPropertyFactoryConstructorNotFound">
-            <summary>
-              Looks up a localized string similar to No constructor found matching requested argument types..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellPropertySetValue">
-            <summary>
-              Looks up a localized string similar to Unable to set property..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellPropertyUnableToGetWritableProperty">
-            <summary>
-              Looks up a localized string similar to Unable to get writable property store for this property..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellPropertyValueTruncated">
-            <summary>
-              Looks up a localized string similar to A value had to be truncated in a string or rounded if a numeric value. Set AllowTruncatedValue to true to prevent this exception..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellPropertyWindows7">
-            <summary>
-              Looks up a localized string similar to This Property is available on Windows 7 only..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellPropertyWrongType">
-            <summary>
-              Looks up a localized string similar to This property only accepts a value of type \&quot;{0}\&quot;..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellSearchFolderUnableToSetSortColumns">
-            <summary>
-              Looks up a localized string similar to Unable to set list of sort columns..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellSearchFolderUnableToSetVisibleColumns">
-            <summary>
-              Looks up a localized string similar to Unable to set visible columns..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellThumbnailCurrentSizeRange">
-            <summary>
-              Looks up a localized string similar to CurrentSize (width or height) cannot be greater than the maximum size: {0}..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellThumbnailDoesNotHaveThumbnail">
-            <summary>
-              Looks up a localized string similar to The current ShellObject does not have a thumbnail. Try using ShellThumbnailFormatOption.Default to get the icon for this item..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellThumbnailNoHandler">
-            <summary>
-              Looks up a localized string similar to The current ShellObject does not have a valid thumbnail handler or there was a problem in extracting the thumbnail for this specific shell object..
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellThumbnailSizeCannotBe0">
-            <summary>
-              Looks up a localized string similar to CurrentSize (width or height) cannot be 0..
-            </summary>
-        </member>
         <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellObjectChangeTypes">
             <summary>
             Describes the event that has occurred. 
@@ -12351,6 +11673,684 @@
             <summary>
              Adds the system highlight color to the icon.
              </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RecoveryCallback">
+            <summary>
+            The <see cref="T:System.Delegate"/> that represents the callback method invoked
+            by the system when an application has registered for 
+            application recovery. 
+            </summary>
+            <param name="state">An application-defined state object that is passed to the callback method.</param>
+            <remarks>The callback method will be invoked
+            prior to the application being terminated by Windows Error Reporting (WER). To keep WER from terminating the application before 
+            the callback method completes, the callback method must
+            periodically call the <see cref="!:ApplicationRecoveryInProgress"/> method. </remarks>
+            <seealso cref="!:RegisterForApplicationRecovery(RecoverySettings)"/>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RecoveryData">
+            <summary>
+            Defines a class that contains a callback delegate and properties of the application
+            as defined by the user.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RecoveryData.#ctor(Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RecoveryCallback,System.Object)">
+            <summary>
+            Initializes a recovery data wrapper with a callback method and the current
+            state of the application.
+            </summary>
+            <param name="callback">The callback delegate.</param>
+            <param name="state">The current state of the application.</param>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RecoveryData.Callback">
+            <summary>
+            Gets or sets a value that determines the recovery callback function.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RecoveryData.State">
+            <summary>
+            Gets or sets a value that determines the application state.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RecoveryData.Invoke">
+            <summary>
+            Invokes the recovery callback function.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RestartRestrictions">
+            <summary>
+            Specifies the conditions when Windows Error Reporting
+            should not restart an application that has registered
+            for automatic restart.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RestartRestrictions.None">
+            <summary>
+            Always restart the application.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RestartRestrictions.NotOnCrash">
+            <summary>
+            Do not restart when the application has crashed.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RestartRestrictions.NotOnHang">
+            <summary>
+            Do not restart when the application is hung.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RestartRestrictions.NotOnPatch">
+            <summary>
+            Do not restart when the application is terminated
+            due to a system update.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RestartRestrictions.NotOnReboot">
+            <summary>
+            Do not restart when the application is terminated 
+            because of a system reboot.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.PowerManagementNativeMethods.PowerGetActiveScheme(System.IntPtr,System.Guid@)">
+            <summary>
+            Gets the Guid relating to the currently active power scheme.
+            </summary>
+            <param name="rootPowerKey">Reserved for future use, this must be set to IntPtr.Zero</param>
+            <param name="activePolicy">Returns a Guid referring to the currently active power scheme.</param>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats">
+            <summary>
+            The clipboard formats defined by the system.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.Bitmap">
+            <summary>
+            A handle to a bitmap (HBITMAP).
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.Dib">
+            <summary>
+            A memory object containing a BITMAPINFO structure followed by the bitmap bits.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.DibV5">
+            <summary>
+            A memory object containing a BITMAPV5HEADER structure followed by the bitmap color space information and the bitmap bits.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.Dif">
+            <summary>
+            Software Arts' Data Interchange Format.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.DSBitmap">
+            <summary>
+            Bitmap display format associated with a private format. The hMem parameter must be a handle to data that can be displayed in bitmap format in lieu of the privately formatted data.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.DSPEnhMetaFile">
+            <summary>
+            Enhanced metafile display format associated with a private format. The hMem parameter must be a handle to data that can be displayed in enhanced metafile format in lieu of the privately formatted data.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.DSPMetaFilePicture">
+            <summary>
+            Metafile-picture display format associated with a private format. The hMem parameter must be a handle to data that can be displayed in metafile-picture format in lieu of the privately formatted data.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.DSPText">
+            <summary>
+            Text display format associated with a private format. The hMem parameter must be a handle to data that can be displayed in text format in lieu of the privately formatted data.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.EnhMetaFile">
+            <summary>
+            A handle to an enhanced metafile (HENHMETAFILE).
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.GDIObjFirst">
+            <summary>
+            Start of a range of integer values for application-defined GDI object clipboard formats. The end of the range is <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.GDIObjLast"/>.
+            Handles associated with clipboard formats in this range are not automatically deleted using the GlobalFree function when the clipboard is emptied. Also, when using values in this range, the hMem parameter is not a handle to a GDI object, but is a handle allocated by the GlobalAlloc function with the GMEM_MOVEABLE flag.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.GDIObjLast">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.GDIObjFirst"/>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.HDrop">
+            <summary>
+            A handle to type HDROP that identifies a list of files. An application can retrieve information about the files by passing the handle to the DragQueryFile function.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.Locale">
+            <summary>
+            The data is a handle to the locale identifier associated with text in the clipboard. When you close the clipboard, if it contains <see cref="!:CF_TEXT"/> data but no Locale data, the system automatically sets the Locale format to the current input language. You can use the Locale format to associate a different locale with the clipboard text.
+            An application that pastes text from the clipboard can retrieve this format to determine which character set was used to generate the text.
+            Note that the clipboard does not support plain text in multiple character sets. To achieve this, use a formatted text data type such as RTF instead.
+            The system uses the code page associated with Locale to implicitly convert from <see cref="!:CF_TEXT"/> to <see cref="!:CF_UNICODETEXT"/>. Therefore, the correct code page table is used for the conversion.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.MetaFilePicture">
+            <summary>
+            Handle to a metafile picture format as defined by the MetaFilePicture structure. When passing a MetaFilePicture handle by means of DDE, the application responsible for deleting hMem should also free the metafile referred to by the MetaFilePicture handle.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.OEMText">
+            <summary>
+            Text format containing characters in the OEM character set. Each line ends with a carriage return/linefeed (CR-LF) combination. A null character signals the end of the data.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.OwnerDisplay">
+            <summary>
+            Owner-display format. The clipboard owner must display and update the clipboard viewer window, and receive the WM_ASKCBFORMATNAME, WM_HSCROLLCLIPBOARD, WM_PAINTCLIPBOARD, WM_SIZECLIPBOARD, and WM_VSCROLLCLIPBOARD messages. The hMem parameter must be NULL.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.Palette">
+            <summary>
+            Handle to a color palette. Whenever an application places data in the clipboard that depends on or assumes a color palette, it should place the palette on the clipboard as well.
+            If the clipboard contains data in the Palette (logical color palette) format, the application should use the SelectPalette and RealizePalette functions to realize (compare) any other data in the clipboard against that logical palette.
+            When displaying clipboard data, the clipboard always uses as its current palette any object on the clipboard that is in the Palette format.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.PenData">
+            <summary>
+            Data for the pen extensions to the Microsoft Windows for Pen Computing.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.PrivateFirst">
+            <summary>
+            Start of a range of integer values for private clipboard formats.The range ends with <see cref="!:CF_PRIVATELAST"/>. Handles associated with private clipboard formats are not freed automatically; the clipboard owner must free such handles, typically in response to the WM_DESTROYCLIPBOARD message.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.PrivateLast">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.PrivateFirst"/>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.RIFF">
+            <summary>
+            Represents audio data more complex than can be represented in a <see cref="!:CF_WAVE"/> standard wave format.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.SYLK">
+            <summary>
+            Microsoft Symbolic Link (SYLK) format.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.Text">
+            <summary>
+            Text format. Each line ends with a carriage return/linefeed (CR-LF) combination. A null character signals the end of the data.Use this format for ANSI text.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.TIFF">
+            <summary>
+            Tagged-image file format.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.UnicodeText">
+            <summary>
+            Unicode text format.Each line ends with a carriage return/linefeed (CR-LF) combination. A null character signals the end of the data.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.StandardClipboardFormats.Wave">
+            <summary>
+            Represents audio data in one of the standard wave formats, such as 11 kHz or 22 kHz PCM.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.COM.CAUUID">
+            <summary>
+            Specifies a counted array of <see cref="T:System.Guid"/> types used to receive an array of CLSIDs for the property pages that the object wants to display.
+            </summary>
+            <seealso cref="M:Microsoft.WindowsAPICodePack.Win32Native.COM.ISpecifyPropertyPages.GetPages(Microsoft.WindowsAPICodePack.Win32Native.COM.CAUUID@)"/>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.COM.CAUUID.cElems">
+            <summary>
+            The size of the array pointed to by <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.COM.CAUUID.pElems"/>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.COM.CAUUID.pElems">
+            <summary>
+            A pointer to an array of values, each of which specifies a CLSID of a particular property page. This array is allocated by the callee using <see cref="M:System.Runtime.InteropServices.Marshal.AllocCoTaskMem(System.Int32)"/> and is freed by the caller using <see cref="M:System.Runtime.InteropServices.Marshal.FreeCoTaskMem(System.IntPtr)"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.COM.ISpecifyPropertyPages">
+            <summary>
+            Indicates that an object supports property pages. OLE property pages enable an object to display its properties in a tabbed dialog box known as a property sheet. An end user can then view and change the object's properties. An object can display its property pages independent of its client, or the client can manage the display of property pages from a number of contained objects in a single property sheet. Property pages also provide a means for notifying a client of changes in an object's properties.
+            </summary>
+            <remarks><para>A property page object manages a particular page within a property sheet. A property page implements at least IPropertyPage and can optionally implement IPropertyPage2 if selection of a specific property is supported.</para>
+            <para>An object specifies its support for property pages by implementing <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.COM.ISpecifyPropertyPages"/>. Through this interface the caller can obtain a list of CLSIDs identifying the specific property pages that the object supports. If the object specifies a property page CLSID, the object must be able to receive property changes from the property page.</para></remarks>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.COM.ISpecifyPropertyPages.GetPages(Microsoft.WindowsAPICodePack.Win32Native.COM.CAUUID@)">
+            <summary>
+            Retrieves a list of property pages that can be displayed in this object's property sheet.
+            </summary>
+            <remarks>A pointer to a caller-allocated <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.COM.CAUUID"/> structure that must be initialized and filled before returning. The pElems member in the structure is allocated by the callee with <see cref="M:System.Runtime.InteropServices.Marshal.AllocCoTaskMem(System.Int32)"/> and freed by the caller with <see cref="M:System.Runtime.InteropServices.Marshal.FreeCoTaskMem(System.IntPtr)"/>.</remarks>
+            <returns><para>This method can return the standard return values <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.OutOfMemory"/> and <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Unexpected"/>, as well as the following values.</para><para><ul><li><see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/></li><li><see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.InvalidPointer"/></li></ul></para></returns>
+            <remarks><para>The <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.COM.CAUUID"/> structure is caller-allocated, but is not initialized by the caller. The <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.COM.ISpecifyPropertyPages.GetPages(Microsoft.WindowsAPICodePack.Win32Native.COM.CAUUID@)"/> method fills the cElements member in the structure. This method also allocates memory for the array pointed to by the pElems member using <see cref="M:System.Runtime.InteropServices.Marshal.AllocCoTaskMem(System.Int32)"/>. Then, it fills the newly allocated array. After this method returns successfully, the structure contains a counted array of UUIDs, each UUID specifying a property page CLSID.</para><para><b>Notes to Callers:</b> The caller must release the memory pointed to by the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.COM.CAUUID.pElems"/> member of <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.COM.CAUUID"/>, using <see cref="M:System.Runtime.InteropServices.Marshal.FreeCoTaskMem(System.IntPtr)"/> when it is no longer needed.</para><para><b>Notes to Implementers:</b> <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.NotImplemented"/> is not allowed as a return value, because an object with no property pages should not expose the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.COM.ISpecifyPropertyPages"/> interface.</para></remarks>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper">
+            <summary>
+            Provide Error Message Helper Methods.
+            This is intended for unmanaged code use only.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Ignored">
+            <summary>
+            This is intended for Library Internal use only.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.HResultFromWin32(System.Int32)">
+            <summary>
+            This is intended for Library Internal use only.
+            </summary>
+            <param name="win32ErrorCode">The Windows API error code.</param>
+            <returns>The equivalent HRESULT.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Succeeded(System.Int32)">
+            <summary>
+            This is intended for Library Internal use only.
+            </summary>
+            <param name="result">The error code.</param>
+            <returns>True if the error code indicates success.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Succeeded(Microsoft.WindowsAPICodePack.Win32Native.HResult)">
+            <summary>
+            This is intended for Library Internal use only.
+            </summary>
+            <param name="result">The error code.</param>
+            <returns>True if the error code indicates success.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Failed(Microsoft.WindowsAPICodePack.Win32Native.HResult)">
+            <summary>
+            This is intended for Library Internal use only.
+            </summary>
+            <param name="result">The error code.</param>
+            <returns>True if the error code indicates failure.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Failed(System.Int32)">
+            <summary>
+            This is intended for Library Internal use only.
+            </summary>
+            <param name="result">The error code.</param>
+            <returns>True if the error code indicates failure.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Matches(System.Int32,System.Int32)">
+            <summary>
+            This is intended for Library Internal use only.
+            </summary>
+            <param name="result">The COM error code.</param>
+            <param name="win32ErrorCode">The Win32 error code.</param>
+            <returns>Inticates that the Win32 error code corresponds to the COM error code.</returns>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers">
+            <summary>
+            Common Helper methods
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.RunningOnXP">
+            <summary>
+            Determines if the application is running on XP
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.ThrowIfNotXP">
+            <summary>
+            Throws PlatformNotSupportedException if the application is not running on Windows XP
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.RunningOnVista">
+            <summary>
+            Determines if the application is running on Vista
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.ThrowIfNotVista">
+            <summary>
+            Throws PlatformNotSupportedException if the application is not running on Windows Vista
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.RunningOnWin7">
+            <summary>
+            Determines if the application is running on Windows 7
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.ThrowIfNotWin7">
+            <summary>
+            Throws PlatformNotSupportedException if the application is not running on Windows 7
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.RunningOnWin8">
+            <summary>
+            Determines if the application is running on Windows 8
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.ThrowIfNotWin8">
+            <summary>
+            Throws PlatformNotSupportedException if the application is not running on Windows 8
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.RunningOnWin8_1">
+            <summary>
+            Determines if the application is running on Windows 8.1
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.ThrowIfNotWin8_1">
+            <summary>
+            Throws PlatformNotSupportedException if the application is not running on Windows 8.1
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.RunningOnWin10">
+            <summary>
+            Determines if the application is running on Windows 10
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.ThrowIfNotWin10">
+            <summary>
+            Throws PlatformNotSupportedException if the application is not running on Windows 10
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers.GetStringResource(System.String)">
+            <summary>
+            Get a string resource given a resource Id
+            </summary>
+            <param name="resourceId">The resource Id</param>
+            <returns>The string resource corresponding to the given resource Id. Returns null if the resource id
+            is invalid or the string cannot be retrieved for any other reason.</returns>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods">
+            <summary>
+            Wrappers for Native Methods and Structs.
+            This type is intended for public use only
+            </summary>    
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods.PostMessage(System.IntPtr,Microsoft.WindowsAPICodePack.Win32Native.WindowMessage,System.IntPtr,System.IntPtr)">
+            <summary>
+            Places (posts) a message in the message queue associated with the thread that created
+            the specified window and returns without waiting for the thread to process the message.
+            </summary>
+            <param name="windowHandle">Handle to the window whose window procedure will receive the message. 
+            If this parameter is HWND_BROADCAST, the message is sent to all top-level windows in the system, 
+            including disabled or invisible unowned windows, overlapped windows, and pop-up windows; 
+            but the message is not sent to child windows.
+            </param>
+            <param name="message">Specifies the message to be sent.</param>
+            <param name="wparam">Specifies additional message-specific information.</param>
+            <param name="lparam">Specifies additional message-specific information.</param>
+            <returns>A return code specific to the message being sent.</returns>     
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods.SendMessage(System.IntPtr,Microsoft.WindowsAPICodePack.Win32Native.WindowMessage,System.IntPtr,System.IntPtr)">
+            <summary>
+            Sends the specified message to a window or windows. The SendMessage function calls 
+            the window procedure for the specified window and does not return until the window 
+            procedure has processed the message. 
+            </summary>
+            <param name="windowHandle">Handle to the window whose window procedure will receive the message. 
+            If this parameter is HWND_BROADCAST, the message is sent to all top-level windows in the system, 
+            including disabled or invisible unowned windows, overlapped windows, and pop-up windows; 
+            but the message is not sent to child windows.
+            </param>
+            <param name="message">Specifies the message to be sent.</param>
+            <param name="wparam">Specifies additional message-specific information.</param>
+            <param name="lparam">Specifies additional message-specific information.</param>
+            <returns>A return code specific to the message being sent.</returns>     
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods.SendMessage(System.IntPtr,System.UInt32,System.IntPtr,System.IntPtr)">
+            <summary>
+            Sends the specified message to a window or windows. The SendMessage function calls 
+            the window procedure for the specified window and does not return until the window 
+            procedure has processed the message. 
+            </summary>
+            <param name="windowHandle">Handle to the window whose window procedure will receive the message. 
+            If this parameter is HWND_BROADCAST, the message is sent to all top-level windows in the system, 
+            including disabled or invisible unowned windows, overlapped windows, and pop-up windows; 
+            but the message is not sent to child windows.
+            </param>
+            <param name="message">Specifies the message to be sent.</param>
+            <param name="wparam">Specifies additional message-specific information.</param>
+            <param name="lparam">Specifies additional message-specific information.</param>
+            <returns>A return code specific to the message being sent.</returns>        
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods.SendMessage(System.IntPtr,System.UInt32,System.IntPtr,System.String)">
+            <summary>
+            Sends the specified message to a window or windows. The SendMessage function calls 
+            the window procedure for the specified window and does not return until the window 
+            procedure has processed the message. 
+            </summary>
+            <param name="windowHandle">Handle to the window whose window procedure will receive the message. 
+            If this parameter is HWND_BROADCAST, the message is sent to all top-level windows in the system, 
+            including disabled or invisible unowned windows, overlapped windows, and pop-up windows; 
+            but the message is not sent to child windows.
+            </param>
+            <param name="message">Specifies the message to be sent.</param>
+            <param name="wparam">Specifies additional message-specific information.</param>
+            <param name="lparam">Specifies additional message-specific information.</param>
+            <returns>A return code specific to the message being sent.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods.SendMessage(System.IntPtr,System.UInt32,System.Int32,System.String)">
+            <summary>
+            Sends the specified message to a window or windows. The SendMessage function calls 
+            the window procedure for the specified window and does not return until the window 
+            procedure has processed the message. 
+            </summary>
+            <param name="windowHandle">Handle to the window whose window procedure will receive the message. 
+            If this parameter is HWND_BROADCAST, the message is sent to all top-level windows in the system, 
+            including disabled or invisible unowned windows, overlapped windows, and pop-up windows; 
+            but the message is not sent to child windows.
+            </param>
+            <param name="message">Specifies the message to be sent.</param>
+            <param name="wparam">Specifies additional message-specific information.</param>
+            <param name="lparam">Specifies additional message-specific information.</param>
+            <returns>A return code specific to the message being sent.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods.SendMessage(System.IntPtr,System.UInt32,System.Int32@,System.Text.StringBuilder)">
+            <summary>
+            Sends the specified message to a window or windows. The SendMessage function calls 
+            the window procedure for the specified window and does not return until the window 
+            procedure has processed the message. 
+            </summary>
+            <param name="windowHandle">Handle to the window whose window procedure will receive the message. 
+            If this parameter is HWND_BROADCAST, the message is sent to all top-level windows in the system, 
+            including disabled or invisible unowned windows, overlapped windows, and pop-up windows; 
+            but the message is not sent to child windows.
+            </param>
+            <param name="message">Specifies the message to be sent.</param>
+            <param name="wparam">Specifies additional message-specific information.</param>
+            <param name="lparam">Specifies additional message-specific information.</param>
+            <returns>A return code specific to the message being sent.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods.DestroyIcon(System.IntPtr)">
+            <summary>
+            Destroys an icon and frees any memory the icon occupied.
+            </summary>
+            <param name="hIcon">Handle to the icon to be destroyed. The icon must not be in use. </param>
+            <returns>If the function succeeds, the return value is nonzero. If the function fails, the return value is zero. To get extended error information, call GetLastError. </returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods.GetHiWord(System.Int64,System.Int32)">
+            <summary>
+            Gets the HiWord
+            </summary>
+            <param name="value">The value to get the hi word from.</param>
+            <param name="size">Size</param>
+            <returns>The upper half of the dword.</returns>        
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods.GetLoWord(System.Int64)">
+            <summary>
+            Gets the LoWord
+            </summary>
+            <param name="value">The value to get the low word from.</param>
+            <returns>The lower half of the dword.</returns>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods.Size">
+            <summary>
+            A Wrapper for a SIZE struct
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods.Size.Width">
+            <summary>
+            Width
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.CoreNativeMethods.Size.Height">
+            <summary>
+            Height
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.ExecutionStates">
+            <summary>
+            Enumeration of execution states.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ExecutionStates.None">
+            <summary>
+            No state configured.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ExecutionStates.SystemRequired">
+            <summary>
+            Forces the system to be in the working state by resetting the system idle timer.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ExecutionStates.DisplayRequired">
+            <summary>
+            Forces the display to be on by resetting the display idle timer.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ExecutionStates.AwayModeRequired">
+            <summary>
+            Enables away mode. This value must be specified with ES_CONTINUOUS.
+            Away mode should be used only by media-recording and media-distribution applications that must perform critical background processing on desktop computers while the computer appears to be sleeping. See Remarks.
+            
+            Windows Server 2003 and Windows XP/2000:  ES_AWAYMODE_REQUIRED is not supported.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ExecutionStates.Continuous">
+            <summary>
+            Informs the system that the state being set should remain in effect until the next call that uses ES_CONTINUOUS and one of the other state flags is cleared.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.ConnectivityStates">
+            <summary>
+            Specifies types of network connectivity.
+            </summary>    
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.ConnectivityStates.None">
+            <summary>
+            The underlying network interfaces have no 
+            connectivity to any network.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.ConnectivityStates.IPv4Internet">
+            <summary>
+            There is connectivity to the Internet 
+            using the IPv4 protocol.
+            </summary>        
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.ConnectivityStates.IPv4LocalNetwork">
+            <summary>
+            There is connectivity to a routed network
+            using the IPv4 protocol.
+            </summary>        
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.ConnectivityStates.IPv4NoTraffic">
+            <summary>
+            There is connectivity to a network, but 
+            the service cannot detect any IPv4 
+            network traffic.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.ConnectivityStates.IPv4Subnet">
+            <summary>
+            There is connectivity to the local 
+            subnet using the IPv4 protocol.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.ConnectivityStates.IPv6Internet">
+            <summary>
+            There is connectivity to the Internet 
+            using the IPv4 protocol.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.ConnectivityStates.IPv6LocalNetwork">
+            <summary>
+            There is connectivity to a local 
+            network using the IPv6 protocol.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.ConnectivityStates.IPv6NoTraffic">
+            <summary>
+            There is connectivity to a network, 
+            but the service cannot detect any 
+            IPv6 network traffic
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.ConnectivityStates.IPv6Subnet">
+            <summary>
+            There is connectivity to the local 
+            subnet using the IPv6 protocol.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.DomainType">
+            <summary>
+            Specifies the domain type of a network.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.DomainType.NonDomainNetwork">
+            <summary>
+            The network is not an Active Directory network.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.DomainType.DomainNetwork">
+            <summary>
+            The network is an Active Directory network, but this machine is not authenticated against it.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.DomainType.DomainAuthenticated">
+            <summary>
+            The network is an Active Directory network, and this machine is authenticated against it.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.NetworkCategory">
+            <summary>
+            Specifies the trust level for a 
+            network.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.NetworkCategory.Public">
+            <summary>
+            The network is a public (untrusted) network. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.NetworkCategory.Private">
+            <summary>
+            The network is a private (trusted) network. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.NetworkCategory.Authenticated">
+            <summary>
+            The network is authenticated against an Active Directory domain.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.NetworkConnectivityLevels">
+            <summary>
+            Specifies the level of connectivity for 
+            networks returned by the 
+            <see cref="!:NetworkListManager"/> 
+            class.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.NetworkConnectivityLevels.Connected">
+            <summary>
+            Networks that the machine is connected to.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.NetworkConnectivityLevels.Disconnected">
+            <summary>
+            Networks that the machine is not connected to.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.NetworkConnectivityLevels.All">
+            <summary>
+            All networks.
+            </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant">
             <summary>

@@ -97,11 +97,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Shell\PropertySystem\SystemProperties.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\BlobValueKind.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\BlobHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Shell\Resources\LocalizedMessages.Designer.cs">
-      <DependentUpon>LocalizedMessages.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Shell\ShellObjectWatcher\ShellObjectWatcherEnums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\ShellObjectWatcher\ShellObjectWatcherNativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\SingleInstance\SingleInstanceNativeMethods.cs" />
@@ -168,12 +163,5 @@
     <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\DriverInterfaces\IWpdSerializer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\Enums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\PropKeys.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Shell\Resources\LocalizedMessages.resx">
-      <LastGenOutput>LocalizedMessages.Designer.cs</LastGenOutput>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
 </Project>
