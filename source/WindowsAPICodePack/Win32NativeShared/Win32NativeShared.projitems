@@ -37,11 +37,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropertyKeyAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropVariant.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropVariantNativeMethods.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Core\Resources\LocalizedMessages.Designer.cs">
-      <DependentUpon>LocalizedMessages.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Core\Enums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\TaskDialogs\NativeTaskDialogSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\TaskDialogs\TaskDialogDefaults.cs" />
@@ -175,10 +170,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\PropKeys.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Core\Resources\LocalizedMessages.resx">
-      <LastGenOutput>LocalizedMessages.Designer.cs</LastGenOutput>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Shell\Resources\LocalizedMessages.resx">
       <LastGenOutput>LocalizedMessages.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>

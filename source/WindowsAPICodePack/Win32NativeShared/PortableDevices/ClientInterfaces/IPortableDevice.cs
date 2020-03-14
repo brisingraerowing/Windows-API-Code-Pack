@@ -170,7 +170,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         [PreserveSig]
         HResult Open(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszPnPDeviceID,
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pClientInfo);
+            [In, MarshalAs(UnmanagedType.Interface)] IPortableDeviceValues pClientInfo);
 
         /// <summary>
         /// The <see cref="SendCommand"/> method sends a command to the device and retrieves the results synchronously.

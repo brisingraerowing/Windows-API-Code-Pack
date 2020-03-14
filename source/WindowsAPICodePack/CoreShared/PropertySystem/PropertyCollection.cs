@@ -561,7 +561,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
         public ReadOnlyCollection(in INativeReadOnlyCollection<T> list) => _items = (list ?? throw new ArgumentNullException(nameof(list))).IsDisposed ? throw new ObjectDisposedException(nameof(list)) : list;
 
-        public ReadOnlyCollection(in Collection<T> collection) : this(collection.Items) { } 
+        public ReadOnlyCollection(in Collection<T> collection) : this(collection.Items) { }
 
         private IDisposable _collectionBridge;
 
@@ -790,28 +790,18 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
         private readonly int _count;
 
-        private Action _disposeAction;
-
-        public Dictionary(in int count, Action disposeAction)
+        public Dictionary(in int count)
         {
             _addAction = (PropertyKey key, TValue value) =>
             {
 
                 _innerDictionary.Add(key, value);
 
-                if (Count == _count)
-
-                    _disposeAction();
-
                 _addAction = null;
-
-                _disposeAction = null;
 
             };
 
             _count = count;
-
-            _disposeAction = disposeAction;
         }
 
         public TValue this[PropertyKey key] { get => _innerDictionary[key]; set => _innerDictionary[key] = value; }
@@ -848,7 +838,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
         private INativePropertyValuesCollection _nativePropertyValuesCollection;
 
-        internal Func<ObjectProperty, IPropertyInfo> PropertyInfoDelegate { get; private set; }
+        internal INativePropertyValuesCollection NativePropertyValuesCollection => _nativePropertyValuesCollection;
 
         private uint? _count;
 
@@ -884,9 +874,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
                         if (propertyKey == key)
                         {
 
-                            var objectProperty = new ObjectProperty(this, _nativePropertyValuesCollection, propertyKey);
-
-                            objectProperty.PropertyInfo = PropertyInfoDelegate(objectProperty);
+                            var objectProperty = new ObjectProperty(this, propertyKey, CoreErrorHelper.Succeeded(Items.GetPropertyInfo(ref propertyKey, out IPropertyInfo propertyInfo)) ? propertyInfo : PropertyInfo.DefaultPropertyInfo);
 
                             _innerDictionary.Add(key, objectProperty);
 
@@ -968,7 +956,11 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
             ThrowIfNull(nativePropertyCollection, nameof(nativePropertyCollection));
 
-            _innerDictionary = new Dictionary<ObjectProperty>((int)Count, () => PropertyInfoDelegate = null);
+            Items = nativePropertyCollection;
+
+            Marshal.ThrowExceptionForHR((int)nativePropertyCollection.GetValues(out _nativePropertyValuesCollection));
+
+            _innerDictionary = new Dictionary<ObjectProperty>((int)Count);
 
             _getDictionaryDelegate = () =>
 
@@ -981,10 +973,6 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
                 return _innerDictionary;
 
             };
-
-            Items = nativePropertyCollection;
-
-            Marshal.ThrowExceptionForHR((int)nativePropertyCollection.GetValues(out _nativePropertyValuesCollection));
 
         }
 
@@ -1009,7 +997,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                     if (!_innerDictionary.ContainsKey(propertyKey))
 
-                        _innerDictionary.Add(propertyKey, new ObjectProperty(this, _nativePropertyValuesCollection, propertyKey));
+                        _innerDictionary.Add(propertyKey, new ObjectProperty(this, propertyKey, CoreErrorHelper.Succeeded(Items.GetPropertyInfo(ref propertyKey, out IPropertyInfo propertyInfo)) ? propertyInfo : PropertyInfo.DefaultPropertyInfo));
                 }
 
             }
@@ -1056,7 +1044,9 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
                 if (key == propertyKey)
                 {
 
-                    var property = new ObjectProperty(this, _nativePropertyValuesCollection, propertyKey);
+                    PropertyKey _propertyKey = propertyKey;
+
+                    var property = new ObjectProperty(this, _propertyKey, CoreErrorHelper.Succeeded(Items.GetPropertyInfo(ref _propertyKey, out IPropertyInfo propertyInfo)) ? propertyInfo : PropertyInfo.DefaultPropertyInfo);
 
                     _innerDictionary.Add(propertyKey, property);
 
@@ -1223,7 +1213,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         {
             ThrowIfNull(nativePropertyValuesCollection, nameof(nativePropertyValuesCollection));
 
-            _innerDictionary = new Dictionary<ObjectPropertyAttribute>((int)Count, () => { _nativePropertyValuesCollection.Dispose(); _nativePropertyValuesCollection = null; });
+            _innerDictionary = new Dictionary<ObjectPropertyAttribute>((int)Count);
 
             _getDictionaryDelegate = () =>
 
@@ -1248,21 +1238,13 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
             PropertyKey propertyKey;
 
-            PropVariant propVariant;
-
             for (uint i = 0; i < Count; i++)
             {
                 propertyKey = new PropertyKey();
 
-                using (propVariant = new PropVariant())
+                _ = _nativePropertyValuesCollection.GetAt(i, ref propertyKey, out PropVariant propVariant);
 
-                {
-
-                    _ = _nativePropertyValuesCollection.GetAt(i, ref propertyKey, ref propVariant);
-
-                    _innerDictionary.Add(propertyKey, new ObjectPropertyAttribute(propertyKey, NativePropertyHelper.VarEnumToSystemType(propVariant.VarType), propVariant.Value));
-
-                }
+                _innerDictionary.Add(propertyKey, new ObjectPropertyAttribute(propertyKey, NativePropertyHelper.VarEnumToSystemType(propVariant.VarType), propVariant.Value));
             }
 
         }

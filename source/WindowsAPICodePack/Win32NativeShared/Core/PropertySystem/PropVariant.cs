@@ -1,7 +1,7 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Resources;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -12,7 +12,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 {
     /// <summary>
     /// Represents the OLE struct PROPVARIANT.
-    /// This class is intended for unmanaged code use only.
+    /// This class is intended for managed reimplementations only.
     /// </summary>
     /// <remarks>
     /// Originally sourced from http://blogs.msdn.com/adamroot/pages/interop-with-propvariants-in-net.aspx
@@ -52,37 +52,37 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
                 {
                     typeof(int),
                     (pv, array, i) =>
-      {
-          PropVariantNativeMethods.PropVariantGetInt32Elem(pv, i, out int val);
-          array.SetValue(val, i);
-      }
+    {
+        PropVariantNativeMethods.PropVariantGetInt32Elem(pv, i, out int val);
+        array.SetValue(val, i);
+    }
                 },
 
                 {
                     typeof(uint),
                     (pv, array, i) =>
-     {
-         PropVariantNativeMethods.PropVariantGetUInt32Elem(pv, i, out uint val);
-         array.SetValue(val, i);
-     }
+   {
+       PropVariantNativeMethods.PropVariantGetUInt32Elem(pv, i, out uint val);
+       array.SetValue(val, i);
+   }
                 },
 
                 {
                     typeof(long),
                     (pv, array, i) =>
-     {
-         PropVariantNativeMethods.PropVariantGetInt64Elem(pv, i, out long val);
-         array.SetValue(val, i);
-     }
+    {
+        PropVariantNativeMethods.PropVariantGetInt64Elem(pv, i, out long val);
+        array.SetValue(val, i);
+    }
                 },
 
                 {
                     typeof(ulong),
                     (pv, array, i) =>
-    {
-        PropVariantNativeMethods.PropVariantGetUInt64Elem(pv, i, out ulong val);
-        array.SetValue(val, i);
-    }
+   {
+       PropVariantNativeMethods.PropVariantGetUInt64Elem(pv, i, out ulong val);
+       array.SetValue(val, i);
+   }
                 },
 
                 {
@@ -91,17 +91,19 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
  {
      PropVariantNativeMethods.PropVariantGetFileTimeElem(pv, i, out System.Runtime.InteropServices.ComTypes.FILETIME val);
 
-     array.SetValue(DateTime.FromFileTime(GetFileTimeAsLong(ref val)), i);
+     long fileTime = GetFileTimeAsLong(ref val);
+
+     array.SetValue(DateTime.FromFileTime(fileTime), i);
  }
                 },
 
                 {
                     typeof(bool),
                     (pv, array, i) =>
-     {
-         PropVariantNativeMethods.PropVariantGetBooleanElem(pv, i, out bool val);
-         array.SetValue(val, i);
-     }
+  {
+      PropVariantNativeMethods.PropVariantGetBooleanElem(pv, i, out bool val);
+      array.SetValue(val, i);
+  }
                 },
 
                 {
@@ -132,8 +134,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
           val[a] = Marshal.ReadInt32(pv._ptr2,
               ((int)i * sizeof(decimal)) + (a * sizeof(int))); //index * size + offset quarter
-
-                array.SetValue(new decimal(val), i);
+                
+      array.SetValue(new decimal(val), i);
   }
                 },
 
@@ -186,13 +188,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
                     else // if the method was found, create an expression to call it.
                     {
                         // create parameters to action                    
-                        ParameterExpression arg = Expression.Parameter(typeof(object), nameof(arg));
+                        ParameterExpression arg = Expression.Parameter(typeof(object), "arg");
 
+                        // create an expression to invoke the constructor with an argument cast to the correct type
+                        NewExpression create = Expression.New(constructor, Expression.Convert(arg, type));
 
                         // compiles expression into an action delegate
-                        action = Expression.Lambda<Func<object, PropVariant>>(
-                            // create an expression to invoke the constructor with an argument cast to the correct type
-                            Expression.New(constructor, Expression.Convert(arg, type)), arg).Compile();
+                        action = Expression.Lambda<Func<object, PropVariant>>(create, arg).Compile();
                         _cache.Add(type, action);
                     }
                 }
@@ -205,7 +207,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         #region Fields
 
         [FieldOffset(0)]
-        readonly decimal _decimal;
+        decimal _decimal;
 
         // This is actually a VarEnum value, but the VarEnum type
         // requires 4 bytes instead of the expected 2.
@@ -229,32 +231,31 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         // the last 4-bytes of an 8-byte value on 32-bit
         // architectures.
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2006:UseSafeHandleToEncapsulateNativeResources")]
-        // [FieldOffset(12)]
-        [FieldOffset(16)]
-        readonly IntPtr _ptr2;
+        [FieldOffset(12)]
+        IntPtr _ptr2;
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2006:UseSafeHandleToEncapsulateNativeResources")]
         [FieldOffset(8)]
         IntPtr _ptr;
         [FieldOffset(8)]
-        readonly int _int32;
+        Int32 _int32;
         [FieldOffset(8)]
-        readonly uint _uint32;
+        UInt32 _uint32;
         [FieldOffset(8)]
-        readonly byte _byte;
+        byte _byte;
         [FieldOffset(8)]
-        readonly sbyte _sbyte;
+        sbyte _sbyte;
         [FieldOffset(8)]
-        readonly short _short;
+        short _short;
         [FieldOffset(8)]
-        readonly ushort _ushort;
+        ushort _ushort;
         [FieldOffset(8)]
-        readonly long _long;
+        long _long;
         [FieldOffset(8)]
-        readonly ulong _ulong;
+        ulong _ulong;
         [FieldOffset(8)]
-        readonly double _double;
+        double _double;
         [FieldOffset(8)]
-        readonly float _float;
+        float _float;
 
         #endregion // struct fields
 
@@ -281,96 +282,52 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
             _ptr = Marshal.StringToCoTaskMemUni(value);
         }
 
+        private static ArgumentNullException GetArgumentNullException() => new ArgumentNullException("value");
+
         /// <summary>
         /// Set a string vector
         /// </summary>
-        public PropVariant(string[] value)
-        {
-            if (value == null) throw new ArgumentNullException(nameof(value));
-
-            PropVariantNativeMethods.InitPropVariantFromStringVector(value, (uint)value.Length, this);
-        }
+        public PropVariant(string[] value) => PropVariantNativeMethods.InitPropVariantFromStringVector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
 
         /// <summary>
         /// Set a bool vector
         /// </summary>
-        public PropVariant(bool[] value)
-        {
-            if (value == null) throw new ArgumentNullException(nameof(value));
-
-            PropVariantNativeMethods.InitPropVariantFromBooleanVector(value, (uint)value.Length, this);
-        }
+        public PropVariant(bool[] value) => PropVariantNativeMethods.InitPropVariantFromBooleanVector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
 
         /// <summary>
         /// Set a short vector
         /// </summary>
-        public PropVariant(short[] value)
-        {
-            if (value == null) throw new ArgumentNullException(nameof(value));
-
-            PropVariantNativeMethods.InitPropVariantFromInt16Vector(value, (uint)value.Length, this);
-        }
+        public PropVariant(short[] value) => PropVariantNativeMethods.InitPropVariantFromInt16Vector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
 
         /// <summary>
         /// Set a short vector
         /// </summary>
-        public PropVariant(ushort[] value)
-        {
-            if (value == null) throw new ArgumentNullException(nameof(value));
-
-            PropVariantNativeMethods.InitPropVariantFromUInt16Vector(value, (uint)value.Length, this);
-
-        }
+        public PropVariant(ushort[] value) => PropVariantNativeMethods.InitPropVariantFromUInt16Vector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
 
         /// <summary>
         /// Set an int vector
         /// </summary>
-        public PropVariant(int[] value)
-        {
-            if (value == null) throw new ArgumentNullException(nameof(value));
-
-            PropVariantNativeMethods.InitPropVariantFromInt32Vector(value, (uint)value.Length, this);
-        }
+        public PropVariant(int[] value) => PropVariantNativeMethods.InitPropVariantFromInt32Vector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
 
         /// <summary>
         /// Set an uint vector
         /// </summary>
-        public PropVariant(uint[] value)
-        {
-            if (value == null) throw new ArgumentNullException(nameof(value));
-
-            PropVariantNativeMethods.InitPropVariantFromUInt32Vector(value, (uint)value.Length, this);
-        }
+        public PropVariant(uint[] value) => PropVariantNativeMethods.InitPropVariantFromUInt32Vector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
 
         /// <summary>
         /// Set a long vector
         /// </summary>
-        public PropVariant(long[] value)
-        {
-            if (value == null) throw new ArgumentNullException(nameof(value));
-
-            PropVariantNativeMethods.InitPropVariantFromInt64Vector(value, (uint)value.Length, this);
-        }
+        public PropVariant(long[] value) => PropVariantNativeMethods.InitPropVariantFromInt64Vector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
 
         /// <summary>
         /// Set a ulong vector
         /// </summary>
-        public PropVariant(ulong[] value)
-        {
-            if (value == null) throw new ArgumentNullException(nameof(value));
+        public PropVariant(ulong[] value) => PropVariantNativeMethods.InitPropVariantFromUInt64Vector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
 
-            PropVariantNativeMethods.InitPropVariantFromUInt64Vector(value, (uint)value.Length, this);
-        }
-
-        /// <summary>
+        /// <summary>>
         /// Set a double vector
         /// </summary>
-        public PropVariant(double[] value)
-        {
-            if (value == null) throw new ArgumentNullException(nameof(value));
-
-            PropVariantNativeMethods.InitPropVariantFromDoubleVector(value, (uint)value.Length, this);
-        }
+        public PropVariant(double[] value) => PropVariantNativeMethods.InitPropVariantFromDoubleVector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
 
 
         /// <summary>
@@ -378,7 +335,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         /// </summary>
         public PropVariant(DateTime[] value)
         {
-            if (value == null) throw new ArgumentNullException(nameof(value));
+            if (value == null) throw GetArgumentNullException();
+
             var fileTimeArr =
                 new System.Runtime.InteropServices.ComTypes.FILETIME[value.Length];
 
@@ -482,7 +440,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         /// <param name="value">Decimal array to wrap.</param>
         public PropVariant(decimal[] value)
         {
-            if (value == null) throw new ArgumentNullException(nameof(value));
+            if (value == null) throw GetArgumentNullException();
 
             _valueType = (ushort)(VarEnum.VT_DECIMAL | VarEnum.VT_VECTOR);
             _int32 = value.Length;
@@ -511,7 +469,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         /// </summary>        
         public PropVariant(float[] value)
         {
-            if (value == null) throw new ArgumentNullException(nameof(value));
+            if (value == null) throw GetArgumentNullException();
 
             _valueType = (ushort)(VarEnum.VT_R4 | VarEnum.VT_VECTOR);
             _int32 = value.Length;
@@ -569,7 +527,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         /// <param name="array">The new value to set.</param>
         internal void SetSafeArray(Array array)
         {
-            if (array == null) throw new ArgumentNullException(nameof(array));
+            if (array == null) throw new ArgumentNullException(nameof(array)); 
+
             const ushort vtUnknown = 13;
             IntPtr psa = PropVariantNativeMethods.SafeArrayCreateVector(vtUnknown, 0, (uint)array.Length);
 
@@ -594,7 +553,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
         #endregion
 
-        #region Public Properties
+        #region public Properties
 
         /// <summary>
         /// Gets or sets the variant type.
@@ -668,29 +627,29 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
                         return _decimal;
                     case VarEnum.VT_ARRAY | VarEnum.VT_UNKNOWN:
                         return CrackSingleDimSafeArray(_ptr);
-                    case VarEnum.VT_VECTOR | VarEnum.VT_LPWSTR:
+                    case (VarEnum.VT_VECTOR | VarEnum.VT_LPWSTR):
                         return GetVector<string>();
-                    case VarEnum.VT_VECTOR | VarEnum.VT_I2:
+                    case (VarEnum.VT_VECTOR | VarEnum.VT_I2):
                         return GetVector<short>();
-                    case VarEnum.VT_VECTOR | VarEnum.VT_UI2:
+                    case (VarEnum.VT_VECTOR | VarEnum.VT_UI2):
                         return GetVector<ushort>();
-                    case VarEnum.VT_VECTOR | VarEnum.VT_I4:
+                    case (VarEnum.VT_VECTOR | VarEnum.VT_I4):
                         return GetVector<int>();
-                    case VarEnum.VT_VECTOR | VarEnum.VT_UI4:
+                    case (VarEnum.VT_VECTOR | VarEnum.VT_UI4):
                         return GetVector<uint>();
-                    case VarEnum.VT_VECTOR | VarEnum.VT_I8:
+                    case (VarEnum.VT_VECTOR | VarEnum.VT_I8):
                         return GetVector<long>();
-                    case VarEnum.VT_VECTOR | VarEnum.VT_UI8:
+                    case (VarEnum.VT_VECTOR | VarEnum.VT_UI8):
                         return GetVector<ulong>();
-                    case VarEnum.VT_VECTOR | VarEnum.VT_R4:
+                    case (VarEnum.VT_VECTOR | VarEnum.VT_R4):
                         return GetVector<float>();
-                    case VarEnum.VT_VECTOR | VarEnum.VT_R8:
+                    case (VarEnum.VT_VECTOR | VarEnum.VT_R8):
                         return GetVector<double>();
-                    case VarEnum.VT_VECTOR | VarEnum.VT_BOOL:
+                    case (VarEnum.VT_VECTOR | VarEnum.VT_BOOL):
                         return GetVector<bool>();
-                    case VarEnum.VT_VECTOR | VarEnum.VT_FILETIME:
+                    case (VarEnum.VT_VECTOR | VarEnum.VT_FILETIME):
                         return GetVector<DateTime>();
-                    case VarEnum.VT_VECTOR | VarEnum.VT_DECIMAL:
+                    case (VarEnum.VT_VECTOR | VarEnum.VT_DECIMAL):
                         return GetVector<decimal>();
                     default:
                         // if the value cannot be marshaled
@@ -730,23 +689,25 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         private Array GetVector<T>()
         {
             int count = PropVariantNativeMethods.PropVariantGetElementCount(this);
-            if (count <= 0) return null;
+            if (count <= 0) return null; 
 
             lock (_padlock)
-
+            {
                 if (_vectorActions == null)
-
+                
                     _vectorActions = GenerateVectorActions();
+                            }
 
-            if (!_vectorActions.TryGetValue(typeof(T), out Action<PropVariant, Array, uint> action))
-
+            Action<PropVariant, Array, uint> action;
+            if (!_vectorActions.TryGetValue(typeof(T), out action))
+            
                 throw new InvalidCastException(LocalizedMessages.PropVariantUnsupportedType);
-
+            
             Array array = new T[count];
             for (uint i = 0; i < count; i++)
-
+            
                 action(this, array, i);
-
+            
             return array;
         }
 
@@ -754,7 +715,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         {
             uint cDims = PropVariantNativeMethods.SafeArrayGetDim(psa);
             if (cDims != 1)
-                throw new ArgumentException(LocalizedMessages.PropVariantMultiDimArray, nameof(psa));
+                throw new ArgumentException(LocalizedMessages.PropVariantMultiDimArray, "psa");
 
             int lBound = PropVariantNativeMethods.SafeArrayGetLBound(psa, 1U);
             int uBound = PropVariantNativeMethods.SafeArrayGetUBound(psa, 1U);
@@ -763,9 +724,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
             object[] array = new object[n];
             for (int i = lBound; i <= uBound; ++i)
-
+            
                 array[i] = PropVariantNativeMethods.SafeArrayGetElement(psa, ref i);
-
+            
             return array;
         }
 

@@ -34,7 +34,20 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                 var key = new PropertyKey();
 
                 _ = keyCollection.GetAt(index, ref key);
-                _ = valuesCollection.GetValue(ref key, out PropVariant propValue);
+
+#if NETFRAMEWORK
+
+                using (var propValue = new PropVariant())
+
+                { 
+
+#else
+
+                using var propValue = new PropVariant();
+
+#endif
+
+                _ = valuesCollection.GetValue(ref key, propValue);
 
                 if (data.ContainsKey(key.FormatId))
 
@@ -44,7 +57,11 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
                     data.Add(key.FormatId, new List<object> { propValue.Value });
 
-                propValue.Dispose();
+#if NETFRAMEWORK
+
+                }
+
+#endif
             }
 
             if (keyCollection != null)
@@ -69,11 +86,11 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
             return data;
         }
-        #endregion
+#endregion
 
         private readonly Dictionary<Guid, IList<object>> sensorDataDictionary = new Dictionary<Guid, IList<object>>();
 
-        #region IDictionary<Guid,IList<object>> Members
+#region IDictionary<Guid,IList<object>> Members
 
         /// <summary>
         /// Adds a data item to the dictionary.
@@ -125,9 +142,9 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             set => sensorDataDictionary[key] = value;
         }
 
-        #endregion
+#endregion
 
-        #region System.Collections.Generic.ICollection<KeyValuePair<Guid,IList<object>>> Members
+#region System.Collections.Generic.ICollection<KeyValuePair<Guid,IList<object>>> Members
         /// <summary>
         /// Adds a specified key/value data pair to the collection.
         /// </summary>
@@ -151,7 +168,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// </summary>
         /// <param name="array">The destination collection.</param>
         /// <param name="arrayIndex">The index of the item to copy.</param>
-        public void CopyTo( KeyValuePair<Guid, IList<object>>[] array, int arrayIndex) => (sensorDataDictionary as System.Collections.Generic.ICollection<KeyValuePair<Guid, IList<object>>>).CopyTo(array, arrayIndex);
+        public void CopyTo(KeyValuePair<Guid, IList<object>>[] array, int arrayIndex) => (sensorDataDictionary as System.Collections.Generic.ICollection<KeyValuePair<Guid, IList<object>>>).CopyTo(array, arrayIndex);
 
         /// <summary>
         /// Returns the number of items in the collection.
@@ -170,24 +187,24 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// <returns><b>true</b> if successful; otherwise <b>false</b></returns>
         public bool Remove(KeyValuePair<Guid, IList<object>> item) => (sensorDataDictionary as System.Collections.Generic.ICollection<KeyValuePair<Guid, IList<object>>>).Remove(item);
 
-        #endregion
+#endregion
 
-        #region IEnumerable<KeyValuePair<Guid,IList<object>>> Members
+#region IEnumerable<KeyValuePair<Guid,IList<object>>> Members
         /// <summary>
         /// Returns an enumerator for the collection.
         /// </summary>
         /// <returns>An enumerator.</returns>
         public IEnumerator<KeyValuePair<Guid, IList<object>>> GetEnumerator() => sensorDataDictionary as IEnumerator<KeyValuePair<Guid, IList<object>>>;
 
-        #endregion
+#endregion
 
-        #region IEnumerable Members
+#region IEnumerable Members
         /// <summary>
         /// Returns an enumerator for the collection.
         /// </summary>
         /// <returns>An enumerator.</returns>
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => sensorDataDictionary as System.Collections.IEnumerator;
 
-        #endregion
+#endregion
     }
 }

@@ -17,7 +17,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
         HResult GetCount(out uint pcelt);
 
-        //HResult GetAt( in uint index,  ref PropertyKey pKey,  ref PropVariant pValue);
+        //HResult GetAt( in uint index,  ref PropertyKey pKey,  PropVariant pValue);
 
         HResult GetValue(ref PropertyKey key, out object pValue, out Type valueType);
 

@@ -20,7 +20,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         HResult EnumObjects(
             [In] uint dwFlags,
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszParentObjectID,
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pFilter,
+            [In, MarshalAs(UnmanagedType.Interface)] IPortableDeviceValues pFilter,
             [Out, MarshalAs(UnmanagedType.Interface)] out IEnumPortableDeviceObjectIDs ppEnum);
 
         [PreserveSig]

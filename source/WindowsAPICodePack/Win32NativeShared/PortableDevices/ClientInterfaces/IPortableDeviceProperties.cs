@@ -32,19 +32,19 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
         [PreserveSig]
         HResult GetValues(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection pKeys,
+            [In, MarshalAs(UnmanagedType.Interface)] IPortableDeviceKeyCollection pKeys,
             [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppValues);
 
         [PreserveSig]
         HResult SetValues(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pValues,
+            [In, MarshalAs(UnmanagedType.Interface)] IPortableDeviceValues pValues,
             [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppResults);
 
         [PreserveSig]
         HResult Delete(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection pKeys);
+            [In, MarshalAs(UnmanagedType.Interface)] IPortableDeviceKeyCollection pKeys);
 
         [PreserveSig]
         HResult Cancel();

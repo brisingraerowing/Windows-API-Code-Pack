@@ -15,11 +15,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 
         public delegate T GetPortableDeviceObject<T>(in string id);
 
-        public static IList<T> GetItems<T>(IPortableDeviceContent portableDeviceContent, GetPortableDeviceObject<T> getPortableDeviceObjectDelegate)
+        public static IList<T> GetItems<T>( in IPortableDeviceContent2 portableDeviceContent, in string id, in GetPortableDeviceObject<T> getPortableDeviceObjectDelegate)
 
         {
 
-            HResult hr = portableDeviceContent.EnumObjects(0, Consts.DeviceObjectId, null, out IEnumPortableDeviceObjectIDs enumPortableDeviceObjectIDs);
+            HResult hr = portableDeviceContent.EnumObjects(0, id, null, out IEnumPortableDeviceObjectIDs enumPortableDeviceObjectIDs);
 
             if (CoreErrorHelper.Succeeded(hr))
 
@@ -33,7 +33,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 
                     string[] objectIDs = new string[10];
 
-                    hr = enumPortableDeviceObjectIDs.Next(10, objectIDs, out uint fetched);
+                    uint fetched = 0;
+
+                    hr = enumPortableDeviceObjectIDs.Next(10, objectIDs, ref fetched );
 
                     if (CoreErrorHelper.Succeeded(hr))
 

@@ -21,11 +21,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
         [PreserveSig]
         HResult GetAt(
             [In] uint dwIndex, 
-            [In] ref PropVariant pValue);
+            [In] PropVariant pValue);
 
         [PreserveSig]
         HResult Add(
-            [In] ref PropVariant pValue);
+            [In] PropVariant pValue);
 
         [PreserveSig]
         HResult GetType(

@@ -14,19 +14,19 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         internal Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.IPortableDeviceManager _Manager { get; set; } = null;
 
-        internal List<PortableDevice> _portableDevices = null;
+        private List<PortableDevice> _portableDevices = null;
 
-        public IReadOnlyCollection<PortableDevice> PortableDevices { get; }
+        public ReadOnlyCollection<PortableDevice> PortableDevices { get; }
 
-        internal List<PortableDevice> _privatePortableDevices = null;
+        private List<PortableDevice> _privatePortableDevices = null;
 
-        public IReadOnlyCollection<PortableDevice> PrivatePortableDevices { get; }
+        public ReadOnlyCollection<PortableDevice> PrivatePortableDevices { get; }
 
         public PortableDeviceManager()
 
         {
 
-            _Manager = new Win32Native.PortableDevices.PortableDeviceManager();
+            _Manager = ( Win32Native.PortableDevices. IPortableDeviceManager) new Win32Native.PortableDevices.PortableDeviceManager();
 
             _portableDevices = new List<PortableDevice>();
 
@@ -122,11 +122,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             List<PortableDevice> portableDevices = privateDevices ? _privatePortableDevices : _portableDevices;
 
-            int i = 0;
-
             _ = portableDevices.RemoveAll(d => !deviceIDs.Contains(d.DeviceId));
 
-            while (deviceIDs.Length > 0)
+            for (int i = 0; i < deviceIDs.Length;i++)
 
             {
 
@@ -137,8 +135,6 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 OnAddPortableDevice(deviceIDs[i], privateDevices);
 
                 deviceIDs[i] = null;
-
-                i++;
 
             }
 

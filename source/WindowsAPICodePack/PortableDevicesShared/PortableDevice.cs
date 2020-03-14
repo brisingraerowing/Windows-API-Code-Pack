@@ -19,6 +19,7 @@ using GuidAttribute = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySys
 using static Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PortableDeviceHelper;
 using Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem;
 using WinCopies.Collections;
+using ObjectProperty = Microsoft.WindowsAPICodePack.PropertySystem.ObjectProperty;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
@@ -309,7 +310,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         //}
 
-        //HResult INativeReadOnlyValueCollection.GetAt(in uint index, ref PropertyKey propertyKey, ref PropVariant propVariant)
+        //HResult INativeReadOnlyValueCollection.GetAt(in uint index, ref PropertyKey propertyKey, PropVariant propVariant)
 
         //{
 
@@ -397,7 +398,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             //}
 
-            HResult hr = _portableDeviceValues.GetValue(ref key, out PropVariant propVariant);
+            var propVariant = new PropVariant();
+
+            HResult hr = _portableDeviceValues.GetValue(ref key, propVariant);
 
             if (hr == HResult.ElementNotFound)
 
@@ -463,7 +466,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                 Debug.Assert(ppValue.Length == count);
 
-#endif 
+#endif
 
             return hr;
         }
@@ -707,7 +710,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         {
             _portableDevice = portableDevice ?? throw new ArgumentNullException(nameof(portableDevice));
 
-            ThrowWhenFailHResult(_portableDevice.NativePortableDevice.Capabilities(out _portableDeviceCapabilities));
+            ThrowWhenFailHResult(_portableDevice.NativePortableDevice.Capabilities(out IPortableDeviceCapabilities portableDeviceCapabilities));
+
+            _portableDeviceCapabilities = portableDeviceCapabilities;
         }
 
         private WindowsAPICodePack.PropertySystem.ReadOnlyCollection<PropertyKey> _commands;
@@ -767,13 +772,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         /// <summary>
         /// If the current <see cref="PortableDevice"/> has been created by a <see cref="PortableDevices.PortableDeviceManager"/>, gets that manager; otherwise returns <see langword="null"/>.
         /// </summary>
-        public PortableDeviceManager PortableDeviceManager { get { ThrowIfDisposed(); return _portableDeviceManager; } internal set { ThrowIfDisposed(); _portableDeviceManager = value; } }
+        public PortableDeviceManager PortableDeviceManager { get { ThrowIfDisposed(); return _portableDeviceManager; } }
 
         IPortableDeviceManager IPortableDevice.PortableDeviceManager => PortableDeviceManager;
 
         internal Win32Native.PortableDevices.IPortableDevice NativePortableDevice { get { ThrowIfDisposed(); return _nativePortableDevice; } private set { ThrowIfDisposed(); _nativePortableDevice = value; } }
-
-        internal IPortableDeviceProperties NativePortableDeviceProperties { get { ThrowIfDisposed(); return _nativePortableDeviceProperties; } private set { ThrowIfDisposed(); _nativePortableDeviceProperties = value; } }
 
         private IDeviceCapabilities _deviceCapabilities;
 
@@ -867,13 +870,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         {
 
-            PortableDeviceManager = portableDeviceManager;
+            _portableDeviceManager = portableDeviceManager;
 
             _deviceId = deviceId;
 
             uint length = 0;
 
-            ThrowWhenFailHResult(PortableDeviceManager._Manager.GetDeviceFriendlyName(DeviceId, null, length));
+            ThrowWhenFailHResult(PortableDeviceManager._Manager.GetDeviceFriendlyName(DeviceId, null, ref length));
 
             var stringBuilder = new StringBuilder((int)length);
 
@@ -883,7 +886,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             length = 0;
 
-            ThrowWhenFailHResult(PortableDeviceManager._Manager.GetDeviceDescription(DeviceId, null, length));
+            ThrowWhenFailHResult(PortableDeviceManager._Manager.GetDeviceDescription(DeviceId, null, ref length));
 
             stringBuilder = new StringBuilder((int)length);
 
@@ -893,7 +896,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             length = 0;
 
-            ThrowWhenFailHResult(PortableDeviceManager._Manager.GetDeviceManufacturer(DeviceId, null, length));
+            ThrowWhenFailHResult(PortableDeviceManager._Manager.GetDeviceManufacturer(DeviceId, null, ref length));
 
             stringBuilder = new StringBuilder((int)length);
 
@@ -903,11 +906,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
 
 
-            NativePortableDevice = new Win32Native.PortableDevices.PortableDevice();
+            NativePortableDevice = (Win32Native.PortableDevices.IPortableDevice)new Win32Native.PortableDevices.PortableDevice();
 
         }
 
-        public PortableDevice(in string deviceId) => _deviceId = deviceId;
+        // public PortableDevice(in string deviceId) => _deviceId = deviceId;
 
         public PortableDeviceOpeningOptions PortableDeviceOpeningOptions { get; private set; }
 
@@ -926,7 +929,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             //}
 
             // CoCreate an IPortableDeviceValues interface to hold the client information.
-            Win32Native.PortableDevices.PropertySystem.IPortableDeviceValues pClientInformation = new Win32Native.PortableDevices.PropertySystem.PortableDeviceValues();
+            var pClientInformation = (Win32Native.PortableDevices.PropertySystem.IPortableDeviceValues)new Win32Native.PortableDevices.PropertySystem.PortableDeviceValues();
 
             // if (CoreErrorHelper.Succeeded(hr))
             // {
@@ -1102,16 +1105,17 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         private IList<IPortableDeviceObject> _items;
         private PortableDeviceManager _portableDeviceManager;
         private Win32Native.PortableDevices.IPortableDevice _nativePortableDevice;
-        private IPortableDeviceProperties _nativePortableDeviceProperties;
         private string _deviceFriendlyName;
         private string _deviceDescription;
         private string _deviceManufacturer;
         private bool _isOpen;
         private readonly string _deviceId;
 
-        private IList<IPortableDeviceObject> _Items => IsOpen ? _items ?? (_items = GetItems<IPortableDeviceObject>(_content, (in string id) => new PortableDeviceObject(id, this))) : throw new PortableDeviceException("The device is not open.");
+        private IList<IPortableDeviceObject> _Items => IsOpen ? _items ?? (_items = GetItems<IPortableDeviceObject>(Content, Consts.DeviceObjectId, (in string id) => new PortableDeviceObject(id, this))) : throw new PortableDeviceException("The device is not open.");
 
         public IPortableDeviceObject this[int index] => _Items[index];
+
+        public int Count => _Items.Count;
 
         ///// <summary>
         ///// This method is used to send command to portable devices. This method takes two parameters of unmanaged type. If no managed wrapper is available in this code pack, you can use this method to create your own managed wrapper. Otherwise, if a managed wrapper exists, it is recommended to use these wrappers.
@@ -1184,8 +1188,6 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             }
 
-            _ = Marshal.ReleaseComObject(NativePortableDeviceProperties);
-            NativePortableDeviceProperties = null;
             _ = Marshal.ReleaseComObject(NativePortableDevice);
             NativePortableDevice = null;
             IsDisposed = true;
@@ -1256,7 +1258,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                 ThrowIfOperationIsNotAllowed();
 
-                    return _items ?? (_items = GetItems<IPortableDeviceObject>(_parentPortableDevice.Content, (in string id) => new PortableDeviceObject(id, this, _parentPortableDevice)));
+                return _items ?? (_items = GetItems<IPortableDeviceObject>(_parentPortableDevice.Content, _id, (in string id) => new PortableDeviceObject(id, this, _parentPortableDevice)));
             }
         }
 
@@ -1268,25 +1270,88 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         public bool IsDisposed { get; private set; }
 
-        internal PortableDeviceObject(string id, PortableDevice parentPortableDevice)
+#if NETFRAMEWORK
+        
+        private readonly string _name;
+
+        public string Name { get { ThrowIfDisposed(); return _name; } }
+
+#else
+
+#nullable enable
+        private readonly string? _name;
+
+        public string? Name { get { ThrowIfDisposed(); return _name; } }
+#nullable disable
+
+#endif
+
+        private PropertyCollection _properties;
+
+        /// <summary>
+        /// Gets all of the properties that are supported by the current <see cref="PortableDevice"/>.
+        /// </summary>
+        public PropertyCollection Properties
+        {
+            get
+            {
+                ThrowIfDisposed();
+
+                return _properties ?? (_properties = new PropertyCollection(new PortableDeviceProperties(_id, _parentPortableDevice)));
+            }
+        }
+
+        internal PortableDeviceObject(string id, PortableDevice parentPortableDevice) : this(id, null, parentPortableDevice, true)
 
         {
-
-            _id = id;
-
-            _parentPortableDevice = parentPortableDevice;
 
         }
 
-        internal PortableDeviceObject(string id, PortableDeviceObject parent, PortableDevice parentPortableDevice)
+#if DEBUG
+
+        internal PortableDeviceObject(string id, PortableDeviceObject parent, PortableDevice parentPortableDevice) : this(id, parent, parentPortableDevice, false) { }
+
+#endif
+
+        internal PortableDeviceObject(string id, PortableDeviceObject parent, PortableDevice parentPortableDevice
+#if DEBUG
+            , bool allowNullParentPortableDeviceObject
+#endif
+            )
 
         {
+
+            Debug.Assert(id is object && parentPortableDevice is object);
+
+#if DEBUG
+
+            if (!allowNullParentPortableDeviceObject)
+
+                Debug.Assert(parent is object);
+
+#endif
 
             _id = id;
 
             _parent = parent;
 
             _parentPortableDevice = parentPortableDevice;
+
+            if (Properties.TryGetValue(PortableDevices.PropertySystem.Properties.Legacy.Object.Common.Name, out ObjectProperty objectProperty) && objectProperty.IsSet)
+
+            {
+
+                Debug.WriteLine($"The {id} object is requesting the Name property.");
+
+                object value = objectProperty.GetValue(out Type valueType);
+
+                Debug.WriteLine($"The given value is from {valueType} type and is {value}.");
+
+                if (valueType == typeof(string))
+
+                    _name = (string)value;
+
+            }
 
         }
 

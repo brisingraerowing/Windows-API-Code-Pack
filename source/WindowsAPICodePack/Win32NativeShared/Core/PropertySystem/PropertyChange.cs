@@ -93,7 +93,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem
         /// <param name="propvarIn">A reference to a source <see cref="PropVariant"/> structure.</param>
         /// <param name="ppropvarOut">A pointer to a changed <see cref="PropVariant"/> structure.</param>
         /// <returns>If this method succeeds, it returns <see cref="HResult.Ok"/>. Otherwise, it returns an <see cref="HResult"/> error code.</returns>
-        HResult ApplyToPropVariant(ref PropVariant propvarIn, out PropVariant ppropvarOut);
+        HResult ApplyToPropVariant(PropVariant propvarIn, PropVariant ppropvarOut);
 
     }
 }

@@ -10,17 +10,5 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
         Guid(Guids.PortableDevices.PortableDeviceValuesCollection),
         ClassInterface(ClassInterfaceType.None),
         TypeLibType(TypeLibTypeFlags.FCanCreate)]
-    public class PortableDeviceValuesCollection : IPortableDeviceValuesCollection
-    {
-        [PreserveSig]
-        public extern virtual HResult GetCount([In] ref uint pcElems) ;
-        [PreserveSig]
-        public extern virtual HResult GetAt([In] uint dwIndex, [MarshalAs(UnmanagedType.Interface), Out] out IPortableDeviceValues ppValues) ;
-        [PreserveSig]
-        public extern virtual HResult Add([In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pValues) ;
-        [PreserveSig]
-        public extern virtual HResult Clear() ;
-        [PreserveSig]
-        public extern virtual HResult RemoveAt([In] uint dwIndex) ; 
-    }
+    public class PortableDeviceValuesCollection { }
 }

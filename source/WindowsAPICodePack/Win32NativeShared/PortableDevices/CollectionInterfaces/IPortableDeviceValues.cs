@@ -26,17 +26,17 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySyste
         HResult GetAt(
             [In] uint index,
             [In, Out] ref PropertyKey pKey,
-            [In, Out] ref PropVariant pValue);
+            [In, Out] PropVariant pValue);
 
         [PreserveSig]
         HResult SetValue(
             [In] ref PropertyKey key,
-            [In] ref PropVariant pValue);
+            [In] PropVariant pValue);
 
         [PreserveSig]
         HResult GetValue(
             [In] ref PropertyKey key,
-            [Out] out PropVariant pValue);
+            [Out] PropVariant pValue);
 
         [PreserveSig]
         HResult SetStringValue(

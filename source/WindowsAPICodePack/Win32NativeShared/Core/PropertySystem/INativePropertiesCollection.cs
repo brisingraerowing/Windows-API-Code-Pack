@@ -13,7 +13,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
         PropertyKey PropertyKey { get; }
 
-        PropVariant GetValue();
+        HResult GetValue(out PropVariant propVariant);
     }
 
     public struct ObjectProperty : IObjectProperty, IDisposable
@@ -24,7 +24,12 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
         private PropVariant _propVariant;
 
-        public PropVariant GetValue() => _propVariant;
+        public HResult GetValue(out PropVariant propVariant)
+        {
+            propVariant = _propVariant;
+
+            return HResult.Ok;
+        }
 
         public ObjectProperty(PropertyKey propertyKey, PropVariant propVariant)
 
@@ -58,6 +63,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
         HResult GetAttributes(ref PropertyKey propertyKey, out IDisposableReadOnlyNativePropertyValuesCollection attributes);
 
+        HResult GetPropertyInfo(ref PropertyKey propertyKey, out IPropertyInfo propertyInfo);
+
         HResult SetValues(ref IEnumerable<IObjectProperty> values, out INativeReadOnlyPropertyValuesCollection results);
 
         HResult Delete(params PropertyKey[] properties);
@@ -69,11 +76,37 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
     {
 
-        bool IsReadable { get; }
+        bool? IsReadable { get; }
 
-        bool IsReadOnly { get; }
+        bool? IsReadOnly { get; }
 
-        bool IsRemovable { get; }
+        bool? IsRemovable { get; }
+
+    }
+
+    public sealed class PropertyInfo : IPropertyInfo
+
+    {
+
+        public static PropertyInfo DefaultPropertyInfo => new PropertyInfo(false, false, false);
+
+        public bool? IsReadable { get; }
+
+        public bool? IsReadOnly { get; }
+
+        public bool? IsRemovable { get; }
+
+        public PropertyInfo(bool isReadable, bool isReadOnly, bool isRemovable)
+
+        {
+
+            IsReadable = isReadable;
+
+            IsReadOnly = isReadOnly;
+
+            IsRemovable = isRemovable;
+
+        }
 
     }
 
@@ -83,7 +116,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
         bool IsReadOnly { get; }
 
-        HResult GetAt(in uint index, ref PropertyKey propertyKey, ref PropVariant propVariant);
+        HResult GetAt(in uint index, ref PropertyKey propertyKey, out PropVariant propVariant);
 
         HResult GetCount(out uint count);
 
@@ -103,7 +136,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
     {
 
-        HResult SetValue(ref PropertyKey propertyKey, ref PropVariant propVariant);
+        HResult SetValue(ref PropertyKey propertyKey, PropVariant propVariant);
 
     }
 }

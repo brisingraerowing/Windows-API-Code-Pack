@@ -111,5 +111,10 @@
             If the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice"/> has been created by a <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceManager"/>, gets the device manufacturer of the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice"/>, otherwise gets <see langword="null"/>.
             </summary>
         </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceObject.Properties">
+            <summary>
+            Gets all of the properties that are supported by the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice"/>.
+            </summary>
+        </member>
     </members>
 </doc>

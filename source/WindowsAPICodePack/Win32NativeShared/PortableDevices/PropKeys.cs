@@ -587,7 +587,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             }
 
             /// <summary>
-            /// This class defines the legacy WPD Properties
+            /// This class defines the legacy WPD Properties. Some of these properties are still used.
             /// </summary>
             public static class Legacy
 

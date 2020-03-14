@@ -24,8 +24,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         [PreserveSig]
         HResult Next(
             [In] uint cObjects,
-            [In, Out, MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPWStr)] string[] pObjIDs,
-            [Out] out uint pcFetched);
+            [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPWStr)] string[] pObjIDs,
+            [In, Out] ref uint pcFetched);
 
         /// <summary>
         /// The <see cref="Skip"/> method skips a specified number of objects in the enumeration sequence.

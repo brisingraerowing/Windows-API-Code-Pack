@@ -13,7 +13,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
     /// <summary>
     /// Represents a portable device.
     /// </summary>
-    public interface IPortableDevice : IEnumerable<IPortableDeviceObject>, WinCopies.Util.DotNetFix. IDisposable
+    public interface IPortableDevice : IEnumerable<IPortableDeviceObject>, IReadOnlyCollection<IPortableDeviceObject>, IReadOnlyList<IPortableDeviceObject>, WinCopies.Util.DotNetFix. IDisposable
     {
 
         /// <summary>
@@ -46,8 +46,6 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         /// Gets a value that indicates whether the device is open.
         /// </summary>
         bool IsOpen { get; }
-
-        IPortableDeviceObject this[int index] { get; }
 
         PortableDeviceOpeningOptions PortableDeviceOpeningOptions { get; }
 
@@ -90,6 +88,18 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         /// Gets the id of the current <see cref="IPortableDeviceObject"/> on its parent device.
         /// </summary>
         string Id { get; }
+
+#if NETFRAMEWORK
+
+        string Name { get; }
+
+#else
+
+#nullable enable
+        string? Name { get; }
+#nullable disable
+
+#endif
 
         /// <summary>
         /// Gets the <see cref="IPortableDevice"/> on which the current <see cref="IPortableDeviceObject"/> is stored.

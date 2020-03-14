@@ -1974,12 +1974,12 @@
             Gets or sets a value that indicates whether the current property supports setting a truncated value.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.ObjectProperty.GetValue">
+        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.ObjectProperty.GetValue(System.Type@)">
             <summary>
             Gets the value of this property.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.ObjectProperty.SetValue(System.Object)">
+        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.ObjectProperty.SetValue(System.Object@)">
             <summary>
             <para>Sets the value of this property.</para>
             <para>The value of the property is cleared if the value is set to null.</para>

@@ -102,7 +102,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
         [PreserveSig]
         HResult GetProperty(
             [In,MarshalAs(UnmanagedType.LPWStr)] string pwszPropName,
-            [Out] out PropVariant pValue);
+            [Out] PropVariant pValue);
 
         [PreserveSig]
         HResult SetProperty(
