@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using ObjectProperty = Microsoft.WindowsAPICodePack.PropertySystem.ObjectProperty;
+using ObjectProperty = Microsoft.WindowsAPICodePack.PropertySystem.Property;
 using static Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PortableDeviceHelper;
 using System.Diagnostics;
 
@@ -260,7 +260,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem
 
         // todo: method for ValueCollection collections.
 
-        HResult INativePropertiesCollection.SetValues(ref IEnumerable<IObjectProperty> values, out INativeReadOnlyPropertyValuesCollection results)
+        HResult INativePropertiesCollection.SetValues(ref IEnumerable<IProperty> values, out INativeReadOnlyPropertyValuesCollection results)
         {
 
             // As this type is internal and calling the Dispose method directly is not recommended, implementing a property and checking it at the top of this method to know whether the current object is disposed is not necessary.
@@ -271,7 +271,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem
 
             HResult hr;
 
-            foreach (IObjectProperty value in values)
+            foreach (IProperty value in values)
 
             {
 
@@ -463,7 +463,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem
 
                 return hr;
 
-            IEnumerable<IObjectProperty> values = new IObjectProperty[] { new Win32Native.PropertySystem.ObjectProperty(propertyKey, propVariant) }.AsEnumerable();
+            IEnumerable<IProperty> values = new IProperty[] { new Win32Native.PropertySystem.ObjectProperty(propertyKey, propVariant) }.AsEnumerable();
 
             hr = ((INativePropertiesCollection)_portableDeviceProperties).SetValues(ref values, out INativeReadOnlyPropertyValuesCollection results);
 

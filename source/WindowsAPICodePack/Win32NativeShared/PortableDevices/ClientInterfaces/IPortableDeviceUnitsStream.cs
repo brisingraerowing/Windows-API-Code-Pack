@@ -17,7 +17,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
         [PreserveSig]
         HResult SeekInUnits(
             [In] long dlibMove,
-            [In] StreamUnits units,
+            [In] StreamUnitValues units,
             [In] uint dwOrigin,
             [In, Out] ref ulong plibNewPosition);
     }

@@ -1,9 +1,11 @@
 ﻿using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
+using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 using static Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem;
 
@@ -23,7 +25,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             #endregion
 
             /// <summary>
-            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.ObjectV1"/> and <see cref="Guids.PortableDevices.PropertySystem.ObjectV2"/>. This category is for all common object properties.
+            /// This class defines all Commands-Parameters and Options associated with: <see cref="ObjectV1"/> and <see cref="ObjectV2"/>. This category is for all common object properties.
             /// </summary>
             public static class Object
 
@@ -32,42 +34,42 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 /// <summary>
                 /// <para>Name: WPD_OBJECT_CONTENT_TYPE</para>
                 /// <para>Description: The abstract type for the object content-indicating the kinds of properties and data that may be supported on the object.</para>
-                /// <para>Type: VT_CLSID</para>
+                /// <para>Type: <see cref="VarEnum.VT_CLSID"/></para>
                 /// </summary>
                 public static PropertyKey ContentType => new PropertyKey(ObjectV1, 7);
 
                 /// <summary>
                 /// <para>Name: WPD_OBJECT_REFERENCES</para>
                 /// <para>Description: <see cref="IPortableDevicePropVariantCollection"/> of type VT_LPWSTR indicating a list of ObjectIDs.</para>
-                /// <para>Type: VT_UNKNOWN</para>
+                /// <para>Type: <see cref="VarEnum.VT_UNKNOWN"/></para>
                 /// </summary>
                 public static PropertyKey References => new PropertyKey(ObjectV1, 14);
 
                 /// <summary>
                 /// <para>Name: WPD_OBJECT_CONTAINER_FUNCTIONAL_OBJECT_ID</para>
                 /// <para>Description: Indicates the Object ID of the closest functional object ancestor. For example-objects that represent files/folders under a Storage functional object-will have this property set to the object ID of the storage functional object.</para>
-                /// <para>Type: VT_LPWSTR</para>
+                /// <para>Type: <see cref="VarEnum.VT_LPWSTR"/></para>
                 /// </summary>
                 public static PropertyKey ContainerFunctionalObjectId => new PropertyKey(ObjectV1, 23);
 
                 /// <summary>
                 /// <para>Name: WPD_OBJECT_GENERATE_THUMBNAIL_FROM_RESOURCE</para>
                 /// <para>Description: Indicates whether the thumbnail for this object should be generated from the default resource.</para>
-                /// <para>Type: VT_BOOL</para>
+                /// <para>Type: <see cref="VarEnum.VT_BOOL"/></para>
                 /// </summary>
                 public static PropertyKey GenerateThumbnailFromResource => new PropertyKey(ObjectV1, 24);
 
                 /// <summary>
                 /// <para>Name: WPD_OBJECT_HINT_LOCATION_DISPLAY_NAME</para>
                 /// <para>Description: If this object appears as a hint location-this property indicates the hint-specific name to display instead of the object name.</para>
-                /// <para>Type: VT_LPWSTR</para>
+                /// <para>Type: <see cref="VarEnum.VT_LPWSTR"/></para>
                 /// </summary>
                 public static PropertyKey HintLocationDisplayName => new PropertyKey(ObjectV1, 25);
 
                 /// <summary>
                 /// <para>Name: WPD_OBJECT_SUPPORTED_UNITS</para>
                 /// <para>Description: Indicates the units supported on this object.</para>
-                /// <para>Type: VT_UI4</para>
+                /// <para>Type: <see cref="VarEnum.VT_UI4"/></para>
                 /// </summary>
                 public static PropertyKey SupportedUnits => new PropertyKey(ObjectV2, 2);
 
@@ -76,12 +78,12 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             /// <summary>
             /// <para>Name: WPD_FUNCTIONAL_OBJECT_CATEGORY</para>
             /// <para>Description: Indicates the object's functional category.</para>
-            /// <para>Type: VT_CLSID</para>
+            /// <para>Type: <see cref="VarEnum.VT_CLSID"/></para>
             /// </summary>
             public static PropertyKey Category => new PropertyKey(FunctionalObjectV1, 2);
 
             /// <summary>
-            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.StorageObjectV1"/>. This category is for properties common to all objects whose functional category is <see cref="Guids.PortableDevices.PropertySystem.FunctionalCategory.Storage"/>.
+            /// This class defines all Commands-Parameters and Options associated with: <see cref="StorageObjectV1"/>. This category is for properties common to all objects whose functional category is <see cref="ContentType.FunctionalCategory.Storage"/>.
             /// </summary>
             public static class Storage
 
@@ -90,77 +92,78 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_TYPE</para>
                 /// <para>Description: Indicates the type of storage e.g. fixed-removable etc.</para>
-                /// <para>Type: VT_UI4</para>
+                /// <para>Type: <see cref="VarEnum.VT_UI4"/></para>
                 /// </summary>
+                /// <seealso cref="StorageTypeValues"/>
                 public static PropertyKey Type => new PropertyKey(StorageObjectV1, 2);
 
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_FILE_SYSTEM_TYPE</para>
                 /// <para>Description: Indicates the file system type e.g. "FAT32" or "NTFS" or "My Special File System"</para>
-                /// <para>Type: VT_LPWSTR</para>
+                /// <para>Type: <see cref="VarEnum.VT_LPWSTR"/></para>
                 /// </summary>
                 public static PropertyKey FileSystemType => new PropertyKey(StorageObjectV1, 3);
 
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_CAPACITY</para>
                 /// <para>Description: Indicates the total storage capacity in bytes.</para>
-                /// <para>Type: VT_UI8</para>
+                /// <para>Type: <see cref="VarEnum.VT_UI8"/></para>
                 /// </summary>
                 public static PropertyKey Capacity => new PropertyKey(StorageObjectV1, 4);
 
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_FREE_SPACE_IN_BYTES</para>
                 /// <para>Description: Indicates the available space in bytes.</para>
-                /// <para>Type: VT_UI8</para>
+                /// <para>Type: <see cref="VarEnum.VT_UI8"/></para>
                 /// </summary>
                 public static PropertyKey FreeSpaceInBytes => new PropertyKey(StorageObjectV1, 5);
 
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_FREE_SPACE_IN_OBJECTS</para>
                 /// <para>Description: Indicates the available space in objects e.g. available slots on a SIM card.</para>
-                /// <para>Type: VT_UI8</para>
+                /// <para>Type: <see cref="VarEnum.VT_UI8"/></para>
                 /// </summary>
                 public static PropertyKey FreeSpaceInObjects => new PropertyKey(StorageObjectV1, 6);
 
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_DESCRIPTION</para>
                 /// <para>Description: Contains a description of the storage.</para>
-                /// <para>Type: VT_LPWSTR</para>
+                /// <para>Type: <see cref="VarEnum.VT_LPWSTR"/></para>
                 /// </summary>
                 public static PropertyKey Description => new PropertyKey(StorageObjectV1, 7);
 
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_SERIAL_NUMBER</para>
                 /// <para>Description: Contains the serial number of the storage.</para>
-                /// <para>Type: VT_LPWSTR</para>
+                /// <para>Type: <see cref="VarEnum.VT_LPWSTR"/></para>
                 /// </summary>
                 public static PropertyKey SerialNumber => new PropertyKey(StorageObjectV1, 8);
 
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_MAX_OBJECT_SIZE</para>
                 /// <para>Description: Specifies the maximum size of a single object (in bytes) that can be placed on this storage.</para>
-                /// <para>Type: VT_UI8</para>
+                /// <para>Type: <see cref="VarEnum.VT_UI8"/></para>
                 /// </summary>
                 public static PropertyKey MaxObjectSize => new PropertyKey(StorageObjectV1, 9);
 
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_CAPACITY_IN_OBJECTS</para>
                 /// <para>Description: Indicates the total storage capacity in objects e.g. available slots on a SIM card.</para>
-                /// <para>Type: VT_UI8</para>
+                /// <para>Type: <see cref="VarEnum.VT_UI8"/></para>
                 /// </summary>
                 public static PropertyKey CapacityInObjects => new PropertyKey(StorageObjectV1, 10);
 
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_ACCESS_CAPABILITY</para>
                 /// <para>Description: This property identifies any write-protection that globally affects this storage. This takes precedence over access specified on individual objects.</para>
-                /// <para>Type: VT_UI4</para>
+                /// <para>Type: <see cref="VarEnum.VT_UI4"/></para>
                 /// </summary>
                 public static PropertyKey AccessCapability => new PropertyKey(StorageObjectV1, 11);
 
             }
 
             /// <summary>
-            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.StillImageCaptureObjectV1"/>. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_STILL_IMAGE_CAPTURE
+            /// This class defines all Commands-Parameters and Options associated with: <see cref="StillImageCaptureObjectV1"/>. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_STILL_IMAGE_CAPTURE
             /// </summary>
             public static class StillImageCapture
 
@@ -290,7 +293,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             }
 
             /// <summary>
-            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.RenderingInformationObjectV1"/>. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_AUDIO_RENDERING_INFORMATION.
+            /// This class defines all Commands-Parameters and Options associated with: <see cref="RenderingInformationObjectV1"/>. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_AUDIO_RENDERING_INFORMATION.
             /// </summary>
             public static class AudioRendering
 
@@ -312,7 +315,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             }
 
             /// <summary>
-            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.NetworkAssociationV1"/>. This category is for properties common to all network association objects.
+            /// This class defines all Commands-Parameters and Options associated with: <see cref="NetworkAssociationV1"/>. This category is for properties common to all network association objects.
             /// </summary>
             public static class NetworkAssociation
 
@@ -329,7 +332,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             }
 
             /// <summary>
-            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.ClientInformationV1"/>.
+            /// This class defines all Commands-Parameters and Options associated with: <see cref="ClientInformationV1"/>.
             /// </summary>
             public static class Client
 
@@ -337,105 +340,105 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 /// <summary>
                 /// <para>Name: WPD_CLIENT_NAME</para>
                 /// <para>Description: Specifies the name the client uses to identify itself.</para>
-                /// <para>Type: VT_LPWSTR</para>
-                /// <para>FormatID: <see cref="Guids.PortableDevices.PropertySystem.ClientInformationV1"/>, 2</para>
+                /// <para>Type: <see cref="VarEnum.VT_LPWSTR"/></para>
+                /// <para>FormatID: <see cref="ClientInformationV1"/>, 2</para>
                 /// </summary>
                 public static PropertyKey Name => new PropertyKey(ClientInformationV1, 2);
 
                 /// <summary>
                 /// <para>Name: WPD_CLIENT_MAJOR_VERSION</para>
                 /// <para>Description: Specifies the major version of the client.</para>
-                /// <para>Type: VT_UI4</para>
-                /// <para>FormatID: <see cref="Guids.PortableDevices.PropertySystem.ClientInformationV1"/>, 3</para>
+                /// <para>Type: <see cref="VarEnum.VT_UI4"/></para>
+                /// <para>FormatID: <see cref="ClientInformationV1"/>, 3</para>
                 /// </summary>
                 public static PropertyKey MajorVersion => new PropertyKey(ClientInformationV1, 3);
 
                 /// <summary>
                 /// <para>Name: WPD_CLIENT_MINOR_VERSION</para>
                 /// <para>Description: Specifies the major version of the client.</para>
-                /// <para>Type: VT_UI4</para>
-                /// <para>FormatID: <see cref="Guids.PortableDevices.PropertySystem.ClientInformationV1"/>, 4</para>
+                /// <para>Type: <see cref="VarEnum.VT_UI4"/></para>
+                /// <para>FormatID: <see cref="ClientInformationV1"/>, 4</para>
                 /// </summary>
                 public static PropertyKey MinorVersion => new PropertyKey(ClientInformationV1, 4);
 
                 /// <summary>
                 /// <para>Name: WPD_CLIENT_REVISION</para>
                 /// <para>Description: Specifies the revision (or build number) of the client.</para>
-                /// <para>Type: VT_UI4</para>
-                /// <para>FormatID: <see cref="Guids.PortableDevices.PropertySystem.ClientInformationV1"/>, 5</para>
+                /// <para>Type: <see cref="VarEnum.VT_UI4"/></para>
+                /// <para>FormatID: <see cref="ClientInformationV1"/>, 5</para>
                 /// </summary>
                 public static PropertyKey Revision => new PropertyKey(ClientInformationV1, 5);
 
                 /// <summary>
                 /// <para>Name: WPD_CLIENT_WMDRM_APPLICATION_PRIVATE_KEY</para>
                 /// <para>Description: Specifies the Windows Media DRM application private key of the client.</para>
-                /// <para>Type: VT_VECTOR | VT_UI1</para>
-                /// <para>FormatID: <see cref="Guids.PortableDevices.PropertySystem.ClientInformationV1"/>, 6</para>
+                /// <para>Type: <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_UI1"/></para>
+                /// <para>FormatID: <see cref="ClientInformationV1"/>, 6</para>
                 /// </summary>
                 public static PropertyKey WMDRMApplicationPrivateKey => new PropertyKey(ClientInformationV1, 6);
 
                 /// <summary>
                 /// <para>Name: WPD_CLIENT_WMDRM_APPLICATION_CERTIFICATE</para>
                 /// <para>Description: Specifies the Windows Media DRM application certificate of the client.</para>
-                /// <para>Type: VT_VECTOR | VT_UI1</para>
-                /// <para>FormatID: <see cref="Guids.PortableDevices.PropertySystem.ClientInformationV1"/>, 7</para>
+                /// <para>Type: <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_UI1"/></para>
+                /// <para>FormatID: <see cref="ClientInformationV1"/>, 7</para>
                 /// </summary>
                 public static PropertyKey WMDRMApplicationCertificate => new PropertyKey(ClientInformationV1, 7);
 
                 /// <summary>
                 /// <para>Name: WPD_CLIENT_SECURITY_QUALITY_OF_SERVICE</para>
                 /// <para>Description: Specifies the Security Quality of Service for the connection to the driver. This relates to the Security Quality of Service flags for CreateFile. For example-these allow or disallow a driver to impersonate the client.</para>
-                /// <para>Type: VT_UI4</para>
-                /// <para>FormatID: <see cref="Guids.PortableDevices.PropertySystem.ClientInformationV1"/>, 8</para>
+                /// <para>Type: <see cref="VarEnum.VT_UI4"/></para>
+                /// <para>FormatID: <see cref="ClientInformationV1"/>, 8</para>
                 /// </summary>
                 public static PropertyKey SecurityQualityOfService => new PropertyKey(ClientInformationV1, 8);
 
                 /// <summary>
                 /// <para>Name: WPD_CLIENT_DESIRED_ACCESS</para>
                 /// <para>Description: Specifies the desired access the client is requesting to this driver. The possible values are the same as for CreateFile (e.g. GENERIC_READ-GENERIC_WRITE etc.).</para>
-                /// <para>Type: VT_UI4</para>
-                /// <para>FormatID: <see cref="Guids.PortableDevices.PropertySystem.ClientInformationV1"/>, 9</para>
+                /// <para>Type: <see cref="VarEnum.VT_UI4"/></para>
+                /// <para>FormatID: <see cref="ClientInformationV1"/>, 9</para>
                 /// </summary>
                 public static PropertyKey DesiredAccess => new PropertyKey(ClientInformationV1, 9);
 
                 /// <summary>
                 /// <para>Name: WPD_CLIENT_SHARE_MODE</para>
                 /// <para>Description: Specifies the share mode the client is requesting to this driver. The possible values are the same as for CreateFile (e.g. FILE_SHARE_READ-FILE_SHARE_WRITE etc.).</para>
-                /// <para>Type: VT_UI4</para>
-                /// <para>FormatID: <see cref="Guids.PortableDevices.PropertySystem.ClientInformationV1"/>, 10</para>
+                /// <para>Type: <see cref="VarEnum.VT_UI4"/></para>
+                /// <para>FormatID: <see cref="ClientInformationV1"/>, 10</para>
                 /// </summary>
                 public static PropertyKey ShareMode => new PropertyKey(ClientInformationV1, 10);
 
                 /// <summary>
                 /// <para>Name: WPD_CLIENT_EVENT_COOKIE</para>
                 /// <para>Description: Client supplied cookie returned by the driver in events posted as a direct result of operations issued by this client.</para>
-                /// <para>Type: VT_LPWSTR</para>
-                /// <para>FormatID: <see cref="Guids.PortableDevices.PropertySystem.ClientInformationV1"/>, 11</para>
+                /// <para>Type: <see cref="VarEnum.VT_LPWSTR"/></para>
+                /// <para>FormatID: <see cref="ClientInformationV1"/>, 11</para>
                 /// </summary>
                 public static PropertyKey EventCookie => new PropertyKey(ClientInformationV1, 11);
 
                 /// <summary>
                 /// <para>Name: WPD_CLIENT_MINIMUM_RESULTS_BUFFER_SIZE</para>
                 /// <para>Description: Specifies the minimum buffer size (in bytes) used for sending commands to the driver.</para>
-                /// <para>Type: VT_UI4</para>
-                /// <para>FormatID: <see cref="Guids.PortableDevices.PropertySystem.ClientInformationV1"/>, 12</para>
+                /// <para>Type: <see cref="VarEnum.VT_UI4"/></para>
+                /// <para>FormatID: <see cref="ClientInformationV1"/>, 12</para>
                 /// </summary>
                 public static PropertyKey MinimumResultsBufferSize => new PropertyKey(ClientInformationV1, 12);
 
                 /// <summary>
                 /// <para>Name: WPD_CLIENT_MANUAL_CLOSE_ON_DISCONNECT</para>
                 /// <para>Description: An advanced option for clients that wish to manually call <see cref="IPortableDevice.Close"/> or <see cref="IPortableDeviceService.Close"/> for each object on device disconnect-instead of relying on the API to call Close on its behalf.</para>
-                /// <para>Type: VT_BOOL</para>
-                /// <para>FormatID: <see cref="Guids.PortableDevices.PropertySystem.ClientInformationV1"/>, 13</para>
+                /// <para>Type: <see cref="VarEnum.VT_BOOL"/></para>
+                /// <para>FormatID: <see cref="ClientInformationV1"/>, 13</para>
                 /// </summary>
                 public static PropertyKey ManualCloseOnDisconnect => new PropertyKey(ClientInformationV1, 13);
 
             }
 
             /// <summary>
-            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.DeviceV1"/>, <see cref="Guids.PortableDevices.PropertySystem.DeviceV2"/> and <see cref="Guids.PortableDevices.PropertySystem.DeviceV3"/>.
+            /// This class defines all Commands-Parameters and Options associated with: <see cref="DeviceV1"/>, <see cref="DeviceV2"/> and <see cref="DeviceV3"/>.
             /// </summary>
-            public static class DeviceProperty
+            public static class Device
 
             {
                 //
@@ -529,7 +532,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             #endregion
 
             /// <summary>
-            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.APIOptionsV1"/>. The properties in this category describe API options.
+            /// This class defines all Commands-Parameters and Options associated with: <see cref="APIOptionsV1"/>. The properties in this category describe API options.
             /// </summary>
             public static class APIOption
 
@@ -547,7 +550,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             }
 
             /// <summary>
-            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.ClassExtensionOptionsV1"/>, <see cref="Guids.PortableDevices.PropertySystem.ClassExtensionOptionsV2"/> and <see cref="Guids.PortableDevices.PropertySystem.ClassExtensionOptionsV3"/>. This category of properties relates to options used for the WPD device class extension.
+            /// This class defines all Commands-Parameters and Options associated with: <see cref="ClassExtensionOptionsV1"/>, <see cref="ClassExtensionOptionsV2"/> and <see cref="ClassExtensionOptionsV3"/>. This category of properties relates to options used for the WPD device class extension.
             /// </summary>
             public static class ClassExtensionOption
 
@@ -601,108 +604,166 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                     {
 
-                        //
-                        // WPD_OBJECT_ID 
-                        //   [ VT_LPWSTR ] Uniquely identifies object on the Portable Device.
-                        //   Recommended Device Services Property: PKEY_GenericObj_ObjectID
+                        /// <summary>
+                        /// <para>Name: WPD_OBJECT_ID</para>
+                        /// <para>Description: Uniquely identifies object on the Portable Device.</para>
+                        /// <para>Type: <see cref="VarEnum.VT_LPWSTR"/></para>
+                        /// <para>Recommended Device Services Property: PKEY_GenericObj_ObjectID</para>
+                        /// </summary>
                         public static PropertyKey Id => new PropertyKey(ObjectV1, 2);
-                        //
-                        // WPD_OBJECT_PARENT_ID 
-                        //   [ VT_LPWSTR ] Object identifier indicating the parent object.
-                        //   Recommended Device Services Property: PKEY_GenericObj_ParentID
+
+                        /// <summary>
+                        /// <para>Name: WPD_OBJECT_PARENT_ID</para>
+                        /// <para>Description: Object identifier indicating the parent object.</para>
+                        /// <para>Type: <see cref="VarEnum.VT_LPWSTR"/></para>
+                        /// <para>Recommended Device Services Property: PKEY_GenericObj_ParentID</para>
+                        /// </summary>
                         public static PropertyKey ParentId => new PropertyKey(ObjectV1, 3);
-                        //
-                        // WPD_OBJECT_NAME 
-                        //   [ VT_LPWSTR ] The display name for this object.
-                        //   Recommended Device Services Property: PKEY_GenericObj_Name
+
+                        /// <summary>
+                        /// <para>Name: WPD_OBJECT_NAME</para>
+                        /// <para>Description: The display name for this object.</para>
+                        /// <para>Type: <see cref="VarEnum.VT_LPWSTR"/></para>
+                        /// <para>Recommended Device Services Property: PKEY_GenericObj_Name</para>
+                        /// </summary>
                         public static PropertyKey Name => new PropertyKey(ObjectV1, 4);
-                        //
-                        // WPD_OBJECT_PERSISTENT_UNIQUE_ID 
-                        //   [ VT_LPWSTR ] Uniquely identifies the object on the Portable Device-similar to WPD_OBJECT_ID-but this ID will not change between sessions.
-                        //   Recommended Device Services Property: PKEY_GenericObj_PersistentUID
+
+                        /// <summary>
+                        /// <para>Name: WPD_OBJECT_PERSISTENT_UNIQUE_ID</para>
+                        /// <para>Description: Uniquely identifies the object on the Portable Device-similar to <see cref="Id"/>-but this ID will not change between sessions.</para>
+                        /// <para>Type: <see cref="VarEnum.VT_LPWSTR"/></para>-
+                        /// <para>Recommended Device Services Property: PKEY_GenericObj_PersistentUID</para>
+                        /// </summary>
                         public static PropertyKey PersistentUniqueId => new PropertyKey(ObjectV1, 5);
-                        //
-                        // WPD_OBJECT_FORMAT 
-                        //   [ VT_CLSID ] Indicates the format of the object's data.
-                        //   Recommended Device Services Property: PKEY_GenericObj_ObjectFormat
+
+                        /// <summary>
+                        /// <para>Name: WPD_OBJECT_FORMAT</para>
+                        /// <para>Description: Indicates the format of the object's data.</para>
+                        /// <para>Type: <see cref="VarEnum.VT_CLSID"/></para>
+                        /// <para>Recommended Device Services Property: PKEY_GenericObj_ObjectFormat</para>
+                        /// </summary>
                         public static PropertyKey Format => new PropertyKey(ObjectV1, 6);
-                        //
-                        // WPD_OBJECT_ISHIDDEN 
-                        //   [ VT_BOOL ] Indicates whether the object should be hidden.
-                        //   Recommended Device Services Property: PKEY_GenericObj_Hidden
+
+                        /// <summary>
+                        /// <para>Name: WPD_OBJECT_ISHIDDEN</para>
+                        /// <para>Description: Indicates whether the object should be hidden.</para>
+                        /// <para>Type: <see cref="VarEnum.VT_BOOL"/></para>
+                        /// <para>Recommended Device Services Property: PKEY_GenericObj_Hidden</para>
+                        /// </summary>
                         public static PropertyKey IsHidden => new PropertyKey(ObjectV1, 9);
-                        //
-                        // WPD_OBJECT_ISSYSTEM 
-                        //   [ VT_BOOL ] Indicates whether the object represents system data.
-                        //   Recommended Device Services Property: PKEY_GenericObj_SystemObject
+
+                        /// <summary>
+                        /// <para>Name: WPD_OBJECT_ISSYSTEM</para>
+                        /// <para>Description: Indicates whether the object represents system data.</para>
+                        /// <para>Type: <see cref="VarEnum.VT_BOOL"/></para>
+                        /// <para>Recommended Device Services Property: PKEY_GenericObj_SystemObject</para>
+                        /// </summary>
                         public static PropertyKey IsSystem => new PropertyKey(ObjectV1, 10);
-                        //
-                        // WPD_OBJECT_SIZE 
-                        //   [ VT_UI8 ] The size of the object data.
-                        //   Recommended Device Services Property: PKEY_GenericObj_ObjectSize
+
+                        /// <summary>
+                        /// <para>Name: WPD_OBJECT_SIZE</para>
+                        /// <para>Description: The size of the object data.</para>
+                        /// <para>Type: <see cref="VarEnum.VT_UI8"/></para>
+                        /// <para>Recommended Device Services Property: PKEY_GenericObj_ObjectSize</para>
+                        /// </summary>
                         public static PropertyKey Size => new PropertyKey(ObjectV1, 11);
-                        //
-                        // WPD_OBJECT_ORIGINAL_FILE_NAME 
-                        //   [ VT_LPWSTR ] Contains the name of the file this object represents.
-                        //   Recommended Device Services Property: PKEY_GenericObj_ObjectFileName
+
+                        /// <summary>
+                        /// <para>Name: WPD_OBJECT_ORIGINAL_FILE_NAME</para>
+                        /// <para>Description: Contains the name of the file this object represents.</para>
+                        /// <para>Type: <see cref="VarEnum.VT_LPWSTR"/></para>
+                        /// <para>Recommended Device Services Property: PKEY_GenericObj_ObjectFileName</para>
+                        /// </summary>
                         public static PropertyKey OriginalFileName => new PropertyKey(ObjectV1, 12);
-                        //
-                        // WPD_OBJECT_NON_CONSUMABLE 
-                        //   [ VT_BOOL ] This property determines whether or not this object is intended to be understood by the device-or whether it has been placed on the device just for storage.
-                        //   Recommended Device Services Property: PKEY_GenericObj_NonConsumable
+
+                        /// <summary>
+                        /// <para>Name: WPD_OBJECT_NON_CONSUMABLE</para>
+                        /// <para>Description: This property determines whether or not this object is intended to be understood by the device-or whether it has been placed on the device just for storage.</para>
+                        /// <para>Type: <see cref="VarEnum.VT_BOOL"/></para>
+                        /// <para>Recommended Device Services Property: PKEY_GenericObj_NonConsumable</para>
+                        /// </summary>
                         public static PropertyKey NonConsumable => new PropertyKey(ObjectV1, 13);
-                        //
-                        // WPD_OBJECT_KEYWORDS 
-                        //   [ VT_LPWSTR ] String containing a list of keywords associated with this object.
-                        //   Recommended Device Services Property: PKEY_GenericObj_Keywords
+
+                        /// <summary>
+                        /// <para>Name: WPD_OBJECT_KEYWORDS</para>
+                        /// <para>Description: String containing a list of keywords associated with this object.</para>
+                        /// <para>Type: <see cref="VarEnum.VT_LPWSTR"/></para>
+                        /// <para>Recommended Device Services Property: PKEY_GenericObj_Keywords</para>
+                        /// </summary>
                         public static PropertyKey Keywords => new PropertyKey(ObjectV1, 15);
-                        //
-                        // WPD_OBJECT_SYNC_ID 
-                        //   [ VT_LPWSTR ] Opaque string set by client to retain state between sessions without retaining a catalogue of connected device content.
-                        //   Recommended Device Services Property: PKEY_GenericObj_SyncID
+
+                        /// <summary>
+                        /// <para>Name: WPD_OBJECT_SYNC_ID</para>
+                        /// <para>Description: Opaque string set by client to retain state between sessions without retaining a catalogue of connected device content.</para>
+                        /// <para>Type: <see cref="VarEnum.VT_LPWSTR"/></para>
+                        /// <para>Recommended Device Services Property: PKEY_GenericObj_SyncID</para>
+                        /// </summary>
                         public static PropertyKey SyncId => new PropertyKey(ObjectV1, 16);
-                        //
-                        // WPD_OBJECT_IS_DRM_PROTECTED 
-                        //   [ VT_BOOL ] Indicates whether the media data is DRM protected.
-                        //   Recommended Device Services Property: PKEY_GenericObj_DRMStatus
+
+                        /// <summary>
+                        /// <para>Name: WPD_OBJECT_IS_DRM_PROTECTED</para>
+                        /// <para>Description: Indicates whether the media data is DRM protected.</para>
+                        /// <para>Type: <see cref="VarEnum.VT_BOOL"/></para>
+                        /// <para>Recommended Device Services Property: PKEY_GenericObj_DRMStatus</para>
+                        /// </summary>
                         public static PropertyKey IsDRMProtected => new PropertyKey(ObjectV1, 17);
-                        //
-                        // WPD_OBJECT_DATE_CREATED 
-                        //   [ VT_DATE ] Indicates the date and time the object was created on the device.
-                        //   Recommended Device Services Property: PKEY_GenericObj_DateCreated
+
+                        /// <summary>
+                        /// <para>Name: WPD_OBJECT_DATE_CREATED</para>
+                        /// <para>Description: Indicates the date and time the object was created on the device.</para>
+                        /// <para>Type: <see cref="VarEnum.VT_DATE"/></para>
+                        /// <para>Recommended Device Services Property: PKEY_GenericObj_DateCreated</para>
+                        /// </summary>
                         public static PropertyKey DateCreated => new PropertyKey(ObjectV1, 18);
-                        //
-                        // WPD_OBJECT_DATE_MODIFIED 
-                        //   [ VT_DATE ] Indicates the date and time the object was modified on the device.
-                        //   Recommended Device Services Property: PKEY_GenericObj_DateModified
+
+                        /// <summary>
+                        /// <para>Name: WPD_OBJECT_DATE_MODIFIED</para>
+                        /// <para>Description: Indicates the date and time the object was modified on the device.</para>
+                        /// <para>Type: <see cref="VarEnum.VT_DATE"/></para>
+                        /// <para>Recommended Device Services Property: PKEY_GenericObj_DateModified</para>
+                        /// </summary>
                         public static PropertyKey DateModified => new PropertyKey(ObjectV1, 19);
-                        //
-                        // WPD_OBJECT_DATE_AUTHORED 
-                        //   [ VT_DATE ] Indicates the date and time the object was authored (e.g. for music-this would be the date the music was recorded).
-                        //   Recommended Device Services Property: PKEY_GenericObj_DateAuthored
+
+                        /// <summary>
+                        /// <para>Name: WPD_OBJECT_DATE_AUTHORED</para>
+                        /// <para>Description: Indicates the date and time the object was authored (e.g. for music-this would be the date the music was recorded).</para>
+                        /// <para>Type: <see cref="VarEnum.VT_DATE"/></para>
+                        /// <para>Recommended Device Services Property: PKEY_GenericObj_DateAuthored</para>
+                        /// </summary>
                         public static PropertyKey DateAuthored => new PropertyKey(ObjectV1, 20);
-                        //
-                        // WPD_OBJECT_BACK_REFERENCES 
-                        //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection of type VT_LPWSTR indicating a list of ObjectIDs.
-                        //   Recommended Device Services Property: PKEY_GenericObj_ReferenceParentID
+
+                        /// <summary>
+                        /// <para>Name: WPD_OBJECT_BACK_REFERENCES</para>
+                        /// <para>Description: IPortableDevicePropVariantCollection of type VT_LPWSTR indicating a list of ObjectIDs.</para>
+                        /// <para>Type: <see cref="VarEnum.VT_UNKNOWN"/></para>
+                        /// <para>Recommended Device Services Property: PKEY_GenericObj_ReferenceParentID</para>
+                        /// </summary>
                         public static PropertyKey BackReferences => new PropertyKey(ObjectV1, 21);
-                        //
-                        // WPD_OBJECT_CAN_DELETE 
-                        //   [ VT_BOOL ] Indicates whether the object can be deleted-or not.
-                        //   Recommended Device Services Property: PKEY_GenericObj_ProtectionStatus
+
+                        /// <summary>
+                        /// <para>Name: WPD_OBJECT_CAN_DELETE</para>
+                        /// <para>Description: Indicates whether the object can be deleted-or not.</para>
+                        /// <para>Type: <see cref="VarEnum.VT_BOOL"/></para>
+                        /// <para>Recommended Device Services Property: PKEY_GenericObj_ProtectionStatus</para>
+                        /// </summary>
                         public static PropertyKey CanDelete => new PropertyKey(ObjectV1, 26);
-                        //
-                        // WPD_OBJECT_LANGUAGE_LOCALE 
-                        //   [ VT_LPWSTR ] Identifies the language of this object. If multiple languages are contained in this object-it should identify the primary language (if any).
-                        //   Recommended Device Services Property: PKEY_GenericObj_LanguageLocale
+
+                        /// <summary>
+                        /// <para>Name: WPD_OBJECT_LANGUAGE_LOCALE</para>
+                        /// <para>Description: Identifies the language of this object. If multiple languages are contained in this object-it should identify the primary language (if any).</para>
+                        /// <para>Type: <see cref="VarEnum.VT_LPWSTR"/></para>
+                        /// <para>Recommended Device Services Property: PKEY_GenericObj_LanguageLocale</para>
+                        /// </summary>
                         public static PropertyKey LanguageLocale => new PropertyKey(ObjectV1, 27);
 
                     }
 
-                    //
-                    // WPD_FOLDER_CONTENT_TYPES_ALLOWED 
-                    //   [ VT_UNKNOWN ] Indicates the subset of content types that can be created in this folder directly (i.e. children may have different restrictions).
-                    //   Recommended Device Services Property: None
+                    /// <summary>
+                    /// <para>Name: WPD_FOLDER_CONTENT_TYPES_ALLOWED</para>
+                    /// <para>Description: Indicates the subset of content types that can be created in this folder directly (i.e. children may have different restrictions).</para>
+                    /// <para>Type: <see cref="VarEnum.VT_UNKNOWN"/></para>
+                    /// <para>Recommended Device Services Property: None</para>
+                    /// </summary>
                     public static PropertyKey FolderContentTypesAllowed => new PropertyKey(FolderObjectV1, 2);
 
                     public static class Image
@@ -1120,7 +1181,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     }
 
                     /// <summary>
-                    /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.VideoObjectV1"/>. This category is for properties common to all video objects.
+                    /// This class defines all Commands-Parameters and Options associated with: <see cref="VideoObjectV1"/>. This category is for properties common to all video objects.
                     /// </summary>
                     public static class Video
 
@@ -1189,7 +1250,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     }
 
                     /// <summary>
-                    /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.CommonInformationObjectV1"/>. This category is properties that pertain to informational objects such as appointments-tasks-memos and even documents.
+                    /// This class defines all Commands-Parameters and Options associated with: <see cref="CommonInformationObjectV1"/>. This category is properties that pertain to informational objects such as appointments-tasks-memos and even documents.
                     /// </summary>
                     public static class Information
 
@@ -1603,7 +1664,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         }
 
         /// <summary>
-        /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.PropertyAttributesV1"/> and <see cref="Guids.PortableDevices.PropertySystem.PropertyAttributesV2"/>.
+        /// This class defines all Commands-Parameters and Options associated with: <see cref="PropertyAttributesV1"/> and <see cref="PropertyAttributesV2"/>.
         /// </summary>
         public static class Attribute
 
@@ -1613,68 +1674,108 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             {
 
-                //
-                // WPD_PROPERTY_ATTRIBUTE_FORM  
-                //   [ VT_UI4 ] Specifies the form of the valid values allowed for this property.
+                /// <summary>
+                /// <para>Name: WPD_PROPERTY_ATTRIBUTE_FORM</para>
+                /// <para>Description: Specifies the form of the valid values allowed for this property.</para>
+                /// <para>Type: <see cref="VarEnum.VT_UI4"/></para>
+                /// </summary>
                 public static PropertyKey Form => new PropertyKey(PropertyAttributesV1, 2);
-                //
-                // WPD_PROPERTY_ATTRIBUTE_CAN_READ  
-                //   [ VT_BOOL ] Indicates whether client applications have permission to Read the property.
+
+                /// <summary>
+                /// <para>Name: WPD_PROPERTY_ATTRIBUTE_CAN_READ</para>
+                /// <para>Description: Indicates whether client applications have permission to Read the property.</para>
+                /// <para>Type: <see cref="VarEnum.VT_BOOL"/></para>
+                /// </summary>
                 public static PropertyKey CanRead => new PropertyKey(PropertyAttributesV1, 3);
-                //
-                // WPD_PROPERTY_ATTRIBUTE_CAN_WRITE  
-                //   [ VT_BOOL ] Indicates whether client applications have permission to Write the property.
+
+                /// <summary>
+                /// <para>Name: WPD_PROPERTY_ATTRIBUTE_CAN_WRITE</para>
+                /// <para>Description: Indicates whether client applications have permission to Write the property.</para>
+                /// <para>Type: <see cref="VarEnum.VT_BOOL"/></para>
+                /// </summary>
                 public static PropertyKey CanWrite => new PropertyKey(PropertyAttributesV1, 4);
-                //
-                // WPD_PROPERTY_ATTRIBUTE_CAN_DELETE  
-                //   [ VT_BOOL ] Indicates whether client applications have permission to Delete the property.
+
+                /// <summary>
+                /// <para>Name: WPD_PROPERTY_ATTRIBUTE_CAN_DELETE</para>
+                /// <para>Description: Indicates whether client applications have permission to Delete the property.</para>
+                /// <para>Type: <see cref="VarEnum.VT_BOOL"/></para>
+                /// </summary>
                 public static PropertyKey CanDelete => new PropertyKey(PropertyAttributesV1, 5);
-                //
-                // WPD_PROPERTY_ATTRIBUTE_DEFAULT_VALUE  
-                //   [ VT_XXXX ] Specifies the default value for a write-able property.
+
+                /// <summary>
+                /// <para>Name: WPD_PROPERTY_ATTRIBUTE_DEFAULT_VALUE</para>
+                /// <para>Description: Specifies the default value for a write-able property.</para>
+                /// <para>Type: VT_XXXX</para>
+                /// </summary>
                 public static PropertyKey DefaultValue => new PropertyKey(PropertyAttributesV1, 6);
-                //
-                // WPD_PROPERTY_ATTRIBUTE_FAST_PROPERTY  
-                //   [ VT_BOOL ] If True-then this property belongs to the PORTABLE_DEVICE_FAST_PROPERTIES group.
+
+                /// <summary>
+                /// <para>Name: WPD_PROPERTY_ATTRIBUTE_FAST_PROPERTY</para>
+                /// <para>Description: If True-then this property belongs to the PORTABLE_DEVICE_FAST_PROPERTIES group.</para>
+                /// <para>Type: <see cref="VarEnum.VT_BOOL"/></para>
+                /// </summary>
                 public static PropertyKey FastProperty => new PropertyKey(PropertyAttributesV1, 7);
-                //
-                // WPD_PROPERTY_ATTRIBUTE_RANGE_MIN  
-                //   [ VT_XXXX ] The minimum value for a property whose form is of WPD_PROPERTY_ATTRIBUTE_FORM_RANGE.
+
+                /// <summary>
+                /// <para>Name: WPD_PROPERTY_ATTRIBUTE_RANGE_MIN</para>
+                /// <para>Description: The minimum value for a property whose form is of <see cref="PropertyAttributeFormValues.Range"/>.</para>
+                /// <para>Type: VT_XXXX</para>
+                /// </summary>
                 public static PropertyKey RangeMin => new PropertyKey(PropertyAttributesV1, 8);
-                //
-                // WPD_PROPERTY_ATTRIBUTE_RANGE_MAX  
-                //   [ VT_XXXX ] The maximum value for a property whose form is of WPD_PROPERTY_ATTRIBUTE_FORM_RANGE.
+
+                /// <summary>
+                /// <para>Name: WPD_PROPERTY_ATTRIBUTE_RANGE_MAX</para>
+                /// <para>Description: The maximum value for a property whose form is of <see cref="PropertyAttributeFormValues.Range"/>.</para>
+                /// <para>Type: VT_XXXX</para>
+                /// </summary>
                 public static PropertyKey RangeMax => new PropertyKey(PropertyAttributesV1, 9);
-                //
-                // WPD_PROPERTY_ATTRIBUTE_RANGE_STEP  
-                //   [ VT_XXXX ] The step value for a property whose form is of WPD_PROPERTY_ATTRIBUTE_FORM_RANGE.
+
+                /// <summary>
+                /// <para>Name: WPD_PROPERTY_ATTRIBUTE_RANGE_STEP</para>
+                /// <para>Description: The step value for a property whose form is of <see cref="PropertyAttributeFormValues.Range"/>.</para>
+                /// <para>Type: VT_XXXX</para>
+                /// </summary>
                 public static PropertyKey RangeStep => new PropertyKey(PropertyAttributesV1, 10);
-                //
-                // WPD_PROPERTY_ATTRIBUTE_ENUMERATION_ELEMENTS  
-                //   [ VT_UNKNOWN ] An IPortableDevicePropVariantCollection containing the enumeration values.
+
+                /// <summary>
+                /// <para>Name: WPD_PROPERTY_ATTRIBUTE_ENUMERATION_ELEMENTS</para>
+                /// <para>Description: An IPortableDevicePropVariantCollection containing the enumeration values.</para>
+                /// <para>Type: <see cref="VarEnum.VT_UNKNOWN"/></para>
+                /// </summary>
                 public static PropertyKey EnumerationElements => new PropertyKey(PropertyAttributesV1, 11);
-                //
-                // WPD_PROPERTY_ATTRIBUTE_REGULAR_EXPRESSION  
-                //   [ VT_LPWSTR ] A regular expression string indicating acceptable values for properties whose form is WPD_PROPERTY_ATTRIBUTE_FORM_REGULAR_EXPRESSION.
+
+                /// <summary>
+                /// <para>Name: WPD_PROPERTY_ATTRIBUTE_REGULAR_EXPRESSION</para>
+                /// <para>Description: A regular expression string indicating acceptable values for properties whose form is <see cref="PropertyAttributeFormValues.RegularExpression"/>.</para>
+                /// <para>Type: <see cref="VarEnum.VT_LPWSTR"/></para>
+                /// </summary>
                 public static PropertyKey RegularExpression => new PropertyKey(PropertyAttributesV1, 12);
-                //
-                // WPD_PROPERTY_ATTRIBUTE_MAX_SIZE  
-                //   [ VT_UI8 ] This indicates the maximum size (in bytes) for the value of this property.
+
+                /// <summary>
+                /// <para>Name: WPD_PROPERTY_ATTRIBUTE_MAX_SIZE</para>
+                /// <para>Description: This indicates the maximum size (in bytes) for the value of this property.</para>
+                /// <para>Type: <see cref="VarEnum.VT_UI8"/></para>
+                /// </summary>
                 public static PropertyKey MaxSize => new PropertyKey(PropertyAttributesV1, 13);
 
-                //
-                // WPD_PROPERTY_ATTRIBUTE_NAME  
-                //   [ VT_LPWSTR ] Contains the name of the property.
+                /// <summary>
+                /// <para>Name: WPD_PROPERTY_ATTRIBUTE_NAME</para>
+                /// <para>Description: Contains the name of the property.</para>
+                /// <para>Type: <see cref="VarEnum.VT_LPWSTR"/></para>
+                /// </summary>
                 public static PropertyKey Name => new PropertyKey(PropertyAttributesV2, 2);
-                //
-                // WPD_PROPERTY_ATTRIBUTE_VARTYPE  
-                //   [ VT_UI4 ] Contains the VARTYPE of the property.
+
+                /// <summary>
+                /// <para>Name: WPD_PROPERTY_ATTRIBUTE_VARTYPE</para>
+                /// <para>Description: Contains the VARTYPE of the property.</para>
+                /// <para>Type: <see cref="VarEnum.VT_UI4"/></para>
+                /// </summary>
                 public static PropertyKey VarType => new PropertyKey(PropertyAttributesV2, 3);
 
             }
 
             /// <summary>
-            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.FormatAttributesV1"/>. The properties in this category describe format attributes.
+            /// This class defines all Commands-Parameters and Options associated with: <see cref="FormatAttributesV1"/>. The properties in this category describe format attributes.
             /// </summary>
             public static class Format
 
@@ -1692,7 +1793,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             }
 
             /// <summary>
-            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.MethodAttributesV1"/>. The properties in this category describe method attributes.
+            /// This class defines all Commands-Parameters and Options associated with: <see cref="MethodAttributesV1"/>. The properties in this category describe method attributes.
             /// </summary>
             public static class Method
 
@@ -1718,7 +1819,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             }
 
             /// <summary>
-            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.ParameterAttributesV1"/>. The properties in this category describe parameter attributes.
+            /// This class defines all Commands-Parameters and Options associated with: <see cref="ParameterAttributesV1"/>. The properties in this category describe parameter attributes.
             /// </summary>
             public static class Parameter
 
@@ -1784,7 +1885,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
     {
 
         /// <summary>
-        /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.EventV1"/> and <see cref="Guids.PortableDevices.PropertySystem.EventV2"/>. The properties in this category are for properties that may be needed for event processing-but do not have object property equivalents(i.e.they are not exposed as object properties-but rather-used only as event parameters).
+        /// This class defines all Commands-Parameters and Options associated with: <see cref="EventV1"/> and <see cref="EventV2"/>. The properties in this category are for properties that may be needed for event processing-but do not have object property equivalents(i.e.they are not exposed as object properties-but rather-used only as event parameters).
         /// </summary>
         public static class Parameter
 
@@ -1826,7 +1927,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         }
 
         /// <summary>
-        /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.EventOptionsV1"/>. The properties in this category describe event options.
+        /// This class defines all Commands-Parameters and Options associated with: <see cref="EventOptionsV1"/>. The properties in this category describe event options.
         /// </summary>
         public static class Option
 
@@ -1844,7 +1945,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         }
 
         /// <summary>
-        /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.EventAttributesV1"/>. The properties in this category describe event attributes.
+        /// This class defines all Commands-Parameters and Options associated with: <see cref="EventAttributesV1"/>. The properties in this category describe event attributes.
         /// </summary>
         public static class Attribute
 
@@ -3765,7 +3866,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         }
 
         /// <summary>
-        /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.PropertySystem.ResourceAttributesV1"/>.
+        /// This class defines all Commands-Parameters and Options associated with: <see cref="ResourceAttributesV1"/>.
         /// </summary>
         public static class ResourceAttribute
 

@@ -1,10 +1,12 @@
-﻿namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem
+﻿using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.EventSystem;
+
+namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem
 {
     /// <summary>
     /// This enum describes options that are supported by a device when deleting an object.
     /// </summary>
-    /// <remarks>The application can retrieve the deletion options that the device supports by calling <see cref="IPortableDeviceCapabilities.GetCommandOptions"/> for the WPD_COMMAND_OBJECT_MANAGEMENT_DELETE_OBJECTS command. It should examine the WPD_OPTION_OBJECT_MANAGEMENT_RECURSIVE_DELETE_SUPPORTED option value that this method returns in an <see cref="IPortableDeviceValuesCollection"/> object.</remarks>
-    public enum DeleteObjectOptions
+    /// <remarks>The application can retrieve the deletion options that the device supports by calling <see cref="IPortableDeviceCapabilities.GetCommandOptions"/> for the <see cref="Microsoft.WindowsAPICodePack.PortableDevices.CommandSystem.Object.Management.Commands.DeleteObjects"/> command. It should examine the <see cref="Microsoft.WindowsAPICodePack.PortableDevices.CommandSystem.Object.Management.Options.RecursiveDeleteSupported"/> option value that this method returns in an <see cref="IPortableDeviceValuesCollection"/> object.</remarks>
+    public enum DeleteObjectOptionValues : uint
     {
         /// <summary>
         /// Delete the object only and fail if it has children.
@@ -20,8 +22,8 @@
     /// <summary>
     /// This enum describes the content type of a short message service (SMS) message.
     /// </summary>
-    /// <remarks>This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/wpd-command-sms-send-command">WPD_COMMAND_SMS_SEND Command</a>.</remarks>
-    public enum SMSMessageTypes
+    /// <seealso cref="Microsoft.WindowsAPICodePack.PortableDevices.CommandSystem.SMS.Commands.Send"/>
+    public enum SMSMessageTypeValues : uint
     {
         /// <summary>
         /// A text message.
@@ -37,7 +39,8 @@
     /// <summary>
     /// This enum describes an audio file's compression type.
     /// </summary>
-    public enum BitrateTypes
+    /// <seealso cref="Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Media.BitRateType"/>
+    public enum BitrateTypeValues : uint
     {
         /// <summary>
         /// This value has not been specified.
@@ -63,8 +66,8 @@
     /// <summary>
     /// This enum describes the capture timing mode of a still image capture.
     /// </summary>
-    /// <remarks>This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_CAPTURE_MODE</a> property.</remarks>
-    public enum CaptureModes
+    /// <seealso cref="Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.StillImageCapture.CaptureMode"/>
+    public enum CaptureModeValues : uint
     {
         /// <summary>
         /// The capture mode has not been defined.
@@ -77,12 +80,12 @@
         CaptureModeNormal = 1,
 
         /// <summary>
-        /// Specifies that a defined number of images should be captured with a defined interval between them. The number of images to capture and time delay between them are specified by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_BURST_NUMBER</a> and <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_BURST_INTERVAL</a> properties.
+        /// Specifies that a defined number of images should be captured with a defined interval between them. The number of images to capture and time delay between them are specified by the WPD_STILL_IMAGE_BURST_NUMBER and WPD_STILL_IMAGE_BURST_INTERVAL properties.
         /// </summary>
         CaptureModeBurst = 2,
 
         /// <summary>
-        /// Image capture should use time lapse photography. The number of images and interval between them are described by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_BURST_NUMBER</a> and <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_BURST_INTERVAL</a> properties.
+        /// Image capture should use time lapse photography. The number of images and interval between them are described by the WPD_STILL_IMAGE_BURST_NUMBER and WPD_STILL_IMAGE_BURST_INTERVAL properties.
         /// </summary>
         CaptureModeTimelapse = 3
     }
@@ -90,8 +93,8 @@
     /// <summary>
     /// This enum describes the color correction status of an image or video file.
     /// </summary>
-    /// <remarks>Indicates the color corrected status of an image. This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/image-properties">WPD_IMAGE_COLOR_CORRECTED_STATUS</a> property.</remarks>
-    public enum ColorCorrectedStatus
+    /// <seealso cref="Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Image.ColorCorrectedStatus"/>
+    public enum ColorCorrectedStatusValues:uint
     {
         /// <summary>
         /// The image has not been color corrected.
@@ -112,8 +115,8 @@
     /// <summary>
     /// This enum describes the cropping status of an image.
     /// </summary>
-    /// <remarks>Indicates the cropped status of an image. This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/image-properties">WPD_IMAGE_CROPPED_STATUS</a> property.</remarks>
-    public enum CroppedStatus
+    /// <seealso cref="Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Image.CroppedStatus"/>
+    public enum CroppedStatusValues:uint
     {
         /// <summary>
         /// The image has not been cropped.
@@ -132,9 +135,10 @@
     }
 
     /// <summary>
-    /// This enum specifies the inheritance relationship for a service. This enumeration is used by the WPD_DEVICE_TRANSPORT property.
+    /// This enum specifies the inheritance relationship for a service.
     /// </summary>
-    public enum DeviceTransports
+    /// <seealso cref="Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Device.Transport"/>
+    public enum DeviceTransportValues:uint
     {
         /// <summary>
         /// The transport type was not specified.
@@ -160,8 +164,8 @@
     /// <summary>
     /// This enum describes various visual effects that can be applied to an image.
     /// </summary>
-    /// <remarks>This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_EFFECT_MODE</a> property.</remarks>
-    public enum EffectModes
+    /// <seealso cref="Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.StillImageCapture.EffectMode"/>
+    public enum EffectModeValues:uint
     {
         /// <summary>
         /// No effect has been specified.
@@ -187,8 +191,8 @@
     /// <summary>
     /// This enum describes the metering mode to use when estimating exposure for still image capture by a device.
     /// </summary>
-    /// <remarks>Indicates the metering mode of the device. This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_EXPOSURE_METERING_MODE</a> property.</remarks>
-    public enum ExposureMeteringModes
+    /// <seealso cref="Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.StillImageCapture.ExposureMeteringMode"/>
+    public enum ExposureMeteringModeValues:uint
     {
         /// <summary>
         /// The metering mode is undefined.
@@ -219,8 +223,8 @@
     /// <summary>
     /// This enum describes an exposure mode to use when capturing images with a device.
     /// </summary>
-    /// <remarks>Indicates the exposure program mode of the device. This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_EXPOSURE_PROGRAM_MODE</a> property.</remarks>
-    public enum ExposureProgramModes
+    /// <seealso cref="Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.StillImageCapture.ExposureProgramMode"/>
+    public enum ExposureProgramModeValues:uint
     {
         /// <summary>
         /// The exposure mode has not been specified.
@@ -266,8 +270,8 @@
     /// <summary>
     /// This enum describes a flash mode to use when capturing images with a device.
     /// </summary>
-    /// <remarks>This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_FLASH_MODE</a> property.</remarks>
-    public enum FlashModes
+    /// <seealso cref="Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.StillImageCapture.FlashMode"/>
+    public enum FlashModeValues:uint
     {
         /// <summary>
         /// No flash mode has been specified.
@@ -308,8 +312,8 @@
     /// <summary>
     /// This enum describes how a device should decide what part of a frame to use to set focus.
     /// </summary>
-    /// <remarks>This enumeration is specified by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_FOCUS_METERING_MODE</a> property.</remarks>
-    public enum FocusMeteringModes
+    /// <seealso cref="Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.StillImageCapture.FocusMeteringMode"/>
+    public enum FocusMeteringModeValues:uint
     {
         /// <summary>
         /// Indicates that no focusing mode has been specified.
@@ -330,8 +334,8 @@
     /// <summary>
     /// This enum describes the focus mode used by a still image capture device.
     /// </summary>
-    /// <remarks>This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_FOCUS_MODE</a> property.</remarks>
-    public enum FocusModes
+    /// <seealso cref="Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.StillImageCapture.FocusMode"/>
+    public enum FocusModeValues:uint
     {
         /// <summary>
         /// The focus mode has not been specified.
@@ -357,8 +361,8 @@
     /// <summary>
     /// This enum describes a broad genre type of a media file.
     /// </summary>
-    /// <remarks>This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/media-properties">WPD_MEDIA_META_GENRE</a> property.</remarks>
-    public enum MetaGenres
+    /// <seealso cref="Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Media.MetaGenre"/>
+    public enum MetaGenreValues:uint
     {
         /// <summary>
         /// The genre has not been set, or is not applicable.
@@ -459,7 +463,7 @@
     /// <summary>
     /// This enum describes how a method parameter is used in a given method.
     /// </summary>
-    public enum ParameterUsageTypes
+    public enum ParameterUsageTypeValues
     {
         /// <summary>
         /// The parameter receives the return value, if specified by the method.
@@ -469,24 +473,24 @@
         /// <summary>
         /// The parameter contains an input value before the method is called.
         /// </summary>
-        IN = 1,
+        In = 1,
 
         /// <summary>
         /// The parameter contains an output value when the method returns.
         /// </summary>
-        OUT = 2,
+        Out = 2,
 
         /// <summary>
         /// The parameter contains an input value before the method is called and an output value when it returns.
         /// </summary>
-        INOUT = 3
+        InOut = 3
     }
 
     /// <summary>
     /// This enum describes the power source that a device is using.
     /// </summary>
-    /// <remarks>This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/device-properties">WPD_DEVICE_POWER_SOURCE</a> property.</remarks>
-    public enum PowerSources
+    /// <seealso cref="Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Device.PowerSource"/>
+    public enum PowerSourceValues:uint
     {
         /// <summary>
         /// The device power source is a battery.
@@ -502,7 +506,8 @@
     /// <summary>
     /// This enum indicates whether the rendering information profile entry corresponds to an Object or a Resource.
     /// </summary>
-    public enum RenderingInformationProfileEntryTypes
+    /// <seealso cref="Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.AudioRendering.ProfileEntryType"/>
+    public enum RenderingInformationProfileEntryTypeValues:uint
     {
         /// <summary>
         /// The entry corresponds to an object.
@@ -518,7 +523,8 @@
     /// <summary>
     /// This enum indicates the units for a referenced section of data.
     /// </summary>
-    public enum SectionDataUnits
+    /// <seealso cref="Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Section.DataUnits"/>
+    public enum SectionDataUnitValues:uint
     {
         /// <summary>
         /// The given units are specified in bytes.
@@ -532,10 +538,10 @@
     }
 
     /// <summary>
-    /// The WPD_SMS_ENCODING_TYPES enumeration type describes the encoding type of a short message service (SMS) message.
+    /// This enum describes the encoding type of a short message service (SMS) message.
     /// </summary>
-    /// <remarks>This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/sms-properties">WPD_SMS_ENCODING</a> property.</remarks>
-    public enum SMSEncodingTypes
+    /// <seealso cref="Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.SMS.Encoding"/>
+    public enum SMSEncodingTypeValues:uint
     {
         /// <summary>
         /// Seven-bit encoding.
@@ -556,9 +562,9 @@
     /// <summary>
     /// This enum describes how the fields in a video file are encoded.
     /// </summary>
-    /// <remarks><para>This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/properties-and-attributes">WPD_VIDEO_SCAN_TYPE</a> property.</para>
-    /// <para>There are two types of interleaved file formats that are specified by this enumeration. WPD_VIDEO_SCAN_TYPE_FIELD_INTERLEAVED refers to a file format where frames are delivered as they were scanned fields alternate and data goes line by line, as shown here: <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/wpd-video-scan-types">WPD_VIDEO_SCAN_TYPES enumeration</a></para></remarks>
-    public enum VideoScanTypes
+    /// <remarks>There are two types of interleaved file formats that are specified by this enumeration. WPD_VIDEO_SCAN_TYPE_FIELD_INTERLEAVED refers to a file format where frames are delivered as they were scanned fields alternate and data goes line by line.</remarks>
+    /// <seealso cref="Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Video.ScanType"/>
+    public enum VideoScanTypeValues:uint
     {
         /// <summary>
         /// The scan type has not been defined for this video file, or is not applicable.
@@ -604,8 +610,8 @@
     /// <summary>
     /// This enum describes how a video or image device weights color channels to achieve a proper white balance.
     /// </summary>
-    /// <remarks>This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_WHITE_BALANCE</a> property.</remarks>
-    public enum WhiteBalanceSettings
+    /// <seealso cref="Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.StillImageCapture.WhiteBalance"/>
+    public enum WhiteBalanceSettingValues:uint
     {
         /// <summary>
         /// This value has not been defined.
@@ -613,7 +619,7 @@
         Undefined = 0,
 
         /// <summary>
-        /// The white balance is set explicitly by using the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_RGB_GAIN</a> property and will not change by itself.
+        /// The white balance is set explicitly by using the WPD_STILL_IMAGE_RGB_GAIN property and will not change by itself.
         /// </summary>
         Manual = 1,
 
@@ -646,8 +652,8 @@
     /// <summary>
     /// This enum describes how a property stores its values.
     /// </summary>
-    /// <remarks>This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/attributes">WPD_PROPERTY_ATTRIBUTE_FORM</a> property to describe how a property's data is stored.</remarks>
-    public enum PropertyAttributeForm
+    /// <seealso cref="Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Attribute.Property.Form"/>
+    public enum PropertyAttributeFormValues:uint
     {
         /// <summary>
         /// The form of the property's data is not specified.
@@ -678,7 +684,8 @@
     /// <summary>
     /// This enum describes how a (method or event) parameter stores its value.
     /// </summary>
-    public enum ParameterAttributeForm
+    /// <seealso cref="Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Attribute.Parameter.Form"/>
+    public enum ParameterAttributeFormValues:uint
     {
         /// <summary>
         /// The form of the parameter is not specified.
@@ -709,7 +716,8 @@
     /// <summary>
     /// This enum describes the different Windows Portable Device storage types.
     /// </summary>
-    public enum StorageTypeValues
+    /// <seealso cref="Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Storage.Type"/>
+    public enum StorageTypeValues : uint
     {
         /// <summary>
         /// The storage is of an undefined type.
@@ -740,13 +748,14 @@
     /// <summary>
     /// This enum describes the different Windows Portable Device (WPD) types commonly used to determine the basic classification and visual appearance of a portable device.
     /// </summary>
-    /// <remarks><para><see cref="DeviceTypes"/> are read using the <see cref="IPortableDeviceManager"/> interface. WPD applications may use these values to determine the generic visual appearance of the device. That is, a camera picture is displayed for camera-like devices, a mobile phone picture is displayed for phone-like devices, and so on.</para>
-    /// <para>Note: WPD applications must use the capabilities of the portable device to determine functionally, not the <see cref="DeviceTypes"/> value.</para>
+    /// <remarks><para><see cref="DeviceTypeValues"/> are read using the <see cref="IPortableDeviceManager"/> interface. WPD applications may use these values to determine the generic visual appearance of the device. That is, a camera picture is displayed for camera-like devices, a mobile phone picture is displayed for phone-like devices, and so on.</para>
+    /// <para>Note: WPD applications must use the capabilities of the portable device to determine functionally, not the <see cref="DeviceTypeValues"/> value.</para>
     /// </remarks>
-    public enum DeviceTypes
+    /// <seealso cref="Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Device.Type"/>
+    public enum DeviceTypeValues:uint
     {
         /// <summary>
-        /// A generic WPD that includes multifunction devices that do not fall into one of the other <see cref="DeviceTypes"/> enumeration values.
+        /// A generic WPD that includes multifunction devices that do not fall into one of the other <see cref="DeviceTypeValues"/> enumeration values.
         /// </summary>
         Generic = 0,
 
@@ -785,7 +794,8 @@
     /// This enum values describe the current state of an operation in progress.
     /// </summary>
     /// <remarks>These values are received in the application-defined callback (<see cref="IPortableDeviceEventCallback"/>).</remarks>
-    public enum OperationStates
+    /// <seealso cref="Microsoft.WindowsAPICodePack.PortableDevices.EventSystem.Parameter.OperationState"/>
+    public enum OperationStateValues:uint
     {
         /// <summary>
         /// The current operation is in an unspecified state (not set) and unknown.
@@ -827,7 +837,7 @@
     /// This enum specifies the inheritance relationship for a service.
     /// </summary>
     /// <seealso cref="IPortableDeviceServiceCapabilities.GetInheritedServices"/>
-    public enum ServiceInheritanceTypes
+    public enum ServiceInheritanceTypeValues
     {
         /// <summary>
         /// The service inherits by implementing an abstract service definition.
@@ -840,7 +850,7 @@
     /// </summary>
     /// <seealso cref="IPortableDeviceUnitsStream"/>
     /// <seealso cref="IPortableDeviceUnitsStream.SeekInUnits"/>
-    public enum StreamUnits
+    public enum StreamUnitValues:uint
     {
         /// <summary>
         /// The stream units are specified in bytes.

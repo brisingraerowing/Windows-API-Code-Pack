@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 {
-    public interface IObjectProperty
+    public interface IProperty
     {
 
         PropertyKey PropertyKey { get; }
@@ -16,7 +16,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         HResult GetValue(out PropVariant propVariant);
     }
 
-    public struct ObjectProperty : IObjectProperty, IDisposable
+    public struct ObjectProperty : IProperty, IDisposable
 
     {
 
@@ -65,7 +65,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
         HResult GetPropertyInfo(ref PropertyKey propertyKey, out IPropertyInfo propertyInfo);
 
-        HResult SetValues(ref IEnumerable<IObjectProperty> values, out INativeReadOnlyPropertyValuesCollection results);
+        HResult SetValues(ref IEnumerable<IProperty> values, out INativeReadOnlyPropertyValuesCollection results);
 
         HResult Delete(params PropertyKey[] properties);
 

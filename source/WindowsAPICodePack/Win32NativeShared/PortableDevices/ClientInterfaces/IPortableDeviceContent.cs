@@ -45,7 +45,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 
         [PreserveSig]
         HResult Delete(
-            [In] DeleteObjectOptions dwOptions,
+            [In] DeleteObjectOptionValues dwOptions,
             [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection pObjectIDs,
             [In, Out, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection ppResults);
 

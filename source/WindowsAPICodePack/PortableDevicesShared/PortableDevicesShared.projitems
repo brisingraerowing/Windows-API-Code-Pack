@@ -9,17 +9,19 @@
     <Import_RootNamespace>PortableDevices</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Interop\NativePropertyKeyCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interop\NativeValueCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ObjectModel\DeviceCapabilities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ObjectModel\PortableDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ObjectModel\PortableDeviceObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ObjectModel\PortableDeviceObjectStorageCapacity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Old.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\CollectionClasses\PortableDevicePropVariantCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\CollectionClasses\PortableDeviceValuesCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\CollectionInterfaces\IPortableDevicePropVariantCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\CollectionInterfaces\IPortableDeviceValuesCollection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Command.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IPortableDevice.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IPortableDeviceManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\PortableDeviceProperties.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)PortableDevice.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)PortableDeviceManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ObjectModel\PortableDeviceManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Structs.cs" />
   </ItemGroup>
 </Project>

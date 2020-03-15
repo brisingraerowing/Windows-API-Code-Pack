@@ -1949,85 +1949,85 @@
             <param name="key">The property at which the value to retrieve is stored.</param>
             <remarks>By using this method, you use the IUnknown interface, which is an unmanaged type, so be careful to free the COM memory after using this interface.</remarks>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.PropertySystem.ObjectProperty">
+        <member name="T:Microsoft.WindowsAPICodePack.PropertySystem.Property">
             <summary>
             This class wraps native <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant"/>s into managed objects. Please note that the Shell API, however, has its own managed wrapper, the <c>ShellProperty</c> class.
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.PropertySystem.ObjectProperty.Attributes">
+        <member name="P:Microsoft.WindowsAPICodePack.PropertySystem.Property.Attributes">
             <summary>
             Gets the attributes for this property.
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.PropertySystem.ObjectProperty.PropertyInfo">
+        <member name="P:Microsoft.WindowsAPICodePack.PropertySystem.Property.PropertyInfo">
             <summary>
             Gets the current property info.
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.PropertySystem.ObjectProperty.IsSet">
+        <member name="P:Microsoft.WindowsAPICodePack.PropertySystem.Property.IsSet">
             <summary>
             Gets a value that indicates whether the current property is set.
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.PropertySystem.ObjectProperty.AllowSetTruncatedValue">
+        <member name="P:Microsoft.WindowsAPICodePack.PropertySystem.Property.AllowSetTruncatedValue">
             <summary>
             Gets or sets a value that indicates whether the current property supports setting a truncated value.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.ObjectProperty.GetValue(System.Type@)">
+        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.Property.GetValue(System.Type@)">
             <summary>
             Gets the value of this property.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.ObjectProperty.SetValue(System.Object@)">
+        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.Property.SetValue(System.Object@)">
             <summary>
             <para>Sets the value of this property.</para>
             <para>The value of the property is cleared if the value is set to null.</para>
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.PropertySystem.ObjectProperty.PropertyKey">
+        <member name="P:Microsoft.WindowsAPICodePack.PropertySystem.Property.PropertyKey">
             <summary>
             Gets the property key identifying this property.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.ObjectProperty.ClearValue">
+        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.Property.ClearValue">
             <summary>
             Clears the value of the property.
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.PropertySystem.ObjectProperty.IsDisposed">
+        <member name="P:Microsoft.WindowsAPICodePack.PropertySystem.Property.IsDisposed">
             <summary>
             Gets a value that indicates whether the current object is disposed.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.ObjectProperty.Dispose">
+        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.Property.Dispose">
             <summary>
             Frees all resources for the current property.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.ObjectProperty.Equals(Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.IObjectProperty)">
+        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.Property.Equals(Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.IProperty)">
             <summary>
-            Checks if the current property is equal to a given <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.IObjectProperty"/>.
+            Checks if the current property is equal to a given <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.IProperty"/>.
             </summary>
-            <param name="other">The <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.IObjectProperty"/> to check equality.</param>
-            <returns><see langword="true"/> if the <paramref name="other"/> is equal to the current <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.IObjectProperty"/>, otherwise <see langword="false"/>.</returns>
+            <param name="other">The <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.IProperty"/> to check equality.</param>
+            <returns><see langword="true"/> if the <paramref name="other"/> is equal to the current <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.IProperty"/>, otherwise <see langword="false"/>.</returns>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.PropertySystem.ObjectPropertyAttribute.Value">
+        <member name="P:Microsoft.WindowsAPICodePack.PropertySystem.PropertyAttribute.Value">
             <summary>
             Gets the current attribute value.
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.PropertySystem.ObjectPropertyAttribute.Type">
+        <member name="P:Microsoft.WindowsAPICodePack.PropertySystem.PropertyAttribute.Type">
             <summary>
             Gets the current attribute value type.
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.PropertySystem.ObjectPropertyAttribute.PropertyKey">
+        <member name="P:Microsoft.WindowsAPICodePack.PropertySystem.PropertyAttribute.PropertyKey">
             <summary>
-            Gets the <see cref="P:Microsoft.WindowsAPICodePack.PropertySystem.ObjectPropertyAttribute.PropertyKey"/> that identifies the current property attribute.
+            Gets the <see cref="P:Microsoft.WindowsAPICodePack.PropertySystem.PropertyAttribute.PropertyKey"/> that identifies the current property attribute.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.ObjectPropertyAttribute.Equals(Microsoft.WindowsAPICodePack.PropertySystem.ObjectPropertyAttribute)">
+        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.PropertyAttribute.Equals(Microsoft.WindowsAPICodePack.PropertySystem.PropertyAttribute)">
             <summary>
             Checks if the current property is equal to a given property attribute.
             </summary>
@@ -2038,8 +2038,8 @@
             <summary>
             Represents a collection of property attributes.
             </summary>
-            <seealso cref="T:Microsoft.WindowsAPICodePack.PropertySystem.ObjectPropertyAttribute"/>
-            <seealso cref="T:Microsoft.WindowsAPICodePack.PropertySystem.ObjectProperty"/>
+            <seealso cref="T:Microsoft.WindowsAPICodePack.PropertySystem.PropertyAttribute"/>
+            <seealso cref="T:Microsoft.WindowsAPICodePack.PropertySystem.Property"/>
             <seealso cref="T:Microsoft.WindowsAPICodePack.PropertySystem.PropertyCollection"/>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.SafeIconHandle">

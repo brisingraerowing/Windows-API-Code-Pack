@@ -15,7 +15,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 
         public delegate T GetPortableDeviceObject<T>(in string id);
 
-        public static IList<T> GetItems<T>( in IPortableDeviceContent2 portableDeviceContent, in string id, in GetPortableDeviceObject<T> getPortableDeviceObjectDelegate)
+        public static IList<T> GetItems<T>( in IPortableDeviceContent portableDeviceContent, in string id, in GetPortableDeviceObject<T> getPortableDeviceObjectDelegate)
 
         {
 

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.0;net472</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.0;net472</TargetFrameworks><!--todo: netcoreapp3.1;net48-->
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Sensors.snk</AssemblyOriginatorKeyFile>
     <RootNamespace>Microsoft.WindowsAPICodePack.Sensors</RootNamespace>

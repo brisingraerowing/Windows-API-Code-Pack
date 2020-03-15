@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.0;net472</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.0;net472</TargetFrameworks><!--todo: netcoreapp3.1;net48-->
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <RootNamespace>Microsoft.WindowsAPICodePack.Win32Native</RootNamespace>
@@ -54,14 +54,24 @@
     <PackageReference Include="WinCopies.Util" Version="2.1.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Win32NativeConsts\Win32NativeConsts.csproj" />
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+    <PackageReference Include="WinCopies.Util" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0'">
     <PackageReference Include="WinCopies.Util.NetCore">
       <Version>2.1.0</Version>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+    <PackageReference Include="WinCopies.Util.NetCore">
+      <Version>2.1.0</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Win32NativeConsts\Win32NativeConsts.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -12615,685 +12615,690 @@
             Displays marquee (indeterminate) style progress
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeleteObjectOptions">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeleteObjectOptionValues">
             <summary>
             This enum describes options that are supported by a device when deleting an object.
             </summary>
-            <remarks>The application can retrieve the deletion options that the device supports by calling <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.IPortableDeviceCapabilities.GetCommandOptions(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey@,Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.IPortableDeviceValues@)"/> for the WPD_COMMAND_OBJECT_MANAGEMENT_DELETE_OBJECTS command. It should examine the WPD_OPTION_OBJECT_MANAGEMENT_RECURSIVE_DELETE_SUPPORTED option value that this method returns in an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.IPortableDeviceValuesCollection"/> object.</remarks>
+            <remarks>The application can retrieve the deletion options that the device supports by calling <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.IPortableDeviceCapabilities.GetCommandOptions(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey@,Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.IPortableDeviceValues@)"/> for the <see cref="P:Microsoft.WindowsAPICodePack.PortableDevices.CommandSystem.Object.Management.Commands.DeleteObjects"/> command. It should examine the <see cref="P:Microsoft.WindowsAPICodePack.PortableDevices.CommandSystem.Object.Management.Options.RecursiveDeleteSupported"/> option value that this method returns in an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.IPortableDeviceValuesCollection"/> object.</remarks>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeleteObjectOptions.NoRecursion">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeleteObjectOptionValues.NoRecursion">
             <summary>
             Delete the object only and fail if it has children.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeleteObjectOptions.Recursion">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeleteObjectOptionValues.Recursion">
             <summary>
             Delete the object and all its children.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.SMSMessageTypes">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.SMSMessageTypeValues">
             <summary>
             This enum describes the content type of a short message service (SMS) message.
             </summary>
-            <remarks>This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/wpd-command-sms-send-command">WPD_COMMAND_SMS_SEND Command</a>.</remarks>
+            <seealso cref="P:Microsoft.WindowsAPICodePack.PortableDevices.CommandSystem.SMS.Commands.Send"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.SMSMessageTypes.SMSTextMessage">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.SMSMessageTypeValues.SMSTextMessage">
             <summary>
             A text message.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.SMSMessageTypes.SMSBinaryMessage">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.SMSMessageTypeValues.SMSBinaryMessage">
             <summary>
             A binary message.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.BitrateTypes">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.BitrateTypeValues">
             <summary>
             This enum describes an audio file's compression type.
             </summary>
+            <seealso cref="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Media.BitRateType"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.BitrateTypes.BitrateTypeUnused">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.BitrateTypeValues.BitrateTypeUnused">
             <summary>
             This value has not been specified.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.BitrateTypes.BitrateTypeDiscrete">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.BitrateTypeValues.BitrateTypeDiscrete">
             <summary>
             Constant bit rate compression.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.BitrateTypes.BitrateTypeVariable">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.BitrateTypeValues.BitrateTypeVariable">
             <summary>
             Variable bit rate compression.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.BitrateTypes.BitrateTypeFree">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.BitrateTypeValues.BitrateTypeFree">
             <summary>
             Free format bit rate. This is a constant bit rate that is lower than the maximum allowed bit rate.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.CaptureModes">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.CaptureModeValues">
             <summary>
             This enum describes the capture timing mode of a still image capture.
             </summary>
-            <remarks>This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_CAPTURE_MODE</a> property.</remarks>
+            <seealso cref="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.StillImageCapture.CaptureMode"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.CaptureModes.CaptureModeUndefined">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.CaptureModeValues.CaptureModeUndefined">
             <summary>
             The capture mode has not been defined.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.CaptureModes.CaptureModeNormal">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.CaptureModeValues.CaptureModeNormal">
             <summary>
             No delay or burst mode should be used.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.CaptureModes.CaptureModeBurst">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.CaptureModeValues.CaptureModeBurst">
             <summary>
-            Specifies that a defined number of images should be captured with a defined interval between them. The number of images to capture and time delay between them are specified by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_BURST_NUMBER</a> and <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_BURST_INTERVAL</a> properties.
+            Specifies that a defined number of images should be captured with a defined interval between them. The number of images to capture and time delay between them are specified by the WPD_STILL_IMAGE_BURST_NUMBER and WPD_STILL_IMAGE_BURST_INTERVAL properties.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.CaptureModes.CaptureModeTimelapse">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.CaptureModeValues.CaptureModeTimelapse">
             <summary>
-            Image capture should use time lapse photography. The number of images and interval between them are described by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_BURST_NUMBER</a> and <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_BURST_INTERVAL</a> properties.
+            Image capture should use time lapse photography. The number of images and interval between them are described by the WPD_STILL_IMAGE_BURST_NUMBER and WPD_STILL_IMAGE_BURST_INTERVAL properties.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ColorCorrectedStatus">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ColorCorrectedStatusValues">
             <summary>
             This enum describes the color correction status of an image or video file.
             </summary>
-            <remarks>Indicates the color corrected status of an image. This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/image-properties">WPD_IMAGE_COLOR_CORRECTED_STATUS</a> property.</remarks>
+            <seealso cref="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Image.ColorCorrectedStatus"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ColorCorrectedStatus.NotCorrected">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ColorCorrectedStatusValues.NotCorrected">
             <summary>
             The image has not been color corrected.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ColorCorrectedStatus.Corrected">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ColorCorrectedStatusValues.Corrected">
             <summary>
             The image has been color corrected.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ColorCorrectedStatus.ShouldNotBeCorrected">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ColorCorrectedStatusValues.ShouldNotBeCorrected">
             <summary>
             The image has not been, and should not be, color corrected.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.CroppedStatus">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.CroppedStatusValues">
             <summary>
             This enum describes the cropping status of an image.
             </summary>
-            <remarks>Indicates the cropped status of an image. This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/image-properties">WPD_IMAGE_CROPPED_STATUS</a> property.</remarks>
+            <seealso cref="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Image.CroppedStatus"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.CroppedStatus.NotCropped">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.CroppedStatusValues.NotCropped">
             <summary>
             The image has not been cropped.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.CroppedStatus.Cropped">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.CroppedStatusValues.Cropped">
             <summary>
             The image has been cropped.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.CroppedStatus.ShouldNotBeCropped">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.CroppedStatusValues.ShouldNotBeCropped">
             <summary>
             The image has not been, and should not be, cropped.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTransports">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTransportValues">
             <summary>
-            This enum specifies the inheritance relationship for a service. This enumeration is used by the WPD_DEVICE_TRANSPORT property.
+            This enum specifies the inheritance relationship for a service.
             </summary>
+            <seealso cref="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Device.Transport"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTransports.Unspecified">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTransportValues.Unspecified">
             <summary>
             The transport type was not specified.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTransports.USB">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTransportValues.USB">
             <summary>
             The device is connected through USB.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTransports.IP">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTransportValues.IP">
             <summary>
             The device is connected through Internet Protocol (IP).
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTransports.Bluetooth">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTransportValues.Bluetooth">
             <summary>
             The device is connected through Bluetooth.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.EffectModes">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.EffectModeValues">
             <summary>
             This enum describes various visual effects that can be applied to an image.
             </summary>
-            <remarks>This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_EFFECT_MODE</a> property.</remarks>
+            <seealso cref="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.StillImageCapture.EffectMode"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.EffectModes.Undefined">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.EffectModeValues.Undefined">
             <summary>
             No effect has been specified.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.EffectModes.Color">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.EffectModeValues.Color">
             <summary>
             The image should be color.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.EffectModes.BlackAndWhite">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.EffectModeValues.BlackAndWhite">
             <summary>
             The image should be black and white.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.EffectModes.Sepia">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.EffectModeValues.Sepia">
             <summary>
             The image should be sepia.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureMeteringModes">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureMeteringModeValues">
             <summary>
             This enum describes the metering mode to use when estimating exposure for still image capture by a device.
             </summary>
-            <remarks>Indicates the metering mode of the device. This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_EXPOSURE_METERING_MODE</a> property.</remarks>
+            <seealso cref="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.StillImageCapture.ExposureMeteringMode"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureMeteringModes.Undefined">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureMeteringModeValues.Undefined">
             <summary>
             The metering mode is undefined.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureMeteringModes.Average">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureMeteringModeValues.Average">
             <summary>
             Use averaged exposure across the full image.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureMeteringModes.CenterWeightedAverage">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureMeteringModeValues.CenterWeightedAverage">
             <summary>
             Use an averaged exposure, with the center of the image given more weight.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureMeteringModes.MultiSpot">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureMeteringModeValues.MultiSpot">
             <summary>
             Use a multi-spot averaging technique.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureMeteringModes.CenterSpot">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureMeteringModeValues.CenterSpot">
             <summary>
             Use a center-spot averaging technique.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureProgramModes">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureProgramModeValues">
             <summary>
             This enum describes an exposure mode to use when capturing images with a device.
             </summary>
-            <remarks>Indicates the exposure program mode of the device. This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_EXPOSURE_PROGRAM_MODE</a> property.</remarks>
+            <seealso cref="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.StillImageCapture.ExposureProgramMode"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureProgramModes.Undefined">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureProgramModeValues.Undefined">
             <summary>
             The exposure mode has not been specified.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureProgramModes.Manual">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureProgramModeValues.Manual">
             <summary>
             The application should specify all exposure settings.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureProgramModes.Auto">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureProgramModeValues.Auto">
             <summary>
             Use a device-defined automatic exposure mode.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureProgramModes.AperturePriority">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureProgramModeValues.AperturePriority">
             <summary>
             An automated exposure mode that indicates that the lens aperture value should remain fixed, but shutter speed should be determined by the device.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureProgramModes.ShutterPriority">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureProgramModeValues.ShutterPriority">
             <summary>
             An automated exposure mode that indicates that the shutter speed should remain fixed, but that lens aperture should be determined by the device.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureProgramModes.Creative">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureProgramModeValues.Creative">
             <summary>
             An automated exposure mode that tries to maximize the depth of field.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureProgramModes.Action">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureProgramModeValues.Action">
             <summary>
             An automated exposure mode that tries to maximize the shutter speed.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureProgramModes.Portrait">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ExposureProgramModeValues.Portrait">
             <summary>
             An automated exposure mode that specifies a relatively shallow depth of field.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FlashModes">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FlashModeValues">
             <summary>
             This enum describes a flash mode to use when capturing images with a device.
             </summary>
-            <remarks>This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_FLASH_MODE</a> property.</remarks>
+            <seealso cref="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.StillImageCapture.FlashMode"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FlashModes.Undefined">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FlashModeValues.Undefined">
             <summary>
             No flash mode has been specified.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FlashModes.Auto">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FlashModeValues.Auto">
             <summary>
             Specifies that the flash should be used in the automatic mode, as specified by the device.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FlashModes.Off">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FlashModeValues.Off">
             <summary>
             Specifies that no flash should be used.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FlashModes.Fill">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FlashModeValues.Fill">
             <summary>
             Specifies a fill-type flash.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FlashModes.RedEyeAuto">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FlashModeValues.RedEyeAuto">
             <summary>
             Specifies that the red eye reduction flash should be used.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FlashModes.RedEyeFill">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FlashModeValues.RedEyeFill">
             <summary>
             Specifies that the red eye fill flash should be used.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FlashModes.ExternalSync">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FlashModeValues.ExternalSync">
             <summary>
             Specifies that the flash should be synchronized with other external flash devices.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FocusMeteringModes">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FocusMeteringModeValues">
             <summary>
             This enum describes how a device should decide what part of a frame to use to set focus.
             </summary>
-            <remarks>This enumeration is specified by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_FOCUS_METERING_MODE</a> property.</remarks>
+            <seealso cref="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.StillImageCapture.FocusMeteringMode"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FocusMeteringModes.Undefined">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FocusMeteringModeValues.Undefined">
             <summary>
             Indicates that no focusing mode has been specified.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FocusMeteringModes.CenterSpot">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FocusMeteringModeValues.CenterSpot">
             <summary>
             Focuses on the center of the framed area.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FocusMeteringModes.MultiSpot">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FocusMeteringModeValues.MultiSpot">
             <summary>
             Determine focus by analyzing multiple parts of the framed area.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FocusModes">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FocusModeValues">
             <summary>
             This enum describes the focus mode used by a still image capture device.
             </summary>
-            <remarks>This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_FOCUS_MODE</a> property.</remarks>
+            <seealso cref="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.StillImageCapture.FocusMode"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FocusModes.Undefined">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FocusModeValues.Undefined">
             <summary>
             The focus mode has not been specified.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FocusModes.Manual">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FocusModeValues.Manual">
             <summary>
             Specifies manual focus.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FocusModes.Automatic">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FocusModeValues.Automatic">
             <summary>
             Specifies automatic focus, controlled by the device.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FocusModes.AutomaticMacro">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.FocusModeValues.AutomaticMacro">
             <summary>
             Specifies that the device should automatically switch between macro and normal focus, as required.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenres">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenreValues">
             <summary>
             This enum describes a broad genre type of a media file.
             </summary>
-            <remarks>This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/media-properties">WPD_MEDIA_META_GENRE</a> property.</remarks>
+            <seealso cref="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Media.MetaGenre"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenres.Unused">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenreValues.Unused">
             <summary>
             The genre has not been set, or is not applicable.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenres.GenericMusicAudioFile">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenreValues.GenericMusicAudioFile">
             <summary>
             This is a generic music file (audio only).
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenres.GenericNonMusicAudioFile">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenreValues.GenericNonMusicAudioFile">
             <summary>
             This is a generic non-music audio file, for example, a speech or audio book.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenres.SpokenWordAudioBookFiles">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenreValues.SpokenWordAudioBookFiles">
             <summary>
             This is an audio book file.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenres.SpokenWordFilesNonAudioBook">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenreValues.SpokenWordFilesNonAudioBook">
             <summary>
             This is a spoken-word audio file that is not an audio book, for example, an interview or speech.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenres.SpokenWordNews">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenreValues.SpokenWordNews">
             <summary>
             This is a news audio or video file.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenres.SpokenWordTalkShows">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenreValues.SpokenWordTalkShows">
             <summary>
             This is an audio recording of a talk show.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenres.GenericVideoFile">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenreValues.GenericVideoFile">
             <summary>
             This is a generic video file.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenres.NewsVideoFile">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenreValues.NewsVideoFile">
             <summary>
             This is a news video file.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenres.MusicVideoFile">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenreValues.MusicVideoFile">
             <summary>
             This is a music video file.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenres.HomeVideoFile">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenreValues.HomeVideoFile">
             <summary>
             This is a home video file.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenres.FeatureFilmVideoFile">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenreValues.FeatureFilmVideoFile">
             <summary>
             This is a feature film video file.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenres.TelevisionVideoFile">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenreValues.TelevisionVideoFile">
             <summary>
             This is a television program video file.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenres.TrainingEducationalVideoFile">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenreValues.TrainingEducationalVideoFile">
             <summary>
             This is a television program video file.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenres.PhotoMontageVideoFile">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenreValues.PhotoMontageVideoFile">
             <summary>
             This is a video file featuring a photo montage.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenres.GenericNonAudioNonVideo">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenreValues.GenericNonAudioNonVideo">
             <summary>
             This is a file without audio or video.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenres.AudioPodcast">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenreValues.AudioPodcast">
             <summary>
             This is an audio podcast.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenres.VideoPodcast">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenreValues.VideoPodcast">
             <summary>
             This is a video podcast.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenres.MixedPodcast">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.MetaGenreValues.MixedPodcast">
             <summary>
             This is a podcast containing both audio and video.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ParameterUsageTypes">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ParameterUsageTypeValues">
             <summary>
             This enum describes how a method parameter is used in a given method.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ParameterUsageTypes.Return">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ParameterUsageTypeValues.Return">
             <summary>
             The parameter receives the return value, if specified by the method.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ParameterUsageTypes.IN">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ParameterUsageTypeValues.In">
             <summary>
             The parameter contains an input value before the method is called.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ParameterUsageTypes.OUT">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ParameterUsageTypeValues.Out">
             <summary>
             The parameter contains an output value when the method returns.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ParameterUsageTypes.INOUT">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ParameterUsageTypeValues.InOut">
             <summary>
             The parameter contains an input value before the method is called and an output value when it returns.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.PowerSources">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.PowerSourceValues">
             <summary>
             This enum describes the power source that a device is using.
             </summary>
-            <remarks>This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/device-properties">WPD_DEVICE_POWER_SOURCE</a> property.</remarks>
+            <seealso cref="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Device.PowerSource"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.PowerSources.Battery">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.PowerSourceValues.Battery">
             <summary>
             The device power source is a battery.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.PowerSources.External">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.PowerSourceValues.External">
             <summary>
             The device uses an external power source.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.RenderingInformationProfileEntryTypes">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.RenderingInformationProfileEntryTypeValues">
             <summary>
             This enum indicates whether the rendering information profile entry corresponds to an Object or a Resource.
             </summary>
+            <seealso cref="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.AudioRendering.ProfileEntryType"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.RenderingInformationProfileEntryTypes.Object">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.RenderingInformationProfileEntryTypeValues.Object">
             <summary>
             The entry corresponds to an object.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.RenderingInformationProfileEntryTypes.Resource">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.RenderingInformationProfileEntryTypeValues.Resource">
             <summary>
             The entry corresponds to a resource.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.SectionDataUnits">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.SectionDataUnitValues">
             <summary>
             This enum indicates the units for a referenced section of data.
             </summary>
+            <seealso cref="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Section.DataUnits"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.SectionDataUnits.Bytes">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.SectionDataUnitValues.Bytes">
             <summary>
             The given units are specified in bytes.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.SectionDataUnits.Milliseconds">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.SectionDataUnitValues.Milliseconds">
             <summary>
             The given units are specified in milliseconds.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.SMSEncodingTypes">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.SMSEncodingTypeValues">
             <summary>
-            The WPD_SMS_ENCODING_TYPES enumeration type describes the encoding type of a short message service (SMS) message.
+            This enum describes the encoding type of a short message service (SMS) message.
             </summary>
-            <remarks>This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/sms-properties">WPD_SMS_ENCODING</a> property.</remarks>
+            <seealso cref="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.SMS.Encoding"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.SMSEncodingTypes.Encoding7Bit">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.SMSEncodingTypeValues.Encoding7Bit">
             <summary>
             Seven-bit encoding.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.SMSEncodingTypes.Encoding8Bit">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.SMSEncodingTypeValues.Encoding8Bit">
             <summary>
             Eight-bit encoding.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.SMSEncodingTypes.UTF16">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.SMSEncodingTypeValues.UTF16">
             <summary>
             Sixteen-bit encoding (UTF).
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.VideoScanTypes">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.VideoScanTypeValues">
             <summary>
             This enum describes how the fields in a video file are encoded.
             </summary>
-            <remarks><para>This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/properties-and-attributes">WPD_VIDEO_SCAN_TYPE</a> property.</para>
-            <para>There are two types of interleaved file formats that are specified by this enumeration. WPD_VIDEO_SCAN_TYPE_FIELD_INTERLEAVED refers to a file format where frames are delivered as they were scanned fields alternate and data goes line by line, as shown here: <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/wpd-video-scan-types">WPD_VIDEO_SCAN_TYPES enumeration</a></para></remarks>
+            <remarks>There are two types of interleaved file formats that are specified by this enumeration. WPD_VIDEO_SCAN_TYPE_FIELD_INTERLEAVED refers to a file format where frames are delivered as they were scanned fields alternate and data goes line by line.</remarks>
+            <seealso cref="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Video.ScanType"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.VideoScanTypes.Unused">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.VideoScanTypeValues.Unused">
             <summary>
             The scan type has not been defined for this video file, or is not applicable.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.VideoScanTypes.Progressive">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.VideoScanTypeValues.Progressive">
             <summary>
             A progressive scan video file.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.VideoScanTypes.FieldInterleavedUpperFirst">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.VideoScanTypeValues.FieldInterleavedUpperFirst">
             <summary>
             An interleaved video file where the fields alternate and the upper field (with line 1) is drawn first. For more information, see the Remarks section.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.VideoScanTypes.FieldInterleavedLowerFirst">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.VideoScanTypeValues.FieldInterleavedLowerFirst">
             <summary>
             An interleaved video file where the fields alternate and the lower field (with line 2) is drawn first. For more information, see Remarks, following this section.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.VideoScanTypes.FieldSingleUpperFirst">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.VideoScanTypeValues.FieldSingleUpperFirst">
             <summary>
             An interleaved video file where the fields are sent as contiguous samples and the upper field (with line 1) is drawn first. For more information, see Remarks, following this section.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.VideoScanTypes.FieldSingleLowerFirst">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.VideoScanTypeValues.FieldSingleLowerFirst">
             <summary>
             An interleaved video file where the fields are sent as contiguous samples and the lower field (with line 2) is sent first.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.VideoScanTypes.MixedInterlace">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.VideoScanTypeValues.MixedInterlace">
             <summary>
             A video file with a mix of interlacing modes.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.VideoScanTypes.MixedInterlaceAndProgressive">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.VideoScanTypeValues.MixedInterlaceAndProgressive">
             <summary>
             A video file with a mix of interlaced and progressive modes.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.WhiteBalanceSettings">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.WhiteBalanceSettingValues">
             <summary>
             This enum describes how a video or image device weights color channels to achieve a proper white balance.
             </summary>
-            <remarks>This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_WHITE_BALANCE</a> property.</remarks>
+            <seealso cref="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.StillImageCapture.WhiteBalance"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.WhiteBalanceSettings.Undefined">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.WhiteBalanceSettingValues.Undefined">
             <summary>
             This value has not been defined.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.WhiteBalanceSettings.Manual">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.WhiteBalanceSettingValues.Manual">
             <summary>
-            The white balance is set explicitly by using the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/still-image-properties">WPD_STILL_IMAGE_RGB_GAIN</a> property and will not change by itself.
+            The white balance is set explicitly by using the WPD_STILL_IMAGE_RGB_GAIN property and will not change by itself.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.WhiteBalanceSettings.Automatic">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.WhiteBalanceSettingValues.Automatic">
             <summary>
             The device will set the white balance.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.WhiteBalanceSettings.OnePushAutomatic">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.WhiteBalanceSettingValues.OnePushAutomatic">
             <summary>
             The device will set the white balance, but only when the user pushes the device's capture button while aiming the device at a white field.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.WhiteBalanceSettings.DayLight">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.WhiteBalanceSettingValues.DayLight">
             <summary>
             The device will use white balance numbers appropriate for use in most daylight settings.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.WhiteBalanceSettings.Tungsten">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.WhiteBalanceSettingValues.Tungsten">
             <summary>
             The device will use white balance numbers appropriate for use in most indoor, incandescent lighting settings.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.WhiteBalanceSettings.Flash">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.WhiteBalanceSettingValues.Flash">
             <summary>
             The device will use white balance numbers appropriate for use with a flash.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.PropertyAttributeForm">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.PropertyAttributeFormValues">
             <summary>
             This enum describes how a property stores its values.
             </summary>
-            <remarks>This enumeration is used by the <a href="https://docs.microsoft.com/en-us/windows/win32/wpd_sdk/attributes">WPD_PROPERTY_ATTRIBUTE_FORM</a> property to describe how a property's data is stored.</remarks>
+            <seealso cref="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Attribute.Property.Form"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.PropertyAttributeForm.Unspecified">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.PropertyAttributeFormValues.Unspecified">
             <summary>
             The form of the property's data is not specified.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.PropertyAttributeForm.Range">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.PropertyAttributeFormValues.Range">
             <summary>
             The value is expressed as a range of values, with a minimum and a maximum.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.PropertyAttributeForm.Enumeration">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.PropertyAttributeFormValues.Enumeration">
             <summary>
             The property has a series of individual values.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.PropertyAttributeForm.RegularExpression">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.PropertyAttributeFormValues.RegularExpression">
             <summary>
             The property value is a regular expression, not a literal expression.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.PropertyAttributeForm.OjbectIdentifier">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.PropertyAttributeFormValues.OjbectIdentifier">
             <summary>
             The property value represents an object identifier.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ParameterAttributeForm">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ParameterAttributeFormValues">
             <summary>
             This enum describes how a (method or event) parameter stores its value.
             </summary>
+            <seealso cref="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Attribute.Parameter.Form"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ParameterAttributeForm.Unspecified">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ParameterAttributeFormValues.Unspecified">
             <summary>
             The form of the parameter is not specified.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ParameterAttributeForm.Range">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ParameterAttributeFormValues.Range">
             <summary>
             The parameter specifies a range.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ParameterAttributeForm.Enumeration">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ParameterAttributeFormValues.Enumeration">
             <summary>
             The parameter is an enumeration.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ParameterAttributeForm.RegularExpression">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ParameterAttributeFormValues.RegularExpression">
             <summary>
             The parameter is a regular expression.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ParameterAttributeForm.ObjectIdentifier">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ParameterAttributeFormValues.ObjectIdentifier">
             <summary>
             The parameter is an object identifier.
             </summary>
@@ -13302,6 +13307,7 @@
             <summary>
             This enum describes the different Windows Portable Device storage types.
             </summary>
+            <seealso cref="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Storage.Type"/>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.StorageTypeValues.Undefined">
             <summary>
@@ -13328,129 +13334,131 @@
             The storage is removable and is read/write capable.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTypes">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTypeValues">
             <summary>
             This enum describes the different Windows Portable Device (WPD) types commonly used to determine the basic classification and visual appearance of a portable device.
             </summary>
-            <remarks><para><see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTypes"/> are read using the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.IPortableDeviceManager"/> interface. WPD applications may use these values to determine the generic visual appearance of the device. That is, a camera picture is displayed for camera-like devices, a mobile phone picture is displayed for phone-like devices, and so on.</para>
-            <para>Note: WPD applications must use the capabilities of the portable device to determine functionally, not the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTypes"/> value.</para>
+            <remarks><para><see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTypeValues"/> are read using the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.IPortableDeviceManager"/> interface. WPD applications may use these values to determine the generic visual appearance of the device. That is, a camera picture is displayed for camera-like devices, a mobile phone picture is displayed for phone-like devices, and so on.</para>
+            <para>Note: WPD applications must use the capabilities of the portable device to determine functionally, not the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTypeValues"/> value.</para>
             </remarks>
+            <seealso cref="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Device.Type"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTypes.Generic">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTypeValues.Generic">
             <summary>
-            A generic WPD that includes multifunction devices that do not fall into one of the other <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTypes"/> enumeration values.
+            A generic WPD that includes multifunction devices that do not fall into one of the other <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTypeValues"/> enumeration values.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTypes.Camera">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTypeValues.Camera">
             <summary>
             A camera device, such as a digital still camera.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTypes.MediaPlayer">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTypeValues.MediaPlayer">
             <summary>
             A media player device that supports playing audio, video, or viewing pictures, such as a portable music player or portable media center. Not all of this functionally is classified as a WPD_DEVICE_TYPE_MEDIA_PLAYER. For example, portable music player devices are classified as WPD_DEVICE_TYPE_MEDIA_PLAYER.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTypes.Phone">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTypeValues.Phone">
             <summary>
             A phone device, such as a mobile phone.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTypes.Video">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTypeValues.Video">
             <summary>
             A video device.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTypes.PersonalInformationManager">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTypeValues.PersonalInformationManager">
             <summary>
             A personal information manager device.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTypes.AudioRecorder">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.DeviceTypeValues.AudioRecorder">
             <summary>
             An audio recorder device.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.OperationStates">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.OperationStateValues">
             <summary>
             This enum values describe the current state of an operation in progress.
             </summary>
-            <remarks>These values are received in the application-defined callback (<see cref="!:IPortableDeviceEventCallback"/>).</remarks>
+            <remarks>These values are received in the application-defined callback (<see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.EventSystem.IPortableDeviceEventCallback"/>).</remarks>
+            <seealso cref="P:Microsoft.WindowsAPICodePack.PortableDevices.EventSystem.Parameter.OperationState"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.OperationStates.Unspecified">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.OperationStateValues.Unspecified">
             <summary>
             The current operation is in an unspecified state (not set) and unknown.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.OperationStates.Started">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.OperationStateValues.Started">
             <summary>
             The operation is started.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.OperationStates.Running">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.OperationStateValues.Running">
             <summary>
             The operation is running.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.OperationStates.Paused">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.OperationStateValues.Paused">
             <summary>
             The operation is paused.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.OperationStates.Cancelled">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.OperationStateValues.Cancelled">
             <summary>
             The operation is canceled.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.OperationStates.Finished">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.OperationStateValues.Finished">
             <summary>
             The operation is finished.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.OperationStates.Aborted">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.OperationStateValues.Aborted">
             <summary>
             The operation is aborted.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ServiceInheritanceTypes">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ServiceInheritanceTypeValues">
             <summary>
             This enum specifies the inheritance relationship for a service.
             </summary>
             <seealso cref="M:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.IPortableDeviceServiceCapabilities.GetInheritedServices(System.UInt32,Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.IPortableDevicePropVariantCollection@)"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ServiceInheritanceTypes.Implementation">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.ServiceInheritanceTypeValues.Implementation">
             <summary>
             The service inherits by implementing an abstract service definition.
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.StreamUnits">
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.StreamUnitValues">
             <summary>
             The WPD_STREAM_UNITS enumeration specifies the unit types to be used for <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.IPortableDeviceUnitsStream"/> operations.
             </summary>
             <seealso cref="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.IPortableDeviceUnitsStream"/>
-            <seealso cref="M:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.IPortableDeviceUnitsStream.SeekInUnits(System.Int64,Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.StreamUnits,System.UInt32,System.UInt64@)"/>
+            <seealso cref="M:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.IPortableDeviceUnitsStream.SeekInUnits(System.Int64,Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.StreamUnitValues,System.UInt32,System.UInt64@)"/>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.StreamUnits.Bytes">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.StreamUnitValues.Bytes">
             <summary>
             The stream units are specified in bytes.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.StreamUnits.Frames">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.StreamUnitValues.Frames">
             <summary>
             The stream units are specified in frames.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.StreamUnits.Rows">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.StreamUnitValues.Rows">
             <summary>
             The stream units are specified in rows.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.StreamUnits.Milliseconds">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.StreamUnitValues.Milliseconds">
             <summary>
             The stream units are specified in milliseconds.
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.StreamUnits.Microseconds">
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.StreamUnitValues.Microseconds">
             <summary>
             The stream units are specified in microseconds.
             </summary>
@@ -15257,262 +15265,263 @@
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Object">
             <summary>
-            This class defines all Commands-Parameters and Options associated with: <see cref="!:Guids.PortableDevices.PropertySystem.ObjectV1"/> and <see cref="!:Guids.PortableDevices.PropertySystem.ObjectV2"/>. This category is for all common object properties.
+            This class defines all Commands-Parameters and Options associated with: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ObjectV1"/> and <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ObjectV2"/>. This category is for all common object properties.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Object.ContentType">
             <summary>
             <para>Name: WPD_OBJECT_CONTENT_TYPE</para>
             <para>Description: The abstract type for the object content-indicating the kinds of properties and data that may be supported on the object.</para>
-            <para>Type: VT_CLSID</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_CLSID"/></para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Object.References">
             <summary>
             <para>Name: WPD_OBJECT_REFERENCES</para>
-            <para>Description: <see cref="!:IPortableDevicePropVariantCollection"/> of type VT_LPWSTR indicating a list of ObjectIDs.</para>
-            <para>Type: VT_UNKNOWN</para>
+            <para>Description: <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.IPortableDevicePropVariantCollection"/> of type VT_LPWSTR indicating a list of ObjectIDs.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UNKNOWN"/></para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Object.ContainerFunctionalObjectId">
             <summary>
             <para>Name: WPD_OBJECT_CONTAINER_FUNCTIONAL_OBJECT_ID</para>
             <para>Description: Indicates the Object ID of the closest functional object ancestor. For example-objects that represent files/folders under a Storage functional object-will have this property set to the object ID of the storage functional object.</para>
-            <para>Type: VT_LPWSTR</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_LPWSTR"/></para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Object.GenerateThumbnailFromResource">
             <summary>
             <para>Name: WPD_OBJECT_GENERATE_THUMBNAIL_FROM_RESOURCE</para>
             <para>Description: Indicates whether the thumbnail for this object should be generated from the default resource.</para>
-            <para>Type: VT_BOOL</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_BOOL"/></para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Object.HintLocationDisplayName">
             <summary>
             <para>Name: WPD_OBJECT_HINT_LOCATION_DISPLAY_NAME</para>
             <para>Description: If this object appears as a hint location-this property indicates the hint-specific name to display instead of the object name.</para>
-            <para>Type: VT_LPWSTR</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_LPWSTR"/></para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Object.SupportedUnits">
             <summary>
             <para>Name: WPD_OBJECT_SUPPORTED_UNITS</para>
             <para>Description: Indicates the units supported on this object.</para>
-            <para>Type: VT_UI4</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI4"/></para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Category">
             <summary>
             <para>Name: WPD_FUNCTIONAL_OBJECT_CATEGORY</para>
             <para>Description: Indicates the object's functional category.</para>
-            <para>Type: VT_CLSID</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_CLSID"/></para>
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Storage">
             <summary>
-            This class defines all Commands-Parameters and Options associated with: <see cref="!:Guids.PortableDevices.PropertySystem.StorageObjectV1"/>. This category is for properties common to all objects whose functional category is <see cref="!:Guids.PortableDevices.PropertySystem.FunctionalCategory.Storage"/>.
+            This class defines all Commands-Parameters and Options associated with: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.StorageObjectV1"/>. This category is for properties common to all objects whose functional category is <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.FunctionalCategory.Storage"/>.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Storage.Type">
             <summary>
             <para>Name: WPD_STORAGE_TYPE</para>
             <para>Description: Indicates the type of storage e.g. fixed-removable etc.</para>
-            <para>Type: VT_UI4</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI4"/></para>
             </summary>
+            <seealso cref="T:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.StorageTypeValues"/>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Storage.FileSystemType">
             <summary>
             <para>Name: WPD_STORAGE_FILE_SYSTEM_TYPE</para>
             <para>Description: Indicates the file system type e.g. "FAT32" or "NTFS" or "My Special File System"</para>
-            <para>Type: VT_LPWSTR</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_LPWSTR"/></para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Storage.Capacity">
             <summary>
             <para>Name: WPD_STORAGE_CAPACITY</para>
             <para>Description: Indicates the total storage capacity in bytes.</para>
-            <para>Type: VT_UI8</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI8"/></para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Storage.FreeSpaceInBytes">
             <summary>
             <para>Name: WPD_STORAGE_FREE_SPACE_IN_BYTES</para>
             <para>Description: Indicates the available space in bytes.</para>
-            <para>Type: VT_UI8</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI8"/></para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Storage.FreeSpaceInObjects">
             <summary>
             <para>Name: WPD_STORAGE_FREE_SPACE_IN_OBJECTS</para>
             <para>Description: Indicates the available space in objects e.g. available slots on a SIM card.</para>
-            <para>Type: VT_UI8</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI8"/></para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Storage.Description">
             <summary>
             <para>Name: WPD_STORAGE_DESCRIPTION</para>
             <para>Description: Contains a description of the storage.</para>
-            <para>Type: VT_LPWSTR</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_LPWSTR"/></para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Storage.SerialNumber">
             <summary>
             <para>Name: WPD_STORAGE_SERIAL_NUMBER</para>
             <para>Description: Contains the serial number of the storage.</para>
-            <para>Type: VT_LPWSTR</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_LPWSTR"/></para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Storage.MaxObjectSize">
             <summary>
             <para>Name: WPD_STORAGE_MAX_OBJECT_SIZE</para>
             <para>Description: Specifies the maximum size of a single object (in bytes) that can be placed on this storage.</para>
-            <para>Type: VT_UI8</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI8"/></para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Storage.CapacityInObjects">
             <summary>
             <para>Name: WPD_STORAGE_CAPACITY_IN_OBJECTS</para>
             <para>Description: Indicates the total storage capacity in objects e.g. available slots on a SIM card.</para>
-            <para>Type: VT_UI8</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI8"/></para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Storage.AccessCapability">
             <summary>
             <para>Name: WPD_STORAGE_ACCESS_CAPABILITY</para>
             <para>Description: This property identifies any write-protection that globally affects this storage. This takes precedence over access specified on individual objects.</para>
-            <para>Type: VT_UI4</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI4"/></para>
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.StillImageCapture">
             <summary>
-            This class defines all Commands-Parameters and Options associated with: <see cref="!:Guids.PortableDevices.PropertySystem.StillImageCaptureObjectV1"/>. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_STILL_IMAGE_CAPTURE
+            This class defines all Commands-Parameters and Options associated with: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.StillImageCaptureObjectV1"/>. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_STILL_IMAGE_CAPTURE
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.AudioRendering">
             <summary>
-            This class defines all Commands-Parameters and Options associated with: <see cref="!:Guids.PortableDevices.PropertySystem.RenderingInformationObjectV1"/>. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_AUDIO_RENDERING_INFORMATION.
+            This class defines all Commands-Parameters and Options associated with: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.RenderingInformationObjectV1"/>. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_AUDIO_RENDERING_INFORMATION.
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.NetworkAssociation">
             <summary>
-            This class defines all Commands-Parameters and Options associated with: <see cref="!:Guids.PortableDevices.PropertySystem.NetworkAssociationV1"/>. This category is for properties common to all network association objects.
+            This class defines all Commands-Parameters and Options associated with: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.NetworkAssociationV1"/>. This category is for properties common to all network association objects.
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Client">
             <summary>
-            This class defines all Commands-Parameters and Options associated with: <see cref="!:Guids.PortableDevices.PropertySystem.ClientInformationV1"/>.
+            This class defines all Commands-Parameters and Options associated with: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ClientInformationV1"/>.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Client.Name">
             <summary>
             <para>Name: WPD_CLIENT_NAME</para>
             <para>Description: Specifies the name the client uses to identify itself.</para>
-            <para>Type: VT_LPWSTR</para>
-            <para>FormatID: <see cref="!:Guids.PortableDevices.PropertySystem.ClientInformationV1"/>, 2</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_LPWSTR"/></para>
+            <para>FormatID: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ClientInformationV1"/>, 2</para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Client.MajorVersion">
             <summary>
             <para>Name: WPD_CLIENT_MAJOR_VERSION</para>
             <para>Description: Specifies the major version of the client.</para>
-            <para>Type: VT_UI4</para>
-            <para>FormatID: <see cref="!:Guids.PortableDevices.PropertySystem.ClientInformationV1"/>, 3</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI4"/></para>
+            <para>FormatID: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ClientInformationV1"/>, 3</para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Client.MinorVersion">
             <summary>
             <para>Name: WPD_CLIENT_MINOR_VERSION</para>
             <para>Description: Specifies the major version of the client.</para>
-            <para>Type: VT_UI4</para>
-            <para>FormatID: <see cref="!:Guids.PortableDevices.PropertySystem.ClientInformationV1"/>, 4</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI4"/></para>
+            <para>FormatID: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ClientInformationV1"/>, 4</para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Client.Revision">
             <summary>
             <para>Name: WPD_CLIENT_REVISION</para>
             <para>Description: Specifies the revision (or build number) of the client.</para>
-            <para>Type: VT_UI4</para>
-            <para>FormatID: <see cref="!:Guids.PortableDevices.PropertySystem.ClientInformationV1"/>, 5</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI4"/></para>
+            <para>FormatID: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ClientInformationV1"/>, 5</para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Client.WMDRMApplicationPrivateKey">
             <summary>
             <para>Name: WPD_CLIENT_WMDRM_APPLICATION_PRIVATE_KEY</para>
             <para>Description: Specifies the Windows Media DRM application private key of the client.</para>
-            <para>Type: VT_VECTOR | VT_UI1</para>
-            <para>FormatID: <see cref="!:Guids.PortableDevices.PropertySystem.ClientInformationV1"/>, 6</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_VECTOR"/> | <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI1"/></para>
+            <para>FormatID: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ClientInformationV1"/>, 6</para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Client.WMDRMApplicationCertificate">
             <summary>
             <para>Name: WPD_CLIENT_WMDRM_APPLICATION_CERTIFICATE</para>
             <para>Description: Specifies the Windows Media DRM application certificate of the client.</para>
-            <para>Type: VT_VECTOR | VT_UI1</para>
-            <para>FormatID: <see cref="!:Guids.PortableDevices.PropertySystem.ClientInformationV1"/>, 7</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_VECTOR"/> | <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI1"/></para>
+            <para>FormatID: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ClientInformationV1"/>, 7</para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Client.SecurityQualityOfService">
             <summary>
             <para>Name: WPD_CLIENT_SECURITY_QUALITY_OF_SERVICE</para>
             <para>Description: Specifies the Security Quality of Service for the connection to the driver. This relates to the Security Quality of Service flags for CreateFile. For example-these allow or disallow a driver to impersonate the client.</para>
-            <para>Type: VT_UI4</para>
-            <para>FormatID: <see cref="!:Guids.PortableDevices.PropertySystem.ClientInformationV1"/>, 8</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI4"/></para>
+            <para>FormatID: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ClientInformationV1"/>, 8</para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Client.DesiredAccess">
             <summary>
             <para>Name: WPD_CLIENT_DESIRED_ACCESS</para>
             <para>Description: Specifies the desired access the client is requesting to this driver. The possible values are the same as for CreateFile (e.g. GENERIC_READ-GENERIC_WRITE etc.).</para>
-            <para>Type: VT_UI4</para>
-            <para>FormatID: <see cref="!:Guids.PortableDevices.PropertySystem.ClientInformationV1"/>, 9</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI4"/></para>
+            <para>FormatID: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ClientInformationV1"/>, 9</para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Client.ShareMode">
             <summary>
             <para>Name: WPD_CLIENT_SHARE_MODE</para>
             <para>Description: Specifies the share mode the client is requesting to this driver. The possible values are the same as for CreateFile (e.g. FILE_SHARE_READ-FILE_SHARE_WRITE etc.).</para>
-            <para>Type: VT_UI4</para>
-            <para>FormatID: <see cref="!:Guids.PortableDevices.PropertySystem.ClientInformationV1"/>, 10</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI4"/></para>
+            <para>FormatID: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ClientInformationV1"/>, 10</para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Client.EventCookie">
             <summary>
             <para>Name: WPD_CLIENT_EVENT_COOKIE</para>
             <para>Description: Client supplied cookie returned by the driver in events posted as a direct result of operations issued by this client.</para>
-            <para>Type: VT_LPWSTR</para>
-            <para>FormatID: <see cref="!:Guids.PortableDevices.PropertySystem.ClientInformationV1"/>, 11</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_LPWSTR"/></para>
+            <para>FormatID: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ClientInformationV1"/>, 11</para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Client.MinimumResultsBufferSize">
             <summary>
             <para>Name: WPD_CLIENT_MINIMUM_RESULTS_BUFFER_SIZE</para>
             <para>Description: Specifies the minimum buffer size (in bytes) used for sending commands to the driver.</para>
-            <para>Type: VT_UI4</para>
-            <para>FormatID: <see cref="!:Guids.PortableDevices.PropertySystem.ClientInformationV1"/>, 12</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI4"/></para>
+            <para>FormatID: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ClientInformationV1"/>, 12</para>
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Client.ManualCloseOnDisconnect">
             <summary>
             <para>Name: WPD_CLIENT_MANUAL_CLOSE_ON_DISCONNECT</para>
             <para>Description: An advanced option for clients that wish to manually call <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.IPortableDevice.Close"/> or <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.IPortableDeviceService.Close"/> for each object on device disconnect-instead of relying on the API to call Close on its behalf.</para>
-            <para>Type: VT_BOOL</para>
-            <para>FormatID: <see cref="!:Guids.PortableDevices.PropertySystem.ClientInformationV1"/>, 13</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_BOOL"/></para>
+            <para>FormatID: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ClientInformationV1"/>, 13</para>
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.DeviceProperty">
+        <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Device">
             <summary>
-            This class defines all Commands-Parameters and Options associated with: <see cref="!:Guids.PortableDevices.PropertySystem.DeviceV1"/>, <see cref="!:Guids.PortableDevices.PropertySystem.DeviceV2"/> and <see cref="!:Guids.PortableDevices.PropertySystem.DeviceV3"/>.
+            This class defines all Commands-Parameters and Options associated with: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.DeviceV1"/>, <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.DeviceV2"/> and <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.DeviceV3"/>.
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.APIOption">
             <summary>
-            This class defines all Commands-Parameters and Options associated with: <see cref="!:Guids.PortableDevices.PropertySystem.APIOptionsV1"/>. The properties in this category describe API options.
+            This class defines all Commands-Parameters and Options associated with: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.APIOptionsV1"/>. The properties in this category describe API options.
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.ClassExtensionOption">
             <summary>
-            This class defines all Commands-Parameters and Options associated with: <see cref="!:Guids.PortableDevices.PropertySystem.ClassExtensionOptionsV1"/>, <see cref="!:Guids.PortableDevices.PropertySystem.ClassExtensionOptionsV2"/> and <see cref="!:Guids.PortableDevices.PropertySystem.ClassExtensionOptionsV3"/>. This category of properties relates to options used for the WPD device class extension.
+            This class defines all Commands-Parameters and Options associated with: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ClassExtensionOptionsV1"/>, <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ClassExtensionOptionsV2"/> and <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ClassExtensionOptionsV3"/>. This category of properties relates to options used for the WPD device class extension.
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy">
@@ -15520,49 +15529,307 @@
             This class defines the legacy WPD Properties. Some of these properties are still used.
             </summary>
         </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Common.Id">
+            <summary>
+            <para>Name: WPD_OBJECT_ID</para>
+            <para>Description: Uniquely identifies object on the Portable Device.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_LPWSTR"/></para>
+            <para>Recommended Device Services Property: PKEY_GenericObj_ObjectID</para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Common.ParentId">
+            <summary>
+            <para>Name: WPD_OBJECT_PARENT_ID</para>
+            <para>Description: Object identifier indicating the parent object.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_LPWSTR"/></para>
+            <para>Recommended Device Services Property: PKEY_GenericObj_ParentID</para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Common.Name">
+            <summary>
+            <para>Name: WPD_OBJECT_NAME</para>
+            <para>Description: The display name for this object.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_LPWSTR"/></para>
+            <para>Recommended Device Services Property: PKEY_GenericObj_Name</para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Common.PersistentUniqueId">
+            <summary>
+            <para>Name: WPD_OBJECT_PERSISTENT_UNIQUE_ID</para>
+            <para>Description: Uniquely identifies the object on the Portable Device-similar to <see cref="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Common.Id"/>-but this ID will not change between sessions.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_LPWSTR"/></para>-
+            <para>Recommended Device Services Property: PKEY_GenericObj_PersistentUID</para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Common.Format">
+            <summary>
+            <para>Name: WPD_OBJECT_FORMAT</para>
+            <para>Description: Indicates the format of the object's data.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_CLSID"/></para>
+            <para>Recommended Device Services Property: PKEY_GenericObj_ObjectFormat</para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Common.IsHidden">
+            <summary>
+            <para>Name: WPD_OBJECT_ISHIDDEN</para>
+            <para>Description: Indicates whether the object should be hidden.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_BOOL"/></para>
+            <para>Recommended Device Services Property: PKEY_GenericObj_Hidden</para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Common.IsSystem">
+            <summary>
+            <para>Name: WPD_OBJECT_ISSYSTEM</para>
+            <para>Description: Indicates whether the object represents system data.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_BOOL"/></para>
+            <para>Recommended Device Services Property: PKEY_GenericObj_SystemObject</para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Common.Size">
+            <summary>
+            <para>Name: WPD_OBJECT_SIZE</para>
+            <para>Description: The size of the object data.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI8"/></para>
+            <para>Recommended Device Services Property: PKEY_GenericObj_ObjectSize</para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Common.OriginalFileName">
+            <summary>
+            <para>Name: WPD_OBJECT_ORIGINAL_FILE_NAME</para>
+            <para>Description: Contains the name of the file this object represents.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_LPWSTR"/></para>
+            <para>Recommended Device Services Property: PKEY_GenericObj_ObjectFileName</para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Common.NonConsumable">
+            <summary>
+            <para>Name: WPD_OBJECT_NON_CONSUMABLE</para>
+            <para>Description: This property determines whether or not this object is intended to be understood by the device-or whether it has been placed on the device just for storage.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_BOOL"/></para>
+            <para>Recommended Device Services Property: PKEY_GenericObj_NonConsumable</para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Common.Keywords">
+            <summary>
+            <para>Name: WPD_OBJECT_KEYWORDS</para>
+            <para>Description: String containing a list of keywords associated with this object.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_LPWSTR"/></para>
+            <para>Recommended Device Services Property: PKEY_GenericObj_Keywords</para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Common.SyncId">
+            <summary>
+            <para>Name: WPD_OBJECT_SYNC_ID</para>
+            <para>Description: Opaque string set by client to retain state between sessions without retaining a catalogue of connected device content.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_LPWSTR"/></para>
+            <para>Recommended Device Services Property: PKEY_GenericObj_SyncID</para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Common.IsDRMProtected">
+            <summary>
+            <para>Name: WPD_OBJECT_IS_DRM_PROTECTED</para>
+            <para>Description: Indicates whether the media data is DRM protected.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_BOOL"/></para>
+            <para>Recommended Device Services Property: PKEY_GenericObj_DRMStatus</para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Common.DateCreated">
+            <summary>
+            <para>Name: WPD_OBJECT_DATE_CREATED</para>
+            <para>Description: Indicates the date and time the object was created on the device.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_DATE"/></para>
+            <para>Recommended Device Services Property: PKEY_GenericObj_DateCreated</para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Common.DateModified">
+            <summary>
+            <para>Name: WPD_OBJECT_DATE_MODIFIED</para>
+            <para>Description: Indicates the date and time the object was modified on the device.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_DATE"/></para>
+            <para>Recommended Device Services Property: PKEY_GenericObj_DateModified</para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Common.DateAuthored">
+            <summary>
+            <para>Name: WPD_OBJECT_DATE_AUTHORED</para>
+            <para>Description: Indicates the date and time the object was authored (e.g. for music-this would be the date the music was recorded).</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_DATE"/></para>
+            <para>Recommended Device Services Property: PKEY_GenericObj_DateAuthored</para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Common.BackReferences">
+            <summary>
+            <para>Name: WPD_OBJECT_BACK_REFERENCES</para>
+            <para>Description: IPortableDevicePropVariantCollection of type VT_LPWSTR indicating a list of ObjectIDs.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UNKNOWN"/></para>
+            <para>Recommended Device Services Property: PKEY_GenericObj_ReferenceParentID</para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Common.CanDelete">
+            <summary>
+            <para>Name: WPD_OBJECT_CAN_DELETE</para>
+            <para>Description: Indicates whether the object can be deleted-or not.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_BOOL"/></para>
+            <para>Recommended Device Services Property: PKEY_GenericObj_ProtectionStatus</para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Common.LanguageLocale">
+            <summary>
+            <para>Name: WPD_OBJECT_LANGUAGE_LOCALE</para>
+            <para>Description: Identifies the language of this object. If multiple languages are contained in this object-it should identify the primary language (if any).</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_LPWSTR"/></para>
+            <para>Recommended Device Services Property: PKEY_GenericObj_LanguageLocale</para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.FolderContentTypesAllowed">
+            <summary>
+            <para>Name: WPD_FOLDER_CONTENT_TYPES_ALLOWED</para>
+            <para>Description: Indicates the subset of content types that can be created in this folder directly (i.e. children may have different restrictions).</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UNKNOWN"/></para>
+            <para>Recommended Device Services Property: None</para>
+            </summary>
+        </member>
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Video">
             <summary>
-            This class defines all Commands-Parameters and Options associated with: <see cref="!:Guids.PortableDevices.PropertySystem.VideoObjectV1"/>. This category is for properties common to all video objects.
+            This class defines all Commands-Parameters and Options associated with: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.VideoObjectV1"/>. This category is for properties common to all video objects.
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Legacy.Object.Information">
             <summary>
-            This class defines all Commands-Parameters and Options associated with: <see cref="!:Guids.PortableDevices.PropertySystem.CommonInformationObjectV1"/>. This category is properties that pertain to informational objects such as appointments-tasks-memos and even documents.
+            This class defines all Commands-Parameters and Options associated with: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.CommonInformationObjectV1"/>. This category is properties that pertain to informational objects such as appointments-tasks-memos and even documents.
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Attribute">
             <summary>
-            This class defines all Commands-Parameters and Options associated with: <see cref="!:Guids.PortableDevices.PropertySystem.PropertyAttributesV1"/> and <see cref="!:Guids.PortableDevices.PropertySystem.PropertyAttributesV2"/>.
+            This class defines all Commands-Parameters and Options associated with: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.PropertyAttributesV1"/> and <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.PropertyAttributesV2"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Attribute.Property.Form">
+            <summary>
+            <para>Name: WPD_PROPERTY_ATTRIBUTE_FORM</para>
+            <para>Description: Specifies the form of the valid values allowed for this property.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI4"/></para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Attribute.Property.CanRead">
+            <summary>
+            <para>Name: WPD_PROPERTY_ATTRIBUTE_CAN_READ</para>
+            <para>Description: Indicates whether client applications have permission to Read the property.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_BOOL"/></para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Attribute.Property.CanWrite">
+            <summary>
+            <para>Name: WPD_PROPERTY_ATTRIBUTE_CAN_WRITE</para>
+            <para>Description: Indicates whether client applications have permission to Write the property.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_BOOL"/></para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Attribute.Property.CanDelete">
+            <summary>
+            <para>Name: WPD_PROPERTY_ATTRIBUTE_CAN_DELETE</para>
+            <para>Description: Indicates whether client applications have permission to Delete the property.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_BOOL"/></para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Attribute.Property.DefaultValue">
+            <summary>
+            <para>Name: WPD_PROPERTY_ATTRIBUTE_DEFAULT_VALUE</para>
+            <para>Description: Specifies the default value for a write-able property.</para>
+            <para>Type: VT_XXXX</para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Attribute.Property.FastProperty">
+            <summary>
+            <para>Name: WPD_PROPERTY_ATTRIBUTE_FAST_PROPERTY</para>
+            <para>Description: If True-then this property belongs to the PORTABLE_DEVICE_FAST_PROPERTIES group.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_BOOL"/></para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Attribute.Property.RangeMin">
+            <summary>
+            <para>Name: WPD_PROPERTY_ATTRIBUTE_RANGE_MIN</para>
+            <para>Description: The minimum value for a property whose form is of <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.PropertyAttributeFormValues.Range"/>.</para>
+            <para>Type: VT_XXXX</para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Attribute.Property.RangeMax">
+            <summary>
+            <para>Name: WPD_PROPERTY_ATTRIBUTE_RANGE_MAX</para>
+            <para>Description: The maximum value for a property whose form is of <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.PropertyAttributeFormValues.Range"/>.</para>
+            <para>Type: VT_XXXX</para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Attribute.Property.RangeStep">
+            <summary>
+            <para>Name: WPD_PROPERTY_ATTRIBUTE_RANGE_STEP</para>
+            <para>Description: The step value for a property whose form is of <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.PropertyAttributeFormValues.Range"/>.</para>
+            <para>Type: VT_XXXX</para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Attribute.Property.EnumerationElements">
+            <summary>
+            <para>Name: WPD_PROPERTY_ATTRIBUTE_ENUMERATION_ELEMENTS</para>
+            <para>Description: An IPortableDevicePropVariantCollection containing the enumeration values.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UNKNOWN"/></para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Attribute.Property.RegularExpression">
+            <summary>
+            <para>Name: WPD_PROPERTY_ATTRIBUTE_REGULAR_EXPRESSION</para>
+            <para>Description: A regular expression string indicating acceptable values for properties whose form is <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.PropertyAttributeFormValues.RegularExpression"/>.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_LPWSTR"/></para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Attribute.Property.MaxSize">
+            <summary>
+            <para>Name: WPD_PROPERTY_ATTRIBUTE_MAX_SIZE</para>
+            <para>Description: This indicates the maximum size (in bytes) for the value of this property.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI8"/></para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Attribute.Property.Name">
+            <summary>
+            <para>Name: WPD_PROPERTY_ATTRIBUTE_NAME</para>
+            <para>Description: Contains the name of the property.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_LPWSTR"/></para>
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Attribute.Property.VarType">
+            <summary>
+            <para>Name: WPD_PROPERTY_ATTRIBUTE_VARTYPE</para>
+            <para>Description: Contains the VARTYPE of the property.</para>
+            <para>Type: <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI4"/></para>
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Attribute.Format">
             <summary>
-            This class defines all Commands-Parameters and Options associated with: <see cref="!:Guids.PortableDevices.PropertySystem.FormatAttributesV1"/>. The properties in this category describe format attributes.
+            This class defines all Commands-Parameters and Options associated with: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.FormatAttributesV1"/>. The properties in this category describe format attributes.
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Attribute.Method">
             <summary>
-            This class defines all Commands-Parameters and Options associated with: <see cref="!:Guids.PortableDevices.PropertySystem.MethodAttributesV1"/>. The properties in this category describe method attributes.
+            This class defines all Commands-Parameters and Options associated with: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.MethodAttributesV1"/>. The properties in this category describe method attributes.
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Attribute.Parameter">
             <summary>
-            This class defines all Commands-Parameters and Options associated with: <see cref="!:Guids.PortableDevices.PropertySystem.ParameterAttributesV1"/>. The properties in this category describe parameter attributes.
+            This class defines all Commands-Parameters and Options associated with: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ParameterAttributesV1"/>. The properties in this category describe parameter attributes.
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.EventSystem.Parameter">
             <summary>
-            This class defines all Commands-Parameters and Options associated with: <see cref="!:Guids.PortableDevices.PropertySystem.EventV1"/> and <see cref="!:Guids.PortableDevices.PropertySystem.EventV2"/>. The properties in this category are for properties that may be needed for event processing-but do not have object property equivalents(i.e.they are not exposed as object properties-but rather-used only as event parameters).
+            This class defines all Commands-Parameters and Options associated with: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.EventV1"/> and <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.EventV2"/>. The properties in this category are for properties that may be needed for event processing-but do not have object property equivalents(i.e.they are not exposed as object properties-but rather-used only as event parameters).
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.EventSystem.Option">
             <summary>
-            This class defines all Commands-Parameters and Options associated with: <see cref="!:Guids.PortableDevices.PropertySystem.EventOptionsV1"/>. The properties in this category describe event options.
+            This class defines all Commands-Parameters and Options associated with: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.EventOptionsV1"/>. The properties in this category describe event options.
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.EventSystem.Attribute">
             <summary>
-            This class defines all Commands-Parameters and Options associated with: <see cref="!:Guids.PortableDevices.PropertySystem.EventAttributesV1"/>. The properties in this category describe event attributes.
+            This class defines all Commands-Parameters and Options associated with: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.EventAttributesV1"/>. The properties in this category describe event attributes.
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.CommandSystem.Common">
@@ -15637,7 +15904,7 @@
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.ResourceSystem.ResourceAttribute">
             <summary>
-            This class defines all Commands-Parameters and Options associated with: <see cref="!:Guids.PortableDevices.PropertySystem.ResourceAttributesV1"/>.
+            This class defines all Commands-Parameters and Options associated with: <see cref="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ResourceAttributesV1"/>.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Sensors.PropertySystem.DataType.AngleXDegrees">

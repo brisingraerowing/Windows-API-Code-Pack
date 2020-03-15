@@ -829,7 +829,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
     // todo: this collection implements the .Net IReadOnlyDictionary interface, but this interface does not support the uint indexing.
 
-    public sealed class PropertyCollection : IReadOnlyDictionary<PropertyKey, ObjectProperty>, IDisposable
+    public sealed class PropertyCollection : IReadOnlyDictionary<PropertyKey, Property>, IDisposable
     {
 
         #region Private/Internal Fields
@@ -842,15 +842,15 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
         private uint? _count;
 
-        private Dictionary<ObjectProperty> _innerDictionary;
+        private Dictionary<Property> _innerDictionary;
 
-        private Func<Dictionary<ObjectProperty>> _getDictionaryDelegate;
+        private Func<Dictionary<Property>> _getDictionaryDelegate;
 
         #endregion
 
         #region Public Properties
 
-        public ObjectProperty this[PropertyKey key]
+        public Property this[PropertyKey key]
         {
             get
             {
@@ -859,7 +859,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                     throw new InvalidOperationException("The current object is disposed.");
 
-                if (_innerDictionary.TryGetValue(key, out ObjectProperty value))
+                if (_innerDictionary.TryGetValue(key, out Property value))
 
                     return value;
 
@@ -874,7 +874,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
                         if (propertyKey == key)
                         {
 
-                            var objectProperty = new ObjectProperty(this, propertyKey, CoreErrorHelper.Succeeded(Items.GetPropertyInfo(ref propertyKey, out IPropertyInfo propertyInfo)) ? propertyInfo : PropertyInfo.DefaultPropertyInfo);
+                            var objectProperty = new Property(this, propertyKey, CoreErrorHelper.Succeeded(Items.GetPropertyInfo(ref propertyKey, out IPropertyInfo propertyInfo)) ? propertyInfo : PropertyInfo.DefaultPropertyInfo);
 
                             _innerDictionary.Add(key, objectProperty);
 
@@ -906,7 +906,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             }
         }
 
-        public IEnumerable<ObjectProperty> Values
+        public IEnumerable<Property> Values
         {
             get
             {
@@ -944,7 +944,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
         #region Explicit Interface Implementations
 
-        int IReadOnlyCollection<KeyValuePair<PropertyKey, ObjectProperty>>.Count => (int)Count;
+        int IReadOnlyCollection<KeyValuePair<PropertyKey, Property>>.Count => (int)Count;
 
         #endregion
 
@@ -960,7 +960,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
             Marshal.ThrowExceptionForHR((int)nativePropertyCollection.GetValues(out _nativePropertyValuesCollection));
 
-            _innerDictionary = new Dictionary<ObjectProperty>((int)Count);
+            _innerDictionary = new Dictionary<Property>((int)Count);
 
             _getDictionaryDelegate = () =>
 
@@ -997,7 +997,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                     if (!_innerDictionary.ContainsKey(propertyKey))
 
-                        _innerDictionary.Add(propertyKey, new ObjectProperty(this, propertyKey, CoreErrorHelper.Succeeded(Items.GetPropertyInfo(ref propertyKey, out IPropertyInfo propertyInfo)) ? propertyInfo : PropertyInfo.DefaultPropertyInfo));
+                        _innerDictionary.Add(propertyKey, new Property(this, propertyKey, CoreErrorHelper.Succeeded(Items.GetPropertyInfo(ref propertyKey, out IPropertyInfo propertyInfo)) ? propertyInfo : PropertyInfo.DefaultPropertyInfo));
                 }
 
             }
@@ -1022,13 +1022,13 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             return false;
         }
 
-        public bool TryGetValue(PropertyKey key, out ObjectProperty value)
+        public bool TryGetValue(PropertyKey key, out Property value)
         {
             if (IsDisposed)
 
                 throw new InvalidOperationException("The current object is disposed.");
 
-            foreach (KeyValuePair<PropertyKey, ObjectProperty> _value in _innerDictionary)
+            foreach (KeyValuePair<PropertyKey, Property> _value in _innerDictionary)
 
                 if (_value.Key == key)
                 {
@@ -1046,7 +1046,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                     PropertyKey _propertyKey = propertyKey;
 
-                    var property = new ObjectProperty(this, _propertyKey, CoreErrorHelper.Succeeded(Items.GetPropertyInfo(ref _propertyKey, out IPropertyInfo propertyInfo)) ? propertyInfo : PropertyInfo.DefaultPropertyInfo);
+                    var property = new Property(this, _propertyKey, CoreErrorHelper.Succeeded(Items.GetPropertyInfo(ref _propertyKey, out IPropertyInfo propertyInfo)) ? propertyInfo : PropertyInfo.DefaultPropertyInfo);
 
                     _innerDictionary.Add(propertyKey, property);
 
@@ -1075,7 +1075,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         {
             if (!IsDisposed)
             {
-                ((System.Collections.Generic.ICollection<KeyValuePair<PropertyKey, ObjectProperty>>)_innerDictionary).Clear();
+                ((System.Collections.Generic.ICollection<KeyValuePair<PropertyKey, Property>>)_innerDictionary).Clear();
                 _innerDictionary = null;
                 _getDictionaryDelegate = null;
                 Items.Dispose();
@@ -1088,7 +1088,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
         #region IEnumerable Support
 
-        public IEnumerator<KeyValuePair<PropertyKey, ObjectProperty>> GetEnumerator()
+        public IEnumerator<KeyValuePair<PropertyKey, Property>> GetEnumerator()
         {
             if (IsDisposed)
 
@@ -1112,27 +1112,27 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
     /// <summary>
     /// Represents a collection of property attributes.
     /// </summary>
-    /// <seealso cref="ObjectPropertyAttribute"/>
-    /// <seealso cref="ObjectProperty"/>
+    /// <seealso cref="PropertyAttribute"/>
+    /// <seealso cref="Property"/>
     /// <seealso cref="PropertyCollection"/>
-    internal sealed class PropertyAttributeCollection : IEnumerable<ObjectPropertyAttribute>, WinCopies.Collections.IUIntIndexedCollection<ObjectPropertyAttribute>
+    internal sealed class PropertyAttributeCollection : IEnumerable<PropertyAttribute>, WinCopies.Collections.IUIntIndexedCollection<PropertyAttribute>
     {
 
         #region Private Fields
 
         private IDisposableReadOnlyNativePropertyValuesCollection _nativePropertyValuesCollection;
 
-        private readonly Dictionary<ObjectPropertyAttribute> _innerDictionary;
+        private readonly Dictionary<PropertyAttribute> _innerDictionary;
 
         private uint? _count;
 
-        private Func<Dictionary<ObjectPropertyAttribute>> _getDictionaryDelegate;
+        private Func<Dictionary<PropertyAttribute>> _getDictionaryDelegate;
 
         #endregion
 
         #region Public Indexers
 
-        public ObjectPropertyAttribute this[PropertyKey key]
+        public PropertyAttribute this[PropertyKey key]
         {
             get
             {
@@ -1145,7 +1145,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             }
         }
 
-        public ObjectPropertyAttribute this[uint index]
+        public PropertyAttribute this[uint index]
         {
             get
             {
@@ -1157,9 +1157,9 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                 int i = 0;
 
-                Dictionary<ObjectPropertyAttribute> dic = _getDictionaryDelegate();
+                Dictionary<PropertyAttribute> dic = _getDictionaryDelegate();
 
-                foreach (ObjectPropertyAttribute value in dic.Values)
+                foreach (PropertyAttribute value in dic.Values)
 
                 {
 
@@ -1213,7 +1213,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         {
             ThrowIfNull(nativePropertyValuesCollection, nameof(nativePropertyValuesCollection));
 
-            _innerDictionary = new Dictionary<ObjectPropertyAttribute>((int)Count);
+            _innerDictionary = new Dictionary<PropertyAttribute>((int)Count);
 
             _getDictionaryDelegate = () =>
 
@@ -1244,7 +1244,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
                 _ = _nativePropertyValuesCollection.GetAt(i, ref propertyKey, out PropVariant propVariant);
 
-                _innerDictionary.Add(propertyKey, new ObjectPropertyAttribute(propertyKey, NativePropertyHelper.VarEnumToSystemType(propVariant.VarType), propVariant.Value));
+                _innerDictionary.Add(propertyKey, new PropertyAttribute(propertyKey, NativePropertyHelper.VarEnumToSystemType(propVariant.VarType), propVariant.Value));
             }
 
         }
@@ -1257,19 +1257,19 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
         #region IEnumerable Support
 
-        private class UIntIndexedCollectionEnumerator : UIntIndexedCollectionEnumeratorBase, IEnumerator<ObjectPropertyAttribute>
+        private class UIntIndexedCollectionEnumerator : UIntIndexedCollectionEnumeratorBase, IEnumerator<PropertyAttribute>
 
         {
 
-            public UIntIndexedCollectionEnumerator(WinCopies.Collections.IUIntIndexedCollection<ObjectPropertyAttribute> uIntIndexedCollection) : base(uIntIndexedCollection) { }
+            public UIntIndexedCollectionEnumerator(WinCopies.Collections.IUIntIndexedCollection<PropertyAttribute> uIntIndexedCollection) : base(uIntIndexedCollection) { }
 
-            public ObjectPropertyAttribute Current => ((PropertyAttributeCollection)UIntIndexedCollection).IsDisposed ? throw new InvalidOperationException("The collection is disposed.") : ((WinCopies.Collections.IUIntIndexedCollection<ObjectPropertyAttribute>)UIntIndexedCollection)[Index.Value];
+            public PropertyAttribute Current => ((PropertyAttributeCollection)UIntIndexedCollection).IsDisposed ? throw new InvalidOperationException("The collection is disposed.") : ((WinCopies.Collections.IUIntIndexedCollection<PropertyAttribute>)UIntIndexedCollection)[Index.Value];
 
             object IEnumerator.Current => Current;
 
         }
 
-        public IEnumerator<ObjectPropertyAttribute> GetEnumerator()
+        public IEnumerator<PropertyAttribute> GetEnumerator()
         {
             if (IsDisposed)
 

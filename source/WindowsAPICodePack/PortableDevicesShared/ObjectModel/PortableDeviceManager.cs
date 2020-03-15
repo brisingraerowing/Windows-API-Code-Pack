@@ -9,6 +9,19 @@ using static Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PortableDe
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
+    public interface IPortableDeviceManager : IDisposable
+    {
+        ReadOnlyCollection<PortableDevice> PortableDevices { get; }
+
+        ReadOnlyCollection<PortableDevice> PrivatePortableDevices { get; }
+
+        void RefreshDeviceList();
+
+        void GetDevices();
+
+        void GetPrivateDevices();
+    }
+
     public class PortableDeviceManager : IPortableDeviceManager
     {
 
@@ -151,15 +164,15 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         {
             if (IsDisposed) return;
 
-            foreach (PortableDevice portableDevice in _portableDevices)
+            //foreach (PortableDevice portableDevice in _portableDevices)
 
-                portableDevice.Dispose();
+            //    portableDevice.Dispose();
 
             _portableDevices.Clear();
 
-            foreach (PortableDevice privatePortableDevice in _privatePortableDevices)
+            //foreach (PortableDevice privatePortableDevice in _privatePortableDevices)
 
-                privatePortableDevice.Dispose();
+            //    privatePortableDevice.Dispose();
 
             _privatePortableDevices.Clear();
 

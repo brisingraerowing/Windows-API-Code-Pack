@@ -17,18 +17,64 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
     /// <summary>
     /// This class wraps native <see cref="PropVariant"/>s into managed objects. Please note that the Shell API, however, has its own managed wrapper, the <c>ShellProperty</c> class.
     /// </summary>
-    public sealed class ObjectProperty : IObjectProperty, IEquatable<IObjectProperty>
+    public sealed class Property : IProperty, IEquatable<IProperty>
     {
+
+        public bool TryGetValue<T>(out T value)
+
+        {
+
+            if (IsSet)
+
+            {
+
+                bool? _value = PropertyInfo.IsReadable;
+
+                if ((_value.HasValue && _value.Value) || !_value.HasValue)
+
+                    try
+
+                    {
+
+                        object result = GetValue(out Type resultType);
+
+                        Debug.WriteLine($"The given value is from {resultType} type and is {result}.");
+
+                        if (resultType == typeof(T))
+
+                        {
+
+                            value = (T)result;
+
+                            return true;
+
+                        }
+
+                    }
+
+                    catch (PropertySystemException)
+
+                    {
+
+                    }
+
+            }
+
+            value = default;
+
+            return false;
+
+        }
 
         private PropertyCollection _propertyCollection;
         private PropertyKey _propertyKey;
-        private WinCopies.Collections.IUIntIndexedCollection<ObjectPropertyAttribute> _attributes;
+        private WinCopies.Collections.IUIntIndexedCollection<PropertyAttribute> _attributes;
         private bool _allowSetTruncatedValue;
 
         /// <summary>
         /// Gets the attributes for this property.
         /// </summary>
-        public WinCopies.Collections.IUIntIndexedCollection<ObjectPropertyAttribute> Attributes
+        public WinCopies.Collections.IUIntIndexedCollection<PropertyAttribute> Attributes
         {
             get
             {
@@ -96,7 +142,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
         private bool IsBlank(in PropVariant propVariant) => propVariant.VarType == VarEnum.VT_HRESULT;
 
-        internal ObjectProperty(in PropertyCollection propertyCollection, in PropertyKey propertyKey, in IPropertyInfo propertyInfo)
+        internal Property(in PropertyCollection propertyCollection, in PropertyKey propertyKey, in IPropertyInfo propertyInfo)
 
         {
 
@@ -310,26 +356,26 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             return hr;
         }
 
-        HResult IObjectProperty.GetValue(out PropVariant propVariant) => GetPropVariant(out propVariant);
+        HResult IProperty.GetValue(out PropVariant propVariant) => GetPropVariant(out propVariant);
         #endregion
 
         #region IEquatable Support
 
 
         /// <summary>
-        /// Checks if the current property is equal to a given <see cref="IObjectProperty"/>.
+        /// Checks if the current property is equal to a given <see cref="IProperty"/>.
         /// </summary>
-        /// <param name="other">The <see cref="IObjectProperty"/> to check equality.</param>
-        /// <returns><see langword="true"/> if the <paramref name="other"/> is equal to the current <see cref="IObjectProperty"/>, otherwise <see langword="false"/>.</returns>
-        public bool Equals(IObjectProperty other) => other?.PropertyKey.Equals(PropertyKey) == true;
+        /// <param name="other">The <see cref="IProperty"/> to check equality.</param>
+        /// <returns><see langword="true"/> if the <paramref name="other"/> is equal to the current <see cref="IProperty"/>, otherwise <see langword="false"/>.</returns>
+        public bool Equals(IProperty other) => other?.PropertyKey.Equals(PropertyKey) == true;
 
         #endregion
 
     }
 
-    public sealed class ObjectPropertyAttribute : IEquatable<ObjectPropertyAttribute>
+    public sealed class PropertyAttribute : IEquatable<PropertyAttribute>
     {
-        internal ObjectPropertyAttribute(in PropertyKey propertyKey, in Type type, in object value)
+        internal PropertyAttribute(in PropertyKey propertyKey, in Type type, in object value)
 
         {
 
@@ -361,7 +407,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         /// </summary>
         /// <param name="other">The property attribute to check equality.</param>
         /// <returns><see langword="true"/> if the <paramref name="other"/> is equal to the current property attribute, otherwise <see langword="false"/>.</returns>
-        public bool Equals(ObjectPropertyAttribute other) => other?.PropertyKey.Equals(PropertyKey) == true;
+        public bool Equals(PropertyAttribute other) => other?.PropertyKey.Equals(PropertyKey) == true;
 
         //#region IDisposable Support
         //public bool IsDisposed { get; private set; }
