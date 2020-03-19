@@ -9,7 +9,7 @@
     <AssemblyOriginatorKeyFile>PortableDevices.snk</AssemblyOriginatorKeyFile>
     <AssemblyName>WinCopies.WindowsAPICodePack.PortableDevices</AssemblyName>
     <RootNamespace>Microsoft.WindowsAPICodePack.PortableDevices</RootNamespace>
-    <Version>2.0.0</Version>
+    <Version>2.0.0-preview1</Version>
     <Authors>Pierre Sprimont</Authors>
     <Product>Microsoft Windows API Code Pack for .NET Framework</Product>
     <Description>.NET wrappers fro the PortableDevices API</Description>
