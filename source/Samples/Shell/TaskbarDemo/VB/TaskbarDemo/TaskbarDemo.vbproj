@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,7 +10,7 @@
     <RootNamespace>
     </RootNamespace>
     <AssemblyName>TaskbarDemo</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <OptionExplicit>On</OptionExplicit>
     <OptionCompare>Binary</OptionCompare>
     <OptionStrict>Off</OptionStrict>
@@ -19,15 +19,12 @@
     <StartupObject>TaskbarDemo.Program</StartupObject>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <ApplicationIcon>Resources\Taskbar.ico</ApplicationIcon>
-    
-    
-    
-    
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
-    <UpgradeBackupLocation />
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -42,6 +39,7 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,6 +50,8 @@
     <DefineTrace>true</DefineTrace>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>42353,42354,42355</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -61,6 +61,8 @@
     <DefineTrace>true</DefineTrace>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>42353,42354,42355</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore">
@@ -95,6 +97,11 @@
     <Compile Include="ChildDocument.Designer.vb">
       <DependentUpon>ChildDocument.vb</DependentUpon>
     </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="TaskbarDemoMainForm.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -113,15 +120,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="My Project\Resources.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <None Include="app.config" />
     <None Include="app.manifest" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -173,9 +176,9 @@
     <Content Include="Resources\Taskbar.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\WindowsAPICodePack\Core\Core.csproj">
+    <ProjectReference Include="..\..\..\..\..\WindowsAPICodePack\Core.Net4.7\Core.Net4.7.csproj">
       <Project>{2E1FB0DF-F9BB-4909-9F32-2D9D022A8E57}</Project>
-      <Name>Core</Name>
+      <Name>Core.Net4.7</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\WindowsAPICodePack\Shell\Shell.csproj">
       <Project>{AA0C00CB-8699-4F37-BFAE-40CA87ACC06D}</Project>
@@ -183,11 +186,11 @@
     </ProjectReference>
     <ProjectReference Include="..\..\CS\RegistrationHelper\RegistrationHelper.csproj">
       <Project>{03F9F5A8-F3F4-499A-8B15-57ADBA5148CC}</Project>
-      <Name>RegistrationHelper %28Samples\CS\RegistrationHelper%29</Name>
+      <Name>RegistrationHelper</Name>
     </ProjectReference>
     <ProjectReference Include="..\RegistrationHelper\RegistrationHelper.vbproj">
       <Project>{A1AC4592-6309-492C-B0F1-C9241886718F}</Project>
-      <Name>RegistrationHelper %28Samples\VB\RegistrationHelper%29</Name>
+      <Name>RegistrationHelper</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

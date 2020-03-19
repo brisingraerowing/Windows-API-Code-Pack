@@ -102,12 +102,6 @@
     <Compile Include="PropertySystem\PropVariantTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\WindowsAPICodePack\Core\Core.csproj">
-      <Project>{2E1FB0DF-F9BB-4909-9F32-2D9D022A8E57}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>

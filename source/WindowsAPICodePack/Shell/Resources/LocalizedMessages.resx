@@ -189,6 +189,9 @@
   <data name="EnsureValidNamesCannotBeChanged" xml:space="preserve">
     <value>EnsureValidNames cannot be changed while dialog is showing.</value>
   </data>
+  <data name="ExplorerBrowserBrowseToObjectFailed" xml:space="preserve">
+    <value>Browsing to object failed.</value>
+  </data>
   <data name="ExplorerBrowserFailedToGetView" xml:space="preserve">
     <value>ExplorerBrowser failed to get current view.</value>
   </data>
@@ -225,6 +228,21 @@
   <data name="JumpListNegativeOrdinalPosition" xml:space="preserve">
     <value>Negative numbers are not allowed for the ordinal position.</value>
   </data>
+  <data name="MessageListenerCannotCreateWindow" xml:space="preserve">
+    <value>Creation of window has failed, view inner exception for details.</value>
+  </data>
+  <data name="MessageListenerClassNotRegistered" xml:space="preserve">
+    <value>Window class could not be registered, check inner exception for more details.</value>
+  </data>
+  <data name="MessageListenerFilterUnableToRegister" xml:space="preserve">
+    <value>Message filter registration failed.</value>
+  </data>
+  <data name="MessageListenerFilterUnknownListenerHandle" xml:space="preserve">
+    <value>No listener handled of that value is registered.</value>
+  </data>
+  <data name="MessageListenerNoWindowHandle" xml:space="preserve">
+    <value>Cannot create window on the listener thread because there is no existing window on the listener thread.</value>
+  </data>
   <data name="NavigateToShortcutCannotBeChanged" xml:space="preserve">
     <value>NavigateToShortcut cannot be changed while dialog is showing.</value>
   </data>
@@ -260,6 +278,12 @@
   </data>
   <data name="ShellObjectCollectionRemoveReadOnly" xml:space="preserve">
     <value>Cannot remove items from a read only list.</value>
+  </data>
+  <data name="ShellObjectWatcherRegisterFailed" xml:space="preserve">
+    <value>Registration for change notification has failed.</value>
+  </data>
+  <data name="ShellObjectWatcherUnableToChangeEvents" xml:space="preserve">
+    <value>Unable to change watched events while listening.</value>
   </data>
   <data name="ShowHiddenItemsCannotBeChanged" xml:space="preserve">
     <value>ShowHiddenItems cannot be changed while dialog is showing.</value>
@@ -308,29 +332,5 @@
   </data>
   <data name="ThumbnailToolbarManagerNullEmptyArray" xml:space="preserve">
     <value>Null or empty arrays are not allowed.</value>
-  </data>
-  <data name="ExplorerBrowserBrowseToObjectFailed" xml:space="preserve">
-    <value>Browsing to object failed.</value>
-  </data>
-  <data name="ShellObjectWatcherRegisterFailed" xml:space="preserve">
-    <value>Registration for change notification has failed.</value>
-  </data>
-  <data name="MessageListenerNoWindowHandle" xml:space="preserve">
-    <value>Cannot create window on the listener thread because there is no existing window on the listener thread.</value>
-  </data>
-  <data name="MessageListenerClassNotRegistered" xml:space="preserve">
-    <value>Window class could not be registered, check inner exception for more details.</value>
-  </data>
-  <data name="MessageListenerFilterUnableToRegister" xml:space="preserve">
-    <value>Message filter registration failed.</value>
-  </data>
-  <data name="MessageListenerFilterUnknownListenerHandle" xml:space="preserve">
-    <value>No listener handled of that value is registered.</value>
-  </data>
-  <data name="MessageListenerCannotCreateWindow" xml:space="preserve">
-    <value>Creation of window has failed, view inner exception for details.</value>
-  </data>
-  <data name="ShellObjectWatcherUnableToChangeEvents" xml:space="preserve">
-    <value>Unable to change watched events while listening.</value>
   </data>
 </root>

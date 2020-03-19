@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -12,7 +12,7 @@
     <!-- Most people will use Publish dialog in Visual Studio to increment this -->
     <Win32Resource>
     </Win32Resource>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <OptionExplicit>On</OptionExplicit>
     <OptionCompare>Binary</OptionCompare>
     <OptionStrict>Off</OptionStrict>
@@ -37,10 +37,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>false</BootstrapperEnabled>
-    
-    
-    
-    
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,8 +48,9 @@
     <DefineTrace>true</DefineTrace>
     <UseVSHostingProcess>true</UseVSHostingProcess>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>42353,42354,42355</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
@@ -60,8 +58,9 @@
     <OutputPath>.\bin\Release\</OutputPath>
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>42353,42354,42355</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <DebugSymbols>true</DebugSymbols>
@@ -72,8 +71,9 @@
     <PlatformTarget>x64</PlatformTarget>
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.vb</CodeAnalysisModuleSuppressionsFile>
-    
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>42353,42354,42355</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
     <DebugSymbols>true</DebugSymbols>
@@ -85,13 +85,15 @@
     <PlatformTarget>x64</PlatformTarget>
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.vb</CodeAnalysisModuleSuppressionsFile>
-
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>42353,42354,42355</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="System.Xaml" />
     <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -112,6 +114,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="MyApp.xaml.vb">
       <DependentUpon>MyApp.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -126,18 +133,14 @@
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <Compile Include="My Project\Resources.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="My Project\Settings.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -168,9 +171,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\WindowsAPICodePack\Core\Core.csproj">
+    <ProjectReference Include="..\..\..\..\WindowsAPICodePack\Core.Net4.7\Core.Net4.7.csproj">
       <Project>{2E1FB0DF-F9BB-4909-9F32-2D9D022A8E57}</Project>
-      <Name>Core</Name>
+      <Name>Core.Net4.7</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\WindowsAPICodePack\Shell\Shell.csproj">
       <Project>{AA0C00CB-8699-4F37-BFAE-40CA87ACC06D}</Project>

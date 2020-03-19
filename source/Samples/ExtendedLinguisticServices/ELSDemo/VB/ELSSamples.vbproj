@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,21 +10,18 @@
     <RootNamespace>
     </RootNamespace>
     <AssemblyName>ELSSamples</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <OptionExplicit>On</OptionExplicit>
     <OptionCompare>Binary</OptionCompare>
     <OptionStrict>Off</OptionStrict>
     <OptionInfer>On</OptionInfer>
     <FileAlignment>512</FileAlignment>
-    
-    
-    
-    
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,8 +31,9 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <ErrorReport>prompt</ErrorReport>
-    
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>42353,42354,42355</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -44,8 +42,9 @@
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <ErrorReport>prompt</ErrorReport>
-
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>42353,42354,42355</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -55,10 +54,13 @@
     <Compile Include="My Project\AssemblyInfo.vb" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\WindowsAPICodePack\ExtendedLinguisticServices\ExtendedLinguisticServices.csproj">
+    <ProjectReference Include="..\..\..\..\WindowsAPICodePack\ExtendedLinguisticServices.Net4.7\ExtendedLinguisticServices.Net4.7.csproj">
       <Project>{B2CE24B7-FC5D-49AC-806F-1D88F78A31E9}</Project>
-      <Name>ExtendedLinguisticServices</Name>
+      <Name>ExtendedLinguisticServices.Net4.7</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

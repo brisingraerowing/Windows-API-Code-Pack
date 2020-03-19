@@ -222,6 +222,9 @@
   <data name="PowerInsufficientAccessCapabilities" xml:space="preserve">
     <value>The caller had insufficient access rights to get the system power capabilities.</value>
   </data>
+  <data name="PowerManagerActiveSchemeFailed" xml:space="preserve">
+    <value>Failed to get active power scheme.</value>
+  </data>
   <data name="PowerManagerBatteryNotPresent" xml:space="preserve">
     <value>Battery is not present on this system.</value>
   </data>
@@ -230,6 +233,9 @@
   </data>
   <data name="ProgressBarCannotBeHostedInMultipleDialogs" xml:space="preserve">
     <value>Progress bar cannot be hosted in multiple dialogs.</value>
+  </data>
+  <data name="PropVariantInitializationError" xml:space="preserve">
+    <value>Unable to initialize PropVariant.</value>
   </data>
   <data name="RecoverySettingsFormatString" xml:space="preserve">
     <value>delegate: {0}, state: {1}, ping: {2}</value>
@@ -278,11 +284,5 @@
   </data>
   <data name="TaskDialogUnkownControl" xml:space="preserve">
     <value>Unknown dialog control type.</value>
-  </data>
-  <data name="PropVariantInitializationError" xml:space="preserve">
-    <value>Unable to initialize PropVariant.</value>
-  </data>
-  <data name="PowerManagerActiveSchemeFailed" xml:space="preserve">
-    <value>Failed to get active power scheme.</value>
   </data>
 </root>

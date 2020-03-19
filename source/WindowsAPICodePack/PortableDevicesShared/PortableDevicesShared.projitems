@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>dfe309f3-5fc4-48e2-b26d-274f1033b41e</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>PortableDevices</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Interop\NativePropertyKeyCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interop\NativeValueCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ObjectModel\DeviceCapabilities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ObjectModel\PortableDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ObjectModel\PortableDeviceObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ObjectModel\PortableDeviceObjectStorageCapacity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Old.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\CollectionClasses\PortableDevicePropVariantCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\CollectionClasses\PortableDeviceValuesCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\CollectionInterfaces\IPortableDevicePropVariantCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\CollectionInterfaces\IPortableDeviceValuesCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\PortableDeviceProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ObjectModel\PortableDeviceManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Structs.cs" />
+  </ItemGroup>
+</Project>

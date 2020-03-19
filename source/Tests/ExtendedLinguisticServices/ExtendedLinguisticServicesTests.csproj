@@ -97,12 +97,6 @@
     <Compile Include="MappingServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\WindowsAPICodePack\ExtendedLinguisticServices\ExtendedLinguisticServices.csproj">
-      <Project>{B2CE24B7-FC5D-49AC-806F-1D88F78A31E9}</Project>
-      <Name>ExtendedLinguisticServices</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>

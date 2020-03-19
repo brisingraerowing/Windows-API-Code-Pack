@@ -5,9 +5,11 @@ using System.ComponentModel;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using MS.WindowsAPICodePack.Internal;
+using Microsoft.WindowsAPICodePack.Internal;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell.Consts;
+using static Microsoft.WindowsAPICodePack.Win32Native.Shell.Consts.CommandLinkDefinitions;
 
 namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
 {
@@ -93,37 +95,37 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
             // Otherwise, button creation will fail.
             if (CoreHelpers.RunningOnVista)
 
-                style |= ShellNativeMethods.CommandLink;
+                style |= CommandLinkDefinitions.CommandLink;
 
             return style;
         }
 
-        private static string GetNote(System.Windows.Forms.Button Button)
+        private static string GetNote(Button Button)
         {
             IntPtr retVal = CoreNativeMethods.SendMessage(
                 Button.Handle,
-                ShellNativeMethods.GetNoteLength,
+                GetNoteLength,
                 IntPtr.Zero,
                 IntPtr.Zero);
 
             // Add 1 for null terminator, to get the entire string back.
             int len = ((int)retVal) + 1;
-            StringBuilder strBld = new StringBuilder(len);
+            var strBld = new StringBuilder(len);
 
-            retVal = CoreNativeMethods.SendMessage(Button.Handle, ShellNativeMethods.GetNote, ref len, strBld);
+            retVal = CoreNativeMethods.SendMessage(Button.Handle, CommandLinkDefinitions.GetNote, ref len, strBld);
             return strBld.ToString();
         }
 
         private static void SetNote(System.Windows.Forms.Button button, string text) =>
             // This call will be ignored on versions earlier than Windows Vista.
-            CoreNativeMethods.SendMessage(button.Handle, ShellNativeMethods.SetNote, 0, text);
+            CoreNativeMethods.SendMessage(button.Handle, CommandLinkDefinitions.SetNote, 0, text);
 
-        static internal void SetShieldIcon(System.Windows.Forms.Button Button, bool Show)
+        static internal void SetShieldIcon(Button Button, bool Show)
         {
-            IntPtr fRequired = new IntPtr(Show ? 1 : 0);
-            CoreNativeMethods.SendMessage(
+            var fRequired = new IntPtr(Show ? 1 : 0);
+            _ = CoreNativeMethods.SendMessage(
                Button.Handle,
-                ShellNativeMethods.SetShield,
+                SetShield,
                 IntPtr.Zero,
                 fRequired);
         }

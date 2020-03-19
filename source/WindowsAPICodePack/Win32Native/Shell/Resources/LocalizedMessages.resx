@@ -120,10 +120,10 @@
   <data name="FilePathNotExist" xml:space="preserve">
     <value>The given path does not exist ({0})</value>
   </data>
-  <data name="FolderTypeCategory" xml:space="preserve">
+  <data name="FolderTypeControlPanelCategory" xml:space="preserve">
     <value>ControlPanel Category</value>
   </data>
-  <data name="FolderTypeClassic" xml:space="preserve">
+  <data name="FolderTypeControlPanelClassic" xml:space="preserve">
     <value>ControlPanel Classic</value>
   </data>
   <data name="FolderTypeCommunications" xml:space="preserve">
@@ -189,7 +189,7 @@
   <data name="FolderTypeSearches" xml:space="preserve">
     <value>Searches</value>
   </data>
-  <data name="FolderTypeSearchResults" xml:space="preserve">
+  <data name="FolderTypeGenericSearchResults" xml:space="preserve">
     <value>Generic SearchResults</value>
   </data>
   <data name="FolderTypeSoftwareExplorer" xml:space="preserve">

@@ -7,12 +7,13 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
-using MS.WindowsAPICodePack.Internal;
+using Microsoft.WindowsAPICodePack.Internal;
 using System.Text;
 using System.Linq;
-using Microsoft.WindowsAPICodePack.Win32Native.Core;
+using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Controls;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+using Microsoft.WindowsAPICodePack.Shell.Guids;
 
 namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
 {
@@ -134,7 +135,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
                 HResult hr = explorerBrowserControl.BrowseToObject(shellObject.NativeShellItem, 0);
                 if (hr != HResult.Ok)
 
-                    if ((hr == HResult.ResourceInUse || hr == HResult.Canceled) && NavigationFailed != null)
+                    if ((hr ==  (HResult) unchecked((int)0x800700AA) || hr == HResult.Canceled) && NavigationFailed != null)
                     {
                         NavigationFailedEventArgs args = new NavigationFailedEventArgs();
                         args.FailedLocation = shellObject;
@@ -380,7 +381,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
         {
             HResult hr;
 
-            if (guidService.CompareTo(new Guid(ExplorerBrowserIIDGuid.IExplorerPaneVisibility)) == 0)
+            if (guidService.CompareTo(new Guid(Win32Native.Guids.Shell.ExplorerBrowser.IExplorerPaneVisibility)) == 0)
             {
                 // Responding to this SID allows us to control the visibility of the 
                 // explorer browser panes
@@ -388,9 +389,9 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
                     Marshal.GetComInterfaceForObject(this, typeof(IExplorerPaneVisibility));
                 hr = HResult.Ok;
             }
-            else if (guidService.CompareTo(new Guid(ExplorerBrowserIIDGuid.ICommDlgBrowser)) == 0)
+            else if (guidService.CompareTo(new Guid(Win32Native.Guids.Shell.ExplorerBrowser.ICommDlgBrowser)) == 0)
             {
-                if (riid.CompareTo(new Guid(ExplorerBrowserIIDGuid.ICommDlgBrowser)) == 0)
+                if (riid.CompareTo(new Guid(Win32Native.Guids.Shell.ExplorerBrowser.ICommDlgBrowser)) == 0)
                 {
                     ppvObject = Marshal.GetComInterfaceForObject(this, typeof(ICommDlgBrowser3));
                     hr = HResult.Ok;
@@ -399,12 +400,12 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
                 // This interface is incorrectly marshaled back to unmanaged, and causes an exception.
                 // There is a bug for this, I have not figured the underlying cause.
                 // Remove this comment and uncomment the following code to enable the ICommDlgBrowser2 interface
-                //else if (riid.CompareTo(new Guid(ExplorerBrowserIIDGuid.ICommDlgBrowser2)) == 0)
+                //else if (riid.CompareTo(new Guid(Win32Native.Guids.Shell.ExplorerBrowser.ICommDlgBrowser2)) == 0)
                 //{
                 //    ppvObject = Marshal.GetComInterfaceForObject(this, typeof(ICommDlgBrowser3));
                 //    hr = HResult.Ok;                    
                 //}
-                else if (riid.CompareTo(new Guid(ExplorerBrowserIIDGuid.ICommDlgBrowser3)) == 0)
+                else if (riid.CompareTo(new Guid(Win32Native.Guids.Shell.ExplorerBrowser.ICommDlgBrowser3)) == 0)
                 {
                     ppvObject = Marshal.GetComInterfaceForObject(this, typeof(ICommDlgBrowser3));
                     hr = HResult.Ok;
@@ -662,7 +663,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
         /// <returns></returns>
         internal IFolderView2 GetFolderView2()
         {
-            Guid iid = new Guid(ExplorerBrowserIIDGuid.IFolderView2);
+            Guid iid = new Guid(Win32Native.Guids.Shell.ExplorerBrowser.IFolderView2);
             IntPtr view = IntPtr.Zero;
             if (explorerBrowserControl != null)
             {
@@ -700,7 +701,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
             {
                 try
                 {
-                    Guid iidShellItemArray = new Guid(ShellIIDGuid.IShellItemArray);
+                    Guid iidShellItemArray = new Guid(Win32Native.Guids.Shell.IShellItemArray);
                     object oArray = null;
                     HResult hr = iFV2.Items((uint)ShellViewGetItemObject.Selection, ref iidShellItemArray, out oArray);
                     iArray = oArray as IShellItemArray;
@@ -788,7 +789,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
             {
                 try
                 {
-                    Guid iidShellItemArray = new Guid(ShellIIDGuid.IShellItemArray);
+                    Guid iidShellItemArray = new Guid(Win32Native.Guids.Shell.IShellItemArray);
                     object oArray = null;
                     HResult hr = iFV2.Items((uint)ShellViewGetItemObject.AllView, ref iidShellItemArray, out oArray);
                     if (hr != HResult.Ok &&

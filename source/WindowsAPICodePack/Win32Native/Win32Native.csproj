@@ -1,206 +1,104 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6C1AD76C-8EEB-4B2D-B6B4-F9B7234A92FB}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworks>netcoreapp3.0;net472</TargetFrameworks><!--todo: netcoreapp3.1;net48-->
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
     <RootNamespace>Microsoft.WindowsAPICodePack.Win32Native</RootNamespace>
-    <AssemblyName>Microsoft.WindowsAPICodePack.Win32Native</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Microsoft.WindowsAPICodePack.Win32Native.xml</DocumentationFile>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>portable</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Microsoft.WindowsAPICodePack.Win32Native.xml</DocumentationFile>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
-  <PropertyGroup>
     <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
     <AssemblyOriginatorKeyFile>Win32Native.snk</AssemblyOriginatorKeyFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>WinCopies.WindowsAPICodePack.Win32Native</PackageId>
+    <Version>2.0.0-preview1</Version>
+    <Description>WindowsAPICodePack Win32 and COM Interop</Description>
+    <Company>Pierre Sprimont</Company>
+    <Product>Microsoft Windows API Code Pack for .NET Framework</Product>
+    <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
+    <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020</Copyright>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://wincopies.com/windows-api-codepack/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/pierresprim/Windows-API-Code-Pack.git</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>Windows API Code Pack</PackageTags>
+    <PackageReleaseNotes>See https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/CHANGELOG.md</PackageReleaseNotes>
+    <DocumentationFile>Win32Native.xml</DocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>WinCopies.WindowsAPICodePack.Win32Native</AssemblyName>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.0|AnyCPU'">
+    <DefineConstants>TRACE;NETCORE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp3.0|AnyCPU'">
+    <DefineConstants>NETCORE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net472|AnyCPU'">
+    <DefineConstants>TRACE;NETFRAMEWORK</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net472|AnyCPU'">
+    <DefineConstants>NETFRAMEWORK</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="PresentationCore" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\Tests\packages\System.Runtime.CompilerServices.Unsafe.4.6.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\Tests\packages\System.Threading.Tasks.Extensions.4.6.0-preview.18571.3\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\Tests\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Core\AppRestartRecovery\AppRestartRecoveryNativeMethods.cs" />
-    <Compile Include="Core\AppRestartRecovery\RecoveryData.cs" />
-    <Compile Include="Core\AppRestartRecovery\RestartRestrictions.cs" />
-    <Compile Include="Core\Clipboard\ClipboardNativeMethods.cs" />
-    <Compile Include="Core\CoreErrorHelper.cs" />
-    <Compile Include="Core\CoreHelpers.cs" />
-    <Compile Include="Core\CoreNativeMethods.cs" />
-    <Compile Include="Core\ExecutionState.cs" />
-    <Compile Include="Core\NetworkList\INetwork.cs" />
-    <Compile Include="Core\NetworkList\INetworkConnection.cs" />
-    <Compile Include="Core\NetworkList\INetworkListManager.cs" />
-    <Compile Include="Core\NetworkList\NetworkListEnums.cs" />
-    <Compile Include="Core\NetworkList\NetworkListManagerClass.cs" />
-    <Compile Include="Core\PowerManagement\PowerManagementNativeMethods.cs" />
-    <Compile Include="Core\PropertySystem\PropertyChange.cs" />
-    <Compile Include="Core\PropertySystem\PropertyKey.cs" />
-    <Compile Include="Core\PropertySystem\PropVariant.cs" />
-    <Compile Include="Core\PropertySystem\PropVariantNativeMethods.cs" />
-    <Compile Include="Core\Clipboard\StandardClipboardFormat.cs" />
-    <Compile Include="ExtendedLinguisticServices\Win32NativeMethods.cs" />
-    <Compile Include="ExtendedLinguisticServices\Win32Structs.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Core\Resources\LocalizedMessages.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LocalizedMessages.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Core\TaskDialogs\NativeTaskDialogSettings.cs" />
-    <Compile Include="Core\TaskDialogs\TaskDialogDefaults.cs" />
-    <Compile Include="Core\TaskDialogs\TaskDialogNativeMethods.cs" />
-    <Compile Include="Core\TaskDialogs\TaskDialogProgressBarState.cs" />
-    <Compile Include="Core\WindowMessage.cs" />
-    <Compile Include="Sensors\ISensor.cs" />
-    <Compile Include="Sensors\ISensorCollection.cs" />
-    <Compile Include="Sensors\ISensorDataReport.cs" />
-    <Compile Include="Sensors\ISensorManager.cs" />
-    <Compile Include="Sensors\ISensorManagerEnums.cs" />
-    <Compile Include="Sensors\ISensorManagerEvents.cs" />
-    <Compile Include="Sensors\PortableDevice.cs" />
-    <Compile Include="Sensors\SensorNativeMethods.cs" />
-    <Compile Include="ShellExtensions\HandlerNativeMethods.cs" />
-    <Compile Include="Shell\Common\CopyFileFlags.cs" />
-    <Compile Include="Shell\Common\CopyProgressCallbackReason.cs" />
-    <Compile Include="Shell\Common\CopyProgressResult.cs" />
-    <Compile Include="Shell\Common\DefaultShellImageSizes.cs" />
-    <Compile Include="Shell\Common\IconReference.cs" />
-    <Compile Include="Shell\Common\IntPtrExtensions.cs" />
-    <Compile Include="Shell\Common\NativePoint.cs" />
-    <Compile Include="Shell\Common\NativeRect.cs" />
-    <Compile Include="Shell\Common\ShellCOMClasses.cs" />
-    <Compile Include="Shell\Common\ShellCOMGuids.cs" />
-    <Compile Include="Shell\Common\ShellCOMInterfaces.cs" />
-    <Compile Include="Shell\Common\ShellEnums.cs" />
-    <Compile Include="Shell\Common\ShellNativeMethods.cs" />
-    <Compile Include="Shell\Common\ShellNativeStructs.cs" />
-    <Compile Include="Shell\Common\ShellThumbnailEnums.cs" />
-    <Compile Include="Shell\Common\SortColumn.cs" />
-    <Compile Include="Shell\Common\WindowUtilities.cs" />
-    <Compile Include="Shell\Dialogs\DialogsCOMClasses.cs" />
-    <Compile Include="Shell\Dialogs\DialogsCOMInterfaces.cs" />
-    <Compile Include="Shell\ExplorerBrowser\ExplorerBrowserCOMGuids.cs" />
-    <Compile Include="Shell\ExplorerBrowser\ExplorerBrowserCOMInterfaces.cs" />
-    <Compile Include="Shell\ExplorerBrowser\ExplorerBrowserNativeMethods.cs" />
-    <Compile Include="Shell\KnownFolders\DefinitionOptions.cs" />
-    <Compile Include="Shell\KnownFolders\FolderCategory.cs" />
-    <Compile Include="Shell\KnownFolders\FolderProperties.cs" />
-    <Compile Include="Shell\KnownFolders\FoldersIdentifiers.cs" />
-    <Compile Include="Shell\KnownFolders\FolderTypes.cs" />
-    <Compile Include="Shell\KnownFolders\KnownFoldersCOMGuids.cs" />
-    <Compile Include="Shell\KnownFolders\KnownFoldersCOMInterfaces.cs" />
-    <Compile Include="Shell\KnownFolders\KnownFoldersNativeMethods.cs" />
-    <Compile Include="Shell\KnownFolders\RedirectionCapabilities.cs" />
-    <Compile Include="Shell\Common\ShellException.cs" />
-    <Compile Include="Shell\PropertySystem\PropertySystemCOMInterfaces.cs" />
-    <Compile Include="Shell\PropertySystem\PropertySystemException.cs" />
-    <Compile Include="Shell\PropertySystem\PropertySystemNativeMethods.cs" />
-    <Compile Include="Shell\PropertySystem\ShellPropertyEnums.cs" />
-    <Compile Include="Shell\PropertySystem\ShellPropertyFactory.cs" />
-    <Compile Include="Shell\PropertySystem\SystemProperties.cs" />
-    <Compile Include="Shell\Resources\LocalizedMessages.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LocalizedMessages.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Shell\ShellObjectWatcher\ShellObjectWatcherEnums.cs" />
-    <Compile Include="Shell\ShellObjectWatcher\ShellObjectWatcherNativeMethods.cs" />
-    <Compile Include="Shell\SingleInstance\SingleInstanceNativeMethods.cs" />
-    <Compile Include="Shell\SingleInstance\WM.cs" />
-    <Compile Include="Shell\StockIcons\StockIconEnums.cs" />
-    <Compile Include="Shell\StockIcons\StockIconsNativeMethods.cs" />
-    <Compile Include="Shell\Taskbar\TabbedThumbnailNativeMethods.cs" />
-    <Compile Include="Shell\Taskbar\TaskbarCOMInterfaces.cs" />
-    <Compile Include="Shell\Taskbar\TaskbarNativeMethods.cs" />
-    <Compile Include="WindowsPortableDevices\ClientInterfaces\IEnumPortableDeviceObjectIDs.cs" />
-    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDevice.cs" />
-    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceCapabilities.cs" />
-    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceContent.cs" />
-    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceContent2.cs" />
-    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceDataStream.cs" />
-    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceEventCallback.cs" />
-    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceManager.cs" />
-    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceProperties.cs" />
-    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDevicePropertiesBulk.cs" />
-    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDevicePropertiesBulkCallback.cs" />
-    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceResources.cs" />
-    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceService.cs" />
-    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceServiceCapabilities.cs" />
-    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceServiceManager.cs" />
-    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceServiceMethodCallback.cs" />
-    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceServiceMethods.cs" />
-    <Compile Include="WindowsPortableDevices\ClientInterfaces\IPortableDeviceUnitsStream.cs" />
-    <Compile Include="WindowsPortableDevices\CoClasses\ClientClasses\PortableDeviceManager.cs" />
-    <Compile Include="WindowsPortableDevices\CollectionInterfaces\IPortableDeviceKeyCollection.cs" />
-    <Compile Include="WindowsPortableDevices\CollectionInterfaces\IPortableDevicePropVariantCollection.cs" />
-    <Compile Include="WindowsPortableDevices\CollectionInterfaces\IPortableDeviceValues.cs" />
-    <Compile Include="WindowsPortableDevices\CollectionInterfaces\IPortableDeviceValuesCollection.cs" />
-    <Compile Include="WindowsPortableDevices\Enums.cs" />
-    <Compile Include="WindowsPortableDevices\WPDCOMGuids.cs" />
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net472'">
+    <PackageReference Include="WinCopies.Util" Version="2.1.0" />
   </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+    <PackageReference Include="WinCopies.Util" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0'">
+    <PackageReference Include="WinCopies.Util.NetCore">
+      <Version>2.1.0</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+    <PackageReference Include="WinCopies.Util.NetCore">
+      <Version>2.1.0</Version>
+    </PackageReference>
+  </ItemGroup>
+
   <ItemGroup>
-    <EmbeddedResource Include="Core\Resources\LocalizedMessages.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
+    <ProjectReference Include="..\Win32NativeConsts\Win32NativeConsts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\LocalizedMessages.Designer.cs">
+      <DependentUpon>LocalizedMessages.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Shell\Resources\LocalizedMessages.Designer.cs">
+      <DependentUpon>LocalizedMessages.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\LocalizedMessages.resx">
       <LastGenOutput>LocalizedMessages.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Shell\Resources\LocalizedMessages.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
+    <EmbeddedResource Update="Shell\Resources\LocalizedMessages.resx">
+      <SubType>Designer</SubType>
       <LastGenOutput>LocalizedMessages.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="package.nuspec" />
-    <None Include="packages.config" />
-    <None Include="Win32Native.snk" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
+  <Import Project="..\Win32NativeShared\Win32NativeShared.projitems" Label="Shared" />
+
 </Project>
