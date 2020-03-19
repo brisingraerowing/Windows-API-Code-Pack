@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
+
+using System;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Win32Native;
 

@@ -1,4 +1,6 @@
-﻿using Microsoft.WindowsAPICodePack.PortableDevices;
+﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
+
+using Microsoft.WindowsAPICodePack.PortableDevices;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using System;
 using System.Collections.Generic;
@@ -13,7 +15,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 
     {
 
-        public delegate T GetPortableDeviceObject<T>(in string id);
+        public delegate T GetPortableDeviceObject<T>( in string id);
 
         public static IList<T> GetItems<T>( in IPortableDeviceContent portableDeviceContent, in string id, in GetPortableDeviceObject<T> getPortableDeviceObjectDelegate)
 

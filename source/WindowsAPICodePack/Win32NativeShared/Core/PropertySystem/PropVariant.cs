@@ -625,6 +625,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
                         return Marshal.GetObjectForIUnknown(_ptr);
                     case VarEnum.VT_DECIMAL:
                         return _decimal;
+                    case VarEnum.VT_CLSID:
+                        return Marshal.PtrToStructure<Guid>(_ptr);
                     case VarEnum.VT_ARRAY | VarEnum.VT_UNKNOWN:
                         return CrackSingleDimSafeArray(_ptr);
                     case (VarEnum.VT_VECTOR | VarEnum.VT_LPWSTR):

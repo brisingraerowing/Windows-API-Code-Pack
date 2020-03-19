@@ -1,4 +1,6 @@
-﻿using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
+﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
+
+using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,7 +14,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         ulong Capacity { get; }
 
-        ulong? GetFreeSpaceInBytes();
+        ulong FreeSpaceInBytes { get; }
 
     }
 
@@ -20,13 +22,21 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
     {
 
-        private IPortableDeviceObject _portableDeviceObject;
+        private            PortableDeviceObject            _portableDeviceObject;
 
-        public ulong Capacity { get; }
+        private ulong _capacity;
 
-        public ulong? GetFreeSpaceInBytes()
+        public ulong Capacity { get { _portableDeviceObject.ThrowIfOperationIsNotAllowed(); return _capacity; } }
+
+        public ulong FreeSpaceInBytes
 
         {
+
+            get
+
+            {
+
+                _portableDeviceObject.ThrowIfOperationIsNotAllowed();
 
                 if (_portableDeviceObject.Properties.TryGetValue(PropertySystem.Properties.Storage.FreeSpaceInBytes, out WindowsAPICodePack.PropertySystem.Property objectProperty) && objectProperty.TryGetValue(out ulong value))
 
@@ -34,17 +44,19 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                 else
 
-                    return null;
+                    throw new PropertySystemException("Cannot read property.");
+
+            }
 
         }
 
-        public PortableDeviceObjectStorageCapacity(IPortableDeviceObject portableDeviceObject, ulong capacity)
+        public PortableDeviceObjectStorageCapacity(            PortableDeviceObject            portableDeviceObject, ulong capacity)
 
         {
 
             _portableDeviceObject = portableDeviceObject;
 
-            Capacity = capacity;
+            _capacity = capacity;
 
         }
     }

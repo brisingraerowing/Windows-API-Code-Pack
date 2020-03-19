@@ -5232,7 +5232,7 @@
             <para>Description: This content type is only valid as a parameter to API functions and driver commands. It should not be reported as a supported content type by the driver.</para>
             </summary>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.ContentType.FunctionalCategory">
+        <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem.FunctionalCategory">
             <summary>
             This class defines all WPD Functional Categories
             </summary>

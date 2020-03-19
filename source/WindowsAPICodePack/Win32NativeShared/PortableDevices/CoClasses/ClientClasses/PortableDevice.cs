@@ -1,4 +1,6 @@
-﻿using Microsoft.WindowsAPICodePack.Win32Native;
+﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
+
+using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.EventSystem;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;

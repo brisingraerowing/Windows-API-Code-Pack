@@ -1,4 +1,6 @@
-﻿using Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem;
+﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
+
+using Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;

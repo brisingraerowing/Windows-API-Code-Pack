@@ -1,4 +1,6 @@
-﻿//using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
+﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
+
+//using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 //using System;
 //using System.Collections.Generic;
 //using System.Runtime.InteropServices;

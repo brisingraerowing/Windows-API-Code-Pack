@@ -1,4 +1,6 @@
-﻿using Microsoft.WindowsAPICodePack.Win32Native;
+﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
+
+using Microsoft.WindowsAPICodePack.Win32Native;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;

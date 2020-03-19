@@ -1,7 +1,10 @@
-﻿using Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem;
+﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
+
+using Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +13,8 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
 using static Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PortableDeviceHelper;
+using PropertyCollection = Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.PropertyCollection;
+using WinCopies.Util;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
@@ -83,6 +88,35 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
     [DebuggerDisplay("{FriendlyName}, {DeviceDescription}, {Manufacturer}")]
     public class PortableDevice : IPortableDevice, WinCopies.Util.DotNetFix.IDisposable
     {
+        private IPortableDeviceProperties _nativePortableDeviceProperties;
+
+        private void TryGetNativePortableDeviceProperties()
+
+        {
+
+            ThrowOnInvalidOperation();
+
+            if (_nativePortableDeviceProperties is null)
+
+                ThrowWhenFailHResult(Content.Properties(out _nativePortableDeviceProperties));
+
+        }
+
+        internal IPortableDeviceProperties NativePortableDeviceProperties
+
+        {
+
+            get
+
+            {
+
+                TryGetNativePortableDeviceProperties();
+
+                return _nativePortableDeviceProperties;
+
+            }
+
+        }
 
         // todo: replace by the same method of the WinCopies.Util package.
 
@@ -93,6 +127,18 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             if (IsDisposed)
 
                 throw new InvalidOperationException("The current object is disposed.");
+
+        }
+
+        private void ThrowOnInvalidOperation()
+
+        {
+
+            ThrowIfDisposed();
+
+            if (!_isOpen)
+
+                throw new InvalidOperationException("The current PortableDevice is not open.");
 
         }
 
@@ -114,9 +160,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         {
             get
             {
-                ThrowIfDisposed();
+                ThrowOnInvalidOperation();
 
+#if NETFRAMEWORK
                 return _deviceCapabilities ?? (_deviceCapabilities = new DeviceCapabilities(this));
+#else
+                return _deviceCapabilities ??= new DeviceCapabilities(this);
+#endif
             }
         }
 
@@ -130,7 +180,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             {
 
-                ThrowIfDisposed();
+                ThrowOnInvalidOperation();
 
                 if (_content is null)
 
@@ -157,9 +207,14 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         {
             get
             {
-                ThrowIfDisposed();
 
-                return _properties ?? (_properties = new Microsoft.WindowsAPICodePack.PropertySystem. PropertyCollection(new PortableDeviceProperties(Consts.DeviceObjectId, this)));
+                TryGetNativePortableDeviceProperties();
+
+#if NETFRAMEWORK
+                return _properties ?? (_properties = new PropertyCollection(new PortableDeviceProperties(Consts.DeviceObjectId, this)));
+#else
+                return _properties ??= new PropertyCollection(new PortableDeviceProperties(Consts.DeviceObjectId, this));
+#endif
             }
         }
 
@@ -191,7 +246,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         /// </summary>
         public string DeviceManufacturer { get { ThrowIfDisposed(); return _deviceManufacturer; } internal set { ThrowIfDisposed(); _deviceManufacturer = value; } }
 
-        public bool IsOpen { get { ThrowIfDisposed(); return _isOpen; } private set { ThrowIfDisposed(); _isOpen = value; } }
+        public bool IsOpen { get { ThrowIfDisposed(); return _isOpen; } }
 
         internal PortableDevice(in PortableDeviceManager portableDeviceManager, in string deviceId)
 
@@ -362,7 +417,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             // return hr;
             // }
 
-            IsOpen = true;
+            _isOpen = true;
 
             PortableDeviceOpeningOptions = portableDeviceOpeningOptions;
 
@@ -372,11 +427,19 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         {
             ThrowIfDisposed();
 
+            if (!_isOpen)
+
+                return;
+
             ThrowWhenFailHResult(NativePortableDevice.Close());
 
             _items = null;
 
-            IsOpen = false;
+            _deviceCapabilities = null;
+
+            _properties = null;
+
+            _isOpen = false;
         }
 
         public object GetDeviceProperty(in string propertyName, in object defaultValue, in bool doNotExpand, out BlobValueKind valueKind)
@@ -438,9 +501,101 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         private bool _isOpen;
         private readonly string _deviceId;
 
-        private IList<IPortableDeviceObject> _Items => IsOpen ? _items ?? (_items = GetItems<IPortableDeviceObject>(Content, Consts.DeviceObjectId, (in string id) => new PortableDeviceObject(id, this))) : throw new PortableDeviceException("The device is not open.");
+#if NETFRAMEWORK
+
+        private IList<IPortableDeviceObject> _Items => IsOpen ? _items ?? (_items = GetItems<IPortableDeviceObject>(Content, Consts.DeviceObjectId, (in string id) => GetPortableDeviceObject(id, true, null, this))) : throw new PortableDeviceException("The device is not open.");
+
+#else
+
+        private IList<IPortableDeviceObject> _Items => IsOpen ? _items ??= GetItems<IPortableDeviceObject>(Content, Consts.DeviceObjectId, (in string id) => GetPortableDeviceObject(id, true, null, this)) : throw new PortableDeviceException("The device is not open.");
+
+#endif
 
         public IPortableDeviceObject this[int index] => _Items[index];
+
+        internal static IPortableDeviceObject GetPortableDeviceObject(string id, bool isRoot, PortableDeviceObject parentPortableDeviceObject, PortableDevice parentPortableDevice)
+        {
+
+            // if (isRoot) return new PortableDeviceFolder(id, true, parentPortableDevice, null);
+
+            var properties = new PortableDeviceProperties(id, parentPortableDevice);
+
+            IPortableDeviceObject getPortableDeviceObject() => new PortableDeviceCommonObject(id, isRoot, parentPortableDeviceObject, parentPortableDevice, null); // We return a common PortableDeviceObject because we can not read the properties for the current id. Also, we cannot try to enumerate through the current id in order to determine whether the current id represents a folder, because the enumeration could fail only because an id would represent a folder that is currently empty.
+
+            try // This try-catch block is here to prevent exception that can be thrown by some of the properties that we are using.
+
+            {
+
+                // First, we try to get the common interop interface for properties.
+
+                if (CoreErrorHelper.Succeeded(properties.GetValues(out Win32Native.PropertySystem.INativePropertyValuesCollection values)))
+
+                {
+
+                    // If the operation succeeds, we try to get a PropVariant that will contain the requested value.
+
+                    var propKey = Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Object.ContentType;
+
+                    Win32Native.PropertySystem.PropVariant propVariant;
+
+                    IPortableDeviceObject disposePropVariantAndGetPortableDeviceObject()
+
+                    {
+
+                        propVariant.Dispose();
+
+                        return getPortableDeviceObject();
+
+                    }
+
+                    if (CoreErrorHelper.Succeeded(values.GetValue(ref propKey, out propVariant)))
+
+                    {
+
+                        if (propVariant.VarType == VarEnum.VT_CLSID)
+
+                        {
+
+                            // If the operation succeeds and if the variant type of the given value VT_CLSID, we can switch this value in order to know which managed type to return.
+
+                            string guid = ((Guid)propVariant.Value).ToString();
+
+                            propVariant.Dispose();
+
+                            return string.Compare(guid,Guids.PropertySystem.ContentType.Folder, true)==0||string.Compare(guid, Guids.PropertySystem.ContentType.All,true)==0
+                                ? new PortableDeviceFolder(id, isRoot, parentPortableDeviceObject, parentPortableDevice, properties)
+                                : string.Compare(guid, Guids.PropertySystem.ContentType.FunctionalObject, true)==0
+                                    ? new PortableDeviceFunctionalObject(id, isRoot, parentPortableDeviceObject, parentPortableDevice, properties)
+                                    : (IPortableDeviceObject)new PortableDeviceFile(id, isRoot, parentPortableDeviceObject, parentPortableDevice, properties);
+                        }
+
+                        else
+
+                            return disposePropVariantAndGetPortableDeviceObject();
+
+                    }
+
+                    else
+
+                        return disposePropVariantAndGetPortableDeviceObject();
+
+                }
+
+                else
+
+                    return getPortableDeviceObject();
+
+            }
+
+            catch (Exception ex) when (ex.Is(false, typeof(PropertySystemException), typeof(PortableDeviceException)))
+
+            {
+
+                return getPortableDeviceObject();
+
+            }
+
+        }
 
         public int Count => _Items.Count;
 
@@ -514,6 +669,15 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                 _ = Marshal.ReleaseComObject(_content);
                 _content = null;
+
+            }
+
+            if (_nativePortableDeviceProperties is object)
+
+            {
+
+                _ = Marshal.ReleaseComObject(_nativePortableDeviceProperties);
+                _nativePortableDeviceProperties = null;
 
             }
 

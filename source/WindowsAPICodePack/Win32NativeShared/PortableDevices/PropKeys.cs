@@ -1,4 +1,6 @@
-﻿using Microsoft.WindowsAPICodePack.PropertySystem;
+﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
+
+using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
 using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
@@ -34,42 +36,42 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 /// <summary>
                 /// <para>Name: WPD_OBJECT_CONTENT_TYPE</para>
                 /// <para>Description: The abstract type for the object content-indicating the kinds of properties and data that may be supported on the object.</para>
-                /// <para>Type: <see cref="VarEnum.VT_CLSID"/></para>
+                /// <para>Type: <see cref="Guid"/> -- <see cref="VarEnum.VT_CLSID"/></para>
                 /// </summary>
                 public static PropertyKey ContentType => new PropertyKey(ObjectV1, 7);
 
                 /// <summary>
                 /// <para>Name: WPD_OBJECT_REFERENCES</para>
                 /// <para>Description: <see cref="IPortableDevicePropVariantCollection"/> of type VT_LPWSTR indicating a list of ObjectIDs.</para>
-                /// <para>Type: <see cref="VarEnum.VT_UNKNOWN"/></para>
+                /// <para>Type: IUnknown -- <see cref="VarEnum.VT_UNKNOWN"/></para>
                 /// </summary>
                 public static PropertyKey References => new PropertyKey(ObjectV1, 14);
 
                 /// <summary>
                 /// <para>Name: WPD_OBJECT_CONTAINER_FUNCTIONAL_OBJECT_ID</para>
                 /// <para>Description: Indicates the Object ID of the closest functional object ancestor. For example-objects that represent files/folders under a Storage functional object-will have this property set to the object ID of the storage functional object.</para>
-                /// <para>Type: <see cref="VarEnum.VT_LPWSTR"/></para>
+                /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/></para>
                 /// </summary>
                 public static PropertyKey ContainerFunctionalObjectId => new PropertyKey(ObjectV1, 23);
 
                 /// <summary>
                 /// <para>Name: WPD_OBJECT_GENERATE_THUMBNAIL_FROM_RESOURCE</para>
                 /// <para>Description: Indicates whether the thumbnail for this object should be generated from the default resource.</para>
-                /// <para>Type: <see cref="VarEnum.VT_BOOL"/></para>
+                /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// </summary>
                 public static PropertyKey GenerateThumbnailFromResource => new PropertyKey(ObjectV1, 24);
 
                 /// <summary>
                 /// <para>Name: WPD_OBJECT_HINT_LOCATION_DISPLAY_NAME</para>
                 /// <para>Description: If this object appears as a hint location-this property indicates the hint-specific name to display instead of the object name.</para>
-                /// <para>Type: <see cref="VarEnum.VT_LPWSTR"/></para>
+                /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/></para>
                 /// </summary>
                 public static PropertyKey HintLocationDisplayName => new PropertyKey(ObjectV1, 25);
 
                 /// <summary>
                 /// <para>Name: WPD_OBJECT_SUPPORTED_UNITS</para>
                 /// <para>Description: Indicates the units supported on this object.</para>
-                /// <para>Type: <see cref="VarEnum.VT_UI4"/></para>
+                /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// </summary>
                 public static PropertyKey SupportedUnits => new PropertyKey(ObjectV2, 2);
 
@@ -78,7 +80,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             /// <summary>
             /// <para>Name: WPD_FUNCTIONAL_OBJECT_CATEGORY</para>
             /// <para>Description: Indicates the object's functional category.</para>
-            /// <para>Type: <see cref="VarEnum.VT_CLSID"/></para>
+            /// <para>Type: <see cref="Guid"/> -- <see cref="VarEnum.VT_CLSID"/></para>
             /// </summary>
             public static PropertyKey Category => new PropertyKey(FunctionalObjectV1, 2);
 
@@ -92,7 +94,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_TYPE</para>
                 /// <para>Description: Indicates the type of storage e.g. fixed-removable etc.</para>
-                /// <para>Type: <see cref="VarEnum.VT_UI4"/></para>
+                /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// </summary>
                 /// <seealso cref="StorageTypeValues"/>
                 public static PropertyKey Type => new PropertyKey(StorageObjectV1, 2);
@@ -100,63 +102,63 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_FILE_SYSTEM_TYPE</para>
                 /// <para>Description: Indicates the file system type e.g. "FAT32" or "NTFS" or "My Special File System"</para>
-                /// <para>Type: <see cref="VarEnum.VT_LPWSTR"/></para>
+                /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/></para>
                 /// </summary>
                 public static PropertyKey FileSystemType => new PropertyKey(StorageObjectV1, 3);
 
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_CAPACITY</para>
                 /// <para>Description: Indicates the total storage capacity in bytes.</para>
-                /// <para>Type: <see cref="VarEnum.VT_UI8"/></para>
+                /// <para>Type: <see cref="ulong"/> -- <see cref="VarEnum.VT_UI8"/></para>
                 /// </summary>
                 public static PropertyKey Capacity => new PropertyKey(StorageObjectV1, 4);
 
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_FREE_SPACE_IN_BYTES</para>
                 /// <para>Description: Indicates the available space in bytes.</para>
-                /// <para>Type: <see cref="VarEnum.VT_UI8"/></para>
+                /// <para>Type: <see cref="ulong"/> -- <see cref="VarEnum.VT_UI8"/></para>
                 /// </summary>
                 public static PropertyKey FreeSpaceInBytes => new PropertyKey(StorageObjectV1, 5);
 
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_FREE_SPACE_IN_OBJECTS</para>
                 /// <para>Description: Indicates the available space in objects e.g. available slots on a SIM card.</para>
-                /// <para>Type: <see cref="VarEnum.VT_UI8"/></para>
+                /// <para>Type: <see cref="ulong"/> -- <see cref="VarEnum.VT_UI8"/></para>
                 /// </summary>
                 public static PropertyKey FreeSpaceInObjects => new PropertyKey(StorageObjectV1, 6);
 
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_DESCRIPTION</para>
                 /// <para>Description: Contains a description of the storage.</para>
-                /// <para>Type: <see cref="VarEnum.VT_LPWSTR"/></para>
+                /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/></para>
                 /// </summary>
                 public static PropertyKey Description => new PropertyKey(StorageObjectV1, 7);
 
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_SERIAL_NUMBER</para>
                 /// <para>Description: Contains the serial number of the storage.</para>
-                /// <para>Type: <see cref="VarEnum.VT_LPWSTR"/></para>
+                /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/></para>
                 /// </summary>
                 public static PropertyKey SerialNumber => new PropertyKey(StorageObjectV1, 8);
 
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_MAX_OBJECT_SIZE</para>
                 /// <para>Description: Specifies the maximum size of a single object (in bytes) that can be placed on this storage.</para>
-                /// <para>Type: <see cref="VarEnum.VT_UI8"/></para>
+                /// <para>Type: <see cref="ulong"/> -- <see cref="VarEnum.VT_UI8"/></para>
                 /// </summary>
                 public static PropertyKey MaxObjectSize => new PropertyKey(StorageObjectV1, 9);
 
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_CAPACITY_IN_OBJECTS</para>
                 /// <para>Description: Indicates the total storage capacity in objects e.g. available slots on a SIM card.</para>
-                /// <para>Type: <see cref="VarEnum.VT_UI8"/></para>
+                /// <para>Type: <see cref="ulong"/> -- <see cref="VarEnum.VT_UI8"/></para>
                 /// </summary>
                 public static PropertyKey CapacityInObjects => new PropertyKey(StorageObjectV1, 10);
 
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_ACCESS_CAPABILITY</para>
                 /// <para>Description: This property identifies any write-protection that globally affects this storage. This takes precedence over access specified on individual objects.</para>
-                /// <para>Type: <see cref="VarEnum.VT_UI4"/></para>
+                /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// </summary>
                 public static PropertyKey AccessCapability => new PropertyKey(StorageObjectV1, 11);
 
@@ -169,125 +171,212 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             {
 
-                //
-                // WPD_STILL_IMAGE_CAPTURE_RESOLUTION  
-                //   [ VT_LPWSTR ] Controls the size of the image dimensions to capture in pixel width and height.
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_CAPTURE_RESOLUTION</para>
+                /// <para>Description: Controls the size of the image dimensions to capture in pixel width and height.</para>
+                /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/></para>
+                /// </summary>
                 public static PropertyKey Resolution => new PropertyKey(StillImageCaptureObjectV1, 2);
-                //
-                // WPD_STILL_IMAGE_CAPTURE_FORMAT  
-                //   [ VT_CLSID ] Controls the format of the image to capture.
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_CAPTURE_FORMAT</para>
+                /// <para>Description: Controls the format of the image to capture.</para>
+                /// <para>Type: <see cref="Guid"/> -- <see cref="VarEnum.VT_CLSID"/></para>
+                /// </summary>
                 public static PropertyKey Format => new PropertyKey(StillImageCaptureObjectV1, 3);
-                //
-                // WPD_STILL_IMAGE_COMPRESSION_SETTING  
-                //   [ VT_UI8 ] Controls the device-specific quality setting.
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_COMPRESSION_SETTING</para>
+                /// <para>Description: Controls the device-specific quality setting.</para>
+                /// <para>Type: <see cref="ulong"/> -- <see cref="VarEnum.VT_UI8"/></para>
+                /// </summary>
                 public static PropertyKey CompressionSetting => new PropertyKey(StillImageCaptureObjectV1, 4);
-                //
-                // WPD_STILL_IMAGE_WHITE_BALANCE  
-                //   [ VT_UI4 ] Controls how the device weights color channels.
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_WHITE_BALANCE</para>
+                /// <para>Description: Controls how the device weights color channels.</para>
+                /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
+                /// </summary>
                 public static PropertyKey WhiteBalance => new PropertyKey(StillImageCaptureObjectV1, 5);
-                //
-                // WPD_STILL_IMAGE_RGB_GAIN  
-                //   [ VT_LPWSTR ] Controls the RGB gain.
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_RGB_GAIN</para>
+                /// <para>Description: Controls the RGB gain.</para>
+                /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/></para>
+                /// </summary>
                 public static PropertyKey RGBGain => new PropertyKey(StillImageCaptureObjectV1, 6);
-                //
-                // WPD_STILL_IMAGE_FNUMBER  
-                //   [ VT_UI4 ] Controls the aperture of the lens.
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_FNUMBER</para>
+                /// <para>Description: Controls the aperture of the lens.</para>
+                /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
+                /// </summary>
                 public static PropertyKey FNumber => new PropertyKey(StillImageCaptureObjectV1, 7);
-                //
-                // WPD_STILL_IMAGE_FOCAL_LENGTH  
-                //   [ VT_UI4 ] Controls the 35mm equivalent focal length.
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_FOCAL_LENGTH</para>
+                /// <para>Description: Controls the 35mm equivalent focal length.</para>
+                /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
+                /// </summary>
                 public static PropertyKey FocalLength => new PropertyKey(StillImageCaptureObjectV1, 8);
-                //
-                // WPD_STILL_IMAGE_FOCUS_DISTANCE  
-                //   [ VT_UI4 ] This property corresponds to the focus distance in millimeters
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_FOCUS_DISTANCE</para>
+                /// <para>Description: This property corresponds to the focus distance in millimeters</para>
+                /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
+                /// </summary>
                 public static PropertyKey FocusDistance => new PropertyKey(StillImageCaptureObjectV1, 9);
-                //
-                // WPD_STILL_IMAGE_FOCUS_MODE  
-                //   [ VT_UI4 ] Identifies the focusing mode used by the device for image capture.
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_FOCUS_MODE</para>
+                /// <para>Description: Identifies the focusing mode used by the device for image capture.</para>
+                /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
+                /// </summary>
                 public static PropertyKey FocusMode => new PropertyKey(StillImageCaptureObjectV1, 10);
-                //
-                // WPD_STILL_IMAGE_EXPOSURE_METERING_MODE  
-                //   [ VT_UI4 ] Identifies the exposure metering mode used by the device for image capture.
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_EXPOSURE_METERING_MODE</para>
+                /// <para>Description: Identifies the exposure metering mode used by the device for image capture.</para>
+                /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
+                /// </summary>
                 public static PropertyKey ExposureMeteringMode => new PropertyKey(StillImageCaptureObjectV1, 11);
+
                 //
                 // WPD_STILL_IMAGE_FLASH_MODE  
                 //   [ VT_UI4 ] 
                 public static PropertyKey FlashMode => new PropertyKey(StillImageCaptureObjectV1, 12);
-                //
-                // WPD_STILL_IMAGE_EXPOSURE_TIME  
-                //   [ VT_UI4 ] Controls the shutter speed of the device.
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_EXPOSURE_TIME</para>
+                /// <para>Description: Controls the shutter speed of the device.</para>
+                /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
+                /// </summary>
                 public static PropertyKey ExposureTime => new PropertyKey(StillImageCaptureObjectV1, 13);
-                //
-                // WPD_STILL_IMAGE_EXPOSURE_PROGRAM_MODE  
-                //   [ VT_UI4 ] Controls the exposure program mode of the device.
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_EXPOSURE_PROGRAM_MODE</para>
+                /// <para>Description: Controls the exposure program mode of the device.</para>
+                /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
+                /// </summary>
                 public static PropertyKey ExposureProgramMode => new PropertyKey(StillImageCaptureObjectV1, 14);
-                //
-                // WPD_STILL_IMAGE_EXPOSURE_INDEX  
-                //   [ VT_UI4 ] Controls the emulation of film speed settings.
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_EXPOSURE_INDEX</para>
+                /// <para>Description: Controls the emulation of film speed settings.</para>
+                /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
+                /// </summary>
                 public static PropertyKey ExposureIndex => new PropertyKey(StillImageCaptureObjectV1, 15);
-                //
-                // WPD_STILL_IMAGE_EXPOSURE_BIAS_COMPENSATION  
-                //   [ VT_I4 ] Controls the adjustment of the auto exposure control.
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_EXPOSURE_BIAS_COMPENSATION</para>
+                /// <para>Description: Controls the adjustment of the auto exposure control.</para>
+                /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
+                /// </summary>
                 public static PropertyKey ExposureBiasCompensation => new PropertyKey(StillImageCaptureObjectV1, 16);
-                //
-                // WPD_STILL_IMAGE_CAPTURE_DELAY  
-                //   [ VT_UI4 ] Controls the amount of time delay between the capture trigger and the actual data capture (in milliseconds).
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_CAPTURE_DELAY</para>
+                /// <para>Description: Controls the amount of time delay between the capture trigger and the actual data capture (in milliseconds).</para>
+                /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
+                /// </summary>
                 public static PropertyKey CaptureDelay => new PropertyKey(StillImageCaptureObjectV1, 17);
-                //
-                // WPD_STILL_IMAGE_CAPTURE_MODE  
-                //   [ VT_UI4 ] Controls the type of still image capture.
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_CAPTURE_MODE</para>
+                /// <para>Description: Controls the type of still image capture.</para>
+                /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
+                /// </summary>
                 public static PropertyKey CaptureMode => new PropertyKey(StillImageCaptureObjectV1, 18);
-                //
-                // WPD_STILL_IMAGE_CONTRAST  
-                //   [ VT_UI4 ] Controls the perceived contrast of captured images.
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_CONTRAST</para>
+                /// <para>Description: Controls the perceived contrast of captured images.</para>
+                /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
+                /// </summary>
                 public static PropertyKey Contrast => new PropertyKey(StillImageCaptureObjectV1, 19);
-                //
-                // WPD_STILL_IMAGE_SHARPNESS  
-                //   [ VT_UI4 ] Controls the perceived sharpness of the captured image.
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_SHARPNESS</para>
+                /// <para>Description: Controls the perceived sharpness of the captured image.</para>
+                /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
+                /// </summary>
                 public static PropertyKey Sharpness => new PropertyKey(StillImageCaptureObjectV1, 20);
-                //
-                // WPD_STILL_IMAGE_DIGITAL_ZOOM  
-                //   [ VT_UI4 ] Controls the effective zoom ratio of a digital camera's acquired image scaled by a factor of 10.
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_DIGITAL_ZOOM</para>
+                /// <para>Description: Controls the effective zoom ratio of a digital camera's acquired image scaled by a factor of 10.</para>
+                /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
+                /// </summary>
                 public static PropertyKey DigitalZoom => new PropertyKey(StillImageCaptureObjectV1, 21);
-                //
-                // WPD_STILL_IMAGE_EFFECT_MODE  
-                //   [ VT_UI4 ] Controls the special effect mode of the capture.
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_EFFECT_MODE</para>
+                /// <para>Description: Controls the special effect mode of the capture.</para>
+                /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
+                /// </summary>
                 public static PropertyKey EffectMode => new PropertyKey(StillImageCaptureObjectV1, 22);
-                //
-                // WPD_STILL_IMAGE_BURST_NUMBER  
-                //   [ VT_UI4 ] Controls the number of images that the device will attempt to capture upon initiation of a burst operation.
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_BURST_NUMBER</para>
+                /// <para>Description: Controls the number of images that the device will attempt to capture upon initiation of a burst operation.</para>
+                /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
+                /// </summary>
                 public static PropertyKey BurstNumber => new PropertyKey(StillImageCaptureObjectV1, 23);
-                //
-                // WPD_STILL_IMAGE_BURST_INTERVAL  
-                //   [ VT_UI4 ] Controls the time delay between captures upon initiation of a burst operation.
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_BURST_INTERVAL</para>
+                /// <para>Description: Controls the time delay between captures upon initiation of a burst operation.</para>
+                /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
+                /// </summary>
                 public static PropertyKey BurstInterval => new PropertyKey(StillImageCaptureObjectV1, 24);
-                //
-                // WPD_STILL_IMAGE_TIMELAPSE_NUMBER  
-                //   [ VT_UI4 ] Controls the number of images that the device will attempt to capture upon initiation of a time-lapse capture.
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_TIMELAPSE_NUMBER</para>
+                /// <para>Description: Controls the number of images that the device will attempt to capture upon initiation of a time-lapse capture.</para>
+                /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
+                /// </summary>
                 public static PropertyKey TimelapseNumber => new PropertyKey(StillImageCaptureObjectV1, 25);
-                //
-                // WPD_STILL_IMAGE_TIMELAPSE_INTERVAL  
-                //   [ VT_UI4 ] Controls the time delay between captures upon initiation of a time-lapse operation.
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_TIMELAPSE_INTERVAL</para>
+                /// <para>Description: Controls the time delay between captures upon initiation of a time-lapse operation.</para>
+                /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
+                /// </summary>
                 public static PropertyKey TimelapseInterval => new PropertyKey(StillImageCaptureObjectV1, 26);
-                //
-                // WPD_STILL_IMAGE_FOCUS_METERING_MODE  
-                //   [ VT_UI4 ] Controls which automatic focus mechanism is used by the device.
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_FOCUS_METERING_MODE</para>
+                /// <para>Description: Controls which automatic focus mechanism is used by the device.</para>
+                /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
+                /// </summary>
                 public static PropertyKey FocusMeteringMode => new PropertyKey(StillImageCaptureObjectV1, 27);
-                //
-                // WPD_STILL_IMAGE_UPLOAD_URL  
-                //   [ VT_LPWSTR ] Used to describe the URL that the device may use to upload images upon capture.
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_UPLOAD_URL</para>
+                /// <para>Description: Used to describe the URL that the device may use to upload images upon capture.</para>
+                /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/></para>
+                /// </summary>
                 public static PropertyKey UploadUrl => new PropertyKey(StillImageCaptureObjectV1, 28);
-                //
-                // WPD_STILL_IMAGE_ARTIST  
-                //   [ VT_LPWSTR ] Contains the owner/user of the device-which may be inserted as meta-data into any images that are captured.
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_ARTIST</para>
+                /// <para>Description: Contains the owner/user of the device-which may be inserted as meta-data into any images that are captured.</para>
+                /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/></para>
+                /// </summary>
                 public static PropertyKey Artist => new PropertyKey(StillImageCaptureObjectV1, 29);
-                //
-                // WPD_STILL_IMAGE_CAMERA_MODEL  
-                //   [ VT_LPWSTR ] Contains the model of the device
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_CAMERA_MODEL</para>
+                /// <para>Description: Contains the model of the device</para>
+                /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/></para>
+                /// </summary>
                 public static PropertyKey CameraModel => new PropertyKey(StillImageCaptureObjectV1, 30);
-                //
-                // WPD_STILL_IMAGE_CAMERA_MANUFACTURER  
-                //   [ VT_LPWSTR ] Contains the manufacturer of the device
+
+                /// <summary>
+                /// <para>Name: WPD_STILL_IMAGE_CAMERA_MANUFACTURER</para>
+                /// <para>Description: Contains the manufacturer of the device</para>
+                /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/></para>
+                /// </summary>
                 public static PropertyKey CameraManufacturer => new PropertyKey(StillImageCaptureObjectV1, 31);
 
             }

@@ -1,4 +1,6 @@
-﻿//#pragma warning disable CA2243 // Attribute string literals should parse correctly
+﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
+
+//#pragma warning disable CA2243 // Attribute string literals should parse correctly
 //public class SupportedCommands
 
 //{

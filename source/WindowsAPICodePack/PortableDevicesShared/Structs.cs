@@ -1,4 +1,6 @@
-﻿using Microsoft.WindowsAPICodePack.Win32Native;
+﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
+
+using Microsoft.WindowsAPICodePack.Win32Native;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {

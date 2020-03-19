@@ -4,7 +4,7 @@ WindowsAPICodePack CHANGELOG
 Please note:
 
 - The '#<number\>' notice indicates that the relative issue has been opened starting with the relative release.
-- The 'Fix #<number\>' notice indicates that the relative issue has been fixed starting with the relative release.
+- The 'Fixation #<number\>' notice indicates that the relative issue has been fixed starting with the relative release.
 
 For issue and fix details, visit https://github.com/pierresprim/Windows-API-Code-Pack/issues
 
@@ -30,9 +30,9 @@ WinCopies.WindowsAPICodePack.Shell 2.0
 WinCopies.WindowsAPICodePack.ShellExtensions 2.0
 -------------------
 
-- Fix #5
-- Fix #7
-- Fix #8
+- Fixation #5
+- Fixation #7
+- Fixation #8
 
 WinCopies.WindowsAPICodePack.Win32Native 2.0
 ---------------
@@ -46,9 +46,10 @@ WinCopies.WindowsAPICodePack.Win32Native 2.0
     - from: FolderTypeSearchResults to: FolderTypeGenericSearchResults
     - from: FolderTypeClassic to: FolderTypeControlPanelClassic
     - from: FolderTypeControlPanelCategory to: FolderTypeCategory
-- Fix #5
-- Fix #6
-- Fix #9
+- Fixation #5
+- Fixation #6
+- Fixation #9
+- Fixation #10
 
 WinCopies.WindowsAPICodePack.Win32NativeConsts 2.0
 --------------------

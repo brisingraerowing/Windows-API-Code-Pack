@@ -788,21 +788,14 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
         private Action<PropertyKey, TValue> _addAction;
 
-        private readonly int _count;
+        public Dictionary() => _addAction = (PropertyKey key, TValue value) =>
+                             {
 
-        public Dictionary(in int count)
-        {
-            _addAction = (PropertyKey key, TValue value) =>
-            {
+                                 _innerDictionary.Add(key, value);
 
-                _innerDictionary.Add(key, value);
+                                 _addAction = null;
 
-                _addAction = null;
-
-            };
-
-            _count = count;
-        }
+                             };
 
         public TValue this[PropertyKey key] { get => _innerDictionary[key]; set => _innerDictionary[key] = value; }
 
@@ -829,12 +822,12 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
     // todo: this collection implements the .Net IReadOnlyDictionary interface, but this interface does not support the uint indexing.
 
-    public sealed class PropertyCollection : IReadOnlyDictionary<PropertyKey, Property>, IDisposable
+    public class PropertyCollection : IReadOnlyDictionary<PropertyKey, Property>, IDisposable
     {
 
         #region Private/Internal Fields
 
-        internal INativePropertiesCollection Items { get; }
+        protected internal INativePropertiesCollection Items { get; }
 
         private INativePropertyValuesCollection _nativePropertyValuesCollection;
 
@@ -960,7 +953,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
             Marshal.ThrowExceptionForHR((int)nativePropertyCollection.GetValues(out _nativePropertyValuesCollection));
 
-            _innerDictionary = new Dictionary<Property>((int)Count);
+            _innerDictionary = new Dictionary<Property>();
 
             _getDictionaryDelegate = () =>
 
@@ -1213,7 +1206,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         {
             ThrowIfNull(nativePropertyValuesCollection, nameof(nativePropertyValuesCollection));
 
-            _innerDictionary = new Dictionary<PropertyAttribute>((int)Count);
+            _innerDictionary = new Dictionary<PropertyAttribute>();
 
             _getDictionaryDelegate = () =>
 
