@@ -8,8 +8,8 @@ Please note:
 
 For issue and fix details, visit https://github.com/pierresprim/Windows-API-Code-Pack/issues
 
-???? 2.0
-========
+03/19/2020 2.0.0-preview1
+=========================
 
 Global
 ------
@@ -21,10 +21,10 @@ WinCopies.WindowsAPICodePack.Shell 2.0
 
 - #2
 - The following methods and properties throw a NotSupportedException instead of a NotImplementedException:
-    - ShellLibrary.this[int]
+    - ShellLibrary.this\[int]
     - ShellLibrary.Insert(int, ShellFileSystemFolder)
     - ShellLibrary.RemoveAt(int)
-    - ShellLibrary implementation of System.Collections.Generic.ICollection<ShellFileSystemFolder>.CopyTo(ShellFileSystemFolder[], int)
+    - ShellLibrary implementation of System.Collections.Generic.ICollection<ShellFileSystemFolder>.CopyTo(ShellFileSystemFolder\[], int)
 - The ShellLibrary does not commit changes automatically anymore. Use the Commit method to commit changes.
 
 WinCopies.WindowsAPICodePack.ShellExtensions 2.0
