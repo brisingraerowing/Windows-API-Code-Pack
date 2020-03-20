@@ -12,7 +12,7 @@
     <Version>2.0.0-preview1</Version>
     <Authors>Pierre Sprimont</Authors>
     <Product>Microsoft Windows API Code Pack for .NET Framework</Product>
-    <Description>.NET wrappers fro the PortableDevices API</Description>
+    <Description>.NET wrappers for the PortableDevices API</Description>
     <Copyright>Copyright © Pierre Sprimont 2020</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://wincopies.com/windows-api-codepack/</PackageProjectUrl>
