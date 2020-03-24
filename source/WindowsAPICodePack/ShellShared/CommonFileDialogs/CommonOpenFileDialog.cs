@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using Microsoft.WindowsAPICodePack.COMNative.Dialogs;
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;

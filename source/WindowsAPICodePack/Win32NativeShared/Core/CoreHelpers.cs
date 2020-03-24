@@ -4,6 +4,7 @@ using System;
 using System.Globalization;
 using System.Text;
 using Microsoft.WindowsAPICodePack.Win32Native.Resources;
+using static Microsoft.WindowsAPICodePack.Win32Native.Consts.DllNames;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native
 {
@@ -132,20 +133,20 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
             // Known folder "Recent" has a malformed resource id
             // for its tooltip. This causes the resource id to
             // parse into 3 parts instead of 2 parts if we don't fix.
-            resourceId = resourceId.Replace("shell32,dll", "shell32.dll");
+            resourceId = resourceId.Replace("shell32,dll", Shell32);
             parts = resourceId.Split(new char[] { ',' });
 
             library = parts[0];
             library = library.Replace(@"@", string.Empty);
             library = Environment.ExpandEnvironmentVariables(library);
-            IntPtr handle = CoreNativeMethods.LoadLibrary(library);
+            IntPtr handle = Core.LoadLibrary(library);
 
             parts[1] = parts[1].Replace("-", string.Empty);
             index = int.Parse(parts[1], CultureInfo.InvariantCulture);
 
             var stringValue = new StringBuilder(255);
 
-            return CoreNativeMethods.LoadString(handle, index, stringValue, 255) != 0 ? stringValue.ToString() : null;
+            return Core.LoadString(handle, index, stringValue, 255) == 0 ? null : stringValue.ToString();
         }
     }
 }

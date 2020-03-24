@@ -4,7 +4,8 @@ using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.ShellExtensions.Resources;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions;
+using Microsoft.WindowsAPICodePack.COMNative.ShellExtensions;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager;
 
 namespace Microsoft.WindowsAPICodePack.ShellExtensions
 {

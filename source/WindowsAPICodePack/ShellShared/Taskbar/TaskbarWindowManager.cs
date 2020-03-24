@@ -16,6 +16,9 @@ using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 using Microsoft.WindowsAPICodePack.Internal;
 
 using static Microsoft.WindowsAPICodePack.Win32Native.Taskbar.Consts.TabbedThumbnail;
+using Microsoft.WindowsAPICodePack.Win32Native.GDI;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager;
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar
 {
@@ -135,7 +138,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 ref changeFilterResult);
 
             // BUG: There should be somewhere to disable CustomWindowPreview. I didn't find it.
-            DesktopWindowManagerNativeMethods.EnableCustomWindowPreview(windowHandle, true);
+            DesktopWindowManager.EnableCustomWindowPreview(windowHandle, true);
 
             // Make sure we use the initial title set by the user
             // Trigger a "fake" title changed event, so the title is set on the taskbar thumbnail.
@@ -194,7 +197,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         #region Message dispatch methods
         private static void DispatchTaskbarButtonMessages(ref System.Windows.Forms.Message m, TaskbarWindow taskbarWindow)
         {
-            if (m.Msg == (int)TaskbarNativeMethods.WmTaskbarButtonCreated)
+            if (m.Msg == (int)Win32Native.Taskbar.Taskbar.WmTaskbarButtonCreated)
 
                 AddButtons(taskbarWindow);
 
@@ -205,9 +208,9 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                     AddButtons(taskbarWindow);
 
                 if (m.Msg == Win32Native.Taskbar.Consts.Common.WmCommand &&
-                    CoreNativeMethods.GetHiWord(m.WParam.ToInt64(), 16) == ThumbButton.Clicked)
+                    Core.GetHiWord(m.WParam.ToInt64(), 16) == ThumbButton.Clicked)
                 {
-                    int buttonId = CoreNativeMethods.GetLoWord(m.WParam.ToInt64());
+                    int buttonId = Core.GetLoWord(m.WParam.ToInt64());
 
                     IEnumerable<ThumbnailToolBarButton> buttonsFound =
                         from b in taskbarWindow.ThumbnailButtons
@@ -239,7 +242,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             {
                 int width = (int)((long)m.LParam >> 16);
                 int height = (int)(((long)m.LParam) & (0xFFFF));
-                var requestedSize = new Size(width, height);
+                var requestedSize = new System.Drawing.Size(width, height);
 
                 // Fire an event to let the user update their bitmap
                 taskbarWindow.TabbedThumbnail.OnTabbedThumbnailBitmapRequested();
@@ -247,7 +250,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 IntPtr hBitmap = IntPtr.Zero;
 
                 // Default size for the thumbnail
-                var realWindowSize = new Size(200, 200);
+                var realWindowSize = new System.Drawing.Size(200, 200);
 
                 // Get the size of teh control or UIElement
                 if (taskbarWindow.TabbedThumbnail.WindowHandle != IntPtr.Zero)
@@ -256,7 +259,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
                 else if (taskbarWindow.TabbedThumbnail.WindowsControl != null)
 
-                    realWindowSize = new Size(
+                    realWindowSize = new System.Drawing.Size(
                         Convert.ToInt32(taskbarWindow.TabbedThumbnail.WindowsControl.RenderSize.Width),
                         Convert.ToInt32(taskbarWindow.TabbedThumbnail.WindowsControl.RenderSize.Height));
 
@@ -293,7 +296,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                     // Make sure we dispose the bitmap before assigning, otherwise we'll have a memory leak
                     if (hBitmap != IntPtr.Zero && taskbarWindow.TabbedThumbnail.CurrentHBitmap == IntPtr.Zero)
 
-                        _ = ShellNativeMethods.DeleteObject(hBitmap);
+                        _ = GDI.DeleteObject(hBitmap);
 
                     hBitmap = bmp.GetHbitmap();
                     bmp.Dispose();
@@ -321,10 +324,10 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
                     if (taskbarWindow.TabbedThumbnail.CurrentHBitmap == IntPtr.Zero)
 
-                        _ = ShellNativeMethods.DeleteObject(hBitmap);
+                        _ = GDI.DeleteObject(hBitmap);
 
                     hBitmap = temp.GetHbitmap();
-                    DesktopWindowManagerNativeMethods.SetIconicThumbnail(taskbarWindow.WindowToTellTaskbarAbout, hBitmap);
+                     DesktopWindowManager.SetIconicThumbnail(taskbarWindow.WindowToTellTaskbarAbout, hBitmap);
                     temp.Dispose();
                 }
 
@@ -332,7 +335,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 // then make sure we delete it as we don't need it now.
                 if (taskbarWindow.TabbedThumbnail.CurrentHBitmap == IntPtr.Zero)
 
-                    _ = ShellNativeMethods.DeleteObject(hBitmap);
+                    _ = GDI.DeleteObject(hBitmap);
 
                 return true;
             }
@@ -348,7 +351,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 int height = (int)(((long)m.LParam) & (0xFFFF));
 
                 // Default size for the thumbnail
-                var realWindowSize = new Size(200, 200);
+                var realWindowSize = new System.Drawing.Size(200, 200);
 
                 if (taskbarWindow.TabbedThumbnail.WindowHandle != IntPtr.Zero)
 
@@ -356,7 +359,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
                 else if (taskbarWindow.TabbedThumbnail.WindowsControl != null)
 
-                    realWindowSize = new Size(
+                    realWindowSize = new System.Drawing.Size(
                         Convert.ToInt32(taskbarWindow.TabbedThumbnail.WindowsControl.RenderSize.Width),
                         Convert.ToInt32(taskbarWindow.TabbedThumbnail.WindowsControl.RenderSize.Height));
 
@@ -394,7 +397,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                     // let DWM handle it
                     if (hBitmap != IntPtr.Zero && offset.X >= 0 && offset.Y >= 0)
 
-                        DesktopWindowManagerNativeMethods.SetPeekBitmap(
+                        DesktopWindowManager.SetPeekBitmap(
                             taskbarWindow.WindowToTellTaskbarAbout,
                             hBitmap, offset,
                             taskbarWindow.TabbedThumbnail.DisplayFrameAroundBitmap);
@@ -403,7 +406,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                     // then make sure we delete it as we don't need it now.
                     if (taskbarWindow.TabbedThumbnail.CurrentHBitmap == IntPtr.Zero)
 
-                        _ = ShellNativeMethods.DeleteObject(hBitmap);
+                        _ = GDI.DeleteObject(hBitmap);
 
                     return true;
                 }
@@ -433,14 +436,14 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
                         if (offset.X >= 0 && offset.Y >= 0)
 
-                            DesktopWindowManagerNativeMethods.SetPeekBitmap(
+                            DesktopWindowManager.SetPeekBitmap(
                                 taskbarWindow.WindowToTellTaskbarAbout,
                                 hBitmap, new Point((int)offset.X, (int)offset.Y),
                                 taskbarWindow.TabbedThumbnail.DisplayFrameAroundBitmap);
 
                         else
 
-                            DesktopWindowManagerNativeMethods.SetPeekBitmap(
+                            DesktopWindowManager.SetPeekBitmap(
                                 taskbarWindow.WindowToTellTaskbarAbout,
                                 hBitmap,
                                 taskbarWindow.TabbedThumbnail.DisplayFrameAroundBitmap);
@@ -449,7 +452,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                     // then make sure we delete it as we don't need it now.
                     if (taskbarWindow.TabbedThumbnail.CurrentHBitmap == IntPtr.Zero)
 
-                        _ = ShellNativeMethods.DeleteObject(hBitmap);
+                        _ = GDI.DeleteObject(hBitmap);
 
                     return true;
                 }
@@ -463,13 +466,13 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                     // let DWM handle it
                     if (hBitmap != null)
 
-                        DesktopWindowManagerNativeMethods.SetPeekBitmap(taskbarWindow.WindowToTellTaskbarAbout, hBitmap, taskbarWindow.TabbedThumbnail.DisplayFrameAroundBitmap);
+                        DesktopWindowManager.SetPeekBitmap(taskbarWindow.WindowToTellTaskbarAbout, hBitmap, taskbarWindow.TabbedThumbnail.DisplayFrameAroundBitmap);
 
                     // If the bitmap we have is not coming from the user (i.e. we created it here),
                     // then make sure we delete it as we don't need it now.
                     if (taskbarWindow.TabbedThumbnail.CurrentHBitmap == IntPtr.Zero)
 
-                        _ = ShellNativeMethods.DeleteObject(hBitmap);
+                        _ = GDI.DeleteObject(hBitmap);
 
                     return true;
                 }
@@ -669,7 +672,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         {
             if (taskbarWindow != null)
 
-                _ = DesktopWindowManagerNativeMethods.DwmInvalidateIconicBitmaps(
+                _ = DesktopWindowManager.DwmInvalidateIconicBitmaps(
                     taskbarWindow.WindowToTellTaskbarAbout);
         }
 

@@ -71,7 +71,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             
             lock (_crossThreadWindowLock)
             {
-                CoreNativeMethods.PostMessage(_firstWindowHandle, (WindowMessage)CreateWindowMessage, IntPtr.Zero, IntPtr.Zero);
+                Core.PostMessage(_firstWindowHandle, (WindowMessage)CreateWindowMessage, IntPtr.Zero, IntPtr.Zero);
                 _ = Monitor.Wait(_crossThreadWindowLock);
             }
 
@@ -183,7 +183,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     _ = _listeners.Remove(WindowHandle);
                     if (_listeners.Count == 0)
                     
-                        CoreNativeMethods.PostMessage(WindowHandle, WindowMessage.Destroy, IntPtr.Zero, IntPtr.Zero);
+                        Core.PostMessage(WindowHandle, WindowMessage.Destroy, IntPtr.Zero, IntPtr.Zero);
                                     }
             }
         }

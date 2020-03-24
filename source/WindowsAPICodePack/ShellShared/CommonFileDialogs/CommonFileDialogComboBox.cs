@@ -4,6 +4,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Markup;
+using Microsoft.WindowsAPICodePack.COMNative.Dialogs;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
 

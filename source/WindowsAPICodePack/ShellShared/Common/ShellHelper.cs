@@ -7,8 +7,9 @@ using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -46,13 +47,13 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         internal static string GetItemType(IShellItem2 shellItem) => shellItem != null && shellItem.GetString(ref ItemTypePropertyKey, out string itemType) == HResult.Ok ? itemType : null;
 
-        internal static IntPtr PidlFromParsingName(string name) => (CoreErrorHelper.Succeeded(ShellNativeMethods.SHParseDisplayName(
+        internal static IntPtr PidlFromParsingName(string name) => (CoreErrorHelper.Succeeded(Win32Native.Shell.Shell.SHParseDisplayName(
                 name, IntPtr.Zero, out IntPtr pidl, 0,
                 out _)) ? pidl : IntPtr.Zero);
 
         internal static IntPtr PidlFromShellItem(IShellItem nativeShellItem) => PidlFromUnknown(Marshal.GetIUnknownForObject(nativeShellItem));
 
-        internal static IntPtr PidlFromUnknown(IntPtr unknown) => CoreErrorHelper.Succeeded(ShellNativeMethods.SHGetIDListFromObject(unknown, out IntPtr pidl)) ? pidl : IntPtr.Zero;
+        internal static IntPtr PidlFromUnknown(IntPtr unknown) => CoreErrorHelper.Succeeded(Win32Native.Shell.Shell.SHGetIDListFromObject(unknown, out IntPtr pidl)) ? pidl : IntPtr.Zero;
 
     }
 }

@@ -3,23 +3,24 @@ using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+using static Microsoft.WindowsAPICodePack.Win32Native.Consts.DllNames;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
 
     public static class ShellObjectWatcherNativeMethods
     {
-        [DllImport("Ole32.dll")]
+        [DllImport(Ole32)]
         public static extern HResult CreateBindCtx(
             int reserved, // must be 0
             [Out] out IBindCtx bindCtx);
 
-        [DllImport("User32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        [DllImport(User32, CharSet = CharSet.Unicode, SetLastError = true)]
         public static extern uint RegisterClassEx(
             ref WindowClassEx windowClass
             );
 
-        [DllImport("User32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        [DllImport(User32, CharSet = CharSet.Unicode, SetLastError = true)]
         public static extern IntPtr CreateWindowEx(
             int extendedStyle,
             [MarshalAs(UnmanagedType.LPWStr)]
@@ -36,7 +37,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
             IntPtr instanceHandle,
             IntPtr additionalData);
 
-        [DllImport("User32.dll")]
+        [DllImport(User32)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetMessage(
             [Out] out Message message,
@@ -44,14 +45,14 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
             uint filterMinMessage,
             uint filterMaxMessage);
 
-        [DllImport("User32.dll")]
+        [DllImport(User32)]
         public static extern int DefWindowProc(
             IntPtr hwnd,
             uint msg,
             IntPtr wparam,
             IntPtr lparam);
 
-        [DllImport("User32.dll")]
+        [DllImport(User32)]
         public static extern void DispatchMessage([In] ref Message message);
 
         public delegate int WndProcDelegate(IntPtr hwnd, uint msg, IntPtr wparam, IntPtr lparam);

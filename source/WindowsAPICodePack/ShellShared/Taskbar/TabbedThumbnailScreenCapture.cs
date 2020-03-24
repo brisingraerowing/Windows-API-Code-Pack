@@ -7,8 +7,11 @@ using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.GDI;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar
@@ -61,7 +64,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
                         System.Drawing.Size ncArea = WindowUtilities.GetNonClientArea(windowHandle);
 
-                        bool success = TabbedThumbnailNativeMethods.StretchBlt(
+                        bool success = GDI.StretchBlt(
                             targetDC, 0, 0, targetBitmap.Width, targetBitmap.Height,
                             windowDC, ncArea.Width, ncArea.Height, realWindowSize.Width,
                             realWindowSize.Height, operation);

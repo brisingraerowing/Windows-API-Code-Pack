@@ -20,7 +20,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
               PowerManagementNativeMethods.PowerInformationLevel.SystemPowerCapabilities,
               IntPtr.Zero, 0, out PowerManagementNativeMethods.SystemPowerCapabilities powerCap,
               (uint)Marshal.SizeOf(typeof(PowerManagementNativeMethods.SystemPowerCapabilities))
-              ) == CoreNativeMethods.StatusAccessDenied)
+              ) == Win32Native.Consts.Common.StatusAccessDenied)
 
                 throw new UnauthorizedAccessException(LocalizedMessages.PowerInsufficientAccessCapabilities);
 
@@ -34,7 +34,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
               PowerManagementNativeMethods.PowerInformationLevel.SystemBatteryState,
               IntPtr.Zero, 0, out PowerManagementNativeMethods.SystemBatteryState batteryState,
               (uint)Marshal.SizeOf(typeof(PowerManagementNativeMethods.SystemBatteryState))
-              ) == CoreNativeMethods.StatusAccessDenied)
+              ) == Win32Native.Consts.Common.StatusAccessDenied)
 
                 throw new UnauthorizedAccessException(LocalizedMessages.PowerInsufficientAccessBatteryState);
 

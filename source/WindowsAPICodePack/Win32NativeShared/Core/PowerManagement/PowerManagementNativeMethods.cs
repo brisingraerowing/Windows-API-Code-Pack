@@ -2,6 +2,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using static Microsoft.WindowsAPICodePack.Win32Native.Consts.DllNames;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices
 {
@@ -182,7 +183,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices
             public uint DefaultAlert2;
         }
 
-        [DllImport("powrprof.dll")]
+        [DllImport(PowrProf)]
         public static extern uint CallNtPowerInformation(
              PowerInformationLevel informationLevel,
              IntPtr inputBuffer,
@@ -191,7 +192,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices
              uint outputBufferSize
         );
 
-        [DllImport("powrprof.dll")]
+        [DllImport(PowrProf)]
         public static extern uint CallNtPowerInformation(
              PowerInformationLevel informationLevel,
              IntPtr inputBuffer,
@@ -205,21 +206,21 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices
         /// </summary>
         /// <param name="rootPowerKey">Reserved for future use, this must be set to IntPtr.Zero</param>
         /// <param name="activePolicy">Returns a Guid referring to the currently active power scheme.</param>
-        [DllImport("powrprof.dll")]
+        [DllImport(PowrProf)]
         public static extern void PowerGetActiveScheme(
             IntPtr rootPowerKey,
             [MarshalAs(UnmanagedType.LPStruct)]
             out Guid activePolicy);
         
-        [DllImport("User32", SetLastError = true,
-            EntryPoint = "RegisterPowerSettingNotification",
+        [DllImport(User32, SetLastError = true,
+            EntryPoint = nameof(RegisterPowerSettingNotification),
             CallingConvention = CallingConvention.StdCall)]
         public static extern int RegisterPowerSettingNotification(
                 IntPtr hRecipient,
                 ref Guid PowerSettingGuid,
                 int Flags);
 
-        [DllImport("kernel32.dll", SetLastError = true)]
+        [DllImport(Kernel32, SetLastError = true)]
         public static extern ExecutionStates SetThreadExecutionState(ExecutionStates esFlags);
         
         #endregion

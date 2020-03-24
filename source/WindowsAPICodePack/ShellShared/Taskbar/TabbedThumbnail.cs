@@ -16,6 +16,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 using Microsoft.WindowsAPICodePack.Internal;
 
 using static Microsoft.WindowsAPICodePack.Win32Native.Taskbar.Consts.TabbedThumbnail;
+using Microsoft.WindowsAPICodePack.Win32Native.GDI;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar
 {
@@ -312,7 +313,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             // Before we set a new bitmap, dispose the old one
             if (CurrentHBitmap != IntPtr.Zero)
 
-                _ = ShellNativeMethods.DeleteObject(CurrentHBitmap);
+                _ = GDI.DeleteObject(CurrentHBitmap);
 
             // Set the new bitmap
             CurrentHBitmap = hBitmap;
@@ -393,7 +394,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
                 // No one is listening to these events.
                 // Forward the message to the main window
-                _ = CoreNativeMethods.SendMessage(ParentWindowHandle, WindowMessage.SystemCommand, new IntPtr(ScMaximize), IntPtr.Zero);
+                _ = Core.SendMessage(ParentWindowHandle, WindowMessage.SystemCommand, new IntPtr(ScMaximize), IntPtr.Zero);
 
             else
 
@@ -406,7 +407,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
                 // No one is listening to these events.
                 // Forward the message to the main window
-                _ = CoreNativeMethods.SendMessage(ParentWindowHandle, WindowMessage.SystemCommand, new IntPtr(ScMinimize), IntPtr.Zero);
+                _ = Core.SendMessage(ParentWindowHandle, WindowMessage.SystemCommand, new IntPtr(ScMinimize), IntPtr.Zero);
 
             else
 
@@ -424,7 +425,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             if (closedHandler == null)
 
                 // No one is listening to these events. Forward the message to the main window
-                _ = CoreNativeMethods.SendMessage(ParentWindowHandle, WindowMessage.NCDestroy, IntPtr.Zero, IntPtr.Zero);
+                _ = Core.SendMessage(ParentWindowHandle, WindowMessage.NCDestroy, IntPtr.Zero, IntPtr.Zero);
 
             else
             {
@@ -446,7 +447,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
                 // No one is listening to these events.
                 // Forward the message to the main window
-                _ = CoreNativeMethods.SendMessage(ParentWindowHandle, WindowMessage.ActivateApplication, new IntPtr(1), new IntPtr(Thread.CurrentThread.GetHashCode()));
+                _ = Core.SendMessage(ParentWindowHandle, WindowMessage.ActivateApplication, new IntPtr(1), new IntPtr(Thread.CurrentThread.GetHashCode()));
 
             else
 
@@ -545,7 +546,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
             if (CurrentHBitmap != IntPtr.Zero)
             {
-                _ = ShellNativeMethods.DeleteObject(CurrentHBitmap);
+                _ = GDI.DeleteObject(CurrentHBitmap);
                 CurrentHBitmap = IntPtr.Zero;
             }
         }

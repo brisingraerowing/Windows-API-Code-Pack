@@ -1,5 +1,6 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using System;
 using System.Diagnostics;
@@ -30,8 +31,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             // Set the native shell item
             // and set it on the base class (ShellObject)
-            Guid guid = new Guid(Win32Native.Guids.Shell.IShellItem2);
-            knownFolderNative.GetShellItem(0, ref guid, out nativeShellItem);
+            var guid = new Guid(Win32Native.Guids.Shell.IShellItem2);
+            _ = knownFolderNative.GetShellItem(0, ref guid, out nativeShellItem);
         }
 
         #endregion
@@ -212,7 +213,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             
             if (knownFolderNative != null)
             {
-                Marshal.ReleaseComObject(knownFolderNative);
+                _ = Marshal.ReleaseComObject(knownFolderNative);
                 knownFolderNative = null;
             }
 

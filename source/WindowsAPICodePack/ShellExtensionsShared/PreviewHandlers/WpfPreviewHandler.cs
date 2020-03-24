@@ -5,7 +5,9 @@ using System.Windows.Media;
 using Microsoft.WindowsAPICodePack.ShellExtensions.Resources;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions;
+using Microsoft.WindowsAPICodePack.COMNative.ShellExtensions;
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager;
 
 namespace Microsoft.WindowsAPICodePack.ShellExtensions
 {
@@ -65,11 +67,13 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
             {
                 ThrowIfNoControl();
 
-                HwndSourceParameters p = new HwndSourceParameters();
-                p.WindowStyle = (int)(WindowStyles.Child | WindowStyles.Visible | WindowStyles.ClipSiblings);
-                p.ParentWindow = _parentHandle;
-                p.Width = Math.Abs(_bounds.Left - _bounds.Right);
-                p.Height = Math.Abs(_bounds.Top - _bounds.Bottom);
+                var p = new HwndSourceParameters
+                {
+                    WindowStyle = (int)(WindowStyles.Child | WindowStyles.Visible | WindowStyles.ClipSiblings),
+                    ParentWindow = _parentHandle,
+                    Width = Math.Abs(_bounds.Left - _bounds.Right),
+                    Height = Math.Abs(_bounds.Top - _bounds.Bottom)
+                };
 
                 _source = new HwndSource(p);
                 _source.CompositionTarget.BackgroundColor = Brushes.WhiteSmoke.Color;

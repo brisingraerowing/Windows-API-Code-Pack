@@ -3,14 +3,15 @@
 using Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
+using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
+using Microsoft.WindowsAPICodePack.COMNative.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
@@ -28,10 +29,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             }
         }
 
-        private Win32Native.PortableDevices.PropertySystem.IPortableDeviceValues _portableDeviceValues;
+        private COMNative.PortableDevices.PropertySystem.IPortableDeviceValues _portableDeviceValues;
         //protected Dictionary<PropertyKey, object> Dic = new Dictionary<PropertyKey, object>();
 
-        protected internal Win32Native.PortableDevices.PropertySystem.IPortableDeviceValues PortableDeviceValues { get { ThrowIfDisposed(); return _portableDeviceValues; } }
+        protected internal COMNative.PortableDevices.PropertySystem.IPortableDeviceValues PortableDeviceValues { get { ThrowIfDisposed(); return _portableDeviceValues; } }
 
         IPortableDeviceValues INativePortableDeviceValuesCollectionProvider.NativeItems => PortableDeviceValues;
 

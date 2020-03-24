@@ -2,8 +2,8 @@
 
 using System;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Net;
-using Microsoft.WindowsAPICodePack.Win32Native.NetworkList;
+using Microsoft.WindowsAPICodePack.COMNative.Net;
+using Microsoft.WindowsAPICodePack.COMNative.NetworkList;
 
 namespace Microsoft.WindowsAPICodePack.Net
 {

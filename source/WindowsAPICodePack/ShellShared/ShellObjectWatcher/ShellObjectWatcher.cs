@@ -79,7 +79,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             entry.pIdl = _shellObject.PIDL;
 
-            _registrationId = ShellNativeMethods.SHChangeNotifyRegister(
+            _registrationId = Win32Native.Shell.Shell.SHChangeNotifyRegister(
                 _listenerHandle,
                 ShellChangeNotifyEventSource.ShellLevel | ShellChangeNotifyEventSource.InterruptLevel | ShellChangeNotifyEventSource.NewDelivery,
                  _manager.RegisteredTypes, //ShellObjectChangeTypes.AllEventsMask,
@@ -104,7 +104,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             if (!Running)  return; 
             if (_registrationId > 0)
             {
-                ShellNativeMethods.SHChangeNotifyDeregister(_registrationId);
+                Win32Native.Shell.Shell.SHChangeNotifyDeregister(_registrationId);
                 _registrationId = 0;
             }
             Running = false;

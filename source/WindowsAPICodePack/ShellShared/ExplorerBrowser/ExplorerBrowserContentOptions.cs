@@ -6,6 +6,7 @@ using Microsoft.WindowsAPICodePack.Shell.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native.Controls;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Internal;
+using Microsoft.WindowsAPICodePack.COMNative.Controls;
 
 namespace Microsoft.WindowsAPICodePack.Controls
 {

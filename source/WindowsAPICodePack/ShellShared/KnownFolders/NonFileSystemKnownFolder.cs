@@ -1,5 +1,6 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using System;
 using System.Diagnostics;
@@ -152,7 +153,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// Gets this known folder's file attributes, 
         /// such as "read-only".
         /// </summary>
-        /// <value>A <see cref="Shell.FileAttributes"/> value.</value>
+        /// <value>A <see cref="Win32Native.Shell.FileAttributes"/> value.</value>
         public FileAttributes FileAttributes => KnownFolderSettings.FileAttributes;
 
         /// <summary>
@@ -212,7 +213,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (knownFolderNative != null)
             {
-                Marshal.ReleaseComObject(knownFolderNative);
+                _ = Marshal.ReleaseComObject(knownFolderNative);
                 knownFolderNative = null;
             }
 

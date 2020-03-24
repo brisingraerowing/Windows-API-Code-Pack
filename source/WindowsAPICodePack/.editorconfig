@@ -1,4 +1,7 @@
 ﻿[*.cs]
 
-# CA1720: L'identificateur contient le nom de type
+# CA1720: Identifiers should not contain type names
 dotnet_diagnostic.CA1720.severity = warning
+
+# CA1401: P/Invokes should not be visible
+dotnet_diagnostic.CA1401.severity = none

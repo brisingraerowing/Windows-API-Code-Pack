@@ -4,12 +4,13 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using WinCopies.Collections;
+using Microsoft.WindowsAPICodePack.COMNative.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.PropertySystem
 {

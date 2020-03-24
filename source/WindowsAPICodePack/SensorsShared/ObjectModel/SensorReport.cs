@@ -1,8 +1,10 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.Win32Native.Sensors;
+using Microsoft.WindowsAPICodePack.COMNative.Sensors;
+using Microsoft.WindowsAPICodePack.Win32Native.TimeZone;
 using System;
 using System.Runtime.InteropServices.ComTypes;
+using TimeZone = Microsoft.WindowsAPICodePack.Win32Native.TimeZone.TimeZone;
 
 namespace Microsoft.WindowsAPICodePack.Sensors
 {
@@ -32,7 +34,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         internal static SensorReport FromNativeReport(in Sensor originator, in ISensorDataReport iReport)
         {
             iReport.GetTimestamp(out SystemTime systemTimeStamp);
-            _ = SensorNativeMethods.SystemTimeToFileTime(ref systemTimeStamp, out FILETIME ftTimeStamp);
+            _ = TimeZone.SystemTimeToFileTime(ref systemTimeStamp, out FILETIME ftTimeStamp);
             long lTimeStamp = (((long)ftTimeStamp.dwHighDateTime) << 32) + ftTimeStamp.dwLowDateTime;
             var sensorReport = new SensorReport
             {

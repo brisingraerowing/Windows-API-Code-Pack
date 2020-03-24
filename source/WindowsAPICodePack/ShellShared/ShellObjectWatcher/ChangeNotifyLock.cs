@@ -7,6 +7,8 @@ using System.Diagnostics;
 using Microsoft.WindowsAPICodePack.Internal;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
+using Microsoft.WindowsAPICodePack.COMNative;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -16,7 +18,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         internal ChangeNotifyLock(Message message)
         {
-            IntPtr lockId = ShellNativeMethods.SHChangeNotification_Lock(
+            IntPtr lockId = Win32Native.Shell.Shell.SHChangeNotification_Lock(
                     message.WParam, (int)message.LParam, out IntPtr pidl, out _event);
 
             try
@@ -31,7 +33,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     (((ShellObjectChangeTypes)_event) & ShellObjectChangeTypes.SystemImageUpdate) == ShellObjectChangeTypes.None)
                 {
 
-                    if (CoreErrorHelper.Succeeded(ShellNativeMethods.SHCreateItemFromIDList(
+                    if (CoreErrorHelper.Succeeded(COMNative.Shell.Shell.SHCreateItemFromIDList(
                         notifyStruct.item1, ref guid, out IShellItem2 nativeShellItem)))
                     {
                         _ = nativeShellItem.GetDisplayName(ShellItemDesignNameOptions.FileSystemPath,
@@ -47,7 +49,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 if (notifyStruct.item2 != IntPtr.Zero)
 
-                    if (CoreErrorHelper.Succeeded(ShellNativeMethods.SHCreateItemFromIDList(
+                    if (CoreErrorHelper.Succeeded(COMNative.Shell.Shell.SHCreateItemFromIDList(
                         notifyStruct.item2, ref guid, out IShellItem2 nativeShellItem)))
                     {
                         _ = nativeShellItem.GetDisplayName(ShellItemDesignNameOptions.FileSystemPath,
@@ -61,7 +63,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 if (lockId != IntPtr.Zero)
 
-                    _ = ShellNativeMethods.SHChangeNotification_Unlock(lockId);
+                    _ = Win32Native.Shell.Shell.SHChangeNotification_Unlock(lockId);
                             }
 
         }

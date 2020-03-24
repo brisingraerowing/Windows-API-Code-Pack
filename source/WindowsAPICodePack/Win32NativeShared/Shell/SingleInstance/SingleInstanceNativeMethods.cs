@@ -16,6 +16,7 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.WindowsAPICodePack.Win32Native.Consts.DllNames;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
@@ -28,12 +29,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         /// </summary>
         public delegate IntPtr MessageHandler(WM uMsg, IntPtr wParam, IntPtr lParam, out bool handled);
 
-        [DllImport("shell32.dll", EntryPoint = "CommandLineToArgvW", CharSet = CharSet.Unicode)]
+        [DllImport(Shell32, EntryPoint = nameof(CommandLineToArgvW), CharSet = CharSet.Unicode)]
         public static extern IntPtr CommandLineToArgvW([MarshalAs(UnmanagedType.LPWStr)] string cmdLine, out int numArgs);
-
-
-        [DllImport("kernel32.dll", EntryPoint = "LocalFree", SetLastError = true)]
-        public static extern IntPtr LocalFree(IntPtr hMem);
 
 
         public static string[] CommandLineToArgv(string cmdLine)
@@ -43,9 +40,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 
             try
             {
-                int numArgs = 0;
-
-                argv = CommandLineToArgvW(cmdLine, out numArgs);
+                argv = CommandLineToArgvW(cmdLine, out int numArgs);
 
                 if (argv == IntPtr.Zero)
 
@@ -62,7 +57,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
             finally
             {
 
-                IntPtr p = LocalFree(argv);
+                IntPtr p = Core.LocalFree(argv);
                 // Otherwise LocalFree failed.
                 // Assert.AreEqual(IntPtr.Zero, p);
             }

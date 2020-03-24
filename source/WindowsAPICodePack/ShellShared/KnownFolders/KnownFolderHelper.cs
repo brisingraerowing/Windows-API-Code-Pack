@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
@@ -178,8 +179,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
             }
             finally
             {
-                ShellNativeMethods.ILFree(pidl);
-                ShellNativeMethods.ILFree(pidl2);
+                Win32Native.Shell.Shell.ILFree(pidl);
+                Win32Native.Shell.Shell.ILFree(pidl2);
             }
 
         }

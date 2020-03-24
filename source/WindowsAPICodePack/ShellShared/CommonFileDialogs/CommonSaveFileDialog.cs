@@ -9,10 +9,12 @@ using Microsoft.WindowsAPICodePack.Shell.Resources;
 using Microsoft.WindowsAPICodePack.Internal;
 using System.Text;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.PropertySystem;
+using Microsoft.WindowsAPICodePack.COMNative.Dialogs;
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Dialogs
 {
@@ -232,9 +234,14 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
         internal override void InitializeNativeFileDialog()
         {
+#if NETFRAMEWORK
             if (saveDialogCoClass == null)
 
                 saveDialogCoClass = new NativeFileSaveDialog();
+#else
+
+                saveDialogCoClass ??= new NativeFileSaveDialog();
+#endif
         }
 
         internal override IFileDialog GetNativeFileDialog()

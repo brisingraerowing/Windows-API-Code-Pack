@@ -1,6 +1,6 @@
 ﻿using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,10 +15,11 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Interop;
 
-using static Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellNativeMethods;
+using static Microsoft.WindowsAPICodePack.Win32Native.Shell.Shell;
 using FileAttributes = Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes;
 
 using static WinCopies.Util.Util;
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -465,7 +466,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 icon = (Icon)Icon.FromHandle(psfi.hIcon).Clone();
 
-                _ = CoreNativeMethods.DestroyIcon(psfi.hIcon);
+                _ = Core.DestroyIcon(psfi.hIcon);
 
             }
 
@@ -511,7 +512,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 icon = (Icon)Icon.FromHandle(psfi.hIcon).Clone();
 
-                _ = CoreNativeMethods.DestroyIcon(psfi.hIcon);
+                _ = Core.DestroyIcon(psfi.hIcon);
 
             }
 

@@ -1,5 +1,6 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using System;
@@ -98,7 +99,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 if (desktopFolderEnumeration == null)
 
-                    _ = ShellNativeMethods.SHGetDesktopFolder(out desktopFolderEnumeration);
+                    _ = COMNative.Shell.Shell.SHGetDesktopFolder(out desktopFolderEnumeration);
 
                 nativeShellFolder = desktopFolderEnumeration;
             }

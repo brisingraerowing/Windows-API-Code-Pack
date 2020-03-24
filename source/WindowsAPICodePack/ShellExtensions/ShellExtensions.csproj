@@ -1,26 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.0;net472</TargetFrameworks><!--todo: netcoreapp3.1;net48-->
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <AssemblyName>WinCopies.WindowsAPICodePack.ShellExtensions</AssemblyName>
     <RootNamespace>Microsoft.WindowsAPICodePack.ShellExtensions</RootNamespace>
     <Version>2.0.0-preview1</Version>
     <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
-    <Company>Pierre Sprimont</Company>
     <Description>WindowsAPICodePack Shell Extensions</Description>
-    <Product>Microsoft Windows API Code Pack for .NET Framework</Product>
     <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageProjectUrl>https://wincopies.com/windows-api-codepack/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/pierresprim/Windows-API-Code-Pack.git</RepositoryUrl>
-    <RepositoryType>Git</RepositoryType>
     <PackageTags>Windows API Code Pack</PackageTags>
-    <PackageReleaseNotes>See https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/CHANGELOG.md</PackageReleaseNotes>
-    <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>ShellExtensions.snk</AssemblyOriginatorKeyFile>
     <DocumentationFile>ShellExtensions.xml</DocumentationFile>
+    <Platforms>AnyCPU;x64;x86</Platforms>
   </PropertyGroup>
 
   <Import Project="..\ShellExtensionsShared\ShellExtensionsShared.projitems" Label="Shared" />

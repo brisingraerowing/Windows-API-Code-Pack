@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
@@ -55,7 +56,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public static ShellObjectCollection FromDataObject(System.Runtime.InteropServices.ComTypes.IDataObject dataObject)
         {
             var iid = new Guid(Win32Native.Guids.Shell.IShellItemArray);
-            _ = ShellNativeMethods.SHCreateShellItemArrayFromDataObject(dataObject, ref iid, out IShellItemArray shellItemArray);
+            _ = COMNative.Shell.Shell.SHCreateShellItemArrayFromDataObject(dataObject, ref iid, out IShellItemArray shellItemArray);
             return new ShellObjectCollection(shellItemArray, true);
         }
 
@@ -166,7 +167,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                         else
 
-                            offsets[index] = offsets[index - 1] + ShellNativeMethods.ILGetSize(idls[index - 1]);
+                            offsets[index] = offsets[index - 1] + Win32Native.Shell.Shell.ILGetSize(idls[index - 1]);
 
                     // Fill out the CIDA header
                     //
@@ -184,7 +185,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     // copy idls
                     foreach (IntPtr idl in idls)
                     {
-                        byte[] data = new byte[ShellNativeMethods.ILGetSize(idl)];
+                        byte[] data = new byte[Win32Native.Shell.Shell.ILGetSize(idl)];
                         Marshal.Copy(idl, data, 0, data.Length);
                         bwriter.Write(data, 0, data.Length);
                     }

@@ -7,6 +7,7 @@ using Microsoft.WindowsAPICodePack.Controls.WindowsForms;
 using Microsoft.WindowsAPICodePack.Win32Native.Controls;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using static Microsoft.WindowsAPICodePack.Win32Native.Controls.ExplorerBrowserViewDispatchIds.Consts;
+using Microsoft.WindowsAPICodePack.COMNative.Controls;
 
 namespace Microsoft.WindowsAPICodePack.Internal
 {

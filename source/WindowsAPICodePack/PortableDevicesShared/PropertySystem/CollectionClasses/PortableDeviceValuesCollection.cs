@@ -10,12 +10,12 @@
 //{
 //    public class PortableDeviceValuesCollection : Collection<PortableDeviceValues>, IPortableDeviceValuesCollection
 //    {
-//        private Win32Native.PortableDevices.PropertySystem.IPortableDeviceValuesCollection _portableDeviceValuesCollection;
+//        private COMNative.PortableDevices.PropertySystem.IPortableDeviceValuesCollection _portableDeviceValuesCollection;
 //        private List<PortableDeviceValues> _items = new List<PortableDeviceValues>();
 
-//        internal Win32Native.PortableDevices.PropertySystem.IPortableDeviceValuesCollection _PortableDeviceValuesCollection { get { ThrowIfDisposed(); return _portableDeviceValuesCollection; } }
+//        internal COMNative.PortableDevices.PropertySystem.IPortableDeviceValuesCollection _PortableDeviceValuesCollection { get { ThrowIfDisposed(); return _portableDeviceValuesCollection; } }
 
-//        public PortableDeviceValuesCollection() => _portableDeviceValuesCollection = new Win32Native.PortableDevices.PropertySystem.PortableDeviceValuesCollection();
+//        public PortableDeviceValuesCollection() => _portableDeviceValuesCollection = new COMNative.PortableDevices.PropertySystem.PortableDeviceValuesCollection();
 
 //        // todo: replace by the same WinCopies.Util extension method.
 
@@ -47,7 +47,7 @@
 //        {
 //            ThrowIfDisposed();
 
-//            Win32Native.PortableDevices.PropertySystem.IPortableDeviceValues temp = values._PortableDeviceValues;
+//            COMNative.PortableDevices.PropertySystem.IPortableDeviceValues temp = values._PortableDeviceValues;
 
 //            Marshal.ThrowExceptionForHR((int)_portableDeviceValuesCollection.Add(ref temp));
 

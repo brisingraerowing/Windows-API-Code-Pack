@@ -11,7 +11,9 @@ using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 using Microsoft.WindowsAPICodePack.Internal;
-using Microsoft.WindowsAPICodePack.Win32Native.COM;
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
+using Microsoft.WindowsAPICodePack.COMNative.Taskbar;
+using Microsoft.WindowsAPICodePack.COMNative.COM;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar
 {
@@ -50,7 +52,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         private readonly object syncLock = new object();
 
         // Native implementation of destination list
-        private readonly ICustomDestinationList customDestinationList;
+        private readonly COMNative.Taskbar.ICustomDestinationList customDestinationList;
 
         #region Properties
 
@@ -228,7 +230,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// Reports document usage to the shell.
         /// </summary>
         /// <param name="destination">The full path of the file to report usage.</param>
-        public static void AddToRecent(string destination) => TaskbarNativeMethods.SHAddToRecentDocs(destination);
+        public static void AddToRecent(string destination) => Win32Native.Taskbar.Taskbar.SHAddToRecentDocs(destination);
 
         /// <summary>
         /// Commits the pending JumpList changes and refreshes the Taskbar.

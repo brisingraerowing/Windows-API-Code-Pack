@@ -185,7 +185,7 @@
             </summary>
             <param name="color">An int representing the ARGB color</param>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ShellExtensions.PreviewHandler.SetFont(Microsoft.WindowsAPICodePack.Win32Native.ShellExtensions.LogFont@)">
+        <member name="M:Microsoft.WindowsAPICodePack.ShellExtensions.PreviewHandler.SetFont(Microsoft.WindowsAPICodePack.COMNative.ShellExtensions.LogFont@)">
             <summary>
             Called to set the font of the preview control according to the user's preferences.
             </summary>
