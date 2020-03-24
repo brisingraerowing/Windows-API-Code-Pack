@@ -2,9 +2,8 @@
 
 using Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
-using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.COMNative.PortableDevices;
+using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,9 +11,12 @@ using System.Data;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
-using static Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PortableDeviceHelper;
+using static Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PortableDeviceHelper;
 using PropertyCollection = Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.PropertyCollection;
 using WinCopies.Util;
+using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
+using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
@@ -149,7 +151,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         IPortableDeviceManager IPortableDevice.PortableDeviceManager => PortableDeviceManager;
 
-        internal Win32Native.PortableDevices.IPortableDevice NativePortableDevice { get { ThrowIfDisposed(); return _nativePortableDevice; } private set { ThrowIfDisposed(); _nativePortableDevice = value; } }
+        internal COMNative.PortableDevices.IPortableDevice NativePortableDevice { get { ThrowIfDisposed(); return _nativePortableDevice; } private set { ThrowIfDisposed(); _nativePortableDevice = value; } }
 
         private IDeviceCapabilities _deviceCapabilities;
 
@@ -288,7 +290,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
 
 
-            NativePortableDevice = (Win32Native.PortableDevices.IPortableDevice)new Win32Native.PortableDevices.PortableDevice();
+            NativePortableDevice = (COMNative.PortableDevices.IPortableDevice)new COMNative.PortableDevices.PortableDevice();
 
         }
 
@@ -311,7 +313,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             //}
 
             // CoCreate an IPortableDeviceValues interface to hold the client information.
-            var pClientInformation = (Win32Native.PortableDevices.PropertySystem.IPortableDeviceValues)new Win32Native.PortableDevices.PropertySystem.PortableDeviceValues();
+            var pClientInformation = (COMNative.PortableDevices.PropertySystem.IPortableDeviceValues)new COMNative.PortableDevices.PropertySystem.PortableDeviceValues();
 
             // if (CoreErrorHelper.Succeeded(hr))
             // {
@@ -368,7 +370,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             // Attempt to open for read-only access
             //ClientInfoHR = pClientInformation.SetUnsignedIntegerValue(
-            //Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.Properties.Client.DesiredAccess,
+            //Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem.Properties.Client.DesiredAccess,
             //(uint)GenericRights.Read);
 
             //ThrowWhenFailHResult(ClientInfoHR);
@@ -494,7 +496,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         private IList<IPortableDeviceObject> _items;
         private PortableDeviceManager _portableDeviceManager;
-        private Win32Native.PortableDevices.IPortableDevice _nativePortableDevice;
+        private COMNative.PortableDevices.IPortableDevice _nativePortableDevice;
         private string _deviceFriendlyName;
         private string _deviceDescription;
         private string _deviceManufacturer;
@@ -528,7 +530,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                 // First, we try to get the common interop interface for properties.
 
-                if (CoreErrorHelper.Succeeded(properties.GetValues(out Win32Native.PropertySystem.INativePropertyValuesCollection values)))
+                if (CoreErrorHelper.Succeeded(properties.GetValues(out COMNative.PropertySystem.INativePropertyValuesCollection values)))
 
                 {
 
@@ -536,7 +538,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                     var propKey = Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.Properties.Object.ContentType;
 
-                    Win32Native.PropertySystem.PropVariant propVariant;
+                    PropVariant propVariant;
 
                     IPortableDeviceObject disposePropVariantAndGetPortableDeviceObject()
 
@@ -611,7 +613,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             ThrowIfDisposed();
 
-            ThrowWhenFailHResult(NativePortableDevice.SendCommand(0, parameters, out WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem.IPortableDeviceValues _results));
+            ThrowWhenFailHResult(NativePortableDevice.SendCommand(0, parameters, out WindowsAPICodePack.COMNative.PortableDevices.PropertySystem.IPortableDeviceValues _results));
 
             _ = _results.GetErrorValue(CommandSystem.Common.Parameters.HResult, out HResult result);
 

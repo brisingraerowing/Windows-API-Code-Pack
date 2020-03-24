@@ -21,8 +21,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     {
         #region KnownFolders
 
-            // todo: replace public fields by internal fields and implement a new struct with public read-only properties
-
         [StructLayout(LayoutKind.Sequential)]
         public struct NativeFolderDefinition
         {

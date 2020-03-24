@@ -14,16 +14,16 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
     {
         public NativeTaskDialogSettings()
         {
-            NativeConfiguration = new TaskDialogNativeMethods.TaskDialogConfiguration();
+            NativeConfiguration = new TaskDialog.TaskDialogConfiguration();
 
             // Apply standard settings.
             NativeConfiguration.size = (uint)Marshal.SizeOf(NativeConfiguration);
             NativeConfiguration.parentHandle = IntPtr.Zero;
             NativeConfiguration.instance = IntPtr.Zero;
-            NativeConfiguration.taskDialogFlags = TaskDialogNativeMethods.TaskDialogOptions.AllowCancel;
-            NativeConfiguration.commonButtons = TaskDialogNativeMethods.TaskDialogCommonButtons.Ok;
-            NativeConfiguration.mainIcon = new TaskDialogNativeMethods.IconUnion(0);
-            NativeConfiguration.footerIcon = new TaskDialogNativeMethods.IconUnion(0);
+            NativeConfiguration.taskDialogFlags = TaskDialog.TaskDialogOptions.AllowCancel;
+            NativeConfiguration.commonButtons = TaskDialog.TaskDialogCommonButtons.Ok;
+            NativeConfiguration.mainIcon = new TaskDialog.IconUnion(0);
+            NativeConfiguration.footerIcon = new TaskDialog.IconUnion(0);
             NativeConfiguration.width = TaskDialogDefaults.IdealWidth;
 
             // Zero out all the custom button fields.
@@ -50,9 +50,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
         public int ProgressBarValue { get; set; }
         public TaskDialogProgressBarState ProgressBarState { get; set; }
         public bool InvokeHelp { get; set; }
-        public TaskDialogNativeMethods.TaskDialogConfiguration NativeConfiguration { get; private set; }
-        public TaskDialogNativeMethods.TaskDialogButton[] Buttons { get; set; }
-        public TaskDialogNativeMethods.TaskDialogButton[] RadioButtons { get; set; }
+        public TaskDialog.TaskDialogConfiguration NativeConfiguration { get; private set; }
+        public TaskDialog.TaskDialogButton[] Buttons { get; set; }
+        public TaskDialog.TaskDialogButton[] RadioButtons { get; set; }
         public List<int> ElevatedButtons { get; set; }
     }
 }

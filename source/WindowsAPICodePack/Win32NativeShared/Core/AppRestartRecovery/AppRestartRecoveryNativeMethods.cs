@@ -3,6 +3,7 @@
 using Microsoft.WindowsAPICodePack.Win32Native;
 using System;
 using System.Runtime.InteropServices;
+using static Microsoft.WindowsAPICodePack.Win32Native.Consts.DllNames;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices
 {
@@ -26,35 +27,33 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices
             return 0;
         }
 
-
-
-        [DllImport("kernel32.dll")]
+        [DllImport(Kernel32)]
         public static extern void ApplicationRecoveryFinished(
            [MarshalAs(UnmanagedType.Bool)] bool success);
 
-        [DllImport("kernel32.dll")]
+        [DllImport(Kernel32)]
         [PreserveSig]
         public static extern HResult ApplicationRecoveryInProgress(
             [Out, MarshalAs(UnmanagedType.Bool)] out bool canceled);
 
-        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
+        [DllImport(Kernel32, CharSet = CharSet.Unicode)]
         [PreserveSig]
         public static extern HResult RegisterApplicationRecoveryCallback(
             RecoveryCallbackDelegate callback, IntPtr param,
             uint pingInterval,
             uint flags); // Unused.
 
-        [DllImport("kernel32.dll")]
+        [DllImport(Kernel32)]
         [PreserveSig]
         public static extern HResult RegisterApplicationRestart(
             [MarshalAs(UnmanagedType.BStr)] string commandLineArgs,
             RestartRestrictions flags);
 
-        [DllImport("kernel32.dll")]
+        [DllImport(Kernel32)]
         [PreserveSig]
         public static extern HResult UnregisterApplicationRecoveryCallback();
 
-        [DllImport("kernel32.dll")]
+        [DllImport(Kernel32)]
         [PreserveSig]
         public static extern HResult UnregisterApplicationRestart();
 

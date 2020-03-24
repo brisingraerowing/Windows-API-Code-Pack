@@ -710,7 +710,7 @@
             Builds data structures which map those types to sensor type GUIDs. 
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Sensors.SensorManager.GetSensorWrapperInstance``1(Microsoft.WindowsAPICodePack.Win32Native.Sensors.ISensor@)">
+        <member name="M:Microsoft.WindowsAPICodePack.Sensors.SensorManager.GetSensorWrapperInstance``1(Microsoft.WindowsAPICodePack.COMNative.Sensors.ISensor@)">
             <summary>
             Returns an instance of a sensor wrapper appropritate for the given sensor COM interface.
             If no appropriate sensor wrapper type could be found, the object created will be of the base-class type <see cref="T:Microsoft.WindowsAPICodePack.Sensors.Sensor"/>.

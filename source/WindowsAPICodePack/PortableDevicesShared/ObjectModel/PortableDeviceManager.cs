@@ -7,7 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using static Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PortableDeviceHelper;
+using static Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PortableDeviceHelper;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
@@ -27,7 +27,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
     public class PortableDeviceManager : IPortableDeviceManager
     {
 
-        internal Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.IPortableDeviceManager _Manager { get; set; } = null;
+        internal Microsoft.WindowsAPICodePack.COMNative.PortableDevices.IPortableDeviceManager _Manager { get; set; } = null;
 
         private List<PortableDevice> _portableDevices = null;
 
@@ -41,7 +41,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         {
 
-            _Manager = ( Win32Native.PortableDevices. IPortableDeviceManager) new Win32Native.PortableDevices.PortableDeviceManager();
+            _Manager = ( COMNative.PortableDevices. IPortableDeviceManager) new COMNative.PortableDevices.PortableDeviceManager();
 
             _portableDevices = new List<PortableDevice>();
 

@@ -62,6 +62,36 @@
             <para>This value can be used by drivers to indicate they support PDDRM.  See WPD_DEVICE_SUPPORTED_DRM_SCHEMES. </para>
             </summary>
         </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.Consts.DesktopWindowManager.DWMMessages.DWMNCRP_USEWINDOWSTYLE">
+            <summary>
+            Enable/disable non-client rendering based on window style.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.Consts.DesktopWindowManager.DWMMessages.DWMNCRP_DISABLED">
+            <summary>
+            Disabled non-client rendering; window style is ignored.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.Consts.DesktopWindowManager.DWMMessages.DWMNCRP_ENABLED">
+            <summary>
+            Enabled non-client rendering; window style is ignored.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.Consts.DesktopWindowManager.DWMMessages.DWMWA_NCRENDERING_ENABLED">
+            <summary>
+            Enable/disable non-client rendering Use DWMNCRP_* values.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.Consts.DesktopWindowManager.DWMMessages.DWMWA_NCRENDERING_POLICY">
+            <summary>
+            Non-client rendering policy.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.Consts.DesktopWindowManager.DWMMessages.DWMWA_TRANSITIONS_FORCEDISABLED">
+            <summary>
+            Potentially enable/forcibly disable transitions 0 or 1.
+            </summary>
+        </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.Success">
             <summary>
             <para>MessageId: ERROR_SUCCESS</para>

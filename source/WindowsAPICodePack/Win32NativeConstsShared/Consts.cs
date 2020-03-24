@@ -2,6 +2,47 @@
 using System.Collections.Generic;
 using System.Text;
 
+namespace Microsoft.WindowsAPICodePack.Win32Native.Consts
+
+{
+
+    public static class Common
+
+    {
+
+        // Various important window messages
+        public const int UserMessage = 0x0400;
+        public const int EnterIdleMessage = 0x0121;
+
+        // FormatMessage constants and structs.
+        public const int FormatMessageFromSystem = 0x00001000;
+
+        // App recovery and restart return codes
+        public const uint ResultFailed = 0x80004005;
+        public const uint ResultInvalidArgument = 0x80070057;
+        public const uint ResultFalse = 1;
+        public const uint ResultNotFound = 0x80070490;
+
+        public const uint StatusAccessDenied = 0xC0000022;
+
+    }
+
+    public static class DllNames
+
+    {
+
+        public const string Gdi32 = "gdi32.dll";
+        public const string Shell32 = "shell32.dll";
+        public const string Kernel32 = "kernel32.dll";
+        public const string PowrProf = "powrprof.dll";
+        public const string User32 = "user32.dll";
+        public const string Ole32 = "ole32.dll";
+        public const string OleAut32 = "oleAut32.dll";
+
+    }
+
+}
+
 namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 {
     public static class Consts
@@ -145,6 +186,42 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.Consts
 
         public const int ForceIconicRepresentation = 7;
         public const int HasIconicBitmap = 10;
+
+        public static class DWMMessages
+        {
+            public const int WM_DWMCOMPOSITIONCHANGED = 0x031E;
+            public const int WM_DWMNCRENDERINGCHANGED = 0x031F;
+
+            /// <summary>
+            /// Enable/disable non-client rendering based on window style.
+            /// </summary>
+            public const int DWMNCRP_USEWINDOWSTYLE = 0;
+
+            /// <summary>
+            /// Disabled non-client rendering; window style is ignored.
+            /// </summary>
+            public const int DWMNCRP_DISABLED = 1;
+
+            /// <summary>
+            /// Enabled non-client rendering; window style is ignored.
+            /// </summary>
+            public const int DWMNCRP_ENABLED = 2;
+
+            /// <summary>
+            /// Enable/disable non-client rendering Use DWMNCRP_* values.
+            /// </summary>
+            public const int DWMWA_NCRENDERING_ENABLED = 1;
+
+            /// <summary>
+            /// Non-client rendering policy.
+            /// </summary>
+            public const int DWMWA_NCRENDERING_POLICY = 2;
+
+            /// <summary>
+            /// Potentially enable/forcibly disable transitions 0 or 1.
+            /// </summary>
+            public const int DWMWA_TRANSITIONS_FORCEDISABLED = 3;
+        }
 
     }
 

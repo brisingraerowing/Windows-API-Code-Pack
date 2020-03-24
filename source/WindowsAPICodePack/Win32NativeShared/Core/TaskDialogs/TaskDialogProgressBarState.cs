@@ -15,17 +15,17 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
         /// <summary>
         /// Normal state.
         /// </summary>
-        Normal = TaskDialogNativeMethods.ProgressBarState.Normal,
+        Normal = TaskDialog.ProgressBarState.Normal,
 
         /// <summary>
         /// An error occurred.
         /// </summary>
-        Error = TaskDialogNativeMethods.ProgressBarState.Error,
+        Error = TaskDialog.ProgressBarState.Error,
 
         /// <summary>
         /// The progress is paused.
         /// </summary>
-        Paused = TaskDialogNativeMethods.ProgressBarState.Paused,
+        Paused = TaskDialog.ProgressBarState.Paused,
 
         /// <summary>
         /// Displays marquee (indeterminate) style progress

@@ -1,12 +1,12 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
 using Microsoft.WindowsAPICodePack.PropertySystem;
-using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
+using Microsoft.WindowsAPICodePack.COMNative.PortableDevices;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
-using static Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PortableDeviceHelper;
+using static Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PortableDeviceHelper;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
@@ -49,7 +49,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                 {
 
-                    ThrowWhenFailHResult(_portableDeviceCapabilities.GetSupportedCommands(out Win32Native.PortableDevices.PropertySystem.IPortableDeviceKeyCollection supportedCommands));
+                    ThrowWhenFailHResult(_portableDeviceCapabilities.GetSupportedCommands(out COMNative.PortableDevices.PropertySystem.IPortableDeviceKeyCollection supportedCommands));
 
                     _commands = new WindowsAPICodePack.PropertySystem.ReadOnlyCollection<PropertyKey>(new NativeReadOnlyPropertyKeyCollection(supportedCommands));
 

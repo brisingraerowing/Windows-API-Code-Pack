@@ -1201,11 +1201,11 @@
             <param name="closingResult">TaskDialogResult to return from the TaskDialog.Show() method</param>
             <exception cref="T:System.InvalidOperationException">if TaskDialog is not showing.</exception>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.ApplyTextConfiguration(Microsoft.WindowsAPICodePack.Win32Native.Dialogs.TaskDialogNativeMethods.TaskDialogConfiguration@)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.ApplyTextConfiguration(Microsoft.WindowsAPICodePack.Win32Native.Dialogs.TaskDialog.TaskDialogConfiguration@)">
             <summary>
             Sets important text properties.
             </summary>
-            <param name="dialogConfig">An instance of a <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Dialogs.TaskDialogNativeMethods.TaskDialogConfiguration"/> object.</param>
+            <param name="dialogConfig">An instance of a <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Dialogs.TaskDialog.TaskDialogConfiguration"/> object.</param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.Dispose">
             <summary>
@@ -1700,7 +1700,7 @@
             categories are trusted, untrusted, or 
             authenticated.
             </summary>
-            <value>A <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.NetworkCategory"/> value.</value>
+            <value>A <see cref="T:Microsoft.WindowsAPICodePack.COMNative.NetworkList.NetworkCategory"/> value.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Net.Network.ConnectedTime">
             <summary>
@@ -1867,12 +1867,12 @@
             Provides access to objects that represent networks and network connections.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Net.NetworkListManager.GetNetworks(Microsoft.WindowsAPICodePack.Win32Native.NetworkList.NetworkConnectivityLevels@)">
+        <member name="M:Microsoft.WindowsAPICodePack.Net.NetworkListManager.GetNetworks(Microsoft.WindowsAPICodePack.COMNative.NetworkList.NetworkConnectivityLevels@)">
             <summary>
             Retrieves a collection of <see cref="T:Microsoft.WindowsAPICodePack.Net.Network"/> objects that represent the networks defined for this machine.
             </summary>
             <param name="level">
-            The <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.NetworkList.NetworkConnectivityLevels"/> that specify the connectivity level of the returned <see cref="T:Microsoft.WindowsAPICodePack.Net.Network"/> objects.
+            The <see cref="T:Microsoft.WindowsAPICodePack.COMNative.NetworkList.NetworkConnectivityLevels"/> that specify the connectivity level of the returned <see cref="T:Microsoft.WindowsAPICodePack.Net.Network"/> objects.
             </param>
             <returns>
             A <see cref="T:Microsoft.WindowsAPICodePack.Net.NetworkCollection"/> of <see cref="T:Microsoft.WindowsAPICodePack.Net.Network"/> objects.
@@ -1928,19 +1928,19 @@
             </summary>
             <value>A <see cref="P:Microsoft.WindowsAPICodePack.Net.NetworkListManager.Connectivity"/> value.</value>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.ReadOnlyValueCollection.CopyValuesFromPropertyStore(Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.IPropertyStore@)">
+        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.ReadOnlyValueCollection.CopyValuesFromPropertyStore(Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyStore@)">
             <summary>
-            Copies the values from a given <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.IPropertyStore"/> into the current collection. See Remarks section.
+            Copies the values from a given <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyStore"/> into the current collection. See Remarks section.
             </summary>
-            <param name="pStore">The <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.IPropertyStore"/> from which to copy the values.</param>
-            <remarks>By using this method, you use the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.IPropertyStore"/> interface, which is an unmanaged type, so be careful to free the COM memory after using this interface.</remarks>
+            <param name="pStore">The <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyStore"/> from which to copy the values.</param>
+            <remarks>By using this method, you use the <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyStore"/> interface, which is an unmanaged type, so be careful to free the COM memory after using this interface.</remarks>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.ReadOnlyValueCollection.CopyValuesToPropertyStore(Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.IPropertyStore@)">
+        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.ReadOnlyValueCollection.CopyValuesToPropertyStore(Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyStore@)">
             <summary>
-            Copies the values from the current collection into a given <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.IPropertyStore"/>. See Remarks section.
+            Copies the values from the current collection into a given <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyStore"/>. See Remarks section.
             </summary>
-            <param name="pStore">The <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.IPropertyStore"/> into which to copy the values.</param>
-            <remarks>By using this method, you use the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.IPropertyStore"/> interface, which is an unmanaged type, so be careful to free the COM memory after using this interface.</remarks>
+            <param name="pStore">The <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyStore"/> into which to copy the values.</param>
+            <remarks>By using this method, you use the <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyStore"/> interface, which is an unmanaged type, so be careful to free the COM memory after using this interface.</remarks>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.ReadOnlyValueCollection.GetIUnknownValue(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey@)">
             <summary>
@@ -2005,12 +2005,12 @@
             Frees all resources for the current property.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.Property.Equals(Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.IProperty)">
+        <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.Property.Equals(Microsoft.WindowsAPICodePack.COMNative.PropertySystem.IProperty)">
             <summary>
-            Checks if the current property is equal to a given <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.IProperty"/>.
+            Checks if the current property is equal to a given <see cref="T:Microsoft.WindowsAPICodePack.COMNative.PropertySystem.IProperty"/>.
             </summary>
-            <param name="other">The <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.IProperty"/> to check equality.</param>
-            <returns><see langword="true"/> if the <paramref name="other"/> is equal to the current <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.IProperty"/>, otherwise <see langword="false"/>.</returns>
+            <param name="other">The <see cref="T:Microsoft.WindowsAPICodePack.COMNative.PropertySystem.IProperty"/> to check equality.</param>
+            <returns><see langword="true"/> if the <paramref name="other"/> is equal to the current <see cref="T:Microsoft.WindowsAPICodePack.COMNative.PropertySystem.IProperty"/>, otherwise <see langword="false"/>.</returns>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PropertySystem.PropertyAttribute.Value">
             <summary>

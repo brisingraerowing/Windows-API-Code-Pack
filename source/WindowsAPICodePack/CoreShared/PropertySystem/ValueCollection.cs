@@ -1,9 +1,9 @@
 ﻿using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
-using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
+using Microsoft.WindowsAPICodePack.COMNative.PortableDevices;
+using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,6 +11,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using static Microsoft.WindowsAPICodePack.PropertySystem.PropertySystemHelper;
 using static Microsoft.WindowsAPICodePack.PropertySystem.CollectionBridgeCollectionHelper;
+using Microsoft.WindowsAPICodePack.COMNative.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.PropertySystem
 {
@@ -386,7 +387,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         //{
         //    ThrowIfDisposed();
 
-        //    Win32Native.PortableDevices.PropertySystem.IPortableDeviceKeyCollection temp = value.NativeItems;
+        //    COMNative.PortableDevices.PropertySystem.IPortableDeviceKeyCollection temp = value.NativeItems;
 
         //    Marshal.ThrowExceptionForHR((int)_portableDeviceValues.SetIPortableDeviceKeyCollectionValue(ref key, ref temp));
 
@@ -405,7 +406,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         //{
         //    ThrowIfDisposed();
 
-        //    Win32Native.PortableDevices.PropertySystem.IPortableDevicePropVariantCollection temp = value._PortableDevicePropVariantCollection;
+        //    COMNative.PortableDevices.PropertySystem.IPortableDevicePropVariantCollection temp = value._PortableDevicePropVariantCollection;
 
         //    Marshal.ThrowExceptionForHR((int)_portableDeviceValues.SetIPortableDevicePropVariantCollectionValue(ref key, ref temp));
 
@@ -433,7 +434,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         //{
         //    ThrowIfDisposed();
 
-        //    Win32Native.PortableDevices.PropertySystem.IPortableDeviceValuesCollection temp = value._PortableDeviceValuesCollection;
+        //    COMNative.PortableDevices.PropertySystem.IPortableDeviceValuesCollection temp = value._PortableDeviceValuesCollection;
 
         //    Marshal.ThrowExceptionForHR((int)_portableDeviceValues.SetIPortableDeviceValuesCollectionValue(ref key, ref temp));
 
@@ -461,7 +462,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         //{
         //    ThrowIfDisposed();
 
-        //    Win32Native.PortableDevices.PropertySystem.IPortableDeviceValues temp = value._PortableDeviceValues;
+        //    COMNative.PortableDevices.PropertySystem.IPortableDeviceValues temp = value._PortableDeviceValues;
 
         //    Marshal.ThrowExceptionForHR((int)_portableDeviceValues.SetIPortableDeviceValuesValue(ref key, ref temp));
 

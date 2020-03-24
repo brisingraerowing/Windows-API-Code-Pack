@@ -8,6 +8,7 @@ using System.Threading;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -145,7 +146,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             }
             finally
             {
-                ShellNativeMethods.ILFree(pidl);
+                Win32Native.Shell.Shell.ILFree(pidl);
             }
         }
 
@@ -162,7 +163,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             // Create a native shellitem from our path
             var guid = new Guid(Win32Native.Guids.Shell.IShellItem2);
-            int retCode = ShellNativeMethods.SHCreateItemFromParsingName(parsingName, IntPtr.Zero, ref guid, out IShellItem2 nativeShellItem);
+            int retCode = COMNative.Shell.Shell.SHCreateItemFromParsingName(parsingName, IntPtr.Zero, ref guid, out IShellItem2 nativeShellItem);
 
             return CoreErrorHelper.Succeeded(retCode) ? ShellObjectFactory.Create(nativeShellItem) : throw new ShellException(LocalizedMessages.ShellObjectFactoryUnableToCreateItem, Marshal.GetExceptionForHR(retCode));
         }
@@ -179,7 +180,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             var guid = new Guid(Win32Native.Guids.Shell.IShellItem2);
 
-            int retCode = ShellNativeMethods.SHCreateItemFromIDList(idListPtr, ref guid, out IShellItem2 nativeShellItem);
+            int retCode = COMNative.Shell.Shell.SHCreateItemFromIDList(idListPtr, ref guid, out IShellItem2 nativeShellItem);
 
             return CoreErrorHelper.Succeeded(retCode) ? Create(nativeShellItem) : null;
         }
@@ -192,7 +193,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <returns></returns>
         public static ShellObject Create(IntPtr idListPtr, ShellContainer parent)
         {
-            int retCode = ShellNativeMethods.SHCreateShellItem(
+            int retCode = COMNative.Shell.Shell.SHCreateShellItem(
                 IntPtr.Zero,
                 parent.NativeShellFolder,
                 idListPtr, out IShellItem nativeShellItem);

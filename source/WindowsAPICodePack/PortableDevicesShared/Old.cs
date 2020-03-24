@@ -165,9 +165,9 @@
 //{
 //    public class PortableDeviceKeyCollection : Collection<PropertyKey>, IPortableDeviceKeyCollection
 //    {
-//        private Win32Native.PortableDevices.PropertySystem.IPortableDeviceKeyCollection _portableDeviceKeyCollection;
+//        private COMNative.PortableDevices.PropertySystem.IPortableDeviceKeyCollection _portableDeviceKeyCollection;
 
-//        internal Win32Native.PortableDevices.PropertySystem.IPortableDeviceKeyCollection _PortableDeviceKeyCollection { get { ThrowIfDisposed(); return _portableDeviceKeyCollection; } } 
+//        internal COMNative.PortableDevices.PropertySystem.IPortableDeviceKeyCollection _PortableDeviceKeyCollection { get { ThrowIfDisposed(); return _portableDeviceKeyCollection; } } 
 
 //        // todo: replace by the same WinCopies.Util extension method.
 
@@ -181,7 +181,7 @@
 
 //        }
 
-//        public PortableDeviceKeyCollection() => _portableDeviceKeyCollection = new Win32Native.PortableDevices.PropertySystem.PortableDeviceKeyCollection();
+//        public PortableDeviceKeyCollection() => _portableDeviceKeyCollection = new COMNative.PortableDevices.PropertySystem.PortableDeviceKeyCollection();
 
 //        public void Add(ref PropertyKey Key) => Marshal.ThrowExceptionForHR((int)_PortableDeviceKeyCollection.Add(ref Key));
 
@@ -285,7 +285,7 @@
 //internal interface INativePropertyKeyCollectionProvider
 //{
 
-//    Win32Native.PortableDevices.PropertySystem.IPortableDeviceKeyCollection NativeItems { get; }
+//    COMNative.PortableDevices.PropertySystem.IPortableDeviceKeyCollection NativeItems { get; }
 
 //}
 
@@ -626,9 +626,9 @@
 
 //            var values = new PortableDeviceValues();
 
-//            _ = values.SetGuidValue(Win32Native.PortableDevices.CommandSystem.Common.Parameters.CommandCategory, new Guid(CommandSystem.Common));
+//            _ = values.SetGuidValue(COMNative.PortableDevices.CommandSystem.Common.Parameters.CommandCategory, new Guid(CommandSystem.Common));
 
-//            _ = values.SetUnsignedIntegerValue(Win32Native.PortableDevices.CommandSystem.Common.Parameters.CommandId, Win32Native.PortableDevices.CommandSystem.Common.Commands.ResetDevice.PropertyId);
+//            _ = values.SetUnsignedIntegerValue(COMNative.PortableDevices.CommandSystem.Common.Parameters.CommandId, COMNative.PortableDevices.CommandSystem.Common.Commands.ResetDevice.PropertyId);
 
 //            Commands.SendCommand(portableDevice, values, out _);
 
@@ -650,9 +650,9 @@
 
 //            var values = new PortableDeviceValues();
 
-//            _ = values.SetGuidValue(Win32Native.PortableDevices.CommandSystem.Common.Parameters.CommandCategory, new Guid(CommandSystem.Common));
+//            _ = values.SetGuidValue(COMNative.PortableDevices.CommandSystem.Common.Parameters.CommandCategory, new Guid(CommandSystem.Common));
 
-//            _ = values.SetUnsignedIntegerValue(Win32Native.PortableDevices.CommandSystem.Common.Parameters.CommandId, Win32Native.PortableDevices.CommandSystem.Common.Commands.GetObjectIdsFromPersistentUniqueIds.PropertyId);
+//            _ = values.SetUnsignedIntegerValue(COMNative.PortableDevices.CommandSystem.Common.Parameters.CommandId, COMNative.PortableDevices.CommandSystem.Common.Commands.GetObjectIdsFromPersistentUniqueIds.PropertyId);
 
 //            var parameters = new PortableDevicePropVariantCollection();
 
@@ -660,11 +660,11 @@
 
 //                _ = parameters.Add(new PropVariant(persistentUniqueId));
 
-//            _ = values.SetIPortableDevicePropVariantCollectionValue(Win32Native.PortableDevices.CommandSystem.Common.Parameters.PersistentUniqueIds, parameters);
+//            _ = values.SetIPortableDevicePropVariantCollectionValue(COMNative.PortableDevices.CommandSystem.Common.Parameters.PersistentUniqueIds, parameters);
 
 //            Commands.SendCommand(portableDevice, values, out IPortableDeviceValues results);
 
-//            _ = results.GetIPortableDevicePropVariantCollectionValue(Win32Native.PortableDevices.CommandSystem.Common.Parameters.ObjectIds, out IPortableDevicePropVariantCollection _results);
+//            _ = results.GetIPortableDevicePropVariantCollectionValue(COMNative.PortableDevices.CommandSystem.Common.Parameters.ObjectIds, out IPortableDevicePropVariantCollection _results);
 
 //            uint count = 0;
 

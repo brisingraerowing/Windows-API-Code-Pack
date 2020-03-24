@@ -166,7 +166,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             if (invalidateIcon)
             {
                 if (hIcon != IntPtr.Zero)
-                    CoreNativeMethods.DestroyIcon(hIcon);
+                    Core.DestroyIcon(hIcon);
 
                 hIcon = GetHIcon();
 
@@ -243,7 +243,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             // Unmanaged resources
             if (hIcon != IntPtr.Zero)
-                CoreNativeMethods.DestroyIcon(hIcon);
+                Core.DestroyIcon(hIcon);
         }
 
         /// <summary>

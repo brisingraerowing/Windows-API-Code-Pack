@@ -7,9 +7,10 @@ using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
 using System.Linq;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
 using Microsoft.WindowsAPICodePack.PropertySystem;
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -98,7 +99,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 // Create IShellItem for all the scopes we were given
                 foreach (string path in searchScopePaths)
                 {
-                    int hr = ShellNativeMethods.SHCreateItemFromParsingName(path, IntPtr.Zero, ref shellItemGuid, out IShellItem scopeShellItem);
+                    int hr = COMNative.Shell.Shell.SHCreateItemFromParsingName(path, IntPtr.Zero, ref shellItemGuid, out IShellItem scopeShellItem);
 
                     if (CoreErrorHelper.Succeeded(hr)) shellItems.Add(scopeShellItem);
                 }

@@ -5,14 +5,14 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Sensors.Resources;
 using System.Linq;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Sensors;
-using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
-using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
+using Microsoft.WindowsAPICodePack.COMNative.PortableDevices;
 using static Microsoft.WindowsAPICodePack.Win32Native.Guids.Sensors;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using Microsoft.WindowsAPICodePack.PropertySystem;
+using Microsoft.WindowsAPICodePack.COMNative.Sensors;
+using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.Sensors
 {

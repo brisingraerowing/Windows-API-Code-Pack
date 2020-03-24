@@ -18,6 +18,8 @@ using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using static WinCopies.Util.Util;
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
+using Microsoft.WindowsAPICodePack.COMNative.Dialogs;
 
 namespace Microsoft.WindowsAPICodePack.Dialogs
 {
@@ -37,7 +39,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 foreach (string name in filenames)
 
                     yield return name;
-
             }
         }
 
@@ -462,7 +463,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
             // Create a native shellitem from our path
             var guid = new Guid(Win32Native.Guids.Shell.IShellItem2);
-            int retCode = ShellNativeMethods.SHCreateItemFromParsingName(path, IntPtr.Zero, ref guid, out IShellItem2 nativeShellItem);
+            int retCode = COMNative.Shell.Shell.SHCreateItemFromParsingName(path, IntPtr.Zero, ref guid, out IShellItem2 nativeShellItem);
 
             if (!CoreErrorHelper.Succeeded(retCode))
 
@@ -662,7 +663,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             if (!string.IsNullOrEmpty(InitialDirectory))
             {
                 // Create a native shellitem from our path
-                ShellNativeMethods.SHCreateItemFromParsingName(InitialDirectory, IntPtr.Zero, ref guid, out IShellItem2 initialDirectoryShellItem);
+                _ = COMNative.Shell.Shell.SHCreateItemFromParsingName(InitialDirectory, IntPtr.Zero, ref guid, out IShellItem2 initialDirectoryShellItem);
 
                 // If we get a real shell item back, 
                 // then use that as the initial folder - otherwise,
@@ -675,7 +676,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             if (!string.IsNullOrEmpty(DefaultDirectory))
             {
                 // Create a native shellitem from our path
-                ShellNativeMethods.SHCreateItemFromParsingName(DefaultDirectory, IntPtr.Zero, ref guid, out IShellItem2 defaultDirectoryShellItem);
+                _ = COMNative.Shell.Shell.SHCreateItemFromParsingName(DefaultDirectory, IntPtr.Zero, ref guid, out IShellItem2 defaultDirectoryShellItem);
 
                 // If we get a real shell item back, 
                 // then use that as the initial folder - otherwise,

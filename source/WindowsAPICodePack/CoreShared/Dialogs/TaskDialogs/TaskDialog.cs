@@ -579,7 +579,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             ApplyControlConfiguration(settings);
         }
 
-        private void ApplyGeneralNativeConfiguration(in TaskDialogNativeMethods.TaskDialogConfiguration dialogConfig)
+        private void ApplyGeneralNativeConfiguration(in Win32Native.Dialogs.TaskDialog.TaskDialogConfiguration dialogConfig)
         {
             // If an owner wasn't specifically specified, 
             // we'll use the app's main window.
@@ -588,16 +588,16 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 dialogConfig.parentHandle = ownerWindow;
 
             // Other miscellaneous sets.
-            dialogConfig.mainIcon = new TaskDialogNativeMethods.IconUnion((int)icon);
-            dialogConfig.footerIcon = new TaskDialogNativeMethods.IconUnion((int)footerIcon);
-            dialogConfig.commonButtons = (TaskDialogNativeMethods.TaskDialogCommonButtons)standardButtons;
+            dialogConfig.mainIcon = new Win32Native.Dialogs.TaskDialog.IconUnion((int)icon);
+            dialogConfig.footerIcon = new Win32Native.Dialogs.TaskDialog.IconUnion((int)footerIcon);
+            dialogConfig.commonButtons = (Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtons)standardButtons;
         }
 
         /// <summary>
         /// Sets important text properties.
         /// </summary>
-        /// <param name="dialogConfig">An instance of a <see cref="TaskDialogNativeMethods.TaskDialogConfiguration"/> object.</param>
-        private void ApplyTextConfiguration(in TaskDialogNativeMethods.TaskDialogConfiguration dialogConfig)
+        /// <param name="dialogConfig">An instance of a <see cref="Win32Native.Dialogs.TaskDialog.TaskDialogConfiguration"/> object.</param>
+        private void ApplyTextConfiguration(in Win32Native.Dialogs.TaskDialog.TaskDialogConfiguration dialogConfig)
         {
             // note that nulls or empty strings are fine here.
             dialogConfig.content = text;
@@ -610,33 +610,33 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             dialogConfig.verificationText = checkBoxText;
         }
 
-        private void ApplyOptionConfiguration(in TaskDialogNativeMethods.TaskDialogConfiguration dialogConfig)
+        private void ApplyOptionConfiguration(in Win32Native.Dialogs.TaskDialog.TaskDialogConfiguration dialogConfig)
         {
             // Handle options - start with no options set.
-            TaskDialogNativeMethods.TaskDialogOptions options = TaskDialogNativeMethods.TaskDialogOptions.None;
+            Win32Native.Dialogs.TaskDialog.TaskDialogOptions options = Win32Native.Dialogs.TaskDialog.TaskDialogOptions.None;
             if (cancelable)
 
-                options |= TaskDialogNativeMethods.TaskDialogOptions.AllowCancel;
+                options |= Win32Native.Dialogs.TaskDialog.TaskDialogOptions.AllowCancel;
 
             if (footerCheckBoxChecked.HasValue && footerCheckBoxChecked.Value)
 
-                options |= TaskDialogNativeMethods.TaskDialogOptions.CheckVerificationFlag;
+                options |= Win32Native.Dialogs.TaskDialog.TaskDialogOptions.CheckVerificationFlag;
 
             if (hyperlinksEnabled)
 
-                options |= TaskDialogNativeMethods.TaskDialogOptions.EnableHyperlinks;
+                options |= Win32Native.Dialogs.TaskDialog.TaskDialogOptions.EnableHyperlinks;
 
             if (detailsExpanded)
 
-                options |= TaskDialogNativeMethods.TaskDialogOptions.ExpandedByDefault;
+                options |= Win32Native.Dialogs.TaskDialog.TaskDialogOptions.ExpandedByDefault;
 
             if (Tick != null)
 
-                options |= TaskDialogNativeMethods.TaskDialogOptions.UseCallbackTimer;
+                options |= Win32Native.Dialogs.TaskDialog.TaskDialogOptions.UseCallbackTimer;
 
             if (startupLocation == TaskDialogStartupLocation.CenterOwner)
 
-                options |= TaskDialogNativeMethods.TaskDialogOptions.PositionRelativeToWindow;
+                options |= Win32Native.Dialogs.TaskDialog.TaskDialogOptions.PositionRelativeToWindow;
 
             // Note: no validation required, as we allow this to 
             // be set even if there is no expanded information 
@@ -645,7 +645,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             // the content area.
             if (expansionMode == TaskDialogExpandedDetailsLocation.ExpandFooter)
 
-                options |= TaskDialogNativeMethods.TaskDialogOptions.ExpandFooterArea;
+                options |= Win32Native.Dialogs.TaskDialog.TaskDialogOptions.ExpandFooterArea;
 
             // Finally, apply options to config.
             dialogConfig.taskDialogFlags = options;
@@ -661,7 +661,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             // Deal with progress bars/marquees.
             if (progressBar != null)
 
-                settings.NativeConfiguration.taskDialogFlags |= progressBar.State == TaskDialogProgressBarState.Marquee ? TaskDialogNativeMethods.TaskDialogOptions.ShowMarqueeProgressBar : TaskDialogNativeMethods.TaskDialogOptions.ShowProgressBar;
+                settings.NativeConfiguration.taskDialogFlags |= progressBar.State == TaskDialogProgressBarState.Marquee ? Win32Native.Dialogs.TaskDialog.TaskDialogOptions.ShowMarqueeProgressBar : Win32Native.Dialogs.TaskDialog.TaskDialogOptions.ShowProgressBar;
 
             // Build the native struct arrays that NativeTaskDialog 
             // needs - though NTD will handle
@@ -679,7 +679,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 // custom buttons to render as command links.
                 if (commandLinks.Count > 0)
 
-                    settings.NativeConfiguration.taskDialogFlags |= TaskDialogNativeMethods.TaskDialogOptions.UseCommandLinks;
+                    settings.NativeConfiguration.taskDialogFlags |= Win32Native.Dialogs.TaskDialog.TaskDialogOptions.UseCommandLinks;
 
                 // Set default button and add elevation icons 
                 // to appropriate buttons.
@@ -696,23 +696,23 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 int defaultRadioButton = FindDefaultButtonId(radioButtons);
                 settings.NativeConfiguration.defaultRadioButtonIndex = defaultRadioButton;
 
-                if (defaultRadioButton == TaskDialogNativeMethods.NoDefaultButtonSpecified)
+                if (defaultRadioButton == Win32Native.Dialogs.TaskDialog.NoDefaultButtonSpecified)
 
-                    settings.NativeConfiguration.taskDialogFlags |= TaskDialogNativeMethods.TaskDialogOptions.NoDefaultRadioButton;
+                    settings.NativeConfiguration.taskDialogFlags |= Win32Native.Dialogs.TaskDialog.TaskDialogOptions.NoDefaultRadioButton;
             }
         }
 
-        private static TaskDialogNativeMethods.TaskDialogButton[] BuildButtonStructArray(in List<TaskDialogButtonBase> controls)
+        private static Win32Native.Dialogs.TaskDialog.TaskDialogButton[] BuildButtonStructArray(in List<TaskDialogButtonBase> controls)
         {
-            TaskDialogNativeMethods.TaskDialogButton[] buttonStructs;
+            Win32Native.Dialogs.TaskDialog.TaskDialogButton[] buttonStructs;
             TaskDialogButtonBase button;
 
             int totalButtons = controls.Count;
-            buttonStructs = new TaskDialogNativeMethods.TaskDialogButton[totalButtons];
+            buttonStructs = new Win32Native.Dialogs.TaskDialog.TaskDialogButton[totalButtons];
             for (int i = 0; i < totalButtons; i++)
             {
                 button = controls[i];
-                buttonStructs[i] = new TaskDialogNativeMethods.TaskDialogButton(button.Id, button.ToString());
+                buttonStructs[i] = new Win32Native.Dialogs.TaskDialog.TaskDialogButton(button.Id, button.ToString());
             }
             return buttonStructs;
         }
@@ -723,7 +723,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         {
             List<TaskDialogButtonBase> defaults = controls.FindAll(control => control.Default);
 
-            return defaults.Count == 1 ? defaults[0].Id : defaults.Count > 1 ? throw new InvalidOperationException(LocalizedMessages.TaskDialogOnlyOneDefaultControl) : TaskDialogNativeMethods.NoDefaultButtonSpecified;
+            return defaults.Count == 1 ? defaults[0].Id : defaults.Count > 1 ? throw new InvalidOperationException(LocalizedMessages.TaskDialogOnlyOneDefaultControl) : Win32Native.Dialogs.TaskDialog.NoDefaultButtonSpecified;
         }
 
         private static void ApplyElevatedIcons(in NativeTaskDialogSettings settings, in List<TaskDialogButtonBase> controls)
@@ -799,27 +799,27 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
             private static TaskDialogStandardButtons MapButtonIdToStandardButton(int id)
         {
-            switch ((TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds)id)
+            switch ((Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds)id)
             {
-                case TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Ok:
+                case Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Ok:
                     return TaskDialogStandardButtons.Ok;
-                case TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Cancel:
+                case Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Cancel:
                     return TaskDialogStandardButtons.Cancel;
-                case TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Abort:
+                case Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Abort:
                     // Included for completeness in API - 
                     // we can't pass in an Abort standard button.
                     return TaskDialogStandardButtons.None;
-                case TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Retry:
+                case Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Retry:
                     return TaskDialogStandardButtons.Retry;
-                case TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Ignore:
+                case Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Ignore:
                     // Included for completeness in API - 
                     // we can't pass in an Ignore standard button.
                     return TaskDialogStandardButtons.None;
-                case TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Yes:
+                case Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Yes:
                     return TaskDialogStandardButtons.Yes;
-                case TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.No:
+                case Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.No:
                     return TaskDialogStandardButtons.No;
-                case TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Close:
+                case Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Close:
                     return TaskDialogStandardButtons.Close;
                 default:
                     return TaskDialogStandardButtons.None;
@@ -828,18 +828,18 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
 #else
 
-        private static TaskDialogStandardButtons MapButtonIdToStandardButton(in int id) => ((TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds)id) switch
+        private static TaskDialogStandardButtons MapButtonIdToStandardButton(in int id) => ((Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds)id) switch
         {
-            TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Ok => TaskDialogStandardButtons.Ok,
-            TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Cancel => TaskDialogStandardButtons.Cancel,
-            TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Abort => TaskDialogStandardButtons.None,// Included for completeness in API - 
-                                                                                                            // we can't pass in an Abort standard button.
-            TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Retry => TaskDialogStandardButtons.Retry,
-            TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Ignore => TaskDialogStandardButtons.None,// Included for completeness in API - 
-                                                                                                             // we can't pass in an Ignore standard button.
-            TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Yes => TaskDialogStandardButtons.Yes,
-            TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.No => TaskDialogStandardButtons.No,
-            TaskDialogNativeMethods.TaskDialogCommonButtonReturnIds.Close => TaskDialogStandardButtons.Close,
+            Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Ok => TaskDialogStandardButtons.Ok,
+            Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Cancel => TaskDialogStandardButtons.Cancel,
+            Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Abort => TaskDialogStandardButtons.None,// Included for completeness in API - 
+                                                                                                                   // we can't pass in an Abort standard button.
+            Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Retry => TaskDialogStandardButtons.Retry,
+            Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Ignore => TaskDialogStandardButtons.None,// Included for completeness in API - 
+                                                                                                                    // we can't pass in an Ignore standard button.
+            Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Yes => TaskDialogStandardButtons.Yes,
+            Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.No => TaskDialogStandardButtons.No,
+            Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Close => TaskDialogStandardButtons.Close,
             _ => TaskDialogStandardButtons.None,
         };
 

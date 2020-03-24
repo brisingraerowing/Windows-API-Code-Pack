@@ -14,6 +14,8 @@ using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Controls;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Shell.Guids;
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
+using Microsoft.WindowsAPICodePack.COMNative.Controls;
 
 namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
 {
@@ -22,7 +24,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
     /// </summary>
     public sealed class ExplorerBrowser :
         System.Windows.Forms.UserControl,
-        Win32Native.Controls.IServiceProvider,
+        COMNative.Controls.IServiceProvider,
         IExplorerPaneVisibility,
         IExplorerBrowserEvents,
         ICommDlgBrowser3,
@@ -376,7 +378,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
         /// <param name="riid">requested interface guid</param>
         /// <param name="ppvObject">caller-allocated memory for interface pointer</param>
         /// <returns></returns>
-        HResult Win32Native.Controls.IServiceProvider.QueryService(
+        HResult COMNative.Controls.IServiceProvider.QueryService(
             ref Guid guidService, ref Guid riid, out IntPtr ppvObject)
         {
             HResult hr;

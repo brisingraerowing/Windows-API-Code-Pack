@@ -1,6 +1,6 @@
 ﻿using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +12,7 @@ using IDisposable = WinCopies.Util.DotNetFix.IDisposable;
 using static WinCopies.Util.Util;
 using System.Collections.ObjectModel;
 using static Microsoft.WindowsAPICodePack.PropertySystem.CollectionBridgeCollectionHelper;
+using Microsoft.WindowsAPICodePack.COMNative.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.PropertySystem
 

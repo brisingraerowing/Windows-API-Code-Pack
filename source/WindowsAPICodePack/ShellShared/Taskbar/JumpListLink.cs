@@ -9,8 +9,9 @@ using Microsoft.WindowsAPICodePack.Shell.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Internal;
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar
 {
@@ -19,7 +20,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
     /// </summary>
     public class JumpListLink : JumpListTask, IJumpListItem, IDisposable
     {
-        internal static PropertyKey PKEY_Title = Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.SystemProperties.System.Title;
+        internal static PropertyKey PKEY_Title = Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.SystemProperties.System.Title;
 
         /// <summary>
         /// Initializes a new instance of a JumpListLink with the specified path.

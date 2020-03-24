@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.WindowsAPICodePack.COMNative.Taskbar;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar

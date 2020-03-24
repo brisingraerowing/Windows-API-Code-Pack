@@ -13,6 +13,6 @@ namespace Microsoft.WindowsAPICodePack
         /// Release the handle
         /// </summary>
         /// <returns>true if handled is release successfully, false otherwise</returns>
-        protected override bool ReleaseHandle() => CoreNativeMethods.DestroyIcon(handle);
+        protected override bool ReleaseHandle() => Core.DestroyIcon(handle);
     }
 }

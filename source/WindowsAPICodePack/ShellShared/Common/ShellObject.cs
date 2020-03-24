@@ -8,8 +8,9 @@ using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
 using System.Runtime.InteropServices.ComTypes;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -91,7 +92,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 if (nativeShellItem == null && ParsingName != null)
                 {
                     var guid = new Guid(Win32Native.Guids.Shell.IShellItem2);
-                    int retCode = ShellNativeMethods.SHCreateItemFromParsingName(ParsingName, IntPtr.Zero, ref guid, out nativeShellItem);
+                    int retCode = COMNative.Shell.Shell.SHCreateItemFromParsingName(ParsingName, IntPtr.Zero, ref guid, out nativeShellItem);
 
                     if (nativeShellItem == null || !CoreErrorHelper.Succeeded(retCode))
 
@@ -336,7 +337,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (_internalPIDL != IntPtr.Zero)
             {
-                ShellNativeMethods.ILFree(_internalPIDL);
+                Win32Native.Shell.Shell.ILFree(_internalPIDL);
                 _internalPIDL = IntPtr.Zero;
             }
 
@@ -392,7 +393,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             if (!hashValue.HasValue)
             {
-                uint size = ShellNativeMethods.ILGetSize(PIDL);
+                uint size = Win32Native.Shell.Shell.ILGetSize(PIDL);
 
                 if (size != 0)
                 {

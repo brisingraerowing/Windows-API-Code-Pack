@@ -2,7 +2,7 @@
 
 using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices.PropertySystem;
+using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,9 +15,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
     {
 
-        private Win32Native.PortableDevices.PropertySystem.IPortableDeviceKeyCollection _portableDeviceKeyCollection;
+        private COMNative.PortableDevices.PropertySystem.IPortableDeviceKeyCollection _portableDeviceKeyCollection;
 
-        protected internal Win32Native.PortableDevices.PropertySystem.IPortableDeviceKeyCollection PortableDeviceKeyCollection { get { ThrowIfDisposed(); return _portableDeviceKeyCollection; } }
+        protected internal COMNative.PortableDevices.PropertySystem.IPortableDeviceKeyCollection PortableDeviceKeyCollection { get { ThrowIfDisposed(); return _portableDeviceKeyCollection; } }
 
         //IPortableDeviceKeyCollection INativePropertyKeyCollectionProvider.NativeItems => PortableDeviceKeyCollection;
 
@@ -41,7 +41,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             }
         }
 
-        public NativeReadOnlyPropertyKeyCollection(Win32Native.PortableDevices.PropertySystem.IPortableDeviceKeyCollection portableDeviceKeyCollection) => _portableDeviceKeyCollection = portableDeviceKeyCollection;
+        public NativeReadOnlyPropertyKeyCollection(COMNative.PortableDevices.PropertySystem.IPortableDeviceKeyCollection portableDeviceKeyCollection) => _portableDeviceKeyCollection = portableDeviceKeyCollection;
 
         private bool _isDisposed = false;
 

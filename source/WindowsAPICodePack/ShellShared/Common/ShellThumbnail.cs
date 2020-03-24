@@ -5,7 +5,9 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.GDI;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
 
@@ -39,9 +41,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         internal ShellThumbnail(ShellObject shellObject)
         {
             if (shellObject == null || shellObject.NativeShellItem == null)
-            
+
                 throw new ArgumentNullException(nameof(shellObject));
-            
+
             shellItemNative = shellObject.NativeShellItem;
         }
 
@@ -63,18 +65,18 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 // Check for 0; negative number check not required as System.Windows.Size only allows positive numbers.
                 if (value.Height == 0 || value.Width == 0)
-                
+
                     throw new ArgumentOutOfRangeException(nameof(value), LocalizedMessages.ShellThumbnailSizeCannotBe0);
-                
+
                 System.Windows.Size size = (FormatOption == ShellThumbnailFormatOption.IconOnly) ?
                     DefaultIconSize.Maximum : DefaultThumbnailSize.Maximum;
 
                 if (value.Height > size.Height || value.Width > size.Width)
-                
+
                     throw new ArgumentOutOfRangeException(nameof(value),
                         string.Format(System.Globalization.CultureInfo.InvariantCulture,
                         LocalizedMessages.ShellThumbnailCurrentSizeRange, size.ToString()));
-                
+
                 currentSize = value;
             }
         }
@@ -207,36 +209,36 @@ namespace Microsoft.WindowsAPICodePack.Shell
             SIIGBF flags = 0x0000;
 
             if (AllowBiggerSize)
-            
+
                 flags |= SIIGBF.BiggerSizeOk;
 
 
-            
+
             if (RetrievalOption == ShellThumbnailRetrievalOption.CacheOnly)
-            
+
                 flags |= SIIGBF.InCacheOnly;
-            
+
             else if (RetrievalOption == ShellThumbnailRetrievalOption.MemoryOnly)
-            
+
                 flags |= SIIGBF.MemoryOnly;
 
 
-            
+
             if (FormatOption == ShellThumbnailFormatOption.IconOnly)
-            
+
                 flags |= SIIGBF.IconOnly;
-            
+
             else if (FormatOption == ShellThumbnailFormatOption.ThumbnailOnly)
-            
+
                 flags |= SIIGBF.ThumbnailOnly;
-            
+
             return flags;
         }
 
         private IntPtr GetHBitmap(System.Windows.Size size)
         {
             // Create a size structure to pass to the native method
-            var nativeSIZE = new CoreNativeMethods.Size
+            var nativeSIZE = new Win32Native.Size
             {
                 Width = Convert.ToInt32(size.Width),
                 Height = Convert.ToInt32(size.Height)
@@ -246,16 +248,16 @@ namespace Microsoft.WindowsAPICodePack.Shell
             // Options passed in: Resize to fit
             HResult hr = ((IShellItemImageFactory)shellItemNative).GetImage(nativeSIZE, CalculateFlags(), out IntPtr hbitmap);
 
-            if (hr == HResult.Ok)  return hbitmap; 
+            if (hr == HResult.Ok) return hbitmap;
             else if ((uint)hr == 0x8004B200 && FormatOption == ShellThumbnailFormatOption.ThumbnailOnly)
-            
+
                 // Thumbnail was requested, but this ShellItem doesn't have a thumbnail.
                 throw new InvalidOperationException(LocalizedMessages.ShellThumbnailDoesNotHaveThumbnail, Marshal.GetExceptionForHR((int)hr));
-            
+
             else if ((uint)hr == 0x80040154) // REGDB_E_CLASSNOTREG
-            
+
                 throw new NotSupportedException(LocalizedMessages.ShellThumbnailNoHandler, Marshal.GetExceptionForHR((int)hr));
-            
+
             throw new ShellException(hr);
         }
 
@@ -269,7 +271,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             Bitmap returnValue = Image.FromHbitmap(hBitmap);
 
             // delete HBitmap to avoid memory leaks
-            _ = ShellNativeMethods.DeleteObject(hBitmap);
+            _ = GDI.DeleteObject(hBitmap);
 
             return returnValue;
         }
@@ -289,7 +291,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 BitmapSizeOptions.FromEmptyOptions());
 
             // delete HBitmap to avoid memory leaks
-            _ = ShellNativeMethods.DeleteObject(hBitmap);
+            _ = GDI.DeleteObject(hBitmap);
 
             return returnValue;
         }

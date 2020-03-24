@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Threading;
+using Microsoft.WindowsAPICodePack.COMNative.Sensors;
 using Microsoft.WindowsAPICodePack.Sensors.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Sensors;
 using static Microsoft.WindowsAPICodePack.Sensors.Guids;
 using static Microsoft.WindowsAPICodePack.Win32Native.Guids.Sensors;
 

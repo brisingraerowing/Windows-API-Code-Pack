@@ -11,11 +11,11 @@
 //{
 //    public class PortableDevicePropVariantCollection : IPortableDevicePropVariantCollection
 //    {
-//        private Win32Native.PortableDevices.PropertySystem.IPortableDevicePropVariantCollection _portableDevicePropVariantCollection;
+//        private COMNative.PortableDevices.PropertySystem.IPortableDevicePropVariantCollection _portableDevicePropVariantCollection;
 
-//        internal Win32Native.PortableDevices.PropertySystem.IPortableDevicePropVariantCollection _PortableDevicePropVariantCollection { get { ThrowIfDisposed(); return _portableDevicePropVariantCollection; } }
+//        internal COMNative.PortableDevices.PropertySystem.IPortableDevicePropVariantCollection _PortableDevicePropVariantCollection { get { ThrowIfDisposed(); return _portableDevicePropVariantCollection; } }
 
-//        public PortableDevicePropVariantCollection() => _portableDevicePropVariantCollection = new Win32Native.PortableDevices.PropertySystem.PortableDevicePropVariantCollection();
+//        public PortableDevicePropVariantCollection() => _portableDevicePropVariantCollection = new COMNative.PortableDevices.PropertySystem.PortableDevicePropVariantCollection();
 
 //        // todo: replace by the same WinCopies.Util extension method.
 

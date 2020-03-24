@@ -168,7 +168,7 @@
             </summary>
             <param name="e">An EventArgs that contains event data.</param>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.Microsoft#WindowsAPICodePack#Win32Native#Controls#IServiceProvider#QueryService(System.Guid@,System.Guid@,System.IntPtr@)">
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.Microsoft#WindowsAPICodePack#COMNative#Controls#IServiceProvider#QueryService(System.Guid@,System.Guid@,System.IntPtr@)">
             <summary>
             
             </summary>
@@ -177,7 +177,7 @@
             <param name="ppvObject">caller-allocated memory for interface pointer</param>
             <returns></returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.Microsoft#WindowsAPICodePack#Win32Native#Controls#IExplorerPaneVisibility#GetPaneState(System.Guid@,Microsoft.WindowsAPICodePack.Win32Native.Controls.ExplorerPaneState@)">
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.Microsoft#WindowsAPICodePack#COMNative#Controls#IExplorerPaneVisibility#GetPaneState(System.Guid@,Microsoft.WindowsAPICodePack.COMNative.Controls.ExplorerPaneState@)">
             <summary>
             Controls the visibility of the explorer borwser panes
             </summary>
@@ -1419,7 +1419,7 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.Attributes">
             <summary>
-            Gets or sets an array of values that indicates the attributes of the file object. For information about these values, see the <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.IShellFolder.GetAttributesOf(System.UInt32,System.IntPtr,System.UInt32@)"/> method.
+            Gets or sets an array of values that indicates the attributes of the file object. For information about these values, see the <see cref="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellFolder.GetAttributesOf(System.UInt32,System.IntPtr,System.UInt32@)"/> method.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.DisplayName">
@@ -1451,7 +1451,7 @@
             <summary>
             Enables a handler to provide status and error information for all operations.
             </summary>
-            <param name="pfops">An <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.IFileOperationProgressSink"/> object to be used for progress status and error notifications.</param>
+            <param name="pfops">An <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperationProgressSink"/> object to be used for progress status and error notifications.</param>
             <returns>A returned token that uniquely identifies this connection. The calling application uses this token later to delete the connection by passing it to <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.Unadvise(System.UInt32)"/>.</returns>
             <remarks>Several individual methods have the ability to declare their own progress sinks, which are redundant to the one set here. They are used when you only want to be given progress and error information for a specific operation.</remarks>
             <exception cref="T:System.ArgumentNullException">Exception thrown when a parameter is null.</exception>
@@ -1466,7 +1466,7 @@
             <exception cref="T:System.ObjectDisposedException">Exception thrown when this object is disposed.</exception>
             <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.SetOperationFlags(Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellOperationFlags)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.SetOperationFlags(Microsoft.WindowsAPICodePack.COMNative.Shell.ShellOperationFlags)">
             <summary>
             Sets parameters for the current operation.
             </summary>
@@ -1476,22 +1476,22 @@
             <exception cref="T:System.PlatformNotSupportedException">Exception thrown when a requested flag is not supported by the current platform.</exception>
             <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.SetProgressDialog(Microsoft.WindowsAPICodePack.Win32Native.Shell.IOperationsProgressDialog)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.SetProgressDialog(Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog)">
             <summary>
             Specifies a dialog box used to display the progress of the operation.
             </summary>
-            <param name="popd">An <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.IOperationsProgressDialog"/> object that represents the dialog box.</param>
+            <param name="popd">An <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog"/> object that represents the dialog box.</param>
             <exception cref="T:System.ArgumentNullException">Exception thrown when a parameter is null.</exception>
             <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.SetProperties(Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.IPropertyChangeArray)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.SetProperties(Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyChangeArray)">
             <summary>
             Declares a set of properties and values to be set on an item or items.
             </summary>
-            <param name="pproparray">An <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.IPropertyChangeArray"/>, which accesses a collection of <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.IPropertyChange"/> objects that specify the properties to be set and their new values.</param>
+            <param name="pproparray">An <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyChangeArray"/>, which accesses a collection of <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyChange"/> objects that specify the properties to be set and their new values.</param>
             <remarks>This method does not set the new property values, it merely declares them. To set property values on an item or a group of items, you must make at least the sequence of calls detailed here:
-            <ol><li>Call <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.SetProperties(Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.IPropertyChangeArray)"/> to declare the specific properties to be set and their new values.</li>
-            <li>Call <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.ApplyPropertiesToItem(Microsoft.WindowsAPICodePack.Shell.ShellObject)"/> or <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.ApplyPropertiesToItem(Microsoft.WindowsAPICodePack.Win32Native.Shell.IShellItem)"/> to declare the item or items whose properties are to be set.</li>
+            <ol><li>Call <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.SetProperties(Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyChangeArray)"/> to declare the specific properties to be set and their new values.</li>
+            <li>Call <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.ApplyPropertiesToItem(Microsoft.WindowsAPICodePack.Shell.ShellObject)"/> or <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.ApplyPropertiesToItem(Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem)"/> to declare the item or items whose properties are to be set.</li>
             <li>Call <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.PerformOperations"/> to apply the properties to the item or items.</li></ol></remarks>
             <exception cref="T:System.ArgumentNullException">Exception thrown when a parameter is null.</exception>
             <exception cref="T:System.ObjectDisposedException">Exception thrown when this object is disposed.</exception>
@@ -1589,7 +1589,7 @@
         <member name="P:Microsoft.WindowsAPICodePack.Shell.SearchCondition.ConditionOperation">
             <summary>
             Search condition operation to be performed on the property/value combination.
-            See <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.SearchConditionOperation"/> for more details.
+            See <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.SearchConditionOperation"/> for more details.
             </summary>        
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.SearchCondition.ConditionType">
@@ -1619,7 +1619,7 @@
             that was obtained by parsing a query string.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(System.String,System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.SearchConditionOperation)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(System.String,System.String,Microsoft.WindowsAPICodePack.COMNative.Shell.SearchConditionOperation)">
             <summary>
             Creates a leaf condition node that represents a comparison of property value and constant value. 
             </summary>
@@ -1634,7 +1634,7 @@
             <see cref="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
             </remarks>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(System.String,System.DateTime,Microsoft.WindowsAPICodePack.Win32Native.Shell.SearchConditionOperation)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(System.String,System.DateTime,Microsoft.WindowsAPICodePack.COMNative.Shell.SearchConditionOperation)">
             <summary>
             Creates a leaf condition node that represents a comparison of property value and constant value. 
             Overload method takes a DateTime parameter for the comparison value.
@@ -1650,7 +1650,7 @@
             <see cref="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
             </remarks>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(System.String,System.Int32,Microsoft.WindowsAPICodePack.Win32Native.Shell.SearchConditionOperation)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(System.String,System.Int32,Microsoft.WindowsAPICodePack.COMNative.Shell.SearchConditionOperation)">
             <summary>
             Creates a leaf condition node that represents a comparison of property value and Integer value. 
             </summary>
@@ -1665,7 +1665,7 @@
             <see cref="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
             </remarks>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(System.String,System.Boolean,Microsoft.WindowsAPICodePack.Win32Native.Shell.SearchConditionOperation)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(System.String,System.Boolean,Microsoft.WindowsAPICodePack.COMNative.Shell.SearchConditionOperation)">
             <summary>
             Creates a leaf condition node that represents a comparison of property value and Boolean value. 
             </summary>
@@ -1680,7 +1680,7 @@
             <see cref="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
             </remarks>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(System.String,System.Double,Microsoft.WindowsAPICodePack.Win32Native.Shell.SearchConditionOperation)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(System.String,System.Double,Microsoft.WindowsAPICodePack.COMNative.Shell.SearchConditionOperation)">
             <summary>
             Creates a leaf condition node that represents a comparison of property value and Floating Point value. 
             </summary>
@@ -1695,7 +1695,7 @@
             <see cref="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
             </remarks>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.SearchConditionOperation)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,System.String,Microsoft.WindowsAPICodePack.COMNative.Shell.SearchConditionOperation)">
             <summary>
             Creates a leaf condition node that represents a comparison of property value and constant value. 
             </summary>
@@ -1709,7 +1709,7 @@
             <see cref="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
             </remarks>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,System.DateTime,Microsoft.WindowsAPICodePack.Win32Native.Shell.SearchConditionOperation)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,System.DateTime,Microsoft.WindowsAPICodePack.COMNative.Shell.SearchConditionOperation)">
             <summary>
             Creates a leaf condition node that represents a comparison of property value and constant value. 
             Overload method takes a DateTime parameter for the comparison value.
@@ -1724,7 +1724,7 @@
             <see cref="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
             </remarks>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,System.Boolean,Microsoft.WindowsAPICodePack.Win32Native.Shell.SearchConditionOperation)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,System.Boolean,Microsoft.WindowsAPICodePack.COMNative.Shell.SearchConditionOperation)">
             <summary>
             Creates a leaf condition node that represents a comparison of property value and Boolean value. 
             Overload method takes a DateTime parameter for the comparison value.
@@ -1739,7 +1739,7 @@
             <see cref="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
             </remarks>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,System.Double,Microsoft.WindowsAPICodePack.Win32Native.Shell.SearchConditionOperation)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,System.Double,Microsoft.WindowsAPICodePack.COMNative.Shell.SearchConditionOperation)">
             <summary>
             Creates a leaf condition node that represents a comparison of property value and Floating Point value. 
             Overload method takes a DateTime parameter for the comparison value.
@@ -1754,7 +1754,7 @@
             <see cref="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
             </remarks>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,System.Int32,Microsoft.WindowsAPICodePack.Win32Native.Shell.SearchConditionOperation)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,System.Int32,Microsoft.WindowsAPICodePack.COMNative.Shell.SearchConditionOperation)">
             <summary>
             Creates a leaf condition node that represents a comparison of property value and Integer value. 
             Overload method takes a DateTime parameter for the comparison value.
@@ -1769,7 +1769,7 @@
             <see cref="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
             </remarks>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateAndOrCondition(Microsoft.WindowsAPICodePack.Win32Native.Shell.SearchConditionType,System.Boolean,Microsoft.WindowsAPICodePack.Shell.SearchCondition[])">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateAndOrCondition(Microsoft.WindowsAPICodePack.COMNative.Shell.SearchConditionType,System.Boolean,Microsoft.WindowsAPICodePack.Shell.SearchCondition[])">
             <summary>
             Creates a condition node that is a logical conjunction ("AND") or disjunction ("OR") 
             of a collection of subconditions.
@@ -1963,7 +1963,7 @@
             <param name="isReadOnly">If <B>true</B>, opens the library in read-only mode.</param>
             <returns>A ShellLibrary Object</returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.FromShellItem(Microsoft.WindowsAPICodePack.Win32Native.Shell.IShellItem,System.Boolean)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.FromShellItem(Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem,System.Boolean)">
             <summary>
             Load the library using a number of options
             </summary>
@@ -2281,11 +2281,11 @@
             </summary>
             <returns>A string representation of the object.</returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObject.GetDisplayName(Microsoft.WindowsAPICodePack.Win32Native.Shell.DisplayNameType)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObject.GetDisplayName(Microsoft.WindowsAPICodePack.COMNative.Shell.DisplayNameType)">
             <summary>
             Returns the display name of the ShellFolder object. DisplayNameType represents one of the 
             values that indicates how the name should look. 
-            See <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.DisplayNameType"/>for a list of possible values.
+            See <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.DisplayNameType"/>for a list of possible values.
             </summary>
             <param name="displayNameType">A disaply name type.</param>
             <returns>A string.</returns>
@@ -2368,7 +2368,7 @@
             An ennumerable list of ShellObjects
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectCollection.#ctor(Microsoft.WindowsAPICodePack.Win32Native.Shell.IShellItemArray,System.Boolean)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectCollection.#ctor(Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItemArray,System.Boolean)">
             <summary>
             Creates a ShellObject collection from an IShellItemArray
             </summary>
@@ -2514,7 +2514,7 @@
             </summary>
             <returns>Enumerated contents</returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectFactory.Create(Microsoft.WindowsAPICodePack.Win32Native.Shell.IShellItem)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectFactory.Create(Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem)">
             <summary>
             Creates a ShellObject given a native IShellItem interface
             </summary>
@@ -2628,7 +2628,7 @@
             Sets a search folder type ID, as specified. 
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellSearchFolder.SetFolderLogicalViewMode(Microsoft.WindowsAPICodePack.Win32Native.Shell.FolderLogicalViewMode)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellSearchFolder.SetFolderLogicalViewMode(Microsoft.WindowsAPICodePack.COMNative.Shell.FolderLogicalViewMode)">
             <summary>
             Sets folder logical view mode. The default settings are based on the FolderTypeID which is set 
             by the SearchFolder::SetFolderTypeID method.        
@@ -2642,7 +2642,7 @@
             </summary>
             <remarks>This property may not work correctly with the ExplorerBrowser control.</remarks>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellSearchFolder.SortColumns(Microsoft.WindowsAPICodePack.Win32Native.Shell.SortColumn[])">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellSearchFolder.SortColumns(Microsoft.WindowsAPICodePack.COMNative.Shell.SortColumn[])">
             <summary>
             Creates a list of sort column directions, as specified.
             </summary>
@@ -3015,7 +3015,7 @@
             can have its path set to a new value, 
             including any restrictions on the redirection.
             </summary>
-            <value>A <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.RedirectionCapability"/> value.</value>
+            <value>A <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.RedirectionCapability"/> value.</value>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.FileSystemKnownFolder.Dispose(System.Boolean)">
             <summary>
@@ -3158,7 +3158,7 @@
             <param name="knownFolderId">A GUID for the requested known folder.</param>
             <returns>A known folder representing the specified name. Returns null if Known Folder is not found or could not be created.</returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.KnownFolderHelper.GetKnownFolder(Microsoft.WindowsAPICodePack.Win32Native.Shell.IKnownFolderNative)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.KnownFolderHelper.GetKnownFolder(Microsoft.WindowsAPICodePack.COMNative.Shell.IKnownFolderNative)">
             <summary>
             Given a native KnownFolder (IKnownFolderNative), create the right type of
             IKnownFolder object (FileSystemKnownFolder or NonFileSystemKnownFolder)
@@ -3812,13 +3812,13 @@
             Internal class to represent the KnownFolder settings/properties
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.KnownFolderSettings.GetFolderProperties(Microsoft.WindowsAPICodePack.Win32Native.Shell.IKnownFolderNative)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.KnownFolderSettings.GetFolderProperties(Microsoft.WindowsAPICodePack.COMNative.Shell.IKnownFolderNative)">
             <summary>
             Populates a structure that contains 
             this known folder's properties.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.KnownFolderSettings.GetPath(System.Boolean@,Microsoft.WindowsAPICodePack.Win32Native.Shell.IKnownFolderNative)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.KnownFolderSettings.GetPath(System.Boolean@,Microsoft.WindowsAPICodePack.COMNative.Shell.IKnownFolderNative)">
             <summary>
             Gets the path of this this known folder.
             </summary>
@@ -3945,7 +3945,7 @@
             can have its path set to a new value, 
             including any restrictions on the redirection.
             </summary>
-            <value>A <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.RedirectionCapability"/> value.</value>
+            <value>A <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.RedirectionCapability"/> value.</value>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder">
             <summary>
@@ -4031,7 +4031,7 @@
             Gets this known folder's file attributes, 
             such as "read-only".
             </summary>
-            <value>A <see cref="!:Shell.FileAttributes"/> value.</value>
+            <value>A <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes"/> value.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder.DefinitionOptions">
             <summary>
@@ -4072,7 +4072,7 @@
             can have its path set to a new value, 
             including any restrictions on the redirection.
             </summary>
-            <value>A <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.RedirectionCapability"/> value.</value>
+            <value>A <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.RedirectionCapability"/> value.</value>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder.Dispose(System.Boolean)">
             <summary>
@@ -4095,7 +4095,7 @@
             Gets the property key that identifies this property.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.IShellProperty.FormatForDisplay(Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.PropertyDescriptionFormatOptions)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.IShellProperty.FormatForDisplay(Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.PropertyDescriptionFormatOptions)">
             <summary>
             Gets a formatted, Unicode string representation of a property value.
             </summary>
@@ -10768,7 +10768,7 @@
             <param name="description"></param>
             <param name="parent"></param>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperty`1.#ctor(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription,Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.IPropertyStore)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperty`1.#ctor(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription,Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyStore)">
             <summary>
             Constructs a new Property object
             </summary>
@@ -10792,7 +10792,7 @@
             Gets the property key identifying this property.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperty`1.TryFormatForDisplay(Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.PropertyDescriptionFormatOptions,System.String@)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperty`1.TryFormatForDisplay(Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.PropertyDescriptionFormatOptions,System.String@)">
             <summary>
             Returns a formatted, Unicode string representation of a property value.
             </summary>
@@ -10803,7 +10803,7 @@
             <returns>True if the method successfully locates the formatted string; otherwise 
             False.</returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperty`1.FormatForDisplay(Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.PropertyDescriptionFormatOptions)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperty`1.FormatForDisplay(Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.PropertyDescriptionFormatOptions)">
             <summary>
             Returns a formatted, Unicode string representation of a property value.
             </summary>
@@ -10862,7 +10862,7 @@
             Creates a readonly collection of IProperty objects.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyCollection.#ctor(Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.IPropertyStore)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyCollection.#ctor(Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyStore)">
             <summary>
             Creates a new Property collection given an IPropertyStore object
             </summary>
@@ -11123,7 +11123,7 @@
             <param name="shellObject">Shell object from which to get property</param>
             <returns>ShellProperty matching type of value in property.</returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyFactory.CreateShellProperty(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,Microsoft.WindowsAPICodePack.Win32Native.Shell.PropertySystem.IPropertyStore)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyFactory.CreateShellProperty(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyStore)">
             <summary>
             Creates a generic ShellProperty.
             </summary>
@@ -12246,7 +12246,7 @@
             Gets the index for the currently selected file type.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.SyncFileTypeComboToDefaultExtension(Microsoft.WindowsAPICodePack.Win32Native.Dialogs.IFileDialog)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.SyncFileTypeComboToDefaultExtension(Microsoft.WindowsAPICodePack.COMNative.Dialogs.IFileDialog)">
             <summary>
             Tries to set the File(s) Type Combo to match the value in 
             'DefaultExtension'.  Only doing this if 'this' is a Save dialog 
@@ -12271,7 +12271,7 @@
             <exception cref="T:System.InvalidOperationException">This property cannot be used when multiple files
             are selected.</exception>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.AddPlace(Microsoft.WindowsAPICodePack.Shell.ShellContainer,Microsoft.WindowsAPICodePack.Win32Native.Shell.FileDialogAddPlaceLocation)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.AddPlace(Microsoft.WindowsAPICodePack.Shell.ShellContainer,Microsoft.WindowsAPICodePack.COMNative.Shell.FileDialogAddPlaceLocation)">
             <summary>
             Adds a location, such as a folder, library, search connector, or known folder, to the list of
             places available for a user to open or save items. This method actually adds an item
@@ -12280,7 +12280,7 @@
             <param name="place">The item to add to the places list.</param>
             <param name="location">One of the enumeration values that indicates placement of the item in the list.</param>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.AddPlace(System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.FileDialogAddPlaceLocation)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.AddPlace(System.String,Microsoft.WindowsAPICodePack.COMNative.Shell.FileDialogAddPlaceLocation)">
             <summary>
             Adds a location (folder, library, search connector, known folder) to the list of
             places available for the user to open or save items. This method actually adds an item
@@ -12486,7 +12486,7 @@
             <param name="name">The name of this control.</param>
             <param name="text">The text to display for this control.</param>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogButton.Attach(Microsoft.WindowsAPICodePack.Win32Native.Dialogs.IFileDialogCustomize)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogButton.Attach(Microsoft.WindowsAPICodePack.COMNative.Dialogs.IFileDialogCustomize)">
             <summary>
             Attach the PushButton control to the dialog object
             </summary>
@@ -12545,7 +12545,7 @@
             Occurs when the user changes the check state.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogCheckBox.Attach(Microsoft.WindowsAPICodePack.Win32Native.Dialogs.IFileDialogCustomize)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogCheckBox.Attach(Microsoft.WindowsAPICodePack.COMNative.Dialogs.IFileDialogCustomize)">
             <summary>
             Attach the CheckButton control to the dialog object.
             </summary>
@@ -12600,7 +12600,7 @@
             internal because of the interface)
             </remarks>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogComboBox.Attach(Microsoft.WindowsAPICodePack.Win32Native.Dialogs.IFileDialogCustomize)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogComboBox.Attach(Microsoft.WindowsAPICodePack.COMNative.Dialogs.IFileDialogCustomize)">
             <summary>
             Attach the ComboBox control to the dialog object
             </summary>
@@ -12677,7 +12677,7 @@
             <param name="name">The name of the common file dialog control.</param>
             <param name="text">The text of the common file dialog control.</param>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogControl.Attach(Microsoft.WindowsAPICodePack.Win32Native.Dialogs.IFileDialogCustomize)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogControl.Attach(Microsoft.WindowsAPICodePack.COMNative.Dialogs.IFileDialogCustomize)">
             <summary>
             Attach the custom control itself to the specified dialog
             </summary>
@@ -12781,7 +12781,7 @@
             Initializes the item collection for this class.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogGroupBox.Attach(Microsoft.WindowsAPICodePack.Win32Native.Dialogs.IFileDialogCustomize)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogGroupBox.Attach(Microsoft.WindowsAPICodePack.COMNative.Dialogs.IFileDialogCustomize)">
             <summary>
             Attach the GroupBox control to the dialog object
             </summary>
@@ -12810,7 +12810,7 @@
             <param name="name">The name of this control.</param>
             <param name="text">The text to display for this control.</param>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogLabel.Attach(Microsoft.WindowsAPICodePack.Win32Native.Dialogs.IFileDialogCustomize)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogLabel.Attach(Microsoft.WindowsAPICodePack.COMNative.Dialogs.IFileDialogCustomize)">
             <summary>
             Attach this control to the dialog object
             </summary>
@@ -12844,7 +12844,7 @@
             <param name="name">The name of this control.</param>
             <param name="text">The text to display for this control.</param>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogMenu.Attach(Microsoft.WindowsAPICodePack.Win32Native.Dialogs.IFileDialogCustomize)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogMenu.Attach(Microsoft.WindowsAPICodePack.COMNative.Dialogs.IFileDialogCustomize)">
             <summary>
             Attach the Menu control to the dialog object.
             </summary>
@@ -12871,7 +12871,7 @@
             Occurs when a user clicks a menu item.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogMenuItem.Attach(Microsoft.WindowsAPICodePack.Win32Native.Dialogs.IFileDialogCustomize)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogMenuItem.Attach(Microsoft.WindowsAPICodePack.COMNative.Dialogs.IFileDialogCustomize)">
             <summary>
             Attach this control to the dialog object
             </summary>
@@ -12957,7 +12957,7 @@
             internal because of the interface)
             </remarks>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogRadioButtonList.Attach(Microsoft.WindowsAPICodePack.Win32Native.Dialogs.IFileDialogCustomize)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogRadioButtonList.Attach(Microsoft.WindowsAPICodePack.COMNative.Dialogs.IFileDialogCustomize)">
             <summary>
             Attach the RadioButtonList control to the dialog object
             </summary>
@@ -12989,7 +12989,7 @@
             Defines the class for the simplest separator controls.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogSeparator.Attach(Microsoft.WindowsAPICodePack.Win32Native.Dialogs.IFileDialogCustomize)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogSeparator.Attach(Microsoft.WindowsAPICodePack.COMNative.Dialogs.IFileDialogCustomize)">
             <summary>
             Attach the Separator control to the dialog object
             </summary>
@@ -13029,7 +13029,7 @@
             be null until after the Attach() call is made.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogTextBox.Attach(Microsoft.WindowsAPICodePack.Win32Native.Dialogs.IFileDialogCustomize)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogTextBox.Attach(Microsoft.WindowsAPICodePack.COMNative.Dialogs.IFileDialogCustomize)">
             <summary>
             Attach the TextBox control to the dialog object
             </summary>

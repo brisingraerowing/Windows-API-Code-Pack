@@ -298,7 +298,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                 }
                 finally
                 {
-                    _ = CoreNativeMethods.LocalFree(ref guid);
+                    _ = Core.LocalFree(ref guid);
                 }
             }
         }

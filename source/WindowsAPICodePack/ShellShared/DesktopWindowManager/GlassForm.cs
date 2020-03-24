@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Internal;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -19,9 +20,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         public static bool AeroGlassCompositionEnabled
         {
-            set => DesktopWindowManagerNativeMethods.DwmEnableComposition(
+            set => DesktopWindowManager.DwmEnableComposition(
                     value ? CompositionEnable.Enable : CompositionEnable.Disable);
-            get => DesktopWindowManagerNativeMethods.DwmIsCompositionEnabled();
+            get => DesktopWindowManager.DwmIsCompositionEnabled();
         }
 
         #endregion
@@ -66,7 +67,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 };
 
                 // Extend the Frame into client area
-                DesktopWindowManagerNativeMethods.DwmExtendFrameIntoClientArea(Handle, ref margins);
+                DesktopWindowManager.DwmExtendFrameIntoClientArea(Handle, ref margins);
             }
         }
 
@@ -77,8 +78,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             if (Handle != IntPtr.Zero)
             {
-                Margins margins = new Margins(true);
-                DesktopWindowManagerNativeMethods.DwmExtendFrameIntoClientArea(Handle, ref margins);
+                var margins = new Margins(true);
+                _ = DesktopWindowManager.DwmExtendFrameIntoClientArea(Handle, ref margins);
             }
         }
         #endregion
@@ -91,8 +92,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         protected override void WndProc(ref System.Windows.Forms.Message m)
         {
-            if (m.Msg == DWMMessages.WM_DWMCOMPOSITIONCHANGED
-                || m.Msg == DWMMessages.WM_DWMNCRENDERINGCHANGED)
+            if (m.Msg == Win32Native.Shell.Consts.DesktopWindowManager.DWMMessages.WM_DWMCOMPOSITIONCHANGED
+                || m.Msg == Win32Native.Shell.Consts.DesktopWindowManager.DWMMessages.WM_DWMNCRENDERINGCHANGED)
             {
                 if (AeroGlassCompositionChanged != null)
 

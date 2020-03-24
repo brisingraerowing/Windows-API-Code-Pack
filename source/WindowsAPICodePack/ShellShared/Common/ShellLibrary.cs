@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Shell.Guids;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
@@ -160,7 +161,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             var guid = new Guid(Win32Native.Guids.Shell.IShellItem);
 
-            _ = ShellNativeMethods.SHCreateItemFromParsingName(folderPath, IntPtr.Zero, ref guid, out IShellItem shellItemIn);
+            _ = COMNative.Shell.Shell.SHCreateItemFromParsingName(folderPath, IntPtr.Zero, ref guid, out IShellItem shellItemIn);
 
             nativeShellLibrary = (INativeShellLibrary)new ShellLibraryCoClass();
             nativeShellLibrary.Save(shellItemIn, libraryName, flags, out nativeShellItem);
@@ -281,7 +282,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 var guid = new Guid(Win32Native.Guids.Shell.IShellItem);
 
-                _ = ShellNativeMethods.SHCreateItemFromParsingName(fullPath, IntPtr.Zero, ref guid, out IShellItem saveFolderItem);
+                _ = COMNative.Shell.Shell.SHCreateItemFromParsingName(fullPath, IntPtr.Zero, ref guid, out IShellItem saveFolderItem);
 
                 nativeShellLibrary.SetDefaultSaveFolder(
                     DefaultSaveFolderType.Detect,
@@ -368,7 +369,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 var guid = new Guid(Win32Native.Guids.Shell.IShellItem);
                 string shellItemPath = Path.Combine((kf != null) ? kf.Path : string.Empty, libraryName + FileExtension);
-                int hr = ShellNativeMethods.SHCreateItemFromParsingName(shellItemPath, IntPtr.Zero, ref guid, out IShellItem nativeShellItem);
+                int hr = COMNative.Shell.Shell.SHCreateItemFromParsingName(shellItemPath, IntPtr.Zero, ref guid, out IShellItem nativeShellItem);
 
                 if (!CoreErrorHelper.Succeeded(hr))
 
@@ -481,7 +482,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             int hr = 0;
 
-            var staWorker = new Thread(() => hr = ShellNativeMethods.SHShowManageLibraryUI(
+            var staWorker = new Thread(() => hr = COMNative.Shell.Shell.SHShowManageLibraryUI(
                     shellLibrary.NativeShellItem,
                     windowHandle,
                     title,

@@ -1,4 +1,5 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
+using Microsoft.WindowsAPICodePack.COMNative.Controls;
 using Microsoft.WindowsAPICodePack.Controls.WindowsForms;
 using Microsoft.WindowsAPICodePack.Win32Native.Controls;
 

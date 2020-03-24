@@ -3,6 +3,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
+using static Microsoft.WindowsAPICodePack.Win32Native.Consts.DllNames;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native
 {
@@ -10,7 +11,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
     /// Wrappers for Native Methods and Structs.
     /// This type is intended for public use only
     /// </summary>    
-    public static class CoreNativeMethods
+    public static class Core
     {
         #region General Definitions
 
@@ -27,7 +28,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         /// <param name="wparam">Specifies additional message-specific information.</param>
         /// <param name="lparam">Specifies additional message-specific information.</param>
         /// <returns>A return code specific to the message being sent.</returns>     
-        [DllImport("user32.dll", CharSet = CharSet.Auto, PreserveSig = false, SetLastError = true)]
+        [DllImport(User32, CharSet = CharSet.Auto, PreserveSig = false, SetLastError = true)]
         public static extern void PostMessage(
             IntPtr windowHandle,
             WindowMessage message,
@@ -49,7 +50,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         /// <param name="wparam">Specifies additional message-specific information.</param>
         /// <param name="lparam">Specifies additional message-specific information.</param>
         /// <returns>A return code specific to the message being sent.</returns>     
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        [DllImport(User32, CharSet = CharSet.Auto, SetLastError = true)]
         public static extern IntPtr SendMessage(
             IntPtr windowHandle,
             WindowMessage message,
@@ -71,7 +72,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         /// <param name="wparam">Specifies additional message-specific information.</param>
         /// <param name="lparam">Specifies additional message-specific information.</param>
         /// <returns>A return code specific to the message being sent.</returns>        
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        [DllImport(User32, CharSet = CharSet.Auto, SetLastError = true)]
         public static extern IntPtr SendMessage(
             IntPtr windowHandle,
             uint message,
@@ -93,7 +94,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         /// <param name="wparam">Specifies additional message-specific information.</param>
         /// <param name="lparam">Specifies additional message-specific information.</param>
         /// <returns>A return code specific to the message being sent.</returns>
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        [DllImport(User32, CharSet = CharSet.Auto, SetLastError = true)]
         public static extern IntPtr SendMessage(
            IntPtr windowHandle,
            uint message,
@@ -135,7 +136,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         /// <param name="lparam">Specifies additional message-specific information.</param>
         /// <returns>A return code specific to the message being sent.</returns>
 
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        [DllImport(User32, CharSet = CharSet.Auto, SetLastError = true)]
         public static extern IntPtr SendMessage(
             IntPtr windowHandle,
             uint message,
@@ -144,29 +145,33 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
 
         // Various helpers for forcing binding to proper 
         // version of Comctl32 (v6).
-        [DllImport("kernel32.dll", SetLastError = true, ThrowOnUnmappableChar = true, BestFitMapping = false)]
+        [DllImport(Kernel32, SetLastError = true, ThrowOnUnmappableChar = true, BestFitMapping = false)]
         public static extern IntPtr LoadLibrary([MarshalAs(UnmanagedType.LPStr)] string fileName);
 
-        [DllImport("gdi32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool DeleteObject(IntPtr graphicsObjectHandle);
+        [DllImport(Kernel32,SetLastError =true,CharSet = CharSet.Auto)]
+        public static extern IntPtr LoadLibraryEx([In, MarshalAs(UnmanagedType.LPWStr)] string lpLibFileName,IntPtr hFile,
+            [In, MarshalAs(UnmanagedType.U4)] uint dwFlags            );
 
-        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+        [DllImport(User32, SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern int LoadString(
             IntPtr instanceHandle,
             int id,
             StringBuilder buffer,
             int bufferSize);
 
-        [DllImport("Kernel32.dll", EntryPoint = "LocalFree")]
+        [DllImport(Kernel32, EntryPoint = nameof(LocalFree))]
         public static extern IntPtr LocalFree(ref Guid guid);
+
+
+        [DllImport(Kernel32, EntryPoint = nameof(LocalFree), SetLastError = true)]
+        public static extern IntPtr LocalFree(IntPtr hMem);
 
         /// <summary>
         /// Destroys an icon and frees any memory the icon occupied.
         /// </summary>
         /// <param name="hIcon">Handle to the icon to be destroyed. The icon must not be in use. </param>
         /// <returns>If the function succeeds, the return value is nonzero. If the function fails, the return value is zero. To get extended error information, call GetLastError. </returns>
-        [DllImport("user32.dll", SetLastError = true)]
+        [DllImport(User32, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool DestroyIcon(IntPtr hIcon);
 
@@ -174,25 +179,12 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
 
         #region Window Handling
 
-        [DllImport("user32.dll", SetLastError = true, EntryPoint = "DestroyWindow", CallingConvention = CallingConvention.StdCall)]
+        [DllImport(User32, SetLastError = true, EntryPoint = nameof(DestroyWindow), CallingConvention = CallingConvention.StdCall)]
         public static extern int DestroyWindow(IntPtr handle);
 
         #endregion
 
         #region General Declarations
-
-        // Various important window messages
-        internal const int UserMessage = 0x0400;
-        internal const int EnterIdleMessage = 0x0121;
-
-        // FormatMessage constants and structs.
-        internal const int FormatMessageFromSystem = 0x00001000;
-
-        // App recovery and restart return codes
-        internal const uint ResultFailed = 0x80004005;
-        internal const uint ResultInvalidArgument = 0x80070057;
-        internal const uint ResultFalse = 1;
-        internal const uint ResultNotFound = 0x80070490;
 
         /// <summary>
         /// Gets the HiWord
@@ -210,6 +202,78 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         public static int GetLoWord(long value) => (short)(value & 0xFFFF);
 
         #endregion
+
+        [DllImport(Kernel32, EntryPoint = "RtlMoveMemory")]
+        public unsafe static extern void CopyMemory([Out] void* dest, [In] void* src,
+#if WIN64
+            [In, MarshalAs(UnmanagedType.U8)] ulong
+#else
+            [In, MarshalAs(UnmanagedType.U4)] uint
+#endif
+             length);
+
+        [DllImport(Kernel32, SetLastError = true)]
+        public static extern IntPtr BeginUpdateResource([In] string pFileName, [In, MarshalAs(UnmanagedType.Bool)] bool bDeleteExistingResources
+            );
+
+        [DllImport(Kernel32, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool EndUpdateResource([In] IntPtr hUpdate, [In, MarshalAs(UnmanagedType.Bool)] bool fDiscard);
+
+        [DllImport(Kernel32, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool UpdateResource([In] IntPtr hUpdate, [In, MarshalAs(UnmanagedType.LPWStr)] string lpType, [In, MarshalAs(UnmanagedType.LPWStr)] string lpName, [In] ushort wLanguage, [In] byte[] lpData, [In] uint cb);
+
+        [DllImport(Kernel32, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool UpdateResource([In] IntPtr hUpdate, [In, MarshalAs(UnmanagedType.U2)] ushort lpType, [In, MarshalAs(UnmanagedType.U2)] ushort lpName, [In] ushort wLanguage, [In] byte[] lpData, [In] uint cb);
+
+        [DllImport(Kernel32)]
+        public static extern uint SizeofResource([In] IntPtr hModule, [In] IntPtr hResInfo);
+
+        [DllImport(Kernel32)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool FreeLibrary([In] IntPtr hLibModule);
+
+        [DllImport(Kernel32)]
+        public static extern IntPtr LockResource([In] IntPtr hResData);
+
+        public static extern IntPtr LoadResource([In] IntPtr hModule, [In] IntPtr hResInfo);
+
+        [DllImport(Kernel32, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool EnumResourceNames([In] IntPtr hModule, [In, MarshalAs(UnmanagedType.LPWStr)] string lpType, [In] EnumResNameProc lpEnumFunc, [In] IntPtr lParam);
+
+        [DllImport(Kernel32, SetLastError = true)]
+        public static extern bool EnumResourceTypes([In] IntPtr hModule, [In] EnumResTypeProc lpEnumFunc, [In] IntPtr lParam);
+
+        [DllImport(Kernel32)]
+        public static extern IntPtr FindResource([In] IntPtr hModule, [In, MarshalAs(UnmanagedType.LPWStr)] string lpName, [In, MarshalAs(UnmanagedType.LPWStr)] string lpType);
+
+        [DllImport(Kernel32)]
+        public static extern IntPtr FindResource([In] IntPtr hModule, [In, MarshalAs(UnmanagedType.U2)] ushort lpName, [In, MarshalAs(UnmanagedType.U2)] ushort lpType);
+
+        [return:MarshalAs(UnmanagedType.Bool)]
+        public static extern bool GetIconInfo([In] IntPtr hIcon,            [Out] out IconInfo piconinfo);
+    }
+
+    [StructLayout(LayoutKind.Sequential, Pack =1)]
+    public struct IconInfo
+    {
+        [MarshalAs(UnmanagedType.Bool)]
+        public bool fIcon;
+        [MarshalAs(UnmanagedType.U4)]
+        public uint xHotspot;
+        [MarshalAs(UnmanagedType.U4)]
+        public uint  yHotspot;
+        public IntPtr hbmMask;
+        public IntPtr hbmColor;
+    }
+
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public delegate bool EnumResNameProc([In] IntPtr hModule, [In, MarshalAs(UnmanagedType.LPWStr)] string lpType, [In, MarshalAs(UnmanagedType.LPWStr)] string lpName, [In] IntPtr lParam);
+
+        public delegate bool EnumResTypeProc([In] IntPtr hModule, [In, MarshalAs(UnmanagedType.LPWStr)] string lpType, [In] IntPtr lParam);
 
         #region GDI and DWM Declarations
 
@@ -230,31 +294,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
             public int Height { get; set; }
         };
 
-        // Enable/disable non-client rendering based on window style.
-        internal const int DWMNCRP_USEWINDOWSTYLE = 0;
-
-        // Disabled non-client rendering; window style is ignored.
-        internal const int DWMNCRP_DISABLED = 1;
-
-        // Enabled non-client rendering; window style is ignored.
-        internal const int DWMNCRP_ENABLED = 2;
-
-        // Enable/disable non-client rendering Use DWMNCRP_* values.
-        internal const int DWMWA_NCRENDERING_ENABLED = 1;
-
-        // Non-client rendering policy.
-        internal const int DWMWA_NCRENDERING_POLICY = 2;
-
-        // Potentially enable/forcibly disable transitions 0 or 1.
-        internal const int DWMWA_TRANSITIONS_FORCEDISABLED = 3;
-
         #endregion
 
         #region Windows OS structs and consts
-
-        public const uint StatusAccessDenied = 0xC0000022;
-
-
 
         public delegate int WNDPROC(IntPtr hWnd,
             uint uMessage,
@@ -262,5 +304,4 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
             IntPtr lParam);
 
         #endregion
-    }
 }
