@@ -10,8 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)IMappingFormatter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)InteropTools.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)LinguisticException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MappingActionAsyncResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MappingAsyncResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MappingDataRange.cs" />

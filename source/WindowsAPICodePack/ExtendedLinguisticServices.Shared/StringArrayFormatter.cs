@@ -19,10 +19,10 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// </summary>
         /// <param name="dataRange">The <see cref="MappingDataRange">MappingDataRange</see> to convert</param>
         /// <returns>The resulting string array</returns>
-        public string[] Format(in MappingDataRange dataRange) => dataRange == null ? throw new ArgumentNullException(nameof(dataRange)) : Encoding.Unicode.GetString(dataRange.GetData()).Split(Separator, StringSplitOptions.RemoveEmptyEntries);
+        public string[] Format(in MappingDataRange dataRange) => Encoding.Unicode.GetString((dataRange?? throw new ArgumentNullException(nameof(dataRange))).GetData()).Split(Separator, StringSplitOptions.RemoveEmptyEntries);
 
         /// <summary>
-        /// Uses <see cref="Format(MappingDataRange)">Format</see> to format all the ranges of the supplied
+        /// Uses <see cref="Format(in MappingDataRange)">Format</see> to format all the ranges of the supplied
         /// <see cref="MappingPropertyBag">MappingPropertyBag</see>.
         /// </summary>
         /// <param name="bag">The property bag to convert.</param>
@@ -33,6 +33,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 
             MappingDataRange[] dataRanges = bag.GetResultRanges();
             string[][] results = new string[dataRanges.Length][];
+
             for (int i = 0; i < results.Length; ++i)
             
                 results[i] = Format(dataRanges[i]);

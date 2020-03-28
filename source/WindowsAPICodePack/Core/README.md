@@ -1,4 +1,4 @@
-Windows-API-Code-Pack
+﻿Windows-API-Code-Pack
 =====================
 
 README
@@ -30,6 +30,8 @@ When you submit a bug:
 Usage notes
 -----------
 
+This assembly/package provides code that can be used directly and also code that can be used in other packages to implement property systems features.
+
 **TaskDialog**
 
 If you get the following exception when you instantiate a `TaskDialog`:
@@ -59,9 +61,3 @@ To fix it, create an application manifest and un-comment the following block sec
 ```
 
 Note: you might have to restart Visual Studio as the DLLs seems to be cached in memory and rebuilding your project doesn't seem to be enough in some cases.
-
-**DirectX**
-
-The DirectX package will work under x86 and x64 configuration platforms but not for AnyCPU platform (because there is no such platform for C++/CLI projects). Consequently, the package will purposefully fail the build and tell you why it did.
-
-Note: package is here for historical reasons, it is highly recommended to use [SharpDX](http://sharpdx.org/) instead.

@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.Guids;
 using Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.ExtendedLinguisticServices;
 
 namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 {
@@ -162,7 +163,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
                 if (servicePointer != IntPtr.Zero)
 
                     // Ignore the result if an exception is being thrown.
-                    Win32NativeMethods.MappingFreeServicesVoid(servicePointer);
+                    ExtendedLinguisticServicesNativeMethods.MappingFreeServicesVoid(servicePointer);
 
                 if (guidPointer != IntPtr.Zero)
 
@@ -212,7 +213,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             var bag = new MappingPropertyBag(options, text);
             try
             {
-                hResult = Win32NativeMethods.MappingRecognizeText(
+                hResult = ExtendedLinguisticServicesNativeMethods.MappingRecognizeText(
                     _service, bag._text.AddrOfPinnedObject(), (uint)length, (uint)index,
                     bag._options, ref bag._win32PropertyBag);
 
@@ -347,7 +348,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 
                 throw new LinguisticException(LinguisticException.InvalidArgs);
 
-            uint hResult = Win32NativeMethods.MappingDoAction(ref bag._win32PropertyBag, (uint)rangeIndex, actionId);
+            uint hResult = ExtendedLinguisticServicesNativeMethods.MappingDoAction(ref bag._win32PropertyBag, (uint)rangeIndex, actionId);
 
             if (hResult != 0)
 

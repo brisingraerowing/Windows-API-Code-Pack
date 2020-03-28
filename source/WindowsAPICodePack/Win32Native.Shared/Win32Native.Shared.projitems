@@ -26,7 +26,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\CoreHelpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\CoreNativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\ExecutionState.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Core\INativeReadOnlyCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PowerManagement\PersonalityGuids.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PowerManagement\PowerManagementNativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PowerManagement\PowerPersonality.cs" />
@@ -39,6 +38,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\TaskDialogs\TaskDialog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\TaskDialogs\TaskDialogProgressBarState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\WindowMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtendedLinguisticServices\InteropTools.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtendedLinguisticServices\LinguisticException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtendedLinguisticServices\Win32NativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtendedLinguisticServices\Win32Structs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\TimeZone.cs" />
