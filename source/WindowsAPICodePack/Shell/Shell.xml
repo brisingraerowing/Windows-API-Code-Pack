@@ -4759,8 +4759,8 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperties.PropertySystem.IsShared">
              <summary>
-             <para>Name:     System.IsShared -- PKEY_IsShared</para>
-             <para>Description: Is this item shared?  This only checks for ACLs that are not inherited.
+             <para>Name:     System.Is.Shared -- PKEY_Is.Shared</para>
+             <para>Description: Is this item .Shared?  This only checks for ACLs that are not inherited.
             </para>
              <para>Type:     Boolean -- VT_BOOL</para>
              <para>FormatID: {EF884C5B-2BFE-41BB-AAE5-76EEDF4F9902}, 100</para>
@@ -5364,8 +5364,8 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperties.PropertySystem.SharedWith">
              <summary>
-             <para>Name:     System.SharedWith -- PKEY_SharedWith</para>
-             <para>Description: Who is the item shared with?
+             <para>Name:     System..SharedWith -- PKEY_.SharedWith</para>
+             <para>Description: Who is the item .Shared with?
             </para>
              <para>Type:     Multivalue String -- VT_VECTOR | VT_LPWSTR  (For variants: VT_ARRAY | VT_BSTR)</para>
              <para>FormatID: {EF884C5B-2BFE-41BB-AAE5-76EEDF4F9902}, 200</para>
@@ -5383,7 +5383,7 @@
         <member name="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperties.PropertySystem.SharingStatus">
              <summary>
              <para>Name:     System.SharingStatus -- PKEY_SharingStatus</para>
-             <para>Description: What is the item's sharing status (not shared, shared, everyone (homegroup or everyone), or private)?
+             <para>Description: What is the item's sharing status (not .Shared, .Shared, everyone (homegroup or everyone), or private)?
             </para>
              <para>Type:     UInt32 -- VT_UI4</para>
              <para>FormatID: {EF884C5B-2BFE-41BB-AAE5-76EEDF4F9902}, 300</para>
@@ -6899,7 +6899,7 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperties.PropertySystemDevices.IsShared">
              <summary>
-             <para>Name:     System.Devices.IsShared -- PKEY_Devices_IsSharedDevice</para>
+             <para>Name:     System.Devices.Is.Shared -- PKEY_Devices_Is.SharedDevice</para>
              <para>Description: If VARIANT_TRUE, the device is not working properly.
             </para>
              <para>Type:     Boolean -- VT_BOOL</para>
@@ -7070,7 +7070,7 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperties.PropertySystemDevices.SharedTooltip">
              <summary>
-             <para>Name:     System.Devices.SharedTooltip -- PKEY_Devices_SharedTooltip</para>
+             <para>Name:     System.Devices..SharedTooltip -- PKEY_Devices_.SharedTooltip</para>
              <para>Description: Tooltip for sharing state
             </para>
              <para>Type:     String -- VT_LPWSTR  (For variants: VT_BSTR)</para>
@@ -11458,12 +11458,12 @@
         </member>
         <member name="E:Microsoft.WindowsAPICodePack.Shell.ShellObjectWatcher.FolderNetworkShared">
             <summary>
-            Raised when a folder is shared on a network.
+            Raised when a folder is .Shared on a network.
             </summary>
         </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Shell.ShellObjectWatcher.FolderNetworkUnshared">
+        <member name="E:Microsoft.WindowsAPICodePack.Shell.ShellObjectWatcher.FolderNetworkUnShared">
             <summary>
-            Raised when a folder is unshared from the network.
+            Raised when a folder is un.Shared from the network.
             </summary>
         </member>
         <member name="E:Microsoft.WindowsAPICodePack.Shell.ShellObjectWatcher.ServerDisconnected">
@@ -11717,7 +11717,7 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.StockIcons.Share">
             <summary>
-             Icon for an overlay indicating shared items.
+             Icon for an overlay indicating .Shared items.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.StockIcons.Link">
@@ -12629,7 +12629,7 @@
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogControl">
             <summary>
-            Defines an abstract class that supports shared functionality for the 
+            Defines an abstract class that supports .Shared functionality for the 
             common file dialog controls.
             </summary>
         </member>

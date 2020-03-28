@@ -8,7 +8,7 @@ namespace Microsoft { namespace WindowsAPICodePack { namespace DirectX { namespa
 using namespace System;
 
     /// <summary>
-    /// Represents a keyed mutex, which allows exclusive access to a shared resource 
+    /// Represents a keyed mutex, which allows exclusive access to a .Shared resource 
     /// that is used by multiple devices.
     /// <para>(Also see DirectX SDK: IDXGIKeyedMutex)</para>
     /// </summary>
@@ -17,7 +17,7 @@ using namespace System;
     {
     public: 
         /// <summary>
-        /// Using a key, acquires exclusive rendering access to a shared resource.
+        /// Using a key, acquires exclusive rendering access to a .Shared resource.
         /// <para>(Also see DirectX SDK: IDXGIKeyedMutex::AcquireSync)</para>
         /// </summary>
         /// <param name="key">A value that indicates which device to give access to. 
@@ -33,7 +33,7 @@ using namespace System;
         void AcquireSync(UInt64 key, DWORD milliseconds);
 
         /// <summary>
-        /// Using a key, releases exclusive rendering access to a shared resource
+        /// Using a key, releases exclusive rendering access to a .Shared resource
         /// <para>(Also see DirectX SDK: IDXGIKeyedMutex::ReleaseSync)</para>
         /// </summary>
         /// <param name="key">A value that indicates which device to give access to. This method will succeed when the device that currently owns the surface calls the KeyedMutex.ReleaseSync method using the same value. This value can be any UINT64 value.</param>

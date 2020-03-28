@@ -701,14 +701,14 @@ namespace Microsoft { namespace WindowsAPICodePack { namespace DirectX { namespa
         }
 
         /// <summary>
-        /// Give a device access to a shared resource created on a different device.
-        /// <para>(Also see DirectX SDK: ID3D11Device::OpenSharedResource)</para>
+        /// Give a device access to a .Shared resource created on a different device.
+        /// <para>(Also see DirectX SDK: ID3D11Device::Open.SharedResource)</para>
         /// </summary>
         /// <param name="resource">The resource handle.</param>
-        /// <typeparam name="T">The type of this shared resource. Must be <see cref="GraphicsObject"/></typeparam>
+        /// <typeparam name="T">The type of this .Shared resource. Must be <see cref="GraphicsObject"/></typeparam>
         /// <returns>The requested resource using the given type.</returns>
         generic <typename T> where T : DirectUnknown
-        T OpenSharedResource(IntPtr resource);
+        T Open.SharedResource(IntPtr resource);
 
         /// <summary>
         /// Gets the feature level of the hardware device.

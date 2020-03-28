@@ -139,8 +139,10 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
 
                     if ((hr ==  (HResult) unchecked((int)0x800700AA) || hr == HResult.Canceled) && NavigationFailed != null)
                     {
-                        NavigationFailedEventArgs args = new NavigationFailedEventArgs();
-                        args.FailedLocation = shellObject;
+                        var args = new NavigationFailedEventArgs
+                        {
+                            FailedLocation = shellObject
+                        };
                         NavigationFailed(this, args);
                     }
                     else

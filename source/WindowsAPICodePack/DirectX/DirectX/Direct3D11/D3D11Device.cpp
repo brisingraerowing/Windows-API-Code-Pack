@@ -1089,13 +1089,13 @@ Direct3D11::SwitchToRef ^ D3DDevice::SwitchToRef::get(void)
 }
 
 generic <typename T> where T : DirectUnknown
-T D3DDevice::OpenSharedResource(IntPtr resource)
+T D3DDevice::Open.SharedResource(IntPtr resource)
 {
     void* tempoutResource = NULL;
 
     GUID guid = CommonUtils::GetGuid(T::typeid);
     
-    Validate::VerifyResult(CastInterface<ID3D11Device>()->OpenSharedResource(static_cast<HANDLE>(resource.ToPointer()), guid, &tempoutResource));
+    Validate::VerifyResult(CastInterface<ID3D11Device>()->Open.SharedResource(static_cast<HANDLE>(resource.ToPointer()), guid, &tempoutResource));
     
     return Utilities::Convert::CreateIUnknownWrapper<T>(static_cast<IUnknown*>(tempoutResource));
 }

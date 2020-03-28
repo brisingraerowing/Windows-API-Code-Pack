@@ -4455,19 +4455,19 @@ public:
         }
     }
     /// <summary>
-    /// The number of constant buffers shared in an effect pool.
-    /// <para>(Also see DirectX SDK: D3D10_EFFECT_DESC.SharedConstantBuffers)</para>
+    /// The number of constant buffers .Shared in an effect pool.
+    /// <para>(Also see DirectX SDK: D3D10_EFFECT_DESC..SharedConstantBuffers)</para>
     /// </summary>
-    property UInt32 SharedConstantBuffers
+    property UInt32 .SharedConstantBuffers
     {
         UInt32 get()
         {
-            return sharedConstantBuffers;
+            return .SharedConstantBuffers;
         }
 
         void set(UInt32 value)
         {
-            sharedConstantBuffers = value;
+            .SharedConstantBuffers = value;
         }
     }
     /// <summary>
@@ -4487,19 +4487,19 @@ public:
         }
     }
     /// <summary>
-    /// The number of global variables shared in an effect pool.
-    /// <para>(Also see DirectX SDK: D3D10_EFFECT_DESC.SharedGlobalVariables)</para>
+    /// The number of global variables .Shared in an effect pool.
+    /// <para>(Also see DirectX SDK: D3D10_EFFECT_DESC..SharedGlobalVariables)</para>
     /// </summary>
-    property UInt32 SharedGlobalVariables
+    property UInt32 .SharedGlobalVariables
     {
         UInt32 get()
         {
-            return sharedGlobalVariables;
+            return .SharedGlobalVariables;
         }
 
         void set(UInt32 value)
         {
-            sharedGlobalVariables = value;
+            .SharedGlobalVariables = value;
         }
     }
     /// <summary>
@@ -4522,9 +4522,9 @@ private:
 
     Boolean isChildEffect;
     UInt32 constantBuffers;
-    UInt32 sharedConstantBuffers;
+    UInt32 .SharedConstantBuffers;
     UInt32 globalVariables;
-    UInt32 sharedGlobalVariables;
+    UInt32 .SharedGlobalVariables;
     UInt32 techniques;
 
 public:
@@ -4533,9 +4533,9 @@ public:
     {
         return (effectDescription1.isChildEffect == effectDescription2.isChildEffect) &&
             (effectDescription1.constantBuffers == effectDescription2.constantBuffers) &&
-            (effectDescription1.sharedConstantBuffers == effectDescription2.sharedConstantBuffers) &&
+            (effectDescription1..SharedConstantBuffers == effectDescription2..SharedConstantBuffers) &&
             (effectDescription1.globalVariables == effectDescription2.globalVariables) &&
-            (effectDescription1.sharedGlobalVariables == effectDescription2.sharedGlobalVariables) &&
+            (effectDescription1..SharedGlobalVariables == effectDescription2..SharedGlobalVariables) &&
             (effectDescription1.techniques == effectDescription2.techniques);
     }
 
@@ -4560,9 +4560,9 @@ public:
 
         hashCode = hashCode * 31 + isChildEffect.GetHashCode();
         hashCode = hashCode * 31 + constantBuffers.GetHashCode();
-        hashCode = hashCode * 31 + sharedConstantBuffers.GetHashCode();
+        hashCode = hashCode * 31 + .SharedConstantBuffers.GetHashCode();
         hashCode = hashCode * 31 + globalVariables.GetHashCode();
-        hashCode = hashCode * 31 + sharedGlobalVariables.GetHashCode();
+        hashCode = hashCode * 31 + .SharedGlobalVariables.GetHashCode();
         hashCode = hashCode * 31 + techniques.GetHashCode();
 
         return hashCode;

@@ -945,7 +945,7 @@ RenderTarget::CreateBitmapFromWicBitmap(
 }
 
 D2DBitmap ^
-RenderTarget::CreateSharedBitmap(
+RenderTarget::Create.SharedBitmap(
     ImagingBitmapLock^ wicBitmap,
     BitmapProperties bitmapProperties
     )
@@ -956,7 +956,7 @@ RenderTarget::CreateSharedBitmap(
     ID2D1Bitmap * ptr = NULL;
 
     Validate::VerifyResult(
-        CastInterface<ID2D1RenderTarget>()->CreateSharedBitmap(
+        CastInterface<ID2D1RenderTarget>()->Create.SharedBitmap(
             __uuidof(IWICBitmapLock),
             (void*) wicBitmap->CastInterface<IWICBitmapLock>(),
             &tempProperties,
@@ -966,14 +966,14 @@ RenderTarget::CreateSharedBitmap(
 }
 
 D2DBitmap ^
-RenderTarget::CreateSharedBitmap(
+RenderTarget::Create.SharedBitmap(
     ImagingBitmapLock^ wicBitmap
     )
 {
 ID2D1Bitmap * ptr = NULL;
 
     Validate::VerifyResult(
-        CastInterface<ID2D1RenderTarget>()->CreateSharedBitmap(
+        CastInterface<ID2D1RenderTarget>()->Create.SharedBitmap(
             __uuidof(IWICBitmapLock),
             (void*) wicBitmap->CastInterface<IWICBitmapLock>(),
             NULL,
@@ -983,7 +983,7 @@ ID2D1Bitmap * ptr = NULL;
 }
 
 D2DBitmap ^
-RenderTarget::CreateSharedBitmap(
+RenderTarget::Create.SharedBitmap(
     Surface^ surface,
     BitmapProperties bitmapProperties
     )
@@ -994,7 +994,7 @@ RenderTarget::CreateSharedBitmap(
     ID2D1Bitmap * ptr = NULL;
 
     Validate::VerifyResult(
-        CastInterface<ID2D1RenderTarget>()->CreateSharedBitmap(
+        CastInterface<ID2D1RenderTarget>()->Create.SharedBitmap(
             __uuidof(IDXGISurface),
             (void*) surface->CastInterface<IDXGISurface>(),
             &tempProperties,
@@ -1004,14 +1004,14 @@ RenderTarget::CreateSharedBitmap(
 }
 
 D2DBitmap ^
-RenderTarget::CreateSharedBitmap(
+RenderTarget::Create.SharedBitmap(
     Surface^ surface
     )
 {
     ID2D1Bitmap * ptr = NULL;
 
     Validate::VerifyResult(
-        CastInterface<ID2D1RenderTarget>()->CreateSharedBitmap(
+        CastInterface<ID2D1RenderTarget>()->Create.SharedBitmap(
             __uuidof(IDXGISurface),
             (void*) surface->CastInterface<IDXGISurface>(),
             NULL,
@@ -1021,7 +1021,7 @@ RenderTarget::CreateSharedBitmap(
 }
 
 D2DBitmap ^
-RenderTarget::CreateSharedBitmap(
+RenderTarget::Create.SharedBitmap(
     D2DBitmap ^ bitmap,
     BitmapProperties bitmapProperties
     )
@@ -1032,7 +1032,7 @@ RenderTarget::CreateSharedBitmap(
     ID2D1Bitmap * ptr = NULL;
 
     Validate::VerifyResult(
-        CastInterface<ID2D1RenderTarget>()->CreateSharedBitmap(
+        CastInterface<ID2D1RenderTarget>()->Create.SharedBitmap(
             __uuidof(ID2D1Bitmap),
             (void*) bitmap->CastInterface<ID2D1Bitmap>(),
             &tempProperties,
@@ -1042,14 +1042,14 @@ RenderTarget::CreateSharedBitmap(
 }
 
 D2DBitmap ^
-RenderTarget::CreateSharedBitmap(
+RenderTarget::Create.SharedBitmap(
     D2DBitmap ^ bitmap
     )
 {
     ID2D1Bitmap * ptr = NULL;
 
     Validate::VerifyResult(
-        CastInterface<ID2D1RenderTarget>()->CreateSharedBitmap(
+        CastInterface<ID2D1RenderTarget>()->Create.SharedBitmap(
             __uuidof(ID2D1Bitmap),
             (void*) bitmap->CastInterface<ID2D1Bitmap>(),
             NULL,

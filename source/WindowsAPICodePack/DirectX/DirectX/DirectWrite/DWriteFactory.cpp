@@ -22,7 +22,7 @@ typedef HRESULT (WINAPI *CreateDWriteFactoryFuncPtr)(DWRITE_FACTORY_TYPE factory
 
 DWriteFactory^ DWriteFactory::CreateFactory()
 {
-    return CreateFactory(DWriteFactoryType::Shared);
+    return CreateFactory(DWriteFactoryType::.Shared);
 }
 
 DWriteFactory^ DWriteFactory::CreateFactory(DWriteFactoryType factoryType)

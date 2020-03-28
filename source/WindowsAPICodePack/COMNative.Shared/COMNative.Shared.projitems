@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>0d3d2287-7d7c-464d-977a-b6663a231389</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>COMNative.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Core\COM\COMInterfaces.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\COM\ISpecifyPropertyPages.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\NetworkList\INetwork.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\NetworkList\INetworkConnection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\NetworkList\INetworkListManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\NetworkList\NetworkListEnums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\NetworkList\NetworkListManagerClass.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\GuidAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\INativePropertiesCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\IValueCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\NativePropertyHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropertyChange.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropertyKeyAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Taskbar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\CallbackInterfaces\IWMDMNotification.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\CallbackInterfaces\IWMDMOperation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\CallbackInterfaces\IWMDMProgress.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ClientInterfaces\IWMDeviceManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ClientInterfaces\IWMDMDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ClientInterfaces\IWMDMDeviceControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ClientInterfaces\IWMDMDeviceSession.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ClientInterfaces\IWMDMEnumDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ClientInterfaces\IWMDMEnumStorage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ClientInterfaces\IWMDMMetaData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ClientInterfaces\IWMDMObjectInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ClientInterfaces\IWMDMRevoked.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ClientInterfaces\IWMDMStorage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ClientInterfaces\IWMDMStorageControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ClientInterfaces\IWMDMStorageGlobals.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\Enums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ServiceProviderInterfaces\IMDServiceProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ServiceProviderInterfaces\IMDSPDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ServiceProviderInterfaces\IMDSPDeviceControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ServiceProviderInterfaces\IMDSPDirectTransfer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ServiceProviderInterfaces\IMDSPEnumDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ServiceProviderInterfaces\IMDSPEnumStorage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ServiceProviderInterfaces\IMDSPObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ServiceProviderInterfaces\IMDSPObjectInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ServiceProviderInterfaces\IMDSPRevoked.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ServiceProviderInterfaces\IMDSPStorage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ServiceProviderInterfaces\IMDSPStorageGlobals.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\Structures.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\ClientInterfaces\IEnumPortableDeviceObjectIDs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\ClientInterfaces\IPortableDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\ClientInterfaces\IPortableDeviceCapabilities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\ClientInterfaces\IPortableDeviceContent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\ClientInterfaces\IPortableDeviceDataStream.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\ClientInterfaces\IPortableDeviceEventCallback.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\ClientInterfaces\IPortableDeviceManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\ClientInterfaces\IPortableDeviceProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\ClientInterfaces\IPortableDevicePropertiesBulk.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\ClientInterfaces\IPortableDevicePropertiesBulkCallback.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\ClientInterfaces\IPortableDeviceResources.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\ClientInterfaces\IPortableDeviceService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\ClientInterfaces\IPortableDeviceServiceCapabilities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\ClientInterfaces\IPortableDeviceServiceManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\ClientInterfaces\IPortableDeviceServiceMethodCallback.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\ClientInterfaces\IPortableDeviceServiceMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\ClientInterfaces\IPortableDeviceUnitsStream.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\CoClasses\ClientClasses\PortableDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\CoClasses\ClientClasses\PortableDeviceManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\CoClasses\CollectionClasses\PortableDeviceKeyCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\CoClasses\CollectionClasses\PortableDevicePropVariantCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\CoClasses\CollectionClasses\PortableDeviceValues.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\CoClasses\CollectionClasses\PortableDeviceValuesCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\CollectionInterfaces\IPortableDeviceKeyCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\CollectionInterfaces\IPortableDevicePropVariantCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\CollectionInterfaces\IPortableDeviceValues.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\CollectionInterfaces\IPortableDeviceValuesCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\Enums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\PortableDeviceException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\PortableDeviceHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableDevices\PropKeys.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sensors\ISensor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sensors\ISensorCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sensors\ISensorDataReport.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sensors\ISensorManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sensors\ISensorManagerEnums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sensors\ISensorManagerEvents.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sensors\SensorPropertyKeys.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ShellExtensionsHandlerNativeMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\DefaultShellImageSizes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\IconReference.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\IntPtrExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMClasses.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMInterfaces.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellEnums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellNativeMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellNativeStructs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellThumbnailEnums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\SortColumn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Dialogs\DialogsCOMClasses.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Dialogs\DialogsCOMInterfaces.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\ExplorerBrowserCOMInterfaces.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\KnownFolders\FolderProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\KnownFolders\FoldersIdentifiers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\KnownFolders\FolderTypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\KnownFolders\KnownFoldersCOMInterfaces.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\KnownFolders\RedirectionCapabilities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\PropertySystem\PropertySystemCOMInterfaces.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\PropertySystem\PropertySystemException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\PropertySystem\PropertySystemNativeMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\PropertySystem\ShellPropertyEnums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\PropertySystem\SystemProperties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\TaskbarCOMInterfaces.cs" />
+  </ItemGroup>
+</Project>

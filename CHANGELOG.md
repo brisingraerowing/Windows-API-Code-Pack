@@ -8,7 +8,7 @@ Please note:
 
 For issue and fixation details, visit https://github.com/pierresprim/Windows-API-Code-Pack/issues
 
-???? 2.0.0-preview2
+03/28/2020 2.0.0-preview2
 ===================
 
 Global

@@ -523,14 +523,14 @@ namespace Microsoft { namespace WindowsAPICodePack { namespace DirectX { namespa
         }
 
         /// <summary>
-        /// Give a device access to a shared resource created on a different device.
-        /// <para>(Also see DirectX SDK: ID3D10Device::OpenSharedResource)</para>
+        /// Give a device access to a .Shared resource created on a different device.
+        /// <para>(Also see DirectX SDK: ID3D10Device::Open.SharedResource)</para>
         /// </summary>
         /// <param name="resource">The resource handle.</param>
-        /// <typeparam name="T">The type of this shared resource. Must be <see cref="GraphicsObject"/></typeparam>
+        /// <typeparam name="T">The type of this .Shared resource. Must be <see cref="GraphicsObject"/></typeparam>
         /// <returns>The requested resource using the given type.</returns>
         generic <typename T> where T : DirectUnknown
-        T OpenSharedResource(IntPtr resource);
+        T Open.SharedResource(IntPtr resource);
 
         /// <summary>
         /// Copy a multisampled resource into a non-multisampled resource. This API is most useful when re-using the resulting rendertarget of one render pass as an input to a second render pass.
@@ -598,7 +598,7 @@ namespace Microsoft { namespace WindowsAPICodePack { namespace DirectX { namespa
         /// <para>(Also see DirectX SDK: D3D10CreateEffectFromMemory)</para>
         /// <param name="binaryEffect">The binary data stream.</param>
         /// <param name="effectCompileOptions">Effect compile options</param>
-        /// <param name="effectPool">A memory space for effect variables shared across effects.</param>
+        /// <param name="effectPool">A memory space for effect variables .Shared across effects.</param>
         virtual Effect^ CreateEffectFromCompiledBinary( BinaryReader^ binaryEffect, int effectCompileOptions, EffectPool^ effectPool );
 
         /// <summary>
@@ -614,7 +614,7 @@ namespace Microsoft { namespace WindowsAPICodePack { namespace DirectX { namespa
         /// <para>(Also see DirectX SDK: D3D10CreateEffectFromMemory)</para>
         /// <param name="inputStream">The input data stream.</param>
         /// <param name="effectCompileOptions">Effect compile options</param>
-        /// <param name="effectPool">A memory space for effect variables shared across effects.</param>
+        /// <param name="effectPool">A memory space for effect variables .Shared across effects.</param>
         Effect^ CreateEffectFromCompiledBinary( Stream^ inputStream, int effectCompileOptions, EffectPool^ effectPool );
 
         /// <summary>

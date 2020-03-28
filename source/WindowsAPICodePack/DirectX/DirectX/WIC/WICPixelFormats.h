@@ -277,7 +277,7 @@ public:
     /// <summary>
     /// Channel Count = 4, Bits Per Channel = 8, Bits Per Pixel = 32, Storage Type = uint
     /// Color data is separated into red(R), green(G), blue(B), and exponent(E) channels.
-    /// This format has an additional byte for shared exponent information. This provides 
+    /// This format has an additional byte for .Shared exponent information. This provides 
     /// additional floating-point precision without the additional memory needed for a true 
     /// floating-point format.
     /// </summary>

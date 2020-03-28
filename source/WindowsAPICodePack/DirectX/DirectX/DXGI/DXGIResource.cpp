@@ -18,11 +18,11 @@ void Resource::EvictionPriority::set(ResourcePriority value)
     Validate::VerifyResult(CastInterface<IDXGIResource>()->SetEvictionPriority(static_cast<UINT>(value)));
 }
 
-IntPtr Resource::SharedHandle::get()
+IntPtr Resource::.SharedHandle::get()
 {
-    HANDLE tempoutSharedHandle;
-    Validate::VerifyResult(CastInterface<IDXGIResource>()->GetSharedHandle(&tempoutSharedHandle));
-    return IntPtr(tempoutSharedHandle);
+    HANDLE tempout.SharedHandle;
+    Validate::VerifyResult(CastInterface<IDXGIResource>()->Get.SharedHandle(&tempout.SharedHandle));
+    return IntPtr(tempout.SharedHandle);
 }
 
 UsageOptions Resource::UsageOptions::get()
