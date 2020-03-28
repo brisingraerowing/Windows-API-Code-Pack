@@ -30,7 +30,7 @@ namespace Microsoft { namespace WindowsAPICodePack { namespace DirectX { namespa
     public: 
         /// <summary>
         /// Creates a DirectWrite factory object that is used for subsequent creation of individual DirectWrite objects.
-        /// This method uses Shared FactoryType.
+        /// This method uses .Shared FactoryType.
         /// <para>(Also see DirectX SDK: DWriteCreateFactory)</para>
         /// </summary>
         /// <returns>The newly created DirectWrite factory object</returns>
@@ -40,7 +40,7 @@ namespace Microsoft { namespace WindowsAPICodePack { namespace DirectX { namespa
         /// Creates a DirectWrite factory object that is used for subsequent creation of individual DirectWrite objects.
         /// <para>(Also see DirectX SDK: DWriteCreateFactory)</para>
         /// </summary>
-        /// <param name="factoryType">Specifies whether the factory object will be shared or isolated.</param>
+        /// <param name="factoryType">Specifies whether the factory object will be .Shared or isolated.</param>
         /// <returns>The newly created DirectWrite factory object</returns>
         static DWriteFactory^ CreateFactory(DWriteFactoryType factoryType);
 

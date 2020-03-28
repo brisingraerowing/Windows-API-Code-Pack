@@ -26,11 +26,11 @@ using namespace System;
         }
 
         /// <summary>
-        /// Get the handle to a shared resource. 
+        /// Get the handle to a .Shared resource. 
         /// The returned handle can be used to open the resource using different Direct3D devices.
-        /// <para>(Also see DirectX SDK: IDXGIResource::GetSharedHandle)</para>
+        /// <para>(Also see DirectX SDK: IDXGIResource::Get.SharedHandle)</para>
         /// </summary>
-        property IntPtr SharedHandle        
+        property IntPtr .SharedHandle        
         {
             IntPtr get();
         }
@@ -50,7 +50,7 @@ using namespace System;
         Resource(void)
         { }
 
-        // REVIEW: unused for now. A Resource instance is created by calling D3DDevice::OpenSharedResource
+        // REVIEW: unused for now. A Resource instance is created by calling D3DDevice::Open.SharedResource
         // which in turn calls CreateIUnknownWrapper(), which in turn calls the default constructor.
         // A better implementation of CreateIUnknownWrapper() would use this constructor instead.
 

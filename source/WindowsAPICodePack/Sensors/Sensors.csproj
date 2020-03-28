@@ -4,17 +4,17 @@
     <AssemblyOriginatorKeyFile>Sensors.snk</AssemblyOriginatorKeyFile>
     <RootNamespace>Microsoft.WindowsAPICodePack.Sensors</RootNamespace>
     <AssemblyName>WinCopies.WindowsAPICodePack.Sensors</AssemblyName>
-    <Version>2.0.0-preview1</Version>
+    <VersionPrefix>2.0.0</VersionPrefix>
+    <VersionSuffix>preview2</VersionSuffix>
     <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
     <Description>WindowsAPICodePack for Sensors</Description>
     <Copyright>Copyright © Microsoft 2009, Copyright © Pierre Sprimont 2020</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>Windows API Code Pack</PackageTags>
     <DocumentationFile>Sensors.xml</DocumentationFile>
-    <Platforms>AnyCPU;x64;x86</Platforms>
   </PropertyGroup>
 
-  <Import Project="..\SensorsShared\SensorsShared.projitems" Label="Shared" />
+  <Import Project="..\Sensors.Shared\Sensors.Shared.projitems" Label="Shared" />
 
   <ItemGroup>
     <None Remove="CustomDictionary.xml" />
@@ -30,7 +30,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\COMNative\COMNative.csproj" />
-    <ProjectReference Include="..\Win32NativeConsts\Win32NativeConsts.csproj" />
+    <ProjectReference Include="..\Win32Native.Consts\Win32Native.Consts.csproj" />
     <ProjectReference Include="..\Win32Native\Win32Native.csproj" />
   </ItemGroup>
 

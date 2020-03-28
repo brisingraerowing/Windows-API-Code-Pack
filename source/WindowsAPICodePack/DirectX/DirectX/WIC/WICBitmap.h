@@ -38,7 +38,7 @@ public:
     /// This is a bitwise combination of BitmapLockOptions for read, write, or read and write access.</param>
     /// <returns>A ImagingBitmapLock object that represents locked memory location.</returns>
     /// <remarks>
-    /// Locks are exclusive for writing but can be shared for reading. 
+    /// Locks are exclusive for writing but can be .Shared for reading. 
     /// You cannot call BitmapSource.CopyPixels() while the ImagingBitmap is locked for writing. 
     /// Doing so will return an error, since locks are exclusive.
     /// </remarks>

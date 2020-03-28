@@ -1,34 +1,25 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <AssemblyName>WinCopies.WindowsAPICodePack.COMNative</AssemblyName>
     <RootNamespace>Microsoft.WindowsAPICodePack.COMNative</RootNamespace>
     <AssemblyOriginatorKeyFile>COMNative.snk</AssemblyOriginatorKeyFile>
-    <Version>2.0.0</Version>
-    <Platforms>AnyCPU;x64;x86</Platforms>
+    <VersionPrefix>2.0.0</VersionPrefix>
+    <VersionSuffix>preview2</VersionSuffix>
     <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>Windows API Code Pack</PackageTags>
     <Description>WindowsAPICodePack COM Interop</Description>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net472|AnyCPU'">
     <DocumentationFile>COMNative.xml</DocumentationFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net472|x86'">
-    <DocumentationFile>COMNative.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net472|x64'">
-    <DocumentationFile>COMNative.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <Import Project="..\COMNativeShared\COMNativeShared.projitems" Label="Shared" />
+  <Import Project="..\COMNative.Shared\COMNative.Shared.projitems" Label="Shared" />
 
   <ItemGroup>
-    <ProjectReference Include="..\Win32NativeConsts\Win32NativeConsts.csproj" />
+    <ProjectReference Include="..\Win32Native.Consts\Win32Native.Consts.csproj" />
     <ProjectReference Include="..\Win32Native\Win32Native.csproj" />
   </ItemGroup>
 

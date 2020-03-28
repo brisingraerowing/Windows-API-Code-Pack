@@ -689,7 +689,7 @@
              Server Message Block (SMB) 3.0 protocol Yes
              SMB 3.0 Transparent Failover (TFO) Yes
              SMB 3.0 with Scale-out File Shares (SO) Yes
-             Cluster Shared Volume File System (CsvFS) Yes
+             Cluster .Shared Volume File System (CsvFS) Yes
              Resilient File System (ReFS) Yes </remarks>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.CopyProgressRoutine">
@@ -1149,7 +1149,7 @@
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.Share">
             <summary>
-            The specified folder objects are shared.
+            The specified folder objects are .Shared.
             </summary>    
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.ReadOnly">
@@ -1586,17 +1586,17 @@
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellObjectChangeTypes.NetShare">
             <summary>
-            A folder on the local computer is being shared via the network. 
+            A folder on the local computer is being .Shared via the network. 
             SHCNF_IDLIST or SHCNF_PATH must be specified in uFlags. 
-            dwItem1 contains the folder that is being shared. 
+            dwItem1 contains the folder that is being .Shared. 
             dwItem2 is not used and should be NULL.
             </summary>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellObjectChangeTypes.NetUnshare">
             <summary>
-            A folder on the local computer is no longer being shared via the network. 
+            A folder on the local computer is no longer being .Shared via the network. 
             SHCNF_IDLIST or SHCNF_PATH must be specified in uFlags. 
-            dwItem1 contains the folder that is no longer being shared. 
+            dwItem1 contains the folder that is no longer being .Shared. 
             dwItem2 is not used and should be NULL.
             </summary>
         </member>
@@ -1888,7 +1888,7 @@
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.StockIconIdentifier.Share">
             <summary>
-             Icon for an overlay indicating shared items.        
+             Icon for an overlay indicating .Shared items.        
             </summary>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.StockIconIdentifier.Link">

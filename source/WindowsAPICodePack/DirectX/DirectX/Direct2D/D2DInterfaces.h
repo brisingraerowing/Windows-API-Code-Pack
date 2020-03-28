@@ -689,15 +689,15 @@ public:
     /// <summary>
     /// Create a D2D bitmap by sharing bits from another resource. The bitmap must be compatible
     /// with the render target for the call to succeed. For example, a ImagingBitmapLock can be
-    /// shared with a software target, or a Graphics surface can be shared with a Graphics render
+    /// .Shared with a software target, or a Graphics surface can be .Shared with a Graphics render
     /// target.
-    /// <para>(Also see DirectX SDK: ID2D1RenderTarget::CreateSharedBitmap)</para>
+    /// <para>(Also see DirectX SDK: ID2D1RenderTarget::Create.SharedBitmap)</para>
     /// </summary>
     /// <param name="wicBitmap">The wicBitmap.</param>
     /// <param name="bitmapProperties">The bitmap properties.</param>
     /// <returns>D2DBitmap</returns>
     D2DBitmap ^
-    CreateSharedBitmap(
+    Create.SharedBitmap(
         ImagingBitmapLock^ wicBitmap,
         BitmapProperties bitmapProperties
         );
@@ -705,29 +705,29 @@ public:
     /// <summary>
     /// Create a D2D bitmap by sharing bits from another resource. The bitmap must be compatible
     /// with the render target for the call to succeed. For example, a ImagingBitmapLock can be
-    /// shared with a software target, or a Graphics surface can be shared with a Graphics render
+    /// .Shared with a software target, or a Graphics surface can be .Shared with a Graphics render
     /// target.
-    /// <para>(Also see DirectX SDK: ID2D1RenderTarget::CreateSharedBitmap)</para>
+    /// <para>(Also see DirectX SDK: ID2D1RenderTarget::Create.SharedBitmap)</para>
     /// </summary>
     /// <param name="wicBitmap">The wicBitmap.</param>
     /// <returns>D2DBitmap</returns>
     D2DBitmap ^
-    CreateSharedBitmap(
+    Create.SharedBitmap(
         ImagingBitmapLock^ wicBitmap
         );
 
     /// <summary>
     /// Create a D2D bitmap by sharing bits from another resource. The bitmap must be compatible
     /// with the render target for the call to succeed. For example, a ImagingBitmapLock can be
-    /// shared with a software target, or a Graphics surface can be shared with a Graphics render
+    /// .Shared with a software target, or a Graphics surface can be .Shared with a Graphics render
     /// target.
-    /// <para>(Also see DirectX SDK: ID2D1RenderTarget::CreateSharedBitmap)</para>
+    /// <para>(Also see DirectX SDK: ID2D1RenderTarget::Create.SharedBitmap)</para>
     /// </summary>
     /// <param name="surface">The Graphics Surface.</param>
     /// <param name="bitmapProperties">The bitmap properties.</param>
     /// <returns>D2DBitmap</returns>
     D2DBitmap ^
-    CreateSharedBitmap(
+    Create.SharedBitmap(
         Surface^ surface,
         BitmapProperties bitmapProperties
         );
@@ -735,29 +735,29 @@ public:
     /// <summary>
     /// Create a D2D bitmap by sharing bits from another resource. The bitmap must be compatible
     /// with the render target for the call to succeed. For example, a ImagingBitmapLock can be
-    /// shared with a software target, or a Graphics surface can be shared with a Graphics render
+    /// .Shared with a software target, or a Graphics surface can be .Shared with a Graphics render
     /// target.
-    /// <para>(Also see DirectX SDK: ID2D1RenderTarget::CreateSharedBitmap)</para>
+    /// <para>(Also see DirectX SDK: ID2D1RenderTarget::Create.SharedBitmap)</para>
     /// </summary>
     /// <param name="surface">The Graphics Surface.</param>
     /// <returns>D2DBitmap</returns>
     D2DBitmap ^
-    CreateSharedBitmap(
+    Create.SharedBitmap(
         Surface^ surface
         );
 
     /// <summary>
     /// Create a D2D bitmap by sharing bits from another resource. The bitmap must be compatible
     /// with the render target for the call to succeed. For example, a ImagingBitmapLock can be
-    /// shared with a software target, or a Graphics surface can be shared with a Graphics render
+    /// .Shared with a software target, or a Graphics surface can be .Shared with a Graphics render
     /// target.
-    /// <para>(Also see DirectX SDK: ID2D1RenderTarget::CreateSharedBitmap)</para>
+    /// <para>(Also see DirectX SDK: ID2D1RenderTarget::Create.SharedBitmap)</para>
     /// </summary>
     /// <param name="bitmap">The Bitmap.</param>
     /// <param name="bitmapProperties">The bitmap properties.</param>
     /// <returns>D2DBitmap</returns>
     D2DBitmap ^
-    CreateSharedBitmap(
+    Create.SharedBitmap(
         D2DBitmap ^ bitmap,
         BitmapProperties bitmapProperties
         );
@@ -765,14 +765,14 @@ public:
     /// <summary>
     /// Create a D2D bitmap by sharing bits from another resource. The bitmap must be compatible
     /// with the render target for the call to succeed. For example, a ImagingBitmapLock can be
-    /// shared with a software target, or a Graphics surface can be shared with a Graphics render
+    /// .Shared with a software target, or a Graphics surface can be .Shared with a Graphics render
     /// target.
-    /// <para>(Also see DirectX SDK: ID2D1RenderTarget::CreateSharedBitmap)</para>
+    /// <para>(Also see DirectX SDK: ID2D1RenderTarget::Create.SharedBitmap)</para>
     /// </summary>
     /// <param name="bitmap">The Bitmap.</param>
     /// <returns>D2DBitmap</returns>
     D2DBitmap ^
-    CreateSharedBitmap(
+    Create.SharedBitmap(
         D2DBitmap ^ bitmap
         );
 

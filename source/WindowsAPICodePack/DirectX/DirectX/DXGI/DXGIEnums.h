@@ -91,9 +91,9 @@ public enum class UsageOptions : Int32
     ShaderInput = DXGI_USAGE_SHADER_INPUT,
     /// <summary>
     /// Share the surface or resource.
-    /// <para>(Also see DirectX SDK: DXGI_USAGE_SHARED)</para>
+    /// <para>(Also see DirectX SDK: DXGI_USAGE_.Shared)</para>
     /// </summary>
-    Shared = DXGI_USAGE_SHARED,
+    .Shared = DXGI_USAGE_.Shared,
 };
 /// <summary>
 /// Identifies if an adapter is local or remote.
@@ -456,9 +456,9 @@ public enum class Format : Int32
     R1UNorm = DXGI_FORMAT_R1_UNORM,
     /// <summary>
     /// A four-component, 32-bit floating-point format. 2.
-    /// <para>(Also see DirectX SDK: DXGI_FORMAT_R9G9B9E5_SHAREDEXP)</para>
+    /// <para>(Also see DirectX SDK: DXGI_FORMAT_R9G9B9E5_.SharedEXP)</para>
     /// </summary>
-    R9G9B9E5SharedExp = DXGI_FORMAT_R9G9B9E5_SHAREDEXP,
+    R9G9B9E5.SharedExp = DXGI_FORMAT_R9G9B9E5_.SharedEXP,
     /// <summary>
     /// A four-component, 32-bit unsigned-normalized integer format. 3
     /// <para>(Also see DirectX SDK: DXGI_FORMAT_R8G8_B8G8_UNORM)</para>
@@ -715,9 +715,9 @@ public enum class Residency : Int32
     FullyResident = DXGI_RESIDENCY_FULLY_RESIDENT,
     /// <summary>
     /// At least some of the resource is located in CPU memory.
-    /// <para>(Also see DirectX SDK: DXGI_RESIDENCY_RESIDENT_IN_SHARED_MEMORY)</para>
+    /// <para>(Also see DirectX SDK: DXGI_RESIDENCY_RESIDENT_IN_.Shared_MEMORY)</para>
     /// </summary>
-    ResidentInSharedMemory = DXGI_RESIDENCY_RESIDENT_IN_SHARED_MEMORY,
+    ResidentIn.SharedMemory = DXGI_RESIDENCY_RESIDENT_IN_.Shared_MEMORY,
     /// <summary>
     /// At least some of the resource has been paged out to the hard drive.
     /// <para>(Also see DirectX SDK: DXGI_RESIDENCY_EVICTED_TO_DISK)</para>

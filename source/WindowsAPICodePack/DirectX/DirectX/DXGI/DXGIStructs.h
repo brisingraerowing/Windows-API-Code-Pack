@@ -684,7 +684,7 @@ public:
         }
     }
     /// <summary>
-    /// The number of bytes of dedicated video memory that are not shared with the CPU.
+    /// The number of bytes of dedicated video memory that are not .Shared with the CPU.
     /// <para>(Also see DirectX SDK: DXGI_ADAPTER_DESC.DedicatedVideoMemory)</para>
     /// </summary>
     property UInt32 DedicatedVideoMemory
@@ -700,7 +700,7 @@ public:
         }
     }
     /// <summary>
-    /// The number of bytes of dedicated system memory that are not shared with the GPU. This memory is allocated from available system memory at boot time.
+    /// The number of bytes of dedicated system memory that are not .Shared with the GPU. This memory is allocated from available system memory at boot time.
     /// <para>(Also see DirectX SDK: DXGI_ADAPTER_DESC.DedicatedSystemMemory)</para>
     /// </summary>
     property UInt32 DedicatedSystemMemory
@@ -716,19 +716,19 @@ public:
         }
     }
     /// <summary>
-    /// The number of bytes of shared system memory. This is the maximum value of system memory that may be consumed by the adapter during operation. Any incidental memory consumed by the driver as it manages and uses video memory is additional.
-    /// <para>(Also see DirectX SDK: DXGI_ADAPTER_DESC.SharedSystemMemory)</para>
+    /// The number of bytes of .Shared system memory. This is the maximum value of system memory that may be consumed by the adapter during operation. Any incidental memory consumed by the driver as it manages and uses video memory is additional.
+    /// <para>(Also see DirectX SDK: DXGI_ADAPTER_DESC..SharedSystemMemory)</para>
     /// </summary>
-    property UInt32 SharedSystemMemory
+    property UInt32 .SharedSystemMemory
     {
         UInt32 get()
         {
-            return sharedSystemMemory;
+            return .SharedSystemMemory;
         }
 
         void set(UInt32 value)
         {
-            sharedSystemMemory = value;
+            .SharedSystemMemory = value;
         }
     }
     /// <summary>
@@ -757,7 +757,7 @@ private:
     UInt32 revision;
     UInt32 dedicatedVideoMemory;
     UInt32 dedicatedSystemMemory;
-    UInt32 sharedSystemMemory;
+    UInt32 .SharedSystemMemory;
     Luid adapterLuid;
 
 internal:
@@ -784,7 +784,7 @@ public:
             (adapterDescription1.revision == adapterDescription2.revision) &&
             (adapterDescription1.dedicatedVideoMemory == adapterDescription2.dedicatedVideoMemory) &&
             (adapterDescription1.dedicatedSystemMemory == adapterDescription2.dedicatedSystemMemory) &&
-            (adapterDescription1.sharedSystemMemory == adapterDescription2.sharedSystemMemory) &&
+            (adapterDescription1..SharedSystemMemory == adapterDescription2..SharedSystemMemory) &&
             (adapterDescription1.adapterLuid == adapterDescription2.adapterLuid);
     }
 
@@ -814,7 +814,7 @@ public:
         hashCode = hashCode * 31 + revision.GetHashCode();
         hashCode = hashCode * 31 + dedicatedVideoMemory.GetHashCode();
         hashCode = hashCode * 31 + dedicatedSystemMemory.GetHashCode();
-        hashCode = hashCode * 31 + sharedSystemMemory.GetHashCode();
+        hashCode = hashCode * 31 + .SharedSystemMemory.GetHashCode();
         hashCode = hashCode * 31 + adapterLuid.GetHashCode();
 
         return hashCode;
@@ -911,7 +911,7 @@ public:
         }
     }
     /// <summary>
-    /// The number of bytes of dedicated video memory that are not shared with the CPU.
+    /// The number of bytes of dedicated video memory that are not .Shared with the CPU.
     /// <para>(Also see DirectX SDK: DXGI_ADAPTER_DESC1.DedicatedVideoMemory)</para>
     /// </summary>
     property UInt32 DedicatedVideoMemory
@@ -927,7 +927,7 @@ public:
         }
     }
     /// <summary>
-    /// The number of bytes of dedicated system memory that are not shared with the GPU. This memory is allocated from available system memory at boot time.
+    /// The number of bytes of dedicated system memory that are not .Shared with the GPU. This memory is allocated from available system memory at boot time.
     /// <para>(Also see DirectX SDK: DXGI_ADAPTER_DESC1.DedicatedSystemMemory)</para>
     /// </summary>
     property UInt32 DedicatedSystemMemory
@@ -943,19 +943,19 @@ public:
         }
     }
     /// <summary>
-    /// The number of bytes of shared system memory. This is the maximum value of system memory that may be consumed by the adapter during operation. Any incidental memory consumed by the driver as it manages and uses video memory is additional.
-    /// <para>(Also see DirectX SDK: DXGI_ADAPTER_DESC1.SharedSystemMemory)</para>
+    /// The number of bytes of .Shared system memory. This is the maximum value of system memory that may be consumed by the adapter during operation. Any incidental memory consumed by the driver as it manages and uses video memory is additional.
+    /// <para>(Also see DirectX SDK: DXGI_ADAPTER_DESC1..SharedSystemMemory)</para>
     /// </summary>
-    property UInt32 SharedSystemMemory
+    property UInt32 .SharedSystemMemory
     {
         UInt32 get()
         {
-            return sharedSystemMemory;
+            return .SharedSystemMemory;
         }
 
         void set(UInt32 value)
         {
-            sharedSystemMemory = value;
+            .SharedSystemMemory = value;
         }
     }
     /// <summary>
@@ -1000,7 +1000,7 @@ private:
     UInt32 revision;
     UInt32 dedicatedVideoMemory;
     UInt32 dedicatedSystemMemory;
-    UInt32 sharedSystemMemory;
+    UInt32 .SharedSystemMemory;
     Luid adapterLuid;
     AdapterOptions flags;
 
@@ -1029,7 +1029,7 @@ public:
             (adapterDescription1.revision == adapterDescription2.revision) &&
             (adapterDescription1.dedicatedVideoMemory == adapterDescription2.dedicatedVideoMemory) &&
             (adapterDescription1.dedicatedSystemMemory == adapterDescription2.dedicatedSystemMemory) &&
-            (adapterDescription1.sharedSystemMemory == adapterDescription2.sharedSystemMemory) &&
+            (adapterDescription1..SharedSystemMemory == adapterDescription2..SharedSystemMemory) &&
             (adapterDescription1.adapterLuid == adapterDescription2.adapterLuid) &&
             (adapterDescription1.flags == adapterDescription2.flags);
     }
@@ -1060,7 +1060,7 @@ public:
         hashCode = hashCode * 31 + revision.GetHashCode();
         hashCode = hashCode * 31 + dedicatedVideoMemory.GetHashCode();
         hashCode = hashCode * 31 + dedicatedSystemMemory.GetHashCode();
-        hashCode = hashCode * 31 + sharedSystemMemory.GetHashCode();
+        hashCode = hashCode * 31 + .SharedSystemMemory.GetHashCode();
         hashCode = hashCode * 31 + adapterLuid.GetHashCode();
         hashCode = hashCode * 31 + flags.GetHashCode();
 
@@ -1886,15 +1886,15 @@ public:
 // REVIEW: how is this ever used?
 
 /// <summary>
-/// Represents a handle to a shared resource.
-/// <para>(Also see DirectX SDK: DXGI_SHARED_RESOURCE)</para>
+/// Represents a handle to a .Shared resource.
+/// <para>(Also see DirectX SDK: DXGI_.Shared_RESOURCE)</para>
 /// </summary>
-public value struct SharedResource 
+public value struct .SharedResource 
 {
 public:
     /// <summary>
-    /// A handle to a shared resource.
-    /// <para>(Also see DirectX SDK: DXGI_SHARED_RESOURCE.Handle)</para>
+    /// A handle to a .Shared resource.
+    /// <para>(Also see DirectX SDK: DXGI_.Shared_RESOURCE.Handle)</para>
     /// </summary>
     property IntPtr Handle
     {
@@ -1914,9 +1914,9 @@ private:
 
 internal:
     CA_SUPPRESS_MESSAGE("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")
-    SharedResource(const DXGI_SHARED_RESOURCE & sharedResource)
+    .SharedResource(const DXGI_.Shared_RESOURCE & .SharedResource)
     {
-        Handle = IntPtr(sharedResource.Handle);
+        Handle = IntPtr(.SharedResource.Handle);
     }
 };
 

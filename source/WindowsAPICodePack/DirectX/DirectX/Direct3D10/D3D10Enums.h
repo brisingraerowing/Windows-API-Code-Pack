@@ -2768,17 +2768,17 @@ public enum class MessageId : Int32
     /// </summary>
     DeviceRemovalProcessNotAtFault = D3D10_MESSAGE_ID_DEVICE_REMOVAL_PROCESS_NOT_AT_FAULT,
     /// <summary>
-    /// <para>(Also see DirectX SDK: D3D10_MESSAGE_ID_DEVICE_OPEN_SHARED_RESOURCE_INVALIDARG_RETURN)</para>
+    /// <para>(Also see DirectX SDK: D3D10_MESSAGE_ID_DEVICE_OPEN_.Shared_RESOURCE_INVALIDARG_RETURN)</para>
     /// </summary>
-    DeviceOpenSharedResourceInvalidArgReturn = D3D10_MESSAGE_ID_DEVICE_OPEN_SHARED_RESOURCE_INVALIDARG_RETURN,
+    DeviceOpen.SharedResourceInvalidArgReturn = D3D10_MESSAGE_ID_DEVICE_OPEN_.Shared_RESOURCE_INVALIDARG_RETURN,
     /// <summary>
-    /// <para>(Also see DirectX SDK: D3D10_MESSAGE_ID_DEVICE_OPEN_SHARED_RESOURCE_OUTOFMEMORY_RETURN)</para>
+    /// <para>(Also see DirectX SDK: D3D10_MESSAGE_ID_DEVICE_OPEN_.Shared_RESOURCE_OUTOFMEMORY_RETURN)</para>
     /// </summary>
-    DeviceOpenSharedResourceOutOfMemoryReturn = D3D10_MESSAGE_ID_DEVICE_OPEN_SHARED_RESOURCE_OUTOFMEMORY_RETURN,
+    DeviceOpen.SharedResourceOutOfMemoryReturn = D3D10_MESSAGE_ID_DEVICE_OPEN_.Shared_RESOURCE_OUTOFMEMORY_RETURN,
     /// <summary>
-    /// <para>(Also see DirectX SDK: D3D10_MESSAGE_ID_DEVICE_OPEN_SHARED_RESOURCE_BADINTERFACE_RETURN)</para>
+    /// <para>(Also see DirectX SDK: D3D10_MESSAGE_ID_DEVICE_OPEN_.Shared_RESOURCE_BADINTERFACE_RETURN)</para>
     /// </summary>
-    DeviceOpenSharedResourceBadInterfaceReturn = D3D10_MESSAGE_ID_DEVICE_OPEN_SHARED_RESOURCE_BADINTERFACE_RETURN,
+    DeviceOpen.SharedResourceBadInterfaceReturn = D3D10_MESSAGE_ID_DEVICE_OPEN_.Shared_RESOURCE_BADINTERFACE_RETURN,
     /// <summary>
     /// <para>(Also see DirectX SDK: D3D10_MESSAGE_ID_DEVICE_DRAW_VIEWPORT_NOT_SET)</para>
     /// </summary>
@@ -3269,10 +3269,10 @@ public enum class MiscellaneousResourceOptions : Int32
     /// </summary>
     GenerateMips = D3D10_RESOURCE_MISC_GENERATE_MIPS,
     /// <summary>
-    /// Enables the sharing of resource data between two or more Direct3D devices. The only resources that can be shared are 2D non-mipmapped textures.
-    /// <para>(Also see DirectX SDK: D3D10_RESOURCE_MISC_SHARED)</para>
+    /// Enables the sharing of resource data between two or more Direct3D devices. The only resources that can be .Shared are 2D non-mipmapped textures.
+    /// <para>(Also see DirectX SDK: D3D10_RESOURCE_MISC_.Shared)</para>
     /// </summary>
-    Shared = D3D10_RESOURCE_MISC_SHARED,
+    .Shared = D3D10_RESOURCE_MISC_.Shared,
     /// <summary>
     /// Enables an application to create a cube texture from a Texture2DArray that contains 6 textures.
     /// <para>(Also see DirectX SDK: D3D10_RESOURCE_MISC_TEXTURECUBE)</para>
@@ -3280,9 +3280,9 @@ public enum class MiscellaneousResourceOptions : Int32
     TextureCube = D3D10_RESOURCE_MISC_TEXTURECUBE,
     /// <summary>
     /// TBD
-    /// <para>(Also see DirectX SDK: D3D10_RESOURCE_MISC_SHARED_KEYEDMUTEX)</para>
+    /// <para>(Also see DirectX SDK: D3D10_RESOURCE_MISC_.Shared_KEYEDMUTEX)</para>
     /// </summary>
-    SharedKeyedMutex = D3D10_RESOURCE_MISC_SHARED_KEYEDMUTEX,
+    .SharedKeyedMutex = D3D10_RESOURCE_MISC_.Shared_KEYEDMUTEX,
     /// <summary>
     /// Enables a surface to be used for GDI interoperability.  Setting this flag enables rendering on the surface via Surface1.GetDC.
     /// <para>(Also see DirectX SDK: D3D10_RESOURCE_MISC_GDI_COMPATIBLE)</para>

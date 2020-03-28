@@ -124,7 +124,7 @@ ref class ShaderResourceView1;
         /// </summary>
         /// <param name="binaryEffect">The binary data stream.</param>
         /// <param name="effectCompileOptions">Effect compile options</param>
-        /// <param name="effectPool">A memory space for effect variables shared across effects.</param>
+        /// <param name="effectPool">A memory space for effect variables .Shared across effects.</param>
         virtual Effect^ CreateEffectFromCompiledBinary( BinaryReader^ binaryEffect, int effectCompileOptions, EffectPool^ effectPool ) override;
 
     internal:
