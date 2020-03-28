@@ -23,7 +23,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 
             if ((data.Length & 1) != 0)
             
-                throw new LinguisticException(LinguisticException.InvalidArgs);
+                throw new LinguisticException(Win32Native.Consts.ExtendedLinguisticServices.InvalidArgs);
 
             int nullIndex = data.Length;
 

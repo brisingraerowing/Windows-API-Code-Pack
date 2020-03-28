@@ -15,7 +15,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 using Microsoft.WindowsAPICodePack.Internal;
 
-using static Microsoft.WindowsAPICodePack.Win32Native.Taskbar.Consts.TabbedThumbnail;
+using static Microsoft.WindowsAPICodePack.Win32Native.Consts.Taskbar.TabbedThumbnail;
 using Microsoft.WindowsAPICodePack.Win32Native.GDI;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar

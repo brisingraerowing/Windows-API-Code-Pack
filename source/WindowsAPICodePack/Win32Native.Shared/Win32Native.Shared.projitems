@@ -44,6 +44,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExtendedLinguisticServices\Win32Structs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\TimeZone.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\DesktopWindowManagerNativeMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtendedLinguisticServices\MappingResultState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\ExplorerBrowser\ExplorerBrowserNativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\KnownFolders\DefinitionOptions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\KnownFolders\FolderCategory.cs" />

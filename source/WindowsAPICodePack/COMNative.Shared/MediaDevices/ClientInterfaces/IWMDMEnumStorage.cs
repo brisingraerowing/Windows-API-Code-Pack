@@ -2,7 +2,6 @@
 
 using Microsoft.WindowsAPICodePack.COMNative;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.MediaDevices;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;

@@ -49,7 +49,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.ExtendedLinguisticServices
         {
             if (strPtr == IntPtr.Zero && count != 0)
             
-                throw new LinguisticException(LinguisticException.InvalidArgs);
+                throw new LinguisticException(Win32Native.Consts.ExtendedLinguisticServices.InvalidArgs);
             
             string[] retVal = new string[count];
 

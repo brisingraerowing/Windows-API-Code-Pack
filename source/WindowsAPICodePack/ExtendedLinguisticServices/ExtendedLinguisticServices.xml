@@ -49,49 +49,6 @@
             <returns>An array of T objects which represent the data contained inside each <see cref="T:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingDataRange">MappingDataRange</see> of the
             provided <see cref="T:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingPropertyBag">MappingPropertyBag</see> object.</returns>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.LinguisticException">
-            <summary>
-            This exception is thrown by the managed wrappers of ELS when the underlying
-            unmanaged implementation returns an HResult which is not S_OK (0).
-            This exception is also thrown when the managed wrapper detects an exceptional
-            condition which causes it to fail. Please note that other .NET exceptions are also
-            possible to be thrown from the ELS managed wrappers.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.LinguisticException.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.LinguisticException">LinguisticException</see> class
-            with the last Win32 error that occurred.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.LinguisticException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.LinguisticException">LinguisticException</see> class
-             with the specified context and the serialization information.
-            </summary>
-            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo">SerializationInfo</see> associated with this exception.</param>
-            <param name="context">A <see cref="T:System.Runtime.Serialization.StreamingContext">StreamingContext</see> that represents the context of this exception.</param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.LinguisticException.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.LinguisticException">LinguisticException</see> 
-            class with the specified detailed description.
-            </summary>
-            <param name="message">A detailed description of the error.</param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.LinguisticException.#ctor(System.String,System.Exception)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.LinguisticException">LinguisticException</see> class
-            with the specified detailed description and the specified exception.
-            </summary>
-            <param name="message">A detailed description of the error.</param>
-            <param name="innerException">A reference to the inner exception that is the cause of this exception.</param>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.LinguisticException.ResultState">
-            <summary>
-            Gets the MappingResultState describing the error condition for this exception.
-            </summary>
-        </member>
         <member name="T:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingActionAsyncResult">
             <summary>
             A <see cref="T:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingAsyncResult">MappingAsyncResult</see> subclass to be used only for asynchronous calls to service actions.
@@ -422,59 +379,6 @@
             Gets the options parameter for MappingService.RecognizeText or MappingService.BeginRecognizeText.
             </summary>        
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingResultState">
-            <summary>
-            This class serves as the result status of asynchronous calls to ELS and
-            as the result status of linguistic exceptions.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingResultState.ErrorMessage">
-            <summary>
-            Gets a human-readable description of the HResult error code,
-            as constructed by <see cref="T:System.ComponentModel.Win32Exception">Win32Exception</see>.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingResultState.HResult">
-            <summary>
-            Gets the HResult error code associated with this structure.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingResultState.GetHashCode">
-            <summary>
-            Uses the HResult param as the object hashcode.
-            </summary>
-            <returns>An integer hashcode</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingResultState.Equals(System.Object)">
-            <summary>
-            Compares an Object for value equality.
-            </summary>
-            <param name="obj">Object to compare.</param>
-            <returns>True if obj is equal to this instance, false otherwise.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingResultState.Equals(Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingResultState)">
-            <summary>
-            Compares a <see cref="T:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingResultState">MappingResultState</see> obj for value equality.
-            </summary>
-            <param name="obj"><see cref="T:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingResultState">MappingResultState</see> to compare.</param>
-            <returns>True if obj is equal to this instance, false otherwise.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingResultState.op_Equality(Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingResultState,Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingResultState)">
-            <summary>
-            Compares two <see cref="T:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingResultState">MappingResultState</see> objs for value equality.
-            </summary>
-            <param name="one">First <see cref="T:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingResultState">MappingResultState</see> to compare.</param>
-            <param name="two">Second <see cref="T:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingResultState">MappingResultState</see> to compare.</param>
-            <returns>True if the two <see cref="T:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingResultState">MappingResultStates</see> are equal, false otherwise.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingResultState.op_Inequality(Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingResultState,Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingResultState)">
-            <summary>
-            Compares two <see cref="T:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingResultState">MappingResultState</see> objs against value equality.
-            </summary>
-            <param name="one">First <see cref="T:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingResultState">MappingResultState</see> to compare.</param>
-            <param name="two">Second <see cref="T:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingResultState">MappingResultState</see> to compare.</param>
-            <returns>True if the two <see cref="T:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingResultState">MappingResultStates</see> are not equal, false otherwise.</returns>
-        </member>
         <member name="T:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingService">
             <summary>
             Represents an ELS service.
@@ -764,7 +668,7 @@
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.StringArrayFormatter.FormatAll(Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingPropertyBag@)">
             <summary>
-            Uses <see cref="!:Format(MappingDataRange)">Format</see> to format all the ranges of the supplied
+            Uses <see cref="M:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.StringArrayFormatter.Format(Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingDataRange@)">Format</see> to format all the ranges of the supplied
             <see cref="T:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingPropertyBag">MappingPropertyBag</see>.
             </summary>
             <param name="bag">The property bag to convert.</param>

@@ -51,14 +51,14 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// render properly on top of an AeroGlass frame. </remarks>
         public void ExcludeControlFromAeroGlass(Control control)
         {
-            if (control == null) { throw new ArgumentNullException("control"); }
+            if (control == null) throw new ArgumentNullException(nameof(control));
 
             if (AeroGlassCompositionEnabled)
             {
                 Rectangle clientScreen = RectangleToScreen(ClientRectangle);
                 Rectangle controlScreen = control.RectangleToScreen(control.ClientRectangle);
 
-                Margins margins = new Margins
+                var margins = new Margins
                 {
                     LeftWidth = controlScreen.Left - clientScreen.Left,
                     RightWidth = clientScreen.Right - controlScreen.Right,
@@ -67,7 +67,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 };
 
                 // Extend the Frame into client area
-                DesktopWindowManager.DwmExtendFrameIntoClientArea(Handle, ref margins);
+                _ = DesktopWindowManager.DwmExtendFrameIntoClientArea(Handle, ref margins);
             }
         }
 
@@ -92,8 +92,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         protected override void WndProc(ref System.Windows.Forms.Message m)
         {
-            if (m.Msg == Win32Native.Shell.Consts.DesktopWindowManager.DWMMessages.WM_DWMCOMPOSITIONCHANGED
-                || m.Msg == Win32Native.Shell.Consts.DesktopWindowManager.DWMMessages.WM_DWMNCRENDERINGCHANGED)
+            if (m.Msg == Win32Native.Consts.Shell.DesktopWindowManager.DWMMessages.WM_DWMCOMPOSITIONCHANGED
+                || m.Msg == Win32Native.Consts.Shell.DesktopWindowManager.DWMMessages.WM_DWMNCRENDERINGCHANGED)
             {
                 if (AeroGlassCompositionChanged != null)
 
@@ -124,10 +124,10 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (DesignMode == false)
 
-                if (AeroGlassCompositionEnabled && e != null)
+                if (AeroGlassCompositionEnabled)
 
                     // Paint the all the regions black to enable glass
-                    e.Graphics.FillRectangle(Brushes.Black, this.ClientRectangle);
+                    e?.Graphics.FillRectangle(Brushes.Black, ClientRectangle);
 
         }
 

@@ -16,7 +16,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)MappingEnumOptions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MappingPropertyBag.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MappingRecognizeAsyncResult.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MappingResultState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MappingService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NullTerminatedStringFormatter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ServiceCache.cs" />

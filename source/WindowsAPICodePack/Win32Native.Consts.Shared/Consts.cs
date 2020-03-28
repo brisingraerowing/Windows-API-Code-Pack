@@ -27,6 +27,14 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Consts
 
     }
 
+    public static class ExtendedLinguisticServices
+    {
+        // Common HResult values.
+        public const uint InvalidArgs = 0x80070057;
+        public const uint Fail = 0x80004005;
+        public const uint InvalidData = 0x8007000D;
+    }
+
     public static class DllNames
 
     {
@@ -41,11 +49,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Consts
 
     }
 
-}
-
-namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
-{
-    public static class Consts
+    public static class PortableDevices
     {
 
         /****************************************************************************
@@ -116,125 +120,110 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PortableDevices
 
         }
     }
-}
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.Controls.ExplorerBrowserViewDispatchIds
-{
-
-    public static class Consts
+    namespace Controls
     {
-        public const int SelectionChanged = 200;
-        public const int ContentsChanged = 207;
-        public const int FileListEnumDone = 201;
-        public const int SelectedItemChanged = 220;
+
+        public static class ExplorerBrowserViewDispatchIds
+        {
+            public const int SelectionChanged = 200;
+            public const int ContentsChanged = 207;
+            public const int FileListEnumDone = 201;
+            public const int SelectedItemChanged = 220;
+        }
+
     }
 
-}
-
-namespace Microsoft.WindowsAPICodePack.Win32Native.Taskbar.Consts
-
-{
-
-    public static class Common
+    public static class Taskbar
 
     {
 
         public const int WmCommand = 0x0111;
 
+        public static class TabbedThumbnail
+
+        {
+
+            public const uint WaActive = 1;
+            public const uint WaClickActive = 2;
+
+            public const int ScClose = 0xF060;
+            public const int ScMaximize = 0xF030;
+            public const int ScMinimize = 0xF020;
+
+        }
+
     }
-
-    public static class TabbedThumbnail
-
-    {
-
-        public const uint WaActive = 1;
-        public const uint WaClickActive = 2;
-
-        public const int ScClose = 0xF060;
-        public const int ScMaximize = 0xF030;
-        public const int ScMinimize = 0xF020;
-
-    }
-
-}
-
-namespace Microsoft.WindowsAPICodePack.Win32Native.MediaDevices
-{
-    public static class Consts
+    public static class MediaDevices
     {
         public const short WMDMID_LENGTH = 128;
     }
-}
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.Consts
-
-{
-
-    public static class Common
+    public static class Shell
 
     {
 
         public const int MaxPath = 260;
 
-    }
+        public static class DesktopWindowManager
 
-    public static class DesktopWindowManager
-
-    {
-
-        public const int DisplayFrame = 0x00000001;
-
-        public const int ForceIconicRepresentation = 7;
-        public const int HasIconicBitmap = 10;
-
-        public static class DWMMessages
         {
-            public const int WM_DWMCOMPOSITIONCHANGED = 0x031E;
-            public const int WM_DWMNCRENDERINGCHANGED = 0x031F;
 
-            /// <summary>
-            /// Enable/disable non-client rendering based on window style.
-            /// </summary>
-            public const int DWMNCRP_USEWINDOWSTYLE = 0;
+            public const int DisplayFrame = 0x00000001;
 
-            /// <summary>
-            /// Disabled non-client rendering; window style is ignored.
-            /// </summary>
-            public const int DWMNCRP_DISABLED = 1;
+            public const int ForceIconicRepresentation = 7;
+            public const int HasIconicBitmap = 10;
 
-            /// <summary>
-            /// Enabled non-client rendering; window style is ignored.
-            /// </summary>
-            public const int DWMNCRP_ENABLED = 2;
+            public static class DWMMessages
+            {
+                public const int WM_DWMCOMPOSITIONCHANGED = 0x031E;
+                public const int WM_DWMNCRENDERINGCHANGED = 0x031F;
 
-            /// <summary>
-            /// Enable/disable non-client rendering Use DWMNCRP_* values.
-            /// </summary>
-            public const int DWMWA_NCRENDERING_ENABLED = 1;
+                /// <summary>
+                /// Enable/disable non-client rendering based on window style.
+                /// </summary>
+                public const int DWMNCRP_USEWINDOWSTYLE = 0;
 
-            /// <summary>
-            /// Non-client rendering policy.
-            /// </summary>
-            public const int DWMWA_NCRENDERING_POLICY = 2;
+                /// <summary>
+                /// Disabled non-client rendering; window style is ignored.
+                /// </summary>
+                public const int DWMNCRP_DISABLED = 1;
 
-            /// <summary>
-            /// Potentially enable/forcibly disable transitions 0 or 1.
-            /// </summary>
-            public const int DWMWA_TRANSITIONS_FORCEDISABLED = 3;
+                /// <summary>
+                /// Enabled non-client rendering; window style is ignored.
+                /// </summary>
+                public const int DWMNCRP_ENABLED = 2;
+
+                /// <summary>
+                /// Enable/disable non-client rendering Use DWMNCRP_* values.
+                /// </summary>
+                public const int DWMWA_NCRENDERING_ENABLED = 1;
+
+                /// <summary>
+                /// Non-client rendering policy.
+                /// </summary>
+                public const int DWMWA_NCRENDERING_POLICY = 2;
+
+                /// <summary>
+                /// Potentially enable/forcibly disable transitions 0 or 1.
+                /// </summary>
+                public const int DWMWA_TRANSITIONS_FORCEDISABLED = 3;
+            }
+
         }
 
-    }
+        public static class CommandLinkDefinitions
 
-    public static class CommandLinkDefinitions
+        {
 
-    {
+            public const int CommandLink = 0x0000000E;
+            public const uint SetNote = 0x00001609;
+            public const uint GetNote = 0x0000160A;
+            public const uint GetNoteLength = 0x0000160B;
+            public const uint SetShield = 0x0000160C;
 
-        public const int CommandLink = 0x0000000E;
-        public const uint SetNote = 0x00001609;
-        public const uint GetNote = 0x0000160A;
-        public const uint GetNoteLength = 0x0000160B;
-        public const uint SetShield = 0x0000160C;
+        }
 
-    }
+}
 
 }

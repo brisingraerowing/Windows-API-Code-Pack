@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.Win32Native.ExtendedLinguisticServices;
 using System;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
@@ -184,8 +185,8 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             if (_servicePointers != null)
             {
                 foreach (IntPtr servicePtr in _servicePointers)
-                
-                    Win32NativeMethods.MappingFreeServicesVoid(servicePtr);
+
+                    ExtendedLinguisticServicesNativeMethods.MappingFreeServicesVoid(servicePtr);
                 
                 _servicePointers = null;
                 _guidToService = null;

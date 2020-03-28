@@ -52,7 +52,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 
             if (_win32DataRange._data == IntPtr.Zero)
 
-                throw new LinguisticException(LinguisticException.InvalidData);
+                throw new LinguisticException(Win32Native.Consts.ExtendedLinguisticServices.InvalidData);
 
             Marshal.Copy(_win32DataRange._data, data, 0, (int)_win32DataRange._dataSize);
             return data;

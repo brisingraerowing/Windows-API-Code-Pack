@@ -59,7 +59,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
                     };
                     Marshal.StructureToPtr(serviceIdentifier, guidPtr, false);
                     enumOptions._pGuid = guidPtr;
-                    hresult = Win32NativeMethods.MappingGetServices(ref enumOptions, ref servicePointer, ref serviceCount);
+                    hresult = ExtendedLinguisticServicesNativeMethods.MappingGetServices(ref enumOptions, ref servicePointer, ref serviceCount);
 
                     if (hresult != 0)
 
@@ -71,7 +71,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 
                     if (serviceCount != 1)
 
-                        if (Win32NativeMethods.MappingFreeServices(servicePointer) == 0)
+                        if (ExtendedLinguisticServicesNativeMethods.MappingFreeServices(servicePointer) == 0)
 
                             throw new InvalidOperationException();
 
@@ -89,7 +89,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
                     if (servicePointer != IntPtr.Zero)
 
                         // Ignore the result if an exception is being thrown.
-                        Win32NativeMethods.MappingFreeServicesVoid(servicePointer);
+                        ExtendedLinguisticServicesNativeMethods.MappingFreeServicesVoid(servicePointer);
 
                     if (guidPtr != IntPtr.Zero)
 
@@ -134,11 +134,11 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
                         Marshal.StructureToPtr(guid, guidPointer, false);
                         enumOptions._pGuid = guidPointer;
                     }
-                    hresult = Win32NativeMethods.MappingGetServices(ref enumOptions, ref servicePointer, ref serviceCount);
+                    hresult = ExtendedLinguisticServicesNativeMethods.MappingGetServices(ref enumOptions, ref servicePointer, ref serviceCount);
                 }
                 else
 
-                    hresult = Win32NativeMethods.MappingGetServices(IntPtr.Zero, ref servicePointer, ref serviceCount);
+                    hresult = ExtendedLinguisticServicesNativeMethods.MappingGetServices(IntPtr.Zero, ref servicePointer, ref serviceCount);
 
                 if (hresult != 0)
 
@@ -346,7 +346,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 
             if (rangeIndex < 0)
 
-                throw new LinguisticException(LinguisticException.InvalidArgs);
+                throw new LinguisticException(Win32Native.Consts.ExtendedLinguisticServices.InvalidArgs);
 
             uint hResult = ExtendedLinguisticServicesNativeMethods.MappingDoAction(ref bag._win32PropertyBag, (uint)rangeIndex, actionId);
 

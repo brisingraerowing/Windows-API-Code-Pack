@@ -11,7 +11,6 @@ using WinCopies.Collections;
 using IDisposable = WinCopies.Util.DotNetFix.IDisposable;
 using static WinCopies.Util.Util;
 using System.Collections.ObjectModel;
-using static Microsoft.WindowsAPICodePack.PropertySystem.CollectionBridgeCollectionHelper;
 using Microsoft.WindowsAPICodePack.COMNative.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.PropertySystem
@@ -96,7 +95,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
     [Serializable]
     [DebuggerDisplay("Count = {Count}")]
-    public class Collection<T> : IDisposable, IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUIntIndexedList, IUIntIndexedCollection, IReadOnlyUIntIndexedList<T>, IReadOnlyUIntIndexedCollection<T>, WinCopies.Collections.IUIntIndexedCollection<T>, ICollection<T>, ICollectionBridgeCollectionInternal, ICollectionBridgeCollection
+    public class Collection<T> : IDisposable, IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUIntIndexedList, IUIntIndexedCollection, IReadOnlyUIntIndexedList<T>, IReadOnlyUIntIndexedCollection<T>, WinCopies.Collections.IUIntIndexedCollection<T>, ICollection<T>
 
     {
 
@@ -143,18 +142,6 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         protected internal INativeCollection<T> Items { get { ThrowIfDisposed(); return items; } private set { ThrowIfDisposed(); items = value; } }
 
         public Collection(in INativeCollection<T> items) => this.items = (items ?? throw new ArgumentNullException(nameof(items))).IsReadOnly ? throw new ArgumentException("The given collection is read-only.") : items.IsDisposed ? throw new ObjectDisposedException(nameof(items)) : items;
-
-        private WinCopies.Util.DotNetFix.IDisposable _collectionBridge;
-
-        private IDisposable CollectionBridge { get { ThrowIfDisposed(); return _collectionBridge.IsDisposed ? throw new ObjectDisposedException(nameof(CollectionBridge)) : _collectionBridge; } }
-
-        IDisposable ICollectionBridgeCollectionInternal.CollectionBridge => CollectionBridge;
-
-        public Collection(in INativeCollection<T> items, in IDisposable collectionBridge) : this(items) => _collectionBridge = collectionBridge ?? throw new ArgumentNullException(nameof(collectionBridge));
-
-        object ICollectionBridgeCollectionInternal.GetNativeItems(in object collectionBridge) => GetNativeItems(this, collectionBridge);
-
-        object ICollectionBridgeCollectionInternal.Items => Items;
 
         public T GetAt(ref uint index) => GetItem(ref index);
 
@@ -258,8 +245,6 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             {
                 if (disposing)
                 {
-                    _collectionBridge = null;
-
                     Items.Dispose();
 
                     Items = null;
@@ -440,7 +425,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
     [Serializable]
     [DebuggerDisplay("Count = {Count}")]
-    public class ReadOnlyCollection<T> : IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUIntIndexedList, IUIntIndexedCollection, IReadOnlyUIntIndexedList<T>, IReadOnlyUIntIndexedCollection<T>, WinCopies.Collections.IUIntIndexedCollection<T>, WinCopies.Util.DotNetFix.IDisposable, ICollection<T>, ICollectionBridgeCollectionInternal, ICollectionBridgeCollection
+    public class ReadOnlyCollection<T> : IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUIntIndexedList, IUIntIndexedCollection, IReadOnlyUIntIndexedList<T>, IReadOnlyUIntIndexedCollection<T>, WinCopies.Collections.IUIntIndexedCollection<T>, WinCopies.Util.DotNetFix.IDisposable, ICollection<T>
     {
 
         public bool IsDisposed { get; private set; }
@@ -558,30 +543,15 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             }
         }
 
-        object ICollectionBridgeCollectionInternal.Items => Items;
-
         public ReadOnlyCollection(in INativeReadOnlyCollection<T> list) => _items = (list ?? throw new ArgumentNullException(nameof(list))).IsDisposed ? throw new ObjectDisposedException(nameof(list)) : list;
 
         public ReadOnlyCollection(in Collection<T> collection) : this(collection.Items) { }
 
         private IDisposable _collectionBridge;
 
-        IDisposable ICollectionBridgeCollectionInternal.CollectionBridge
-        {
-            get
-            {
-
-                ThrowIfDisposed();
-
-                return _collectionBridge;
-            }
-        }
-
         public ReadOnlyCollection(in INativeReadOnlyCollection<T> list, IDisposable collectionBridge) : this(list) => _collectionBridge = collectionBridge ?? throw new ArgumentNullException(nameof(collectionBridge));
 
         public ReadOnlyCollection(in Collection<T> collection, IDisposable collectionBridge) : this(collection) => _collectionBridge = collectionBridge ?? throw new ArgumentNullException(nameof(collectionBridge));
-
-        object ICollectionBridgeCollectionInternal.GetNativeItems(in object collectionBridge) => GetNativeItems(this, collectionBridge);
 
         public T GetAt(ref uint index)
         {

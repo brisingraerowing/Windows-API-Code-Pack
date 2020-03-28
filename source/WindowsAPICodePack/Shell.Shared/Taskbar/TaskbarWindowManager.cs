@@ -15,7 +15,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 using Microsoft.WindowsAPICodePack.Internal;
 
-using static Microsoft.WindowsAPICodePack.Win32Native.Taskbar.Consts.TabbedThumbnail;
+using static Microsoft.WindowsAPICodePack.Win32Native.Consts.Taskbar.TabbedThumbnail;
 using Microsoft.WindowsAPICodePack.Win32Native.GDI;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager;
 using Microsoft.WindowsAPICodePack.COMNative.Shell;
@@ -207,7 +207,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
                     AddButtons(taskbarWindow);
 
-                if (m.Msg == Win32Native.Taskbar.Consts.Common.WmCommand &&
+                if (m.Msg == Win32Native.Consts.Taskbar.WmCommand &&
                     Core.GetHiWord(m.WParam.ToInt64(), 16) == ThumbButton.Clicked)
                 {
                     int buttonId = Core.GetLoWord(m.WParam.ToInt64());

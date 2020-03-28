@@ -8,8 +8,8 @@ using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Internal;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell.Consts;
-using static Microsoft.WindowsAPICodePack.Win32Native.Shell.Consts.CommandLinkDefinitions;
+using static Microsoft.WindowsAPICodePack.Win32Native.Consts.Shell;
+using static Microsoft.WindowsAPICodePack.Win32Native.Consts.Shell.CommandLinkDefinitions;
 
 namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
 {

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.Win32Native.ExtendedLinguisticServices;
 using System;
 using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
@@ -77,7 +78,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 
                 return true;
 
-            uint hResult = Win32NativeMethods.MappingFreePropertyBag(ref _win32PropertyBag);
+            uint hResult = ExtendedLinguisticServicesNativeMethods.MappingFreePropertyBag(ref _win32PropertyBag);
 
             return hResult == 0 ? true : throw new LinguisticException(hResult);
         }

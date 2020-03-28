@@ -6,7 +6,7 @@ using Microsoft.WindowsAPICodePack.Controls;
 using Microsoft.WindowsAPICodePack.Controls.WindowsForms;
 using Microsoft.WindowsAPICodePack.Win32Native.Controls;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using static Microsoft.WindowsAPICodePack.Win32Native.Controls.ExplorerBrowserViewDispatchIds.Consts;
+using static Microsoft.WindowsAPICodePack.Win32Native.Consts.Controls.ExplorerBrowserViewDispatchIds;
 using Microsoft.WindowsAPICodePack.COMNative.Controls;
 
 namespace Microsoft.WindowsAPICodePack.Internal

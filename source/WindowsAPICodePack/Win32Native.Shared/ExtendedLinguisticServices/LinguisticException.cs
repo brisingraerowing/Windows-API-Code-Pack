@@ -22,18 +22,13 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
     [Serializable]
     public class LinguisticException : Win32Exception
     {
-        // Common HResult values.
-        internal const uint InvalidArgs = 0x80070057;
-        internal const uint Fail = 0x80004005;
-        internal const uint InvalidData = 0x8007000D;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="LinguisticException">LinguisticException</see> class
         /// with the last Win32 error that occurred.
         /// </summary>
         public LinguisticException() { }
 
-        internal LinguisticException(in uint hResult)
+        public LinguisticException(in uint hResult)
             : base((int)hResult) => HResult = (int)hResult;
 
         /// <summary>

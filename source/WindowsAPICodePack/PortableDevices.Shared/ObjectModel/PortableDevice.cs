@@ -14,7 +14,6 @@ using System.Text;
 using static Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PortableDeviceHelper;
 using PropertyCollection = Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.PropertyCollection;
 using WinCopies.Util;
-using Microsoft.WindowsAPICodePack.Win32Native.PortableDevices;
 using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 
@@ -213,9 +212,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 TryGetNativePortableDeviceProperties();
 
 #if NETFRAMEWORK
-                return _properties ?? (_properties = new PropertyCollection(new PortableDeviceProperties(Consts.DeviceObjectId, this)));
+                return _properties ?? (_properties = new PropertyCollection(new PortableDeviceProperties(Win32Native.Consts.PortableDevices.DeviceObjectId, this)));
 #else
-                return _properties ??= new PropertyCollection(new PortableDeviceProperties(Consts.DeviceObjectId, this));
+                return _properties ??= new PropertyCollection(new PortableDeviceProperties(Win32Native.Consts.PortableDevices.DeviceObjectId, this));
 #endif
             }
         }
@@ -505,11 +504,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
 #if NETFRAMEWORK
 
-        private IList<IPortableDeviceObject> _Items => IsOpen ? _items ?? (_items = GetItems<IPortableDeviceObject>(Content, Consts.DeviceObjectId, (in string id) => GetPortableDeviceObject(id, true, null, this))) : throw new PortableDeviceException("The device is not open.");
+        private IList<IPortableDeviceObject> _Items => IsOpen ? _items ?? (_items = GetItems<IPortableDeviceObject>(Content, Win32Native.Consts.PortableDevices.DeviceObjectId, (in string id) => GetPortableDeviceObject(id, true, null, this))) : throw new PortableDeviceException("The device is not open.");
 
 #else
 
-        private IList<IPortableDeviceObject> _Items => IsOpen ? _items ??= GetItems<IPortableDeviceObject>(Content, Consts.DeviceObjectId, (in string id) => GetPortableDeviceObject(id, true, null, this)) : throw new PortableDeviceException("The device is not open.");
+        private IList<IPortableDeviceObject> _Items => IsOpen ? _items ??= GetItems<IPortableDeviceObject>(Content, Win32Native.Consts.PortableDevices.DeviceObjectId, (in string id) => GetPortableDeviceObject(id, true, null, this)) : throw new PortableDeviceException("The device is not open.");
 
 #endif
 
