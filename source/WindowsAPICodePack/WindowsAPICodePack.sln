@@ -55,6 +55,7 @@ Global
 		Core.Shared\Core.Shared.projitems*{4103a17c-283a-480d-94ba-34170a118995}*SharedItemsImports = 5
 		ExtendedLinguisticServices.Shared\ExtendedLinguisticServices.Shared.projitems*{457c2f4c-cc4e-4da0-b31e-4aea52b9e694}*SharedItemsImports = 5
 		COMNative.Shared\COMNative.Shared.projitems*{5468b521-714b-4d08-b563-43242cc898c4}*SharedItemsImports = 5
+		Win32Native.Shared\Win32Native.Shared.projitems*{7b7b5ea3-05e4-4060-8f9a-89736d03ea05}*SharedItemsImports = 5
 		PortableDevices.Shared\PortableDevices.Shared.projitems*{84429b6f-fb80-49c9-8bd1-b46c3c9cddee}*SharedItemsImports = 5
 		Win32Native.Consts.Shared\Win32Native.Consts.Shared.projitems*{9ecccca8-e6b9-4d46-979e-b9dbc74f29a4}*SharedItemsImports = 5
 		Sensors.Shared\Sensors.Shared.projitems*{a816dae1-1e90-4afd-b1c8-099a0f3c57bb}*SharedItemsImports = 5
@@ -64,6 +65,7 @@ Global
 		ExtendedLinguisticServices.Shared\ExtendedLinguisticServices.Shared.projitems*{ce862078-c419-483a-ae32-dcc933aeb787}*SharedItemsImports = 13
 		PortableDevices.Shared\PortableDevices.Shared.projitems*{dfe309f3-5fc4-48e2-b26d-274f1033b41e}*SharedItemsImports = 13
 		Shell.Shared\Shell.Shared.projitems*{ec2b98cc-6f10-4e51-8d2a-17595dad65eb}*SharedItemsImports = 13
+		Win32Native.Shared\Win32Native.Shared.projitems*{eeca348e-f9e7-44d5-9c50-a307c7f44d48}*SharedItemsImports = 13
 		ShellExtensions.Shared\ShellExtensions.Shared.projitems*{efd811bf-9fa7-4925-b1c9-30c96200e0f7}*SharedItemsImports = 13
 		ShellExtensions.Shared\ShellExtensions.Shared.projitems*{f9149a07-5537-4d04-8e2b-7f274e9e8fb1}*SharedItemsImports = 5
 	EndGlobalSection
