@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.ExtendedLinguisticServices;
 using System;
 using System.Runtime.InteropServices;
 
-namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
+namespace Microsoft.WindowsAPICodePack.Win32Native.ExtendedLinguisticServices
 {
 
-    public static class Win32NativeMethods
+    public static class ExtendedLinguisticServicesNativeMethods
     {
         [DllImport("elscore.dll", EntryPoint = "MappingGetServices", SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern uint MappingGetServices(ref Win32EnumOptions enumOptions, ref IntPtr services, ref uint servicesCount);

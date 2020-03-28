@@ -26,6 +26,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
                 throw new LinguisticException(LinguisticException.InvalidArgs);
 
             int nullIndex = data.Length;
+
             for (int i = 0; i < data.Length; i += 2)
             
                 if (data[i] == 0 && data[i + 1] == 0)
@@ -45,8 +46,13 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// <returns>An array of strings, one per <see cref="MappingDataRange">MappingDataRange</see>.</returns>
         public string[] FormatAll(in MappingPropertyBag bag)
         {
-            MappingDataRange[] dataRanges = (bag ?? throw new ArgumentNullException(nameof(bag))).GetResultRanges();
+            if (bag == null)
+
+                throw new ArgumentNullException(nameof(bag));
+
+            MappingDataRange[] dataRanges = bag .GetResultRanges();
             string[] results = new string[dataRanges.Length];
+
             for (int i = 0; i < results.Length; ++i)
             
                 results[i] = Format(dataRanges[i]);

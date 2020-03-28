@@ -53,12 +53,11 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             var result = new MappingDataRange[_win32PropertyBag._rangesCount];
             for (int i = 0; i < result.Length; ++i)
             {
-                var range = new MappingDataRange
+                result[i] = new MappingDataRange
                 {
                     _win32DataRange = InteropTools.Unpack<Win32DataRange>(
                     (IntPtr)((ulong)_win32PropertyBag._ranges + ((ulong)i * InteropTools.SizeOfWin32DataRange)))
                 };
-                result[i] = range;
             }
             return result;
         }
@@ -80,7 +79,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 
             uint hResult = Win32NativeMethods.MappingFreePropertyBag(ref _win32PropertyBag);
 
-            return hResult != 0 ? throw new LinguisticException(hResult) : true;
+            return hResult == 0 ? true : throw new LinguisticException(hResult);
         }
 
         /// <summary>
