@@ -3,14 +3,11 @@
   <PropertyGroup>
     <UseWindowsForms>true</UseWindowsForms>
     <PackageId>WinCopies.WindowsAPICodePack</PackageId>
-    <VersionPrefix>2.0.0</VersionPrefix>
-    <VersionSuffix>preview2</VersionSuffix>
     <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
     <AssemblyOriginatorKeyFile>Core.snk</AssemblyOriginatorKeyFile>
     <Description>WindowsAPICodePack Core</Description>
     <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageTags>Windows API Code Pack</PackageTags>
     <AssemblyName>WinCopies.WindowsAPICodePack</AssemblyName>
     <RootNamespace>Microsoft.WindowsAPICodePack</RootNamespace>
     <DocumentationFile>Core.xml</DocumentationFile>
@@ -18,10 +15,6 @@
 
   <ItemGroup>
     <None Remove="CustomDictionary.xml" />
-    <None Include="..\..\..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 
   <ItemGroup>

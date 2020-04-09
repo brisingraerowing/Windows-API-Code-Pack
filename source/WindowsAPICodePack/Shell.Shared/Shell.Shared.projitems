@@ -60,6 +60,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)DesktopWindowManager\GlassWindow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DesktopWindowManager\DesktopWindowManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\CommonControlException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowserContentOptions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowserEnums.cs" />

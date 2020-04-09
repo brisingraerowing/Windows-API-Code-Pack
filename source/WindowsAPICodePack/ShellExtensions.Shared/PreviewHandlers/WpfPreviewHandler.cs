@@ -48,9 +48,9 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         {
             if (_source != null)
             {
-                HandlerNativeMethods.SetParent(_source.Handle, _parentHandle);
+                _ = HandlerNativeMethods.SetParent(_source.Handle, _parentHandle);
 
-                HandlerNativeMethods.SetWindowPos(_source.Handle, new IntPtr((int)SetWindowPositionInsertAfter.Top),
+                _ = HandlerNativeMethods.SetWindowPos(_source.Handle, new IntPtr((int)SetWindowPositionInsertAfter.Top),
                 0, 0, Math.Abs(_bounds.Left - _bounds.Right), Math.Abs(_bounds.Top - _bounds.Bottom), SetWindowPositionOptions.ShowWindow);
             }
         }

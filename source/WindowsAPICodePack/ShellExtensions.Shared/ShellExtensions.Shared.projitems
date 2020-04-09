@@ -18,6 +18,5 @@
     <Compile Include="$(MSBuildThisFileDirectory)ThumbnailProviders\ManagedInitializationInterfaces.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ThumbnailProviders\ThumbnailProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ThumbnailProviders\ThumbnailProviderAttribute.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)WindowUtilities.cs" />
   </ItemGroup>
 </Project>

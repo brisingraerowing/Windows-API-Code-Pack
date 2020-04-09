@@ -121,6 +121,32 @@ namespace Microsoft.WindowsAPICodePack.Shell
         #region Public Methods
 
         /// <summary>
+        /// Overrides object.ToString()
+        /// </summary>
+        /// <returns>A string representation of the object.</returns>
+        public override string ToString() => Name;
+
+        /// <summary>
+        /// Returns the display name of the ShellFolder object. DisplayNameType represents one of the 
+        /// values that indicates how the name should look. 
+        /// See <see cref="DisplayNameType"/>for a list of possible values.
+        /// </summary>
+        /// <param name="displayNameType">A disaply name type.</param>
+        /// <returns>A string.</returns>
+        public virtual string GetDisplayName(DisplayNameType displayNameType)
+        {
+            string returnValue = null;
+
+            HResult hr = HResult.Ok;
+
+            if (NativeShellItem2 != null)
+
+                hr = NativeShellItem2.GetDisplayName((ShellItemDesignNameOptions)displayNameType, out returnValue);
+
+            return hr == HResult.Ok ? returnValue : throw new ShellException(LocalizedMessages.ShellObjectCannotGetDisplayName, hr);
+        }
+
+        /// <summary>
         /// Updates the native shell item that maps to this shell object. This is necessary when the shell item 
         /// changes after the shell object has been created. Without this method call, the retrieval of properties will
         /// return stale data. 
@@ -209,32 +235,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
         }
 
         /// <summary>
-        /// Overrides object.ToString()
-        /// </summary>
-        /// <returns>A string representation of the object.</returns>
-        public override string ToString() => Name;
-
-        /// <summary>
-        /// Returns the display name of the ShellFolder object. DisplayNameType represents one of the 
-        /// values that indicates how the name should look. 
-        /// See <see cref="DisplayNameType"/>for a list of possible values.
-        /// </summary>
-        /// <param name="displayNameType">A disaply name type.</param>
-        /// <returns>A string.</returns>
-        public virtual string GetDisplayName(DisplayNameType displayNameType)
-        {
-            string returnValue = null;
-
-            HResult hr = HResult.Ok;
-
-            if (NativeShellItem2 != null)
-
-                hr = NativeShellItem2.GetDisplayName((ShellItemDesignNameOptions)displayNameType, out returnValue);
-
-            return hr == HResult.Ok ? returnValue : throw new ShellException(LocalizedMessages.ShellObjectCannotGetDisplayName, hr);
-        }
-
-        /// <summary>
         /// Gets a value that determines if this ShellObject is a link or shortcut.
         /// </summary>
         public bool IsLink
@@ -279,9 +279,20 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Gets the thumbnail of the ShellObject.
         /// </summary>
-        public ShellThumbnail Thumbnail => thumbnail ?? (thumbnail = new ShellThumbnail(this));
+        public ShellThumbnail Thumbnail =>
+
+#if NETFRAMEWORK
+
+            thumbnail ?? (thumbnail = new ShellThumbnail(this));
+
+#else
+
+        thumbnail ??= new ShellThumbnail(this);
+
+#endif
 
         private ShellObject parentShellObject;
+
         /// <summary>
         /// Gets the parent ShellObject.
         /// Returns null if the object has no parent, i.e. if this object is the Desktop folder.
@@ -312,9 +323,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         }
 
 
-        #endregion
+#endregion
 
-        #region IDisposable Members
+#region IDisposable Members
 
         /// <summary>
         /// Release the native and managed objects
@@ -381,9 +392,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
             Dispose(false);
         }
 
-        #endregion
+#endregion
 
-        #region equality and hashing
+#region equality and hashing
 
         /// <summary>
         /// Returns the hash code of the object.
@@ -462,6 +473,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public static bool operator !=(ShellObject leftShellObject, ShellObject rightShellObject) => !(leftShellObject == rightShellObject);
 
 
-        #endregion
+#endregion
     }
 }

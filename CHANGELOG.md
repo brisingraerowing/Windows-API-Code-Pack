@@ -4,9 +4,24 @@ WindowsAPICodePack CHANGELOG
 Please note:
 
 - The '#<number\>' notice indicates that the relative issue has been opened starting with the relative release.
-- The 'Fixation #<number\>' notice indicates that the relative issue has been fixed starting with the relative release.
+- The 'Fixation #<number\>'/'Fixes #<number\>' notice indicates that the relative issue has been fixed starting with the relative release.
 
 For issue and fixation details, visit https://github.com/pierresprim/Windows-API-Code-Pack/issues
+
+???? 2.0.0-preview3
+===================
+
+WinCopies.WindowsAPICodePack.ShellExtensions 2.0.0-preview3
+-----------------------------------------------------------
+
+- The type 'Microsoft.WindowsAPICodePack.ShellExtensions.WindowUtilities' has moved to the WinCopies.WindowsAPICodePack.Shell package into the Microsoft.WindowsAPICodePack.Shell package and is now called 'DesktopWindowManager'.
+
+WinCopies.WindowsAPICodePack.Win32Native 2.0.0-preview3
+-------------------------------------------------------
+
+- The enums 'Microsoft.WindowsAPICodePack.COMNative.Shell.WindowStyles(Ex)' have moved to the WinCopies.WindowsAPICodePack.Shell package into the Microsoft.WindowsAPICodePack.Shell namespace.
+- The methods 'GetParentOffsetOfChild' and 'GetNonClientArea' of the Microsoft.WindowsAPICodePack.ComNative.Shell.WindowUtilities class have moved to the WinCopies.WindowsAPICodePack.Shell package into the new Microsoft.WindowsAPICodePack.Shell.DesktopWindowManager class.
+- The type 'Microsoft.WindowsAPICodePack.Win32Native.WindowMessage' has moved to the Microsoft.WindowsAPICodePack namespace.
 
 03/28/2020 2.0.0-preview2
 =========================
@@ -16,13 +31,13 @@ Global
 
 Some types have been renamed and/or have moved.
 
-WinCopies.WindowsAPICodePack.Win32Native 2.0
---------------------------------------------
+WinCopies.WindowsAPICodePack.Win32Native 2.0.0-preview2
+-------------------------------------------------------
 
 - Add new P/Invoke methods.
 
-WinCopies.WindowsAPICodePack.COMNative 2.0
-------------------------------------------
+WinCopies.WindowsAPICodePack.COMNative 2.0.0-preview2
+-----------------------------------------------------
 
 First release
 
@@ -34,8 +49,8 @@ Global
 
 Some types have been renamed and/or have moved.
 
-WinCopies.WindowsAPICodePack.Shell 2.0
---------------------------------------
+WinCopies.WindowsAPICodePack.Shell 2.0.0-preview1
+-------------------------------------------------
 
 - #2
 - The following methods and properties throw a NotSupportedException instead of a NotImplementedException:
@@ -45,15 +60,15 @@ WinCopies.WindowsAPICodePack.Shell 2.0
     - ShellLibrary implementation of System.Collections.Generic.ICollection<ShellFileSystemFolder>.CopyTo(ShellFileSystemFolder\[], int)
 - The ShellLibrary does not commit changes automatically anymore. Use the Commit method to commit changes.
 
-WinCopies.WindowsAPICodePack.ShellExtensions 2.0
-------------------------------------------------
+WinCopies.WindowsAPICodePack.ShellExtensions 2.0.0-preview1
+-----------------------------------------------------------
 
 - Fixation #5
 - Fixation #7
 - Fixation #8
 
-WinCopies.WindowsAPICodePack.Win32Native 2.0
---------------------------------------------
+WinCopies.WindowsAPICodePack.Win32Native 2.0.0-preview1
+-------------------------------------------------------
 
 - Move some types to the Microsoft.WindowsAPICodePack.Win32Native.* and Microsoft.WindowsAPICodePack namespaces.
 - Move GUIDs and consts to the new Win32NativeConsts project.
@@ -69,13 +84,13 @@ WinCopies.WindowsAPICodePack.Win32Native 2.0
 - Fixation #9
 - Fixation #10
 
-WinCopies.WindowsAPICodePack.Win32Native.Consts 2.0
----------------------------------------------------
+WinCopies.WindowsAPICodePack.Win32Native.Consts 2.0.0-preview1
+--------------------------------------------------------------
 
 First release
 
-WinCopies.WindowsAPICodePack.PortableDevices 2.0
-------------------------------------------------
+WinCopies.WindowsAPICodePack.PortableDevices 2.0.0-preview1
+-----------------------------------------------------------
 
 First release
 

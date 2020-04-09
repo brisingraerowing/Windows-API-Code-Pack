@@ -58,6 +58,5 @@
     <Compile Include="$(MSBuildThisFileDirectory)Shell\StockIcons\StockIconEnums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\StockIcons\StockIconsNativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\TaskbarNativeMethods.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Shell\WindowUtilities.cs" />
   </ItemGroup>
 </Project>

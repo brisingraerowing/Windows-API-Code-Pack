@@ -1,15 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <TargetFrameworks>net40;netcoreapp3.0;netstandard2.1</TargetFrameworks>
     <RootNamespace>Microsoft.WindowsAPICodePack.Win32Native</RootNamespace>
-    <VersionPrefix>2.0.0</VersionPrefix>
-    <VersionSuffix>preview2</VersionSuffix>
     <PackageId>WinCopies.WindowsAPICodePack.Win32Native.Consts</PackageId>
     <Product>Microsoft Windows API Code Pack for .NET Framework</Product>
     <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
     <Copyright>Copyright © Pierre Sprimont 2020</Copyright>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageTags>WindowsAPICodePack</PackageTags>
     <AssemblyOriginatorKeyFile>Win32NativeConsts.snk</AssemblyOriginatorKeyFile>
     <Description>Native consts required by the Windows API Code Pack</Description>
     <DocumentationFile>Win32Native.Consts.xml</DocumentationFile>
@@ -17,12 +14,5 @@
   </PropertyGroup>
 
   <Import Project="..\Win32Native.Consts.Shared\Win32Native.Consts.Shared.projitems" Label="Shared" />
-
-  <ItemGroup>
-    <None Include="..\..\..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
 
 </Project>

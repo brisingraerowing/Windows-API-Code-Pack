@@ -388,7 +388,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
                     // if we don't have a offset specified already by the user...
                     Point offset = !taskbarWindow.TabbedThumbnail.PeekOffset.HasValue
-                        ? WindowUtilities.GetParentOffsetOfChild(taskbarWindow.TabbedThumbnail.WindowHandle, taskbarWindow.TabbedThumbnail.ParentWindowHandle)
+                        ? COMNative.Shell.DesktopWindowManager.GetParentOffsetOfChild(taskbarWindow.TabbedThumbnail.WindowHandle, taskbarWindow.TabbedThumbnail.ParentWindowHandle)
                         : new Point(Convert.ToInt32(taskbarWindow.TabbedThumbnail.PeekOffset.Value.X),
                             Convert.ToInt32(taskbarWindow.TabbedThumbnail.PeekOffset.Value.Y));
 

@@ -5,13 +5,9 @@
     <UseWindowsForms>true</UseWindowsForms>
     <AssemblyName>WinCopies.WindowsAPICodePack.ShellExtensions</AssemblyName>
     <RootNamespace>Microsoft.WindowsAPICodePack.ShellExtensions</RootNamespace>
-    <VersionPrefix>2.0.0</VersionPrefix>
-    <VersionSuffix>preview2</VersionSuffix>
     <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
     <Description>WindowsAPICodePack Shell Extensions</Description>
     <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020</Copyright>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageTags>Windows API Code Pack</PackageTags>
     <AssemblyOriginatorKeyFile>ShellExtensions.snk</AssemblyOriginatorKeyFile>
     <DocumentationFile>ShellExtensions.xml</DocumentationFile>
   </PropertyGroup>
@@ -28,13 +24,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Shell\Shell.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\..\..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 
   <ItemGroup>

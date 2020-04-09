@@ -7,11 +7,7 @@
     <AssemblyName>WinCopies.WindowsAPICodePack.COMNative</AssemblyName>
     <RootNamespace>Microsoft.WindowsAPICodePack.COMNative</RootNamespace>
     <AssemblyOriginatorKeyFile>COMNative.snk</AssemblyOriginatorKeyFile>
-    <VersionPrefix>2.0.0</VersionPrefix>
-    <VersionSuffix>preview2</VersionSuffix>
     <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020</Copyright>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageTags>Windows API Code Pack</PackageTags>
     <Description>WindowsAPICodePack COM Interop</Description>
     <DocumentationFile>COMNative.xml</DocumentationFile>
   </PropertyGroup>
@@ -36,13 +32,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LocalizedMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\..\..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 
 </Project>
