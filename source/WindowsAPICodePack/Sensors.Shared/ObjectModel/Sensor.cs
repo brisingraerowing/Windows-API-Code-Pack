@@ -21,7 +21,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    public delegate void DataReportChangedEventHandler(in Sensor sender, in EventArgs e);
+    public delegate void DataReportChangedEventHandler(Sensor sender, in EventArgs e);
 
     /// <summary>
     /// Represents the method that will handle the StatChanged event.

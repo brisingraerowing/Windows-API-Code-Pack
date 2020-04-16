@@ -11,17 +11,30 @@ For issue and fixation details, visit https://github.com/pierresprim/Windows-API
 ???? 2.0.0-preview3
 ===================
 
+WinCopies.WindowsAPICodePack.Sensors 2.0.0-preview3
+---------------------------------------------------
+
+- Existing items behavior updates:
+	- The Microsoft.WindowsAPICodePack.Sensros.DataReportChangedEventHandler delegate does not have the 'in' keyword anymore for the 'Sensor sender' parameter.
+
 WinCopies.WindowsAPICodePack.ShellExtensions 2.0.0-preview3
 -----------------------------------------------------------
 
-- The type 'Microsoft.WindowsAPICodePack.ShellExtensions.WindowUtilities' has moved to the WinCopies.WindowsAPICodePack.Shell package into the Microsoft.WindowsAPICodePack.Shell package and is now called 'DesktopWindowManager'.
+- Existing items behavior updates:
+	- The Microsoft.WindowsAPICodePack.ShellExtensions.WindowUtilities type has moved to the WinCopies.WindowsAPICodePack.Shell package into the Microsoft.WindowsAPICodePack.Shell package and is now called 'DesktopWindowManager'.
 
 WinCopies.WindowsAPICodePack.Win32Native 2.0.0-preview3
 -------------------------------------------------------
 
-- The enums 'Microsoft.WindowsAPICodePack.COMNative.Shell.WindowStyles(Ex)' have moved to the WinCopies.WindowsAPICodePack.Shell package into the Microsoft.WindowsAPICodePack.Shell namespace.
-- The methods 'GetParentOffsetOfChild' and 'GetNonClientArea' of the Microsoft.WindowsAPICodePack.ComNative.Shell.WindowUtilities class have moved to the WinCopies.WindowsAPICodePack.Shell package into the new Microsoft.WindowsAPICodePack.Shell.DesktopWindowManager class.
-- The type 'Microsoft.WindowsAPICodePack.Win32Native.WindowMessage' has moved to the Microsoft.WindowsAPICodePack namespace.
+- Bug fixes:
+    - The Microsoft.WindowsAPICodePack.Win32Native.Shell.SHFILEINFO struct was not capable to handle file display name and type name.
+
+- Existing items behavior updates:
+	- The Microsoft.WindowsAPICodePack.COMNative.Shell.WindowStyles(Ex) enums have moved to the WinCopies.WindowsAPICodePack.Shell package into the Microsoft.WindowsAPICodePack.Shell namespace.
+	- The GetParentOffsetOfChild and GetNonClientArea methods of the Microsoft.WindowsAPICodePack.ComNative.Shell.WindowUtilities class have moved to the WinCopies.WindowsAPICodePack.Shell package into the new Microsoft.WindowsAPICodePack.Shell.DesktopWindowManager class.
+	- The Microsoft.WindowsAPICodePack.Win32Native.WindowMessage type has moved to the Microsoft.WindowsAPICodePack namespace.
+    - The Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes and Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions enums now have the uint underlying type.
+    - The Microsoft.WindowsAPICodePack.Win32Native.Shell.Shell.SHGetFileInfo method now targets the unicode variant.
 
 03/28/2020 2.0.0-preview2
 =========================

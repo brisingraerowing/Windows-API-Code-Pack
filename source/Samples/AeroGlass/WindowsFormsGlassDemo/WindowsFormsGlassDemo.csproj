@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Company>Microsoft</Company>
+    <Product>WindowsFormsGlassDemo</Product>
+    <Copyright>Copyright © Microsoft 2009</Copyright>
+  </PropertyGroup>
+
+  <Import Project="..\WindowsFormsGlassDemo.Shared\WindowsFormsGlassDemo.Shared.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\WindowsAPICodePack\Shell\Shell.csproj" />
+  </ItemGroup>
+
+</Project>

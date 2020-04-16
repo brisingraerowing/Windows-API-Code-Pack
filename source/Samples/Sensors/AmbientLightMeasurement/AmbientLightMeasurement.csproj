@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Description>Ambient Light Measurement Demo</Description>
+    <Company>Microsoft</Company>
+    <Product>Microsoft Windows API Code Pack for .NET Framework</Product>
+    <Copyright>Copyright © Microsoft 2009</Copyright>
+  </PropertyGroup>
+
+  <Import Project="..\AmbientLightMeasurement.Shared\AmbientLightMeasurement.Shared.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\WindowsAPICodePack\Core\Core.csproj" />
+    <ProjectReference Include="..\..\..\WindowsAPICodePack\Sensors\Sensors.csproj" />
+  </ItemGroup>
+
+</Project>

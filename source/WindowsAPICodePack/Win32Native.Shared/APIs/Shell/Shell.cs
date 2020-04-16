@@ -36,8 +36,8 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.Shell
         /// <para>If <see cref="SHGetFileInfo"/> returns an icon handle in the <b>hIcon</b> member of the <see cref="SHFILEINFO"/> structure pointed to by <b>psfi</b>, you are responsible for freeing it with <see cref="Core.DestroyIcon"/> when you no longer need it.</para>
         /// <para>Note: Once you have a handle to a system image list, you can use the <b>Image List API</b> to manipulate it like any other image list. Because system image lists are created on a per-process basis, you should treat them as read-only objects. Writing to a system image list may overwrite or delete one of the system images, making it unavailable or incorrect for the remainder of the process.</para>
         /// <para>When you use the <see cref="GetFileInfoOptions.ExeType"/> flag with a Windows application, the Windows version of the executable is given in the HIWORD of the return value. This version is returned as a hexadecimal value. For details on equating this value with a specific Windows version, see <a href="https://docs.microsoft.com/windows/desktop/WinProg/using-the-windows-headers">Using the Windows Headers</a>.</para></remarks>
-        [DllImport(Shell32, CharSet = CharSet.Auto, SetLastError = true)]
-        public static extern HResult SHGetFileInfo(string pszPath, FileAttributes dwFileAttributes, out SHFILEINFO psfi, uint cbFileInfo, GetFileInfoOptions uFlags);
+        [DllImport(Shell32, CharSet = CharSet.Unicode, SetLastError = true, EntryPoint = "SHGetFileInfoW")]
+        public static extern HResult SHGetFileInfo([In, MarshalAs(UnmanagedType.LPWStr)] string pszPath, [MarshalAs(UnmanagedType.U4)] FileAttributes dwFileAttributes, [In,Out] ref SHFILEINFO psfi, [MarshalAs(UnmanagedType.U4)] uint cbFileInfo, GetFileInfoOptions uFlags);
 
         [DllImport("shlwapi.dll", CharSet = CharSet.Unicode, SetLastError = true)]
         public static extern int PathParseIconLocation(
@@ -314,7 +314,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.Shell
     [Flags]
     [ComVisible(true)]
     [System.Serializable]
-    public enum FileAttributes
+    public enum FileAttributes:uint
     {
         /// <summary>
         /// The file is read-only. <see cref="ReadOnly"/> is supported on Windows, Linux, and macOS. On Linux and macOS, changing the <see cref="ReadOnly"/> flag is a permissions operation.
@@ -541,11 +541,47 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.Shell
         public byte rgbKey;
     }
 
+    ///// <summary>
+    ///// Contains information about a file object.
+    ///// </summary>
+    ///// <remarks>This structure is used with the <see cref="SHGetFileInfo"/> function.</remarks>
+    //[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+    //public struct SHFILEINFO
+    //{
+
+    //    /// <summary>
+    //    /// A handle to the icon that represents the file. You are responsible for destroying this handle with DestroyIcon when you no longer need it.
+    //    /// </summary>
+    //    public IntPtr hIcon;
+
+    //    /// <summary>
+    //    /// The index of the icon image within the system image list.
+    //    /// </summary>
+    //    public int iIcon;
+
+    //    /// <summary>
+    //    /// An array of values that indicates the attributes of the file object. For information about these values, see the <see cref="IShellFolder.GetAttributesOf"/> method.
+    //    /// </summary>
+    //    public ShellFileGetAttributesOptions dwAttributes;
+
+    //    /// <summary>
+    //    /// A string that contains the name of the file as it appears in the Windows Shell, or the path and file name of the file that contains the icon representing the file.
+    //    /// </summary>
+    //    [MarshalAs(UnmanagedType.BStr)]
+    //    public string szDisplayName;
+
+    //    /// <summary>
+    //    /// A string that describes the type of file.
+    //    /// </summary>
+    //    [MarshalAs(UnmanagedType.BStr)]
+    //    public string szTypeName;
+
+    //}
+
     /// <summary>
     /// Contains information about a file object.
     /// </summary>
-    /// <remarks>This structure is used with the <see cref="SHGetFileInfo"/> function.</remarks>
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
     public struct SHFILEINFO
     {
 
@@ -560,20 +596,20 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.Shell
         public int iIcon;
 
         /// <summary>
-        /// An array of values that indicates the attributes of the file object. For information about these values, see the <see cref="IShellFolder.GetAttributesOf"/> method.
+        /// An array of values that indicates the attributes of the file object. For information about these values, see the IShellFolder.GetAttributesOf method.
         /// </summary>
         public ShellFileGetAttributesOptions dwAttributes;
 
         /// <summary>
         /// A string that contains the name of the file as it appears in the Windows Shell, or the path and file name of the file that contains the icon representing the file.
         /// </summary>
-        [MarshalAs(UnmanagedType.BStr)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = Consts.Shell.MaxPath)]
         public string szDisplayName;
 
         /// <summary>
         /// A string that describes the type of file.
         /// </summary>
-        [MarshalAs(UnmanagedType.BStr)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)]
         public string szTypeName;
 
     }
@@ -804,7 +840,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.Shell
     }
 
     [Flags]
-    public enum ShellFileGetAttributesOptions
+    public enum ShellFileGetAttributesOptions : uint
     {
         /// <summary>
         /// The specified items can be copied.
@@ -819,15 +855,15 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.Shell
         /// <summary>
         /// Shortcuts can be created for the specified items. This flag has the same value as DROPEFFECT. 
         /// The normal use of this flag is to add a Create Shortcut item to the shortcut menu that is displayed 
-        /// during drag-and-drop operations. However, SFGAO_CANLINK also adds a Create Shortcut item to the Microsoft 
+        /// during drag-and-drop operations. However, <see cref="CanLink"/> also adds a Create Shortcut item to the Microsoft 
         /// Windows Explorer's File menu and to normal shortcut menus. 
-        /// If this item is selected, your application's IContextMenu::InvokeCommand is invoked with the lpVerb 
+        /// If this item is selected, your application's IContextMenu.InvokeCommand is invoked with the lpVerb 
         /// member of the CMINVOKECOMMANDINFO structure set to "link." Your application is responsible for creating the link.
         /// </summary>
         CanLink = 0x00000004,
 
         /// <summary>
-        /// The specified items can be bound to an IStorage interface through IShellFolder::BindToObject.
+        /// The specified items can be bound to an IStorage interface through IShellFolder.BindToObject.
         /// </summary>
         Storage = 0x00000008,
 
@@ -869,7 +905,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.Shell
         /// <summary>
         /// Indicates that accessing the object = through IStream or other storage interfaces, 
         /// is a slow operation. 
-        /// Applications should avoid accessing items flagged with SFGAO_ISSLOW.
+        /// Applications should avoid accessing items flagged with <see cref="IsSlow"/>.
         /// </summary>
         IsSlow = 0x00004000,
 
@@ -884,7 +920,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.Shell
         Link = 0x00010000,
 
         /// <summary>
-        /// The specified folder objects are .Shared.
+        /// The specified folder objects are shared.
         /// </summary>    
         Share = 0x00020000,
 
@@ -925,19 +961,19 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.Shell
         /// The specified folders have subfolders = and are, therefore, 
         /// expandable in the left pane of Windows Explorer).
         /// </summary>
-        HasSubFolder = unchecked((int)0x80000000),
+        HasSubFolder = 0x80000000,
 
         /// <summary>
         /// This flag is a mask for the contents attributes.
         /// </summary>
-        ContentsMask = unchecked((int)0x80000000),
+        ContentsMask = 0x80000000,
 
         /// <summary>
-        /// When specified as input, SFGAO_VALIDATE instructs the folder to validate that the items 
+        /// When specified as input, <see cref="Validate"/> instructs the folder to validate that the items 
         /// pointed to by the contents of apidl exist. If one or more of those items do not exist, 
-        /// IShellFolder::GetAttributesOf returns a failure code. 
-        /// When used with the file system folder, SFGAO_VALIDATE instructs the folder to discard cached 
-        /// properties retrieved by clients of IShellFolder2::GetDetailsEx that may 
+        /// IShellFolder.GetAttributesOf returns a failure code. 
+        /// When used with the file system folder, <see cref="Validate"/> instructs the folder to discard cached 
+        /// properties retrieved by clients of IShellFolder2.GetDetailsEx that may 
         /// have accumulated for the specified items.
         /// </summary>
         Validate = 0x01000000,
@@ -979,13 +1015,13 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.Shell
 
         /// <summary>
         /// Indicates that the item has a stream associated with it that can be accessed 
-        /// by a call to IShellFolder::BindToObject with IID_IStream in the riid parameter.
+        /// by a call to IShellFolder.BindToObject with IID_IStream in the riid parameter.
         /// </summary>
         Stream = 0x00400000,
 
         /// <summary>
         /// Children of this item are accessible through IStream or IStorage. 
-        /// Those children are flagged with SFGAO_STORAGE or SFGAO_STREAM.
+        /// Those children are flagged with <see cref="Storage"/> or <see cref="Stream"/>.
         /// </summary>
         StorageAncestor = 0x00800000,
 
@@ -997,9 +1033,9 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.Shell
         /// <summary>
         /// Mask used by PKEY_SFGAOFlags to remove certain values that are considered 
         /// to cause slow calculations or lack context. 
-        /// Equal to SFGAO_VALIDATE | SFGAO_ISSLOW | SFGAO_HASSUBFOLDER.
+        /// Equal to <see cref="Validate"/> | <see cref="IsSlow"/> | <see cref="HasSubFolder"/>.
         /// </summary>
-        PkeyMask = unchecked((int)0x81044000),
+        PkeyMask = 0x81044000,
     }
 
     [Flags]

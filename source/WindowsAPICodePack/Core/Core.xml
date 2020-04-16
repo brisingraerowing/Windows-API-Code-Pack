@@ -6,298 +6,298 @@
     <members>
         <member name="T:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages">
             <summary>
-              Une classe de ressource fortement typée destinée, entre autres, à la consultation des chaînes localisées.
+              A strongly-typed resource class, for looking up localized strings, etc.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.ResourceManager">
             <summary>
-              Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
+              Returns the cached ResourceManager instance used by this class.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.Culture">
             <summary>
-              Remplace la propriété CurrentUICulture du thread actuel pour toutes
-              les recherches de ressources à l'aide de cette classe de ressource fortement typée.
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.ApplicationRecoverFailedToRegisterForRestartBadParameters">
             <summary>
-              Recherche une chaîne localisée semblable à Failed to register application for restart due to bad parameters..
+              Looks up a localized string similar to Failed to register application for restart due to bad parameters..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.ApplicationRecoveryBadParameters">
             <summary>
-              Recherche une chaîne localisée semblable à Application was not registered for recovery due to bad parameters..
+              Looks up a localized string similar to Application was not registered for recovery due to bad parameters..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.ApplicationRecoveryFailedToRegister">
             <summary>
-              Recherche une chaîne localisée semblable à Application failed to register for recovery..
+              Looks up a localized string similar to Application failed to register for recovery..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.ApplicationRecoveryFailedToRegisterForRestart">
             <summary>
-              Recherche une chaîne localisée semblable à Application failed to registered for restart..
+              Looks up a localized string similar to Application failed to registered for restart..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.ApplicationRecoveryFailedToUnregister">
             <summary>
-              Recherche une chaîne localisée semblable à Unregister for recovery failed..
+              Looks up a localized string similar to Unregister for recovery failed..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.ApplicationRecoveryFailedToUnregisterForRestart">
             <summary>
-              Recherche une chaîne localisée semblable à Unregister for restart failed..
+              Looks up a localized string similar to Unregister for restart failed..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.ApplicationRecoveryMustBeCalledFromCallback">
             <summary>
-              Recherche une chaîne localisée semblable à This method must be called from the registered callback method..
+              Looks up a localized string similar to This method must be called from the registered callback method..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.BatteryStateStringRepresentation">
             <summary>
-              Recherche une chaîne localisée semblable à ACOnline: {1}{0}Max Charge: {2} mWh{0}Current Charge: {3} mWh{0}Discharge Rate: {4} mWh{0}Estimated Time Remaining: {5}{0}Suggested Critical Battery Charge: {6} mWh{0}Suggested Battery Warning Charge: {7} mWh{0}.
+              Looks up a localized string similar to ACOnline: {1}{0}Max Charge: {2} mWh{0}Current Charge: {3} mWh{0}Discharge Rate: {4} mWh{0}Estimated Time Remaining: {5}{0}Suggested Critical Battery Charge: {6} mWh{0}Suggested Battery Warning Charge: {7} mWh{0}.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.CancelableCannotBeChanged">
             <summary>
-              Recherche une chaîne localisée semblable à Cancelable cannot be changed while dialog is showing..
+              Looks up a localized string similar to Cancelable cannot be changed while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.CaptionCannotBeChanged">
             <summary>
-              Recherche une chaîne localisée semblable à Dialog caption cannot be changed while dialog is showing..
+              Looks up a localized string similar to Dialog caption cannot be changed while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.CheckBoxCannotBeChanged">
             <summary>
-              Recherche une chaîne localisée semblable à CheckBox text cannot be changed while dialog is showing..
+              Looks up a localized string similar to CheckBox text cannot be changed while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.CollapsedTextCannotBeChanged">
             <summary>
-              Recherche une chaîne localisée semblable à Collapsed control text cannot be changed while dialog is showing..
+              Looks up a localized string similar to Collapsed control text cannot be changed while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.DialogCollectionCannotHaveDuplicateNames">
             <summary>
-              Recherche une chaîne localisée semblable à Dialog cannot have more than one control with the same name..
+              Looks up a localized string similar to Dialog cannot have more than one control with the same name..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.DialogCollectionControlAlreadyHosted">
             <summary>
-              Recherche une chaîne localisée semblable à Dialog control must be removed from current collections first..
+              Looks up a localized string similar to Dialog control must be removed from current collections first..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.DialogCollectionControlNameNull">
             <summary>
-              Recherche une chaîne localisée semblable à Control name cannot be null or zero length..
+              Looks up a localized string similar to Control name cannot be null or zero length..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.DialogCollectionModifyShowingDialog">
             <summary>
-              Recherche une chaîne localisée semblable à Modifying controls collection while dialog is showing is not supported..
+              Looks up a localized string similar to Modifying controls collection while dialog is showing is not supported..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.DialogControlNameCannotBeEmpty">
             <summary>
-              Recherche une chaîne localisée semblable à Dialog control name cannot be empty or null..
+              Looks up a localized string similar to Dialog control name cannot be empty or null..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.DialogControlsCannotBeRenamed">
             <summary>
-              Recherche une chaîne localisée semblable à Dialog controls cannot be renamed..
+              Looks up a localized string similar to Dialog controls cannot be renamed..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.DialogDefaultCaption">
             <summary>
-              Recherche une chaîne localisée semblable à Application.
+              Looks up a localized string similar to Application.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.DialogDefaultContent">
             <summary>
-              Recherche une chaîne localisée semblable à .
+              Looks up a localized string similar to .
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.DialogDefaultMainInstruction">
             <summary>
-              Recherche une chaîne localisée semblable à .
+              Looks up a localized string similar to .
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.ExpandedDetailsCannotBeChanged">
             <summary>
-              Recherche une chaîne localisée semblable à Expanded information mode cannot be changed while dialog is showing..
+              Looks up a localized string similar to Expanded information mode cannot be changed while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.ExpandedLabelCannotBeChanged">
             <summary>
-              Recherche une chaîne localisée semblable à Expanded control label cannot be changed while dialog is showing..
+              Looks up a localized string similar to Expanded control label cannot be changed while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.ExpandingStateCannotBeChanged">
             <summary>
-              Recherche une chaîne localisée semblable à Expanding state of the dialog cannot be changed while dialog is showing..
+              Looks up a localized string similar to Expanding state of the dialog cannot be changed while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.HyperlinksCannotBetSet">
             <summary>
-              Recherche une chaîne localisée semblable à Hyperlinks cannot be enabled/disabled while dialog is showing..
+              Looks up a localized string similar to Hyperlinks cannot be enabled/disabled while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.MessageManagerHandlerNotRegistered">
             <summary>
-              Recherche une chaîne localisée semblable à The specified event handler has not been registered..
+              Looks up a localized string similar to The specified event handler has not been registered..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.NativeTaskDialogConfigurationError">
             <summary>
-              Recherche une chaîne localisée semblable à An error has occurred in dialog configuration..
+              Looks up a localized string similar to An error has occurred in dialog configuration..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.NativeTaskDialogInternalErrorArgs">
             <summary>
-              Recherche une chaîne localisée semblable à Invalid arguments to Win32 call..
+              Looks up a localized string similar to Invalid arguments to Win32 call..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.NativeTaskDialogInternalErrorComplex">
             <summary>
-              Recherche une chaîne localisée semblable à Dialog contents too complex..
+              Looks up a localized string similar to Dialog contents too complex..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.NativeTaskDialogInternalErrorUnexpected">
             <summary>
-              Recherche une chaîne localisée semblable à An unexpected internal error occurred in the Win32 call: {0:x}.
+              Looks up a localized string similar to An unexpected internal error occurred in the Win32 call: {0:x}.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.NativeTaskDialogVersionError">
             <summary>
-              Recherche une chaîne localisée semblable à TaskDialog feature needs to load version 6 of comctl32.dll but a different version is current loaded in memory..
+              Looks up a localized string similar to TaskDialog feature needs to load version 6 of comctl32.dll but a different version is current loaded in memory..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.OwnerCannotBeChanged">
             <summary>
-              Recherche une chaîne localisée semblable à Dialog owner cannot be changed while dialog is showing..
+              Looks up a localized string similar to Dialog owner cannot be changed while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.PowerExecutionStateFailed">
             <summary>
-              Recherche une chaîne localisée semblable à SetThreadExecutionState call failed..
+              Looks up a localized string similar to SetThreadExecutionState call failed..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.PowerInsufficientAccessBatteryState">
             <summary>
-              Recherche une chaîne localisée semblable à The caller had insufficient access rights to get the system battery state..
+              Looks up a localized string similar to The caller had insufficient access rights to get the system battery state..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.PowerInsufficientAccessCapabilities">
             <summary>
-              Recherche une chaîne localisée semblable à The caller had insufficient access rights to get the system power capabilities..
+              Looks up a localized string similar to The caller had insufficient access rights to get the system power capabilities..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.PowerManagerActiveSchemeFailed">
             <summary>
-              Recherche une chaîne localisée semblable à Failed to get active power scheme..
+              Looks up a localized string similar to Failed to get active power scheme..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.PowerManagerBatteryNotPresent">
             <summary>
-              Recherche une chaîne localisée semblable à Battery is not present on this system..
+              Looks up a localized string similar to Battery is not present on this system..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.ProgressBarCannotBeChanged">
             <summary>
-              Recherche une chaîne localisée semblable à Progress bar cannot be changed while dialog is showing..
+              Looks up a localized string similar to Progress bar cannot be changed while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.ProgressBarCannotBeHostedInMultipleDialogs">
             <summary>
-              Recherche une chaîne localisée semblable à Progress bar cannot be hosted in multiple dialogs..
+              Looks up a localized string similar to Progress bar cannot be hosted in multiple dialogs..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.PropVariantInitializationError">
             <summary>
-              Recherche une chaîne localisée semblable à Unable to initialize PropVariant..
+              Looks up a localized string similar to Unable to initialize PropVariant..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.RecoverySettingsFormatString">
             <summary>
-              Recherche une chaîne localisée semblable à delegate: {0}, state: {1}, ping: {2}.
+              Looks up a localized string similar to delegate: {0}, state: {1}, ping: {2}.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.RestartSettingsFormatString">
             <summary>
-              Recherche une chaîne localisée semblable à command: {0} restrictions: {1}.
+              Looks up a localized string similar to command: {0} restrictions: {1}.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.StandardButtonsCannotBeChanged">
             <summary>
-              Recherche une chaîne localisée semblable à StandardButtons cannot be changed while dialog is showing..
+              Looks up a localized string similar to StandardButtons cannot be changed while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.StartupLocationCannotBeChanged">
             <summary>
-              Recherche une chaîne localisée semblable à Startup location cannot be changed while dialog is showing..
+              Looks up a localized string similar to Startup location cannot be changed while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.TaskDialogBadButtonId">
             <summary>
-              Recherche une chaîne localisée semblable à Bad button ID in closing event..
+              Looks up a localized string similar to Bad button ID in closing event..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.TaskDialogButtonTextEmpty">
             <summary>
-              Recherche une chaîne localisée semblable à Button text must be non-empty..
+              Looks up a localized string similar to Button text must be non-empty..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.TaskDialogCheckBoxTextRequiredToEnableCheckBox">
             <summary>
-              Recherche une chaîne localisée semblable à Check box text must be provided to enable the dialog check box..
+              Looks up a localized string similar to Check box text must be provided to enable the dialog check box..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.TaskDialogCloseNonShowing">
             <summary>
-              Recherche une chaîne localisée semblable à Attempting to close a non-showing dialog..
+              Looks up a localized string similar to Attempting to close a non-showing dialog..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.TaskDialogOnlyOneDefaultControl">
             <summary>
-              Recherche une chaîne localisée semblable à Cannot have more than one default button of a given type..
+              Looks up a localized string similar to Cannot have more than one default button of a given type..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.TaskDialogProgressBarMaxValueGreaterThanMin">
             <summary>
-              Recherche une chaîne localisée semblable à Maximum value provided must be greater than the minimum value..
+              Looks up a localized string similar to Maximum value provided must be greater than the minimum value..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.TaskDialogProgressBarMinValueGreaterThanZero">
             <summary>
-              Recherche une chaîne localisée semblable à Minimum value provided must be a positive number..
+              Looks up a localized string similar to Minimum value provided must be a positive number..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.TaskDialogProgressBarMinValueLessThanMax">
             <summary>
-              Recherche une chaîne localisée semblable à Minimum value provided must less than the maximum value..
+              Looks up a localized string similar to Minimum value provided must less than the maximum value..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.TaskDialogProgressBarValueInRange">
             <summary>
-              Recherche une chaîne localisée semblable à Value provided must be greater than equal to the minimum value and less than the maximum value..
+              Looks up a localized string similar to Value provided must be greater than equal to the minimum value and less than the maximum value..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.TaskDialogSupportedButtonsAndButtons">
             <summary>
-              Recherche une chaîne localisée semblable à Dialog cannot display both non-standard buttons and standard buttons..
+              Looks up a localized string similar to Dialog cannot display both non-standard buttons and standard buttons..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.TaskDialogSupportedButtonsAndLinks">
             <summary>
-              Recherche une chaîne localisée semblable à Dialog cannot display both non-standard buttons and command links..
+              Looks up a localized string similar to Dialog cannot display both non-standard buttons and command links..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Resources.LocalizedMessages.TaskDialogUnkownControl">
             <summary>
-              Recherche une chaîne localisée semblable à Unknown dialog control type..
+              Looks up a localized string similar to Unknown dialog control type..
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRecoveryException">

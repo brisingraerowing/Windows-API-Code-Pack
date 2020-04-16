@@ -253,6 +253,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         [DllImport(Kernel32)]
         public static extern IntPtr FindResource([In] IntPtr hModule, [In, MarshalAs(UnmanagedType.U2)] ushort lpName, [In, MarshalAs(UnmanagedType.U2)] ushort lpType);
 
+        [DllImport(User32)]
         [return:MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetIconInfo([In] IntPtr hIcon,            [Out] out IconInfo piconinfo);
     }

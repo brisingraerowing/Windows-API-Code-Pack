@@ -922,7 +922,6 @@
             <summary>
             Contains information about a file object.
             </summary>
-            <remarks>This structure is used with the <see cref="!:SHGetFileInfo"/> function.</remarks>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.SHFILEINFO.hIcon">
             <summary>
@@ -936,7 +935,7 @@
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.SHFILEINFO.dwAttributes">
             <summary>
-            An array of values that indicates the attributes of the file object. For information about these values, see the <see cref="!:IShellFolder.GetAttributesOf"/> method.
+            An array of values that indicates the attributes of the file object. For information about these values, see the IShellFolder.GetAttributesOf method.
             </summary>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.SHFILEINFO.szDisplayName">
@@ -1084,15 +1083,15 @@
             <summary>
             Shortcuts can be created for the specified items. This flag has the same value as DROPEFFECT. 
             The normal use of this flag is to add a Create Shortcut item to the shortcut menu that is displayed 
-            during drag-and-drop operations. However, SFGAO_CANLINK also adds a Create Shortcut item to the Microsoft 
+            during drag-and-drop operations. However, <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.CanLink"/> also adds a Create Shortcut item to the Microsoft 
             Windows Explorer's File menu and to normal shortcut menus. 
-            If this item is selected, your application's IContextMenu::InvokeCommand is invoked with the lpVerb 
+            If this item is selected, your application's IContextMenu.InvokeCommand is invoked with the lpVerb 
             member of the CMINVOKECOMMANDINFO structure set to "link." Your application is responsible for creating the link.
             </summary>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.Storage">
             <summary>
-            The specified items can be bound to an IStorage interface through IShellFolder::BindToObject.
+            The specified items can be bound to an IStorage interface through IShellFolder.BindToObject.
             </summary>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.CanRename">
@@ -1134,7 +1133,7 @@
             <summary>
             Indicates that accessing the object = through IStream or other storage interfaces, 
             is a slow operation. 
-            Applications should avoid accessing items flagged with SFGAO_ISSLOW.
+            Applications should avoid accessing items flagged with <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.IsSlow"/>.
             </summary>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.Ghosted">
@@ -1149,7 +1148,7 @@
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.Share">
             <summary>
-            The specified folder objects are .Shared.
+            The specified folder objects are shared.
             </summary>    
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.ReadOnly">
@@ -1198,11 +1197,11 @@
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.Validate">
             <summary>
-            When specified as input, SFGAO_VALIDATE instructs the folder to validate that the items 
+            When specified as input, <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.Validate"/> instructs the folder to validate that the items 
             pointed to by the contents of apidl exist. If one or more of those items do not exist, 
-            IShellFolder::GetAttributesOf returns a failure code. 
-            When used with the file system folder, SFGAO_VALIDATE instructs the folder to discard cached 
-            properties retrieved by clients of IShellFolder2::GetDetailsEx that may 
+            IShellFolder.GetAttributesOf returns a failure code. 
+            When used with the file system folder, <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.Validate"/> instructs the folder to discard cached 
+            properties retrieved by clients of IShellFolder2.GetDetailsEx that may 
             have accumulated for the specified items.
             </summary>
         </member>
@@ -1244,13 +1243,13 @@
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.Stream">
             <summary>
             Indicates that the item has a stream associated with it that can be accessed 
-            by a call to IShellFolder::BindToObject with IID_IStream in the riid parameter.
+            by a call to IShellFolder.BindToObject with IID_IStream in the riid parameter.
             </summary>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.StorageAncestor">
             <summary>
             Children of this item are accessible through IStream or IStorage. 
-            Those children are flagged with SFGAO_STORAGE or SFGAO_STREAM.
+            Those children are flagged with <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.Storage"/> or <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.Stream"/>.
             </summary>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.StorageCapabilityMask">
@@ -1262,7 +1261,7 @@
             <summary>
             Mask used by PKEY_SFGAOFlags to remove certain values that are considered 
             to cause slow calculations or lack context. 
-            Equal to SFGAO_VALIDATE | SFGAO_ISSLOW | SFGAO_HASSUBFOLDER.
+            Equal to <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.Validate"/> | <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.IsSlow"/> | <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.HasSubFolder"/>.
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellException">
@@ -2660,7 +2659,7 @@
             This type is intended for public use only
             </summary>    
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.Core.PostMessage(System.IntPtr,Microsoft.WindowsAPICodePack.Win32Native.WindowMessage,System.IntPtr,System.IntPtr)">
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.Core.PostMessage(System.IntPtr,Microsoft.WindowsAPICodePack.WindowMessage,System.IntPtr,System.IntPtr)">
             <summary>
             Places (posts) a message in the message queue associated with the thread that created
             the specified window and returns without waiting for the thread to process the message.
@@ -2675,7 +2674,7 @@
             <param name="lparam">Specifies additional message-specific information.</param>
             <returns>A return code specific to the message being sent.</returns>     
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.Core.SendMessage(System.IntPtr,Microsoft.WindowsAPICodePack.Win32Native.WindowMessage,System.IntPtr,System.IntPtr)">
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.Core.SendMessage(System.IntPtr,Microsoft.WindowsAPICodePack.WindowMessage,System.IntPtr,System.IntPtr)">
             <summary>
             Sends the specified message to a window or windows. The SendMessage function calls 
             the window procedure for the specified window and does not return until the window 

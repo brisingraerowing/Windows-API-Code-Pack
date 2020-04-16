@@ -63,12 +63,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\WindowsAPICodePack\ExtendedLinguisticServices.Net4.7\ExtendedLinguisticServices.Net4.7.csproj">
-      <Project>{B2CE24B7-FC5D-49AC-806F-1D88F78A31E9}</Project>
-      <Name>ExtendedLinguisticServices.Net4.7</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
