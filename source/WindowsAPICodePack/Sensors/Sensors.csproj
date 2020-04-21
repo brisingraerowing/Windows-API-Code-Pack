@@ -7,7 +7,7 @@
     <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
     <Description>WindowsAPICodePack for Sensors</Description>
     <Copyright>Copyright © Microsoft 2009, Copyright © Pierre Sprimont 2020</Copyright>
-    <DocumentationFile>Sensors.xml</DocumentationFile>
+    <DocumentationFile>WinCopies.WindowsAPICodePack.Sensors.xml</DocumentationFile>
   </PropertyGroup>
 
   <Import Project="..\Sensors.Shared\Sensors.Shared.projitems" Label="Shared" />

@@ -7,7 +7,7 @@
     <Description>WindowsAPICodePack for Extended Linguistic Services</Description>
     <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020</Copyright>
     <AssemblyOriginatorKeyFile>ExtendedLinguisticServices.snk</AssemblyOriginatorKeyFile>
-    <DocumentationFile>ExtendedLinguisticServices.xml</DocumentationFile>
+    <DocumentationFile>WinCopies.WindowsAPICodePack.ExtendedLinguisticServices.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

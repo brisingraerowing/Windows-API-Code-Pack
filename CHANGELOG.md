@@ -33,8 +33,9 @@ WinCopies.WindowsAPICodePack.Win32Native 2.0.0-preview3
 	- The Microsoft.WindowsAPICodePack.COMNative.Shell.WindowStyles(Ex) enums have moved to the WinCopies.WindowsAPICodePack.Shell package into the Microsoft.WindowsAPICodePack.Shell namespace.
 	- The GetParentOffsetOfChild and GetNonClientArea methods of the Microsoft.WindowsAPICodePack.ComNative.Shell.WindowUtilities class have moved to the WinCopies.WindowsAPICodePack.Shell package into the new Microsoft.WindowsAPICodePack.Shell.DesktopWindowManager class.
 	- The Microsoft.WindowsAPICodePack.Win32Native.WindowMessage type has moved to the Microsoft.WindowsAPICodePack namespace.
-    - The Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes and Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions enums now have the uint underlying type.
+    - The Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes, Microsoft.WindowsAPICodePack.GetFileInfoOptions and Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions enums now have the uint underlying type.
     - The Microsoft.WindowsAPICodePack.Win32Native.Shell.Shell.SHGetFileInfo method now targets the unicode variant.
+    - The Microsoft.WindowsAPICodePack.Shell.FileInfo struct is not mutable anymore.
 
 03/28/2020 2.0.0-preview2
 =========================

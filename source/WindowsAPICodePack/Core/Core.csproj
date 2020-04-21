@@ -10,7 +10,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <AssemblyName>WinCopies.WindowsAPICodePack</AssemblyName>
     <RootNamespace>Microsoft.WindowsAPICodePack</RootNamespace>
-    <DocumentationFile>Core.xml</DocumentationFile>
+    <DocumentationFile>WinCopies.WindowsAPICodePack.Core.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

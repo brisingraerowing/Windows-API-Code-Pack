@@ -9,7 +9,7 @@
     <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
     <Description>WindowsAPICodePack for Shell</Description>
     <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020</Copyright>
-    <DocumentationFile>Shell.xml</DocumentationFile>
+    <DocumentationFile>WinCopies.WindowsAPICodePack.Shell.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,6 +18,14 @@
 
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp3.1'">
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp3.0'">
+    <PackageReference Include="System.Drawing.Common" Version="4.6.0" />
   </ItemGroup>
 
   <ItemGroup>

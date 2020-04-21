@@ -9,7 +9,7 @@
     <Description>WindowsAPICodePack Shell Extensions</Description>
     <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020</Copyright>
     <AssemblyOriginatorKeyFile>ShellExtensions.snk</AssemblyOriginatorKeyFile>
-    <DocumentationFile>ShellExtensions.xml</DocumentationFile>
+    <DocumentationFile>WinCopies.WindowsAPICodePack.ShellExtensions.xml</DocumentationFile>
   </PropertyGroup>
 
   <Import Project="..\ShellExtensions.Shared\ShellExtensions.Shared.projitems" Label="Shared" />

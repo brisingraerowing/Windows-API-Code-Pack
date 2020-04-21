@@ -20,9 +20,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         public static bool AeroGlassCompositionEnabled
         {
-            set => DesktopWindowManager.DwmEnableComposition(
+            set => Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.DesktopWindowManager.DwmEnableComposition(
                     value ? CompositionEnable.Enable : CompositionEnable.Disable);
-            get => DesktopWindowManager.DwmIsCompositionEnabled();
+            get => Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.DesktopWindowManager.DwmIsCompositionEnabled();
         }
 
         #endregion
@@ -67,7 +67,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 };
 
                 // Extend the Frame into client area
-                _ = DesktopWindowManager.DwmExtendFrameIntoClientArea(Handle, ref margins);
+                _ = Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.DesktopWindowManager.DwmExtendFrameIntoClientArea(Handle, ref margins);
             }
         }
 
@@ -79,7 +79,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             if (Handle != IntPtr.Zero)
             {
                 var margins = new Margins(true);
-                _ = DesktopWindowManager.DwmExtendFrameIntoClientArea(Handle, ref margins);
+                _ = Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.DesktopWindowManager.DwmExtendFrameIntoClientArea(Handle, ref margins);
             }
         }
         #endregion

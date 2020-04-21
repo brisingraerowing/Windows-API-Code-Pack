@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <DocumentationFile>PortableDevices.xml</DocumentationFile>
+    <DocumentationFile>WinCopies.WindowsAPICodePack.PortableDevices.xml</DocumentationFile>
     <AssemblyOriginatorKeyFile>PortableDevices.snk</AssemblyOriginatorKeyFile>
     <AssemblyName>WinCopies.WindowsAPICodePack.PortableDevices</AssemblyName>
     <RootNamespace>Microsoft.WindowsAPICodePack.PortableDevices</RootNamespace>

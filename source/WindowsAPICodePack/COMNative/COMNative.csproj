@@ -9,7 +9,7 @@
     <AssemblyOriginatorKeyFile>COMNative.snk</AssemblyOriginatorKeyFile>
     <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020</Copyright>
     <Description>WindowsAPICodePack COM Interop</Description>
-    <DocumentationFile>COMNative.xml</DocumentationFile>
+    <DocumentationFile>WinCopies.WindowsAPICodePack.COMNative.xml</DocumentationFile>
   </PropertyGroup>
 
   <Import Project="..\COMNative.Shared\COMNative.Shared.projitems" Label="Shared" />

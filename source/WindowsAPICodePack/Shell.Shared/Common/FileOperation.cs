@@ -32,29 +32,52 @@ namespace Microsoft.WindowsAPICodePack.Shell
     {
 
         /// <summary>
-        /// Gets or sets the icon that represents the file.
+        /// Gets or sets the icon that represents the file. When the <see cref="Dispose"/> method of this struct is called, that method calls the <see cref="Dispose"/> method on the current <see cref="Icon"/>.
         /// </summary>
-        public Icon Icon { get; set; }
+        public Icon Icon { get; }
 
         /// <summary>
         /// Gets or sets the index of the icon image within the system image list.
         /// </summary>
-        public int IconIndex { get; set; }
+        public int IconIndex { get; }
 
         /// <summary>
         /// Gets or sets an array of values that indicates the attributes of the file object. For information about these values, see the <see cref="IShellFolder.GetAttributesOf"/> method.
         /// </summary>
-        public ShellFileGetAttributesOptions Attributes { get; set; }
+        public ShellFileGetAttributesOptions Attributes { get; }
 
         /// <summary>
         /// Gets or sets a string that contains the name of the file as it appears in the Windows Shell, or the path and file name of the file that contains the icon representing the file.
         /// </summary>
-        public string DisplayName { get; set; }
+        public string DisplayName { get; }
 
         /// <summary>
         /// Gets or sets a string that describes the type of file.
         /// </summary>
-        public string TypeName { get; set; }
+        public string TypeName { get; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FileInfo"/> structure.
+        /// </summary>
+        /// <param name="icon">The icon of the file represented by this structure.</param>
+        /// <param name="iconIndex">The icon index of the retrieved icon.</param>
+        /// <param name="attributes">The attributes of the file represented by this structure.</param>
+        /// <param name="displayName">The display name of the file represented by this structure.</param>
+        /// <param name="typeName">The type name of the file represented by this structure.</param>
+        public FileInfo(Icon icon, int iconIndex, ShellFileGetAttributesOptions attributes, string displayName, string typeName)
+        {
+
+            Icon = icon;
+
+            IconIndex = iconIndex;
+
+            Attributes = attributes;
+
+            DisplayName = displayName;
+
+            TypeName = typeName;
+
+        }
 
         /// <summary>
         /// Calls the <see cref="Icon.Dispose"/> method from the <see cref="Icon"/> property.
@@ -444,11 +467,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public static FileInfo GetFileInfo(string path, FileAttributes fileAttributes, GetFileInfoOptions options)
         {
 
-#pragma warning disable IDE0059 // Initialized in the following call to SHGetFileInfo and used in the return statement.
             var psfi = new SHFILEINFO();
-#pragma warning restore IDE0059 // Value assigned to variable is never used
 
-            HResult hr = SHGetFileInfo(path, fileAttributes, out psfi, (uint)Marshal.SizeOf(psfi), options);
+            HResult hr = SHGetFileInfo(path, fileAttributes, ref psfi, (uint)Marshal.SizeOf(psfi), options);
 
             if (!CoreErrorHelper.Succeeded(hr))
 
@@ -470,7 +491,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             }
 
-            return new FileInfo() { Icon = icon, IconIndex = psfi.iIcon, Attributes = psfi.dwAttributes, DisplayName = psfi.szDisplayName, TypeName = psfi.szTypeName };
+            return new FileInfo(icon, psfi.iIcon, psfi.dwAttributes, psfi.szDisplayName, psfi.szTypeName);
 
         }
 
@@ -488,11 +509,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public static FileInfo GetFileInfo(string path, FileAttributes fileAttributes, GetFileInfoOptions options, out int exeType)
         {
 
-#pragma warning disable IDE0059 // Initialized in the following call to SHGetFileInfo and used in the return statement.
             var psfi = new SHFILEINFO();
-#pragma warning restore IDE0059 // Value assigned to variable is never used
 
-            HResult hr = SHGetFileInfo(path, fileAttributes, out psfi, (uint)Marshal.SizeOf(psfi), options);
+            HResult hr = SHGetFileInfo(path, fileAttributes, ref psfi, (uint)Marshal.SizeOf(psfi), options);
 
             if (!CoreErrorHelper.Succeeded(hr))
 
@@ -516,7 +535,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             }
 
-            return new FileInfo() { Icon = icon, IconIndex = psfi.iIcon, Attributes = psfi.dwAttributes, DisplayName = psfi.szDisplayName, TypeName = psfi.szTypeName };
+            return new FileInfo(icon, psfi.iIcon, psfi.dwAttributes, psfi.szDisplayName, psfi.szTypeName ) ;
 
         }
 
@@ -691,7 +710,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public Action<uint, IShellItem, IShellItem, string> PreMoveItem { get; set; }
 
         public Action<uint, IShellItem, IShellItem, string, IShellItem> PostMoveItem { get; set; }
-        
+
         public Action<uint, IShellItem, IShellItem, string> PreCopyItem { get; set; }
 
         public Action<uint, IShellItem, IShellItem, string, IShellItem> PostCopyItem { get; set; }
@@ -719,15 +738,15 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             // if (!disposedValue)
             // {
-                if (disposing)
+            if (disposing)
 
-                    foreach (System.Reflection.PropertyInfo prop in GetType().GetProperties())
+                foreach (System.Reflection.PropertyInfo prop in GetType().GetProperties())
 
-                        prop.SetValue(this, null);
+                    prop.SetValue(this, null);
 
             _ = Marshal.ReleaseComObject(FileOperationProgressSinkInternal);
 
-                // disposedValue = true;
+            // disposedValue = true;
             // }
         }
 
@@ -822,7 +841,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         public virtual void PreNewItem(uint dwFlags, IShellItem psiDestinationFolder, string pszNewName) => fileOperationProgressSink.PreNewItem?.Invoke(dwFlags, psiDestinationFolder, pszNewName); /*return HResult.Ok;*/
 
-        public virtual void PostNewItem(uint dwFlags, IShellItem psiDestinationFolder, string pszNewName, string pszTemplateName, Microsoft.WindowsAPICodePack.Win32Native.Shell. FileAttributes dwFileAttributes, HResult hrNew, IShellItem psiNewItem)
+        public virtual void PostNewItem(uint dwFlags, IShellItem psiDestinationFolder, string pszNewName, string pszTemplateName, Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes dwFileAttributes, HResult hrNew, IShellItem psiNewItem)
         {
 
             if (!CoreErrorHelper.Succeeded(hrNew))

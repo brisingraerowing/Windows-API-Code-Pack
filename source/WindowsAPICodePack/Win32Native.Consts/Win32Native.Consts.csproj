@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;netcoreapp3.0;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>net40;netcoreapp3.0;netcoreapp3.1;netstandard2.1</TargetFrameworks>
     <RootNamespace>Microsoft.WindowsAPICodePack.Win32Native</RootNamespace>
     <PackageId>WinCopies.WindowsAPICodePack.Win32Native.Consts</PackageId>
     <Product>Microsoft Windows API Code Pack for .NET Framework</Product>
@@ -9,7 +9,7 @@
     <Copyright>Copyright © Pierre Sprimont 2020</Copyright>
     <AssemblyOriginatorKeyFile>Win32NativeConsts.snk</AssemblyOriginatorKeyFile>
     <Description>Native consts required by the Windows API Code Pack</Description>
-    <DocumentationFile>Win32Native.Consts.xml</DocumentationFile>
+    <DocumentationFile>WinCopies.WindowsAPICodePack.Win32Native.Consts.xml</DocumentationFile>
     <AssemblyName>WinCopies.WindowsAPICodePack.Win32Native.Consts</AssemblyName>
   </PropertyGroup>
 

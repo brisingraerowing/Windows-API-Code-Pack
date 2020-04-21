@@ -62,7 +62,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                         IntPtr targetDC = targetGr.GetHdc();
                         uint operation = 0x00CC0020 /*SRCCOPY*/;
 
-                        System.Drawing.Size ncArea = COMNative.Shell.DesktopWindowManager.GetNonClientArea(windowHandle);
+                        System.Drawing.Size ncArea = Shell.DesktopWindowManager.GetNonClientArea(windowHandle);
 
                         bool success = GDI.StretchBlt(
                             targetDC, 0, 0, targetBitmap.Width, targetBitmap.Height,

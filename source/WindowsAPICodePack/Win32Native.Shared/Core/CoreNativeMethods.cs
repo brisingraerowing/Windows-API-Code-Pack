@@ -238,6 +238,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         [DllImport(Kernel32)]
         public static extern IntPtr LockResource([In] IntPtr hResData);
 
+        [DllImport(Kernel32)]
         public static extern IntPtr LoadResource([In] IntPtr hModule, [In] IntPtr hResInfo);
 
         [DllImport(Kernel32, SetLastError = true)]

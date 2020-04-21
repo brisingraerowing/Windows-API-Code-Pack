@@ -999,378 +999,378 @@
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages">
             <summary>
-              Une classe de ressource fortement typée destinée, entre autres, à la consultation des chaînes localisées.
+              A strongly-typed resource class, for looking up localized strings, etc.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ResourceManager">
             <summary>
-              Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
+              Returns the cached ResourceManager instance used by this class.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.Culture">
             <summary>
-              Remplace la propriété CurrentUICulture du thread actuel pour toutes
-              les recherches de ressources à l'aide de cette classe de ressource fortement typée.
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.AddToMostRecentlyUsedListCannotBeChanged">
             <summary>
-              Recherche une chaîne localisée semblable à AddToMostRecentlyUsedList cannot be changed while dialog is showing..
+              Looks up a localized string similar to AddToMostRecentlyUsedList cannot be changed while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.AlwaysAppendDefaultExtensionCannotBeChanged">
             <summary>
-              Recherche une chaîne localisée semblable à AlwaysAppendDefaultExtension cannot be changed while dialog is showing..
+              Looks up a localized string similar to AlwaysAppendDefaultExtension cannot be changed while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ComboBoxIndexOutsideBounds">
             <summary>
-              Recherche une chaîne localisée semblable à Index was outside the bounds of the CommonFileDialogComboBox..
+              Looks up a localized string similar to Index was outside the bounds of the CommonFileDialogComboBox..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.CommonFileDialogCanceled">
             <summary>
-              Recherche une chaîne localisée semblable à File name not available - dialog was canceled..
+              Looks up a localized string similar to File name not available - dialog was canceled..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.CommonFileDialogCannotCreateShellItem">
             <summary>
-              Recherche une chaîne localisée semblable à Shell item could not be created..
+              Looks up a localized string similar to Shell item could not be created..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.CommonFileDialogInvalidHandle">
             <summary>
-              Recherche une chaîne localisée semblable à Handle provided cannot be IntPtr.Zero..
+              Looks up a localized string similar to Handle provided cannot be IntPtr.Zero..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.CommonFileDialogMultipleFiles">
             <summary>
-              Recherche une chaîne localisée semblable à Multiple files selected - the FileNames property should be used instead..
+              Looks up a localized string similar to Multiple files selected - the FileNames property should be used instead..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.CommonFileDialogMultipleItems">
             <summary>
-              Recherche une chaîne localisée semblable à Multiple files selected - the Items property should be used instead..
+              Looks up a localized string similar to Multiple files selected - the Items property should be used instead..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.CommonFileDialogNotClosed">
             <summary>
-              Recherche une chaîne localisée semblable à File name not available - dialog has not closed yet..
+              Looks up a localized string similar to File name not available - dialog has not closed yet..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.CommonFileDialogRequiresVista">
             <summary>
-              Recherche une chaîne localisée semblable à Common File Dialog requires Windows Vista or later..
+              Looks up a localized string similar to Common File Dialog requires Windows Vista or later..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.CommonFiltersOffice">
             <summary>
-              Recherche une chaîne localisée semblable à Office Files.
+              Looks up a localized string similar to Office Files.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.CommonFiltersPicture">
             <summary>
-              Recherche une chaîne localisée semblable à All Picture Files.
+              Looks up a localized string similar to All Picture Files.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.CommonFiltersText">
             <summary>
-              Recherche une chaîne localisée semblable à Text Files.
+              Looks up a localized string similar to Text Files.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.CreatePromptCannotBeChanged">
             <summary>
-              Recherche une chaîne localisée semblable à CreatePrompt cannot be changed while dialog is showing..
+              Looks up a localized string similar to CreatePrompt cannot be changed while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.DialogControlCollectionCannotRemoveControls">
             <summary>
-              Recherche une chaîne localisée semblable à Custom controls cannot be removed from a File dialog once added..
+              Looks up a localized string similar to Custom controls cannot be removed from a File dialog once added..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.DialogControlCollectionEmptyName">
             <summary>
-              Recherche une chaîne localisée semblable à Control name cannot be null or zero length..
+              Looks up a localized string similar to Control name cannot be null or zero length..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.DialogControlCollectionMenuItemControlsCannotBeAdded">
             <summary>
-              Recherche une chaîne localisée semblable à CommonFileDialogMenuItem controls can only be added to CommonFileDialogMenu controls..
+              Looks up a localized string similar to CommonFileDialogMenuItem controls can only be added to CommonFileDialogMenu controls..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.DialogControlCollectionModifyingControls">
             <summary>
-              Recherche une chaîne localisée semblable à Modifying controls collection while dialog is showing is not supported..
+              Looks up a localized string similar to Modifying controls collection while dialog is showing is not supported..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.DialogControlCollectionMoreThanOneControl">
             <summary>
-              Recherche une chaîne localisée semblable à Dialog cannot have more than one control with the same name..
+              Looks up a localized string similar to Dialog cannot have more than one control with the same name..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.DialogControlCollectionRemoveControlFirst">
             <summary>
-              Recherche une chaîne localisée semblable à Dialog control must be removed from current collections first..
+              Looks up a localized string similar to Dialog control must be removed from current collections first..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.EnsureFileExistsCannotBeChanged">
             <summary>
-              Recherche une chaîne localisée semblable à EnsureFileExists cannot be changed while dialog is showing..
+              Looks up a localized string similar to EnsureFileExists cannot be changed while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.EnsurePathExistsCannotBeChanged">
             <summary>
-              Recherche une chaîne localisée semblable à EnsurePathExists cannot be changed while dialog is showing..
+              Looks up a localized string similar to EnsurePathExists cannot be changed while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.EnsureReadonlyCannotBeChanged">
             <summary>
-              Recherche une chaîne localisée semblable à EnsureReadOnly cannot be changed while dialog is showing..
+              Looks up a localized string similar to EnsureReadOnly cannot be changed while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.EnsureValidNamesCannotBeChanged">
             <summary>
-              Recherche une chaîne localisée semblable à EnsureValidNames cannot be changed while dialog is showing..
+              Looks up a localized string similar to EnsureValidNames cannot be changed while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ExplorerBrowserBrowseToObjectFailed">
             <summary>
-              Recherche une chaîne localisée semblable à Browsing to object failed..
+              Looks up a localized string similar to Browsing to object failed..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ExplorerBrowserFailedToGetView">
             <summary>
-              Recherche une chaîne localisée semblable à ExplorerBrowser failed to get current view..
+              Looks up a localized string similar to ExplorerBrowser failed to get current view..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ExplorerBrowserIconSize">
             <summary>
-              Recherche une chaîne localisée semblable à Unable to get icon size..
+              Looks up a localized string similar to Unable to get icon size..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ExplorerBrowserItemCount">
             <summary>
-              Recherche une chaîne localisée semblable à Unexpected error retrieving item count..
+              Looks up a localized string similar to Unexpected error retrieving item count..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ExplorerBrowserSelectedItemCount">
             <summary>
-              Recherche une chaîne localisée semblable à Unexpected error retrieving selected item count..
+              Looks up a localized string similar to Unexpected error retrieving selected item count..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ExplorerBrowserUnexpectedError">
             <summary>
-              Recherche une chaîne localisée semblable à Unexpected error retrieving selection..
+              Looks up a localized string similar to Unexpected error retrieving selection..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ExplorerBrowserViewItems">
             <summary>
-              Recherche une chaîne localisée semblable à Unexpected error retrieving view items..
+              Looks up a localized string similar to Unexpected error retrieving view items..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.IsExpandedModeCannotBeChanged">
             <summary>
-              Recherche une chaîne localisée semblable à IsExpandedMode cannot be changed while dialog is showing..
+              Looks up a localized string similar to IsExpandedMode cannot be changed while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.JumpListCustomCategoriesDisabled">
             <summary>
-              Recherche une chaîne localisée semblable à Custom categories cannot be added while recent documents tracking is turned off..
+              Looks up a localized string similar to Custom categories cannot be added while recent documents tracking is turned off..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.JumpListFileTypeNotRegistered">
             <summary>
-              Recherche une chaîne localisée semblable à The file type is not registered with this application..
+              Looks up a localized string similar to The file type is not registered with this application..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.JumpListLinkPathRequired">
             <summary>
-              Recherche une chaîne localisée semblable à JumpListLink&apos;s path is required and cannot be null..
+              Looks up a localized string similar to JumpListLink&apos;s path is required and cannot be null..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.JumpListLinkTitleRequired">
             <summary>
-              Recherche une chaîne localisée semblable à JumpListLink&apos;s title is required and cannot be null..
+              Looks up a localized string similar to JumpListLink&apos;s title is required and cannot be null..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.JumpListNegativeOrdinalPosition">
             <summary>
-              Recherche une chaîne localisée semblable à Negative numbers are not allowed for the ordinal position..
+              Looks up a localized string similar to Negative numbers are not allowed for the ordinal position..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.MessageListenerCannotCreateWindow">
             <summary>
-              Recherche une chaîne localisée semblable à Creation of window has failed, view inner exception for details..
+              Looks up a localized string similar to Creation of window has failed, view inner exception for details..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.MessageListenerClassNotRegistered">
             <summary>
-              Recherche une chaîne localisée semblable à Window class could not be registered, check inner exception for more details..
+              Looks up a localized string similar to Window class could not be registered, check inner exception for more details..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.MessageListenerFilterUnableToRegister">
             <summary>
-              Recherche une chaîne localisée semblable à Message filter registration failed..
+              Looks up a localized string similar to Message filter registration failed..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.MessageListenerFilterUnknownListenerHandle">
             <summary>
-              Recherche une chaîne localisée semblable à No listener handled of that value is registered..
+              Looks up a localized string similar to No listener handled of that value is registered..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.MessageListenerNoWindowHandle">
             <summary>
-              Recherche une chaîne localisée semblable à Cannot create window on the listener thread because there is no existing window on the listener thread..
+              Looks up a localized string similar to Cannot create window on the listener thread because there is no existing window on the listener thread..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.NavigateToShortcutCannotBeChanged">
             <summary>
-              Recherche une chaîne localisée semblable à NavigateToShortcut cannot be changed while dialog is showing..
+              Looks up a localized string similar to NavigateToShortcut cannot be changed while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.NavigationLogNullParent">
             <summary>
-              Recherche une chaîne localisée semblable à Parent cannot be null..
+              Looks up a localized string similar to Parent cannot be null..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.NotImplementedException">
             <summary>
-              Recherche une chaîne localisée semblable à The method or operation is not implemented..
+              Looks up a localized string similar to The method or operation is not implemented..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.OverwritePromptCannotBeChanged">
             <summary>
-              Recherche une chaîne localisée semblable à OverwritePrompt cannot be changed while dialog is showing..
+              Looks up a localized string similar to OverwritePrompt cannot be changed while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.RadioButtonListIndexOutOfBounds">
             <summary>
-              Recherche une chaîne localisée semblable à Index was outside the bounds of the CommonFileDialogRadioButtonList..
+              Looks up a localized string similar to Index was outside the bounds of the CommonFileDialogRadioButtonList..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.RestoreDirectoryCannotBeChanged">
             <summary>
-              Recherche une chaîne localisée semblable à RestoreDirectory cannot be changed while dialog is showing..
+              Looks up a localized string similar to RestoreDirectory cannot be changed while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.SaveFileNullItem">
             <summary>
-              Recherche une chaîne localisée semblable à Retrieved a null shell item from dialog..
+              Looks up a localized string similar to Retrieved a null shell item from dialog..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ShellLibraryDefaultSaveFolderNotFound">
             <summary>
-              Recherche une chaîne localisée semblable à DefaultSaveFolder path not found..
+              Looks up a localized string similar to DefaultSaveFolder path not found..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ShellObjectCollectionArrayTooSmall">
             <summary>
-              Recherche une chaîne localisée semblable à Destination array too small, or invalid arrayIndex..
+              Looks up a localized string similar to Destination array too small, or invalid arrayIndex..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ShellObjectCollectionEmptyCollection">
             <summary>
-              Recherche une chaîne localisée semblable à Must have at least one shell object in the collection..
+              Looks up a localized string similar to Must have at least one shell object in the collection..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ShellObjectCollectionInsertReadOnly">
             <summary>
-              Recherche une chaîne localisée semblable à Cannot insert items into a read only list..
+              Looks up a localized string similar to Cannot insert items into a read only list..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ShellObjectCollectionRemoveReadOnly">
             <summary>
-              Recherche une chaîne localisée semblable à Cannot remove items from a read only list..
+              Looks up a localized string similar to Cannot remove items from a read only list..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ShellObjectWatcherRegisterFailed">
             <summary>
-              Recherche une chaîne localisée semblable à Registration for change notification has failed..
+              Looks up a localized string similar to Registration for change notification has failed..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ShellObjectWatcherUnableToChangeEvents">
             <summary>
-              Recherche une chaîne localisée semblable à Unable to change watched events while listening..
+              Looks up a localized string similar to Unable to change watched events while listening..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ShowHiddenItemsCannotBeChanged">
             <summary>
-              Recherche une chaîne localisée semblable à ShowHiddenItems cannot be changed while dialog is showing..
+              Looks up a localized string similar to ShowHiddenItems cannot be changed while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ShowPlacesListCannotBeChanged">
             <summary>
-              Recherche une chaîne localisée semblable à Show places list cannot be changed while dialog is showing..
+              Looks up a localized string similar to Show places list cannot be changed while dialog is showing..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.StockIconInvalidGuid">
             <summary>
-              Recherche une chaîne localisée semblable à The Stock Icon identifier given is invalid ({0})..
+              Looks up a localized string similar to The Stock Icon identifier given is invalid ({0})..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.TabbedThumbnailZeroChildHandle">
             <summary>
-              Recherche une chaîne localisée semblable à Child control&apos;s window handle cannot be zero..
+              Looks up a localized string similar to Child control&apos;s window handle cannot be zero..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.TabbedThumbnailZeroParentHandle">
             <summary>
-              Recherche une chaîne localisée semblable à Parent window handle cannot be zero..
+              Looks up a localized string similar to Parent window handle cannot be zero..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.TasbarWindowProxyWindowSet">
             <summary>
-              Recherche une chaîne localisée semblable à TabbedThumbnailProxyWindow has not been set..
+              Looks up a localized string similar to TabbedThumbnailProxyWindow has not been set..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.TaskbarManagerValidWindowRequired">
             <summary>
-              Recherche une chaîne localisée semblable à A valid active Window is needed to update the Taskbar..
+              Looks up a localized string similar to A valid active Window is needed to update the Taskbar..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.TaskbarWindowEmptyButtonArray">
             <summary>
-              Recherche une chaîne localisée semblable à The array of buttons must contain at least 1 item..
+              Looks up a localized string similar to The array of buttons must contain at least 1 item..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.TaskbarWindowManagerButtonsAlreadyAdded">
             <summary>
-              Recherche une chaîne localisée semblable à Tool bar buttons for this window are already added. Please refer to the Remarks section of the AddButtons method for more information on updating the properties or hiding existing buttons..
+              Looks up a localized string similar to Tool bar buttons for this window are already added. Please refer to the Remarks section of the AddButtons method for more information on updating the properties or hiding existing buttons..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.TaskbarWindowValueSet">
             <summary>
-              Recherche une chaîne localisée semblable à Value is already set. It cannot be set more than once..
+              Looks up a localized string similar to Value is already set. It cannot be set more than once..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ThumbnailManagerControlNotAdded">
             <summary>
-              Recherche une chaîne localisée semblable à The given control has not been added to the taskbar..
+              Looks up a localized string similar to The given control has not been added to the taskbar..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ThumbnailManagerInvalidHandle">
             <summary>
-              Recherche une chaîne localisée semblable à Window handle is invalid..
+              Looks up a localized string similar to Window handle is invalid..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ThumbnailManagerPreviewAdded">
             <summary>
-              Recherche une chaîne localisée semblable à This preview has already been added..
+              Looks up a localized string similar to This preview has already been added..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ThumbnailManagerPreviewNotAdded">
             <summary>
-              Recherche une chaîne localisée semblable à The given preview has not been added to the taskbar..
+              Looks up a localized string similar to The given preview has not been added to the taskbar..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ThumbnailToolbarManagerMaxButtons">
             <summary>
-              Recherche une chaîne localisée semblable à Maximum number of buttons allowed is 7..
+              Looks up a localized string similar to Maximum number of buttons allowed is 7..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ThumbnailToolbarManagerNullEmptyArray">
             <summary>
-              Recherche une chaîne localisée semblable à Null or empty arrays are not allowed..
+              Looks up a localized string similar to Null or empty arrays are not allowed..
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.EventHandlerExtensionMethods">
@@ -1409,7 +1409,7 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.Icon">
             <summary>
-            Gets or sets the icon that represents the file.
+            Gets or sets the icon that represents the file. When the <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileInfo.Dispose"/> method of this struct is called, this method calls the <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileInfo.Dispose"/> method on the current <see cref="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.Icon"/>.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.IconIndex">
@@ -1431,6 +1431,16 @@
             <summary>
             Gets or sets a string that describes the type of file.
             </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileInfo.#ctor(System.Drawing.Icon,System.Int32,Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.WindowsAPICodePack.Shell.FileInfo"/> structure.
+            </summary>
+            <param name="icon">The icon of the file represented by this structure.</param>
+            <param name="iconIndex">The icon index of the retrieved icon.</param>
+            <param name="attributes">The attributes of the file represented by this structure.</param>
+            <param name="displayName">The display name of the file represented by this structure.</param>
+            <param name="typeName">The type name of the file represented by this structure.</param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.FileInfo.Dispose">
             <summary>
@@ -2247,6 +2257,21 @@
             when the writer has been closed/commited).
             </summary>
         </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObject.ToString">
+            <summary>
+            Overrides object.ToString()
+            </summary>
+            <returns>A string representation of the object.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObject.GetDisplayName(Microsoft.WindowsAPICodePack.COMNative.Shell.DisplayNameType)">
+            <summary>
+            Returns the display name of the ShellFolder object. DisplayNameType represents one of the 
+            values that indicates how the name should look. 
+            See <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.DisplayNameType"/>for a list of possible values.
+            </summary>
+            <param name="displayNameType">A disaply name type.</param>
+            <returns>A string.</returns>
+        </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObject.Update(System.Runtime.InteropServices.ComTypes.IBindCtx)">
             <summary>
             Updates the native shell item that maps to this shell object. This is necessary when the shell item 
@@ -2274,21 +2299,6 @@
             <summary>
             Gets the PID List (PIDL) for this ShellItem. This property should not be used directly except on Win32 API reimplementation.
             </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObject.ToString">
-            <summary>
-            Overrides object.ToString()
-            </summary>
-            <returns>A string representation of the object.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObject.GetDisplayName(Microsoft.WindowsAPICodePack.COMNative.Shell.DisplayNameType)">
-            <summary>
-            Returns the display name of the ShellFolder object. DisplayNameType represents one of the 
-            values that indicates how the name should look. 
-            See <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.DisplayNameType"/>for a list of possible values.
-            </summary>
-            <param name="displayNameType">A disaply name type.</param>
-            <returns>A string.</returns>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.ShellObject.IsLink">
             <summary>
@@ -2889,6 +2899,181 @@
             A valid windowHandle is available only after the sourceInitialized is completed
             </summary>
             <param name="e">EventArgs</param>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Border">
+            <summary>
+            The window has a thin-line border.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Caption">
+            <summary>
+            The window has a title bar (includes the WS_BORDER style).
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Child">
+            <summary>
+            The window is a child window. 
+            A window with this style cannot have a menu bar. 
+            This style cannot be used with the WS_POPUP style.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ChildWindow">
+            <summary>
+            Same as the WS_CHILD style.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ClipChildren">
+            <summary>
+            Excludes the area occupied by child windows when drawing occurs within the parent window. 
+            This style is used when creating the parent window.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ClipSiblings">
+            <summary>
+            Clips child windows relative to each other; 
+            that is, when a particular child window receives a WM_PAINT message, 
+            the WS_CLIPSIBLINGS style clips all other overlapping child windows out of the region of the child window to be updated. 
+            If WS_CLIPSIBLINGS is not specified and child windows overlap, it is possible, 
+            when drawing within the client area of a child window, to draw within the client area of a neighboring child window.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Disabled">
+            <summary>
+            The window is initially disabled. A disabled window cannot receive input from the user. 
+            To change this after a window has been created, use the EnableWindow function.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.DialogFrame">
+            <summary>
+            The window has a border of a style typically used with dialog boxes. 
+            A window with this style cannot have a title bar.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Group">
+            <summary>
+            The window is the first control of a group of controls. 
+            The group consists of this first control and all controls defined after it, up to the next control with the WS_GROUP style. 
+            The first control in each group usually has the WS_TABSTOP style so that the user can move from group to group. 
+            The user can subsequently change the keyboard focus from one control in the group to the next control 
+            in the group by using the direction keys.
+            
+            You can turn this style on and off to change dialog box navigation. 
+            To change this style after a window has been created, use the SetWindowLong function.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.HorizontalScroll">
+            <summary>
+            The window has a horizontal scroll bar.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Iconic">
+            <summary>
+            The window is initially minimized. 
+            Same as the WS_MINIMIZE style.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Maximize">
+            <summary>
+            The window is initially maximized.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.MaximizeBox">
+            <summary>
+            The window has a maximize button. 
+            Cannot be combined with the WS_EX_CONTEXTHELP style. 
+            The WS_SYSMENU style must also be specifie
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Minimize">
+            <summary>
+            The window is initially minimized. 
+            Same as the WS_ICONIC style.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.MinimizeBox">
+            <summary>
+            The window has a minimize button. 
+            Cannot be combined with the WS_EX_CONTEXTHELP style. 
+            The WS_SYSMENU style must also be specified.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Overlapped">
+            <summary>
+            The window is an overlapped window. 
+            An overlapped window has a title bar and a border. 
+            Same as the WS_TILED style.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Popup">
+            <summary>
+            The windows is a pop-up window. 
+            This style cannot be used with the WS_CHILD style.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.SizeBox">
+            <summary>
+            The window has a sizing border. 
+            Same as the WS_THICKFRAME style.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.SystemMenu">
+            <summary>
+            The window has a window menu on its title bar. 
+            The WS_CAPTION style must also be specified.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Tabstop">
+            <summary>
+            The window is a control that can receive the keyboard focus when the user presses the TAB key. 
+            Pressing the TAB key changes the keyboard focus to the next control with the WS_TABSTOP style.
+            
+            You can turn this style on and off to change dialog box navigation. 
+            To change this style after a window has been created, use the SetWindowLong function. 
+            For user-created windows and modeless dialogs to work with tab stops, 
+            alter the message loop to call the IsDialogMessage function.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ThickFrame">
+            <summary>
+            The window has a sizing border. 
+            Same as the WS_SIZEBOX style.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Tiled">
+            <summary>
+            The window is an overlapped window. 
+            An overlapped window has a title bar and a border. 
+            Same as the WS_OVERLAPPED style.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Visible">
+            <summary>
+            The window is initially visible.
+            
+            This style can be turned on and off by using the ShowWindow or SetWindowPos function.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.VerticalScroll">
+            <summary>
+            The window has a vertical scroll bar.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.TiledWindowMask">
+            <summary>
+            The window is an overlapped window. 
+            Same as the WS_OVERLAPPEDWINDOW style.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.PopupWindowMask">
+            <summary>
+            The window is a pop-up window. 
+            The WS_CAPTION and WS_POPUPWINDOW styles must be combined to make the window menu visible.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.OverlappedWindowMask">
+            <summary>
+            The window is an overlapped window. Same as the WS_TILEDWINDOW style.
+            </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.FileSystemKnownFolder">
             <summary>

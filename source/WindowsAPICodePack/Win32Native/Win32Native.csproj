@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net472;netcoreapp3.0;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>net472;netcoreapp3.0;netcoreapp3.1;netstandard2.1</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <RootNamespace>Microsoft.WindowsAPICodePack.Win32Native</RootNamespace>
@@ -10,7 +10,7 @@
     <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020</Copyright>
     <AssemblyOriginatorKeyFile>Win32Native.snk</AssemblyOriginatorKeyFile>
     <Description>WindowsAPICodePack Win32 Interop</Description>
-    <DocumentationFile>Win32Native.xml</DocumentationFile>
+    <DocumentationFile>WinCopies.WindowsAPICodePack.Win32Native.xml</DocumentationFile>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <AssemblyName>WinCopies.WindowsAPICodePack.Win32Native</AssemblyName>
   </PropertyGroup>
