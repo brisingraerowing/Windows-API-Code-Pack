@@ -345,7 +345,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
 
                     if (isMonitorOn == null)
                     {
-#if !NETFRAMEWORK
+#if !CS7
                         static
 #endif
                             void dummy(object sender, EventArgs args) { }

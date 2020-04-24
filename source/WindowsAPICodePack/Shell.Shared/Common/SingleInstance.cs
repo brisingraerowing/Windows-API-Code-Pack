@@ -8,7 +8,7 @@
 //// </summary>
 ////-----------------------------------------------------------------------
 
-//#if !NETCORE
+//#if !CS8
 
 //using System;
 //using System.Collections;
