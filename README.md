@@ -7,17 +7,17 @@ README
 Licence
 -------
 
-See [LICENCE](https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/LICENCE) for the original licence (retrieved from [WebArchive](http://web.archive.org/web/20130717101016/http://archive.msdn.microsoft.com/WindowsAPICodePack/Project/License.aspx)). The library is not developed anymore by Microsoft and seems to have been left as 'free to use'. A clarification or update about the licence terms from Microsoft is welcome, however.
+See [LICENCE](https://wincopies.com/fwd.php?id=4) for the original licence (retrieved from [WebArchive](http://web.archive.org/web/20130717101016/http://archive.msdn.microsoft.com/WindowsAPICodePack/Project/License.aspx)). The library is not developed anymore by Microsoft and seems to have been left as 'free to use'. A clarification or update about the licence terms from Microsoft is welcome, however.
  
 Release notes
 -------------
 
-See [CHANGELOG](https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/CHANGELOG) for latest changes.
+See [CHANGELOG](https://wincopies.com/fwd.php?id=5) for latest changes.
 
 Contributing
 ------------
 
-Any contributor to this project has to read [this code of conduct](https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/CODE_OF_CONDUCT.md) before contributing and has to follow the rules described in it for any contribution to this project.
+Any contributor to this project has to read [this code of conduct](https://wincopies.com/fwd.php?id=6) before contributing and has to follow the rules described in it for any contribution to this project.
 
 Bugs
 ----

@@ -6,10 +6,12 @@ Please note:
 - The '#<number\>' notice indicates that the relative issue has been opened starting with the relative release.
 - The 'Fixation #<number\>'/'Fixes #<number\>' notice indicates that the relative issue has been fixed starting with the relative release.
 
-For issue and fixation details, visit https://github.com/pierresprim/Windows-API-Code-Pack/issues
+For issue and fixation details, visit [https://wincopies.com/fwd.php?id=3](https://wincopies.com/fwd.php?id=3)
 
 ???? 2.0.0-preview3
 ===================
+
+Remove original code archive; for the original code, see [https://wincopies.com/fwd.php?id=1](https://wincopies.com/fwd.php?id=1)
 
 WinCopies.WindowsAPICodePack.Sensors 2.0.0-preview3
 ---------------------------------------------------
