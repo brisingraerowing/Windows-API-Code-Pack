@@ -148,9 +148,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         [DllImport(Kernel32, SetLastError = true, ThrowOnUnmappableChar = true, BestFitMapping = false)]
         public static extern IntPtr LoadLibrary([MarshalAs(UnmanagedType.LPStr)] string fileName);
 
-        [DllImport(Kernel32,SetLastError =true,CharSet = CharSet.Auto)]
-        public static extern IntPtr LoadLibraryEx([In, MarshalAs(UnmanagedType.LPWStr)] string lpLibFileName,IntPtr hFile,
-            [In, MarshalAs(UnmanagedType.U4)] uint dwFlags            );
+        [DllImport(Kernel32, SetLastError = true, CharSet = CharSet.Unicode)]
+        public static extern IntPtr LoadLibraryEx([In, MarshalAs(UnmanagedType.LPWStr)] string lpLibFileName, IntPtr hFile,
+            [In, MarshalAs(UnmanagedType.U4)] uint dwFlags);
 
         [DllImport(User32, SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern int LoadString(
@@ -228,38 +228,59 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool UpdateResource([In] IntPtr hUpdate, [In, MarshalAs(UnmanagedType.U2)] ushort lpType, [In, MarshalAs(UnmanagedType.U2)] ushort lpName, [In] ushort wLanguage, [In] byte[] lpData, [In] uint cb);
 
-        [DllImport(Kernel32)]
+        [DllImport(Kernel32, SetLastError = true)]
         public static extern uint SizeofResource([In] IntPtr hModule, [In] IntPtr hResInfo);
 
         [DllImport(Kernel32)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool FreeLibrary([In] IntPtr hLibModule);
 
-        [DllImport(Kernel32)]
+        [DllImport(Kernel32, SetLastError = true)]
         public static extern IntPtr LockResource([In] IntPtr hResData);
 
-        [DllImport(Kernel32)]
+        [DllImport(Kernel32, SetLastError = true)]
         public static extern IntPtr LoadResource([In] IntPtr hModule, [In] IntPtr hResInfo);
 
-        [DllImport(Kernel32, SetLastError = true)]
+        [DllImport(Kernel32, SetLastError = true, CharSet = CharSet.Unicode)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool EnumResourceNames([In] IntPtr hModule, [In, MarshalAs(UnmanagedType.LPWStr)] string lpType, [In] EnumResNameProc lpEnumFunc, [In] IntPtr lParam);
+
+        [DllImport(Kernel32, SetLastError = true, CharSet = CharSet.Unicode)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool EnumResourceNames([In] IntPtr hModule, [In] IntPtr lpType, [In] IntPtrEnumResNameProc lpEnumFunc, [In] IntPtr lParam);
 
         [DllImport(Kernel32, SetLastError = true)]
         public static extern bool EnumResourceTypes([In] IntPtr hModule, [In] EnumResTypeProc lpEnumFunc, [In] IntPtr lParam);
 
-        [DllImport(Kernel32)]
+        [DllImport(Kernel32, SetLastError = true)]
+        public static extern bool EnumResourceTypes([In] IntPtr hModule, [In] IntPtrEnumResTypeProc lpEnumFunc, [In] IntPtr lParam);
+
+        [DllImport(Kernel32, SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern IntPtr FindResource([In] IntPtr hModule, [In, MarshalAs(UnmanagedType.LPWStr)] string lpName, [In, MarshalAs(UnmanagedType.LPWStr)] string lpType);
 
-        [DllImport(Kernel32)]
+        [DllImport(Kernel32, SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern IntPtr FindResource([In] IntPtr hModule, [In, MarshalAs(UnmanagedType.U2)] ushort lpName, [In, MarshalAs(UnmanagedType.U2)] ushort lpType);
 
+        [DllImport(Kernel32, SetLastError = true, CharSet = CharSet.Unicode)]
+        public static extern IntPtr FindResource([In] IntPtr hModule, [In] IntPtr lpName, [In] IntPtr lpType);
+
         [DllImport(User32)]
-        [return:MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetIconInfo([In] IntPtr hIcon,            [Out] out IconInfo piconinfo);
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool GetIconInfo([In] IntPtr hIcon, [Out] out IconInfo piconinfo);
+
+        [DllImport(Kernel32, SetLastError = true)]
+        public static extern IntPtr GetCurrentProcess();
+
+        [DllImport(Kernel32, SetLastError = true, CharSet = CharSet.Unicode)]
+        [return: MarshalAs(UnmanagedType.U4)]
+        public static extern uint QueryDosDevice([In, MarshalAs(UnmanagedType.LPWStr)]string lpDeviceName, [Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpTargetPath, [In, MarshalAs(UnmanagedType.U4)] uint ucchMax);
+
+        [DllImport(Psapi, SetLastError = true, CharSet = CharSet.Unicode)]
+        [return: MarshalAs(UnmanagedType.U4)]
+        public static extern uint GetMappedFileName([In] IntPtr hProcess, [In] IntPtr lpv, [Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpFileName, [In] uint nSize);
     }
 
-    [StructLayout(LayoutKind.Sequential, Pack =1)]
+    [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct IconInfo
     {
         [MarshalAs(UnmanagedType.Bool)]
@@ -267,43 +288,50 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         [MarshalAs(UnmanagedType.U4)]
         public uint xHotspot;
         [MarshalAs(UnmanagedType.U4)]
-        public uint  yHotspot;
+        public uint yHotspot;
         public IntPtr hbmMask;
         public IntPtr hbmColor;
     }
 
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public delegate bool EnumResNameProc([In] IntPtr hModule, [In, MarshalAs(UnmanagedType.LPWStr)] string lpType, [In, MarshalAs(UnmanagedType.LPWStr)] string lpName, [In] IntPtr lParam);
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public delegate bool EnumResNameProc([In] IntPtr hModule, [In, MarshalAs(UnmanagedType.LPWStr)] string lpType, [In, MarshalAs(UnmanagedType.LPWStr)] string lpName, [In] IntPtr lParam);
 
-        public delegate bool EnumResTypeProc([In] IntPtr hModule, [In, MarshalAs(UnmanagedType.LPWStr)] string lpType, [In] IntPtr lParam);
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public delegate bool IntPtrEnumResNameProc([In] IntPtr hModule, [In] IntPtr lpType, [In] IntPtr lpName, [In] IntPtr lParam);
 
-        #region GDI and DWM Declarations
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public delegate bool EnumResTypeProc([In] IntPtr hModule, [In, MarshalAs(UnmanagedType.LPWStr)] string lpType, [In] IntPtr lParam);
+
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public delegate bool IntPtrEnumResTypeProc([In] IntPtr hModule, [In] IntPtr lpType, [In] IntPtr lParam);
+
+    #region GDI and DWM Declarations
+
+    /// <summary>
+    /// A Wrapper for a SIZE struct
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct Size
+    {
+        /// <summary>
+        /// Width
+        /// </summary>
+        public int Width { get; set; }
 
         /// <summary>
-        /// A Wrapper for a SIZE struct
+        /// Height
         /// </summary>
-        [StructLayout(LayoutKind.Sequential)]
-        public struct Size
-        {
-            /// <summary>
-            /// Width
-            /// </summary>
-            public int Width { get; set; }
+        public int Height { get; set; }
+    };
 
-            /// <summary>
-            /// Height
-            /// </summary>
-            public int Height { get; set; }
-        };
+    #endregion
 
-        #endregion
+    #region Windows OS structs and consts
 
-        #region Windows OS structs and consts
+    public delegate int WNDPROC(IntPtr hWnd,
+        uint uMessage,
+        IntPtr wParam,
+        IntPtr lParam);
 
-        public delegate int WNDPROC(IntPtr hWnd,
-            uint uMessage,
-            IntPtr wParam,
-            IntPtr lParam);
-
-        #endregion
+    #endregion
 }

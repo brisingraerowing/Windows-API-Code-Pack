@@ -155,7 +155,7 @@
 //            string[] args = null;
 
 //            if (AppDomain.CurrentDomain.ActivationContext == null)
-                
+
 //                // The application was not clickonce deployed, get args from standard API's
 //                args = Environment.GetCommandLineArgs();
 
@@ -186,7 +186,7 @@
 //                    }
 //            }
 
-//            return new List<string>(args??Array.Empty<string>());
+//            return new List<string>(args ?? Array.Empty<string>());
 //        }
 
 //        /// <summary>

@@ -37,6 +37,9 @@ WinCopies.WindowsAPICodePack.Win32Native 2.0.0-preview3
     - The Microsoft.WindowsAPICodePack.Win32Native.Shell.Shell.SHGetFileInfo method now targets the unicode variant.
     - The Microsoft.WindowsAPICodePack.Shell.FileInfo struct is not mutable anymore.
 
+- Additions:
+    - New P/Invoke methods in the Microsoft.WindowsAPICodePack.Win32Native.Core class.
+
 03/28/2020 2.0.0-preview2
 =========================
 

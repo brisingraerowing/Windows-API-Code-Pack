@@ -46,6 +46,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Consts
         public const string User32 = "user32.dll";
         public const string Ole32 = "ole32.dll";
         public const string OleAut32 = "oleAut32.dll";
+        public const string Psapi = "psapi.dll";
 
     }
 
@@ -224,6 +225,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Consts
 
         }
 
-}
+    }
 
 }
