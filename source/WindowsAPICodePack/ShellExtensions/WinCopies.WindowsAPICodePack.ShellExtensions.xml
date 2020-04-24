@@ -6,73 +6,73 @@
     <members>
         <member name="T:Microsoft.WindowsAPICodePack.ShellExtensions.Resources.LocalizedMessages">
             <summary>
-              Une classe de ressource fortement typée destinée, entre autres, à la consultation des chaînes localisées.
+              A strongly-typed resource class, for looking up localized strings, etc.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ShellExtensions.Resources.LocalizedMessages.ResourceManager">
             <summary>
-              Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
+              Returns the cached ResourceManager instance used by this class.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ShellExtensions.Resources.LocalizedMessages.Culture">
             <summary>
-              Remplace la propriété CurrentUICulture du thread actuel pour toutes
-              les recherches de ressources à l'aide de cette classe de ressource fortement typée.
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ShellExtensions.Resources.LocalizedMessages.PreviewHandlerControlNotInitialized">
             <summary>
-              Recherche une chaîne localisée semblable à Control has not yet been assigned. Methods requiring it cannot be called..
+              Looks up a localized string similar to Control has not yet been assigned. Methods requiring it cannot be called..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ShellExtensions.Resources.LocalizedMessages.PreviewHandlerInterfaceNotImplemented">
             <summary>
-              Recherche une chaîne localisée semblable à {0} must implement one or more of IPreviewFromStream, IPreviewFromShellObject or IPreviewFromFile..
+              Looks up a localized string similar to {0} must implement one or more of IPreviewFromStream, IPreviewFromShellObject or IPreviewFromFile..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ShellExtensions.Resources.LocalizedMessages.PreviewHandlerInvalidAttributes">
             <summary>
-              Recherche une chaîne localisée semblable à PreviewHandler &apos;{0}&apos; must have exactly one PreviewHandler attribute..
+              Looks up a localized string similar to PreviewHandler &apos;{0}&apos; must have exactly one PreviewHandler attribute..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ShellExtensions.Resources.LocalizedMessages.PreviewHandlerUnsupportedInterfaceCalled">
             <summary>
-              Recherche une chaîne localisée semblable à Unable to call interface {0} because it is not supported on this object..
+              Looks up a localized string similar to Unable to call interface {0} because it is not supported on this object..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ShellExtensions.Resources.LocalizedMessages.StorageStreamBufferOverflow">
             <summary>
-              Recherche une chaîne localisée semblable à The sum of offset and count must be less than or equal to the size of the buffer..
+              Looks up a localized string similar to The sum of offset and count must be less than or equal to the size of the buffer..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ShellExtensions.Resources.LocalizedMessages.StorageStreamCountLessThanZero">
             <summary>
-              Recherche une chaîne localisée semblable à Count must be greater than or equal to zero..
+              Looks up a localized string similar to Count must be greater than or equal to zero..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ShellExtensions.Resources.LocalizedMessages.StorageStreamIsReadonly">
             <summary>
-              Recherche une chaîne localisée semblable à The stream was initialized as read-only..
+              Looks up a localized string similar to The stream was initialized as read-only..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ShellExtensions.Resources.LocalizedMessages.StorageStreamOffsetLessThanZero">
             <summary>
-              Recherche une chaîne localisée semblable à Offset must be greater than or equal to zero..
+              Looks up a localized string similar to Offset must be greater than or equal to zero..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ShellExtensions.Resources.LocalizedMessages.ThumbnailProviderDisabledProcessIsolation">
             <summary>
-              Recherche une chaîne localisée semblable à {0} does not implement IThumbnailFromStream and so requires DisableProcessIsolation set to true..
+              Looks up a localized string similar to {0} does not implement IThumbnailFromStream and so requires DisableProcessIsolation set to true..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ShellExtensions.Resources.LocalizedMessages.ThumbnailProviderInterfaceNotImplemented">
             <summary>
-              Recherche une chaîne localisée semblable à {0} must implement one or more of IThumbnailFromStream, IThumbnailFromShellObject or IThumbnailFromFile..
+              Looks up a localized string similar to {0} must implement one or more of IThumbnailFromStream, IThumbnailFromShellObject or IThumbnailFromFile..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ShellExtensions.Resources.LocalizedMessages.WpfPreviewHandlerNoHandle">
             <summary>
-              Recherche une chaîne localisée semblable à Cannot retrieve handle because proxy window has not been created..
+              Looks up a localized string similar to Cannot retrieve handle because proxy window has not been created..
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.ShellExtensions.IPreviewFromStream">

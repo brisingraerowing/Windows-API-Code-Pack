@@ -44,7 +44,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         {
             IPropertyStore store = ShellPropertyCollection.CreateDefaultPropertyStore(ParentShellObject);
 
-#if NETFRAMEWORK
+#if CS7
 
             using (var propVar = new PropVariant())
 
@@ -74,7 +74,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                 imageReferenceIconIndex = index;
             }
 
-#if NETFRAMEWORK
+#if CS7
 
             }
 
@@ -188,7 +188,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                 // Make sure we load the correct type
                 Debug.Assert(ValueType == NativePropertyHelper.VarEnumToSystemType(Description.VarEnumType));
 
-#if NETFRAMEWORK
+#if CS7
 
                 using (var propVar = new PropVariant())
                 {
@@ -217,7 +217,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                 //Get the value
                 return propVar.Value != null ? (T)propVar.Value : default;
 
-#if NETFRAMEWORK
+#if CS7
 
                 }
 
@@ -296,7 +296,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
             IPropertyStore store = ShellPropertyCollection.CreateDefaultPropertyStore(ParentShellObject);
 
-#if NETFRAMEWORK
+#if CS7
 
             using (var propVar = new PropVariant())
 
@@ -326,7 +326,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
             return true;
 
-#if NETFRAMEWORK
+#if CS7
 
             }
 
@@ -350,7 +350,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
             IPropertyStore store = ShellPropertyCollection.CreateDefaultPropertyStore(ParentShellObject);
 
-#if NETFRAMEWORK
+#if CS7
 
             using (var propVar = new PropVariant())
 
@@ -378,7 +378,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
             return formattedString;
 
-#if NETFRAMEWORK
+#if CS7
 
             }
 
@@ -402,7 +402,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// </summary>
         public void ClearValue()
         {
-#if NETFRAMEWORK
+#if CS7
 
             using (var propVar = new PropVariant())
 
@@ -425,7 +425,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         {
             get
             {
-#if NETFRAMEWORK
+#if CS7
                 
                 using (var propVar = new PropVariant())
 
@@ -452,7 +452,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
                 return propVar?.Value;
 
-#if NETFRAMEWORK
+#if CS7
 
                 }
 

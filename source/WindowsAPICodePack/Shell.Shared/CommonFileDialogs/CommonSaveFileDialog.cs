@@ -234,7 +234,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
         internal override void InitializeNativeFileDialog()
         {
-#if NETFRAMEWORK
+#if CS7
             if (saveDialogCoClass == null)
 
                 saveDialogCoClass = new NativeFileSaveDialog();

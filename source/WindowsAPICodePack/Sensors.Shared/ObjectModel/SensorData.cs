@@ -35,7 +35,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
                 _ = keyCollection.GetAt(index, ref key);
 
-#if NETFRAMEWORK
+#if CS7
 
                 using (var propValue = new PropVariant())
 
@@ -57,7 +57,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
                     data.Add(key.FormatId, new List<object> { propValue.Value });
 
-#if NETFRAMEWORK
+#if CS7
 
                 }
 

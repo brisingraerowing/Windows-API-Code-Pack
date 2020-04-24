@@ -704,7 +704,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
             lock (_padlock)
             {
-#if NETFRAMEWORK
+#if CS7
                 if (_vectorActions == null)
 
                     _vectorActions = GenerateVectorActions();

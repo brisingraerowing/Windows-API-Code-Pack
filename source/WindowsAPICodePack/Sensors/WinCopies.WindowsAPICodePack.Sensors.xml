@@ -6,68 +6,68 @@
     <members>
         <member name="T:Microsoft.WindowsAPICodePack.Sensors.Resources.LocalizedMessages">
             <summary>
-              Une classe de ressource fortement typée destinée, entre autres, à la consultation des chaînes localisées.
+              A strongly-typed resource class, for looking up localized strings, etc.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Sensors.Resources.LocalizedMessages.ResourceManager">
             <summary>
-              Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
+              Returns the cached ResourceManager instance used by this class.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Sensors.Resources.LocalizedMessages.Culture">
             <summary>
-              Remplace la propriété CurrentUICulture du thread actuel pour toutes
-              les recherches de ressources à l'aide de cette classe de ressource fortement typée.
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Sensors.Resources.LocalizedMessages.SensorEmptyData">
             <summary>
-              Recherche une chaîne localisée semblable à Data field array cannot be null or empty..
+              Looks up a localized string similar to Data field array cannot be null or empty..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Sensors.Resources.LocalizedMessages.SensorEmptyProperties">
             <summary>
-              Recherche une chaîne localisée semblable à Property keys array cannot be null or empty..
+              Looks up a localized string similar to Property keys array cannot be null or empty..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Sensors.Resources.LocalizedMessages.SensorGetString">
             <summary>
-              Recherche une chaîne localisée semblable à Sensor id=&apos;{0}&apos; type=&apos;{1}&apos; category=&apos;{2}&apos; name=&apos;{3}&apos;..
+              Looks up a localized string similar to Sensor id=&apos;{0}&apos; type=&apos;{1}&apos; category=&apos;{2}&apos; name=&apos;{3}&apos;..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Sensors.Resources.LocalizedMessages.SensorManagerEmptySensorsCollection">
             <summary>
-              Recherche une chaîne localisée semblable à Sensors collection cannot be null or empty..
+              Looks up a localized string similar to Sensors collection cannot be null or empty..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Sensors.Resources.LocalizedMessages.SensorNotInitialized">
             <summary>
-              Recherche une chaîne localisée semblable à Sensor not initialized..
+              Looks up a localized string similar to Sensor not initialized..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Sensors.Resources.LocalizedMessages.SensorNullValueAtIndex">
             <summary>
-              Recherche une chaîne localisée semblable à Data contains a null value at index {0}..
+              Looks up a localized string similar to Data contains a null value at index {0}..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Sensors.Resources.LocalizedMessages.SensorPropertyNotFound">
             <summary>
-              Recherche une chaîne localisée semblable à Could not find property..
+              Looks up a localized string similar to Could not find property..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Sensors.Resources.LocalizedMessages.SensorsNotFound">
             <summary>
-              Recherche une chaîne localisée semblable à No sensors found. Are any sensor drivers installed?.
+              Looks up a localized string similar to No sensors found. Are any sensor drivers installed?.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Sensors.Resources.LocalizedMessages.SensorUnableToGetReport">
             <summary>
-              Recherche une chaîne localisée semblable à Unable to get report from sensor..
+              Looks up a localized string similar to Unable to get report from sensor..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Sensors.Resources.LocalizedMessages.SensorUnexpectedPointerSize">
             <summary>
-              Recherche une chaîne localisée semblable à Unexpected pointer size..
+              Looks up a localized string similar to Unexpected pointer size..
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Sensors.SensorConnectionType">

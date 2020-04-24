@@ -234,7 +234,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// <returns>A property value.</returns>        
         public object GetProperty(PropertyKey propKey)
         {
-#if NETFRAMEWORK
+#if CS7
             using (var pv = new PropVariant())
             {
 #else
@@ -251,7 +251,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
                 return pv.Value;
 
-#if NETFRAMEWORK
+#if CS7
             }
 #endif
         }
@@ -461,7 +461,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                 {
                     // new PropVariant will throw an ArgumentException if the value can 
                     // not be converted to an appropriate PropVariant.
-#if NETFRAMEWORK
+#if CS7
                     using (var pv = PropVariant.FromObject(value))
 #else
                     using var pv = PropVariant.FromObject(value);
@@ -470,7 +470,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                 }
                 catch (ArgumentException)
                 {
-#if NETFRAMEWORK
+#if CS7
                     switch (value)
                     {
                         case Guid guid:
@@ -506,7 +506,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
                     for (uint i = 0; i < count; i++)
                     {
-#if NETFRAMEWORK
+#if CS7
                         using (var propVal = new PropVariant())
                         {
 #else
@@ -515,7 +515,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                             propKey = new PropertyKey();
                             _ = pdv2.GetAt(i, ref propKey, propVal);
                             results.Add(propKey, propVal.Value);
-#if NETFRAMEWORK
+#if CS7
                         }
 #endif
                     }
@@ -655,7 +655,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             nativeISensor.GetEventInterest(out IntPtr values, out uint interestCount);
             var interestingEvents = new Guid[interestCount];
 
-#if NETFRAMEWORK
+#if CS7
 
             IntPtr IncrementIntPtr(IntPtr source, int increment)
             {

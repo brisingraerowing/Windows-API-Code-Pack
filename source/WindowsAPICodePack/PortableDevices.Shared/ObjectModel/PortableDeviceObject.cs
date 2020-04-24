@@ -45,7 +45,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         /// </summary>
         string Id { get; }
 
-#if NETFRAMEWORK
+#if CS7
 
         string Name { get; }
 
@@ -156,7 +156,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         public bool IsDisposed { get; private set; }
 
-#if NETFRAMEWORK
+#if CS7
 
         private string _name;
 
@@ -184,7 +184,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             {
                 ThrowIfOperationIsNotAllowed();
 
-#if NETFRAMEWORK
+#if CS7
 
                 return _properties ?? (_properties = new PropertyCollection(new PortableDeviceProperties(_id, _parentPortableDevice)));
 
@@ -276,7 +276,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                 ThrowIfOperationIsNotAllowed();
 
-#if NETFRAMEWORK
+#if CS7
 
                 return _items ?? (_items = GetItems<IPortableDeviceObject>(_parentPortableDevice.Content, _id, (in string id) => PortableDevice.GetPortableDeviceObject(id, false, this, _parentPortableDevice)));
 

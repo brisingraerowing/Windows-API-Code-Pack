@@ -283,7 +283,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
             if (item
 
-#if NETCORE
+#if CS8
 
                 is null
 

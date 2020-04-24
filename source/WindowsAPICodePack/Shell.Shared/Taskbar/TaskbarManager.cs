@@ -33,7 +33,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
                     lock (_syncLock)
 
-#if NETFRAMEWORK
+#if CS7
 
                         if (_instance==null)
 
@@ -150,7 +150,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// Gets the Tabbed Thumbnail manager class for adding/updating
         /// tabbed thumbnail previews.
         /// </summary>
-#if NETFRAMEWORK
+#if CS7
         public TabbedThumbnailManager TabbedThumbnail => _tabbedThumbnail ??(_tabbedThumbnail = new TabbedThumbnailManager());
 #else
         public TabbedThumbnailManager TabbedThumbnail => _tabbedThumbnail ??= new TabbedThumbnailManager();
@@ -162,7 +162,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// Gets the Thumbnail toolbar manager class for adding/updating
         /// toolbar buttons.
         /// </summary>
-#if NETFRAMEWORK
+#if CS7
         public ThumbnailToolBarManager ThumbnailToolBars => _thumbnailToolBarManager ??(_thumbnailToolBarManager = new ThumbnailToolBarManager());
 #else
         public ThumbnailToolBarManager ThumbnailToolBars => _thumbnailToolBarManager ??= new ThumbnailToolBarManager();

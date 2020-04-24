@@ -116,7 +116,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
             {
                 guidKey.SetValue("DisableProcessIsolation", attribute.DisableProcessIsolation ? 1 : 0, RegistryValueKind.DWord);
 
-#if NETFRAMEWORK
+#if CS7
 
                 using (RegistryKey inproc = guidKey.OpenSubKey("InprocServer32", true))
 
@@ -141,7 +141,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
             foreach (string extension in extensions)
             {
 
-#if NETFRAMEWORK
+#if CS7
 
                 using (RegistryKey extensionKey = Registry.ClassesRoot.CreateSubKey(extension)) // Create makes it writable
                 using (RegistryKey shellExKey = extensionKey.CreateSubKey("shellex"))
@@ -179,7 +179,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
 
                     extensionKey.SetValue("Treatment", (int)attribute.ThumbnailAdornment, RegistryValueKind.DWord);
 
-#if NETFRAMEWORK
+#if CS7
 
                 }
 
@@ -211,7 +211,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
             foreach (string extension in extensions)
             {
 
-#if NETFRAMEWORK
+#if CS7
 
                 using (RegistryKey extKey = Registry.ClassesRoot.OpenSubKey(extension, true))
                 using (RegistryKey shellexKey = extKey.OpenSubKey("shellex", true))
@@ -230,7 +230,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
                 extKey.DeleteValue("TypeOverlay", false);
                 extKey.DeleteValue("Treatment", false); // Thumbnail adornment
 
-#if NETFRAMEWORK
+#if CS7
 
                 }
 
@@ -238,7 +238,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
 
             }
 
-#if NETFRAMEWORK
+#if CS7
 
             using (RegistryKey approvedShellExtensions = Registry.LocalMachine.OpenSubKey(
                 @"SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved", true))

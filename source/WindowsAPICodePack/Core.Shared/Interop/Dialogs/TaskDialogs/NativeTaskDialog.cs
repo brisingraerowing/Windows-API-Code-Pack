@@ -94,7 +94,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
                 if (CoreErrorHelper.Failed(hresult))
                 {
-#if NETFRAMEWORK
+#if CS7
 
 
                     string msg;
@@ -150,7 +150,7 @@ hresult),
         internal void NativeClose(in TaskDialogResult result)
         {
             ShowState = DialogShowState.Closing;
-#if NETFRAMEWORK
+#if CS7
 
             int id;
             switch (result)

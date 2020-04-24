@@ -163,7 +163,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             {
                 ThrowOnInvalidOperation();
 
-#if NETFRAMEWORK
+#if CS7
                 return _deviceCapabilities ?? (_deviceCapabilities = new DeviceCapabilities(this));
 #else
                 return _deviceCapabilities ??= new DeviceCapabilities(this);
@@ -211,7 +211,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                 TryGetNativePortableDeviceProperties();
 
-#if NETFRAMEWORK
+#if CS7
                 return _properties ?? (_properties = new PropertyCollection(new PortableDeviceProperties(Win32Native.Consts.PortableDevices.DeviceObjectId, this)));
 #else
                 return _properties ??= new PropertyCollection(new PortableDeviceProperties(Win32Native.Consts.PortableDevices.DeviceObjectId, this));
@@ -502,7 +502,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         private bool _isOpen;
         private readonly string _deviceId;
 
-#if NETFRAMEWORK
+#if CS7
 
         private IList<IPortableDeviceObject> _Items => IsOpen ? _items ?? (_items = GetItems<IPortableDeviceObject>(Content, Win32Native.Consts.PortableDevices.DeviceObjectId, (in string id) => GetPortableDeviceObject(id, true, null, this))) : throw new PortableDeviceException("The device is not open.");
 

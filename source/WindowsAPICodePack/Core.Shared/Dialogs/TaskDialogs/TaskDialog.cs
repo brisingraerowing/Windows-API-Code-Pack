@@ -795,7 +795,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         // note that we can't just cast, as the Win32
         // typedefs differ incoming and outgoing.
 
-#if NETFRAMEWORK
+#if CS7
 
             private static TaskDialogStandardButtons MapButtonIdToStandardButton(int id)
         {

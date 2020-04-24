@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAPICodePack
 
                         return array.Length > 1 && BitConverter.ToChar(new byte[] {
 
-                        #if NETCORE
+                        #if CS8
                             
                             array[^2], array[^1]
                             

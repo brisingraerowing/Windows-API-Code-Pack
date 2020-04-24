@@ -281,7 +281,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         public ShellThumbnail Thumbnail =>
 
-#if NETFRAMEWORK
+#if CS7
 
             thumbnail ?? (thumbnail = new ShellThumbnail(this));
 

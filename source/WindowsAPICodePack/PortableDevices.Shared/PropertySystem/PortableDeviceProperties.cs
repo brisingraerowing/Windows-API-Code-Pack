@@ -410,7 +410,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem
 
         HResult INativeReadOnlyPropertyValuesCollection.GetAt(in uint index, ref PropertyKey propertyKey, out PropVariant propVariant)
         {
-#if NETFRAMEWORK
+#if CS7
 
             using (var _propVariant = new PropVariant())
 
@@ -428,7 +428,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem
 
             return hr;
 
-#if NETFRAMEWORK
+#if CS7
 
             }
 
@@ -480,7 +480,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem
 
             {
 
-#if NETFRAMEWORK
+#if CS7
 
                 using (var _propVariant = new PropVariant())
                 {
@@ -499,7 +499,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem
 
                     hr = (HResult)_propVariant.Value;
 
-#if NETFRAMEWORK
+#if CS7
 
                 }
 

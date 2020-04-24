@@ -251,7 +251,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
                 return;
             }
 
-#if NETFRAMEWORK
+#if CS7
 
             using (var propVariant = PropVariant.FromObject(value))
 
@@ -287,7 +287,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         private void ClearValueInternal()
         {
 
-#if NETFRAMEWORK
+#if CS7
 
             using (var propVar = new PropVariant())
 

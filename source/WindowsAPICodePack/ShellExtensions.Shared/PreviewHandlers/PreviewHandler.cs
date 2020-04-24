@@ -163,7 +163,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
                     LocalizedMessages.PreviewHandlerUnsupportedInterfaceCalled,
                     nameof(IPreviewFromStream)));
 
-#if NETFRAMEWORK
+#if CS7
             
             using (var storageStream = new StorageStream(stream, fileMode != AccessModes.ReadWrite))
             
@@ -192,7 +192,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
                     LocalizedMessages.PreviewHandlerUnsupportedInterfaceCalled,
                     "IPreviewFromShellObject"));
 
-#if NETFRAMEWORK
+#if CS7
             
             using (ShellObject shellObject = ShellObjectFactory.Create(shellItem))
             
@@ -288,7 +288,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
                 idKey.SetValue("AppID", attribute.AppId, RegistryValueKind.String);
                 idKey.SetValue("DisableLowILProcessIsolation", attribute.DisableLowILProcessIsolation ? 1 : 0, RegistryValueKind.DWord);
 
-#if NETFRAMEWORK
+#if CS7
 
                 using (RegistryKey inproc = idKey.OpenSubKey("InprocServer32", true))
                 
@@ -308,7 +308,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
 
                 // Set preview handler for specific extension
 
-#if NETFRAMEWORK
+#if CS7
     
                 using (RegistryKey extensionKey = Registry.ClassesRoot.CreateSubKey(extension))
                 using (RegistryKey shellexKey = extensionKey.CreateSubKey("shellex"))
@@ -332,7 +332,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
             {
                 Trace.WriteLine("Unregistering extension '" + extension + "' with previewer '" + guid + "'");
 
-#if NETFRAMEWORK
+#if CS7
                 
                 using (RegistryKey shellexKey = Registry.ClassesRoot.OpenSubKey(extension + "\\shellex", true))
                 
@@ -351,7 +351,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
 
                 appIdsKey.DeleteSubKey(attribute.AppId, false);
 
-#if NETFRAMEWORK
+#if CS7
 
             using (RegistryKey classesKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\PreviewHandlers", true))
             

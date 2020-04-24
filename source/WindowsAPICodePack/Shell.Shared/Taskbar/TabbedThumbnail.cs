@@ -269,7 +269,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             var encoder = new BmpBitmapEncoder();
             encoder.Frames.Add(BitmapFrame.Create(bitmapSource));
 
-#if NETFRAMEWORK
+#if CS7
 
             using (MemoryStream memoryStream = new MemoryStream())
             {

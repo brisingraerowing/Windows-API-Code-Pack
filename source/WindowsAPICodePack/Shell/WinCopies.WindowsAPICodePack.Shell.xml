@@ -1409,7 +1409,7 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.Icon">
             <summary>
-            Gets or sets the icon that represents the file. When the <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileInfo.Dispose"/> method of this struct is called, this method calls the <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileInfo.Dispose"/> method on the current <see cref="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.Icon"/>.
+            Gets or sets the icon that represents the file. When the <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileInfo.Dispose"/> method of this struct is called, that method calls the <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileInfo.Dispose"/> method on the current <see cref="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.Icon"/>.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.IconIndex">
