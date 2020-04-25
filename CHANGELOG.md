@@ -16,9 +16,12 @@ For the original code (version 1.1, last release by Microsoft), see [https://win
 WinCopies.WindowsAPICodePack.Win32Native 2.0.0-preview5
 -------------------------------------------------------
 
-Depends on WinCopies.Util version 2.2.0-preview3.
+- Depends on WinCopies.Util version 2.2.0-preview3.
 
-??/??/???? 2.0.0-preview4
+- Existing items behavior updates:
+    - Fix marshaling for the Microsoft.WindowsAPICodePack.Win32Native.GDI.GDI.CreateDIBSection(IntPtr hdc, ref BitmapInfo pbmi, uint usage, out IntPtr ppvBits, IntPtr hSection, uint offset) method.
+
+04/25/2020 2.0.0-preview4
 =========================
 
 WinCopies.WindowsAPICodePack.Win32Native 2.0.0-preview4

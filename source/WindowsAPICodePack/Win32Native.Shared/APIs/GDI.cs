@@ -37,7 +37,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.GDI
         public static extern IntPtr CreateCompatibleDC([In] IntPtr hdc);
 
         [DllImport(Gdi32)]
-        public static extern IntPtr CreateDIBSection([In] IntPtr hdc, [In] ref BitmapInfo pbmi, [In] uint usage, [Out] out IntPtr ppvBits, [In] IntPtr hSection, [In, MarshalAs(UnmanagedType.U4)] uint offset);
+        public static extern IntPtr CreateDIBSection([In] IntPtr hdc, [In] ref BitmapInfo pbmi, [In, MarshalAs(UnmanagedType.U4)] uint usage, [Out] out IntPtr ppvBits, [In] IntPtr hSection, [In, MarshalAs(UnmanagedType.U4)] uint offset);
 
         [DllImport(Gdi32)]
         [return: MarshalAs(UnmanagedType.Bool)]
@@ -52,7 +52,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.GDI
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 2)]
-    public struct BitmapInfo
+    public unsafe struct BitmapInfo
     {
         public BitmapInfoHeader bmiHeader;
 
@@ -61,7 +61,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.GDI
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 2)]
-    public struct BitmapInfoHeader
+    public unsafe struct BitmapInfoHeader
     {
         [MarshalAs(UnmanagedType.U4)]
         public uint biSize;
