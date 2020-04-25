@@ -52,7 +52,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.GDI
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 2)]
-    public unsafe struct BitmapInfo
+    public struct BitmapInfo
     {
         public BitmapInfoHeader bmiHeader;
 
@@ -61,7 +61,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.GDI
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 2)]
-    public unsafe struct BitmapInfoHeader
+    public struct BitmapInfoHeader
     {
         [MarshalAs(UnmanagedType.U4)]
         public uint biSize;
@@ -73,10 +73,10 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.GDI
         public ushort biPlanes;
         [MarshalAs(UnmanagedType.U2)]
         public ushort biBitCount;
-        [MarshalAs(UnmanagedType.U2)]
-        public ushort biCompression;
-        [MarshalAs(UnmanagedType.U2)]
-        public ushort biSizeImage;
+        [MarshalAs(UnmanagedType.U4)]
+        public uint biCompression;
+        [MarshalAs(UnmanagedType.U4)]
+        public uint biSizeImage;
         [MarshalAs(UnmanagedType.I4)]
         public int biXPelsPerMeter;
         [MarshalAs(UnmanagedType.I4)]

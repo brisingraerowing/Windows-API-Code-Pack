@@ -20,6 +20,7 @@ WinCopies.WindowsAPICodePack.Win32Native 2.0.0-preview5
 
 - Existing items behavior updates:
     - Fix marshaling for the Microsoft.WindowsAPICodePack.Win32Native.GDI.GDI.CreateDIBSection(IntPtr hdc, ref BitmapInfo pbmi, uint usage, out IntPtr ppvBits, IntPtr hSection, uint offset) method.
+    - Fix Microsoft.WindowsAPICodePack.Win32Native.GDI.GDI.BitmapInfoHeader fields.
 
 04/25/2020 2.0.0-preview4
 =========================
