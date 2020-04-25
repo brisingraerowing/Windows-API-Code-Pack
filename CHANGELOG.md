@@ -10,13 +10,28 @@ For issue and fixation details, visit [https://wincopies.com/fwd.php?id=3](https
 
 For the original code (version 1.1, last release by Microsoft), see [https://wincopies.com/fwd.php?id=1](https://wincopies.com/fwd.php?id=1)
 
+??/??/???? 2.0.0-preview5
+=========================
+
+WinCopies.WindowsAPICodePack.Win32Native 2.0.0-preview5
+-------------------------------------------------------
+
+Depends on WinCopies.Util version 2.2.0-preview3.
+
 ??/??/???? 2.0.0-preview4
 =========================
 
 WinCopies.WindowsAPICodePack.Win32Native 2.0.0-preview4
 -------------------------------------------------------
 
-Depends on WinCopies.Util version 2.2.0-preview3.
+- Existing items behavior updates:
+    - Update marshaling for the Microsoft.WindowsAPICodePack.Win32Native.Core.UpdateResource(IntPtr hUpdate, string lpType, string lpName, ushort wLanguage, byte[] lpData, uint cb) method.
+
+- Replacements:
+    - Microsoft.WindowsAPICodePack.Win32Native.Core.UpdateResource([In] IntPtr hUpdate, [In, MarshalAs(UnmanagedType.U2)] ushort lpType, [In, MarshalAs(UnmanagedType.U2)] ushort lpName, [In] ushort wLanguage, [In] byte[] lpData, [In] uint cb) method by the Microsoft.WindowsAPICodePack.Win32Native.Core.UpdateResource([In] IntPtr hUpdate, [In] IntPtr lpType, [In] IntPtr lpName, [In, MarshalAs(UnmanagedType.U2)] ushort wLanguage, [In] byte[] lpData, [In, MarshalAs(UnmanagedType.U4)] uint cb) method.
+
+- Bug fixes:
+    - The Microsoft.WindowsAPICodePack.Win32Native.GDI.GDI.CreateCompatibleBitmap([In] IntPtr hdc, [In, MarshalAs(UnmanagedType.I4)] int cx, [In, MarshalAs(UnmanagedType.I4)] int cy) method did not specify the DLLImport attribute.
 
 04/24/2020 2.0.0-preview3
 =========================

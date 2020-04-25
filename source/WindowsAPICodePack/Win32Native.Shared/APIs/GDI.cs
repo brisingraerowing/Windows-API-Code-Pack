@@ -46,12 +46,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.GDI
         [DllImport(Gdi32)]
         public static extern IntPtr SelectObject([In] IntPtr hdc, [In] IntPtr h);
 
-        public static extern IntPtr CreateCompatibleBitmap([In] IntPtr hdc, [In,MarshalAs(UnmanagedType.I4)] int cx, [In,MarshalAs(UnmanagedType.I4)] int cy);
+        [DllImport(Gdi32)]
+        public static extern IntPtr CreateCompatibleBitmap([In] IntPtr hdc, [In, MarshalAs(UnmanagedType.I4)] int cx, [In, MarshalAs(UnmanagedType.I4)] int cy);
 
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 2)]
-    public  struct BitmapInfo
+    public struct BitmapInfo
     {
         public BitmapInfoHeader bmiHeader;
 
@@ -60,7 +61,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.GDI
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 2)]
-    public  struct BitmapInfoHeader
+    public struct BitmapInfoHeader
     {
         [MarshalAs(UnmanagedType.U4)]
         public uint biSize;
