@@ -10,7 +10,16 @@ For issue and fixation details, visit [https://wincopies.com/fwd.php?id=3](https
 
 For the original code (version 1.1, last release by Microsoft), see [https://wincopies.com/fwd.php?id=1](https://wincopies.com/fwd.php?id=1)
 
-??/??/???? 2.0.0-preview5
+??/??/???? 2.0.0-preview6
+=========================
+
+WinCopies.WindowsAPICodePack.Win32Native 2.0.0-preview6
+-------------------------------------------------------
+
+- Existing items behavior updates:
+    - Add CharSet.Auto for the native methods in the Microsoft.WindowsAPICodePack.Win32Native.GDI.GDI class for better compatibility.
+
+04/25/2020 2.0.0-preview5
 =========================
 
 WinCopies.WindowsAPICodePack.Win32Native 2.0.0-preview5
@@ -163,12 +172,12 @@ Shell 1.2.1
 
 Shell 1.2.0
 -----------
-- Add gesture for the SHGetFileInfo API
+- Add handling for the SHGetFileInfo API
 
 Win32Native 1.2.0
 -----------------
 - Move some enums from Win32Native to Shell namespace
-- Add gesture for the SHGetFileInfo API
+- Add handling for the SHGetFileInfo API
 
 06/16/2019 1.1.4
 ================
