@@ -13,11 +13,17 @@ For the original code (version 1.1, last release by Microsoft), see [https://win
 ??/??/???? 2.0.0-preview6
 =========================
 
+WinCopies.WindowsAPICodePack.Shell 2.0.0-preview6
+-------------------------------------------------
+
+- Bug fixes:
+    - #11
+
 WinCopies.WindowsAPICodePack.Win32Native 2.0.0-preview6
 -------------------------------------------------------
 
 - Existing items behavior updates:
-    - Add CharSet.Auto for the native methods in the Microsoft.WindowsAPICodePack.Win32Native.GDI.GDI class for better compatibility.
+    - Add CharSet.Auto for the native methods in the Microsoft.WindowsAPICodePack.Win32Native.GDI.GDI class for better compatibility with other packages.
 
 04/25/2020 2.0.0-preview5
 =========================
