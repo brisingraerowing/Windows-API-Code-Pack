@@ -428,7 +428,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 library.nativeShellItem = (IShellItem2)nativeShellItem;
                 library.Name = libraryName;
 
-                item.Dispose(false, false);
+                item.Dispose();
 
                 return library;
             }

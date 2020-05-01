@@ -222,11 +222,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
 
         [DllImport(Kernel32, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool UpdateResource([In] IntPtr hUpdate, [In, MarshalAs(UnmanagedType.LPWStr)] string lpType, [In, MarshalAs(UnmanagedType.LPWStr)] string lpName, [In] ushort wLanguage, [In] byte[] lpData, [In] uint cb);
+        public static extern bool UpdateResource([In] IntPtr hUpdate, [In, MarshalAs(UnmanagedType.LPWStr)] string lpType, [In, MarshalAs(UnmanagedType.LPWStr)] string lpName, [In, MarshalAs(UnmanagedType.U2)] ushort wLanguage, [In] byte[] lpData, [In, MarshalAs(UnmanagedType.U4)] uint cb);
 
         [DllImport(Kernel32, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool UpdateResource([In] IntPtr hUpdate, [In, MarshalAs(UnmanagedType.U2)] ushort lpType, [In, MarshalAs(UnmanagedType.U2)] ushort lpName, [In] ushort wLanguage, [In] byte[] lpData, [In] uint cb);
+        public static extern bool UpdateResource([In] IntPtr hUpdate, [In] IntPtr lpType, [In] IntPtr lpName, [In, MarshalAs(UnmanagedType.U2)] ushort wLanguage, [In] byte[] lpData, [In, MarshalAs(UnmanagedType.U4)] uint cb);
 
         [DllImport(Kernel32, SetLastError = true)]
         public static extern uint SizeofResource([In] IntPtr hModule, [In] IntPtr hResInfo);

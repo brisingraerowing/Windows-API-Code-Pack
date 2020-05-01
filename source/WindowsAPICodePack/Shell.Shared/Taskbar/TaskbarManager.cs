@@ -35,9 +35,9 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
 #if CS7
 
-                        if (_instance==null)
+                        if (_instance == null)
 
-                        _instance = new TaskbarManager();
+                            _instance = new TaskbarManager();
 
 #else
 
@@ -151,7 +151,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// tabbed thumbnail previews.
         /// </summary>
 #if CS7
-        public TabbedThumbnailManager TabbedThumbnail => _tabbedThumbnail ??(_tabbedThumbnail = new TabbedThumbnailManager());
+        public TabbedThumbnailManager TabbedThumbnail => _tabbedThumbnail ?? (_tabbedThumbnail = new TabbedThumbnailManager());
 #else
         public TabbedThumbnailManager TabbedThumbnail => _tabbedThumbnail ??= new TabbedThumbnailManager();
 #endif
@@ -163,7 +163,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// toolbar buttons.
         /// </summary>
 #if CS7
-        public ThumbnailToolBarManager ThumbnailToolBars => _thumbnailToolBarManager ??(_thumbnailToolBarManager = new ThumbnailToolBarManager());
+        public ThumbnailToolBarManager ThumbnailToolBars => _thumbnailToolBarManager ?? (_thumbnailToolBarManager = new ThumbnailToolBarManager());
 #else
         public ThumbnailToolBarManager ThumbnailToolBars => _thumbnailToolBarManager ??= new ThumbnailToolBarManager();
 #endif
@@ -177,7 +177,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             get => GetCurrentProcessAppId();
             set
             {
-                SetCurrentProcessAppId(string.IsNullOrEmpty(value) ? value : throw new ArgumentNullException(nameof(value)));
+                SetCurrentProcessAppId(string.IsNullOrEmpty(value) ? throw new ArgumentNullException(nameof(value)): value);
                 ApplicationIdSetProcessWide = true;
             }
         }
@@ -196,7 +196,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 {
                     var currentProcess = Process.GetCurrentProcess();
 
-                    _ownerHandle = currentProcess == null || currentProcess.MainWindowHandle == IntPtr.Zero ? currentProcess.MainWindowHandle : throw new InvalidOperationException(LocalizedMessages.TaskbarManagerValidWindowRequired);
+                    _ownerHandle = currentProcess == null || currentProcess.MainWindowHandle == IntPtr.Zero ? throw new InvalidOperationException(LocalizedMessages.TaskbarManagerValidWindowRequired) : currentProcess.MainWindowHandle;
                 }
 
                 return _ownerHandle;
@@ -223,7 +223,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// <param name="appId">The app id to set</param>
         /// <param name="window">Window that needs a specific application id</param>
         /// <remarks>AppId specifies a unique Application User Model ID (AppID) for the application or individual 
-        /// top-level window whose taskbar button will hold the custom JumpList built through the methods <see cref="Microsoft.WindowsAPICodePack.Taskbar.JumpList"/> class.
+        /// top-level window whose taskbar button will hold the custom JumpList built through the methods <see cref="JumpList"/> class.
         /// By setting an appId for a specific window, the window will not be grouped with it's parent window/application. Instead it will have it's own taskbar button.</remarks>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Left as instance method, to follow singleton pattern.")]
         public void SetApplicationIdForSpecificWindow(System.Windows.Window window, string appId) =>

@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="WinCopies.Util" Version="2.2.0-preview2" />
+    <PackageReference Include="WinCopies.Util" Version="2.2.0-preview3" />
   </ItemGroup>
 
   <ItemGroup>
