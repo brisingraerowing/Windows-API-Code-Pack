@@ -11,6 +11,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
 using Microsoft.WindowsAPICodePack.COMNative.Shell;
+using System.Diagnostics;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -323,17 +324,15 @@ namespace Microsoft.WindowsAPICodePack.Shell
         }
 
 
-#endregion
+        #endregion
 
-#region IDisposable Members
+        #region IDisposable Members
 
         /// <summary>
         /// Release the native and managed objects
         /// </summary>
         /// <param name="disposing">Indicates that this is being called from Dispose(), rather than the finalizer.</param>
-        protected virtual void Dispose(bool disposing) => Dispose(disposing, true);
-
-        internal void Dispose(bool disposing, bool nativeShellItem)
+        protected virtual void Dispose(bool disposing)
         {
             if (disposing)
             {
@@ -352,36 +351,31 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 _internalPIDL = IntPtr.Zero;
             }
 
-            if (nativeShellItem)
-
+            if (nativeShellItem is object)
             {
-
-                if (this.nativeShellItem != null)
-                {
-                    _ = Marshal.ReleaseComObject(nativeShellItem);
-                    this.nativeShellItem = null;
-                }
-
+                _ = Marshal.ReleaseComObject(nativeShellItem);
+                nativeShellItem = null;
             }
 
-            else
-
-                GC.SuppressFinalize(this);
-
-            if (NativePropertyStore != null)
+            if (NativePropertyStore is object)
             {
                 _ = Marshal.ReleaseComObject(NativePropertyStore);
                 NativePropertyStore = null;
             }
         }
 
+        private bool _isDisposed;
+
         /// <summary>
         /// Release the native objects.
         /// </summary>
         public void Dispose()
         {
+            if (_isDisposed)
+                return;
             Dispose(true);
             GC.SuppressFinalize(this);
+            _isDisposed = true;
         }
 
         /// <summary>
@@ -392,9 +386,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
             Dispose(false);
         }
 
-#endregion
+        #endregion
 
-#region equality and hashing
+        #region equality and hashing
 
         /// <summary>
         /// Returns the hash code of the object.
@@ -473,6 +467,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public static bool operator !=(ShellObject leftShellObject, ShellObject rightShellObject) => !(leftShellObject == rightShellObject);
 
 
-#endregion
+        #endregion
     }
 }
