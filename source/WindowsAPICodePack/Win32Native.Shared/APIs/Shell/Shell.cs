@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Security;
 using System.Text;
 using static Microsoft.WindowsAPICodePack.Win32Native.Consts.DllNames;
+using static Microsoft.WindowsAPICodePack.Win32Native.Consts.Shell;
 
-namespace Microsoft.WindowsAPICodePack. Win32Native.Shell
+namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
 
-    public static class Shell
+    public static partial class Shell
     {
 
         #region Shell Helper Methods
+            [DllImport(Shell32, EntryPoint = "#62", CharSet = CharSet.Unicode, SetLastError = true)]
+            [SuppressUnmanagedCodeSecurity]
+            public static extern bool SHPickIconDialog(IntPtr hWnd, StringBuilder pszFilename, int cchFilenameMax, out int pnIconIndex);
 
         /// <summary>
         /// Retrieves information about an object in the file system, such as a file, folder, directory, or drive root.
@@ -37,7 +42,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.Shell
         /// <para>Note: Once you have a handle to a system image list, you can use the <b>Image List API</b> to manipulate it like any other image list. Because system image lists are created on a per-process basis, you should treat them as read-only objects. Writing to a system image list may overwrite or delete one of the system images, making it unavailable or incorrect for the remainder of the process.</para>
         /// <para>When you use the <see cref="GetFileInfoOptions.ExeType"/> flag with a Windows application, the Windows version of the executable is given in the HIWORD of the return value. This version is returned as a hexadecimal value. For details on equating this value with a specific Windows version, see <a href="https://docs.microsoft.com/windows/desktop/WinProg/using-the-windows-headers">Using the Windows Headers</a>.</para></remarks>
         [DllImport(Shell32, CharSet = CharSet.Unicode, SetLastError = true, EntryPoint = "SHGetFileInfoW")]
-        public static extern HResult SHGetFileInfo([In, MarshalAs(UnmanagedType.LPWStr)] string pszPath, [MarshalAs(UnmanagedType.U4)] FileAttributes dwFileAttributes, [In,Out] ref SHFILEINFO psfi, [MarshalAs(UnmanagedType.U4)] uint cbFileInfo, GetFileInfoOptions uFlags);
+        public static extern HResult SHGetFileInfo([In, MarshalAs(UnmanagedType.LPWStr)] string pszPath, [MarshalAs(UnmanagedType.U4)] FileAttributes dwFileAttributes, [In, Out] ref SHFILEINFO psfi, [MarshalAs(UnmanagedType.U4)] uint cbFileInfo, GetFileInfoOptions uFlags);
 
         [DllImport("shlwapi.dll", CharSet = CharSet.Unicode, SetLastError = true)]
         public static extern int PathParseIconLocation(
@@ -63,10 +68,10 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.Shell
         [DllImport(Shell32, CharSet = CharSet.None)]
         public static extern void ILFree(IntPtr pidl);
 
-        [DllImport(Shell32)]
-        public static extern HResult SHQueryRecycleBin(string pszRootPath, ref SHQUERYRBINFO   pSHQueryRBInfo);
+        [DllImport(Shell32, SetLastError = true, CharSet = CharSet.Unicode)]
+        public static extern HResult SHQueryRecycleBin(string pszRootPath, ref SHQUERYRBINFO pSHQueryRBInfo);
 
-        [DllImport(Shell32)]
+        [DllImport(Shell32, SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern HResult SHEmptyRecycleBin(IntPtr hWnd, string pszRootPath, EmptyRecycleBinFlags dwFlags);
 
         /// <summary>
@@ -79,7 +84,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.Shell
         /// <para>In the ANSI version of this function, the name is limited to MAX_PATH characters. To extend this limit to 32,767 wide characters, call the Unicode version of the function and prepend "\?" to the path.For more information, see Naming a File.</para>
         /// <para>Tip Starting in Windows 10, version 1607, for the unicode version of this function (CopyFileExW), you can opt-in to remove the MAX_PATH character limitation without prepending "\\?\". See the "Maximum Path Limitation" section of Naming Files, Paths, and Namespaces for details.</para>
         ///
-        ///<para>If lpExistingFileName does not exist, the <see cref="CopyFileEx(string, string, CopyProgressRoutine, IntPtr, ref bool, CopyFileFlags)"/> function fails, and the <see cref="Marshal. GetLastWin32Error"/> function returns <see cref="ErrorCode.ERROR_FILE_NOT_FOUND"/>.</para></param>
+        ///<para>If lpExistingFileName does not exist, the <see cref="CopyFileEx(string, string, CopyProgressRoutine, IntPtr, ref bool, CopyFileFlags)"/> function fails, and the <see cref="Marshal. GetLastWin32Error"/> function returns <see cref="ErrorCode.FileNotFound"/>.</para></param>
         /// <param name="lpNewFileName"><para>The name of the new file.</para>
         ///
         /// <para>In the ANSI version of this function, the name is limited to MAX_PATH characters. To extend this limit to 32,767 wide characters, call the Unicode version of the function and prepend "\?" to the path.For more information, see Naming a File.</para>
@@ -140,11 +145,11 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.Shell
 
         #region Shell notification definitions
 
-        [DllImport(Shell32)]
+        [DllImport(Shell32, SetLastError = true, CharSet = CharSet.Unicode)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool SHGetPathFromIDListW(IntPtr pidl, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszPath);
 
-        [DllImport(Shell32)]
+        [DllImport(Shell32, SetLastError = true)]
         public static extern uint SHChangeNotifyRegister(
             IntPtr windowHandle,
             ShellChangeNotifyEventSource sources,
@@ -160,11 +165,11 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.Shell
             out IntPtr pidl,
             out uint lEvent);
 
-        [DllImport(Shell32)]
+        [DllImport(Shell32, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool SHChangeNotification_Unlock(IntPtr hLock);
 
-        [DllImport(Shell32)]
+        [DllImport(Shell32, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool SHChangeNotifyDeregister(uint hNotify);
 
@@ -210,15 +215,15 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.Shell
     /// <returns>The CopyProgressRoutine function should return one of the values of the <see cref="CopyProgressResult"/> enum.</returns>
     /// <remarks>An application can use this information to display a progress bar that shows the total number of bytes copied as a percent of the total file size.</remarks>
     public delegate CopyProgressResult CopyProgressRoutine(
-        long TotalFileSize,
-        long TotalBytesTransferred,
-        long StreamSize,
-        long StreamBytesTransferred,
-        uint dwStreamNumber,
-        CopyProgressCallbackReason dwCallbackReason,
-        IntPtr hSourceFile,
-        IntPtr hDestinationFile,
-        IntPtr lpData);
+        [In, MarshalAs(UnmanagedType.I8)] long TotalFileSize,
+        [In, MarshalAs(UnmanagedType.I8)] long TotalBytesTransferred,
+        [In, MarshalAs(UnmanagedType.I8)] long StreamSize,
+        [In, MarshalAs(UnmanagedType.I8)] long StreamBytesTransferred,
+        [In, MarshalAs(UnmanagedType.U4)] uint dwStreamNumber,
+        [In, MarshalAs(UnmanagedType.U4)] CopyProgressCallbackReason dwCallbackReason,
+        [In] IntPtr hSourceFile,
+        [In] IntPtr hDestinationFile,
+        [In] IntPtr lpData);
 
     [Flags]
     public enum EmptyRecycleBinFlags : uint
@@ -314,7 +319,7 @@ namespace Microsoft.WindowsAPICodePack. Win32Native.Shell
     [Flags]
     [ComVisible(true)]
     [System.Serializable]
-    public enum FileAttributes:uint
+    public enum FileAttributes : uint
     {
         /// <summary>
         /// The file is read-only. <see cref="ReadOnly"/> is supported on Windows, Linux, and macOS. On Linux and macOS, changing the <see cref="ReadOnly"/> flag is a permissions operation.

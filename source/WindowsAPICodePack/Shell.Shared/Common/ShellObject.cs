@@ -372,7 +372,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public void Dispose()
         {
             if (_isDisposed)
+
                 return;
+
             Dispose(true);
             GC.SuppressFinalize(this);
             _isDisposed = true;

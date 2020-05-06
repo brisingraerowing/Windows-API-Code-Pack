@@ -71,6 +71,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\NavigationLogEnums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\NavigationLogEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\NavigationOptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IconPickerDialog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)KnownFolders\FileSystemKnownFolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)KnownFolders\IKnownFolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)KnownFolders\KnownFolderHelper.cs" />
