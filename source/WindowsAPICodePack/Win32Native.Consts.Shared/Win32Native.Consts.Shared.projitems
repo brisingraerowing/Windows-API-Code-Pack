@@ -10,7 +10,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Consts.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Enums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\HResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\ErrorCode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\HResultFacility.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Guids.cs" />
   </ItemGroup>
 </Project>

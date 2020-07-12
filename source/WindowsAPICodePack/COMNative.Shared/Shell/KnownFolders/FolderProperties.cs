@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using System;
@@ -8,11 +8,7 @@ using System.Windows.Media.Imaging;
 namespace Microsoft.WindowsAPICodePack.COMNative.Shell
 {
     /// <summary>
-    /// Structure used publicly to store property values for 
-    /// a known folder. This structure holds the information
-    /// returned in the FOLDER_DEFINITION structure, and 
-    /// resources referenced by fields in NativeFolderDefinition,
-    /// such as icon and tool tip.
+    /// Structure used publicly to store property values for a known folder. This structure holds the information returned in the FOLDER_DEFINITION structure, and resources referenced by fields in NativeFolderDefinition, such as icon and tool tip.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct FolderProperties

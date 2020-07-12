@@ -10,6 +10,24 @@ For issue and fixation details, visit [https://wincopies.com/fwd.php?id=3](https
 
 For the original code (version 1.1, last release by Microsoft), see [https://wincopies.com/fwd.php?id=1](https://wincopies.com/fwd.php?id=1)
 
+??/??/???? 2.0.0
+================
+
+WinCopies.WindowsAPICodePack.Shell 2.0.0
+----------------------------------------
+
+Add the FileLockFinder static class.
+
+WinCopies.WindowsAPICodePack.Win32Native 2.0.0
+----------------------------------------------
+
+Add a part of the Restart Manager API
+
+WinCopies.WindowsAPICodePack.Win32Native.Consts 2.0.0
+-----------------------------------------------------
+
+Add new error codes
+
 05/01/2020 2.0.0-preview6
 =========================
 

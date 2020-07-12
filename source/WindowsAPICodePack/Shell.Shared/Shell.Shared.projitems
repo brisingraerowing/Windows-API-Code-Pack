@@ -33,6 +33,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\EnumUnknown.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\EventHandlerExtensionMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\FileOperation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\LockFinder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SearchCondition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SearchConditionFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ShellFile.cs" />

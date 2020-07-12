@@ -3,13 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Consts
-
 {
-
     public static class Common
-
     {
-
         // Various important window messages
         public const int UserMessage = 0x0400;
         public const int EnterIdleMessage = 0x0121;
@@ -24,7 +20,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Consts
         public const uint ResultNotFound = 0x80070490;
 
         public const uint StatusAccessDenied = 0xC0000022;
-
     }
 
     public static class ExtendedLinguisticServices
@@ -36,9 +31,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Consts
     }
 
     public static class DllNames
-
     {
-
         public const string Gdi32 = "gdi32.dll";
         public const string Shell32 = "shell32.dll";
         public const string Kernel32 = "kernel32.dll";
@@ -47,12 +40,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Consts
         public const string Ole32 = "ole32.dll";
         public const string OleAut32 = "oleAut32.dll";
         public const string Psapi = "psapi.dll";
-
+        public const string Rstrtmgr = "rstrtmgr.dll";
     }
 
     public static class PortableDevices
     {
-
         /****************************************************************************
          * This section declares WPD defines
          ****************************************************************************/
@@ -68,9 +60,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Consts
         public const string DeviceObjectId = "DEVICE";
 
         public static class PortableDevice
-
         {
-
             /// <summary>
             /// <para>Pre-defined name of a REG_DWORD value that defines the device type, used for representation purposes only. Functional characteristics of the device are decided through functional objects.</para>
             /// <para>This value can be retrieved using IPortableDeviceManager::GetDeviceProperty(...).  See WPD_DEVICE_TYPES enumeration for possible values.</para>
@@ -118,13 +108,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Consts
             /// <para>This value can be used by drivers to indicate they support PDDRM.  See WPD_DEVICE_SUPPORTED_DRM_SCHEMES. </para>
             /// </summary>
             public const string DRMSchemePDDRM = "PDDRM";
-
         }
     }
 
     namespace Controls
     {
-
         public static class ExplorerBrowserViewDispatchIds
         {
             public const int SelectionChanged = 200;
@@ -132,44 +120,44 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Consts
             public const int FileListEnumDone = 201;
             public const int SelectedItemChanged = 220;
         }
-
     }
 
     public static class Taskbar
-
     {
-
         public const int WmCommand = 0x0111;
 
         public static class TabbedThumbnail
-
         {
-
             public const uint WaActive = 1;
             public const uint WaClickActive = 2;
 
             public const int ScClose = 0xF060;
             public const int ScMaximize = 0xF030;
             public const int ScMinimize = 0xF020;
-
         }
-
     }
+
     public static class MediaDevices
     {
         public const short WMDMID_LENGTH = 128;
     }
 
     public static class Shell
-
     {
+        /// <summary>
+        /// Maximum character count of application friendly name.
+        /// </summary>
+        public const int CCH_RM_MAX_APP_NAME = 255;
+
+        /// <summary>
+        /// Maximum character count of service short name.
+        /// </summary>
+        public const int CCH_RM_MAX_SVC_NAME = 63;
 
         public const int MaxPath = 260;
 
         public static class DesktopWindowManager
-
         {
-
             public const int DisplayFrame = 0x00000001;
 
             public const int ForceIconicRepresentation = 7;
@@ -210,21 +198,15 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Consts
                 /// </summary>
                 public const int DWMWA_TRANSITIONS_FORCEDISABLED = 3;
             }
-
         }
 
         public static class CommandLinkDefinitions
-
         {
-
             public const int CommandLink = 0x0000000E;
             public const uint SetNote = 0x00001609;
             public const uint GetNote = 0x0000160A;
             public const uint GetNoteLength = 0x0000160B;
             public const uint SetShield = 0x0000160C;
-
         }
-
     }
-
 }
