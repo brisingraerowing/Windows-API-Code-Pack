@@ -212,9 +212,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 TryGetNativePortableDeviceProperties();
 
 #if CS7
-                return _properties ?? (_properties = new PropertyCollection(new PortableDeviceProperties(Win32Native.Consts.PortableDevices.DeviceObjectId, this)));
+                return _properties ?? (_properties = new PropertyCollection(new PortableDeviceProperties(NativeAPI.Consts.PortableDevices.DeviceObjectId, this)));
 #else
-                return _properties ??= new PropertyCollection(new PortableDeviceProperties(Win32Native.Consts.PortableDevices.DeviceObjectId, this));
+                return _properties ??= new PropertyCollection(new PortableDeviceProperties(NativeAPI.Consts.PortableDevices.DeviceObjectId, this));
 #endif
             }
         }
@@ -338,7 +338,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             // else
             // {
-            // Failed to CoCreateInstance Win32Native.Guids.PortableDevices.PortableDeviceValues for client information
+            // Failed to CoCreateInstance NativeAPI.Guids.PortableDevices.PortableDeviceValues for client information
             // }
 
             ThrowWhenFailHResult(pClientInformation.SetUnsignedIntegerValue(PropertySystem.Properties.Client.SecurityQualityOfService, (uint)SecurityImpersonationLevel.SecurityImpersonation << 16));
@@ -384,7 +384,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             // {
             // The device successfully opened, obtain an instance of the Device into
             // ppDevice so the caller can be returned an opened IPortableDevice.
-            // hr = pDevice.QueryInterface(Win32Native.Guids.PortableDevices.IPortableDevice, ref ppDevice);
+            // hr = pDevice.QueryInterface(NativeAPI.Guids.PortableDevices.IPortableDevice, ref ppDevice);
 
             // if (CoreErrorHelper.Failed(hr))
             // {
@@ -396,7 +396,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             //}
             //else
             //{
-            //    // Failed to CoCreateInstance Win32Native.Guids.PortableDevices.PortableDevice
+            //    // Failed to CoCreateInstance NativeAPI.Guids.PortableDevices.PortableDevice
             //}
             //}
 
@@ -504,11 +504,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
 #if CS7
 
-        private IList<IPortableDeviceObject> _Items => IsOpen ? _items ?? (_items = GetItems<IPortableDeviceObject>(Content, Win32Native.Consts.PortableDevices.DeviceObjectId, (in string id) => GetPortableDeviceObject(id, true, null, this))) : throw new PortableDeviceException("The device is not open.");
+        private IList<IPortableDeviceObject> _Items => IsOpen ? _items ?? (_items = GetItems<IPortableDeviceObject>(Content, NativeAPI.Consts.PortableDevices.DeviceObjectId, (in string id) => GetPortableDeviceObject(id, true, null, this))) : throw new PortableDeviceException("The device is not open.");
 
 #else
 
-        private IList<IPortableDeviceObject> _Items => IsOpen ? _items ??= GetItems<IPortableDeviceObject>(Content, Win32Native.Consts.PortableDevices.DeviceObjectId, (in string id) => GetPortableDeviceObject(id, true, null, this)) : throw new PortableDeviceException("The device is not open.");
+        private IList<IPortableDeviceObject> _Items => IsOpen ? _items ??= GetItems<IPortableDeviceObject>(Content, NativeAPI.Consts.PortableDevices.DeviceObjectId, (in string id) => GetPortableDeviceObject(id, true, null, this)) : throw new PortableDeviceException("The device is not open.");
 
 #endif
 

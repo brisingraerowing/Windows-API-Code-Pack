@@ -1,15 +1,36 @@
-﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
-using static Microsoft.WindowsAPICodePack.Win32Native.Consts.DllNames;
+using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native
 {
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public delegate bool EnumResNameProc([In] IntPtr hModule, [In, MarshalAs(UnmanagedType.LPWStr)] string lpType, [In, MarshalAs(UnmanagedType.LPWStr)] string lpName, [In] IntPtr lParam);
+
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public delegate bool IntPtrEnumResNameProc([In] IntPtr hModule, [In] IntPtr lpType, [In] IntPtr lpName, [In] IntPtr lParam);
+
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public delegate bool EnumResTypeProc([In] IntPtr hModule, [In, MarshalAs(UnmanagedType.LPWStr)] string lpType, [In] IntPtr lParam);
+
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public delegate bool IntPtrEnumResTypeProc([In] IntPtr hModule, [In] IntPtr lpType, [In] IntPtr lParam);
+
+    #region Windows OS structs and consts
+
+    public delegate int WNDPROC(IntPtr hWnd,
+        uint uMessage,
+        IntPtr wParam,
+        IntPtr lParam);
+
+    #endregion
+
     /// <summary>
-    /// Wrappers for Native Methods and Structs.
-    /// This type is intended for public use only
+    /// <para>Wrappers for Native Methods and Structs.</para>
+    /// <para>This type is intended for unmanaged use only.</para>
     /// </summary>    
     public static class Core
     {
@@ -159,7 +180,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
             StringBuilder buffer,
             int bufferSize);
 
-        [DllImport(Kernel32, EntryPoint = nameof(LocalFree))]
+        [DllImport(Kernel32, EntryPoint = nameof(LocalFree), SetLastError = true)]
         public static extern IntPtr LocalFree(ref Guid guid);
 
 
@@ -203,7 +224,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
 
         #endregion
 
-        [DllImport(Kernel32, EntryPoint = "RtlMoveMemory")]
+        [DllImport(Kernel32, EntryPoint = "RtlMoveMemory", SetLastError = true)]
         public unsafe static extern void CopyMemory([Out] void* dest, [In] void* src,
 #if WIN64
             [In, MarshalAs(UnmanagedType.U8)] ulong
@@ -231,7 +252,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         [DllImport(Kernel32, SetLastError = true)]
         public static extern uint SizeofResource([In] IntPtr hModule, [In] IntPtr hResInfo);
 
-        [DllImport(Kernel32)]
+        [DllImport(Kernel32, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool FreeLibrary([In] IntPtr hLibModule);
 
@@ -264,7 +285,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         [DllImport(Kernel32, SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern IntPtr FindResource([In] IntPtr hModule, [In] IntPtr lpName, [In] IntPtr lpType);
 
-        [DllImport(User32)]
+        [DllImport(User32, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetIconInfo([In] IntPtr hIcon, [Out] out IconInfo piconinfo);
 
@@ -279,59 +300,4 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         [return: MarshalAs(UnmanagedType.U4)]
         public static extern uint GetMappedFileName([In] IntPtr hProcess, [In] IntPtr lpv, [Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpFileName, [In] uint nSize);
     }
-
-    [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    public struct IconInfo
-    {
-        [MarshalAs(UnmanagedType.Bool)]
-        public bool fIcon;
-        [MarshalAs(UnmanagedType.U4)]
-        public uint xHotspot;
-        [MarshalAs(UnmanagedType.U4)]
-        public uint yHotspot;
-        public IntPtr hbmMask;
-        public IntPtr hbmColor;
-    }
-
-    [return: MarshalAs(UnmanagedType.Bool)]
-    public delegate bool EnumResNameProc([In] IntPtr hModule, [In, MarshalAs(UnmanagedType.LPWStr)] string lpType, [In, MarshalAs(UnmanagedType.LPWStr)] string lpName, [In] IntPtr lParam);
-
-    [return: MarshalAs(UnmanagedType.Bool)]
-    public delegate bool IntPtrEnumResNameProc([In] IntPtr hModule, [In] IntPtr lpType, [In] IntPtr lpName, [In] IntPtr lParam);
-
-    [return: MarshalAs(UnmanagedType.Bool)]
-    public delegate bool EnumResTypeProc([In] IntPtr hModule, [In, MarshalAs(UnmanagedType.LPWStr)] string lpType, [In] IntPtr lParam);
-
-    [return: MarshalAs(UnmanagedType.Bool)]
-    public delegate bool IntPtrEnumResTypeProc([In] IntPtr hModule, [In] IntPtr lpType, [In] IntPtr lParam);
-
-    #region GDI and DWM Declarations
-
-    /// <summary>
-    /// A Wrapper for a SIZE struct
-    /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public struct Size
-    {
-        /// <summary>
-        /// Width
-        /// </summary>
-        public int Width { get; set; }
-
-        /// <summary>
-        /// Height
-        /// </summary>
-        public int Height { get; set; }
-    };
-
-    #endregion
-
-    #region Windows OS structs and consts
-
-    public delegate int WNDPROC(IntPtr hWnd,
-        uint uMessage,
-        IntPtr wParam,
-        IntPtr lParam);
-
-    #endregion
 }

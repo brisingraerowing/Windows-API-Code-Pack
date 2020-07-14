@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
 using System.Diagnostics;
@@ -162,7 +162,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 throw new ArgumentNullException(nameof(parsingName));
 
             // Create a native shellitem from our path
-            var guid = new Guid(Win32Native.Guids.Shell.IShellItem2);
+            var guid = new Guid(NativeAPI.Guids.Shell.IShellItem2);
             int retCode = COMNative.Shell.Shell.SHCreateItemFromParsingName(parsingName, IntPtr.Zero, ref guid, out IShellItem2 nativeShellItem);
 
             return CoreErrorHelper.Succeeded(retCode) ? ShellObjectFactory.Create(nativeShellItem) : throw new ShellException(LocalizedMessages.ShellObjectFactoryUnableToCreateItem, Marshal.GetExceptionForHR(retCode));
@@ -178,7 +178,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             // Throw exception if not running on Win7 or newer.
             CoreHelpers.ThrowIfNotVista();
 
-            var guid = new Guid(Win32Native.Guids.Shell.IShellItem2);
+            var guid = new Guid(NativeAPI.Guids.Shell.IShellItem2);
 
             int retCode = COMNative.Shell.Shell.SHCreateItemFromIDList(idListPtr, ref guid, out IShellItem2 nativeShellItem);
 

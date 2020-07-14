@@ -13,7 +13,7 @@ using Microsoft.WindowsAPICodePack.Win32Native;
 namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem
 {
     [ComImport,
-        Guid(Win32Native.Guids.PortableDevices.IPortableDevicePropertiesBulkCallback),
+        Guid(NativeAPI.Guids.PortableDevices.IPortableDevicePropertiesBulkCallback),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDevicePropertiesBulkCallback
     {

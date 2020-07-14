@@ -1,4 +1,4 @@
-﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
 using System.Collections;
@@ -55,7 +55,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <returns>ShellObjectCollection created from the given IDataObject</returns>
         public static ShellObjectCollection FromDataObject(System.Runtime.InteropServices.ComTypes.IDataObject dataObject)
         {
-            var iid = new Guid(Win32Native.Guids.Shell.IShellItemArray);
+            var iid = new Guid(NativeAPI.Guids.Shell.IShellItemArray);
             _ = COMNative.Shell.Shell.SHCreateShellItemArrayFromDataObject(dataObject, ref iid, out IShellItemArray shellItemArray);
             return new ShellObjectCollection(shellItemArray, true);
         }

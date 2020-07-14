@@ -28,7 +28,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.COM
     /// <remarks><para>A property page object manages a particular page within a property sheet. A property page implements at least IPropertyPage and can optionally implement IPropertyPage2 if selection of a specific property is supported.</para>
     /// <para>An object specifies its support for property pages by implementing <see cref="ISpecifyPropertyPages"/>. Through this interface the caller can obtain a list of CLSIDs identifying the specific property pages that the object supports. If the object specifies a property page CLSID, the object must be able to receive property changes from the property page.</para></remarks>
     [ComImport,
-        Guid(Win32Native.Guids.COM.ISpecifyPropertyPages),
+        Guid(NativeAPI.Guids.COM.ISpecifyPropertyPages),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ISpecifyPropertyPages
     {

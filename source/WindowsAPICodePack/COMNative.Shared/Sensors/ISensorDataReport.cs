@@ -1,13 +1,9 @@
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
-using System.Globalization;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.PortableDevices;
 using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 using GuidAttribute = System.Runtime.InteropServices.GuidAttribute;
 using Microsoft.WindowsAPICodePack.Win32Native.TimeZone;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;

@@ -10,7 +10,7 @@ using System.Text;
 namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 {
     [ComImport,
-        Guid(Win32Native.Guids.MediaDevices.IWMDeviceManager),
+        Guid(NativeAPI.Guids.MediaDevices.IWMDeviceManager),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IWMDeviceManager
 
@@ -29,7 +29,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
     }
 
     [ComImport,
-        Guid(Win32Native.Guids.MediaDevices.IWMDeviceManager2)]
+        Guid(NativeAPI.Guids.MediaDevices.IWMDeviceManager2)]
     public interface IWMDeviceManager2 : IWMDeviceManager
 
     {
@@ -48,7 +48,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
     }
 
     [ComImport,
-        Guid(Win32Native.Guids.MediaDevices.IWMDeviceManager3)]
+        Guid(NativeAPI.Guids.MediaDevices.IWMDeviceManager3)]
     public interface IWMDeviceManager3 : IWMDeviceManager2
 
     {

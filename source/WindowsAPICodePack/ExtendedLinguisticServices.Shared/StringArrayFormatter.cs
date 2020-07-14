@@ -1,11 +1,10 @@
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
 using System.Text;
 
 namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 {
-
     /// <summary>
     /// Converts registry-formatted data into string arrays.
     /// </summary>
@@ -19,7 +18,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// </summary>
         /// <param name="dataRange">The <see cref="MappingDataRange">MappingDataRange</see> to convert</param>
         /// <returns>The resulting string array</returns>
-        public string[] Format(in MappingDataRange dataRange) => Encoding.Unicode.GetString((dataRange?? throw new ArgumentNullException(nameof(dataRange))).GetData()).Split(Separator, StringSplitOptions.RemoveEmptyEntries);
+        public string[] Format(in MappingDataRange dataRange) => Encoding.Unicode.GetString((dataRange ?? throw new ArgumentNullException(nameof(dataRange))).GetData()).Split(Separator, StringSplitOptions.RemoveEmptyEntries);
 
         /// <summary>
         /// Uses <see cref="Format(in MappingDataRange)">Format</see> to format all the ranges of the supplied
@@ -35,11 +34,10 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             string[][] results = new string[dataRanges.Length][];
 
             for (int i = 0; i < results.Length; ++i)
-            
+
                 results[i] = Format(dataRanges[i]);
-            
+
             return results;
         }
     }
-
 }

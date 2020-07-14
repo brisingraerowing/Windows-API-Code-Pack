@@ -9,29 +9,18 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Microsoft.WindowsAPICodePack
-
 {
-
     public static class DevInterfaceGuids
-
     {
-
         public const string Sensor = "BA1BB692-9B7A-4833-9A1E-525ED134E7E2";
-
     }
 
     namespace Sensors
-
     {
-
         public static class Guids
-
         {
-
             public static class EventSystem
-
             {
-
                 /// <summary>
                 /// Register for sensor state change notifications.
                 /// </summary>
@@ -47,7 +36,6 @@ namespace Microsoft.WindowsAPICodePack
                 public const string AccelerometerShake = "825F5A94-0F48-4396-9CA0-6ECB5C99D915";
 
                 public const string ParameterCommon = "64346E30-8728-4B34-BDF6-4F52442C5C28";
-
             }
 
             public const string ErrorParameterCommon = "77112BCD-FCE1-4f43-B8B8-A88256ADB4B3";
@@ -56,20 +44,15 @@ namespace Microsoft.WindowsAPICodePack
             /// Sensor Properties
             /// </summary>
             public static class PropertySystem
-
             {
-
                 /// <summary>
                 /// The common Guid used by the property keys.
                 /// </summary>
                 public const string PropertyCommon = "7F8383EC-D3EC-495C-A8CF-B8BBE85C2920";
-
             }
 
             public static class SensorCategory
-
             {
-
                 public const string All = "C317C286-C468-4288-9975-D4C4587C442C";
 
                 public const string Location = "BFA794E4-F964-4FDB-90F6-51056BFE4B44";
@@ -93,17 +76,12 @@ namespace Microsoft.WindowsAPICodePack
                 public const string Other = "2C90E7A9-F4C9-4FA2-AF37-56D471FE5A3D";
 
                 public const string Unsupported = "2BEAE7FA-19B0-48C5-A1F6-B5480DC206B0";
-
             }
 
             public static class SensorType
-
             {
-
                 public static class Location
-
                 {
-
                     public const string GPS = "ED4CA589-327A-4FF9-A560-91DA4B48275E";
 
                     public const string Static = "095F8184-0FA9-4445-8E6E-B70F320B6B4C";
@@ -117,14 +95,10 @@ namespace Microsoft.WindowsAPICodePack
                     public const string Broadcast = "D26988CF-5162-4039-BB17-4C58B698E44A";
 
                     public const string DeadReckoning = "1A37D538-F28B-42DA-9FCE-A9D0A2A6D829";
-
-
                 }
 
                 public static class Environmental
-
                 {
-
                     public const string Temperature = "04FD0EC4-D5DA-45FA-95A9-5DB38EE19306";
 
                     public const string AtmosphericPressure = "0E903829-FF8A-4A93-97DF-3DCBDE402288";
@@ -134,14 +108,10 @@ namespace Microsoft.WindowsAPICodePack
                     public const string WindSpeed = "DD50607B-A45F-42CD-8EFD-EC61761C4226";
 
                     public const string WindDirection = "9EF57A35-9306-434D-AF09-37FA5A9C00BD";
-
-
                 }
 
                 public static class Motion
-
                 {
-
                     public const string Accelerometer1D = "C04D2387-7340-4CC2-991E-3B18CB8EF2F4";
 
                     public const string Accelerometer2D = "B2C517A8-F6B5-4BA6-A423-5DF560B4CC07";
@@ -157,13 +127,10 @@ namespace Microsoft.WindowsAPICodePack
                     public const string Gyrometer3D = "09485F5A-759E-42C2-BD4B-A349B75C8643";
 
                     public const string Speedometer = "6BD73C1F-0BB4-4310-81B2-DFC18A52BF94";
-
                 }
 
                 public static class Orientation
-
                 {
-
                     public const string Compass1D = "A415F6C5-CB50-49D0-8E62-A8270BD7A26C";
 
                     public const string Compass2D = "15655CC0-997A-4D30-84DB-57CABA3648BB";
@@ -187,13 +154,10 @@ namespace Microsoft.WindowsAPICodePack
                     public const string AggregatedDeviceOrientation = "CDB5D8F7-3CFD-41C8-8542-CCE622CF5D6E";
 
                     public const string AggregatedSimpleDeviceOrientation = "86A19291-0482-402C-BF4C-ADDAC52B1C39";
-
                 }
 
                 public static class Electrical
-
                 {
-
                     public const string Voltage = "C5484637-4FB7-4953-98B8-A56D8AA1FB1E";
 
                     public const string Current = "5ADC9FCE-15A0-4BBE-A1AD-2D38A9AE831C";
@@ -209,13 +173,10 @@ namespace Microsoft.WindowsAPICodePack
                     public const string Potentiometer = "2B3681A9-CADC-45AA-A6FF-54957C8BB440";
 
                     public const string Frequency = "8CD2CBB6-73E6-4640-A709-72AE8FB60D7F";
-
                 }
 
                 public static class Mechanical
-
                 {
-
                     public const string BooleanSwitch = "9C7E371F-1041-460B-8D5C-71E4752E350C";
 
                     public const string MultivalueSwitch = "B3EE4D76-37A4-4402-B25E-99C60A775FA1";
@@ -229,43 +190,33 @@ namespace Microsoft.WindowsAPICodePack
                     public const string Strain = "C6D1EC0E-6803-4361-AD3D-85BCC58C6D29";
 
                     public const string BooleanSwitchArray = "545C8BA5-B143-4545-868F-CA7FD986B4F6";
-
                 }
 
                 public static class Biometric
-
                 {
-
                     public const string HumanPresence = "C138C12B-AD52-451C-9375-87F518FF10C6";
 
                     public const string HumanProximity = "5220DAE9-3179-4430-9F90-06266D2A34DE";
 
                     public const string Touch = "17DB3018-06C4-4F7D-81AF-9274B7599C27";
-
                 }
 
                 public const string AmbientLight = "97F115C8-599A-4153-8894-D2D12899918A";
 
                 public static class Scanner
-
                 {
-
                     public const string RFIDScanner = "44328EF5-02DD-4E8D-AD5D-9249832B2ECA";
 
                     public const string BarcodeScanner = "990B3D8F-85BB-45FF-914D-998C04F372DF";
-
                 }
 
                 public const string Custom = "E83AF229-8640-4D18-A213-E22675EBB2C3";
 
                 public const string Unknown = "10BA83E3-EF4F-41ED-9885-A87D6435A8E1";
-
             }
 
             public static class DataType
-
             {
-
                 public const string Common = "DB5E0CF2-CF1F-4C18-B46C-D86011D62150";
 
                 public const string Location = "055C74D8-CA6F-47D6-95C6-1ED3637A0FF4";
@@ -287,24 +238,17 @@ namespace Microsoft.WindowsAPICodePack
                 public const string Electrical = "BBB246D1-E242-4780-A2D3-CDED84F35842";
 
                 public const string Custom = "B14C764F-07CF-41E8-9D82-EBE3D0776A6F";
-
             }
-
         }
-
     }
 
     namespace PortableDevices.Guids
-
     {
-
         /// <summary>
         /// This class defines all WPD Events.
         /// </summary>
         public static class EventSystem
-
         {
-
             /// <summary>
             /// This GUID is used to identify all WPD driver events to the event sub-system. The driver uses this as the GUID identifier when it queues an event with IWdfDevice::PostEvent(). Applications never use this value.
             /// </summary>
@@ -354,13 +298,10 @@ namespace Microsoft.WindowsAPICodePack
             /// This event is sent when a driver has completed invoking a service method. This event must be sent even when the method fails.
             /// </summary>
             public const string ServiceMethodComplete = "8A33F5F8-0ACC-4D9B-9CC4-112D353B86CA";
-
         }
 
         public static class PropertySystem
-
         {
-
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_OPTIONS_V1. This category of properties relates to options used for the WPD device class extension
             /// </summary>
@@ -535,9 +476,7 @@ namespace Microsoft.WindowsAPICodePack
             /// This class defines all WPD content types.
             /// </summary>
             public static class ContentType
-
             {
-
                 /// <summary>
                 /// <para>Name: WPD_CONTENT_TYPE_FUNCTIONAL_OBJECT</para>
                 /// <para>Description: Indicates this object represents a functional object-not content data on the device.</para>
@@ -711,16 +650,13 @@ namespace Microsoft.WindowsAPICodePack
                 /// <para>Description: This content type is only valid as a parameter to API functions and driver commands. It should not be reported as a supported content type by the driver.</para>
                 /// </summary>
                 public const string All = "80E170D2-1055-4A3E-B952-82CC4F8A8689";
-
             }
 
             /// <summary>
             /// This class defines all WPD Functional Categories
             /// </summary>
             public static class FunctionalCategory
-
             {
-
                 //
                 // WPD_FUNCTIONAL_CATEGORY_DEVICE
                 // Used for the device object-which is always the top-most object of the device. 
@@ -757,14 +693,12 @@ namespace Microsoft.WindowsAPICodePack
                 // WPD_FUNCTIONAL_CATEGORY_ALL
                 // This functional category is only valid as a parameter to API functions and driver commands. It should not be reported as a supported functional category by the driver. 
                 public const string All = "2D8A6512-A74C-448E-BA8A-F4AC07C49399";
-
             }
 
             /// <summary>
             /// This class defines all WPD Formats
             /// </summary>
             public static class ObjectFormat
-
             {
                 //
                 // WPD_OBJECT_FORMAT_ICON
@@ -798,7 +732,6 @@ namespace Microsoft.WindowsAPICodePack
                 // WPD_OBJECT_FORMAT_ALL
                 //   This format is only valid as a parameter to API functions and driver commands. It should not be reported as a supported format by the driver. 
                 public const string All = "C1F62EB2-4BB3-479C-9CFA-05B5F3A57B22";
-
             }
 
             /// <summary>
@@ -843,9 +776,7 @@ namespace Microsoft.WindowsAPICodePack
                 /// This class defines the legacy WPD Formats
                 /// </summary>
                 public static class ObjectFormat
-
                 {
-
                     //
                     // WPD_OBJECT_FORMAT_PROPERTIES_ONLY
                     //   This object has no data stream and is completely specified by properties only.
@@ -1161,28 +1092,21 @@ namespace Microsoft.WindowsAPICodePack
                     //   Audio or Video file format
                     //   Device Services Format: FORMAT_MKVFile
                     public const string MKV = "B9900000-AE6C-4804-98BA-c57B46965FE7";
-
                 }
 
                 // #endif // WPD_SERVICES_STRICT
-
             }
-
         }
 
         public static class CommandSystem
-
         {
-
             /// <summary>
             /// All Commands-Parameters and Options associated with: WPD_CATEGORY_COMMON.
             /// </summary>
             public const string Common = "F0422A9C-5DC8-4440-B5BD-5DF28835658A";
 
             public static class Object
-
             {
-
                 /// <summary>
                 /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_ENUMERATION. The commands in this category are used for basic object enumeration.
                 /// </summary>
@@ -1207,7 +1131,6 @@ namespace Microsoft.WindowsAPICodePack
                 /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_OBJECT_MANAGEMENT. The commands specified in this category are used to Create/Delete objects on the device.
                 /// </summary>
                 public const string Management = "EF1E43DD-A9ED-4341-8BCC-186192AEA089";
-
             }
 
             /// <summary>
@@ -1261,9 +1184,7 @@ namespace Microsoft.WindowsAPICodePack
             public const string NetworkConfiguration = "78F9C6FC-79B8-473C-9060-6BD23DD072C4";
 
             public static class Service
-
             {
-
                 /// <summary>
                 /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SERVICE_COMMON. The commands in this category relate to a device service.
                 /// </summary>
@@ -1278,55 +1199,40 @@ namespace Microsoft.WindowsAPICodePack
                 /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_SERVICE_METHODS. The commands in this category relate to methods of a device service.
                 /// </summary>
                 public const string Methods = "2D521CA8-C1B0-4268-A342-CF19321569BC";
-
             }
-
         }
-
     }
 
     namespace ApplicationServices.Guids
-
     {
         public static class PowerPersonality
         {
-
             public const string HighPerformance = "8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c";
             public const string PowerSaver = "a1841308-3541-4fab-bc81-f71556f20b4a";
             public const string Automatic = "381b4222-f694-41f0-9685-ff5bb260df2e";
 
             public const string All = "68A1E95E-13EA-41E1-8011-0C496CA490B0";
-
         }
 
         /// <summary>
         /// Hardcoded GUIDS for each event.
         /// </summary>
         public static class EventManager
-
         {
-
             public const string PowerPersonalityChange = "245d8541-3943-4422-b025-13A784F679B7";
             public const string PowerSourceChange = "5d3e9a59-e9D5-4b00-a6bd-ff34ff516548";
             public const string BatteryCapacityChange = "a7ad8041-b45a-4cae-87a3-eecbb468a9e1";
             public const string BackgroundTaskNotification = "515c31d8-f734-163d-a0fd-11a08c91e8f1";
             public const string MonitorPowerStatus = "02731015-4510-4526-99e6-e5a17ebd1aea";
-
         }
-
     }
 
     namespace Shell.Guids
-
     {
-
         namespace PropertySystem
-
         {
-
             public static class SystemProperties
             {
-
                 public const string AcquisitionID = "65A98875-3C80-40AB-ABBC-EFDAF77DBEE2";
                 public const string PSGUID_MediaFileSummaryInformation = "64440492-4C8B-11D1-8B70-080036B11A03";
                 public const string DateAcquired = "2CBAA8F5-D81F-47CA-B17A-F8D822300131";
@@ -1355,7 +1261,6 @@ namespace Microsoft.WindowsAPICodePack
 
                 public static class FormatIdentifiersGuids
                 {
-
                     public const string SummaryInformation = "F29F85E0-4FF9-1068-AB91-08002B27B3D9";
                     public const string Volume = "9B174B35-40FF-11D2-A27E-00C04FC30871";
                     public const string DocumentSummaryInformation = "D5CDD502-2E9C-101B-9397-08002B2CF9AE";
@@ -1366,11 +1271,8 @@ namespace Microsoft.WindowsAPICodePack
                     public const string Query = "49691C90-7E17-101A-A91C-08002B2ECDA9";
                     public const string ImageProperties = "14B81DA1-0135-4D31-96D9-6CBFC9671A99";
                     public const string IntSite = "000214A1-0000-0000-C000-000000000046";
-
                 }
-
             }
-
         }
 
         public static class ShellKnownFolderID
@@ -1528,16 +1430,13 @@ namespace Microsoft.WindowsAPICodePack
             /// Windows 7 and later. A user's Searches folder-normally found at C:\Users\username\Searches.
             /// </summary>
             public const string Searches = "0b0ba2e3-405f-415e-a6ee-cad625207853";
-
         }
 
         /// <summary>
         /// KnownFolder Guids
         /// </summary>
         public static class KnownFolders
-
         {
-
             /// <summary>
             /// Computer
             /// </summary>
@@ -1982,9 +1881,7 @@ namespace Microsoft.WindowsAPICodePack
             /// Windows 7 KnownFolders Guids
             /// </summary>
             public static class Windows7
-
             {
-
                 /// <summary>
                 /// UserProgramFiles
                 /// </summary>
@@ -2063,9 +1960,7 @@ namespace Microsoft.WindowsAPICodePack
                 /// ImplicitAppShortcuts
                 /// </summary>
                 public const string ImplicitAppShortcuts = "bcb5256f-79f6-4cee-b725-dc34e42fd46";
-
             }
-
         }
 
         public static class ExplorerBrowserViewPanes
@@ -2079,12 +1974,10 @@ namespace Microsoft.WindowsAPICodePack
             public const string Query = "65bcde4f-4f07-4f27-83a7-1afca4df7ddd";
             public const string AdvancedQuery = "b4e9db8b-34ba-4c39-b5cc-16a1bd2c411c";
         }
-
     }
 
     namespace ExtendedLinguisticServices.Guids
     {
-
         /// <summary>
         /// This class contains constants describing the existing ELS services for Windows 7.
         /// </summary>
@@ -2130,19 +2023,13 @@ namespace Microsoft.WindowsAPICodePack
             /// </summary>
             public const string TransliterationBengaliToLatin = "F4DFD825-91A4-489f-855E-9AD9BEE55727";
         }
-
     }
-
 }
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
-
+namespace Microsoft.WindowsAPICodePack.NativeAPI.Guids
 {
-
     public static class ShellExtensions
-
     {
-
         public const string IPreviewHandler = "8895b1c6-b41f-4c1c-a562-0d564250836f";
         public const string IPreviewHandlerFrame = "fec87aaf-35f9-447a-adb7-20234491401a";
         public const string IPreviewHandlerVisuals = "8327b13c-b63f-4b24-9b8a-d010dcc3f599";
@@ -2151,21 +2038,15 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
         public const string IInitializeWithFile = "b7d14566-0509-4cce-a71f-0a554233bd9b";
         public const string IInitializeWithStream = "b824b49d-22ac-4161-ac8a-9916e8fa3f7f";
         public const string IInitializeWithItem = "7f73be3f-fb79-493c-a6c7-7ee14e245841";
-
     }
 
     public static class Sensors
-
     {
-
         public const string ISensor = "5FA08F80-2657-458E-AF75-46F73FA6AC5C";
-
     }
 
     public static class PortableDevices
-
     {
-
         public const string IEnumPortableDeviceObjectID = "10ece955-cf41-4728-bfa0-41eedf1bbf19";
         public const string IPortableDevice = "625e2df8-6392-4cf0-9ad1-3cfa5f17775c";
         public const string IPortableDeviceCapabilities = "2c8c6dbf-e3dc-4061-becc-8542e810d126";
@@ -2199,13 +2080,10 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
         public const string PortableDevicePropVariantCollection = "08a99e2f-6d6d-4b80-af5a-baf2bcbe4cb9";
         public const string PortableDeviceKeyCollection = "de2d022d-2480-43be-97f0-d1fa2cf98f4f";
         public const string PortableDeviceValuesCollection = "3882134d-14cf-4220-9cb4-435f86d83f60";
-
     }
 
     public static class MediaDevices
-
     {
-
         public const string IComponentAuthenticate = "A9889C00-6D2B-11d3-8496-00C04F79DBC0";
         public const string IMDServiceProvider = "1DCB3A10-33ED-11d3-8470-00C04F79DBC0";
         public const string IMDServiceProvider2 = "B2FA24B7-CDA3-4694-9862-413AE1A34819";
@@ -2264,13 +2142,10 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
         public const string IWMDMStorageControl3 = "B3266365-D4F3-4696-8D53-BD27EC60993A";
         public const string IWMDMStorageGlobals = "1DCB3A07-33ED-11d3-8470-00C04F79DBC0";
         public const string IWMDMLogger = "110A3200-5A79-11d3-8D78-444553540000";
-
     }
 
     public static class COM
-
     {
-
         public const string IObjectArray = "92CA9DCD-5622-4BBA-A805-5E9F541BD8C9";
         public const string IObjectCollection = "5632B1A4-E38A-400A-928A-D4CD63230295";
         public const string IUnknown = "00000000-0000-0000-C000-000000000046";
@@ -2279,26 +2154,19 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
 
         public const string IObjectWithSite = "fc4801a3-2ba9-11cf-a229-00aa003d7352";
         public const string IOleWindow = "00000114-0000-0000-C000-000000000046";
-
     }
 
     public static class Net
-
     {
-
-
         public const string INetwork = "DCB00002-570F-4A9B-8D69-199FDBA5723B";
         public const string INetworkConnection = "DCB00005-570F-4A9B-8D69-199FDBA5723B";
         public const string INetworkListManager = "DCB00000-570F-4A9B-8D69-199FDBA5723B";
 
         public const string NetworkListManager = "DCB00C01-570F-4A9B-8D69-199FDBA5723B";
-
     }
 
     public static class Taskbar
-
     {
-
         public const string ICustomDestinationList = "6332DEBF-87B5-4670-90C0-5E57B408A49E";
         public const string ITaskbarList = "56FDF342-FD6D-11d0-958A-006097C9A090";
         public const string ITaskbarList2 = "602D4995-B13A-429b-A66E-1935E44F4317";
@@ -2308,16 +2176,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
         public const string CDestinationList = "77F10CF0-3DB5-4966-B520-B7C54FD35ED6";
         public const string CEnumerableObjectCollection = "2D3468C1-36A7-43B6-AC24-D3F02FD9607A";
         public const string CTaskbarList = "56FDF344-FD6D-11d0-958A-006097C9A090";
-
     }
-
 
     /// <summary>
     /// IID GUID strings for relevant Shell COM interfaces and CLSID GUID strings for relevant coclasses.
     /// </summary>
     public static class Shell
     {
-
         public static class PropertySystem
         {
             public const string IPropertyChangeArray = "380F5CAD-1B5E-42F2-805D-637FD392D31E";
@@ -2402,7 +2267,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
         /// </summary>
         public static class KnownFolders
         {
-
             public const string IKnownFolder = "3AA7AF7E-9B36-420c-A8E3-F77D4674A488";
             public const string IKnownFolderManager = "8BE2D872-86AA-4d47-B776-32CCA40C7018";
 
@@ -2431,7 +2295,5 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Guids
 
             public const string ExplorerBrowserClass = "71F96385-DDD6-48D3-A0C1-AE06E8B055FB";
         }
-
     }
-
 }

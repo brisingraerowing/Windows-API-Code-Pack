@@ -1,4 +1,4 @@
-﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
 using System.Diagnostics;
@@ -84,7 +84,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
         private void StorePropVariantValue(PropVariant propVar)
         {
-            var guid = new Guid(Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.IPropertyStore);
+            var guid = new Guid(Microsoft.WindowsAPICodePack.NativeAPI.Guids.Shell.IPropertyStore);
             IPropertyStore writablePropStore = null;
 
             try

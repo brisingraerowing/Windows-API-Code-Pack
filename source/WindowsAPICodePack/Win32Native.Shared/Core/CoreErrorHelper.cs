@@ -1,4 +1,4 @@
-﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 namespace Microsoft.WindowsAPICodePack.Win32Native
 {
@@ -112,64 +112,67 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
     /// </summary>
     public static class CoreErrorHelper
     {
-
         /// <summary>
-        /// This is intended for Library Internal use only.
+        /// <see cref="HResult.Ok"/> value.
         /// </summary>
         public const int Ignored = (int)HResult.Ok;
 
         /// <summary>
-        /// This is intended for Library Internal use only.
+        /// Returns an HRESULT from a given Win32 error code.
         /// </summary>
         /// <param name="win32ErrorCode">The Windows API error code.</param>
         /// <returns>The equivalent HRESULT.</returns>
-        public static int HResultFromWin32(int win32ErrorCode)
-        {
-            if (win32ErrorCode > 0)
-
-                win32ErrorCode =
-                    (int)(((uint)win32ErrorCode & 0x0000FFFF) | ( (int) HResultFacility.Win32 << 16) | 0x80000000);
-
-            return win32ErrorCode;
-
-        }
-
-        public static HResult HResultFromWin32(ErrorCode win32ErrorCode) => (HResult) HResultFromWin32((int)win32ErrorCode);
+        public static int HResultFromWin32(in int win32ErrorCode) => win32ErrorCode > 0 ? (int)(((uint)win32ErrorCode & 0x0000FFFF) | ((int)HResultFacility.Win32 << 16) | 0x80000000) : win32ErrorCode;
 
         /// <summary>
-        /// This is intended for Library Internal use only.
+        /// Returns an <see cref="HResult"/> from a given <see cref="ErrorCode"/>.
+        /// </summary>
+        /// <param name="win32ErrorCode">The Windows API error code.</param>
+        /// <returns>The equivalent <see cref="HResult"/>.</returns>
+        public static HResult HResultFromWin32(in ErrorCode win32ErrorCode) => (HResult)HResultFromWin32((int)win32ErrorCode);
+
+        /// <summary>
+        /// Determines whether a given error code indicates success.
         /// </summary>
         /// <param name="result">The error code.</param>
-        /// <returns>True if the error code indicates success.</returns>
-        public static bool Succeeded(int result) => result >= 0;
+        /// <returns><see langword="true"/> if the error code indicates success; otherwise <see langword="false"/>.</returns>
+        public static bool Succeeded(in int result) => result >= 0;
 
         /// <summary>
-        /// This is intended for Library Internal use only.
+        /// Determines whether a given <see cref="HResult"/> indicates success.
         /// </summary>
         /// <param name="result">The error code.</param>
-        /// <returns>True if the error code indicates success.</returns>
-        public static bool Succeeded(HResult result) => Succeeded((int)result);
+        /// <returns><see langword="true"/> if the error code indicates success; otherwise <see langword="false"/>.</returns>
+        public static bool Succeeded(in HResult result) => Succeeded((int)result);
 
         /// <summary>
-        /// This is intended for Library Internal use only.
+        /// Determines whether a given <see cref="HResult"/> indicates failure.
         /// </summary>
         /// <param name="result">The error code.</param>
-        /// <returns>True if the error code indicates failure.</returns>
-        public static bool Failed(HResult result) => !Succeeded(result);
+        /// <returns><see langword="true"/> if the error code indicates failure; otherwise <see langword="false"/>.</returns>
+        public static bool Failed(in HResult result) => !Succeeded(result);
 
         /// <summary>
-        /// This is intended for Library Internal use only.
+        /// Determines whether a given error code indicates failure.
         /// </summary>
         /// <param name="result">The error code.</param>
-        /// <returns>True if the error code indicates failure.</returns>
-        public static bool Failed(int result) => !Succeeded(result);
+        /// <returns><see langword="true"/> if the error code indicates failure; otherwise <see langword="false"/>.</returns>
+        public static bool Failed(in int result) => !Succeeded(result);
 
         /// <summary>
-        /// This is intended for Library Internal use only.
+        /// Determines whether a given HRESULT corresponds to a given Win32 error code.
         /// </summary>
         /// <param name="result">The COM error code.</param>
         /// <param name="win32ErrorCode">The Win32 error code.</param>
-        /// <returns>Inticates that the Win32 error code corresponds to the COM error code.</returns>
-        public static bool Matches(int result, int win32ErrorCode) => result == HResultFromWin32(win32ErrorCode);
+        /// <returns><see langword="true"/> if <paramref name="result"/> corresponds to <paramref name="win32ErrorCode"/>; otherwise <see langword="false"/>.</returns>
+        public static bool Matches(in int result, in int win32ErrorCode) => result == HResultFromWin32(win32ErrorCode);
+
+        /// <summary>
+        /// Determines whether a given <see cref="HResult"/> corresponds to a given <see cref="ErrorCode"/>.
+        /// </summary>
+        /// <param name="result">The COM error code.</param>
+        /// <param name="win32ErrorCode">The Win32 error code.</param>
+        /// <returns><see langword="true"/> if <paramref name="result"/> corresponds to <paramref name="win32ErrorCode"/>; otherwise <see langword="false"/>.</returns>
+        public static bool Matches(in HResult result, in ErrorCode win32ErrorCode) => result == HResultFromWin32(win32ErrorCode);
     }
 }

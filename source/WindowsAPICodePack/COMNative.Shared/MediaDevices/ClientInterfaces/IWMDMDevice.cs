@@ -14,7 +14,7 @@ using GuidAttribute = System.Runtime.InteropServices.GuidAttribute;
 namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 {
     [ComImport,
-        Guid(Win32Native.Guids.MediaDevices.IWMDMDevice),
+        Guid(NativeAPI.Guids.MediaDevices.IWMDMDevice),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IWMDMDevice
     {

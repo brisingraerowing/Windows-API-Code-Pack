@@ -608,7 +608,7 @@
             <summary>
             Retrieves information about an object in the file system, such as a file, folder, directory, or drive root.
             </summary>
-            <param name="pszPath"><para>A string of maximum length <see cref="!:MaxPath"/> that contains the path and file name. Both absolute and relative paths are valid.</para>
+            <param name="pszPath"><para>A string of maximum length <see cref="F:Microsoft.WindowsAPICodePack.NativeAPI.Consts.Shell.MaxPath"/> that contains the path and file name. Both absolute and relative paths are valid.</para>
             <para>If the <b>uFlags</b> parameter includes the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.PIDL"/> flag, this parameter must be the address of an ITEMIDLIST(PIDL) structure that contains the list of item identifiers that uniquely identifies the file within the Shell's namespace. The PIDL must be a fully qualified PIDL. Relative PIDLs are not allowed.</para>
             <para>If the <b>uFlags</b> parameter includes the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.UseFileAttributes"/> flag, this parameter does not have to be a valid file name. The function will proceed as if the file exists with the specified name and with the file attributes passed in the <b>dwFileAttributes</b> parameter. This allows you to obtain information about a file type by passing just the extension for <b>pszPath</b> and passing <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes.Normal"/> in <b>dwFileAttributes</b>.</para>
             <para>This string can use either short (the 8.3 form) or long file names.</para></param>
@@ -641,7 +641,7 @@
              <para>In the ANSI version of this function, the name is limited to MAX_PATH characters. To extend this limit to 32,767 wide characters, call the Unicode version of the function and prepend "\?" to the path.For more information, see Naming a File.</para>
              <para>Tip Starting in Windows 10, version 1607, for the unicode version of this function (CopyFileExW), you can opt-in to remove the MAX_PATH character limitation without prepending "\\?\". See the "Maximum Path Limitation" section of Naming Files, Paths, and Namespaces for details.</para>
             
-            <para>If lpExistingFileName does not exist, the <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.Shell.CopyFileEx(System.String,System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.CopyProgressRoutine,System.IntPtr,System.Boolean@,Microsoft.WindowsAPICodePack.Win32Native.Shell.CopyFileFlags)"/> function fails, and the <see cref="M:System.Runtime.InteropServices.Marshal.GetLastWin32Error"/> function returns <see cref="!:ErrorCode.ERROR_FILE_NOT_FOUND"/>.</para></param>
+            <para>If lpExistingFileName does not exist, the <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.Shell.CopyFileEx(System.String,System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.CopyProgressRoutine,System.IntPtr,System.Boolean@,Microsoft.WindowsAPICodePack.Win32Native.Shell.CopyFileFlags)"/> function fails, and the <see cref="M:System.Runtime.InteropServices.Marshal.GetLastWin32Error"/> function returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.FileNotFound"/>.</para></param>
              <param name="lpNewFileName"><para>The name of the new file.</para>
             
              <para>In the ANSI version of this function, the name is limited to MAX_PATH characters. To extend this limit to 32,767 wide characters, call the Unicode version of the function and prepend "\?" to the path.For more information, see Naming a File.</para>
@@ -1503,6 +1503,190 @@
             Functions that are benign but not performance critical 
             should be located in the NativeMethods class.
             </remarks>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_REBOOT_REASON.RmRebootReasonNone">
+            <summary>
+            Reboot not required.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_REBOOT_REASON.RmRebootReasonPermissionDenied">
+            <summary>
+            Current user does not have permission to shut down one or more detected processes.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_REBOOT_REASON.RmRebootReasonSessionMismatch">
+            <summary>
+            One or more processes are running in another TS session.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_REBOOT_REASON.RmRebootReasonCriticalProcess">
+            <summary>
+            A critical process has been detected.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_REBOOT_REASON.RmRebootReasonCriticalService">
+            <summary>
+            A critical service has been detected.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_REBOOT_REASON.RmRebootReasonDetectedSelf">
+            <summary>
+            The current process has been detected.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_APP_TYPE">
+            <summary>
+            Specifies the type of application that is described by the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_PROCESS_INFO"/> structure.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_APP_TYPE.RmUnknownApp">
+            <summary>
+            The application cannot be classified as any other type.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_APP_TYPE.RmMainWindow">
+            <summary>
+            A Windows application run as a stand-alone process that displays a top-level window.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_APP_TYPE.RmOtherWindow">
+            <summary>
+            A Windows application that does not run as a stand-alone process and does not display a top-level window.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_APP_TYPE.RmService">
+            <summary>
+            The application is a Windows service.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_APP_TYPE.RmExplorer">
+            <summary>
+            The application is Windows Explorer.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_APP_TYPE.RmConsole">
+            <summary>
+            The application is a stand-alone console application.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_APP_TYPE.RmCritical">
+            <summary>
+            A system restart is required to complete the installation because a process cannot be shut down.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.NativeMethods.RmRegisterResources(System.UInt32,System.UInt32,System.String[],System.UInt32,Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_UNIQUE_PROCESS[],System.UInt32,System.String[])">
+            <summary>
+            Registers resources to a Restart Manager session. The Restart Manager uses the list of resources registered with the session to determine which applications and services must be shut down and restarted. Resources can be identified by file names, service short names, or <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_UNIQUE_PROCESS"/> structures that describe running applications.
+            </summary>
+            <param name="dwSessionHandle">A handle to an existing Restart Manager session.</param>
+            <param name="nFiles">The number of files being registered</param>
+            <param name="rgsFileNames">An array of null-terminated strings of full filename paths.</param>
+            <param name="nApplications">The number of processes being registered</param>
+            <param name="rgApplications">An array of RM_UNIQUE_PROCESS structures</param>
+            <param name="nServices">The number of services to be registered</param>
+            <param name="rgsServiceNames">An array of null-terminated strings of service short names.</param>
+            <returns><para>The function can return one of the system error codes that are defined in Winerror.h</para>
+            <para>ERROR_SEM_TIMEOUT: Failed to obtain semaphore lock in allotted time.</para>
+            <para>ERROR_BAD_ARGUMENTS: An invalid argument was supplied to the function.</para>
+            <para>ERROR_WRITE_FAULT: Read/write operation failed.</para>
+            <para>ERROR_OUTOFMEMORY: Could not allocate memory or instantiate class object.</para>
+            <para>ERROR_INVALID_HANDLE: No session exists for the supplied handle.</para></returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.NativeMethods.RmStartSession(System.UInt32@,System.UInt32,System.String)">
+            <summary>
+            Starts a new Restart Manager session. A maximum of 64 Restart Manager sessions per user session can be open on the system at the same time. When this function starts a session, it returns a session handle and session key that can be used in subsequent calls to the Restart Manager API.
+            </summary>
+            <param name="pSessionHandle">A pointer to the handle of a Restart Manager session.</param>
+            <param name="dwSessionFlags">Reserved. This parameter should be 0.</param>
+            <param name="strSessionKey">A null-terminated string that contains the session key to the new session.</param>
+            <returns><para>ERROR_SEM_TIMEOUT: Failed to obtain semaphore lock in allotted time.</para>
+            <para>ERROR_BAD_ARGUMENTS: An invalid argument was supplied to the function.</para>
+            <para>ERROR_WRITE_FAULT: Read/write operation failed.</para>
+            <para>ERROR_OUTOFMEMORY: Could not allocate memory or instantiate class object.</para></returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.NativeMethods.RmEndSession(System.UInt32)">
+            <summary>
+            Ends the Restart Manager session. This function should be called by the primary installer that has previously started the session by calling the <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.NativeMethods.RmStartSession(System.UInt32@,System.UInt32,System.String)"/> function. The <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.NativeMethods.RmEndSession(System.UInt32)"/> function can be called by a secondary installer that is joined to the session once no more resources need to be registered by the secondary installer.
+            </summary>
+            <param name="pSessionHandle">A handle to an existing Restart Manager session.</param>
+            <returns><para>The function can return one of the system error codes that are defined in Winerror.h.</para>
+            <para>ERROR_SEM_TIMEOUT: Failed to obtain semaphore lock in allotted time.</para>
+            <para>ERROR_BAD_ARGUMENTS: An invalid argument was supplied to the function.</para>
+            <para>ERROR_WRITE_FAULT: Read/write operation failed.</para>
+            <para>ERROR_OUTOFMEMORY: Could not allocate memory or instantiate class object.</para>
+            <para>ERROR_INVALID_HANDLE: No session exists for the supplied handle.</para></returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.NativeMethods.RmGetList(System.UInt32,System.UInt32@,System.UInt32@,Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_PROCESS_INFO[],Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_REBOOT_REASON@)">
+            <summary>
+            Gets a list of all applications and services that are currently using resources that have been registered with the Restart Manager session.
+            </summary>
+            <param name="dwSessionHandle">A handle to an existing Restart Manager session.</param>
+            <param name="pnProcInfoNeeded">A pointer to an array size necessary to receive RM_PROCESS_INFO structures required to return information for all affected applications and services.</param>
+            <param name="pnProcInfo">A pointer to the total number of <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_PROCESS_INFO"/> structures in an array and number of structures filled.</param>
+            <param name="rgAffectedApps">An array of <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_PROCESS_INFO"/> structures that list the applications and services using resources that have been registered with the session.</param>
+            <param name="lpdwRebootReasons">Pointer to location that receives a value of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_REBOOT_REASON"/> enumeration that describes the reason a system restart is needed.</param>
+            <returns><para>ERROR_MORE_DATA: Buffer is not large enough for all information.</para>
+            <para>ERROR_CANCELLED: Operation was cancelled by user.</para>
+            <para>ERROR_SEM_TIMEOUT: Failed to obtain semaphore lock in allotted time.</para>
+            <para>ERROR_BAD_ARGUMENTS: An invalid argument was supplied to the function.</para>
+            <para>ERROR_WRITE_FAULT: Read/write operation failed.</para>
+            <para>ERROR_OUTOFMEMORY: Could not allocate memory or instantiate class object.</para>
+            <para>ERROR_INVALID_HANDLE: No session exists for the supplied handle.</para></returns>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_PROCESS_INFO">
+            <summary>
+            Describes an application that is to be registered with the Restart Manager.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_PROCESS_INFO.Process">
+            <summary>
+            Contains an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_UNIQUE_PROCESS"/> structure that uniquely identifies the application by its PID and the time the process began.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_PROCESS_INFO.strAppName">
+            <summary>
+            If the process is a service, this parameter returns the long name for the service.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_PROCESS_INFO.strServiceShortName">
+            <summary>
+            If the process is a service, this is the short name for the service.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_PROCESS_INFO.ApplicationType">
+            <summary>
+            Contains an RM_APP_TYPE enumeration value.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_PROCESS_INFO.AppStatus">
+            <summary>
+            Contains a bit mask that describes the current status of the application.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_PROCESS_INFO.TSSessionId">
+            <summary>
+            Contains the Terminal Services session ID of the process.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_PROCESS_INFO.bRestartable">
+            <summary>
+            <see langword="true"/> if the application can be restarted by the Restart Manager; otherwise, <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_UNIQUE_PROCESS">
+            <summary>
+            Uniquely identifies a process by its PID and the time the process began. An array of <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_UNIQUE_PROCESS"/> structures can be passed to the RmRegisterResources function.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_UNIQUE_PROCESS.dwProcessId">
+            <summary>
+            The product identifier (PID).
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.RestartManager.RM_UNIQUE_PROCESS.ProcessStartTime">
+            <summary>
+            The creation time of the process.
+            </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellObjectChangeTypes">
             <summary>
@@ -2534,51 +2718,66 @@
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Ignored">
             <summary>
-            This is intended for Library Internal use only.
+            <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/> value.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.HResultFromWin32(System.Int32)">
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.HResultFromWin32(System.Int32@)">
             <summary>
-            This is intended for Library Internal use only.
+            Returns an HRESULT from a given Win32 error code.
             </summary>
             <param name="win32ErrorCode">The Windows API error code.</param>
             <returns>The equivalent HRESULT.</returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Succeeded(System.Int32)">
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.HResultFromWin32(Microsoft.WindowsAPICodePack.Win32Native.ErrorCode@)">
             <summary>
-            This is intended for Library Internal use only.
+            Returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> from a given <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode"/>.
+            </summary>
+            <param name="win32ErrorCode">The Windows API error code.</param>
+            <returns>The equivalent <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/>.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Succeeded(System.Int32@)">
+            <summary>
+            Determines whether a given error code indicates success.
             </summary>
             <param name="result">The error code.</param>
-            <returns>True if the error code indicates success.</returns>
+            <returns><see langword="true"/> if the error code indicates success; otherwise <see langword="false"/>.</returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Succeeded(Microsoft.WindowsAPICodePack.Win32Native.HResult)">
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Succeeded(Microsoft.WindowsAPICodePack.Win32Native.HResult@)">
             <summary>
-            This is intended for Library Internal use only.
+            Determines whether a given <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> indicates success.
             </summary>
             <param name="result">The error code.</param>
-            <returns>True if the error code indicates success.</returns>
+            <returns><see langword="true"/> if the error code indicates success; otherwise <see langword="false"/>.</returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Failed(Microsoft.WindowsAPICodePack.Win32Native.HResult)">
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Failed(Microsoft.WindowsAPICodePack.Win32Native.HResult@)">
             <summary>
-            This is intended for Library Internal use only.
+            Determines whether a given <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> indicates failure.
             </summary>
             <param name="result">The error code.</param>
-            <returns>True if the error code indicates failure.</returns>
+            <returns><see langword="true"/> if the error code indicates failure; otherwise <see langword="false"/>.</returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Failed(System.Int32)">
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Failed(System.Int32@)">
             <summary>
-            This is intended for Library Internal use only.
+            Determines whether a given error code indicates failure.
             </summary>
             <param name="result">The error code.</param>
-            <returns>True if the error code indicates failure.</returns>
+            <returns><see langword="true"/> if the error code indicates failure; otherwise <see langword="false"/>.</returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Matches(System.Int32,System.Int32)">
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Matches(System.Int32@,System.Int32@)">
             <summary>
-            This is intended for Library Internal use only.
+            Determines whether a given HRESULT corresponds to a given Win32 error code.
             </summary>
             <param name="result">The COM error code.</param>
             <param name="win32ErrorCode">The Win32 error code.</param>
-            <returns>Inticates that the Win32 error code corresponds to the COM error code.</returns>
+            <returns><see langword="true"/> if <paramref name="result"/> corresponds to <paramref name="win32ErrorCode"/>; otherwise <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Matches(Microsoft.WindowsAPICodePack.Win32Native.HResult@,Microsoft.WindowsAPICodePack.Win32Native.ErrorCode@)">
+            <summary>
+            Determines whether a given <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> corresponds to a given <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode"/>.
+            </summary>
+            <param name="result">The COM error code.</param>
+            <param name="win32ErrorCode">The Win32 error code.</param>
+            <returns><see langword="true"/> if <paramref name="result"/> corresponds to <paramref name="win32ErrorCode"/>; otherwise <see langword="false"/>.</returns>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers">
             <summary>
@@ -2655,8 +2854,8 @@
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Core">
             <summary>
-            Wrappers for Native Methods and Structs.
-            This type is intended for public use only
+            <para>Wrappers for Native Methods and Structs.</para>
+            <para>This type is intended for unmanaged use only.</para>
             </summary>    
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.Core.PostMessage(System.IntPtr,Microsoft.WindowsAPICodePack.WindowMessage,System.IntPtr,System.IntPtr)">
@@ -2775,21 +2974,6 @@
             </summary>
             <param name="value">The value to get the low word from.</param>
             <returns>The lower half of the dword.</returns>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Size">
-            <summary>
-            A Wrapper for a SIZE struct
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Size.Width">
-            <summary>
-            Width
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Size.Height">
-            <summary>
-            Height
-            </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Win32Native.ExecutionStates">
             <summary>
@@ -3031,6 +3215,21 @@
             Provides an simple string representation of the contained data and type.
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Size">
+            <summary>
+            A Wrapper for a SIZE struct
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Size.Width">
+            <summary>
+            Width
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Size.Height">
+            <summary>
+            Height
+            </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Dialogs.NativeTaskDialogSettings">
             <summary>

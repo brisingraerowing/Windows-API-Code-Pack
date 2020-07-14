@@ -1,4 +1,4 @@
-﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
 using System.Runtime.InteropServices;
@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 namespace Microsoft.WindowsAPICodePack.COMNative.Shell
 {
     [ComImport,
-    Guid(Win32Native.Guids.Shell.IShellLibrary),
+    Guid(NativeAPI.Guids.Shell.IShellLibrary),
     CoClass(typeof(ShellLibraryCoClass))]
     public interface INativeShellLibrary : IShellLibrary
     {
@@ -15,7 +15,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     [ComImport,
     ClassInterface(ClassInterfaceType.None),
     TypeLibType(TypeLibTypeFlags.FCanCreate),
-    Guid(Win32Native.Guids.Shell.ShellLibrary)]
+    Guid(NativeAPI.Guids.Shell.ShellLibrary)]
     public class ShellLibraryCoClass
     {
     }

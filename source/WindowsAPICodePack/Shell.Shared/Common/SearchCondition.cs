@@ -1,4 +1,4 @@
-﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
 using System.Collections.Generic;
@@ -103,7 +103,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             var subConditionsList = new List<SearchCondition>();
 
             // Get the sub-conditions from the native API
-            var guid = new Guid(Win32Native.Guids.Shell.IEnumUnknown);
+            var guid = new Guid(NativeAPI.Guids.Shell.IEnumUnknown);
 
             HResult hr = NativeSearchCondition.GetSubConditions(ref guid, out object subConditionObj);
 

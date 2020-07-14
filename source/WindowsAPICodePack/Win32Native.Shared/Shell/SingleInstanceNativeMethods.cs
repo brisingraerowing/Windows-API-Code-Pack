@@ -16,7 +16,7 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
-using static Microsoft.WindowsAPICodePack.Win32Native.Consts.DllNames;
+using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {

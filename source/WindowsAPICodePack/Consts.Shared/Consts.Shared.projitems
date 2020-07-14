@@ -6,11 +6,13 @@
     <SharedGUID>ab530093-4feb-4f6f-a34d-6dc5ff9b3881</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>Win32Native.Consts.Shared</Import_RootNamespace>
+    <Import_RootNamespace>Microsoft.WindowsAPICodePack.Win32Native</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Consts.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Enums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\HResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\ErrorCode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\HResultFacility.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Guids.cs" />
   </ItemGroup>
 </Project>

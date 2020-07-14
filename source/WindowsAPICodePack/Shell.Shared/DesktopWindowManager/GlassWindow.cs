@@ -106,8 +106,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
-            if (msg == Win32Native.Consts.Shell.DesktopWindowManager.DWMMessages.WM_DWMCOMPOSITIONCHANGED
-                || msg == Win32Native.Consts.Shell.DesktopWindowManager.DWMMessages.WM_DWMNCRENDERINGCHANGED)
+            if (msg == NativeAPI.Consts.Shell.DesktopWindowManager.DWMMessages.WM_DWMCOMPOSITIONCHANGED
+                || msg == NativeAPI.Consts.Shell.DesktopWindowManager.DWMMessages.WM_DWMNCRENDERINGCHANGED)
             {
                 if (AeroGlassCompositionChanged != null)
                 

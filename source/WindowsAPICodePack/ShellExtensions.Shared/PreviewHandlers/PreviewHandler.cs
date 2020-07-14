@@ -312,12 +312,12 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
     
                 using (RegistryKey extensionKey = Registry.ClassesRoot.CreateSubKey(extension))
                 using (RegistryKey shellexKey = extensionKey.CreateSubKey("shellex"))
-                using (RegistryKey previewKey = shellexKey.CreateSubKey(new Guid(Win32Native.Guids.ShellExtensions.IPreviewHandler).ToString("B")))
+                using (RegistryKey previewKey = shellexKey.CreateSubKey(new Guid(NativeAPI.Guids.ShellExtensions.IPreviewHandler).ToString("B")))
 
 #else
                 using RegistryKey extensionKey = Registry.ClassesRoot.CreateSubKey(extension);
                 using RegistryKey shellexKey = extensionKey.CreateSubKey("shellex");
-                using RegistryKey previewKey = shellexKey.CreateSubKey(new Guid(Win32Native.Guids.ShellExtensions.IPreviewHandler).ToString("B"));
+                using RegistryKey previewKey = shellexKey.CreateSubKey(new Guid(NativeAPI.Guids.ShellExtensions.IPreviewHandler).ToString("B"));
 
 #endif
 
@@ -336,12 +336,12 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
                 
                 using (RegistryKey shellexKey = Registry.ClassesRoot.OpenSubKey(extension + "\\shellex", true))
                 
-                    shellexKey.DeleteSubKey(Win32Native.Guids.ShellExtensions.IPreviewHandler, false);
+                    shellexKey.DeleteSubKey(NativeAPI.Guids.ShellExtensions.IPreviewHandler, false);
 
 #else
 
                 using RegistryKey shellexKey = Registry.ClassesRoot.OpenSubKey(extension + "\\shellex", true);
-                shellexKey.DeleteSubKey(Win32Native.Guids.ShellExtensions.IPreviewHandler, false);
+                shellexKey.DeleteSubKey(NativeAPI.Guids.ShellExtensions.IPreviewHandler, false);
 
 #endif
 
@@ -387,13 +387,13 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         {
             ppv = IntPtr.Zero;
             // Forces COM to not use the managed (free threaded) marshaler
-            if (iid == new Guid(Win32Native.Guids.COM.IMarshal))
+            if (iid == new Guid(NativeAPI.Guids.COM.IMarshal))
 
                 return CustomQueryInterfaceResult.Failed;
 
-            return (iid == new Guid(Win32Native.Guids.ShellExtensions.IInitializeWithStream) && !(this is IPreviewFromStream))
-                || (iid == new Guid(Win32Native.Guids.ShellExtensions.IInitializeWithItem) && !(this is IPreviewFromShellObject))
-                || (iid == new Guid(Win32Native.Guids.ShellExtensions.IInitializeWithFile) && !(this is IPreviewFromFile))
+            return (iid == new Guid(NativeAPI.Guids.ShellExtensions.IInitializeWithStream) && !(this is IPreviewFromStream))
+                || (iid == new Guid(NativeAPI.Guids.ShellExtensions.IInitializeWithItem) && !(this is IPreviewFromShellObject))
+                || (iid == new Guid(NativeAPI.Guids.ShellExtensions.IInitializeWithFile) && !(this is IPreviewFromFile))
                 ? CustomQueryInterfaceResult.Failed
                 : CustomQueryInterfaceResult.NotHandled;
         }

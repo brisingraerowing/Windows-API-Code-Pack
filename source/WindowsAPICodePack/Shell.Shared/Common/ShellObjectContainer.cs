@@ -1,4 +1,4 @@
-﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
@@ -32,7 +32,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 if (nativeShellFolder == null)
                 {
-                    var guid = new Guid(Win32Native.Guids.Shell.IShellFolder);
+                    var guid = new Guid(NativeAPI.Guids.Shell.IShellFolder);
                     var handler = new Guid(Shell.Guids.ShellBindingHandlerID.ShellFolderObject);
 
                     HResult hr = NativeShellItem.BindToHandler(

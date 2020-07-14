@@ -1,4 +1,4 @@
-﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
 using System.Collections.Generic;
@@ -95,7 +95,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
         internal static IPropertyStore CreateDefaultPropertyStore(ShellObject shellObj)
         {
-            var guid = new Guid(Win32Native.Guids.Shell.IPropertyStore);
+            var guid = new Guid(NativeAPI.Guids.Shell.IPropertyStore);
             int hr = shellObj.NativeShellItem2.GetPropertyStore(
                    GetPropertyStoreOptions.BestEffort,
                    ref guid,

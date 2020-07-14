@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using IDataObject = System.Runtime.InteropServices.ComTypes.IDataObject;
-using static Microsoft.WindowsAPICodePack.Win32Native.Consts.DllNames;
+using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Clipboard
 {

@@ -1,10 +1,10 @@
-﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
 using System.Globalization;
 using System.Text;
 using Microsoft.WindowsAPICodePack.Win32Native.Resources;
-using static Microsoft.WindowsAPICodePack.Win32Native.Consts.DllNames;
+using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native
 {
@@ -16,8 +16,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         /// <summary>
         /// Determines if the application is running on XP
         /// </summary>
-        public static bool RunningOnXP => Environment.OSVersion.Platform == PlatformID.Win32NT &&
-                    Environment.OSVersion.Version.Major >= 5;
+        public static bool RunningOnXP => Environment.OSVersion.Platform == PlatformID.Win32NT && Environment.OSVersion.Version.Major >= 5;
 
         /// <summary>
         /// Throws PlatformNotSupportedException if the application is not running on Windows XP
@@ -49,8 +48,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         /// </summary>
         public static bool RunningOnWin7 =>
                 // Verifies that OS version is 6.1 or greater, and the Platform is WinNT.
-                Environment.OSVersion.Platform == PlatformID.Win32NT &&
-                    Environment.OSVersion.Version.CompareTo(new Version(6, 1)) >= 0;
+                Environment.OSVersion.Platform == PlatformID.Win32NT && Environment.OSVersion.Version.CompareTo(new Version(6, 1)) >= 0;
 
         /// <summary>
         /// Throws PlatformNotSupportedException if the application is not running on Windows 7
@@ -73,47 +71,39 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         /// </summary>
         public static void ThrowIfNotWin8()
         {
-
             if (!RunningOnWin8)
 
                 throw new PlatformNotSupportedException(LocalizedMessages.CoreHelpersRunningOn8);
-
         }
 
         /// <summary>
         /// Determines if the application is running on Windows 8.1
         /// </summary>
-        public static bool RunningOnWin8_1 => Environment.OSVersion.Platform == PlatformID.Win32NT &&
-            Environment.OSVersion.Version.CompareTo(new Version(6, 3)) >= 0;
+        public static bool RunningOnWin8_1 => Environment.OSVersion.Platform == PlatformID.Win32NT && Environment.OSVersion.Version.CompareTo(new Version(6, 3)) >= 0;
 
         /// <summary>
         /// Throws PlatformNotSupportedException if the application is not running on Windows 8.1
         /// </summary>
         public static void ThrowIfNotWin8_1()
         {
-
             if (!RunningOnWin8_1)
 
                 throw new PlatformNotSupportedException(LocalizedMessages.CoreHelpersRunningOn8_1);
-
         }
 
         /// <summary>
         /// Determines if the application is running on Windows 10
         /// </summary>
-        public static bool RunningOnWin10 => Environment.OSVersion.Platform == PlatformID.Win32NT &&
-            Environment.OSVersion.Version.CompareTo(new Version(10, 0)) >= 0;
+        public static bool RunningOnWin10 => Environment.OSVersion.Platform == PlatformID.Win32NT && Environment.OSVersion.Version.CompareTo(new Version(10, 0)) >= 0;
 
         /// <summary>
         /// Throws PlatformNotSupportedException if the application is not running on Windows 10
         /// </summary>
         public static void ThrowIfNotWin10()
         {
-
             if (!RunningOnWin10)
 
                 throw new PlatformNotSupportedException(LocalizedMessages.CoreHelpersRunningOn10);
-
         }
 
         /// <summary>

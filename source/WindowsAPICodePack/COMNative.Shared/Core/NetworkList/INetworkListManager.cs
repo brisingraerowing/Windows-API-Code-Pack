@@ -1,4 +1,4 @@
-﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using Microsoft.WindowsAPICodePack.COMNative.NetworkList;
 using System;
@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 namespace Microsoft.WindowsAPICodePack.COMNative.Net
 {
     [ComImport]
-    [Guid(Win32Native.Guids.Net.INetworkListManager)]
+    [Guid(NativeAPI.Guids.Net.INetworkListManager)]
     [TypeLibType((short)0x1040)]
     public interface INetworkListManager
     {

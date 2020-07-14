@@ -1,4 +1,4 @@
-//Copyright (c) Microsoft Corporation.  All rights reserved.
+//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
 using System.Runtime.CompilerServices;
@@ -14,7 +14,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
 #pragma warning disable 0108
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.KnownFolders.IKnownFolder),
+    Guid(NativeAPI.Guids.Shell.KnownFolders.IKnownFolder),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IKnownFolderNative
     {
@@ -63,7 +63,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     }
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.KnownFolders.IKnownFolderManager),
+    Guid(NativeAPI.Guids.Shell.KnownFolders.IKnownFolderManager),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IKnownFolderManager
     {

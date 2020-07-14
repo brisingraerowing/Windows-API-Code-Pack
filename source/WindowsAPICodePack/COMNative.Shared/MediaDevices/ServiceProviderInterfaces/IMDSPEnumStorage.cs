@@ -10,7 +10,7 @@ using System.Text;
 namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 {
     [ComImport,
-        Guid(Win32Native.Guids.MediaDevices.IMDSPEnumStorage),
+        Guid(NativeAPI.Guids.MediaDevices.IMDSPEnumStorage),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMDSPEnumStorage
     {

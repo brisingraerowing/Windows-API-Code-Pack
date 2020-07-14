@@ -17,7 +17,7 @@ using Microsoft.WindowsAPICodePack.Win32Native;
 namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem
 {
     [ComImport,
-        Guid(Win32Native.Guids.PortableDevices.IPortableDeviceProperties),
+        Guid(NativeAPI.Guids.PortableDevices.IPortableDeviceProperties),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceProperties
     {

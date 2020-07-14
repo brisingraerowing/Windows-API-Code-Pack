@@ -1,4 +1,4 @@
-﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
 using System.Runtime.CompilerServices;
@@ -19,7 +19,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
     #region Property System COM Interfaces
 
     [ComImport]
-    [System.Runtime.InteropServices.Guid(Win32Native.Guids.Shell.IPropertyStoreCapabilities)]
+    [System.Runtime.InteropServices.Guid(NativeAPI.Guids.Shell.IPropertyStoreCapabilities)]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyStoreCapabilities
     {
@@ -30,7 +30,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
     /// An in-memory property store cache
     /// </summary>
     [ComImport]
-    [System.Runtime.InteropServices.Guid(Win32Native.Guids.Shell.IPropertyStoreCache)]
+    [System.Runtime.InteropServices.Guid(NativeAPI.Guids.Shell.IPropertyStoreCache)]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyStoreCache
     {
@@ -77,7 +77,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
     /// A property store
     /// </summary>
     [ComImport]
-    [System.Runtime.InteropServices.Guid(Win32Native.Guids.Shell.IPropertyStore)]
+    [System.Runtime.InteropServices.Guid(NativeAPI.Guids.Shell.IPropertyStore)]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyStore
     {
@@ -126,7 +126,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
     }
 
     [ComImport,
-    System.Runtime.InteropServices.Guid(Win32Native.Guids.Shell.IPropertyDescriptionList),
+    System.Runtime.InteropServices.Guid(NativeAPI.Guids.Shell.IPropertyDescriptionList),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyDescriptionList
     {
@@ -137,7 +137,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
     }
 
     [ComImport,
-    System.Runtime.InteropServices.Guid(Win32Native.Guids.Shell.IPropertyDescription),
+    System.Runtime.InteropServices.Guid(NativeAPI.Guids.Shell.IPropertyDescription),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyDescription
     {
@@ -201,7 +201,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
     }
 
     [ComImport,
-    System.Runtime.InteropServices.Guid(Win32Native.Guids.Shell.IPropertyDescription2),
+    System.Runtime.InteropServices.Guid(NativeAPI.Guids.Shell.IPropertyDescription2),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyDescription2 : IPropertyDescription
     {
@@ -271,7 +271,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
     }
 
     [ComImport,
-    System.Runtime.InteropServices.Guid(Win32Native.Guids.Shell.IPropertyEnumType),
+    System.Runtime.InteropServices.Guid(NativeAPI.Guids.Shell.IPropertyEnumType),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyEnumType
     {
@@ -292,7 +292,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
     }
 
     [ComImport,
-    System.Runtime.InteropServices.Guid(Win32Native.Guids.Shell.IPropertyEnumType2),
+    System.Runtime.InteropServices.Guid(NativeAPI.Guids.Shell.IPropertyEnumType2),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyEnumType2 : IPropertyEnumType
     {
@@ -317,7 +317,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
 
 
     [ComImport,
-    System.Runtime.InteropServices.Guid(Win32Native.Guids.Shell.IPropertyEnumTypeList),
+    System.Runtime.InteropServices.Guid(NativeAPI.Guids.Shell.IPropertyEnumTypeList),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyEnumTypeList
     {

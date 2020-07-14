@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\COMNative\COMNative.csproj" />
-    <ProjectReference Include="..\Win32Native.Consts\Win32Native.Consts.csproj" />
     <ProjectReference Include="..\Win32Native\Win32Native.csproj" />
   </ItemGroup>
 

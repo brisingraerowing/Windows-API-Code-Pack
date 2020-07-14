@@ -10,7 +10,7 @@ using System.Text;
 namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 {
     [ComImport,
-        Guid(Win32Native.Guids.MediaDevices.IMDSPObjectInfo),
+        Guid(NativeAPI.Guids.MediaDevices.IMDSPObjectInfo),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMDSPObjectInfo
     {

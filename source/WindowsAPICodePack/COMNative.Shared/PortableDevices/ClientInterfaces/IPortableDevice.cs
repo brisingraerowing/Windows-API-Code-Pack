@@ -18,13 +18,13 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
 
     /// <summary>
     /// <para>The <see cref="IPortableDevice"/> interface provides access to a portable device.</para>
-    /// <para>To create and open this interface, first call <see cref="CoCreateInstance"/> with <see cref="Win32Native.Guids.PortableDevices.PortableDeviceFTM"/> or <see cref="Win32Native.Guids.PortableDevices.PortableDevice"/> to retrieve an <see cref="IPortableDevice"/> interface, and then call <see cref="Open"/> to open a connection to the device.</para>
+    /// <para>To create and open this interface, first call <see cref="CoCreateInstance"/> with <see cref="NativeAPI.Guids.PortableDevices.PortableDeviceFTM"/> or <see cref="NativeAPI.Guids.PortableDevices.PortableDevice"/> to retrieve an <see cref="IPortableDevice"/> interface, and then call <see cref="Open"/> to open a connection to the device.</para>
     /// </summary>
     /// <remarks><para>The client interfaces are designed to be used for any WPD object; it is not necessary to create a new instance for each object referenced by the application. After an application opens an instance of the <see cref="IPortableDevice"/> interface, it should open and cache any other WPD client interfaces that it will require.</para>
-    /// <para>For Windows 7, <see cref="IPortableDevice"/> supports two CLSIDs for <see cref="CoCreateInstance"/>. <see cref="Win32Native.Guids.PortableDevices.PortableDevice"/> returns an <see cref="IPortableDevice"/> pointer that does not aggregate the free-threaded marshaler; <see cref="Win32Native.Guids.PortableDevices.PortableDeviceFTM"/> is a new CLSID that returns an <see cref="IPortableDevice"/> pointer that aggregates the free-threaded marshaler.Both pointers support the same functionality otherwise.</para>
-    /// <para>Applications that live in Single Threaded Apartments should use <see cref="Win32Native.Guids.PortableDevices.PortableDeviceFTM"/> as this eliminates the overhead of interface pointer marshaling. <see cref="Win32Native.Guids.PortableDevices.PortableDevice"/> is still supported for legacy applications.</para></remarks>
+    /// <para>For Windows 7, <see cref="IPortableDevice"/> supports two CLSIDs for <see cref="CoCreateInstance"/>. <see cref="NativeAPI.Guids.PortableDevices.PortableDevice"/> returns an <see cref="IPortableDevice"/> pointer that does not aggregate the free-threaded marshaler; <see cref="NativeAPI.Guids.PortableDevices.PortableDeviceFTM"/> is a new CLSID that returns an <see cref="IPortableDevice"/> pointer that aggregates the free-threaded marshaler.Both pointers support the same functionality otherwise.</para>
+    /// <para>Applications that live in Single Threaded Apartments should use <see cref="NativeAPI.Guids.PortableDevices.PortableDeviceFTM"/> as this eliminates the overhead of interface pointer marshaling. <see cref="NativeAPI.Guids.PortableDevices.PortableDevice"/> is still supported for legacy applications.</para></remarks>
     [ComImport(),
-        Guid(Win32Native.Guids.PortableDevices.IPortableDevice),
+        Guid(NativeAPI.Guids.PortableDevices.IPortableDevice),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDevice
     {
@@ -42,7 +42,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
         /// <para>Administrators can restrict the access of portable devices to computers running on a network.For example, an administrator may restrict all Guest users to read-only access, while Authenticated users are given read/write access.</para>
         /// <para>Due to these security issues, if your application will not perform write operations, it should call the <see cref="Open"/> method and request read-only access by specifying GENERIC_READ for the WPD_CLIENT_DESIRED_ACCESS property that it supplies in the pClientInfo parameter.</para>
         /// <para>If your application requires write operations, it should call the <see cref="Open"/> method as shown in the following example code. The first time, it should request read/write access by passing the default WPD_CLIENT_DESIRED_ACCESS property in the pClientInfo parameter.If this first call fails and returns E_ACCESSDENIED, your application should call the <see cref="Open"/> method a second time and request read-only access by specifying GENERIC_READ for the WPD_CLIENT_DESIRED_ACCESS property that it supplies in the pClientInfo parameter.</para>
-        /// <para>Applications that live in Single Threaded Apartments should use <see cref="Win32Native.Guids.PortableDevices.PortableDeviceFTM"/>, as this eliminates the overhead of interface pointer marshaling. <see cref="Win32Native.Guids.PortableDevices.PortableDevice"/> is still supported for legacy applications.</para></remarks>
+        /// <para>Applications that live in Single Threaded Apartments should use <see cref="NativeAPI.Guids.PortableDevices.PortableDeviceFTM"/>, as this eliminates the overhead of interface pointer marshaling. <see cref="NativeAPI.Guids.PortableDevices.PortableDevice"/> is still supported for legacy applications.</para></remarks>
         /// <example>
         /// <code>
         /// const string CLIENT_NAME = "My WPD Application";
@@ -63,10 +63,10 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
         ///     }
         ///     
         ///     // CoCreate an IPortableDeviceValues interface to hold the client information.
-        ///     hr = CoCreateInstance(Win32Native.Guids.PortableDevices.PortableDeviceValues,
+        ///     hr = CoCreateInstance(NativeAPI.Guids.PortableDevices.PortableDeviceValues,
         ///                           null,
         ///                           CLSCTX_INPROC_SERVER,
-        ///                           Win32Native.Guids.PortableDevices.IPortableDeviceValues,
+        ///                           NativeAPI.Guids.PortableDevices.IPortableDeviceValues,
         ///                           ref pClientInformation);
         ///     if (CoreErrorHelper.Succeeded(hr))
         ///     {
@@ -101,7 +101,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
         ///     }
         ///     else
         ///     {
-        ///         // Failed to CoCreateInstance Win32Native.Guids.PortableDevices.PortableDeviceValues for client information
+        ///         // Failed to CoCreateInstance NativeAPI.Guids.PortableDevices.PortableDeviceValues for client information
         ///     }
         /// 
         ///     ClientInfoHR = pClientInformation.SetUnsignedIntegerValue(WPD_CLIENT_SECURITY_QUALITY_OF_SERVICE, SECURITY_IMPERSONATION);
@@ -113,10 +113,10 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
         ///     if (CoreErrorHelper.Succeeded(hr))
         ///     {
         ///         // CoCreate an IPortableDevice interface
-        ///         hr = CoCreateInstance(Win32Native.Guids.PortableDevices.PortableDeviceFTM,
+        ///         hr = CoCreateInstance(NativeAPI.Guids.PortableDevices.PortableDeviceFTM,
         ///                               null,
         ///                               CLSCTX_INPROC_SERVER,
-        ///                               Win32Native.Guids.PortableDevices.IPortableDevice,
+        ///                               NativeAPI.Guids.PortableDevices.IPortableDevice,
         ///                               ref pDevice);
         /// 
         ///         if (CoreErrorHelper.Succeeded(hr))
@@ -140,7 +140,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
         ///             {
         ///                 // The device successfully opened, obtain an instance of the Device into
         ///                 // ppDevice so the caller can be returned an opened IPortableDevice.
-        ///                 hr = pDevice.QueryInterface(Win32Native.Guids.PortableDevices.IPortableDevice, ref ppDevice);
+        ///                 hr = pDevice.QueryInterface(NativeAPI.Guids.PortableDevices.IPortableDevice, ref ppDevice);
         ///                 if (CoreErrorHelper.Failed(hr))
         ///                 {
         ///                     // Failed to QueryInterface the opened IPortableDevice
@@ -149,7 +149,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
         ///         }
         ///         else
         ///         {
-        ///             // Failed to CoCreateInstance Win32Native.Guids.PortableDevices.PortableDevice
+        ///             // Failed to CoCreateInstance NativeAPI.Guids.PortableDevices.PortableDevice
         ///         }
         ///     }
         /// 

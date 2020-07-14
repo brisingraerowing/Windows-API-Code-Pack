@@ -6,7 +6,7 @@ using System.Text;
 namespace Microsoft.WindowsAPICodePack.COMNative.COM
 {
     [ComImport()]
-    [Guid(Win32Native.Guids.COM.IObjectArray)]
+    [Guid(NativeAPI.Guids.COM.IObjectArray)]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IObjectArray
     {
@@ -18,7 +18,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.COM
     }
 
     [ComImport()]
-    [Guid(Win32Native.Guids.COM.IObjectCollection)]
+    [Guid(NativeAPI.Guids.COM.IObjectCollection)]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IObjectCollection : IObjectArray
     {
@@ -30,7 +30,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.COM
         void Clear();
     }
 
-    [Guid(Win32Native.Guids.Taskbar.CEnumerableObjectCollection)]
+    [Guid(NativeAPI.Guids.Taskbar.CEnumerableObjectCollection)]
     [ClassInterface(ClassInterfaceType.None)]
     [ComImport()]
     public class CEnumerableObjectCollection { }

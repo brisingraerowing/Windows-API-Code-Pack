@@ -1,4 +1,4 @@
-﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
 using System.Collections.Generic;
@@ -93,7 +93,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 searchScopePaths = value.ToArray();
                 var shellItems = new List<IShellItem>(searchScopePaths.Length);
 
-                var shellItemGuid = new Guid(Win32Native.Guids.Shell.IShellItem);
+                var shellItemGuid = new Guid(NativeAPI.Guids.Shell.IShellItem);
                 // Guid shellItemArrayGuid = new Guid(ShellIIDGuid.IShellItemArray);
 
                 // Create IShellItem for all the scopes we were given
@@ -118,7 +118,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             get
             {
-                var guid = new Guid(Win32Native.Guids.Shell.IShellItem);
+                var guid = new Guid(NativeAPI.Guids.Shell.IShellItem);
 
                 if (NativeSearchFolderItemFactory == null) return null;
 

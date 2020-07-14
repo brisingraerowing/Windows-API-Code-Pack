@@ -1,4 +1,4 @@
-﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
 using System.Collections.Generic;
@@ -393,7 +393,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             try
             {
                 // First, try to create a new IQueryParser using IQueryParserManager
-                var guid = new Guid(Win32Native.Guids.Shell.IQueryParser);
+                var guid = new Guid(NativeAPI.Guids.Shell.IQueryParser);
                 HResult hr = nativeQueryParserManager.CreateLoadedParser(
                     "SystemIndex",
                     cultureInfo == null ? (ushort)0 : (ushort)cultureInfo.LCID,

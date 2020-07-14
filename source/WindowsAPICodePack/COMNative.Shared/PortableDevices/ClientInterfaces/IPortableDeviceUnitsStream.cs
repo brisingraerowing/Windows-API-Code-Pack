@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
 {
     [ComImport,
-        Guid(Win32Native.Guids.PortableDevices.IPortableDeviceUnitsStream),
+        Guid(NativeAPI.Guids.PortableDevices.IPortableDeviceUnitsStream),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceUnitsStream
     {

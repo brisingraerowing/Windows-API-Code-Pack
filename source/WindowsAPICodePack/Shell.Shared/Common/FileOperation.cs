@@ -1,4 +1,21 @@
-﻿using Microsoft.WindowsAPICodePack.Win32Native;
+﻿/* Copyright © Pierre Sprimont, 2019
+ *
+ * This file is part of the WinCopies Windows API Code Pack.
+ *
+ * This part of the WinCopies Windows API Code Pack is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This part of the WinCopies Windows API Code Pack is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with the WinCopies Windows API Code Pack.  If not, see <https://www.gnu.org/licenses/>. */
+
+using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 using System;
@@ -104,7 +121,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         public FileOperation()
         {
-            fileOperation = (IFileOperation)Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid(Win32Native.Guids.Shell.FileOperation)));
+            fileOperation = (IFileOperation)Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid(NativeAPI.Guids.Shell.FileOperation)));
 
             Cookies = new System.Collections.ObjectModel.ReadOnlyCollection<uint>(cookies);
         }

@@ -1,10 +1,10 @@
-﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using static Microsoft.WindowsAPICodePack.Win32Native.Consts.DllNames;
+using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {

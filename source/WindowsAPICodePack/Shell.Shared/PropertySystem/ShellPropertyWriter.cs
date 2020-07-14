@@ -1,4 +1,4 @@
-﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
 using System.Runtime.InteropServices;
@@ -25,7 +25,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             ParentShellObject = parent;
 
             // Open the property store for this shell object...
-            var guid = new Guid(Win32Native.Guids.Shell.IPropertyStore);
+            var guid = new Guid(NativeAPI.Guids.Shell.IPropertyStore);
 
             try
             {

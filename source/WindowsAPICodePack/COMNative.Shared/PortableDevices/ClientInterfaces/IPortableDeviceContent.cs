@@ -15,7 +15,7 @@ using Microsoft.WindowsAPICodePack.Win32Native;
 namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
 {
     [ComImport,
-        Guid(Win32Native.Guids.PortableDevices.IPortableDeviceContent),
+        Guid(NativeAPI.Guids.PortableDevices.IPortableDeviceContent),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceContent
     {
@@ -74,7 +74,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
     }
 
     [ComImport,
-        Guid(Win32Native.Guids.PortableDevices.IPortableDeviceContent2)]
+        Guid(NativeAPI.Guids.PortableDevices.IPortableDeviceContent2)]
     public interface IPortableDeviceContent2 : IPortableDeviceContent
     {
         [PreserveSig]

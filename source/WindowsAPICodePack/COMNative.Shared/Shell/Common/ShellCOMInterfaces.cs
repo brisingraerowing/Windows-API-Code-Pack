@@ -1,4 +1,4 @@
-//Copyright (c) Microsoft Corporation.  All rights reserved.
+//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
 using System.IO;
@@ -38,7 +38,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     #region COM Interfaces
 
     [ComImport(),
-    Guid(Win32Native.Guids.Shell.IModalWindow),
+    Guid(NativeAPI.Guids.Shell.IModalWindow),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IModalWindow
     {
@@ -48,7 +48,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     }
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.IShellItem),
+    Guid(NativeAPI.Guids.Shell.IShellItem),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IShellItem
     {
@@ -82,7 +82,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     }
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.IShellItem2),
+    Guid(NativeAPI.Guids.Shell.IShellItem2),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IShellItem2 : IShellItem
     {
@@ -159,7 +159,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     }
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.IShellItemArray),
+    Guid(NativeAPI.Guids.Shell.IShellItemArray),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IShellItemArray
     {
@@ -210,7 +210,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     }
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.IShellLibrary),
+    Guid(NativeAPI.Guids.Shell.IShellLibrary),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IShellLibrary
     {
@@ -309,7 +309,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     }
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.IThumbnailCache),
+    Guid(NativeAPI.Guids.Shell.IThumbnailCache),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IThumbnailCache
     {
@@ -327,7 +327,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     }
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.ISharedBitmap),
+    Guid(NativeAPI.Guids.Shell.ISharedBitmap),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ISharedBitmap
     {
@@ -339,7 +339,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     }
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.IShellFolder),
+    Guid(NativeAPI.Guids.Shell.IShellFolder),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     ComConversionLoss]
     public interface IShellFolder
@@ -378,7 +378,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     }
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.IShellFolder2),
+    Guid(NativeAPI.Guids.Shell.IShellFolder2),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
     ComConversionLoss]
     public interface IShellFolder2 : IShellFolder
@@ -436,7 +436,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     }
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.IEnumIDList),
+    Guid(NativeAPI.Guids.Shell.IEnumIDList),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IEnumIDList
     {
@@ -458,7 +458,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     }
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.IShellLinkW),
+    Guid(NativeAPI.Guids.Shell.IShellLinkW),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IShellLinkW
     {
@@ -506,7 +506,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     }
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.CShellLink),
+    Guid(NativeAPI.Guids.Shell.CShellLink),
     ClassInterface(ClassInterfaceType.None)]
     public class CShellLink { }
 
@@ -516,7 +516,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     /// </summary>
     [ComImport]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    [Guid(Win32Native.Guids.Shell.IPersistStream)]
+    [Guid(NativeAPI.Guids.Shell.IPersistStream)]
     public interface IPersistStream
     {
         /// <summary>
@@ -546,7 +546,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     }
 
     [ComImport(),
-    Guid(Win32Native.Guids.Shell.ICondition),
+    Guid(NativeAPI.Guids.Shell.ICondition),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ICondition : IPersistStream
     {
@@ -625,7 +625,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     };
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.IRichChunk),
+    Guid(NativeAPI.Guids.Shell.IRichChunk),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IRichChunk
     {
@@ -637,7 +637,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
 
     [ComImport]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    [Guid(Win32Native.Guids.Shell.IEnumUnknown)]
+    [Guid(NativeAPI.Guids.Shell.IEnumUnknown)]
     public interface IEnumUnknown
     {
         [PreserveSig]
@@ -652,7 +652,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
 
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.IConditionFactory),
+    Guid(NativeAPI.Guids.Shell.IConditionFactory),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IConditionFactory
     {
@@ -680,7 +680,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     };
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.IConditionFactory),
+    Guid(NativeAPI.Guids.Shell.IConditionFactory),
     CoClass(typeof(ConditionFactoryCoClass))]
     public interface INativeConditionFactory : IConditionFactory
     {
@@ -689,7 +689,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     [ComImport,
     ClassInterface(ClassInterfaceType.None),
     TypeLibType(TypeLibTypeFlags.FCanCreate),
-    Guid(Win32Native.Guids.Shell.ConditionFactory)]
+    Guid(NativeAPI.Guids.Shell.ConditionFactory)]
     public class ConditionFactoryCoClass
     {
     }
@@ -697,7 +697,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
 
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.ISearchFolderItemFactory),
+    Guid(NativeAPI.Guids.Shell.ISearchFolderItemFactory),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ISearchFolderItemFactory
     {
@@ -739,7 +739,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     };
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.ISearchFolderItemFactory),
+    Guid(NativeAPI.Guids.Shell.ISearchFolderItemFactory),
     CoClass(typeof(SearchFolderItemFactoryCoClass))]
     public interface INativeSearchFolderItemFactory : ISearchFolderItemFactory
     {
@@ -748,13 +748,13 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     [ComImport,
     ClassInterface(ClassInterfaceType.None),
     TypeLibType(TypeLibTypeFlags.FCanCreate),
-    Guid(Win32Native.Guids.Shell.SearchFolderItemFactory)]
+    Guid(NativeAPI.Guids.Shell.SearchFolderItemFactory)]
     public class SearchFolderItemFactoryCoClass
     {
     }
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.IQuerySolution),
+    Guid(NativeAPI.Guids.Shell.IQuerySolution),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IQuerySolution : IConditionFactory
     {
@@ -799,7 +799,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     }
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.IQueryParser),
+    Guid(NativeAPI.Guids.Shell.IQueryParser),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IQueryParser
     {
@@ -842,7 +842,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     }
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.IQueryParserManager),
+    Guid(NativeAPI.Guids.Shell.IQueryParserManager),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IQueryParserManager
     {
@@ -864,7 +864,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     };
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.IQueryParserManager),
+    Guid(NativeAPI.Guids.Shell.IQueryParserManager),
     CoClass(typeof(QueryParserManagerCoClass))]
     public interface INativeQueryParserManager : IQueryParserManager
     {
@@ -873,13 +873,13 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     [ComImport,
     ClassInterface(ClassInterfaceType.None),
     TypeLibType(TypeLibTypeFlags.FCanCreate),
-    Guid(Win32Native.Guids.Shell.QueryParserManager)]
+    Guid(NativeAPI.Guids.Shell.QueryParserManager)]
     public class QueryParserManagerCoClass
     {
     }
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.IEntity),
+    Guid(NativeAPI.Guids.Shell.IEntity),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IEntity
     {
@@ -889,7 +889,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     // todo: add a class to encapsulate this interface into the 'Shell' project and check, on the method calls, if all the enum params do are supported by the current version of the OS.
 
     [ComImport,
-       Guid(Win32Native.Guids.Shell.IFileOperation),
+       Guid(NativeAPI.Guids.Shell.IFileOperation),
        InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFileOperation
     {

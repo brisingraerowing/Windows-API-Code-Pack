@@ -1,4 +1,4 @@
-﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
 using System.Runtime.InteropServices;
@@ -6,7 +6,7 @@ using Microsoft.WindowsAPICodePack.Controls;
 using Microsoft.WindowsAPICodePack.Controls.WindowsForms;
 using Microsoft.WindowsAPICodePack.Win32Native.Controls;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using static Microsoft.WindowsAPICodePack.Win32Native.Consts.Controls.ExplorerBrowserViewDispatchIds;
+using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.Controls.ExplorerBrowserViewDispatchIds;
 using Microsoft.WindowsAPICodePack.COMNative.Controls;
 
 namespace Microsoft.WindowsAPICodePack.Internal
@@ -26,8 +26,8 @@ namespace Microsoft.WindowsAPICodePack.Internal
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2006:UseSafeHandleToEncapsulateNativeResources")]
         private IntPtr nullPtr = IntPtr.Zero;
 
-        private Guid IID_DShellFolderViewEvents = new Guid(Win32Native.Guids.Shell.ExplorerBrowser.DShellFolderViewEvents);
-        private Guid IID_IDispatch = new Guid(Win32Native.Guids.Shell.ExplorerBrowser.IDispatch);
+        private Guid IID_DShellFolderViewEvents = new Guid(NativeAPI.Guids.Shell.ExplorerBrowser.DShellFolderViewEvents);
+        private Guid IID_IDispatch = new Guid(NativeAPI.Guids.Shell.ExplorerBrowser.IDispatch);
         private readonly ExplorerBrowser parent;
         #endregion
 

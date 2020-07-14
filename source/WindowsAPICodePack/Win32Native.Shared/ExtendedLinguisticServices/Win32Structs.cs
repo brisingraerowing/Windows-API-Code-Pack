@@ -1,11 +1,10 @@
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
 using System.Runtime.InteropServices;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.ExtendedLinguisticServices
 {
-
     [Flags]
     public enum ServiceTypes
     {
@@ -143,5 +142,4 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.ExtendedLinguisticServices
         public uint _callerDataSize;
         public IntPtr _context;
     }
-
 }

@@ -1,11 +1,14 @@
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using Microsoft.WindowsAPICodePack.Win32Native.ExtendedLinguisticServices;
+
 using System;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
 using System.Threading;
+
+using Win32NativeInteropTools = Microsoft.WindowsAPICodePack.Win32Native.InteropTools;
 
 namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 {
@@ -89,7 +92,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             for (int i = 0; i < services.Length; ++i)
             {
                 var guid = (Guid)Marshal.PtrToStructure(
-                    (IntPtr)((ulong)pServices + InteropTools.OffsetOfGuidInService), InteropTools.TypeOfGuid);
+                    (IntPtr)((ulong)pServices + InteropTools.OffsetOfGuidInService), Win32NativeInteropTools.TypeOfGuid);
                 _ = _guidToService.TryGetValue(guid, out IntPtr cachedValue);
                 if (cachedValue == IntPtr.Zero)
                 {
@@ -102,7 +105,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
                 pServices = (IntPtr)((ulong)pServices + InteropTools.SizeOfService);
             }
             if (addedToCache)
-            
+
                 // This means that at least one of the services was stored in the cache.
                 // So we must keep the original pointer in our cleanup list.
                 _servicePointers.Add(originalPtr);
@@ -122,7 +125,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
                 {
                     var guid = (Guid)Marshal.PtrToStructure(
                         (IntPtr)((ulong)pServices + InteropTools.OffsetOfGuidInService),
-                        InteropTools.TypeOfGuid);
+                        Win32NativeInteropTools.TypeOfGuid);
                     _ = _guidToService.Remove(guid);
                     pServices = (IntPtr)((ulong)pServices + InteropTools.SizeOfService);
                 }
@@ -187,7 +190,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
                 foreach (IntPtr servicePtr in _servicePointers)
 
                     ExtendedLinguisticServicesNativeMethods.MappingFreeServicesVoid(servicePtr);
-                
+
                 _servicePointers = null;
                 _guidToService = null;
             }

@@ -14,7 +14,7 @@ using Microsoft.WindowsAPICodePack.Win32Native;
 namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
 {
     [ComImport,
-        Guid(Win32Native.Guids.PortableDevices.IPortableDeviceServiceMethods),
+        Guid(NativeAPI.Guids.PortableDevices.IPortableDeviceServiceMethods),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceServiceMethods
     {

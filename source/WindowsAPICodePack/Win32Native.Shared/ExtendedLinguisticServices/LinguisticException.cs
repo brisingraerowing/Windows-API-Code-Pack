@@ -1,12 +1,7 @@
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
-using System.Runtime.ConstrainedExecution;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
@@ -28,29 +23,22 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// </summary>
         public LinguisticException() { }
 
-        public LinguisticException(in uint hResult)
-            : base((int)hResult) => HResult = (int)hResult;
+        public LinguisticException(in uint hResult) : base((int)hResult) => HResult = (int)hResult;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LinguisticException">LinguisticException</see> class
         ///  with the specified context and the serialization information.
         /// </summary>
-        /// <param name="info">The <see cref="System.Runtime.Serialization.SerializationInfo">SerializationInfo</see> associated with this exception.</param>
-        /// <param name="context">A <see cref="System.Runtime.Serialization.StreamingContext">StreamingContext</see> that represents the context of this exception.</param>
-        protected LinguisticException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-        }
+        /// <param name="info">The <see cref="SerializationInfo">SerializationInfo</see> associated with this exception.</param>
+        /// <param name="context">A <see cref="StreamingContext">StreamingContext</see> that represents the context of this exception.</param>
+        protected LinguisticException(SerializationInfo info, StreamingContext context) : base(info, context) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LinguisticException">LinguisticException</see> 
         /// class with the specified detailed description.
         /// </summary>
         /// <param name="message">A detailed description of the error.</param>
-        public LinguisticException(string message)
-            : base(message)
-        {
-        }
+        public LinguisticException(string message) : base(message) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LinguisticException">LinguisticException</see> class
@@ -58,15 +46,11 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// </summary>
         /// <param name="message">A detailed description of the error.</param>
         /// <param name="innerException">A reference to the inner exception that is the cause of this exception.</param>
-        public LinguisticException(string message, Exception innerException)
-            : base(message, innerException)
-        {
-        }
+        public LinguisticException(string message, Exception innerException) : base(message, innerException) { }
 
         /// <summary>
         /// Gets the MappingResultState describing the error condition for this exception.
         /// </summary>
         public MappingResultState ResultState => new MappingResultState(HResult, Message);
     }
-
 }

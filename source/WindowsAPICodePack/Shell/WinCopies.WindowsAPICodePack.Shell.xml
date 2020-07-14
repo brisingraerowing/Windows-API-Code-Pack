@@ -1576,6 +1576,18 @@
             Gets or sets a delegate to call in the <see cref="T:Microsoft.WindowsAPICodePack.Shell.FileOperation"/> class when file operations are starting.
             </summary>
         </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Shell.FileLockFinder">
+            <summary>
+            This class contains all the functions to find out which are the processes are locking a file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileLockFinder.FindLockFinder(System.String)">
+            <summary>
+            This function finds out what process(es) have a lock on the specified file.
+            </summary>
+            <param name="path">Path of the file</param>
+            <returns>Processes locking the file</returns>
+        </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.SearchCondition">
             <summary>
             Exposes properties and methods for retrieving information about a search condition.

@@ -622,16 +622,6 @@
             Indicates whether this feature is supported on the current platform.
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingService.RunningOnWin7">
-            <summary>
-            Determines if the application is running on Windows 7
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.MappingService.ThrowIfNotWin7">
-            <summary>
-            Throws PlatformNotSupportedException if the application is not running on Windows 7
-            </summary>
-        </member>
         <member name="T:Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.NullTerminatedStringFormatter">
             <summary>
             Converts byte arrays containing Unicode null-terminated strings into .NET string objects.

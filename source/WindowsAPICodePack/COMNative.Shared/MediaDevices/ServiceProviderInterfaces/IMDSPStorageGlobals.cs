@@ -10,7 +10,7 @@ using System.Text;
 namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 {
     [ComImport,
-        Guid(Win32Native.Guids.MediaDevices.IMDSPStorageGlobals),
+        Guid(NativeAPI.Guids.MediaDevices.IMDSPStorageGlobals),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMDSPStorageGlobals
     {

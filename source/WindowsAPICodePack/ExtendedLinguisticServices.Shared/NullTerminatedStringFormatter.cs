@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
 using System.Text;
@@ -23,7 +23,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 
             if ((data.Length & 1) != 0)
             
-                throw new LinguisticException(Win32Native.Consts.ExtendedLinguisticServices.InvalidArgs);
+                throw new LinguisticException(NativeAPI.Consts.ExtendedLinguisticServices.InvalidArgs);
 
             int nullIndex = data.Length;
 

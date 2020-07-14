@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
@@ -76,7 +76,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             Debug.Assert(knownFolderNative != null, "Native IKnownFolder should not be null.");
 
             // Get the native IShellItem2 from the native IKnownFolder
-            var guid = new Guid(Win32Native.Guids.Shell.IShellItem2);
+            var guid = new Guid(NativeAPI.Guids.Shell.IShellItem2);
             HResult hr = knownFolderNative.GetShellItem(0, ref guid, out IShellItem2 shellItem);
 
             if (!CoreErrorHelper.Succeeded(hr)) return null; 

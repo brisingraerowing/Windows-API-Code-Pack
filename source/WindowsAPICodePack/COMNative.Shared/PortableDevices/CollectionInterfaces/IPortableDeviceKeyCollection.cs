@@ -16,7 +16,7 @@ using Microsoft.WindowsAPICodePack.Win32Native;
 namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem
 {
     [ComImport,
-        Guid(Win32Native.Guids.PortableDevices.IPortableDeviceKeyCollection),
+        Guid(NativeAPI.Guids.PortableDevices.IPortableDeviceKeyCollection),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceKeyCollection
     {

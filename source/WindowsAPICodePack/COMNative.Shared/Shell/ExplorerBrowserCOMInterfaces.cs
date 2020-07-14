@@ -1,4 +1,4 @@
-﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
@@ -136,7 +136,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Controls
     [ComImport,
      TypeLibType(TypeLibTypeFlags.FCanCreate),
      ClassInterface(ClassInterfaceType.None),
-     Guid(Win32Native.Guids.Shell.ExplorerBrowser.ExplorerBrowserClass)]
+     Guid(NativeAPI.Guids.Shell.ExplorerBrowser.ExplorerBrowserClass)]
     public class ExplorerBrowserClass : IExplorerBrowser
     {
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
@@ -193,7 +193,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Controls
 
     [ComImport,
      InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
-     Guid(Win32Native.Guids.Shell.ExplorerBrowser.IExplorerBrowser)]
+     Guid(NativeAPI.Guids.Shell.ExplorerBrowser.IExplorerBrowser)]
     public interface IExplorerBrowser
     {
         /// <summary>
@@ -346,7 +346,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Controls
     }
 
     [ComImport,
-     Guid(Win32Native.Guids.Shell.ExplorerBrowser.IServiceProvider),
+     Guid(NativeAPI.Guids.Shell.ExplorerBrowser.IServiceProvider),
      InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IServiceProvider
     {
@@ -356,7 +356,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Controls
     };
 
     [ComImport,
-     Guid(Win32Native.Guids.Shell.ExplorerBrowser.IFolderView),
+     Guid(NativeAPI.Guids.Shell.ExplorerBrowser.IFolderView),
      InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFolderView
     {
@@ -407,7 +407,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Controls
     }
 
     [ComImport,
-     Guid(Win32Native.Guids.Shell.ExplorerBrowser.IFolderView2),
+     Guid(NativeAPI.Guids.Shell.ExplorerBrowser.IFolderView2),
      InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFolderView2 : IFolderView
     {
@@ -490,7 +490,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Controls
     }
 
     [ComImport,
-     Guid(Win32Native.Guids.Shell.ExplorerBrowser.IExplorerPaneVisibility),
+     Guid(NativeAPI.Guids.Shell.ExplorerBrowser.IExplorerPaneVisibility),
      InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IExplorerPaneVisibility
     {
@@ -500,7 +500,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Controls
     };
 
     [ComImport,
-     Guid(Win32Native.Guids.Shell.ExplorerBrowser.IExplorerBrowserEvents),
+     Guid(NativeAPI.Guids.Shell.ExplorerBrowser.IExplorerBrowserEvents),
      InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IExplorerBrowserEvents
     {
@@ -592,7 +592,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Controls
     #endregion
 
     [ComImport,
-     Guid(Win32Native.Guids.Shell.ExplorerBrowser.ICommDlgBrowser3),
+     Guid(NativeAPI.Guids.Shell.ExplorerBrowser.ICommDlgBrowser3),
      InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ICommDlgBrowser3
     {
@@ -651,7 +651,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Controls
     }
 
     [ComImport,
-   Guid(Win32Native.Guids.Shell.ExplorerBrowser.IInputObject),
+   Guid(NativeAPI.Guids.Shell.ExplorerBrowser.IInputObject),
    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IInputObject
     {
@@ -670,7 +670,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Controls
     };
 
     [ComImport,
-     Guid(Win32Native.Guids.Shell.ExplorerBrowser.IShellView),
+     Guid(NativeAPI.Guids.Shell.ExplorerBrowser.IShellView),
      InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IShellView
     {

@@ -1,4 +1,4 @@
-//Copyright (c) Microsoft Corporation.  All rights reserved.
+//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
 using System.ComponentModel;
@@ -20,7 +20,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
               PowerManagementNativeMethods.PowerInformationLevel.SystemPowerCapabilities,
               IntPtr.Zero, 0, out PowerManagementNativeMethods.SystemPowerCapabilities powerCap,
               (uint)Marshal.SizeOf(typeof(PowerManagementNativeMethods.SystemPowerCapabilities))
-              ) == Win32Native.Consts.Common.StatusAccessDenied)
+              ) == NativeAPI.Consts.Common.StatusAccessDenied)
 
                 throw new UnauthorizedAccessException(LocalizedMessages.PowerInsufficientAccessCapabilities);
 
@@ -34,7 +34,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
               PowerManagementNativeMethods.PowerInformationLevel.SystemBatteryState,
               IntPtr.Zero, 0, out PowerManagementNativeMethods.SystemBatteryState batteryState,
               (uint)Marshal.SizeOf(typeof(PowerManagementNativeMethods.SystemBatteryState))
-              ) == Win32Native.Consts.Common.StatusAccessDenied)
+              ) == NativeAPI.Consts.Common.StatusAccessDenied)
 
                 throw new UnauthorizedAccessException(LocalizedMessages.PowerInsufficientAccessBatteryState);
 

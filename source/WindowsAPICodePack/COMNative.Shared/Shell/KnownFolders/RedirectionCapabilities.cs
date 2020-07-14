@@ -1,4 +1,4 @@
-//Copyright (c) Microsoft Corporation.  All rights reserved.
+//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 namespace Microsoft.WindowsAPICodePack.COMNative.Shell
 {

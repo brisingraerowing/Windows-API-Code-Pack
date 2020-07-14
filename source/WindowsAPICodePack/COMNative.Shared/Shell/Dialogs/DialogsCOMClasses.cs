@@ -1,4 +1,4 @@
-﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
 using System.Runtime.InteropServices;
@@ -17,14 +17,14 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Dialogs
     // morphs all 'new CoClass()' calls to 'new CoClassWrapper()'.
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.IFileOpenDialog),
+    Guid(NativeAPI.Guids.Shell.IFileOpenDialog),
     CoClass(typeof(FileOpenDialogRCW))]
     public interface NativeFileOpenDialog : IFileOpenDialog
     {
     }
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.IFileSaveDialog),
+    Guid(NativeAPI.Guids.Shell.IFileSaveDialog),
     CoClass(typeof(FileSaveDialogRCW))]
     public interface NativeFileSaveDialog : IFileSaveDialog
     {
@@ -34,7 +34,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Dialogs
     [ComImport,
     ClassInterface(ClassInterfaceType.None),
     TypeLibType(TypeLibTypeFlags.FCanCreate),
-    Guid(Win32Native.Guids.Shell.FileOpenDialog)]
+    Guid(NativeAPI.Guids.Shell.FileOpenDialog)]
     public class FileOpenDialogRCW
     {
     }
@@ -42,7 +42,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Dialogs
     [ComImport,
     ClassInterface(ClassInterfaceType.None),
     TypeLibType(TypeLibTypeFlags.FCanCreate),
-    Guid(Win32Native.Guids.Shell.FileSaveDialog)]
+    Guid(NativeAPI.Guids.Shell.FileSaveDialog)]
     public class FileSaveDialogRCW
     {
     }

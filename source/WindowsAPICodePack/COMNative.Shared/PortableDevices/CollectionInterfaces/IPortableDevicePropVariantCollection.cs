@@ -15,7 +15,7 @@ using GuidAttribute = System.Runtime.InteropServices.GuidAttribute;
 namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem
 {
     [ComImport,
-        Guid(Win32Native.Guids.PortableDevices.IPortableDevicePropVariantCollection),
+        Guid(NativeAPI.Guids.PortableDevices.IPortableDevicePropVariantCollection),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDevicePropVariantCollection
     {

@@ -11,7 +11,7 @@ using System.Text;
 namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 {
     [ComImport,
-        Guid(Win32Native.Guids.MediaDevices.IWMDMProgress),
+        Guid(NativeAPI.Guids.MediaDevices.IWMDMProgress),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IWMDMProgress
     {

@@ -1,10 +1,9 @@
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
 
 namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 {
-
     /// <summary>
     /// This class serves as the result status of asynchronous calls to ELS and
     /// as the result status of linguistic exceptions.
@@ -64,5 +63,4 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// <returns>True if the two <see cref="MappingResultState">MappingResultStates</see> are not equal, false otherwise.</returns>
         public static bool operator !=(MappingResultState one, MappingResultState two) => !one.Equals(two);
     }
-
 }

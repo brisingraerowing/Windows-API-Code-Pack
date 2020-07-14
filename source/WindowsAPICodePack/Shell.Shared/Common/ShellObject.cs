@@ -1,4 +1,4 @@
-﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)  Distributed under Microsoft Public License (MS-PL)
 
 using System;
 using System.IO;
@@ -92,7 +92,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 if (nativeShellItem == null && ParsingName != null)
                 {
-                    var guid = new Guid(Win32Native.Guids.Shell.IShellItem2);
+                    var guid = new Guid(NativeAPI.Guids.Shell.IShellItem2);
                     int retCode = COMNative.Shell.Shell.SHCreateItemFromParsingName(ParsingName, IntPtr.Zero, ref guid, out nativeShellItem);
 
                     if (nativeShellItem == null || !CoreErrorHelper.Succeeded(retCode))
@@ -372,7 +372,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public void Dispose()
         {
             if (_isDisposed)
+
                 return;
+
             Dispose(true);
             GC.SuppressFinalize(this);
             _isDisposed = true;

@@ -27,7 +27,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 ShellNotifyStruct notifyStruct = pidl.MarshalAs<ShellNotifyStruct>();
 
-                var guid = new Guid(Win32Native.Guids.Shell.IShellItem2);
+                var guid = new Guid(NativeAPI.Guids.Shell.IShellItem2);
 
                 if (notifyStruct.item1 != IntPtr.Zero &&
                     (((ShellObjectChangeTypes)_event) & ShellObjectChangeTypes.SystemImageUpdate) == ShellObjectChangeTypes.None)

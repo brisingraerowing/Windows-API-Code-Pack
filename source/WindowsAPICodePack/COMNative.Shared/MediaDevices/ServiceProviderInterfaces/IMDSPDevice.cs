@@ -14,7 +14,7 @@ using GuidAttribute = System.Runtime.InteropServices.GuidAttribute;
 namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 {
     [ComImport,
-        Guid(Win32Native.Guids.MediaDevices.IMDSPDevice),
+        Guid(NativeAPI.Guids.MediaDevices.IMDSPDevice),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMDSPDevice
     {

@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
+﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,6 @@ using Microsoft.WindowsAPICodePack.COMNative.Sensors;
 using Microsoft.WindowsAPICodePack.Sensors.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using static Microsoft.WindowsAPICodePack.Sensors.Guids;
-using static Microsoft.WindowsAPICodePack.Win32Native.Guids.Sensors;
 
 namespace Microsoft.WindowsAPICodePack.Sensors
 {
@@ -162,7 +161,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
         internal static SensorList<S> NativeSensorCollectionToSensorCollection<S>(in ISensorCollection nativeCollection) where S : Sensor
         {
-            SensorList<S> sensors ;
+            SensorList<S> sensors;
 
             if (nativeCollection != null)
             {
