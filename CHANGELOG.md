@@ -10,25 +10,25 @@ For issue and fixation details, visit [https://wincopies.com/fwd.php?id=3](https
 
 For the original code (version 1.1, last release by Microsoft), see [https://wincopies.com/fwd.php?id=1](https://wincopies.com/fwd.php?id=1)
 
-??/??/???? 2.0.0
+07/14/2020 2.0.1
 ================
 
 - The assembly 'Microsoft.WindowsAPICodePack.Win32Native.Consts' has been renamed to 'Microsoft.WindowsAPICodePack.Consts'.
 - The namespace 'Microsoft.WindowsAPICodePack.Win32Native.Consts' has been renamed to 'Microsoft.WindowsAPICodePack.NativeAPI.Consts'.
 - The namespace 'Microsoft.WindowsAPICodePack.Win32Native.Guids' has been renamed to 'Microsoft.WindowsAPICodePack.NativeAPI.Guids'.
 
-WinCopies.WindowsAPICodePack.Shell 2.0.0
+WinCopies.WindowsAPICodePack.Shell 2.0.1
 ----------------------------------------
 
 Add the FileLockFinder static class.
 
-WinCopies.WindowsAPICodePack.Win32Native 2.0.0
+WinCopies.WindowsAPICodePack.Win32Native 2.0.1
 ----------------------------------------------
 
 - Add a part of the Restart Manager API
 - Some content of the Microsoft.WindowsAPICodePack.Win32Native.ExtendedLinguisticServices.InteropTools class has moved to the new Microsoft.WindowsAPICodePack.Win32Native.InteropTools class.
 
-WinCopies.WindowsAPICodePack.Consts 2.0.0
+WinCopies.WindowsAPICodePack.Consts 2.0.1
 -----------------------------------------
 
 - Changes:
