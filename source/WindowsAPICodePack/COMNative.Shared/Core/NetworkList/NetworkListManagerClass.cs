@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.Net
 {
-    [ComImport, ClassInterface((short)0), Guid(Win32Native.Guids.Net.NetworkListManager)]
+    [ComImport, ClassInterface((short)0), Guid(NativeAPI.Guids.Net.NetworkListManager)]
     [ComSourceInterfaces("Microsoft.Windows.NetworkList.Internal.INetworkEvents\0Microsoft.Windows.NetworkList.Internal.INetworkConnectionEvents\0Microsoft.Windows.NetworkList.Internal.INetworkListManagerEvents\0"), TypeLibType((short)2)]
     public class NetworkListManagerClass : INetworkListManager
     {

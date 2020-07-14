@@ -47,6 +47,5 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             return sensorReport;
         }
         #endregion
-
     }
 }

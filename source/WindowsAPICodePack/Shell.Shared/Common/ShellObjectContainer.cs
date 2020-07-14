@@ -32,7 +32,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 if (nativeShellFolder == null)
                 {
-                    var guid = new Guid(Win32Native.Guids.Shell.IShellFolder);
+                    var guid = new Guid(NativeAPI.Guids.Shell.IShellFolder);
                     var handler = new Guid(Shell.Guids.ShellBindingHandlerID.ShellFolderObject);
 
                     HResult hr = NativeShellItem.BindToHandler(

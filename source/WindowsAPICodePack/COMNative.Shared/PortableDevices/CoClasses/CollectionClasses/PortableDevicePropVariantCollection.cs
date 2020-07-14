@@ -12,7 +12,7 @@ using GuidAttribute = System.Runtime.InteropServices.GuidAttribute;
 namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem
 {
     [ComImport,
-        Guid(Win32Native.Guids.PortableDevices.PortableDevicePropVariantCollection),
+        Guid(NativeAPI.Guids.PortableDevices.PortableDevicePropVariantCollection),
         ClassInterface(ClassInterfaceType.None),
         TypeLibType(TypeLibTypeFlags.FCanCreate)]
     public class PortableDevicePropVariantCollection { }

@@ -6,7 +6,6 @@ using System.Runtime.InteropServices;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.ExtendedLinguisticServices
 {
-
     public static class ExtendedLinguisticServicesNativeMethods
     {
         [DllImport("elscore.dll", EntryPoint = "MappingGetServices", SetLastError = true, CharSet = CharSet.Unicode)]
@@ -31,5 +30,4 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.ExtendedLinguisticServices
         [DllImport("elscore.dll", EntryPoint = "MappingFreeServices", SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern void MappingFreeServicesVoid(IntPtr pServiceInfo);
     }
-
 }

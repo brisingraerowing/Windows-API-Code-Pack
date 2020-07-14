@@ -80,9 +80,9 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
             // Forces COM to not use the managed (free threaded) marshaler
             
             
-                return _iid == Win32Native.Guids.COM.IMarshal || (_iid == Win32Native.Guids.ShellExtensions.IInitializeWithStream && !(this is IThumbnailFromStream))
-                || (_iid == Win32Native.Guids.ShellExtensions.IInitializeWithItem && !(this is IThumbnailFromShellObject))
-                || (_iid == Win32Native.Guids.ShellExtensions.IInitializeWithFile && !(this is IThumbnailFromFile)) ?  CustomQueryInterfaceResult.Failed : CustomQueryInterfaceResult.NotHandled;
+                return _iid == NativeAPI.Guids.COM.IMarshal || (_iid == NativeAPI.Guids.ShellExtensions.IInitializeWithStream && !(this is IThumbnailFromStream))
+                || (_iid == NativeAPI.Guids.ShellExtensions.IInitializeWithItem && !(this is IThumbnailFromShellObject))
+                || (_iid == NativeAPI.Guids.ShellExtensions.IInitializeWithFile && !(this is IThumbnailFromFile)) ?  CustomQueryInterfaceResult.Failed : CustomQueryInterfaceResult.NotHandled;
         }
 
         #endregion
@@ -145,7 +145,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
 
                 using (RegistryKey extensionKey = Registry.ClassesRoot.CreateSubKey(extension)) // Create makes it writable
                 using (RegistryKey shellExKey = extensionKey.CreateSubKey("shellex"))
-                using (RegistryKey providerKey = shellExKey.CreateSubKey(new Guid(Win32Native.Guids.ShellExtensions.IThumbnailProvider).ToString("B")))
+                using (RegistryKey providerKey = shellExKey.CreateSubKey(new Guid(NativeAPI.Guids.ShellExtensions.IThumbnailProvider).ToString("B")))
 
                 {
 
@@ -153,7 +153,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
 
                 using RegistryKey extensionKey = Registry.ClassesRoot.CreateSubKey(extension); // Create makes it writable
                 using RegistryKey shellExKey = extensionKey.CreateSubKey("shellex");
-                using RegistryKey providerKey = shellExKey.CreateSubKey(new Guid(Win32Native.Guids.ShellExtensions.IThumbnailProvider).ToString("B"));
+                using RegistryKey providerKey = shellExKey.CreateSubKey(new Guid(NativeAPI.Guids.ShellExtensions.IThumbnailProvider).ToString("B"));
 
 #endif
 
@@ -224,7 +224,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
 
 #endif
 
-                shellexKey.DeleteSubKey(new Guid(Win32Native.Guids.ShellExtensions.IThumbnailProvider).ToString("B"), false);
+                shellexKey.DeleteSubKey(new Guid(NativeAPI.Guids.ShellExtensions.IThumbnailProvider).ToString("B"), false);
 
                 extKey.DeleteValue("ThumbnailCutoff", false);
                 extKey.DeleteValue("TypeOverlay", false);

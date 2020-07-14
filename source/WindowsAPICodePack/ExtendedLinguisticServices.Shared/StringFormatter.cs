@@ -5,7 +5,6 @@ using System.Text;
 
 namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 {
-
     /// <summary>
     /// Converts byte arrays into Unicode (UTF-16) strings.
     /// </summary>
@@ -37,5 +36,4 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             return results;
         }
     }
-
 }

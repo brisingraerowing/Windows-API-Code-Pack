@@ -1,10 +1,13 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using Microsoft.WindowsAPICodePack.Win32Native.ExtendedLinguisticServices;
+
 using System;
 using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
 using System.Threading;
+
+using Win32NativeInteropTools = Microsoft.WindowsAPICodePack.Win32Native.InteropTools;
 
 namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 {
@@ -31,7 +34,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 
             if (options != null)
 
-                _options = InteropTools.Pack(ref options._win32Options);
+                _options = Win32NativeInteropTools.Pack(ref options._win32Options);
 
             _text = GCHandle.Alloc(text, GCHandleType.Pinned);
         }
@@ -56,7 +59,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             {
                 result[i] = new MappingDataRange
                 {
-                    _win32DataRange = InteropTools.Unpack<Win32DataRange>(
+                    _win32DataRange = Win32NativeInteropTools.Unpack<Win32DataRange>(
                     (IntPtr)((ulong)_win32PropertyBag._ranges + ((ulong)i * InteropTools.SizeOfWin32DataRange)))
                 };
             }
@@ -101,7 +104,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
             if (Interlocked.CompareExchange(ref _isFinalized, 0, 0) == 0 && DisposeInternal())
             {
                 _serviceCache.UnregisterResource();
-                InteropTools.Free<Win32Options>(ref _options);
+                Win32NativeInteropTools.Free<Win32Options>(ref _options);
                 _text.Free();
                 _ = Interlocked.CompareExchange(ref _isFinalized, 1, 0);
             }

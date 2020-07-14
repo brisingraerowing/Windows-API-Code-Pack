@@ -14,7 +14,7 @@ using Microsoft.WindowsAPICodePack.Win32Native;
 namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices.EventSystem
 {
     [ComImport,
-        Guid(Win32Native.Guids.PortableDevices.IPortableDeviceEventCallback),
+        Guid(NativeAPI.Guids.PortableDevices.IPortableDeviceEventCallback),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceEventCallback
     {

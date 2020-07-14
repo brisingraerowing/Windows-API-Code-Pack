@@ -7,7 +7,7 @@ using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 using Microsoft.WindowsAPICodePack.Internal;
 
-using static Microsoft.WindowsAPICodePack.Win32Native.Consts.Taskbar.TabbedThumbnail;
+using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.Taskbar.TabbedThumbnail;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar
 {

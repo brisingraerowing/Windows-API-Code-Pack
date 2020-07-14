@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
-using static Microsoft.WindowsAPICodePack.Win32Native.Consts.DllNames;
-using static Microsoft.WindowsAPICodePack.Win32Native.Consts.Shell;
+using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames;
+using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
@@ -13,9 +13,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     {
 
         #region Shell Helper Methods
-            [DllImport(Shell32, EntryPoint = "#62", CharSet = CharSet.Unicode, SetLastError = true)]
-            [SuppressUnmanagedCodeSecurity]
-            public static extern bool SHPickIconDialog(IntPtr hWnd, StringBuilder pszFilename, int cchFilenameMax, out int pnIconIndex);
+        [DllImport(Shell32, EntryPoint = "#62", CharSet = CharSet.Unicode, SetLastError = true)]
+        [SuppressUnmanagedCodeSecurity]
+        public static extern bool SHPickIconDialog(IntPtr hWnd, StringBuilder pszFilename, int cchFilenameMax, out int pnIconIndex);
 
         /// <summary>
         /// Retrieves information about an object in the file system, such as a file, folder, directory, or drive root.
@@ -608,7 +608,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         /// <summary>
         /// A string that contains the name of the file as it appears in the Windows Shell, or the path and file name of the file that contains the icon representing the file.
         /// </summary>
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = Consts.Shell.MaxPath)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = MaxPath)]
         public string szDisplayName;
 
         /// <summary>

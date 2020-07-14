@@ -1,13 +1,15 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using Microsoft.WindowsAPICodePack.Win32Native.ExtendedLinguisticServices;
+
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
+using InteropTools = Microsoft.WindowsAPICodePack.Win32Native.InteropTools;
+
 namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 {
-
     /// <summary>
     /// Contains text recognition results for a recognized text subrange. An array of structures of this type
     /// is retrieved by an ELS service in a <see cref="MappingPropertyBag">MappingPropertyBag</see> structure.
@@ -16,9 +18,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
     {
         internal Win32DataRange _win32DataRange;
 
-        internal MappingDataRange()
-        {
-        }
+        internal MappingDataRange() { }
 
         /// <summary>
         /// Index of the beginning of the subrange in the text, where 0 indicates the first character of the string
@@ -52,7 +52,7 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
 
             if (_win32DataRange._data == IntPtr.Zero)
 
-                throw new LinguisticException(Win32Native.Consts.ExtendedLinguisticServices.InvalidData);
+                throw new LinguisticException(NativeAPI.Consts.ExtendedLinguisticServices.InvalidData);
 
             Marshal.Copy(_win32DataRange._data, data, 0, (int)_win32DataRange._dataSize);
             return data;
@@ -93,5 +93,4 @@ namespace Microsoft.WindowsAPICodePack.ExtendedLinguisticServices
         /// <returns>A formatted version of this <see cref="MappingDataRange">MappingDataRange</see>.</returns>
         public T FormatData<T>(in IMappingFormatter<T> formatter) => (formatter ?? throw new ArgumentNullException(nameof(formatter))).Format(this);
     }
-
 }

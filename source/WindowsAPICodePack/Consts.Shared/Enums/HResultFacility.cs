@@ -1,4 +1,4 @@
-﻿namespace Microsoft.WindowsAPICodePack.Win32Native.Consts
+﻿namespace Microsoft.WindowsAPICodePack.Win32Native
 {
     // todo: add the other codes
 

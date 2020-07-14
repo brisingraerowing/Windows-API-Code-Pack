@@ -10,7 +10,7 @@ using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 namespace Microsoft.WindowsAPICodePack.COMNative.Taskbar
 {
     [ComImport()]
-    [Guid(Win32Native.Guids.Taskbar.ICustomDestinationList)]
+    [Guid(NativeAPI.Guids.Taskbar.ICustomDestinationList)]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ICustomDestinationList
     {
@@ -39,13 +39,13 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Taskbar
         void AbortList();
     }
 
-    [Guid(Win32Native.Guids.Taskbar.CDestinationList)]
+    [Guid(NativeAPI.Guids.Taskbar.CDestinationList)]
     [ClassInterface(ClassInterfaceType.None)]
     [ComImport()]
     public class CDestinationList { }
 
     [ComImport()]
-    [Guid(Win32Native.Guids.Taskbar.ITaskbarList)]
+    [Guid(NativeAPI.Guids.Taskbar.ITaskbarList)]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ITaskbarList
     {
@@ -62,7 +62,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Taskbar
     }
 
     [ComImport()]
-    [Guid(Win32Native.Guids.Taskbar.ITaskbarList2)]
+    [Guid(NativeAPI.Guids.Taskbar.ITaskbarList2)]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ITaskbarList2: ITaskbarList
     {
@@ -73,7 +73,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Taskbar
     }
 
     [ComImport()]
-    [Guid(Win32Native.Guids.Taskbar.ITaskbarList3)]
+    [Guid(NativeAPI.Guids.Taskbar.ITaskbarList3)]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ITaskbarList3: ITaskbarList2
     {
@@ -117,14 +117,14 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Taskbar
     }
 
     [ComImport()]
-    [Guid(Win32Native.Guids.Taskbar.ITaskbarList4)]
+    [Guid(NativeAPI.Guids.Taskbar.ITaskbarList4)]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ITaskbarList4: ITaskbarList3
     { 
     void SetTabProperties(IntPtr hwndTab, SetTabPropertiesOption stpFlags);
     }
 
-    [Guid(Win32Native.Guids.Taskbar.CTaskbarList)]
+    [Guid(NativeAPI.Guids.Taskbar.CTaskbarList)]
     [ClassInterface(ClassInterfaceType.None)]
     [ComImport()]
     public class CTaskbarList { }

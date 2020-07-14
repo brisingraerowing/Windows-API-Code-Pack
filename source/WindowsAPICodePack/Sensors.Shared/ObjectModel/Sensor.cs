@@ -8,7 +8,7 @@ using System.Linq;
 using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.COMNative.PortableDevices;
-using static Microsoft.WindowsAPICodePack.Win32Native.Guids.Sensors;
+using static Microsoft.WindowsAPICodePack.NativeAPI.Guids.Sensors;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.COMNative.Sensors;

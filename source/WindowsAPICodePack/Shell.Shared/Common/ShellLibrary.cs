@@ -159,7 +159,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     LibrarySaveOptions.OverrideExisting :
                     LibrarySaveOptions.FailIfThere;
 
-            var guid = new Guid(Win32Native.Guids.Shell.IShellItem);
+            var guid = new Guid(NativeAPI.Guids.Shell.IShellItem);
 
             _ = COMNative.Shell.Shell.SHCreateItemFromParsingName(folderPath, IntPtr.Zero, ref guid, out IShellItem shellItemIn);
 
@@ -259,7 +259,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             get
             {
-                var guid = new Guid(Win32Native.Guids.Shell.IShellItem);
+                var guid = new Guid(NativeAPI.Guids.Shell.IShellItem);
 
                 nativeShellLibrary.GetDefaultSaveFolder(
                     DefaultSaveFolderType.Detect,
@@ -280,7 +280,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 string fullPath = new DirectoryInfo(value).FullName;
 
-                var guid = new Guid(Win32Native.Guids.Shell.IShellItem);
+                var guid = new Guid(NativeAPI.Guids.Shell.IShellItem);
 
                 _ = COMNative.Shell.Shell.SHCreateItemFromParsingName(fullPath, IntPtr.Zero, ref guid, out IShellItem saveFolderItem);
 
@@ -367,7 +367,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             using (IKnownFolder kf = KnownFolders.Libraries)
             {
-                var guid = new Guid(Win32Native.Guids.Shell.IShellItem);
+                var guid = new Guid(NativeAPI.Guids.Shell.IShellItem);
                 string shellItemPath = Path.Combine((kf != null) ? kf.Path : string.Empty, libraryName + FileExtension);
                 int hr = COMNative.Shell.Shell.SHCreateItemFromParsingName(shellItemPath, IntPtr.Zero, ref guid, out IShellItem nativeShellItem);
 
@@ -673,7 +673,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             var list = new List<ShellFileSystemFolder>();
 
-            var shellItemArrayGuid = new Guid(Win32Native.Guids.Shell.IShellItemArray);
+            var shellItemArrayGuid = new Guid(NativeAPI.Guids.Shell.IShellItemArray);
 
             HResult hr = nativeShellLibrary.GetFolders(LibraryFolderFilter.AllItems, ref shellItemArrayGuid, out IShellItemArray itemArray);
 

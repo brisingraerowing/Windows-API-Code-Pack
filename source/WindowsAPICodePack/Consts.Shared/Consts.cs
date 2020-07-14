@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native.Consts
+namespace Microsoft.WindowsAPICodePack.NativeAPI.Consts
 {
     public static class Common
     {

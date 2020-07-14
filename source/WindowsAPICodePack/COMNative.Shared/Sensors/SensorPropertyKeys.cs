@@ -1,32 +1,22 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
+
 using Microsoft.WindowsAPICodePack.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.Sensors
 {
-
     namespace EventSystem
-
     {
-
         public static class Parameter
-
         {
-
             public static PropertyKey EventId => new PropertyKey(Guids.EventSystem.ParameterCommon, 2);
             public static PropertyKey State => new PropertyKey(Guids.EventSystem.ParameterCommon, 3); // [VT_UI4]
-
         }
-
     }
 
     public static class PropertySystem
-
     {
-
         public static PropertyKey Type => new PropertyKey(Guids.PropertySystem.PropertyCommon, 2); //[VT_CLSID]
 
         public static PropertyKey State => new PropertyKey(Guids.PropertySystem.PropertyCommon, 3); //[VT_UI4]
@@ -74,14 +64,11 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         public static PropertyKey RadioStatePrevious => new PropertyKey(Guids.PropertySystem.PropertyCommon, 24); //[VT_UI4]
 
         public static class DataType
-
         {
             public static PropertyKey Timestamp => new PropertyKey(Guids.DataType.Common, 2); //[VT_FILETIME]
 
             public static class Location
-
             {
-
                 // LATITUDE: Degrees latitude where North is positive
                 public static PropertyKey LatitudeDegrees => new PropertyKey(Guids.DataType.Location, 2); //[VT_R8]
                                                                                                           // LONGITUDE: Degrees longitude where East is positive
@@ -162,25 +149,19 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                 public static PropertyKey LocationSource => new PropertyKey(Guids.DataType.Location, 40); //[VT_UI4]
                                                                                                           // SATELLITES_USED_PRNS_AND_CONSTELLATIONS: PRN numbers and constellation information of satellites used in the solution
                 public static PropertyKey SatellitesUsedPRNSAndConstellations => new PropertyKey(Guids.DataType.Location, 41); //[VT_VECTOR | VT_UI2]
-
             }
 
             public static class Environmental
-
             {
-
                 public static PropertyKey TemperatureCelsius => new PropertyKey(Guids.DataType.Environmental, 2); //[VT_R4]
                 public static PropertyKey RelativeHumidityPercent => new PropertyKey(Guids.DataType.Environmental, 3); //[VT_R4]
                 public static PropertyKey AtmosphericPressureBar => new PropertyKey(Guids.DataType.Environmental, 4); //[VT_R4]
                 public static PropertyKey WindDirectionDegreesAnticlockwise => new PropertyKey(Guids.DataType.Environmental, 5); //[VT_R4]
                 public static PropertyKey WindSpeedMetersPerSecond => new PropertyKey(Guids.DataType.Environmental, 6); //[VT_R4]
-
             }
 
             public static class Motion
-
             {
-
                 // Accelerometer Data Types
                 public static PropertyKey AccelerationXG => new PropertyKey(Guids.DataType.Motion, 2); //[VT_R8]
                 public static PropertyKey AccelerationYG => new PropertyKey(Guids.DataType.Motion, 3); //[VT_R8]
@@ -195,13 +176,10 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                 public static PropertyKey AngularVelocityXDegreesPerSecond => new PropertyKey(Guids.DataType.Motion, 10); //[VT_R8]
                 public static PropertyKey AngularVelocityYDegreesPerSecond => new PropertyKey(Guids.DataType.Motion, 11); //[VT_R8]
                 public static PropertyKey AngularVelocityZDegreesPerSecond => new PropertyKey(Guids.DataType.Motion, 12); //[VT_R8]
-
             }
 
             public static class Orientation
-
             {
-
                 // Inclinometer Data Types
                 public static PropertyKey TiltXDegrees => new PropertyKey(Guids.DataType.Orientation, 2); //[VT_R4]
                 public static PropertyKey TiltYDegrees => new PropertyKey(Guids.DataType.Orientation, 3); //[VT_R4]
@@ -230,13 +208,10 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                 public static PropertyKey MagneticFieldStrengthZMilligauss => new PropertyKey(Guids.DataType.Orientation, 21); //[VT_R8]
                                                                                                                                // Magnetometer Accuracy Data Types
                 public static PropertyKey Magnetometer_accuracy => new PropertyKey(Guids.DataType.Orientation, 22); //[VT_I4]
-
             }
 
             public static class Mechanical
-
             {
-
                 public static PropertyKey BooleanSwitchState => new PropertyKey(Guids.DataType.Mechanical, 2); //[VT_BOOL]
                 public static PropertyKey MultivalueSwitchState => new PropertyKey(Guids.DataType.Mechanical, 3); //[VT_R8]
                 public static PropertyKey ForceNewtons => new PropertyKey(Guids.DataType.Mechanical, 4); //[VT_R8]
@@ -248,32 +223,25 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             }
 
             public static class Biometric
-
             {
-
                 public static PropertyKey HumanPresence => new PropertyKey(Guids.DataType.Biometric, 2); //[VT_BOOL]
                 public static PropertyKey HumanProximityMeters => new PropertyKey(Guids.DataType.Biometric, 3); //[VT_R4]
                 public static PropertyKey TouchState => new PropertyKey(Guids.DataType.Biometric, 4); //[VT_BOOL]
-
             }
 
             public static class Light
-
             {
-
                 // Ambient light in LUX, Lumens per square meter, the ACPI convention for reporting ambient light values
                 public static PropertyKey LevelLux => new PropertyKey(Guids.DataType.Light, 2); //[VT_R4]
                 public static PropertyKey TemperatureKelvin => new PropertyKey(Guids.DataType.Light, 3); //[VT_R4]
                 public static PropertyKey Chromacity => new PropertyKey(Guids.DataType.Light, 4); //[VT_VECTOR|VT_UI1]
-
             }
+
             // EM4102 RFID protocol uses 40 bit tags, stored in 64 bit value: VT_UI8
             public static PropertyKey RFIDTag40Bit => new PropertyKey(Guids.DataType.Scanner, 2); //[VT_UI8]
 
             public static class Electrical
-
             {
-
                 public static PropertyKey VoltageVolts => new PropertyKey(Guids.DataType.Electrical, 2); //[VT_R8]
                 public static PropertyKey CurrentAmps => new PropertyKey(Guids.DataType.Electrical, 3); //[VT_R8]
                 public static PropertyKey CapacitanceFarad => new PropertyKey(Guids.DataType.Electrical, 4); //[VT_R8]
@@ -282,7 +250,6 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                 public static PropertyKey ElectricalPowerWatts => new PropertyKey(Guids.DataType.Electrical, 7); //[VT_R8]
                 public static PropertyKey ElectricalPercentOfRange => new PropertyKey(Guids.DataType.Electrical, 8); //[VT_R8]
                 public static PropertyKey ElectricalFrequencyHertz => new PropertyKey(Guids.DataType.Electrical, 9); //[VT_R8]
-
             }
 
             //
@@ -290,9 +257,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             //
 
             public static class Custom
-
             {
-
                 public static PropertyKey Usage => new PropertyKey(Guids.DataType.Custom, 5);    //[VT_UI4]
                 public static PropertyKey Boolean_array => new PropertyKey(Guids.DataType.Custom, 6);    //[VT_UI4]
                 public static PropertyKey Value1 => new PropertyKey(Guids.DataType.Custom, 7);    //[VT_UI4||VT_R4]
@@ -323,7 +288,6 @@ namespace Microsoft.WindowsAPICodePack.Sensors
                 public static PropertyKey Value26 => new PropertyKey(Guids.DataType.Custom, 32);   //[VT_UI4||VT_R4]
                 public static PropertyKey Value27 => new PropertyKey(Guids.DataType.Custom, 33);   //[VT_UI4||VT_R4]
                 public static PropertyKey Value28 => new PropertyKey(Guids.DataType.Custom, 34);   //[VT_UI4||VT_R4]
-
             }
 
             ////
@@ -373,6 +337,5 @@ namespace Microsoft.WindowsAPICodePack.Sensors
             /// </summary>
             public static PropertyKey DistanceZMeters => new PropertyKey(new Guid(0XC2FB0F5F, 0XE2D2, 0X4C78, 0XBC, 0XD0, 0X35, 0X2A, 0X95, 0X82, 0X81, 0X9D), 10);
         }
-
     }
 }

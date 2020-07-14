@@ -92,8 +92,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         protected override void WndProc(ref System.Windows.Forms.Message m)
         {
-            if (m.Msg == Win32Native.Consts.Shell.DesktopWindowManager.DWMMessages.WM_DWMCOMPOSITIONCHANGED
-                || m.Msg == Win32Native.Consts.Shell.DesktopWindowManager.DWMMessages.WM_DWMNCRENDERINGCHANGED)
+            if (m.Msg == NativeAPI.Consts.Shell.DesktopWindowManager.DWMMessages.WM_DWMCOMPOSITIONCHANGED
+                || m.Msg == NativeAPI.Consts.Shell.DesktopWindowManager.DWMMessages.WM_DWMNCRENDERINGCHANGED)
             {
                 if (AeroGlassCompositionChanged != null)
 

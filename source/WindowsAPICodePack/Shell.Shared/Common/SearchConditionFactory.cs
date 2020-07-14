@@ -393,7 +393,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             try
             {
                 // First, try to create a new IQueryParser using IQueryParserManager
-                var guid = new Guid(Win32Native.Guids.Shell.IQueryParser);
+                var guid = new Guid(NativeAPI.Guids.Shell.IQueryParser);
                 HResult hr = nativeQueryParserManager.CreateLoadedParser(
                     "SystemIndex",
                     cultureInfo == null ? (ushort)0 : (ushort)cultureInfo.LCID,

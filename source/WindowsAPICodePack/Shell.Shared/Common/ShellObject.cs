@@ -92,7 +92,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 if (nativeShellItem == null && ParsingName != null)
                 {
-                    var guid = new Guid(Win32Native.Guids.Shell.IShellItem2);
+                    var guid = new Guid(NativeAPI.Guids.Shell.IShellItem2);
                     int retCode = COMNative.Shell.Shell.SHCreateItemFromParsingName(ParsingName, IntPtr.Zero, ref guid, out nativeShellItem);
 
                     if (nativeShellItem == null || !CoreErrorHelper.Succeeded(retCode))

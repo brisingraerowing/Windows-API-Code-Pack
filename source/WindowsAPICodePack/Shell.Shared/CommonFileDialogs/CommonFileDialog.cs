@@ -462,7 +462,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             }
 
             // Create a native shellitem from our path
-            var guid = new Guid(Win32Native.Guids.Shell.IShellItem2);
+            var guid = new Guid(NativeAPI.Guids.Shell.IShellItem2);
             int retCode = COMNative.Shell.Shell.SHCreateItemFromParsingName(path, IntPtr.Zero, ref guid, out IShellItem2 nativeShellItem);
 
             if (!CoreErrorHelper.Succeeded(retCode))
@@ -644,7 +644,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
                     parentWindow = System.Windows.Forms.Application.OpenForms[0].Handle;
 
-            var guid = new Guid(Win32Native.Guids.Shell.IShellItem2);
+            var guid = new Guid(NativeAPI.Guids.Shell.IShellItem2);
 
             // Apply option bitflags.
             dialog.SetOptions(CalculateNativeDialogOptionFlags());

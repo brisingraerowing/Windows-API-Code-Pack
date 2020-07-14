@@ -180,14 +180,14 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                 {
                     var propEnumTypeList = new List<ShellPropertyEnumType>();
 
-                    var guid = new Guid(Win32Native.Guids.Shell.IPropertyEnumTypeList);
+                    var guid = new Guid(NativeAPI.Guids.Shell.IPropertyEnumTypeList);
                     HResult hr = NativePropertyDescription.GetEnumTypeList(ref guid, out IPropertyEnumTypeList nativeList);
 
                     if (nativeList != null && CoreErrorHelper.Succeeded(hr))
                     {
 
                         nativeList.GetCount(out uint count);
-                        guid = new Guid(Win32Native.Guids.Shell.IPropertyEnumType);
+                        guid = new Guid(NativeAPI.Guids.Shell.IPropertyEnumType);
 
                         for (uint i = 0; i < count; i++)
                         {
@@ -382,7 +382,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             {
                 if (nativePropertyDescription == null)
                 {
-                    var guid = new Guid(Win32Native.Guids.Shell.IPropertyDescription);
+                    var guid = new Guid(NativeAPI.Guids.Shell.IPropertyDescription);
                     _ = PropertySystemNativeMethods.PSGetPropertyDescription(ref propertyKey, ref guid, out nativePropertyDescription);
                 }
 

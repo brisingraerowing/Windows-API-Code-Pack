@@ -121,7 +121,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         public FileOperation()
         {
-            fileOperation = (IFileOperation)Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid(Win32Native.Guids.Shell.FileOperation)));
+            fileOperation = (IFileOperation)Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid(NativeAPI.Guids.Shell.FileOperation)));
 
             Cookies = new System.Collections.ObjectModel.ReadOnlyCollection<uint>(cookies);
         }

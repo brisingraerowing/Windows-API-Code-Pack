@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
-using static Microsoft.WindowsAPICodePack.Win32Native.Consts.DllNames;
+using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames;
 using static Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.SystemProperties.System;
 
 namespace Microsoft.WindowsAPICodePack. COMNative.Taskbar
@@ -51,7 +51,7 @@ namespace Microsoft.WindowsAPICodePack. COMNative.Taskbar
 
         public static IPropertyStore GetWindowPropertyStore(IntPtr hwnd)
         {
-            var guid = new Guid(Win32Native.Guids.Shell.IPropertyStore);
+            var guid = new Guid(NativeAPI.Guids.Shell.IPropertyStore);
 
             int rc = SHGetPropertyStoreForWindow(
                 hwnd,

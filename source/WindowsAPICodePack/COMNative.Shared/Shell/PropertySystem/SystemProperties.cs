@@ -8,7 +8,7 @@ using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
-using PropertySystemGuids = Microsoft.WindowsAPICodePack.Win32Native.Guids.Shell.PropertySystem;
+using PropertySystemGuids = Microsoft.WindowsAPICodePack.NativeAPI.Guids.Shell.PropertySystem;
 using SystemPropertiesGuids = Microsoft.WindowsAPICodePack.Shell.Guids.PropertySystem.SystemProperties;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem

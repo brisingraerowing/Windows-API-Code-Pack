@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem
 {
     [ComImport,
-        Guid(Win32Native.Guids.PortableDevices.IPortableDeviceValuesCollection),
+        Guid(NativeAPI.Guids.PortableDevices.IPortableDeviceValuesCollection),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceValuesCollection
     {

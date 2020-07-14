@@ -2,7 +2,6 @@
 
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.PropertySystem;
 using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.Shell
@@ -13,7 +12,6 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     [StructLayout(LayoutKind.Sequential)]
     public struct SortColumn
     {
-
         /// <summary>
         /// Creates a sort column with the specified direction for the given property.
         /// </summary>
@@ -22,8 +20,8 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
         public SortColumn(PropertyKey propertyKey, SortDirection direction)
             : this()
         {
-            this.propertyKey = propertyKey;
-            this.Direction = direction;
+            _propertyKey = propertyKey;
+            Direction = direction;
         }
 
         /// <summary>
@@ -31,8 +29,8 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
         /// For example, for the "Name" column, the property key is PKEY_ItemNameDisplay or
         /// <see cref="SystemProperties.System.ItemName"/>.
         /// </summary>                
-        public PropertyKey PropertyKey { get => propertyKey; set => propertyKey = value; }
-        private PropertyKey propertyKey;
+        public PropertyKey PropertyKey { get => _propertyKey; set => _propertyKey = value; }
+        private PropertyKey _propertyKey;
 
         /// <summary>
         /// The direction in which the items are sorted.
@@ -46,7 +44,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
         /// <param name="col2">Second object to compare.</param>
         /// <returns>True if col1 equals col2; false otherwise.</returns>
         public static bool operator ==(SortColumn col1, SortColumn col2) => (col1.Direction == col2.Direction) &&
-                (col1.propertyKey == col2.propertyKey);
+                (col1._propertyKey == col2._propertyKey);
 
         /// <summary>
         /// Implements the != (unequality) operator.
@@ -61,7 +59,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
         /// </summary>
         /// <param name="obj">The object to compare</param>
         /// <returns>Returns true if the objects are equal; false otherwise.</returns>
-        public override bool Equals(object obj) => obj == null || obj.GetType() != typeof(SortColumn) ? false : this == (SortColumn)obj;
+        public override bool Equals(object obj) => obj != null && obj.GetType() == typeof(SortColumn) && this == (SortColumn)obj;
 
         /// <summary>
         /// Generates a nearly unique hashcode for this structure.
@@ -70,10 +68,8 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
         public override int GetHashCode()
         {
             int hash = Direction.GetHashCode();
-            hash = (hash * 31) + propertyKey.GetHashCode();
+            hash = (hash * 31) + _propertyKey.GetHashCode();
             return hash;
         }
-
     }
-
 }

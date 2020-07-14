@@ -17,29 +17,20 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// </summary>
         /// <param name="info">The System.Runtime.Serialization.SerializationInfo associated with this exception.</param>
         /// <param name="context">A System.Runtime.Serialization.StreamingContext that represents the context of this exception.</param>
-        protected SensorPlatformException(in SerializationInfo info, in StreamingContext context)
-            : base(info, context)
-        {
-        }
+        protected SensorPlatformException(in SerializationInfo info, in StreamingContext context) : base(info, context) { }
 
         /// <summary>
         /// Initializes a new instance of the Microsoft.WindowsAPICodePack.Sensors.SensorPlatformException 
         /// class with the specified detailed description.
         /// </summary>
         /// <param name="message">A detailed description of the error.</param>
-        public SensorPlatformException(in string message)
-            : base(message)
-        {
-        }
+        public SensorPlatformException(in string message) : base(message) { }
 
         /// <summary>
         /// Initializes a new instance of the Microsoft.WindowsAPICodePack.Sensors.SensorPlatformException class
         /// with the last Win32 error that occurred.
         /// </summary>
-        public SensorPlatformException()
-            : base()
-        {
-        }
+        public SensorPlatformException() : base() { }
 
         /// <summary>
         /// Initializes a new instance of the Microsoft.WindowsAPICodePack.Sensors.SensorPlatformException class
@@ -47,9 +38,6 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// </summary>
         /// <param name="message">A detailed description of the error.</param>
         /// <param name="innerException">A reference to the inner exception that is the cause of this exception.</param>
-        public SensorPlatformException(in string message, in Exception innerException)
-            : base(message, innerException)
-        {
-        }
+        public SensorPlatformException(in string message, in Exception innerException) : base(message, innerException) { }
     }
 }

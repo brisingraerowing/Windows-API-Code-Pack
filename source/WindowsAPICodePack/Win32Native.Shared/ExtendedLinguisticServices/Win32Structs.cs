@@ -5,7 +5,6 @@ using System.Runtime.InteropServices;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.ExtendedLinguisticServices
 {
-
     [Flags]
     public enum ServiceTypes
     {
@@ -143,5 +142,4 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.ExtendedLinguisticServices
         public uint _callerDataSize;
         public IntPtr _context;
     }
-
 }

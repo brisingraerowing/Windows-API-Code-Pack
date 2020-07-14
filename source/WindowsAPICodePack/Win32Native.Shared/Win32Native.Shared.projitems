@@ -33,11 +33,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropertyKey.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropVariant.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropVariantNativeMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Structs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\TaskDialogs\NativeTaskDialogSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\TaskDialogs\TaskDialogDefaults.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\TaskDialogs\TaskDialog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\TaskDialogs\TaskDialogProgressBarState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\WindowMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\InteropTools.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtendedLinguisticServices\InteropTools.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtendedLinguisticServices\LinguisticException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExtendedLinguisticServices\Win32NativeMethods.cs" />
@@ -53,6 +55,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\BlobHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\RestartManager\Enums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\RestartManager\NativeMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\RestartManager\Structs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\ShellObjectWatcher\ShellObjectWatcherEnums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\ShellObjectWatcher\ShellObjectWatcherNativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\SingleInstanceNativeMethods.cs" />

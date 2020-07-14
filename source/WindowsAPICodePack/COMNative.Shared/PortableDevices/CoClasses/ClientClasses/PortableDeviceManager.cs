@@ -12,7 +12,7 @@ using Microsoft.WindowsAPICodePack.COMNative;
 namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
 {
     [ComImport,
-        Guid(Win32Native.Guids.PortableDevices.PortableDeviceManager),
+        Guid(NativeAPI.Guids.PortableDevices.PortableDeviceManager),
         ClassInterface(ClassInterfaceType.None),
         TypeLibType(TypeLibTypeFlags.FCanCreate)]
     public class PortableDeviceManager 

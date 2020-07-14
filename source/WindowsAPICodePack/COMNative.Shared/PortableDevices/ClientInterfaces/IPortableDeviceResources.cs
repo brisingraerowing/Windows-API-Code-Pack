@@ -18,7 +18,7 @@ using Microsoft.WindowsAPICodePack.Win32Native;
 namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices.ResourceSystem
 {
     [ComImport,
-        Guid(Win32Native.Guids.PortableDevices.IPortableDeviceResources),
+        Guid(NativeAPI.Guids.PortableDevices.IPortableDeviceResources),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceResources
     {

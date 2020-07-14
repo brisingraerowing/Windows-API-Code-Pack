@@ -3,7 +3,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using static Microsoft.WindowsAPICodePack.Win32Native.Consts.Common;
+using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.Common;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
 {

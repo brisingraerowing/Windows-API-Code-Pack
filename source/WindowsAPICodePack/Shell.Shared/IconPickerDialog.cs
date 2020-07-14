@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
 using System.Windows.Forms;
-using static Microsoft.WindowsAPICodePack.Win32Native.Consts.Shell;
+using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {

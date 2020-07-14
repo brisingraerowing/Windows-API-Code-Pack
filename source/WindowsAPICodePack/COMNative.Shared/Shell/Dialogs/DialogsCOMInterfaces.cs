@@ -17,7 +17,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Dialogs
 #pragma warning disable 0108
 
     [ComImport(),
-    Guid(Win32Native.Guids.Shell.IFileDialog),
+    Guid(NativeAPI.Guids.Shell.IFileDialog),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFileDialog : IModalWindow
     {
@@ -104,7 +104,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Dialogs
     }
 
     [ComImport(),
-    Guid(Win32Native.Guids.Shell.IFileOpenDialog),
+    Guid(NativeAPI.Guids.Shell.IFileOpenDialog),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFileOpenDialog : IFileDialog
     {
@@ -195,7 +195,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Dialogs
     }
 
     [ComImport(),
-    Guid(Win32Native.Guids.Shell.IFileSaveDialog),
+    Guid(NativeAPI.Guids.Shell.IFileSaveDialog),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFileSaveDialog : IFileDialog
     {
@@ -310,7 +310,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Dialogs
     }
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.IFileDialogEvents),
+    Guid(NativeAPI.Guids.Shell.IFileDialogEvents),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFileDialogEvents
     {
@@ -351,7 +351,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Dialogs
     }
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.IFileDialogCustomize),
+    Guid(NativeAPI.Guids.Shell.IFileDialogCustomize),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFileDialogCustomize
     {
@@ -477,7 +477,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Dialogs
     }
 
     [ComImport,
-    Guid(Win32Native.Guids.Shell.IFileDialogControlEvents),
+    Guid(NativeAPI.Guids.Shell.IFileDialogControlEvents),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFileDialogControlEvents
     {

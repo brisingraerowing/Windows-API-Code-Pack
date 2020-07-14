@@ -32,7 +32,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         {
 
-            var lnk = Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid(Win32Native.Guids.Shell.CShellLink), true)) as IShellLinkW;
+            var lnk = Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid(NativeAPI.Guids.Shell.CShellLink), true)) as IShellLinkW;
             lnk.SetPath(sourcePath);
             string linkPath = destPath + "\\\\" + System.IO.Path.GetFileNameWithoutExtension(sourcePath) + ".lnk";
             ((IPersistFile)lnk).Save(linkPath, true);

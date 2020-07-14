@@ -11,7 +11,7 @@ using System.Text;
 namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 {
     [ComImport,
-        Guid(Win32Native.Guids.MediaDevices.IWMDMDeviceControl),
+        Guid(NativeAPI.Guids.MediaDevices.IWMDMDeviceControl),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IWMDMDeviceControl
     {

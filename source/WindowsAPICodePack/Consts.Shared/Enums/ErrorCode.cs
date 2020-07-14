@@ -1,4 +1,4 @@
-﻿namespace Microsoft.WindowsAPICodePack.Win32Native.Consts
+﻿namespace Microsoft.WindowsAPICodePack.Win32Native
 {
     // todo: add the other codes
 
@@ -7985,43 +7985,41 @@
         /// </summary>
         WINSInternal = 4000,
 
-        // todo: to check
+        /// <summary>
+        /// <para>MessageId: ERROR_CAN_NOT_DEL_LOCAL_WINS</para>
+        /// <para>MessageText: The local WINS cannot be deleted.</para>
+        /// </summary>
+        CanNotDeleteLocalWINS = 4001,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_CAN_NOT_DEL_LOCAL_WINS</para>
-        //        /// <para>MessageText: The local WINS cannot be deleted.</para>
-        //        /// </summary>
-        //        CanNotDelLocalWins = 4001,
+        /// <summary>
+        /// <para>MessageId: ERROR_STATIC_INIT</para>
+        /// <para>MessageText: The importation from the file failed.</para>
+        /// </summary>
+        StaticInit = 4002,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_STATIC_INIT</para>
-        //        /// <para>MessageText: The importation from the file failed.</para>
-        //        /// </summary>
-        //        StaticInit = 4002,
+        /// <summary>
+        /// <para>MessageId: ERROR_INC_BACKUP</para>
+        /// <para>MessageText: The backup failed. Was a full backup done before?</para>
+        /// </summary>
+        IncBackup = 4003,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_INC_BACKUP</para>
-        //        /// <para>MessageText: The backup failed. Was a full backup done before?</para>
-        //        /// </summary>
-        //        IncBackup = 4003,
+        /// <summary>
+        /// <para>MessageId: ERROR_FULL_BACKUP</para>
+        /// <para>MessageText: The backup failed. Check the directory to which you are backing the database.</para>
+        /// </summary>
+        FullBackup = 4004,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_FULL_BACKUP</para>
-        //        /// <para>MessageText: The backup failed. Check the directory to which you are backing the database.</para>
-        //        /// </summary>
-        //        FullBackup = 4004,
+        /// <summary>
+        /// <para>MessageId: ERROR_REC_NON_EXISTENT</para>
+        /// <para>MessageText: The name does not exist in the WINS database.</para>
+        /// </summary>
+        RecNonExistent = 4005,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_REC_NON_EXISTENT</para>
-        //        /// <para>MessageText: The name does not exist in the WINS database.</para>
-        //        /// </summary>
-        //        RecNonExistent = 4005,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_RPL_NOT_ALLOWED</para>
-        //        /// <para>MessageText: Replication with a nonconfigured partner is not allowed.</para>
-        //        /// </summary>
-        //        RplNotAllowed = 4006,
+        /// <summary>
+        /// <para>MessageId: ERROR_RPL_NOT_ALLOWED</para>
+        /// <para>MessageText: Replication with a nonconfigured partner is not allowed.</para>
+        /// </summary>
+        ReplicationNotAllowed = 4006,
 
 
 
@@ -8090,6 +8088,8 @@
         //        /// <para>MessageText: Can not perform the requested operation because it has already been carried out.</para>
         //        /// </summary>
         //        StErrorAlreadyCompleted = 4060,
+
+        // todo: to check
 
         //        /// <summary>
         //        /// <para>MessageId: PEERDIST_ERROR_OUT_OF_BOUNDS</para>

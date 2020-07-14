@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
 {
     [ComImport,
-        Guid(Win32Native.Guids.PortableDevices.IPortableDeviceDataStream)]
+        Guid(NativeAPI.Guids.PortableDevices.IPortableDeviceDataStream)]
     public interface IPortableDeviceDataStream : System.Runtime.InteropServices.ComTypes.IStream
     {
         [PreserveSig]

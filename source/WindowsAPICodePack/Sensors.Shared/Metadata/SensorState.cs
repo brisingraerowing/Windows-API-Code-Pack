@@ -42,6 +42,4 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// </summary>
         Error = 5
     }
-
-
 }
