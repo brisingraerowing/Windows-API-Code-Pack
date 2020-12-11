@@ -1,6 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <TargetFrameworks>net472;net48;netcoreapp3.0;netcoreapp3.1;netstandard2.0;netstandard2.1</TargetFrameworks>
+    <!--;net40;net5.0-->
     <AssemblyName>WinCopies.WindowsAPICodePack.ExtendedLinguisticServices</AssemblyName>
     <RootNamespace>Microsoft.WindowsAPICodePack.ExtendedLinguisticServices</RootNamespace>
     <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>

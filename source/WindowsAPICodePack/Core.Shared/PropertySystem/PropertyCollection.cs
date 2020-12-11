@@ -1,17 +1,21 @@
-﻿using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
+﻿using Microsoft.WindowsAPICodePack.COMNative.PropertySystem;
 using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
+
 using WinCopies.Collections;
-using IDisposable = WinCopies.Util.DotNetFix.IDisposable;
-using static WinCopies.Util.Util;
-using System.Collections.ObjectModel;
-using Microsoft.WindowsAPICodePack.COMNative.PropertySystem;
+
+using static WinCopies.ThrowHelper;
+
+using IDisposable = WinCopies.DotNetFix.IDisposable;
 
 namespace Microsoft.WindowsAPICodePack.PropertySystem
 
@@ -85,30 +89,22 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         uint Count { get; }
     }
 
-    public interface ICollection<T> : IDisposable, IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUIntIndexedList, IUIntIndexedCollection, IReadOnlyUIntIndexedList<T>, IReadOnlyUIntIndexedCollection<T>, WinCopies.Collections.IUIntIndexedCollection<T>
-
+    public interface ICollection<T> : IDisposable, IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUIntIndexedList, IUIntIndexedCollection, IReadOnlyUIntIndexedList<T>, IReadOnlyUIntIndexedCollection<T>, WinCopies.Collections.DotNetFix.Generic.IUIntCountableEnumerable<T>
     {
-
-
-
+        // Left empty.
     }
 
     [Serializable]
     [DebuggerDisplay("Count = {Count}")]
-    public class Collection<T> : IDisposable, IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUIntIndexedList, IUIntIndexedCollection, IReadOnlyUIntIndexedList<T>, IReadOnlyUIntIndexedCollection<T>, WinCopies.Collections.IUIntIndexedCollection<T>, ICollection<T>
-
+    public class Collection<T> : IDisposable, IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUIntIndexedList, IUIntIndexedCollection, IReadOnlyUIntIndexedList<T>, IReadOnlyUIntIndexedCollection<T>, WinCopies.Collections.DotNetFix.Generic.IUIntCountableEnumerable<T>, ICollection<T>
     {
-
         // todo: replace this by the same method of the WinCopies.Util package
 
         private void ThrowIfDisposed()
-
         {
-
             if (IsDisposed)
 
                 throw new InvalidOperationException("The collection is disposed.");
-
         }
 
         [NonSerialized]
@@ -146,7 +142,6 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         public T GetAt(ref uint index) => GetItem(ref index);
 
         protected virtual T GetItem(ref uint index)
-
         {
             ThrowIfDisposed();
 
@@ -155,7 +150,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             return item;
         }
 
-        T WinCopies.Collections.IUIntIndexedCollection<T>.this[uint index] => GetAt(ref index);
+        T WinCopies.Collections.DotNetFix.Generic.IUIntCountableEnumerable<T>.this[uint index] => GetAt(ref index);
 
         object WinCopies.Collections.IUIntIndexedCollection.this[uint index] => GetAt(ref index);
 
@@ -425,7 +420,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
     [Serializable]
     [DebuggerDisplay("Count = {Count}")]
-    public class ReadOnlyCollection<T> : IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUIntIndexedList, IUIntIndexedCollection, IReadOnlyUIntIndexedList<T>, IReadOnlyUIntIndexedCollection<T>, WinCopies.Collections.IUIntIndexedCollection<T>, WinCopies.Util.DotNetFix.IDisposable, ICollection<T>
+    public class ReadOnlyCollection<T> : IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUIntIndexedList, IUIntIndexedCollection, IReadOnlyUIntIndexedList<T>, IReadOnlyUIntIndexedCollection<T>, WinCopies.Collections.DotNetFix.Generic.IUIntCountableEnumerable<T>, WinCopies.Util.DotNetFix.IDisposable, ICollection<T>
     {
 
         public bool IsDisposed { get; private set; }
@@ -567,7 +562,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             return item;
         }
 
-        T WinCopies.Collections.IUIntIndexedCollection<T>.this[uint index] => GetAt(ref index);
+        T WinCopies.Collections.DotNetFix.Generic.IUIntCountableEnumerable<T>.this[uint index] => GetAt(ref index);
 
         object WinCopies.Collections.IUIntIndexedCollection.this[uint index] => GetAt(ref index);
 

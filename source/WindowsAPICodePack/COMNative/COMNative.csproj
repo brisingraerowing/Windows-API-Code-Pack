@@ -1,6 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
+    <TargetFrameworks>net472;net48;netcoreapp3.0;netcoreapp3.1</TargetFrameworks>
+    <!--;net40;net5.0-windows-->
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>

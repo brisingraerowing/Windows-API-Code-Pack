@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;net472;netcoreapp3.0;netcoreapp3.1;netstandard2.0;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>net472;net48;netcoreapp3.0;netcoreapp3.1;netstandard2.0;netstandard2.1</TargetFrameworks>
+    <!--;net40;net5.0-->
     <RootNamespace>Microsoft.WindowsAPICodePack.Win32Native</RootNamespace>
     <PackageId>WinCopies.WindowsAPICodePack.Consts</PackageId>
     <Product>Microsoft Windows API Code Pack for .NET Framework</Product>

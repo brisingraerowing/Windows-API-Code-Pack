@@ -1,9 +1,12 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.COMNative.PortableDevices;
+using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
+using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.COMNative.PortableDevices;
-using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,18 +14,19 @@ using System.Data;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
+
+using WinCopies;
+
 using static Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PortableDeviceHelper;
+
 using PropertyCollection = Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.PropertyCollection;
-using WinCopies.Util;
-using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
-using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
     /// <summary>
     /// Represents a portable device.
     /// </summary>
-    public interface IPortableDevice : IEnumerable<IPortableDeviceObject>, IReadOnlyCollection<IPortableDeviceObject>, IReadOnlyList<IPortableDeviceObject>, WinCopies.Util.DotNetFix.IDisposable
+    public interface IPortableDevice : IEnumerable<IPortableDeviceObject>, IReadOnlyCollection<IPortableDeviceObject>, IReadOnlyList<IPortableDeviceObject>, WinCopies.DotNetFix.IDisposable
     {
 
         /// <summary>
@@ -87,7 +91,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
     }
 
     [DebuggerDisplay("{FriendlyName}, {DeviceDescription}, {Manufacturer}")]
-    public class PortableDevice : IPortableDevice, WinCopies.Util.DotNetFix.IDisposable
+    public class PortableDevice : IPortableDevice, WinCopies.DotNetFix.IDisposable
     {
         private IPortableDeviceProperties _nativePortableDeviceProperties;
 
@@ -563,9 +567,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                             propVariant.Dispose();
 
-                            return string.Compare(guid,Guids.PropertySystem.ContentType.Folder, true)==0||string.Compare(guid, Guids.PropertySystem.ContentType.All,true)==0
+                            return string.Compare(guid, Guids.PropertySystem.ContentType.Folder, true) == 0 || string.Compare(guid, Guids.PropertySystem.ContentType.All, true) == 0
                                 ? new PortableDeviceFolder(id, isRoot, parentPortableDeviceObject, parentPortableDevice, properties)
-                                : string.Compare(guid, Guids.PropertySystem.ContentType.FunctionalObject, true)==0
+                                : string.Compare(guid, Guids.PropertySystem.ContentType.FunctionalObject, true) == 0
                                     ? new PortableDeviceFunctionalObject(id, isRoot, parentPortableDeviceObject, parentPortableDevice, properties)
                                     : (IPortableDeviceObject)new PortableDeviceFile(id, isRoot, parentPortableDeviceObject, parentPortableDevice, properties);
                         }

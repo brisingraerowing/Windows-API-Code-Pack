@@ -10,7 +10,7 @@
     <!-- Optional: Build symbol package (.snupkg) to distribute the PDB containing Source Link -->
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <TargetFrameworks>net472;netcoreapp3.0</TargetFrameworks>
+    <TargetFrameworks>net472;net48;netcoreapp3.0;netcoreapp3.1</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <SignAssembly>true</SignAssembly>
     <Company>Pierre Sprimont</Company>
@@ -21,22 +21,44 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>WindowsAPICodePack</PackageTags>
     <Product>Microsoft Windows API Code Pack for .NET Framework</Product>
-    <VersionPrefix>2.0.0</VersionPrefix>
-    <!--<VersionSuffix>preview6</VersionSuffix>-->
-    <AssemblyVersion>2.0.1.0</AssemblyVersion>
-    <FileVersion>2.0.1.0</FileVersion>
+    <VersionPrefix>2.1</VersionPrefix>
+    <!--<VersionSuffix>preview</VersionSuffix>-->
+    <AssemblyVersion>2.1</AssemblyVersion>
+    <FileVersion>2.1</FileVersion>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
+  <!--Constants-->
+
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <DefineConstants>TRACE;$(DefineConstants)</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp3.1'">
+    <DefineConstants>CS8;$(DefineConstants)</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp3.0'">
     <DefineConstants>CS8;$(DefineConstants)</DefineConstants>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(TargetFramework)'=='net5.0'">
+    <DefineConstants>CS9;$(DefineConstants)</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework.TrimEnd(`0123456789.`))' == 'netcoreapp'">
+    <DefineConstants>NETCORE;$(DefineConstants)</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net5'">
+    <DefineConstants>NET5;$(DefineConstants)</DefineConstants>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(TargetFramework)'=='net472'">
+    <DefineConstants>CS7;$(DefineConstants)</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='net48'">
     <DefineConstants>CS7;$(DefineConstants)</DefineConstants>
   </PropertyGroup>
 
@@ -44,20 +66,51 @@
     <DefineConstants>CS7;$(DefineConstants)</DefineConstants>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.1'">
+    <DefineConstants>CS8;$(DefineConstants)</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework.TrimEnd(`0123456789.`))' == 'netstandard'">
+    <DefineConstants>NETSTANDARD;$(DefineConstants)</DefineConstants>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(Platform)'=='x64'">
     <DefineConstants>WIN64;$(DefineConstants)</DefineConstants>
   </PropertyGroup>
-  
+
+  <!--End Constants-->
+
+  <!--Source Control-->
+
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.6">
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net5.'">
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net472'">
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' != 'net5.'">
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <!--End Source Control-->
 
   <ItemGroup>
     <None Include="..\..\..\LICENSE">

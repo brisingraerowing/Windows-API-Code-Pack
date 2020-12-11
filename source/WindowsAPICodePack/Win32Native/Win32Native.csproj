@@ -1,7 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net472;netcoreapp3.0;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net472;net48;netcoreapp3.0;netcoreapp3.1;netstandard2.0;netstandard2.1</TargetFrameworks>
+    <!--;net40;net5.0-windows-->
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <RootNamespace>Microsoft.WindowsAPICodePack.Win32Native</RootNamespace>
@@ -16,7 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="WinCopies.Util" Version="2.2.0-preview3" />
+    <PackageReference Include="WinCopies.Util" Version="3.1.0-preview" />
   </ItemGroup>
 
   <ItemGroup>

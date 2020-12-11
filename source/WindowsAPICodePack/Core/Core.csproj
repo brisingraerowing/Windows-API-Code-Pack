@@ -1,6 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
+    <TargetFrameworks>net472;net48;netcoreapp3.0;netcoreapp3.1;netstandard2.0;netstandard2.1</TargetFrameworks>
+    <!--;net40;net5.0-windows-->
     <UseWindowsForms>true</UseWindowsForms>
     <PackageId>WinCopies.WindowsAPICodePack</PackageId>
     <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
@@ -24,6 +26,11 @@
   <ItemGroup>
     <ProjectReference Include="..\COMNative\COMNative.csproj" />
     <ProjectReference Include="..\Win32Native\Win32Native.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WinCopies.Util" Version="3.1.0-preview" />
+    <PackageReference Include="WinCopies.Collections" Version="3.1.0-preview" />
   </ItemGroup>
 
   <ItemGroup>
