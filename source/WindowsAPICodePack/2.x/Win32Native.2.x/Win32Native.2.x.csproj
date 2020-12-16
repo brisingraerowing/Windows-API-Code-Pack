@@ -1,0 +1,58 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net472;net48;netcoreapp3.0;netcoreapp3.1;netstandard2.0;netstandard2.1;net5.0-windows</TargetFrameworks>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <RootNamespace>Microsoft.WindowsAPICodePack.Win32Native</RootNamespace>
+    <PackageId>WinCopies.WindowsAPICodePack.Win32Native</PackageId>
+    <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
+    <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020</Copyright>
+    <AssemblyOriginatorKeyFile>Win32Native.snk</AssemblyOriginatorKeyFile>
+    <Description>WindowsAPICodePack Win32 Interop</Description>
+    <DocumentationFile>WinCopies.WindowsAPICodePack.Win32Native.xml</DocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>WinCopies.WindowsAPICodePack.Win32Native</AssemblyName>
+    <DefineConstants>WAPICP2;$(DefineConstants)</DefineConstants>
+    <VersionPrefix>2.2</VersionPrefix>
+    <!--<VersionSuffix>preview</VersionSuffix>-->
+    <AssemblyVersion>2.2</AssemblyVersion>
+    <FileVersion>2.2</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WinCopies.Util" Version="2.6.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Consts.2.x\Consts.2.x.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\LocalizedMessages.Designer.cs">
+      <DependentUpon>LocalizedMessages.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Shell\Resources\LocalizedMessages.Designer.cs">
+      <DependentUpon>LocalizedMessages.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\LocalizedMessages.resx">
+      <LastGenOutput>LocalizedMessages.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Shell\Resources\LocalizedMessages.resx">
+      <SubType>Designer</SubType>
+      <LastGenOutput>LocalizedMessages.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <Import Project="..\..\Win32Native.Shared\Win32Native.Shared.projitems" Label="Shared" />
+
+</Project>

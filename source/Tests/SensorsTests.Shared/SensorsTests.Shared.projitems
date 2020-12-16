@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>5f7e29a4-b314-4ae5-a3b8-327a5ad4110f</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>SensorsTests.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Metadata\SensorDescriptionAttributeTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sensors\Light\AmbientLightSensorTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sensors\Light\LuminousIntensityTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sensors\Motion\Accelerometer3DTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sensors\UnknownSensorTests.cs" />
+  </ItemGroup>
+</Project>

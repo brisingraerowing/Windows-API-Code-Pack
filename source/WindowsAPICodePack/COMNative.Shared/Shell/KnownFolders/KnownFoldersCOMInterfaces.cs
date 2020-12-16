@@ -119,12 +119,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
             MethodCodeType = MethodCodeType.Runtime)]
         void Redirect();
     }
-    
+
     [ComImport]
-    [Guid("4df0c730-df9d-4ae3-9153-aa6b82e9795a")]
+    [Guid(NativeAPI.Guids.Shell.KnownFolders.KnownFolderManager)]
     public class KnownFolderManagerClass : IKnownFolderManager
     {
-        
+
         [MethodImpl(MethodImplOptions.InternalCall,
             MethodCodeType = MethodCodeType.Runtime)]
         public virtual extern void FolderIdFromCsidl(int csidl,
@@ -147,7 +147,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
             MethodCodeType = MethodCodeType.Runtime)]
         public virtual extern HResult GetFolder(
             [In, MarshalAs(UnmanagedType.LPStruct)] Guid id,
-            [Out, MarshalAs(UnmanagedType.Interface)] 
+            [Out, MarshalAs(UnmanagedType.Interface)]
               out IKnownFolderNative knownFolder);
 
         [MethodImpl(MethodImplOptions.InternalCall,

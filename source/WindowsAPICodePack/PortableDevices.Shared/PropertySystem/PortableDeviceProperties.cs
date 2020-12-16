@@ -1,6 +1,5 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.COMNative.PortableDevices;
 using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.COMNative.PropertySystem;
 using Microsoft.WindowsAPICodePack.PropertySystem;
@@ -15,11 +14,9 @@ using System.Runtime.InteropServices;
 
 using static Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PortableDeviceHelper;
 
-using ObjectProperty = Microsoft.WindowsAPICodePack.PropertySystem.Property;
-
 namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem
 {
-    internal class PropertyCollection : Microsoft.WindowsAPICodePack.PropertySystem.PropertyCollection
+    internal class PropertyCollection : WindowsAPICodePack.PropertySystem.PropertyCollection
     {
         protected internal new INativePropertiesCollection Items => base.Items;
 
@@ -138,11 +135,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem
                 bool[] values = new bool[propertyKeys.Length];
 
 #if DEBUG
-
                 if (propertyKey.FormatId == new Guid("ef6b490d-5cd8-437a-affc-da8b60ee4a3c") && propertyKey.PropertyId == 4)
 
                     Debug.WriteLine("Name property.");
-
 #endif
 
                 for (short i = 0; i < propertyKeys.Length; i++)
@@ -158,7 +153,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem
 
                     else
 
-                        values[i] = propVariant.VarType == VarEnum.VT_BOOL ? (bool)propVariant.Value : false;
+                        values[i] = propVariant.VarType == VarEnum.VT_BOOL && (bool)propVariant.Value;
                 }
 
                 Debug.WriteLine($"Original CanRead value: {values[0]}");
@@ -341,8 +336,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem
         HResult INativeReadOnlyPropertyValuesCollection.GetAt(in uint index, ref PropertyKey propertyKey, out PropVariant propVariant)
         {
 #if CS7
-
-            using (var _propVariant = new PropVariant())
+                        using (var _propVariant = new PropVariant())
             {
 #else
             using var _propVariant = new PropVariant();

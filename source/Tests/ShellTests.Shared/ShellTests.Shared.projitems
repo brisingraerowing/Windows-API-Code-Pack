@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>a53e21a7-d398-427a-805e-247f5aa9ff2b</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>ShellTests.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)KnownFolders\KnownFolderHelperTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)KnownFolders\KnownFoldersTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PropertySystem\PropertySystemTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShellObjectWatcher\ShellObjectWatcherTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StockIcons\StockIconsTests.cs" />
+  </ItemGroup>
+</Project>

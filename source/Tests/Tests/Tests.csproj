@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\WindowsAPICodePack\2.x\Consts.2.x\Consts.2.x.csproj" />
+    <ProjectReference Include="..\..\WindowsAPICodePack\2.x\PortableDevices.2.x\PortableDevices.2.x.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WinCopies.Util" Version="2.6.1.1" />
+  </ItemGroup>
+
+</Project>

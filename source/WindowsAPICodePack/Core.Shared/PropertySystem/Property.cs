@@ -251,14 +251,10 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
                 return;
             }
 
-#if CS7
-
-            using (var propVariant = PropVariant.FromObject(value))
-
-#else
-
+#if CS8
             using var propVariant = PropVariant.FromObject(value);
-
+#else
+            using (var propVariant = PropVariant.FromObject(value))
 #endif
 
             StorePropVariantValue(propVariant);
@@ -287,14 +283,10 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         private void ClearValueInternal()
         {
 
-#if CS7
-
-            using (var propVar = new PropVariant())
-
-#else
-
+#if CS8
             using var propVar = new PropVariant();
-
+#else
+            using (var propVar = new PropVariant())
 #endif
 
             StorePropVariantValue(propVar);

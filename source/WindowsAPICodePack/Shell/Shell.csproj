@@ -1,8 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
-    <TargetFrameworks>net472;net48;netcoreapp3.0;netcoreapp3.1</TargetFrameworks>
-    <!--;net40;net5.0-windows-->
+    <TargetFrameworks>net472;net48;netcoreapp3.0;netcoreapp3.1;net5.0-windows</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
     <UseWPF>true</UseWPF>
     <AssemblyName>WinCopies.WindowsAPICodePack.Shell</AssemblyName>
@@ -12,6 +11,11 @@
     <Description>WindowsAPICodePack for Shell</Description>
     <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020</Copyright>
     <DocumentationFile>WinCopies.WindowsAPICodePack.Shell.xml</DocumentationFile>
+    <DefineConstants>WAPICP3;$(DefineConstants)</DefineConstants>
+    <VersionPrefix>3.0</VersionPrefix>
+    <VersionSuffix>preview</VersionSuffix>
+    <AssemblyVersion>3.0</AssemblyVersion>
+    <FileVersion>3.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,6 +24,10 @@
 
   <ItemGroup>
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='net5.0-windows'">
+    <PackageReference Include="System.Drawing.Common" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp3.1'">

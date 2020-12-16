@@ -31,13 +31,13 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
                 return stream.ConstructBitmap(_stream, sideLength);
 
             if (_shellObject != null && this is IThumbnailFromShellObject shellObject)
-            
+
                 return shellObject.ConstructBitmap(_shellObject, sideLength);
-            
+
             if (_info != null && this is IThumbnailFromFile file)
-            
+
                 return file.ConstructBitmap(_info, sideLength);
-            
+
             throw new InvalidOperationException(
                 string.Format(System.Globalization.CultureInfo.InvariantCulture,
                 LocalizedMessages.ThumbnailProviderInterfaceNotImplemented,
@@ -78,11 +78,11 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
             string _iid = iid.ToString();
 
             // Forces COM to not use the managed (free threaded) marshaler
-            
-            
-                return _iid == NativeAPI.Guids.COM.IMarshal || (_iid == NativeAPI.Guids.ShellExtensions.IInitializeWithStream && !(this is IThumbnailFromStream))
-                || (_iid == NativeAPI.Guids.ShellExtensions.IInitializeWithItem && !(this is IThumbnailFromShellObject))
-                || (_iid == NativeAPI.Guids.ShellExtensions.IInitializeWithFile && !(this is IThumbnailFromFile)) ?  CustomQueryInterfaceResult.Failed : CustomQueryInterfaceResult.NotHandled;
+
+
+            return _iid == NativeAPI.Guids.COM.IMarshal || (_iid == NativeAPI.Guids.ShellExtensions.IInitializeWithStream && !(this is IThumbnailFromStream))
+            || (_iid == NativeAPI.Guids.ShellExtensions.IInitializeWithItem && !(this is IThumbnailFromShellObject))
+            || (_iid == NativeAPI.Guids.ShellExtensions.IInitializeWithFile && !(this is IThumbnailFromFile)) ? CustomQueryInterfaceResult.Failed : CustomQueryInterfaceResult.NotHandled;
         }
 
         #endregion
@@ -116,17 +116,13 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
             {
                 guidKey.SetValue("DisableProcessIsolation", attribute.DisableProcessIsolation ? 1 : 0, RegistryValueKind.DWord);
 
-#if CS7
-
-                using (RegistryKey inproc = guidKey.OpenSubKey("InprocServer32", true))
-
-#else
-
+#if CS8
                 using RegistryKey inproc = guidKey.OpenSubKey("InprocServer32", true);
-
+#else
+                using (RegistryKey inproc = guidKey.OpenSubKey("InprocServer32", true))
 #endif
 
-                inproc.SetValue("ThreadingModel", "Apartment", RegistryValueKind.String);
+                    inproc.SetValue("ThreadingModel", "Apartment", RegistryValueKind.String);
             }
 
             // register file as an approved extension
@@ -141,48 +137,41 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
             foreach (string extension in extensions)
             {
 
-#if CS7
-
-                using (RegistryKey extensionKey = Registry.ClassesRoot.CreateSubKey(extension)) // Create makes it writable
-                using (RegistryKey shellExKey = extensionKey.CreateSubKey("shellex"))
-                using (RegistryKey providerKey = shellExKey.CreateSubKey(new Guid(NativeAPI.Guids.ShellExtensions.IThumbnailProvider).ToString("B")))
-
-                {
-
-#else
-
+#if CS8
                 using RegistryKey extensionKey = Registry.ClassesRoot.CreateSubKey(extension); // Create makes it writable
                 using RegistryKey shellExKey = extensionKey.CreateSubKey("shellex");
                 using RegistryKey providerKey = shellExKey.CreateSubKey(new Guid(NativeAPI.Guids.ShellExtensions.IThumbnailProvider).ToString("B"));
-
+#else
+                using (RegistryKey extensionKey = Registry.ClassesRoot.CreateSubKey(extension)) // Create makes it writable
+                using (RegistryKey shellExKey = extensionKey.CreateSubKey("shellex"))
+                using (RegistryKey providerKey = shellExKey.CreateSubKey(new Guid(NativeAPI.Guids.ShellExtensions.IThumbnailProvider).ToString("B")))
+                {
 #endif
 
-                providerKey.SetValue(null, guid, RegistryValueKind.String);
+                    providerKey.SetValue(null, guid, RegistryValueKind.String);
 
-                if (attribute.ThumbnailCutoff == ThumbnailCutoffSize.Square20)
+                    if (attribute.ThumbnailCutoff == ThumbnailCutoffSize.Square20)
 
-                    extensionKey.DeleteValue(nameof(attribute.ThumbnailCutoff), false);
+                        extensionKey.DeleteValue(nameof(attribute.ThumbnailCutoff), false);
 
-                else
+                    else
 
-                    extensionKey.SetValue(nameof(attribute.ThumbnailCutoff), (int)attribute.ThumbnailCutoff, RegistryValueKind.DWord);
+                        extensionKey.SetValue(nameof(attribute.ThumbnailCutoff), (int)attribute.ThumbnailCutoff, RegistryValueKind.DWord);
 
-                if (attribute.TypeOverlay != null)
+                    if (attribute.TypeOverlay != null)
 
-                    extensionKey.SetValue(nameof(attribute.TypeOverlay), attribute.TypeOverlay, RegistryValueKind.String);
+                        extensionKey.SetValue(nameof(attribute.TypeOverlay), attribute.TypeOverlay, RegistryValueKind.String);
 
-                if (attribute.ThumbnailAdornment == ThumbnailAdornment.Default)
+                    if (attribute.ThumbnailAdornment == ThumbnailAdornment.Default)
 
-                    extensionKey.DeleteValue("Treatment", false);
+                        extensionKey.DeleteValue("Treatment", false);
 
-                else
+                    else
 
-                    extensionKey.SetValue("Treatment", (int)attribute.ThumbnailAdornment, RegistryValueKind.DWord);
+                        extensionKey.SetValue("Treatment", (int)attribute.ThumbnailAdornment, RegistryValueKind.DWord);
 
-#if CS7
-
+#if !CS8
                 }
-
 #endif
 
             }
@@ -200,7 +189,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
             {
                 object[] attributes = registerType.GetCustomAttributes(typeof(ThumbnailProviderAttribute), true);
                 if (attributes != null && attributes.Length == 1)
-               
+
                     UnregisterThumbnailHandler(registerType.GUID.ToString("B"), attributes[0] as ThumbnailProviderAttribute);
             }
         }
@@ -208,49 +197,38 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         private static void UnregisterThumbnailHandler(string guid, ThumbnailProviderAttribute attribute)
         {
             string[] extensions = attribute.Extensions.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+
             foreach (string extension in extensions)
             {
-
-#if CS7
-
+#if CS8
+                using RegistryKey extKey = Registry.ClassesRoot.OpenSubKey(extension, true);
+                using RegistryKey shellexKey = extKey.OpenSubKey("shellex", true);
+#else
                 using (RegistryKey extKey = Registry.ClassesRoot.OpenSubKey(extension, true))
                 using (RegistryKey shellexKey = extKey.OpenSubKey("shellex", true))
                 {
-
-#else
-
-                using RegistryKey extKey = Registry.ClassesRoot.OpenSubKey(extension, true);
-                using RegistryKey shellexKey = extKey.OpenSubKey("shellex", true);
-
 #endif
 
-                shellexKey.DeleteSubKey(new Guid(NativeAPI.Guids.ShellExtensions.IThumbnailProvider).ToString("B"), false);
+                    shellexKey.DeleteSubKey(new Guid(NativeAPI.Guids.ShellExtensions.IThumbnailProvider).ToString("B"), false);
 
-                extKey.DeleteValue("ThumbnailCutoff", false);
-                extKey.DeleteValue("TypeOverlay", false);
-                extKey.DeleteValue("Treatment", false); // Thumbnail adornment
+                    extKey.DeleteValue("ThumbnailCutoff", false);
+                    extKey.DeleteValue("TypeOverlay", false);
+                    extKey.DeleteValue("Treatment", false); // Thumbnail adornment
 
-#if CS7
-
+#if !CS8
                 }
-
 #endif
-
             }
 
-#if CS7
-
-            using (RegistryKey approvedShellExtensions = Registry.LocalMachine.OpenSubKey(
-                @"SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved", true))
-
-#else 
-
+#if CS8
             using RegistryKey approvedShellExtensions = Registry.LocalMachine.OpenSubKey(
                 @"SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved", true);
-
+#else
+            using (RegistryKey approvedShellExtensions = Registry.LocalMachine.OpenSubKey(
+                @"SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved", true))
 #endif
 
-            approvedShellExtensions.DeleteValue(guid, false);
+                approvedShellExtensions.DeleteValue(guid, false);
         }
 
         private static void ThrowIfInvalid(Type type, ThumbnailProviderAttribute attribute)
@@ -265,44 +243,44 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
                 // running in the isolated process. The default behavior of the indexer opts in
                 // to process isolation regardless of which interfaces are implemented.                
                 if (!interfaced && !attribute.DisableProcessIsolation)
-                
+
                     throw new InvalidOperationException(
                         string.Format(System.Globalization.CultureInfo.InvariantCulture,
                         LocalizedMessages.ThumbnailProviderDisabledProcessIsolation,
                         type.Name));
-                
+
                 interfaced = true;
             }
 
             if (!interfaced)
-            
+
                 throw new InvalidOperationException(
                         string.Format(System.Globalization.CultureInfo.InvariantCulture,
                         LocalizedMessages.ThumbnailProviderInterfaceNotImplemented,
                         type.Name));
         }
 
-#endregion
+        #endregion
 
-#region IInitializeWithStream Members
+        #region IInitializeWithStream Members
 
         void IInitializeWithStream.Initialize(System.Runtime.InteropServices.ComTypes.IStream stream, AccessModes fileMode) => _stream = new StorageStream(stream, fileMode != AccessModes.ReadWrite);
 
-#endregion
+        #endregion
 
-#region IInitializeWithItem Members
+        #region IInitializeWithItem Members
 
         void IInitializeWithItem.Initialize(IShellItem shellItem, AccessModes accessMode) => _shellObject = ShellObjectFactory.Create(shellItem);
 
-#endregion
+        #endregion
 
-#region IInitializeWithFile Members
+        #region IInitializeWithFile Members
 
         void IInitializeWithFile.Initialize(string filePath, AccessModes fileMode) => _info = new FileInfo(filePath);
 
-#endregion
+        #endregion
 
-#region IDisposable Members
+        #region IDisposable Members
 
         /// <summary>
         /// Finalizer for the thumbnail provider.
@@ -328,11 +306,11 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         protected virtual void Dispose(bool disposing)
         {
             if (disposing && _stream != null)
-            
+
                 _stream.Dispose();
         }
 
-#endregion
+        #endregion
 
     }
 }

@@ -15,32 +15,34 @@
  * You should have received a copy of the GNU General Public License
  * along with the WinCopies Windows API Code Pack.  If not, see <https://www.gnu.org/licenses/>. */
 
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
+using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
+
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
-using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Interop;
 
 using static Microsoft.WindowsAPICodePack.Win32Native.Shell.Shell;
-using FileAttributes = Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes;
 
-using static WinCopies.Util.Util;
-using Microsoft.WindowsAPICodePack.COMNative.Shell;
+using static WinCopies.
+#if WAPICP2
+    Util.Util
+#else
+    ThrowHelper
+#endif
+    ;
+
+using FileAttributes = Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
-
     /// <summary>
     /// Contains information about a file object.
     /// </summary>
@@ -275,7 +277,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <exception cref="Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
         public void SetProgressDialog(IOperationsProgressDialog popd)
         {
-
             ThrowIfNull(popd, nameof(popd));
 
             if (disposed) throw new ObjectDisposedException(nameof(FileOperation));
@@ -285,7 +286,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
             if (!CoreErrorHelper.Succeeded(hr))
 
                 Marshal.ThrowExceptionForHR((int)hr);
-
         }
 
         // todo: to encapsulate
@@ -552,7 +552,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             }
 
-            return new FileInfo(icon, psfi.iIcon, psfi.dwAttributes, psfi.szDisplayName, psfi.szTypeName ) ;
+            return new FileInfo(icon, psfi.iIcon, psfi.dwAttributes, psfi.szDisplayName, psfi.szTypeName);
 
         }
 

@@ -3,21 +3,16 @@
 using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.COMNative.PortableDevices;
 using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
+
 using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
+
 using static Microsoft.WindowsAPICodePack.PortableDevices.Guids.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
-
     namespace PropertySystem
-
     {
-
         public static class Properties
         {
             #region This class defines all Commands-Parameters and Options associated with: WPD_CATEGORY_NULL. This category is used exclusively for the NULL property key define.
@@ -30,9 +25,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             /// This class defines all Commands-Parameters and Options associated with: <see cref="ObjectV1"/> and <see cref="ObjectV2"/>. This category is for all common object properties.
             /// </summary>
             public static class Object
-
             {
-
                 /// <summary>
                 /// <para>Name: WPD_OBJECT_CONTENT_TYPE</para>
                 /// <para>Description: The abstract type for the object content-indicating the kinds of properties and data that may be supported on the object.</para>
@@ -74,7 +67,6 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// </summary>
                 public static PropertyKey SupportedUnits => new PropertyKey(ObjectV2, 2);
-
             }
 
             /// <summary>
@@ -88,9 +80,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             /// This class defines all Commands-Parameters and Options associated with: <see cref="StorageObjectV1"/>. This category is for properties common to all objects whose functional category is <see cref="ContentType.FunctionalCategory.Storage"/>.
             /// </summary>
             public static class Storage
-
             {
-
                 /// <summary>
                 /// <para>Name: WPD_STORAGE_TYPE</para>
                 /// <para>Description: Indicates the type of storage e.g. fixed-removable etc.</para>
@@ -161,16 +151,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// </summary>
                 public static PropertyKey AccessCapability => new PropertyKey(StorageObjectV1, 11);
-
             }
 
             /// <summary>
-            /// This class defines all Commands-Parameters and Options associated with: <see cref="StillImageCaptureObjectV1"/>. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_STILL_IMAGE_CAPTURE
+            /// This class defines all Commands-Parameters and Options associated with: <see cref="StillImageCaptureObjectV1"/>. This category is for properties common to all objects whose functional category is <see cref="WPD_FUNCTIONAL_CATEGORY_STILL_IMAGE_CAPTURE"/>
             /// </summary>
             public static class StillImageCapture
-
             {
-
                 /// <summary>
                 /// <para>Name: WPD_STILL_IMAGE_CAPTURE_RESOLUTION</para>
                 /// <para>Description: Controls the size of the image dimensions to capture in pixel width and height.</para>
@@ -378,16 +365,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/></para>
                 /// </summary>
                 public static PropertyKey CameraManufacturer => new PropertyKey(StillImageCaptureObjectV1, 31);
-
             }
 
             /// <summary>
             /// This class defines all Commands-Parameters and Options associated with: <see cref="RenderingInformationObjectV1"/>. This category is for properties common to all objects whose functional category is WPD_FUNCTIONAL_CATEGORY_AUDIO_RENDERING_INFORMATION.
             /// </summary>
             public static class AudioRendering
-
             {
-
                 //
                 // WPD_RENDERING_INFORMATION_PROFILES  
                 //   [ VT_UNKNOWN ] IPortableDeviceValuesCollection-where each element indicates the property settings for a supported profile.
@@ -400,14 +384,12 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 // WPD_RENDERING_INFORMATION_PROFILE_ENTRY_CREATABLE_RESOURCES  
                 //   [ VT_UNKNOWN ] This is an IPortableDeviceKeyCollection identifying the resources that can be created on an object with this rendering profile.
                 public static PropertyKey ProfileEntryCreatableResources => new PropertyKey(RenderingInformationObjectV1, 4);
-
             }
 
             /// <summary>
             /// This class defines all Commands-Parameters and Options associated with: <see cref="NetworkAssociationV1"/>. This category is for properties common to all network association objects.
             /// </summary>
             public static class NetworkAssociation
-
             {
                 //
                 // WPD_NETWORK_ASSOCIATION_HOST_NETWORK_IDENTIFIERS  
@@ -417,14 +399,12 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 // WPD_NETWORK_ASSOCIATION_X509V3SEQUENCE  
                 //   [ VT_VECTOR | VT_UI1 ] The sequence of X.509 v3 certificates to be provided for TLS server authentication.
                 public static PropertyKey X509v3Sequence => new PropertyKey(NetworkAssociationV1, 3);
-
             }
 
             /// <summary>
             /// This class defines all Commands-Parameters and Options associated with: <see cref="ClientInformationV1"/>.
             /// </summary>
             public static class Client
-
             {
                 /// <summary>
                 /// <para>Name: WPD_CLIENT_NAME</para>
@@ -521,14 +501,12 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 /// <para>FormatID: <see cref="ClientInformationV1"/>, 13</para>
                 /// </summary>
                 public static PropertyKey ManualCloseOnDisconnect => new PropertyKey(ClientInformationV1, 13);
-
             }
 
             /// <summary>
             /// This class defines all Commands-Parameters and Options associated with: <see cref="DeviceV1"/>, <see cref="DeviceV2"/> and <see cref="DeviceV3"/>.
             /// </summary>
             public static class Device
-
             {
                 //
                 // WPD_DEVICE_SYNC_PARTNER  
@@ -610,7 +588,6 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 // WPD_DEVICE_EDP_IDENTITY  
                 //   [ VT_LPWSTR ] Represents EDP identity of the device.
                 public static PropertyKey EDPIdentity => new PropertyKey(DeviceV3, 1);
-
             }
 
             #region This class defines all Commands-Parameters and Options associated with: WPD_SERVICE_PROPERTIES_V1
@@ -624,9 +601,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             /// This class defines all Commands-Parameters and Options associated with: <see cref="APIOptionsV1"/>. The properties in this category describe API options.
             /// </summary>
             public static class APIOption
-
             {
-
                 //
                 // WPD_API_OPTION_USE_CLEAR_DATA_STREAM  
                 //   [ VT_BOOL ] Indicates that the data stream created for data transfer will be clear only (i.e. No DRM will be involved).
@@ -635,16 +610,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 // WPD_API_OPTION_IOCTL_ACCESS  
                 //   [ VT_UI4 ] An optional property that clients can add to the IN parameter set of IPortableDevice::SendCommand to specify the access required for the command. The Portable Device API uses this to identify whether the IOCTL sent to the driver is sent with FILE_READ_ACCESS or (FILE_READ_ACCESS | FILE_WRITE_ACCESS) access flags.
                 public static PropertyKey IOCTLAccess => new PropertyKey(APIOptionsV1, 3);
-
             }
 
             /// <summary>
             /// This class defines all Commands-Parameters and Options associated with: <see cref="ClassExtensionOptionsV1"/>, <see cref="ClassExtensionOptionsV2"/> and <see cref="ClassExtensionOptionsV3"/>. This category of properties relates to options used for the WPD device class extension.
             /// </summary>
             public static class ClassExtensionOption
-
             {
-
                 //
                 // WPD_CLASS_EXTENSION_OPTIONS_SUPPORTED_CONTENT_TYPES  
                 //   [ VT_UNKNOWN ] Indicates the (super-set) list of content types supported by the driver (similar to calling WPD_COMMAND_CAPABILITIES_GET_SUPPORTED_CONTENT_TYPES on WPD_FUNCTIONAL_CATEGORY_ALL).
@@ -675,24 +647,17 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 // WPD_CLASS_EXTENSION_OPTIONS_SILENCE_AUTOPLAY  
                 //   [ VT_BOOL ] Indicates that the caller wants Autoplay to be silent when the device is connected (if TRUE).
                 public static PropertyKey SilenceAutoplay => new PropertyKey(ClassExtensionOptionsV3, 2);
-
             }
 
             /// <summary>
             /// This class defines the legacy WPD Properties. Some of these properties are still used.
             /// </summary>
             public static class Legacy
-
             {
-
                 public static class Object
-
                 {
-
                     public static class Common
-
                     {
-
                         /// <summary>
                         /// <para>Name: WPD_OBJECT_ID</para>
                         /// <para>Description: Uniquely identifies object on the Portable Device.</para>
@@ -844,7 +809,6 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                         /// <para>Recommended Device Services Property: PKEY_GenericObj_LanguageLocale</para>
                         /// </summary>
                         public static PropertyKey LanguageLocale => new PropertyKey(ObjectV1, 27);
-
                     }
 
                     /// <summary>
@@ -856,9 +820,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     public static PropertyKey FolderContentTypesAllowed => new PropertyKey(FolderObjectV1, 2);
 
                     public static class Image
-
                     {
-
                         //
                         // WPD_IMAGE_BITDEPTH 
                         //   [ VT_UI4 ] Indicates the bitdepth of an image
@@ -899,11 +861,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                         //   [ VT_R8 ] Indicates the vertical resolution (DPI) of an image
                         //   Recommended Device Services Property: None
                         public static PropertyKey VerticalResolution => new PropertyKey(ImageObjectV1, 10);
-
                     }
 
                     public static class Contact
-
                     {
                         //
                         // WPD_CONTACT_DISPLAY_NAME 
@@ -1215,11 +1175,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                         //   [ VT_LPWSTR ] Indicates an object id of a ringtone file on the device.
                         //   Recommended Device Services Property: PKEY_ContactObj_Ringtone
                         public static PropertyKey Ringtone => new PropertyKey(ContactObjectV1, 63);
-
                     }
 
                     public static class Media
-
                     {
                         //
                         // WPD_MUSIC_ALBUM 
@@ -1266,14 +1224,12 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                         //   [ VT_UI4 ] This property identifies the audio block alignment
                         //   Recommended Device Services Property: PKEY_AudioObj_AudioBlockAlignment
                         public static PropertyKey AudioBlockAlignment => new PropertyKey(MusicObjectV1, 13);
-
                     }
 
                     /// <summary>
                     /// This class defines all Commands-Parameters and Options associated with: <see cref="VideoObjectV1"/>. This category is for properties common to all video objects.
                     /// </summary>
                     public static class Video
-
                     {
                         //
                         // WPD_VIDEO_AUTHOR 
@@ -1335,14 +1291,12 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                         //   [ VT_UI4 ] Indicates the frame rate for the video data.
                         //   Recommended Device Services Property: PKEY_VideoObj_VideoFrameRate
                         public static PropertyKey FrameRate => new PropertyKey(VideoObjectV1, 15);
-
                     }
 
                     /// <summary>
                     /// This class defines all Commands-Parameters and Options associated with: <see cref="CommonInformationObjectV1"/>. This category is properties that pertain to informational objects such as appointments-tasks-memos and even documents.
                     /// </summary>
                     public static class Information
-
                     {
                         //
                         // WPD_COMMON_INFORMATION_SUBJECT 
@@ -1374,13 +1328,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                         //   [ VT_LPWSTR ] For appointments-tasks and similar objects-this indicates any notes for this object.
                         //   Recommended Device Services Property: None
                         public static PropertyKey Notes => new PropertyKey(CommonInformationObjectV1, 7);
-
                     }
 
                     public static class Email
-
                     {
-
                         //
                         // WPD_EMAIL_TO_LINE 
                         //   [ VT_LPWSTR ] Indicates the normal recipients for the message.
@@ -1416,13 +1367,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                         //   [ VT_LPWSTR ] Indicates who sent the message.
                         //   Recommended Device Services Property: PKEY_MessageObj_Sender
                         public static PropertyKey EmailSenderAddress => new PropertyKey(EmailObjectV1, 10);
-
                     }
 
                     public static class Appointment
-
                     {
-
                         //
                         // WPD_APPOINTMENT_LOCATION 
                         //   [ VT_LPWSTR ] Indicates the location of the appointment e.g. "Building 5-Conf. room 7".
@@ -1463,11 +1411,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                         //   [ VT_LPWSTR ] Semi-colon separated list of attendees who have declined the appointment.
                         //   Recommended Device Services Property: PKEY_CalendarObj_Declined
                         public static PropertyKey DeclinedAttendees => new PropertyKey(AppointmentObjectV1, 13);
-
                     }
 
                     public static class Task
-
                     {
                         //
                         // WPD_TASK_STATUS 
@@ -1489,13 +1435,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                         //   [ VT_LPWSTR ] Indicates the owner of the task.
                         //   Recommended Device Services Property: None
                         public static PropertyKey Owner => new PropertyKey(TaskObjectV1, 11);
-
                     }
 
                     public static class SMS
-
                     {
-
                         //
                         // WPD_SMS_PROVIDER 
                         //   [ VT_LPWSTR ] Indicates the service provider name.
@@ -1516,11 +1459,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                         //   [ VT_UI4 ] Indicates how the driver will encode the text message sent by the client.
                         //   Recommended Device Services Property: None
                         public static PropertyKey Encoding => new PropertyKey(SMSObjectV1, 5);
-
                     }
 
                     public static class Section
-
                     {
                         //
                         // WPD_SECTION_DATA_OFFSET 
@@ -1542,13 +1483,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                         //   [ VT_UNKNOWN ] This is an IPortableDeviceKeyCollection containing a single value-which is the key identifying the resource on the referenced object which the WPD_SECTION_DATA_OFFSET and WPD_SECTION_DATA_LENGTH apply to.
                         //   Recommended Device Services Property: None
                         public static PropertyKey DataReferencedObjectResource => new PropertyKey(SectionObjectV1, 5);
-
                     }
-
                 }
 
                 public static class Media
-
                 {
                     //
                     // WPD_MEDIA_TOTAL_BITRATE 
@@ -1745,24 +1683,17 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //   [ VT_LPWSTR ] Media codecs may be encoded in accordance with a profile-which defines a particular encoding algorithm or optimization process.
                     //   Recommended Device Services Property: PKEY_MediaObj_AudioEncodingProfile
                     public static PropertyKey AudioEncodingProfile => new PropertyKey(MediaV1, 49);
-
                 }
-
             }
-
         }
 
         /// <summary>
         /// This class defines all Commands-Parameters and Options associated with: <see cref="PropertyAttributesV1"/> and <see cref="PropertyAttributesV2"/>.
         /// </summary>
         public static class Attribute
-
         {
-
             public static class Property
-
             {
-
                 /// <summary>
                 /// <para>Name: WPD_PROPERTY_ATTRIBUTE_FORM</para>
                 /// <para>Description: Specifies the form of the valid values allowed for this property.</para>
@@ -1860,16 +1791,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 /// <para>Type: <see cref="VarEnum.VT_UI4"/></para>
                 /// </summary>
                 public static PropertyKey VarType => new PropertyKey(PropertyAttributesV2, 3);
-
             }
 
             /// <summary>
             /// This class defines all Commands-Parameters and Options associated with: <see cref="FormatAttributesV1"/>. The properties in this category describe format attributes.
             /// </summary>
             public static class Format
-
             {
-
                 //
                 // WPD_FORMAT_ATTRIBUTE_NAME  
                 //   [ VT_LPWSTR ] Contains the name of the format.
@@ -1878,16 +1806,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 // WPD_FORMAT_ATTRIBUTE_MIMETYPE  
                 //   [ VT_LPWSTR ] Contains the MIME type of the format.
                 public static PropertyKey MIMEType => new PropertyKey(FormatAttributesV1, 3);
-
             }
 
             /// <summary>
             /// This class defines all Commands-Parameters and Options associated with: <see cref="MethodAttributesV1"/>. The properties in this category describe method attributes.
             /// </summary>
             public static class Method
-
             {
-
                 //
                 // WPD_METHOD_ATTRIBUTE_NAME  
                 //   [ VT_LPWSTR ] Contains the name of the method.
@@ -1904,16 +1829,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 // WPD_METHOD_ATTRIBUTE_PARAMETERS  
                 //   [ VT_UNKNOWN ] This is an IPortableDeviceKeyCollection containing the method parameters.
                 public static PropertyKey Parameters => new PropertyKey(MethodAttributesV1, 5);
-
             }
 
             /// <summary>
             /// This class defines all Commands-Parameters and Options associated with: <see cref="ParameterAttributesV1"/>. The properties in this category describe parameter attributes.
             /// </summary>
             public static class Parameter
-
             {
-
                 //
                 // WPD_PARAMETER_ATTRIBUTE_ORDER  
                 //   [ VT_UI4 ] The order (starting from 0) of a method parameter.
@@ -1962,22 +1884,16 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 // WPD_PARAMETER_ATTRIBUTE_NAME  
                 //   [ VT_LPWSTR ] Contains the parameter name.
                 public static PropertyKey Name => new PropertyKey(ParameterAttributesV1, 13);
-
             }
-
         }
-
     }
 
     namespace EventSystem
-
     {
-
         /// <summary>
         /// This class defines all Commands-Parameters and Options associated with: <see cref="EventV1"/> and <see cref="EventV2"/>. The properties in this category are for properties that may be needed for event processing-but do not have object property equivalents(i.e.they are not exposed as object properties-but rather-used only as event parameters).
         /// </summary>
         public static class Parameter
-
         {
             //
             // WPD_EVENT_PARAMETER_PNP_DEVICE_ID  
@@ -2012,16 +1928,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             // WPD_EVENT_PARAMETER_SERVICE_METHOD_CONTEXT  
             //   [ VT_LPWSTR ] Indicates the service method invocation context.
             public static PropertyKey ServiceMethodContext => new PropertyKey(EventV2, 2);
-
         }
 
         /// <summary>
         /// This class defines all Commands-Parameters and Options associated with: <see cref="EventOptionsV1"/>. The properties in this category describe event options.
         /// </summary>
         public static class Option
-
         {
-
             //
             // WPD_EVENT_OPTION_IS_BROADCAST_EVENT  
             //   [ VT_BOOL ] Indicates that the event is broadcast to all clients.
@@ -2030,16 +1943,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             // WPD_EVENT_OPTION_IS_AUTOPLAY_EVENT  
             //   [ VT_BOOL ] Indicates that the event is sent to and handled by Autoplay.
             public static PropertyKey IsAutoplayEvent => new PropertyKey(EventOptionsV1, 3);
-
         }
 
         /// <summary>
         /// This class defines all Commands-Parameters and Options associated with: <see cref="EventAttributesV1"/>. The properties in this category describe event attributes.
         /// </summary>
         public static class Attribute
-
         {
-
             //
             // WPD_EVENT_ATTRIBUTE_NAME  
             //   [ VT_LPWSTR ] Contains the name of the event.
@@ -2052,26 +1962,18 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             // WPD_EVENT_ATTRIBUTE_OPTIONS  
             //   [ VT_UNKNOWN ] IPortableDeviceValues containing the event options.
             public static PropertyKey Options => new PropertyKey(EventAttributesV1, 4);
-
         }
-
     }
 
     namespace CommandSystem
-
     {
-
         /// <summary>
         /// Commands, parameters and options associated with the <see cref="Guids.PortableDevices.CommandSystem.Common"/> (WPD_CATEGORY_COMMON) command category.
         /// </summary>
         public static class Common
-
         {
-
             public static class Commands
-
             {
-
                 // ======== Commands ========
                 //
                 // WPD_COMMAND_COMMON_RESET_DEVICE 
@@ -2103,13 +2005,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 // Results:
                 //     [ Optional ]  WPD_PROPERTY_COMMON_CLIENT_INFORMATION_CONTEXT 
                 public static PropertyKey SaveClientInformation => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Common, 4);
-
             }
 
             public static class Parameters
-
             {
-
                 // ======== Command Parameters ======== 
 
                 //
@@ -2152,38 +2051,27 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 // WPD_PROPERTY_COMMON_ACTIVITY_ID  
                 //   [ VT_CLSID ] An optional ActivityID set either by a client or by WPD API-when ETW tracing is enabled.
                 public static PropertyKey ActivityId => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Common, 1011);
-
             }
 
             public static class Options
-
             {
-
                 // ======== Command Options ========
                 //
                 // WPD_OPTION_VALID_OBJECT_IDS 
                 //   [ VT_UNKNOWN ]  IPortableDevicePropVariantCollection of type VT_LPWSTR specifying list of Objects IDs of the objects that support the command. 
                 public static PropertyKey ValidObjectIds => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Common, 5001);
-
             }
-
         }
 
         namespace Object
-
         {
-
             /// <summary>
             /// Commands, parameters and options associated to the <see cref="Guids.PortableDevices.CommandSystem.Object.Enumeration"/> (WPD_CATEGORY_OBJECT_ENUMERATION) command category. The commands in this category are used for basic object enumeration.
             /// </summary>
             public static class Enumeration
-
             {
-
                 public static class Commands
-
                 {
-
                     // ======== Commands ========
                     //
                     // WPD_COMMAND_OBJECT_ENUMERATION_START_FIND 
@@ -2217,13 +2105,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     // Results:
                     //     None
                     public static PropertyKey EndFind => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Enumeration, 4);
-
                 }
 
                 public static class Parameters
-
                 {
-
                     // ======== Command Parameters ======== 
 
                     //
@@ -2246,22 +2131,16 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     // WPD_PROPERTY_OBJECT_ENUMERATION_NUM_OBJECTS_REQUESTED  
                     //   [ VT_UI4 ] The maximum number of ObjectIDs to return back to the client.
                     public static PropertyKey NumObjectsRequested => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Enumeration, 1005);
-
                 }
-
             }
 
             /// <summary>
             /// Commands, parameters and options associated with the <see cref="Guids.PortableDevices.CommandSystem.Object.Properties"/> (WPD_CATEGORY_OBJECT_PROPERTIES) command category. This category of commands is used to perform basic property operations such as Reading/Writing values-listing supported values and so on.
             /// </summary>
             public static class Property
-
             {
-
                 public static class Commands
-
                 {
-
                     // ======== Commands ========
                     //
                     // WPD_COMMAND_OBJECT_PROPERTIES_GET_SUPPORTED 
@@ -2327,13 +2206,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     // Results:
                     //     [ Optional ]  WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_DELETE_RESULTS 
                     public static PropertyKey Delete => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Properties, 7);
-
                 }
 
                 public static class Parameters
-
                 {
-
                     // ======== Command Parameters ======== 
 
                     //
@@ -2360,22 +2236,16 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     // WPD_PROPERTY_OBJECT_PROPERTIES_PROPERTY_DELETE_RESULTS  
                     //   [ VT_UNKNOWN ] This is an IPortableDeviceValues which contains the result of each property delete operation.
                     public static PropertyKey PropertyDeleteResults => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Properties, 1006);
-
                 }
-
             }
 
             /// <summary>
             /// Commands, parameters and options associated with the <see cref="Guids.PortableDevices.CommandSystem.Object.PropertiesBulk"/> (WPD_CATEGORY_OBJECT_PROPERTIES_BULK) command category. This category contains commands and properties for property operations across multiple objects.
             /// </summary>
             public static class PropertyBulk
-
             {
-
                 public static class Commands
-
                 {
-
                     // ======== Commands ========
                     //
                     // WPD_COMMAND_OBJECT_PROPERTIES_BULK_GET_VALUES_BY_OBJECT_LIST_START 
@@ -2471,13 +2341,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     // Results:
                     //     None
                     public static PropertyKey SetValuesByObjectListEnd => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.PropertiesBulk, 10);
-
                 }
 
                 public static class Parameters
-
                 {
-
                     // ======== Command Parameters ======== 
 
                     //
@@ -2512,22 +2379,16 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     // WPD_PROPERTY_OBJECT_PROPERTIES_BULK_WRITE_RESULTS  
                     //   [ VT_UNKNOWN ] Contains an IPortableDeviceValuesCollection specifying the set of IPortableDeviceValues elements indicating the write results for each property set.
                     public static PropertyKey WriteResults => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.PropertiesBulk, 1008);
-
                 }
-
             }
 
             /// <summary>
             /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.CommandSystem.Object.Resources"/>. The commands in this category are used for basic object resource enumeration and transfer.
             /// </summary>
             public static class Resource
-
             {
-
                 public static class Commands
-
                 {
-
                     // ======== Commands ========
                     //
                     // WPD_COMMAND_OBJECT_RESOURCES_GET_SUPPORTED 
@@ -2666,13 +2527,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_OBJECT_RESOURCES_POSITION_FROM_START 
                     public static PropertyKey SeekInUnits => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 13);
-
                 }
 
                 public static class Parameters
-
                 {
-
                     // ======== Command Parameters ======== 
 
                     //
@@ -2739,13 +2597,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     // WPD_PROPERTY_OBJECT_RESOURCES_STREAM_UNITS  
                     //   [ VT_UI4 ] The units for the WPD_PROPERTY_OBJECT_SEEK_OFFSET parameter and the WPD_PROPERTY_OBJECT_RESOURCES_POSITION_FROM_START result.
                     public static PropertyKey StreamUnits => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 1016);
-
                 }
 
                 public static class Options
-
                 {
-
                     // ======== Command Options ========
                     //
                     // WPD_OPTION_OBJECT_RESOURCES_SEEK_ON_READ_SUPPORTED 
@@ -2759,22 +2614,16 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     // WPD_OPTION_OBJECT_RESOURCES_NO_INPUT_BUFFER_ON_READ 
                     //   [ VT_BOOL ]  Indicates whether the driver requires an input buffer for WPD_COMMAND_OBJECT_RESOURCES_READ. If not set-defaults to False. 
                     public static PropertyKey NoInputBufferOnRead => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Resources, 5003);
-
                 }
-
             }
 
             /// <summary>
             /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.CommandSystem.Object.Management"/>. The commands specified in this category are used to Create/Delete objects on the device.
             /// </summary>
             public static class Management
-
             {
-
                 public static class Commands
-
                 {
-
                     // ======== Commands ========
                     //
                     // WPD_COMMAND_OBJECT_MANAGEMENT_CREATE_OBJECT_WITH_PROPERTIES_ONLY 
@@ -2873,13 +2722,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_CONTEXT 
                     //     [ Required ]  WPD_PROPERTY_OBJECT_MANAGEMENT_OPTIMAL_TRANSFER_BUFFER_SIZE 
                     public static PropertyKey UpdateObjectWithPropertiesAndData => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 10);
-
                 }
 
                 public static class Parameters
-
                 {
-
                     // ======== Command Parameters ======== 
 
                     //
@@ -2946,36 +2792,26 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     // WPD_PROPERTY_OBJECT_MANAGEMENT_OBJECT_FORMAT  
                     //   [ VT_CLSID ] Indicates the object format the caller is interested in.
                     public static PropertyKey ObjectFormat => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 1016);
-
                 }
 
                 public static class Options
-
                 {
-
                     // ======== Command Options ========
                     //
                     // WPD_OPTION_OBJECT_MANAGEMENT_RECURSIVE_DELETE_SUPPORTED 
                     //   [ VT_BOOL ]  Indicates whether the driver supports recursive deletion. 
                     public static PropertyKey RecursiveDeleteSupported => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Object.Management, 5001);
-
                 }
-
             }
-
         }
 
         /// <summary>
         /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.CommandSystem.Capabilities"/>. This command category is used to query capabilities of the device.
         /// </summary>
         public static class Capability
-
         {
-
             public static class Commands
-
             {
-
                 // ======== Commands ========
                 //
                 // WPD_COMMAND_CAPABILITIES_GET_SUPPORTED_COMMANDS 
@@ -3078,13 +2914,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 // Results:
                 //     [ Required ]  WPD_PROPERTY_CAPABILITIES_EVENT_OPTIONS 
                 public static PropertyKey GetEventOptions => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 11);
-
             }
 
             public static class Parameters
-
             {
-
                 // ======== Command Parameters ======== 
 
                 //
@@ -3147,22 +2980,16 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 // WPD_PROPERTY_CAPABILITIES_EVENT_OPTIONS  
                 //   [ VT_UNKNOWN ] Contains an IPortableDeviceValues with the relevant event options.
                 public static PropertyKey EventOptions => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Capabilities, 1015);
-
             }
-
         }
 
         /// <summary>
         /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.CommandSystem.Storage"/>. This category is for commands and parameters for storage functional objects.
         /// </summary>
         public static class Storage
-
         {
-
             public static class Commands
-
             {
-
                 // ======== Commands ========
                 //
                 // WPD_COMMAND_STORAGE_FORMAT 
@@ -3184,13 +3011,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 // Results:
                 //     None
                 public static PropertyKey Eject => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Storage, 4);
-
             }
 
             public static class Parameters
-
             {
-
                 // ======== Command Parameters ======== 
 
                 //
@@ -3201,22 +3025,16 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 // WPD_PROPERTY_STORAGE_DESTINATION_OBJECT_ID  
                 //   [ VT_LPWSTR ] Indicates the (folder) object destination for a move operation.
                 public static PropertyKey DestinationObjectId => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Storage, 1002);
-
             }
-
         }
 
         /// <summary>
         /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.CommandSystem.SMS"/>. The commands in this category relate to Short-Message-Service functionality-typically exposed on mobile phones.
         /// </summary>
         public static class SMS
-
         {
-
             public static class Commands
-
             {
-
                 // ======== Commands ========
                 //
                 // WPD_COMMAND_SMS_SEND 
@@ -3232,13 +3050,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 // Results:
                 //     None
                 public static PropertyKey Send => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.SMS, 2);
-
             }
 
             public static class Parameters
-
             {
-
                 // ======== Command Parameters ======== 
 
                 //
@@ -3257,34 +3072,25 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 // WPD_PROPERTY_SMS_BINARY_MESSAGE  
                 //   [ VT_VECTOR | VT_UI1 ] if WPD_PROPERTY_SMS_MESSAGE_TYPE == SMS_BINARY_MESSAGE-then this will contain the binary message body.
                 public static PropertyKey BinaryMessage => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.SMS, 1004);
-
             }
 
             public static class Options
-
             {
-
                 // ======== Command Options ========
                 //
                 // WPD_OPTION_SMS_BINARY_MESSAGE_SUPPORTED 
                 //   [ VT_BOOL ]  Indicates whether the driver can support binary messages as well as text messages. 
                 public static PropertyKey BinaryMessageSupported => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.SMS, 5001);
-
             }
-
         }
 
         /// <summary>
         /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.CommandSystem.StillImageCapture"/>.
         /// </summary>
         public static class StillImageCapture
-
         {
-
             public static class Commands
-
             {
-
                 // ======== Commands ========
                 //
                 // WPD_COMMAND_STILL_IMAGE_CAPTURE_INITIATE 
@@ -3296,22 +3102,16 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 // Results:
                 //     None
                 public static PropertyKey Initiate => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.StillImageCapture, 2);
-
             }
-
         }
 
         /// <summary>
         /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.CommandSystem.MediaCapture"/>.
         /// </summary>
         public static class MediaCapture
-
         {
-
             public static class Commands
-
             {
-
                 // ======== Commands ========
                 //
                 // WPD_COMMAND_MEDIA_CAPTURE_START 
@@ -3343,22 +3143,16 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 // Results:
                 //     None
                 public static PropertyKey Pause => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.MediaCapture, 4);
-
             }
-
         }
 
         /// <summary>
         /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.CommandSystem.DeviceHints"/>. The commands in this category relate to hints that a device can provide to improve end-user experience.
         /// </summary>
         public static class DeviceHint
-
         {
-
             public static class Commands
-
             {
-
                 // ======== Commands ========
                 //
                 // WPD_COMMAND_DEVICE_HINTS_GET_CONTENT_LOCATION 
@@ -3370,13 +3164,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 // Results:
                 //     [ Required ]  WPD_PROPERTY_DEVICE_HINTS_CONTENT_LOCATIONS 
                 public static PropertyKey GetContentLocation => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.DeviceHints, 2);
-
             }
 
             public static class Parameters
-
             {
-
                 // ======== Command Parameters ======== 
 
                 //
@@ -3387,22 +3178,16 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 // WPD_PROPERTY_DEVICE_HINTS_CONTENT_LOCATIONS  
                 //   [ VT_UNKNOWN ] IPortableDevicePropVariantCollection of type VT_LPWSTR indicating a list of folder ObjectIDs.
                 public static PropertyKey ContentLocations => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.DeviceHints, 1002);
-
             }
-
         }
 
         /// <summary>
         /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.CommandSystem.ClassExtensionV1"/> and <see cref="Guids.PortableDevices.CommandSystem.ClassExtensionV2"/>. The commands in this category relate to the WPD device class extension.
         /// </summary>
         public static class ClassExtension
-
         {
-
             public static class Commands
-
             {
-
                 // ======== Commands ========
                 //
                 // WPD_COMMAND_CLASS_EXTENSION_WRITE_DEVICE_INFORMATION 
@@ -3438,13 +3223,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 // Results:
                 //     [ Required ]  WPD_PROPERTY_CLASS_EXTENSION_SERVICE_REGISTRATION_RESULTS 
                 public static PropertyKey UnregisterServiceInterfaces => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.ClassExtensionV2, 3);
-
             }
 
             public static class Parameters
-
             {
-
                 // ======== Command Parameters ======== 
 
                 //
@@ -3470,19 +3252,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 // WPD_PROPERTY_CLASS_EXTENSION_SERVICE_REGISTRATION_RESULTS  
                 //   [ VT_UNKNOWN ] This is an IPortablePropVariantCollection of type VT_ERROR-where each element is the HRESULT indicating the success or failure of the operation.
                 public static PropertyKey ServiceRegistrationResults => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.ClassExtensionV2, 1003);
-
             }
-
         }
 
         public static class NetworkConfiguration
-
         {
-
             public static class Commands
-
             {
-
                 // ======== Commands ========
                 //
                 // WPD_COMMAND_GENERATE_KEYPAIR 
@@ -3514,36 +3290,25 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 // Results:
                 //     None
                 public static PropertyKey ProcessWirelessProfile => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.NetworkConfiguration, 4);
-
             }
 
             public static class CommandParameters
-
             {
-
                 // ======== Command Parameters ======== 
 
                 //
                 // WPD_PROPERTY_PUBLIC_KEY  
                 //   [ VT_VECTOR | VT_UI1 ] A public key generated for RSA key exchange.
                 public static PropertyKey PublicKey => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.NetworkConfiguration, 1001);
-
             }
-
         }
 
         namespace Service
-
         {
-
             public static class Common
-
             {
-
                 public static class Commands
-
                 {
-
                     // ======== Commands ========
                     //
                     // WPD_COMMAND_SERVICE_COMMON_GET_SERVICE_OBJECT_ID 
@@ -3555,32 +3320,23 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_SERVICE_OBJECT_ID 
                     public static PropertyKey GetServiceObjectId => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Common, 2);
-
                 }
 
                 public static class CommandParameters
-
                 {
-
                     // ======== Command Parameters ======== 
 
                     //
                     // WPD_PROPERTY_SERVICE_OBJECT_ID  
                     //   [ VT_LPWSTR ] Contains the service object identifier.
                     public static PropertyKey ObjectId => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Common, 1001);
-
                 }
-
             }
 
             public static class Capability
-
             {
-
                 public static class Commands
-
                 {
-
                     // ======== Commands ========
                     //
                     // WPD_COMMAND_SERVICE_CAPABILITIES_GET_SUPPORTED_METHODS 
@@ -3735,13 +3491,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     // Results:
                     //     [ Required ]  WPD_PROPERTY_SERVICE_CAPABILITIES_COMMAND_OPTIONS 
                     public static PropertyKey GetCommandOptions => new PropertyKey("24457E74-2E9F-44F9-8C57-1D1BCB170B8", 16);
-
                 }
 
                 public static class CommandParameters
-
                 {
-
                     // ======== Command Parameters ======== 
 
                     //
@@ -3820,19 +3573,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     // WPD_PROPERTY_SERVICE_CAPABILITIES_COMMAND_OPTIONS  
                     //   [ VT_UNKNOWN ] Contains an IPortableDeviceValues with the relevant command options.
                     public static PropertyKey CommandOptions => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Capabilities, 1019);
-
                 }
-
             }
 
             public static class Method
-
             {
-
                 public static class Commands
-
                 {
-
                     // ======== Commands ========
                     //
                     // WPD_COMMAND_SERVICE_METHODS_START_INVOKE 
@@ -3866,13 +3613,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     //     [ Required ]  WPD_PROPERTY_SERVICE_METHOD_RESULT_VALUES 
                     //     [ Required ]  WPD_PROPERTY_SERVICE_METHOD_HRESULT 
                     public static PropertyKey EndInvoke => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Methods, 4);
-
                 }
 
                 public static class CommandParameters
-
                 {
-
                     // ======== Command Parameters ======== 
 
                     //
@@ -3895,107 +3639,133 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                     // WPD_PROPERTY_SERVICE_METHOD_HRESULT  
                     //   [ VT_ERROR ] Contains the status HRESULT of this method invocation.
                     public static PropertyKey HResult => new PropertyKey(Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.Service.Methods, 1005);
-
                 }
-
             }
-
         }
-
     }
 
     namespace ResourceSystem
-
     {
-
         /// <summary>
         /// This class defines all Resource keys. Resources are place-holders for binary data.
         /// </summary>
         public static class Resources
-
         {
-
-            //
-            //  WPD_RESOURCE_DEFAULT 
-            // Represents the entire object's data. There can be only one default resource on an object. 
+            /// <summary>
+            /// <para>Name: WPD_RESOURCE_DEFAULT</para>
+            /// <para>Description: Represents the entire object's data. There can be only one default resource on an object.</para>
+            /// </summary>
             public static PropertyKey Default => new PropertyKey("E81E79BE-34F0-41BF-B53F-F1A06AE87842", 0);
-            //
-            //  WPD_RESOURCE_CONTACT_PHOTO 
-            // Represents the contact's photo data. 
-            public static PropertyKey ContactPhoto => new PropertyKey("2C4D6803-80EA-4580-AF9A-5BE1A23EDDCB", 0);
-            //
-            //  WPD_RESOURCE_THUMBNAIL 
-            // Represents the thumbnail data for an object. 
-            public static PropertyKey Thumbnail => new PropertyKey("C7C407BA-98FA-46B5-9960-23FEC124CFDE", 0);
-            //
-            //  WPD_RESOURCE_ICON 
-            // Represents the icon data for an object. 
-            public static PropertyKey Icon => new PropertyKey("F195FED8-AA28-4EE3-B153-E182DD5EDC39", 0);
-            //
-            //  WPD_RESOURCE_AUDIO_CLIP 
-            // Represents an audio sample data for an object. 
-            public static PropertyKey AudioClip => new PropertyKey("3BC13982-85B1-48E0-95A6-8D3AD06BE117", 0);
-            //
-            //  WPD_RESOURCE_ALBUM_ART 
-            // Represents the album artwork this media originated from. 
-            public static PropertyKey AlbumArt => new PropertyKey("F02AA354-2300-4E2D-A1B9-3B6730F7FA21", 0);
-            //
-            //  WPD_RESOURCE_GENERIC 
-            // Represents an arbitrary binary blob associated with this object. 
-            public static PropertyKey Generic => new PropertyKey("B9B9F515-BA70-4647-94DC-FA4925E95A07", 0);
-            //
-            //  WPD_RESOURCE_VIDEO_CLIP 
-            // Represents a video sample for an object. 
-            public static PropertyKey VideoClip => new PropertyKey("B566EE42-6368-4290-8662-70182FB79F20", 0);
-            //
-            //  WPD_RESOURCE_BRANDING_ART 
-            // Represents the product branding artwork or logo for an object. This resource is typically found on-but not limited to the device object. 
-            public static PropertyKey BrandingArt => new PropertyKey("B633B1AE-6CAF-4A87-9589-22DED6DD5899", 0);
 
+            /// <summary>
+            /// <para>Name: WPD_RESOURCE_CONTACT_PHOTO</para>
+            /// <para>Description: Represents the contact's photo data.</para>
+            /// </summary>
+            public static PropertyKey ContactPhoto => new PropertyKey("2C4D6803-80EA-4580-AF9A-5BE1A23EDDCB", 0);
+
+            /// <summary>
+            /// <para>Name: WPD_RESOURCE_THUMBNAIL</para>
+            /// <para>Description: Represents the thumbnail data for an object.</para>
+            /// </summary>
+            public static PropertyKey Thumbnail => new PropertyKey("C7C407BA-98FA-46B5-9960-23FEC124CFDE", 0);
+
+            /// <summary>
+            /// <para>Name: WPD_RESOURCE_ICON</para>
+            /// <para>Description: Represents the icon data for an object.</para>
+            /// </summary>
+            public static PropertyKey Icon => new PropertyKey("F195FED8-AA28-4EE3-B153-E182DD5EDC39", 0);
+
+            /// <summary>
+            /// <para>Name: WPD_RESOURCE_AUDIO_CLIP</para>
+            /// <para>Description: Represents an audio sample data for an object.</para>
+            /// </summary>
+            public static PropertyKey AudioClip => new PropertyKey("3BC13982-85B1-48E0-95A6-8D3AD06BE117", 0);
+
+            /// <summary>
+            /// <para>Name: WPD_RESOURCE_ALBUM_ART</para>
+            /// <para>Description: Represents the album artwork this media originated from.</para>
+            /// </summary>
+            public static PropertyKey AlbumArt => new PropertyKey("F02AA354-2300-4E2D-A1B9-3B6730F7FA21", 0);
+
+            /// <summary>
+            /// <para>Name: WPD_RESOURCE_GENERIC</para>
+            /// <para>Description: Represents an arbitrary binary blob associated with this object.</para>
+            /// </summary>
+            public static PropertyKey Generic => new PropertyKey("B9B9F515-BA70-4647-94DC-FA4925E95A07", 0);
+
+            /// <summary>
+            /// <para>Name: WPD_RESOURCE_VIDEO_CLIP</para>
+            /// <para>Description: Represents a video sample for an object.</para>
+            /// </summary>
+            public static PropertyKey VideoClip => new PropertyKey("B566EE42-6368-4290-8662-70182FB79F20", 0);
+
+            /// <summary>
+            /// <para>Name: WPD_RESOURCE_BRANDING_ART</para>
+            /// <para>Description: Represents the product branding artwork or logo for an object. This resource is typically found on-but not limited to the device object.</para>
+            /// </summary>
+            public static PropertyKey BrandingArt => new PropertyKey("B633B1AE-6CAF-4A87-9589-22DED6DD5899", 0);
         }
 
         /// <summary>
         /// This class defines all Commands-Parameters and Options associated with: <see cref="ResourceAttributesV1"/>.
         /// </summary>
         public static class ResourceAttribute
-
         {
-
-            //
-            // WPD_RESOURCE_ATTRIBUTE_TOTAL_SIZE  
-            //   [ VT_UI8 ] Total size in bytes of the resource data.
+            /// <summary>
+            /// <para>Name: WPD_RESOURCE_ATTRIBUTE_TOTAL_SIZE</para>
+            /// <para>Description: Total size in bytes of the resource data.</para>
+            /// <para>Type: <see cref="VarEnum.VT_UI8"/></para>
+            /// </summary>
             public static PropertyKey TotalSize => new PropertyKey(ResourceAttributesV1, 2);
-            //
-            // WPD_RESOURCE_ATTRIBUTE_CAN_READ  
-            //   [ VT_BOOL ] Indicates whether client applications have permission to open the resource for Read access.
+
+            /// <summary>
+            /// <para>Name: WPD_RESOURCE_ATTRIBUTE_CAN_READ</para>
+            /// <para>Description: Indicates whether client applications have permission to open the resource for Read access.</para>
+            /// <para>Type: <see cref="VarEnum.VT_BOOL"/></para>
+            /// </summary>
             public static PropertyKey CanRead => new PropertyKey(ResourceAttributesV1, 3);
-            //
-            // WPD_RESOURCE_ATTRIBUTE_CAN_WRITE  
-            //   [ VT_BOOL ] Indicates whether client applications have permission to open the resource for Write access.
+
+            /// <summary>
+            /// <para>Name: WPD_RESOURCE_ATTRIBUTE_CAN_WRITE</para>
+            /// <para>Description: Indicates whether client applications have permission to open the resource for Write access.</para>
+            /// <para>Type: <see cref="VarEnum.VT_BOOL"/></para>
+            /// </summary>
             public static PropertyKey CanWrite => new PropertyKey(ResourceAttributesV1, 4);
-            //
-            // WPD_RESOURCE_ATTRIBUTE_CAN_DELETE  
-            //   [ VT_BOOL ] Indicates whether client applications have permission to Delete a resource from the device.
+
+            /// <summary>
+            /// <para>Name: WPD_RESOURCE_ATTRIBUTE_CAN_DELETE</para>
+            /// <para>Description: Indicates whether client applications have permission to Delete a resource from the device.</para>
+            /// <para>Type: <see cref="VarEnum.VT_BOOL"/></para>
+            /// </summary>
             public static PropertyKey CanDelete => new PropertyKey(ResourceAttributesV1, 5);
-            //
-            // WPD_RESOURCE_ATTRIBUTE_OPTIMAL_READ_BUFFER_SIZE  
-            //   [ VT_UI4 ] The recommended buffer size a caller should use when doing buffered reads on the resource.
+
+            /// <summary>
+            /// <para>Name: WPD_RESOURCE_ATTRIBUTE_OPTIMAL_READ_BUFFER_SIZE</para>
+            /// <para>Description: The recommended buffer size a caller should use when doing buffered reads on the resource.</para>
+            /// <para>Type: <see cref="VarEnum.VT_UI4"/></para>
+            /// </summary>
             public static PropertyKey OptimalReadBufferSize => new PropertyKey(ResourceAttributesV1, 6);
-            //
-            // WPD_RESOURCE_ATTRIBUTE_OPTIMAL_WRITE_BUFFER_SIZE  
-            //   [ VT_UI4 ] The recommended buffer size a caller should use when doing buffered writes on the resource.
+
+            /// <summary>
+            /// <para>Name: WPD_RESOURCE_ATTRIBUTE_OPTIMAL_WRITE_BUFFER_SIZE</para>
+            /// <para>Description: The recommended buffer size a caller should use when doing buffered writes on the resource.</para>
+            /// <para>Type: <see cref="VarEnum.VT_UI4"/></para>
+            /// </summary>
             public static PropertyKey OptimalWriteBufferSize => new PropertyKey(ResourceAttributesV1, 7);
-            //
-            // WPD_RESOURCE_ATTRIBUTE_FORMAT  
-            //   [ VT_CLSID ] Indicates the format of the resource data.
+
+            /// <summary>
+            /// <para>Name: WPD_RESOURCE_ATTRIBUTE_FORMAT</para>
+            /// <para>Description: Indicates the format of the resource data.</para>
+            /// <para>Type: <see cref="VarEnum.VT_CLSID"/></para>
+            /// </summary>
             public static PropertyKey Format => new PropertyKey(ResourceAttributesV1, 8);
-            //
-            // WPD_RESOURCE_ATTRIBUTE_RESOURCE_KEY  
-            //   [ VT_UNKNOWN ] This is an IPortableDeviceKeyCollection containing a single value-which is the key identifying the resource.
+
+            /// <summary>
+            /// <para>Name: WPD_RESOURCE_ATTRIBUTE_RESOURCE_KEY</para>
+            /// <para>Description: This is an <see cref="IPortableDeviceKeyCollection"/> containing a single value-which is the key identifying the resource.</para>
+            /// <para>Type: <see cref="VarEnum.VT_UNKNOWN"/></para>
+            /// </summary>
             public static PropertyKey ResourceKey => new PropertyKey(ResourceAttributesV1, 9);
-
         }
-
     }
-
 }

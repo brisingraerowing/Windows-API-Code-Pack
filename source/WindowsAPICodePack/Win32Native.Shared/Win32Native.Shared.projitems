@@ -33,6 +33,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropertyKey.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropVariant.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropVariantNativeMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Storage\STGM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Structs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\TaskDialogs\NativeTaskDialogSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\TaskDialogs\TaskDialogDefaults.cs" />

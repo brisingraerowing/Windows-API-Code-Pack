@@ -1,10 +1,16 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
 using Microsoft.WindowsAPICodePack.PortableDevices;
+using Microsoft.WindowsAPICodePack.Win32Native;
+
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using WinCopies.Collections;
-using Microsoft.WindowsAPICodePack.Win32Native;
+
+using WinCopies.Collections
+#if !WAPICP2
+    .Generic
+#endif
+    ;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
 {
@@ -12,6 +18,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
     {
         public delegate T GetPortableDeviceObject<T>(in string id);
 
+#if CS7
         public static IList<T> GetItems<T>(in IPortableDeviceContent portableDeviceContent, in string id, in GetPortableDeviceObject<T> getPortableDeviceObjectDelegate)
         {
             HResult hr = portableDeviceContent.EnumObjects(0, id, null, out IEnumPortableDeviceObjectIDs enumPortableDeviceObjectIDs);
@@ -50,6 +57,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
 
                 throw GetPortableDeviceExceptionForHR(hr);
         }
+#endif
 
         public static PortableDeviceException GetPortableDeviceExceptionForHR(HResult hr) => new PortableDeviceException("An operation has not succeeded, see the inner exception.", Marshal.GetExceptionForHR((int)hr));
 

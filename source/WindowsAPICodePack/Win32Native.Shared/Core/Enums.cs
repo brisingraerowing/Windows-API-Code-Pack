@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native
 {
-
     ////////////////////////////////////////////////////////////////////
     //                                                                //
     //           Security Quality Of Service                          //
@@ -35,24 +32,18 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
     /// </summary>
     [Flags]
     public enum GenericRights : uint
-
     {
-
         All = 0x10000000,
         Execute = 0x20000000,
         Write = 0x40000000,
         Read = 0x80000000
-
     }
 
     [Flags]
     public enum FileShareOptions : uint
-
     {
-
         Read = 0x00000001,
         Write = 0x00000002,
         Delete = 0x00000004
-
     }
 }

@@ -1,25 +1,30 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Markup;
+
+using Microsoft.WindowsAPICodePack.COMNative.Dialogs;
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Controls;
 using Microsoft.WindowsAPICodePack.Dialogs.Controls;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
-using Microsoft.WindowsAPICodePack.Internal;
-using System.Collections.Generic;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using static WinCopies.Util.Util;
-using Microsoft.WindowsAPICodePack.COMNative.Shell;
-using Microsoft.WindowsAPICodePack.COMNative.Dialogs;
+
+using static WinCopies.
+#if WAPICP2
+    Util.Util
+#else
+    ThrowHelper
+#endif
+    ;
 
 namespace Microsoft.WindowsAPICodePack.Dialogs
 {
@@ -237,7 +242,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// to show or hide the list of pinned places that
         /// the user can choose.
         /// </summary>
-        /// <value>A <see cref="System.Boolean"/> value. <b>true</b> if the list is visible; otherwise <b>false</b>.</value>
+        /// <value>A <see cref="bool"/> value. <b>true</b> if the list is visible; otherwise <b>false</b>.</value>
         /// <exception cref="System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
         public bool ShowPlacesList
         {
@@ -254,7 +259,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// <summary>
         /// Gets or sets a value that controls whether to show or hide the list of places where the user has recently opened or saved items.
         /// </summary>
-        /// <value>A <see cref="System.Boolean"/> value.</value>
+        /// <value>A <see cref="bool"/> value.</value>
         /// <exception cref="System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
         public bool AddToMostRecentlyUsedList
         {
@@ -270,7 +275,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         ///<summary>
         /// Gets or sets a value that controls whether to show hidden items.
         /// </summary>
-        /// <value>A <see cref="System.Boolean"/> value.<b>true</b> to show the items; otherwise <b>false</b>.</value>
+        /// <value>A <see cref="bool"/> value.<b>true</b> to show the items; otherwise <b>false</b>.</value>
         /// <exception cref="System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
         public bool ShowHiddenItems
         {
@@ -293,7 +298,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         ///<summary>
         /// Gets or sets a value that controls whether shortcuts should be treated as their target items, allowing an application to open a .lnk file.
         /// </summary>
-        /// <value>A <see cref="System.Boolean"/> value. <b>true</b> indicates that shortcuts should be treated as their targets. </value>
+        /// <value>A <see cref="bool"/> value. <b>true</b> indicates that shortcuts should be treated as their targets. </value>
         /// <exception cref="System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
         public bool NavigateToShortcut
         {
@@ -345,7 +350,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
                 return;
 
-            CommonFileDialogFilter filter = null;
+            CommonFileDialogFilter filter;
 
             for (uint filtersCounter = 0; filtersCounter < Filters.Count; filtersCounter++)
             {
@@ -408,11 +413,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             {
                 CheckFileItemsAvailable();
 
-                if (items.Count > 1)
-
-                    throw new InvalidOperationException(LocalizedMessages.CommonFileDialogMultipleItems);
-
-                return items.Count == 0 ? null : ShellObjectFactory.Create(items[0]);
+                return items.Count > 1
+                    ? throw new InvalidOperationException(LocalizedMessages.CommonFileDialogMultipleItems)
+                    : items.Count == 0 ? null : ShellObjectFactory.Create(items[0]);
             }
         }
 
@@ -437,7 +440,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             }
 
             // Add the shellitem to the places list
-            if (nativeDialog != null)
+            else
 
                 nativeDialog.AddPlace(place.NativeShellItem, (FileDialogAddPlacement)location);
         }
@@ -470,9 +473,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 throw new CommonControlException(LocalizedMessages.CommonFileDialogCannotCreateShellItem, Marshal.GetExceptionForHR(retCode));
 
             // Add the shellitem to the places list
-            if (nativeDialog != null)
 
-                nativeDialog.AddPlace(nativeShellItem, (FileDialogAddPlacement)location);
+            nativeDialog?.AddPlace(nativeShellItem, (FileDialogAddPlacement)location);
         }
 
         // Null = use default directory.
@@ -585,6 +587,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 result = CommonFileDialogResult.Cancel;
                 filenames.Clear();
             }
+
             else
             {
                 canceled = false;
@@ -1177,6 +1180,4 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 // We need Windows Vista onwards ...
                 CoreHelpers.RunningOnVista;
     }
-
-
 }

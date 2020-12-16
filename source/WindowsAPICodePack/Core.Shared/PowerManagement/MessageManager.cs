@@ -88,6 +88,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
             internal void RegisterPowerEvent(in Guid eventId, in EventHandler eventToRegister)
             {
                 readerWriterLock.AcquireWriterLock(Timeout.Infinite);
+
                 if (!eventList.Contains(eventId))
                 {
                     _ = Power.RegisterPowerSettingNotification(Handle, eventId);
@@ -95,11 +96,11 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                     _ = newList.Add(eventToRegister);
                     eventList.Add(eventId, newList);
                 }
+
                 else
-                {
-                    var currList = (ArrayList)eventList[eventId];
-                    _ = currList.Add(eventToRegister);
-                }
+
+                    _ = ((ArrayList)eventList[eventId]).Add(eventToRegister);
+
                 readerWriterLock.ReleaseWriterLock();
             }
 
@@ -146,7 +147,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
             protected override void WndProc(ref Message m)
             {
                 // Make sure it is a Power Management message.
-                if (m.Msg == PowerManagementNativeMethods.PowerBroadcastMessage && 
+                if (m.Msg == PowerManagementNativeMethods.PowerBroadcastMessage &&
                     (int)m.WParam == PowerManagementNativeMethods.PowerSettingChangeMessage)
                 {
                     var ps =
@@ -155,7 +156,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
 
                     var pData = new IntPtr(m.LParam.ToInt64() + Marshal.SizeOf(ps));
                     string currentEvent = ps.PowerSetting.ToString();
-                                        
+
                     // IsMonitorOn
                     if (currentEvent == MonitorPowerStatus &&
                         ps.DataLength == Marshal.SizeOf(typeof(int)))

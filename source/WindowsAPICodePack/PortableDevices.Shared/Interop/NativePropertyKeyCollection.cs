@@ -3,18 +3,24 @@
 using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
+
+#if !WAPICP2
+using Microsoft.WindowsAPICodePack.COMNative;
+#endif
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
-    internal class NativeReadOnlyPropertyKeyCollection : INativeReadOnlyCollection<PropertyKey>, WinCopies.Collections.IUIntIndexedCollection<PropertyKey>
-
+    internal class NativeReadOnlyPropertyKeyCollection : INativeReadOnlyCollection<PropertyKey>, WinCopies.Collections.
+#if !WAPICP2
+        DotNetFix.Generic.
+#endif
+        IUIntIndexedCollection<PropertyKey>
     {
-
         private COMNative.PortableDevices.PropertySystem.IPortableDeviceKeyCollection _portableDeviceKeyCollection;
 
         protected internal COMNative.PortableDevices.PropertySystem.IPortableDeviceKeyCollection PortableDeviceKeyCollection { get { ThrowIfDisposed(); return _portableDeviceKeyCollection; } }
@@ -24,11 +30,8 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         // todo: replace by the same method of the WinCopies.Util.Util class.
 
         private protected void ThrowIfDisposed()
-
         {
-
             if (_isDisposed) throw new InvalidOperationException("The collection is disposed.");
-
         }
 
         bool INativeReadOnlyCollection<PropertyKey>.IsReadOnly
@@ -45,7 +48,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         private bool _isDisposed = false;
 
-        bool WinCopies.Util.DotNetFix.IDisposable.IsDisposed => _isDisposed;
+        bool WinCopies.
+#if WAPICP2
+            Util.
+#endif
+            DotNetFix.IDisposable.IsDisposed => _isDisposed;
 
         private void Dispose(bool disposing)
         {
@@ -120,19 +127,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         HResult INativeReadOnlyCollection<PropertyKey>.GetCount(out uint count) => GetCount(out count);
 
         private uint Count
-
         {
-
             get
-
             {
-
                 _ = GetCount(out uint count);
 
                 return count;
-
             }
-
         }
 
         uint WinCopies.Collections.IUIntIndexedCollection.Count => Count;
@@ -146,14 +147,15 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         IEnumerator<PropertyKey> IEnumerable<PropertyKey>.GetEnumerator() => GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
     }
 
     internal sealed class NativePropertyKeyCollection : NativeReadOnlyPropertyKeyCollection, INativeCollection<PropertyKey>
-
     {
-
-        public NativePropertyKeyCollection(IPortableDeviceKeyCollection portableDeviceKeyCollection) : base(portableDeviceKeyCollection) { }
+        public NativePropertyKeyCollection(IPortableDeviceKeyCollection portableDeviceKeyCollection) : base(portableDeviceKeyCollection)
+        {
+            // Left empty.
+        }
 
         bool INativeReadOnlyCollection<PropertyKey>.IsReadOnly
         {
