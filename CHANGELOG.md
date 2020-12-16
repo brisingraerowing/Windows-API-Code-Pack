@@ -13,7 +13,7 @@ For the original code (version 1.1, last release by Microsoft), see [https://win
 12/16/2020 2.1.0
 ================
 
-- Supports .Net 5.0.
+- Supports .Net Core 3.1 and .Net 5.0. Fixes #16.
 - Add methods to transfer content to and from portable devices.
 
 07/14/2020 2.0.1

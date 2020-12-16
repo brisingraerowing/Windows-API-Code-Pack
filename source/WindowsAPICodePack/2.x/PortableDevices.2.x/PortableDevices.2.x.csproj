@@ -10,10 +10,10 @@
     <Description>.NET wrappers fro the PortableDevices API</Description>
     <Copyright>Copyright © Pierre Sprimont 2020</Copyright>
     <DefineConstants>WAPICP2;$(DefineConstants)</DefineConstants>
-    <VersionPrefix>2.2</VersionPrefix>
+    <VersionPrefix>2.1</VersionPrefix>
     <!--<VersionSuffix>preview</VersionSuffix>-->
-    <AssemblyVersion>2.2</AssemblyVersion>
-    <FileVersion>2.2</FileVersion>
+    <AssemblyVersion>2.1</AssemblyVersion>
+    <FileVersion>2.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
