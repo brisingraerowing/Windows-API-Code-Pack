@@ -1,8 +1,8 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
+#if CS7
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
-using System;
-using System.Collections.Generic;
+
 using System.Linq;
 using System.Reflection;
 
@@ -66,3 +66,4 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
         }
     }
 }
+#endif

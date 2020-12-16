@@ -163,17 +163,14 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
                     LocalizedMessages.PreviewHandlerUnsupportedInterfaceCalled,
                     nameof(IPreviewFromStream)));
 
-#if CS7
-            
-            using (var storageStream = new StorageStream(stream, fileMode != AccessModes.ReadWrite))
-            
-                preview.Load(storageStream);
-
-#else
-
+#if CS8
             using var storageStream = new StorageStream(stream, fileMode != AccessModes.ReadWrite);
+            
             preview.Load(storageStream);
+#else
+            using (var storageStream = new StorageStream(stream, fileMode != AccessModes.ReadWrite))
 
+                preview.Load(storageStream);
 #endif
         }
 
@@ -192,17 +189,14 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
                     LocalizedMessages.PreviewHandlerUnsupportedInterfaceCalled,
                     "IPreviewFromShellObject"));
 
-#if CS7
-            
-            using (ShellObject shellObject = ShellObjectFactory.Create(shellItem))
-            
-                preview.Load(shellObject);
-
-#else
-
+#if CS8
             using ShellObject shellObject = ShellObjectFactory.Create(shellItem);
+            
             preview.Load(shellObject);
+#else
+            using (ShellObject shellObject = ShellObjectFactory.Create(shellItem))
 
+                preview.Load(shellObject);
 #endif
         }
 
@@ -237,12 +231,14 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
             if (registerType != null && registerType.IsSubclassOf(typeof(PreviewHandler)))
             {
                 object[] attrs = registerType.GetCustomAttributes(typeof(PreviewHandlerAttribute), true);
+
                 if (attrs != null && attrs.Length == 1)
                 {
                     var attr = attrs[0] as PreviewHandlerAttribute;
                     ThrowIfNotValid(registerType);
                     RegisterPreviewHandler(registerType.GUID, attr);
                 }
+                
                 else
 
                     throw new NotSupportedException(
@@ -261,7 +257,9 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
             if (registerType != null && registerType.IsSubclassOf(typeof(PreviewHandler)))
             {
                 object[] attrs = registerType.GetCustomAttributes(typeof(PreviewHandlerAttribute), true);
+
                 if (attrs != null && attrs.Length == 1)
+
                     UnregisterPreviewHandler(registerType.GUID, attrs[0] as PreviewHandlerAttribute);
             }
         }
@@ -288,17 +286,14 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
                 idKey.SetValue("AppID", attribute.AppId, RegistryValueKind.String);
                 idKey.SetValue("DisableLowILProcessIsolation", attribute.DisableLowILProcessIsolation ? 1 : 0, RegistryValueKind.DWord);
 
-#if CS7
-
-                using (RegistryKey inproc = idKey.OpenSubKey("InprocServer32", true))
-                
-                    inproc.SetValue("ThreadingModel", "Apartment", RegistryValueKind.String);
-
-#else
-
+#if CS8
                 using RegistryKey inproc = idKey.OpenSubKey("InprocServer32", true);
+       
                 inproc.SetValue("ThreadingModel", "Apartment", RegistryValueKind.String);
+#else
+                using (RegistryKey inproc = idKey.OpenSubKey("InprocServer32", true))
 
+                    inproc.SetValue("ThreadingModel", "Apartment", RegistryValueKind.String);
 #endif
             }
 
@@ -308,20 +303,17 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
 
                 // Set preview handler for specific extension
 
-#if CS7
-    
-                using (RegistryKey extensionKey = Registry.ClassesRoot.CreateSubKey(extension))
-                using (RegistryKey shellexKey = extensionKey.CreateSubKey("shellex"))
-                using (RegistryKey previewKey = shellexKey.CreateSubKey(new Guid(NativeAPI.Guids.ShellExtensions.IPreviewHandler).ToString("B")))
-
-#else
+#if CS8
                 using RegistryKey extensionKey = Registry.ClassesRoot.CreateSubKey(extension);
                 using RegistryKey shellexKey = extensionKey.CreateSubKey("shellex");
                 using RegistryKey previewKey = shellexKey.CreateSubKey(new Guid(NativeAPI.Guids.ShellExtensions.IPreviewHandler).ToString("B"));
-
+#else
+                using (RegistryKey extensionKey = Registry.ClassesRoot.CreateSubKey(extension))
+                using (RegistryKey shellexKey = extensionKey.CreateSubKey("shellex"))
+                using (RegistryKey previewKey = shellexKey.CreateSubKey(new Guid(NativeAPI.Guids.ShellExtensions.IPreviewHandler).ToString("B")))
 #endif
 
-                previewKey.SetValue(null, guid, RegistryValueKind.String);
+                    previewKey.SetValue(null, guid, RegistryValueKind.String);
             }
         }
 
@@ -332,36 +324,29 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
             {
                 Trace.WriteLine("Unregistering extension '" + extension + "' with previewer '" + guid + "'");
 
-#if CS7
-                
-                using (RegistryKey shellexKey = Registry.ClassesRoot.OpenSubKey(extension + "\\shellex", true))
-                
-                    shellexKey.DeleteSubKey(NativeAPI.Guids.ShellExtensions.IPreviewHandler, false);
-
-#else
-
+#if CS8
                 using RegistryKey shellexKey = Registry.ClassesRoot.OpenSubKey(extension + "\\shellex", true);
+
                 shellexKey.DeleteSubKey(NativeAPI.Guids.ShellExtensions.IPreviewHandler, false);
+#else
+                using (RegistryKey shellexKey = Registry.ClassesRoot.OpenSubKey(extension + "\\shellex", true))
 
+                    shellexKey.DeleteSubKey(NativeAPI.Guids.ShellExtensions.IPreviewHandler, false);
 #endif
-
             }
 
             using (RegistryKey appIdsKey = Registry.ClassesRoot.OpenSubKey("AppID", true))
 
                 appIdsKey.DeleteSubKey(attribute.AppId, false);
 
-#if CS7
-
-            using (RegistryKey classesKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\PreviewHandlers", true))
-            
-                classesKey.DeleteValue(guid, false);
-
-#else
-
+#if CS8
             using RegistryKey classesKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\PreviewHandlers", true);
+            
             classesKey.DeleteValue(guid, false);
+#else
+            using (RegistryKey classesKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\PreviewHandlers", true))
 
+                classesKey.DeleteValue(guid, false);
 #endif
         }
 
@@ -397,7 +382,6 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
                 ? CustomQueryInterfaceResult.Failed
                 : CustomQueryInterfaceResult.NotHandled;
         }
-
 
         #endregion
     }

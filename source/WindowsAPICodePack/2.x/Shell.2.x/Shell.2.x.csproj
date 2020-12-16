@@ -1,0 +1,89 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFrameworks>net472;net48;netcoreapp3.0;netcoreapp3.1;net5.0-windows</TargetFrameworks>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>WinCopies.WindowsAPICodePack.Shell</AssemblyName>
+    <RootNamespace>Microsoft.WindowsAPICodePack.Shell</RootNamespace>
+    <AssemblyOriginatorKeyFile>Shell.snk</AssemblyOriginatorKeyFile>
+    <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
+    <Description>WindowsAPICodePack for Shell</Description>
+    <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020</Copyright>
+    <DocumentationFile>WinCopies.WindowsAPICodePack.Shell.xml</DocumentationFile>
+    <DefineConstants>WAPICP2;$(DefineConstants)</DefineConstants>
+    <VersionPrefix>2.2</VersionPrefix>
+    <!--<VersionSuffix>preview</VersionSuffix>-->
+    <AssemblyVersion>2.2</AssemblyVersion>
+    <FileVersion>2.2</FileVersion>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="CustomDictionary.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='net5.0-windows'">
+    <PackageReference Include="System.Drawing.Common" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp3.1'">
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp3.0'">
+    <PackageReference Include="System.Drawing.Common" Version="4.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\COMNative.2.x\COMNative.2.x.csproj" />
+    <ProjectReference Include="..\Core.2.x\Core.2.x.csproj" />
+    <ProjectReference Include="..\Win32Native.2.x\Win32Native.2.x.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Controls\CommandLinkWinforms.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="ExplorerBrowser\ExplorerBrowser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Resources\LocalizedMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LocalizedMessages.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\LocalizedMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LocalizedMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Controls\CommandLinkWPF.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ExplorerBrowser\ExplorerBrowser.WPF.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Controls\CommandLinkWPF.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="ExplorerBrowser\ExplorerBrowser.WPF.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+  </ItemGroup>
+
+  <Import Project="..\..\Shell.Shared\Shell.Shared.projitems" Label="Shared" />
+
+</Project>

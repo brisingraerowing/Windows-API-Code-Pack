@@ -94,10 +94,16 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
                 if (CoreErrorHelper.Failed(hresult))
                 {
-#if CS7
-
-
+#if CS8
+                    string msg = hresult switch
+                    {
+                        HResult.InvalidArguments => LocalizedMessages.NativeTaskDialogInternalErrorArgs,
+                        HResult.OutOfMemory => LocalizedMessages.NativeTaskDialogInternalErrorComplex,
+                        _ => string.Format(System.Globalization.CultureInfo.InvariantCulture, LocalizedMessages.NativeTaskDialogInternalErrorUnexpected, hresult),
+                    };
+#else
                     string msg;
+
                     switch (hresult)
                     {
                         case HResult.InvalidArguments:
@@ -112,16 +118,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                                 hresult);
                             break;
                     }
-
-#else
-                    string msg = hresult switch
-                    {
-                        HResult.InvalidArguments => LocalizedMessages.NativeTaskDialogInternalErrorArgs,
-                        HResult.OutOfMemory => LocalizedMessages.NativeTaskDialogInternalErrorComplex,
-                        _ => string.Format(System.Globalization.CultureInfo.InvariantCulture,
-LocalizedMessages.NativeTaskDialogInternalErrorUnexpected,
-hresult),
-                    };
 #endif
                     throw new Win32Exception(msg, Marshal.GetExceptionForHR((int)hresult));
                 }
@@ -150,9 +146,20 @@ hresult),
         internal void NativeClose(in TaskDialogResult result)
         {
             ShowState = DialogShowState.Closing;
-#if CS7
-
+#if CS8
+            int id = result switch
+            {
+                TaskDialogResult.Close => (int)Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Close,
+                TaskDialogResult.CustomButtonClicked => DialogsDefaults.MinimumDialogControlId,// custom buttons
+                TaskDialogResult.No => (int)Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.No,
+                TaskDialogResult.Ok => (int)Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Ok,
+                TaskDialogResult.Retry => (int)Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Retry,
+                TaskDialogResult.Yes => (int)Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Yes,
+                _ => (int)Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Cancel,
+            };
+#else
             int id;
+
             switch (result)
             {
                 case TaskDialogResult.Close:
@@ -177,18 +184,6 @@ hresult),
                     id = (int)Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Cancel;
                     break;
             }
-
-#else
-            int id = result switch
-            {
-                TaskDialogResult.Close => (int)Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Close,
-                TaskDialogResult.CustomButtonClicked => DialogsDefaults.MinimumDialogControlId,// custom buttons
-                TaskDialogResult.No => (int)Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.No,
-                TaskDialogResult.Ok => (int)Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Ok,
-                TaskDialogResult.Retry => (int)Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Retry,
-                TaskDialogResult.Yes => (int)Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Yes,
-                _ => (int)Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Cancel,
-            };
 #endif
             _ = SendMessageHelper(Win32Native.Dialogs.TaskDialog.TaskDialogMessages.ClickButton, id, 0);
         }

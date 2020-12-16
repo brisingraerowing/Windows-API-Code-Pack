@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
+    <TargetFrameworks>net472;net48;netcoreapp3.0;netcoreapp3.1;net5.0-windows</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
     <PackageId>WinCopies.WindowsAPICodePack</PackageId>
     <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
@@ -11,6 +12,11 @@
     <AssemblyName>WinCopies.WindowsAPICodePack</AssemblyName>
     <RootNamespace>Microsoft.WindowsAPICodePack</RootNamespace>
     <DocumentationFile>WinCopies.WindowsAPICodePack.Core.xml</DocumentationFile>
+    <DefineConstants>WAPICP3;$(DefineConstants)</DefineConstants>
+    <VersionPrefix>3.0</VersionPrefix>
+    <VersionSuffix>preview</VersionSuffix>
+    <AssemblyVersion>3.0</AssemblyVersion>
+    <FileVersion>3.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,6 +30,11 @@
   <ItemGroup>
     <ProjectReference Include="..\COMNative\COMNative.csproj" />
     <ProjectReference Include="..\Win32Native\Win32Native.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WinCopies.Util" Version="3.1.0.1-preview" />
+    <PackageReference Include="WinCopies.Collections" Version="3.1.0.1-preview" />
   </ItemGroup>
 
   <ItemGroup>

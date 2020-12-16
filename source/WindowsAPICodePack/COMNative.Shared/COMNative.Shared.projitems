@@ -23,6 +23,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropertyChange.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\PropertySystem\PropertyKeyAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Taskbar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\INativeReadOnlyCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\CallbackInterfaces\IWMDMNotification.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\CallbackInterfaces\IWMDMOperation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\CallbackInterfaces\IWMDMProgress.cs" />

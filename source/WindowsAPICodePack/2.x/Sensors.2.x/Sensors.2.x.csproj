@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net472;net48;netcoreapp3.0;netcoreapp3.1;net5.0-windows</TargetFrameworks>
+    <AssemblyOriginatorKeyFile>Sensors.snk</AssemblyOriginatorKeyFile>
+    <RootNamespace>Microsoft.WindowsAPICodePack.Sensors</RootNamespace>
+    <AssemblyName>WinCopies.WindowsAPICodePack.Sensors</AssemblyName>
+    <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
+    <Description>WindowsAPICodePack for Sensors</Description>
+    <Copyright>Copyright © Microsoft 2009, Copyright © Pierre Sprimont 2020</Copyright>
+    <DocumentationFile>WinCopies.WindowsAPICodePack.Sensors.xml</DocumentationFile>
+    <DefineConstants>WAPICP3;$(DefineConstants)</DefineConstants>
+    <VersionPrefix>2.2</VersionPrefix>
+    <!--<VersionSuffix>preview</VersionSuffix>-->
+    <AssemblyVersion>2.2</AssemblyVersion>
+    <FileVersion>2.2</FileVersion>
+  </PropertyGroup>
+
+  <Import Project="..\..\Sensors.Shared\Sensors.Shared.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <None Remove="CustomDictionary.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\COMNative.2.x\COMNative.2.x.csproj" />
+    <ProjectReference Include="..\Win32Native.2.x\Win32Native.2.x.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\LocalizedMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LocalizedMessages.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\LocalizedMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LocalizedMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

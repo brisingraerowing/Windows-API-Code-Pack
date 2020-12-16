@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>6dca464a-d42a-4e1b-8c96-c660f65e712e</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>ShellExtensionTests.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)PreviewHandlers\PreviewHandlerTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PreviewHandlers\PreviewHandlerTestSamples.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PreviewHandlers\WinFormsPreviewHandlerSampleForm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PreviewHandlers\WinFormsPreviewHandlerSampleForm.Designer.cs">
+      <DependentUpon>WinFormsPreviewHandlerSampleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ThumbnailProviders\ThumbnailProviderTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ThumbnailProviders\ThumbnailProviderTestSamples.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)PreviewHandlers\WinFormsPreviewHandlerSampleForm.resx">
+      <DependentUpon>WinFormsPreviewHandlerSampleForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

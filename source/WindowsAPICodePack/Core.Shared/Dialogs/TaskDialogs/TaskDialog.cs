@@ -795,9 +795,23 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         // note that we can't just cast, as the Win32
         // typedefs differ incoming and outgoing.
 
-#if CS7
-
-            private static TaskDialogStandardButtons MapButtonIdToStandardButton(int id)
+#if CS8
+        private static TaskDialogStandardButtons MapButtonIdToStandardButton(in int id) => ((Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds)id) switch
+        {
+            Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Ok => TaskDialogStandardButtons.Ok,
+            Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Cancel => TaskDialogStandardButtons.Cancel,
+            Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Abort => TaskDialogStandardButtons.None,// Included for completeness in API - 
+                                                                                                                   // we can't pass in an Abort standard button.
+            Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Retry => TaskDialogStandardButtons.Retry,
+            Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Ignore => TaskDialogStandardButtons.None,// Included for completeness in API - 
+                                                                                                                    // we can't pass in an Ignore standard button.
+            Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Yes => TaskDialogStandardButtons.Yes,
+            Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.No => TaskDialogStandardButtons.No,
+            Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Close => TaskDialogStandardButtons.Close,
+            _ => TaskDialogStandardButtons.None,
+        };
+#else
+        private static TaskDialogStandardButtons MapButtonIdToStandardButton(int id)
         {
             switch ((Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds)id)
             {
@@ -825,24 +839,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                     return TaskDialogStandardButtons.None;
             }
         }
-
-#else
-
-        private static TaskDialogStandardButtons MapButtonIdToStandardButton(in int id) => ((Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds)id) switch
-        {
-            Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Ok => TaskDialogStandardButtons.Ok,
-            Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Cancel => TaskDialogStandardButtons.Cancel,
-            Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Abort => TaskDialogStandardButtons.None,// Included for completeness in API - 
-                                                                                                                   // we can't pass in an Abort standard button.
-            Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Retry => TaskDialogStandardButtons.Retry,
-            Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Ignore => TaskDialogStandardButtons.None,// Included for completeness in API - 
-                                                                                                                    // we can't pass in an Ignore standard button.
-            Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Yes => TaskDialogStandardButtons.Yes,
-            Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.No => TaskDialogStandardButtons.No,
-            Win32Native.Dialogs.TaskDialog.TaskDialogCommonButtonReturnIds.Close => TaskDialogStandardButtons.Close,
-            _ => TaskDialogStandardButtons.None,
-        };
-
 #endif
 
         private void ThrowIfDialogShowing(string message)
@@ -1066,9 +1062,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
         internal void RaiseTickEvent(in int ticks) => Tick?.Invoke(this, new TaskDialogTickEventArgs(ticks));
 
-#endregion
+        #endregion
 
-#region Cleanup Code
+        #region Cleanup Code
 
         // Cleans up data and structs from a single 
         // native dialog Show() invocation.
@@ -1154,7 +1150,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             }
         }
 
-#endregion
+        #endregion
 
         /// <summary>
         /// Indicates whether this feature is supported on the current platform.

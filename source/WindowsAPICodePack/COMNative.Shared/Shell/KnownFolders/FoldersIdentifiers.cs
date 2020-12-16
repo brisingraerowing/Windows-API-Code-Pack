@@ -19,10 +19,8 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
             folders = new Dictionary<Guid, string>();
             Type folderIDs = typeof(Microsoft.WindowsAPICodePack.Shell.Guids.KnownFolders);
 
-#if !CS7
-
+#if CS8
             static
-
 #endif
 
                 void add(in Type type)

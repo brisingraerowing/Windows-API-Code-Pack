@@ -1,24 +1,21 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
+using Microsoft.WindowsAPICodePack.COMNative.PropertySystem;
+using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
+
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Text;
-using Microsoft.WindowsAPICodePack.COMNative.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
     internal class NativeReadOnlyValueCollection : INativeReadOnlyPortableDeviceValueCollection
-
     {
-
         bool INativeReadOnlyValueCollection.IsReadOnly
         {
             get
@@ -41,11 +38,8 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         // todo: replace by the same method of the WinCopies.Util.Util class.
 
         private protected void ThrowIfDisposed()
-
         {
-
             if (_isDisposed) throw new InvalidOperationException("The collection is disposed.");
-
         }
 
         //private readonly bool _isReadOnly;
@@ -68,7 +62,6 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         private void Dispose(bool disposing)
         {
-
             if (disposing || _isDisposed)
 
                 return;
@@ -78,7 +71,6 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             _portableDeviceValues = null;
 
             _isDisposed = true;
-
         }
 
         void IDisposable.Dispose()
@@ -180,7 +172,6 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         }
 
         HResult INativeReadOnlyValueCollection.GetValue(ref PropertyKey key, out object pValue, out Type valueType)
-
         {
             ThrowIfDisposed();
 
@@ -201,9 +192,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             HResult hr = _portableDeviceValues.GetValue(ref key, propVariant);
 
             if (hr == HResult.ElementNotFound)
-
             {
-
                 propVariant.Dispose();
 
                 pValue = null;
@@ -211,7 +200,6 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 valueType = null;
 
                 return hr;
-
             }
 
             (object value, Type valueType) result = (propVariant.Value, NativePropertyHelper.VarEnumToSystemType(propVariant.VarType));
@@ -404,9 +392,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
     }
 
     internal sealed class NativeValueCollection : NativeReadOnlyValueCollection, INativeValueCollection
-
     {
-
         public NativeValueCollection(IPortableDeviceValues portableDeviceValues) : base(portableDeviceValues) { }
 
         bool INativeReadOnlyValueCollection.IsReadOnly

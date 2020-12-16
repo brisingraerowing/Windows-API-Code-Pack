@@ -36,25 +36,25 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
 
         [PreserveSig]
         HResult CreateObjectWithPropertiesOnly(
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pValues,
+            [In, MarshalAs(UnmanagedType.Interface)]  IPortableDeviceValues pValues,
             [In, Out, MarshalAs(UnmanagedType.LPWStr)] ref string ppszObjectID);
 
         [PreserveSig]
         HResult CreateObjectWithPropertiesAndData(
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pValues,
+            [In, MarshalAs(UnmanagedType.Interface)]  IPortableDeviceValues pValues,
             [Out, MarshalAs(UnmanagedType.Interface)] out System.Runtime.InteropServices.ComTypes.IStream ppData,
-            [In, Out] ref uint pdwOptimalWriteBufferSize,
-            [In, Out, MarshalAs(UnmanagedType.LPWStr)] ref string ppszCookie);
+            [In, Out, MarshalAs(UnmanagedType.U4)] ref uint pdwOptimalWriteBufferSize,
+            [In, Out, MarshalAs(UnmanagedType.LPWStr)] ref  string ppszCookie);
 
         [PreserveSig]
         HResult Delete(
             [In] DeleteObjectOptionValues dwOptions,
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection pObjectIDs,
+            [In, MarshalAs(UnmanagedType.Interface)]  IPortableDevicePropVariantCollection pObjectIDs,
             [In, Out, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection ppResults);
 
         [PreserveSig]
         HResult GetObjectIDsFromPersistentUniqueIDs(
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection pPersistentUniqueIDs,
+            [In, MarshalAs(UnmanagedType.Interface)]  IPortableDevicePropVariantCollection pPersistentUniqueIDs,
             [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDevicePropVariantCollection ppObjectIDs);
 
         [PreserveSig]

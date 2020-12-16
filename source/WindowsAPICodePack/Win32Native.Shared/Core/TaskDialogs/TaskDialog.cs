@@ -2,7 +2,7 @@
 
 using System;
 using System.Runtime.InteropServices;
-using Microsoft.WindowsAPICodePack.Win32Native;
+
 using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.Common;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
@@ -13,7 +13,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Dialogs
     /// throughout the library.
     /// Functions that are not performance intensive belong in this class.
     /// </summary>
-
     public static class TaskDialog
     {
         #region TaskDialog Definitions

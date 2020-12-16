@@ -1,12 +1,13 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
-using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Resources;
+
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.InteropServices;
+
 using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
@@ -634,7 +635,12 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
                     case VarEnum.VT_DECIMAL:
                         return _decimal;
                     case VarEnum.VT_CLSID:
-                        return Marshal.PtrToStructure<Guid>(_ptr);
+                        return
+#if CS7
+                            Marshal.PtrToStructure<Guid>(_ptr);
+#else
+                            Marshal.PtrToStructure(_ptr, typeof(Guid));
+#endif
                     case VarEnum.VT_ARRAY | VarEnum.VT_UNKNOWN:
                         return CrackSingleDimSafeArray(_ptr);
                     case (VarEnum.VT_VECTOR | VarEnum.VT_LPWSTR):
@@ -677,13 +683,12 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         private static System.Runtime.InteropServices.ComTypes.FILETIME DateTimeToFileTime(DateTime value)
         {
             long hFT = value.ToFileTime();
-            var ft =
-                new System.Runtime.InteropServices.ComTypes.FILETIME
-                {
-                    dwLowDateTime = (int)(hFT & 0xFFFFFFFF),
-                    dwHighDateTime = (int)(hFT >> 32)
-                };
-            return ft;
+
+            return new System.Runtime.InteropServices.ComTypes.FILETIME
+            {
+                dwLowDateTime = (int)(hFT & 0xFFFFFFFF),
+                dwHighDateTime = (int)(hFT >> 32)
+            }; 
         }
 
         private object GetBlobData()
@@ -704,20 +709,17 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
             lock (_padlock)
             {
-#if CS7
+#if CS8
+                _vectorActions ??= GenerateVectorActions();
+#else
                 if (_vectorActions == null)
 
                     _vectorActions = GenerateVectorActions();
-
-#else
-                _vectorActions ??= GenerateVectorActions();
 #endif
             }
 
             if (_vectorActions.TryGetValue(typeof(T), out Action<PropVariant, Array, uint> action))
-
             {
-
                 Array array = new T[count];
 
                 for (uint i = 0; i < count; i++)
@@ -725,10 +727,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
                     action(this, array, i);
 
                 return array;
-
             }
-
-            else
 
                 throw new InvalidCastException(LocalizedMessages.PropVariantUnsupportedType);
         }
@@ -753,9 +752,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
             return array;
         }
 
-#endregion
+        #endregion
 
-#region IDisposable Members
+        #region IDisposable Members
 
         /// <summary>
         /// Disposes the object, calls the clear function.
@@ -775,7 +774,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
             Dispose();
         }
 
-#endregion
+        #endregion
 
         /// <summary>
         /// Provides an simple string representation of the contained data and type.
@@ -784,7 +783,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         public override string ToString() => string.Format(System.Globalization.CultureInfo.InvariantCulture,
                 "{0}: {1}", Value, VarType.ToString());
 
-#region Native methods
+        #region Native methods
         [DllImport(Ole32, PreserveSig = false)] // returns hresult
         public extern static void PropVariantClear([In, Out] PropVariant pvar);
 
@@ -822,7 +821,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         public static extern int PropVariantGetElementCount([In] PropVariant propVar);
 
         [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
-        public static extern void PropVariantGetBooleanElem([In] PropVariant propVar, [In]uint iElem, [Out, MarshalAs(UnmanagedType.Bool)] out bool pfVal);
+        public static extern void PropVariantGetBooleanElem([In] PropVariant propVar, [In] uint iElem, [Out, MarshalAs(UnmanagedType.Bool)] out bool pfVal);
 
         [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void PropVariantGetInt16Elem([In] PropVariant propVar, [In] uint iElem, [Out] out short pnVal);
@@ -849,7 +848,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         public static extern void PropVariantGetFileTimeElem([In] PropVariant propVar, [In] uint iElem, [Out, MarshalAs(UnmanagedType.Struct)] out System.Runtime.InteropServices.ComTypes.FILETIME pftVal);
 
         [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
-        public static extern void PropVariantGetStringElem([In] PropVariant propVar, [In]  uint iElem, [MarshalAs(UnmanagedType.LPWStr)] ref string ppszVal);
+        public static extern void PropVariantGetStringElem([In] PropVariant propVar, [In] uint iElem, [MarshalAs(UnmanagedType.LPWStr)] ref string ppszVal);
 
         [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void InitPropVariantFromBooleanVector([In, MarshalAs(UnmanagedType.LPArray)] bool[] prgf, uint cElems, [Out] PropVariant ppropvar);
@@ -881,7 +880,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void InitPropVariantFromStringVector([In, Out] string[] prgsz, uint cElems, [Out] PropVariant ppropvar);
 
-#endregion
+        #endregion
 
     }
 

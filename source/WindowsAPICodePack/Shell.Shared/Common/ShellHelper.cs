@@ -47,9 +47,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         internal static string GetItemType(IShellItem2 shellItem) => shellItem != null && shellItem.GetString(ref ItemTypePropertyKey, out string itemType) == HResult.Ok ? itemType : null;
 
-        internal static IntPtr PidlFromParsingName(string name) => (CoreErrorHelper.Succeeded(Win32Native.Shell.Shell.SHParseDisplayName(
+        internal static IntPtr PidlFromParsingName(string name) => CoreErrorHelper.Succeeded(Win32Native.Shell.Shell.SHParseDisplayName(
                 name, IntPtr.Zero, out IntPtr pidl, 0,
-                out _)) ? pidl : IntPtr.Zero);
+                out _)) ? pidl : IntPtr.Zero;
 
         internal static IntPtr PidlFromShellItem(IShellItem nativeShellItem) => PidlFromUnknown(Marshal.GetIUnknownForObject(nativeShellItem));
 

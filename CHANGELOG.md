@@ -10,6 +10,12 @@ For issue and fixation details, visit [https://wincopies.com/fwd.php?id=3](https
 
 For the original code (version 1.1, last release by Microsoft), see [https://wincopies.com/fwd.php?id=1](https://wincopies.com/fwd.php?id=1)
 
+12/16/2020 2.1.0
+================
+
+- Supports .Net 5.0.
+- Add methods to transfer content to and from portable devices.
+
 07/14/2020 2.0.1
 ================
 

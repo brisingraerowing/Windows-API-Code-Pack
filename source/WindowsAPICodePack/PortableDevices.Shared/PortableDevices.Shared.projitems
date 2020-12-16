@@ -12,7 +12,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interop\NativePropertyKeyCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interop\NativeValueCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ObjectModel\DeviceCapabilities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ObjectModel\EnumerablePortableDeviceObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ObjectModel\IPortableDeviceObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ObjectModel\NotEnumerablePortableDeviceObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ObjectModel\PortableDevice.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ObjectModel\PortableDeviceCommonObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ObjectModel\PortableDeviceFile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ObjectModel\PortableDeviceFolder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ObjectModel\PortableDeviceFunctionalObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ObjectModel\PortableDeviceObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ObjectModel\PortableDeviceObjectStorageCapacity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Old.cs" />

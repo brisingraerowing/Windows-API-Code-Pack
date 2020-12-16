@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WinCopies.WindowsAPICodePack.PortableDevices</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject">
+            <summary>
+            Represents a content object that is stored directly on a <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDevice"/> or on a parent <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject.Id">
+            <summary>
+            Gets the id of the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject"/> on its parent device.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject.ParentPortableDevice">
+            <summary>
+            Gets the <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDevice"/> on which the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject"/> is stored.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject.Parent">
+            <summary>
+            Gets the parent <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject"/> if any; otherwise returns <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDevice">
+            <summary>
+            Represents a portable device.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDevice.PortableDeviceManager">
+            <summary>
+            Gets the <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceManager"/> for this device.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDevice.DeviceFriendlyName">
+            <summary>
+            Gets the device friendly name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDevice.DeviceDescription">
+            <summary>
+            Gets the device description.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDevice.DeviceManufacturer">
+            <summary>
+            Gets the device manufacturer.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDevice.IsOpen">
+            <summary>
+            Gets a value that indicates whether the device is open.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDevice.Open(Microsoft.WindowsAPICodePack.PortableDevices.ClientVersion@,Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceOpeningOptions@)">
+            <summary>
+            Opens a connection to the device.
+            </summary>
+            <param name="clientVersion">The client info and version that will be registered by the device.</param>
+            <param name="portableDeviceOpeningOptions">The opening options.</param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDevice.Close">
+            <summary>
+            Closes the connection with the device.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDevice.GetDeviceProperty(System.String@,System.Object@,System.Boolean@,Microsoft.WindowsAPICodePack.BlobValueKind@)">
+            <summary>
+            Returns a property that is specific to the current device model.
+            </summary>
+            <param name="propertyName">The name of the property for which to get the value.</param>
+            <param name="defaultValue">The default value that is returned if the operation fails.</param>
+            <param name="doNotExpand">A value that indicates whether to expand environment variables.</param>
+            <param name="valueKind">The kind of data that was retrieved.</param>
+            <returns>If the method succeeds, the value of the property that was requested are returned; otherwise this method returns <paramref name="defaultValue"/>.</returns>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice.PortableDeviceManager">
+            <summary>
+            If the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice"/> has been created by a <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceManager"/>, gets that manager; otherwise returns <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice.DeviceCapabilities">
+            <summary>
+            Gets the capabilities that are supported by the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice"/>. These capabilities do not include the supported properties. For supported properties, see the <see cref="P:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice.Properties"/> property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice.Properties">
+            <summary>
+            Gets all of the properties that are supported by the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice.DeviceId">
+            <summary>
+            Gets the device id of the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice.DeviceFriendlyName">
+            <summary>
+            If the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice"/> has been created by a <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceManager"/>, gets the device friendly name of the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice"/>, otherwise gets <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice.DeviceDescription">
+            <summary>
+            If the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice"/> has been created by a <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceManager"/>, gets the device description of the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice"/>, otherwise gets <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice.DeviceManufacturer">
+            <summary>
+            If the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice"/> has been created by a <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceManager"/>, gets the device manufacturer of the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice"/>, otherwise gets <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceObject.Properties">
+            <summary>
+            Gets all of the properties that are supported by the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice"/>.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -51,10 +51,6 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// which notifications are to be sent.</param>
         /// <returns>Returns a notification handle for unregistering 
         /// power notifications.</returns>
-        internal static int RegisterPowerSettingNotification(
-            IntPtr handle, Guid powerSetting) => PowerManagementNativeMethods.RegisterPowerSettingNotification(
-                handle,
-                ref powerSetting,
-                0);
+        internal static int RegisterPowerSettingNotification(IntPtr handle, Guid powerSetting) => PowerManagementNativeMethods.RegisterPowerSettingNotification(handle, ref powerSetting, 0);
     }
 }

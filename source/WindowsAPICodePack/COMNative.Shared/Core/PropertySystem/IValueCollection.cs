@@ -1,20 +1,17 @@
 ﻿using Microsoft.WindowsAPICodePack.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative;
-using Microsoft.WindowsAPICodePack.COMNative.PortableDevices;
-using Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.PropertySystem;
 using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
+
+using System;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.PropertySystem
 {
-    public interface INativeReadOnlyValueCollection : WinCopies.Util.DotNetFix.IDisposable
+    public interface INativeReadOnlyValueCollection : WinCopies.
+#if WAPICP2
+        Util.
+#endif
+        DotNetFix.IDisposable
     {
-
         bool IsReadOnly { get; }
 
         HResult GetCount(out uint pcelt);
@@ -61,9 +58,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PropertySystem
     }
 
     public interface INativeValueCollection : INativeReadOnlyValueCollection
-
     {
-
         HResult SetStringValue(ref PropertyKey key, in string Value);
 
         HResult SetUnsignedIntegerValue(ref PropertyKey key, in uint Value);
@@ -99,6 +94,5 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PropertySystem
         HResult RemoveValue(ref PropertyKey key);
 
         HResult Clear();
-
     }
 }
