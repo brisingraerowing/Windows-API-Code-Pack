@@ -5,22 +5,26 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 using System.Windows.Media;
 
-using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.GDI;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
-using Microsoft.WindowsAPICodePack.Internal;
 
 using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.Taskbar.TabbedThumbnail;
-using Microsoft.WindowsAPICodePack.Win32Native.GDI;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager;
-using Microsoft.WindowsAPICodePack.COMNative.Shell;
+
+using static WinCopies.
+    #if WAPICP2
+    Util.Util
+#else
+    ThrowHelper
+    #endif
+    ;
+
 using DesktopWindowManager = Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.DesktopWindowManager;
-using static WinCopies.Util.Util;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar
 {
@@ -195,7 +199,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             return toReturn;
         }
 
-        #region Message dispatch methods
+#region Message dispatch methods
         private static void DispatchTaskbarButtonMessages(ref System.Windows.Forms.Message m, TaskbarWindow taskbarWindow)
         {
             if (m.Msg == (int)Win32Native.Taskbar.Taskbar.WmTaskbarButtonCreated)
@@ -248,7 +252,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 // Fire an event to let the user update their bitmap
                 taskbarWindow.TabbedThumbnail.OnTabbedThumbnailBitmapRequested();
 
-                IntPtr hBitmap = IntPtr.Zero;
+                IntPtr hBitmap ;
 
                 // Default size for the thumbnail
                 var realWindowSize = new System.Drawing.Size(200, 200);
@@ -546,7 +550,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             return false;
         }
 
-        #endregion
+#endregion
 
         /// <summary>
         /// Dispatches a window message so that the appropriate events
@@ -678,7 +682,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 button.AddedToTaskbar = _buttonsAdded;
         }
 
-        #region Event handlers
+#region Event handlers
 
         private static void thumbnailPreview_TooltipChanged(object sender, EventArgs e)
         {
@@ -706,7 +710,6 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
                 taskbarWindow?.SetTitle(preview.Title);
         }
-
-        #endregion
+#endregion
     }
 }

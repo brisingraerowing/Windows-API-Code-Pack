@@ -3,10 +3,10 @@
 using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
 
-using static Microsoft.WindowsAPICodePack.Shell.KnownFolderHelper;
-
 using System;
 using System.Runtime.InteropServices;
+
+using static Microsoft.WindowsAPICodePack.Shell.KnownFolderHelper;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -26,7 +26,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
             // to get a list of all the known folders, create the managed wrapper
             // and return the read-only collection.
 
-            var foldersList = new WinCopies.Collections.ArrayBuilder<IKnownFolder>();
+            var foldersList = new WinCopies.Collections.
+#if WAPICP3
+                Generic.
+#endif
+                ArrayBuilder<IKnownFolder>();
+
             IntPtr folders = IntPtr.Zero;
 
             try

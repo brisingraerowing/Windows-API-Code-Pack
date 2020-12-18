@@ -9,7 +9,6 @@ using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 
 using System;
-using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
@@ -58,7 +57,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         private bool _isDisposed = false;
 
-        bool WinCopies.Util.DotNetFix.IDisposable.IsDisposed => _isDisposed;
+        bool WinCopies.
+            #if WAPICP2
+            Util.
+#endif
+            DotNetFix.IDisposable.IsDisposed => _isDisposed;
 
         private void Dispose(bool disposing)
         {

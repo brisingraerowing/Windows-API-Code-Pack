@@ -1,5 +1,5 @@
-﻿using Microsoft.WindowsAPICodePack.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
+﻿using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
 
 using System;

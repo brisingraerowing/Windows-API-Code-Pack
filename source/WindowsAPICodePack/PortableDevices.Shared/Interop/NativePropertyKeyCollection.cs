@@ -8,18 +8,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using WinCopies.Collections;
 
-#if !WAPICP2
+#if WAPICP3
 using Microsoft.WindowsAPICodePack.COMNative;
 #endif
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
     internal class NativeReadOnlyPropertyKeyCollection : INativeReadOnlyCollection<PropertyKey>, WinCopies.Collections.
-#if !WAPICP2
-        DotNetFix.Generic.
+#if WAPICP2
+IUIntIndexedCollection
+#else
+        DotNetFix.Generic.IReadOnlyUIntIndexedList
 #endif
-        IUIntIndexedCollection<PropertyKey>
+        <PropertyKey>
     {
         private COMNative.PortableDevices.PropertySystem.IPortableDeviceKeyCollection _portableDeviceKeyCollection;
 
@@ -56,7 +59,6 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         private void Dispose(bool disposing)
         {
-
             if (disposing || _isDisposed)
 
                 return;
@@ -66,7 +68,6 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             _portableDeviceKeyCollection = null;
 
             _isDisposed = true;
-
         }
 
         void IDisposable.Dispose()
@@ -107,9 +108,17 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             }
         }
 
-        PropertyKey WinCopies.Collections.IUIntIndexedCollection<PropertyKey>.this[uint index] => this[index];
+        PropertyKey WinCopies.Collections.
+#if WAPICP2
+            IUIntIndexedCollection
+#else
+            DotNetFix.Generic.IReadOnlyUIntIndexedList
+#endif
+            <PropertyKey>.this[uint index] => this[index];
 
+#if !WAPICP3
         object WinCopies.Collections.IUIntIndexedCollection.this[uint index] => this[index];
+#endif
 
         private HResult GetCount(out uint count)
         {
@@ -136,14 +145,70 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             }
         }
 
-        uint WinCopies.Collections.IUIntIndexedCollection.Count => Count;
+        uint WinCopies.Collections.
+#if WAPICP2
+            IUIntIndexedCollection
+#else
+            IUIntCountable
+#endif
+            .Count => Count;
 
         private IEnumerator<PropertyKey> GetEnumerator()
         {
             ThrowIfDisposed();
 
-            return new WinCopies.Collections.UIntIndexedCollectionEnumerator<PropertyKey>(this);
+            return new WinCopies.Collections.
+#if WAPICP2
+                UIntIndexedCollectionEnumerator
+#else
+                DotNetFix.UIntIndexedListEnumerator
+#endif
+                <PropertyKey>(
+#if WAPICP3
+                new _Class(
+#endif
+                    this
+#if WAPICP3
+                    )
+#endif
+                );
         }
+
+#if WAPICP3 && !WAPICP4
+        // TODO:
+        private class _Class : WinCopies.Collections.DotNetFix.Generic.IUIntIndexedList<PropertyKey>
+        {
+            private readonly NativeReadOnlyPropertyKeyCollection _collection;
+
+            internal _Class(NativeReadOnlyPropertyKeyCollection collection) => _collection = collection;
+
+            PropertyKey WinCopies.Collections.DotNetFix.Generic.IUIntIndexedList<PropertyKey>.this[uint index] { get => _collection[index]; set => throw new NotImplementedException(); }
+
+            PropertyKey WinCopies.Collections.DotNetFix.Generic.IReadOnlyUIntIndexedList<PropertyKey>.this[uint index] => _collection[index];
+
+            uint IUIntCountable.Count => _collection.Count;
+
+            void WinCopies.Collections.DotNetFix.Generic.IUIntIndexedCollection<PropertyKey>.Add(PropertyKey item) => throw new NotImplementedException();
+
+            void WinCopies.Collections.DotNetFix.Generic.IUIntIndexedCollection<PropertyKey>.Clear() => throw new NotImplementedException();
+
+            bool WinCopies.Collections.DotNetFix.Generic.IUIntIndexedCollection<PropertyKey>.Contains(PropertyKey item) => throw new NotImplementedException();
+
+            void WinCopies.Collections.DotNetFix.Generic.IUIntIndexedCollection<PropertyKey>.CopyTo(PropertyKey[] array, uint arrayIndex) => throw new NotImplementedException();
+
+            IEnumerator<PropertyKey> IEnumerable<PropertyKey>.GetEnumerator() => _collection.GetEnumerator();
+
+            IEnumerator System.Collections.IEnumerable.GetEnumerator() => _collection.GetEnumerator();
+
+            uint? WinCopies.Collections.DotNetFix.Generic.IUIntIndexedList<PropertyKey>.IndexOf(PropertyKey item) => throw new NotImplementedException();
+
+            void WinCopies.Collections.DotNetFix.Generic.IUIntIndexedList<PropertyKey>.Insert(uint index, PropertyKey item) => throw new NotImplementedException();
+
+            bool WinCopies.Collections.DotNetFix.Generic.IUIntIndexedCollection<PropertyKey>.Remove(PropertyKey item) => throw new NotImplementedException();
+
+            void WinCopies.Collections.DotNetFix.Generic.IUIntIndexedList<PropertyKey>.RemoveAt(uint index) => throw new NotImplementedException();
+        }
+#endif
 
         IEnumerator<PropertyKey> IEnumerable<PropertyKey>.GetEnumerator() => GetEnumerator();
 

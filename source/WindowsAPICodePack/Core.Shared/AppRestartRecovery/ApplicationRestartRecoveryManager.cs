@@ -3,11 +3,18 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
+
 using Microsoft.WindowsAPICodePack.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices;
 
-using static WinCopies.Util.Util;
+using static WinCopies.
+#if WAPICP2
+    Util.Util
+#else
+    ThrowHelper
+#endif
+    ;
 
 namespace Microsoft.WindowsAPICodePack.ApplicationServices
 {
@@ -94,11 +101,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
 
             HResult hr = AppRestartRecoveryNativeMethods.ApplicationRecoveryInProgress(out bool canceled);
 
-            if (!CoreErrorHelper.Succeeded(hr))
-
-                throw new InvalidOperationException(LocalizedMessages.ApplicationRecoveryMustBeCalledFromCallback);
-
-            return canceled;
+            return CoreErrorHelper.Succeeded(hr) ? canceled : throw new InvalidOperationException(LocalizedMessages.ApplicationRecoveryMustBeCalledFromCallback);
         }
 
         /// <summary>
@@ -135,11 +138,10 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// <remarks>A registered application will not be restarted if it executed for less than 60 seconds before terminating.</remarks>
         public static void RegisterForApplicationRestart(in RestartSettings settings)
         {
-
             // Throw PlatformNotSupportedException if the user is not running Vista or beyond
             CoreHelpers.ThrowIfNotVista();
 
-            ThrowIfNull( settings, nameof(settings) ) ; 
+            ThrowIfNull(settings, nameof(settings));
 
             HResult hr = AppRestartRecoveryNativeMethods.RegisterApplicationRestart(settings.Command, settings.Restrictions);
 

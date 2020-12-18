@@ -1,16 +1,19 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+
 using Microsoft.WindowsAPICodePack.COMNative.Dialogs;
 using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using WinCopies.Collections;
+
+using WinCopies.Collections
+#if WAPICP3
+    .Generic
+#endif
+    ;
 
 namespace Microsoft.WindowsAPICodePack.Dialogs
 {
@@ -47,7 +50,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// <remarks>This property should only be used when the
         /// <see cref="Multiselect"/>
         /// property is <b>true</b>.</remarks>
-        public IEnumerable<string> FileNames
+        public System.Collections.Generic.IEnumerable<string> FileNames
         {
             get
             {
@@ -78,7 +81,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
                     _ = resultItems.AddLast(ShellObjectFactory.Create(si));
 
-                return new System.Collections.ObjectModel.Collection<ShellObject>( resultItems.ToList());
+                return new System.Collections.ObjectModel.Collection<ShellObject>(resultItems.ToList());
             }
         }
 

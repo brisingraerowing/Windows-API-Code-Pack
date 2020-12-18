@@ -4,6 +4,26 @@
         <name>WinCopies.WindowsAPICodePack.PortableDevices</name>
     </assembly>
     <members>
+        <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject">
+            <summary>
+            Represents a content object that is stored directly on a <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDevice"/> or on a parent <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject.Id">
+            <summary>
+            Gets the id of the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject"/> on its parent device.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject.ParentPortableDevice">
+            <summary>
+            Gets the <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDevice"/> on which the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject"/> is stored.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject.Parent">
+            <summary>
+            Gets the parent <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject"/> if any; otherwise returns <see langword="null"/>.
+            </summary>
+        </member>
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDevice">
             <summary>
             Represents a portable device.
@@ -89,26 +109,6 @@
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice.DeviceManufacturer">
             <summary>
             If the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice"/> has been created by a <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceManager"/>, gets the device manufacturer of the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice"/>, otherwise gets <see langword="null"/>.
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject">
-            <summary>
-            Represents a content object that is stored directly on a <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDevice"/> or on a parent <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject"/>.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject.Id">
-            <summary>
-            Gets the id of the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject"/> on its parent device.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject.ParentPortableDevice">
-            <summary>
-            Gets the <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDevice"/> on which the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject"/> is stored.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject.Parent">
-            <summary>
-            Gets the parent <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject"/> if any; otherwise returns <see langword="null"/>.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceObject.Properties">

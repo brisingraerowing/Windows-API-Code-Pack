@@ -3333,14 +3333,14 @@
             Creates the helper class for known folders.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.KnownFolderHelper.FromPIDL(System.IntPtr)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.KnownFolderHelper.FromPIDL(System.IntPtr@)">
             <summary>
             Returns the native known folder (IKnownFolderNative) given a PID list
             </summary>
             <param name="pidl"></param>
             <returns></returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.KnownFolderHelper.FromKnownFolderId(System.Guid)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.KnownFolderHelper.FromKnownFolderId(System.Guid@)">
             <summary>
             Returns a known folder given a globally unique identifier.
             </summary>
@@ -3348,14 +3348,14 @@
             <returns>A known folder representing the specified name.</returns>
             <exception cref="T:System.ArgumentException">Thrown if the given Known Folder ID is invalid.</exception>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.KnownFolderHelper.FromKnownFolderIdInternal(System.Guid)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.KnownFolderHelper.FromKnownFolderIdInternal(System.Guid@)">
             <summary>
             Returns a known folder given a globally unique identifier.
             </summary>
             <param name="knownFolderId">A GUID for the requested known folder.</param>
             <returns>A known folder representing the specified name. Returns null if Known Folder is not found or could not be created.</returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.KnownFolderHelper.GetKnownFolder(Microsoft.WindowsAPICodePack.COMNative.Shell.IKnownFolderNative)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.KnownFolderHelper.GetKnownFolder(Microsoft.WindowsAPICodePack.COMNative.Shell.IKnownFolderNative@)">
             <summary>
             Given a native KnownFolder (IKnownFolderNative), create the right type of
             IKnownFolder object (FileSystemKnownFolder or NonFileSystemKnownFolder)
@@ -3363,7 +3363,7 @@
             <param name="knownFolderNative">Native Known Folder</param>
             <returns></returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.KnownFolderHelper.FromCanonicalName(System.String)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.KnownFolderHelper.FromCanonicalName(System.String@)">
             <summary>
             Returns the known folder given its canonical name.
             </summary>
@@ -3371,7 +3371,7 @@
             <returns>A known folder representing the specified name.</returns>
             <exception cref="T:System.ArgumentException">Thrown if the given canonical name is invalid or if the KnownFolder could not be created.</exception>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.KnownFolderHelper.FromPath(System.String)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.KnownFolderHelper.FromPath(System.String@)">
             <summary>
             Returns a known folder given its shell path, such as <c>C:\users\public\documents</c> or 
             <c>::{645FF040-5081-101B-9F08-00AA002F954E}</c> for the Recycle Bin.
@@ -3379,7 +3379,7 @@
             <param name="path">The path for the requested known folder; either a physical path or a virtual path.</param>
             <returns>A known folder representing the specified name.</returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.KnownFolderHelper.FromParsingName(System.String)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.KnownFolderHelper.FromParsingName(System.String@)">
             <summary>
             Returns a known folder given its shell namespace parsing name, such as 
             <c>::{645FF040-5081-101B-9F08-00AA002F954E}</c> for the Recycle Bin.

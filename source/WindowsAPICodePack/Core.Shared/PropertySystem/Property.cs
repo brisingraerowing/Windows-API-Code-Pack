@@ -1,42 +1,34 @@
-﻿using System;
-using System.Diagnostics;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+﻿using Microsoft.WindowsAPICodePack.COMNative.PropertySystem;
 using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
-using System.Collections.Generic;
-using System.Text;
+using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
+
+using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+
+#if WAPICP2
 using WinCopies.Collections;
-using Microsoft.WindowsAPICodePack.COMNative.PropertySystem;
+#endif
 
 namespace Microsoft.WindowsAPICodePack.PropertySystem
 {
-
     /// <summary>
     /// This class wraps native <see cref="PropVariant"/>s into managed objects. Please note that the Shell API, however, has its own managed wrapper, the <c>ShellProperty</c> class.
     /// </summary>
     public sealed class Property : IProperty, IEquatable<IProperty>
     {
-
         public bool TryGetValue<T>(out T value)
-
         {
-
             if (IsSet)
-
             {
-
                 bool? _value = PropertyInfo.IsReadable;
 
                 if ((_value.HasValue && _value.Value) || !_value.HasValue)
 
                     try
-
                     {
-
                         object result = GetValue(out Type resultType);
 
                         Debug.WriteLine($"The given value is from {resultType} type and is {result}.");
@@ -54,46 +46,51 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
                     }
 
                     catch (PropertySystemException)
-
                     {
 
                     }
-
             }
 
             value = default;
 
             return false;
-
         }
 
         private PropertyCollection _propertyCollection;
         private PropertyKey _propertyKey;
-        private WinCopies.Collections.IUIntIndexedCollection<PropertyAttribute> _attributes;
+        private
+#if WAPICP2
+WinCopies.Collections.IUIntIndexedCollection
+#else
+     WinCopies.Collections.DotNetFix.Generic.IReadOnlyUIntIndexedList
+#endif
+            <PropertyAttribute> _attributes;
         private bool _allowSetTruncatedValue;
 
         /// <summary>
         /// Gets the attributes for this property.
         /// </summary>
-        public WinCopies.Collections.IUIntIndexedCollection<PropertyAttribute> Attributes
+        public
+#if WAPICP2
+WinCopies.Collections.IUIntIndexedCollection
+#else
+     WinCopies.Collections.DotNetFix.Generic.IReadOnlyUIntIndexedList
+#endif
+            <PropertyAttribute> Attributes
         {
             get
             {
-
                 if (IsDisposed)
 
                     throw new InvalidOperationException("The current object is disposed.");
 
                 if (_attributes is null)
-
                 {
-
                     PropertyKey propertyKey = _propertyKey;
 
                     Marshal.ThrowExceptionForHR((int)_propertyCollection.Items.GetAttributes(ref propertyKey, out IDisposableReadOnlyNativePropertyValuesCollection attributes));
 
                     _attributes = new PropertyAttributeCollection(attributes);
-
                 }
 
                 return _attributes;
@@ -110,54 +107,41 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         /// </summary>
         public bool IsSet
         {
-
             get
             {
-
                 HResult hr = GetPropVariant(out PropVariant propVariant);
 
                 if (CoreErrorHelper.Succeeded(hr))
-
                 {
-
                     bool result = !IsBlank(propVariant);
 
                     propVariant.Dispose();
 
                     return result;
-
                 }
 
                 else
-
                 {
-
                     propVariant.Dispose();
 
                     throw new PropertySystemException("An error has occurred. This property may be not readable.", (int)hr);
-
                 }
-
             }
         }
 
         private bool IsBlank(in PropVariant propVariant) => propVariant.VarType == VarEnum.VT_HRESULT;
 
         internal Property(in PropertyCollection propertyCollection, in PropertyKey propertyKey, in IPropertyInfo propertyInfo)
-
         {
-
             _propertyCollection = propertyCollection;
 
             _propertyKey = propertyKey;
 
             PropertyInfo = propertyInfo;
-
         }
 
         private void StorePropVariantValue(PropVariant propVar)
         {
-
             PropertyKey propertyKey = PropertyKey;
 
             HResult result = _propertyCollection.NativePropertyValuesCollection.SetValue(ref propertyKey, propVar);
@@ -181,23 +165,18 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         /// </summary>
         public object GetValue(out Type valueType)
         {
-
             if (IsDisposed)
 
                 throw new InvalidOperationException("The current object is disposed.");
 
             (Type valueType, object value) result;
 
-            if (((PropertyInfo.IsReadable.HasValue && PropertyInfo.IsReadable.Value) || !PropertyInfo.IsReadable.HasValue))
-
+            if ((PropertyInfo.IsReadable.HasValue && PropertyInfo.IsReadable.Value) || !PropertyInfo.IsReadable.HasValue)
             {
-
                 HResult hr = GetPropVariant(out PropVariant propVariant);
 
                 if (CoreErrorHelper.Succeeded(hr))
-
                 {
-
                     if (IsBlank(propVariant))
 
                         throw new PropertySystemException("The property is not set.");
@@ -209,17 +188,14 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
                     valueType = result.valueType;
 
                     return result.value;
-
                 }
 
                 propVariant.Dispose();
 
                 throw new PropertySystemException("An error has occurred. This property may be not readable.", (int)hr);
-
             }
 
             throw new PropertySystemException("An error has occurred. This property may be not readable.");
-
         }
 
         /// <summary>
@@ -228,7 +204,6 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         /// </summary>
         public void SetValue(in object value)
         {
-
             if (IsDisposed)
 
                 throw new InvalidOperationException("The current object is disposed.");
@@ -242,12 +217,15 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
                 if (pi != null && !(bool)pi.GetValue(value, null))
                 {
                     ClearValueInternal();
+
                     return;
                 }
             }
+
             else if (value == null)
             {
                 ClearValueInternal();
+
                 return;
             }
 
@@ -257,7 +235,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             using (var propVariant = PropVariant.FromObject(value))
 #endif
 
-            StorePropVariantValue(propVariant);
+                StorePropVariantValue(propVariant);
         }
 
         /// <summary>
@@ -269,32 +247,27 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         /// Clears the value of the property.
         /// </summary>
         public void ClearValue()
-
         {
-
             if (IsDisposed)
 
                 throw new InvalidOperationException("The current object is disposed.");
 
             ClearValueInternal();
-
         }
 
         private void ClearValueInternal()
         {
-
 #if CS8
             using var propVar = new PropVariant();
 #else
             using (var propVar = new PropVariant())
 #endif
 
-            StorePropVariantValue(propVar);
+                StorePropVariantValue(propVar);
         }
 
         public void RemoveProperty()
         {
-
             if (IsDisposed)
 
                 throw new InvalidOperationException("The current object is disposed.");
@@ -308,7 +281,6 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             if (!CoreErrorHelper.Succeeded(hr))
 
                 throw new PropertySystemException("An error has occurred. This property may be not removable.", (int)hr);
-
         }
 
         #region IDisposable Support
@@ -369,15 +341,12 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
     public sealed class PropertyAttribute : IEquatable<PropertyAttribute>
     {
         internal PropertyAttribute(in PropertyKey propertyKey, in Type type, in object value)
-
         {
-
             PropertyKey = propertyKey;
 
             Type = type;
 
             Value = value;
-
         }
 
         /// <summary>

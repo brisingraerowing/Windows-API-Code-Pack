@@ -12,6 +12,8 @@ See [LICENCE](https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/L
 Release notes
 -------------
 
+Be careful! This is the preview 3.x branch.
+
 See [CHANGELOG](https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/CHANGELOG) for latest changes.
 
 Contributing
