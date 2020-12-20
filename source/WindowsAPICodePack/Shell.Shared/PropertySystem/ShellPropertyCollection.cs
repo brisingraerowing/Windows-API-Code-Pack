@@ -172,9 +172,8 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             get
             {
                 IShellProperty prop = Items.FirstOrDefault(p => p.PropertyKey == key);
-                if (prop != null) return prop;
 
-                throw new IndexOutOfRangeException(LocalizedMessages.PropertyCollectionInvalidIndex);
+                return prop ?? throw new IndexOutOfRangeException(LocalizedMessages.PropertyCollectionInvalidIndex);
             }
         }
 
