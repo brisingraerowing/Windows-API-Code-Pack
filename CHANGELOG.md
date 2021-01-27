@@ -10,6 +10,11 @@ For issue and fixation details, visit [https://wincopies.com/fwd.php?id=3](https
 
 For the original code (version 1.1, last release by Microsoft), see [https://wincopies.com/fwd.php?id=1](https://wincopies.com/fwd.php?id=1)
 
+??/??/???? ????
+===============
+
+- Add constructors to ClientVersion.
+
 12/16/2020 2.1.0
 ================
 

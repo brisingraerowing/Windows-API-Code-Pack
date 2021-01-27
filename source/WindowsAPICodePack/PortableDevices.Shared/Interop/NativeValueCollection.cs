@@ -9,6 +9,7 @@ using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 
 using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
@@ -58,7 +59,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         private bool _isDisposed = false;
 
         bool WinCopies.
-            #if WAPICP2
+#if WAPICP2
             Util.
 #endif
             DotNetFix.IDisposable.IsDisposed => _isDisposed;
@@ -250,11 +251,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 );
 
 #if DEBUG
-
             if (CoreErrorHelper.Succeeded(hr))
 
                 Debug.Assert(ppValue.Length == count);
-
 #endif
 
             return hr;
