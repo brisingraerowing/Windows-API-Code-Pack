@@ -52,7 +52,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             // Create the right type of ShellObject based on the above information 
 
             // 1. First check if this is a Shell Link
-            if (itemType == ".lnk")
+            if (".lnk".Equals(itemType, StringComparison.OrdinalIgnoreCase))
 
                 return new ShellLink(nativeShellItem2);
 
@@ -131,9 +131,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
                           {
                               pidl = ShellHelper.PidlFromUnknown(unknown);
 
-                              new KnownFolderManagerClass().FindFolderFromIDList(pidl, out nativeFolder);
+                              _ = new KnownFolderManagerClass().FindFolderFromIDList(pidl, out nativeFolder);
 
-                                  nativeFolder?.GetFolderDefinition(out definition);
+                              nativeFolder?.GetFolderDefinition(out definition);
 
                               Monitor.Pulse(padlock);
                           }
@@ -150,23 +150,30 @@ namespace Microsoft.WindowsAPICodePack.Shell
             }
         }
 
+        public static int TryGetNativeShellItem(string parsingName, out IShellItem2 result)
+        {
+            if (string.IsNullOrEmpty(parsingName))
+
+                throw new ArgumentNullException(nameof(parsingName));
+
+            // Create a native shellitem from our path
+            var guid = new Guid(NativeAPI.Guids.Shell.IShellItem2);
+            return COMNative.Shell.Shell.SHCreateItemFromParsingName(parsingName, IntPtr.Zero, ref guid, out result);
+        }
+
+        public static IShellItem2 GetNativeShellItem(string parsingName)
+        {
+            int retCode = TryGetNativeShellItem(parsingName, out IShellItem2 result);
+
+            return CoreErrorHelper.Succeeded(retCode) ? result : throw new ShellException(LocalizedMessages.ShellObjectFactoryUnableToCreateItem, Marshal.GetExceptionForHR(retCode));
+        }
+
         /// <summary>
         /// Creates a ShellObject given a parsing name
         /// </summary>
         /// <param name="parsingName"></param>
         /// <returns>A newly constructed ShellObject object</returns>
-        public static ShellObject Create(string parsingName)
-        {
-            if (string.IsNullOrEmpty(parsingName))
-            
-                throw new ArgumentNullException(nameof(parsingName));
-
-            // Create a native shellitem from our path
-            var guid = new Guid(NativeAPI.Guids.Shell.IShellItem2);
-            int retCode = COMNative.Shell.Shell.SHCreateItemFromParsingName(parsingName, IntPtr.Zero, ref guid, out IShellItem2 nativeShellItem);
-
-            return CoreErrorHelper.Succeeded(retCode) ? ShellObjectFactory.Create(nativeShellItem) : throw new ShellException(LocalizedMessages.ShellObjectFactoryUnableToCreateItem, Marshal.GetExceptionForHR(retCode));
-        }
+        public static ShellObject Create(string parsingName) => Create(GetNativeShellItem(parsingName));
 
         /// <summary>
         /// Constructs a new Shell object from IDList pointer

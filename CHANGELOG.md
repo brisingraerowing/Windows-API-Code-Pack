@@ -10,9 +10,24 @@ For issue and fixation details, visit [https://wincopies.com/fwd.php?id=3](https
 
 For the original code (version 1.1, last release by Microsoft), see [https://wincopies.com/fwd.php?id=1](https://wincopies.com/fwd.php?id=1)
 
+??/??/???? 3.0
+==============
+
+Targets WinCopies Framework v3.x.
+
+Shell 3.0
+---------
+
+- Changes:
+    - ShellObject.FromParsingName was removed because it was redundant with ShellObjectFactory.Create.
+    - ShellFile has a new constructor instead of the FromFilePath static method.
+    - ShellLink inherits from ShellFile instead of ShellObject. ShellObject inheritance is still available through ShellFile.
+    - The ShellLink's constructor was replaced by a static method.
+
 ??/??/???? ????
 ===============
 
+- Bug fixed in PropVariant. Vectors thrown errors because of invalid field offset.
 - Add constructors to ClientVersion.
 
 12/16/2020 2.1.0

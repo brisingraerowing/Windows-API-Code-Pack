@@ -15,6 +15,14 @@ namespace Microsoft.WindowsAPICodePack
         public const string Sensor = "BA1BB692-9B7A-4833-9A1E-525ED134E7E2";
     }
 
+    public static class CommonGuids
+    {
+        /// <summary>
+        /// A NULL Guid.
+        /// </summary>
+        public const string GuidNull = "00000000-0000-0000-0000-000000000000";
+    }
+
     namespace Sensors
     {
         public static class Guids
@@ -1172,11 +1180,6 @@ namespace Microsoft.WindowsAPICodePack
             /// This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_V2. The commands in this category relate to the WPD device class extension.
             /// </summary>
             public const string ClassExtensionV2 = "7F0779B5-FA2B-4766-9CB2-F73BA30B6758";
-
-            /// <summary>
-            /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_NULL. This category is used exclusively for the NULL property key define.
-            /// </summary>
-            public const string CategoryNull = "00000000-0000-0000-0000-000000000000";
 
             /// <summary>
             /// This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_NETWORK_CONFIGURATION. The commands in this category are used for Network Association and WiFi Configuration.
