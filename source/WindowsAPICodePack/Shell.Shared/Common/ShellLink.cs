@@ -1,7 +1,7 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using Microsoft.WindowsAPICodePack.COMNative.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+
 using System;
 using System.Runtime.InteropServices.ComTypes;
 
@@ -10,39 +10,68 @@ namespace Microsoft.WindowsAPICodePack.Shell
     /// <summary>
     /// Represents a link to existing FileSystem or Virtual item.
     /// </summary>
-    public class ShellLink : ShellObject
+    public class ShellLink :
+#if WAPICP3
+        ShellFile
+#else
+        ShellObject
+#endif
     {
-        /// <summary>
+        #region Fields
         /// Path for this file e.g. c:\Windows\file.txt,
-        /// </summary>
-        private string _internalPath;
-
-        #region Internal Constructors
-
-        internal ShellLink(IShellItem2 shellItem) => nativeShellItem = shellItem;
-
+        private string _path;
+        private string _targetLocation;
+        private string _arguments;
+        private string _comments;
         #endregion
 
+        #region Constructors
+        internal ShellLink(in IShellItem2 shellItem) : base(shellItem)
+        {
+            // Left empty.
+        }
+
+#if WAPICP3
+        private ShellLink(in IShellItem2 shellItem, in string sourcePath) : base(shellItem) => TargetLocation = sourcePath;
+
+        /// <summary>
+        /// Creates a shortcut on the disk and returns a <see cref="ShellLink"/> that represents it.
+        /// </summary>
+        /// <param name="sourcePath">The full target path.</param>
+        /// <param name="destPath">If <paramref name="relative"/>, only the destination path's directory; otherwise, the full destination path for the shortcut.</param>
+        /// <param name="relative">Indicates whether <paramref name="destPath"/> is relative.</param>
+        /// <returns>A <see cref="ShellLink"/> that represents the newly created shortcut.</returns>
+        public static ShellLink Create(string sourcePath, string destPath, bool relative)
+        {
+            if (relative)
+
+                return Create(sourcePath, $"{destPath}\\\\{System.IO.Path.GetFileNameWithoutExtension(sourcePath)}.lnk", false);
+#else
         /// <summary>
         /// Initializes a new instance of the <see cref="ShellLink"/> class and directly saves the link on disk.
         /// </summary>
         /// <param name="sourcePath">The full source path.</param>
         /// <param name="destPath">The destination directory.</param>
-        public ShellLink(string sourcePath, string destPath)
-
+        public ShellLink(in string sourcePath, string destPath)
         {
-
+#endif
             var lnk = Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid(NativeAPI.Guids.Shell.CShellLink), true)) as IShellLinkW;
             lnk.SetPath(sourcePath);
-            string linkPath = destPath + "\\\\" + System.IO.Path.GetFileNameWithoutExtension(sourcePath) + ".lnk";
-            ((IPersistFile)lnk).Save(linkPath, true);
-            Path = linkPath;
+#if !WAPICP3
+            destPath = $"{destPath}\\\\{System.IO.Path.GetFileNameWithoutExtension(sourcePath)}.lnk";
+#endif
+            ((IPersistFile)lnk).Save(destPath, true);
+#if WAPICP3
+            return new ShellLink(ShellObjectFactory.GetNativeShellItem(destPath), sourcePath);
+#else
+            Path = destPath;
             TargetLocation = sourcePath;
-
+#endif
         }
+        #endregion
 
         #region Public Properties
-
+#if !WAPICP3
         /// <summary>
         /// The path for this link
         /// </summary>
@@ -50,16 +79,16 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             get
             {
-                if (_internalPath == null && NativeShellItem != null)
+                if (_path == null && NativeShellItem != null)
 
-                    _internalPath = base.ParsingName;
+                    _path = base.ParsingName;
 
-                return _internalPath;
+                return _path;
             }
-            protected set => _internalPath = value;
-        }
 
-        private string internalTargetLocation;
+            protected set => _path = value;
+        }
+#endif
 
         /// <summary>
         /// Gets the location to which this link points to.
@@ -68,22 +97,23 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             get
             {
-                if (string.IsNullOrEmpty(internalTargetLocation) && NativeShellItem2 != null)
+                if (string.IsNullOrEmpty(_targetLocation) && NativeShellItem2 != null)
 
-                    internalTargetLocation = Properties.System.Link.TargetParsingPath.Value;
+                    _targetLocation = Properties.System.Link.TargetParsingPath.Value;
 
-                return internalTargetLocation;
+                return _targetLocation;
             }
+
             set
             {
                 if (value == null) return;
 
-                internalTargetLocation = value;
-
                 if (NativeShellItem2 != null)
+                {
+                    Properties.System.Link.TargetParsingPath.Value = _targetLocation;
 
-                    Properties.System.Link.TargetParsingPath.Value = internalTargetLocation;
-
+                    _targetLocation = value;
+                }
             }
         }
 
@@ -111,8 +141,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
             }
         }
 
-        private string internalArguments;
-
         /// <summary>
         /// Gets the arguments associated with this link.
         /// </summary>
@@ -120,15 +148,27 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             get
             {
-                if (string.IsNullOrEmpty(internalArguments) && NativeShellItem2 != null)
+                if (string.IsNullOrEmpty(_arguments) && NativeShellItem2 != null)
 
-                    internalArguments = Properties.System.Link.Arguments.Value;
+                    _arguments = Properties.System.Link.Arguments.Value;
 
-                return internalArguments;
+                return _arguments;
+            }
+
+            set
+            {
+                if (value == null)
+
+                    throw new ArgumentNullException(nameof(value));
+
+                if (NativeShellItem2 != null)
+                {
+                    Properties.System.Link.Arguments.Value = value;
+
+                    _arguments = value;
+                }
             }
         }
-
-        private string internalComments;
 
         /// <summary>
         /// Gets the comments associated with this link.
@@ -137,15 +177,27 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             get
             {
-                if (string.IsNullOrEmpty(internalComments) && NativeShellItem2 != null)
+                if (string.IsNullOrEmpty(_comments) && NativeShellItem2 != null)
 
-                    internalComments = Properties.System.Comment.Value;
+                    _comments = Properties.System.Comment.Value;
 
-                return internalComments;
+                return _comments;
+            }
+
+            set
+            {
+                if (value == null)
+
+                    throw new ArgumentNullException(nameof(value));
+
+                if (NativeShellItem2 != null)
+                {
+                    Properties.System.Comment.Value = value;
+
+                    _comments = value;
+                }
             }
         }
-
-
         #endregion
     }
 }

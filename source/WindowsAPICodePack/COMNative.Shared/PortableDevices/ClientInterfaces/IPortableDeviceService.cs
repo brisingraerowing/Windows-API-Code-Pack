@@ -1,13 +1,8 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.WindowsAPICodePack.COMNative;
-using Microsoft.WindowsAPICodePack.COMNative.PortableDevices;
+
 using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.EventSystem;
 using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
@@ -22,7 +17,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
         [PreserveSig]
         HResult Open(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszPnPServiceID,
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pClientInfo);
+            [In, MarshalAs(UnmanagedType.Interface)]
+#if !WAPICP3
+ref
+#endif
+         IPortableDeviceValues pClientInfo);
 
         [PreserveSig]
         HResult Capabilities(
@@ -53,8 +52,16 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
         [PreserveSig]
         HResult Advise(
             [In] uint dwFlags,
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceEventCallback pCallback,
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pParameters,
+            [In, MarshalAs(UnmanagedType.Interface)]
+#if !WAPICP3
+ref
+#endif
+         IPortableDeviceEventCallback pCallback,
+            [In, MarshalAs(UnmanagedType.Interface)]
+#if !WAPICP3
+ref
+#endif
+         IPortableDeviceValues pParameters,
             [Out, MarshalAs(UnmanagedType.LPWStr)] out string ppszCookie);
 
         [PreserveSig]
@@ -64,7 +71,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
         [PreserveSig]
         HResult SendCommand(
             [In] uint dwFlags,
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pParameters,
+            [In, MarshalAs(UnmanagedType.Interface)]
+#if !WAPICP3
+ref
+#endif
+         IPortableDeviceValues pParameters,
             [Out, MarshalAs(UnmanagedType.Interface)] out IPortableDeviceValues ppResults);
     }
 }

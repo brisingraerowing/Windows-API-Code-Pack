@@ -18,7 +18,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             #region This class defines all Commands-Parameters and Options associated with: WPD_CATEGORY_NULL. This category is used exclusively for the NULL property key define.
 
             //   [ VT_EMPTY ] A NULL property key.
-            public static PropertyKey PropertyNull => new PropertyKey("00000000-0000-0000-0000-000000000000", 0);
+            public static PropertyKey PropertyNull => new PropertyKey(CommonGuids.GuidNull, 0);
             #endregion
 
             /// <summary>
@@ -2618,7 +2618,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             }
 
             /// <summary>
-            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.CommandSystem.Object.Management"/>. The commands specified in this category are used to Create/Delete objects on the device.
+            /// This class defines all Commands-Parameters and Options associated with: <see cref="PortableDevices.Guids.CommandSystem.Object.Management"/>. The commands specified in this category are used to Create/Delete objects on the device.
             /// </summary>
             public static class Management
             {

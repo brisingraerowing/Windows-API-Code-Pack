@@ -7,13 +7,13 @@
     <AssemblyName>WinCopies.WindowsAPICodePack.Sensors</AssemblyName>
     <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
     <Description>WindowsAPICodePack for Sensors</Description>
-    <Copyright>Copyright © Microsoft 2009, Copyright © Pierre Sprimont 2020</Copyright>
+    <Copyright>Copyright © Microsoft 2009, Copyright © Pierre Sprimont 2020-2021</Copyright>
     <DocumentationFile>WinCopies.WindowsAPICodePack.Sensors.xml</DocumentationFile>
     <DefineConstants>WAPICP3;$(DefineConstants)</DefineConstants>
-    <VersionPrefix>3.0</VersionPrefix>
+    <VersionPrefix>3.0.1</VersionPrefix>
     <VersionSuffix>preview</VersionSuffix>
-    <AssemblyVersion>3.0</AssemblyVersion>
-    <FileVersion>3.0</FileVersion>
+    <AssemblyVersion>3.0.1</AssemblyVersion>
+    <FileVersion>3.0.1</FileVersion>
   </PropertyGroup>
 
   <Import Project="..\Sensors.Shared\Sensors.Shared.projitems" Label="Shared" />

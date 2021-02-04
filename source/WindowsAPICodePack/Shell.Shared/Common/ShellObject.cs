@@ -3,26 +3,25 @@
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
 using System.Runtime.InteropServices.ComTypes;
+using System.Security.Cryptography;
+
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
+using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
-using Microsoft.WindowsAPICodePack.COMNative.Shell;
-using System.Diagnostics;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
     /// <summary>
     /// The base class for all Shell objects in Shell Namespace.
     /// </summary>
-    abstract public class ShellObject : IDisposable, IEquatable<ShellObject>
+    public abstract class ShellObject : IDisposable, IEquatable<ShellObject>
     {
-
         #region Public Static Methods
-
+#if !WAPICP3
         /// <summary>
         /// Creates a ShellObject subclass given a parsing name.
         /// For file system items, this method will only accept absolute paths.
@@ -30,6 +29,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="parsingName">The parsing name of the object.</param>
         /// <returns>A newly constructed ShellObject object.</returns>
         public static ShellObject FromParsingName(string parsingName) => ShellObjectFactory.Create(parsingName);
+#endif
 
         /// <summary>
         /// Indicates whether this feature is supported on the current platform.
@@ -37,54 +37,39 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public static bool IsPlatformSupported =>
                 // We need Windows Vista onwards ...
                 CoreHelpers.RunningOnVista;
-
         #endregion
 
+        #region Fields
         #region Internal Fields
-
-        /// <summary>
-        /// Internal member to keep track of the native IShellItem2
-        /// </summary>
+        // Internal member to keep track of the native IShellItem2
         internal IShellItem2 nativeShellItem;
-
         #endregion
 
-        #region Constructors
-
-        internal ShellObject()
-        {
-        }
-
-        protected ShellObject(IShellItem2 shellItem) => nativeShellItem = shellItem;
-
-        #endregion
-
-        #region Protected Fields
-
-        /// <summary>
-        /// Parsing name for this Object e.g. c:\Windows\file.txt,
-        /// or ::{Some Guid} 
-        /// </summary>
+        #region Private Fields
+        // Parsing name for this Object e.g. c:\Windows\file.txt,
+        // or ::{Some Guid}
         private string _internalParsingName;
 
-        /// <summary>
-        /// A friendly name for this object that' suitable for display
-        /// </summary>
+        // A friendly name for this object that' suitable for display
         private string _internalName;
 
-        /// <summary>
-        /// PID List (PIDL) for this object
-        /// </summary>
+        // PID List (PIDL) for this object
         private IntPtr _internalPIDL = IntPtr.Zero;
 
+        private ShellProperties properties;
+        private ShellObject parentShellObject;
+        private bool _isDisposed;
+        private static readonly SHA256 _hashProvider = SHA256.Create();
+        private int? _hashValue;
+        #endregion
         #endregion
 
+        #region Properties
         #region Internal Properties
-
         /// <summary>
         /// Return the native ShellFolder object as newer IShellItem2
         /// </summary>
-        /// <exception cref="System.Runtime.InteropServices.ExternalException">If the native object cannot be created.
+        /// <exception cref="ExternalException">If the native object cannot be created.
         /// The ErrorCode member will contain the external error code.</exception>
         virtual internal IShellItem2 NativeShellItem2
         {
@@ -116,68 +101,23 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// when the writer has been closed/commited).
         /// </summary>
         internal IPropertyStore NativePropertyStore { get; set; }
-
-        #endregion
-
-        #region Public Methods
-
-        /// <summary>
-        /// Overrides object.ToString()
-        /// </summary>
-        /// <returns>A string representation of the object.</returns>
-        public override string ToString() => Name;
-
-        /// <summary>
-        /// Returns the display name of the ShellFolder object. DisplayNameType represents one of the 
-        /// values that indicates how the name should look. 
-        /// See <see cref="DisplayNameType"/>for a list of possible values.
-        /// </summary>
-        /// <param name="displayNameType">A disaply name type.</param>
-        /// <returns>A string.</returns>
-        public virtual string GetDisplayName(DisplayNameType displayNameType)
-        {
-            string returnValue = null;
-
-            HResult hr = HResult.Ok;
-
-            if (NativeShellItem2 != null)
-
-                hr = NativeShellItem2.GetDisplayName((ShellItemDesignNameOptions)displayNameType, out returnValue);
-
-            return hr == HResult.Ok ? returnValue : throw new ShellException(LocalizedMessages.ShellObjectCannotGetDisplayName, hr);
-        }
-
-        /// <summary>
-        /// Updates the native shell item that maps to this shell object. This is necessary when the shell item 
-        /// changes after the shell object has been created. Without this method call, the retrieval of properties will
-        /// return stale data. 
-        /// </summary>
-        /// <param name="bindContext">Bind context object</param>
-        public void Update(IBindCtx bindContext)
-        {
-            if (NativeShellItem2 != null)
-
-            {
-
-                HResult hr = NativeShellItem2.Update(bindContext);
-
-                if (CoreErrorHelper.Failed(hr))
-
-                    throw new ShellException(hr);
-
-            }
-        }
-
         #endregion
 
         #region Public Properties
-
-        private ShellProperties properties;
-
         /// <summary>
         /// Gets an object that allows the manipulation of ShellProperties for this shell item.
         /// </summary>
-        public ShellProperties Properties => properties ?? (properties = new ShellProperties(this));
+        public ShellProperties Properties => properties
+#if CS8
+            ??=
+#else
+            ?? (properties = 
+#endif
+            new ShellProperties(this)
+#if !CS8
+            )
+#endif
+            ;
 
         /// <summary>
         /// Gets the parsing name for this ShellItem.
@@ -280,19 +220,17 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Gets the thumbnail of the ShellObject.
         /// </summary>
-        public ShellThumbnail Thumbnail =>
-
-#if CS7
-
-            thumbnail ?? (thumbnail = new ShellThumbnail(this));
-
+        public ShellThumbnail Thumbnail => thumbnail
+#if CS8
+            ??=
 #else
-
-        thumbnail ??= new ShellThumbnail(this);
-
+            ?? (thumbnail = 
 #endif
-
-        private ShellObject parentShellObject;
+            new ShellThumbnail(this)
+#if !CS8
+            )
+#endif
+            ;
 
         /// <summary>
         /// Gets the parent ShellObject.
@@ -322,12 +260,62 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 return parentShellObject;
             }
         }
+        #endregion
+        #endregion
 
+        #region Constructors
+        internal ShellObject() { }
 
+        protected ShellObject(in IShellItem2 shellItem) => nativeShellItem = shellItem;
+        #endregion
+
+        #region Public Methods
+        /// <summary>
+        /// Overrides object.ToString()
+        /// </summary>
+        /// <returns>A string representation of the object.</returns>
+        public override string ToString() => Name;
+
+        /// <summary>
+        /// Returns the display name of the ShellFolder object. DisplayNameType represents one of the 
+        /// values that indicates how the name should look. 
+        /// See <see cref="DisplayNameType"/>for a list of possible values.
+        /// </summary>
+        /// <param name="displayNameType">A disaply name type.</param>
+        /// <returns>A string.</returns>
+        public virtual string GetDisplayName(DisplayNameType displayNameType)
+        {
+            string returnValue = null;
+
+            HResult hr = HResult.Ok;
+
+            if (NativeShellItem2 != null)
+
+                hr = NativeShellItem2.GetDisplayName((ShellItemDesignNameOptions)displayNameType, out returnValue);
+
+            return hr == HResult.Ok ? returnValue : throw new ShellException(LocalizedMessages.ShellObjectCannotGetDisplayName, hr);
+        }
+
+        /// <summary>
+        /// Updates the native shell item that maps to this shell object. This is necessary when the shell item 
+        /// changes after the shell object has been created. Without this method call, the retrieval of properties will
+        /// return stale data. 
+        /// </summary>
+        /// <param name="bindContext">Bind context object</param>
+        public void Update(IBindCtx bindContext)
+        {
+            if (NativeShellItem2 != null)
+            {
+                HResult hr = NativeShellItem2.Update(bindContext);
+
+                if (CoreErrorHelper.Failed(hr))
+
+                    throw new ShellException(hr);
+            }
+        }
         #endregion
 
         #region IDisposable Members
-
         /// <summary>
         /// Release the native and managed objects
         /// </summary>
@@ -364,8 +352,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
             }
         }
 
-        private bool _isDisposed;
-
         /// <summary>
         /// Release the native objects.
         /// </summary>
@@ -383,22 +369,17 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Implement the finalizer.
         /// </summary>
-        ~ShellObject()
-        {
-            Dispose(false);
-        }
-
+        ~ShellObject() => Dispose(false);
         #endregion
 
         #region equality and hashing
-
         /// <summary>
         /// Returns the hash code of the object.
         /// </summary>
         /// <returns></returns>
         public override int GetHashCode()
         {
-            if (!hashValue.HasValue)
+            if (!_hashValue.HasValue)
             {
                 uint size = Win32Native.Shell.Shell.ILGetSize(PIDL);
 
@@ -406,18 +387,15 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 {
                     byte[] pidlData = new byte[size];
                     Marshal.Copy(PIDL, pidlData, 0, (int)size);
-                    byte[] hashData = hashProvider.ComputeHash(pidlData);
-                    hashValue = BitConverter.ToInt32(hashData, 0);
+                    byte[] hashData = _hashProvider.ComputeHash(pidlData);
+                    _hashValue = BitConverter.ToInt32(hashData, 0);
                 }
                 else
 
-                    hashValue = 0;
+                    _hashValue = 0;
             }
-            return hashValue.Value;
+            return _hashValue.Value;
         }
-
-        private static readonly SHA256 hashProvider = SHA256.Create();
-        private int? hashValue;
 
         /// <summary>
         /// Determines if two ShellObjects are identical.
@@ -467,8 +445,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="rightShellObject">Second object to compare.</param>
         /// <returns>True if leftShellObject does not equal leftShellObject; false otherwise.</returns>        
         public static bool operator !=(ShellObject leftShellObject, ShellObject rightShellObject) => !(leftShellObject == rightShellObject);
-
-
         #endregion
     }
 }

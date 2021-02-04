@@ -28,11 +28,15 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 #nullable disable
 #endif
 
+#if WAPICP3
+        string Path { get; }
+#endif
+
         PortableDeviceFileType FileType { get; }
 
         Guid Type { get; }
 
-        Microsoft.WindowsAPICodePack.PropertySystem.PropertyCollection Properties { get; }
+        WindowsAPICodePack.PropertySystem.PropertyCollection Properties { get; }
 
         /// <summary>
         /// Gets the <see cref="IPortableDevice"/> on which the current <see cref="IPortableDeviceObject"/> is stored.
@@ -42,6 +46,16 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         /// <summary>
         /// Gets the parent <see cref="IPortableDeviceObject"/> if any; otherwise returns <see langword="null"/>.
         /// </summary>
-        IPortableDeviceObject Parent { get; }
+#if WAPICP3
+        IEnumerablePortableDeviceObject
+#else
+IPortableDeviceObject
+#endif
+            Parent
+        { get; }
+
+#if WAPICP3
+        void Delete();
+#endif
     }
 }

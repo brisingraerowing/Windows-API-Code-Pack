@@ -20,7 +20,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         {
             get
             {
-                ThrowIfOperationIsNotAllowed();
+                this.ThrowIfOperationIsNotAllowed();
 
                 return _storageCapacity ?? (_storageCapacity = Properties.TryGetValue(PortableDevices.PropertySystem.Properties.Storage.Capacity, out Property _objectProperty) && _objectProperty.TryGetValue(out ulong _value)
                         ? (IPortableDeviceObjectStorageCapacity)new PortableDeviceObjectStorageCapacity(this, _value)
@@ -28,14 +28,12 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             }
         }
 
-        public PortableDeviceFolder(in string id, in bool isRoot, in PortableDevice parentPortableDevice, in PortableDeviceProperties properties) : this(id, isRoot, null, parentPortableDevice, properties)
+        public PortableDeviceFolder(in string id, in bool isRoot, in PortableDevice parentPortableDevice, in PortableDeviceProperties properties) : base(id, isRoot,  parentPortableDevice, properties)
         {
             // Left empty.
         }
 
-        public PortableDeviceFolder(in string id, in bool isRoot, in PortableDeviceObject parent, in PortableDevice parentPortableDevice, in PortableDeviceProperties properties
-
-            ) : base(id, isRoot, parent, parentPortableDevice, properties)
+        public PortableDeviceFolder(in string id, in bool isRoot, in EnumerablePortableDeviceObject parent, in PortableDevice parentPortableDevice, in PortableDeviceProperties properties) : base(id, isRoot, parent, parentPortableDevice, properties)
         {
             // Left empty.
         }

@@ -1,13 +1,8 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.WindowsAPICodePack.COMNative;
-using Microsoft.WindowsAPICodePack.COMNative.PortableDevices;
+
 using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.ResourceSystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
@@ -50,7 +45,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
         HResult Delete(
             [In] DeleteObjectOptionValues dwOptions,
             [In, MarshalAs(UnmanagedType.Interface)]  IPortableDevicePropVariantCollection pObjectIDs,
-            [In, Out, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection ppResults);
+            [In, Out, MarshalAs(UnmanagedType.Interface)]
+#if !WAPICP3
+ref
+#endif
+         IPortableDevicePropVariantCollection ppResults);
 
         [PreserveSig]
         HResult GetObjectIDsFromPersistentUniqueIDs(
@@ -62,15 +61,31 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
 
         [PreserveSig]
         HResult Move(
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection pObjectIDs,
+            [In, MarshalAs(UnmanagedType.Interface)]
+#if !WAPICP3
+ref
+#endif
+         IPortableDevicePropVariantCollection pObjectIDs,
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszDestinationFolderObjectID,
-            [In, Out, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection ppResults);
+            [In, Out, MarshalAs(UnmanagedType.Interface)]
+#if !WAPICP3
+ref
+#endif
+         IPortableDevicePropVariantCollection ppResults);
 
         [PreserveSig]
         HResult Copy(
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection pObjectIDs,
+            [In, MarshalAs(UnmanagedType.Interface)]
+#if !WAPICP3
+ref
+#endif
+         IPortableDevicePropVariantCollection pObjectIDs,
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszDestinationFolderObjectID,
-            [In, Out, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection ppResults);
+            [In, Out, MarshalAs(UnmanagedType.Interface)]
+#if !WAPICP3
+ref
+#endif
+         IPortableDevicePropVariantCollection ppResults);
     }
 
     [ComImport,
@@ -80,7 +95,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
         [PreserveSig]
         HResult UpdateObjectWithPropertiesAndData(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pProperties,
+            [In, MarshalAs(UnmanagedType.Interface)]
+#if !WAPICP3
+ref
+#endif
+         IPortableDeviceValues pProperties,
             [Out, MarshalAs(UnmanagedType.Interface)] out System.Runtime.InteropServices.ComTypes.IStream ppData,
             [In, Out] ref uint pdwOptimalWriteBufferSize);
     }

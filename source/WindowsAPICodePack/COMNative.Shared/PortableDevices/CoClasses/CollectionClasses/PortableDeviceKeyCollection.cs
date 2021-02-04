@@ -12,7 +12,7 @@ using System.Text;
 namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem
 {
     [ComImport,
-        System.Runtime.InteropServices.Guid(NativeAPI.Guids.PortableDevices.PortableDeviceValues),
+        System.Runtime.InteropServices.Guid(NativeAPI.Guids.PortableDevices.PortableDeviceKeyCollection),
         ClassInterface(ClassInterfaceType.None),
         TypeLibType(TypeLibTypeFlags.FCanCreate)]
     public class PortableDeviceKeyCollection { }

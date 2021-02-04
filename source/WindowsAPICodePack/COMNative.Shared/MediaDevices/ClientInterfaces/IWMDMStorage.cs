@@ -89,7 +89,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 
         [PreserveSig]
         HResult SetMetadata(
-            [In, MarshalAs(UnmanagedType.Interface)] ref IWMDMMetaData pMetadata);
+            [In, MarshalAs(UnmanagedType.Interface)]
+#if !WAPICP3
+ref
+#endif
+        IWMDMMetaData pMetadata);
 
         [PreserveSig]
         HResult CreateEmptyMetadataObject(
@@ -109,7 +113,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
         [PreserveSig]
         HResult SetReferences(
             [In] uint dwRefs,
-            [In,MarshalAs(UnmanagedType.Interface)] ref IWMDMStorage ppIWMDMStorage);
+            [In,MarshalAs(UnmanagedType.Interface)]
+#if !WAPICP3
+ref
+#endif
+         IWMDMStorage ppIWMDMStorage);
 
         [PreserveSig]
         HResult GetReferences(
@@ -118,7 +126,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 
         [PreserveSig]
         HResult GetRightsWithProgress(
-            [In, MarshalAs(UnmanagedType.Interface)] ref IWMDMProgress3 pIProgressCallback,
+            [In, MarshalAs(UnmanagedType.Interface)]
+#if !WAPICP3
+ref
+#endif
+         IWMDMProgress3 pIProgressCallback,
             [Out] out WMDMRights ppRights,
             [Out] out ushort pnRightsCount);
 

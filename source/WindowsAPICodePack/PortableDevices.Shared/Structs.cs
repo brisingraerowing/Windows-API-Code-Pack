@@ -1,6 +1,8 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
 using Microsoft.WindowsAPICodePack.Win32Native;
+using System;
+using System.Reflection;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
@@ -13,9 +15,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         public uint Revision { get; }
 
         public ClientVersion(in string clientName, in uint majorVersion, in uint minorVersion, in uint revision)
-
         {
-
             ClientName = clientName;
 
             MajorVersion = majorVersion;
@@ -23,7 +23,16 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             MinorVersion = minorVersion;
 
             Revision = revision;
+        }
 
+        public ClientVersion(in string clientName, in Version version) : this(clientName, (uint)version.Major, (uint)version.Minor, (uint)version.Revision)
+        {
+            // Left empty.
+        }
+
+        public ClientVersion(in AssemblyName assemblyName) : this(assemblyName.Name, assemblyName.Version)
+        {
+            // Left empty.
         }
 
         public override bool Equals(object obj) => obj is ClientVersion _obj ? _obj.ClientName == ClientName && _obj.MajorVersion == MajorVersion && _obj.MinorVersion == MinorVersion && _obj.Revision == Revision : false;

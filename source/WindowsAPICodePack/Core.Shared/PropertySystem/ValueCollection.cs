@@ -19,7 +19,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
     {
         private INativeReadOnlyValueCollection _items;
 
-        protected internal INativeReadOnlyValueCollection Items { get { ThrowIfDisposed(); return Items; } }
+        protected internal INativeReadOnlyValueCollection Items { get { ThrowIfDisposed(); return _items; } }
 
         public ReadOnlyValueCollection(in INativeReadOnlyValueCollection items) => _items = (items ?? throw new ArgumentNullException(nameof(items))).IsReadOnly ? throw new ArgumentException("The given collection is read-only.") : items.IsDisposed ? throw new ObjectDisposedException(nameof(items)) : items;
 

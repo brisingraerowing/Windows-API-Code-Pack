@@ -7,17 +7,17 @@
     <RootNamespace>Microsoft.WindowsAPICodePack.Win32Native</RootNamespace>
     <PackageId>WinCopies.WindowsAPICodePack.Win32Native</PackageId>
     <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
-    <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020</Copyright>
+    <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020-2021</Copyright>
     <AssemblyOriginatorKeyFile>Win32Native.snk</AssemblyOriginatorKeyFile>
     <Description>WindowsAPICodePack Win32 Interop</Description>
     <DocumentationFile>WinCopies.WindowsAPICodePack.Win32Native.xml</DocumentationFile>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <AssemblyName>WinCopies.WindowsAPICodePack.Win32Native</AssemblyName>
     <DefineConstants>WAPICP2;$(DefineConstants)</DefineConstants>
-    <VersionPrefix>2.1</VersionPrefix>
+    <VersionPrefix>2.1.1</VersionPrefix>
     <!--<VersionSuffix>preview</VersionSuffix>-->
-    <AssemblyVersion>2.1</AssemblyVersion>
-    <FileVersion>2.1</FileVersion>
+    <AssemblyVersion>2.1.1</AssemblyVersion>
+    <FileVersion>2.1.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

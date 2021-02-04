@@ -17,6 +17,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         ReadOnlyCollection<PortableDevice> PrivatePortableDevices { get; }
 
+#if WAPICP3
+        event PortableDeviceUpdatedEventHandler PortableDeviceUpdated;
+        event PortableDeviceObjectEventHandler PortableDeviceObjectAdded;
+        event PortableDeviceObjectEventHandler PortableDeviceObjectRemoved;
+        //        void TransferFrom(string path, FileMode fileMode, FileShare fileShare, int bufferSize, bool forceBufferSize, PortableDeviceTransferStartedCallback started, PortableDeviceTransferCallback d);
+#endif
+
         void RefreshDeviceList();
 
         void GetDevices();
@@ -26,7 +33,6 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
     public class PortableDeviceManager : IPortableDeviceManager
     {
-
         internal Microsoft.WindowsAPICodePack.COMNative.PortableDevices.IPortableDeviceManager _Manager { get; set; } = null;
 
         private List<PortableDevice> _portableDevices = null;
@@ -37,40 +43,46 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         public ReadOnlyCollection<PortableDevice> PrivatePortableDevices { get; }
 
+#if WAPICP3
+        public event PortableDeviceUpdatedEventHandler PortableDeviceUpdated;
+        public event PortableDeviceObjectEventHandler PortableDeviceObjectAdded;
+        public event PortableDeviceObjectEventHandler PortableDeviceObjectRemoved;
+#endif
+
         public PortableDeviceManager()
-
         {
-
-            _Manager = ( COMNative.PortableDevices. IPortableDeviceManager) new COMNative.PortableDevices.PortableDeviceManager();
+            _Manager = (COMNative.PortableDevices.IPortableDeviceManager)new COMNative.PortableDevices.PortableDeviceManager();
 
             _portableDevices = new List<PortableDevice>();
 
-            PortableDevices = new System.Collections.ObjectModel.ReadOnlyCollection<PortableDevice>(_portableDevices);
+            PortableDevices = new ReadOnlyCollection<PortableDevice>(_portableDevices);
 
             _privatePortableDevices = new List<PortableDevice>();
 
-            PrivatePortableDevices = new System.Collections.ObjectModel.ReadOnlyCollection<PortableDevice>(_privatePortableDevices);
-
+            PrivatePortableDevices = new ReadOnlyCollection<PortableDevice>(_privatePortableDevices);
         }
+
+#if WAPICP3
+        internal void RaisePortableDeviceUpdatedEvent(in PortableDeviceUpdatedEventArgs e) => PortableDeviceUpdated?.Invoke(this, e);
+
+        internal void RaisePortableDeviceObjectAddedEvent(in string id)=> PortableDeviceObjectAdded?.Invoke(this, new PortableDeviceObjectEventArgs(id));
+
+        internal void RaisePortableDeviceObjectRemovedEvent(in string id) => PortableDeviceObjectRemoved?.Invoke(this, new PortableDeviceObjectEventArgs(id));
+#endif
 
         public void RefreshDeviceList() => ThrowWhenFailHResult(_Manager.RefreshDeviceList());
 
         public void GetDevices()
-
         {
-
             uint count = 1;
 
             ThrowWhenFailHResult(_Manager.GetDevices(null, ref count)); // We get the PortableDevices.
 
             if (count == 0)
-
             {
-
                 _portableDevices.Clear(); // We found no devices anymore, so we clear the existing PortableDevices.
 
                 return;
-
             }
 
             string[] deviceIDs = new string[count];
@@ -78,35 +90,26 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             ThrowWhenFailHResult(_Manager.GetDevices(deviceIDs, ref count));
 
             if (count == 0)
-
             {
-
                 _portableDevices.Clear(); // We found no devices anymore, so we clear the existing PortableDevices.
 
                 return;
-
             }
 
             OnUpdatePortableDevices(deviceIDs, false);
-
         }
 
         public void GetPrivateDevices()
-
         {
-
             uint count = 1;
 
             ThrowWhenFailHResult(_Manager.GetPrivateDevices(null, ref count)); // We get the PortableDevices.
 
             if (count == 0)
-
             {
-
                 _privatePortableDevices.Clear(); // We found no devices anymore, so we clear the existing PortableDevices.
 
                 return;
-
             }
 
             string[] deviceIDs = new string[count];
@@ -114,23 +117,17 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             ThrowWhenFailHResult(_Manager.GetPrivateDevices(deviceIDs, ref count));
 
             if (count == 0)
-
             {
-
                 _privatePortableDevices.Clear(); // We found no devices anymore, so we clear the existing PortableDevices.
 
                 return;
-
             }
 
             OnUpdatePortableDevices(deviceIDs, true);
-
         }
 
         protected virtual void OnUpdatePortableDevices(string[] deviceIDs, in bool privateDevices)
-
         {
-
             if (deviceIDs is null)
 
                 throw new ArgumentNullException(nameof(deviceIDs));
@@ -139,10 +136,8 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             _ = portableDevices.RemoveAll(d => !deviceIDs.Contains(d.DeviceId));
 
-            for (int i = 0; i < deviceIDs.Length;i++)
-
+            for (int i = 0; i < deviceIDs.Length; i++)
             {
-
                 if (portableDevices.Any(d => d.DeviceId == deviceIDs[i]))
 
                     continue;
@@ -150,9 +145,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 OnAddPortableDevice(deviceIDs[i], privateDevices);
 
                 deviceIDs[i] = null;
-
             }
-
         }
 
         protected virtual void OnAddPortableDevice(in string deviceId, in bool isPrivateDevice) => OnAddPortableDevice(new PortableDevice(this, deviceId), isPrivateDevice);
@@ -179,16 +172,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             _privatePortableDevices.Clear();
 
             _ = Marshal.ReleaseComObject(_Manager);
+
             _Manager = null;
 
             IsDisposed = true;
-
         }
 
-        ~PortableDeviceManager()
-        {
-            Dispose(false);
-        }
+        ~PortableDeviceManager() => Dispose(false);
 
         public void Dispose()
         {
@@ -196,6 +186,5 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             GC.SuppressFinalize(this);
         }
         #endregion
-
     }
 }

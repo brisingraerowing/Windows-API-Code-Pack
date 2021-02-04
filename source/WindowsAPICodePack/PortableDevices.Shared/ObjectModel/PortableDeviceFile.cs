@@ -2,6 +2,7 @@
 
 using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.ResourceSystem;
 using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.PortableDevices.CommandSystem.Object;
 using Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Storage;
@@ -31,20 +32,20 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         {
             get
             {
-                ThrowIfOperationIsNotAllowed();
+                this.ThrowIfOperationIsNotAllowed();
 
-                return Properties.TryGetValue(PropertySystem.Properties.Object.ContentType, out Property property) && property.TryGetValue(out ulong value)
+                return Properties.TryGetValue(PropertySystem.Properties.Object.ContentType, out WindowsAPICodePack.PropertySystem.Property property) && property.TryGetValue(out ulong value)
                     ? value
                     : throw new PropertySystemException("Cannot read the property.");
             }
         }
 
-        public PortableDeviceFile(in string id, in bool isRoot, in PortableDevice parentPortableDevice, in PortableDeviceProperties properties) : this(id, isRoot, null, parentPortableDevice, properties)
+        public PortableDeviceFile(in string id, in bool isRoot, in PortableDevice parentPortableDevice, in PortableDeviceProperties properties) : base(id, isRoot, parentPortableDevice, properties)
         {
             // Left empty.
         }
 
-        public PortableDeviceFile(in string id, in bool isRoot, in PortableDeviceObject parent, in PortableDevice parentPortableDevice, in PortableDeviceProperties properties) : base(id, isRoot, parent, parentPortableDevice, properties)
+        public PortableDeviceFile(in string id, in bool isRoot, in EnumerablePortableDeviceObject parent, in PortableDevice parentPortableDevice, in PortableDeviceProperties properties) : base(id, isRoot, parent, parentPortableDevice, properties)
         {
             //if (Properties.TryGetValue(PortableDevices.PropertySystem.Properties.Storage.Capacity, out Property _objectProperty) && _objectProperty.TryGetValue(out ulong _value))
 
@@ -86,6 +87,25 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                 return (uint)realBufferLength;
             }, d);
+        }
+
+        public void TransferFrom(string path, FileMode fileMode, FileShare fileShare, int bufferSize, bool forceBufferSize, PortableDeviceTransferCallback d)
+        {
+            FileStream stream = forceBufferSize ? new FileStream(path, fileMode, FileAccess.Write, fileShare, bufferSize) : new FileStream(path, fileMode, FileAccess.Write, fileShare);
+
+            try
+            {
+                TransferFrom(stream, bufferSize, forceBufferSize, d);
+
+                stream.Flush();
+
+                stream.Close();
+            }
+
+            finally
+            {
+                stream.Dispose();
+            }
         }
     }
 }

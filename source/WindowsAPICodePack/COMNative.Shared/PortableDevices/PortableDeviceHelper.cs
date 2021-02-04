@@ -7,10 +7,15 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 using WinCopies.Collections
-#if !WAPICP2
-    .Generic
+#if WAPICP3
+    .Generic;
+
+using static WinCopies.ThrowHelper;
+#else
+            ;
+
+using static WinCopies.Util.Util;
 #endif
-    ;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
 {
@@ -19,13 +24,28 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
         public delegate T GetPortableDeviceObject<T>(in string id);
 
 #if CS7
-        public static IList<T> GetItems<T>(in IPortableDeviceContent portableDeviceContent, in string id, in GetPortableDeviceObject<T> getPortableDeviceObjectDelegate)
+        public static
+#if WAPICP3
+            WinCopies.Collections.Generic.EnumerableHelper<T>.IEnumerableLinkedList
+#else
+            IList<T> 
+#endif
+            GetItems<T>(in IPortableDeviceContent portableDeviceContent, in string id, in GetPortableDeviceObject<T> getPortableDeviceObjectDelegate)
         {
+            ThrowIfNull(portableDeviceContent, nameof(portableDeviceContent));
+            ThrowIfNullEmptyOrWhiteSpace(id);
+            ThrowIfNull(getPortableDeviceObjectDelegate, nameof(getPortableDeviceObjectDelegate));
+
             HResult hr = portableDeviceContent.EnumObjects(0, id, null, out IEnumPortableDeviceObjectIDs enumPortableDeviceObjectIDs);
 
             if (CoreErrorHelper.Succeeded(hr))
             {
-                var items = new ArrayBuilder<T>();
+                var items =
+#if WAPICP3
+                    WinCopies.Collections.Generic.EnumerableHelper<T>.GetEnumerableLinkedList();
+#else
+                    new ArrayBuilder<T>();
+#endif
 
                 do
                 {
@@ -43,14 +63,22 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
 
                         for (uint i = 0; i < fetched; i++)
 
-                            _ = items.AddLast(getPortableDeviceObjectDelegate(objectIDs[i]));
+#if !WAPICP3
+                            _ =
+#endif
+                            items.AddLast(getPortableDeviceObjectDelegate(objectIDs[i]));
                     }
 
                     else ThrowWhenFailHResult(hr);
 
                 } while (hr == HResult.Ok);
 
-                return items.ToList();
+                return items
+#if !WAPICP3
+                    .ToList();
+#else
+                    ;
+#endif
             }
 
             else

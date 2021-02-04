@@ -8,14 +8,14 @@
     <RootNamespace>Microsoft.WindowsAPICodePack.ShellExtensions</RootNamespace>
     <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
     <Description>WindowsAPICodePack Shell Extensions</Description>
-    <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020</Copyright>
+    <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020-2021</Copyright>
     <AssemblyOriginatorKeyFile>ShellExtensions.snk</AssemblyOriginatorKeyFile>
     <DocumentationFile>WinCopies.WindowsAPICodePack.ShellExtensions.xml</DocumentationFile>
     <DefineConstants>WAPICP2;$(DefineConstants)</DefineConstants>
-    <VersionPrefix>2.1</VersionPrefix>
+    <VersionPrefix>2.1.1</VersionPrefix>
     <!--<VersionSuffix>preview</VersionSuffix>-->
-    <AssemblyVersion>2.1</AssemblyVersion>
-    <FileVersion>2.1</FileVersion>
+    <AssemblyVersion>2.1.1</AssemblyVersion>
+    <FileVersion>2.1.1</FileVersion>
   </PropertyGroup>
 
   <Import Project="..\..\ShellExtensions.Shared\ShellExtensions.Shared.projitems" Label="Shared" />

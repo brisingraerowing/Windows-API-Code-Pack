@@ -140,13 +140,19 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem
                     Debug.WriteLine("Name property.");
 #endif
 
+                PropVariant propVariant;
+
                 for (short i = 0; i < propertyKeys.Length; i++)
                 {
-                    hr = attributes.GetValue(ref propertyKeys[i], out PropVariant propVariant);
+                    hr = attributes.GetValue(ref propertyKeys[i], out propVariant);
 
                     if (!CoreErrorHelper.Succeeded(hr))
                     {
                         propertyInfo = null;
+
+                        propVariant.Dispose();
+
+                        propVariant = null;
 
                         return hr;
                     }
@@ -154,6 +160,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem
                     else
 
                         values[i] = propVariant.VarType == VarEnum.VT_BOOL && (bool)propVariant.Value;
+
+                    propVariant.Dispose();
+
+                    propVariant = null;
                 }
 
                 Debug.WriteLine($"Original CanRead value: {values[0]}");
@@ -336,7 +346,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem
         HResult INativeReadOnlyPropertyValuesCollection.GetAt(in uint index, ref PropertyKey propertyKey, out PropVariant propVariant)
         {
 #if CS7
-                        using (var _propVariant = new PropVariant())
+            using (var _propVariant = new PropVariant())
             {
 #else
             using var _propVariant = new PropVariant();

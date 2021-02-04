@@ -10,14 +10,42 @@ For issue and fixation details, visit [https://wincopies.com/fwd.php?id=3](https
 
 For the original code (version 1.1, last release by Microsoft), see [https://wincopies.com/fwd.php?id=1](https://wincopies.com/fwd.php?id=1)
 
-??/??/???? 2.2.0
+02/04/2021 3.0.1
 ================
 
-- Win32Native 2.2.0
+Targets WinCopies Framework 3.x.
+
+Shell 3.0
+---------
+
+- Changes:
+    - ShellObject.FromParsingName was removed because it was redundant with ShellObjectFactory.Create.
+    - ShellFile has a new constructor instead of the FromFilePath static method.
+    - ShellLink inherits from ShellFile instead of ShellObject. ShellObject inheritance is still available through ShellFile.
+    - The ShellLink's constructor was replaced by a static method.
+
+PortableDevices 3.0
 -------------------
 
-Bug fixes:
-    - #18
+- Additions:
+    - Properties and events to the main object model interfaces.
+    - IPortableDeviceObject.Delete method.
+    - IPortableDeviceFile.TransferFrom(string path, FileMode fileMode, FileShare fileShare, int bufferSize, bool forceBufferSize, PortableDeviceTransferCallback d) method.
+- Changes:
+    - IEnumerable now implements interfaces instead of IPortableDevice and IEnumerablePortableDeviceObject. However, these interfaces have changed: IEnumerable now implements only System.Collections.Generic.IEnumerable.
+
+COMNative 3.0
+-------------
+
+- Removals:
+    - Some 'ref' keywords in native PortableDevices interfaces. These keywords have been removed for interface type parameters because they was redundant.
+
+02/04/2021 2.1.1
+================
+
+- Bug fixed in PropVariant. Vectors thrown errors because of invalid field offset.
+- Other bug fixes in PropertySystem and PortableDevices.
+- Add constructors to ClientVersion.
 
 12/16/2020 2.1.0
 ================

@@ -1,103 +1,81 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem;
-using Microsoft.WindowsAPICodePack.PropertySystem;
-
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
+
+#if WAPICP3
+using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
+using Microsoft.WindowsAPICodePack.PortableDevices.CommandSystem.Object;
+using Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
+
+using System.IO;
+using System.Runtime.InteropServices;
+
+using static Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PortableDeviceHelper;
+
+using static WinCopies.ThrowHelper;
+#else
+using Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem;
+
+using static WinCopies.Util.Util;
+#endif
 
 using PropertyCollection = Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.PropertyCollection;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
-    public enum PortableDeviceFileType : short
-    {
-        None = 0,
-
-        Folder = 1,
-
-        File = 2,
-
-        FunctionalObject = 3
-    }
-
-    public interface IEnumerable
-    {
-        void TransferTo(System.IO.FileStream stream, int bufferSize, bool forceBufferSize, Guid contentType, Guid objectFormat, PortableDeviceTransferCallback d);
-    }
-
-    public interface IEnumerablePortableDeviceObject : IPortableDeviceObject, IEnumerable<IPortableDeviceObject>, System.Collections.Generic.IReadOnlyCollection<IPortableDeviceObject>, System.Collections.Generic.IReadOnlyList<IPortableDeviceObject>, IEnumerable
-    {
-        // Left empty.
-    }
-
-    public interface IPortableDeviceFolder : IEnumerablePortableDeviceObject
-    {
-        IPortableDeviceObjectStorageCapacity StorageCapacity { get; }
-    }
-
-    public interface IPortableDeviceFile : IPortableDeviceObject
-    {
-        ulong Size { get; }
-
-        void TransferFrom(System.IO.Stream stream, int bufferSize, bool forceBufferSize, PortableDeviceTransferCallback d);
-    }
-
     // todo: implement other common properties
 
-    public abstract class PortableDeviceObject : IPortableDeviceObject
+#if WAPICP3
+    internal
+#else
+        public
+#endif
+        abstract class PortableDeviceObject : IPortableDeviceObject
     {
+        #region Fields
         private readonly bool _isRoot;
-
-        public bool IsRoot { get { ThrowIfDisposed(); return _isRoot; } }
-
-        protected abstract PortableDeviceFileType FileTypeOverride { get; }
-
-        public PortableDeviceFileType FileType { get { ThrowIfDisposed(); return FileTypeOverride; } }
-
-        protected abstract Guid TypeOverride { get; }
-
-        public Guid Type { get { ThrowIfOperationIsNotAllowed(); return TypeOverride; } }
-
         private protected string _id;
         private protected PortableDevice _parentPortableDevice;
-        private PortableDeviceObject _parent;
+        private EnumerablePortableDeviceObject _parent;
+        private PropertyCollection _properties;
+        #endregion
 
-        // todo: replace by the same method of the WinCopies.Util package.
+        #region Properties
+        #region Abstract
+        protected abstract PortableDeviceFileType FileTypeOverride { get; }
 
-        private protected void ThrowIfDisposed()
-        {
-            if (IsDisposed)
+        protected abstract Guid TypeOverride { get; }
+        #endregion
 
-                throw new InvalidOperationException("The current object is disposed.");
-        }
+#if WAPICP3
+        public string Path { get; }
+#endif
 
-        // todo: to static helper method?
+        public bool IsRoot => IsDisposed ? throw GetExceptionForDispose(false) : _isRoot;
 
-        internal void ThrowIfOperationIsNotAllowed()
-        {
-            if (ParentPortableDevice.IsDisposed)
+        public PortableDeviceFileType FileType => IsDisposed ? throw GetExceptionForDispose(false) : FileTypeOverride;
 
-                throw new ObjectDisposedException("The parent IPortableDevice is disposed.");
+        public Guid Type { get { this.ThrowIfOperationIsNotAllowed(); return TypeOverride; } }
 
-            if (!_parentPortableDevice.IsOpen)
+        public string Id { get { this.ThrowIfOperationIsNotAllowed(); return _id; } }
 
-                throw new PortableDeviceException("The IPortableDevice is not open.");
-        }
+        public IPortableDevice ParentPortableDevice => IsDisposed ? throw GetExceptionForDispose(false) : _parentPortableDevice;
 
-        public string Id { get { ThrowIfOperationIsNotAllowed(); return _id; } }
-
-        public IPortableDevice ParentPortableDevice { get { ThrowIfDisposed(); return _parentPortableDevice; } }
-
-        public IPortableDeviceObject Parent { get { ThrowIfDisposed(); return _parent; } }
-
-        public bool IsDisposed { get; private set; }
+        public
+#if WAPICP3
+           IEnumerablePortableDeviceObject
+#else
+IPortableDeviceObject
+#endif
+            Parent => IsDisposed ? throw GetExceptionForDispose(false) : _parent;
 
 #if CS7
         private string _name;
 
-        public string Name { get { ThrowIfOperationIsNotAllowed(); return _name; } }
+        public string Name { get { this.ThrowIfOperationIsNotAllowed(); return _name; } }
 #else
 #nullable enable
         private string? _name;
@@ -106,8 +84,6 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 #nullable disable
 #endif
 
-        private PropertyCollection _properties;
-
         /// <summary>
         /// Gets all of the properties that are supported by the current <see cref="PortableDevice"/>.
         /// </summary>
@@ -115,7 +91,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         {
             get
             {
-                ThrowIfOperationIsNotAllowed();
+                this.ThrowIfOperationIsNotAllowed();
 
 #if CS7
                 return _properties ?? (_properties = new PropertyCollection(new PortableDeviceProperties(_id, _parentPortableDevice)));
@@ -124,13 +100,14 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 #endif
             }
         }
+        #endregion
 
         private protected PortableDeviceObject(in string id, in bool isRoot, in PortableDevice parentPortableDevice, in PortableDeviceProperties properties) : this(id, isRoot, null, parentPortableDevice, properties)
         {
             // Left empty.
         }
 
-        private protected PortableDeviceObject(in string id, in bool isRoot, in PortableDeviceObject parent, in PortableDevice parentPortableDevice, in PortableDeviceProperties properties)
+        private protected PortableDeviceObject(in string id, in bool isRoot, in EnumerablePortableDeviceObject parent, in PortableDevice parentPortableDevice, in PortableDeviceProperties properties)
         {
             Debug.Assert(id is object && parentPortableDevice is object, $"{nameof(id)} and {nameof(ParentPortableDevice)} cannot be null.");
 
@@ -146,16 +123,69 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             Debug.WriteLine($"The {id} object is requesting the Name property.");
 
-            if (Properties.TryGetValue(PortableDevices.PropertySystem.Properties.Legacy.Object.Common.Name, out Property objectProperty) && objectProperty.TryGetValue(out string value))
+            if (Properties.TryGetValue(PortableDevices.PropertySystem.Properties.Legacy.Object.Common.Name, out WindowsAPICodePack.PropertySystem. Property objectProperty) && objectProperty.TryGetValue(out string value))
 
                 _name = value;
 
-            if (properties is object)
+#if WAPICP3
+            Path = $"{(parent == null ? parentPortableDevice.DeviceFriendlyName : parent.Path)}\\{_name ?? id}";
+#endif
 
-                _properties = new PropertyCollection(properties);
+            _properties = new PropertyCollection(properties ?? new PortableDeviceProperties(id, parentPortableDevice));
         }
 
+        #region Methods
+#if WAPICP3
+        public void Delete()
+        {
+            ThrowIfDisposed(this);
+
+            if (!ParentPortableDevice.DeviceCapabilities.Commands.Contains(Management.Commands.DeleteObjects))
+
+                throw new InvalidOperationException("The portable device does not allow deleting.");
+
+            var propVars = (IPortableDevicePropVariantCollection)new PortableDevicePropVariantCollection();
+
+            var propVar = new PropVariant(Id);
+
+            ThrowWhenFailHResult(propVars.Add(propVar));
+
+            HResult hr = _parentPortableDevice.Content.Delete(DeleteObjectOptionValues.NoRecursion, propVars, null);
+
+            if (hr == HResult.AccessDenied)
+
+                throw new UnauthorizedAccessException($"The item could not be deleted. HResult: {hr}.");
+
+            if (hr == CoreErrorHelper.HResultFromWin32(ErrorCode.DirNotEmpty) || hr == CoreErrorHelper.HResultFromWin32(ErrorCode.InvalidOperation))
+
+                throw new InvalidOperationException("The enumerable object is not empty.");
+
+            if (hr == CoreErrorHelper.HResultFromWin32(ErrorCode.NotFound))
+            {
+                if (this is IEnumerable)
+
+                    throw new DirectoryNotFoundException();
+
+                throw new FileNotFoundException();
+            }
+
+            ThrowWhenFailHResult(hr);
+
+            propVar.Dispose();
+
+            propVar = null;
+
+            Marshal.ReleaseComObject(propVars);
+
+            propVars = null;
+
+            Dispose();
+        }
+#endif
+        #endregion
+
         #region IDisposable Support
+        public bool IsDisposed { get; private set; }
 
         protected virtual void Dispose(bool disposing)
         {
@@ -167,17 +197,20 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                     _parentPortableDevice = null;
 
+                    _properties.Dispose();
+
+                    _properties = null;
+
                     _id = "";
 
                     _name = null;
-                }
 
-                IsDisposed = true;
+                    IsDisposed = true;
+                }
             }
         }
 
         public void Dispose() => Dispose(true);
-
         #endregion
     }
 }
