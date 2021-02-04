@@ -43,7 +43,7 @@ COMNative 3.0
 02/04/2021 2.1.1
 ================
 
-- Bug fixed in PropVariant. Vectors thrown errors because of invalid field offset.
+- Bug fixed in PropVariant. Vectors thrown errors because of invalid field offset. Fixes #18.
 - Other bug fixes in PropertySystem and PortableDevices.
 - Add constructors to ClientVersion.
 
