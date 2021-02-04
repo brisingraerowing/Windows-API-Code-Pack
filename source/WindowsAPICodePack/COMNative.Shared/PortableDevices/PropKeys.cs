@@ -2618,7 +2618,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             }
 
             /// <summary>
-            /// This class defines all Commands-Parameters and Options associated with: <see cref="Guids.PortableDevices.CommandSystem.Object.Management"/>. The commands specified in this category are used to Create/Delete objects on the device.
+            /// This class defines all Commands-Parameters and Options associated with: <see cref="PortableDevices.Guids.CommandSystem.Object.Management"/>. The commands specified in this category are used to Create/Delete objects on the device.
             /// </summary>
             public static class Management
             {

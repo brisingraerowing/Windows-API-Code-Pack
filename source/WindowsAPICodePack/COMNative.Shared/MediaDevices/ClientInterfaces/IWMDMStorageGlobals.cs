@@ -45,6 +45,10 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
         [PreserveSig]
         HResult Initialize(
             [In] ushort fuMode,
-            [In,MarshalAs(UnmanagedType.Interface)] ref IWMDMProgress pProgress);
+            [In,MarshalAs(UnmanagedType.Interface)]
+#if !WAPICP3
+ref
+#endif
+         IWMDMProgress pProgress);
     }
 }

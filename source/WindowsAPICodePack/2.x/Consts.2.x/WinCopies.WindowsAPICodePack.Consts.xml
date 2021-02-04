@@ -8299,6 +8299,12 @@
             <para>MessageText: Replication with a nonconfigured partner is not allowed.</para>
             </summary>
         </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.InvalidOperation">
+            <summary>
+            <para>MessageId: ERROR_INVALID_OPERATION</para>
+            <para>MessageText: The operation identifier is not valid.</para>
+            </summary>
+        </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.EncryptionFailed">
             <summary>
             <para>MessageId: ERROR_ENCRYPTION_FAILED</para>
@@ -8464,6 +8470,11 @@
         <member name="T:Microsoft.WindowsAPICodePack.Win32Native.HResultFacility">
             <summary>
             The facility codes
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.CommonGuids.GuidNull">
+            <summary>
+            A NULL Guid.
             </summary>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Sensors.Guids.EventSystem.StateChanged">
@@ -9003,11 +9014,6 @@
         <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.ClassExtensionV2">
             <summary>
             This section defines all Commands-Parameters and Options associated with: WPD_CLASS_EXTENSION_V2. The commands in this category relate to the WPD device class extension.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.CategoryNull">
-            <summary>
-            This section defines all Commands-Parameters and Options associated with: WPD_CATEGORY_NULL. This category is used exclusively for the NULL property key define.
             </summary>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.PortableDevices.Guids.CommandSystem.NetworkConfiguration">

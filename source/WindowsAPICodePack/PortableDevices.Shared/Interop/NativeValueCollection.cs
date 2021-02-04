@@ -390,7 +390,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         HResult INativeReadOnlyValueCollection.CopyValuesFromPropertyStore(ref IPropertyStore pStore) => PortableDeviceValues.CopyValuesFromPropertyStore(pStore);
 
-        HResult INativeReadOnlyValueCollection.CopyValuesToPropertyStore(ref IPropertyStore pStore) => PortableDeviceValues.CopyValuesToPropertyStore(ref pStore);
+        HResult INativeReadOnlyValueCollection.CopyValuesToPropertyStore(ref IPropertyStore pStore) => PortableDeviceValues.CopyValuesToPropertyStore(
+#if !WAPICP3
+ref
+#endif
+        pStore);
     }
 
     internal sealed class NativeValueCollection : NativeReadOnlyValueCollection, INativeValueCollection

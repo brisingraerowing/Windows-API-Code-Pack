@@ -1285,7 +1285,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 #if CS8
                 ??=
 #else
-                ?? (_propertySystemAppUserModel = 
+                ?? (_propertySystemAppUserModel =
 #endif
                 new PropertySystemAppUserModel(shellObjectParent)
 #if !CS8
@@ -2467,7 +2467,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 #if CS8
                 ??=
 #else
-                (_propertyContactJA =
+                ?? (_propertyContactJA =
 #endif
                 new PropertyContactJA(shellObjectParent)
 #if !CS8
@@ -2564,7 +2564,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {AFC47170-14F5-498C-8F30-B0D19BE449C6}, 11</para>
             /// </summary>
-            public ShellProperty<string> PrinterDriverName => AddProperty < COMNative.Shell.PropertySystem.SystemProperties.System.DeviceInterface.PrinterDriverName);
+            public ShellProperty<string> PrinterDriverName => AddProperty<string>(COMNative.Shell.PropertySystem.SystemProperties.System.DeviceInterface.PrinterDriverName);
 
             /// <summary>
             /// <para>Name: System.DeviceInterface.PrinterName -- PKEY_DeviceInterface_PrinterName</para>
@@ -2972,7 +2972,17 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <summary>
             /// Devices.Notifications Properties
             /// </summary>
-            public PropertyDevicesNotifications Notifications => _propertyDevicesNotifications ??= new PropertyDevicesNotifications(shellObjectParent);
+            public PropertyDevicesNotifications Notifications => _propertyDevicesNotifications
+#if CS8
+                ??=
+#else
+                ?? (_propertyDevicesNotifications =
+#endif
+            new PropertyDevicesNotifications(shellObjectParent)
+#if !CS8
+                )
+#endif
+                ;
             #endregion
         }
 

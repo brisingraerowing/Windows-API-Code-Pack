@@ -412,7 +412,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             // Create the shell item path
             string shellItemPath = Path.Combine(folderPath, libraryName + FileExtension);
-            var item = ShellFile.FromFilePath(shellItemPath);
+            var item = new ShellFile(shellItemPath);
 
             IShellItem nativeShellItem = item.NativeShellItem;
             var nativeShellLibrary = (INativeShellLibrary)new ShellLibraryCoClass();
@@ -636,7 +636,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         #endregion
 
-        public void Commit() => Marshal.ThrowExceptionForHR( (int) nativeShellLibrary.Commit() ) ; 
+        public void Commit() => Marshal.ThrowExceptionForHR((int)nativeShellLibrary.Commit());
 
         #region Disposable Pattern
 

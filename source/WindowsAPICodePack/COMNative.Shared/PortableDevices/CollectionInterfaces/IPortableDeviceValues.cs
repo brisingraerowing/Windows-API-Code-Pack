@@ -1,22 +1,17 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative;
-using Microsoft.WindowsAPICodePack.COMNative.PropertySystem;
 using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using GuidAttribute = System.Runtime.InteropServices.GuidAttribute;
+using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 
+using System;
+using System.Runtime.InteropServices;
+
+using GuidAttribute = System.Runtime.InteropServices.GuidAttribute;
+
 namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem
 {
-
     [ComImport,
         Guid(NativeAPI.Guids.PortableDevices.IPortableDeviceValues),
         InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -167,7 +162,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem
         [PreserveSig]
         HResult SetIPortableDeviceValuesValue(
             [In] ref PropertyKey key, 
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pValue);
+            [In, MarshalAs(UnmanagedType.Interface)]
+#if !WAPICP3
+ref
+#endif
+         IPortableDeviceValues pValue);
 
         [PreserveSig]
         HResult GetIPortableDeviceValuesValue(
@@ -177,7 +176,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem
         [PreserveSig]
         HResult SetIPortableDevicePropVariantCollectionValue(
             [In] ref PropertyKey key, 
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDevicePropVariantCollection pValue);
+            [In, MarshalAs(UnmanagedType.Interface)]
+#if !WAPICP3
+ref
+#endif
+         IPortableDevicePropVariantCollection pValue);
 
         [PreserveSig]
         HResult GetIPortableDevicePropVariantCollectionValue(
@@ -187,7 +190,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem
         [PreserveSig]
         HResult SetIPortableDeviceKeyCollectionValue(
             [In] ref PropertyKey key, 
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection pValue);
+            [In, MarshalAs(UnmanagedType.Interface)]
+#if !WAPICP3
+ref
+#endif
+         IPortableDeviceKeyCollection pValue);
 
         [PreserveSig]
         HResult GetIPortableDeviceKeyCollectionValue(
@@ -197,7 +204,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem
         [PreserveSig]
         HResult SetIPortableDeviceValuesCollectionValue(
             [In] ref PropertyKey key, 
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValuesCollection pValue);
+            [In, MarshalAs(UnmanagedType.Interface)]
+#if !WAPICP3
+ref
+#endif
+         IPortableDeviceValuesCollection pValue);
 
         [PreserveSig]
         HResult GetIPortableDeviceValuesCollectionValue(
@@ -210,11 +221,19 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem
 
         [PreserveSig]
         HResult CopyValuesFromPropertyStore(
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPropertyStore pStore);
+            [In, MarshalAs(UnmanagedType.Interface)]
+#if !WAPICP3
+ref
+#endif
+         IPropertyStore pStore);
 
         [PreserveSig]
         HResult CopyValuesToPropertyStore(
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPropertyStore pStore);
+            [In, MarshalAs(UnmanagedType.Interface)]
+#if !WAPICP3
+ref
+#endif
+         IPropertyStore pStore);
 
         [PreserveSig]
         HResult Clear();

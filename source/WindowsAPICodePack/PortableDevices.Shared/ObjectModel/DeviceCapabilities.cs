@@ -2,26 +2,22 @@
 
 using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.COMNative.PortableDevices;
+
 using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
+
 using static Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PortableDeviceHelper;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
     public interface IDeviceCapabilities
-
     {
-
-        WindowsAPICodePack.PropertySystem.ReadOnlyCollection<PropertyKey> Commands { get; }
-
+        // todo: add the other properties
+        ReadOnlyCollection<PropertyKey> Commands { get; }
     }
 
     public sealed class DeviceCapabilities : IDeviceCapabilities
-
     {
-
         private readonly PortableDevice _portableDevice;
 
         private IPortableDeviceCapabilities _portableDeviceCapabilities;
@@ -35,24 +31,17 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             _portableDeviceCapabilities = portableDeviceCapabilities;
         }
 
-        private WindowsAPICodePack.PropertySystem.ReadOnlyCollection<PropertyKey> _commands;
+        private ReadOnlyCollection<PropertyKey> _commands;
 
-        public WindowsAPICodePack.PropertySystem.ReadOnlyCollection<PropertyKey> Commands
-
+        public ReadOnlyCollection<PropertyKey> Commands
         {
-
             get
-
             {
-
-                if (_commands is null)
-
+                if (_commands == null)
                 {
-
                     ThrowWhenFailHResult(_portableDeviceCapabilities.GetSupportedCommands(out COMNative.PortableDevices.PropertySystem.IPortableDeviceKeyCollection supportedCommands));
 
-                    _commands = new WindowsAPICodePack.PropertySystem.ReadOnlyCollection<PropertyKey>(new NativeReadOnlyPropertyKeyCollection(supportedCommands));
-
+                    _commands = new ReadOnlyCollection<PropertyKey>(new NativeReadOnlyPropertyKeyCollection(supportedCommands));
                 }
 
                 return _commands;
@@ -62,14 +51,10 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         }
 
         ~DeviceCapabilities()
-
         {
-
             _ = Marshal.ReleaseComObject(_portableDeviceCapabilities);
 
             _portableDeviceCapabilities = null;
-
         }
-
     }
 }

@@ -7,10 +7,15 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 using WinCopies.Collections
-#if !WAPICP2
-    .Generic
+#if WAPICP3
+    .Generic;
+
+using static WinCopies.ThrowHelper;
+#else
+            ;
+
+using static WinCopies.Util.Util;
 #endif
-    ;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
 {
@@ -21,6 +26,10 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
 #if CS7
         public static IList<T> GetItems<T>(in IPortableDeviceContent portableDeviceContent, in string id, in GetPortableDeviceObject<T> getPortableDeviceObjectDelegate)
         {
+            ThrowIfNull(portableDeviceContent, nameof(portableDeviceContent));
+            ThrowIfNullEmptyOrWhiteSpace(id);
+            ThrowIfNull(getPortableDeviceObjectDelegate, nameof(getPortableDeviceObjectDelegate));
+
             HResult hr = portableDeviceContent.EnumObjects(0, id, null, out IEnumPortableDeviceObjectIDs enumPortableDeviceObjectIDs);
 
             if (CoreErrorHelper.Succeeded(hr))

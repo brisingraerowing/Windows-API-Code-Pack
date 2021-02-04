@@ -24,10 +24,27 @@ Shell 3.0
     - ShellLink inherits from ShellFile instead of ShellObject. ShellObject inheritance is still available through ShellFile.
     - The ShellLink's constructor was replaced by a static method.
 
+PortableDevices 3.0
+-------------------
+
+- Additions:
+    - Properties and events to the main object model interfaces.
+    - IPortableDeviceObject.Delete method.
+    - IPortableDeviceFile.TransferFrom(string path, FileMode fileMode, FileShare fileShare, int bufferSize, bool forceBufferSize, PortableDeviceTransferCallback d) method.
+- Changes:
+    - IEnumerable now implements interfaces instead of IPortableDevice and IEnumerablePortableDeviceObject.
+
+COMNative 3.0
+-------------
+
+- Removals:
+    - Some 'ref' keywords in native PortableDevices interfaces. These keywords have been removed for interface type parameters because they was redundant.
+
 ??/??/???? ????
 ===============
 
 - Bug fixed in PropVariant. Vectors thrown errors because of invalid field offset.
+- Other bug fixes in PropertySystem and PortableDevices.
 - Add constructors to ClientVersion.
 
 12/16/2020 2.1.0

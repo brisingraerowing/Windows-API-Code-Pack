@@ -1,13 +1,9 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.COMNative;
 using Microsoft.WindowsAPICodePack.Win32Native;
+
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem
 {
@@ -27,7 +23,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem
 
         [PreserveSig]
         HResult Add(
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pValues);
+            [In, MarshalAs(UnmanagedType.Interface)]
+#if !WAPICP3
+ref
+#endif
+         IPortableDeviceValues pValues);
 
         [PreserveSig]
         HResult Clear();

@@ -8358,11 +8358,11 @@
         //        /// </summary>
         //        ResourceNotPresent = 4316,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_INVALID_OPERATION</para>
-        //        /// <para>MessageText: The operation identifier is not valid.</para>
-        //        /// </summary>
-        //        InvalidOperation = 4317,
+        /// <summary>
+        /// <para>MessageId: ERROR_INVALID_OPERATION</para>
+        /// <para>MessageText: The operation identifier is not valid.</para>
+        /// </summary>
+        InvalidOperation = 4317,
 
         //        /// <summary>
         //        /// <para>MessageId: ERROR_MEDIA_NOT_AVAILABLE</para>

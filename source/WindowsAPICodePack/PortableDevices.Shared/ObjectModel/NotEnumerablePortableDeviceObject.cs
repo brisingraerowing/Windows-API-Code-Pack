@@ -16,12 +16,12 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                         ? value
                         : throw new PropertySystemException("Cannot read the property."))).Value;
 
-        public NotEnumerablePortableDeviceObject(in string id, in bool isRoot, in PortableDevice parentPortableDevice, PortableDeviceProperties properties) : this(id, isRoot, null, parentPortableDevice, properties)
+        public NotEnumerablePortableDeviceObject(in string id, in bool isRoot, in PortableDevice parentPortableDevice, in PortableDeviceProperties properties) : base(id, isRoot,  parentPortableDevice, properties)
         {
             // Left empty.
         }
 
-        public NotEnumerablePortableDeviceObject(in string id, in bool isRoot, in PortableDeviceObject parent, in PortableDevice parentPortableDevice, PortableDeviceProperties properties) : base(id, isRoot, parent, parentPortableDevice, properties)
+        public NotEnumerablePortableDeviceObject(in string id, in bool isRoot, in EnumerablePortableDeviceObject parent, in PortableDevice parentPortableDevice, in PortableDeviceProperties properties) : base(id, isRoot, parent, parentPortableDevice, properties)
         {
             // Left empty.
         }

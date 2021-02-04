@@ -8,9 +8,12 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
     {
         protected override PortableDeviceFileType FileTypeOverride => PortableDeviceFileType.None;
 
-        public PortableDeviceCommonObject(in string id, in bool isRoot, in PortableDevice parentPortableDevice, in PortableDeviceProperties properties) : this(id, isRoot, null, parentPortableDevice, properties) { }
+        public PortableDeviceCommonObject(in string id, in bool isRoot, in PortableDevice parentPortableDevice, in PortableDeviceProperties properties) : base(id, isRoot, parentPortableDevice, properties)
+        {
+            // Left empty.
+        }
 
-        public PortableDeviceCommonObject(in string id, in bool isRoot, in PortableDeviceObject parent, in PortableDevice parentPortableDevice, in PortableDeviceProperties properties) : base(id, isRoot, parent, parentPortableDevice, properties)
+        public PortableDeviceCommonObject(in string id, in bool isRoot, in EnumerablePortableDeviceObject parent, in PortableDevice parentPortableDevice, in PortableDeviceProperties properties) : base(id, isRoot, parent, parentPortableDevice, properties)
         {
             // Left empty.
         }

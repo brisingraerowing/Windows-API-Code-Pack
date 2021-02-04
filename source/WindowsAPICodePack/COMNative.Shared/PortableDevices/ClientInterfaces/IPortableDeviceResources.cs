@@ -48,14 +48,22 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices.ResourceSystem
         [PreserveSig]
         HResult Delete(
             [In, MarshalAs(UnmanagedType.LPWStr)] string pszObjectID,
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceKeyCollection pKeys);
+            [In, MarshalAs(UnmanagedType.Interface)]
+#if !WAPICP3
+ref
+#endif
+         IPortableDeviceKeyCollection pKeys);
 
         [PreserveSig]
         HResult Cancel();
 
         [PreserveSig]
         HResult CreateResource(
-            [In, MarshalAs(UnmanagedType.Interface)] ref IPortableDeviceValues pResourceAttributes,
+            [In, MarshalAs(UnmanagedType.Interface)]
+#if !WAPICP3
+ref
+#endif
+         IPortableDeviceValues pResourceAttributes,
             [Out, MarshalAs(UnmanagedType.Interface)] out System.Runtime.InteropServices.ComTypes.IStream ppData,
             [In, Out] ref uint pdwOptimalWriteBufferSize,
             [In, Out, MarshalAs(UnmanagedType.LPWStr)] ref string ppszCookie);

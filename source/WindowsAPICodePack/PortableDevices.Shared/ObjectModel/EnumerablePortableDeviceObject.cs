@@ -7,6 +7,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
+#if WAPICP3
+using WinCopies.Collections.DotNetFix.Generic;
+#endif
+
 using static Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PortableDeviceHelper;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
@@ -23,29 +27,40 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         {
             get
             {
-                ThrowIfOperationIsNotAllowed();
+                this.ThrowIfOperationIsNotAllowed();
 
-#if CS7
-                return _items ?? (_items = GetItems<IPortableDeviceObject>(_parentPortableDevice.Content, _id, (in string id) => PortableDevice.GetPortableDeviceObject(id, false, this, _parentPortableDevice)));
+                return _items
+#if CS8
+                ??= 
 #else
-                return _items ??= GetItems<IPortableDeviceObject>(_parentPortableDevice.Content, _id, (in string id) => PortableDevice.GetPortableDeviceObject(id, false, this, _parentPortableDevice));
+                ?? (_items =
 #endif
+
+                GetItems(_parentPortableDevice.Content, _id, (in string id) => PortableDevice.GetPortableDeviceObject(id, false, this, _parentPortableDevice))
+
+#if !CS8
+                )
+#endif
+                ;
             }
         }
 
-        public EnumerablePortableDeviceObject(in string id, in bool isRoot, in PortableDevice parentPortableDevice, in PortableDeviceProperties properties) : this(id, isRoot, null, parentPortableDevice, properties)
+#if WAPICP3
+        public event PortableDeviceObjectEventHandler PortableDeviceObjectAdded;
+        public event PortableDeviceObjectEventHandler PortableDeviceObjectRemoved;
+#endif
+
+        public EnumerablePortableDeviceObject(in string id, in bool isRoot, in PortableDevice parentPortableDevice, in PortableDeviceProperties properties) : base(id, isRoot, parentPortableDevice, properties)
         {
             // Left empty.
         }
 
-        public EnumerablePortableDeviceObject(in string id, in bool isRoot, in PortableDeviceObject parent, in PortableDevice parentPortableDevice, in PortableDeviceProperties properties
-
-            ) : base(id, isRoot, parent, parentPortableDevice, properties)
+        public EnumerablePortableDeviceObject(in string id, in bool isRoot, in EnumerablePortableDeviceObject parent, in PortableDevice parentPortableDevice, in PortableDeviceProperties properties) : base(id, isRoot, parent, parentPortableDevice, properties)
         {
             // Left empty.
         }
 
-        public IEnumerator<IPortableDeviceObject> GetEnumerator() => _Items.GetEnumerator();
+        public System.Collections.Generic.IEnumerator<IPortableDeviceObject> GetEnumerator() => _Items.GetEnumerator();
 
         IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
 
@@ -61,6 +76,24 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             }
         }
 
-        public void TransferTo( FileStream stream, int bufferSize, bool forceBufferSize, Guid contentType, Guid objectFormat, PortableDeviceTransferCallback d) => _parentPortableDevice.TransferTo(stream, bufferSize, forceBufferSize, Id, contentType, objectFormat, d);
+#if WAPICP3
+        internal void AddItem(in string id)
+        {
+            IPortableDeviceObject item = PortableDevice.GetPortableDeviceObject(id, false, this, _parentPortableDevice);
+
+            _items.Add(item);
+
+            PortableDeviceObjectAdded?.Invoke(this, new PortableDeviceObjectEventArgs(item));
+        }
+
+        internal void RemoveItem(in IPortableDeviceObject item)
+        {
+            _items.Remove(item);
+
+            PortableDeviceObjectRemoved?.Invoke(this, new PortableDeviceObjectEventArgs(item));
+        }
+#endif
+
+        public void TransferTo(FileStream stream, int bufferSize, bool forceBufferSize, Guid contentType, Guid objectFormat, PortableDeviceTransferCallback d) => _parentPortableDevice.TransferTo(stream, bufferSize, forceBufferSize, Id, contentType, objectFormat, d);
     }
 }
