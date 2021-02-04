@@ -9,6 +9,8 @@ using System.IO;
 
 #if WAPICP3
 using WinCopies.Collections.DotNetFix.Generic;
+
+using static WinCopies.ThrowHelper;
 #endif
 
 using static Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PortableDeviceHelper;
@@ -17,11 +19,12 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
     internal abstract class EnumerablePortableDeviceObject : PortableDeviceObject, IEnumerablePortableDeviceObject
     {
+#if !WAPICP3
         public IPortableDeviceObject this[int index] => _Items[index];
 
         public int Count => _Items.Count;
 
-        private IList<IPortableDeviceObject> _items;
+        internal IList<IPortableDeviceObject> _items;
 
         private IList<IPortableDeviceObject> _Items
         {
@@ -31,7 +34,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                 return _items
 #if CS8
-                ??= 
+                ??=
 #else
                 ?? (_items =
 #endif
@@ -44,10 +47,6 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 ;
             }
         }
-
-#if WAPICP3
-        public event PortableDeviceObjectEventHandler PortableDeviceObjectAdded;
-        public event PortableDeviceObjectEventHandler PortableDeviceObjectRemoved;
 #endif
 
         public EnumerablePortableDeviceObject(in string id, in bool isRoot, in PortableDevice parentPortableDevice, in PortableDeviceProperties properties) : base(id, isRoot, parentPortableDevice, properties)
@@ -60,10 +59,16 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             // Left empty.
         }
 
-        public System.Collections.Generic.IEnumerator<IPortableDeviceObject> GetEnumerator() => _Items.GetEnumerator();
+        public System.Collections.Generic.IEnumerator<IPortableDeviceObject> GetEnumerator() =>
+#if WAPICP3
+IsDisposed ? throw GetExceptionForDispose(false) : _parentPortableDevice.IsOpen ? GetItems(_parentPortableDevice.Content, _id, (in string id) => PortableDevice.GetPortableDeviceObject(id, false, this, _parentPortableDevice)).GetEnumerator() : throw new InvalidOperationException("The parent portable device is not open.");
+#else
+            _Items.GetEnumerator();
+#endif
 
         IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
 
+#if !WAPICP3
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
@@ -75,24 +80,25 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 _items = null;
             }
         }
-
-#if WAPICP3
-        internal void AddItem(in string id)
-        {
-            IPortableDeviceObject item = PortableDevice.GetPortableDeviceObject(id, false, this, _parentPortableDevice);
-
-            _items.Add(item);
-
-            PortableDeviceObjectAdded?.Invoke(this, new PortableDeviceObjectEventArgs(item));
-        }
-
-        internal void RemoveItem(in IPortableDeviceObject item)
-        {
-            _items.Remove(item);
-
-            PortableDeviceObjectRemoved?.Invoke(this, new PortableDeviceObjectEventArgs(item));
-        }
 #endif
+
+        //#if WAPICP3
+        //        internal void AddItem(in string id)
+        //        {
+        //            IPortableDeviceObject item = PortableDevice.GetPortableDeviceObject(id, false, this, _parentPortableDevice);
+
+        //            _items.Add(item);
+
+        //            _parentPortableDevice._portableDeviceManager.RaisePortableDeviceObjectAddedEvent(item);
+        //        }
+
+        //        internal void RemoveItem(in IPortableDeviceObject item)
+        //        {
+        //            _items.Remove(item);
+
+        //            _parentPortableDevice._portableDeviceManager.RaisePortableDeviceObjectRemovedEvent(item);
+        //        }
+        //#endif
 
         public void TransferTo(FileStream stream, int bufferSize, bool forceBufferSize, Guid contentType, Guid objectFormat, PortableDeviceTransferCallback d) => _parentPortableDevice.TransferTo(stream, bufferSize, forceBufferSize, Id, contentType, objectFormat, d);
     }

@@ -36,41 +36,6 @@ using PropertyCollection = Microsoft.WindowsAPICodePack.PortableDevices.Property
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
-#if WAPICP3
-    internal class PortableDeviceEventCallback : COMNative.PortableDevices.EventSystem.IPortableDeviceEventCallback
-    {
-        private PortableDevice _portableDevice;
-
-        public PortableDeviceEventCallback(in PortableDevice portableDevice) => _portableDevice = portableDevice;
-
-        public HResult OnEvent(IPortableDeviceValues pEventParameters)
-        {
-            _portableDevice.RaiseEvent(new PortableDeviceUpdatedEventArgs(pEventParameters));
-
-            return HResult.Ok;
-        }
-    }
-
-    public class PortableDeviceUpdatedEventArgs : EventArgs
-    {
-        public ReadOnlyPortableDeviceValueCollection EventArgValues { get; }
-
-        public PortableDeviceUpdatedEventArgs(in IPortableDeviceValues portableDeviceValues) => EventArgValues = new ReadOnlyPortableDeviceValueCollection(new NativeValueCollection(portableDeviceValues));
-    }
-
-    public class PortableDeviceObjectEventArgs : EventArgs
-    {
-        public IPortableDeviceObject PortableDeviceObject { get; }
-
-        public PortableDeviceObjectEventArgs(in IPortableDeviceObject portableDeviceObject) => PortableDeviceObject = portableDeviceObject;
-    }
-
-    public delegate void PortableDeviceUpdatedEventHandler(object sender, PortableDeviceUpdatedEventArgs e);
-    public delegate void PortableDeviceObjectEventHandler(object sender, PortableDeviceObjectEventArgs e);
-#endif
-
-    public delegate bool PortableDeviceTransferCallback(uint written);
-
     //#if WAPICP3
     //    public delegate bool PortableDeviceTransferStartedCallback(IPortableDeviceObject item);
     //#endif
@@ -94,18 +59,27 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         private readonly string _deviceId;
         private IDeviceCapabilities _deviceCapabilities;
         private IPortableDeviceContent2 _content = null;
-        private Microsoft.WindowsAPICodePack.PropertySystem.PropertyCollection _properties;
+        private WindowsAPICodePack.PropertySystem.PropertyCollection _properties;
 #if WAPICP3
         private string _eventCookie;
 #endif
-        #endregion
+#endregion
 
-        #region Properties
-#if CS7
-        private IList<IPortableDeviceObject> _Items => IsOpen ? _items ?? (_items = GetItems<IPortableDeviceObject>(Content, NativeAPI.Consts.PortableDevices.DeviceObjectId, (in string id) => GetPortableDeviceObject(id, true, null, this))) : throw new PortableDeviceException("The device is not open.");
+#region Properties
+#if !WAPICP3
+        private IList<IPortableDeviceObject> _Items => IsOpen ? _items
+#if CS8
+            ??=
 #else
-        private IList<IPortableDeviceObject> _Items => IsOpen ? _items ??= GetItems<IPortableDeviceObject>(Content, NativeAPI.Consts.PortableDevices.DeviceObjectId, (in string id) => GetPortableDeviceObject(id, true, null, this)) : throw new PortableDeviceException("The device is not open.");
+?? (_items =
 #endif
+            GetItems(Content, NativeAPI.Consts.PortableDevices.DeviceObjectId, (in string id) => GetPortableDeviceObject(id, true, null, this))
+#if !CS8
+            )
+#endif
+            : throw new PortableDeviceException("The device is not open.");
+#endif
+
         internal IPortableDeviceProperties NativePortableDeviceProperties
         {
             get
@@ -205,18 +179,14 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         public bool IsOpen { get { ThrowIfDisposed(); return _isOpen; } }
 
+#if !WAPICP3
         public int Count => _Items.Count;
 
         public IPortableDeviceObject this[int index] => _Items[index];
+#endif
 
         public PortableDeviceOpeningOptions PortableDeviceOpeningOptions { get; private set; }
-        #endregion
-
-#if WAPICP3
-        public event PortableDeviceUpdatedEventHandler PortableDeviceUpdated;
-        public event PortableDeviceObjectEventHandler PortableDeviceObjectAdded;
-        public event PortableDeviceObjectEventHandler PortableDeviceObjectRemoved;
-#endif
+#endregion
 
         internal PortableDevice(in PortableDeviceManager portableDeviceManager, in string deviceId)
         {
@@ -259,9 +229,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             NativePortableDevice = (COMNative.PortableDevices.IPortableDevice)new COMNative.PortableDevices.PortableDevice();
         }
 
-        #region Methods
+#region Methods
 #if WAPICP3
-        private System.Collections.Generic.IEnumerable<IPortableDeviceObject> GetPortableDeviceObject(in string id)
+        public System.Collections.Generic.IEnumerable<IPortableDeviceObject> GetPortableDeviceItem(in string id)
         {
             var keyCollection = (IPortableDeviceKeyCollection)new PortableDeviceKeyCollection();
 
@@ -327,76 +297,42 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             return item;
         }
 
-        private System.Collections.Generic.IEnumerable<IPortableDeviceObject> GetPortableDeviceObject(in ReadOnlyPortableDeviceValueCollection values, out string id)
+        public static string GetId(in ReadOnlyPortableDeviceValueCollection values)
         {
+            ThrowIfNull(values, nameof(values));
+
             PropertyKey propKey = PropertySystem.Properties.Legacy.Object.Common.Id;
 
-            id = values.GetStringValue(ref propKey);
-
-            return GetPortableDeviceObject(id);
+            return values.GetStringValue(ref propKey);
         }
 
-        private void OnObjectAdded(in ReadOnlyPortableDeviceValueCollection values)
+        public System.Collections.Generic.IEnumerable<IPortableDeviceObject> GetPortableDeviceItem(in ReadOnlyPortableDeviceValueCollection values, out string id)
         {
-            object obj = GetPortableDeviceObject(values, out string id);
+            ThrowIfNull(values, nameof(values));
 
-            if (obj is EnumerablePortableDeviceObject enumerable)
+            id = GetId(values);
 
-                enumerable.AddItem(id);
-
-            else if (obj == this)
-
-                AddItem(id);
+            return GetPortableDeviceItem(id);
         }
 
-        private void OnObjectRemoved(in ReadOnlyPortableDeviceValueCollection values)
+        internal void OnUpdate(PortableDeviceUpdatedEventArgs e)
         {
-            System.Collections.Generic.IEnumerable<IPortableDeviceObject> obj = GetPortableDeviceObject(values, out string id);
+            if (IsOpen && !IsDisposed)
+            {
+                PropertyKey eventId = EventSystem.Parameter.EventId;
 
-            IPortableDeviceObject _obj = obj.First(item => item.Id == id);
+                Guid guid = e.EventArgValues.GetGuidValue(ref eventId);
 
-            _obj.Dispose();
+                if (guid == new Guid(Guids.EventSystem.ObjectAdded))
 
-            if (obj is EnumerablePortableDeviceObject enumerable)
+                    _portableDeviceManager.RaisePortableDeviceObjectAddedEvent(GetId(e.EventArgValues));
 
-                enumerable.RemoveItem(_obj);
+                else if (guid == new Guid(Guids.EventSystem.ObjectRemoved))
 
-            else if (obj == this)
+                    _portableDeviceManager.RaisePortableDeviceObjectRemovedEvent(GetId(e.EventArgValues));
 
-                RemoveItem(_obj);
-        }
-
-        private void OnUpdate(object sender, PortableDeviceUpdatedEventArgs e)
-        {
-            PropertyKey eventId = EventSystem.Parameter.EventId;
-
-            Guid guid = e.EventArgValues.GetGuidValue(ref eventId);
-
-            if (guid == new Guid(Guids.EventSystem.ObjectAdded))
-
-                OnObjectAdded(e.EventArgValues);
-
-            else if (guid == new Guid(Guids.EventSystem.ObjectRemoved))
-
-                OnObjectRemoved(e.EventArgValues);
-        }
-
-        internal void RaiseEvent(in PortableDeviceUpdatedEventArgs e) => PortableDeviceUpdated(this, e);
-
-        private void AddItem(in string id)
-        {
-            IPortableDeviceObject item = GetPortableDeviceObject(id, true, null, this);
-
-            _items.Add(item);
-
-            PortableDeviceObjectAdded?.Invoke(this, new PortableDeviceObjectEventArgs(item));
-        }
-
-        private void RemoveItem(in IPortableDeviceObject item)
-        {
-            _items.Remove(item);
-
-            PortableDeviceObjectRemoved?.Invoke(this, new PortableDeviceObjectEventArgs(item));
+                _portableDeviceManager.RaisePortableDeviceUpdatedEvent(e);
+            }
         }
 #endif
 
@@ -536,9 +472,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         public void Open(in ClientVersion clientVersion, in PortableDeviceOpeningOptions portableDeviceOpeningOptions)
         {
-            ThrowIfDisposed();
-
             if (IsOpen) return;
+
+            ThrowIfDisposed();
 
             //if ((wszPnPDeviceID == null) || (ppDevice == null))
             //{
@@ -658,8 +594,6 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             PortableDeviceOpeningOptions = portableDeviceOpeningOptions;
 
 #if WAPICP3
-            PortableDeviceUpdated += OnUpdate;
-
             _ = NativePortableDevice.Advise(0, new PortableDeviceEventCallback(this), null, out _eventCookie);
 #endif
         }
@@ -799,9 +733,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         public ReadOnlyPortableDeviceValueCollection SendCommand(in ReadOnlyPortableDeviceValueCollection parameters) => SendCommand((parameters == null ? throw GetArgumentNullException(nameof(parameters)) : (INativePortableDeviceValuesCollectionProvider)parameters).NativeItems);
 
         public ReadOnlyPortableDeviceValueCollection SendCommand(in PortableDeviceValueCollection parameters) => SendCommand(((INativePortableDeviceValuesCollectionProvider)parameters).NativeItems);
-        #endregion
+#endregion
 
-        #region IDisposable Support
+#region IDisposable Support
         public bool IsDisposed { get; private set; } = false;
 
         protected virtual void Dispose(in bool disposing)
@@ -859,12 +793,17 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-        #endregion
+#endregion
 
-        #region IEnumerable Support
-        public IEnumerator<IPortableDeviceObject> GetEnumerator() => _Items.GetEnumerator();
+#region IEnumerable Support
+        public IEnumerator<IPortableDeviceObject> GetEnumerator() =>
+#if WAPICP3
+IsDisposed ? throw GetExceptionForDispose(false) : IsOpen ? GetItems(Content, DeviceId, (in string id) => PortableDevice.GetPortableDeviceObject(id, false, null, this)).GetEnumerator() : throw new InvalidOperationException("The parent portable device is not open.");
+#else
+            _Items.GetEnumerator();
+#endif
 
         IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
-        #endregion
+#endregion
     }
 }

@@ -18,6 +18,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
 #endif
     {
         #region Fields
+        /// Path for this file e.g. c:\Windows\file.txt,
+        private string _path;
         private string _targetLocation;
         private string _arguments;
         private string _comments;
@@ -50,7 +52,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         /// <param name="sourcePath">The full source path.</param>
         /// <param name="destPath">The destination directory.</param>
-        public ShellLink(in string sourcePath, in string destPath)
+        public ShellLink(in string sourcePath, string destPath)
         {
 #endif
             var lnk = Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid(NativeAPI.Guids.Shell.CShellLink), true)) as IShellLinkW;
@@ -62,7 +64,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 #if WAPICP3
             return new ShellLink(ShellObjectFactory.GetNativeShellItem(destPath), sourcePath);
 #else
-            Path = linkPath;
+            Path = destPath;
             TargetLocation = sourcePath;
 #endif
         }
@@ -77,14 +79,14 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             get
             {
-                if (_internalPath == null && NativeShellItem != null)
+                if (_path == null && NativeShellItem != null)
 
-                    _internalPath = base.ParsingName;
+                    _path = base.ParsingName;
 
-                return _internalPath;
+                return _path;
             }
 
-            protected set => _internalPath = value;
+            protected set => _path = value;
         }
 #endif
 

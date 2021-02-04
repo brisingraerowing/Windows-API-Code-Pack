@@ -51,10 +51,6 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         PortableDeviceOpeningOptions PortableDeviceOpeningOptions { get; }
 
-#if WAPICP3
-        event PortableDeviceUpdatedEventHandler PortableDeviceUpdated;
-#endif
-
         /// <summary>
         /// Opens a connection to the device.
         /// </summary>

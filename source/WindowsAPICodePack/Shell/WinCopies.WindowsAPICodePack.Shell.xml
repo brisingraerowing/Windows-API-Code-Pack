@@ -2157,6 +2157,9 @@
             Represents a link to existing FileSystem or Virtual item.
             </summary>
         </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ShellLink._path">
+            Path for this file e.g. c:\Windows\file.txt,
+        </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLink.Create(System.String,System.String,System.Boolean)">
             <summary>
             Creates a shortcut on the disk and returns a <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellLink"/> that represents it.

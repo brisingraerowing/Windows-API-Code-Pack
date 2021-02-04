@@ -6,17 +6,17 @@
     <PackageId>WinCopies.WindowsAPICodePack.Consts</PackageId>
     <Product>Microsoft Windows API Code Pack for .NET Framework</Product>
     <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
-    <Copyright>Copyright © Pierre Sprimont 2020</Copyright>
+    <Copyright>Copyright © Pierre Sprimont 2020-2021</Copyright>
     <AssemblyOriginatorKeyFile>Consts.snk</AssemblyOriginatorKeyFile>
     <Description>Native consts required by the Windows API Code Pack</Description>
     <DocumentationFile>WinCopies.WindowsAPICodePack.Consts.xml</DocumentationFile>
     <AssemblyName>WinCopies.WindowsAPICodePack.Consts</AssemblyName>
     <SignAssembly>true</SignAssembly>
     <DefineConstants>WAPICP3;$(DefineConstants)</DefineConstants>
-    <VersionPrefix>3.0</VersionPrefix>
+    <VersionPrefix>3.0.1</VersionPrefix>
     <VersionSuffix>preview</VersionSuffix>
-    <AssemblyVersion>3.0</AssemblyVersion>
-    <FileVersion>3.0</FileVersion>
+    <AssemblyVersion>3.0.1</AssemblyVersion>
+    <FileVersion>3.0.1</FileVersion>
   </PropertyGroup>
 
   <Import Project="..\Consts.Shared\Consts.Shared.projitems" Label="Shared" />

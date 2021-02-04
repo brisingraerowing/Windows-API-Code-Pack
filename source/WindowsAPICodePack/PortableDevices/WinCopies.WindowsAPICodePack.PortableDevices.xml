@@ -4,6 +4,36 @@
         <name>WinCopies.WindowsAPICodePack.PortableDevices</name>
     </assembly>
     <members>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceFile.Size">
+            <summary>
+            Gets the size, in bytes, of the current file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceFile.TransferFrom(System.IO.Stream,System.Int32,System.Boolean,Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceTransferCallback)">
+            <summary>
+            Transfers the current file from its device to a given <see cref="T:System.IO.Stream"/>. Note that, in order to keep this method atomic, <paramref name="stream"/> is not flushed, closed nor disposed. The caller is responsible to correctly dispose <paramref name="stream"/>.
+            </summary>
+            <param name="stream">The <see cref="T:System.IO.Stream"/> to write to.</param>
+            <param name="bufferSize">The default buffer size to use if any optimal buffer size could be retrieved.</param>
+            <param name="forceBufferSize">Whether to force using <paramref name="bufferSize"/> even if an optimal buffer size could be retrieved.</param>
+            <param name="d">A callback that will be called when each buffer has been written to <paramref name="stream"/>. This parameter can be <see langword="null"/>.</param>
+            <exception cref="T:System.ArgumentException"><paramref name="stream"/>.<see cref="P:System.IO.Stream.CanWrite"/> is set to <see langword="false"/>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="bufferSize"/> is less than or equal to 0.</exception>
+            <seealso cref="M:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceFile.TransferFrom(System.String,System.IO.FileMode,System.IO.FileShare,System.Int32,System.Boolean,Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceTransferCallback)"/>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceFile.TransferFrom(System.String,System.IO.FileMode,System.IO.FileShare,System.Int32,System.Boolean,Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceTransferCallback)">
+            <summary>
+            Transfers the current file from its device to a given path on the destination computer file system. For potential exceptions, see <see cref="T:System.IO.FileStream"/>'s constructors in addition to those specific for this method.
+            </summary>
+            <param name="path">The path to write to.</param>
+            <param name="fileMode">How the destination file should be opened.</param>
+            <param name="fileShare">How access to the destination file should be shared.</param>
+            <param name="bufferSize">The default buffer size to use if any optimal buffer size could be retrieved.</param>
+            <param name="forceBufferSize">Whether to force using <paramref name="bufferSize"/> even if an optimal buffer size could be retrieved.</param>
+            <param name="d">A callback that will be called when each buffer has been written. This parameter can be <see langword="null"/>.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="bufferSize"/> is less than or equal to 0.</exception>
+            <seealso cref="M:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceFile.TransferFrom(System.IO.Stream,System.Int32,System.Boolean,Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceTransferCallback)"/>
+        </member>
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDevice">
             <summary>
             Represents a portable device.
@@ -110,36 +140,6 @@
             <summary>
             If the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice"/> has been created by a <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceManager"/>, gets the device manufacturer of the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice"/>, otherwise gets <see langword="null"/>.
             </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceFile.Size">
-            <summary>
-            Gets the size, in bytes, of the current file.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceFile.TransferFrom(System.IO.Stream,System.Int32,System.Boolean,Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceTransferCallback)">
-            <summary>
-            Transfers the current file from its device to a given <see cref="T:System.IO.Stream"/>. Note that, in order to keep this method atomic, <paramref name="stream"/> is not flushed, closed nor disposed. The caller is responsible to correctly dispose <paramref name="stream"/>.
-            </summary>
-            <param name="stream">The <see cref="T:System.IO.Stream"/> to write to.</param>
-            <param name="bufferSize">The default buffer size to use if any optimal buffer size could be retrieved.</param>
-            <param name="forceBufferSize">Whether to force using <paramref name="bufferSize"/> even if an optimal buffer size could be retrieved.</param>
-            <param name="d">A callback that will be called when each buffer has been written to <paramref name="stream"/>. This parameter can be <see langword="null"/>.</param>
-            <exception cref="T:System.ArgumentException"><paramref name="stream"/>.<see cref="P:System.IO.Stream.CanWrite"/> is set to <see langword="false"/>.</exception>
-            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="bufferSize"/> is less than or equal to 0.</exception>
-            <seealso cref="M:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceFile.TransferFrom(System.String,System.IO.FileMode,System.IO.FileShare,System.Int32,System.Boolean,Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceTransferCallback)"/>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceFile.TransferFrom(System.String,System.IO.FileMode,System.IO.FileShare,System.Int32,System.Boolean,Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceTransferCallback)">
-            <summary>
-            Transfers the current file from its device to a given path on the destination computer file system. For potential exceptions, see <see cref="T:System.IO.FileStream"/>'s constructors in addition to those specific for this method.
-            </summary>
-            <param name="path">The path to write to.</param>
-            <param name="fileMode">How the destination file should be opened.</param>
-            <param name="fileShare">How access to the destination file should be shared.</param>
-            <param name="bufferSize">The default buffer size to use if any optimal buffer size could be retrieved.</param>
-            <param name="forceBufferSize">Whether to force using <paramref name="bufferSize"/> even if an optimal buffer size could be retrieved.</param>
-            <param name="d">A callback that will be called when each buffer has been written. This parameter can be <see langword="null"/>.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="bufferSize"/> is less than or equal to 0.</exception>
-            <seealso cref="M:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceFile.TransferFrom(System.IO.Stream,System.Int32,System.Boolean,Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceTransferCallback)"/>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceObject.Properties">
             <summary>

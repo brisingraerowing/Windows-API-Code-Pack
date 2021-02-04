@@ -4,25 +4,22 @@
         <name>WinCopies.WindowsAPICodePack.PortableDevices</name>
     </assembly>
     <members>
-        <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject">
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceFile.Size">
             <summary>
-            Represents a content object that is stored directly on a <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDevice"/> or on a parent <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject"/>.
+            Gets the size, in bytes, of the current file.
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject.Id">
+        <member name="M:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceFile.TransferFrom(System.IO.Stream,System.Int32,System.Boolean,Microsoft.WindowsAPICodePack.PortableDevices.PortableDeviceTransferCallback)">
             <summary>
-            Gets the id of the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject"/> on its parent device.
+            Transfers the current file from its device to a given <see cref="T:System.IO.Stream"/>. Note that, in order to keep this method atomic, <paramref name="stream"/> is not flushed, closed nor disposed. The caller is responsible to correctly dispose <paramref name="stream"/>.
             </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject.ParentPortableDevice">
-            <summary>
-            Gets the <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDevice"/> on which the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject"/> is stored.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject.Parent">
-            <summary>
-            Gets the parent <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject"/> if any; otherwise returns <see langword="null"/>.
-            </summary>
+            <param name="stream">The <see cref="T:System.IO.Stream"/> to write to.</param>
+            <param name="bufferSize">The default buffer size to use if any optimal buffer size could be retrieved.</param>
+            <param name="forceBufferSize">Whether to force using <paramref name="bufferSize"/> even if an optimal buffer size could be retrieved.</param>
+            <param name="d">A callback that will be called when each buffer has been written to <paramref name="stream"/>. This parameter can be <see langword="null"/>.</param>
+            <exception cref="T:System.ArgumentException"><paramref name="stream"/>.<see cref="P:System.IO.Stream.CanWrite"/> is set to <see langword="false"/>.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="bufferSize"/> is less than or equal to 0.</exception>
+            <seealso cref="!:TransferFrom(string, FileMode,  FileShare, int, bool, PortableDeviceTransferCallback)"/>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDevice">
             <summary>
@@ -75,6 +72,26 @@
             <param name="doNotExpand">A value that indicates whether to expand environment variables.</param>
             <param name="valueKind">The kind of data that was retrieved.</param>
             <returns>If the method succeeds, the value of the property that was requested are returned; otherwise this method returns <paramref name="defaultValue"/>.</returns>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject">
+            <summary>
+            Represents a content object that is stored directly on a <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDevice"/> or on a parent <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject.Id">
+            <summary>
+            Gets the id of the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject"/> on its parent device.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject.ParentPortableDevice">
+            <summary>
+            Gets the <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDevice"/> on which the current <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject"/> is stored.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject.Parent">
+            <summary>
+            Gets the parent <see cref="T:Microsoft.WindowsAPICodePack.PortableDevices.IPortableDeviceObject"/> if any; otherwise returns <see langword="null"/>.
+            </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.PortableDevices.PortableDevice.PortableDeviceManager">
             <summary>
