@@ -2895,6 +2895,17 @@
             </summary>
             <param name="e">EventArgs</param>
         </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.DesktopWindowManager.GetWindowStyles(System.IntPtr)">
+            <summary>
+            Retrieves information about the specified window. The function also retrieves the value at a specified offset into the extra window memory.
+            </summary>
+            <param name="hwnd">A handle to the window and, indirectly, the class to which the window belongs.</param>
+            <returns>
+            <para>If the function succeeds, the return value is the requested value.</para>
+            <para>If the function fails, the return value is zero. To get extended error information, call <see cref="M:System.Runtime.InteropServices.Marshal.GetLastWin32Error"/>.</para>
+            <para>If <see cref="M:Microsoft.WindowsAPICodePack.Shell.DesktopWindowManager.SetWindowStyles(System.IntPtr,Microsoft.WindowsAPICodePack.Shell.WindowStyles)"/> has not been called previously, <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.HandlerNativeMethods.GetWindowLongPtr(System.IntPtr,Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.GetWindowLongEnum)"/> returns zero for values in the extra window or class memory.</para>
+            </returns>
+        </member>
         <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Border">
             <summary>
             The window has a thin-line border.

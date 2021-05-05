@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
+
 using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames;
 using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
-
     public static partial class Shell
     {
-
         #region Shell Helper Methods
+        [DllImport(Kernel32, SetLastError = true, CharSet = CharSet.Unicode)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool CreateDirectoryW([In, MarshalAs(UnmanagedType.LPWStr)] string lpPathName, [In] IntPtr lpSecurityAttributes);
+
         [DllImport(Shell32, EntryPoint = "#62", CharSet = CharSet.Unicode, SetLastError = true)]
         [SuppressUnmanagedCodeSecurity]
         public static extern bool SHPickIconDialog(IntPtr hWnd, StringBuilder pszFilename, int cchFilenameMax, out int pnIconIndex);
@@ -228,7 +231,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     [Flags]
     public enum EmptyRecycleBinFlags : uint
     {
-
         /// <summary>
         /// No dialog box confirming the deletion of the objects will be displayed.
         /// </summary>
@@ -243,7 +245,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         /// No sound will be played when the operation is complete.
         /// </summary>
         NoSound = 0x00000004
-
     }
 
     [Flags]
@@ -429,7 +430,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     [Flags]
     public enum GetFileInfoOptions : uint
     {
-
         /// <summary>
         /// Apply the appropriate overlays to the file's icon. The <see cref="Icon"/> flag must also be set. <b>Windows ME or higher.</b>
         /// </summary>
@@ -519,7 +519,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         /// Indicates that the function should not attempt to access the file specified by <b>pszPath</b>. Rather, it should act as if the file specified by <b>pszPath</b> exists with the file attributes passed in <b>dwFileAttributes</b>. This flag cannot be combined with the <see cref="Attributes"/>, <see cref="ExeType"/>, or <see cref="PIDL"/> flags.
         /// </summary>
         UseFileAttributes = 0x000000010
-
     }
 
     #region Shell Structs
@@ -589,7 +588,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
     public struct SHFILEINFO
     {
-
         /// <summary>
         /// A handle to the icon that represents the file. You are responsible for destroying this handle with DestroyIcon when you no longer need it.
         /// </summary>
@@ -616,7 +614,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         /// </summary>
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)]
         public string szTypeName;
-
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
@@ -632,7 +629,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     {
         public IntPtr item1;
         public IntPtr item2;
-    };
+    }
 
     #endregion
 
@@ -666,12 +663,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         OverrideExisting = 1,
         MakeUniqueName = 2
     };
-
-
     #endregion
 
     #region Shell Enums
-
     /// <summary>
     /// Indicate flags that modify the property store object retrieved by methods 
     /// that create a property store, such as IShellItem2::GetPropertyStore or 
@@ -1059,7 +1053,5 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         FlatList = 0x4000,
         EnableAsync = 0x8000
     }
-
     #endregion
-
 }
