@@ -41,6 +41,7 @@ namespace Microsoft.WindowsAPICodePack.NativeAPI.Consts
         public const string OleAut32 = "oleAut32.dll";
         public const string Psapi = "psapi.dll";
         public const string Rstrtmgr = "rstrtmgr.dll";
+        public const string DwmApi = "DwmApi.dll";
     }
 
     public static class PortableDevices

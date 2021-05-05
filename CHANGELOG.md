@@ -1,7 +1,7 @@
 WindowsAPICodePack CHANGELOG
 ============================
 
-Please note:
+Note:
 
 - The '#<number\>' notice indicates that the relative issue has been opened starting with the relative release.
 - The 'Fixation #<number\>'/'Fixes #<number\>' notice indicates that the relative issue has been fixed starting with the relative release.
@@ -9,6 +9,12 @@ Please note:
 For issue and fixation details, visit [https://wincopies.com/fwd.php?id=3](https://wincopies.com/fwd.php?id=3)
 
 For the original code (version 1.1, last release by Microsoft), see [https://wincopies.com/fwd.php?id=1](https://wincopies.com/fwd.php?id=1)
+
+## 05/05/2021 3.1
+
+### Shell
+
+WindowStyles is defined for the 'long' underlying type and its values have been updated.
 
 02/04/2021 3.0.1
 ================
@@ -39,6 +45,17 @@ COMNative 3.0
 
 - Removals:
     - Some 'ref' keywords in native PortableDevices interfaces. These keywords have been removed for interface type parameters because they was redundant.
+
+## 05/05/2021 2.2
+
+- DesktopWindowManager:
+    - Add new helper methods for windows.
+    - Remove 'Get/SetWindowStylesEx' method.
+
+### Win32Native
+
+- Add 'MenuFlags' and SystemMenuCommands enums.
+- Add new methods to DesktopWindowManager and Shell.
 
 02/04/2021 2.1.1
 ================
