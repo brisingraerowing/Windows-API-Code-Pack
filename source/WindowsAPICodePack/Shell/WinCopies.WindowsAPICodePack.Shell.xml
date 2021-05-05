@@ -2877,179 +2877,474 @@
             </summary>
             <param name="e">EventArgs</param>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Border">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.DesktopWindowManager.GetWindowStyles(System.IntPtr)">
             <summary>
-            The window has a thin-line border.
+            Retrieves information about the specified window. The function also retrieves the value at a specified offset into the extra window memory.
             </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Caption">
-            <summary>
-            The window has a title bar (includes the WS_BORDER style).
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Child">
-            <summary>
-            The window is a child window. 
-            A window with this style cannot have a menu bar. 
-            This style cannot be used with the WS_POPUP style.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ChildWindow">
-            <summary>
-            Same as the WS_CHILD style.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ClipChildren">
-            <summary>
-            Excludes the area occupied by child windows when drawing occurs within the parent window. 
-            This style is used when creating the parent window.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ClipSiblings">
-            <summary>
-            Clips child windows relative to each other; 
-            that is, when a particular child window receives a WM_PAINT message, 
-            the WS_CLIPSIBLINGS style clips all other overlapping child windows out of the region of the child window to be updated. 
-            If WS_CLIPSIBLINGS is not specified and child windows overlap, it is possible, 
-            when drawing within the client area of a child window, to draw within the client area of a neighboring child window.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Disabled">
-            <summary>
-            The window is initially disabled. A disabled window cannot receive input from the user. 
-            To change this after a window has been created, use the EnableWindow function.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.DialogFrame">
-            <summary>
-            The window has a border of a style typically used with dialog boxes. 
-            A window with this style cannot have a title bar.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Group">
-            <summary>
-            The window is the first control of a group of controls. 
-            The group consists of this first control and all controls defined after it, up to the next control with the WS_GROUP style. 
-            The first control in each group usually has the WS_TABSTOP style so that the user can move from group to group. 
-            The user can subsequently change the keyboard focus from one control in the group to the next control 
-            in the group by using the direction keys.
-            
-            You can turn this style on and off to change dialog box navigation. 
-            To change this style after a window has been created, use the SetWindowLong function.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.HorizontalScroll">
-            <summary>
-            The window has a horizontal scroll bar.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Iconic">
-            <summary>
-            The window is initially minimized. 
-            Same as the WS_MINIMIZE style.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Maximize">
-            <summary>
-            The window is initially maximized.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.MaximizeBox">
-            <summary>
-            The window has a maximize button. 
-            Cannot be combined with the WS_EX_CONTEXTHELP style. 
-            The WS_SYSMENU style must also be specifie
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Minimize">
-            <summary>
-            The window is initially minimized. 
-            Same as the WS_ICONIC style.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.MinimizeBox">
-            <summary>
-            The window has a minimize button. 
-            Cannot be combined with the WS_EX_CONTEXTHELP style. 
-            The WS_SYSMENU style must also be specified.
-            </summary>
+            <param name="hwnd">A handle to the window and, indirectly, the class to which the window belongs.</param>
+            <returns>
+            <para>If the function succeeds, the return value is the requested value.</para>
+            <para>If the function fails, the return value is zero. To get extended error information, call <see cref="M:System.Runtime.InteropServices.Marshal.GetLastWin32Error"/>.</para>
+            <para>If <see cref="M:Microsoft.WindowsAPICodePack.Shell.DesktopWindowManager.SetWindowStyles(System.IntPtr,Microsoft.WindowsAPICodePack.Shell.WindowStyles)"/> has not been called previously, <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.HandlerNativeMethods.GetWindowLongPtr(System.IntPtr,Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.GetWindowLongEnum)"/> returns zero for values in the extra window or class memory.</para>
+            </returns>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Overlapped">
             <summary>
-            The window is an overlapped window. 
-            An overlapped window has a title bar and a border. 
-            Same as the WS_TILED style.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Popup">
-            <summary>
-            The windows is a pop-up window. 
-            This style cannot be used with the WS_CHILD style.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.SizeBox">
-            <summary>
-            The window has a sizing border. 
-            Same as the WS_THICKFRAME style.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.SystemMenu">
-            <summary>
-            The window has a window menu on its title bar. 
-            The WS_CAPTION style must also be specified.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Tabstop">
-            <summary>
-            The window is a control that can receive the keyboard focus when the user presses the TAB key. 
-            Pressing the TAB key changes the keyboard focus to the next control with the WS_TABSTOP style.
-            
-            You can turn this style on and off to change dialog box navigation. 
-            To change this style after a window has been created, use the SetWindowLong function. 
-            For user-created windows and modeless dialogs to work with tab stops, 
-            alter the message loop to call the IsDialogMessage function.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ThickFrame">
-            <summary>
-            The window has a sizing border. 
-            Same as the WS_SIZEBOX style.
+            <para>Name: WS_OVERLAPPED</para>
+            <para>Description: The window is an overlapped window. An overlapped window has a title bar and a border. Same as the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Tiled"/> style.</para>
             </summary>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Tiled">
             <summary>
-            The window is an overlapped window. 
-            An overlapped window has a title bar and a border. 
-            Same as the WS_OVERLAPPED style.
+            <para>Name: WS_TILED</para>
+            <para>Description: The window is an overlapped window. An overlapped window has a title bar and a border. Same as the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Overlapped"/> style.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Popup">
+            <summary>
+            <para>Name: WS_POPUP</para>
+            <para>Description: The window is a pop-up window. This style cannot be used with the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Child"/> style.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Child">
+            <summary>
+            <para>Name: WS_CHILD</para>
+            <para>Description: The window is a child window. A window with this style cannot have a menu bar. This style cannot be used with the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Popup"/> style.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Minimize">
+            <summary>
+            <para>Name: WS_MINIMIZE</para>
+            <para>Description: The window is initially minimized. Same as the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Iconic"/> style.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Iconic">
+            <summary>
+            <para>Name: WS_ICONIC</para>
+            <para>Description: The window is initially minimized. Same as the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Minimize"/> style.</para>
             </summary>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Visible">
             <summary>
-            The window is initially visible.
-            
-            This style can be turned on and off by using the ShowWindow or SetWindowPos function.
+            <para>Name: WS_VISIBLE</para>
+            <para>Description: The window is initially visible. This style can be turned on and off by using the ShowWindow or <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.HandlerNativeMethods.SetWindowPos(System.IntPtr,System.IntPtr,System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.SetWindowPositionOptions)"/> function.</para>
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.VerticalScroll">
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Disabled">
             <summary>
-            The window has a vertical scroll bar.
+            <para>Name: WS_DISABLED</para>
+            <para>Description: The window is initially disabled. A disabled window cannot receive input from the user. To change this after a window has been created, use the EnableWindow function.</para>
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.TiledWindowMask">
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ClipSiblings">
             <summary>
-            The window is an overlapped window. 
-            Same as the WS_OVERLAPPEDWINDOW style.
+            <para>Name: WS_CLIPSIBLINGS</para>
+            <para>Description: Clips child windows relative to each other; that is, when a particular child window receives a <see cref="F:Microsoft.WindowsAPICodePack.WindowMessage.Paint"/> message, the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ClipSiblings"/> style clips all other overlapping child windows out of the region of the child window to be updated. If <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ClipSiblings"/> is not specified and child windows overlap, it is possible, when drawing within the client area of a child window, to draw within the client area of a neighboring child window.</para>
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.PopupWindowMask">
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ClipChildren">
             <summary>
-            The window is a pop-up window. 
-            The WS_CAPTION and WS_POPUPWINDOW styles must be combined to make the window menu visible.
+            <para>Name: WS_CLIPCHILDREN</para>
+            <para>Description: Excludes the area occupied by child windows when drawing occurs within the parent window. This style is used when creating the parent window.</para>
             </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.OverlappedWindowMask">
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Maximize">
             <summary>
-            The window is an overlapped window. Same as the WS_TILEDWINDOW style.
+            <para>Name: WS_MAXIMIZE</para>
+            <para>Description: The window is initially maximized.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Caption">
+            <summary>
+            <para>Name: WS_CAPTION</para>
+            <para>Description: The window has a title bar (includes the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Border"/> style).</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Border">
+            <summary>
+            <para>Name: WS_BORDER</para>
+            <para>Description: The window has a thin-line border.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.DialogFrame">
+            <summary>
+            <para>Name: WS_DLGFRAME</para>
+            <para>Description: The window has a border of a style typically used with dialog boxes. A window with this style cannot have a title bar.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.VerticalScrollBar">
+            <summary>
+            <para>Name: WS_VSCROLL</para>
+            <para>Description: The window has a vertical scroll bar.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.HorizontalScrollBar">
+            <summary>
+            <para>Name: WS_HSCROLL</para>
+            <para>Description: The window has a horizontal scroll bar.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.SystemMenu">
+            <summary>
+            <para>Name: WS_SYSMENU</para>
+            <para>Description: The window has a window menu on its title bar. The <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Caption"/> style must also be specified.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ThickFrame">
+            <summary>
+            <para>Name: WS_THICKFRAME</para>
+            <para>Description: The window has a sizing border. Same as the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.SizeBox"/> style.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.SizeBox">
+            <summary>
+            <para>Name: WS_SIZEBOX</para>
+            <para>Description: The window has a sizing border. Same as the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ThickFrame"/> style.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Group">
+            <summary>
+            <para>Name: WS_GROUP</para>
+            <para>Description: The window is the first control of a group of controls. The group consists of this first control and all controls defined after it, up to the next control with the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Group"/> style. The first control in each group usually has the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.TabStop"/> style so that the user can move from group to group. The user can subsequently change the keyboard focus from one control in the group to the next control in the group by using the direction keys. You can turn this style on and off to change dialog box navigation. To change this style after a window has been created, use the <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.HandlerNativeMethods.SetWindowLongPtr(System.IntPtr,Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.GetWindowLongEnum,System.Int64)"/> function.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.TabStop">
+            <summary>
+            <para>Name: WS_TABSTOP</para>
+            <para>Description: The window is a control that can receive the keyboard focus when the user presses the TAB key. Pressing the TAB key changes the keyboard focus to the next control with the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.TabStop"/> style. You can turn this style on and off to change dialog box navigation. To change this style after a window has been created, use the <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.HandlerNativeMethods.SetWindowLongPtr(System.IntPtr,Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.GetWindowLongEnum,System.Int64)"/> function. For user-created windows and modeless dialogs to work with tab stops, alter the message loop to call the IsDialogMessage function.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.MinimizeBox">
+            <summary>
+            <para>Name: WS_MINIMIZEBOX</para>
+            <para>Description: The window has a minimize button. Cannot be combined with the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ContextHelp"/> style. The <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.SystemMenu"/> style must also be specified.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.MaximizeBox">
+            <summary>
+            <para>Name: WS_MAXIMIZEBOX</para>
+            <para>Description: The window has a maximize button. Cannot be combined with the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ContextHelp"/> style. The <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.SystemMenu"/> style must also be specified. </para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.TiledWindow">
+            <summary>
+            <para>Name: WS_TILEDWINDOW</para>
+            <para>Description: The window is an overlapped window. Same as the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.OverlappedWindow"/> style.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.OverlappedWindow">
+            <summary>
+            <para>Name: WS_OVERLAPPEDWINDOW</para>
+            <para>Description: The window is an overlapped window. Same as the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.TiledWindow"/> style. </para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.PopupWindow">
+            <summary>
+            <para>Name: WS_POPUPWINDOW</para>
+            <para>Description: The window is a pop-up window. The <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Caption"/> and <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.PopupWindow"/> styles must be combined to make the window menu visible.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ChildWindow">
+            <summary>
+            <para>Name: WS_CHILDWINDOW</para>
+            <para>Description: Same as the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Child"/> style.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.DialogModalFrame">
+            <summary>
+            <para>Name: WS_EX_DLGMODALFRAME</para>
+            <para>Description: The window has a double border; the window can, optionally, be created with a title bar by specifying the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Caption"/> style in the dwStyle parameter.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.NoParentNotify">
+            <summary>
+            <para>Name: WS_EX_NOPARENTNOTIFY</para>
+            <para>Description: The child window created with this style does not send the <see cref="F:Microsoft.WindowsAPICodePack.WindowMessage.ParentNotify"/> message to its parent window when it is created or destroyed.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.TopMost">
+            <summary>
+            <para>Name: WS_EX_TOPMOST</para>
+            <para>Description: The window should be placed above all non-topmost windows and should stay above them, even when the window is deactivated. To add or remove this style, use the <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.HandlerNativeMethods.SetWindowPos(System.IntPtr,System.IntPtr,System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.SetWindowPositionOptions)"/> function.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.AcceptFiles">
+            <summary>
+            <para>Name: WS_EX_ACCEPTFILES</para>
+            <para>Description: The window accepts drag-drop files.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Transparent">
+            <summary>
+            <para>Name: WS_EX_TRANSPARENT</para>
+            <para>Description: The window should not be painted until siblings beneath the window (that were created by the same thread) have been painted. The window appears transparent because the bits of underlying sibling windows have already been painted. To achieve transparency without these restrictions, use the SetWindowRgn function.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.MDIChild">
+            <summary>
+            <para>Name: WS_EX_MDICHILD</para>
+            <para>Description: The window is a MDI child window.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ToolWindow">
+            <summary>
+            <para>Name: WS_EX_TOOLWINDOW</para>
+            <para>Description: The window is intended to be used as a floating toolbar. A tool window has a title bar that is shorter than a normal title bar, and the window title is drawn using a smaller font. A tool window does not appear in the taskbar or in the dialog that appears when the user presses ALT+TAB. If a tool window has a system menu, its icon is not displayed on the title bar. However, you can display the system menu by right-clicking or by typing ALT+SPACE.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.WindowEdge">
+            <summary>
+            <para>Name: WS_EX_WINDOWEDGE</para>
+            <para>Description: The window has a border with a raised edge.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ClientEdge">
+            <summary>
+            <para>Name: WS_EX_CLIENTEDGE</para>
+            <para>Description: The window has a border with a sunken edge.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ContextHelp">
+            <summary>
+            <para>Name: WS_EX_CONTEXTHELP</para>
+            <para>Description: The title bar of the window includes a question mark. When the user clicks the question mark, the cursor changes to a question mark with a pointer. If the user then clicks a child window, the child receives a <see cref="F:Microsoft.WindowsAPICodePack.WindowMessage.Help"/> message. The child window should pass the message to the parent window procedure, which should call the WinHelp function using the HELP_WM_HELP command. The Help application displays a pop-up window that typically contains help for the child window. <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ContextHelp"/> cannot be used with the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.MaximizeBox"/> or <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.MinimizeBox"/> styles.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Right">
+            <summary>
+            <para>Name: WS_EX_RIGHT</para>
+            <para>Description: 	The window has generic "right-aligned" properties. This depends on the window class. This style has an effect only if the shell language is Hebrew, Arabic, or another language that supports reading-order alignment; otherwise, the style is ignored. Using the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Right"/> style for static or edit controls has the same effect as using the SS_RIGHT or ES_RIGHT style, respectively. Using this style with button controls has the same effect as using BS_RIGHT and BS_RIGHTBUTTON styles.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Left">
+            <summary>
+            <para>Name: WS_EX_LEFT</para>
+            <para>Description: The window has generic left-aligned properties. This is the default.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.RTLReading">
+            <summary>
+            <para>Name: WS_EX_RTLREADING</para>
+            <para>Description: If the shell language is Hebrew, Arabic, or another language that supports reading-order alignment, the window text is displayed using right-to-left reading-order properties. For other languages, the style is ignored.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.LTRReading">
+            <summary>
+            <para>Name: WS_EX_LTRREADING</para>
+            <para>Description: The window text is displayed using left-to-right reading-order properties. This is the default.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.LeftScrollBar">
+            <summary>
+            <para>Name: WS_EX_LEFTSCROLLBAR</para>
+            <para>Description: If the shell language is Hebrew, Arabic, or another language that supports reading order alignment, the vertical scroll bar (if present) is to the left of the client area. For other languages, the style is ignored.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.RightScrollBar">
+            <summary>
+            <para>Name: WS_EX_RIGHTSCROLLBAR</para>
+            <para>Description: The vertical scroll bar (if present) is to the right of the client area. This is the default.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ControlParent">
+            <summary>
+            <para>Name: WS_EX_CONTROLPARENT</para>
+            <para>Description: The window itself contains child windows that should take part in dialog box navigation. If this style is specified, the dialog manager recurses into children of this window when performing navigation operations such as handling the TAB key, an arrow key, or a keyboard mnemonic.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.StaticEdge">
+            <summary>
+            <para>Name: WS_EX_STATICEDGE</para>
+            <para>Description: The window has a three-dimensional border style intended to be used for items that do not accept user input.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.AppWindow">
+            <summary>
+            <para>Name: WS_EX_APPWINDOW</para>
+            <para>Description: Forces a top-level window onto the taskbar when the window is visible.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.OverlappedWindowEx">
+            <summary>
+            <para>Name: WS_EX_OVERLAPPEDWINDOW</para>
+            <para>Description: The window is an overlapped window.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.PaletteWindow">
+            <summary>
+            <para>Name: WS_EX_PALETTEWINDOW</para>
+            <para>Description: The window is palette window, which is a modeless dialog box that presents an array of commands.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Layered">
+            <summary>
+            <para>Name: WS_EX_LAYERED</para>
+            <para>Description: The window is a layered window. This style cannot be used if the window has a class style of either CS_OWNDC or CS_CLASSDC. Windows 8: The <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Layered"/> style is supported for top-level windows and child windows. Previous Windows versions support <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Layered"/> only for top-level windows.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.NoInheritLayout">
+            <summary>
+            <para>Name: WS_EX_NOINHERITLAYOUT</para>
+            <para>Description: The window does not pass its window layout to its child windows.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.NoRedirectionBitmap">
+            <summary>
+            <para>Name: WS_EX_NOREDIRECTIONBITMAP</para>
+            <para>Description: The window does not render to a redirection surface. This is for windows that do not have visible content or that use mechanisms other than surfaces to provide their visual.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.LayoutRTL">
+            <summary>
+            <para>Name: WS_EX_LAYOUTRTL</para>
+            <para>Description: If the shell language is Hebrew, Arabic, or another language that supports reading order alignment, the horizontal origin of the window is on the right edge. Increasing horizontal values advance to the left.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Composited">
+            <summary>
+            <para>Name: WS_EX_COMPOSITED</para>
+            <para>Description: Paints all descendants of a window in bottom-to-top painting order using double-buffering. Bottom-to-top painting order allows a descendent window to have translucency (alpha) and transparency (color-key) effects, but only if the descendent window also has the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Transparent"/> bit set. Double-buffering allows the window and its descendents to be painted without flicker. This cannot be used if the window has a class style of either CS_OWNDC or CS_CLASSDC. Windows 2000: This style is not supported.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.NoActivate">
+            <summary>
+            <para>Name: WS_EX_NOACTIVATE</para>
+            <para>Description: A top-level window created with this style does not become the foreground window when the user clicks it. The system does not bring this window to the foreground when the user minimizes or closes the foreground window. The window should not be activated through programmatic access or via keyboard navigation by accessible technology, such as Narrator. To activate the window, use the SetActiveWindow or SetForegroundWindow function. The window does not appear on the taskbar by default. To force the window to appear on the taskbar, use the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.AppWindow"/> style.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.DialogModalFrame">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.DialogModalFrame"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.NoParentNotify">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.NoParentNotify"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.TopMost">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.TopMost"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.AcceptFiles">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.AcceptFiles"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.Transparent">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Transparent"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.MDIChild">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.MDIChild"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.ToolWindow">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ToolWindow"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.WindowEdge">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.WindowEdge"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.ClientEdge">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ClientEdge"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.ContextHelp">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ContextHelp"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.Right">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Right"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.Left">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Left"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.RTLReading">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.RTLReading"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.LTRReading">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.LTRReading"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.LeftScrollBar">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.LeftScrollBar"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.RightScrollBar">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.RightScrollBar"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.ControlParent">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ControlParent"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.StaticEdge">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.StaticEdge"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.AppWindow">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.AppWindow"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.OverlappedWindowEx">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.OverlappedWindowEx"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.PaletteWindow">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.PaletteWindow"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.Layered">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Layered"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.NoInheritLayout">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.NoInheritLayout"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.NoRedirectionBitmap">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.NoRedirectionBitmap"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.LayoutRTL">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.LayoutRTL"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.Composited">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Composited"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.ExtendedWindowStyles.NoActivate">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.NoActivate"/>
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.FileSystemKnownFolder">

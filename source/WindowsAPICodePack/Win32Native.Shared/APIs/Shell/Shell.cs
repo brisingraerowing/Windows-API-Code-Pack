@@ -12,7 +12,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     public static partial class Shell
     {
         #region Shell Helper Methods
-        [DllImport(Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames.Kernel32, SetLastError = true, CharSet = CharSet.Unicode)]
+        [DllImport(Kernel32, SetLastError = true, CharSet = CharSet.Unicode)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool CreateDirectoryW([In, MarshalAs(UnmanagedType.LPWStr)] string lpPathName, [In] IntPtr lpSecurityAttributes);
 
