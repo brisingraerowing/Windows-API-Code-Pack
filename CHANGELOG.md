@@ -10,6 +10,10 @@ For issue and fixation details, visit [https://wincopies.com/fwd.php?id=3](https
 
 For the original code (version 1.1, last release by Microsoft), see [https://wincopies.com/fwd.php?id=1](https://wincopies.com/fwd.php?id=1)
 
+## 05/06/2021 3.1.1
+
+Bug fixes in window styles. The window style-related managed method definitions have been updated.
+
 ## 05/05/2021 3.1
 
 ### Shell

@@ -48,14 +48,24 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <para>If the function fails, the return value is zero. To get extended error information, call <see cref="GetLastWin32Error"/>.</para>
         /// <para>If <see cref="SetWindowStyles(IntPtr,  WindowStyles)"/> has not been called previously, <see cref="GetWindowLongPtr(IntPtr, GetWindowLongEnum)"/> returns zero for values in the extra window or class memory.</para>
         /// </returns>
-        public static WindowStyles GetWindowStyles(IntPtr hwnd)
+        public static WindowStyles GetWindowStyles(IntPtr hwnd
+#if WAPICP3
+            , GetWindowLongEnum getWindowLongEnum
+#endif
+            )
         {
 #if WAPICP3
             long
 #else
 int
 #endif
-          result = GetWindowLongPtr(hwnd, GetWindowLongEnum.Style);
+          result = GetWindowLongPtr(hwnd,
+#if WAPICP3
+          getWindowLongEnum
+#else
+          GetWindowLongEnum.Style
+#endif
+          );
 
             if (result == 0)
 
@@ -86,9 +96,19 @@ int
         }
 #endif
 
-        public static void SetWindowStyles(IntPtr hwnd, WindowStyles styles)
+        public static void SetWindowStyles(IntPtr hwnd, WindowStyles styles
+#if WAPICP3
+            , GetWindowLongEnum getWindowLongEnum
+#endif
+          )
         {
-            if (SetWindowLongPtr(hwnd, GetWindowLongEnum.Style,
+            if (SetWindowLongPtr(hwnd,
+#if WAPICP3
+          getWindowLongEnum
+#else
+          GetWindowLongEnum.Style
+#endif
+          ,
 #if WAPICP3
 (long)
 #else
@@ -107,15 +127,29 @@ int
         }
 
         public static void SetWindow(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, WindowStyles styles,
-#if !WAPICP3
-            WindowStylesEx stylesEx, 
+#if WAPICP3
+            WindowStyles
+#else
+            WindowStylesEx 
 #endif
-            SetWindowPositionOptions windowPositionOptions)
+            stylesEx, SetWindowPositionOptions windowPositionOptions)
         {
-            SetWindowStyles(hWnd, styles);
-#if !WAPICP3
-            SetWindowStylesEx(hWnd, stylesEx);
+            SetWindowStyles(hWnd, styles
+#if WAPICP3
+                , GetWindowLongEnum.Style
 #endif
+                );
+#if WAPICP3
+            SetWindowStyles
+#else
+            SetWindowStylesEx
+#endif
+                (hWnd, stylesEx
+#if WAPICP3
+                , GetWindowLongEnum.Style
+#endif
+                );
+
             SetWindowPos(hWnd, hWndInsertAfter, x, y, cx, cy, windowPositionOptions);
         }
 
@@ -123,7 +157,7 @@ int
         {
             IntPtr activatedHandle = HandlerNativeMethods.GetForegroundWindow();
 
-            return activatedHandle != null && activatedHandle != IntPtr.Zero && activatedHandle == hWnd;
+            return  activatedHandle != IntPtr.Zero && activatedHandle == hWnd;
         }
 
         // TODO: also return the int given by HandlerNativeMethods.GetWindowThreadProcessId?
@@ -519,6 +553,7 @@ int
         NoActivate = 0x08000000
     }
 
+    [Flags]
     public enum CommonWindowStyles : long
     {
         OverlappedWindow = WindowStyles.OverlappedWindow,
@@ -528,6 +563,7 @@ int
         ChildWindow = WindowStyles.ChildWindow
     }
 
+    [Flags]
     public enum ExtendedWindowStyles
     {
         /// <summary>
