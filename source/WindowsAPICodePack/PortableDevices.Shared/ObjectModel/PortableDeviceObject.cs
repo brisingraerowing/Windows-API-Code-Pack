@@ -1,27 +1,25 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.PropertySystem;
-using System;
-using System.Diagnostics;
-
-#if WAPICP3
 using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
+using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.PortableDevices.CommandSystem.Object;
 using Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 
+using System;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
 
-using static Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PortableDeviceHelper;
-
-using static WinCopies.ThrowHelper;
+using static
+#if WAPICP3
+    WinCopies.ThrowHelper;
 #else
-using Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem;
-
-using static WinCopies.Util.Util;
+    WinCopies.Util.Util;
 #endif
+
+using static Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PortableDeviceHelper;
 
 using PropertyCollection = Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem.PropertyCollection;
 
