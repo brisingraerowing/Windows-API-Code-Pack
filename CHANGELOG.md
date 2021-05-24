@@ -10,6 +10,10 @@ For issue and fixation details, visit [https://wincopies.com/fwd.php?id=3](https
 
 For the original code (version 1.1, last release by Microsoft), see [https://wincopies.com/fwd.php?id=1](https://wincopies.com/fwd.php?id=1)
 
+## 05/24/2021 3.1.2
+
+Bug fixes in window styles. The window style-related managed method definitions have been updated.
+
 ## 05/06/2021 3.1.1
 
 Bug fixes in window styles. The window style-related managed method definitions have been updated.
@@ -49,6 +53,10 @@ COMNative 3.0
 
 - Removals:
     - Some 'ref' keywords in native PortableDevices interfaces. These keywords have been removed for interface type parameters because they was redundant.
+
+## 05/24/2021
+
+Add features to PortableDevices.
 
 ## 05/05/2021 2.2
 

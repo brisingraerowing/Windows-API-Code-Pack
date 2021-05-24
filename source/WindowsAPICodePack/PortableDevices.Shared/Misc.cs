@@ -1,10 +1,10 @@
 ﻿using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem;
+using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
+
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 using static WinCopies.
 #if WAPICP3
@@ -128,6 +128,17 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             if (!portableDeviceObject.ParentPortableDevice.IsOpen)
 
                 throw new PortableDeviceException("The portable device is not open.");
+        }
+
+        public static bool SupportsCommand( this IPortableDevice portableDevice,   ref PropertyKey command)
+        {
+            foreach (PropertyKey _command in portableDevice. DeviceCapabilities.Commands)
+
+                if (_command == command)
+
+                    return true;
+
+            return false;
         }
     }
 }

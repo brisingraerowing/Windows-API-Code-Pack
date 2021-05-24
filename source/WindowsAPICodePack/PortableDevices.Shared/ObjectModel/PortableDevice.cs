@@ -21,6 +21,8 @@ using System.Text;
 
 using static Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PortableDeviceHelper;
 
+using static System.Runtime.InteropServices.Marshal;
+
 using static WinCopies.
 #if WAPICP3
     ThrowHelper;
@@ -63,9 +65,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 #if WAPICP3
         private string _eventCookie;
 #endif
-#endregion
+        #endregion
 
-#region Properties
+        #region Properties
 #if !WAPICP3
         private IList<IPortableDeviceObject> _Items => IsOpen ? _items
 #if CS8
@@ -120,16 +122,21 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         {
             get
             {
-                ThrowOnInvalidOperation();
-
-                if (_content is null)
-                {
-                    ThrowWhenFailHResult(NativePortableDevice.Content(out IPortableDeviceContent content));
-
-                    _content = (IPortableDeviceContent2)content;
-                }
+                SetContent();
 
                 return _content;
+            }
+        }
+
+        protected void SetContent()
+        {
+            ThrowOnInvalidOperation();
+
+            if (_content is null)
+            {
+                ThrowWhenFailHResult(NativePortableDevice.Content(out IPortableDeviceContent content));
+
+                _content = (IPortableDeviceContent2)content;
             }
         }
 
@@ -186,7 +193,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 #endif
 
         public PortableDeviceOpeningOptions PortableDeviceOpeningOptions { get; private set; }
-#endregion
+        #endregion
 
         internal PortableDevice(in PortableDeviceManager portableDeviceManager, in string deviceId)
         {
@@ -229,7 +236,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             NativePortableDevice = (COMNative.PortableDevices.IPortableDevice)new COMNative.PortableDevices.PortableDevice();
         }
 
-#region Methods
+        #region Methods
 #if WAPICP3
         public System.Collections.Generic.IEnumerable<IPortableDeviceObject> GetPortableDeviceItem(in string id)
         {
@@ -243,13 +250,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             _ = values.GetStringValue(ref propKey, out string value);
 
-            Marshal.ReleaseComObject(values);
+            _ = ReleaseComObject(values);
 
             values = null;
 
             if (value == NativeAPI.Consts.PortableDevices.DeviceObjectId)
             {
-                Marshal.ReleaseComObject(keyCollection);
+                _ = ReleaseComObject(keyCollection);
 
                 keyCollection = null;
 
@@ -266,7 +273,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                 _ = values.GetStringValue(ref propKey, out value);
 
-                Marshal.ReleaseComObject(values);
+                _ = ReleaseComObject(values);
 
                 values = null;
 
@@ -290,7 +297,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 item = (EnumerablePortableDeviceObject)item.First(predicate);
             }
 
-            Marshal.ReleaseComObject(keyCollection);
+            _ = ReleaseComObject(keyCollection);
 
             keyCollection = null;
 
@@ -402,6 +409,35 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             // TODO: ((IPortableDeviceDataStream)writer).GetObjectID(out string newObjectId);
         }
+
+        internal string CreateFolder(in string name, in string id)
+        {
+            SetContent();
+
+            var values = (IPortableDeviceValues)new PortableDeviceValues();
+
+            PropertyKey pKey = PropertySystem.Properties.Legacy.Object.Common.ParentId;
+
+            ThrowExceptionForHR((int)values.SetStringValue(ref pKey, id));
+
+            pKey = PropertySystem.Properties.Legacy.Object.Common.Name;
+
+            ThrowExceptionForHR((int)values.SetStringValue(ref pKey, name));
+
+            pKey = PropertySystem.Properties.Object.ContentType;
+
+            var guid = new Guid(Guids.PropertySystem.ContentType.Folder);
+
+            ThrowExceptionForHR((int)values.SetGuidValue(ref pKey, ref guid));
+
+            string folderId = null;
+
+            ThrowExceptionForHR((int)_content.CreateObjectWithPropertiesOnly(values, ref folderId));
+
+            return folderId;
+        }
+
+        public string CreateFolder(string name) => CreateFolder(name, DeviceId);
 
         internal delegate int StreamReader(byte[] buffer);
         internal delegate uint StreamWriter(byte[] buffer, int realBufferLength);
@@ -733,9 +769,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         public ReadOnlyPortableDeviceValueCollection SendCommand(in ReadOnlyPortableDeviceValueCollection parameters) => SendCommand((parameters == null ? throw GetArgumentNullException(nameof(parameters)) : (INativePortableDeviceValuesCollectionProvider)parameters).NativeItems);
 
         public ReadOnlyPortableDeviceValueCollection SendCommand(in PortableDeviceValueCollection parameters) => SendCommand(((INativePortableDeviceValuesCollectionProvider)parameters).NativeItems);
-#endregion
+        #endregion
 
-#region IDisposable Support
+        #region IDisposable Support
         public bool IsDisposed { get; private set; } = false;
 
         protected virtual void Dispose(in bool disposing)
@@ -793,9 +829,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-#endregion
+        #endregion
 
-#region IEnumerable Support
+        #region IEnumerable Support
         public IEnumerator<IPortableDeviceObject> GetEnumerator() =>
 #if WAPICP3
 IsDisposed ? throw GetExceptionForDispose(false) : IsOpen ? GetItems(Content, DeviceId, (in string id) => PortableDevice.GetPortableDeviceObject(id, false, null, this)).GetEnumerator() : throw new InvalidOperationException("The parent portable device is not open.");
@@ -804,6 +840,6 @@ IsDisposed ? throw GetExceptionForDispose(false) : IsOpen ? GetItems(Content, De
 #endif
 
         IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
-#endregion
+        #endregion
     }
 }

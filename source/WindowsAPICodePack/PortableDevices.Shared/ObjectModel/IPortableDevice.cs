@@ -1,4 +1,6 @@
 ﻿using Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem;
+using System;
+using System.IO;
 
 #if !WAPICP3
 using System.Collections.Generic;
@@ -76,5 +78,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         ReadOnlyPortableDeviceValueCollection SendCommand(in ReadOnlyPortableDeviceValueCollection parameters);
 
         ReadOnlyPortableDeviceValueCollection SendCommand(in PortableDeviceValueCollection parameters);
+
+#if WAPICP3
+        string CreateFolder(string name);
+
+        void TransferTo(FileStream stream, int bufferSize, bool forceBufferSize, Guid contentType, Guid objectFormat, PortableDeviceTransferCallback d);
+#endif
     }
 }

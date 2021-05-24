@@ -1,5 +1,6 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
+using Microsoft.WindowsAPICodePack.PropertySystem;
 using System;
 using System.Diagnostics;
 
@@ -123,7 +124,7 @@ IPortableDeviceObject
 
             Debug.WriteLine($"The {id} object is requesting the Name property.");
 
-            if (Properties.TryGetValue(PortableDevices.PropertySystem.Properties.Legacy.Object.Common.Name, out WindowsAPICodePack.PropertySystem. Property objectProperty) && objectProperty.TryGetValue(out string value))
+            if (Properties.TryGetValue(PortableDevices.PropertySystem.Properties.Legacy.Object.Common.Name, out WindowsAPICodePack.PropertySystem.Property objectProperty) && objectProperty.TryGetValue(out string value))
 
                 _name = value;
 
@@ -135,7 +136,24 @@ IPortableDeviceObject
         }
 
         #region Methods
-#if WAPICP3
+        public void Move(IEnumerablePortableDeviceObject moveTo)
+        {
+            PropertyKey propertyKey = Microsoft.WindowsAPICodePack.PortableDevices.CommandSystem.Object.Management.Commands.MoveObjects;
+
+            if (ParentPortableDevice.SupportsCommand(ref propertyKey))
+            {
+                var propVars = (IPortableDevicePropVariantCollection)new PortableDevicePropVariantCollection();
+
+                Marshal.ThrowExceptionForHR((int)propVars.Add(new PropVariant(Id)));
+
+                Marshal.ThrowExceptionForHR((int)_parentPortableDevice.Content.Move(propVars, moveTo.Id, null));
+            }
+
+            else
+
+                throw new NotSupportedException("The current portable device does not support the move command.");
+        }
+
         public void Delete()
         {
             ThrowIfDisposed(this);
@@ -175,13 +193,12 @@ IPortableDeviceObject
 
             propVar = null;
 
-            Marshal.ReleaseComObject(propVars);
+            _ = Marshal.ReleaseComObject(propVars);
 
             propVars = null;
 
             Dispose();
         }
-#endif
         #endregion
 
         #region IDisposable Support

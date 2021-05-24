@@ -146,7 +146,7 @@ int
 #endif
                 (hWnd, stylesEx
 #if WAPICP3
-                , GetWindowLongEnum.Style
+                , GetWindowLongEnum.ExStyle
 #endif
                 );
 

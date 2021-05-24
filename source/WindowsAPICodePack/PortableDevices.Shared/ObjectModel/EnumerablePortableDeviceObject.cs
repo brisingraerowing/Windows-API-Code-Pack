@@ -101,5 +101,7 @@ IsDisposed ? throw GetExceptionForDispose(false) : _parentPortableDevice.IsOpen 
         //#endif
 
         public void TransferTo(FileStream stream, int bufferSize, bool forceBufferSize, Guid contentType, Guid objectFormat, PortableDeviceTransferCallback d) => _parentPortableDevice.TransferTo(stream, bufferSize, forceBufferSize, Id, contentType, objectFormat, d);
+
+        public void CreateFolder(in string name) => _parentPortableDevice.CreateFolder(name, Id);
     }
 }

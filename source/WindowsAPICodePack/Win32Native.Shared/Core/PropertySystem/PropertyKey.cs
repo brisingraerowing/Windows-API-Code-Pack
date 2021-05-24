@@ -85,7 +85,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         public override bool Equals(object obj) =>
 
             // PropertyKey other = (PropertyKey)obj;
-            obj == null ? false : obj is PropertyKey propertyKey ? propertyKey.formatId.Equals(formatId) && (propertyKey.PropertyId == PropertyId) : false;
+            obj != null && obj is PropertyKey propertyKey && propertyKey.formatId.Equals(formatId) && (propertyKey.PropertyId == PropertyId);
 
         /// <summary>
         /// Implements the == (equality) operator.
