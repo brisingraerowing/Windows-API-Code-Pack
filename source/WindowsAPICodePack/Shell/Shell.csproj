@@ -12,10 +12,10 @@
     <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020-2021</Copyright>
     <DocumentationFile>WinCopies.WindowsAPICodePack.Shell.xml</DocumentationFile>
     <DefineConstants>WAPICP3;$(DefineConstants)</DefineConstants>
-    <VersionPrefix>3.1.1</VersionPrefix>
+    <VersionPrefix>3.1.2</VersionPrefix>
     <VersionSuffix>preview</VersionSuffix>
-    <AssemblyVersion>3.1.1</AssemblyVersion>
-    <FileVersion>3.1.1</FileVersion>
+    <AssemblyVersion>3.1.2</AssemblyVersion>
+    <FileVersion>3.1.2</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

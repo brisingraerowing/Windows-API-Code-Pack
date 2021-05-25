@@ -12,10 +12,10 @@
     <Description>WindowsAPICodePack COM Interop</Description>
     <DocumentationFile>WinCopies.WindowsAPICodePack.COMNative.xml</DocumentationFile>
     <DefineConstants>WAPICP2;$(DefineConstants)</DefineConstants>
-    <VersionPrefix>2.1.1</VersionPrefix>
+    <VersionPrefix>2.3</VersionPrefix>
     <!--<VersionSuffix>preview</VersionSuffix>-->
-    <AssemblyVersion>2.1.1</AssemblyVersion>
-    <FileVersion>2.1.1</FileVersion>
+    <AssemblyVersion>2.3</AssemblyVersion>
+    <FileVersion>2.3</FileVersion>
   </PropertyGroup>
 
   <Import Project="..\..\COMNative.Shared\COMNative.Shared.projitems" Label="Shared" />

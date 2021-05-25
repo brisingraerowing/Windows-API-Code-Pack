@@ -54,7 +54,7 @@ COMNative 3.0
 - Removals:
     - Some 'ref' keywords in native PortableDevices interfaces. These keywords have been removed for interface type parameters because they was redundant.
 
-## 05/24/2021
+## 05/24/2021 2.3
 
 Add features to PortableDevices.
 
