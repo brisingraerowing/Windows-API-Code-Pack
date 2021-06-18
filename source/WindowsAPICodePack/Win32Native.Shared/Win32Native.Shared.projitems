@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)APIs\GDI.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)APIs\NamedPipe.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\CopyFileFlags.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\CopyProgressCallbackReason.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\CopyProgressResult.cs" />
