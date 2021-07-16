@@ -178,6 +178,24 @@ namespace Microsoft.WindowsAPICodePack.Shell.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not list processes locking resource..
+        /// </summary>
+        internal static string CouldNotListProcessesLockingResource {
+            get {
+                return ResourceManager.GetString("CouldNotListProcessesLockingResource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not register resource..
+        /// </summary>
+        internal static string CouldNotRegisterResource {
+            get {
+                return ResourceManager.GetString("CouldNotRegisterResource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CreatePrompt cannot be changed while dialog is showing..
         /// </summary>
         internal static string CreatePromptCannotBeChanged {
@@ -336,6 +354,15 @@ namespace Microsoft.WindowsAPICodePack.Shell.Resources {
         internal static string ExplorerBrowserViewItems {
             get {
                 return ResourceManager.GetString("ExplorerBrowserViewItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not list processes locking resource. Failed to get size of result..
+        /// </summary>
+        internal static string FailedToGetSizeOfResult {
+            get {
+                return ResourceManager.GetString("FailedToGetSizeOfResult", resourceCulture);
             }
         }
         
@@ -705,6 +732,15 @@ namespace Microsoft.WindowsAPICodePack.Shell.Resources {
         internal static string ThumbnailToolbarManagerNullEmptyArray {
             get {
                 return ResourceManager.GetString("ThumbnailToolbarManagerNullEmptyArray", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not begin restart session. Unable to determine file locker..
+        /// </summary>
+        internal static string UnableToDetermineFileLocker {
+            get {
+                return ResourceManager.GetString("UnableToDetermineFileLocker", resourceCulture);
             }
         }
     }

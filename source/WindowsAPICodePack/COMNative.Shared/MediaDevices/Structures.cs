@@ -1,15 +1,11 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.COMNative;
-using Microsoft.WindowsAPICodePack.COMNative.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+
 using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Windows;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 {
@@ -105,23 +101,18 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
     /// <summary>
     /// Holds the valid values of the property in a particular property configuration. This member holds one of three items: the enumeration value <see cref="PropValidValuesForm.Any"/>; the member <see cref="ValidValuesRange"/>; or the member <see cref="EnumeratedValidValues"/>. The value or member is indicated by <see cref="PropDesc.ValidValuesForm"/>.
     /// </summary>
-    [StructLayout(LayoutKind.Explicit)]
     public struct PropDescValidValues
-
     {
-
         /// <summary>
         /// A <see cref="PropValuesRange"/> structure containing a range of valid values. This is present only when <see cref="PropDesc.ValidValuesForm"/> is set to <see cref="PropValidValuesForm.Range"/>. See the Remarks section of the <see cref="PropDesc"/> structure.
         /// </summary>
-        [FieldOffset(0)]
         public PropValuesRange ValidValuesRange;
         /// <summary>
         /// A <see cref="PropValuesEnum"/> structure containing an enumerated set of valid values. This is present only when <see cref="PropDesc.ValidValuesForm"/> is set to <see cref="PropValidValuesForm.Enum"/>. See the Remarks section of the <see cref="PropDesc"/> structure.
         /// </summary>
-        [FieldOffset(0)]
         public PropValuesEnum EnumeratedValidValues;
-
     }
+
     /// <summary>
     /// The <see cref="PropValuesEnum"/> structure contains an enumerated set of valid values for a particular property in a particular property configuration.
     /// </summary>

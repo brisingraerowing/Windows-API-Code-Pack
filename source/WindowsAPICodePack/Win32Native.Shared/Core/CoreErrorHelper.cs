@@ -1,5 +1,7 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
+using System.Runtime.InteropServices;
+
 namespace Microsoft.WindowsAPICodePack.Win32Native
 {
 
@@ -174,5 +176,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         /// <param name="win32ErrorCode">The Win32 error code.</param>
         /// <returns><see langword="true"/> if <paramref name="result"/> corresponds to <paramref name="win32ErrorCode"/>; otherwise <see langword="false"/>.</returns>
         public static bool Matches(in HResult result, in ErrorCode win32ErrorCode) => result == HResultFromWin32(win32ErrorCode);
+
+        public static void ThrowExceptionForHR(in HResult hresult) => Marshal.ThrowExceptionForHR((int)hresult);
     }
 }

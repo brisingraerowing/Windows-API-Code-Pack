@@ -7417,26 +7417,6 @@
             </summary>
             <returns>A hash code.</returns>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IPersistStream">
-            <summary>
-            Provides the managed definition of the IPersistStream interface, with functionality
-               from IPersist.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IPersistStream.GetClassID(System.Guid@)">
-            <summary>
-            Retrieves the class identifier (CLSID) of an object.
-            </summary>
-            <param name="pClassID">When this method returns, contains a reference to the CLSID. This parameter
-               is passed uninitialized.</param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IPersistStream.IsDirty">
-            <summary>
-            Checks an object for changes since it was last saved to its current file.
-            </summary>
-            <returns>S_OK if the file has changed since it was last saved; S_FALSE if the file
-               has not changed since it was last saved.</returns>
-        </member>
         <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperation.Advise(Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperationProgressSink,System.UInt32@)">
             <summary>
             Enables a handler to provide status and error information for all operations.
@@ -7512,7 +7492,7 @@
             <summary>
             Declares a set of items for which to apply a common set of property values.
             </summary>
-            <param name="punkItems">Pointer to the IUnknown of the <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItemArray"/>, <see cref="T:System.Runtime.InteropServices.ComTypes.IDataObject"/>, or <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IEnumShellItems"/> object which represents the group of items. You can also point to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IPersistIDList"/> object to represent a single item, effectively accomplishing the same function as <see cref="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperation.ApplyPropertiesToItem(Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem)"/>.</param>
+            <param name="punkItems">Pointer to the IUnknown of the <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItemArray"/>, <see cref="!:IDataObject"/>, or <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IEnumShellItems"/> object which represents the group of items. You can also point to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IPersistIDList"/> object to represent a single item, effectively accomplishing the same function as <see cref="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperation.ApplyPropertiesToItem(Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem)"/>.</param>
             <returns>If this method succeeds, it returns S_OK. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
             <remarks>This method does not apply the properties to the items, it merely declares the items. To set property values on a group of items, you must make at least the sequence of calls detailed here:
             <ol><li>Call <see cref="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperation.SetProperties(Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyChangeArray)"/> to declare the specific properties to be set and their new values.</li>
@@ -7535,7 +7515,7 @@
             <summary>
             Declares a set of items that are to be given a new display name. All items are given the same name.
             </summary>
-            <param name="pUnkItems">Pointer to the <see cref="F:System.Runtime.InteropServices.UnmanagedType.IUnknown"/> of the <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItemArray"/>, <see cref="T:System.Runtime.InteropServices.ComTypes.IDataObject"/>, or <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IEnumShellItems"/> object which represents the group of items to be renamed. You can also point to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IPersistIDList"/> object to represent a single item, effectively accomplishing the same function as <see cref="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperation.RenameItem(Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem,System.String,Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperationProgressSink)"/>.</param>
+            <param name="pUnkItems">Pointer to the <see cref="F:System.Runtime.InteropServices.UnmanagedType.IUnknown"/> of the <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItemArray"/>, <see cref="!:IDataObject"/>, or <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IEnumShellItems"/> object which represents the group of items to be renamed. You can also point to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IPersistIDList"/> object to represent a single item, effectively accomplishing the same function as <see cref="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperation.RenameItem(Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem,System.String,Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperationProgressSink)"/>.</param>
             <param name="pszNewName">Pointer to the new display name of the items. This is a null-terminated, Unicode string.</param>
             <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
             <remarks><para>If more than one of the items in the collection at pUnkItems is in the same folder, the renamed files are appended with a number in parentheses to differentiate them, for instance newfile(1).txt, newfile(2).txt, and newfile(3).txt.</para>
@@ -7560,7 +7540,7 @@
             <summary>
             Declares a set of items that are to be moved to a specified destination.
             </summary>
-            <param name="punkItems">Pointer to the IUnknown of the <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItemArray"/>, <see cref="T:System.Runtime.InteropServices.ComTypes.IDataObject"/>, or <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IEnumShellItems"/> object which represents the group of items to be moved. You can also point to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IPersistIDList"/> object to represent a single item, effectively accomplishing the same function as IFileOperation::MoveItem.</param>
+            <param name="punkItems">Pointer to the IUnknown of the <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItemArray"/>, <see cref="!:IDataObject"/>, or <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IEnumShellItems"/> object which represents the group of items to be moved. You can also point to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IPersistIDList"/> object to represent a single item, effectively accomplishing the same function as IFileOperation::MoveItem.</param>
             <param name="psiDestinationFolder">Pointer to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> that specifies the destination folder to contain the moved items.</param>
             <returns>If this method succeeds, it returns S_OK. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
             <remarks>This method does not move the items, it merely declares the items to be moved. To move a group of items, you must make at least the sequence of calls detailed here:
@@ -7584,7 +7564,7 @@
             <summary>
             Declares a set of items that are to be copied to a specified destination.
             </summary>
-            <param name="punkItems">Pointer to the IUnknown of the <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItemArray"/>, <see cref="T:System.Runtime.InteropServices.ComTypes.IDataObject"/>, or <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IEnumShellItems"/> object which represents the group of items to be copied. You can also point to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IPersistIDList"/> object to represent a single item, effectively accomplishing the same function as IFileOperation::CopyItem.</param>
+            <param name="punkItems">Pointer to the IUnknown of the <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItemArray"/>, <see cref="!:IDataObject"/>, or <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IEnumShellItems"/> object which represents the group of items to be copied. You can also point to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IPersistIDList"/> object to represent a single item, effectively accomplishing the same function as IFileOperation::CopyItem.</param>
             <param name="psiDestinationFolder">Pointer to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> that specifies the destination folder to contain the copy of the items.</param>
             <returns>If this method succeeds, it returns S_OK. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
             <remarks>This method does not copy the items, it merely declares the items to be copied. To copy a group of items, you must make at least the sequence of calls detailed here:
@@ -7606,7 +7586,7 @@
             <summary>
             Declares a set of items that are to be deleted.
             </summary>
-            <param name="punkItems">Pointer to the IUnknown of the <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItemArray"/>, <see cref="T:System.Runtime.InteropServices.ComTypes.IDataObject"/>, or <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IEnumShellItems"/> object which represents the group of items to be deleted. You can also point to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IPersistIDList"/> object to represent a single item, effectively accomplishing the same function as IFileOperation::DeleteItem.</param>
+            <param name="punkItems">Pointer to the IUnknown of the <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItemArray"/>, <see cref="!:IDataObject"/>, or <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IEnumShellItems"/> object which represents the group of items to be deleted. You can also point to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IPersistIDList"/> object to represent a single item, effectively accomplishing the same function as IFileOperation::DeleteItem.</param>
             <returns>If this method succeeds, it returns S_OK. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
             <remarks>This method does not delete the items, it merely declares the items to be deleted. To delete a group of items, you must make at least the sequence of calls detailed here:
             <ol><li>Call <see cref="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperation.DeleteItems(System.Object)"/> to declare the files or folders to be deleted.</li>
@@ -7617,7 +7597,7 @@
             Declares a new item that is to be created in a specified location.
             </summary>
             <param name="psiDestinationFolder">Pointer to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> that specifies the destination folder that will contain the new item.</param>
-            <param name="dwFileAttributes">A bitwise value that specifies the file system attributes for the file or folder. See <see cref="M:System.IO.File.GetAttributes(System.String)"/> for possible values.</param>
+            <param name="dwFileAttributes">A bitwise value that specifies the file system attributes for the file or folder. See <see cref="!:File.GetAttributes(string)"/> for possible values.</param>
             <param name="pszName">Pointer to the file name of the new item, for instance <b>Newfile.txt</b>. This is a null-terminated, Unicode string.</param>
             <param name="pszTemplateName">Pointer to the name of the template file (for example Excel9.xls) that the new item is based on, stored in one of the following locations:
             <ol><li>CSIDL_COMMON_TEMPLATES.The default path for this folder is %ALLUSERSPROFILE%\Templates.</li>
@@ -7647,154 +7627,6 @@
             <remarks><para>Call this method after <see cref="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperation.PerformOperations"/> returns.</para>
             <para>You should call <see cref="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperation.GetAnyOperationsAborted(System.Boolean@)"/> regardless of whether <see cref="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperation.PerformOperations"/> returned a success or failure code.A success code can be returned even if the operation was stopped by the user or the system.</para>
             <para>This method provides the same functionality as the fAnyOperationsAborted member of the SHFILEOPSTRUCT structure used by the legacy function SHFileOperation.</para></remarks>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IPersistIDList">
-            <summary>
-            Exposes methods that are used to persist item identifier lists.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IPersistIDList.SetIDList(System.IntPtr)">
-            <summary>
-            Sets a persisted item identifier list.
-            </summary>
-            <param name="pidl">A pointer to the item identifier list to set.</param>
-            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IPersistIDList.GetIDList(System.IntPtr)">
-            <summary>
-            Gets an item identifier list.
-            </summary>
-            <param name="ppidl">The address of a pointer to the item identifier list to get.</param>
-            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IEnumShellItems">
-            <summary>
-            Exposes enumeration of <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> interfaces. This interface is typically obtained by calling the <b>IEnumShellItems</b> method.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IEnumShellItems.Next(System.UInt32,System.IntPtr,System.UInt32@)">
-            <summary>
-            Gets an array of one or more IShellItem interfaces from the enumeration.
-            </summary>
-            <param name="clet">The number of elements in the array referenced by the rgelt parameter.</param>
-            <param name="rgelt">The address of an array of pointers to <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> interfaces that receive the enumerated item or items. The calling application is responsible for freeing the IShellItem interfaces by calling the IUnknown.Release method.</param>
-            <param name="pceltFetched">A pointer to a value that receives the number of <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> interfaces successfully retrieved. The count can be smaller than the value specified in the celt parameter. This parameter can be <see langword="null"/> on entry only if celt is one, because in that case the method can only retrieve one item and return <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>, or zero items and return <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.False"/>.</param>
-            <returns>This method can return one of these values.
-            | Return code                 | Description                                                                  |
-            |-----------------------------+------------------------------------------------------------------------------|
-            | <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>    | if at least <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> interface was retrieved.                |
-            | <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.False"/> | if there are no more <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> interfaces in the enumeration. |
-            |                             | Returns an error value if the function fails for any other reason.           |
-            </returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IEnumShellItems.Skip(System.UInt32)">
-            <summary>
-            Skips a given number of <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> interfaces in the enumeration. Used when retrieving interfaces.
-            </summary>
-            <param name="celt">The number of <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> interfaces to skip.</param>
-            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IEnumShellItems.Reset">
-            <summary>
-            Resets the internal count of retrieved <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> interfaces in the enumeration.
-            </summary>
-            <returns>If this method succeeds, it returns <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IEnumShellItems.Clone(System.IntPtr)">
-            <summary>
-            Gets a copy of the current enumeration.
-            </summary>
-            <param name="ppenum">The address of a pointer that receives a copy of this enumeration.</param>
-            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog">
-            <summary>
-            Exposes methods to get, set, and query a progress dialog.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog.StartProgressDialog(System.IntPtr,Microsoft.WindowsAPICodePack.COMNative.Shell.OPPROGDLG)">
-            <summary>
-            Starts the specified progress dialog.
-            </summary>
-            <param name="hwndOwner">A handle to the parent window.</param>
-            <param name="flags">Flags that customize the operation. Note that these flags are declared in Shlobj.h.</param>
-            <returns>If this method succeeds, it returns <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
-            <remarks><para>The progress dialog should be created on a separate thread than the file operation on which the dialog is reporting. If the dialog is running in the same thread as the file operation, progress messages are, at best, only sent as resources allow. Progress messages on the same thread as the file operation might not be sent at all.</para>
-            <para>Once <see cref="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog.StartProgressDialog(System.IntPtr,Microsoft.WindowsAPICodePack.COMNative.Shell.OPPROGDLG)"/> is called, that instance of the CLSID_ProgressDialog object cannot be accessed by IProgressDialog, IActionProgressDialog, or IActionProgress. Although QueryInterface can be used to access these interfaces, most of their methods cannot be invoked. IOperationsProgressDialog is the interface used to display the new progress dialog for the Windows Vista and later operations engine.</para></remarks>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog.StopProgressDialog">
-            <summary>
-            Stops current progress dialog.
-            </summary>
-            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog.SetOperation(Microsoft.WindowsAPICodePack.COMNative.Shell.SPAction)">
-            <summary>
-            Sets which progress dialog operation is occurring, and whether we are in pre-flight or undo mode.
-            </summary>
-            <param name="action">Specifies operation.</param>
-            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog.SetMode(Microsoft.WindowsAPICodePack.COMNative.Shell.PDMODE)">
-            <summary>
-            Sets progress dialog operations mode.
-            </summary>
-            <param name="mode">Specifies the operation mode.</param>
-            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog.UpdateProgress(System.UInt64@,System.UInt64@,System.UInt64@,System.UInt64@,System.UInt64@,System.UInt64@)">
-            <summary>
-            Updates the current progress dialog, as specified.
-            </summary>
-            <param name="ullPointsCurrent">Current points, used for showing progress in points.</param>
-            <param name="ullPointsTotal">Total points, used for showing progress in points.</param>
-            <param name="ullSizeCurrent">Current size in bytes, used for showing progress in bytes.</param>
-            <param name="ullSizeTotal">Total size in bytes, used for showing progress in bytes.</param>
-            <param name="ullItemsCurrent">Current items, used for showing progress in items.</param>
-            <param name="ullItemsTotal">Specifies total items, used for showing progress in items.</param>
-            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog.UpdateLocations(Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem@,Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem@,Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem@)">
-            <summary>
-            Called to specify the text elements stating the source and target in the current progress dialog.
-            </summary>
-            <param name="psiSource">A pointer to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> that represents the source Shell item.</param>
-            <param name="psiTarget">A pointer to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> that represents the target Shell item.</param>
-            <param name="psiItem">A pointer to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> that represents the item currently being operated on by the operation engine. This parameter is only used in Windows 7 and later. In earlier versions, this parameter should be <see langword="null"/>.</param>
-            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog.ResetTimer">
-            <summary>
-            Resets progress dialog timer to 0.
-            </summary>
-            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog.PauseTimer">
-            <summary>
-            Pauses progress dialog timer.
-            </summary>
-            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog.ResumeTimer">
-            <summary>
-            Resumes progress dialog timer.
-            </summary>
-            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog.GetMilliseconds(System.UInt64@,System.UInt64@)">
-            <summary>
-            Gets elapsed and remaining time for progress dialog.
-            </summary>
-            <param name="pullElapsed">A pointer to the elapsed time in milliseconds.</param>
-            <param name="pullRemaining">A pointer to the remaining time in milliseconds.</param>
-            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog.GetOperationStatus(Microsoft.WindowsAPICodePack.COMNative.Shell.PDOPSTATUS@)">
-            <summary>
-            Gets operation status for progress dialog.
-            </summary>
-            <param name="popstatus">Contains pointer to the operation status. See <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.PDOPSTATUS"/>.</param>
-            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperationProgressSink">
             <summary>
@@ -7953,6 +7785,185 @@
             </summary>
             <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
             <remarks>This method should return <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/> rather than E_NOTIMPL.</remarks>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog">
+            <summary>
+            Exposes methods to get, set, and query a progress dialog.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog.StartProgressDialog(System.IntPtr,Microsoft.WindowsAPICodePack.COMNative.Shell.OPPROGDLG)">
+            <summary>
+            Starts the specified progress dialog.
+            </summary>
+            <param name="hwndOwner">A handle to the parent window.</param>
+            <param name="flags">Flags that customize the operation. Note that these flags are declared in Shlobj.h.</param>
+            <returns>If this method succeeds, it returns <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
+            <remarks><para>The progress dialog should be created on a separate thread than the file operation on which the dialog is reporting. If the dialog is running in the same thread as the file operation, progress messages are, at best, only sent as resources allow. Progress messages on the same thread as the file operation might not be sent at all.</para>
+            <para>Once <see cref="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog.StartProgressDialog(System.IntPtr,Microsoft.WindowsAPICodePack.COMNative.Shell.OPPROGDLG)"/> is called, that instance of the CLSID_ProgressDialog object cannot be accessed by IProgressDialog, IActionProgressDialog, or IActionProgress. Although QueryInterface can be used to access these interfaces, most of their methods cannot be invoked. IOperationsProgressDialog is the interface used to display the new progress dialog for the Windows Vista and later operations engine.</para></remarks>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog.StopProgressDialog">
+            <summary>
+            Stops current progress dialog.
+            </summary>
+            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog.SetOperation(Microsoft.WindowsAPICodePack.COMNative.Shell.SPAction)">
+            <summary>
+            Sets which progress dialog operation is occurring, and whether we are in pre-flight or undo mode.
+            </summary>
+            <param name="action">Specifies operation.</param>
+            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog.SetMode(Microsoft.WindowsAPICodePack.COMNative.Shell.PDMODE)">
+            <summary>
+            Sets progress dialog operations mode.
+            </summary>
+            <param name="mode">Specifies the operation mode.</param>
+            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog.UpdateProgress(System.UInt64@,System.UInt64@,System.UInt64@,System.UInt64@,System.UInt64@,System.UInt64@)">
+            <summary>
+            Updates the current progress dialog, as specified.
+            </summary>
+            <param name="ullPointsCurrent">Current points, used for showing progress in points.</param>
+            <param name="ullPointsTotal">Total points, used for showing progress in points.</param>
+            <param name="ullSizeCurrent">Current size in bytes, used for showing progress in bytes.</param>
+            <param name="ullSizeTotal">Total size in bytes, used for showing progress in bytes.</param>
+            <param name="ullItemsCurrent">Current items, used for showing progress in items.</param>
+            <param name="ullItemsTotal">Specifies total items, used for showing progress in items.</param>
+            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog.UpdateLocations(Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem@,Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem@,Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem@)">
+            <summary>
+            Called to specify the text elements stating the source and target in the current progress dialog.
+            </summary>
+            <param name="psiSource">A pointer to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> that represents the source Shell item.</param>
+            <param name="psiTarget">A pointer to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> that represents the target Shell item.</param>
+            <param name="psiItem">A pointer to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> that represents the item currently being operated on by the operation engine. This parameter is only used in Windows 7 and later. In earlier versions, this parameter should be <see langword="null"/>.</param>
+            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog.ResetTimer">
+            <summary>
+            Resets progress dialog timer to 0.
+            </summary>
+            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog.PauseTimer">
+            <summary>
+            Pauses progress dialog timer.
+            </summary>
+            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog.ResumeTimer">
+            <summary>
+            Resumes progress dialog timer.
+            </summary>
+            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog.GetMilliseconds(System.UInt64@,System.UInt64@)">
+            <summary>
+            Gets elapsed and remaining time for progress dialog.
+            </summary>
+            <param name="pullElapsed">A pointer to the elapsed time in milliseconds.</param>
+            <param name="pullRemaining">A pointer to the remaining time in milliseconds.</param>
+            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog.GetOperationStatus(Microsoft.WindowsAPICodePack.COMNative.Shell.PDOPSTATUS@)">
+            <summary>
+            Gets operation status for progress dialog.
+            </summary>
+            <param name="popstatus">Contains pointer to the operation status. See <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.PDOPSTATUS"/>.</param>
+            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IPersistStream">
+            <summary>
+            Provides the managed definition of the IPersistStream interface, with functionality from IPersist.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IPersistStream.GetClassID(System.Guid@)">
+            <summary>
+            Retrieves the class identifier (CLSID) of an object.
+            </summary>
+            <param name="pClassID">When this method returns, contains a reference to the CLSID. This parameter
+               is passed uninitialized.</param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IPersistStream.IsDirty">
+            <summary>
+            Checks an object for changes since it was last saved to its current file.
+            </summary>
+            <returns>S_OK if the file has changed since it was last saved; S_FALSE if the file
+               has not changed since it was last saved.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.ICondition.GetClassID(System.Guid@)">
+            <summary>
+            Retrieves the class identifier (CLSID) of an object.
+            </summary>
+            <param name="pClassID">When this method returns, contains a reference to the CLSID. This parameter is passed uninitialized.</param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.ICondition.IsDirty">
+            <summary>
+            Checks an object for changes since it was last saved to its current file.
+            </summary>
+            <returns>S_OK if the file has changed since it was last saved; S_FALSE if the file has not changed since it was last saved.</returns>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IPersistIDList">
+            <summary>
+            Exposes methods that are used to persist item identifier lists.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IPersistIDList.SetIDList(System.IntPtr)">
+            <summary>
+            Sets a persisted item identifier list.
+            </summary>
+            <param name="pidl">A pointer to the item identifier list to set.</param>
+            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IPersistIDList.GetIDList(System.IntPtr)">
+            <summary>
+            Gets an item identifier list.
+            </summary>
+            <param name="ppidl">The address of a pointer to the item identifier list to get.</param>
+            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IEnumShellItems">
+            <summary>
+            Exposes enumeration of <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> interfaces. This interface is typically obtained by calling the <b>IEnumShellItems</b> method.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IEnumShellItems.Next(System.UInt32,System.IntPtr,System.UInt32@)">
+            <summary>
+            Gets an array of one or more IShellItem interfaces from the enumeration.
+            </summary>
+            <param name="clet">The number of elements in the array referenced by the rgelt parameter.</param>
+            <param name="rgelt">The address of an array of pointers to <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> interfaces that receive the enumerated item or items. The calling application is responsible for freeing the IShellItem interfaces by calling the IUnknown.Release method.</param>
+            <param name="pceltFetched">A pointer to a value that receives the number of <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> interfaces successfully retrieved. The count can be smaller than the value specified in the celt parameter. This parameter can be <see langword="null"/> on entry only if celt is one, because in that case the method can only retrieve one item and return <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>, or zero items and return <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.False"/>.</param>
+            <returns>This method can return one of these values.
+            | Return code                 | Description                                                                  |
+            |-----------------------------+------------------------------------------------------------------------------|
+            | <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>    | if at least <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> interface was retrieved.                |
+            | <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.False"/> | if there are no more <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> interfaces in the enumeration. |
+            |                             | Returns an error value if the function fails for any other reason.           |
+            </returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IEnumShellItems.Skip(System.UInt32)">
+            <summary>
+            Skips a given number of <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> interfaces in the enumeration. Used when retrieving interfaces.
+            </summary>
+            <param name="celt">The number of <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> interfaces to skip.</param>
+            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IEnumShellItems.Reset">
+            <summary>
+            Resets the internal count of retrieved <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> interfaces in the enumeration.
+            </summary>
+            <returns>If this method succeeds, it returns <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IEnumShellItems.Clone(System.IntPtr)">
+            <summary>
+            Gets a copy of the current enumeration.
+            </summary>
+            <param name="ppenum">The address of a pointer that receives a copy of this enumeration.</param>
+            <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.COMNative.Shell.FileDialogAddPlaceLocation">
             <summary>
@@ -9286,6 +9297,29 @@
             </summary>
             <param name="hwnd">The window handle.</param>
             <param name="appId">The application id.</param>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.MediaDevices.DeviceEnumPreferences.DoNotVirtualizeStoragesAsDevices">
+            <summary>
+            By default, for devices containing multiple storage media (for example, multiple flash memory cards), each of these storages enumerates as a separate pseudo-device. However, when this flag is set, storages are not visible as devices, and only devices are visible as devices. See <see cref="M:Microsoft.WindowsAPICodePack.COMNative.MediaDevices.IWMDeviceManager3.SetDeviceEnumPreference(Microsoft.WindowsAPICodePack.COMNative.MediaDevices.DeviceEnumPreferences)"/> Remarks for more information.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.MediaDevices.DeviceEnumPreferences.AllowOutOfBandNotification">
+            <summary>
+            When this flag is set, the service provider can send device arrival and removal by an additional mechanism, such as by using a window message, as well as the default mechanism of calling any application-implemented IWMDMNotification interfaces.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.COMNative.MediaDevices.IWMDeviceManager3.SetDeviceEnumPreference(Microsoft.WindowsAPICodePack.COMNative.MediaDevices.DeviceEnumPreferences)">
+            <summary>
+            The <see cref="M:Microsoft.WindowsAPICodePack.COMNative.MediaDevices.IWMDeviceManager3.SetDeviceEnumPreference(Microsoft.WindowsAPICodePack.COMNative.MediaDevices.DeviceEnumPreferences)"/> method sets the device enumeration preferences.
+            </summary>
+            <param name="dwEnumPref">Specifies a bitwise OR combination of one or more of the following bit values that specify enumeration preference. Each set bit enables the corresponding extended behavior, whereas the absence of that bit disables the extended behavior and specifies the default, backward-compatible enumeration behavior. The possible values for fuPrefs are provided in the <see cref="T:Microsoft.WindowsAPICodePack.COMNative.MediaDevices.DeviceEnumPreferences"/> interface.</param>
+            <returns><para>The method returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/>. Possible values include, but are not limited to, those in the following table.</para>
+            <para><see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>: The method succeeded.</para>
+            <para><see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.InvalidArguments"/>: The fuPrefs parameter specifies an unsupported bit value.</para>
+            <para><see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.WMDMCallOutOfSequence"/>: The method was called after an enumeration operation; it must be called before the enumeration operation.</para></returns>
+            <remarks><para>This method provides clients the ability to override the default device enumeration behavior of Windows Media Device Manager. In order to override the default behavior, the client application must call this method immediately after creating the device manager object by querying for the <see cref="T:Microsoft.WindowsAPICodePack.COMNative.MediaDevices.IWMDeviceManager3"/> interface from Media Device Manager. The call must be made before any enumeration occurs, either explicitly or implicitly as a result of another operation.</para>
+            <para>After a preference flag is set, it cannot be changed for the lifetime of the application (not just the lifetime of the Windows Media Device Manager object). Attempting to change a preference flag will result in an error. Calling this method again with the same flag settings does not return an error, and also does have any effect on enumeration.</para>
+            <para>The service provider may not honor the <see cref="F:Microsoft.WindowsAPICodePack.COMNative.MediaDevices.DeviceEnumPreferences.DoNotVirtualizeStoragesAsDevices"/> flag. A more robust way to determine if storages are hosted by the same device is to call <see cref="M:Microsoft.WindowsAPICodePack.COMNative.MediaDevices.IWMDMDevice2.GetCanonicalName(System.String@,System.UInt16)"/>. Storages from the same device will return identical values, except for the final digit after the last "$" character.</para></remarks>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.COMNative.MediaDevices.PropValidValuesForm">
             <summary>

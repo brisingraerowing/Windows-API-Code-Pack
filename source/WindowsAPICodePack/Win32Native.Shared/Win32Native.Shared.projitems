@@ -11,13 +11,18 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)APIs\GDI.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\NamedPipe.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\CopyFileFlags.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\Enums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\FileAttributes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\FileOperationFlags.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\CopyProgressCallbackReason.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\CopyProgressResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\GetFileInfoOptions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\NativePoint.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\NativeRect.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\Shell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\ShellException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\ShellFileGetAttributesOptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\Structs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\AppRestartRecovery\AppRestartRecoveryNativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\AppRestartRecovery\RecoveryData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\AppRestartRecovery\RestartRestrictions.cs" />

@@ -5,8 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+
 using static Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PortableDeviceHelper;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
@@ -65,9 +64,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 #if WAPICP3
         internal void RaisePortableDeviceUpdatedEvent(in PortableDeviceUpdatedEventArgs e) => PortableDeviceUpdated?.Invoke(this, e);
 
-        internal void RaisePortableDeviceObjectAddedEvent(in string id)=> PortableDeviceObjectAdded?.Invoke(this, new PortableDeviceObjectEventArgs(id));
+        internal void RaisePortableDeviceObjectAddedEvent(in IPortableDevice portableDevice, in string id) => PortableDeviceObjectAdded?.Invoke(this, new PortableDeviceObjectEventArgs(portableDevice, id));
 
-        internal void RaisePortableDeviceObjectRemovedEvent(in string id) => PortableDeviceObjectRemoved?.Invoke(this, new PortableDeviceObjectEventArgs(id));
+        internal void RaisePortableDeviceObjectRemovedEvent(in IPortableDevice portableDevice, in string id) => PortableDeviceObjectRemoved?.Invoke(this, new PortableDeviceObjectEventArgs(portableDevice, id));
 #endif
 
         public void RefreshDeviceList() => ThrowWhenFailHResult(_Manager.RefreshDeviceList());

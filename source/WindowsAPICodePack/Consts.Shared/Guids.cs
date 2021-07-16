@@ -2083,6 +2083,7 @@ namespace Microsoft.WindowsAPICodePack.NativeAPI.Guids
 
     public static class MediaDevices
     {
+        public const string MediaDevMgr = "25BAAD81-3560-11D3-8471-00C04F79DBC0";
         public const string IComponentAuthenticate = "A9889C00-6D2B-11d3-8496-00C04F79DBC0";
         public const string IMDServiceProvider = "1DCB3A10-33ED-11d3-8470-00C04F79DBC0";
         public const string IMDServiceProvider2 = "B2FA24B7-CDA3-4694-9862-413AE1A34819";
@@ -2141,6 +2142,7 @@ namespace Microsoft.WindowsAPICodePack.NativeAPI.Guids
         public const string IWMDMStorageControl3 = "B3266365-D4F3-4696-8D53-BD27EC60993A";
         public const string IWMDMStorageGlobals = "1DCB3A07-33ED-11d3-8470-00C04F79DBC0";
         public const string IWMDMLogger = "110A3200-5A79-11d3-8D78-444553540000";
+        public const string WMDMDevice = "807B3CDF-357A-11d3-8471-00C04F79DBC0";
     }
 
     public static class COM

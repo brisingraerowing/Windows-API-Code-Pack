@@ -72,15 +72,24 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShellExtensions", "3.x\Shel
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		PortableDevices.Shared\PortableDevices.Shared.projitems*{0901777f-5c07-4133-8b7a-7ea6f644b230}*SharedItemsImports = 5
 		COMNative.Shared\COMNative.Shared.projitems*{0d3d2287-7d7c-464d-977a-b6663a231389}*SharedItemsImports = 13
 		Consts.Shared\Consts.Shared.projitems*{2cbbd649-3a50-4b75-8d1f-9a5c784eb4d3}*SharedItemsImports = 5
 		Core.Shared\Core.Shared.projitems*{3c3964dd-26d2-4497-a8ee-aad7dc73a52d}*SharedItemsImports = 13
+		COMNative.Shared\COMNative.Shared.projitems*{43953bec-e549-4c44-84f3-dd981d788eea}*SharedItemsImports = 5
+		Shell.Shared\Shell.Shared.projitems*{4b888886-77f8-4fc4-81a0-479e232c065a}*SharedItemsImports = 5
+		Core.Shared\Core.Shared.projitems*{5508df2a-719b-4139-87ca-f736bbbff204}*SharedItemsImports = 5
+		ShellExtensions.Shared\ShellExtensions.Shared.projitems*{57b8f530-5061-4f85-8a1e-986d20291c29}*SharedItemsImports = 5
+		Consts.Shared\Consts.Shared.projitems*{7e819198-a4d0-451c-b6c3-5fb3ee0d1a88}*SharedItemsImports = 5
+		Sensors.Shared\Sensors.Shared.projitems*{8045331e-94d9-4e45-bbf3-65a4fdacd374}*SharedItemsImports = 5
 		ShellExtensions.Shared\ShellExtensions.Shared.projitems*{8749fa54-aa81-4d77-b5a7-95d01e23a794}*SharedItemsImports = 5
+		Win32Native.Shared\Win32Native.Shared.projitems*{8d172a82-fb40-4991-b0a9-95f310b49dbd}*SharedItemsImports = 5
 		Sensors.Shared\Sensors.Shared.projitems*{a873c775-ccba-437d-bc62-9ac7c821e7d7}*SharedItemsImports = 13
 		Shell.Shared\Shell.Shared.projitems*{ab093c9c-3dc8-4c31-8dfd-5962b58596b3}*SharedItemsImports = 5
 		Consts.Shared\Consts.Shared.projitems*{ab530093-4feb-4f6f-a34d-6dc5ff9b3881}*SharedItemsImports = 13
 		Sensors.Shared\Sensors.Shared.projitems*{ab9a3748-db5d-4986-bd63-7f865423cebd}*SharedItemsImports = 5
 		COMNative.Shared\COMNative.Shared.projitems*{ac892548-b138-4700-a9df-d07273584854}*SharedItemsImports = 5
+		ExtendedLinguisticServices.Shared\ExtendedLinguisticServices.Shared.projitems*{bf9545c0-91e8-43f6-845d-64774de03671}*SharedItemsImports = 5
 		ExtendedLinguisticServices.Shared\ExtendedLinguisticServices.Shared.projitems*{ce862078-c419-483a-ae32-dcc933aeb787}*SharedItemsImports = 13
 		Win32Native.Shared\Win32Native.Shared.projitems*{dc708d14-d579-4901-b2f2-8ddadeb289da}*SharedItemsImports = 5
 		PortableDevices.Shared\PortableDevices.Shared.projitems*{dfe309f3-5fc4-48e2-b26d-274f1033b41e}*SharedItemsImports = 13

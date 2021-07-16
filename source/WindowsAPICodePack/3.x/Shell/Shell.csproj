@@ -26,6 +26,10 @@
     <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="WinCopies.Collections" Version="3.5-preview" />
+  </ItemGroup>
+
   <ItemGroup Condition="'$(TargetFramework)'=='net5.0-windows'">
     <PackageReference Include="System.Drawing.Common" Version="5.0.0" />
   </ItemGroup>
@@ -68,6 +72,6 @@
     </None>
   </ItemGroup>
 
-  <Import Project="..\Shell.Shared\Shell.Shared.projitems" Label="Shared" />
+  <Import Project="..\..\Shell.Shared\Shell.Shared.projitems" Label="Shared" />
 
 </Project>

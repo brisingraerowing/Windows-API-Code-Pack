@@ -16,7 +16,7 @@
     <FileVersion>3.1.2</FileVersion>
   </PropertyGroup>
 
-  <Import Project="..\Sensors.Shared\Sensors.Shared.projitems" Label="Shared" />
+  <Import Project="..\..\Sensors.Shared\Sensors.Shared.projitems" Label="Shared" />
 
   <ItemGroup>
     <None Remove="CustomDictionary.xml" />

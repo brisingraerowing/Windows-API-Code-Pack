@@ -19,6 +19,6 @@
     <FileVersion>3.1.2</FileVersion>
   </PropertyGroup>
 
-  <Import Project="..\Consts.Shared\Consts.Shared.projitems" Label="Shared" />
+  <Import Project="..\..\Consts.Shared\Consts.Shared.projitems" Label="Shared" />
 
 </Project>

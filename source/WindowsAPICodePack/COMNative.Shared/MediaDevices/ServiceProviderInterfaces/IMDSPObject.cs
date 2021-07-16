@@ -1,11 +1,12 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.COMNative;
 using Microsoft.WindowsAPICodePack.Win32Native;
+
 using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
+
+using static System.Runtime.InteropServices.UnmanagedType;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 {
@@ -16,57 +17,60 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
     {
         [PreserveSig]
         HResult Open(
-            [In] ushort fuMode);
+            [In, MarshalAs(U2)] ushort fuMode);
 
         [PreserveSig]
         HResult Read(
             [Out] out StringBuilder pData,
-            [Out, In] ref uint pdwSize,
+            [Out, In, MarshalAs(U4)] ref uint pdwSize,
             [Out, In] ref StringBuilder abMac);
 
         [PreserveSig]
         HResult Write(
             [In] ref StringBuilder pData,
-            [Out, In] ref uint pdwSize,
+            [Out, In, MarshalAs(U4)] ref uint pdwSize,
             [Out, In] ref StringBuilder abMac);
 
         [PreserveSig]
         HResult Delete(
-            [In] ushort fuMode,
-            [In] ref IWMDMProgress pProgress);
+            [In, MarshalAs(U2)] ushort fuMode,
+            [In, MarshalAs(Interface)] ref IWMDMProgress pProgress);
 
         [PreserveSig]
         HResult Seek(
-            [In] ushort fuFlags,
-            [In] uint dwOffset);
+            [In, MarshalAs(U2)] ushort fuFlags,
+            [In, MarshalAs(U4)] uint dwOffset);
 
         [PreserveSig]
         HResult Rename(
-            [In, MarshalAs(UnmanagedType.LPWStr)] string pwszNewName,
-            [In] ref IWMDMProgress pProgress);
+            [In, MarshalAs(LPWStr)] string pwszNewName,
+            [In, MarshalAs(Interface)] ref IWMDMProgress pProgress);
 
         [PreserveSig]
         HResult Move(
-            [In] ushort fuMode,
-            [In] ref IWMDMProgress pProgress,
-            [In] ref IMDSPStorage pTarget);
+            [In, MarshalAs(U2)] ushort fuMode,
+            [In, MarshalAs(Interface)] ref IWMDMProgress pProgress,
+            [In, MarshalAs(Interface)] ref IMDSPStorage pTarget);
 
         [PreserveSig]
         HResult Close();
     }
 
+    [ComImport,
+        Guid(NativeAPI.Guids.MediaDevices.IMDSPObject2),
+        InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMDSPObject2 : IMDSPObject
 
     {
         [PreserveSig]
         HResult ReadOnClearChannel(
             [Out] out StringBuilder pData,
-            [Out, In] ref uint pdwSize);
+            [Out, In, MarshalAs(U4)] ref uint pdwSize);
 
         [PreserveSig]
         HResult WriteOnClearChannel(
             [In] ref StringBuilder pData,
-            [Out, In] ref uint pdwSize);
+            [Out, In, MarshalAs(U4)] ref uint pdwSize);
 
     }
 }

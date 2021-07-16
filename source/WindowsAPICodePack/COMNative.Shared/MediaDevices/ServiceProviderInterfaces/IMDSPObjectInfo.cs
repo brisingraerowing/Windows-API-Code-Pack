@@ -1,11 +1,11 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.COMNative;
 using Microsoft.WindowsAPICodePack.Win32Native;
+
 using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
+
+using static System.Runtime.InteropServices.UnmanagedType;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 {
@@ -16,30 +16,30 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
     {
         [PreserveSig]
         HResult GetPlayLength(
-            [Out] out uint pdwLength);
+            [Out, MarshalAs(U4)] out uint pdwLength);
 
         [PreserveSig]
         HResult SetPlayLength(
-            [In] uint dwLength);
+            [In, MarshalAs(U4)] uint dwLength);
 
         [PreserveSig]
         HResult GetPlayOffset(
-            [Out] out uint pdwOffset);
+            [Out, MarshalAs(U4)] out uint pdwOffset);
 
         [PreserveSig]
         HResult SetPlayOffset(
-            [In] uint dwOffset);
+            [In, MarshalAs(U4)] uint dwOffset);
 
         [PreserveSig]
         HResult GetTotalLength(
-            [Out] out uint pdwLength);
+            [Out, MarshalAs(U4)] out uint pdwLength);
 
         [PreserveSig]
         HResult GetLastPlayPosition(
-            [Out] out uint pdwLastPos);
+            [Out, MarshalAs(U4)] out uint pdwLastPos);
 
         [PreserveSig]
         HResult GetLongestPlayPosition(
-            [Out] out uint pdwLongestPos);
+            [Out, MarshalAs(U4)] out uint pdwLongestPos);
     }
 }

@@ -24,24 +24,31 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         public HResult OnEvent(IPortableDeviceValues pEventParameters)
         {
-            _portableDevice.OnUpdate(new PortableDeviceUpdatedEventArgs(pEventParameters));
+            _portableDevice.OnUpdate(new PortableDeviceUpdatedEventArgs(_portableDevice, pEventParameters));
 
             return HResult.Ok;
         }
     }
 
-    public class PortableDeviceUpdatedEventArgs : EventArgs
+    public class PortableDeviceEventArgs : EventArgs
+    {
+        public IPortableDevice PortableDevice { get; }
+
+        public PortableDeviceEventArgs(in IPortableDevice portableDevice) => PortableDevice = portableDevice;
+    }
+
+    public class PortableDeviceUpdatedEventArgs : PortableDeviceEventArgs
     {
         public ReadOnlyPortableDeviceValueCollection EventArgValues { get; }
 
-        public PortableDeviceUpdatedEventArgs(in IPortableDeviceValues portableDeviceValues) => EventArgValues = new ReadOnlyPortableDeviceValueCollection(new NativeValueCollection(portableDeviceValues));
+        public PortableDeviceUpdatedEventArgs(in IPortableDevice portableDevice, in IPortableDeviceValues portableDeviceValues) : base(portableDevice) => EventArgValues = new ReadOnlyPortableDeviceValueCollection(new NativeValueCollection(portableDeviceValues));
     }
 
-    public class PortableDeviceObjectEventArgs : EventArgs
+    public class PortableDeviceObjectEventArgs : PortableDeviceEventArgs
     {
         public string Id { get; }
 
-        public PortableDeviceObjectEventArgs(in string id) => Id = id;
+        public PortableDeviceObjectEventArgs(in IPortableDevice portableDevice, in string id) : base(portableDevice) => Id = id;
     }
 
     public delegate void PortableDeviceUpdatedEventHandler(object sender, PortableDeviceUpdatedEventArgs e);
@@ -130,9 +137,9 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 throw new PortableDeviceException("The portable device is not open.");
         }
 
-        public static bool SupportsCommand( this IPortableDevice portableDevice,   ref PropertyKey command)
+        public static bool SupportsCommand(this IPortableDevice portableDevice, ref PropertyKey command)
         {
-            foreach (PropertyKey _command in portableDevice. DeviceCapabilities.Commands)
+            foreach (PropertyKey _command in portableDevice.DeviceCapabilities.Commands)
 
                 if (_command == command)
 

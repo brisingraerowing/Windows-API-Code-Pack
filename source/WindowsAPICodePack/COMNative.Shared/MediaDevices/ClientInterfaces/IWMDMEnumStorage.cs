@@ -1,11 +1,11 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.COMNative;
 using Microsoft.WindowsAPICodePack.Win32Native;
+
 using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
+
+using static System.Runtime.InteropServices.UnmanagedType;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 {
@@ -16,20 +16,20 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
     {
         [PreserveSig]
         HResult Next(
-            [In] uint celt,
-            [Out, MarshalAs(UnmanagedType.Interface)] out IWMDMStorage ppStorage,
-            [Out] out uint pceltFetched);
+            [In, MarshalAs(U4)] uint celt,
+            [Out, MarshalAs(Interface)] out IWMDMStorage ppStorage,
+            [Out, MarshalAs(U4)] out uint pceltFetched);
 
         [PreserveSig]
-        HResult  Skip(
-            [In] uint celt,
-            [Out] out uint pceltFetched);
+        HResult Skip(
+            [In, MarshalAs(U4)] uint celt,
+            [Out, MarshalAs(U4)] out uint pceltFetched);
 
         [PreserveSig]
         HResult Reset();
 
         [PreserveSig]
         HResult Clone(
-            [Out,MarshalAs(UnmanagedType.Interface)] IWMDMEnumStorage ppEnumStorage);
+            [Out, MarshalAs(Interface)] IWMDMEnumStorage ppEnumStorage);
     }
 }

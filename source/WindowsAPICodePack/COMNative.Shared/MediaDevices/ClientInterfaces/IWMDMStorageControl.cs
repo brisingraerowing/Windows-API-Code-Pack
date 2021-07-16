@@ -1,11 +1,11 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.COMNative;
 using Microsoft.WindowsAPICodePack.Win32Native;
+
 using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
+
+using static System.Runtime.InteropServices.UnmanagedType;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 {
@@ -16,24 +16,24 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
     {
         [PreserveSig]
         HResult Insert(
-            [In] ushort fuMode,
-            [In, MarshalAs(UnmanagedType.LPWStr)] string pwszFile,
-            [In, MarshalAs(UnmanagedType.Interface)]
+            [In, MarshalAs(U2)] ushort fuMode,
+            [In, MarshalAs(LPWStr)] string pwszFile,
+            [In, MarshalAs(Interface)]
 #if !WAPICP3
 ref
 #endif
          IWMDMOperation pOperation,
-            [In, MarshalAs(UnmanagedType.Interface)]
+            [In, MarshalAs(Interface)]
 #if !WAPICP3
 ref
 #endif
          IWMDMProgress pProgress,
-            [Out, MarshalAs(UnmanagedType.Interface)] out IWMDMStorage ppNewObject);
+            [Out, MarshalAs(Interface)] out IWMDMStorage ppNewObject);
 
         [PreserveSig]
         HResult Delete(
-            [In] ushort fuMode,
-            [In, MarshalAs(UnmanagedType.Interface)]
+            [In, MarshalAs(U2)] ushort fuMode,
+            [In, MarshalAs(Interface)]
 #if !WAPICP3
 ref
 #endif
@@ -41,9 +41,9 @@ ref
 
         [PreserveSig]
         HResult Rename(
-            [In] ushort fuMode,
-            [In, MarshalAs(UnmanagedType.LPWStr)] string pwszNewName,
-            [In, MarshalAs(UnmanagedType.Interface)]
+            [In, MarshalAs(U2)] ushort fuMode,
+            [In, MarshalAs(LPWStr)] string pwszNewName,
+            [In, MarshalAs(Interface)]
 #if !WAPICP3
 ref
 #endif
@@ -51,14 +51,14 @@ ref
 
         [PreserveSig]
         HResult Read(
-            [In] ushort fuMode,
-            [In, MarshalAs(UnmanagedType.LPWStr)] string pwszFile,
-            [In, MarshalAs(UnmanagedType.Interface)]
+            [In, MarshalAs(U2)] ushort fuMode,
+            [In, MarshalAs(LPWStr)] string pwszFile,
+            [In, MarshalAs(Interface)]
 #if !WAPICP3
 ref
 #endif
          IWMDMProgress pProgress,
-            [In, MarshalAs(UnmanagedType.Interface)]
+            [In, MarshalAs(Interface)]
 #if !WAPICP3
 ref
 #endif
@@ -66,76 +66,78 @@ ref
 
         [PreserveSig]
         HResult Move(
-            [In] ushort fuMode,
-            [In, MarshalAs(UnmanagedType.Interface)]
+            [In, MarshalAs(U2)] ushort fuMode,
+            [In, MarshalAs(Interface)]
 #if !WAPICP3
 ref
 #endif
          IWMDMStorage pTargetObject,
-            [In, MarshalAs(UnmanagedType.Interface)]
+            [In, MarshalAs(Interface)]
 #if !WAPICP3
 ref
 #endif
          IWMDMProgress pProgress);
     }
 
+    [ComImport,
+        Guid(NativeAPI.Guids.MediaDevices.IWMDMStorageControl2),
+        InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IWMDMStorageControl2 : IWMDMStorageControl
-
     {
         [PreserveSig]
         HResult Insert2(
-            [In] ushort fuMode,
-            [In, MarshalAs(UnmanagedType.LPWStr)] string pwszFileSource,
-            [In, MarshalAs(UnmanagedType.LPWStr)] string pwszFileDest,
-            [In, MarshalAs(UnmanagedType.Interface)]
+            [In, MarshalAs(U2)] ushort fuMode,
+            [In, MarshalAs(LPWStr)] string pwszFileSource,
+            [In, MarshalAs(LPWStr)] string pwszFileDest,
+            [In, MarshalAs(Interface)]
 #if !WAPICP3
 ref
 #endif
          IWMDMOperation pOperation,
-            [In, MarshalAs(UnmanagedType.Interface)]
+            [In, MarshalAs(Interface)]
 #if !WAPICP3
 ref
 #endif
          IWMDMProgress pProgress,
-            [In, MarshalAs(UnmanagedType.IUnknown)] ref object pUnknown,
-            [In, Out, MarshalAs(UnmanagedType.Interface)]
+            [In, MarshalAs(IUnknown)] ref object pUnknown,
+            [In, Out, MarshalAs(Interface)]
 #if !WAPICP3
 ref
 #endif
          IWMDMStorage ppNewObject);
-
     }
 
+    [ComImport,
+        Guid(NativeAPI.Guids.MediaDevices.IWMDMStorageControl3),
+        InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IWMDMStorageControl3 : IWMDMStorageControl2
-
     {
         [PreserveSig]
         HResult Insert3(
-            [In] ushort fuMode,
-            [In] ushort fuType,
-            [In, MarshalAs(UnmanagedType.LPWStr)] string pwszFileSource,
-            [In, MarshalAs(UnmanagedType.LPWStr)] string pwszFileDest,
-            [In, MarshalAs(UnmanagedType.Interface)]
+            [In, MarshalAs(U2)] ushort fuMode,
+            [In, MarshalAs(U2)] ushort fuType,
+            [In, MarshalAs(LPWStr)] string pwszFileSource,
+            [In, MarshalAs(LPWStr)] string pwszFileDest,
+            [In, MarshalAs(Interface)]
 #if !WAPICP3
 ref
 #endif
          IWMDMOperation pOperation,
-            [In, MarshalAs(UnmanagedType.Interface)]
+            [In, MarshalAs(Interface)]
 #if !WAPICP3
 ref
 #endif
          IWMDMProgress pProgress,
-            [In, MarshalAs(UnmanagedType.Interface)]
+            [In, MarshalAs(Interface)]
 #if !WAPICP3
 ref
 #endif
          IWMDMMetaData pMetaData,
-            [In, MarshalAs(UnmanagedType.IUnknown)] ref object pUnknown,
-            [In, Out, MarshalAs(UnmanagedType.Interface)]
+            [In, MarshalAs(IUnknown)] ref object pUnknown,
+            [In, Out, MarshalAs(Interface)]
 #if !WAPICP3
 ref
 #endif
          IWMDMStorage ppNewObject);
-
     }
 }

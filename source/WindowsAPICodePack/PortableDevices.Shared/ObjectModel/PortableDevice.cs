@@ -19,6 +19,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 
+using static Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper;
 using static Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PortableDeviceHelper;
 
 using static System.Runtime.InteropServices.Marshal;
@@ -27,7 +28,7 @@ using static WinCopies.
 #if WAPICP3
     ThrowHelper;
 
-using WinCopies;
+using WinCopies.Util;
 #else
 Util.Util;
 
@@ -332,11 +333,11 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                 if (guid == new Guid(Guids.EventSystem.ObjectAdded))
 
-                    _portableDeviceManager.RaisePortableDeviceObjectAddedEvent(GetId(e.EventArgValues));
+                    _portableDeviceManager.RaisePortableDeviceObjectAddedEvent(this, GetId(e.EventArgValues));
 
                 else if (guid == new Guid(Guids.EventSystem.ObjectRemoved))
 
-                    _portableDeviceManager.RaisePortableDeviceObjectRemovedEvent(GetId(e.EventArgValues));
+                    _portableDeviceManager.RaisePortableDeviceObjectRemovedEvent(this, GetId(e.EventArgValues));
 
                 _portableDeviceManager.RaisePortableDeviceUpdatedEvent(e);
             }
@@ -418,21 +419,21 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             PropertyKey pKey = PropertySystem.Properties.Legacy.Object.Common.ParentId;
 
-            ThrowExceptionForHR((int)values.SetStringValue(ref pKey, id));
+            ThrowExceptionForHR(values.SetStringValue(ref pKey, id));
 
             pKey = PropertySystem.Properties.Legacy.Object.Common.Name;
 
-            ThrowExceptionForHR((int)values.SetStringValue(ref pKey, name));
+            ThrowExceptionForHR(values.SetStringValue(ref pKey, name));
 
             pKey = PropertySystem.Properties.Object.ContentType;
 
             var guid = new Guid(Guids.PropertySystem.ContentType.Folder);
 
-            ThrowExceptionForHR((int)values.SetGuidValue(ref pKey, ref guid));
+            ThrowExceptionForHR(values.SetGuidValue(ref pKey, ref guid));
 
             string folderId = null;
 
-            ThrowExceptionForHR((int)_content.CreateObjectWithPropertiesOnly(values, ref folderId));
+            ThrowExceptionForHR(_content.CreateObjectWithPropertiesOnly(values, ref folderId));
 
             return folderId;
         }

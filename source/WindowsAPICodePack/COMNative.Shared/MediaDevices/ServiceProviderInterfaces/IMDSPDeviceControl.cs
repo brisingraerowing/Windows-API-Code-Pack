@@ -1,11 +1,11 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.COMNative;
 using Microsoft.WindowsAPICodePack.Win32Native;
+
 using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
+
+using static System.Runtime.InteropServices.UnmanagedType;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 {
@@ -16,11 +16,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
     {
         [PreserveSig]
         HResult GetDCStatus(
-            [Out] out uint pdwStatus);
+            [Out, MarshalAs(U4)] out uint pdwStatus);
 
         [PreserveSig]
         HResult GetCapabilities(
-            [Out] out uint pdwCapabilitiesMask);
+            [Out, MarshalAs(U4)] out uint pdwCapabilitiesMask);
 
         [PreserveSig]
         HResult Play();
@@ -40,7 +40,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 
         [PreserveSig]
         HResult Seek(
-            [In] ushort fuMode,
-            [In] short nOffset);
+            [In, MarshalAs(U2)] ushort fuMode,
+            [In, MarshalAs(I2)] short nOffset);
     }
 }

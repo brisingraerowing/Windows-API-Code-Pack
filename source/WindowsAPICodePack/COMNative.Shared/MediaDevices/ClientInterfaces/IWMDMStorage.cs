@@ -1,11 +1,11 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.COMNative;
 using Microsoft.WindowsAPICodePack.Win32Native;
+
 using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
+
+using static System.Runtime.InteropServices.UnmanagedType;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 {
@@ -16,22 +16,22 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
     {
         [PreserveSig]
         HResult SetAttributes(
-            [In] uint dwAttributes,
+            [In, MarshalAs(U4)] uint dwAttributes,
             [In] ref WaveFormatEx pFormat);
 
         [PreserveSig]
         HResult GetStorageGlobals(
-            [Out, MarshalAs(UnmanagedType.Interface)] out IWMDMStorageGlobals ppStorageGlobals);
+            [Out, MarshalAs(Interface)] out IWMDMStorageGlobals ppStorageGlobals);
 
         [PreserveSig]
         HResult GetAttributes(
-            [Out] out uint pdwAttributes,
-            [In,Out] ref WaveFormatEx pFormat);
+            [Out, MarshalAs(U4)] out uint pdwAttributes,
+            [In, Out] ref WaveFormatEx pFormat);
 
         [PreserveSig]
         HResult GetName(
-            [Out,MarshalAs(UnmanagedType.LPWStr)] out string pwszName,
-            [In] ushort nMaxChars);
+            [Out, MarshalAs(LPWStr)] out string pwszName,
+            [In, MarshalAs(U2)] ushort nMaxChars);
 
         [PreserveSig]
         HResult GetDate(
@@ -39,57 +39,61 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 
         [PreserveSig]
         HResult GetSize(
-            [Out] out uint pdwSizeLow,
-            [Out] out uint pdwSizeHigh);
+            [Out, MarshalAs(U4)] out uint pdwSizeLow,
+            [Out, MarshalAs(U4)] out uint pdwSizeHigh);
 
         [PreserveSig]
         HResult GetRights(
             [Out] out WMDMRights ppRights,
-            [Out] out ushort pnRightsCount,
-            [In,Out] ref char[] abMac);
+            [Out, MarshalAs(U2)] out ushort pnRightsCount,
+            [In, Out] ref char[] abMac);
 
         [PreserveSig]
         HResult EnumStorage(
-            [Out, MarshalAs(UnmanagedType.Interface)] out IWMDMEnumStorage pEnumStorage);
+            [Out, MarshalAs(Interface)] out IWMDMEnumStorage pEnumStorage);
 
         [PreserveSig]
         HResult SendOpaqueCommand(
-            [In,Out] ref OpaqueCommand pCommand);
+            [In, Out] ref OpaqueCommand pCommand);
     }
 
+    [ComImport,
+        Guid(NativeAPI.Guids.MediaDevices.IWMDMStorage2),
+        InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IWMDMStorage2 : IWMDMStorage
     {
         [PreserveSig]
         HResult GetStorage(
-            [In,MarshalAs(UnmanagedType.LPWStr)] string pszStorageName,
-            [Out,MarshalAs(UnmanagedType.Interface)] out IWMDMStorage ppStorage);
+            [In, MarshalAs(LPWStr)] string pszStorageName,
+            [Out, MarshalAs(Interface)] out IWMDMStorage ppStorage);
 
         [PreserveSig]
         HResult SetAttributes2(
-            [In] uint dwAttributes,
-            [In] uint dwAttributesEx,
+            [In, MarshalAs(U4)] uint dwAttributes,
+            [In, MarshalAs(U4)] uint dwAttributesEx,
             [In] ref WaveFormatEx pFormat,
             [In] ref VideoInfoHeader pVideoFormat);
-        
+
         [PreserveSig]
         HResult GetAttributes2(
-            [Out] out uint pdwAttributes,
-            [Out] out uint pdwAttributesEx,
-            [In,Out] ref WaveFormatEx pAudioFormat,
-            [In,Out] ref VideoInfoHeader pVideoFormat);
-
+            [Out, MarshalAs(U4)] out uint pdwAttributes,
+            [Out, MarshalAs(U4)] out uint pdwAttributesEx,
+            [In, Out] ref WaveFormatEx pAudioFormat,
+            [In, Out] ref VideoInfoHeader pVideoFormat);
     }
 
+    [ComImport,
+        Guid(NativeAPI.Guids.MediaDevices.IWMDMStorage3),
+        InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IWMDMStorage3 : IWMDMStorage2
-
     {
         [PreserveSig]
         HResult GetMetadata(
-            [Out, MarshalAs(UnmanagedType.Interface)] out IWMDMMetaData ppMetadata);
+            [Out, MarshalAs(Interface)] out IWMDMMetaData ppMetadata);
 
         [PreserveSig]
         HResult SetMetadata(
-            [In, MarshalAs(UnmanagedType.Interface)]
+            [In, MarshalAs(Interface)]
 #if !WAPICP3
 ref
 #endif
@@ -97,23 +101,24 @@ ref
 
         [PreserveSig]
         HResult CreateEmptyMetadataObject(
-            [Out, MarshalAs(UnmanagedType.Interface)] out IWMDMMetaData ppMetadata);
+            [Out, MarshalAs(Interface)] out IWMDMMetaData ppMetadata);
 
         [PreserveSig]
         HResult SetEnumPreference(
-            [In,Out] ref StorageEnumMode pMode,
-            [In] uint nViews,
+            [In, Out] ref StorageEnumMode pMode,
+            [In, MarshalAs(U4)] uint nViews,
             [In] ref MetadataView pViews);
-
     }
 
+    [ComImport,
+        Guid(NativeAPI.Guids.MediaDevices.IWMDMStorage4),
+        InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IWMDMStorage4 : IWMDMStorage3
-
     {
         [PreserveSig]
         HResult SetReferences(
-            [In] uint dwRefs,
-            [In,MarshalAs(UnmanagedType.Interface)]
+            [In, MarshalAs(U4)] uint dwRefs,
+            [In, MarshalAs(Interface)]
 #if !WAPICP3
 ref
 #endif
@@ -121,34 +126,33 @@ ref
 
         [PreserveSig]
         HResult GetReferences(
-            [Out] out uint pdwRefs,
-            [Out, MarshalAs(UnmanagedType.Interface)] out IWMDMStorage pppIWMDMStorage);
+            [Out, MarshalAs(U4)] out uint pdwRefs,
+            [Out, MarshalAs(Interface)] out IWMDMStorage pppIWMDMStorage);
 
         [PreserveSig]
         HResult GetRightsWithProgress(
-            [In, MarshalAs(UnmanagedType.Interface)]
+            [In, MarshalAs(Interface)]
 #if !WAPICP3
 ref
 #endif
          IWMDMProgress3 pIProgressCallback,
             [Out] out WMDMRights ppRights,
-            [Out] out ushort pnRightsCount);
+            [Out, MarshalAs(U2)] out ushort pnRightsCount);
 
         [PreserveSig]
         HResult GetSpecifiedMetadata(
-            [In] uint cProperties,
-            [In, MarshalAs(UnmanagedType.LPWStr)] string ppwszPropNames,
-            [Out] out IWMDMMetaData ppMetadata);
+            [In, MarshalAs(U4)] uint cProperties,
+            [In, MarshalAs(LPWStr)] string ppwszPropNames,
+            [Out, MarshalAs(Interface)] out IWMDMMetaData ppMetadata);
 
         [PreserveSig]
         HResult FindStorage(
             [In] FindScope findScope,
-            [In,MarshalAs(UnmanagedType.LPWStr)] string pwszUniqueID,
-            [Out, MarshalAs(UnmanagedType.Interface)] out IWMDMStorage ppStorage);
+            [In, MarshalAs(LPWStr)] string pwszUniqueID,
+            [Out, MarshalAs(Interface)] out IWMDMStorage ppStorage);
 
         [PreserveSig]
         HResult GetParent(
-            [Out, MarshalAs(UnmanagedType.Interface)] out IWMDMStorage ppStorage);
-
+            [Out, MarshalAs(Interface)] out IWMDMStorage ppStorage);
     }
 }

@@ -57,6 +57,6 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <Import Project="..\Win32Native.Shared\Win32Native.Shared.projitems" Label="Shared" />
+  <Import Project="..\..\Win32Native.Shared\Win32Native.Shared.projitems" Label="Shared" />
 
 </Project>

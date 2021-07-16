@@ -1,14 +1,15 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.COMNative;
 using Microsoft.WindowsAPICodePack.COMNative.COM;
-using Microsoft.WindowsAPICodePack.COMNative.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
+
 using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
+
+using static System.Runtime.InteropServices.UnmanagedType;
+
 using GuidAttribute = System.Runtime.InteropServices.GuidAttribute;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
@@ -20,98 +21,101 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
     {
         [PreserveSig]
         HResult GetName(
-            [Out, MarshalAs(UnmanagedType.LPWStr)] out string pwszName,
-            [In] ushort nMaxChars);
+            [Out, MarshalAs(LPWStr)] out string pwszName,
+            [In, MarshalAs(U2)] ushort nMaxChars);
 
         [PreserveSig]
         HResult GetManufacturer(
-            [Out,MarshalAs(UnmanagedType.LPWStr)] out string pwszName,
-            [In] ushort nMaxChars);
+            [Out, MarshalAs(LPWStr)] out string pwszName,
+            [In, MarshalAs(U2)] ushort nMaxChars);
 
         [PreserveSig]
         HResult GetVersion(
-            [Out] out uint pdwVersion);
+            [Out, MarshalAs(U4)] out uint pdwVersion);
 
         [PreserveSig]
         HResult GetType(
-            [Out] out uint pdwType);
+            [Out, MarshalAs(U4)] out uint pdwType);
 
         [PreserveSig]
         HResult GetSerialNumber(
             [Out] out WMDMID pSerialNumber,
-            [Out,In] ref StringBuilder abMac);
+            [Out, In] ref StringBuilder abMac);
 
         [PreserveSig]
         HResult GetPowerSource(
-            [Out] uint pdwPowerSource,
-            [Out] uint pdwPercentRemaining);
+            [Out, MarshalAs(U4)] uint pdwPowerSource,
+            [Out, MarshalAs(U4)] uint pdwPercentRemaining);
 
         [PreserveSig]
         HResult GetStatus(
-            [Out] uint pdwStatus);
+            [Out, MarshalAs(U4)] uint pdwStatus);
 
         [PreserveSig]
         HResult GetDeviceIcon(
-            [Out] uint hIcon);
+            [Out, MarshalAs(U4)] uint hIcon);
 
         [PreserveSig]
         HResult EnumStorage(
-            [Out] out IMDSPEnumStorage ppEnumStorage);
+            [Out, MarshalAs(Interface)] out IMDSPEnumStorage ppEnumStorage);
 
         [PreserveSig]
         HResult GetFormatSupport(
             [Out] out WaveFormatEx pFormatEx,
-            [Out] out ushort pnFormatCount,
-            [Out, MarshalAs(UnmanagedType.LPWStr)] out string pppwszMimeType,
-            [Out] out ushort pnMimeTypeCount);
+            [Out, MarshalAs(U2)] out ushort pnFormatCount,
+            [Out, MarshalAs(LPWStr)] out string pppwszMimeType,
+            [Out, MarshalAs(U2)] out ushort pnMimeTypeCount);
 
         [PreserveSig]
         HResult SendOpaqueCommand(
             [Out, In] ref OpaqueCommand pCommand);
     }
 
+    [ComImport,
+        Guid(NativeAPI.Guids.MediaDevices.IMDSPDevice2),
+        InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMDSPDevice2 : IMDSPDevice
-
     {
         [PreserveSig]
         HResult GetStorage(
-            [In, MarshalAs(UnmanagedType.LPWStr)] string pszStorageName,
-            [Out] out IMDSPStorage ppStorage);
+            [In, MarshalAs(LPWStr)] string pszStorageName,
+            [Out, MarshalAs(Interface)] out IMDSPStorage ppStorage);
 
         [PreserveSig]
         HResult GetFormatSupport2(
-            [In] uint dwFlags,
+            [In, MarshalAs(U4)] uint dwFlags,
             [Out] out WaveFormatEx ppAudioFormatEx,
-            [Out] out ushort pnAudioFormatCount,
+            [Out, MarshalAs(U2)] out ushort pnAudioFormatCount,
             [Out] out VideoInfoHeader ppVideoFormatEx,
-            [Out] out ushort pnVideoFormatCount,
+            [Out, MarshalAs(U2)] out ushort pnVideoFormatCount,
             [Out] out FileCapabilities ppFileType,
-            [Out] out ushort pnFileTypeCount);
+            [Out, MarshalAs(U2)] out ushort pnFileTypeCount);
 
         [PreserveSig]
         HResult GetSpecifyPropertyPages(
-            [Out] out ISpecifyPropertyPages ppSpecifyPropPages,
-            [Out, MarshalAs(UnmanagedType.IUnknown)] out object pppUnknowns,
-            [Out] out uint pcUnks);
+            [Out, MarshalAs(Interface)] out ISpecifyPropertyPages ppSpecifyPropPages,
+            [Out, MarshalAs(IUnknown)] out object pppUnknowns,
+            [Out, MarshalAs(U4)] out uint pcUnks);
 
         [PreserveSig]
         HResult GetCanonicalName(
-            [Out, MarshalAs(UnmanagedType.LPWStr)] out string pwszPnPName,
-            [In] ushort nMaxChars);
-
+            [Out, MarshalAs(LPWStr)] out string pwszPnPName,
+            [In, MarshalAs(U2)] ushort nMaxChars);
     }
 
+    [ComImport,
+        Guid(NativeAPI.Guids.MediaDevices.IMDSPDevice3),
+        InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IMDSPDevice3 : IMDSPDevice2
-
     {
         [PreserveSig]
         HResult GetProperty(
-            [In, MarshalAs(UnmanagedType.LPWStr)] string pwszPropName,
+            [In, MarshalAs(LPWStr)] string pwszPropName,
             [Out] PropVariant pValue);
 
         [PreserveSig]
         HResult SetProperty(
-            [In, MarshalAs(UnmanagedType.LPWStr)] string pwszPropName,
+            [In, MarshalAs(LPWStr)] string pwszPropName,
             [In] in PropVariant pValue);
 
         [PreserveSig]
@@ -121,17 +125,16 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 
         [PreserveSig]
         HResult DeviceIoControl(
-            [In] uint dwIoControlCode,
+            [In, MarshalAs(U4)] uint dwIoControlCode,
             [In] ref StringBuilder lpInBuffer,
-            [In] uint nInBufferSize,
+            [In, MarshalAs(U4)] uint nInBufferSize,
             [Out] out StringBuilder lpOutBuffer,
-            [Out, In] ref uint pnOutBufferSize);
+            [Out, In, MarshalAs(U4)] ref uint pnOutBufferSize);
 
         [PreserveSig]
         HResult FindStorage(
            [In] FindScope findScope,
-            [In, MarshalAs(UnmanagedType.LPWStr)] string pwszUniqueID,
-            [Out] out IMDSPStorage ppStorage);
-
+            [In, MarshalAs(LPWStr)] string pwszUniqueID,
+            [Out, MarshalAs(Interface)] out IMDSPStorage ppStorage);
     }
 }

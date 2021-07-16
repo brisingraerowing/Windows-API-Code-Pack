@@ -319,6 +319,132 @@
             <para>MessageText: No object for moniker</para>
             </summary>
         </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.WMDMBusy">
+            <summary>
+            <para>MessageId: WMDM_E_BUSY</para>
+            <para>MessageText: The device is busy and cannot satisfy the new request.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.WMDMInterfaceDead">
+            <summary>
+            <para>MessageId: WMDM_E_INTERFACEDEAD</para>
+            <para>MessageText: The object has disconnected itself from the clients.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.WMDMInvalidType">
+            <summary>
+            <para>MessageId: WMDM_E_INVALIDTYPE</para>
+            <para>MessageText: The type is not valid.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.WMDMProcessFailed">
+            <summary>
+            <para>MessageId: WMDM_E_PROCESSFAILED</para>
+            <para>MessageText: The process failed.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.WMDMNotSupported">
+            <summary>
+            <para>MessageId: WMDM_E_NOTSUPPORTED</para>
+            <para>MessageText: This operation is not supported.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.WMDMNotCertified">
+            <summary>
+            <para>MessageId: WMDM_E_NOTCERTIFIED</para>
+            <para>MessageText: The caller is not authenticated to make this call.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.WMDMNoRights">
+            <summary>
+            <para>MessageId: WMDM_E_NORIGHTS</para>
+            <para>MessageText: The caller does not have rights for this operation.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.WMDMCallOutOfSequence">
+            <summary>
+            <para>MessageId: WMDM_E_CALL_OUT_OF_SEQUENCE</para>
+            <para>MessageText: Operations were called in the wrong order. (For example, calling Read without Open.)</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.WMDMBufferTooSmall">
+            <summary>
+            <para>MessageId: WMDM_E_BUFFERTOOSMALL</para>
+            <para>MessageText: The buffer supplied by the caller is too small. The client should increase the size of the buffer and retry the call.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.WMDMMoreData">
+            <summary>
+            <para>MessageId: WMDM_E_MOREDATA</para>
+            <para>MessageText: There is more data.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.WMDMMACCheckFailed">
+            <summary>
+            <para>MessageId: WMDM_E_MAC_CHECK_FAILED</para>
+            <para>MessageText: The message authentication code check failed.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.WMDMUserCancelled">
+            <summary>
+            <para>MessageId: WMDM_E_USER_CANCELLED</para>
+            <para>MessageText: The user cancelled the operation.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.WMDMSDMITrigger">
+            <summary>
+            <para>MessageId: WMDM_E_SDMI_TRIGGER</para>
+            <para>MessageText: SDMI validation failed.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.WMDMSDMINoMoreCopies">
+            <summary>
+            <para>MessageId: WMDM_E_SDMI_NOMORECOPIES</para>
+            <para>MessageText: No more copies can be made per SDMI compliance.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.WMDMRevoked">
+            <summary>
+            <para>MessageId: WMDM_E_REVOKED</para>
+            <para>MessageText: The license has been revoked.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.WMDMLicenseNotExist">
+            <summary>
+            <para>MessageId: WMDM_E_LICENSE_NOTEXIST</para>
+            <para>MessageText: The license does not exist.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.WMDMIncorrectAppSec">
+            <summary>
+            <para>MessageId: WMDM_E_INCORRECT_APPSEC</para>
+            <para>MessageText: The minimum level of application security is not correct. This can be caused if a device's key/certificate pair is not a high enough security level.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.WMDMIncorrectRights">
+            <summary>
+            <para>MessageId: WMDM_E_INCORRECT_RIGHTS</para>
+            <para>MessageText: The rights for a file are not correct.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.WMDMLicenseExpired">
+            <summary>
+            <para>MessageId: WMDM_E_LICENSE_EXPIRED</para>
+            <para>MessageText: The license has expired.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.WMDMCantOpenPMSNServicePipe">
+            <summary>
+            <para>MessageId: WMDM_E_CANTOPEN_PMSN_SERVICE_PIPE</para>
+            <para>MessageText: PMSN service pipe can not be opened.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.WMDMTooManySessions">
+            <summary>
+            <para>MessageId: WMDM_E_TOO_MANY_SESSIONS</para>
+            <para>MessageText: Too many sessions exist.</para>
+            </summary>
+        </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.Success">
             <summary>
             <para>MessageId: ERROR_SUCCESS</para>

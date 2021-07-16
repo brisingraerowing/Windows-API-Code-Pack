@@ -39,7 +39,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ClientInterfaces\IWMDMStorage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ClientInterfaces\IWMDMStorageControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ClientInterfaces\IWMDMStorageGlobals.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\CSecureChannelClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\Enums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\IComponentAuthenticate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ServiceProviderInterfaces\IMDServiceProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ServiceProviderInterfaces\IMDSPDevice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ServiceProviderInterfaces\IMDSPDeviceControl.cs" />
@@ -97,7 +99,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\IconReference.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\IntPtrExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMClasses.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMInterfaces.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMInterfaces\IFileOperation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMInterfaces\IFileOperationProgressSink.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMInterfaces\IOperationsProgressDialog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMInterfaces\IQueryParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMInterfaces\IQuerySolution.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMInterfaces\ISearchFolderItemFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMInterfaces\IShellFolder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMInterfaces\IShellLinkW.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMInterfaces\ShellCOMInterfaces.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMInterfaces\IShellItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellEnums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellNativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellNativeStructs.cs" />

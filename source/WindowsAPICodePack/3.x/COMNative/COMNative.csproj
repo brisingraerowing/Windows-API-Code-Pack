@@ -18,7 +18,7 @@
     <FileVersion>3.1.2</FileVersion>
   </PropertyGroup>
 
-  <Import Project="..\COMNative.Shared\COMNative.Shared.projitems" Label="Shared" />
+  <Import Project="..\..\COMNative.Shared\COMNative.Shared.projitems" Label="Shared" />
 
   <ItemGroup>
     <ProjectReference Include="..\Consts\Consts.csproj" />

@@ -1,11 +1,12 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.COMNative;
 using Microsoft.WindowsAPICodePack.Win32Native;
+
 using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
+
+using static System.Runtime.InteropServices.UnmanagedType;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 {
@@ -16,7 +17,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
     {
         [PreserveSig]
         HResult GetCapabilities(
-            [Out] out uint pdwCapabilities);
+            [Out, MarshalAs(U4)] out uint pdwCapabilities);
 
         [PreserveSig]
         HResult GetSerialNumber(
@@ -25,34 +26,34 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 
         [PreserveSig]
         HResult GetTotalSize(
-            [Out] out uint pdwTotalSizeLow,
-            [Out] out uint pdwTotalSizeHigh);
+            [Out, MarshalAs(U4)] out uint pdwTotalSizeLow,
+            [Out, MarshalAs(U4)] out uint pdwTotalSizeHigh);
 
         [PreserveSig]
         HResult GetTotalFree(
-            [Out] out uint pdwFreeLow,
-            [Out] out uint pdwFreeHigh);
+            [Out, MarshalAs(U4)] out uint pdwFreeLow,
+            [Out, MarshalAs(U4)] out uint pdwFreeHigh);
 
         [PreserveSig]
         HResult GetTotalBad(
-            [Out] out uint pdwBadLow,
-            [Out] out uint pdwBadHigh);
+            [Out, MarshalAs(U4)] out uint pdwBadLow,
+            [Out, MarshalAs(U4)] out uint pdwBadHigh);
 
         [PreserveSig]
         HResult GetStatus(
-            [Out] out uint pdwStatus);
+            [Out, MarshalAs(U4)] out uint pdwStatus);
 
         [PreserveSig]
         HResult Initialize(
-            [In] ushort fuMode,
-            [In] ref IWMDMProgress pProgress);
+            [In, MarshalAs(U2)] ushort fuMode,
+            [In, MarshalAs(Interface)] ref IWMDMProgress pProgress);
 
         [PreserveSig]
         HResult GetDevice(
-            [Out] out IMDSPDevice ppDevice);
+            [Out, MarshalAs(Interface)] out IMDSPDevice ppDevice);
 
         [PreserveSig]
         HResult GetRootStorage(
-            [Out] out IMDSPStorage ppRoot);
+            [Out, MarshalAs(Interface)] out IMDSPStorage ppRoot);
     }
 }

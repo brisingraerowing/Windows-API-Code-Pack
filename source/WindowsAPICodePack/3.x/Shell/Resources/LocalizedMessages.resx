@@ -156,6 +156,12 @@
   <data name="CommonFiltersText" xml:space="preserve">
     <value>Text Files</value>
   </data>
+  <data name="CouldNotListProcessesLockingResource" xml:space="preserve">
+    <value>Could not list processes locking resource.</value>
+  </data>
+  <data name="CouldNotRegisterResource" xml:space="preserve">
+    <value>Could not register resource.</value>
+  </data>
   <data name="CreatePromptCannotBeChanged" xml:space="preserve">
     <value>CreatePrompt cannot be changed while dialog is showing.</value>
   </data>
@@ -209,6 +215,9 @@
   </data>
   <data name="ExplorerBrowserViewItems" xml:space="preserve">
     <value>Unexpected error retrieving view items.</value>
+  </data>
+  <data name="FailedToGetSizeOfResult" xml:space="preserve">
+    <value>Could not list processes locking resource. Failed to get size of result.</value>
   </data>
   <data name="IsExpandedModeCannotBeChanged" xml:space="preserve">
     <value>IsExpandedMode cannot be changed while dialog is showing.</value>
@@ -332,5 +341,8 @@
   </data>
   <data name="ThumbnailToolbarManagerNullEmptyArray" xml:space="preserve">
     <value>Null or empty arrays are not allowed.</value>
+  </data>
+  <data name="UnableToDetermineFileLocker" xml:space="preserve">
+    <value>Could not begin restart session. Unable to determine file locker.</value>
   </data>
 </root>

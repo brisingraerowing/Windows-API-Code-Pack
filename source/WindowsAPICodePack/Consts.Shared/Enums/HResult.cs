@@ -22390,6 +22390,143 @@
         /// <para>MessageId: MK_E_NOOBJECT</para>
         /// <para>MessageText: No object for moniker</para>
         /// </summary>
-        MKNoObject = unchecked((int)0x800401E5)
+        MKNoObject = unchecked((int)0x800401E5),
+
+
+
+        // WMDM HRESULTS
+        //
+        //Success codes
+        //
+        WMDMNotAllPropertiesApplied = 0x00045001,
+        WMDMNotAllPropertiesRetrieved = 0x00045002,
+        //
+        //Error codes
+        //
+        /// <summary>
+        /// <para>MessageId: WMDM_E_BUSY</para>
+        /// <para>MessageText: The device is busy and cannot satisfy the new request.</para>
+        /// </summary>
+        WMDMBusy = unchecked((int) 0x80045000),
+
+        /// <summary>
+        /// <para>MessageId: WMDM_E_INTERFACEDEAD</para>
+        /// <para>MessageText: The object has disconnected itself from the clients.</para>
+        /// </summary>
+        WMDMInterfaceDead = unchecked((int)0x80045001),
+
+        /// <summary>
+        /// <para>MessageId: WMDM_E_INVALIDTYPE</para>
+        /// <para>MessageText: The type is not valid.</para>
+        /// </summary>
+        WMDMInvalidType = unchecked((int)0x80045002),
+
+        /// <summary>
+        /// <para>MessageId: WMDM_E_PROCESSFAILED</para>
+        /// <para>MessageText: The process failed.</para>
+        /// </summary>
+        WMDMProcessFailed = unchecked((int)0x80045003),
+
+        /// <summary>
+        /// <para>MessageId: WMDM_E_NOTSUPPORTED</para>
+        /// <para>MessageText: This operation is not supported.</para>
+        /// </summary>
+        WMDMNotSupported = unchecked((int)0x80045004),
+
+        /// <summary>
+        /// <para>MessageId: WMDM_E_NOTCERTIFIED</para>
+        /// <para>MessageText: The caller is not authenticated to make this call.</para>
+        /// </summary>
+        WMDMNotCertified = unchecked((int)0x80045005),
+
+        /// <summary>
+        /// <para>MessageId: WMDM_E_NORIGHTS</para>
+        /// <para>MessageText: The caller does not have rights for this operation.</para>
+        /// </summary>
+        WMDMNoRights = unchecked((int)0x80045006),
+
+        /// <summary>
+        /// <para>MessageId: WMDM_E_CALL_OUT_OF_SEQUENCE</para>
+        /// <para>MessageText: Operations were called in the wrong order. (For example, calling Read without Open.)</para>
+        /// </summary>
+        WMDMCallOutOfSequence = unchecked((int)0x80045007),
+
+        /// <summary>
+        /// <para>MessageId: WMDM_E_BUFFERTOOSMALL</para>
+        /// <para>MessageText: The buffer supplied by the caller is too small. The client should increase the size of the buffer and retry the call.</para>
+        /// </summary>
+        WMDMBufferTooSmall = unchecked((int)0x80045008),
+
+        /// <summary>
+        /// <para>MessageId: WMDM_E_MOREDATA</para>
+        /// <para>MessageText: There is more data.</para>
+        /// </summary>
+        WMDMMoreData = unchecked((int)0x80045009),
+
+        /// <summary>
+        /// <para>MessageId: WMDM_E_MAC_CHECK_FAILED</para>
+        /// <para>MessageText: The message authentication code check failed.</para>
+        /// </summary>
+        WMDMMACCheckFailed = unchecked((int)0x8004500A),
+
+        /// <summary>
+        /// <para>MessageId: WMDM_E_USER_CANCELLED</para>
+        /// <para>MessageText: The user cancelled the operation.</para>
+        /// </summary>
+        WMDMUserCancelled = unchecked((int)0x8004500B),
+
+        /// <summary>
+        /// <para>MessageId: WMDM_E_SDMI_TRIGGER</para>
+        /// <para>MessageText: SDMI validation failed.</para>
+        /// </summary>
+        WMDMSDMITrigger = unchecked((int)0x8004500C),
+
+        /// <summary>
+        /// <para>MessageId: WMDM_E_SDMI_NOMORECOPIES</para>
+        /// <para>MessageText: No more copies can be made per SDMI compliance.</para>
+        /// </summary>
+        WMDMSDMINoMoreCopies = unchecked((int)0x8004500D),
+
+        /// <summary>
+        /// <para>MessageId: WMDM_E_REVOKED</para>
+        /// <para>MessageText: The license has been revoked.</para>
+        /// </summary>
+        WMDMRevoked = unchecked((int)0x8004500E),
+
+        /// <summary>
+        /// <para>MessageId: WMDM_E_LICENSE_NOTEXIST</para>
+        /// <para>MessageText: The license does not exist.</para>
+        /// </summary>
+        WMDMLicenseNotExist = unchecked((int)0x8004500FL),
+
+        /// <summary>
+        /// <para>MessageId: WMDM_E_INCORRECT_APPSEC</para>
+        /// <para>MessageText: The minimum level of application security is not correct. This can be caused if a device's key/certificate pair is not a high enough security level.</para>
+        /// </summary>
+        WMDMIncorrectAppSec = unchecked((int)0x80045010L),
+
+        /// <summary>
+        /// <para>MessageId: WMDM_E_INCORRECT_RIGHTS</para>
+        /// <para>MessageText: The rights for a file are not correct.</para>
+        /// </summary>
+        WMDMIncorrectRights = unchecked((int)0x80045011L),
+
+        /// <summary>
+        /// <para>MessageId: WMDM_E_LICENSE_EXPIRED</para>
+        /// <para>MessageText: The license has expired.</para>
+        /// </summary>
+        WMDMLicenseExpired = unchecked((int)0x80045012L),
+
+        /// <summary>
+        /// <para>MessageId: WMDM_E_CANTOPEN_PMSN_SERVICE_PIPE</para>
+        /// <para>MessageText: PMSN service pipe can not be opened.</para>
+        /// </summary>
+        WMDMCantOpenPMSNServicePipe = unchecked((int)0x80045013L),
+
+        /// <summary>
+        /// <para>MessageId: WMDM_E_TOO_MANY_SESSIONS</para>
+        /// <para>MessageText: Too many sessions exist.</para>
+        /// </summary>
+        WMDMTooManySessions = unchecked((int)0x80045013L)
     }
 }

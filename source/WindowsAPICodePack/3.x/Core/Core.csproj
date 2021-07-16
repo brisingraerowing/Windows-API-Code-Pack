@@ -52,6 +52,6 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <Import Project="..\Core.Shared\Core.Shared.projitems" Label="Shared" />
+  <Import Project="..\..\Core.Shared\Core.Shared.projitems" Label="Shared" />
 
 </Project>

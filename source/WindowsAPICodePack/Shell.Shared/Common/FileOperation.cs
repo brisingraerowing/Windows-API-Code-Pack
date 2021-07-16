@@ -21,7 +21,6 @@ using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -32,12 +31,15 @@ using System.Windows.Interop;
 using static Microsoft.WindowsAPICodePack.Win32Native.Shell.Shell;
 
 using static WinCopies.
-#if WAPICP2
-    Util.Util
+#if WAPICP3
+    ThrowHelper;
+
+using WinCopies.Collections.DotNetFix.Generic;
 #else
-    ThrowHelper
+    Util.Util;
+
+using System.Collections.Generic;
 #endif
-    ;
 
 using FileAttributes = Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes;
 
@@ -49,7 +51,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
     /// <remarks>This structure is used with the <see cref="FileOperation.GetFileInfo(string, FileAttributes, GetFileInfoOptions)"/> function.</remarks>
     public struct FileInfo : IDisposable
     {
-
         /// <summary>
         /// Gets or sets the icon that represents the file. When the <see cref="Dispose"/> method of this struct is called, that method calls the <see cref="Dispose"/> method on the current <see cref="Icon"/>.
         /// </summary>
@@ -85,7 +86,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="typeName">The type name of the file represented by this structure.</param>
         public FileInfo(Icon icon, int iconIndex, ShellFileGetAttributesOptions attributes, string displayName, string typeName)
         {
-
             Icon = icon;
 
             IconIndex = iconIndex;
@@ -95,53 +95,81 @@ namespace Microsoft.WindowsAPICodePack.Shell
             DisplayName = displayName;
 
             TypeName = typeName;
-
         }
 
         /// <summary>
         /// Calls the <see cref="Icon.Dispose"/> method from the <see cref="Icon"/> property.
         /// </summary>
         public void Dispose() => Icon.Dispose();
-
     }
+
     /// <summary>
     /// Provides methods to perform file system operations.
     /// </summary>
     public class FileOperation : IDisposable
     {
+        private readonly IFileOperation _fileOperation = null;
+        private bool _disposed = false;
+        private readonly
+#if WAPICP3
+            ILinkedList
+#else
+List
+#endif
+            <uint> _cookies = new
+#if WAPICP3
+            WinCopies.Collections.DotNetFix.Generic.LinkedList
+#else
+List
+#endif
+            <uint>();
 
-        private readonly IFileOperation fileOperation = null;
-
-        private bool disposed = false;
-
-        private readonly List<uint> cookies = new List<uint>();
-
-        public System.Collections.ObjectModel.ReadOnlyCollection<uint> Cookies { get; }
+        public
+#if WAPICP3
+            IReadOnlyLinkedList
+#else
+            System.Collections.ObjectModel.ReadOnlyCollection
+#endif
+            <uint> Cookies
+        { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileOperation"/> class.
         /// </summary>
         public FileOperation()
         {
-            fileOperation = (IFileOperation)Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid(NativeAPI.Guids.Shell.FileOperation)));
+            _fileOperation = (IFileOperation)Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid(NativeAPI.Guids.Shell.FileOperation)));
 
-            Cookies = new System.Collections.ObjectModel.ReadOnlyCollection<uint>(cookies);
+            Cookies = new
+#if WAPICP3
+                WinCopies.Collections.DotNetFix.Generic.ReadOnlyLinkedList
+#else
+System.Collections.ObjectModel.ReadOnlyCollection
+#endif
+                <uint>(_cookies);
         }
 
         public void Dispose()
         {
+            Dispose(true);
 
-            if (disposed) return;
+            GC.SuppressFinalize(this);
+        }
 
-            foreach (uint cookie in cookies)
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed) return;
+
+            foreach (uint cookie in _cookies)
 
                 UnadviseInternal(cookie);
 
-            _ = Marshal.FinalReleaseComObject(fileOperation);
+            _ = Marshal.FinalReleaseComObject(_fileOperation);
 
-            disposed = true;
-
+            _disposed = true;
         }
+
+        ~FileOperation() => Dispose(false);
 
         /// <summary>
         /// Enables a handler to provide status and error information for all operations.
@@ -154,26 +182,22 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <exception cref="Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
         public uint Advise(FileOperationProgressSink pfops)
         {
-
             if (pfops == null) throw new ArgumentNullException(nameof(pfops));
 
-            if (disposed) throw new ObjectDisposedException(nameof(FileOperation));
+            if (_disposed) throw new ObjectDisposedException(nameof(FileOperation));
 
-            HResult hr = fileOperation.Advise(pfops.FileOperationProgressSinkInternal, out uint pdwCookie);
+            HResult hr = _fileOperation.Advise(pfops.FileOperationProgressSinkInternal, out uint pdwCookie);
 
             if (CoreErrorHelper.Succeeded(hr))
             {
-
-                cookies.Add(pdwCookie);
+                _cookies.Add(pdwCookie);
 
                 return pdwCookie;
-
             }
 
             else Marshal.ThrowExceptionForHR((int)hr);
 
             return 0;
-
         }
 
         /// <summary>
@@ -184,22 +208,22 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <exception cref="Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
         public void Unadvise(uint dwCookie)
         {
-
-            if (disposed) throw new ObjectDisposedException(nameof(FileOperation));
+            if (_disposed) throw new ObjectDisposedException(nameof(FileOperation));
 
             UnadviseInternal(dwCookie);
-
         }
 
         internal void UnadviseInternal(uint dwCookie)
         {
+            HResult hr = _fileOperation.Unadvise(dwCookie);
 
-            HResult hr = fileOperation.Unadvise(dwCookie);
+            if (CoreErrorHelper.Succeeded(hr))
 
-            if (!CoreErrorHelper.Succeeded(hr))
+                _ = _cookies.Remove(dwCookie);
+
+            else
 
                 Marshal.ThrowExceptionForHR((int)hr);
-
         }
 
         /// <summary>
@@ -212,13 +236,10 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <exception cref="Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
         public void SetOperationFlags(ShellOperationFlags dwOperationFlags)
         {
-
-            if (disposed) throw new ObjectDisposedException(nameof(FileOperation));
+            if (_disposed) throw new ObjectDisposedException(nameof(FileOperation));
 
             switch (dwOperationFlags)
-
             {
-
                 case ShellOperationFlags.AddUndoRecord:
                 case ShellOperationFlags.RecycleOnDelete:
 
@@ -238,15 +259,13 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     CoreHelpers.ThrowIfNotVista();
 
                     break;
-
             }
 
-            HResult hr = fileOperation.SetOperationFlags(dwOperationFlags);
+            HResult hr = _fileOperation.SetOperationFlags(dwOperationFlags);
 
             if (!CoreErrorHelper.Succeeded(hr))
 
                 Marshal.ThrowExceptionForHR((int)hr);
-
         }
 
         ///// <summary>
@@ -279,9 +298,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             ThrowIfNull(popd, nameof(popd));
 
-            if (disposed) throw new ObjectDisposedException(nameof(FileOperation));
+            if (_disposed) throw new ObjectDisposedException(nameof(FileOperation));
 
-            HResult hr = fileOperation.SetProgressDialog(popd);
+            HResult hr = _fileOperation.SetProgressDialog(popd);
 
             if (!CoreErrorHelper.Succeeded(hr))
 
@@ -303,30 +322,26 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <exception cref="Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
         public void SetProperties(IPropertyChangeArray pproparray)
         {
+            if (_disposed) throw new ObjectDisposedException(nameof(FileOperation));
 
             if (pproparray == null) throw new ArgumentNullException(nameof(pproparray));
 
-            if (disposed) throw new ObjectDisposedException(nameof(FileOperation));
-
-            HResult hr = fileOperation.SetProperties(pproparray);
+            HResult hr = _fileOperation.SetProperties(pproparray);
 
             if (!CoreErrorHelper.Succeeded(hr))
 
                 Marshal.ThrowExceptionForHR((int)hr);
-
         }
 
         public void SetOwnerWindow(IntPtr hwndOwner)
         {
+            if (_disposed) throw new ObjectDisposedException(nameof(FileOperation));
 
-            if (disposed) throw new ObjectDisposedException(nameof(FileOperation));
-
-            HResult hr = fileOperation.SetOwnerWindow(hwndOwner);
+            HResult hr = _fileOperation.SetOwnerWindow(hwndOwner);
 
             if (!CoreErrorHelper.Succeeded(hr))
 
                 Marshal.ThrowExceptionForHR((int)hr);
-
         }
 
         public void SetOwnerWindow(Form window) => SetOwnerWindow(window.Handle);
@@ -335,131 +350,100 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         public void ApplyPropertiesToItem(IShellItem psiItem)
         {
+            if (_disposed) throw new ObjectDisposedException(nameof(FileOperation));
 
-            if (disposed) throw new ObjectDisposedException(nameof(FileOperation));
+            HResult hr = _fileOperation.ApplyPropertiesToItem(psiItem);
 
-            HResult hr = fileOperation.ApplyPropertiesToItem(psiItem);
-
-            // todo: to add error wrappers using the return error code
+            // todo: add error wrappers using the return error code
 
             if (!CoreErrorHelper.Succeeded(hr))
 
                 Marshal.ThrowExceptionForHR((int)hr);
-
         }
 
         public void ApplyPropertiesToItem(ShellObject shellObject) => ApplyPropertiesToItem(shellObject.NativeShellItem);
 
-        //public HResult ApplyPropertiesToItems(object punkItems)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public void RenameItem(IShellItem psiItem, string pszNewName, FileOperationProgressSink pfopsItem)
         {
+            if (_disposed) throw new ObjectDisposedException(nameof(FileOperation));
 
-            if (disposed) throw new ObjectDisposedException(nameof(FileOperation));
-
-            HResult hr = fileOperation.RenameItem(psiItem, pszNewName, pfopsItem?.FileOperationProgressSinkInternal);
+            HResult hr = _fileOperation.RenameItem(psiItem, pszNewName, pfopsItem?.FileOperationProgressSinkInternal);
 
             if (!CoreErrorHelper.Succeeded(hr))
 
                 Marshal.ThrowExceptionForHR((int)hr);
-
         }
 
         public void RenameItem(ShellObject shellObject, string newName, FileOperationProgressSink pfopsItem) => RenameItem(shellObject.NativeShellItem, newName, pfopsItem);
 
-        //public HResult RenameItems(object pUnkItems, string pszNewName)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public void MoveItem(IShellItem psiItem, IShellItem psiDestinationFolder, string pszNewName, FileOperationProgressSink pfopsItem)
         {
+            if (_disposed) throw new ObjectDisposedException(nameof(FileOperation));
 
-            if (disposed) throw new ObjectDisposedException(nameof(FileOperation));
-
-            HResult hr = fileOperation.MoveItem(psiItem, psiDestinationFolder, pszNewName, pfopsItem?.FileOperationProgressSinkInternal);
+            HResult hr = _fileOperation.MoveItem(psiItem, psiDestinationFolder, pszNewName, pfopsItem?.FileOperationProgressSinkInternal);
 
             if (!CoreErrorHelper.Succeeded(hr))
 
                 Marshal.ThrowExceptionForHR((int)hr);
-
         }
 
         public void MoveItem(ShellObject shellObject, ShellObject destinationShellObject, string newName, FileOperationProgressSink pfopsItem) => MoveItem(shellObject.NativeShellItem, destinationShellObject.NativeShellItem, newName, pfopsItem);
 
-        //public HResult MoveItems(object punkItems, IShellItem psiDestinationFolder) => throw new NotImplementedException();
-
         public void CopyItem(IShellItem psiItem, IShellItem psiDestinationFolder, string pszCopyName, FileOperationProgressSink pfopsItem)
         {
+            if (_disposed) throw new ObjectDisposedException(nameof(FileOperation));
 
-            if (disposed) throw new ObjectDisposedException(nameof(FileOperation));
-
-            HResult hr = fileOperation.CopyItem(psiItem, psiDestinationFolder, pszCopyName, pfopsItem?.FileOperationProgressSinkInternal);
+            HResult hr = _fileOperation.CopyItem(psiItem, psiDestinationFolder, pszCopyName, pfopsItem?.FileOperationProgressSinkInternal);
 
             if (!CoreErrorHelper.Succeeded(hr))
 
                 Marshal.ThrowExceptionForHR((int)hr);
-
         }
 
         public void CopyItem(ShellObject shellObject, ShellObject destinationFolder, string copyName, FileOperationProgressSink pfopsItem) => CopyItem(shellObject.NativeShellItem, destinationFolder.NativeShellItem, copyName, pfopsItem);
 
-        //public HResult CopyItems(object punkItems, IShellItem psiDestinationFolder) => throw new NotImplementedException();
-
         public void DeleteItem(IShellItem psiItem, FileOperationProgressSink pfopsItem)
         {
+            if (_disposed) throw new ObjectDisposedException(nameof(FileOperation));
 
-            if (disposed) throw new ObjectDisposedException(nameof(FileOperation));
-
-            HResult hr = fileOperation.DeleteItem(psiItem, pfopsItem?.FileOperationProgressSinkInternal);
+            HResult hr = _fileOperation.DeleteItem(psiItem, pfopsItem?.FileOperationProgressSinkInternal);
 
             if (!CoreErrorHelper.Succeeded(hr))
 
                 Marshal.ThrowExceptionForHR((int)hr);
-
         }
 
         public void DeleteItem(ShellObject shellObject, FileOperationProgressSink pfopsItem) => DeleteItem(shellObject.NativeShellItem, pfopsItem);
 
-        //public HResult DeleteItems(object punkItems) => throw new NotImplementedException();
-
         public void NewItem(IShellItem psiDestinationFolder, FileAttributes dwFileAttributes, string pszName, string pszTemplateName, FileOperationProgressSink pfopsItem)
         {
+            if (_disposed) throw new ObjectDisposedException(nameof(FileOperation));
 
-            if (disposed) throw new ObjectDisposedException(nameof(FileOperation));
-
-            HResult hr = fileOperation.NewItem(psiDestinationFolder, dwFileAttributes, pszName, pszTemplateName, pfopsItem?.FileOperationProgressSinkInternal);
+            HResult hr = _fileOperation.NewItem(psiDestinationFolder, dwFileAttributes, pszName, pszTemplateName, pfopsItem?.FileOperationProgressSinkInternal);
 
             if (!CoreErrorHelper.Succeeded(hr))
 
                 Marshal.ThrowExceptionForHR((int)hr);
-
         }
 
         public void NewItem(ShellObject destinationFolder, FileAttributes fileAttributes, string name, string templateName, FileOperationProgressSink pfopsItem) => NewItem(destinationFolder.NativeShellItem, fileAttributes, name, templateName, pfopsItem);
 
         public void PerformOperations()
         {
+            if (_disposed) throw new ObjectDisposedException(nameof(FileOperation));
 
-            if (disposed) throw new ObjectDisposedException(nameof(FileOperation));
-
-            HResult hr = fileOperation.PerformOperations();
+            HResult hr = _fileOperation.PerformOperations();
 
             if (!CoreErrorHelper.Succeeded(hr))
 
                 Marshal.ThrowExceptionForHR((int)hr);
-
         }
 
         public bool GetAnyOperationsAborted()
         {
+            if (_disposed) throw new ObjectDisposedException(nameof(FileOperation));
 
-            if (disposed) throw new ObjectDisposedException(nameof(FileOperation));
-
-            HResult hr = fileOperation.GetAnyOperationsAborted(out bool anyOperationsAborted);
+            HResult hr = _fileOperation.GetAnyOperationsAborted(out bool anyOperationsAborted);
 
             if (CoreErrorHelper.Succeeded(hr)) return anyOperationsAborted;
 
@@ -468,7 +452,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 Marshal.ThrowExceptionForHR((int)hr);
 
             return false;
-
         }
 
         /// <summary>
@@ -483,7 +466,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <returns>A <see cref="FileInfo"/> structure that contains the file information.</returns>
         public static FileInfo GetFileInfo(string path, FileAttributes fileAttributes, GetFileInfoOptions options)
         {
-
             var psfi = new SHFILEINFO();
 
             HResult hr = SHGetFileInfo(path, fileAttributes, ref psfi, (uint)Marshal.SizeOf(psfi), options);
@@ -499,17 +481,13 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 icon = null;
 
             else
-
             {
-
                 icon = (Icon)Icon.FromHandle(psfi.hIcon).Clone();
 
                 _ = Core.DestroyIcon(psfi.hIcon);
-
             }
 
             return new FileInfo(icon, psfi.iIcon, psfi.dwAttributes, psfi.szDisplayName, psfi.szTypeName);
-
         }
 
         /// <summary>
@@ -525,7 +503,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <returns>A <see cref="FileInfo"/> structure that contains the file information.</returns>
         public static FileInfo GetFileInfo(string path, FileAttributes fileAttributes, GetFileInfoOptions options, out int exeType)
         {
-
             var psfi = new SHFILEINFO();
 
             HResult hr = SHGetFileInfo(path, fileAttributes, ref psfi, (uint)Marshal.SizeOf(psfi), options);
@@ -543,25 +520,19 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 icon = null;
 
             else
-
             {
-
                 icon = (Icon)Icon.FromHandle(psfi.hIcon).Clone();
 
                 _ = Core.DestroyIcon(psfi.hIcon);
-
             }
 
             return new FileInfo(icon, psfi.iIcon, psfi.dwAttributes, psfi.szDisplayName, psfi.szTypeName);
-
         }
 
         public static void CopyFile(string sourceFileName, string newFileName,
    CopyProgressRoutine progressRoutine, IntPtr data, ref bool cancel,
    CopyFileFlags copyFlags)
-
         {
-
             if (copyFlags == CopyFileFlags.CopySymLink || copyFlags == CopyFileFlags.NoBuffering)
 
                 CoreHelpers.ThrowIfNotVista();
@@ -569,7 +540,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
             if (!CopyFileEx(sourceFileName, newFileName, progressRoutine, data, ref cancel, copyFlags))
 
                 Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
-
         }
 
         /// <summary>
@@ -581,30 +551,25 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <exception cref="Win32Exception">Exception thrown if a Win32 exception has occurred during thr process.</exception>
         public static bool QueryRecycleBinInfo(string drivePath, out RecycleBinInfo recycleBinInfo)
         {
-
             var rbInfo = new SHQUERYRBINFO
             {
-                cbSize = Marshal.SizeOf(typeof(SHQUERYRBINFO))
+                cbSize = Marshal.SizeOf<SHQUERYRBINFO>()
             };
 
             HResult hr = SHQueryRecycleBin(drivePath, ref rbInfo);
 
             if (hr == HResult.Ok)
             {
-
                 recycleBinInfo = new RecycleBinInfo(rbInfo.i64Size, rbInfo.i64NumItems);
 
                 return true;
-
             }
 
             else if (hr == HResult.Fail)
             {
-
                 recycleBinInfo = default;
 
                 return false;
-
             }
 
             else
@@ -614,7 +579,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
             recycleBinInfo = default;
 
             return false;
-
         }
 
         /// <summary>
@@ -627,7 +591,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <exception cref="Win32Exception">Exception thrown if a Win32 exception has occurred during thr process.</exception>
         public static bool EmptyRecycleBin(IntPtr windowHandle, string drivePath, EmptyRecycleBinFlags emptyRecycleBinFlags)
         {
-
             HResult hr = SHEmptyRecycleBin(windowHandle, drivePath, emptyRecycleBinFlags);
 
             if (hr == HResult.Ok) return true;
@@ -637,7 +600,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
             else Marshal.ThrowExceptionForHR((int)hr);
 
             return false;
-
         }
 
         /// <summary>
@@ -650,7 +612,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <exception cref="Win32Exception">Exception thrown if a Win32 exception has occurred during thr process.</exception>
         public static bool EmptyRecycleBin(Form window, string drivePath, EmptyRecycleBinFlags emptyRecycleBinFlags)
         {
-
             HResult hr = SHEmptyRecycleBin(window.Handle, drivePath, emptyRecycleBinFlags);
 
             if (hr == HResult.Ok) return true;
@@ -660,7 +621,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
             else Marshal.ThrowExceptionForHR((int)hr);
 
             return false;
-
         }
 
         /// <summary>
@@ -673,7 +633,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <exception cref="Win32Exception">Exception thrown if a Win32 exception has occurred during thr process.</exception>
         public static bool EmptyRecycleBin(Window window, string drivePath, EmptyRecycleBinFlags emptyRecycleBinFlags)
         {
-
             HResult hr = SHEmptyRecycleBin(new WindowInteropHelper(window).Handle, drivePath, emptyRecycleBinFlags);
 
             if (hr == HResult.Ok) return true;
@@ -683,26 +642,21 @@ namespace Microsoft.WindowsAPICodePack.Shell
             else Marshal.ThrowExceptionForHR((int)hr);
 
             return false;
-
         }
     }
 
     public struct RecycleBinInfo
     {
-
         public long Size { get; }
 
         public long NumItems { get; }
 
         internal RecycleBinInfo(long size, long numItems)
         {
-
             Size = size;
 
             NumItems = numItems;
-
         }
-
     }
 
     public class FileOperationProgressSink : IDisposable
@@ -738,7 +692,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         public Action<uint, IShellItem, string> PreNewItem { get; set; }
 
-        public Action<uint, IShellItem, string, string, Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes, IShellItem> PostNewItem { get; set; }
+        public Action<uint, IShellItem, string, string, FileAttributes, IShellItem> PostNewItem { get; set; }
 
         public Action<uint, uint> UpdateProgress { get; set; }
 
@@ -830,7 +784,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         public virtual void PostCopyItem(uint dwFlags, IShellItem psiItem, IShellItem psiDestinationFolder, string pszNewName, HResult hrCopy, IShellItem psiNewlyCreated)
         {
-
             if (!CoreErrorHelper.Succeeded(hrCopy))
 
                 Marshal.ThrowExceptionForHR((int)hrCopy);
@@ -838,14 +791,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
             fileOperationProgressSink.PostCopyItem?.Invoke(dwFlags, psiItem, psiDestinationFolder, pszNewName, psiNewlyCreated);
 
             // return hrCopy;
-
         }
 
         public virtual void PreDeleteItem(uint dwFlags, IShellItem psiItem) => fileOperationProgressSink.PreDeleteItem?.Invoke(dwFlags, psiItem); /*return HResult.Ok;*/
 
         public virtual void PostDeleteItem(uint dwFlags, IShellItem psiItem, HResult hrDelete, IShellItem psiNewlyCreated)
         {
-
             if (!CoreErrorHelper.Succeeded(hrDelete))
 
                 Marshal.ThrowExceptionForHR((int)hrDelete);
@@ -853,14 +804,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
             fileOperationProgressSink.PostDeleteItem?.Invoke(dwFlags, psiItem, psiNewlyCreated);
 
             //return hrDelete;
-
         }
 
         public virtual void PreNewItem(uint dwFlags, IShellItem psiDestinationFolder, string pszNewName) => fileOperationProgressSink.PreNewItem?.Invoke(dwFlags, psiDestinationFolder, pszNewName); /*return HResult.Ok;*/
 
         public virtual void PostNewItem(uint dwFlags, IShellItem psiDestinationFolder, string pszNewName, string pszTemplateName, Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes dwFileAttributes, HResult hrNew, IShellItem psiNewItem)
         {
-
             if (!CoreErrorHelper.Succeeded(hrNew))
 
                 Marshal.ThrowExceptionForHR((int)hrNew);
@@ -868,7 +817,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
             fileOperationProgressSink.PostNewItem?.Invoke(dwFlags, psiDestinationFolder, pszNewName, pszTemplateName, dwFileAttributes, psiNewItem);
 
             //return hrNew;
-
         }
 
         public virtual void UpdateProgress(uint iWorkTotal, uint iWorkSoFar) => fileOperationProgressSink.UpdateProgress?.Invoke(iWorkTotal, iWorkSoFar); /*return HResult.Ok;*/

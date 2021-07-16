@@ -18,7 +18,7 @@
     <FileVersion>3.1.2</FileVersion>
   </PropertyGroup>
 
-  <Import Project="..\ShellExtensions.Shared\ShellExtensions.Shared.projitems" Label="Shared" />
+  <Import Project="..\..\ShellExtensions.Shared\ShellExtensions.Shared.projitems" Label="Shared" />
 
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789-windows`))' == 'net5'">
     <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />

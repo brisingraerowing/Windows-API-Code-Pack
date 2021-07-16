@@ -43,6 +43,6 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <Import Project="..\ExtendedLinguisticServices.Shared\ExtendedLinguisticServices.Shared.projitems" Label="Shared" />
+  <Import Project="..\..\ExtendedLinguisticServices.Shared\ExtendedLinguisticServices.Shared.projitems" Label="Shared" />
 
 </Project>

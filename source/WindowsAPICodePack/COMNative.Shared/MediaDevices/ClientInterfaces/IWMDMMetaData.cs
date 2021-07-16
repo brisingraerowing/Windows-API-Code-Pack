@@ -1,11 +1,12 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.COMNative;
 using Microsoft.WindowsAPICodePack.Win32Native;
+
 using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
+
+using static System.Runtime.InteropServices.UnmanagedType;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 {
@@ -17,27 +18,27 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
         [PreserveSig]
         HResult AddItem(
             [In] DataType Type,
-            [In,MarshalAs(UnmanagedType.LPWStr)] string pwszTagName,
+            [In, MarshalAs(LPWStr)] string pwszTagName,
             [In] ref StringBuilder pValue,
-            [In] ushort iLength);
+            [In, MarshalAs(U2)] ushort iLength);
 
         [PreserveSig]
         HResult QueryByName(
-            [In,MarshalAs(UnmanagedType.LPWStr)] string pwszTagName,
+            [In, MarshalAs(LPWStr)] string pwszTagName,
             [Out] out DataType pType,
             [Out] out StringBuilder pValue,
-            [Out] out ushort pcbLength);
+            [Out, MarshalAs(U2)] out ushort pcbLength);
 
         [PreserveSig]
         HResult QueryByIndex(
-            [In] ushort iIndex,
+            [In, MarshalAs(U2)] ushort iIndex,
             [Out] out IntPtr ppwszName,
             [Out] out DataType pType,
             [Out] out char[] ppValue,
-            [Out] out ushort pcbLength);
+            [Out, MarshalAs(U2)] out ushort pcbLength);
 
         [PreserveSig]
         HResult GetItemCount(
-            [Out] out ushort iCount);
+            [Out, MarshalAs(U2)] out ushort iCount);
     }
 }

@@ -1,11 +1,9 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.COMNative;
 using Microsoft.WindowsAPICodePack.Win32Native;
+
 using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 {
@@ -16,7 +14,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
     {
         [PreserveSig]
         HResult WMDMMessage(
-            [In] uint dwMessageType,
-            [In,MarshalAs(UnmanagedType.LPWStr)] string pwszCanonicalName);
+            [In, MarshalAs(UnmanagedType.U4)] uint dwMessageType,
+            [In, MarshalAs(UnmanagedType.LPWStr)] string pwszCanonicalName);
     }
 }
