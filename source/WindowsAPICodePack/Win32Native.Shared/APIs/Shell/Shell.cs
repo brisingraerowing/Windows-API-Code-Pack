@@ -46,6 +46,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool CreateDirectoryW([In, MarshalAs(UnmanagedType.LPWStr)] string lpPathName, [In] IntPtr lpSecurityAttributes);
 
+        [DllImport(Kernel32, CharSet = CharSet.Unicode, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool RemoveDirectoryW([In, MarshalAs(UnmanagedType.LPWStr)] string lpPathName);
+
+        [DllImport(Kernel32, CharSet = CharSet.Unicode, SetLastError = true)]
+        public static extern bool DeleteFileW([In, MarshalAs(UnmanagedType.LPWStr)] string lpFileName);
+
         [DllImport(Shell32, EntryPoint = "#62", CharSet = CharSet.Unicode, SetLastError = true)]
         [SuppressUnmanagedCodeSecurity]
         public static extern bool SHPickIconDialog(IntPtr hWnd, StringBuilder pszFilename, int cchFilenameMax, out int pnIconIndex);
