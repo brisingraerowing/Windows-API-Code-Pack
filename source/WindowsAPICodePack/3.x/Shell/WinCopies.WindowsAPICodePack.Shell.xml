@@ -1078,6 +1078,16 @@
               Looks up a localized string similar to Text Files.
             </summary>
         </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.CouldNotListProcessesLockingResource">
+            <summary>
+              Looks up a localized string similar to Could not list processes locking resource..
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.CouldNotRegisterResource">
+            <summary>
+              Looks up a localized string similar to Could not register resource..
+            </summary>
+        </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.CreatePromptCannotBeChanged">
             <summary>
               Looks up a localized string similar to CreatePrompt cannot be changed while dialog is showing..
@@ -1166,6 +1176,11 @@
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ExplorerBrowserViewItems">
             <summary>
               Looks up a localized string similar to Unexpected error retrieving view items..
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.FailedToGetSizeOfResult">
+            <summary>
+              Looks up a localized string similar to Could not list processes locking resource. Failed to get size of result..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.IsExpandedModeCannotBeChanged">
@@ -1371,6 +1386,11 @@
         <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.ThumbnailToolbarManagerNullEmptyArray">
             <summary>
               Looks up a localized string similar to Null or empty arrays are not allowed..
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages.UnableToDetermineFileLocker">
+            <summary>
+              Looks up a localized string similar to Could not begin restart session. Unable to determine file locker..
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.EventHandlerExtensionMethods">
@@ -1581,7 +1601,7 @@
             This class contains all the functions to find out which are the processes are locking a file.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileLockFinder.FindLockFinder(System.String)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileLockFinder.FindFileLock(System.String)">
             <summary>
             This function finds out what process(es) have a lock on the specified file.
             </summary>

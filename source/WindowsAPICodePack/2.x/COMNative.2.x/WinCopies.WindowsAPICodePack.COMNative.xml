@@ -9298,6 +9298,29 @@
             <param name="hwnd">The window handle.</param>
             <param name="appId">The application id.</param>
         </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.MediaDevices.DeviceEnumPreferences.DoNotVirtualizeStoragesAsDevices">
+            <summary>
+            By default, for devices containing multiple storage media (for example, multiple flash memory cards), each of these storages enumerates as a separate pseudo-device. However, when this flag is set, storages are not visible as devices, and only devices are visible as devices. See <see cref="M:Microsoft.WindowsAPICodePack.COMNative.MediaDevices.IWMDeviceManager3.SetDeviceEnumPreference(Microsoft.WindowsAPICodePack.COMNative.MediaDevices.DeviceEnumPreferences)"/> Remarks for more information.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.MediaDevices.DeviceEnumPreferences.AllowOutOfBandNotification">
+            <summary>
+            When this flag is set, the service provider can send device arrival and removal by an additional mechanism, such as by using a window message, as well as the default mechanism of calling any application-implemented IWMDMNotification interfaces.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.COMNative.MediaDevices.IWMDeviceManager3.SetDeviceEnumPreference(Microsoft.WindowsAPICodePack.COMNative.MediaDevices.DeviceEnumPreferences)">
+            <summary>
+            The <see cref="M:Microsoft.WindowsAPICodePack.COMNative.MediaDevices.IWMDeviceManager3.SetDeviceEnumPreference(Microsoft.WindowsAPICodePack.COMNative.MediaDevices.DeviceEnumPreferences)"/> method sets the device enumeration preferences.
+            </summary>
+            <param name="dwEnumPref">Specifies a bitwise OR combination of one or more of the following bit values that specify enumeration preference. Each set bit enables the corresponding extended behavior, whereas the absence of that bit disables the extended behavior and specifies the default, backward-compatible enumeration behavior. The possible values for fuPrefs are provided in the <see cref="T:Microsoft.WindowsAPICodePack.COMNative.MediaDevices.DeviceEnumPreferences"/> interface.</param>
+            <returns><para>The method returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/>. Possible values include, but are not limited to, those in the following table.</para>
+            <para><see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>: The method succeeded.</para>
+            <para><see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.InvalidArguments"/>: The fuPrefs parameter specifies an unsupported bit value.</para>
+            <para><see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.WMDMCallOutOfSequence"/>: The method was called after an enumeration operation; it must be called before the enumeration operation.</para></returns>
+            <remarks><para>This method provides clients the ability to override the default device enumeration behavior of Windows Media Device Manager. In order to override the default behavior, the client application must call this method immediately after creating the device manager object by querying for the <see cref="T:Microsoft.WindowsAPICodePack.COMNative.MediaDevices.IWMDeviceManager3"/> interface from Media Device Manager. The call must be made before any enumeration occurs, either explicitly or implicitly as a result of another operation.</para>
+            <para>After a preference flag is set, it cannot be changed for the lifetime of the application (not just the lifetime of the Windows Media Device Manager object). Attempting to change a preference flag will result in an error. Calling this method again with the same flag settings does not return an error, and also does have any effect on enumeration.</para>
+            <para>The service provider may not honor the <see cref="F:Microsoft.WindowsAPICodePack.COMNative.MediaDevices.DeviceEnumPreferences.DoNotVirtualizeStoragesAsDevices"/> flag. A more robust way to determine if storages are hosted by the same device is to call <see cref="M:Microsoft.WindowsAPICodePack.COMNative.MediaDevices.IWMDMDevice2.GetCanonicalName(System.String@,System.UInt16)"/>. Storages from the same device will return identical values, except for the final digit after the last "$" character.</para></remarks>
+        </member>
         <member name="T:Microsoft.WindowsAPICodePack.COMNative.MediaDevices.PropValidValuesForm">
             <summary>
             The <see cref="T:Microsoft.WindowsAPICodePack.COMNative.MediaDevices.PropValidValuesForm"/> enumeration type describes possible forms of valid values for a property.

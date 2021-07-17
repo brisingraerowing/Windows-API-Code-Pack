@@ -39,7 +39,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ClientInterfaces\IWMDMStorage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ClientInterfaces\IWMDMStorageControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ClientInterfaces\IWMDMStorageGlobals.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\CSecureChannelClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\Enums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\IComponentAuthenticate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MediaDevices\ServiceProviderInterfaces\IMDServiceProvider.cs" />

@@ -13,10 +13,10 @@
     <RootNamespace>Microsoft.WindowsAPICodePack</RootNamespace>
     <DocumentationFile>WinCopies.WindowsAPICodePack.Core.xml</DocumentationFile>
     <DefineConstants>WAPICP3;$(DefineConstants)</DefineConstants>
-    <VersionPrefix>3.1.2</VersionPrefix>
+    <VersionPrefix>3.3</VersionPrefix>
     <VersionSuffix>preview</VersionSuffix>
-    <AssemblyVersion>3.1.2</AssemblyVersion>
-    <FileVersion>3.1.2</FileVersion>
+    <AssemblyVersion>3.3</AssemblyVersion>
+    <FileVersion>3.3</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
