@@ -176,16 +176,6 @@
             Defines a general wrapper for a sensor.
             </summary>
         </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Sensors.Sensor.DataReportChanged">
-            <summary>
-            Occurs when the DataReport member changes.
-            </summary>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Sensors.Sensor.StateChanged">
-            <summary>
-            Occurs when the State member changes.
-            </summary>
-        </member>
         <member name="P:Microsoft.WindowsAPICodePack.Sensors.Sensor.DataReport">
             <summary>
             Gets a value that specifies the most recent data reported by the sensor.
@@ -261,6 +251,16 @@
             Gets or sets a value that specifies whether the data should be automatically updated.   
             If the value is not set, call TryUpdateDataReport or UpdateDataReport to update the DataReport member.
             </summary>        
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Sensors.Sensor.DataReportChanged">
+            <summary>
+            Occurs when the DataReport member changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Sensors.Sensor.StateChanged">
+            <summary>
+            Occurs when the State member changes.
+            </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Sensors.Sensor.TryUpdateData">
             <summary>

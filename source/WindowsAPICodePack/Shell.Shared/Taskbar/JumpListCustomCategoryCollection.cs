@@ -10,10 +10,13 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
     /// <summary>
     /// Represents a collection of custom categories
     /// </summary>
-    internal class JumpListCustomCategoryCollection
-        : System.Collections.Generic.ICollection<JumpListCustomCategory>, INotifyCollectionChanged
+    internal class JumpListCustomCategoryCollection : ICollection<JumpListCustomCategory>, INotifyCollectionChanged
     {
-        private List<JumpListCustomCategory> categories = new List<JumpListCustomCategory>();
+        private readonly List<JumpListCustomCategory> categories = new
+#if !CS9
+            List<JumpListCustomCategory>
+#endif
+            ();
 
         /// <summary>
         /// Event to trigger anytime this collection is modified
@@ -28,10 +31,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// <summary>
         /// The number of items in this collection
         /// </summary>
-        public int Count
-        {
-            get { return categories.Count; }
-        }
+        public int Count => categories.Count;
 
         /// <summary>
         /// Add the specified category to this collection
@@ -39,11 +39,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// <param name="category">Category to add</param>
         public void Add(JumpListCustomCategory category)
         {
-            if (category == null)
-            {
-                throw new ArgumentNullException("category");
-            }
-            categories.Add(category);
+            categories.Add(category ?? throw new ArgumentNullException(nameof(category)));
 
             // Trigger CollectionChanged event
             CollectionChanged(
@@ -68,15 +64,14 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             bool removed = categories.Remove(category);
 
             if (removed == true)
-            {
+            
                 // Trigger CollectionChanged event
                 CollectionChanged(
                     this,
                     new NotifyCollectionChangedEventArgs(
                         NotifyCollectionChangedAction.Remove,
                         0));
-            }
-
+            
             return removed;
         }
 
@@ -98,10 +93,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// </summary>
         /// <param name="category">Category to search for</param>
         /// <returns>True if category was found</returns>
-        public bool Contains(JumpListCustomCategory category)
-        {
-            return categories.Contains(category);
-        }
+        public bool Contains(JumpListCustomCategory category) => categories.Contains(category);
 
         /// <summary>
         /// Copy this collection to a compatible one-dimensional array,
@@ -109,27 +101,18 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// </summary>
         /// <param name="array">Array to copy to</param>
         /// <param name="index">Index of target array to start copy</param>
-        public void CopyTo(JumpListCustomCategory[] array, int index)
-        {
-            categories.CopyTo(array, index);
-        }
+        public void CopyTo(JumpListCustomCategory[] array, int index) => categories.CopyTo(array, index);
 
         /// <summary>
         /// Returns an enumerator that iterates through this collection.
         /// </summary>
         /// <returns>Enumerator to iterate through this collection.</returns>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return categories.GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => categories.GetEnumerator();
 
         /// <summary>
         /// Returns an enumerator that iterates through this collection.
         /// </summary>
         /// <returns>Enumerator to iterate through this collection.</returns>
-        IEnumerator<JumpListCustomCategory> IEnumerable<JumpListCustomCategory>.GetEnumerator()
-        {
-            return categories.GetEnumerator();
-        }
+        IEnumerator<JumpListCustomCategory> IEnumerable<JumpListCustomCategory>.GetEnumerator() => categories.GetEnumerator();
     }
 }

@@ -68,7 +68,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             uint optimalBufferSize = 0;
 
-            ThrowWhenFailHResult(resources.GetStream(Id, ref propKey, (uint)STGM.Access.Read, ref optimalBufferSize, out IStream reader));
+            ThrowWhenFailHResult(resources.GetStream(Id, ref propKey, (uint)STGM.Access.Read, ref optimalBufferSize, out System.Runtime.InteropServices.ComTypes.IStream reader));
 
             _ = Marshal.ReleaseComObject(resources);
 

@@ -1,7 +1,5 @@
 ﻿namespace Microsoft.WindowsAPICodePack.Win32Native
 {
-    // todo: add the other codes
-
     public enum HResult
     {
         /// <summary>
@@ -160,265 +158,263 @@
         /// </summary>
         InvalidMetadataFile = unchecked((int)0x80000012),
 
-        // todo: to check
+        /// <summary>
+        /// <para>MessageId: RO_E_CLOSED</para>
+        /// <para>MessageText: The object has been closed.</para>
+        /// </summary>
+        Closed = unchecked((int)0x80000013),
 
-        //        /// <summary>
-        //        /// <para>MessageId: RO_E_CLOSED</para>
-        //        /// <para>MessageText: The object has been closed.</para>
-        //        /// </summary>
-        //        RO_E_CLOSED = unchecked((int)0x80000013),
+        /// <summary>
+        /// <para>MessageId: RO_E_EXCLUSIVE_WRITE</para>
+        /// <para>MessageText: Only one thread may access the object during a write operation.</para>
+        /// </summary>
+        ExclusiveWrite = unchecked((int)0x80000014),
 
-        //        /// <summary>
-        //        /// <para>MessageId: RO_E_EXCLUSIVE_WRITE</para>
-        //        /// <para>MessageText: Only one thread may access the object during a write operation.</para>
-        //        /// </summary>
-        //        RO_E_EXCLUSIVE_WRITE = unchecked((int)0x80000014),
+        /// <summary>
+        /// <para>MessageId: RO_E_CHANGE_NOTIFICATION_IN_PROGRESS</para>
+        /// <para>MessageText: Operation is prohibited during change notification.</para>
+        /// </summary>
+        ChangeNotificationInProgress = unchecked((int)0x80000015),
 
-        //        /// <summary>
-        //        /// <para>MessageId: RO_E_CHANGE_NOTIFICATION_IN_PROGRESS</para>
-        //        /// <para>MessageText: Operation is prohibited during change notification.</para>
-        //        /// </summary>
-        //        RO_E_CHANGE_NOTIFICATION_IN_PROGRESS = unchecked((int)0x80000015),
+        /// <summary>
+        /// <para>MessageId: RO_E_ERROR_STRING_NOT_FOUND</para>
+        /// <para>MessageText: The text associated with this error code could not be found.</para>
+        /// </summary>
+        StringNotFound = unchecked((int)0x80000016),
 
-        // /// <summary>
-        // /// <para>MessageId: RO_E_ERROR_STRING_NOT_FOUND</para>
-        // /// <para>MessageText: The text associated with this error code could not be found.</para>
-        // /// </summary>
-        // RO_E_ERROR_STRING_NOT_FOUND      unchecked((int)0x80000016),
+        /// <summary>
+        /// <para>MessageId: E_STRING_NOT_NULL_TERMINATED</para>
+        /// <para>MessageText: String not null terminated.</para>
+        /// </summary>
+        StringNotNullTerminated = unchecked((int)0x80000017),
 
-        ///// <summary>
-        ///// <para>MessageId: E_STRING_NOT_NULL_TERMINATED</para>
-        ///// <para>MessageText: String not null terminated.</para>
-        ///// </summary>
-        //        E_STRING_NOT_NULL_TERMINATED = unchecked((int)0x80000017),
+        /// <summary>
+        /// <para>MessageId: E_ILLEGAL_DELEGATE_ASSIGNMENT</para>
+        /// <para>MessageText: A delegate was assigned when not allowed.</para>
+        /// </summary>
+        IllegalDelegateAssignment = unchecked((int)0x80000018),
 
-        //        /// <summary>
-        //        /// <para>MessageId: E_ILLEGAL_DELEGATE_ASSIGNMENT</para>
-        //        /// <para>MessageText: A delegate was assigned when not allowed.</para>
-        //        /// </summary>
-        //        E_ILLEGAL_DELEGATE_ASSIGNMENT = unchecked((int)0x80000018),
+        /// <summary>
+        /// <para>MessageId: E_ASYNC_OPERATION_NOT_STARTED</para>
+        /// <para>MessageText: An async operation was not properly started.</para>
+        /// </summary>
+        AsyncOperationNotStarted = unchecked((int)0x80000019),
 
-        //        /// <summary>
-        //        /// <para>MessageId: E_ASYNC_OPERATION_NOT_STARTED</para>
-        //        /// <para>MessageText: An async operation was not properly started.</para>
-        //        /// </summary>
-        //        E_ASYNC_OPERATION_NOT_STARTED = unchecked((int)0x80000019),
+        /// <summary>
+        /// <para>MessageId: E_APPLICATION_EXITING</para>
+        /// <para>MessageText: The application is exiting and cannot service this request</para>
+        /// </summary>
+        ApplicationExiting = unchecked((int)0x8000001A),
 
-        //        /// <summary>
-        //        /// <para>MessageId: E_APPLICATION_EXITING</para>
-        //        /// <para>MessageText: The application is exiting and cannot service this request</para>
-        //        /// </summary>
-        //        E_APPLICATION_EXITING = unchecked((int)0x8000001A),
+        /// <summary>
+        /// <para>MessageId: E_APPLICATION_VIEW_EXITING</para>
+        /// <para>MessageText: The application view is exiting and cannot service this request</para>
+        /// </summary>
+        ApplicationViewExiting = unchecked((int)0x8000001B),
 
-        //        /// <summary>
-        //        /// <para>MessageId: E_APPLICATION_VIEW_EXITING</para>
-        //        /// <para>MessageText: The application view is exiting and cannot service this request</para>
-        //        /// </summary>
-        //        E_APPLICATION_VIEW_EXITING = unchecked((int)0x8000001B),
+        /// <summary>
+        /// <para>MessageId: RO_E_MUST_BE_AGILE</para>
+        /// <para>MessageText: The object must support the IAgileObject interface</para>
+        /// </summary>
+        MustBeAgile = unchecked((int)0x8000001C),
 
-        //        /// <summary>
-        //        /// <para>MessageId: RO_E_MUST_BE_AGILE</para>
-        //        /// <para>MessageText: The object must support the IAgileObject interface</para>
-        //        /// </summary>
-        //        RO_E_MUST_BE_AGILE = unchecked((int)0x8000001C),
+        /// <summary>
+        /// <para>MessageId: RO_E_UNSUPPORTED_FROM_MTA</para>
+        /// <para>MessageText: Activating a single-threaded class from MTA is not supported</para>
+        /// </summary>
+        UnsupportedFromMTA = unchecked((int)0x8000001D),
 
-        //        /// <summary>
-        //        /// <para>MessageId: RO_E_UNSUPPORTED_FROM_MTA</para>
-        //        /// <para>MessageText: Activating a single-threaded class from MTA is not supported</para>
-        //        /// </summary>
-        //        RO_E_UNSUPPORTED_FROM_MTA = unchecked((int)0x8000001D),
+        /// <summary>
+        /// <para>MessageId: RO_E_COMMITTED</para>
+        /// <para>MessageText: The object has been committed.</para>
+        /// </summary>
+        Committed = unchecked((int)0x8000001E),
 
-        //        /// <summary>
-        //        /// <para>MessageId: RO_E_COMMITTED</para>
-        //        /// <para>MessageText: The object has been committed.</para>
-        //        /// </summary>
-        //        RO_E_COMMITTED = unchecked((int)0x8000001E),
+        /// <summary>
+        /// <para>MessageId: RO_E_BLOCKED_CROSS_ASTA_CALL</para>
+        /// <para>MessageText: A COM call to an ASTA was blocked because the call chain originated in or passed through another ASTA. This call pattern is deadlock-prone and disallowed by apartment call control.</para>
+        /// </summary>
+        BlockedCrossASTACall = unchecked((int)0x8000001F),
 
-        //        /// <summary>
-        //        /// <para>MessageId: RO_E_BLOCKED_CROSS_ASTA_CALL</para>
-        //        /// <para>MessageText: A COM call to an ASTA was blocked because the call chain originated in or passed through another ASTA. This call pattern is deadlock-prone and disallowed by apartment call control.</para>
-        //        /// </summary>
-        //        RO_E_BLOCKED_CROSS_ASTA_CALL = unchecked((int)0x8000001F),
+        /// <summary>
+        /// <para>MessageId: RO_E_CANNOT_ACTIVATE_FULL_TRUST_SERVER</para>
+        /// <para>MessageText: A universal application process cannot activate a packaged WinRT server that is declared to run full trust.</para>
+        /// </summary>
+        CannotActivateFullTrustServer = unchecked((int)0x80000020),
 
-        //        /// <summary>
-        //        /// <para>MessageId: RO_E_CANNOT_ACTIVATE_FULL_TRUST_SERVER</para>
-        //        /// <para>MessageText: A universal application process cannot activate a packaged WinRT server that is declared to run full trust.</para>
-        //        /// </summary>
-        //        RO_E_CANNOT_ACTIVATE_FULL_TRUST_SERVER = unchecked((int)0x80000020),
+        /// <summary>
+        /// <para>MessageId: RO_E_CANNOT_ACTIVATE_UNIVERSAL_APPLICATION_SERVER</para>
+        /// <para>MessageText: A full trust packaged application process cannot activate a packaged WinRT server unless it is also declared to run full trust.</para>
+        /// </summary>
+        CannotActivateUniversalApplicationServer = unchecked((int)0x80000021),
 
-        //        /// <summary>
-        //        /// <para>MessageId: RO_E_CANNOT_ACTIVATE_UNIVERSAL_APPLICATION_SERVER</para>
-        //        /// <para>MessageText: A full trust packaged application process cannot activate a packaged WinRT server unless it is also declared to run full trust.</para>
-        //        /// </summary>
-        //        RO_E_CANNOT_ACTIVATE_UNIVERSAL_APPLICATION_SERVER = unchecked((int)0x80000021),
+        /// <summary>
+        /// <para>MessageId: CO_E_INIT_TLS</para>
+        /// <para>MessageText: Thread local storage failure</para>
+        /// </summary>
+        InitThreadLocalStorage = unchecked((int)0x80004006),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_INIT_TLS</para>
-        //        /// <para>MessageText: Thread local storage failure</para>
-        //        /// </summary>
-        //        CO_E_INIT_TLS = unchecked((int)0x80004006),
+        /// <summary>
+        /// <para>MessageId: CO_E_INIT_SHARED_ALLOCATOR</para>
+        /// <para>MessageText: Get .Shared memory allocator failure</para>
+        /// </summary>
+        InitSharedAllocator = unchecked((int)0x80004007),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_INIT_SHARED_ALLOCATOR</para>
-        //        /// <para>MessageText: Get .Shared memory allocator failure</para>
-        //        /// </summary>
-        //        CO_E_INIT_SHARED_ALLOCATOR = unchecked((int)0x80004007),
+        /// <summary>
+        /// <para>MessageId: CO_E_INIT_MEMORY_ALLOCATOR</para>
+        /// <para>MessageText: Get memory allocator failure</para>
+        /// </summary>
+        InitMemoryAllocator = unchecked((int)0x80004008),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_INIT_MEMORY_ALLOCATOR</para>
-        //        /// <para>MessageText: Get memory allocator failure</para>
-        //        /// </summary>
-        //        CO_E_INIT_MEMORY_ALLOCATOR = unchecked((int)0x80004008),
+        /// <summary>
+        /// <para>MessageId: CO_E_INIT_CLASS_CACHE</para>
+        /// <para>MessageText: Unable to initialize class cache</para>
+        /// </summary>
+        InitClassCache = unchecked((int)0x80004009),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_INIT_CLASS_CACHE</para>
-        //        /// <para>MessageText: Unable to initialize class cache</para>
-        //        /// </summary>
-        //        CO_E_INIT_CLASS_CACHE = unchecked((int)0x80004009),
+        /// <summary>
+        /// <para>MessageId: CO_E_INIT_RPC_CHANNEL</para>
+        /// <para>MessageText: Unable to initialize RPC services</para>
+        /// </summary>
+        InitRPCChannel = unchecked((int)0x8000400A),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_INIT_RPC_CHANNEL</para>
-        //        /// <para>MessageText: Unable to initialize RPC services</para>
-        //        /// </summary>
-        //        CO_E_INIT_RPC_CHANNEL = unchecked((int)0x8000400A),
+        /// <summary>
+        /// <para>MessageId: CO_E_INIT_TLS_SET_CHANNEL_CONTROL</para>
+        /// <para>MessageText: Cannot set thread local storage channel control</para>
+        /// </summary>
+        InitThreadLocalStorageSetChannelControl = unchecked((int)0x8000400B),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_INIT_TLS_SET_CHANNEL_CONTROL</para>
-        //        /// <para>MessageText: Cannot set thread local storage channel control</para>
-        //        /// </summary>
-        //        CO_E_INIT_TLS_SET_CHANNEL_CONTROL = unchecked((int)0x8000400B),
+        /// <summary>
+        /// <para>MessageId: CO_E_INIT_TLS_CHANNEL_CONTROL</para>
+        /// <para>MessageText: Could not allocate thread local storage channel control</para>
+        /// </summary>
+        InitThreadLocalStorageChannelControl = unchecked((int)0x8000400C),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_INIT_TLS_CHANNEL_CONTROL</para>
-        //        /// <para>MessageText: Could not allocate thread local storage channel control</para>
-        //        /// </summary>
-        //        CO_E_INIT_TLS_CHANNEL_CONTROL = unchecked((int)0x8000400C),
+        /// <summary>
+        /// <para>MessageId: CO_E_INIT_UNACCEPTED_USER_ALLOCATOR</para>
+        /// <para>MessageText: The user supplied memory allocator is unacceptable</para>
+        /// </summary>
+        InitUnacceptedUserAllocator = unchecked((int)0x8000400D),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_INIT_UNACCEPTED_USER_ALLOCATOR</para>
-        //        /// <para>MessageText: The user supplied memory allocator is unacceptable</para>
-        //        /// </summary>
-        //        CO_E_INIT_UNACCEPTED_USER_ALLOCATOR = unchecked((int)0x8000400D),
+        /// <summary>
+        /// <para>MessageId: CO_E_INIT_SCM_MUTEX_EXISTS</para>
+        /// <para>MessageText: The OLE service mutex already exists</para>
+        /// </summary>
+        InitSCMMutexExists = unchecked((int)0x8000400E),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_INIT_SCM_MUTEX_EXISTS</para>
-        //        /// <para>MessageText: The OLE service mutex already exists</para>
-        //        /// </summary>
-        //        CO_E_INIT_SCM_MUTEX_EXISTS = unchecked((int)0x8000400E),
+        /// <summary>
+        /// <para>MessageId: CO_E_INIT_SCM_FILE_MAPPING_EXISTS</para>
+        /// <para>MessageText: The OLE service file mapping already exists</para>
+        /// </summary>
+        InitSCMFileMappingExists = unchecked((int)0x8000400F),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_INIT_SCM_FILE_MAPPING_EXISTS</para>
-        //        /// <para>MessageText: The OLE service file mapping already exists</para>
-        //        /// </summary>
-        //        CO_E_INIT_SCM_FILE_MAPPING_EXISTS = unchecked((int)0x8000400F),
+        /// <summary>
+        /// <para>MessageId: CO_E_INIT_SCM_MAP_VIEW_OF_FILE</para>
+        /// <para>MessageText: Unable to map view of file for OLE service</para>
+        /// </summary>
+        InitSCMMapViewOfFile = unchecked((int)0x80004010),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_INIT_SCM_MAP_VIEW_OF_FILE</para>
-        //        /// <para>MessageText: Unable to map view of file for OLE service</para>
-        //        /// </summary>
-        //        CO_E_INIT_SCM_MAP_VIEW_OF_FILE = unchecked((int)0x80004010),
+        /// <summary>
+        /// <para>MessageId: CO_E_INIT_SCM_EXEC_FAILURE</para>
+        /// <para>MessageText: Failure attempting to launch OLE service</para>
+        /// </summary>
+        InitSCMExecFailure = unchecked((int)0x80004011),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_INIT_SCM_EXEC_FAILURE</para>
-        //        /// <para>MessageText: Failure attempting to launch OLE service</para>
-        //        /// </summary>
-        //        CO_E_INIT_SCM_EXEC_FAILURE = unchecked((int)0x80004011),
+        /// <summary>
+        /// <para>MessageId: CO_E_INIT_ONLY_SINGLE_THREADED</para>
+        /// <para>MessageText: There was an attempt to call CoInitialize a second time while single threaded</para>
+        /// </summary>
+        INIT_ONLY_SINGLE_THREADED = unchecked((int)0x80004012),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_INIT_ONLY_SINGLE_THREADED</para>
-        //        /// <para>MessageText: There was an attempt to call CoInitialize a second time while single threaded</para>
-        //        /// </summary>
-        //        CO_E_INIT_ONLY_SINGLE_THREADED = unchecked((int)0x80004012),
+        /// <summary>
+        /// <para>MessageId: CO_E_CANT_REMOTE</para>
+        /// <para>MessageText: A Remote activation was necessary but was not allowed</para>
+        /// </summary>
+        CantRemote = unchecked((int)0x80004013),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_CANT_REMOTE</para>
-        //        /// <para>MessageText: A Remote activation was necessary but was not allowed</para>
-        //        /// </summary>
-        //        CO_E_CANT_REMOTE = unchecked((int)0x80004013),
+        /// <summary>
+        /// <para>MessageId: CO_E_BAD_SERVER_NAME</para>
+        /// <para>MessageText: A Remote activation was necessary but the server name provided was invalid</para>
+        /// </summary>
+        BadServerName = unchecked((int)0x80004014),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_BAD_SERVER_NAME</para>
-        //        /// <para>MessageText: A Remote activation was necessary but the server name provided was invalid</para>
-        //        /// </summary>
-        //        CO_E_BAD_SERVER_NAME = unchecked((int)0x80004014),
+        /// <summary>
+        /// <para>MessageId: CO_E_WRONG_SERVER_IDENTITY</para>
+        /// <para>MessageText: The class is configured to run as a security id different from the caller</para>
+        /// </summary>
+        WrongServerIdentity = unchecked((int)0x80004015),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_WRONG_SERVER_IDENTITY</para>
-        //        /// <para>MessageText: The class is configured to run as a security id different from the caller</para>
-        //        /// </summary>
-        //        CO_E_WRONG_SERVER_IDENTITY = unchecked((int)0x80004015),
+        /// <summary>
+        /// <para>MessageId: CO_E_OLE1DDE_DISABLED</para>
+        /// <para>MessageText: Use of Ole1 services requiring DDE windows is disabled</para>
+        /// </summary>
+        OLE1DDEDisabled = unchecked((int)0x80004016),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_OLE1DDE_DISABLED</para>
-        //        /// <para>MessageText: Use of Ole1 services requiring DDE windows is disabled</para>
-        //        /// </summary>
-        //        CO_E_OLE1DDE_DISABLED = unchecked((int)0x80004016),
+        /// <summary>
+        /// <para>MessageId: CO_E_RUNAS_SYNTAX</para>
+        /// <para>MessageText: A RunAs specification must be &lt;domain name&gt;\&lt;user name&gt; or simply &lt;user name&gt;</para>
+        /// </summary>
+        RunAsSyntax = unchecked((int)0x80004017),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_RUNAS_SYNTAX</para>
-        //        /// <para>MessageText: A RunAs specification must be <domain name>\<user name> or simply <user name></para>
-        //        /// </summary>
-        //        CO_E_RUNAS_SYNTAX = unchecked((int)0x80004017),
+        /// <summary>
+        /// <para>MessageId: CO_E_CREATEPROCESS_FAILURE</para>
+        /// <para>MessageText: The server process could not be started. The pathname may be incorrect.</para>
+        /// </summary>
+        CreateProcessFailure = unchecked((int)0x80004018),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_CREATEPROCESS_FAILURE</para>
-        //        /// <para>MessageText: The server process could not be started. The pathname may be incorrect.</para>
-        //        /// </summary>
-        //        CO_E_CREATEPROCESS_FAILURE = unchecked((int)0x80004018),
+        /// <summary>
+        /// <para>MessageId: CO_E_RUNAS_CREATEPROCESS_FAILURE</para>
+        /// <para>MessageText: The server process could not be started as the configured identity. The pathname may be incorrect or unavailable.</para>
+        /// </summary>
+        RunAsCreateProcessFailure = unchecked((int)0x80004019),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_RUNAS_CREATEPROCESS_FAILURE</para>
-        //        /// <para>MessageText: The server process could not be started as the configured identity. The pathname may be incorrect or unavailable.</para>
-        //        /// </summary>
-        //        CO_E_RUNAS_CREATEPROCESS_FAILURE = unchecked((int)0x80004019),
+        /// <summary>
+        /// <para>MessageId: CO_E_RUNAS_LOGON_FAILURE</para>
+        /// <para>MessageText: The server process could not be started because the configured identity is incorrect. Check the username and password.</para>
+        /// </summary>
+        RunAsLogonFailure = unchecked((int)0x8000401A),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_RUNAS_LOGON_FAILURE</para>
-        //        /// <para>MessageText: The server process could not be started because the configured identity is incorrect. Check the username and password.</para>
-        //        /// </summary>
-        //        CO_E_RUNAS_LOGON_FAILURE = unchecked((int)0x8000401A),
+        /// <summary>
+        /// <para>MessageId: CO_E_LAUNCH_PERMSSION_DENIED</para>
+        /// <para>MessageText: The client is not allowed to launch this server.</para>
+        /// </summary>
+        LaunchPermssionDenied = unchecked((int)0x8000401B),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_LAUNCH_PERMSSION_DENIED</para>
-        //        /// <para>MessageText: The client is not allowed to launch this server.</para>
-        //        /// </summary>
-        //        CO_E_LAUNCH_PERMSSION_DENIED = unchecked((int)0x8000401B),
+        /// <summary>
+        /// <para>MessageId: CO_E_START_SERVICE_FAILURE</para>
+        /// <para>MessageText: The service providing this server could not be started.</para>
+        /// </summary>
+        StartServiceFailure = unchecked((int)0x8000401C),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_START_SERVICE_FAILURE</para>
-        //        /// <para>MessageText: The service providing this server could not be started.</para>
-        //        /// </summary>
-        //        CO_E_START_SERVICE_FAILURE = unchecked((int)0x8000401C),
+        /// <summary>
+        /// <para>MessageId: CO_E_REMOTE_COMMUNICATION_FAILURE</para>
+        /// <para>MessageText: This computer was unable to communicate with the computer providing the server.</para>
+        /// </summary>
+        RemoteCommunicationFailure = unchecked((int)0x8000401D),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_REMOTE_COMMUNICATION_FAILURE</para>
-        //        /// <para>MessageText: This computer was unable to communicate with the computer providing the server.</para>
-        //        /// </summary>
-        //        CO_E_REMOTE_COMMUNICATION_FAILURE = unchecked((int)0x8000401D),
+        /// <summary>
+        /// <para>MessageId: CO_E_SERVER_START_TIMEOUT</para>
+        /// <para>MessageText: The server did not respond after being launched.</para>
+        /// </summary>
+        ServerStartTimeout = unchecked((int)0x8000401E),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_SERVER_START_TIMEOUT</para>
-        //        /// <para>MessageText: The server did not respond after being launched.</para>
-        //        /// </summary>
-        //        CO_E_SERVER_START_TIMEOUT = unchecked((int)0x8000401E),
+        /// <summary>
+        /// <para>MessageId: CO_E_CLSREG_INCONSISTENT</para>
+        /// <para>MessageText: The registration information for this server is inconsistent or incomplete.</para>
+        /// </summary>
+        CLSRegInconsistent = unchecked((int)0x8000401F),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_CLSREG_INCONSISTENT</para>
-        //        /// <para>MessageText: The registration information for this server is inconsistent or incomplete.</para>
-        //        /// </summary>
-        //        CO_E_CLSREG_INCONSISTENT = unchecked((int)0x8000401F),
+        /// <summary>
+        /// <para>MessageId: CO_E_IIDREG_INCONSISTENT</para>
+        /// <para>MessageText: The registration information for this interface is inconsistent or incomplete.</para>
+        /// </summary>
+        IIDRegInconsistent = unchecked((int)0x80004020),
 
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_IIDREG_INCONSISTENT</para>
-        //        /// <para>MessageText: The registration information for this interface is inconsistent or incomplete.</para>
-        //        /// </summary>
-        //        CO_E_IIDREG_INCONSISTENT = unchecked((int)0x80004020),
-
-        //        /// <summary>
-        //        /// <para>MessageId: CO_E_NOT_SUPPORTED</para>
-        //        /// <para>MessageText: The operation attempted is not supported.</para>
-        //        /// </summary>
-        //        CO_E_NOT_SUPPORTED = unchecked((int)0x80004021),
+        /// <summary>
+        /// <para>MessageId: CO_E_NOT_SUPPORTED</para>
+        /// <para>MessageText: The operation attempted is not supported.</para>
+        /// </summary>
+        NotSupported = unchecked((int)0x80004021),
 
         //        /// <summary>
         //        /// <para>MessageId: CO_E_RELOAD_DLL</para>
@@ -537,10 +533,10 @@
         //        // Generic OLE errors that may be returned by many interfaces
         //        //
 
-        //        OLE_E_FIRST ((HRESULT)0x80040000),
-        //        OLE_E_LAST  ((HRESULT)0x800400FF),
-        //        OLE_S_FIRST ((HRESULT)0x00040000),
-        //        OLE_S_LAST  ((HRESULT)0x000400FF),
+        OLEErrorFirst = unchecked((int)0x80040000),
+        OLEErrorLast = unchecked((int)0x800400FF),
+        OLESucceededFirst = unchecked((int)0x00040000),
+        OLESucceededLast = unchecked((int)0x000400FF),
 
         //        //
         //        // Old OLE errors
@@ -22407,7 +22403,7 @@
         /// <para>MessageId: WMDM_E_BUSY</para>
         /// <para>MessageText: The device is busy and cannot satisfy the new request.</para>
         /// </summary>
-        WMDMBusy = unchecked((int) 0x80045000),
+        WMDMBusy = unchecked((int)0x80045000),
 
         /// <summary>
         /// <para>MessageId: WMDM_E_INTERFACEDEAD</para>

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
+﻿#if CS5
 using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.COMNative.ShellExtensions;
@@ -11,6 +7,13 @@ using Microsoft.WindowsAPICodePack.ShellExtensions.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager;
+
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+
 using FileInfo = System.IO.FileInfo;
 
 namespace Microsoft.WindowsAPICodePack.ShellExtensions
@@ -105,10 +108,12 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         void IPreviewHandler.DoPreview()
         {
             IsPreviewShowing = true;
+
             try
             {
                 Initialize();
             }
+
             catch (Exception exc)
             {
                 HandleInitializeException(exc);
@@ -154,9 +159,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
 
         void IInitializeWithStream.Initialize(System.Runtime.InteropServices.ComTypes.IStream stream, AccessModes fileMode)
         {
-            var preview = this as IPreviewFromStream;
-
-            if (preview == null)
+            if (!(this is IPreviewFromStream preview))
 
                 throw new InvalidOperationException(
                     string.Format(System.Globalization.CultureInfo.InvariantCulture,
@@ -173,21 +176,17 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
                 preview.Load(storageStream);
 #endif
         }
-
         #endregion
 
         #region IInitializeWithItem Members
-
         void IInitializeWithItem.Initialize(IShellItem shellItem, AccessModes accessMode)
         {
-            var preview = this as IPreviewFromShellObject;
-
-            if (preview == null)
+            if (!(this is IPreviewFromShellObject preview))
 
                 throw new InvalidOperationException(
                     string.Format(System.Globalization.CultureInfo.InvariantCulture,
                     LocalizedMessages.PreviewHandlerUnsupportedInterfaceCalled,
-                    "IPreviewFromShellObject"));
+                    nameof(IPreviewFromShellObject)));
 
 #if CS8
             using ShellObject shellObject = ShellObjectFactory.Create(shellItem);
@@ -203,21 +202,17 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         #endregion
 
         #region IInitializeWithFile Members
-
         void IInitializeWithFile.Initialize(string filePath, AccessModes fileMode)
         {
-            var preview = this as IPreviewFromFile;
-
-            if (preview == null)
+            if (!(this is IPreviewFromFile preview))
 
                 throw new InvalidOperationException(
                     string.Format(System.Globalization.CultureInfo.InvariantCulture,
                     LocalizedMessages.PreviewHandlerUnsupportedInterfaceCalled,
-                    "IPreviewFromFile"));
+                    nameof(IPreviewFromFile)));
 
             preview.Load(new FileInfo(filePath));
         }
-
         #endregion
 
         #region ComRegistration
@@ -234,9 +229,8 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
 
                 if (attrs != null && attrs.Length == 1)
                 {
-                    var attr = attrs[0] as PreviewHandlerAttribute;
                     ThrowIfNotValid(registerType);
-                    RegisterPreviewHandler(registerType.GUID, attr);
+                    RegisterPreviewHandler(registerType.GUID, attrs[0] as PreviewHandlerAttribute);
                 }
                 
                 else
@@ -363,26 +357,22 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
                     LocalizedMessages.PreviewHandlerInterfaceNotImplemented,
                     type.Name));
         }
-
         #endregion
 
         #region ICustomQueryInterface Members
-
         CustomQueryInterfaceResult ICustomQueryInterface.GetInterface(ref Guid iid, out IntPtr ppv)
         {
             ppv = IntPtr.Zero;
             // Forces COM to not use the managed (free threaded) marshaler
-            if (iid == new Guid(NativeAPI.Guids.COM.IMarshal))
-
-                return CustomQueryInterfaceResult.Failed;
-
-            return (iid == new Guid(NativeAPI.Guids.ShellExtensions.IInitializeWithStream) && !(this is IPreviewFromStream))
+            return iid == new Guid(NativeAPI.Guids.COM.IMarshal)
+                ? CustomQueryInterfaceResult.Failed
+                : (iid == new Guid(NativeAPI.Guids.ShellExtensions.IInitializeWithStream) && !(this is IPreviewFromStream))
                 || (iid == new Guid(NativeAPI.Guids.ShellExtensions.IInitializeWithItem) && !(this is IPreviewFromShellObject))
                 || (iid == new Guid(NativeAPI.Guids.ShellExtensions.IInitializeWithFile) && !(this is IPreviewFromFile))
                 ? CustomQueryInterfaceResult.Failed
                 : CustomQueryInterfaceResult.NotHandled;
         }
-
         #endregion
     }
 }
+#endif

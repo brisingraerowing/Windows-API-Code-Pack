@@ -310,7 +310,7 @@
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.ShellExtensions.StorageStream">
             <summary>
-            A wrapper for the native IStream object.
+            A wrapper for the native System.Runtime.InteropServices.ComTypes.IStream object.
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.ShellExtensions.StorageStream.ReadByte">
@@ -360,17 +360,17 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ShellExtensions.StorageStream.Length">
             <summary>
-            Gets the length of the IStream
+            Gets the length of the System.Runtime.InteropServices.ComTypes.IStream
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ShellExtensions.StorageStream.Position">
             <summary>
-            Gets or sets the current position within the underlying IStream.
+            Gets or sets the current position within the underlying System.Runtime.InteropServices.ComTypes.IStream.
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.ShellExtensions.StorageStream.Seek(System.Int64,System.IO.SeekOrigin)">
             <summary>
-            Seeks within the underlying IStream.
+            Seeks within the underlying System.Runtime.InteropServices.ComTypes.IStream.
             </summary>
             <param name="offset">Offset</param>
             <param name="origin">Where to start seeking</param>
@@ -395,7 +395,7 @@
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.ShellExtensions.StorageStreamCommitOptions">
             <summary>
-            Options for commiting (flushing) an IStream storage stream
+            Options for commiting (flushing) an System.Runtime.InteropServices.ComTypes.IStream storage stream
             </summary>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.ShellExtensions.StorageStreamCommitOptions.None">

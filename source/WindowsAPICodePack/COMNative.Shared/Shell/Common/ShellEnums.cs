@@ -1,6 +1,5 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
-using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using System;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.Shell
@@ -67,6 +66,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
         /// </summary>
         Url = unchecked((int)0x80068000),
     }
+
     /// <summary>
     /// Available Library folder types
     /// </summary>
@@ -96,7 +96,6 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
         /// Videos
         /// </summary>
         Videos
-
     }
 
     /// <summary>

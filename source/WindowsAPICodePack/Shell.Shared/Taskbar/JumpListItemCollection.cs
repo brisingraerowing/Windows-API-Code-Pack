@@ -12,7 +12,11 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
     /// <typeparam name="T">The type of elements in this collection.</typeparam>
     internal class JumpListItemCollection<T> : System.Collections.Generic.ICollection<T>, INotifyCollectionChanged
     {
-        private List<T> items = new List<T>();
+        private readonly List<T> items = new
+#if !CS9
+            List<T>
+#endif
+            ();
 
         /// <summary>
         /// Occurs anytime a change is made to the underlying collection.
@@ -27,10 +31,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// <summary>
         /// Gets a count of the items currently in this collection.
         /// </summary>
-        public int Count
-        {
-            get { return items.Count; }
-        }
+        public int Count => items.Count;
 
         /// <summary>
         /// Adds the specified item to this collection.
@@ -89,10 +90,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// </summary>
         /// <param name="item">The search item.</param>
         /// <returns><b>true</b> if an item was found, otherwise <b>false</b>.</returns>
-        public bool Contains(T item)
-        {
-            return items.Contains(item);
-        }
+        public bool Contains(T item) => items.Contains(item);
 
         /// <summary>
         /// Copies this collection to a compatible one-dimensional array,
@@ -100,27 +98,18 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// </summary>
         /// <param name="array">The array name.</param>
         /// <param name="index">The index of the starting element.</param>
-        public void CopyTo(T[] array, int index)
-        {
-            items.CopyTo(array, index);
-        }
+        public void CopyTo(T[] array, int index) => items.CopyTo(array, index);
 
         /// <summary>
         /// Returns an enumerator that iterates through a collection.
         /// </summary>
         /// <returns>An enumerator to iterate through this collection.</returns>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return items.GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => items.GetEnumerator();
 
         /// <summary>
         /// Returns an enumerator that iterates through a collection of a specified type.
         /// </summary>
         /// <returns>An enumerator to iterate through this collection.</returns>
-        IEnumerator<T> IEnumerable<T>.GetEnumerator()
-        {
-            return items.GetEnumerator();
-        }
+        IEnumerator<T> IEnumerable<T>.GetEnumerator() => items.GetEnumerator();
     }
 }

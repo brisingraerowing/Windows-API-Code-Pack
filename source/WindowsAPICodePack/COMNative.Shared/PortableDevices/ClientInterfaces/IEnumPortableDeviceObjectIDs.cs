@@ -1,9 +1,10 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
-using System;
-using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.COMNative;
 using Microsoft.WindowsAPICodePack.Win32Native;
+
+using System;
+using System.Runtime.InteropServices;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
 {
@@ -11,8 +12,8 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
     /// The <see cref="IEnumPortableDeviceObjectIDs"/> interface enumerates the objects on a portable device. Get this interface initially by calling <see cref="IPortableDeviceContent.EnumObjects"/> on a device.
     /// </summary>
     [ComImport(),
-        Guid(NativeAPI.Guids.PortableDevices.IEnumPortableDeviceObjectID),
-        InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    Guid(NativeAPI.Guids.PortableDevices.IEnumPortableDeviceObjectID),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IEnumPortableDeviceObjectIDs
     {
         /// <summary>

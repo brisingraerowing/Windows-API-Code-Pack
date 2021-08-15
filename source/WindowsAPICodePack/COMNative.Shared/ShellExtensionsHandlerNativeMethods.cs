@@ -1,42 +1,38 @@
 ﻿using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+
 using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.ComTypes;
-using System.Text;
-using System.Windows.Forms;
+
+using static System.Runtime.InteropServices.ComInterfaceType;
+
+using ExtensionGuids = Microsoft.WindowsAPICodePack.NativeAPI.Guids.ShellExtensions;
 using Message = Microsoft.WindowsAPICodePack.Win32Native.Shell.Message;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.ShellExtensions
 {
     #region Interfaces
-
     /// <summary>
     /// ComVisible interface for native IThumbnailProvider
     /// </summary>
-    [ComImport]
-    [Guid(NativeAPI.Guids.ShellExtensions.IThumbnailProvider)]
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    [ComImport,
+    Guid(ExtensionGuids.IThumbnailProvider),
+    InterfaceType(InterfaceIsIUnknown)]
     public interface IThumbnailProvider
     {
-        ///// <summary>
-        ///// Gets a pointer to a bitmap to display as a thumbnail
-        ///// </summary>
-        ///// <param name="squareLength"></param>
-        ///// <param name="bitmapHandle"></param>
-        ///// <param name="bitmapType"></param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "2#"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "1#")]
+        /// <summary>
+        /// Gets a pointer to a bitmap to display as a thumbnail
+        /// </summary>
         void GetThumbnail(uint squareLength, [Out] out IntPtr bitmapHandle, [Out] out uint bitmapType);
     }
 
     /// <summary>
     /// Provides means by which to initialize with a file.
     /// </summary>
-    [ComImport]
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    [Guid(NativeAPI.Guids.ShellExtensions.IInitializeWithFile)]
+    [ComImport,
+    Guid(ExtensionGuids.IInitializeWithFile),
+    InterfaceType(InterfaceIsIUnknown)]
     public interface IInitializeWithFile
     {
         ///// <summary>
@@ -50,10 +46,9 @@ namespace Microsoft.WindowsAPICodePack.COMNative.ShellExtensions
     /// <summary>
     /// Provides means by which to initialize with a stream.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
-    [ComImport]
-    [Guid(NativeAPI.Guids.ShellExtensions.IInitializeWithStream)]
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    [ComImport,
+    Guid(ExtensionGuids.IInitializeWithStream),
+    InterfaceType(InterfaceIsIUnknown)]
     public interface IInitializeWithStream
     {
         ///// <summary>
@@ -61,15 +56,15 @@ namespace Microsoft.WindowsAPICodePack.COMNative.ShellExtensions
         ///// </summary>
         ///// <param name="stream"></param>
         ///// <param name="fileMode"></param>
-        void Initialize(IStream stream, AccessModes fileMode);
+        void Initialize(System.Runtime.InteropServices.ComTypes.IStream stream, AccessModes fileMode);
     }
 
     /// <summary>
     /// Provides means by which to initialize with a ShellObject
     /// </summary>
-    [ComImport]
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    [Guid(NativeAPI.Guids.ShellExtensions.IInitializeWithItem)]
+    [ComImport,
+    Guid(ExtensionGuids.IInitializeWithItem),
+    InterfaceType(InterfaceIsIUnknown)]
     public interface IInitializeWithItem
     {
         ///// <summary>
@@ -80,62 +75,72 @@ namespace Microsoft.WindowsAPICodePack.COMNative.ShellExtensions
         void Initialize(IShellItem shellItem, AccessModes accessMode);
     }
 
-    [ComImport]
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    [Guid(NativeAPI.Guids.COM.IObjectWithSite)]
+    [ComImport,
+    Guid(NativeAPI.Guids.COM.IObjectWithSite),
+    InterfaceType(InterfaceIsIUnknown)]
     public interface IObjectWithSite
     {
         void SetSite([In, MarshalAs(UnmanagedType.IUnknown)] object pUnkSite);
+
         void GetSite(ref Guid riid, [MarshalAs(UnmanagedType.IUnknown)] out object ppvSite);
     }
 
-    [ComImport]
-    [Guid(NativeAPI.Guids.COM.IOleWindow)]
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    [ComImport,
+    Guid(NativeAPI.Guids.COM.IOleWindow),
+    InterfaceType(InterfaceIsIUnknown)]
     public interface IOleWindow
     {
         void GetWindow(out IntPtr phwnd);
+
         void ContextSensitiveHelp([MarshalAs(UnmanagedType.Bool)] bool fEnterMode);
     }
 
-    [ComImport]
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    [Guid(NativeAPI.Guids.ShellExtensions.IPreviewHandler)]
+    [ComImport,
+    Guid(ExtensionGuids.IPreviewHandler),
+    InterfaceType(InterfaceIsIUnknown)]
     public interface IPreviewHandler
     {
         void SetWindow(IntPtr hwnd, ref NativeRect rect);
+        
         void SetRect(ref NativeRect rect);
+        
         void DoPreview();
+        
         void Unload();
+        
         void SetFocus();
+
         void QueryFocus(out IntPtr phwnd);
+
         [PreserveSig]
         HResult TranslateAccelerator(ref Message pmsg);
     }
 
-    [ComImport]
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    [Guid(NativeAPI.Guids.ShellExtensions.IPreviewHandlerFrame)]
+    [ComImport,
+    Guid(ExtensionGuids.IPreviewHandlerFrame),
+    InterfaceType(InterfaceIsIUnknown)]
     public interface IPreviewHandlerFrame
     {
         void GetWindowContext(IntPtr pinfo);
+
         [PreserveSig]
         HResult TranslateAccelerator(ref Message pmsg);
-    };
+    }
 
-    [ComImport]
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    [Guid(NativeAPI.Guids.ShellExtensions.IPreviewHandlerVisuals)]
+    [ComImport,
+    Guid(ExtensionGuids.IPreviewHandlerVisuals),
+    InterfaceType(InterfaceIsIUnknown)]
     public interface IPreviewHandlerVisuals
     {
         void SetBackgroundColor(NativeColorRef color);
+
         void SetFont(ref LogFont plf);
+        
         void SetTextColor(NativeColorRef color);
     }
     #endregion
 
     #region Structs
-
     /// <summary>
     /// Class for marshaling to native LogFont struct
     /// </summary>
@@ -221,6 +226,5 @@ namespace Microsoft.WindowsAPICodePack.COMNative.ShellExtensions
     {
         public uint Dword { get; set; }
     }
-
     #endregion
 }

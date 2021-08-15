@@ -1,12 +1,9 @@
 ﻿using Microsoft.WindowsAPICodePack.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative;
-using Microsoft.WindowsAPICodePack.COMNative.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
+
 using System;
 using System.Collections.Generic;
-using System.Text;
-using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
-using Microsoft.WindowsAPICodePack.Win32Native;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.PropertySystem
 {

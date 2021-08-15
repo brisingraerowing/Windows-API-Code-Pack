@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager;
+
+using System;
+using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
-using System.Windows;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager;
+
+using static Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.DesktopWindowManager;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
-
     /// <summary>
     /// WPF Glass Window
     /// Inherit from this window class to enable glass on a WPF window
@@ -15,37 +17,33 @@ namespace Microsoft.WindowsAPICodePack.Shell
     public class GlassWindow : Window
     {
         #region properties
-
         /// <summary>
         /// Get determines if AeroGlass is enabled on the desktop. Set enables/disables AreoGlass on the desktop.
         /// </summary>
         public static bool AeroGlassCompositionEnabled
         {
-            set => Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.DesktopWindowManager.DwmEnableComposition(
-                    value ? CompositionEnable.Enable : CompositionEnable.Disable);
-            get => Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.DesktopWindowManager.DwmIsCompositionEnabled();
-        }
+            get => DwmIsCompositionEnabled();
 
+            set => DwmEnableComposition(
+                    value ? CompositionEnable.Enable : CompositionEnable.Disable);
+        }
         #endregion
 
         #region events
-
         /// <summary>
         /// Fires when the availability of Glass effect changes.
         /// </summary>
         public event EventHandler<AeroGlassCompositionChangedEventArgs> AeroGlassCompositionChanged;
-
         #endregion
 
         #region operations
-
         /// <summary>
         /// Makes the background of current window transparent from both Wpf and Windows Perspective
         /// </summary>
         public void SetAeroGlassTransparency()
         {
             // Set the Background to transparent from Win32 perpective 
-            HwndSource.FromHwnd(windowHandle).CompositionTarget.BackgroundColor = System.Windows.Media.Colors.Transparent;
+            HwndSource.FromHwnd(windowHandle).CompositionTarget.BackgroundColor = Colors.Transparent;
 
             // Set the Background to transparent from WPF perpective 
             Background = Brushes.Transparent;
@@ -86,7 +84,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 };
 
                 // Extend the Frame into client area
-                _ = Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.DesktopWindowManager.DwmExtendFrameIntoClientArea(windowHandle, ref margins);
+                _ = DwmExtendFrameIntoClientArea(windowHandle, ref margins);
             }
         }
 
@@ -96,9 +94,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public void ResetAeroGlass()
         {
             var margins = new Margins(true);
-            _ =  Win32Native.Shell.DesktopWindowManager. DesktopWindowManager.DwmExtendFrameIntoClientArea(windowHandle, ref margins);
+            _ = DwmExtendFrameIntoClientArea(windowHandle, ref margins);
         }
-
         #endregion
 
         #region implementation
@@ -106,16 +103,17 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
-            if (msg == NativeAPI.Consts.Shell.DesktopWindowManager.DWMMessages.WM_DWMCOMPOSITIONCHANGED
-                || msg == NativeAPI.Consts.Shell.DesktopWindowManager.DWMMessages.WM_DWMNCRENDERINGCHANGED)
+            if (msg == (int)WindowMessage.DWMCompositionChanged
+                || msg == (int)WindowMessage.DWMNCRenderingChanged)
             {
                 if (AeroGlassCompositionChanged != null)
-                
+
                     AeroGlassCompositionChanged.Invoke(this,
                         new AeroGlassCompositionChangedEventArgs(AeroGlassCompositionEnabled));
-                
+
                 handled = true;
             }
+
             return IntPtr.Zero;
         }
 
@@ -124,7 +122,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// Override SourceInitialized to initialize windowHandle for this window.
         /// A valid windowHandle is available only after the sourceInitialized is completed
         /// </summary>
-        /// <param name="e">EventArgs</param>
         protected override void OnSourceInitialized(EventArgs e)
         {
             base.OnSourceInitialized(e);
@@ -137,7 +134,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             ResetAeroGlass();
         }
-
         #endregion
     }
 }

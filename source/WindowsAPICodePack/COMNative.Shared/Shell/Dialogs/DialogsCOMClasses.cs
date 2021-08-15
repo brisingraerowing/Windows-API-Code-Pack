@@ -5,7 +5,6 @@ using System.Runtime.InteropServices;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.Dialogs
 {
-
     // Dummy base interface for CommonFileDialog coclasses.
     public interface NativeCommonFileDialog
     {
@@ -46,5 +45,4 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Dialogs
     public class FileSaveDialogRCW
     {
     }
-
 }

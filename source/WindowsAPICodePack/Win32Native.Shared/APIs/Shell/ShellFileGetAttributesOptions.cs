@@ -66,7 +66,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         Encrypted = 0x00002000,
 
         /// <summary>
-        /// Indicates that accessing the object = through IStream or other storage interfaces, 
+        /// Indicates that accessing the object = through <see cref="System.Runtime.InteropServices.ComTypes.IStream"/> or other storage interfaces, 
         /// is a slow operation. 
         /// Applications should avoid accessing items flagged with <see cref="IsSlow"/>.
         /// </summary>
@@ -183,7 +183,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         Stream = 0x00400000,
 
         /// <summary>
-        /// Children of this item are accessible through IStream or IStorage. 
+        /// Children of this item are accessible through <see cref="System.Runtime.InteropServices.ComTypes.IStream"/> or IStorage. 
         /// Those children are flagged with <see cref="Storage"/> or <see cref="Stream"/>.
         /// </summary>
         StorageAncestor = 0x00800000,

@@ -1,18 +1,18 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
-using System;
-using System.ComponentModel;
-using System.Runtime.InteropServices;
-
 using Microsoft.WindowsAPICodePack.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices;
 
+using System;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
+
 using static WinCopies.
-#if WAPICP2
-    Util.Util
-#else
+#if WAPICP3
     ThrowHelper
+#else
+    Util.Util
 #endif
     ;
 

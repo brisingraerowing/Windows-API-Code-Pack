@@ -9,11 +9,9 @@ using System.Runtime.InteropServices;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.Shell
 {
-    // todo: add a class to encapsulate this interface into the 'Shell' project and check, on the method calls, if all of the enum params are supported by the current version of the OS.
-
     [ComImport,
-       Guid(NativeAPI.Guids.Shell.IFileOperation),
-       InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    Guid(NativeAPI.Guids.Shell.IFileOperation),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IFileOperation
     {
         /// <summary>

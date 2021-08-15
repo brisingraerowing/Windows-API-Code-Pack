@@ -1,14 +1,13 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
-using System;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.ComTypes;
-
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
+
+using System;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 using GuidAttribute = System.Runtime.InteropServices.GuidAttribute;
 
@@ -16,17 +15,23 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
 {
     public enum SICHINTF
     {
-        SICHINT_DISPLAY = 0x00000000,
-        SICHINT_CANONICAL = 0x10000000,
-        SICHINT_TEST_FILESYSPATH_IF_NOT_EQUAL = 0x20000000,
-        SICHINT_ALLFIELDS = unchecked((int)0x80000000)
+        Display = 0x00000000,
+        Canonical = 0x10000000,
+        TestFileSysPathIfNotEqual = 0x20000000,
+        AllFields = unchecked((int)0x80000000)
+#if !WAPICP3
+            ,
+        SICHINT_DISPLAY = Display,
+        SICHINT_CANONICAL = Canonical,
+        SICHINT_TEST_FILESYSPATH_IF_NOT_EQUAL = TestFileSysPathIfNotEqual,
+        SICHINT_ALLFIELDS = AllFields
+#endif
     }
 
     // Disable warning if a method declaration hides another inherited from a parent COM interface
     // To successfully import a COM interface, all inherited methods need to be declared again with 
     // the exception of those already declared in "IUnknown"
 #pragma warning disable 108
-
     #region COM Interfaces
     [ComImport(),
     Guid(NativeAPI.Guids.Shell.IModalWindow),
@@ -125,9 +130,9 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
             [MarshalAs(UnmanagedType.Interface)] out IShellItem2 savedTo);
     }
 
-    [ComImport()]
-    [Guid("bcc18b79-ba16-442f-80c4-8a59c30c463b")]
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    [ComImport(),
+    Guid("bcc18b79-ba16-442f-80c4-8a59c30c463b"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IShellItemImageFactory
     {
         [PreserveSig]
@@ -192,9 +197,9 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     /// <summary>
     /// Provides the managed definition of the IPersistStream interface, with functionality from IPersist.
     /// </summary>
-    [ComImport]
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    [Guid(NativeAPI.Guids.Shell.IPersistStream)]
+    [ComImport,
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
+    Guid(NativeAPI.Guids.Shell.IPersistStream)]
     public interface IPersistStream
     {
         /// <summary>
@@ -214,10 +219,10 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
         HResult IsDirty();
 
         [PreserveSig]
-        HResult Load([In, MarshalAs(UnmanagedType.Interface)] IStream stm);
+        HResult Load([In, MarshalAs(UnmanagedType.Interface)] System.Runtime.InteropServices.ComTypes.IStream stm);
 
         [PreserveSig]
-        HResult Save([In, MarshalAs(UnmanagedType.Interface)] IStream stm, bool fRemember);
+        HResult Save([In, MarshalAs(UnmanagedType.Interface)] System.Runtime.InteropServices.ComTypes.IStream stm, bool fRemember);
 
         [PreserveSig]
         HResult GetSizeMax(out ulong cbSize);
@@ -243,10 +248,10 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
         HResult IsDirty();
 
         [PreserveSig]
-        HResult Load([In, MarshalAs(UnmanagedType.Interface)] IStream stm);
+        HResult Load([In, MarshalAs(UnmanagedType.Interface)] System.Runtime.InteropServices.ComTypes.IStream stm);
 
         [PreserveSig]
-        HResult Save([In, MarshalAs(UnmanagedType.Interface)] IStream stm, bool fRemember);
+        HResult Save([In, MarshalAs(UnmanagedType.Interface)] System.Runtime.InteropServices.ComTypes.IStream stm, bool fRemember);
 
         [PreserveSig]
         HResult GetSizeMax(out ulong cbSize);
@@ -308,9 +313,9 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
         HResult GetData(/*[out, annotation("__out_opt")] ULONG* pFirstPos, [out, annotation("__out_opt")] ULONG* pLength, [out, annotation("__deref_opt_out_opt")] LPWSTR* ppsz, [out, annotation("__out_opt")] PROPVARIANT* pValue*/);
     }
 
-    [ComImport]
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    [Guid(NativeAPI.Guids.Shell.IEnumUnknown)]
+    [ComImport,
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
+    Guid(NativeAPI.Guids.Shell.IEnumUnknown)]
     public interface IEnumUnknown
     {
         [PreserveSig]
@@ -395,8 +400,8 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     /// Exposes methods that are used to persist item identifier lists.
     /// </summary>
     [ComImport,
-       Guid("1079ACFC-29BD-11D3-8E0D-00C04F6837D5"),
-        InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    Guid("1079ACFC-29BD-11D3-8E0D-00C04F6837D5"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPersistIDList
     {
         /// <summary>
@@ -418,8 +423,8 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     /// Exposes enumeration of <see cref="IShellItem"/> interfaces. This interface is typically obtained by calling the <b>IEnumShellItems</b> method.
     /// </summary>
     [ComImport,
-        Guid("70629033-E363-4A28-A567-0DB78006E6D7"),
-        InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    Guid("70629033-E363-4A28-A567-0DB78006E6D7"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IEnumShellItems
     {
         /// <summary>
@@ -458,6 +463,5 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
         HResult Clone(IntPtr ppenum);
     }
     #endregion
-
 #pragma warning restore 108
 }

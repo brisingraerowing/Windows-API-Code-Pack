@@ -1,13 +1,15 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
+using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
+
 using GuidAttribute = System.Runtime.InteropServices.GuidAttribute;
-using Microsoft.WindowsAPICodePack.COMNative.Shell;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.Dialogs
 {
@@ -15,7 +17,6 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Dialogs
     // To successfully import a COM interface, all inherited methods need to be declared again with 
     // the exception of those already declared in "IUnknown"
 #pragma warning disable 0108
-
     [ComImport(),
     Guid(NativeAPI.Guids.Shell.IFileDialog),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -505,5 +506,4 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Dialogs
     }
     // Restore the warning
 #pragma warning restore 0108
-
 }

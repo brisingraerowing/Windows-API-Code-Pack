@@ -1007,16 +1007,16 @@
             Retrieves information about an object in the file system, such as a file, folder, directory, or drive root.
             </summary>
             <param name="pszPath"><para>A string of maximum length <see cref="F:Microsoft.WindowsAPICodePack.NativeAPI.Consts.Shell.MaxPath"/> that contains the path and file name. Both absolute and relative paths are valid.</para>
-            <para>If the <b>uFlags</b> parameter includes the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.PIDL"/> flag, this parameter must be the address of an ITEMIDLIST(PIDL) structure that contains the list of item identifiers that uniquely identifies the file within the Shell's namespace. The PIDL must be a fully qualified PIDL. Relative PIDLs are not allowed.</para>
-            <para>If the <b>uFlags</b> parameter includes the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.UseFileAttributes"/> flag, this parameter does not have to be a valid file name. The function will proceed as if the file exists with the specified name and with the file attributes passed in the <b>dwFileAttributes</b> parameter. This allows you to obtain information about a file type by passing just the extension for <b>pszPath</b> and passing <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes.Normal"/> in <b>dwFileAttributes</b>.</para>
+            <para>If the <paramref name="uFlags"/> parameter includes the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.PIDL"/> flag, this parameter must be the address of an ITEMIDLIST(PIDL) structure that contains the list of item identifiers that uniquely identifies the file within the Shell's namespace. The PIDL must be a fully qualified PIDL. Relative PIDLs are not allowed.</para>
+            <para>If the <paramref name="uFlags"/> parameter includes the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.UseFileAttributes"/> flag, this parameter does not have to be a valid file name. The function will proceed as if the file exists with the specified name and with the file attributes passed in the <paramref name="dwFileAttributes"/> parameter. This allows you to obtain information about a file type by passing just the extension for <paramref name="pszPath"/> and passing <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes.Normal"/> in <paramref name="dwFileAttributes"/>.</para>
             <para>This string can use either short (the 8.3 form) or long file names.</para></param>
-            <param name="dwFileAttributes">A combination of one or more <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes"/> flags. If <b>uFlags</b> does not include the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.UseFileAttributes"/> flag, this parameter is ignored.</param>
+            <param name="dwFileAttributes">A combination of one or more <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes"/> flags. If <paramref name="uFlags"/> does not include the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.UseFileAttributes"/> flag, this parameter is ignored.</param>
             <param name="psfi">A <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.SHFILEINFO"/> structure to receive the file information.</param>
-            <param name="cbFileInfo">The size, in bytes, of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.SHFILEINFO"/> structure pointed to by the <b>psfi</b> parameter.</param>
+            <param name="cbFileInfo">The size, in bytes, of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.SHFILEINFO"/> structure pointed to by the <paramref name="psfi"/> parameter.</param>
             <param name="uFlags">The flags that specify the file information to retrieve. This parameter can be a combination of the values of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions"/> enum.</param>
-            <returns><para>Returns a value whose meaning depends on the <b>uFlags</b> parameter.</para>
-            <para>If <b>uFlags</b> does not contain <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.ExeType"/> or <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.SysIconIndex"/>, the return value is nonzero if successful, or zero otherwise.</para>
-            <para>If <b>uFlags</b> contains the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.ExeType"/> flag, the return value specifies the type of the executable file. It will be one of the following values.</para>
+            <returns><para>Returns a value whose meaning depends on the <paramref name="uFlags"/> parameter.</para>
+            <para>If <paramref name="uFlags"/> does not contain <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.ExeType"/> or <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.SysIconIndex"/>, the return value is nonzero if successful, or zero otherwise.</para>
+            <para>If <paramref name="uFlags"/> contains the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.ExeType"/> flag, the return value specifies the type of the executable file. It will be one of the following values.</para>
             Return code                                    | Description
             -----------------------------------------------+------------------------------------------
             0                                              | Nonexecutable file or an error condition.
@@ -1024,7 +1024,7 @@
             LOWORD = MZ and HIWORD = 0                     | MS-DOS.exe or .com file
             LOWORD = PE and HIWORD = 0                     | Console application or.bat file</returns>
             <remarks><para>You should call this function from a background thread. Failure to do so could cause the UI to stop responding.</para>
-            <para>If <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.Shell.SHGetFileInfo(System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes,Microsoft.WindowsAPICodePack.Win32Native.Shell.SHFILEINFO@,System.UInt32,Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions)"/> returns an icon handle in the <b>hIcon</b> member of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.SHFILEINFO"/> structure pointed to by <b>psfi</b>, you are responsible for freeing it with <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.Core.DestroyIcon(System.IntPtr)"/> when you no longer need it.</para>
+            <para>If <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.Shell.SHGetFileInfo(System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes,Microsoft.WindowsAPICodePack.Win32Native.Shell.SHFILEINFO@,System.UInt32,Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions)"/> returns an icon handle in the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.SHFILEINFO.hIcon"/> member of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.SHFILEINFO"/> structure pointed to by <b>psfi</b>, you are responsible for freeing it with <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.Core.DestroyIcon(System.IntPtr)"/> when you no longer need it.</para>
             <para>Note: Once you have a handle to a system image list, you can use the <b>Image List API</b> to manipulate it like any other image list. Because system image lists are created on a per-process basis, you should treat them as read-only objects. Writing to a system image list may overwrite or delete one of the system images, making it unavailable or incorrect for the remainder of the process.</para>
             <para>When you use the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.ExeType"/> flag with a Windows application, the Windows version of the executable is given in the HIWORD of the return value. This version is returned as a hexadecimal value. For details on equating this value with a specific Windows version, see <a href="https://docs.microsoft.com/windows/desktop/WinProg/using-the-windows-headers">Using the Windows Headers</a>.</para></remarks>
         </member>
@@ -1163,7 +1163,7 @@
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.IsSlow">
             <summary>
-            Indicates that accessing the object = through IStream or other storage interfaces, 
+            Indicates that accessing the object = through System.Runtime.InteropServices.ComTypes.IStream or other storage interfaces, 
             is a slow operation. 
             Applications should avoid accessing items flagged with <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.IsSlow"/>.
             </summary>
@@ -1280,7 +1280,7 @@
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.StorageAncestor">
             <summary>
-            Children of this item are accessible through IStream or IStorage. 
+            Children of this item are accessible through System.Runtime.InteropServices.ComTypes.IStream or IStorage. 
             Those children are flagged with <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.Storage"/> or <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.Stream"/>.
             </summary>
         </member>
@@ -2847,6 +2847,13 @@
             <param name="result">The error code.</param>
             <returns><see langword="true"/> if the error code indicates success; otherwise <see langword="false"/>.</returns>
         </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Succeeded(Microsoft.WindowsAPICodePack.Win32Native.ErrorCode@)">
+            <summary>
+            Determines whether a given <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode"/> indicates success.
+            </summary>
+            <param name="result">The error code.</param>
+            <returns><see langword="true"/> if the error code indicates success; otherwise <see langword="false"/>.</returns>
+        </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.Succeeded(Microsoft.WindowsAPICodePack.Win32Native.HResult@)">
             <summary>
             Determines whether a given <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> indicates success.
@@ -2962,6 +2969,13 @@
             <para>Wrappers for Native Methods and Structs.</para>
             <para>This type is intended for unmanaged use only.</para>
             </summary>    
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.Core.GetCurrentThreadId">
+            <summary>
+            Retrieves the thread identifier of the calling thread.
+            </summary>
+            <returns>The thread identifier of the calling thread.</returns>
+            <remarks>Until the thread terminates, the thread identifier uniquely identifies the thread throughout the system.</remarks>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.Core.PostMessage(System.IntPtr,Microsoft.WindowsAPICodePack.WindowMessage,System.IntPtr,System.IntPtr)">
             <summary>
@@ -3323,7 +3337,7 @@
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Storage.STGM">
             <summary>
-            <para>The <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Storage.STGM"/> constants are flags that indicate conditions for creating and deleting the object and access modes for the object. The <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Storage.STGM"/> constants are included in the IStorage, IStream, and IPropertySetStorage interfaces and in the StgCreateDocfile, StgCreateStorageEx, StgCreateDocfileOnILockBytes, StgOpenStorage, and StgOpenStorageEx functions.</para>
+            <para>The <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Storage.STGM"/> constants are flags that indicate conditions for creating and deleting the object and access modes for the object. The <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Storage.STGM"/> constants are included in the IStorage, System.Runtime.InteropServices.ComTypes.IStream, and IPropertySetStorage interfaces and in the StgCreateDocfile, StgCreateStorageEx, StgCreateDocfileOnILockBytes, StgOpenStorage, and StgOpenStorageEx functions.</para>
             <para>These elements are often combined using an OR operator. They are interpreted in groups as listed in this class. It is not valid to use more than one element from a single group.</para>
             <para>Use a flag from the creation group when creating an object, such as with StgCreateStorageEx or IStorage::CreateStream.</para>
             <para>For more information about transactioning, see the Remarks section of the following web page: https://docs.microsoft.com/en-us/windows/win32/stg/stgm-constants</para>
@@ -3331,7 +3345,7 @@
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Storage.STGM.Access.Read">
             <summary>
-            Indicates that the object is read-only, meaning that modifications cannot be made. For example, if a stream object is opened with <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Storage.STGM.Access.Read"/>, the ISequentialStream::Read method may be called, but the ISequentialStream::Write method may not. Similarly, if a storage object opened with <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Storage.STGM.Access.Read"/>, the IStorage::OpenStream and IStorage::OpenStorage methods may be called, but the IStorage::CreateStream and IStorage::CreateStorage methods may not.
+            Indicates that the object is read-only, meaning that modifications cannot be made. For example, if a stream object is opened with <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Storage.STGM.Access.Read"/>, the System.Runtime.InteropServices.ComTypes.ISequentialStream::Read method may be called, but the System.Runtime.InteropServices.ComTypes.ISequentialStream::Write method may not. Similarly, if a storage object opened with <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Storage.STGM.Access.Read"/>, the IStorage::OpenStream and IStorage::OpenStorage methods may be called, but the IStorage::CreateStream and IStorage::CreateStorage methods may not.
             </summary>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Storage.STGM.Access.Write">
@@ -3341,7 +3355,7 @@
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Storage.STGM.Access.ReadWrite">
             <summary>
-            Enables access and modification of object data. For example, if a stream object is created or opened in this mode, it is possible to call both IStream::Read and IStream::Write. Be aware that this constant is not a simple binary OR operation of the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Storage.STGM.Access.Write"/> and <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Storage.STGM.Access.Read"/> elements.
+            Enables access and modification of object data. For example, if a stream object is created or opened in this mode, it is possible to call both System.Runtime.InteropServices.ComTypes.IStream::Read and System.Runtime.InteropServices.ComTypes.IStream::Write. Be aware that this constant is not a simple binary OR operation of the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Storage.STGM.Access.Write"/> and <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Storage.STGM.Access.Read"/> elements.
             </summary>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Storage.STGM.Sharing.ShareDenyNone">
@@ -3396,7 +3410,7 @@
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Storage.STGM.Transactioning.Transacted">
             <summary>
-            Indicates that, in transacted mode, changes are buffered and written only if an explicit commit operation is called. To ignore the changes, call the Revert method in the IStream, IStorage, or IPropertyStorage interface. The COM compound file implementation of IStorage does not support transacted streams, which means that streams can be opened only in direct mode, and you cannot revert changes to them, however transacted storages are supported. The compound file, stand-alone, and NTFS file system implementations of IPropertySetStorage similarly do not support transacted, simple property sets because these property sets are stored in streams. However, transactioning of nonsimple property sets, which can be created by specifying the PROPSETFLAG_NONSIMPLE flag in the grfFlags parameter of IPropertySetStorage::Create, are supported.
+            Indicates that, in transacted mode, changes are buffered and written only if an explicit commit operation is called. To ignore the changes, call the Revert method in the System.Runtime.InteropServices.ComTypes.IStream, IStorage, or IPropertyStorage interface. The COM compound file implementation of IStorage does not support transacted streams, which means that streams can be opened only in direct mode, and you cannot revert changes to them, however transacted storages are supported. The compound file, stand-alone, and NTFS file system implementations of IPropertySetStorage similarly do not support transacted, simple property sets because these property sets are stored in streams. However, transactioning of nonsimple property sets, which can be created by specifying the PROPSETFLAG_NONSIMPLE flag in the grfFlags parameter of IPropertySetStorage::Create, are supported.
             </summary>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Storage.STGM.TransactioningPerformance.NoScratch">

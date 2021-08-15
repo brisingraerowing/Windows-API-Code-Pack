@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Microsoft.WindowsAPICodePack.Win32Native
+﻿namespace Microsoft.WindowsAPICodePack.Win32Native
 {
-
-
     /// <summary>
     /// The clipboard formats defined by the system.
     /// </summary>
     public enum StandardClipboardFormats : int
     {
-
         /// <summary>
         /// A handle to a bitmap (HBITMAP).
         /// </summary>
@@ -149,6 +140,5 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         /// Represents audio data in one of the standard wave formats, such as 11 kHz or 22 kHz PCM.
         /// </summary>
         Wave = 12
-
     }
 }

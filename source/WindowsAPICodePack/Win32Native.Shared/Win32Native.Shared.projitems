@@ -23,6 +23,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\ShellException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\ShellFileGetAttributesOptions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\Structs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\WindowsAccessibilityFeatures.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\WindowsAndMessages.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\AppRestartRecovery\AppRestartRecoveryNativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\AppRestartRecovery\RecoveryData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\AppRestartRecovery\RestartRestrictions.cs" />

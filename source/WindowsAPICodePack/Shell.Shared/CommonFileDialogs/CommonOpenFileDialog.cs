@@ -1,13 +1,13 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
-
 using Microsoft.WindowsAPICodePack.COMNative.Dialogs;
 using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 using WinCopies.Collections
 #if WAPICP3
@@ -73,7 +73,13 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 CheckFileItemsAvailable();
 
                 // temp collection to hold our shellobjects
-                var resultItems = new ArrayBuilder<ShellObject>();
+                var resultItems = new
+#if CS7
+                    ArrayBuilder
+#else
+                    LinkedList
+#endif
+                    <ShellObject>();
 
                 // Loop through our existing list of filenames, and try to create a concrete type of
                 // ShellObject (e.g. ShellLibrary, FileSystemFolder, ShellFile, etc)
@@ -81,7 +87,21 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
                     _ = resultItems.AddLast(ShellObjectFactory.Create(si));
 
-                return new System.Collections.ObjectModel.Collection<ShellObject>(resultItems.ToList());
+#if !CS7
+                var list = new List<ShellObject>(resultItems.Count);
+
+                foreach (ShellObject item in resultItems)
+
+                    list.Add(item);
+#endif
+
+                return new System.Collections.ObjectModel.Collection<ShellObject>(
+#if CS7
+                    resultItems.ToList()
+#else
+                    list
+#endif
+                    );
             }
         }
 
@@ -107,7 +127,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         {
             Debug.Assert(openDialogCoClass != null, "Must call Initialize() before fetching dialog interface");
 
-            return (IFileDialog)openDialogCoClass;
+            return openDialogCoClass;
         }
 
         internal override void InitializeNativeFileDialog()

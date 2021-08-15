@@ -301,6 +301,264 @@
             <para>MessageText: Metadata file is invalid or corrupted.</para>
             </summary>
         </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Closed">
+            <summary>
+            <para>MessageId: RO_E_CLOSED</para>
+            <para>MessageText: The object has been closed.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.ExclusiveWrite">
+            <summary>
+            <para>MessageId: RO_E_EXCLUSIVE_WRITE</para>
+            <para>MessageText: Only one thread may access the object during a write operation.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.ChangeNotificationInProgress">
+            <summary>
+            <para>MessageId: RO_E_CHANGE_NOTIFICATION_IN_PROGRESS</para>
+            <para>MessageText: Operation is prohibited during change notification.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.StringNotFound">
+            <summary>
+            <para>MessageId: RO_E_ERROR_STRING_NOT_FOUND</para>
+            <para>MessageText: The text associated with this error code could not be found.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.StringNotNullTerminated">
+            <summary>
+            <para>MessageId: E_STRING_NOT_NULL_TERMINATED</para>
+            <para>MessageText: String not null terminated.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.IllegalDelegateAssignment">
+            <summary>
+            <para>MessageId: E_ILLEGAL_DELEGATE_ASSIGNMENT</para>
+            <para>MessageText: A delegate was assigned when not allowed.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.AsyncOperationNotStarted">
+            <summary>
+            <para>MessageId: E_ASYNC_OPERATION_NOT_STARTED</para>
+            <para>MessageText: An async operation was not properly started.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.ApplicationExiting">
+            <summary>
+            <para>MessageId: E_APPLICATION_EXITING</para>
+            <para>MessageText: The application is exiting and cannot service this request</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.ApplicationViewExiting">
+            <summary>
+            <para>MessageId: E_APPLICATION_VIEW_EXITING</para>
+            <para>MessageText: The application view is exiting and cannot service this request</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.MustBeAgile">
+            <summary>
+            <para>MessageId: RO_E_MUST_BE_AGILE</para>
+            <para>MessageText: The object must support the IAgileObject interface</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.UnsupportedFromMTA">
+            <summary>
+            <para>MessageId: RO_E_UNSUPPORTED_FROM_MTA</para>
+            <para>MessageText: Activating a single-threaded class from MTA is not supported</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Committed">
+            <summary>
+            <para>MessageId: RO_E_COMMITTED</para>
+            <para>MessageText: The object has been committed.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.BlockedCrossASTACall">
+            <summary>
+            <para>MessageId: RO_E_BLOCKED_CROSS_ASTA_CALL</para>
+            <para>MessageText: A COM call to an ASTA was blocked because the call chain originated in or passed through another ASTA. This call pattern is deadlock-prone and disallowed by apartment call control.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.CannotActivateFullTrustServer">
+            <summary>
+            <para>MessageId: RO_E_CANNOT_ACTIVATE_FULL_TRUST_SERVER</para>
+            <para>MessageText: A universal application process cannot activate a packaged WinRT server that is declared to run full trust.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.CannotActivateUniversalApplicationServer">
+            <summary>
+            <para>MessageId: RO_E_CANNOT_ACTIVATE_UNIVERSAL_APPLICATION_SERVER</para>
+            <para>MessageText: A full trust packaged application process cannot activate a packaged WinRT server unless it is also declared to run full trust.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.InitThreadLocalStorage">
+            <summary>
+            <para>MessageId: CO_E_INIT_TLS</para>
+            <para>MessageText: Thread local storage failure</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.InitSharedAllocator">
+            <summary>
+            <para>MessageId: CO_E_INIT_SHARED_ALLOCATOR</para>
+            <para>MessageText: Get .Shared memory allocator failure</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.InitMemoryAllocator">
+            <summary>
+            <para>MessageId: CO_E_INIT_MEMORY_ALLOCATOR</para>
+            <para>MessageText: Get memory allocator failure</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.InitClassCache">
+            <summary>
+            <para>MessageId: CO_E_INIT_CLASS_CACHE</para>
+            <para>MessageText: Unable to initialize class cache</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.InitRPCChannel">
+            <summary>
+            <para>MessageId: CO_E_INIT_RPC_CHANNEL</para>
+            <para>MessageText: Unable to initialize RPC services</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.InitThreadLocalStorageSetChannelControl">
+            <summary>
+            <para>MessageId: CO_E_INIT_TLS_SET_CHANNEL_CONTROL</para>
+            <para>MessageText: Cannot set thread local storage channel control</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.InitThreadLocalStorageChannelControl">
+            <summary>
+            <para>MessageId: CO_E_INIT_TLS_CHANNEL_CONTROL</para>
+            <para>MessageText: Could not allocate thread local storage channel control</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.InitUnacceptedUserAllocator">
+            <summary>
+            <para>MessageId: CO_E_INIT_UNACCEPTED_USER_ALLOCATOR</para>
+            <para>MessageText: The user supplied memory allocator is unacceptable</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.InitSCMMutexExists">
+            <summary>
+            <para>MessageId: CO_E_INIT_SCM_MUTEX_EXISTS</para>
+            <para>MessageText: The OLE service mutex already exists</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.InitSCMFileMappingExists">
+            <summary>
+            <para>MessageId: CO_E_INIT_SCM_FILE_MAPPING_EXISTS</para>
+            <para>MessageText: The OLE service file mapping already exists</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.InitSCMMapViewOfFile">
+            <summary>
+            <para>MessageId: CO_E_INIT_SCM_MAP_VIEW_OF_FILE</para>
+            <para>MessageText: Unable to map view of file for OLE service</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.InitSCMExecFailure">
+            <summary>
+            <para>MessageId: CO_E_INIT_SCM_EXEC_FAILURE</para>
+            <para>MessageText: Failure attempting to launch OLE service</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.INIT_ONLY_SINGLE_THREADED">
+            <summary>
+            <para>MessageId: CO_E_INIT_ONLY_SINGLE_THREADED</para>
+            <para>MessageText: There was an attempt to call CoInitialize a second time while single threaded</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.CantRemote">
+            <summary>
+            <para>MessageId: CO_E_CANT_REMOTE</para>
+            <para>MessageText: A Remote activation was necessary but was not allowed</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.BadServerName">
+            <summary>
+            <para>MessageId: CO_E_BAD_SERVER_NAME</para>
+            <para>MessageText: A Remote activation was necessary but the server name provided was invalid</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.WrongServerIdentity">
+            <summary>
+            <para>MessageId: CO_E_WRONG_SERVER_IDENTITY</para>
+            <para>MessageText: The class is configured to run as a security id different from the caller</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.OLE1DDEDisabled">
+            <summary>
+            <para>MessageId: CO_E_OLE1DDE_DISABLED</para>
+            <para>MessageText: Use of Ole1 services requiring DDE windows is disabled</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.RunAsSyntax">
+            <summary>
+            <para>MessageId: CO_E_RUNAS_SYNTAX</para>
+            <para>MessageText: A RunAs specification must be &lt;domain name&gt;\&lt;user name&gt; or simply &lt;user name&gt;</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.CreateProcessFailure">
+            <summary>
+            <para>MessageId: CO_E_CREATEPROCESS_FAILURE</para>
+            <para>MessageText: The server process could not be started. The pathname may be incorrect.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.RunAsCreateProcessFailure">
+            <summary>
+            <para>MessageId: CO_E_RUNAS_CREATEPROCESS_FAILURE</para>
+            <para>MessageText: The server process could not be started as the configured identity. The pathname may be incorrect or unavailable.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.RunAsLogonFailure">
+            <summary>
+            <para>MessageId: CO_E_RUNAS_LOGON_FAILURE</para>
+            <para>MessageText: The server process could not be started because the configured identity is incorrect. Check the username and password.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.LaunchPermssionDenied">
+            <summary>
+            <para>MessageId: CO_E_LAUNCH_PERMSSION_DENIED</para>
+            <para>MessageText: The client is not allowed to launch this server.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.StartServiceFailure">
+            <summary>
+            <para>MessageId: CO_E_START_SERVICE_FAILURE</para>
+            <para>MessageText: The service providing this server could not be started.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.RemoteCommunicationFailure">
+            <summary>
+            <para>MessageId: CO_E_REMOTE_COMMUNICATION_FAILURE</para>
+            <para>MessageText: This computer was unable to communicate with the computer providing the server.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.ServerStartTimeout">
+            <summary>
+            <para>MessageId: CO_E_SERVER_START_TIMEOUT</para>
+            <para>MessageText: The server did not respond after being launched.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.CLSRegInconsistent">
+            <summary>
+            <para>MessageId: CO_E_CLSREG_INCONSISTENT</para>
+            <para>MessageText: The registration information for this server is inconsistent or incomplete.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.IIDRegInconsistent">
+            <summary>
+            <para>MessageId: CO_E_IIDREG_INCONSISTENT</para>
+            <para>MessageText: The registration information for this interface is inconsistent or incomplete.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.NotSupported">
+            <summary>
+            <para>MessageId: CO_E_NOT_SUPPORTED</para>
+            <para>MessageText: The operation attempted is not supported.</para>
+            </summary>
+        </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.InPlaceStringTruncated">
             <summary>
             <para>MessageId: INPLACE_S_TRUNCATED</para>
@@ -8425,10 +8683,766 @@
             <para>MessageText: Replication with a nonconfigured partner is not allowed.</para>
             </summary>
         </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.PeerDistContentInfoVersionUnsupported">
+            <summary>
+            <para>MessageId: PEERDIST_ERROR_CONTENTINFO_VERSION_UNSUPPORTED</para>
+            <para>MessageText: The version of the supplied content information is not supported.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.PeerDistCannotParseContentInfo">
+            <summary>
+            <para>MessageId: PEERDIST_ERROR_CANNOT_PARSE_CONTENTINFO</para>
+            <para>MessageText: The supplied content information is malformed.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.PeerDistMissingData">
+            <summary>
+            <para>MessageId: PEERDIST_ERROR_MISSING_DATA</para>
+            <para>MessageText: The requested data cannot be found in local or peer caches.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.PeerDistNoMore">
+            <summary>
+            <para>MessageId: PEERDIST_ERROR_NO_MORE</para>
+            <para>MessageText: No more data is available or required.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.PeerDistNotInitialized">
+            <summary>
+            <para>MessageId: PEERDIST_ERROR_NOT_INITIALIZED</para>
+            <para>MessageText: The supplied object has not been initialized.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.PeerDistAlreadyInitialized">
+            <summary>
+            <para>MessageId: PEERDIST_ERROR_ALREADY_INITIALIZED</para>
+            <para>MessageText: The supplied object has already been initialized.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.PeerDistShutdownInProgress">
+            <summary>
+            <para>MessageId: PEERDIST_ERROR_SHUTDOWN_IN_PROGRESS</para>
+            <para>MessageText: A shutdown operation is already in progress.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.PeerDistInvalidated">
+            <summary>
+            <para>MessageId: PEERDIST_ERROR_INVALIDATED</para>
+            <para>MessageText: The supplied object has already been invalidated.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.PeerDistAlreadyExists">
+            <summary>
+            <para>MessageId: PEERDIST_ERROR_ALREADY_EXISTS</para>
+            <para>MessageText: An element already exists and was not replaced.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.PeerDistOperationNotFound">
+            <summary>
+            <para>MessageId: PEERDIST_ERROR_OPERATION_NOTFOUND</para>
+            <para>MessageText: Can not cancel the requested operation as it has already been completed.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.PeerDistAlreadyCompleted">
+            <summary>
+            <para>MessageId: PEERDIST_ERROR_ALREADY_COMPLETED</para>
+            <para>MessageText: Can not perform the requested operation because it has already been carried out.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.PeerDistOutOfBounds">
+            <summary>
+            <para>MessageId: PEERDIST_ERROR_OUT_OF_BOUNDS</para>
+            <para>MessageText: An operation accessed data beyond the bounds of valid data.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.PeerDistVersionUnsupported">
+            <summary>
+            <para>MessageId: PEERDIST_ERROR_VERSION_UNSUPPORTED</para>
+            <para>MessageText: The requested version is not supported.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.PeerDistInvalidConfiguration">
+            <summary>
+            <para>MessageId: PEERDIST_ERROR_INVALID_CONFIGURATION</para>
+            <para>MessageText: A configuration value is invalid.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.PeerDistNotLicensed">
+            <summary>
+            <para>MessageId: PEERDIST_ERROR_NOT_LICENSED</para>
+            <para>MessageText: The SKU is not licensed.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.PeerDistServiceUnavailable">
+            <summary>
+            <para>MessageId: PEERDIST_ERROR_SERVICE_UNAVAILABLE</para>
+            <para>MessageText: PeerDist Service is still initializing and will be available shortly.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.PeerDistTrustFailure">
+            <summary>
+            <para>MessageId: PEERDIST_ERROR_TRUST_FAILURE</para>
+            <para>MessageText: Communication with one or more computers will be temporarily blocked due to recent errors.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.DHCPAddressConflict">
+            <summary>
+            <para>MessageId: ERROR_DHCP_ADDRESS_CONFLICT</para>
+            <para>MessageText: The DHCP client has obtained an IP address that is already in use on the network. The local interface will be disabled until the DHCP client can obtain a new address.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.WMIGuidNotFound">
+            <summary>
+            <para>MessageId: ERROR_WMI_GUID_NOT_FOUND</para>
+            <para>MessageText: The GUID passed was not recognized as valid by a WMI data provider.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.WMIInstanceNotFound">
+            <summary>
+            <para>MessageId: ERROR_WMI_INSTANCE_NOT_FOUND</para>
+            <para>MessageText: The instance name passed was not recognized as valid by a WMI data provider.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.WMIItemIdNotFound">
+            <summary>
+            <para>MessageId: ERROR_WMI_ITEMID_NOT_FOUND</para>
+            <para>MessageText: The data item ID passed was not recognized as valid by a WMI data provider.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.WMITryAgain">
+            <summary>
+            <para>MessageId: ERROR_WMI_TRY_AGAIN</para>
+            <para>MessageText: The WMI request could not be completed and should be retried.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.WMIDPNotFound">
+            <summary>
+            <para>MessageId: ERROR_WMI_DP_NOT_FOUND</para>
+            <para>MessageText: The WMI data provider could not be located.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.WMIUnresolvedInstanceRef">
+            <summary>
+            <para>MessageId: ERROR_WMI_UNRESOLVED_INSTANCE_REF</para>
+            <para>MessageText: The WMI data provider references an instance set that has not been registered.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.WMIAlreadyEnabled">
+            <summary>
+            <para>MessageId: ERROR_WMI_ALREADY_ENABLED</para>
+            <para>MessageText: The WMI data block or event notification has already been enabled.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.WMIGuidDisconnected">
+            <summary>
+            <para>MessageId: ERROR_WMI_GUID_DISCONNECTED</para>
+            <para>MessageText: The WMI data block is no longer available.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.WMIServerUnavailable">
+            <summary>
+            <para>MessageId: ERROR_WMI_SERVER_UNAVAILABLE</para>
+            <para>MessageText: The WMI data service is not available.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.WMIDPFailed">
+            <summary>
+            <para>MessageId: ERROR_WMI_DP_FAILED</para>
+            <para>MessageText: The WMI data provider failed to carry out the request.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.WMIInvalidMOF">
+            <summary>
+            <para>MessageId: ERROR_WMI_INVALID_MOF</para>
+            <para>MessageText: The WMI MOF information is not valid.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.WMIInvalidRegInfo">
+            <summary>
+            <para>MessageId: ERROR_WMI_INVALID_REGINFO</para>
+            <para>MessageText: The WMI registration information is not valid.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.WMIAlreadyDisabled">
+            <summary>
+            <para>MessageId: ERROR_WMI_ALREADY_DISABLED</para>
+            <para>MessageText: The WMI data block or event notification has already been disabled.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.WMIReadOnly">
+            <summary>
+            <para>MessageId: ERROR_WMI_READ_ONLY</para>
+            <para>MessageText: The WMI data item or data block is read only.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.WMISetFailure">
+            <summary>
+            <para>MessageId: ERROR_WMI_SET_FAILURE</para>
+            <para>MessageText: The WMI data item or data block could not be changed.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.NotAppContainer">
+            <summary>
+            <para>MessageId: ERROR_NOT_APPCONTAINER</para>
+            <para>MessageText: This operation is only valid in the context of an app container.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.AppContainerRequired">
+            <summary>
+            <para>MessageId: ERROR_APPCONTAINER_REQUIRED</para>
+            <para>MessageText: This application can only run in the context of an app container.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.NotSupportedInAppContainer">
+            <summary>
+            <para>MessageId: ERROR_NOT_SUPPORTED_IN_APPCONTAINER</para>
+            <para>MessageText: This functionality is not supported in the context of an app container.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.InvalidPackageSIDLength">
+            <summary>
+            <para>MessageId: ERROR_INVALID_PACKAGE_SID_LENGTH</para>
+            <para>MessageText: The length of the SID supplied is not a valid length for app container SIDs.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.InvalidMedia">
+            <summary>
+            <para>MessageId: ERROR_INVALID_MEDIA</para>
+            <para>MessageText: The media identifier does not represent a valid medium.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.InvalidLibrary">
+            <summary>
+            <para>MessageId: ERROR_INVALID_LIBRARY</para>
+            <para>MessageText: The library identifier does not represent a valid library.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.InvalidMediaPool">
+            <summary>
+            <para>MessageId: ERROR_INVALID_MEDIA_POOL</para>
+            <para>MessageText: The media pool identifier does not represent a valid media pool.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.DriveMediaMismatch">
+            <summary>
+            <para>MessageId: ERROR_DRIVE_MEDIA_MISMATCH</para>
+            <para>MessageText: The drive and medium are not compatible or exist in different libraries.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.MediaOffline">
+            <summary>
+            <para>MessageId: ERROR_MEDIA_OFFLINE</para>
+            <para>MessageText: The medium currently exists in an offline library and must be online to perform this operation.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.LibraryOffline">
+            <summary>
+            <para>MessageId: ERROR_LIBRARY_OFFLINE</para>
+            <para>MessageText: The operation cannot be performed on an offline library.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.Empty">
+            <summary>
+            <para>MessageId: ERROR_EMPTY</para>
+            <para>MessageText: The library, drive, or media pool is empty.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.NotEmpty">
+            <summary>
+            <para>MessageId: ERROR_NOT_EMPTY</para>
+            <para>MessageText: The library, drive, or media pool must be empty to perform this operation.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.MediaUnavailable">
+            <summary>
+            <para>MessageId: ERROR_MEDIA_UNAVAILABLE</para>
+            <para>MessageText: No media is currently available in this media pool or library.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.ResourceDisabled">
+            <summary>
+            <para>MessageId: ERROR_RESOURCE_DISABLED</para>
+            <para>MessageText: A resource required for this operation is disabled.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.InvalidCleaner">
+            <summary>
+            <para>MessageId: ERROR_INVALID_CLEANER</para>
+            <para>MessageText: The media identifier does not represent a valid cleaner.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.UnableToClean">
+            <summary>
+            <para>MessageId: ERROR_UNABLE_TO_CLEAN</para>
+            <para>MessageText: The drive cannot be cleaned or does not support cleaning.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.ObjectNotFound">
+            <summary>
+            <para>MessageId: ERROR_OBJECT_NOT_FOUND</para>
+            <para>MessageText: The object identifier does not represent a valid object.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.DatabaseFailure">
+            <summary>
+            <para>MessageId: ERROR_DATABASE_FAILURE</para>
+            <para>MessageText: Unable to read from or write to the database.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.DatabaseFull">
+            <summary>
+            <para>MessageId: ERROR_DATABASE_FULL</para>
+            <para>MessageText: The database is full.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.MediaIncompatible">
+            <summary>
+            <para>MessageId: ERROR_MEDIA_INCOMPATIBLE</para>
+            <para>MessageText: The medium is not compatible with the device or media pool.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.ResourceNotPresent">
+            <summary>
+            <para>MessageId: ERROR_RESOURCE_NOT_PRESENT</para>
+            <para>MessageText: The resource required for this operation does not exist.</para>
+            </summary>
+        </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.InvalidOperation">
             <summary>
             <para>MessageId: ERROR_INVALID_OPERATION</para>
             <para>MessageText: The operation identifier is not valid.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.MediaNotAvailable">
+            <summary>
+            <para>MessageId: ERROR_MEDIA_NOT_AVAILABLE</para>
+            <para>MessageText: The media is not mounted or ready for use.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.DeviceNotAvailable">
+            <summary>
+            <para>MessageId: ERROR_DEVICE_NOT_AVAILABLE</para>
+            <para>MessageText: The device is not ready for use.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.RequestRefused">
+            <summary>
+            <para>MessageId: ERROR_REQUEST_REFUSED</para>
+            <para>MessageText: The operator or administrator has refused the request.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.InvalidDriveObject">
+            <summary>
+            <para>MessageId: ERROR_INVALID_DRIVE_OBJECT</para>
+            <para>MessageText: The drive identifier does not represent a valid drive.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.LibraryFull">
+            <summary>
+            <para>MessageId: ERROR_LIBRARY_FULL</para>
+            <para>MessageText: Library is full. No slot is available for use.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.MediumNotAccessible">
+            <summary>
+            <para>MessageId: ERROR_MEDIUM_NOT_ACCESSIBLE</para>
+            <para>MessageText: The transport cannot access the medium.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.UnableToLoadMedium">
+            <summary>
+            <para>MessageId: ERROR_UNABLE_TO_LOAD_MEDIUM</para>
+            <para>MessageText: Unable to load the medium into the drive.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.UnableToInventoryDrive">
+            <summary>
+            <para>MessageId: ERROR_UNABLE_TO_INVENTORY_DRIVE</para>
+            <para>MessageText: Unable to retrieve the drive status.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.UnableToInventorySlot">
+            <summary>
+            <para>MessageId: ERROR_UNABLE_TO_INVENTORY_SLOT</para>
+            <para>MessageText: Unable to retrieve the slot status.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.UnableToInventoryTransport">
+            <summary>
+            <para>MessageId: ERROR_UNABLE_TO_INVENTORY_TRANSPORT</para>
+            <para>MessageText: Unable to retrieve status about the transport.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.TransportFull">
+            <summary>
+            <para>MessageId: ERROR_TRANSPORT_FULL</para>
+            <para>MessageText: Cannot use the transport because it is already in use.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.ControllingIEPort">
+            <summary>
+            <para>MessageId: ERROR_CONTROLLING_IEPORT</para>
+            <para>MessageText: Unable to open or close the inject/eject port.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.UnableToEjectMountedMedia">
+            <summary>
+            <para>MessageId: ERROR_UNABLE_TO_EJECT_MOUNTED_MEDIA</para>
+            <para>MessageText: Unable to eject the medium because it is in a drive.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.CleanerSlotSet">
+            <summary>
+            <para>MessageId: ERROR_CLEANER_SLOT_SET</para>
+            <para>MessageText: A cleaner slot is already reserved.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.CleanerSlotNotSet">
+            <summary>
+            <para>MessageId: ERROR_CLEANER_SLOT_NOT_SET</para>
+            <para>MessageText: A cleaner slot is not reserved.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.CleanerCartridgeSpent">
+            <summary>
+            <para>MessageId: ERROR_CLEANER_CARTRIDGE_SPENT</para>
+            <para>MessageText: The cleaner cartridge has performed the maximum number of drive cleanings.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.UnexpectedOMID">
+            <summary>
+            <para>MessageId: ERROR_UNEXPECTED_OMID</para>
+            <para>MessageText: Unexpected on-medium identifier.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.CantDeleteLastItem">
+            <summary>
+            <para>MessageId: ERROR_CANT_DELETE_LAST_ITEM</para>
+            <para>MessageText: The last remaining item in this group or resource cannot be deleted.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.MessageExceedsMaxSize">
+            <summary>
+            <para>MessageId: ERROR_MESSAGE_EXCEEDS_MAX_SIZE</para>
+            <para>MessageText: The message provided exceeds the maximum size allowed for this parameter.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.VolumeContainsSysFiles">
+            <summary>
+            <para>MessageId: ERROR_VOLUME_CONTAINS_SYS_FILES</para>
+            <para>MessageText: The volume contains system or paging files.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.IndigenousType">
+            <summary>
+            <para>MessageId: ERROR_INDIGENOUS_TYPE</para>
+            <para>MessageText: The media type cannot be removed from this library since at least one drive in the library reports it can support this media type.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.NoSupportingDrives">
+            <summary>
+            <para>MessageId: ERROR_NO_SUPPORTING_DRIVES</para>
+            <para>MessageText: This offline media cannot be mounted on this system since no enabled drives are present which can be used.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.CleanerCartridgeInstalled">
+            <summary>
+            <para>MessageId: ERROR_CLEANER_CARTRIDGE_INSTALLED</para>
+            <para>MessageText: A cleaner cartridge is present in the tape library.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.IEPortFull">
+            <summary>
+            <para>MessageId: ERROR_IEPORT_FULL</para>
+            <para>MessageText: Cannot use the inject/eject port because it is not empty.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.FileOffline">
+            <summary>
+            <para>MessageId: ERROR_FILE_OFFLINE</para>
+            <para>MessageText: This file is currently not available for use on this computer.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.RemoteStorageNotActive">
+            <summary>
+            <para>MessageId: ERROR_REMOTE_STORAGE_NOT_ACTIVE</para>
+            <para>MessageText: The remote storage service is not operational at this time.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.RemoteStorageMediaError">
+            <summary>
+            <para>MessageId: ERROR_REMOTE_STORAGE_MEDIA_ERROR</para>
+            <para>MessageText: The remote storage service encountered a media error.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.NotAReparsePoint">
+            <summary>
+            <para>MessageId: ERROR_NOT_A_REPARSE_POINT</para>
+            <para>MessageText: The file or directory is not a reparse point.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.ReparseAttributeConflict">
+            <summary>
+            <para>MessageId: ERROR_REPARSE_ATTRIBUTE_CONFLICT</para>
+            <para>MessageText: The reparse point attribute cannot be set because it conflicts with an existing attribute.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.InvalidReparseData">
+            <summary>
+            <para>MessageId: ERROR_INVALID_REPARSE_DATA</para>
+            <para>MessageText: The data present in the reparse point buffer is invalid.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.ReparseTagInvalid">
+            <summary>
+            <para>MessageId: ERROR_REPARSE_TAG_INVALID</para>
+            <para>MessageText: The tag present in the reparse point buffer is invalid.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.ReparseTagMismatch">
+            <summary>
+            <para>MessageId: ERROR_REPARSE_TAG_MISMATCH</para>
+            <para>MessageText: There is a mismatch between the tag specified in the request and the tag present in the reparse point.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.ReparsePointEncountered">
+            <summary>
+            <para>MessageId: ERROR_REPARSE_POINT_ENCOUNTERED</para>
+            <para>MessageText: The object manager encountered a reparse point while retrieving an object.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.AppDataNotFound">
+            <summary>
+            <para>MessageId: ERROR_APP_DATA_NOT_FOUND</para>
+            <para>MessageText: Fast Cache data not found.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.AppDataExpired">
+            <summary>
+            <para>MessageId: ERROR_APP_DATA_EXPIRED</para>
+            <para>MessageText: Fast Cache data expired.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.AppDataCorrupt">
+            <summary>
+            <para>MessageId: ERROR_APP_DATA_CORRUPT</para>
+            <para>MessageText: Fast Cache data corrupt.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.AppDataLimitExceeded">
+            <summary>
+            <para>MessageId: ERROR_APP_DATA_LIMIT_EXCEEDED</para>
+            <para>MessageText: Fast Cache data has exceeded its max size and cannot be updated.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.AppDataRebootRequired">
+            <summary>
+            <para>MessageId: ERROR_APP_DATA_REBOOT_REQUIRED</para>
+            <para>MessageText: Fast Cache has been ReArmed and requires a reboot until it can be updated.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SecureBootRollbackDetected">
+            <summary>
+            <para>MessageId: ERROR_SECUREBOOT_ROLLBACK_DETECTED</para>
+            <para>MessageText: Secure Boot detected that rollback of protected data has been attempted.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SecureBootPolicyViolation">
+            <summary>
+            <para>MessageId: ERROR_SECUREBOOT_POLICY_VIOLATION</para>
+            <para>MessageText: The value is protected by Secure Boot policy and cannot be modified or deleted.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SecureBootInvalidPolicy">
+            <summary>
+            <para>MessageId: ERROR_SECUREBOOT_INVALID_POLICY</para>
+            <para>MessageText: The Secure Boot policy is invalid.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SecureBootPolicyPublisherNotFound">
+            <summary>
+            <para>MessageId: ERROR_SECUREBOOT_POLICY_PUBLISHER_NOT_FOUND</para>
+            <para>MessageText: A new Secure Boot policy did not contain the current publisher on its update list.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SecureBootPolicyNotSigned">
+            <summary>
+            <para>MessageId: ERROR_SECUREBOOT_POLICY_NOT_SIGNED</para>
+            <para>MessageText: The Secure Boot policy is either not signed or is signed by a non-trusted signer.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SecureBootNotEnabled">
+            <summary>
+            <para>MessageId: ERROR_SECUREBOOT_NOT_ENABLED</para>
+            <para>MessageText: Secure Boot is not enabled on this machine.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SecureBootFileReplaced">
+            <summary>
+            <para>MessageId: ERROR_SECUREBOOT_FILE_REPLACED</para>
+            <para>MessageText: Secure Boot requires that certain files and drivers are not replaced by other files or drivers.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SecureBootPolicyNotAuthorized">
+            <summary>
+            <para>MessageId: ERROR_SECUREBOOT_POLICY_NOT_AUTHORIZED</para>
+            <para>MessageText: The Secure Boot Supplemental Policy file was not authorized on this machine.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SecureBootPolicyUnknown">
+            <summary>
+            <para>MessageId: ERROR_SECUREBOOT_POLICY_UNKNOWN</para>
+            <para>MessageText: The Supplemental Policy is not recognized on this device.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SecureBootPolicyMissingAntirollbackVersion">
+            <summary>
+            <para>MessageId: ERROR_SECUREBOOT_POLICY_MISSING_ANTIROLLBACKVERSION</para>
+            <para>MessageText: The Antirollback version was not found in the Secure Boot Policy.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SecureBootPlatformIdMismatch">
+            <summary>
+            <para>MessageId: ERROR_SECUREBOOT_PLATFORM_ID_MISMATCH</para>
+            <para>MessageText: The Platform ID specified in the Secure Boot policy does not match the Platform ID on this device.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SecureBootPolicyRollbackDetected">
+            <summary>
+            <para>MessageId: ERROR_SECUREBOOT_POLICY_ROLLBACK_DETECTED</para>
+            <para>MessageText: The Secure Boot policy file has an older Antirollback Version than this device.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SecureBootPolicyUpgradeMismatch">
+            <summary>
+            <para>MessageId: ERROR_SECUREBOOT_POLICY_UPGRADE_MISMATCH</para>
+            <para>MessageText: The Secure Boot policy file does not match the upgraded legacy policy.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SecureBootRequiredPolicyFileMissing">
+            <summary>
+            <para>MessageId: ERROR_SECUREBOOT_REQUIRED_POLICY_FILE_MISSING</para>
+            <para>MessageText: The Secure Boot policy file is required but could not be found.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SecureBootNotBasePolicy">
+            <summary>
+            <para>MessageId: ERROR_SECUREBOOT_NOT_BASE_POLICY</para>
+            <para>MessageText: Supplemental Secure Boot policy file can not be loaded as a base Secure Boot policy.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SecureBootNotSupplementalPolicy">
+            <summary>
+            <para>MessageId: ERROR_SECUREBOOT_NOT_SUPPLEMENTAL_POLICY</para>
+            <para>MessageText: Base Secure Boot policy file can not be loaded as a Supplemental Secure Boot policy.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.OffloadReadFltNotSupported">
+            <summary>
+            <para>MessageId: ERROR_OFFLOAD_READ_FLT_NOT_SUPPORTED</para>
+            <para>MessageText: The copy offload read operation is not supported by a filter.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.OffloadWriteFltNotSupported">
+            <summary>
+            <para>MessageId: ERROR_OFFLOAD_WRITE_FLT_NOT_SUPPORTED</para>
+            <para>MessageText: The copy offload write operation is not supported by a filter.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.OffloadReadFileNotSupported">
+            <summary>
+            <para>MessageId: ERROR_OFFLOAD_READ_FILE_NOT_SUPPORTED</para>
+            <para>MessageText: The copy offload read operation is not supported for the file.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.OffloadWriteFileNotSupported">
+            <summary>
+            <para>MessageId: ERROR_OFFLOAD_WRITE_FILE_NOT_SUPPORTED</para>
+            <para>MessageText: The copy offload write operation is not supported for the file.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.AlreadyHasStreamId">
+            <summary>
+            <para>MessageId: ERROR_ALREADY_HAS_STREAM_ID</para>
+            <para>MessageText: This file is currently associated with a different stream id.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SMRGarbageCollectionRequired">
+            <summary>
+            <para>MessageId: ERROR_SMR_GARBAGE_COLLECTION_REQUIRED</para>
+            <para>MessageText: The volume must undergo garbage collection.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.WOFWIMHeaderCorrupt">
+            <summary>
+            <para>MessageId: ERROR_WOF_WIM_HEADER_CORRUPT</para>
+            <para>MessageText: The WOF driver encountered a corruption in WIM image's Header.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.WOFWIMResourceTableCorrupt">
+            <summary>
+            <para>MessageId: ERROR_WOF_WIM_RESOURCE_TABLE_CORRUPT</para>
+            <para>MessageText: The WOF driver encountered a corruption in WIM image's Resource Table.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.WOFFileResourceTableCorrupt">
+            <summary>
+            <para>MessageId: ERROR_WOF_FILE_RESOURCE_TABLE_CORRUPT</para>
+            <para>MessageText: The WOF driver encountered a corruption in the compressed file's Resource Table.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.VolumeNotSISEnabled">
+            <summary>
+            <para>MessageId: ERROR_VOLUME_NOT_SIS_ENABLED</para>
+            <para>MessageText: Single Instance Storage is not available on this volume.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SystemIntegrityRollbackDetected">
+            <summary>
+            <para>MessageId: ERROR_SYSTEM_INTEGRITY_ROLLBACK_DETECTED</para>
+            <para>MessageText: System Integrity detected that policy rollback has been attempted.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SystemIntegrityPolicyViolation">
+            <summary>
+            <para>MessageId: ERROR_SYSTEM_INTEGRITY_POLICY_VIOLATION</para>
+            <para>MessageText: Your organization used Device Guard to block this app. Contact your support person for more info.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SystemIntegrityInvalidPolicy">
+            <summary>
+            <para>MessageId: ERROR_SYSTEM_INTEGRITY_INVALID_POLICY</para>
+            <para>MessageText: The System Integrity policy is invalid.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SystemIntegrityPolicyNotSigned">
+            <summary>
+            <para>MessageId: ERROR_SYSTEM_INTEGRITY_POLICY_NOT_SIGNED</para>
+            <para>MessageText: The System Integrity policy is either not signed or is signed by a non-trusted signer.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SystemIntegrityTooManyPolicies">
+            <summary>
+            <para>MessageId: ERROR_SYSTEM_INTEGRITY_TOO_MANY_POLICIES</para>
+            <para>MessageText: The number of System Integrity policies is out of limit.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.SystemIntegritySupplementalPolicyNotAuthorized">
+            <summary>
+            <para>MessageId: ERROR_SYSTEM_INTEGRITY_SUPPLEMENTAL_POLICY_NOT_AUTHORIZED</para>
+            <para>MessageText: The Code Integrity supplemental policy is not authorized by a Code Integrity base policy.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.VSMNotInitialized">
+            <summary>
+            <para>MessageId: ERROR_VSM_NOT_INITIALIZED</para>
+            <para>MessageText: Virtual Secure Mode (VSM) is not initialized. The hypervisor or VSM may not be present or enabled.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.VSMDMAProtectionNotInUse">
+            <summary>
+            <para>MessageId: ERROR_VSM_DMA_PROTECTION_NOT_IN_USE</para>
+            <para>MessageText: The hypervisor is not protecting DMA because an IOMMU is not present or not enabled in the BIOS.</para>
             </summary>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.EncryptionFailed">

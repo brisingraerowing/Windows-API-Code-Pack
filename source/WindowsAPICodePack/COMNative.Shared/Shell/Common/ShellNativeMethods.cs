@@ -1,18 +1,15 @@
-﻿using Microsoft.WindowsAPICodePack.COMNative.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+﻿using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+
 using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
+
 using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.Shell
 {
     public static class Shell
     {
-
         #region Shell Library Helper Methods
-
         [DllImport(Shell32, CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Winapi, SetLastError = true)]
         public static extern int SHShowManageLibraryUI(
             [In, MarshalAs(UnmanagedType.Interface)] IShellItem library,
@@ -20,7 +17,6 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
             [In] string title,
             [In] string instruction,
             [In] LibraryManageDialogOptions lmdOptions);
-
         #endregion
 
         [DllImport(Shell32, CharSet = CharSet.Unicode, SetLastError = true)]
@@ -45,7 +41,6 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
             ref Guid riid,
             [MarshalAs(UnmanagedType.Interface)] out IShellItem shellItem);
 
-
         [DllImport(Shell32, CharSet = CharSet.Unicode, SetLastError = true)]
         public static extern int SHCreateItemFromIDList(
             /*PCIDLIST_ABSOLUTE*/ IntPtr pidl,
@@ -64,6 +59,5 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
             IntPtr pidl,
             [MarshalAs(UnmanagedType.Interface)] out IShellItem ppsi
         );
-
     }
 }

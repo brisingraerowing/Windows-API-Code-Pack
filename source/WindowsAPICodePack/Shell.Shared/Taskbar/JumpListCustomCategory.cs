@@ -14,24 +14,22 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
     {
         private string name;
 
-        internal JumpListItemCollection<IJumpListItem> JumpListItems
-        {
-            get;
-            private set;
-        }
+        internal JumpListItemCollection<IJumpListItem> JumpListItems { get; private set; }
 
         /// <summary>
         /// Category name
         /// </summary>
         public string Name
         {
-            get { return name; }
+            get => name;
+
             set
             {
                 if (value != name)
                 {
                     name = value;
-                    this.CollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+
+                    CollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
                 }
             }
         }
@@ -44,12 +42,10 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         public void AddJumpListItems(params IJumpListItem[] items)
         {
             if (items != null)
-            {
+
                 foreach (IJumpListItem item in items)
-                {
+
                     JumpListItems.Add(item);
-                }
-            }
         }
 
         /// <summary>
@@ -65,28 +61,22 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         {
             Name = categoryName;
 
-            JumpListItems = new JumpListItemCollection<IJumpListItem>();
-            JumpListItems.CollectionChanged += OnJumpListCollectionChanged;
+            (JumpListItems = new JumpListItemCollection<IJumpListItem>()).CollectionChanged += OnJumpListCollectionChanged;
         }
 
-        internal void OnJumpListCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
-        {
-            this.CollectionChanged(this, args);
-        }
-
+        internal void OnJumpListCollectionChanged(object sender, NotifyCollectionChangedEventArgs args) => CollectionChanged(this, args);
 
         internal void RemoveJumpListItem(string path)
         {
-            List<IJumpListItem> itemsToRemove = new List<IJumpListItem>(
+            var itemsToRemove = new List<IJumpListItem>(
                 from i in JumpListItems
                 where string.Equals(path, i.Path, StringComparison.OrdinalIgnoreCase)
                 select i);
 
             // Remove matching items
             for (int i = 0; i < itemsToRemove.Count; i++)
-            {
-                JumpListItems.Remove(itemsToRemove[i]);
-            }
+
+                _ = JumpListItems.Remove(itemsToRemove[i]);
         }
     }
 }

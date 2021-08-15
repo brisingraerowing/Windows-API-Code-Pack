@@ -1,27 +1,25 @@
-﻿using System;
+﻿using Microsoft.WindowsAPICodePack.COMNative.COM;
+using Microsoft.WindowsAPICodePack.ShellExtensions.Resources;
+
+using System;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.ComTypes;
-using Microsoft.WindowsAPICodePack.ShellExtensions.Resources;
 
 namespace Microsoft.WindowsAPICodePack.ShellExtensions
 {
     /// <summary>
-    /// A wrapper for the native IStream object.
+    /// A wrapper for the native <see cref="System.Runtime.InteropServices.ComTypes.IStream"/> object.
     /// </summary>
     public class StorageStream : Stream, IDisposable
     {
-        IStream _stream;
-        private bool _isReadOnly = false;
+        System.Runtime.InteropServices.ComTypes.IStream _stream;
+        private readonly bool _isReadOnly = false;
 
-        internal StorageStream(IStream stream, bool readOnly)
+        internal StorageStream(in System.Runtime.InteropServices.ComTypes.IStream stream, in bool readOnly)
         {
-            if (stream == null)
-            {
-                throw new ArgumentNullException("stream");
-            }
+            _stream = stream ?? throw new ArgumentNullException(nameof(stream));
+
             _isReadOnly = readOnly;
-            this._stream = stream;
         }
 
         /// <summary>
@@ -33,8 +31,8 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
             ThrowIfDisposed();
 
             byte[] buffer = new byte[1];
-            if (Read(buffer, 0, 1) > 0) { return buffer[0]; }
-            return -1;
+
+            return Read(buffer, 0, 1) > 0 ? buffer[0] : -1;
         }
 
         /// <summary>
@@ -44,25 +42,27 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         public override void WriteByte(byte value)
         {
             ThrowIfDisposed();
+
             byte[] buffer = new byte[] { value };
+
             Write(buffer, 0, 1);
         }
 
         /// <summary>
         /// Gets whether the stream can be read from.
         /// </summary>
-        public override bool CanRead { get { return _stream != null; } }
+        public override bool CanRead => _stream != null;
 
         /// <summary>
         /// Gets whether seeking is supported by the stream.
         /// </summary>
-        public override bool CanSeek { get { return _stream != null; } }
+        public override bool CanSeek => _stream != null;
 
         /// <summary>
         /// Gets whether the stream can be written to.
         /// Always false.
         /// </summary>
-        public override bool CanWrite { get { return _stream != null && !_isReadOnly; } }
+        public override bool CanWrite => !(_stream == null || _isReadOnly);
 
         /// <summary>
         /// Reads a buffer worth of bytes from the stream.
@@ -75,39 +75,46 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         {
             ThrowIfDisposed();
 
-            if (buffer == null) { throw new ArgumentNullException("buffer"); }
-            if (offset < 0) { throw new ArgumentOutOfRangeException("offset", LocalizedMessages.StorageStreamOffsetLessThanZero); }
-            if (count < 0) { throw new ArgumentOutOfRangeException("count", LocalizedMessages.StorageStreamCountLessThanZero); }
-            if (offset + count > buffer.Length) { throw new ArgumentException(LocalizedMessages.StorageStreamBufferOverflow, "count"); }
+            if (buffer == null) throw new ArgumentNullException(nameof(buffer));
+            if (offset < 0) throw new ArgumentOutOfRangeException(nameof(offset), LocalizedMessages.StorageStreamOffsetLessThanZero);
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count), LocalizedMessages.StorageStreamCountLessThanZero);
+            if (offset + count > buffer.Length) throw new ArgumentException(LocalizedMessages.StorageStreamBufferOverflow, nameof(count));
 
             int bytesRead = 0;
+
             if (count > 0)
             {
                 IntPtr ptr = Marshal.AllocCoTaskMem(sizeof(ulong));
+
                 try
                 {
                     if (offset == 0)
                     {
                         _stream.Read(buffer, count, ptr);
+
                         bytesRead = (int)Marshal.ReadInt64(ptr);
                     }
+
                     else
                     {
                         byte[] tempBuffer = new byte[count];
+
                         _stream.Read(tempBuffer, count, ptr);
 
                         bytesRead = (int)Marshal.ReadInt64(ptr);
+
                         if (bytesRead > 0)
-                        {
+
                             Array.Copy(tempBuffer, 0, buffer, offset, bytesRead);
-                        }
                     }
                 }
+
                 finally
                 {
                     Marshal.FreeCoTaskMem(ptr);
                 }
             }
+
             return bytesRead;
         }
 
@@ -121,21 +128,22 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         {
             ThrowIfDisposed();
 
-            if (_isReadOnly) { throw new InvalidOperationException(LocalizedMessages.StorageStreamIsReadonly); }
-            if (buffer == null) { throw new ArgumentNullException("buffer"); }
-            if (offset < 0) { throw new ArgumentOutOfRangeException("offset", LocalizedMessages.StorageStreamOffsetLessThanZero); }
-            if (count < 0) { throw new ArgumentOutOfRangeException("count", LocalizedMessages.StorageStreamCountLessThanZero); }
-            if (offset + count > buffer.Length) { throw new ArgumentException(LocalizedMessages.StorageStreamBufferOverflow, "count"); }
+            if (_isReadOnly) throw new InvalidOperationException(LocalizedMessages.StorageStreamIsReadonly);
+            if (buffer == null) throw new ArgumentNullException(nameof(buffer));
+            if (offset < 0) throw new ArgumentOutOfRangeException(nameof(offset), LocalizedMessages.StorageStreamOffsetLessThanZero);
+            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count), LocalizedMessages.StorageStreamCountLessThanZero);
+            if (offset + count > buffer.Length) throw new ArgumentException(LocalizedMessages.StorageStreamBufferOverflow, nameof(count));
 
             if (count > 0)
             {
                 IntPtr ptr = Marshal.AllocCoTaskMem(sizeof(ulong));
+
                 try
                 {
                     if (offset == 0)
-                    {
+
                         _stream.Write(buffer, count, ptr);
-                    }
+
                     else
                     {
                         byte[] tempBuffer = new byte[count];
@@ -143,6 +151,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
                         _stream.Write(tempBuffer, count, ptr);
                     }
                 }
+
                 finally
                 {
                     Marshal.FreeCoTaskMem(ptr);
@@ -151,39 +160,42 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         }
 
         /// <summary>
-        /// Gets the length of the IStream
+        /// Gets the length of the System.Runtime.InteropServices.ComTypes.IStream
         /// </summary>
         public override long Length
         {
             get
             {
                 ThrowIfDisposed();
-                const int STATFLAG_NONAME = 1;
-                System.Runtime.InteropServices.ComTypes.STATSTG stats;
-                _stream.Stat(out stats, STATFLAG_NONAME);
+
+                _stream.Stat(out System.Runtime.InteropServices.ComTypes.STATSTG stats, (int)StatFlag.NoName);
+
                 return stats.cbSize;
             }
         }
 
         /// <summary>
-        /// Gets or sets the current position within the underlying IStream.
+        /// Gets or sets the current position within the underlying System.Runtime.InteropServices.ComTypes.IStream.
         /// </summary>
         public override long Position
         {
             get
             {
                 ThrowIfDisposed();
+
                 return Seek(0, SeekOrigin.Current);
             }
+
             set
             {
                 ThrowIfDisposed();
-                Seek(value, SeekOrigin.Begin);
+
+                _ = Seek(value, SeekOrigin.Begin);
             }
         }
 
         /// <summary>
-        /// Seeks within the underlying IStream.
+        /// Seeks within the underlying System.Runtime.InteropServices.ComTypes.IStream.
         /// </summary>
         /// <param name="offset">Offset</param>
         /// <param name="origin">Where to start seeking</param>
@@ -191,12 +203,16 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         public override long Seek(long offset, SeekOrigin origin)
         {
             ThrowIfDisposed();
+
             IntPtr ptr = Marshal.AllocCoTaskMem(sizeof(long));
+
             try
             {
                 _stream.Seek(offset, (int)origin, ptr);
+
                 return Marshal.ReadInt64(ptr);
             }
+
             finally
             {
                 Marshal.FreeCoTaskMem(ptr);
@@ -210,16 +226,14 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         public override void SetLength(long value)
         {
             ThrowIfDisposed();
+
             _stream.SetSize(value);
         }
 
         /// <summary>
         /// Commits data to be written to the stream if it is being cached.
         /// </summary>
-        public override void Flush()
-        {
-            _stream.Commit((int)StorageStreamCommitOptions.None);
-        }
+        public override void Flush() => _stream.Commit((int)StorageStreamCommitOptions.None);
 
         /// <summary>
         /// Disposes the stream.
@@ -228,6 +242,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         protected override void Dispose(bool disposing)
         {
             _stream = null;
+
             base.Dispose(disposing);
         }
 
@@ -235,7 +250,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
     }
 
     /// <summary>
-    /// Options for commiting (flushing) an IStream storage stream
+    /// Options for commiting (flushing) an System.Runtime.InteropServices.ComTypes.IStream storage stream
     /// </summary>
     [Flags]
     internal enum StorageStreamCommitOptions

@@ -1,14 +1,15 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
+using Microsoft.WindowsAPICodePack.ExtendedLinguisticServices;
+using Microsoft.WindowsAPICodePack.NativeAPI.Consts;
+
 using System;
 using System.Runtime.InteropServices;
-using Microsoft.WindowsAPICodePack.ExtendedLinguisticServices;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native
 {
     public static class InteropTools
     {
-        // TODO: put these fields to Win32Native?
         public static readonly IntPtr SizeOfGuid = (IntPtr)Marshal.SizeOf(typeof(Guid));
         public static readonly Type TypeOfGuid = typeof(Guid);
 

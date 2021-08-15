@@ -4,6 +4,7 @@ using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 using static Microsoft.WindowsAPICodePack.Shell.KnownFolderHelper;
@@ -26,11 +27,17 @@ namespace Microsoft.WindowsAPICodePack.Shell
             // to get a list of all the known folders, create the managed wrapper
             // and return the read-only collection.
 
-            var foldersList = new WinCopies.Collections.
+            var foldersList = new
+#if CS7
+                WinCopies.Collections.
 #if WAPICP3
                 Generic.
 #endif
-                ArrayBuilder<IKnownFolder>();
+                ArrayBuilder
+#else
+                LinkedList
+#endif
+                <IKnownFolder>();
 
             IntPtr folders = IntPtr.Zero;
 
@@ -46,7 +53,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                         // Convert to Guid
                         var knownFolderID = (Guid)Marshal.PtrToStructure(new IntPtr(folders.ToInt64() + (Marshal.SizeOf(typeof(Guid)) * i)), typeof(Guid));
 
-                        IKnownFolder kf = KnownFolderHelper.FromKnownFolderIdInternal(knownFolderID);
+                        IKnownFolder kf = FromKnownFolderIdInternal(knownFolderID);
 
                         // Add to our collection if it's not null (some folders might not exist on the system
                         // or we could have an exception that resulted in the null return from above method call
@@ -59,11 +66,24 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 if (folders != IntPtr.Zero) Marshal.FreeCoTaskMem(folders);
             }
 
-            return new System.Collections.ObjectModel.ReadOnlyCollection<IKnownFolder>(foldersList.ToList());
+#if !CS7
+            var list = new List<IKnownFolder>(foldersList.Count);
+
+            foreach (IKnownFolder item in list)
+
+                list.Add(item);
+#endif
+
+            return new System.Collections.ObjectModel.ReadOnlyCollection<IKnownFolder>(
+#if CS7
+                foldersList.ToList()
+#else
+                list
+#endif
+                );
         }
 
         #region Default Known Folders
-
         /// <summary>
         /// Gets the metadata for the <b>Computer</b> folder.
         /// </summary>
@@ -809,8 +829,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 return FromKnownFolderId(Guids.KnownFolders.Windows7.ImplicitAppShortcuts);
             }
         }
-
         #endregion
-
     }
 }

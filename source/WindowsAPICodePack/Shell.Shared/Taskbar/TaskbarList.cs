@@ -1,6 +1,4 @@
-﻿
-using Microsoft.WindowsAPICodePack.COMNative.Taskbar;
-using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
+﻿using Microsoft.WindowsAPICodePack.COMNative.Taskbar;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar
 {
@@ -13,6 +11,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         private static object _syncLock = new object();
                 
         private static ITaskbarList4 _taskbarList;
+
         internal static ITaskbarList4 Instance
         {
             get
@@ -24,6 +23,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                         if (_taskbarList == null)
                         {
                             _taskbarList = (ITaskbarList4)new CTaskbarList();
+
                             _taskbarList.HrInit();
                         }
 

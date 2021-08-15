@@ -8,7 +8,9 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Sensors
     /// <summary>
     /// A COM interop events interface for the ISensorManager object
     /// </summary>
-    [ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown), Guid("9B3B0B86-266A-4AAD-B21F-FDE5501001B7")]
+    [ComImport,
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
+    Guid("9B3B0B86-266A-4AAD-B21F-FDE5501001B7")]
     public interface ISensorManagerEvents
     {
         void OnSensorEnter(
@@ -19,7 +21,9 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Sensors
     /// <summary>
     /// A COM interop events interface for the ISensor object
     /// </summary>
-    [ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown), Guid("5D8DCC91-4641-47E7-B7C3-B74F48A6C391")]
+    [ComImport,
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
+    Guid("5D8DCC91-4641-47E7-B7C3-B74F48A6C391")]
     public interface ISensorEvents
     {
         void OnStateChanged(
@@ -37,5 +41,4 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Sensors
 
         void OnLeave([In, MarshalAs(UnmanagedType.LPStruct)] Guid sensorID);
     }
-
 }

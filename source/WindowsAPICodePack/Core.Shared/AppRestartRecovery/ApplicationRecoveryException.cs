@@ -51,6 +51,5 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         {
             // Empty
         }
-
     }
 }

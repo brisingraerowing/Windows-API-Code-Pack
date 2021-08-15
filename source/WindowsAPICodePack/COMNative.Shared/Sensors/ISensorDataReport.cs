@@ -1,20 +1,23 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
+using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
+using Microsoft.WindowsAPICodePack.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native.TimeZone;
+
 using System;
 using System.Runtime.InteropServices;
-using Microsoft.WindowsAPICodePack.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
+
 using GuidAttribute = System.Runtime.InteropServices.GuidAttribute;
-using Microsoft.WindowsAPICodePack.Win32Native.TimeZone;
-using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.Sensors
 {
-
     /// <summary>
     /// COM interop wrapper for the ISensorDataReport interface.
     /// </summary>
-    [ComImport, Guid("0AB9DF9B-C4B5-4796-8898-0470706A2E1D"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    [ComImport,
+    Guid("0AB9DF9B-C4B5-4796-8898-0470706A2E1D"),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ISensorDataReport
     {
         /// <summary>

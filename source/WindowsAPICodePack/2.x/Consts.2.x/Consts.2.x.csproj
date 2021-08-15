@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net472;net48;netcoreapp3.0;netcoreapp3.1;netstandard2.0;netstandard2.1;net5.0</TargetFrameworks>
+    <TargetFrameworks>net35;net40;net45;net472;net48;netcoreapp3.0;netcoreapp3.1;netstandard2.0;netstandard2.1;net5.0;net6.0</TargetFrameworks>
     <RootNamespace>Microsoft.WindowsAPICodePack.Win32Native</RootNamespace>
     <PackageId>WinCopies.WindowsAPICodePack.Consts</PackageId>
     <Product>Microsoft Windows API Code Pack for .NET Framework</Product>
-    <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
+    <Authors>Microsoft; Pierre Sprimont</Authors>
     <Copyright>Copyright © Pierre Sprimont 2020-2021</Copyright>
     <AssemblyOriginatorKeyFile>Consts.snk</AssemblyOriginatorKeyFile>
     <Description>Native consts required by the Windows API Code Pack</Description>
@@ -14,7 +14,6 @@
     <SignAssembly>true</SignAssembly>
     <DefineConstants>WAPICP2;$(DefineConstants)</DefineConstants>
     <VersionPrefix>2.3</VersionPrefix>
-    <!--<VersionSuffix>preview</VersionSuffix>-->
     <AssemblyVersion>2.3</AssemblyVersion>
     <FileVersion>2.3</FileVersion>
   </PropertyGroup>

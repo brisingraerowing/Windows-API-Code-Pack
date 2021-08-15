@@ -10,6 +10,10 @@ For issue and fixation details, visit [https://wincopies.com/fwd.php?id=3](https
 
 For the original code (version 1.1, last release by Microsoft), see [https://wincopies.com/fwd.php?id=1](https://wincopies.com/fwd.php?id=1)
 
+## ??/??/???? 3.4
+
+- Update file operations implementations to extend features.
+
 ## 07/17/2021 3.3
 
 - The PortableDevice event args have been updated to let the user know which device was updated.
@@ -54,6 +58,11 @@ COMNative 3.0
 
 - Removals:
     - Some 'ref' keywords in native PortableDevices interfaces. These keywords have been removed for interface type parameters because they was redundant.
+
+## ??/??/???? 2.6
+
+- Add new types.
+- Update file operations implementations to extend features.
 
 ## 07/17/2021 2.5
 

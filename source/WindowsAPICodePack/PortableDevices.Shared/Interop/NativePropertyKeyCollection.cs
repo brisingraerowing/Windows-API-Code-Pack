@@ -8,10 +8,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using WinCopies.Collections;
 
 #if WAPICP3
 using Microsoft.WindowsAPICodePack.COMNative;
+
+using WinCopies.Collections;
+using WinCopies.Collections.Enumeration.Generic;
 #endif
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
@@ -161,7 +163,7 @@ IUIntIndexedCollection
 #if WAPICP2
                 UIntIndexedCollectionEnumerator
 #else
-                DotNetFix.UIntIndexedListEnumerator
+                DotNetFix.Generic.UIntIndexedListEnumerator
 #endif
                 <PropertyKey>(
 #if WAPICP3
@@ -188,6 +190,8 @@ IUIntIndexedCollection
 
             uint IUIntCountable.Count => _collection.Count;
 
+            WinCopies.Collections.DotNetFix.Generic.IUIntCountableEnumerator<PropertyKey> WinCopies.Collections.DotNetFix.Generic.IUIntCountableEnumerable<PropertyKey, WinCopies.Collections.DotNetFix.Generic.IUIntCountableEnumerator<PropertyKey>>.GetEnumerator() => throw new NotImplementedException();
+
             void WinCopies.Collections.DotNetFix.Generic.IUIntIndexedCollection<PropertyKey>.Add(PropertyKey item) => throw new NotImplementedException();
 
             void WinCopies.Collections.DotNetFix.Generic.IUIntIndexedCollection<PropertyKey>.Clear() => throw new NotImplementedException();
@@ -207,12 +211,25 @@ IUIntIndexedCollection
             bool WinCopies.Collections.DotNetFix.Generic.IUIntIndexedCollection<PropertyKey>.Remove(PropertyKey item) => throw new NotImplementedException();
 
             void WinCopies.Collections.DotNetFix.Generic.IUIntIndexedList<PropertyKey>.RemoveAt(uint index) => throw new NotImplementedException();
+#if !CS8
+            public WinCopies.Collections.DotNetFix.Generic.IUIntCountableEnumerator<PropertyKey> GetEnumerator() => throw new NotImplementedException();
+#endif
         }
 #endif
 
         IEnumerator<PropertyKey> IEnumerable<PropertyKey>.GetEnumerator() => GetEnumerator();
 
         IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
+
+#if WAPICP3
+        private WinCopies.Collections.DotNetFix.Generic.IUIntCountableEnumerator<PropertyKey> GetUIntCountableEnumerator() => new UIntCountableEnumerator<IEnumerator<PropertyKey>, PropertyKey>(GetEnumerator(), () => Count);
+
+        WinCopies.Collections.DotNetFix.Generic.IUIntCountableEnumerator<PropertyKey> WinCopies.Collections.DotNetFix.Generic.IUIntCountableEnumerable<PropertyKey, WinCopies.Collections.DotNetFix.Generic.IUIntCountableEnumerator<PropertyKey>>.GetEnumerator() => GetUIntCountableEnumerator();
+
+        WinCopies.Collections.DotNetFix.Generic.IUIntCountableEnumerator<PropertyKey> WinCopies.Collections.Enumeration.DotNetFix.IEnumerable<WinCopies.Collections.DotNetFix.Generic.IUIntCountableEnumerator<PropertyKey>>.GetEnumerator() => GetUIntCountableEnumerator();
+
+        WinCopies.Collections.DotNetFix.Generic.IUIntCountableEnumerator<PropertyKey> WinCopies.Collections.DotNetFix.Generic.IEnumerable<PropertyKey, WinCopies.Collections.DotNetFix.Generic.IUIntCountableEnumerator<PropertyKey>>.GetEnumerator() => GetUIntCountableEnumerator();
+#endif
     }
 
     internal sealed class NativePropertyKeyCollection : NativeReadOnlyPropertyKeyCollection, INativeCollection<PropertyKey>

@@ -1,19 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
-    <TargetFrameworks>net472;net48;netcoreapp3.0;netcoreapp3.1;net5.0-windows</TargetFrameworks>
+    <TargetFrameworks>net35;net40;net45;net472;net48;netcoreapp3.0;netcoreapp3.1;net5.0-windows;net6.0-windows</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
     <UseWPF>true</UseWPF>
     <AssemblyName>WinCopies.WindowsAPICodePack.Shell</AssemblyName>
     <RootNamespace>Microsoft.WindowsAPICodePack.Shell</RootNamespace>
     <AssemblyOriginatorKeyFile>Shell.snk</AssemblyOriginatorKeyFile>
-    <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
+    <Authors>Microsoft; Pierre Sprimont</Authors>
     <Description>WindowsAPICodePack for Shell</Description>
     <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020-2021</Copyright>
     <DocumentationFile>WinCopies.WindowsAPICodePack.Shell.xml</DocumentationFile>
     <DefineConstants>WAPICP2;$(DefineConstants)</DefineConstants>
     <VersionPrefix>2.5</VersionPrefix>
-    <!--<VersionSuffix>preview</VersionSuffix>-->
     <AssemblyVersion>2.5</AssemblyVersion>
     <FileVersion>2.5</FileVersion>
   </PropertyGroup>
@@ -42,6 +41,10 @@
     <ProjectReference Include="..\COMNative.2.x\COMNative.2.x.csproj" />
     <ProjectReference Include="..\Core.2.x\Core.2.x.csproj" />
     <ProjectReference Include="..\Win32Native.2.x\Win32Native.2.x.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WinCopies.Util" Version="2.15" />
   </ItemGroup>
 
   <ItemGroup>

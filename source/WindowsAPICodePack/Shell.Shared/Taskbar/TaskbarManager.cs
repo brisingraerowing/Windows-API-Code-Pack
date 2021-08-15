@@ -1,11 +1,12 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
+using Microsoft.WindowsAPICodePack.Shell.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
+
 using System;
 using System.Diagnostics;
 using System.Windows.Interop;
-using Microsoft.WindowsAPICodePack.Shell.Resources;
-using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
-using Microsoft.WindowsAPICodePack.Win32Native;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar
 {
@@ -33,16 +34,12 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
                     lock (_syncLock)
 
-#if CS7
-
+#if CS8
+                        _instance ??= new TaskbarManager();
+#else
                         if (_instance == null)
 
                             _instance = new TaskbarManager();
-
-#else
-
-                        _instance ??= new TaskbarManager();
-
 #endif
 
                 return _instance;
@@ -150,10 +147,10 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// Gets the Tabbed Thumbnail manager class for adding/updating
         /// tabbed thumbnail previews.
         /// </summary>
-#if CS7
-        public TabbedThumbnailManager TabbedThumbnail => _tabbedThumbnail ?? (_tabbedThumbnail = new TabbedThumbnailManager());
-#else
+#if CS8
         public TabbedThumbnailManager TabbedThumbnail => _tabbedThumbnail ??= new TabbedThumbnailManager();
+#else
+        public TabbedThumbnailManager TabbedThumbnail => _tabbedThumbnail ?? (_tabbedThumbnail = new TabbedThumbnailManager());
 #endif
 
         private ThumbnailToolBarManager _thumbnailToolBarManager;
@@ -162,10 +159,10 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// Gets the Thumbnail toolbar manager class for adding/updating
         /// toolbar buttons.
         /// </summary>
-#if CS7
-        public ThumbnailToolBarManager ThumbnailToolBars => _thumbnailToolBarManager ?? (_thumbnailToolBarManager = new ThumbnailToolBarManager());
-#else
+#if CS8
         public ThumbnailToolBarManager ThumbnailToolBars => _thumbnailToolBarManager ??= new ThumbnailToolBarManager();
+#else
+        public ThumbnailToolBarManager ThumbnailToolBars => _thumbnailToolBarManager ?? (_thumbnailToolBarManager = new ThumbnailToolBarManager());
 #endif
 
         /// <summary>

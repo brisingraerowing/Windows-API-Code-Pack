@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager;
+
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Microsoft.WindowsAPICodePack.Internal;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager;
+
+using static Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.DesktopWindowManager;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -14,30 +15,26 @@ namespace Microsoft.WindowsAPICodePack.Shell
     public class GlassForm : Form
     {
         #region properties
-
         /// <summary>
         /// Get determines if AeroGlass is enabled on the desktop. Set enables/disables AreoGlass on the desktop.
         /// </summary>
         public static bool AeroGlassCompositionEnabled
         {
-            set => Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.DesktopWindowManager.DwmEnableComposition(
-                    value ? CompositionEnable.Enable : CompositionEnable.Disable);
-            get => Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.DesktopWindowManager.DwmIsCompositionEnabled();
-        }
+            get => DwmIsCompositionEnabled();
 
+            set => DwmEnableComposition(
+                    value ? CompositionEnable.Enable : CompositionEnable.Disable);
+        }
         #endregion
 
         #region events
-
         /// <summary>
         /// Fires when the availability of Glass effect changes.
         /// </summary>
         public event EventHandler<AeroGlassCompositionChangedEventArgs> AeroGlassCompositionChanged;
-
         #endregion
 
         #region operations
-
         /// <summary>
         /// Makes the background of current window transparent
         /// </summary>
@@ -67,7 +64,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 };
 
                 // Extend the Frame into client area
-                _ = Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.DesktopWindowManager.DwmExtendFrameIntoClientArea(Handle, ref margins);
+                _ = DwmExtendFrameIntoClientArea(Handle, ref margins);
             }
         }
 
@@ -79,7 +76,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             if (Handle != IntPtr.Zero)
             {
                 var margins = new Margins(true);
-                _ = Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.DesktopWindowManager.DwmExtendFrameIntoClientArea(Handle, ref margins);
+                _ = DwmExtendFrameIntoClientArea(Handle, ref margins);
             }
         }
         #endregion
@@ -90,16 +87,15 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         /// <param name="m"></param>
 
-        protected override void WndProc(ref System.Windows.Forms.Message m)
+        protected override void WndProc(ref Message m)
         {
-            if (m.Msg == NativeAPI.Consts.Shell.DesktopWindowManager.DWMMessages.WM_DWMCOMPOSITIONCHANGED
-                || m.Msg == NativeAPI.Consts.Shell.DesktopWindowManager.DWMMessages.WM_DWMNCRENDERINGCHANGED)
-            {
+            if (m.Msg == (int)WindowMessage.DWMCompositionChanged
+                || m.Msg == (int)WindowMessage.DWMNCRenderingChanged)
+
                 if (AeroGlassCompositionChanged != null)
 
                     AeroGlassCompositionChanged.Invoke(this,
                         new AeroGlassCompositionChangedEventArgs(AeroGlassCompositionEnabled));
-            }
 
             base.WndProc(ref m);
         }
@@ -117,7 +113,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Overide OnPaint to paint the background as black.
         /// </summary>
-        /// <param name="e">PaintEventArgs</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -130,7 +125,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     e?.Graphics.FillRectangle(Brushes.Black, ClientRectangle);
 
         }
-
         #endregion
     }
 }

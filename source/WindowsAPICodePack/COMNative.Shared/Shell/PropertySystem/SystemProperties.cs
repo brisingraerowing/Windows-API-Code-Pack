@@ -1,40 +1,37 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
+using Microsoft.WindowsAPICodePack.PropertySystem;
+
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
-using Microsoft.WindowsAPICodePack.PropertySystem;
-using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
-using PropertySystemGuids = Microsoft.WindowsAPICodePack.NativeAPI.Guids.Shell.PropertySystem;
+
 using SystemPropertiesGuids = Microsoft.WindowsAPICodePack.Shell.Guids.PropertySystem.SystemProperties;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
 {
-
-
     /// <summary>
     /// Provides easy access to all the system properties (property keys and their descriptions)
     /// </summary>
     public static class SystemProperties
     {
-
         /// <summary>
         /// System Properties
         /// </summary>
         public static class System
         {
             #region Properties
-
             /// <summary>
             /// <para>Name: System.AcquisitionID -- PKEY_AcquisitionID</para>
             /// <para>Description: Hash to determine acquisition session.</para>
             /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
             /// <para>FormatID: <see cref="SystemPropertiesGuids.AcquisitionID"/>, 100</para>
             /// </summary>
-            public static PropertyKey AcquisitionID => new PropertyKey(new Guid(SystemPropertiesGuids.AcquisitionID), 100);
+            public static PropertyKey AcquisitionID => new
+#if !CS9
+                PropertyKey
+#endif
+                (SystemPropertiesGuids.AcquisitionID, 100);
 
             /// <summary>
             /// <para>Name: System.ApplicationName -- PKEY_ApplicationName</para>
@@ -42,7 +39,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)  Legacy code may treat this as <see cref="VarEnum.VT_LPSTR"/>.</para>
             /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 18 (PIDSI_APPNAME)</para>
             /// </summary>
-            public static PropertyKey ApplicationName => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 18);
+            public static PropertyKey ApplicationName => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation, 18);
 
             /// <summary>
             /// <para>Name: System.Author -- PKEY_Author</para>
@@ -50,7 +51,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)  Legacy code may treat this as <see cref="VarEnum.VT_LPSTR"/>.</para>
             /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 4 (PIDSI_AUTHOR)</para>
             /// </summary>
-            public static PropertyKey Author => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 4);
+            public static PropertyKey Author => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation, 4);
 
             /// <summary>
             /// <para>Name: System.Capacity -- PKEY_Capacity</para>
@@ -58,7 +63,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="ulong"/> -- <see cref="VarEnum.VT_UI8"/></para>
             /// <para>FormatID: (FMTID_Volume) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Volume"/>, 3 (PID_VOLUME_CAPACITY)  (Filesystem Volume Properties)</para>
             /// </summary>
-            public static PropertyKey Capacity => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Volume), 3);
+            public static PropertyKey Capacity => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Volume, 3);
 
             /// <summary>
             /// <para>Name: System.Category -- PKEY_Category</para>
@@ -66,7 +75,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 2 (PIDDSI_CATEGORY)</para>
             /// </summary>
-            public static PropertyKey Category => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 2);
+            public static PropertyKey Category => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation, 2);
 
             /// <summary>
             /// <para>Name: System.Comment -- PKEY_Comment</para>
@@ -74,7 +87,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)  Legacy code may treat this as <see cref="VarEnum.VT_LPSTR"/>.</para>
             /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 6 (PIDSI_COMMENTS)</para>
             /// </summary>
-            public static PropertyKey Comment => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 6);
+            public static PropertyKey Comment => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation, 6);
 
             /// <summary>
             /// <para>Name: System.Company -- PKEY_Company</para>
@@ -82,7 +99,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 15 (PIDDSI_COMPANY)</para>
             /// </summary>
-            public static PropertyKey Company => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 15);
+            public static PropertyKey Company => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation, 15);
 
             /// <summary>
             /// <para>Name: System.ComputerName -- PKEY_ComputerName</para>
@@ -90,7 +111,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 5 (PID_COMPUTERNAME)</para>
             /// </summary>
-            public static PropertyKey ComputerName => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 5);
+            public static PropertyKey ComputerName => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails, 5);
 
             /// <summary>
             /// <para>Name: System.ContainedItems -- PKEY_ContainedItems</para>
@@ -99,7 +124,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: Multivalue <see cref="Guid"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_CLSID"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_CLSID"/>)</para>
             /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 29</para>
             /// </summary>
-            public static PropertyKey ContainedItems => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 29);
+            public static PropertyKey ContainedItems => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails, 29);
 
             /// <summary>
             /// <para>Name: System.ContentStatus -- PKEY_ContentStatus</para>
@@ -107,7 +136,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 27</para>
             /// </summary>
-            public static PropertyKey ContentStatus => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 27);
+            public static PropertyKey ContentStatus => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation, 27);
 
             /// <summary>
             /// <para>Name: System.ContentType -- PKEY_ContentType</para>
@@ -115,7 +148,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 26</para>
             /// </summary>
-            public static PropertyKey ContentType => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 26);
+            public static PropertyKey ContentType => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation, 26);
 
             /// <summary>
             /// <para>Name: System.Copyright -- PKEY_Copyright</para>
@@ -123,7 +160,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 11 (PIDMSI_COPYRIGHT)</para>
             /// </summary>
-            public static PropertyKey Copyright => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 11);
+            public static PropertyKey Copyright => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 11);
 
             /// <summary>
             /// <para>Name: System.DateAccessed -- PKEY_DateAccessed</para>
@@ -131,7 +172,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
             /// <para>FormatID: (FMTID_Storage) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Storage"/>, 16 (PID_STG_ACCESSTIME)</para>
             /// </summary>
-            public static PropertyKey DateAccessed => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Storage), 16);
+            public static PropertyKey DateAccessed => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Storage, 16);
 
             /// <summary>
             /// <para>Name: System.DateAcquired -- PKEY_DateAcquired</para>
@@ -140,7 +185,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
             /// <para>FormatID: {2CBAA8F5-D81F-47CA-B17A-F8D822300131}, 100</para>
             /// </summary>
-            public static PropertyKey DateAcquired => new PropertyKey(new Guid(SystemPropertiesGuids.DateAcquired), 100);
+            public static PropertyKey DateAcquired => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.DateAcquired, 100);
 
             /// <summary>
             /// <para>Name: System.DateArchived -- PKEY_DateArchived</para>
@@ -148,7 +197,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
             /// <para>FormatID: {43F8D7B7-A444-4F87-9383-52271C9B915C}, 100</para>
             /// </summary>
-            public static PropertyKey DateArchived => new PropertyKey(new Guid(SystemPropertiesGuids.DateArchived), 100);
+            public static PropertyKey DateArchived => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.DateArchived, 100);
 
             /// <summary>
             /// <para>Name: System.DateCompleted -- PKEY_DateCompleted</para>
@@ -156,7 +209,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
             /// <para>FormatID: {72FAB781-ACDA-43E5-B155-B2434F85E678}, 100</para>
             /// </summary>
-            public static PropertyKey DateCompleted => new PropertyKey(new Guid(SystemPropertiesGuids.DateCompleted), 100);
+            public static PropertyKey DateCompleted => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.DateCompleted, 100);
 
             /// <summary>
             /// <para>Name: System.DateCreated -- PKEY_DateCreated</para>
@@ -164,7 +221,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
             /// <para>FormatID: (FMTID_Storage) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Storage"/>, 15 (PID_STG_CREATETIME)</para>
             /// </summary>
-            public static PropertyKey DateCreated => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Storage), 15);
+            public static PropertyKey DateCreated => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Storage, 15);
 
             /// <summary>
             /// <para>Name: System.DateImported -- PKEY_DateImported</para>
@@ -172,7 +233,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
             /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 18258</para>
             /// </summary>
-            public static PropertyKey DateImported => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 18258);
+            public static PropertyKey DateImported => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties, 18258);
 
             /// <summary>
             /// <para>Name: System.DateModified -- PKEY_DateModified</para>
@@ -180,7 +245,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
             /// <para>FormatID: (FMTID_Storage) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Storage"/>, 14 (PID_STG_WRITETIME)</para>
             /// </summary>
-            public static PropertyKey DateModified => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Storage), 14);
+            public static PropertyKey DateModified => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Storage, 14);
 
             /// <summary>
             /// <para>Name: System.DescriptionID -- PKEY_DescriptionID</para>
@@ -188,7 +257,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: Buffer -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_UI1"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_UI1"/>)</para>
             /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 2 (PID_DESCRIPTIONID)</para>
             /// </summary>
-            public static PropertyKey DescriptionID => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 2);
+            public static PropertyKey DescriptionID => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails, 2);
 
             /// <summary>
             /// <para>Name: System.DueDate -- PKEY_DueDate</para>
@@ -196,7 +269,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
             /// <para>FormatID: {3F8472B5-E0AF-4DB2-8071-C53FE76AE7CE}, 100</para>
             /// </summary>
-            public static PropertyKey DueDate => new PropertyKey(new Guid(SystemPropertiesGuids.DueDate), 100);
+            public static PropertyKey DueDate => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.DueDate, 100);
 
             /// <summary>
             /// <para>Name: System.EndDate -- PKEY_EndDate</para>
@@ -204,7 +281,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
             /// <para>FormatID: {C75FAA05-96FD-49E7-9CB4-9F601082D553}, 100</para>
             /// </summary>
-            public static PropertyKey EndDate => new PropertyKey(new Guid(SystemPropertiesGuids.EndDate), 100);
+            public static PropertyKey EndDate => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.EndDate, 100);
 
             /// <summary>
             /// <para>Name: System.FileAllocationSize -- PKEY_FileAllocationSize</para>
@@ -212,7 +293,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="ulong"/> -- <see cref="VarEnum.VT_UI8"/></para>
             /// <para>FormatID: (FMTID_Storage) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Storage"/>, 18 (PID_STG_ALLOCSIZE)</para>
             /// </summary>
-            public static PropertyKey FileAllocationSize => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Storage), 18);
+            public static PropertyKey FileAllocationSize => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Storage, 18);
 
             /// <summary>
             /// <para>Name: System.FileAttributes -- PKEY_FileAttributes</para>
@@ -220,7 +305,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
             /// <para>FormatID: (FMTID_Storage) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Storage"/>, 13 (PID_STG_ATTRIBUTES)</para>
             /// </summary>
-            public static PropertyKey FileAttributes => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Storage), 13);
+            public static PropertyKey FileAttributes => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Storage, 13);
 
             /// <summary>
             /// <para>Name: System.FileCount -- PKEY_FileCount</para>
@@ -228,7 +317,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="ulong"/> -- <see cref="VarEnum.VT_UI8"/></para>
             /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 12</para>
             /// </summary>
-            public static PropertyKey FileCount => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 12);
+            public static PropertyKey FileCount => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails, 12);
 
             /// <summary>
             /// <para>Name: System.FileDescription -- PKEY_FileDescription</para>
@@ -236,7 +329,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (PSFMTID_VERSION) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Version"/>, 3 (PIDVSI_FileDescription)</para>
             /// </summary>
-            public static PropertyKey FileDescription => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Version), 3);
+            public static PropertyKey FileDescription => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Version, 3);
 
             /// <summary>
             /// <para>Name: System.FileExtension -- PKEY_FileExtension</para>
@@ -246,7 +343,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             ///appropriately by the data source from System.FileName.  If System.FileName does not have a file 
             ///extension, this value should be <see cref="VarEnum.VT_EMPTY"/>.
             ///
-            ///To obtain the type of any item (including an item that is not a file), use System.ItemType.
+            ///To obtain the type of any item (including an item that is not a file, use System.ItemType.
             ///
             ///Example values:
             ///
@@ -261,7 +358,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {E4F10A3C-49E6-405D-8288-A23BD4EEAA6C}, 100</para>
             /// </summary>
-            public static PropertyKey FileExtension => new PropertyKey(new Guid(SystemPropertiesGuids.FileExtension), 100);
+            public static PropertyKey FileExtension => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FileExtension, 100);
 
             /// <summary>
             /// <para>Name: System.FileFRN -- PKEY_FileFRN</para>
@@ -270,7 +371,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="ulong"/> -- <see cref="VarEnum.VT_UI8"/></para>
             /// <para>FormatID: (FMTID_Storage) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Storage"/>, 21 (PID_STG_FRN)</para>
             /// </summary>
-            public static PropertyKey FileFRN => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Storage), 21);
+            public static PropertyKey FileFRN => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Storage, 21);
 
             /// <summary>
             /// <para>Name: System.FileName -- PKEY_FileName</para>
@@ -278,7 +383,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             ///
             ///It is possible that the item might not exist on a filesystem (ie, it may not be opened 
             ///using CreateFile).  Nonetheless, if the item is represented as a file from the logical sense 
-            ///(and its name follows standard Win32 file-naming syntax), then the data source should emit this property.
+            ///(and its name follows standard Win32 file-naming syntax, then the data source should emit this property.
             ///
             ///If an item is not a file, then the value for this property is <see cref="VarEnum.VT_EMPTY"/>.  See 
             ///System.ItemNameDisplay.
@@ -298,7 +403,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {41CF5AE0-F75A-4806-BD87-59C7D9248EB9}, 100</para>
             /// </summary>
-            public static PropertyKey FileName => new PropertyKey(new Guid(SystemPropertiesGuids.FileName), 100);
+            public static PropertyKey FileName => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FileName, 100);
 
             /// <summary>
             /// <para>Name: System.FileOwner -- PKEY_FileOwner</para>
@@ -306,7 +415,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (FMTID_Misc) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Misc"/>, 4 (PID_MISC_OWNER)</para>
             /// </summary>
-            public static PropertyKey FileOwner => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Misc), 4);
+            public static PropertyKey FileOwner => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Misc, 4);
 
             /// <summary>
             /// <para>Name: System.FileVersion -- PKEY_FileVersion</para>
@@ -314,7 +427,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (PSFMTID_VERSION) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Version"/>, 4 (PIDVSI_FileVersion)</para>
             /// </summary>
-            public static PropertyKey FileVersion => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Version), 4);
+            public static PropertyKey FileVersion => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Version, 4);
 
             /// <summary>
             /// <para>Name: System.FindData -- PKEY_FindData</para>
@@ -322,7 +439,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: Buffer -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_UI1"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_UI1"/>)</para>
             /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 0 (PID_FINDDATA)</para>
             /// </summary>
-            public static PropertyKey FindData => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 0);
+            public static PropertyKey FindData => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails, 0);
 
             /// <summary>
             /// <para>Name: System.FlagColor -- PKEY_FlagColor</para>
@@ -330,7 +451,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="ushort"/> -- <see cref="VarEnum.VT_UI2"/></para>
             /// <para>FormatID: {67DF94DE-0CA7-4D6F-B792-053A3E4F03CF}, 100</para>
             /// </summary>
-            public static PropertyKey FlagColor => new PropertyKey(new Guid(SystemPropertiesGuids.FlagColor), 100);
+            public static PropertyKey FlagColor => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FlagColor, 100);
 
             /// <summary>
             /// <para>Name: System.FlagColorText -- PKEY_FlagColorText</para>
@@ -339,7 +464,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {45EAE747-8E2A-40AE-8CBF-CA52ABA6152A}, 100</para>
             /// </summary>
-            public static PropertyKey FlagColorText => new PropertyKey(new Guid(SystemPropertiesGuids.FlagColorText), 100);
+            public static PropertyKey FlagColorText => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FlagColorText, 100);
 
             /// <summary>
             /// <para>Name: System.FlagStatus -- PKEY_FlagStatus</para>
@@ -347,7 +476,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
             /// <para>FormatID: {E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}, 12</para>
             /// </summary>
-            public static PropertyKey FlagStatus => new PropertyKey(new Guid(SystemPropertiesGuids.FlagStatus), 12);
+            public static PropertyKey FlagStatus => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FlagStatus, 12);
 
             /// <summary>
             /// <para>Name: System.FlagStatusText -- PKEY_FlagStatusText</para>
@@ -356,7 +489,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {DC54FD2E-189D-4871-AA01-08C2F57A4ABC}, 100</para>
             /// </summary>
-            public static PropertyKey FlagStatusText => new PropertyKey(new Guid(SystemPropertiesGuids.FlagStatusText), 100);
+            public static PropertyKey FlagStatusText => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FlagStatusText, 100);
 
             /// <summary>
             /// <para>Name: System.FreeSpace -- PKEY_FreeSpace</para>
@@ -364,7 +501,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="ulong"/> -- <see cref="VarEnum.VT_UI8"/></para>
             /// <para>FormatID: (FMTID_Volume) {<see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Volume"/>}, 2 (PID_VOLUME_FREE)  (Filesystem Volume Properties)</para>
             /// </summary>
-            public static PropertyKey FreeSpace => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Volume), 2);
+            public static PropertyKey FreeSpace => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Volume, 2);
 
             /// <summary>
             /// <para>Name: System.FullText -- PKEY_FullText</para>
@@ -374,7 +515,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {1E3EE840-BC2B-476C-8237-2ACD1A839B22}, 6</para>
             /// </summary>
-            public static PropertyKey FullText => new PropertyKey(new Guid(SystemPropertiesGuids.FullText), 6);
+            public static PropertyKey FullText => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FullText, 6);
 
             /// <summary>
             /// <para>Name: System.Identity -- PKEY_Identity</para>
@@ -382,7 +527,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {A26F4AFC-7346-4299-BE47-EB1AE613139F}, 100</para>
             /// </summary>
-            public static PropertyKey IdentityProperty => new PropertyKey(new Guid(SystemPropertiesGuids.IdentityProperty), 100);
+            public static PropertyKey IdentityProperty => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.IdentityProperty, 100);
 
             /// <summary>
             /// <para>Name: System.ImageParsingName -- PKEY_ImageParsingName</para>
@@ -390,7 +539,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {D7750EE0-C6A4-48EC-B53E-B87B52E6D073}, 100</para>
             /// </summary>
-            public static PropertyKey ImageParsingName => new PropertyKey(new Guid(SystemPropertiesGuids.ImageParsingName), 100);
+            public static PropertyKey ImageParsingName => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.ImageParsingName, 100);
 
             /// <summary>
             /// <para>Name: System.Importance -- PKEY_Importance</para>
@@ -398,7 +551,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
             /// <para>FormatID: {E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}, 11</para>
             /// </summary>
-            public static PropertyKey Importance => new PropertyKey(new Guid(SystemPropertiesGuids.Importance), 11);
+            public static PropertyKey Importance => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.Importance, 11);
 
             /// <summary>
             /// <para>Name: System.ImportanceText -- PKEY_ImportanceText</para>
@@ -407,7 +564,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {A3B29791-7713-4E1D-BB40-17DB85F01831}, 100</para>
             /// </summary>
-            public static PropertyKey ImportanceText => new PropertyKey(new Guid(SystemPropertiesGuids.ImportanceText), 100);
+            public static PropertyKey ImportanceText => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.ImportanceText, 100);
 
             /// <summary>
             /// <para>Name: System.InfoTipText -- PKEY_InfoTipText</para>
@@ -415,7 +576,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {C9944A21-A406-48FE-8225-AEC7E24C211B}, 17</para>
             /// </summary>
-            public static PropertyKey InfoTipText => new PropertyKey(new Guid(SystemPropertiesGuids.InfoTipText), 17);
+            public static PropertyKey InfoTipText => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.InfoTipText, 17);
 
             /// <summary>
             /// <para>Name: System.InternalName -- PKEY_InternalName</para>
@@ -423,7 +588,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (PSFMTID_VERSION) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Version"/>, 5 (PIDVSI_InternalName)</para>
             /// </summary>
-            public static PropertyKey InternalName => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Version), 5);
+            public static PropertyKey InternalName => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Version, 5);
 
             /// <summary>
             /// <para>Name: System.IsAttachment -- PKEY_IsAttachment</para>
@@ -431,7 +600,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
             /// <para>FormatID: {F23F425C-71A1-4FA8-922F-678EA4A60408}, 100</para>
             /// </summary>
-            public static PropertyKey IsAttachment => new PropertyKey(new Guid(SystemPropertiesGuids.IsAttachment), 100);
+            public static PropertyKey IsAttachment => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.IsAttachment, 100);
 
             /// <summary>
             /// <para>Name: System.IsDefaultNonOwnerSaveLocation -- PKEY_IsDefaultNonOwnerSaveLocation</para>
@@ -439,7 +612,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
             /// <para>FormatID: {5D76B67F-9B3D-44BB-B6AE-25DA4F638A67}, 5</para>
             /// </summary>
-            public static PropertyKey IsDefaultNonOwnerSaveLocation => new PropertyKey(new Guid(SystemPropertiesGuids.IsDefaultNonOwnerSaveLocation), 5);
+            public static PropertyKey IsDefaultNonOwnerSaveLocation => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.IsDefaultNonOwnerSaveLocation, 5);
 
             /// <summary>
             /// <para>Name: System.IsDefaultSaveLocation -- PKEY_IsDefaultSaveLocation</para>
@@ -447,7 +624,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
             /// <para>FormatID: {5D76B67F-9B3D-44BB-B6AE-25DA4F638A67}, 3</para>
             /// </summary>
-            public static PropertyKey IsDefaultSaveLocation => new PropertyKey(new Guid(SystemPropertiesGuids.IsDefaultSaveLocation), 3);
+            public static PropertyKey IsDefaultSaveLocation => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.IsDefaultSaveLocation, 3);
 
             /// <summary>
             /// <para>Name: System.IsDeleted -- PKEY_IsDeleted</para>
@@ -455,7 +636,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
             /// <para>FormatID: {5CDA5FC8-33EE-4FF3-9094-AE7BD8868C4D}, 100</para>
             /// </summary>
-            public static PropertyKey IsDeleted => new PropertyKey(new Guid(SystemPropertiesGuids.IsDeleted), 100);
+            public static PropertyKey IsDeleted => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.IsDeleted, 100);
 
             /// <summary>
             /// <para>Name: System.IsEncrypted -- PKEY_IsEncrypted</para>
@@ -463,7 +648,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
             /// <para>FormatID: {90E5E14E-648B-4826-B2AA-ACAF790E3513}, 10</para>
             /// </summary>
-            public static PropertyKey IsEncrypted => new PropertyKey(new Guid(SystemPropertiesGuids.IsEncrypted), 10);
+            public static PropertyKey IsEncrypted => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.IsEncrypted, 10);
 
             /// <summary>
             /// <para>Name: System.IsFlagged -- PKEY_IsFlagged</para>
@@ -471,7 +660,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
             /// <para>FormatID: {5DA84765-E3FF-4278-86B0-A27967FBDD03}, 100</para>
             /// </summary>
-            public static PropertyKey IsFlagged => new PropertyKey(new Guid(SystemPropertiesGuids.IsFlagged), 100);
+            public static PropertyKey IsFlagged => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.IsFlagged, 100);
 
             /// <summary>
             /// <para>Name: System.IsFlaggedComplete -- PKEY_IsFlaggedComplete</para>
@@ -479,7 +672,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
             /// <para>FormatID: {A6F360D2-55F9-48DE-B909-620E090A647C}, 100</para>
             /// </summary>
-            public static PropertyKey IsFlaggedComplete => new PropertyKey(new Guid("{A6F360D2-55F9-48DE-B909-620E090A647C}"), 100);
+            public static PropertyKey IsFlaggedComplete => new
+#if !CS9
+				PropertyKey
+#endif
+				("{A6F360D2-55F9-48DE-B909-620E090A647C}", 100);
 
             /// <summary>
             /// <para>Name: System.IsIncomplete -- PKEY_IsIncomplete</para>
@@ -487,7 +684,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
             /// <para>FormatID: {346C8BD1-2E6A-4C45-89A4-61B78E8E700F}, 100</para>
             /// </summary>
-            public static PropertyKey IsIncomplete => new PropertyKey(new Guid("{346C8BD1-2E6A-4C45-89A4-61B78E8E700F}"), 100);
+            public static PropertyKey IsIncomplete => new
+#if !CS9
+				PropertyKey
+#endif
+				("{346C8BD1-2E6A-4C45-89A4-61B78E8E700F}", 100);
 
             /// <summary>
             /// <para>Name: System.IsLocationSupported -- PKEY_IsLocationSupported</para>
@@ -495,7 +696,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
             /// <para>FormatID: {5D76B67F-9B3D-44BB-B6AE-25DA4F638A67}, 8</para>
             /// </summary>
-            public static PropertyKey IsLocationSupported => new PropertyKey(new Guid("{5D76B67F-9B3D-44BB-B6AE-25DA4F638A67}"), 8);
+            public static PropertyKey IsLocationSupported => new
+#if !CS9
+				PropertyKey
+#endif
+				("{5D76B67F-9B3D-44BB-B6AE-25DA4F638A67}", 8);
 
             /// <summary>
             /// <para>Name: System.IsPinnedToNameSpaceTree -- PKEY_IsPinnedToNameSpaceTree</para>
@@ -503,7 +708,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
             /// <para>FormatID: {5D76B67F-9B3D-44BB-B6AE-25DA4F638A67}, 2</para>
             /// </summary>
-            public static PropertyKey IsPinnedToNamespaceTree => new PropertyKey(new Guid("{5D76B67F-9B3D-44BB-B6AE-25DA4F638A67}"), 2);
+            public static PropertyKey IsPinnedToNamespaceTree => new
+#if !CS9
+				PropertyKey
+#endif
+				("{5D76B67F-9B3D-44BB-B6AE-25DA4F638A67}", 2);
 
             /// <summary>
             /// <para>Name: System.IsRead -- PKEY_IsRead</para>
@@ -511,7 +720,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
             /// <para>FormatID: {E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}, 10</para>
             /// </summary>
-            public static PropertyKey IsRead => new PropertyKey(new Guid("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}"), 10);
+            public static PropertyKey IsRead => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}", 10);
 
             /// <summary>
             /// <para>Name: System.IsSearchOnlyItem -- PKEY_IsSearchOnlyItem</para>
@@ -519,7 +732,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
             /// <para>FormatID: {5D76B67F-9B3D-44BB-B6AE-25DA4F638A67}, 4</para>
             /// </summary>
-            public static PropertyKey IsSearchOnlyItem => new PropertyKey(new Guid("{5D76B67F-9B3D-44BB-B6AE-25DA4F638A67}"), 4);
+            public static PropertyKey IsSearchOnlyItem => new
+#if !CS9
+				PropertyKey
+#endif
+				("{5D76B67F-9B3D-44BB-B6AE-25DA4F638A67}", 4);
 
             /// <summary>
             /// <para>Name: System.IsSendToTarget -- PKEY_IsSendToTarget</para>
@@ -527,7 +744,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
             /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 33</para>
             /// </summary>
-            public static PropertyKey IsSendToTarget => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 33);
+            public static PropertyKey IsSendToTarget => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails, 33);
 
             /// <summary>
             /// <para>Name: System.Is.Shared -- PKEY_Is.Shared</para>
@@ -535,7 +756,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
             /// <para>FormatID: {EF884C5B-2BFE-41BB-AAE5-76EEDF4F9902}, 100</para>
             /// </summary>
-            public static PropertyKey IsShared => new PropertyKey(new Guid("{EF884C5B-2BFE-41BB-AAE5-76EEDF4F9902}"), 100);
+            public static PropertyKey IsShared => new
+#if !CS9
+				PropertyKey
+#endif
+				("{EF884C5B-2BFE-41BB-AAE5-76EEDF4F9902}", 100);
 
             /// <summary>
             /// <para>Name: System.ItemAuthors -- PKEY_ItemAuthors</para>
@@ -545,7 +770,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {D0A04F0A-462A-48A4-BB2F-3706E88DBD7D}, 100</para>
             /// </summary>
-            public static PropertyKey ItemAuthors => new PropertyKey(new Guid("{D0A04F0A-462A-48A4-BB2F-3706E88DBD7D}"), 100);
+            public static PropertyKey ItemAuthors => new
+#if !CS9
+				PropertyKey
+#endif
+				("{D0A04F0A-462A-48A4-BB2F-3706E88DBD7D}", 100);
 
             /// <summary>
             /// <para>Name: System.ItemClassType -- PKEY_ItemClassType</para>
@@ -553,7 +782,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {048658AD-2DB8-41A4-BBB6-AC1EF1207EB1}, 100</para>
             /// </summary>
-            public static PropertyKey ItemClassType => new PropertyKey(new Guid("{048658AD-2DB8-41A4-BBB6-AC1EF1207EB1}"), 100);
+            public static PropertyKey ItemClassType => new
+#if !CS9
+				PropertyKey
+#endif
+				("{048658AD-2DB8-41A4-BBB6-AC1EF1207EB1}", 100);
 
             /// <summary>
             /// <para>Name: System.ItemDate -- PKEY_ItemDate</para>
@@ -563,7 +796,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
             /// <para>FormatID: {F7DB74B4-4287-4103-AFBA-F1B13DCD75CF}, 100</para>
             /// </summary>
-            public static PropertyKey ItemDate => new PropertyKey(new Guid("{F7DB74B4-4287-4103-AFBA-F1B13DCD75CF}"), 100);
+            public static PropertyKey ItemDate => new
+#if !CS9
+				PropertyKey
+#endif
+				("{F7DB74B4-4287-4103-AFBA-F1B13DCD75CF}", 100);
 
             /// <summary>
             /// <para>Name: System.ItemFolderNameDisplay -- PKEY_ItemFolderNameDisplay</para>
@@ -586,7 +823,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (FMTID_Storage) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Storage"/>, 2 (PID_STG_DIRECTORY)</para>
             /// </summary>
-            public static PropertyKey ItemFolderNameDisplay => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Storage), 2);
+            public static PropertyKey ItemFolderNameDisplay => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Storage, 2);
 
             /// <summary>
             /// <para>Name: System.ItemFolderPathDisplay -- PKEY_ItemFolderPathDisplay</para>
@@ -607,7 +848,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}, 6</para>
             /// </summary>
-            public static PropertyKey ItemFolderPathDisplay => new PropertyKey(new Guid("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}"), 6);
+            public static PropertyKey ItemFolderPathDisplay => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}", 6);
 
             /// <summary>
             /// <para>Name: System.ItemFolderPathDisplayNarrow -- PKEY_ItemFolderPathDisplayNarrow</para>
@@ -631,7 +876,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {DABD30ED-0043-4789-A7F8-D013A4736622}, 100</para>
             /// </summary>
-            public static PropertyKey ItemFolderPathDisplayNarrow => new PropertyKey(new Guid("{DABD30ED-0043-4789-A7F8-D013A4736622}"), 100);
+            public static PropertyKey ItemFolderPathDisplayNarrow => new
+#if !CS9
+				PropertyKey
+#endif
+				("{DABD30ED-0043-4789-A7F8-D013A4736622}", 100);
 
             /// <summary>
             /// <para>Name: System.ItemName -- PKEY_ItemName</para>
@@ -645,7 +894,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {6B8DA074-3B5C-43BC-886F-0A2CDCE00B6F}, 100</para>
             /// </summary>
-            public static PropertyKey ItemName => new PropertyKey(new Guid("{6B8DA074-3B5C-43BC-886F-0A2CDCE00B6F}"), 100);
+            public static PropertyKey ItemName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6B8DA074-3B5C-43BC-886F-0A2CDCE00B6F}", 100);
 
             /// <summary>
             /// <para>Name: System.ItemNameDisplay -- PKEY_ItemNameDisplay</para>
@@ -690,7 +943,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (FMTID_Storage) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Storage"/>, 10 (PID_STG_NAME)</para>
             /// </summary>
-            public static PropertyKey ItemNameDisplay => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Storage), 10);
+            public static PropertyKey ItemNameDisplay => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Storage, 10);
 
             /// <summary>
             /// <para>Name: System.ItemNamePrefix -- PKEY_ItemNamePrefix</para>
@@ -700,7 +957,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             ///If the item is a file, then the value of this property is <see cref="VarEnum.VT_EMPTY"/>.
             ///
             ///If the item is a message, then the value of this property is the forwarding or reply 
-            ///prefixes (including delimiting colon, but no whitespace), or <see cref="VarEnum.VT_EMPTY"/> if there is no prefix.
+            ///prefixes (including delimiting colon, but no whitespace, or <see cref="VarEnum.VT_EMPTY"/> if there is no prefix.
             ///
             ///Example values:
             ///
@@ -713,7 +970,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {D7313FF1-A77A-401C-8C99-3DBDD68ADD36}, 100</para>
             /// </summary>
-            public static PropertyKey ItemNamePrefix => new PropertyKey(new Guid("{D7313FF1-A77A-401C-8C99-3DBDD68ADD36}"), 100);
+            public static PropertyKey ItemNamePrefix => new
+#if !CS9
+				PropertyKey
+#endif
+				("{D7313FF1-A77A-401C-8C99-3DBDD68ADD36}", 100);
 
             /// <summary>
             /// <para>Name: System.ItemParticipants -- PKEY_ItemParticipants</para>
@@ -725,7 +986,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {D4D0AA16-9948-41A4-AA85-D97FF9646993}, 100</para>
             /// </summary>
-            public static PropertyKey ItemParticipants => new PropertyKey(new Guid("{D4D0AA16-9948-41A4-AA85-D97FF9646993}"), 100);
+            public static PropertyKey ItemParticipants => new
+#if !CS9
+				PropertyKey
+#endif
+				("{D4D0AA16-9948-41A4-AA85-D97FF9646993}", 100);
 
             /// <summary>
             /// <para>Name: System.ItemPathDisplay -- PKEY_ItemPathDisplay</para>
@@ -753,7 +1018,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}, 7</para>
             /// </summary>
-            public static PropertyKey ItemPathDisplay => new PropertyKey(new Guid("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}"), 7);
+            public static PropertyKey ItemPathDisplay => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}", 7);
 
             /// <summary>
             /// <para>Name: System.ItemPathDisplayNarrow -- PKEY_ItemPathDisplayNarrow</para>
@@ -777,7 +1046,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 8</para>
             /// </summary>
-            public static PropertyKey ItemPathDisplayNarrow => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 8);
+            public static PropertyKey ItemPathDisplayNarrow => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails, 8);
 
             /// <summary>
             /// <para>Name: System.ItemType -- PKEY_ItemType</para>
@@ -786,7 +1059,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             ///
             ///If there is no canonical type, the value is <see cref="VarEnum.VT_EMPTY"/>.
             ///
-            ///If the item is a file (ie, System.FileName is not <see cref="VarEnum.VT_EMPTY"/>), the value is the same as
+            ///If the item is a file (ie, System.FileName is not <see cref="VarEnum.VT_EMPTY"/>, the value is the same as
             ///System.FileExtension.
             ///
             ///Use System.ItemTypeText when you want to display the type to end users in a view.  (If
@@ -806,7 +1079,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 11</para>
             /// </summary>
-            public static PropertyKey ItemType => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 11);
+            public static PropertyKey ItemType => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails, 11);
 
             /// <summary>
             /// <para>Name: System.ItemTypeText -- PKEY_ItemTypeText</para>
@@ -834,7 +1111,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (FMTID_Storage) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Storage"/>, 4 (PID_STG_STORAGETYPE)</para>
             /// </summary>
-            public static PropertyKey ItemTypeText => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Storage), 4);
+            public static PropertyKey ItemTypeText => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Storage, 4);
 
             /// <summary>
             /// <para>Name: System.ItemUrl -- PKEY_ItemUrl</para>
@@ -850,7 +1131,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (FMTID_Query) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Query"/>, 9 (DISPID_QUERY_VIRTUALPATH)</para>
             /// </summary>
-            public static PropertyKey ItemUrl => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Query), 9);
+            public static PropertyKey ItemUrl => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Query, 9);
 
             /// <summary>
             /// <para>Name: System.Keywords -- PKEY_Keywords</para>
@@ -858,7 +1143,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)  Legacy code may treat this as <see cref="VarEnum.VT_LPSTR"/>.</para>
             /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 5 (PIDSI_KEYWORDS)</para>
             /// </summary>
-            public static PropertyKey Keywords => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 5);
+            public static PropertyKey Keywords => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation, 5);
 
             /// <summary>
             /// <para>Name: System.Kind -- PKEY_Kind</para>
@@ -868,7 +1157,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {1E3EE840-BC2B-476C-8237-2ACD1A839B22}, 3</para>
             /// </summary>
-            public static PropertyKey Kind => new PropertyKey(new Guid("{1E3EE840-BC2B-476C-8237-2ACD1A839B22}"), 3);
+            public static PropertyKey Kind => new
+#if !CS9
+				PropertyKey
+#endif
+				("{1E3EE840-BC2B-476C-8237-2ACD1A839B22}", 3);
 
             /// <summary>
             /// <para>Name: System.KindText -- PKEY_KindText</para>
@@ -877,7 +1170,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {F04BEF95-C585-4197-A2B7-DF46FDC9EE6D}, 100</para>
             /// </summary>
-            public static PropertyKey KindText => new PropertyKey(new Guid("{F04BEF95-C585-4197-A2B7-DF46FDC9EE6D}"), 100);
+            public static PropertyKey KindText => new
+#if !CS9
+				PropertyKey
+#endif
+				("{F04BEF95-C585-4197-A2B7-DF46FDC9EE6D}", 100);
 
             /// <summary>
             /// <para>Name: System.Language -- PKEY_Language</para>
@@ -885,7 +1182,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 28</para>
             /// </summary>
-            public static PropertyKey Language => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 28);
+            public static PropertyKey Language => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation, 28);
 
             /// <summary>
             /// <para>Name: System.MileageInformation -- PKEY_MileageInformation</para>
@@ -893,7 +1194,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {FDF84370-031A-4ADD-9E91-0D775F1C6605}, 100</para>
             /// </summary>
-            public static PropertyKey MileageInformation => new PropertyKey(new Guid("{FDF84370-031A-4ADD-9E91-0D775F1C6605}"), 100);
+            public static PropertyKey MileageInformation => new
+#if !CS9
+				PropertyKey
+#endif
+				("{FDF84370-031A-4ADD-9E91-0D775F1C6605}", 100);
 
             /// <summary>
             /// <para>Name: System.MIMEType -- PKEY_MIMEType</para>
@@ -901,7 +1206,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {0B63E350-9CCC-11D0-BCDB-00805FCCCE04}, 5</para>
             /// </summary>
-            public static PropertyKey MIMEType => new PropertyKey(new Guid("{0B63E350-9CCC-11D0-BCDB-00805FCCCE04}"), 5);
+            public static PropertyKey MIMEType => new
+#if !CS9
+				PropertyKey
+#endif
+				("{0B63E350-9CCC-11D0-BCDB-00805FCCCE04}", 5);
 
             /// <summary>
             /// <para>Name: System.NamespaceCLSID -- PKEY_NamespaceCLSID</para>
@@ -909,7 +1218,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="Guid"/> -- <see cref="VarEnum.VT_CLSID"/></para>
             /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 6</para>
             /// </summary>
-            public static PropertyKey NamespaceClsid => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 6);
+            public static PropertyKey NamespaceClsid => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails, 6);
 
             /// <summary>
             /// <para>Name: System.<see langword="null"/> -- PKEY_Null</para>
@@ -917,7 +1230,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see langword="null"/> -- <see cref="VarEnum.VT_NULL"/></para>
             /// <para>FormatID: {00000000-0000-0000-0000-000000000000}, 0</para>
             /// </summary>
-            public static PropertyKey Null => new PropertyKey(new Guid("{00000000-0000-0000-0000-000000000000}"), 0);
+            public static PropertyKey Null => new
+#if !CS9
+				PropertyKey
+#endif
+				("{00000000-0000-0000-0000-000000000000}", 0);
 
             /// <summary>
             /// <para>Name: System.OfflineAvailability -- PKEY_OfflineAvailability</para>
@@ -925,7 +1242,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
             /// <para>FormatID: {A94688B6-7D9F-4570-A648-E3DFC0AB2B3F}, 100</para>
             /// </summary>
-            public static PropertyKey OfflineAvailability => new PropertyKey(new Guid("{A94688B6-7D9F-4570-A648-E3DFC0AB2B3F}"), 100);
+            public static PropertyKey OfflineAvailability => new
+#if !CS9
+				PropertyKey
+#endif
+				("{A94688B6-7D9F-4570-A648-E3DFC0AB2B3F}", 100);
 
             /// <summary>
             /// <para>Name: System.OfflineStatus -- PKEY_OfflineStatus</para>
@@ -933,7 +1254,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
             /// <para>FormatID: {6D24888F-4718-4BDA-AFED-EA0FB4386CD8}, 100</para>
             /// </summary>
-            public static PropertyKey OfflineStatus => new PropertyKey(new Guid("{6D24888F-4718-4BDA-AFED-EA0FB4386CD8}"), 100);
+            public static PropertyKey OfflineStatus => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6D24888F-4718-4BDA-AFED-EA0FB4386CD8}", 100);
 
             /// <summary>
             /// <para>Name: System.OriginalFileName -- PKEY_OriginalFileName</para>
@@ -941,7 +1266,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (PSFMTID_VERSION) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Version"/>, 6</para>
             /// </summary>
-            public static PropertyKey OriginalFileName => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Version), 6);
+            public static PropertyKey OriginalFileName => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Version, 6);
 
             /// <summary>
             /// <para>Name: System.OwnerSID -- PKEY_OwnerSID</para>
@@ -949,7 +1278,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {5D76B67F-9B3D-44BB-B6AE-25DA4F638A67}, 6</para>
             /// </summary>
-            public static PropertyKey OwnerSid => new PropertyKey(new Guid("{5D76B67F-9B3D-44BB-B6AE-25DA4F638A67}"), 6);
+            public static PropertyKey OwnerSid => new
+#if !CS9
+				PropertyKey
+#endif
+				("{5D76B67F-9B3D-44BB-B6AE-25DA4F638A67}", 6);
 
             /// <summary>
             /// <para>Name: System.ParentalRating -- PKEY_ParentalRating</para>
@@ -957,7 +1290,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 21 (PIDMSI_PARENTAL_RATING)</para>
             /// </summary>
-            public static PropertyKey ParentalRating => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 21);
+            public static PropertyKey ParentalRating => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 21);
 
             /// <summary>
             /// <para>Name: System.ParentalRatingReason -- PKEY_ParentalRatingReason</para>
@@ -965,7 +1302,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {10984E0A-F9F2-4321-B7EF-BAF195AF4319}, 100</para>
             /// </summary>
-            public static PropertyKey ParentalRatingReason => new PropertyKey(new Guid("{10984E0A-F9F2-4321-B7EF-BAF195AF4319}"), 100);
+            public static PropertyKey ParentalRatingReason => new
+#if !CS9
+				PropertyKey
+#endif
+				("{10984E0A-F9F2-4321-B7EF-BAF195AF4319}", 100);
 
             /// <summary>
             /// <para>Name: System.ParentalRatingsOrganization -- PKEY_ParentalRatingsOrganization</para>
@@ -973,7 +1314,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {A7FE0840-1344-46F0-8D37-52ED712A4BF9}, 100</para>
             /// </summary>
-            public static PropertyKey ParentalRatingsOrganization => new PropertyKey(new Guid("{A7FE0840-1344-46F0-8D37-52ED712A4BF9}"), 100);
+            public static PropertyKey ParentalRatingsOrganization => new
+#if !CS9
+				PropertyKey
+#endif
+				("{A7FE0840-1344-46F0-8D37-52ED712A4BF9}", 100);
 
             /// <summary>
             /// <para>Name: System.ParsingBindContext -- PKEY_ParsingBindContext</para>
@@ -981,7 +1326,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: Any -- <see cref="VarEnum.VT_NULL"/>  Legacy code may treat this as VT_UNKNOWN.</para>
             /// <para>FormatID: {DFB9A04D-362F-4CA3-B30B-0254B17B5B84}, 100</para>
             /// </summary>
-            public static PropertyKey ParsingBindContext => new PropertyKey(new Guid("{DFB9A04D-362F-4CA3-B30B-0254B17B5B84}"), 100);
+            public static PropertyKey ParsingBindContext => new
+#if !CS9
+				PropertyKey
+#endif
+				("{DFB9A04D-362F-4CA3-B30B-0254B17B5B84}", 100);
 
             /// <summary>
             /// <para>Name: System.ParsingName -- PKEY_ParsingName</para>
@@ -990,7 +1339,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 24</para>
             /// </summary>
-            public static PropertyKey ParsingName => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 24);
+            public static PropertyKey ParsingName => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails, 24);
 
             /// <summary>
             /// <para>Name: System.ParsingPath -- PKEY_ParsingPath</para>
@@ -1003,7 +1356,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 30</para>
             /// </summary>
-            public static PropertyKey ParsingPath => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 30);
+            public static PropertyKey ParsingPath => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails, 30);
 
             /// <summary>
             /// <para>Name: System.PerceivedType -- PKEY_PerceivedType</para>
@@ -1011,7 +1368,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
             /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 9</para>
             /// </summary>
-            public static PropertyKey PerceivedType => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 9);
+            public static PropertyKey PerceivedType => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails, 9);
 
             /// <summary>
             /// <para>Name: System.PercentFull -- PKEY_PercentFull</para>
@@ -1019,7 +1380,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
             /// <para>FormatID: (FMTID_Volume) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Volume"/>, 5  (Filesystem Volume Properties)</para>
             /// </summary>
-            public static PropertyKey PercentFull => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Volume), 5);
+            public static PropertyKey PercentFull => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Volume, 5);
 
             /// <summary>
             /// <para>Name: System.Priority -- PKEY_Priority</para>
@@ -1027,7 +1392,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="ushort"/> -- <see cref="VarEnum.VT_UI2"/></para>
             /// <para>FormatID: {9C1FCF74-2D97-41BA-B4AE-CB2E3661A6E4}, 5</para>
             /// </summary>
-            public static PropertyKey Priority => new PropertyKey(new Guid("{9C1FCF74-2D97-41BA-B4AE-CB2E3661A6E4}"), 5);
+            public static PropertyKey Priority => new
+#if !CS9
+				PropertyKey
+#endif
+				("{9C1FCF74-2D97-41BA-B4AE-CB2E3661A6E4}", 5);
 
             /// <summary>
             /// <para>Name: System.PriorityText -- PKEY_PriorityText</para>
@@ -1036,7 +1405,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {D98BE98B-B86B-4095-BF52-9D23B2E0A752}, 100</para>
             /// </summary>
-            public static PropertyKey PriorityText => new PropertyKey(new Guid("{D98BE98B-B86B-4095-BF52-9D23B2E0A752}"), 100);
+            public static PropertyKey PriorityText => new
+#if !CS9
+				PropertyKey
+#endif
+				("{D98BE98B-B86B-4095-BF52-9D23B2E0A752}", 100);
 
             /// <summary>
             /// <para>Name: System.Project -- PKEY_Project</para>
@@ -1044,7 +1417,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {39A7F922-477C-48DE-8BC8-B28441E342E3}, 100</para>
             /// </summary>
-            public static PropertyKey Project => new PropertyKey(new Guid("{39A7F922-477C-48DE-8BC8-B28441E342E3}"), 100);
+            public static PropertyKey Project => new
+#if !CS9
+				PropertyKey
+#endif
+				("{39A7F922-477C-48DE-8BC8-B28441E342E3}", 100);
 
             /// <summary>
             /// <para>Name: System.ProviderItemID -- PKEY_ProviderItemID</para>
@@ -1052,7 +1429,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {F21D9941-81F0-471A-ADEE-4E74B49217ED}, 100</para>
             /// </summary>
-            public static PropertyKey ProviderItemID => new PropertyKey(new Guid("{F21D9941-81F0-471A-ADEE-4E74B49217ED}"), 100);
+            public static PropertyKey ProviderItemID => new
+#if !CS9
+				PropertyKey
+#endif
+				("{F21D9941-81F0-471A-ADEE-4E74B49217ED}", 100);
 
             /// <summary>
             /// <para>Name: System.Rating -- PKEY_Rating</para>
@@ -1061,7 +1442,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
             /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 9 (PIDMSI_RATING)</para>
             /// </summary>
-            public static PropertyKey Rating => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 9);
+            public static PropertyKey Rating => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 9);
 
             /// <summary>
             /// <para>Name: System.RatingText -- PKEY_RatingText</para>
@@ -1070,7 +1455,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {90197CA7-FD8F-4E8C-9DA3-B57E1E609295}, 100</para>
             /// </summary>
-            public static PropertyKey RatingText => new PropertyKey(new Guid("{90197CA7-FD8F-4E8C-9DA3-B57E1E609295}"), 100);
+            public static PropertyKey RatingText => new
+#if !CS9
+				PropertyKey
+#endif
+				("{90197CA7-FD8F-4E8C-9DA3-B57E1E609295}", 100);
 
             /// <summary>
             /// <para>Name: System.Sensitivity -- PKEY_Sensitivity</para>
@@ -1078,7 +1467,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="ushort"/> -- <see cref="VarEnum.VT_UI2"/></para>
             /// <para>FormatID: {F8D3F6AC-4874-42CB-BE59-AB454B30716A}, 100</para>
             /// </summary>
-            public static PropertyKey Sensitivity => new PropertyKey(new Guid("{F8D3F6AC-4874-42CB-BE59-AB454B30716A}"), 100);
+            public static PropertyKey Sensitivity => new
+#if !CS9
+				PropertyKey
+#endif
+				("{F8D3F6AC-4874-42CB-BE59-AB454B30716A}", 100);
 
             /// <summary>
             /// <para>Name: System.SensitivityText -- PKEY_SensitivityText</para>
@@ -1087,7 +1480,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {D0C7F054-3F72-4725-8527-129A577CB269}, 100</para>
             /// </summary>
-            public static PropertyKey SensitivityText => new PropertyKey(new Guid("{D0C7F054-3F72-4725-8527-129A577CB269}"), 100);
+            public static PropertyKey SensitivityText => new
+#if !CS9
+				PropertyKey
+#endif
+				("{D0C7F054-3F72-4725-8527-129A577CB269}", 100);
 
             /// <summary>
             /// <para>Name: System.SFGAOFlags -- PKEY_SFGAOFlags</para>
@@ -1095,8 +1492,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
             /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 25</para>
             /// </summary>
-            [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Flags")]
-            public static PropertyKey SFGAOFlags => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 25);
+            public static PropertyKey SFGAOFlags => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails, 25);
 
             /// <summary>
             /// <para>Name: System..SharedWith -- PKEY_SHAREDWith</para>
@@ -1104,7 +1504,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {EF884C5B-2BFE-41BB-AAE5-76EEDF4F9902}, 200</para>
             /// </summary>
-            public static PropertyKey SharedWith => new PropertyKey(new Guid("{EF884C5B-2BFE-41BB-AAE5-76EEDF4F9902}"), 200);
+            public static PropertyKey SharedWith => new
+#if !CS9
+				PropertyKey
+#endif
+				("{EF884C5B-2BFE-41BB-AAE5-76EEDF4F9902}", 200);
 
             /// <summary>
             /// <para>Name: System.ShareUserRating -- PKEY_ShareUserRating</para>
@@ -1112,15 +1516,23 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
             /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 12 (PIDMSI_SHARE_USER_RATING)</para>
             /// </summary>
-            public static PropertyKey ShareUserRating => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 12);
+            public static PropertyKey ShareUserRating => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 12);
 
             /// <summary>
             /// <para>Name: System.SharingStatus -- PKEY_SharingStatus</para>
-            /// <para>Description: What is the item's sharing status (not .Shared, .Shared, everyone (homegroup or everyone), or private)?</para>
+            /// <para>Description: What is the item's sharing status (not .Shared, .Shared, everyone (homegroup or everyone, or private)?</para>
             /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
             /// <para>FormatID: {EF884C5B-2BFE-41BB-AAE5-76EEDF4F9902}, 300</para>
             /// </summary>
-            public static PropertyKey SharingStatus => new PropertyKey(new Guid("{EF884C5B-2BFE-41BB-AAE5-76EEDF4F9902}"), 300);
+            public static PropertyKey SharingStatus => new
+#if !CS9
+				PropertyKey
+#endif
+				("{EF884C5B-2BFE-41BB-AAE5-76EEDF4F9902}", 300);
 
             /// <summary>
             /// <para>Name: System.SimpleRating -- PKEY_SimpleRating</para>
@@ -1129,7 +1541,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
             /// <para>FormatID: {A09F084E-AD41-489F-8076-AA5BE3082BCA}, 100</para>
             /// </summary>
-            public static PropertyKey SimpleRating => new PropertyKey(new Guid("{A09F084E-AD41-489F-8076-AA5BE3082BCA}"), 100);
+            public static PropertyKey SimpleRating => new
+#if !CS9
+				PropertyKey
+#endif
+				("{A09F084E-AD41-489F-8076-AA5BE3082BCA}", 100);
 
             /// <summary>
             /// <para>Name: System.Size -- PKEY_Size</para>
@@ -1137,7 +1553,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="ulong"/> -- <see cref="VarEnum.VT_UI8"/></para>
             /// <para>FormatID: (FMTID_Storage) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Storage"/>, 12 (PID_STG_SIZE)</para>
             /// </summary>
-            public static PropertyKey Size => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Storage), 12);
+            public static PropertyKey Size => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Storage, 12);
 
             /// <summary>
             /// <para>Name: System.SoftwareUsed -- PKEY_SoftwareUsed</para>
@@ -1145,7 +1565,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 305</para>
             /// </summary>
-            public static PropertyKey SoftwareUsed => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 305);
+            public static PropertyKey SoftwareUsed => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties, 305);
 
             /// <summary>
             /// <para>Name: System.SourceItem -- PKEY_SourceItem</para>
@@ -1153,7 +1577,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: {668CDFA5-7A1B-4323-AE4B-E527393A1D81}, 100</para>
             /// </summary>
-            public static PropertyKey SourceItem => new PropertyKey(new Guid("{668CDFA5-7A1B-4323-AE4B-E527393A1D81}"), 100);
+            public static PropertyKey SourceItem => new
+#if !CS9
+				PropertyKey
+#endif
+				("{668CDFA5-7A1B-4323-AE4B-E527393A1D81}", 100);
 
             /// <summary>
             /// <para>Name: System.StartDate -- PKEY_StartDate</para>
@@ -1161,7 +1589,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
             /// <para>FormatID: {48FD6EC8-8A12-4CDF-A03E-4EC5A511EDDE}, 100</para>
             /// </summary>
-            public static PropertyKey StartDate => new PropertyKey(new Guid("{48FD6EC8-8A12-4CDF-A03E-4EC5A511EDDE}"), 100);
+            public static PropertyKey StartDate => new
+#if !CS9
+				PropertyKey
+#endif
+				("{48FD6EC8-8A12-4CDF-A03E-4EC5A511EDDE}", 100);
 
             /// <summary>
             /// <para>Name: System.Status -- PKEY_Status</para>
@@ -1169,7 +1601,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (FMTID_IntSite) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.IntSite"/>, 9</para>
             /// </summary>
-            public static PropertyKey Status => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.IntSite), 9);
+            public static PropertyKey Status => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.IntSite, 9);
 
             /// <summary>
             /// <para>Name: System.Subject -- PKEY_Subject</para>
@@ -1177,7 +1613,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 3 (PIDSI_SUBJECT)</para>
             /// </summary>
-            public static PropertyKey Subject => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 3);
+            public static PropertyKey Subject => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation, 3);
 
             /// <summary>
             /// <para>Name: System.Thumbnail -- PKEY_Thumbnail</para>
@@ -1185,7 +1625,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: Clipboard -- VT_CF</para>
             /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 17 (PIDSI_THUMBNAIL)</para>
             /// </summary>
-            public static PropertyKey Thumbnail => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 17);
+            public static PropertyKey Thumbnail => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation, 17);
 
             /// <summary>
             /// <para>Name: System.ThumbnailCacheId -- PKEY_ThumbnailCacheId</para>
@@ -1194,7 +1638,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="ulong"/> -- <see cref="VarEnum.VT_UI8"/></para>
             /// <para>FormatID: {446D16B1-8DAD-4870-A748-402EA43D788C}, 100</para>
             /// </summary>
-            public static PropertyKey ThumbnailCacheId => new PropertyKey(new Guid("{446D16B1-8DAD-4870-A748-402EA43D788C}"), 100);
+            public static PropertyKey ThumbnailCacheId => new
+#if !CS9
+				PropertyKey
+#endif
+				("{446D16B1-8DAD-4870-A748-402EA43D788C}", 100);
 
             /// <summary>
             /// <para>Name: System.ThumbnailStream -- PKEY_ThumbnailStream</para>
@@ -1202,7 +1650,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: Stream -- VT_STREAM</para>
             /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 27</para>
             /// </summary>
-            public static PropertyKey ThumbnailStream => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 27);
+            public static PropertyKey ThumbnailStream => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation, 27);
 
             /// <summary>
             /// <para>Name: System.Title -- PKEY_Title</para>
@@ -1210,7 +1662,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)  Legacy code may treat this as <see cref="VarEnum.VT_LPSTR"/>.</para>
             /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 2 (PIDSI_TITLE)</para>
             /// </summary>
-            public static PropertyKey Title => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 2);
+            public static PropertyKey Title => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation, 2);
 
             /// <summary>
             /// <para>Name: System.TotalFileSize -- PKEY_TotalFileSize</para>
@@ -1218,7 +1674,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="ulong"/> -- <see cref="VarEnum.VT_UI8"/></para>
             /// <para>FormatID: (FMTID_ShellDetails) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails"/>, 14</para>
             /// </summary>
-            public static PropertyKey TotalFileSize => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails), 14);
+            public static PropertyKey TotalFileSize => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ShellDetails, 14);
 
             /// <summary>
             /// <para>Name: System.Trademarks -- PKEY_Trademarks</para>
@@ -1226,27 +1686,31 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
             /// <para>FormatID: (PSFMTID_VERSION) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Version"/>, 9 (PIDVSI_Trademarks)</para>
             /// </summary>
-            public static PropertyKey Trademarks => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Version), 9);
+            public static PropertyKey Trademarks => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Version, 9);
             #endregion
 
             #region sub-classes
-
             /// <summary>
             /// AppUserModel Properties
             /// </summary>
             public static class AppUserModel
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.AppUserModel.ExcludeFromShowInNewInstall -- PKEY_AppUserModel_ExcludeFromShowInNewInstall</para>
                 /// <para>Description: </para>
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}, 8</para>
                 /// </summary>
-                public static PropertyKey ExcludeFromShowInNewInstall => new PropertyKey(new Guid("{9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}"), 8);
+                public static PropertyKey ExcludeFromShowInNewInstall => new
+#if !CS9
+				PropertyKey
+#endif
+				("{9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}", 8);
 
                 /// <summary>
                 /// <para>Name: System.AppUserModel.ID -- PKEY_AppUserModel_ID</para>
@@ -1254,7 +1718,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}, 5</para>
                 /// </summary>
-                public static PropertyKey ID => new PropertyKey(new Guid("{9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}"), 5);
+                public static PropertyKey ID => new
+#if !CS9
+				PropertyKey
+#endif
+				("{9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}", 5);
 
                 /// <summary>
                 /// <para>Name: System.AppUserModel.IsDestListSeparator -- PKEY_AppUserModel_IsDestListSeparator</para>
@@ -1262,7 +1730,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}, 6</para>
                 /// </summary>
-                public static PropertyKey IsDestinationListSeparator => new PropertyKey(new Guid("{9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}"), 6);
+                public static PropertyKey IsDestinationListSeparator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}", 6);
 
                 /// <summary>
                 /// <para>Name: System.AppUserModel.PreventPinning -- PKEY_AppUserModel_PreventPinning</para>
@@ -1270,7 +1742,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}, 9</para>
                 /// </summary>
-                public static PropertyKey PreventPinning => new PropertyKey(new Guid("{9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}"), 9);
+                public static PropertyKey PreventPinning => new
+#if !CS9
+				PropertyKey
+#endif
+				("{9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}", 9);
 
                 /// <summary>
                 /// <para>Name: System.AppUserModel.RelaunchCommand -- PKEY_AppUserModel_RelaunchCommand</para>
@@ -1278,7 +1754,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}, 2</para>
                 /// </summary>
-                public static PropertyKey RelaunchCommand => new PropertyKey(new Guid("{9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}"), 2);
+                public static PropertyKey RelaunchCommand => new
+#if !CS9
+				PropertyKey
+#endif
+				("{9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}", 2);
 
                 /// <summary>
                 /// <para>Name: System.AppUserModel.RelaunchDisplayNameResource -- PKEY_AppUserModel_RelaunchDisplayNameResource</para>
@@ -1286,7 +1766,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}, 4</para>
                 /// </summary>
-                public static PropertyKey RelaunchDisplayNameResource => new PropertyKey(new Guid("{9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}"), 4);
+                public static PropertyKey RelaunchDisplayNameResource => new
+#if !CS9
+				PropertyKey
+#endif
+				("{9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}", 4);
 
                 /// <summary>
                 /// <para>Name: System.AppUserModel.RelaunchIconResource -- PKEY_AppUserModel_RelaunchIconResource</para>
@@ -1294,9 +1778,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}, 3</para>
                 /// </summary>
-                public static PropertyKey RelaunchIconResource => new PropertyKey(new Guid("{9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}"), 3);
+                public static PropertyKey RelaunchIconResource => new
+#if !CS9
+				PropertyKey
+#endif
+				("{9F4C2855-9F79-4B39-A8D0-E1D42DE1D5F3}", 3);
                 #endregion
-
             }
 
             /// <summary>
@@ -1304,18 +1791,19 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Audio
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Audio.ChannelCount -- PKEY_Audio_ChannelCount</para>
-                /// <para>Description: Indicates the channel count for the audio file.  Values: 1 (mono), 2 (stereo).
+                /// <para>Description: Indicates the channel count for the audio file.  Values: 1 (mono, 2 (stereo).
                 ///</para>
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: (FMTID_AudioSummaryInformation) {64440490-4C8B-11D1-8B70-080036B11A03}, 7 (PIDASI_CHANNEL_COUNT)</para>
                 /// </summary>
-                public static PropertyKey ChannelCount => new PropertyKey(new Guid("{64440490-4C8B-11D1-8B70-080036B11A03}"), 7);
+                public static PropertyKey ChannelCount => new
+#if !CS9
+				PropertyKey
+#endif
+				("{64440490-4C8B-11D1-8B70-080036B11A03}", 7);
 
                 /// <summary>
                 /// <para>Name: System.Audio.Compression -- PKEY_Audio_Compression</para>
@@ -1324,7 +1812,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_AudioSummaryInformation) {64440490-4C8B-11D1-8B70-080036B11A03}, 10 (PIDASI_COMPRESSION)</para>
                 /// </summary>
-                public static PropertyKey Compression => new PropertyKey(new Guid("{64440490-4C8B-11D1-8B70-080036B11A03}"), 10);
+                public static PropertyKey Compression => new
+#if !CS9
+				PropertyKey
+#endif
+				("{64440490-4C8B-11D1-8B70-080036B11A03}", 10);
 
                 /// <summary>
                 /// <para>Name: System.Audio.EncodingBitrate -- PKEY_Audio_EncodingBitrate</para>
@@ -1333,7 +1825,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: (FMTID_AudioSummaryInformation) {64440490-4C8B-11D1-8B70-080036B11A03}, 4 (PIDASI_AVG_DATA_RATE)</para>
                 /// </summary>
-                public static PropertyKey EncodingBitrate => new PropertyKey(new Guid("{64440490-4C8B-11D1-8B70-080036B11A03}"), 4);
+                public static PropertyKey EncodingBitrate => new
+#if !CS9
+				PropertyKey
+#endif
+				("{64440490-4C8B-11D1-8B70-080036B11A03}", 4);
 
                 /// <summary>
                 /// <para>Name: System.Audio.Format -- PKEY_Audio_Format</para>
@@ -1342,7 +1838,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)  Legacy code may treat this as <see cref="VarEnum.VT_BSTR"/>.</para>
                 /// <para>FormatID: (FMTID_AudioSummaryInformation) {64440490-4C8B-11D1-8B70-080036B11A03}, 2 (PIDASI_FORMAT)</para>
                 /// </summary>
-                public static PropertyKey Format => new PropertyKey(new Guid("{64440490-4C8B-11D1-8B70-080036B11A03}"), 2);
+                public static PropertyKey Format => new
+#if !CS9
+				PropertyKey
+#endif
+				("{64440490-4C8B-11D1-8B70-080036B11A03}", 2);
 
                 /// <summary>
                 /// <para>Name: System.Audio.IsVariableBitRate -- PKEY_Audio_IsVariableBitRate</para>
@@ -1350,7 +1850,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {E6822FEE-8C17-4D62-823C-8E9CFCBD1D5C}, 100</para>
                 /// </summary>
-                public static PropertyKey IsVariableBitrate => new PropertyKey(new Guid("{E6822FEE-8C17-4D62-823C-8E9CFCBD1D5C}"), 100);
+                public static PropertyKey IsVariableBitrate => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E6822FEE-8C17-4D62-823C-8E9CFCBD1D5C}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Audio.PeakValue -- PKEY_Audio_PeakValue</para>
@@ -1358,7 +1862,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {2579E5D0-1116-4084-BD9A-9B4F7CB4DF5E}, 100</para>
                 /// </summary>
-                public static PropertyKey PeakValue => new PropertyKey(new Guid("{2579E5D0-1116-4084-BD9A-9B4F7CB4DF5E}"), 100);
+                public static PropertyKey PeakValue => new
+#if !CS9
+				PropertyKey
+#endif
+				("{2579E5D0-1116-4084-BD9A-9B4F7CB4DF5E}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Audio.SampleRate -- PKEY_Audio_SampleRate</para>
@@ -1367,7 +1875,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: (FMTID_AudioSummaryInformation) {64440490-4C8B-11D1-8B70-080036B11A03}, 5 (PIDASI_SAMPLE_RATE)</para>
                 /// </summary>
-                public static PropertyKey SampleRate => new PropertyKey(new Guid("{64440490-4C8B-11D1-8B70-080036B11A03}"), 5);
+                public static PropertyKey SampleRate => new
+#if !CS9
+				PropertyKey
+#endif
+				("{64440490-4C8B-11D1-8B70-080036B11A03}", 5);
 
                 /// <summary>
                 /// <para>Name: System.Audio.SampleSize -- PKEY_Audio_SampleSize</para>
@@ -1376,7 +1888,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: (FMTID_AudioSummaryInformation) {64440490-4C8B-11D1-8B70-080036B11A03}, 6 (PIDASI_SAMPLE_SIZE)</para>
                 /// </summary>
-                public static PropertyKey SampleSize => new PropertyKey(new Guid("{64440490-4C8B-11D1-8B70-080036B11A03}"), 6);
+                public static PropertyKey SampleSize => new
+#if !CS9
+				PropertyKey
+#endif
+				("{64440490-4C8B-11D1-8B70-080036B11A03}", 6);
 
                 /// <summary>
                 /// <para>Name: System.Audio.StreamName -- PKEY_Audio_StreamName</para>
@@ -1385,7 +1901,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_AudioSummaryInformation) {64440490-4C8B-11D1-8B70-080036B11A03}, 9 (PIDASI_STREAM_NAME)</para>
                 /// </summary>
-                public static PropertyKey StreamName => new PropertyKey(new Guid("{64440490-4C8B-11D1-8B70-080036B11A03}"), 9);
+                public static PropertyKey StreamName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{64440490-4C8B-11D1-8B70-080036B11A03}", 9);
 
                 /// <summary>
                 /// <para>Name: System.Audio.StreamNumber -- PKEY_Audio_StreamNumber</para>
@@ -1394,11 +1914,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="ushort"/> -- <see cref="VarEnum.VT_UI2"/></para>
                 /// <para>FormatID: (FMTID_AudioSummaryInformation) {64440490-4C8B-11D1-8B70-080036B11A03}, 8 (PIDASI_STREAM_NUMBER)</para>
                 /// </summary>
-                public static PropertyKey StreamNumber => new PropertyKey(new Guid("{64440490-4C8B-11D1-8B70-080036B11A03}"), 8);
+                public static PropertyKey StreamNumber => new
+#if !CS9
+				PropertyKey
+#endif
+				("{64440490-4C8B-11D1-8B70-080036B11A03}", 8);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -1406,10 +1927,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Calendar
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Calendar.Duration -- PKEY_Calendar_Duration</para>
                 /// <para>Description: The duration as specified in a <see cref="string"/>.
@@ -1417,7 +1935,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {293CA35A-09AA-4DD2-B180-1FE245728A52}, 100</para>
                 /// </summary>
-                public static PropertyKey Duration => new PropertyKey(new Guid("{293CA35A-09AA-4DD2-B180-1FE245728A52}"), 100);
+                public static PropertyKey Duration => new
+#if !CS9
+				PropertyKey
+#endif
+				("{293CA35A-09AA-4DD2-B180-1FE245728A52}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Calendar.IsOnline -- PKEY_Calendar_IsOnline</para>
@@ -1426,7 +1948,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {BFEE9149-E3E2-49A7-A862-C05988145CEC}, 100</para>
                 /// </summary>
-                public static PropertyKey IsOnline => new PropertyKey(new Guid("{BFEE9149-E3E2-49A7-A862-C05988145CEC}"), 100);
+                public static PropertyKey IsOnline => new
+#if !CS9
+				PropertyKey
+#endif
+				("{BFEE9149-E3E2-49A7-A862-C05988145CEC}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Calendar.IsRecurring -- PKEY_Calendar_IsRecurring</para>
@@ -1434,7 +1960,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {315B9C8D-80A9-4EF9-AE16-8E746DA51D70}, 100</para>
                 /// </summary>
-                public static PropertyKey IsRecurring => new PropertyKey(new Guid("{315B9C8D-80A9-4EF9-AE16-8E746DA51D70}"), 100);
+                public static PropertyKey IsRecurring => new
+#if !CS9
+				PropertyKey
+#endif
+				("{315B9C8D-80A9-4EF9-AE16-8E746DA51D70}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Calendar.Location -- PKEY_Calendar_Location</para>
@@ -1442,7 +1972,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {F6272D18-CECC-40B1-B26A-3911717AA7BD}, 100</para>
                 /// </summary>
-                public static PropertyKey Location => new PropertyKey(new Guid("{F6272D18-CECC-40B1-B26A-3911717AA7BD}"), 100);
+                public static PropertyKey Location => new
+#if !CS9
+				PropertyKey
+#endif
+				("{F6272D18-CECC-40B1-B26A-3911717AA7BD}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Calendar.OptionalAttendeeAddresses -- PKEY_Calendar_OptionalAttendeeAddresses</para>
@@ -1450,7 +1984,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {D55BAE5A-3892-417A-A649-C6AC5AAAEAB3}, 100</para>
                 /// </summary>
-                public static PropertyKey OptionalAttendeeAddresses => new PropertyKey(new Guid("{D55BAE5A-3892-417A-A649-C6AC5AAAEAB3}"), 100);
+                public static PropertyKey OptionalAttendeeAddresses => new
+#if !CS9
+				PropertyKey
+#endif
+				("{D55BAE5A-3892-417A-A649-C6AC5AAAEAB3}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Calendar.OptionalAttendeeNames -- PKEY_Calendar_OptionalAttendeeNames</para>
@@ -1458,7 +1996,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {09429607-582D-437F-84C3-DE93A2B24C3C}, 100</para>
                 /// </summary>
-                public static PropertyKey OptionalAttendeeNames => new PropertyKey(new Guid("{09429607-582D-437F-84C3-DE93A2B24C3C}"), 100);
+                public static PropertyKey OptionalAttendeeNames => new
+#if !CS9
+				PropertyKey
+#endif
+				("{09429607-582D-437F-84C3-DE93A2B24C3C}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Calendar.OrganizerAddress -- PKEY_Calendar_OrganizerAddress</para>
@@ -1467,7 +2009,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {744C8242-4DF5-456C-AB9E-014EFB9021E3}, 100</para>
                 /// </summary>
-                public static PropertyKey OrganizerAddress => new PropertyKey(new Guid("{744C8242-4DF5-456C-AB9E-014EFB9021E3}"), 100);
+                public static PropertyKey OrganizerAddress => new
+#if !CS9
+				PropertyKey
+#endif
+				("{744C8242-4DF5-456C-AB9E-014EFB9021E3}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Calendar.OrganizerName -- PKEY_Calendar_OrganizerName</para>
@@ -1476,7 +2022,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {AAA660F9-9865-458E-B484-01BC7FE3973E}, 100</para>
                 /// </summary>
-                public static PropertyKey OrganizerName => new PropertyKey(new Guid("{AAA660F9-9865-458E-B484-01BC7FE3973E}"), 100);
+                public static PropertyKey OrganizerName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{AAA660F9-9865-458E-B484-01BC7FE3973E}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Calendar.ReminderTime -- PKEY_Calendar_ReminderTime</para>
@@ -1484,7 +2034,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
                 /// <para>FormatID: {72FC5BA4-24F9-4011-9F3F-ADD27AFAD818}, 100</para>
                 /// </summary>
-                public static PropertyKey ReminderTime => new PropertyKey(new Guid("{72FC5BA4-24F9-4011-9F3F-ADD27AFAD818}"), 100);
+                public static PropertyKey ReminderTime => new
+#if !CS9
+				PropertyKey
+#endif
+				("{72FC5BA4-24F9-4011-9F3F-ADD27AFAD818}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Calendar.RequiredAttendeeAddresses -- PKEY_Calendar_RequiredAttendeeAddresses</para>
@@ -1492,7 +2046,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {0BA7D6C3-568D-4159-AB91-781A91FB71E5}, 100</para>
                 /// </summary>
-                public static PropertyKey RequiredAttendeeAddresses => new PropertyKey(new Guid("{0BA7D6C3-568D-4159-AB91-781A91FB71E5}"), 100);
+                public static PropertyKey RequiredAttendeeAddresses => new
+#if !CS9
+				PropertyKey
+#endif
+				("{0BA7D6C3-568D-4159-AB91-781A91FB71E5}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Calendar.RequiredAttendeeNames -- PKEY_Calendar_RequiredAttendeeNames</para>
@@ -1500,7 +2058,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {B33AF30B-F552-4584-936C-CB93E5CDA29F}, 100</para>
                 /// </summary>
-                public static PropertyKey RequiredAttendeeNames => new PropertyKey(new Guid("{B33AF30B-F552-4584-936C-CB93E5CDA29F}"), 100);
+                public static PropertyKey RequiredAttendeeNames => new
+#if !CS9
+				PropertyKey
+#endif
+				("{B33AF30B-F552-4584-936C-CB93E5CDA29F}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Calendar.Resources -- PKEY_Calendar_Resources</para>
@@ -1508,7 +2070,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {00F58A38-C54B-4C40-8696-97235980EAE1}, 100</para>
                 /// </summary>
-                public static PropertyKey Resources => new PropertyKey(new Guid("{00F58A38-C54B-4C40-8696-97235980EAE1}"), 100);
+                public static PropertyKey Resources => new
+#if !CS9
+				PropertyKey
+#endif
+				("{00F58A38-C54B-4C40-8696-97235980EAE1}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Calendar.ResponseStatus -- PKEY_Calendar_ResponseStatus</para>
@@ -1517,7 +2083,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="ushort"/> -- <see cref="VarEnum.VT_UI2"/></para>
                 /// <para>FormatID: {188C1F91-3C40-4132-9EC5-D8B03B72A8A2}, 100</para>
                 /// </summary>
-                public static PropertyKey ResponseStatus => new PropertyKey(new Guid("{188C1F91-3C40-4132-9EC5-D8B03B72A8A2}"), 100);
+                public static PropertyKey ResponseStatus => new
+#if !CS9
+				PropertyKey
+#endif
+				("{188C1F91-3C40-4132-9EC5-D8B03B72A8A2}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Calendar.ShowTimeAs -- PKEY_Calendar_ShowTimeAs</para>
@@ -1526,7 +2096,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="ushort"/> -- <see cref="VarEnum.VT_UI2"/></para>
                 /// <para>FormatID: {5BF396D4-5EB2-466F-BDE9-2FB3F2361D6E}, 100</para>
                 /// </summary>
-                public static PropertyKey ShowTimeAs => new PropertyKey(new Guid("{5BF396D4-5EB2-466F-BDE9-2FB3F2361D6E}"), 100);
+                public static PropertyKey ShowTimeAs => new
+#if !CS9
+				PropertyKey
+#endif
+				("{5BF396D4-5EB2-466F-BDE9-2FB3F2361D6E}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Calendar.ShowTimeAsText -- PKEY_Calendar_ShowTimeAsText</para>
@@ -1536,11 +2110,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {53DA57CF-62C0-45C4-81DE-7610BCEFD7F5}, 100</para>
                 /// </summary>
-                public static PropertyKey ShowTimeAsText => new PropertyKey(new Guid("{53DA57CF-62C0-45C4-81DE-7610BCEFD7F5}"), 100);
+                public static PropertyKey ShowTimeAsText => new
+#if !CS9
+				PropertyKey
+#endif
+				("{53DA57CF-62C0-45C4-81DE-7610BCEFD7F5}", 100);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -1548,10 +2123,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Communication
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Communication.AccountName -- PKEY_Communication_AccountName</para>
                 /// <para>Description: Account Name
@@ -1559,7 +2131,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}, 9</para>
                 /// </summary>
-                public static PropertyKey AccountName => new PropertyKey(new Guid("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}"), 9);
+                public static PropertyKey AccountName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}", 9);
 
                 /// <summary>
                 /// <para>Name: System.Communication.DateItemExpires -- PKEY_Communication_DateItemExpires</para>
@@ -1568,7 +2144,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
                 /// <para>FormatID: {428040AC-A177-4C8A-9760-F6F761227F9A}, 100</para>
                 /// </summary>
-                public static PropertyKey DateItemExpires => new PropertyKey(new Guid("{428040AC-A177-4C8A-9760-F6F761227F9A}"), 100);
+                public static PropertyKey DateItemExpires => new
+#if !CS9
+				PropertyKey
+#endif
+				("{428040AC-A177-4C8A-9760-F6F761227F9A}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Communication.FollowupIconIndex -- PKEY_Communication_FollowupIconIndex</para>
@@ -1577,7 +2157,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
                 /// <para>FormatID: {83A6347E-6FE4-4F40-BA9C-C4865240D1F4}, 100</para>
                 /// </summary>
-                public static PropertyKey FollowUpIconIndex => new PropertyKey(new Guid("{83A6347E-6FE4-4F40-BA9C-C4865240D1F4}"), 100);
+                public static PropertyKey FollowUpIconIndex => new
+#if !CS9
+				PropertyKey
+#endif
+				("{83A6347E-6FE4-4F40-BA9C-C4865240D1F4}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Communication.HeaderItem -- PKEY_Communication_HeaderItem</para>
@@ -1586,7 +2170,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {C9C34F84-2241-4401-B607-BD20ED75AE7F}, 100</para>
                 /// </summary>
-                public static PropertyKey HeaderItem => new PropertyKey(new Guid("{C9C34F84-2241-4401-B607-BD20ED75AE7F}"), 100);
+                public static PropertyKey HeaderItem => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C9C34F84-2241-4401-B607-BD20ED75AE7F}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Communication.PolicyTag -- PKEY_Communication_PolicyTag</para>
@@ -1595,7 +2183,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {EC0B4191-AB0B-4C66-90B6-C6637CDEBBAB}, 100</para>
                 /// </summary>
-                public static PropertyKey PolicyTag => new PropertyKey(new Guid("{EC0B4191-AB0B-4C66-90B6-C6637CDEBBAB}"), 100);
+                public static PropertyKey PolicyTag => new
+#if !CS9
+				PropertyKey
+#endif
+				("{EC0B4191-AB0B-4C66-90B6-C6637CDEBBAB}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Communication.SecurityFlags -- PKEY_Communication_SecurityFlags</para>
@@ -1604,7 +2196,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
                 /// <para>FormatID: {8619A4B6-9F4D-4429-8C0F-B996CA59E335}, 100</para>
                 /// </summary>
-                public static PropertyKey SecurityFlags => new PropertyKey(new Guid("{8619A4B6-9F4D-4429-8C0F-B996CA59E335}"), 100);
+                public static PropertyKey SecurityFlags => new
+#if !CS9
+				PropertyKey
+#endif
+				("{8619A4B6-9F4D-4429-8C0F-B996CA59E335}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Communication.Suffix -- PKEY_Communication_Suffix</para>
@@ -1612,7 +2208,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {807B653A-9E91-43EF-8F97-11CE04EE20C5}, 100</para>
                 /// </summary>
-                public static PropertyKey Suffix => new PropertyKey(new Guid("{807B653A-9E91-43EF-8F97-11CE04EE20C5}"), 100);
+                public static PropertyKey Suffix => new
+#if !CS9
+				PropertyKey
+#endif
+				("{807B653A-9E91-43EF-8F97-11CE04EE20C5}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Communication.TaskStatus -- PKEY_Communication_TaskStatus</para>
@@ -1620,7 +2220,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="ushort"/> -- <see cref="VarEnum.VT_UI2"/></para>
                 /// <para>FormatID: {BE1A72C6-9A1D-46B7-AFE7-AFAF8CEF4999}, 100</para>
                 /// </summary>
-                public static PropertyKey TaskStatus => new PropertyKey(new Guid("{BE1A72C6-9A1D-46B7-AFE7-AFAF8CEF4999}"), 100);
+                public static PropertyKey TaskStatus => new
+#if !CS9
+				PropertyKey
+#endif
+				("{BE1A72C6-9A1D-46B7-AFE7-AFAF8CEF4999}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Communication.TaskStatusText -- PKEY_Communication_TaskStatusText</para>
@@ -1630,11 +2234,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {A6744477-C237-475B-A075-54F34498292A}, 100</para>
                 /// </summary>
-                public static PropertyKey TaskStatusText => new PropertyKey(new Guid("{A6744477-C237-475B-A075-54F34498292A}"), 100);
+                public static PropertyKey TaskStatusText => new
+#if !CS9
+				PropertyKey
+#endif
+				("{A6744477-C237-475B-A075-54F34498292A}", 100);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -1642,10 +2247,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Computer
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Computer.DecoratedFreeSpace -- PKEY_Computer_DecoratedFreeSpace</para>
                 /// <para>Description: Free space and total space: "%s free of %s"
@@ -1653,11 +2255,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="ulong"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_UI8"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_UI8"/>)</para>
                 /// <para>FormatID: (FMTID_Volume) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Volume"/>, 7  (Filesystem Volume Properties)</para>
                 /// </summary>
-                public static PropertyKey DecoratedFreeSpace => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Volume), 7);
+                public static PropertyKey DecoratedFreeSpace => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Volume, 7);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -1665,17 +2268,18 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Contact
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Contact.Anniversary -- PKEY_Contact_Anniversary</para>
                 /// <para>Description: </para>
                 /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
                 /// <para>FormatID: {9AD5BADB-CEA7-4470-A03D-B84E51B9949E}, 100</para>
                 /// </summary>
-                public static PropertyKey Anniversary => new PropertyKey(new Guid("{9AD5BADB-CEA7-4470-A03D-B84E51B9949E}"), 100);
+                public static PropertyKey Anniversary => new
+#if !CS9
+				PropertyKey
+#endif
+				("{9AD5BADB-CEA7-4470-A03D-B84E51B9949E}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.AssistantName -- PKEY_Contact_AssistantName</para>
@@ -1683,7 +2287,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {CD102C9C-5540-4A88-A6F6-64E4981C8CD1}, 100</para>
                 /// </summary>
-                public static PropertyKey AssistantName => new PropertyKey(new Guid("{CD102C9C-5540-4A88-A6F6-64E4981C8CD1}"), 100);
+                public static PropertyKey AssistantName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{CD102C9C-5540-4A88-A6F6-64E4981C8CD1}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.AssistantTelephone -- PKEY_Contact_AssistantTelephone</para>
@@ -1691,7 +2299,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {9A93244D-A7AD-4FF8-9B99-45EE4CC09AF6}, 100</para>
                 /// </summary>
-                public static PropertyKey AssistantTelephone => new PropertyKey(new Guid("{9A93244D-A7AD-4FF8-9B99-45EE4CC09AF6}"), 100);
+                public static PropertyKey AssistantTelephone => new
+#if !CS9
+				PropertyKey
+#endif
+				("{9A93244D-A7AD-4FF8-9B99-45EE4CC09AF6}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.Birthday -- PKEY_Contact_Birthday</para>
@@ -1699,7 +2311,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
                 /// <para>FormatID: {176DC63C-2688-4E89-8143-A347800F25E9}, 47</para>
                 /// </summary>
-                public static PropertyKey Birthday => new PropertyKey(new Guid("{176DC63C-2688-4E89-8143-A347800F25E9}"), 47);
+                public static PropertyKey Birthday => new
+#if !CS9
+				PropertyKey
+#endif
+				("{176DC63C-2688-4E89-8143-A347800F25E9}", 47);
 
                 /// <summary>
                 /// <para>Name: System.Contact.BusinessAddress -- PKEY_Contact_BusinessAddress</para>
@@ -1707,7 +2323,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {730FB6DD-CF7C-426B-A03F-BD166CC9EE24}, 100</para>
                 /// </summary>
-                public static PropertyKey BusinessAddress => new PropertyKey(new Guid("{730FB6DD-CF7C-426B-A03F-BD166CC9EE24}"), 100);
+                public static PropertyKey BusinessAddress => new
+#if !CS9
+				PropertyKey
+#endif
+				("{730FB6DD-CF7C-426B-A03F-BD166CC9EE24}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.BusinessAddressCity -- PKEY_Contact_BusinessAddressCity</para>
@@ -1715,7 +2335,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {402B5934-EC5A-48C3-93E6-85E86A2D934E}, 100</para>
                 /// </summary>
-                public static PropertyKey BusinessAddressCity => new PropertyKey(new Guid("{402B5934-EC5A-48C3-93E6-85E86A2D934E}"), 100);
+                public static PropertyKey BusinessAddressCity => new
+#if !CS9
+				PropertyKey
+#endif
+				("{402B5934-EC5A-48C3-93E6-85E86A2D934E}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.BusinessAddressCountry -- PKEY_Contact_BusinessAddressCountry</para>
@@ -1723,7 +2347,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {B0B87314-FCF6-4FEB-8DFF-A50DA6AF561C}, 100</para>
                 /// </summary>
-                public static PropertyKey BusinessAddressCountry => new PropertyKey(new Guid("{B0B87314-FCF6-4FEB-8DFF-A50DA6AF561C}"), 100);
+                public static PropertyKey BusinessAddressCountry => new
+#if !CS9
+				PropertyKey
+#endif
+				("{B0B87314-FCF6-4FEB-8DFF-A50DA6AF561C}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.BusinessAddressPostalCode -- PKEY_Contact_BusinessAddressPostalCode</para>
@@ -1731,7 +2359,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {E1D4A09E-D758-4CD1-B6EC-34A8B5A73F80}, 100</para>
                 /// </summary>
-                public static PropertyKey BusinessAddressPostalCode => new PropertyKey(new Guid("{E1D4A09E-D758-4CD1-B6EC-34A8B5A73F80}"), 100);
+                public static PropertyKey BusinessAddressPostalCode => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E1D4A09E-D758-4CD1-B6EC-34A8B5A73F80}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.BusinessAddressPostOfficeBox -- PKEY_Contact_BusinessAddressPostOfficeBox</para>
@@ -1739,7 +2371,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {BC4E71CE-17F9-48D5-BEE9-021DF0EA5409}, 100</para>
                 /// </summary>
-                public static PropertyKey BusinessAddressPostOfficeBox => new PropertyKey(new Guid("{BC4E71CE-17F9-48D5-BEE9-021DF0EA5409}"), 100);
+                public static PropertyKey BusinessAddressPostOfficeBox => new
+#if !CS9
+				PropertyKey
+#endif
+				("{BC4E71CE-17F9-48D5-BEE9-021DF0EA5409}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.BusinessAddressState -- PKEY_Contact_BusinessAddressState</para>
@@ -1747,7 +2383,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {446F787F-10C4-41CB-A6C4-4D0343551597}, 100</para>
                 /// </summary>
-                public static PropertyKey BusinessAddressState => new PropertyKey(new Guid("{446F787F-10C4-41CB-A6C4-4D0343551597}"), 100);
+                public static PropertyKey BusinessAddressState => new
+#if !CS9
+				PropertyKey
+#endif
+				("{446F787F-10C4-41CB-A6C4-4D0343551597}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.BusinessAddressStreet -- PKEY_Contact_BusinessAddressStreet</para>
@@ -1755,7 +2395,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {DDD1460F-C0BF-4553-8CE4-10433C908FB0}, 100</para>
                 /// </summary>
-                public static PropertyKey BusinessAddressStreet => new PropertyKey(new Guid("{DDD1460F-C0BF-4553-8CE4-10433C908FB0}"), 100);
+                public static PropertyKey BusinessAddressStreet => new
+#if !CS9
+				PropertyKey
+#endif
+				("{DDD1460F-C0BF-4553-8CE4-10433C908FB0}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.BusinessFaxNumber -- PKEY_Contact_BusinessFaxNumber</para>
@@ -1764,7 +2408,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {91EFF6F3-2E27-42CA-933E-7C999FBE310B}, 100</para>
                 /// </summary>
-                public static PropertyKey BusinessFaxNumber => new PropertyKey(new Guid("{91EFF6F3-2E27-42CA-933E-7C999FBE310B}"), 100);
+                public static PropertyKey BusinessFaxNumber => new
+#if !CS9
+				PropertyKey
+#endif
+				("{91EFF6F3-2E27-42CA-933E-7C999FBE310B}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.BusinessHomePage -- PKEY_Contact_BusinessHomePage</para>
@@ -1772,7 +2420,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {56310920-2491-4919-99CE-EADB06FAFDB2}, 100</para>
                 /// </summary>
-                public static PropertyKey BusinessHomepage => new PropertyKey(new Guid("{56310920-2491-4919-99CE-EADB06FAFDB2}"), 100);
+                public static PropertyKey BusinessHomepage => new
+#if !CS9
+				PropertyKey
+#endif
+				("{56310920-2491-4919-99CE-EADB06FAFDB2}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.BusinessTelephone -- PKEY_Contact_BusinessTelephone</para>
@@ -1780,7 +2432,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {6A15E5A0-0A1E-4CD7-BB8C-D2F1B0C929BC}, 100</para>
                 /// </summary>
-                public static PropertyKey BusinessTelephone => new PropertyKey(new Guid("{6A15E5A0-0A1E-4CD7-BB8C-D2F1B0C929BC}"), 100);
+                public static PropertyKey BusinessTelephone => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6A15E5A0-0A1E-4CD7-BB8C-D2F1B0C929BC}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.CallbackTelephone -- PKEY_Contact_CallbackTelephone</para>
@@ -1788,7 +2444,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {BF53D1C3-49E0-4F7F-8567-5A821D8AC542}, 100</para>
                 /// </summary>
-                public static PropertyKey CallbackTelephone => new PropertyKey(new Guid("{BF53D1C3-49E0-4F7F-8567-5A821D8AC542}"), 100);
+                public static PropertyKey CallbackTelephone => new
+#if !CS9
+				PropertyKey
+#endif
+				("{BF53D1C3-49E0-4F7F-8567-5A821D8AC542}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.CarTelephone -- PKEY_Contact_CarTelephone</para>
@@ -1796,7 +2456,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {8FDC6DEA-B929-412B-BA90-397A257465FE}, 100</para>
                 /// </summary>
-                public static PropertyKey CarTelephone => new PropertyKey(new Guid("{8FDC6DEA-B929-412B-BA90-397A257465FE}"), 100);
+                public static PropertyKey CarTelephone => new
+#if !CS9
+				PropertyKey
+#endif
+				("{8FDC6DEA-B929-412B-BA90-397A257465FE}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.Children -- PKEY_Contact_Children</para>
@@ -1804,7 +2468,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {D4729704-8EF1-43EF-9024-2BD381187FD5}, 100</para>
                 /// </summary>
-                public static PropertyKey Children => new PropertyKey(new Guid("{D4729704-8EF1-43EF-9024-2BD381187FD5}"), 100);
+                public static PropertyKey Children => new
+#if !CS9
+				PropertyKey
+#endif
+				("{D4729704-8EF1-43EF-9024-2BD381187FD5}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.CompanyMainTelephone -- PKEY_Contact_CompanyMainTelephone</para>
@@ -1812,7 +2480,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {8589E481-6040-473D-B171-7FA89C2708ED}, 100</para>
                 /// </summary>
-                public static PropertyKey CompanyMainTelephone => new PropertyKey(new Guid("{8589E481-6040-473D-B171-7FA89C2708ED}"), 100);
+                public static PropertyKey CompanyMainTelephone => new
+#if !CS9
+				PropertyKey
+#endif
+				("{8589E481-6040-473D-B171-7FA89C2708ED}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.Department -- PKEY_Contact_Department</para>
@@ -1820,7 +2492,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {FC9F7306-FF8F-4D49-9FB6-3FFE5C0951EC}, 100</para>
                 /// </summary>
-                public static PropertyKey Department => new PropertyKey(new Guid("{FC9F7306-FF8F-4D49-9FB6-3FFE5C0951EC}"), 100);
+                public static PropertyKey Department => new
+#if !CS9
+				PropertyKey
+#endif
+				("{FC9F7306-FF8F-4D49-9FB6-3FFE5C0951EC}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.EmailAddress -- PKEY_Contact_EmailAddress</para>
@@ -1828,7 +2504,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {F8FA7FA3-D12B-4785-8A4E-691A94F7A3E7}, 100</para>
                 /// </summary>
-                public static PropertyKey EmailAddress => new PropertyKey(new Guid("{F8FA7FA3-D12B-4785-8A4E-691A94F7A3E7}"), 100);
+                public static PropertyKey EmailAddress => new
+#if !CS9
+				PropertyKey
+#endif
+				("{F8FA7FA3-D12B-4785-8A4E-691A94F7A3E7}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.EmailAddress2 -- PKEY_Contact_EmailAddress2</para>
@@ -1836,7 +2516,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {38965063-EDC8-4268-8491-B7723172CF29}, 100</para>
                 /// </summary>
-                public static PropertyKey EmailAddress2 => new PropertyKey(new Guid("{38965063-EDC8-4268-8491-B7723172CF29}"), 100);
+                public static PropertyKey EmailAddress2 => new
+#if !CS9
+				PropertyKey
+#endif
+				("{38965063-EDC8-4268-8491-B7723172CF29}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.EmailAddress3 -- PKEY_Contact_EmailAddress3</para>
@@ -1844,7 +2528,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {644D37B4-E1B3-4BAD-B099-7E7C04966ACA}, 100</para>
                 /// </summary>
-                public static PropertyKey EmailAddress3 => new PropertyKey(new Guid("{644D37B4-E1B3-4BAD-B099-7E7C04966ACA}"), 100);
+                public static PropertyKey EmailAddress3 => new
+#if !CS9
+				PropertyKey
+#endif
+				("{644D37B4-E1B3-4BAD-B099-7E7C04966ACA}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.EmailAddresses -- PKEY_Contact_EmailAddresses</para>
@@ -1852,7 +2540,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {84D8F337-981D-44B3-9615-C7596DBA17E3}, 100</para>
                 /// </summary>
-                public static PropertyKey EmailAddresses => new PropertyKey(new Guid("{84D8F337-981D-44B3-9615-C7596DBA17E3}"), 100);
+                public static PropertyKey EmailAddresses => new
+#if !CS9
+				PropertyKey
+#endif
+				("{84D8F337-981D-44B3-9615-C7596DBA17E3}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.EmailName -- PKEY_Contact_EmailName</para>
@@ -1860,7 +2552,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {CC6F4F24-6083-4BD4-8754-674D0DE87AB8}, 100</para>
                 /// </summary>
-                public static PropertyKey EmailName => new PropertyKey(new Guid("{CC6F4F24-6083-4BD4-8754-674D0DE87AB8}"), 100);
+                public static PropertyKey EmailName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{CC6F4F24-6083-4BD4-8754-674D0DE87AB8}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.FileAsName -- PKEY_Contact_FileAsName</para>
@@ -1868,7 +2564,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {F1A24AA7-9CA7-40F6-89EC-97DEF9FFE8DB}, 100</para>
                 /// </summary>
-                public static PropertyKey FileAsName => new PropertyKey(new Guid("{F1A24AA7-9CA7-40F6-89EC-97DEF9FFE8DB}"), 100);
+                public static PropertyKey FileAsName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{F1A24AA7-9CA7-40F6-89EC-97DEF9FFE8DB}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.FirstName -- PKEY_Contact_FirstName</para>
@@ -1876,7 +2576,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {14977844-6B49-4AAD-A714-A4513BF60460}, 100</para>
                 /// </summary>
-                public static PropertyKey FirstName => new PropertyKey(new Guid("{14977844-6B49-4AAD-A714-A4513BF60460}"), 100);
+                public static PropertyKey FirstName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{14977844-6B49-4AAD-A714-A4513BF60460}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.FullName -- PKEY_Contact_FullName</para>
@@ -1884,7 +2588,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {635E9051-50A5-4BA2-B9DB-4ED056C77296}, 100</para>
                 /// </summary>
-                public static PropertyKey FullName => new PropertyKey(new Guid("{635E9051-50A5-4BA2-B9DB-4ED056C77296}"), 100);
+                public static PropertyKey FullName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{635E9051-50A5-4BA2-B9DB-4ED056C77296}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.Gender -- PKEY_Contact_Gender</para>
@@ -1892,7 +2600,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {3C8CEE58-D4F0-4CF9-B756-4E5D24447BCD}, 100</para>
                 /// </summary>
-                public static PropertyKey Gender => new PropertyKey(new Guid("{3C8CEE58-D4F0-4CF9-B756-4E5D24447BCD}"), 100);
+                public static PropertyKey Gender => new
+#if !CS9
+				PropertyKey
+#endif
+				("{3C8CEE58-D4F0-4CF9-B756-4E5D24447BCD}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.GenderValue -- PKEY_Contact_GenderValue</para>
@@ -1900,7 +2612,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="ushort"/> -- <see cref="VarEnum.VT_UI2"/></para>
                 /// <para>FormatID: {3C8CEE58-D4F0-4CF9-B756-4E5D24447BCD}, 101</para>
                 /// </summary>
-                public static PropertyKey GenderValue => new PropertyKey(new Guid("{3C8CEE58-D4F0-4CF9-B756-4E5D24447BCD}"), 101);
+                public static PropertyKey GenderValue => new
+#if !CS9
+				PropertyKey
+#endif
+				("{3C8CEE58-D4F0-4CF9-B756-4E5D24447BCD}", 101);
 
                 /// <summary>
                 /// <para>Name: System.Contact.Hobbies -- PKEY_Contact_Hobbies</para>
@@ -1908,7 +2624,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {5DC2253F-5E11-4ADF-9CFE-910DD01E3E70}, 100</para>
                 /// </summary>
-                public static PropertyKey Hobbies => new PropertyKey(new Guid("{5DC2253F-5E11-4ADF-9CFE-910DD01E3E70}"), 100);
+                public static PropertyKey Hobbies => new
+#if !CS9
+				PropertyKey
+#endif
+				("{5DC2253F-5E11-4ADF-9CFE-910DD01E3E70}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.HomeAddress -- PKEY_Contact_HomeAddress</para>
@@ -1916,7 +2636,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {98F98354-617A-46B8-8560-5B1B64BF1F89}, 100</para>
                 /// </summary>
-                public static PropertyKey HomeAddress => new PropertyKey(new Guid("{98F98354-617A-46B8-8560-5B1B64BF1F89}"), 100);
+                public static PropertyKey HomeAddress => new
+#if !CS9
+				PropertyKey
+#endif
+				("{98F98354-617A-46B8-8560-5B1B64BF1F89}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.HomeAddressCity -- PKEY_Contact_HomeAddressCity</para>
@@ -1924,7 +2648,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {176DC63C-2688-4E89-8143-A347800F25E9}, 65</para>
                 /// </summary>
-                public static PropertyKey HomeAddressCity => new PropertyKey(new Guid("{176DC63C-2688-4E89-8143-A347800F25E9}"), 65);
+                public static PropertyKey HomeAddressCity => new
+#if !CS9
+				PropertyKey
+#endif
+				("{176DC63C-2688-4E89-8143-A347800F25E9}", 65);
 
                 /// <summary>
                 /// <para>Name: System.Contact.HomeAddressCountry -- PKEY_Contact_HomeAddressCountry</para>
@@ -1932,7 +2660,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {08A65AA1-F4C9-43DD-9DDF-A33D8E7EAD85}, 100</para>
                 /// </summary>
-                public static PropertyKey HomeAddressCountry => new PropertyKey(new Guid("{08A65AA1-F4C9-43DD-9DDF-A33D8E7EAD85}"), 100);
+                public static PropertyKey HomeAddressCountry => new
+#if !CS9
+				PropertyKey
+#endif
+				("{08A65AA1-F4C9-43DD-9DDF-A33D8E7EAD85}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.HomeAddressPostalCode -- PKEY_Contact_HomeAddressPostalCode</para>
@@ -1940,7 +2672,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {8AFCC170-8A46-4B53-9EEE-90BAE7151E62}, 100</para>
                 /// </summary>
-                public static PropertyKey HomeAddressPostalCode => new PropertyKey(new Guid("{8AFCC170-8A46-4B53-9EEE-90BAE7151E62}"), 100);
+                public static PropertyKey HomeAddressPostalCode => new
+#if !CS9
+				PropertyKey
+#endif
+				("{8AFCC170-8A46-4B53-9EEE-90BAE7151E62}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.HomeAddressPostOfficeBox -- PKEY_Contact_HomeAddressPostOfficeBox</para>
@@ -1948,7 +2684,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {7B9F6399-0A3F-4B12-89BD-4ADC51C918AF}, 100</para>
                 /// </summary>
-                public static PropertyKey HomeAddressPostOfficeBox => new PropertyKey(new Guid("{7B9F6399-0A3F-4B12-89BD-4ADC51C918AF}"), 100);
+                public static PropertyKey HomeAddressPostOfficeBox => new
+#if !CS9
+				PropertyKey
+#endif
+				("{7B9F6399-0A3F-4B12-89BD-4ADC51C918AF}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.HomeAddressState -- PKEY_Contact_HomeAddressState</para>
@@ -1956,7 +2696,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {C89A23D0-7D6D-4EB8-87D4-776A82D493E5}, 100</para>
                 /// </summary>
-                public static PropertyKey HomeAddressState => new PropertyKey(new Guid("{C89A23D0-7D6D-4EB8-87D4-776A82D493E5}"), 100);
+                public static PropertyKey HomeAddressState => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C89A23D0-7D6D-4EB8-87D4-776A82D493E5}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.HomeAddressStreet -- PKEY_Contact_HomeAddressStreet</para>
@@ -1964,7 +2708,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {0ADEF160-DB3F-4308-9A21-06237B16FA2A}, 100</para>
                 /// </summary>
-                public static PropertyKey HomeAddressStreet => new PropertyKey(new Guid("{0ADEF160-DB3F-4308-9A21-06237B16FA2A}"), 100);
+                public static PropertyKey HomeAddressStreet => new
+#if !CS9
+				PropertyKey
+#endif
+				("{0ADEF160-DB3F-4308-9A21-06237B16FA2A}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.HomeFaxNumber -- PKEY_Contact_HomeFaxNumber</para>
@@ -1972,7 +2720,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {660E04D6-81AB-4977-A09F-82313113AB26}, 100</para>
                 /// </summary>
-                public static PropertyKey HomeFaxNumber => new PropertyKey(new Guid("{660E04D6-81AB-4977-A09F-82313113AB26}"), 100);
+                public static PropertyKey HomeFaxNumber => new
+#if !CS9
+				PropertyKey
+#endif
+				("{660E04D6-81AB-4977-A09F-82313113AB26}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.HomeTelephone -- PKEY_Contact_HomeTelephone</para>
@@ -1980,7 +2732,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {176DC63C-2688-4E89-8143-A347800F25E9}, 20</para>
                 /// </summary>
-                public static PropertyKey HomeTelephone => new PropertyKey(new Guid("{176DC63C-2688-4E89-8143-A347800F25E9}"), 20);
+                public static PropertyKey HomeTelephone => new
+#if !CS9
+				PropertyKey
+#endif
+				("{176DC63C-2688-4E89-8143-A347800F25E9}", 20);
 
                 /// <summary>
                 /// <para>Name: System.Contact.IMAddress -- PKEY_Contact_IMAddress</para>
@@ -1988,7 +2744,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {D68DBD8A-3374-4B81-9972-3EC30682DB3D}, 100</para>
                 /// </summary>
-                public static PropertyKey IMAddress => new PropertyKey(new Guid("{D68DBD8A-3374-4B81-9972-3EC30682DB3D}"), 100);
+                public static PropertyKey IMAddress => new
+#if !CS9
+				PropertyKey
+#endif
+				("{D68DBD8A-3374-4B81-9972-3EC30682DB3D}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.Initials -- PKEY_Contact_Initials</para>
@@ -1996,7 +2756,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {F3D8F40D-50CB-44A2-9718-40CB9119495D}, 100</para>
                 /// </summary>
-                public static PropertyKey Initials => new PropertyKey(new Guid("{F3D8F40D-50CB-44A2-9718-40CB9119495D}"), 100);
+                public static PropertyKey Initials => new
+#if !CS9
+				PropertyKey
+#endif
+				("{F3D8F40D-50CB-44A2-9718-40CB9119495D}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.JobTitle -- PKEY_Contact_JobTitle</para>
@@ -2004,7 +2768,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {176DC63C-2688-4E89-8143-A347800F25E9}, 6</para>
                 /// </summary>
-                public static PropertyKey JobTitle => new PropertyKey(new Guid("{176DC63C-2688-4E89-8143-A347800F25E9}"), 6);
+                public static PropertyKey JobTitle => new
+#if !CS9
+				PropertyKey
+#endif
+				("{176DC63C-2688-4E89-8143-A347800F25E9}", 6);
 
                 /// <summary>
                 /// <para>Name: System.Contact.Label -- PKEY_Contact_Label</para>
@@ -2012,7 +2780,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {97B0AD89-DF49-49CC-834E-660974FD755B}, 100</para>
                 /// </summary>
-                public static PropertyKey Label => new PropertyKey(new Guid("{97B0AD89-DF49-49CC-834E-660974FD755B}"), 100);
+                public static PropertyKey Label => new
+#if !CS9
+				PropertyKey
+#endif
+				("{97B0AD89-DF49-49CC-834E-660974FD755B}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.LastName -- PKEY_Contact_LastName</para>
@@ -2020,7 +2792,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {8F367200-C270-457C-B1D4-E07C5BCD90C7}, 100</para>
                 /// </summary>
-                public static PropertyKey LastName => new PropertyKey(new Guid("{8F367200-C270-457C-B1D4-E07C5BCD90C7}"), 100);
+                public static PropertyKey LastName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{8F367200-C270-457C-B1D4-E07C5BCD90C7}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.MailingAddress -- PKEY_Contact_MailingAddress</para>
@@ -2028,7 +2804,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {C0AC206A-827E-4650-95AE-77E2BB74FCC9}, 100</para>
                 /// </summary>
-                public static PropertyKey MailingAddress => new PropertyKey(new Guid("{C0AC206A-827E-4650-95AE-77E2BB74FCC9}"), 100);
+                public static PropertyKey MailingAddress => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C0AC206A-827E-4650-95AE-77E2BB74FCC9}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.MiddleName -- PKEY_Contact_MiddleName</para>
@@ -2036,7 +2816,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {176DC63C-2688-4E89-8143-A347800F25E9}, 71</para>
                 /// </summary>
-                public static PropertyKey MiddleName => new PropertyKey(new Guid("{176DC63C-2688-4E89-8143-A347800F25E9}"), 71);
+                public static PropertyKey MiddleName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{176DC63C-2688-4E89-8143-A347800F25E9}", 71);
 
                 /// <summary>
                 /// <para>Name: System.Contact.MobileTelephone -- PKEY_Contact_MobileTelephone</para>
@@ -2044,7 +2828,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {176DC63C-2688-4E89-8143-A347800F25E9}, 35</para>
                 /// </summary>
-                public static PropertyKey MobileTelephone => new PropertyKey(new Guid("{176DC63C-2688-4E89-8143-A347800F25E9}"), 35);
+                public static PropertyKey MobileTelephone => new
+#if !CS9
+				PropertyKey
+#endif
+				("{176DC63C-2688-4E89-8143-A347800F25E9}", 35);
 
                 /// <summary>
                 /// <para>Name: System.Contact.NickName -- PKEY_Contact_NickName</para>
@@ -2052,7 +2840,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {176DC63C-2688-4E89-8143-A347800F25E9}, 74</para>
                 /// </summary>
-                public static PropertyKey Nickname => new PropertyKey(new Guid("{176DC63C-2688-4E89-8143-A347800F25E9}"), 74);
+                public static PropertyKey Nickname => new
+#if !CS9
+				PropertyKey
+#endif
+				("{176DC63C-2688-4E89-8143-A347800F25E9}", 74);
 
                 /// <summary>
                 /// <para>Name: System.Contact.OfficeLocation -- PKEY_Contact_OfficeLocation</para>
@@ -2060,7 +2852,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {176DC63C-2688-4E89-8143-A347800F25E9}, 7</para>
                 /// </summary>
-                public static PropertyKey OfficeLocation => new PropertyKey(new Guid("{176DC63C-2688-4E89-8143-A347800F25E9}"), 7);
+                public static PropertyKey OfficeLocation => new
+#if !CS9
+				PropertyKey
+#endif
+				("{176DC63C-2688-4E89-8143-A347800F25E9}", 7);
 
                 /// <summary>
                 /// <para>Name: System.Contact.OtherAddress -- PKEY_Contact_OtherAddress</para>
@@ -2068,7 +2864,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {508161FA-313B-43D5-83A1-C1ACCF68622C}, 100</para>
                 /// </summary>
-                public static PropertyKey OtherAddress => new PropertyKey(new Guid("{508161FA-313B-43D5-83A1-C1ACCF68622C}"), 100);
+                public static PropertyKey OtherAddress => new
+#if !CS9
+				PropertyKey
+#endif
+				("{508161FA-313B-43D5-83A1-C1ACCF68622C}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.OtherAddressCity -- PKEY_Contact_OtherAddressCity</para>
@@ -2076,7 +2876,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {6E682923-7F7B-4F0C-A337-CFCA296687BF}, 100</para>
                 /// </summary>
-                public static PropertyKey OtherAddressCity => new PropertyKey(new Guid("{6E682923-7F7B-4F0C-A337-CFCA296687BF}"), 100);
+                public static PropertyKey OtherAddressCity => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6E682923-7F7B-4F0C-A337-CFCA296687BF}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.OtherAddressCountry -- PKEY_Contact_OtherAddressCountry</para>
@@ -2084,7 +2888,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {8F167568-0AAE-4322-8ED9-6055B7B0E398}, 100</para>
                 /// </summary>
-                public static PropertyKey OtherAddressCountry => new PropertyKey(new Guid("{8F167568-0AAE-4322-8ED9-6055B7B0E398}"), 100);
+                public static PropertyKey OtherAddressCountry => new
+#if !CS9
+				PropertyKey
+#endif
+				("{8F167568-0AAE-4322-8ED9-6055B7B0E398}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.OtherAddressPostalCode -- PKEY_Contact_OtherAddressPostalCode</para>
@@ -2092,7 +2900,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {95C656C1-2ABF-4148-9ED3-9EC602E3B7CD}, 100</para>
                 /// </summary>
-                public static PropertyKey OtherAddressPostalCode => new PropertyKey(new Guid("{95C656C1-2ABF-4148-9ED3-9EC602E3B7CD}"), 100);
+                public static PropertyKey OtherAddressPostalCode => new
+#if !CS9
+				PropertyKey
+#endif
+				("{95C656C1-2ABF-4148-9ED3-9EC602E3B7CD}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.OtherAddressPostOfficeBox -- PKEY_Contact_OtherAddressPostOfficeBox</para>
@@ -2100,7 +2912,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {8B26EA41-058F-43F6-AECC-4035681CE977}, 100</para>
                 /// </summary>
-                public static PropertyKey OtherAddressPostOfficeBox => new PropertyKey(new Guid("{8B26EA41-058F-43F6-AECC-4035681CE977}"), 100);
+                public static PropertyKey OtherAddressPostOfficeBox => new
+#if !CS9
+				PropertyKey
+#endif
+				("{8B26EA41-058F-43F6-AECC-4035681CE977}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.OtherAddressState -- PKEY_Contact_OtherAddressState</para>
@@ -2108,7 +2924,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {71B377D6-E570-425F-A170-809FAE73E54E}, 100</para>
                 /// </summary>
-                public static PropertyKey OtherAddressState => new PropertyKey(new Guid("{71B377D6-E570-425F-A170-809FAE73E54E}"), 100);
+                public static PropertyKey OtherAddressState => new
+#if !CS9
+				PropertyKey
+#endif
+				("{71B377D6-E570-425F-A170-809FAE73E54E}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.OtherAddressStreet -- PKEY_Contact_OtherAddressStreet</para>
@@ -2116,7 +2936,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {FF962609-B7D6-4999-862D-95180D529AEA}, 100</para>
                 /// </summary>
-                public static PropertyKey OtherAddressStreet => new PropertyKey(new Guid("{FF962609-B7D6-4999-862D-95180D529AEA}"), 100);
+                public static PropertyKey OtherAddressStreet => new
+#if !CS9
+				PropertyKey
+#endif
+				("{FF962609-B7D6-4999-862D-95180D529AEA}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.PagerTelephone -- PKEY_Contact_PagerTelephone</para>
@@ -2124,7 +2948,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {D6304E01-F8F5-4F45-8B15-D024A6296789}, 100</para>
                 /// </summary>
-                public static PropertyKey PagerTelephone => new PropertyKey(new Guid("{D6304E01-F8F5-4F45-8B15-D024A6296789}"), 100);
+                public static PropertyKey PagerTelephone => new
+#if !CS9
+				PropertyKey
+#endif
+				("{D6304E01-F8F5-4F45-8B15-D024A6296789}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.PersonalTitle -- PKEY_Contact_PersonalTitle</para>
@@ -2132,7 +2960,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {176DC63C-2688-4E89-8143-A347800F25E9}, 69</para>
                 /// </summary>
-                public static PropertyKey PersonalTitle => new PropertyKey(new Guid("{176DC63C-2688-4E89-8143-A347800F25E9}"), 69);
+                public static PropertyKey PersonalTitle => new
+#if !CS9
+				PropertyKey
+#endif
+				("{176DC63C-2688-4E89-8143-A347800F25E9}", 69);
 
                 /// <summary>
                 /// <para>Name: System.Contact.PrimaryAddressCity -- PKEY_Contact_PrimaryAddressCity</para>
@@ -2140,7 +2972,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {C8EA94F0-A9E3-4969-A94B-9C62A95324E0}, 100</para>
                 /// </summary>
-                public static PropertyKey PrimaryAddressCity => new PropertyKey(new Guid("{C8EA94F0-A9E3-4969-A94B-9C62A95324E0}"), 100);
+                public static PropertyKey PrimaryAddressCity => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C8EA94F0-A9E3-4969-A94B-9C62A95324E0}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.PrimaryAddressCountry -- PKEY_Contact_PrimaryAddressCountry</para>
@@ -2148,7 +2984,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {E53D799D-0F3F-466E-B2FF-74634A3CB7A4}, 100</para>
                 /// </summary>
-                public static PropertyKey PrimaryAddressCountry => new PropertyKey(new Guid("{E53D799D-0F3F-466E-B2FF-74634A3CB7A4}"), 100);
+                public static PropertyKey PrimaryAddressCountry => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E53D799D-0F3F-466E-B2FF-74634A3CB7A4}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.PrimaryAddressPostalCode -- PKEY_Contact_PrimaryAddressPostalCode</para>
@@ -2156,7 +2996,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {18BBD425-ECFD-46EF-B612-7B4A6034EDA0}, 100</para>
                 /// </summary>
-                public static PropertyKey PrimaryAddressPostalCode => new PropertyKey(new Guid("{18BBD425-ECFD-46EF-B612-7B4A6034EDA0}"), 100);
+                public static PropertyKey PrimaryAddressPostalCode => new
+#if !CS9
+				PropertyKey
+#endif
+				("{18BBD425-ECFD-46EF-B612-7B4A6034EDA0}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.PrimaryAddressPostOfficeBox -- PKEY_Contact_PrimaryAddressPostOfficeBox</para>
@@ -2164,7 +3008,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {DE5EF3C7-46E1-484E-9999-62C5308394C1}, 100</para>
                 /// </summary>
-                public static PropertyKey PrimaryAddressPostOfficeBox => new PropertyKey(new Guid("{DE5EF3C7-46E1-484E-9999-62C5308394C1}"), 100);
+                public static PropertyKey PrimaryAddressPostOfficeBox => new
+#if !CS9
+				PropertyKey
+#endif
+				("{DE5EF3C7-46E1-484E-9999-62C5308394C1}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.PrimaryAddressState -- PKEY_Contact_PrimaryAddressState</para>
@@ -2172,7 +3020,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {F1176DFE-7138-4640-8B4C-AE375DC70A6D}, 100</para>
                 /// </summary>
-                public static PropertyKey PrimaryAddressState => new PropertyKey(new Guid("{F1176DFE-7138-4640-8B4C-AE375DC70A6D}"), 100);
+                public static PropertyKey PrimaryAddressState => new
+#if !CS9
+				PropertyKey
+#endif
+				("{F1176DFE-7138-4640-8B4C-AE375DC70A6D}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.PrimaryAddressStreet -- PKEY_Contact_PrimaryAddressStreet</para>
@@ -2180,7 +3032,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {63C25B20-96BE-488F-8788-C09C407AD812}, 100</para>
                 /// </summary>
-                public static PropertyKey PrimaryAddressStreet => new PropertyKey(new Guid("{63C25B20-96BE-488F-8788-C09C407AD812}"), 100);
+                public static PropertyKey PrimaryAddressStreet => new
+#if !CS9
+				PropertyKey
+#endif
+				("{63C25B20-96BE-488F-8788-C09C407AD812}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.PrimaryEmailAddress -- PKEY_Contact_PrimaryEmailAddress</para>
@@ -2188,7 +3044,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {176DC63C-2688-4E89-8143-A347800F25E9}, 48</para>
                 /// </summary>
-                public static PropertyKey PrimaryEmailAddress => new PropertyKey(new Guid("{176DC63C-2688-4E89-8143-A347800F25E9}"), 48);
+                public static PropertyKey PrimaryEmailAddress => new
+#if !CS9
+				PropertyKey
+#endif
+				("{176DC63C-2688-4E89-8143-A347800F25E9}", 48);
 
                 /// <summary>
                 /// <para>Name: System.Contact.PrimaryTelephone -- PKEY_Contact_PrimaryTelephone</para>
@@ -2196,7 +3056,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {176DC63C-2688-4E89-8143-A347800F25E9}, 25</para>
                 /// </summary>
-                public static PropertyKey PrimaryTelephone => new PropertyKey(new Guid("{176DC63C-2688-4E89-8143-A347800F25E9}"), 25);
+                public static PropertyKey PrimaryTelephone => new
+#if !CS9
+				PropertyKey
+#endif
+				("{176DC63C-2688-4E89-8143-A347800F25E9}", 25);
 
                 /// <summary>
                 /// <para>Name: System.Contact.Profession -- PKEY_Contact_Profession</para>
@@ -2204,7 +3068,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {7268AF55-1CE4-4F6E-A41F-B6E4EF10E4A9}, 100</para>
                 /// </summary>
-                public static PropertyKey Profession => new PropertyKey(new Guid("{7268AF55-1CE4-4F6E-A41F-B6E4EF10E4A9}"), 100);
+                public static PropertyKey Profession => new
+#if !CS9
+				PropertyKey
+#endif
+				("{7268AF55-1CE4-4F6E-A41F-B6E4EF10E4A9}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.SpouseName -- PKEY_Contact_SpouseName</para>
@@ -2212,7 +3080,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {9D2408B6-3167-422B-82B0-F583B7A7CFE3}, 100</para>
                 /// </summary>
-                public static PropertyKey SpouseName => new PropertyKey(new Guid("{9D2408B6-3167-422B-82B0-F583B7A7CFE3}"), 100);
+                public static PropertyKey SpouseName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{9D2408B6-3167-422B-82B0-F583B7A7CFE3}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.Suffix -- PKEY_Contact_Suffix</para>
@@ -2220,7 +3092,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {176DC63C-2688-4E89-8143-A347800F25E9}, 73</para>
                 /// </summary>
-                public static PropertyKey Suffix => new PropertyKey(new Guid("{176DC63C-2688-4E89-8143-A347800F25E9}"), 73);
+                public static PropertyKey Suffix => new
+#if !CS9
+				PropertyKey
+#endif
+				("{176DC63C-2688-4E89-8143-A347800F25E9}", 73);
 
                 /// <summary>
                 /// <para>Name: System.Contact.TelexNumber -- PKEY_Contact_TelexNumber</para>
@@ -2228,7 +3104,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {C554493C-C1F7-40C1-A76C-EF8C0614003E}, 100</para>
                 /// </summary>
-                public static PropertyKey TelexNumber => new PropertyKey(new Guid("{C554493C-C1F7-40C1-A76C-EF8C0614003E}"), 100);
+                public static PropertyKey TelexNumber => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C554493C-C1F7-40C1-A76C-EF8C0614003E}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.TTYTDDTelephone -- PKEY_Contact_TTYTDDTelephone</para>
@@ -2236,7 +3116,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {AAF16BAC-2B55-45E6-9F6D-415EB94910DF}, 100</para>
                 /// </summary>
-                public static PropertyKey TTYTDDTelephone => new PropertyKey(new Guid("{AAF16BAC-2B55-45E6-9F6D-415EB94910DF}"), 100);
+                public static PropertyKey TTYTDDTelephone => new
+#if !CS9
+				PropertyKey
+#endif
+				("{AAF16BAC-2B55-45E6-9F6D-415EB94910DF}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Contact.WebPage -- PKEY_Contact_WebPage</para>
@@ -2244,21 +3128,20 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}, 18</para>
                 /// </summary>
-                public static PropertyKey Webpage => new PropertyKey(new Guid("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}"), 18);
+                public static PropertyKey Webpage => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}", 18);
                 #endregion
 
-
                 #region sub-classes
-
                 /// <summary>
                 /// JA Properties
                 /// </summary>
                 public static class JA
                 {
-
-
-                    #region Properties
-
+        #region Properties
                     /// <summary>
                     /// <para>Name: System.Contact.JA.CompanyNamePhonetic -- PKEY_Contact_JA_CompanyNamePhonetic</para>
                     /// <para>Description: 
@@ -2266,7 +3149,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                     /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                     /// <para>FormatID: {897B3694-FE9E-43E6-8066-260F590C0100}, 2</para>
                     /// </summary>
-                    public static PropertyKey CompanyNamePhonetic => new PropertyKey(new Guid("{897B3694-FE9E-43E6-8066-260F590C0100}"), 2);
+                    public static PropertyKey CompanyNamePhonetic => new
+#if !CS9
+				PropertyKey
+#endif
+				("{897B3694-FE9E-43E6-8066-260F590C0100}", 2);
 
                     /// <summary>
                     /// <para>Name: System.Contact.JA.FirstNamePhonetic -- PKEY_Contact_JA_FirstNamePhonetic</para>
@@ -2275,7 +3162,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                     /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                     /// <para>FormatID: {897B3694-FE9E-43E6-8066-260F590C0100}, 3</para>
                     /// </summary>
-                    public static PropertyKey FirstNamePhonetic => new PropertyKey(new Guid("{897B3694-FE9E-43E6-8066-260F590C0100}"), 3);
+                    public static PropertyKey FirstNamePhonetic => new
+#if !CS9
+				PropertyKey
+#endif
+				("{897B3694-FE9E-43E6-8066-260F590C0100}", 3);
 
                     /// <summary>
                     /// <para>Name: System.Contact.JA.LastNamePhonetic -- PKEY_Contact_JA_LastNamePhonetic</para>
@@ -2284,9 +3175,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                     /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                     /// <para>FormatID: {897B3694-FE9E-43E6-8066-260F590C0100}, 4</para>
                     /// </summary>
-                    public static PropertyKey LastNamePhonetic => new PropertyKey(new Guid("{897B3694-FE9E-43E6-8066-260F590C0100}"), 4);
+                    public static PropertyKey LastNamePhonetic => new
+#if !CS9
+				PropertyKey
+#endif
+				("{897B3694-FE9E-43E6-8066-260F590C0100}", 4);
                     #endregion
-
                 }
                 #endregion
             }
@@ -2296,10 +3190,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class JA
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Contact.JA.CompanyNamePhonetic -- PKEY_Contact_JA_CompanyNamePhonetic</para>
                 /// <para>Description: 
@@ -2307,7 +3198,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {897B3694-FE9E-43E6-8066-260F590C0100}, 2</para>
                 /// </summary>
-                public static PropertyKey CompanyNamePhonetic => new PropertyKey(new Guid("{897B3694-FE9E-43E6-8066-260F590C0100}"), 2);
+                public static PropertyKey CompanyNamePhonetic => new
+#if !CS9
+				PropertyKey
+#endif
+				("{897B3694-FE9E-43E6-8066-260F590C0100}", 2);
 
                 /// <summary>
                 /// <para>Name: System.Contact.JA.FirstNamePhonetic -- PKEY_Contact_JA_FirstNamePhonetic</para>
@@ -2316,7 +3211,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {897B3694-FE9E-43E6-8066-260F590C0100}, 3</para>
                 /// </summary>
-                public static PropertyKey FirstNamePhonetic => new PropertyKey(new Guid("{897B3694-FE9E-43E6-8066-260F590C0100}"), 3);
+                public static PropertyKey FirstNamePhonetic => new
+#if !CS9
+				PropertyKey
+#endif
+				("{897B3694-FE9E-43E6-8066-260F590C0100}", 3);
 
                 /// <summary>
                 /// <para>Name: System.Contact.JA.LastNamePhonetic -- PKEY_Contact_JA_LastNamePhonetic</para>
@@ -2325,11 +3224,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {897B3694-FE9E-43E6-8066-260F590C0100}, 4</para>
                 /// </summary>
-                public static PropertyKey LastNamePhonetic => new PropertyKey(new Guid("{897B3694-FE9E-43E6-8066-260F590C0100}"), 4);
+                public static PropertyKey LastNamePhonetic => new
+#if !CS9
+				PropertyKey
+#endif
+				("{897B3694-FE9E-43E6-8066-260F590C0100}", 4);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -2337,10 +3237,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Device
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Device.PrinterURL -- PKEY_Device_PrinterURL</para>
                 /// <para>Description: Printer information Printer URL.
@@ -2348,11 +3245,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {0B48F35A-BE6E-4F17-B108-3C4073D1669A}, 15</para>
                 /// </summary>
-                public static PropertyKey PrinterUrl => new PropertyKey(new Guid("{0B48F35A-BE6E-4F17-B108-3C4073D1669A}"), 15);
+                public static PropertyKey PrinterUrl => new
+#if !CS9
+				PropertyKey
+#endif
+				("{0B48F35A-BE6E-4F17-B108-3C4073D1669A}", 15);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -2360,10 +3258,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class DeviceInterface
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.DeviceInterface.PrinterDriverDirectory -- PKEY_DeviceInterface_PrinterDriverDirectory</para>
                 /// <para>Description: Printer information Printer Driver Directory.
@@ -2371,7 +3266,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {847C66DE-B8D6-4AF9-ABC3-6F4F926BC039}, 14</para>
                 /// </summary>
-                public static PropertyKey PrinterDriverDirectory => new PropertyKey(new Guid("{847C66DE-B8D6-4AF9-ABC3-6F4F926BC039}"), 14);
+                public static PropertyKey PrinterDriverDirectory => new
+#if !CS9
+				PropertyKey
+#endif
+				("{847C66DE-B8D6-4AF9-ABC3-6F4F926BC039}", 14);
 
                 /// <summary>
                 /// <para>Name: System.DeviceInterface.PrinterDriverName -- PKEY_DeviceInterface_PrinterDriverName</para>
@@ -2380,7 +3279,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {AFC47170-14F5-498C-8F30-B0D19BE449C6}, 11</para>
                 /// </summary>
-                public static PropertyKey PrinterDriverName => new PropertyKey(new Guid("{AFC47170-14F5-498C-8F30-B0D19BE449C6}"), 11);
+                public static PropertyKey PrinterDriverName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{AFC47170-14F5-498C-8F30-B0D19BE449C6}", 11);
 
                 /// <summary>
                 /// <para>Name: System.DeviceInterface.PrinterName -- PKEY_DeviceInterface_PrinterName</para>
@@ -2389,7 +3292,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {0A7B84EF-0C27-463F-84EF-06C5070001BE}, 10</para>
                 /// </summary>
-                public static PropertyKey PrinterName => new PropertyKey(new Guid("{0A7B84EF-0C27-463F-84EF-06C5070001BE}"), 10);
+                public static PropertyKey PrinterName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{0A7B84EF-0C27-463F-84EF-06C5070001BE}", 10);
 
                 /// <summary>
                 /// <para>Name: System.DeviceInterface.PrinterPortName -- PKEY_DeviceInterface_PrinterPortName</para>
@@ -2398,11 +3305,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {EEC7B761-6F94-41B1-949F-C729720DD13C}, 12</para>
                 /// </summary>
-                public static PropertyKey PrinterPortName => new PropertyKey(new Guid("{EEC7B761-6F94-41B1-949F-C729720DD13C}"), 12);
+                public static PropertyKey PrinterPortName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{EEC7B761-6F94-41B1-949F-C729720DD13C}", 12);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -2410,10 +3318,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Devices
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Devices.BatteryLife -- PKEY_Devices_BatteryLife</para>
                 /// <para>Description: Remaining battery life of the device as an integer between 0 and 100 percent.
@@ -2421,7 +3326,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Byte -- <see cref="VarEnum.VT_UI1"/></para>
                 /// <para>FormatID: {49CD1F76-5626-4B17-A4E8-18B4AA1A2213}, 10</para>
                 /// </summary>
-                public static PropertyKey BatteryLife => new PropertyKey(new Guid("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}"), 10);
+                public static PropertyKey BatteryLife => new
+#if !CS9
+				PropertyKey
+#endif
+				("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}", 10);
 
                 /// <summary>
                 /// <para>Name: System.Devices.BatteryPlusCharging -- PKEY_Devices_BatteryPlusCharging</para>
@@ -2430,7 +3339,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Byte -- <see cref="VarEnum.VT_UI1"/></para>
                 /// <para>FormatID: {49CD1F76-5626-4B17-A4E8-18B4AA1A2213}, 22</para>
                 /// </summary>
-                public static PropertyKey BatteryPlusCharging => new PropertyKey(new Guid("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}"), 22);
+                public static PropertyKey BatteryPlusCharging => new
+#if !CS9
+				PropertyKey
+#endif
+				("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}", 22);
 
                 /// <summary>
                 /// <para>Name: System.Devices.BatteryPlusChargingText -- PKEY_Devices_BatteryPlusChargingText</para>
@@ -2439,7 +3352,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {49CD1F76-5626-4B17-A4E8-18B4AA1A2213}, 23</para>
                 /// </summary>
-                public static PropertyKey BatteryPlusChargingText => new PropertyKey(new Guid("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}"), 23);
+                public static PropertyKey BatteryPlusChargingText => new
+#if !CS9
+				PropertyKey
+#endif
+				("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}", 23);
 
                 /// <summary>
                 /// <para>Name: System.Devices.Category -- PKEY_Devices_Category_Desc_Singular</para>
@@ -2448,7 +3365,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {78C34FC8-104A-4ACA-9EA4-524D52996E57}, 91</para>
                 /// </summary>
-                public static PropertyKey Category => new PropertyKey(new Guid("{78C34FC8-104A-4ACA-9EA4-524D52996E57}"), 91);
+                public static PropertyKey Category => new
+#if !CS9
+				PropertyKey
+#endif
+				("{78C34FC8-104A-4ACA-9EA4-524D52996E57}", 91);
 
                 /// <summary>
                 /// <para>Name: System.Devices.CategoryGroup -- PKEY_Devices_CategoryGroup_Desc</para>
@@ -2457,7 +3378,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {78C34FC8-104A-4ACA-9EA4-524D52996E57}, 94</para>
                 /// </summary>
-                public static PropertyKey CategoryGroup => new PropertyKey(new Guid("{78C34FC8-104A-4ACA-9EA4-524D52996E57}"), 94);
+                public static PropertyKey CategoryGroup => new
+#if !CS9
+				PropertyKey
+#endif
+				("{78C34FC8-104A-4ACA-9EA4-524D52996E57}", 94);
 
                 /// <summary>
                 /// <para>Name: System.Devices.CategoryPlural -- PKEY_Devices_Category_Desc_Plural</para>
@@ -2466,7 +3391,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {78C34FC8-104A-4ACA-9EA4-524D52996E57}, 92</para>
                 /// </summary>
-                public static PropertyKey CategoryPlural => new PropertyKey(new Guid("{78C34FC8-104A-4ACA-9EA4-524D52996E57}"), 92);
+                public static PropertyKey CategoryPlural => new
+#if !CS9
+				PropertyKey
+#endif
+				("{78C34FC8-104A-4ACA-9EA4-524D52996E57}", 92);
 
                 /// <summary>
                 /// <para>Name: System.Devices.ChargingState -- PKEY_Devices_ChargingState</para>
@@ -2475,7 +3404,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Byte -- <see cref="VarEnum.VT_UI1"/></para>
                 /// <para>FormatID: {49CD1F76-5626-4B17-A4E8-18B4AA1A2213}, 11</para>
                 /// </summary>
-                public static PropertyKey ChargingState => new PropertyKey(new Guid("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}"), 11);
+                public static PropertyKey ChargingState => new
+#if !CS9
+				PropertyKey
+#endif
+				("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}", 11);
 
                 /// <summary>
                 /// <para>Name: System.Devices.Connected -- PKEY_Devices_IsConnected</para>
@@ -2484,7 +3417,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {78C34FC8-104A-4ACA-9EA4-524D52996E57}, 55</para>
                 /// </summary>
-                public static PropertyKey Connected => new PropertyKey(new Guid("{78C34FC8-104A-4ACA-9EA4-524D52996E57}"), 55);
+                public static PropertyKey Connected => new
+#if !CS9
+				PropertyKey
+#endif
+				("{78C34FC8-104A-4ACA-9EA4-524D52996E57}", 55);
 
                 /// <summary>
                 /// <para>Name: System.Devices.ContainerId -- PKEY_Devices_ContainerId</para>
@@ -2493,7 +3430,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="Guid"/> -- <see cref="VarEnum.VT_CLSID"/></para>
                 /// <para>FormatID: {8C7ED206-3F8A-4827-B3AB-AE9E1FAEFC6C}, 2</para>
                 /// </summary>
-                public static PropertyKey ContainerId => new PropertyKey(new Guid("{8C7ED206-3F8A-4827-B3AB-AE9E1FAEFC6C}"), 2);
+                public static PropertyKey ContainerId => new
+#if !CS9
+				PropertyKey
+#endif
+				("{8C7ED206-3F8A-4827-B3AB-AE9E1FAEFC6C}", 2);
 
                 /// <summary>
                 /// <para>Name: System.Devices.DefaultTooltip -- PKEY_Devices_DefaultTooltip</para>
@@ -2502,7 +3443,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {880F70A2-6082-47AC-8AAB-A739D1A300C3}, 153</para>
                 /// </summary>
-                public static PropertyKey DefaultTooltip => new PropertyKey(new Guid("{880F70A2-6082-47AC-8AAB-A739D1A300C3}"), 153);
+                public static PropertyKey DefaultTooltip => new
+#if !CS9
+				PropertyKey
+#endif
+				("{880F70A2-6082-47AC-8AAB-A739D1A300C3}", 153);
 
                 /// <summary>
                 /// <para>Name: System.Devices.DeviceDescription1 -- PKEY_Devices_DeviceDescription1</para>
@@ -2511,7 +3456,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {78C34FC8-104A-4ACA-9EA4-524D52996E57}, 81</para>
                 /// </summary>
-                public static PropertyKey DeviceDescription1 => new PropertyKey(new Guid("{78C34FC8-104A-4ACA-9EA4-524D52996E57}"), 81);
+                public static PropertyKey DeviceDescription1 => new
+#if !CS9
+				PropertyKey
+#endif
+				("{78C34FC8-104A-4ACA-9EA4-524D52996E57}", 81);
 
                 /// <summary>
                 /// <para>Name: System.Devices.DeviceDescription2 -- PKEY_Devices_DeviceDescription2</para>
@@ -2520,7 +3469,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {78C34FC8-104A-4ACA-9EA4-524D52996E57}, 82</para>
                 /// </summary>
-                public static PropertyKey DeviceDescription2 => new PropertyKey(new Guid("{78C34FC8-104A-4ACA-9EA4-524D52996E57}"), 82);
+                public static PropertyKey DeviceDescription2 => new
+#if !CS9
+				PropertyKey
+#endif
+				("{78C34FC8-104A-4ACA-9EA4-524D52996E57}", 82);
 
                 /// <summary>
                 /// <para>Name: System.Devices.DiscoveryMethod -- PKEY_Devices_DiscoveryMethod</para>
@@ -2529,7 +3482,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {78C34FC8-104A-4ACA-9EA4-524D52996E57}, 52</para>
                 /// </summary>
-                public static PropertyKey DiscoveryMethod => new PropertyKey(new Guid("{78C34FC8-104A-4ACA-9EA4-524D52996E57}"), 52);
+                public static PropertyKey DiscoveryMethod => new
+#if !CS9
+				PropertyKey
+#endif
+				("{78C34FC8-104A-4ACA-9EA4-524D52996E57}", 52);
 
                 /// <summary>
                 /// <para>Name: System.Devices.FriendlyName -- PKEY_Devices_FriendlyName</para>
@@ -2538,7 +3495,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {656A3BB3-ECC0-43FD-8477-4AE0404A96CD}, 12288</para>
                 /// </summary>
-                public static PropertyKey FriendlyName => new PropertyKey(new Guid("{656A3BB3-ECC0-43FD-8477-4AE0404A96CD}"), 12288);
+                public static PropertyKey FriendlyName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{656A3BB3-ECC0-43FD-8477-4AE0404A96CD}", 12288);
 
                 /// <summary>
                 /// <para>Name: System.Devices.FunctionPaths -- PKEY_Devices_FunctionPaths</para>
@@ -2547,7 +3508,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {D08DD4C0-3A9E-462E-8290-7B636B2576B9}, 3</para>
                 /// </summary>
-                public static PropertyKey FunctionPaths => new PropertyKey(new Guid("{D08DD4C0-3A9E-462E-8290-7B636B2576B9}"), 3);
+                public static PropertyKey FunctionPaths => new
+#if !CS9
+				PropertyKey
+#endif
+				("{D08DD4C0-3A9E-462E-8290-7B636B2576B9}", 3);
 
                 /// <summary>
                 /// <para>Name: System.Devices.InterfacePaths -- PKEY_Devices_InterfacePaths</para>
@@ -2556,7 +3521,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {D08DD4C0-3A9E-462E-8290-7B636B2576B9}, 2</para>
                 /// </summary>
-                public static PropertyKey InterfacePaths => new PropertyKey(new Guid("{D08DD4C0-3A9E-462E-8290-7B636B2576B9}"), 2);
+                public static PropertyKey InterfacePaths => new
+#if !CS9
+				PropertyKey
+#endif
+				("{D08DD4C0-3A9E-462E-8290-7B636B2576B9}", 2);
 
                 /// <summary>
                 /// <para>Name: System.Devices.IsDefault -- PKEY_Devices_IsDefaultDevice</para>
@@ -2565,7 +3534,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {78C34FC8-104A-4ACA-9EA4-524D52996E57}, 86</para>
                 /// </summary>
-                public static PropertyKey IsDefault => new PropertyKey(new Guid("{78C34FC8-104A-4ACA-9EA4-524D52996E57}"), 86);
+                public static PropertyKey IsDefault => new
+#if !CS9
+				PropertyKey
+#endif
+				("{78C34FC8-104A-4ACA-9EA4-524D52996E57}", 86);
 
                 /// <summary>
                 /// <para>Name: System.Devices.IsNetworkConnected -- PKEY_Devices_IsNetworkDevice</para>
@@ -2574,7 +3547,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {78C34FC8-104A-4ACA-9EA4-524D52996E57}, 85</para>
                 /// </summary>
-                public static PropertyKey IsNetworkConnected => new PropertyKey(new Guid("{78C34FC8-104A-4ACA-9EA4-524D52996E57}"), 85);
+                public static PropertyKey IsNetworkConnected => new
+#if !CS9
+				PropertyKey
+#endif
+				("{78C34FC8-104A-4ACA-9EA4-524D52996E57}", 85);
 
                 /// <summary>
                 /// <para>Name: System.Devices.Is.Shared -- PKEY_Devices_Is.SharedDevice</para>
@@ -2583,7 +3560,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {78C34FC8-104A-4ACA-9EA4-524D52996E57}, 84</para>
                 /// </summary>
-                public static PropertyKey IsShared => new PropertyKey(new Guid("{78C34FC8-104A-4ACA-9EA4-524D52996E57}"), 84);
+                public static PropertyKey IsShared => new
+#if !CS9
+				PropertyKey
+#endif
+				("{78C34FC8-104A-4ACA-9EA4-524D52996E57}", 84);
 
                 /// <summary>
                 /// <para>Name: System.Devices.IsSoftwareInstalling -- PKEY_Devices_IsSoftwareInstalling</para>
@@ -2592,7 +3573,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {83DA6326-97A6-4088-9453-A1923F573B29}, 9</para>
                 /// </summary>
-                public static PropertyKey IsSoftwareInstalling => new PropertyKey(new Guid("{83DA6326-97A6-4088-9453-A1923F573B29}"), 9);
+                public static PropertyKey IsSoftwareInstalling => new
+#if !CS9
+				PropertyKey
+#endif
+				("{83DA6326-97A6-4088-9453-A1923F573B29}", 9);
 
                 /// <summary>
                 /// <para>Name: System.Devices.LaunchDeviceStageFromExplorer -- PKEY_Devices_LaunchDeviceStageFromExplorer</para>
@@ -2601,7 +3586,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {78C34FC8-104A-4ACA-9EA4-524D52996E57}, 77</para>
                 /// </summary>
-                public static PropertyKey LaunchDeviceStageFromExplorer => new PropertyKey(new Guid("{78C34FC8-104A-4ACA-9EA4-524D52996E57}"), 77);
+                public static PropertyKey LaunchDeviceStageFromExplorer => new
+#if !CS9
+				PropertyKey
+#endif
+				("{78C34FC8-104A-4ACA-9EA4-524D52996E57}", 77);
 
                 /// <summary>
                 /// <para>Name: System.Devices.LocalMachine -- PKEY_Devices_IsLocalMachine</para>
@@ -2610,7 +3599,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {78C34FC8-104A-4ACA-9EA4-524D52996E57}, 70</para>
                 /// </summary>
-                public static PropertyKey LocalMachine => new PropertyKey(new Guid("{78C34FC8-104A-4ACA-9EA4-524D52996E57}"), 70);
+                public static PropertyKey LocalMachine => new
+#if !CS9
+				PropertyKey
+#endif
+				("{78C34FC8-104A-4ACA-9EA4-524D52996E57}", 70);
 
                 /// <summary>
                 /// <para>Name: System.Devices.Manufacturer -- PKEY_Devices_Manufacturer</para>
@@ -2619,7 +3612,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {656A3BB3-ECC0-43FD-8477-4AE0404A96CD}, 8192</para>
                 /// </summary>
-                public static PropertyKey Manufacturer => new PropertyKey(new Guid("{656A3BB3-ECC0-43FD-8477-4AE0404A96CD}"), 8192);
+                public static PropertyKey Manufacturer => new
+#if !CS9
+				PropertyKey
+#endif
+				("{656A3BB3-ECC0-43FD-8477-4AE0404A96CD}", 8192);
 
                 /// <summary>
                 /// <para>Name: System.Devices.MissedCalls -- PKEY_Devices_MissedCalls</para>
@@ -2628,7 +3625,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Byte -- <see cref="VarEnum.VT_UI1"/></para>
                 /// <para>FormatID: {49CD1F76-5626-4B17-A4E8-18B4AA1A2213}, 5</para>
                 /// </summary>
-                public static PropertyKey MissedCalls => new PropertyKey(new Guid("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}"), 5);
+                public static PropertyKey MissedCalls => new
+#if !CS9
+				PropertyKey
+#endif
+				("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}", 5);
 
                 /// <summary>
                 /// <para>Name: System.Devices.ModelName -- PKEY_Devices_ModelName</para>
@@ -2637,7 +3638,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {656A3BB3-ECC0-43FD-8477-4AE0404A96CD}, 8194</para>
                 /// </summary>
-                public static PropertyKey ModelName => new PropertyKey(new Guid("{656A3BB3-ECC0-43FD-8477-4AE0404A96CD}"), 8194);
+                public static PropertyKey ModelName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{656A3BB3-ECC0-43FD-8477-4AE0404A96CD}", 8194);
 
                 /// <summary>
                 /// <para>Name: System.Devices.ModelNumber -- PKEY_Devices_ModelNumber</para>
@@ -2646,7 +3651,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {656A3BB3-ECC0-43FD-8477-4AE0404A96CD}, 8195</para>
                 /// </summary>
-                public static PropertyKey ModelNumber => new PropertyKey(new Guid("{656A3BB3-ECC0-43FD-8477-4AE0404A96CD}"), 8195);
+                public static PropertyKey ModelNumber => new
+#if !CS9
+				PropertyKey
+#endif
+				("{656A3BB3-ECC0-43FD-8477-4AE0404A96CD}", 8195);
 
                 /// <summary>
                 /// <para>Name: System.Devices.NetworkedTooltip -- PKEY_Devices_NetworkedTooltip</para>
@@ -2655,7 +3664,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {880F70A2-6082-47AC-8AAB-A739D1A300C3}, 152</para>
                 /// </summary>
-                public static PropertyKey NetworkedTooltip => new PropertyKey(new Guid("{880F70A2-6082-47AC-8AAB-A739D1A300C3}"), 152);
+                public static PropertyKey NetworkedTooltip => new
+#if !CS9
+				PropertyKey
+#endif
+				("{880F70A2-6082-47AC-8AAB-A739D1A300C3}", 152);
 
                 /// <summary>
                 /// <para>Name: System.Devices.NetworkName -- PKEY_Devices_NetworkName</para>
@@ -2664,7 +3677,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {49CD1F76-5626-4B17-A4E8-18B4AA1A2213}, 7</para>
                 /// </summary>
-                public static PropertyKey NetworkName => new PropertyKey(new Guid("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}"), 7);
+                public static PropertyKey NetworkName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}", 7);
 
                 /// <summary>
                 /// <para>Name: System.Devices.NetworkType -- PKEY_Devices_NetworkType</para>
@@ -2673,7 +3690,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {49CD1F76-5626-4B17-A4E8-18B4AA1A2213}, 8</para>
                 /// </summary>
-                public static PropertyKey NetworkType => new PropertyKey(new Guid("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}"), 8);
+                public static PropertyKey NetworkType => new
+#if !CS9
+				PropertyKey
+#endif
+				("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}", 8);
 
                 /// <summary>
                 /// <para>Name: System.Devices.NewPictures -- PKEY_Devices_NewPictures</para>
@@ -2682,7 +3703,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="ushort"/> -- <see cref="VarEnum.VT_UI2"/></para>
                 /// <para>FormatID: {49CD1F76-5626-4B17-A4E8-18B4AA1A2213}, 4</para>
                 /// </summary>
-                public static PropertyKey NewPictures => new PropertyKey(new Guid("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}"), 4);
+                public static PropertyKey NewPictures => new
+#if !CS9
+				PropertyKey
+#endif
+				("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}", 4);
 
                 /// <summary>
                 /// <para>Name: System.Devices.Notification -- PKEY_Devices_Notification</para>
@@ -2691,7 +3716,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {06704B0C-E830-4C81-9178-91E4E95A80A0}, 3</para>
                 /// </summary>
-                public static PropertyKey Notification => new PropertyKey(new Guid("{06704B0C-E830-4C81-9178-91E4E95A80A0}"), 3);
+                public static PropertyKey Notification => new
+#if !CS9
+				PropertyKey
+#endif
+				("{06704B0C-E830-4C81-9178-91E4E95A80A0}", 3);
 
                 /// <summary>
                 /// <para>Name: System.Devices.NotificationStore -- PKEY_Devices_NotificationStore</para>
@@ -2700,7 +3729,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Object -- VT_UNKNOWN</para>
                 /// <para>FormatID: {06704B0C-E830-4C81-9178-91E4E95A80A0}, 2</para>
                 /// </summary>
-                public static PropertyKey NotificationStore => new PropertyKey(new Guid("{06704B0C-E830-4C81-9178-91E4E95A80A0}"), 2);
+                public static PropertyKey NotificationStore => new
+#if !CS9
+				PropertyKey
+#endif
+				("{06704B0C-E830-4C81-9178-91E4E95A80A0}", 2);
 
                 /// <summary>
                 /// <para>Name: System.Devices.NotWorkingProperly -- PKEY_Devices_IsNotWorkingProperly</para>
@@ -2709,7 +3742,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {78C34FC8-104A-4ACA-9EA4-524D52996E57}, 83</para>
                 /// </summary>
-                public static PropertyKey NotWorkingProperly => new PropertyKey(new Guid("{78C34FC8-104A-4ACA-9EA4-524D52996E57}"), 83);
+                public static PropertyKey NotWorkingProperly => new
+#if !CS9
+				PropertyKey
+#endif
+				("{78C34FC8-104A-4ACA-9EA4-524D52996E57}", 83);
 
                 /// <summary>
                 /// <para>Name: System.Devices.Paired -- PKEY_Devices_IsPaired</para>
@@ -2718,7 +3755,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {78C34FC8-104A-4ACA-9EA4-524D52996E57}, 56</para>
                 /// </summary>
-                public static PropertyKey Paired => new PropertyKey(new Guid("{78C34FC8-104A-4ACA-9EA4-524D52996E57}"), 56);
+                public static PropertyKey Paired => new
+#if !CS9
+				PropertyKey
+#endif
+				("{78C34FC8-104A-4ACA-9EA4-524D52996E57}", 56);
 
                 /// <summary>
                 /// <para>Name: System.Devices.PrimaryCategory -- PKEY_Devices_PrimaryCategory</para>
@@ -2727,7 +3768,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {D08DD4C0-3A9E-462E-8290-7B636B2576B9}, 10</para>
                 /// </summary>
-                public static PropertyKey PrimaryCategory => new PropertyKey(new Guid("{D08DD4C0-3A9E-462E-8290-7B636B2576B9}"), 10);
+                public static PropertyKey PrimaryCategory => new
+#if !CS9
+				PropertyKey
+#endif
+				("{D08DD4C0-3A9E-462E-8290-7B636B2576B9}", 10);
 
                 /// <summary>
                 /// <para>Name: System.Devices.Roaming -- PKEY_Devices_Roaming</para>
@@ -2736,7 +3781,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Byte -- <see cref="VarEnum.VT_UI1"/></para>
                 /// <para>FormatID: {49CD1F76-5626-4B17-A4E8-18B4AA1A2213}, 9</para>
                 /// </summary>
-                public static PropertyKey Roaming => new PropertyKey(new Guid("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}"), 9);
+                public static PropertyKey Roaming => new
+#if !CS9
+				PropertyKey
+#endif
+				("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}", 9);
 
                 /// <summary>
                 /// <para>Name: System.Devices.SafeRemovalRequired -- PKEY_Devices_SafeRemovalRequired</para>
@@ -2745,7 +3794,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {AFD97640-86A3-4210-B67C-289C41AABE55}, 2</para>
                 /// </summary>
-                public static PropertyKey SafeRemovalRequired => new PropertyKey(new Guid("{AFD97640-86A3-4210-B67C-289C41AABE55}"), 2);
+                public static PropertyKey SafeRemovalRequired => new
+#if !CS9
+				PropertyKey
+#endif
+				("{AFD97640-86A3-4210-B67C-289C41AABE55}", 2);
 
                 /// <summary>
                 /// <para>Name: System.Devices..SharedTooltip -- PKEY_Devices_SHAREDTooltip</para>
@@ -2754,7 +3807,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {880F70A2-6082-47AC-8AAB-A739D1A300C3}, 151</para>
                 /// </summary>
-                public static PropertyKey SharedTooltip => new PropertyKey(new Guid("{880F70A2-6082-47AC-8AAB-A739D1A300C3}"), 151);
+                public static PropertyKey SharedTooltip => new
+#if !CS9
+				PropertyKey
+#endif
+				("{880F70A2-6082-47AC-8AAB-A739D1A300C3}", 151);
 
                 /// <summary>
                 /// <para>Name: System.Devices.SignalStrength -- PKEY_Devices_SignalStrength</para>
@@ -2763,7 +3820,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Byte -- <see cref="VarEnum.VT_UI1"/></para>
                 /// <para>FormatID: {49CD1F76-5626-4B17-A4E8-18B4AA1A2213}, 2</para>
                 /// </summary>
-                public static PropertyKey SignalStrength => new PropertyKey(new Guid("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}"), 2);
+                public static PropertyKey SignalStrength => new
+#if !CS9
+				PropertyKey
+#endif
+				("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}", 2);
 
                 /// <summary>
                 /// <para>Name: System.Devices.Status1 -- PKEY_Devices_Status1</para>
@@ -2772,7 +3833,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {D08DD4C0-3A9E-462E-8290-7B636B2576B9}, 257</para>
                 /// </summary>
-                public static PropertyKey Status1 => new PropertyKey(new Guid("{D08DD4C0-3A9E-462E-8290-7B636B2576B9}"), 257);
+                public static PropertyKey Status1 => new
+#if !CS9
+				PropertyKey
+#endif
+				("{D08DD4C0-3A9E-462E-8290-7B636B2576B9}", 257);
 
                 /// <summary>
                 /// <para>Name: System.Devices.Status2 -- PKEY_Devices_Status2</para>
@@ -2781,7 +3846,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {D08DD4C0-3A9E-462E-8290-7B636B2576B9}, 258</para>
                 /// </summary>
-                public static PropertyKey Status2 => new PropertyKey(new Guid("{D08DD4C0-3A9E-462E-8290-7B636B2576B9}"), 258);
+                public static PropertyKey Status2 => new
+#if !CS9
+				PropertyKey
+#endif
+				("{D08DD4C0-3A9E-462E-8290-7B636B2576B9}", 258);
 
                 /// <summary>
                 /// <para>Name: System.Devices.StorageCapacity -- PKEY_Devices_StorageCapacity</para>
@@ -2790,7 +3859,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="ulong"/> -- <see cref="VarEnum.VT_UI8"/></para>
                 /// <para>FormatID: {49CD1F76-5626-4B17-A4E8-18B4AA1A2213}, 12</para>
                 /// </summary>
-                public static PropertyKey StorageCapacity => new PropertyKey(new Guid("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}"), 12);
+                public static PropertyKey StorageCapacity => new
+#if !CS9
+				PropertyKey
+#endif
+				("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}", 12);
 
                 /// <summary>
                 /// <para>Name: System.Devices.StorageFreeSpace -- PKEY_Devices_StorageFreeSpace</para>
@@ -2799,7 +3872,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="ulong"/> -- <see cref="VarEnum.VT_UI8"/></para>
                 /// <para>FormatID: {49CD1F76-5626-4B17-A4E8-18B4AA1A2213}, 13</para>
                 /// </summary>
-                public static PropertyKey StorageFreeSpace => new PropertyKey(new Guid("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}"), 13);
+                public static PropertyKey StorageFreeSpace => new
+#if !CS9
+				PropertyKey
+#endif
+				("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}", 13);
 
                 /// <summary>
                 /// <para>Name: System.Devices.StorageFreeSpacePercent -- PKEY_Devices_StorageFreeSpacePercent</para>
@@ -2808,7 +3885,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {49CD1F76-5626-4B17-A4E8-18B4AA1A2213}, 14</para>
                 /// </summary>
-                public static PropertyKey StorageFreeSpacePercent => new PropertyKey(new Guid("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}"), 14);
+                public static PropertyKey StorageFreeSpacePercent => new
+#if !CS9
+				PropertyKey
+#endif
+				("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}", 14);
 
                 /// <summary>
                 /// <para>Name: System.Devices.TextMessages -- PKEY_Devices_TextMessages</para>
@@ -2817,7 +3898,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Byte -- <see cref="VarEnum.VT_UI1"/></para>
                 /// <para>FormatID: {49CD1F76-5626-4B17-A4E8-18B4AA1A2213}, 3</para>
                 /// </summary>
-                public static PropertyKey TextMessages => new PropertyKey(new Guid("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}"), 3);
+                public static PropertyKey TextMessages => new
+#if !CS9
+				PropertyKey
+#endif
+				("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}", 3);
 
                 /// <summary>
                 /// <para>Name: System.Devices.Voicemail -- PKEY_Devices_Voicemail</para>
@@ -2826,21 +3911,20 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Byte -- <see cref="VarEnum.VT_UI1"/></para>
                 /// <para>FormatID: {49CD1F76-5626-4B17-A4E8-18B4AA1A2213}, 6</para>
                 /// </summary>
-                public static PropertyKey Voicemail => new PropertyKey(new Guid("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}"), 6);
+                public static PropertyKey Voicemail => new
+#if !CS9
+				PropertyKey
+#endif
+				("{49CD1F76-5626-4B17-A4E8-18B4AA1A2213}", 6);
                 #endregion
 
-
                 #region sub-classes
-
                 /// <summary>
                 /// Notifications Properties
                 /// </summary>
                 public static class Notifications
                 {
-
-
-                    #region Properties
-
+     #region Properties
                     /// <summary>
                     /// <para>Name: System.Devices.Notifications.LowBattery -- PKEY_Devices_Notification_LowBattery</para>
                     /// <para>Description: Device Low Battery Notification.
@@ -2848,7 +3932,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                     /// <para>Type: Byte -- <see cref="VarEnum.VT_UI1"/></para>
                     /// <para>FormatID: {C4C07F2B-8524-4E66-AE3A-A6235F103BEB}, 2</para>
                     /// </summary>
-                    public static PropertyKey LowBattery => new PropertyKey(new Guid("{C4C07F2B-8524-4E66-AE3A-A6235F103BEB}"), 2);
+                    public static PropertyKey LowBattery => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C4C07F2B-8524-4E66-AE3A-A6235F103BEB}", 2);
 
                     /// <summary>
                     /// <para>Name: System.Devices.Notifications.MissedCall -- PKEY_Devices_Notification_MissedCall</para>
@@ -2857,7 +3945,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                     /// <para>Type: Byte -- <see cref="VarEnum.VT_UI1"/></para>
                     /// <para>FormatID: {6614EF48-4EFE-4424-9EDA-C79F404EDF3E}, 2</para>
                     /// </summary>
-                    public static PropertyKey MissedCall => new PropertyKey(new Guid("{6614EF48-4EFE-4424-9EDA-C79F404EDF3E}"), 2);
+                    public static PropertyKey MissedCall => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6614EF48-4EFE-4424-9EDA-C79F404EDF3E}", 2);
 
                     /// <summary>
                     /// <para>Name: System.Devices.Notifications.NewMessage -- PKEY_Devices_Notification_NewMessage</para>
@@ -2866,7 +3958,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                     /// <para>Type: Byte -- <see cref="VarEnum.VT_UI1"/></para>
                     /// <para>FormatID: {2BE9260A-2012-4742-A555-F41B638B7DCB}, 2</para>
                     /// </summary>
-                    public static PropertyKey NewMessage => new PropertyKey(new Guid("{2BE9260A-2012-4742-A555-F41B638B7DCB}"), 2);
+                    public static PropertyKey NewMessage => new
+#if !CS9
+				PropertyKey
+#endif
+				("{2BE9260A-2012-4742-A555-F41B638B7DCB}", 2);
 
                     /// <summary>
                     /// <para>Name: System.Devices.Notifications.NewVoicemail -- PKEY_Devices_Notification_NewVoicemail</para>
@@ -2875,7 +3971,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                     /// <para>Type: Byte -- <see cref="VarEnum.VT_UI1"/></para>
                     /// <para>FormatID: {59569556-0A08-4212-95B9-FAE2AD6413DB}, 2</para>
                     /// </summary>
-                    public static PropertyKey NewVoicemail => new PropertyKey(new Guid("{59569556-0A08-4212-95B9-FAE2AD6413DB}"), 2);
+                    public static PropertyKey NewVoicemail => new
+#if !CS9
+				PropertyKey
+#endif
+				("{59569556-0A08-4212-95B9-FAE2AD6413DB}", 2);
 
                     /// <summary>
                     /// <para>Name: System.Devices.Notifications.StorageFull -- PKEY_Devices_Notification_StorageFull</para>
@@ -2884,7 +3984,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                     /// <para>Type: <see cref="ulong"/> -- <see cref="VarEnum.VT_UI8"/></para>
                     /// <para>FormatID: {A0E00EE1-F0C7-4D41-B8E7-26A7BD8D38B0}, 2</para>
                     /// </summary>
-                    public static PropertyKey StorageFull => new PropertyKey(new Guid("{A0E00EE1-F0C7-4D41-B8E7-26A7BD8D38B0}"), 2);
+                    public static PropertyKey StorageFull => new
+#if !CS9
+				PropertyKey
+#endif
+				("{A0E00EE1-F0C7-4D41-B8E7-26A7BD8D38B0}", 2);
 
                     /// <summary>
                     /// <para>Name: System.Devices.Notifications.StorageFullLinkText -- PKEY_Devices_Notification_StorageFullLinkText</para>
@@ -2893,12 +3997,13 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                     /// <para>Type: <see cref="ulong"/> -- <see cref="VarEnum.VT_UI8"/></para>
                     /// <para>FormatID: {A0E00EE1-F0C7-4D41-B8E7-26A7BD8D38B0}, 3</para>
                     /// </summary>
-                    public static PropertyKey StorageFullLinkText => new PropertyKey(new Guid("{A0E00EE1-F0C7-4D41-B8E7-26A7BD8D38B0}"), 3);
+                    public static PropertyKey StorageFullLinkText => new
+#if !CS9
+				PropertyKey
+#endif
+				("{A0E00EE1-F0C7-4D41-B8E7-26A7BD8D38B0}", 3);
                     #endregion
-
-
-
-                }
+    }
                 #endregion
             }
 
@@ -2907,10 +4012,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Notifications
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Devices.Notifications.LowBattery -- PKEY_Devices_Notification_LowBattery</para>
                 /// <para>Description: Device Low Battery Notification.
@@ -2918,7 +4020,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Byte -- <see cref="VarEnum.VT_UI1"/></para>
                 /// <para>FormatID: {C4C07F2B-8524-4E66-AE3A-A6235F103BEB}, 2</para>
                 /// </summary>
-                public static PropertyKey LowBattery => new PropertyKey(new Guid("{C4C07F2B-8524-4E66-AE3A-A6235F103BEB}"), 2);
+                public static PropertyKey LowBattery => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C4C07F2B-8524-4E66-AE3A-A6235F103BEB}", 2);
 
                 /// <summary>
                 /// <para>Name: System.Devices.Notifications.MissedCall -- PKEY_Devices_Notification_MissedCall</para>
@@ -2927,7 +4033,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Byte -- <see cref="VarEnum.VT_UI1"/></para>
                 /// <para>FormatID: {6614EF48-4EFE-4424-9EDA-C79F404EDF3E}, 2</para>
                 /// </summary>
-                public static PropertyKey MissedCall => new PropertyKey(new Guid("{6614EF48-4EFE-4424-9EDA-C79F404EDF3E}"), 2);
+                public static PropertyKey MissedCall => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6614EF48-4EFE-4424-9EDA-C79F404EDF3E}", 2);
 
                 /// <summary>
                 /// <para>Name: System.Devices.Notifications.NewMessage -- PKEY_Devices_Notification_NewMessage</para>
@@ -2936,7 +4046,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Byte -- <see cref="VarEnum.VT_UI1"/></para>
                 /// <para>FormatID: {2BE9260A-2012-4742-A555-F41B638B7DCB}, 2</para>
                 /// </summary>
-                public static PropertyKey NewMessage => new PropertyKey(new Guid("{2BE9260A-2012-4742-A555-F41B638B7DCB}"), 2);
+                public static PropertyKey NewMessage => new
+#if !CS9
+				PropertyKey
+#endif
+				("{2BE9260A-2012-4742-A555-F41B638B7DCB}", 2);
 
                 /// <summary>
                 /// <para>Name: System.Devices.Notifications.NewVoicemail -- PKEY_Devices_Notification_NewVoicemail</para>
@@ -2945,7 +4059,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Byte -- <see cref="VarEnum.VT_UI1"/></para>
                 /// <para>FormatID: {59569556-0A08-4212-95B9-FAE2AD6413DB}, 2</para>
                 /// </summary>
-                public static PropertyKey NewVoicemail => new PropertyKey(new Guid("{59569556-0A08-4212-95B9-FAE2AD6413DB}"), 2);
+                public static PropertyKey NewVoicemail => new
+#if !CS9
+				PropertyKey
+#endif
+				("{59569556-0A08-4212-95B9-FAE2AD6413DB}", 2);
 
                 /// <summary>
                 /// <para>Name: System.Devices.Notifications.StorageFull -- PKEY_Devices_Notification_StorageFull</para>
@@ -2954,7 +4072,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="ulong"/> -- <see cref="VarEnum.VT_UI8"/></para>
                 /// <para>FormatID: {A0E00EE1-F0C7-4D41-B8E7-26A7BD8D38B0}, 2</para>
                 /// </summary>
-                public static PropertyKey StorageFull => new PropertyKey(new Guid("{A0E00EE1-F0C7-4D41-B8E7-26A7BD8D38B0}"), 2);
+                public static PropertyKey StorageFull => new
+#if !CS9
+				PropertyKey
+#endif
+				("{A0E00EE1-F0C7-4D41-B8E7-26A7BD8D38B0}", 2);
 
                 /// <summary>
                 /// <para>Name: System.Devices.Notifications.StorageFullLinkText -- PKEY_Devices_Notification_StorageFullLinkText</para>
@@ -2963,11 +4085,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="ulong"/> -- <see cref="VarEnum.VT_UI8"/></para>
                 /// <para>FormatID: {A0E00EE1-F0C7-4D41-B8E7-26A7BD8D38B0}, 3</para>
                 /// </summary>
-                public static PropertyKey StorageFullLinkText => new PropertyKey(new Guid("{A0E00EE1-F0C7-4D41-B8E7-26A7BD8D38B0}"), 3);
+                public static PropertyKey StorageFullLinkText => new
+#if !CS9
+				PropertyKey
+#endif
+				("{A0E00EE1-F0C7-4D41-B8E7-26A7BD8D38B0}", 3);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -2975,10 +4098,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Document
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Document.ByteCount -- PKEY_Document_ByteCount</para>
                 /// <para>Description: 
@@ -2986,7 +4106,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
                 /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 4 (PIDDSI_BYTECOUNT)</para>
                 /// </summary>
-                public static PropertyKey ByteCount => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 4);
+                public static PropertyKey ByteCount => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation, 4);
 
                 /// <summary>
                 /// <para>Name: System.Document.CharacterCount -- PKEY_Document_CharacterCount</para>
@@ -2995,7 +4119,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
                 /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 16 (PIDSI_CHARCOUNT)</para>
                 /// </summary>
-                public static PropertyKey CharacterCount => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 16);
+                public static PropertyKey CharacterCount => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation, 16);
 
                 /// <summary>
                 /// <para>Name: System.Document.ClientID -- PKEY_Document_ClientID</para>
@@ -3003,7 +4131,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {276D7BB0-5B34-4FB0-AA4B-158ED12A1809}, 100</para>
                 /// </summary>
-                public static PropertyKey ClientID => new PropertyKey(new Guid("{276D7BB0-5B34-4FB0-AA4B-158ED12A1809}"), 100);
+                public static PropertyKey ClientID => new
+#if !CS9
+				PropertyKey
+#endif
+				("{276D7BB0-5B34-4FB0-AA4B-158ED12A1809}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Document.Contributor -- PKEY_Document_Contributor</para>
@@ -3011,7 +4143,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {F334115E-DA1B-4509-9B3D-119504DC7ABB}, 100</para>
                 /// </summary>
-                public static PropertyKey Contributor => new PropertyKey(new Guid("{F334115E-DA1B-4509-9B3D-119504DC7ABB}"), 100);
+                public static PropertyKey Contributor => new
+#if !CS9
+				PropertyKey
+#endif
+				("{F334115E-DA1B-4509-9B3D-119504DC7ABB}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Document.DateCreated -- PKEY_Document_DateCreated</para>
@@ -3020,7 +4156,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
                 /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 12 (PIDSI_CREATE_DTM)</para>
                 /// </summary>
-                public static PropertyKey DateCreated => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 12);
+                public static PropertyKey DateCreated => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation, 12);
 
                 /// <summary>
                 /// <para>Name: System.Document.DatePrinted -- PKEY_Document_DatePrinted</para>
@@ -3029,7 +4169,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
                 /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 11 (PIDSI_LASTPRINTED)</para>
                 /// </summary>
-                public static PropertyKey DatePrinted => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 11);
+                public static PropertyKey DatePrinted => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation, 11);
 
                 /// <summary>
                 /// <para>Name: System.Document.DateSaved -- PKEY_Document_DateSaved</para>
@@ -3038,7 +4182,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
                 /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 13 (PIDSI_LASTSAVE_DTM)</para>
                 /// </summary>
-                public static PropertyKey DateSaved => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 13);
+                public static PropertyKey DateSaved => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation, 13);
 
                 /// <summary>
                 /// <para>Name: System.Document.Division -- PKEY_Document_Division</para>
@@ -3046,7 +4194,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {1E005EE6-BF27-428B-B01C-79676ACD2870}, 100</para>
                 /// </summary>
-                public static PropertyKey Division => new PropertyKey(new Guid("{1E005EE6-BF27-428B-B01C-79676ACD2870}"), 100);
+                public static PropertyKey Division => new
+#if !CS9
+				PropertyKey
+#endif
+				("{1E005EE6-BF27-428B-B01C-79676ACD2870}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Document.DocumentID -- PKEY_Document_DocumentID</para>
@@ -3054,7 +4206,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {E08805C8-E395-40DF-80D2-54F0D6C43154}, 100</para>
                 /// </summary>
-                public static PropertyKey DocumentID => new PropertyKey(new Guid("{E08805C8-E395-40DF-80D2-54F0D6C43154}"), 100);
+                public static PropertyKey DocumentID => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E08805C8-E395-40DF-80D2-54F0D6C43154}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Document.HiddenSlideCount -- PKEY_Document_HiddenSlideCount</para>
@@ -3063,7 +4219,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
                 /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 9 (PIDDSI_HIDDENCOUNT)</para>
                 /// </summary>
-                public static PropertyKey HiddenSlideCount => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 9);
+                public static PropertyKey HiddenSlideCount => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation, 9);
 
                 /// <summary>
                 /// <para>Name: System.Document.LastAuthor -- PKEY_Document_LastAuthor</para>
@@ -3072,7 +4232,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 8 (PIDSI_LASTAUTHOR)</para>
                 /// </summary>
-                public static PropertyKey LastAuthor => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 8);
+                public static PropertyKey LastAuthor => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation, 8);
 
                 /// <summary>
                 /// <para>Name: System.Document.LineCount -- PKEY_Document_LineCount</para>
@@ -3081,7 +4245,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
                 /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 5 (PIDDSI_LINECOUNT)</para>
                 /// </summary>
-                public static PropertyKey LineCount => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 5);
+                public static PropertyKey LineCount => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation, 5);
 
                 /// <summary>
                 /// <para>Name: System.Document.Manager -- PKEY_Document_Manager</para>
@@ -3090,7 +4258,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 14 (PIDDSI_MANAGER)</para>
                 /// </summary>
-                public static PropertyKey Manager => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 14);
+                public static PropertyKey Manager => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation, 14);
 
                 /// <summary>
                 /// <para>Name: System.Document.MultimediaClipCount -- PKEY_Document_MultimediaClipCount</para>
@@ -3099,7 +4271,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
                 /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 10 (PIDDSI_MMCLIPCOUNT)</para>
                 /// </summary>
-                public static PropertyKey MultimediaClipCount => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 10);
+                public static PropertyKey MultimediaClipCount => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation, 10);
 
                 /// <summary>
                 /// <para>Name: System.Document.NoteCount -- PKEY_Document_NoteCount</para>
@@ -3108,7 +4284,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
                 /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 8 (PIDDSI_NOTECOUNT)</para>
                 /// </summary>
-                public static PropertyKey NoteCount => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 8);
+                public static PropertyKey NoteCount => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation, 8);
 
                 /// <summary>
                 /// <para>Name: System.Document.PageCount -- PKEY_Document_PageCount</para>
@@ -3117,7 +4297,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
                 /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 14 (PIDSI_PAGECOUNT)</para>
                 /// </summary>
-                public static PropertyKey PageCount => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 14);
+                public static PropertyKey PageCount => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation, 14);
 
                 /// <summary>
                 /// <para>Name: System.Document.ParagraphCount -- PKEY_Document_ParagraphCount</para>
@@ -3126,7 +4310,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
                 /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 6 (PIDDSI_PARCOUNT)</para>
                 /// </summary>
-                public static PropertyKey ParagraphCount => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 6);
+                public static PropertyKey ParagraphCount => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation, 6);
 
                 /// <summary>
                 /// <para>Name: System.Document.PresentationFormat -- PKEY_Document_PresentationFormat</para>
@@ -3135,7 +4323,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 3 (PIDDSI_PRESFORMAT)</para>
                 /// </summary>
-                public static PropertyKey PresentationFormat => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 3);
+                public static PropertyKey PresentationFormat => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation, 3);
 
                 /// <summary>
                 /// <para>Name: System.Document.RevisionNumber -- PKEY_Document_RevisionNumber</para>
@@ -3144,7 +4336,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 9 (PIDSI_REVNUMBER)</para>
                 /// </summary>
-                public static PropertyKey RevisionNumber => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 9);
+                public static PropertyKey RevisionNumber => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation, 9);
 
                 /// <summary>
                 /// <para>Name: System.Document.Security -- PKEY_Document_Security</para>
@@ -3153,7 +4349,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
                 /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 19</para>
                 /// </summary>
-                public static PropertyKey Security => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 19);
+                public static PropertyKey Security => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation, 19);
 
                 /// <summary>
                 /// <para>Name: System.Document.SlideCount -- PKEY_Document_SlideCount</para>
@@ -3162,7 +4362,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
                 /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 7 (PIDDSI_SLIDECOUNT)</para>
                 /// </summary>
-                public static PropertyKey SlideCount => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 7);
+                public static PropertyKey SlideCount => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation, 7);
 
                 /// <summary>
                 /// <para>Name: System.Document.Template -- PKEY_Document_Template</para>
@@ -3171,7 +4375,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 7 (PIDSI_TEMPLATE)</para>
                 /// </summary>
-                public static PropertyKey Template => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 7);
+                public static PropertyKey Template => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation, 7);
 
                 /// <summary>
                 /// <para>Name: System.Document.TotalEditingTime -- PKEY_Document_TotalEditingTime</para>
@@ -3180,7 +4388,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="ulong"/> -- <see cref="VarEnum.VT_UI8"/></para>
                 /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 10 (PIDSI_EDITTIME)</para>
                 /// </summary>
-                public static PropertyKey TotalEditingTime => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 10);
+                public static PropertyKey TotalEditingTime => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation, 10);
 
                 /// <summary>
                 /// <para>Name: System.Document.Version -- PKEY_Document_Version</para>
@@ -3188,7 +4400,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_DocumentSummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation"/>, 29</para>
                 /// </summary>
-                public static PropertyKey Version => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation), 29);
+                public static PropertyKey Version => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.DocumentSummaryInformation, 29);
 
                 /// <summary>
                 /// <para>Name: System.Document.WordCount -- PKEY_Document_WordCount</para>
@@ -3197,11 +4413,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
                 /// <para>FormatID: (FMTID_SummaryInformation) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation"/>, 15 (PIDSI_WORDCOUNT)</para>
                 /// </summary>
-                public static PropertyKey WordCount => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation), 15);
+                public static PropertyKey WordCount => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.SummaryInformation, 15);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -3209,10 +4426,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class DRM
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.DRM.DatePlayExpires -- PKEY_DRM_DatePlayExpires</para>
                 /// <para>Description: Indicates when play expires for digital rights management.
@@ -3220,7 +4434,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
                 /// <para>FormatID: (FMTID_DRM) {AEAC19E4-89AE-4508-B9B7-BB867ABEE2ED}, 6 (PIDDRSI_PLAYEXPIRES)</para>
                 /// </summary>
-                public static PropertyKey DatePlayExpires => new PropertyKey(new Guid("{AEAC19E4-89AE-4508-B9B7-BB867ABEE2ED}"), 6);
+                public static PropertyKey DatePlayExpires => new
+#if !CS9
+				PropertyKey
+#endif
+				("{AEAC19E4-89AE-4508-B9B7-BB867ABEE2ED}", 6);
 
                 /// <summary>
                 /// <para>Name: System.DRM.DatePlayStarts -- PKEY_DRM_DatePlayStarts</para>
@@ -3229,7 +4447,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
                 /// <para>FormatID: (FMTID_DRM) {AEAC19E4-89AE-4508-B9B7-BB867ABEE2ED}, 5 (PIDDRSI_PLAYSTARTS)</para>
                 /// </summary>
-                public static PropertyKey DatePlayStarts => new PropertyKey(new Guid("{AEAC19E4-89AE-4508-B9B7-BB867ABEE2ED}"), 5);
+                public static PropertyKey DatePlayStarts => new
+#if !CS9
+				PropertyKey
+#endif
+				("{AEAC19E4-89AE-4508-B9B7-BB867ABEE2ED}", 5);
 
                 /// <summary>
                 /// <para>Name: System.DRM.Description -- PKEY_DRM_Description</para>
@@ -3238,7 +4460,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_DRM) {AEAC19E4-89AE-4508-B9B7-BB867ABEE2ED}, 3 (PIDDRSI_DESCRIPTION)</para>
                 /// </summary>
-                public static PropertyKey Description => new PropertyKey(new Guid("{AEAC19E4-89AE-4508-B9B7-BB867ABEE2ED}"), 3);
+                public static PropertyKey Description => new
+#if !CS9
+				PropertyKey
+#endif
+				("{AEAC19E4-89AE-4508-B9B7-BB867ABEE2ED}", 3);
 
                 /// <summary>
                 /// <para>Name: System.DRM.IsProtected -- PKEY_DRM_IsProtected</para>
@@ -3247,7 +4473,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: (FMTID_DRM) {AEAC19E4-89AE-4508-B9B7-BB867ABEE2ED}, 2 (PIDDRSI_PROTECTED)</para>
                 /// </summary>
-                public static PropertyKey IsProtected => new PropertyKey(new Guid("{AEAC19E4-89AE-4508-B9B7-BB867ABEE2ED}"), 2);
+                public static PropertyKey IsProtected => new
+#if !CS9
+				PropertyKey
+#endif
+				("{AEAC19E4-89AE-4508-B9B7-BB867ABEE2ED}", 2);
 
                 /// <summary>
                 /// <para>Name: System.DRM.PlayCount -- PKEY_DRM_PlayCount</para>
@@ -3256,11 +4486,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: (FMTID_DRM) {AEAC19E4-89AE-4508-B9B7-BB867ABEE2ED}, 4 (PIDDRSI_PLAYCOUNT)</para>
                 /// </summary>
-                public static PropertyKey PlayCount => new PropertyKey(new Guid("{AEAC19E4-89AE-4508-B9B7-BB867ABEE2ED}"), 4);
+                public static PropertyKey PlayCount => new
+#if !CS9
+				PropertyKey
+#endif
+				("{AEAC19E4-89AE-4508-B9B7-BB867ABEE2ED}", 4);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -3268,10 +4499,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class GPS
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.GPS.Altitude -- PKEY_GPS_Altitude</para>
                 /// <para>Description: Indicates the altitude based on the reference in PKEY_GPS_AltitudeRef.  Calculated from PKEY_GPS_AltitudeNumerator and 
@@ -3280,7 +4508,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: {827EDB4F-5B73-44A7-891D-FDFFABEA35CA}, 100</para>
                 /// </summary>
-                public static PropertyKey Altitude => new PropertyKey(new Guid("{827EDB4F-5B73-44A7-891D-FDFFABEA35CA}"), 100);
+                public static PropertyKey Altitude => new
+#if !CS9
+				PropertyKey
+#endif
+				("{827EDB4F-5B73-44A7-891D-FDFFABEA35CA}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.AltitudeDenominator -- PKEY_GPS_AltitudeDenominator</para>
@@ -3289,7 +4521,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {78342DCB-E358-4145-AE9A-6BFE4E0F9F51}, 100</para>
                 /// </summary>
-                public static PropertyKey AltitudeDenominator => new PropertyKey(new Guid("{78342DCB-E358-4145-AE9A-6BFE4E0F9F51}"), 100);
+                public static PropertyKey AltitudeDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{78342DCB-E358-4145-AE9A-6BFE4E0F9F51}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.AltitudeNumerator -- PKEY_GPS_AltitudeNumerator</para>
@@ -3298,7 +4534,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {2DAD1EB7-816D-40D3-9EC3-C9773BE2AADE}, 100</para>
                 /// </summary>
-                public static PropertyKey AltitudeNumerator => new PropertyKey(new Guid("{2DAD1EB7-816D-40D3-9EC3-C9773BE2AADE}"), 100);
+                public static PropertyKey AltitudeNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{2DAD1EB7-816D-40D3-9EC3-C9773BE2AADE}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.AltitudeRef -- PKEY_GPS_AltitudeRef</para>
@@ -3307,7 +4547,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Byte -- <see cref="VarEnum.VT_UI1"/></para>
                 /// <para>FormatID: {46AC629D-75EA-4515-867F-6DC4321C5844}, 100</para>
                 /// </summary>
-                public static PropertyKey AltitudeRef => new PropertyKey(new Guid("{46AC629D-75EA-4515-867F-6DC4321C5844}"), 100);
+                public static PropertyKey AltitudeRef => new
+#if !CS9
+				PropertyKey
+#endif
+				("{46AC629D-75EA-4515-867F-6DC4321C5844}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.AreaInformation -- PKEY_GPS_AreaInformation</para>
@@ -3316,7 +4560,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {972E333E-AC7E-49F1-8ADF-A70D07A9BCAB}, 100</para>
                 /// </summary>
-                public static PropertyKey AreaInformation => new PropertyKey(new Guid("{972E333E-AC7E-49F1-8ADF-A70D07A9BCAB}"), 100);
+                public static PropertyKey AreaInformation => new
+#if !CS9
+				PropertyKey
+#endif
+				("{972E333E-AC7E-49F1-8ADF-A70D07A9BCAB}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.Date -- PKEY_GPS_Date</para>
@@ -3325,7 +4573,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
                 /// <para>FormatID: {3602C812-0F3B-45F0-85AD-603468D69423}, 100</para>
                 /// </summary>
-                public static PropertyKey Date => new PropertyKey(new Guid("{3602C812-0F3B-45F0-85AD-603468D69423}"), 100);
+                public static PropertyKey Date => new
+#if !CS9
+				PropertyKey
+#endif
+				("{3602C812-0F3B-45F0-85AD-603468D69423}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.DestBearing -- PKEY_GPS_DestBearing</para>
@@ -3335,7 +4587,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: {C66D4B3C-E888-47CC-B99F-9DCA3EE34DEA}, 100</para>
                 /// </summary>
-                public static PropertyKey DestinationBearing => new PropertyKey(new Guid("{C66D4B3C-E888-47CC-B99F-9DCA3EE34DEA}"), 100);
+                public static PropertyKey DestinationBearing => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C66D4B3C-E888-47CC-B99F-9DCA3EE34DEA}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.DestBearingDenominator -- PKEY_GPS_DestBearingDenominator</para>
@@ -3344,7 +4600,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {7ABCF4F8-7C3F-4988-AC91-8D2C2E97ECA5}, 100</para>
                 /// </summary>
-                public static PropertyKey DestinationBearingDenominator => new PropertyKey(new Guid("{7ABCF4F8-7C3F-4988-AC91-8D2C2E97ECA5}"), 100);
+                public static PropertyKey DestinationBearingDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{7ABCF4F8-7C3F-4988-AC91-8D2C2E97ECA5}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.DestBearingNumerator -- PKEY_GPS_DestBearingNumerator</para>
@@ -3353,7 +4613,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {BA3B1DA9-86EE-4B5D-A2A4-A271A429F0CF}, 100</para>
                 /// </summary>
-                public static PropertyKey DestinationBearingNumerator => new PropertyKey(new Guid("{BA3B1DA9-86EE-4B5D-A2A4-A271A429F0CF}"), 100);
+                public static PropertyKey DestinationBearingNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{BA3B1DA9-86EE-4B5D-A2A4-A271A429F0CF}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.DestBearingRef -- PKEY_GPS_DestBearingRef</para>
@@ -3362,7 +4626,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {9AB84393-2A0F-4B75-BB22-7279786977CB}, 100</para>
                 /// </summary>
-                public static PropertyKey DestinationBearingRef => new PropertyKey(new Guid("{9AB84393-2A0F-4B75-BB22-7279786977CB}"), 100);
+                public static PropertyKey DestinationBearingRef => new
+#if !CS9
+				PropertyKey
+#endif
+				("{9AB84393-2A0F-4B75-BB22-7279786977CB}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.DestDistance -- PKEY_GPS_DestDistance</para>
@@ -3372,7 +4640,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: {A93EAE04-6804-4F24-AC81-09B266452118}, 100</para>
                 /// </summary>
-                public static PropertyKey DestinationDistance => new PropertyKey(new Guid("{A93EAE04-6804-4F24-AC81-09B266452118}"), 100);
+                public static PropertyKey DestinationDistance => new
+#if !CS9
+				PropertyKey
+#endif
+				("{A93EAE04-6804-4F24-AC81-09B266452118}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.DestDistanceDenominator -- PKEY_GPS_DestDistanceDenominator</para>
@@ -3381,7 +4653,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {9BC2C99B-AC71-4127-9D1C-2596D0D7DCB7}, 100</para>
                 /// </summary>
-                public static PropertyKey DestinationDistanceDenominator => new PropertyKey(new Guid("{9BC2C99B-AC71-4127-9D1C-2596D0D7DCB7}"), 100);
+                public static PropertyKey DestinationDistanceDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{9BC2C99B-AC71-4127-9D1C-2596D0D7DCB7}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.DestDistanceNumerator -- PKEY_GPS_DestDistanceNumerator</para>
@@ -3390,7 +4666,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {2BDA47DA-08C6-4FE1-80BC-A72FC517C5D0}, 100</para>
                 /// </summary>
-                public static PropertyKey DestinationDistanceNumerator => new PropertyKey(new Guid("{2BDA47DA-08C6-4FE1-80BC-A72FC517C5D0}"), 100);
+                public static PropertyKey DestinationDistanceNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{2BDA47DA-08C6-4FE1-80BC-A72FC517C5D0}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.DestDistanceRef -- PKEY_GPS_DestDistanceRef</para>
@@ -3399,7 +4679,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {ED4DF2D3-8695-450B-856F-F5C1C53ACB66}, 100</para>
                 /// </summary>
-                public static PropertyKey DestinationDistanceRef => new PropertyKey(new Guid("{ED4DF2D3-8695-450B-856F-F5C1C53ACB66}"), 100);
+                public static PropertyKey DestinationDistanceRef => new
+#if !CS9
+				PropertyKey
+#endif
+				("{ED4DF2D3-8695-450B-856F-F5C1C53ACB66}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.DestLatitude -- PKEY_GPS_DestLatitude</para>
@@ -3410,7 +4694,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue Double -- <see cref="VarEnum.VT_VECTOR"/> | VT_R8  (For variants: <see cref="VarEnum.VT_ARRAY"/> | VT_R8)</para>
                 /// <para>FormatID: {9D1D7CC5-5C39-451C-86B3-928E2D18CC47}, 100</para>
                 /// </summary>
-                public static PropertyKey DestinationLatitude => new PropertyKey(new Guid("{9D1D7CC5-5C39-451C-86B3-928E2D18CC47}"), 100);
+                public static PropertyKey DestinationLatitude => new
+#if !CS9
+				PropertyKey
+#endif
+				("{9D1D7CC5-5C39-451C-86B3-928E2D18CC47}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.DestLatitudeDenominator -- PKEY_GPS_DestLatitudeDenominator</para>
@@ -3419,7 +4707,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="uint"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_UI4"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_UI4"/>)</para>
                 /// <para>FormatID: {3A372292-7FCA-49A7-99D5-E47BB2D4E7AB}, 100</para>
                 /// </summary>
-                public static PropertyKey DestinationLatitudeDenominator => new PropertyKey(new Guid("{3A372292-7FCA-49A7-99D5-E47BB2D4E7AB}"), 100);
+                public static PropertyKey DestinationLatitudeDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{3A372292-7FCA-49A7-99D5-E47BB2D4E7AB}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.DestLatitudeNumerator -- PKEY_GPS_DestLatitudeNumerator</para>
@@ -3428,7 +4720,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="uint"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_UI4"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_UI4"/>)</para>
                 /// <para>FormatID: {ECF4B6F6-D5A6-433C-BB92-4076650FC890}, 100</para>
                 /// </summary>
-                public static PropertyKey DestinationLatitudeNumerator => new PropertyKey(new Guid("{ECF4B6F6-D5A6-433C-BB92-4076650FC890}"), 100);
+                public static PropertyKey DestinationLatitudeNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{ECF4B6F6-D5A6-433C-BB92-4076650FC890}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.DestLatitudeRef -- PKEY_GPS_DestLatitudeRef</para>
@@ -3437,7 +4733,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {CEA820B9-CE61-4885-A128-005D9087C192}, 100</para>
                 /// </summary>
-                public static PropertyKey DestinationLatitudeRef => new PropertyKey(new Guid("{CEA820B9-CE61-4885-A128-005D9087C192}"), 100);
+                public static PropertyKey DestinationLatitudeRef => new
+#if !CS9
+				PropertyKey
+#endif
+				("{CEA820B9-CE61-4885-A128-005D9087C192}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.DestLongitude -- PKEY_GPS_DestLongitude</para>
@@ -3448,7 +4748,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue Double -- <see cref="VarEnum.VT_VECTOR"/> | VT_R8  (For variants: <see cref="VarEnum.VT_ARRAY"/> | VT_R8)</para>
                 /// <para>FormatID: {47A96261-CB4C-4807-8AD3-40B9D9DBC6BC}, 100</para>
                 /// </summary>
-                public static PropertyKey DestinationLongitude => new PropertyKey(new Guid("{47A96261-CB4C-4807-8AD3-40B9D9DBC6BC}"), 100);
+                public static PropertyKey DestinationLongitude => new
+#if !CS9
+				PropertyKey
+#endif
+				("{47A96261-CB4C-4807-8AD3-40B9D9DBC6BC}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.DestLongitudeDenominator -- PKEY_GPS_DestLongitudeDenominator</para>
@@ -3457,7 +4761,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="uint"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_UI4"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_UI4"/>)</para>
                 /// <para>FormatID: {425D69E5-48AD-4900-8D80-6EB6B8D0AC86}, 100</para>
                 /// </summary>
-                public static PropertyKey DestinationLongitudeDenominator => new PropertyKey(new Guid("{425D69E5-48AD-4900-8D80-6EB6B8D0AC86}"), 100);
+                public static PropertyKey DestinationLongitudeDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{425D69E5-48AD-4900-8D80-6EB6B8D0AC86}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.DestLongitudeNumerator -- PKEY_GPS_DestLongitudeNumerator</para>
@@ -3466,7 +4774,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="uint"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_UI4"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_UI4"/>)</para>
                 /// <para>FormatID: {A3250282-FB6D-48D5-9A89-DBCACE75CCCF}, 100</para>
                 /// </summary>
-                public static PropertyKey DestinationLongitudeNumerator => new PropertyKey(new Guid("{A3250282-FB6D-48D5-9A89-DBCACE75CCCF}"), 100);
+                public static PropertyKey DestinationLongitudeNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{A3250282-FB6D-48D5-9A89-DBCACE75CCCF}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.DestLongitudeRef -- PKEY_GPS_DestLongitudeRef</para>
@@ -3475,7 +4787,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {182C1EA6-7C1C-4083-AB4B-AC6C9F4ED128}, 100</para>
                 /// </summary>
-                public static PropertyKey DestinationLongitudeRef => new PropertyKey(new Guid("{182C1EA6-7C1C-4083-AB4B-AC6C9F4ED128}"), 100);
+                public static PropertyKey DestinationLongitudeRef => new
+#if !CS9
+				PropertyKey
+#endif
+				("{182C1EA6-7C1C-4083-AB4B-AC6C9F4ED128}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.Differential -- PKEY_GPS_Differential</para>
@@ -3484,7 +4800,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="ushort"/> -- <see cref="VarEnum.VT_UI2"/></para>
                 /// <para>FormatID: {AAF4EE25-BD3B-4DD7-BFC4-47F77BB00F6D}, 100</para>
                 /// </summary>
-                public static PropertyKey Differential => new PropertyKey(new Guid("{AAF4EE25-BD3B-4DD7-BFC4-47F77BB00F6D}"), 100);
+                public static PropertyKey Differential => new
+#if !CS9
+				PropertyKey
+#endif
+				("{AAF4EE25-BD3B-4DD7-BFC4-47F77BB00F6D}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.DOP -- PKEY_GPS_DOP</para>
@@ -3493,7 +4813,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: {0CF8FB02-1837-42F1-A697-A7017AA289B9}, 100</para>
                 /// </summary>
-                public static PropertyKey DOP => new PropertyKey(new Guid("{0CF8FB02-1837-42F1-A697-A7017AA289B9}"), 100);
+                public static PropertyKey DOP => new
+#if !CS9
+				PropertyKey
+#endif
+				("{0CF8FB02-1837-42F1-A697-A7017AA289B9}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.DOPDenominator -- PKEY_GPS_DOPDenominator</para>
@@ -3502,7 +4826,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {A0BE94C5-50BA-487B-BD35-0654BE8881ED}, 100</para>
                 /// </summary>
-                public static PropertyKey DOPDenominator => new PropertyKey(new Guid("{A0BE94C5-50BA-487B-BD35-0654BE8881ED}"), 100);
+                public static PropertyKey DOPDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{A0BE94C5-50BA-487B-BD35-0654BE8881ED}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.DOPNumerator -- PKEY_GPS_DOPNumerator</para>
@@ -3511,7 +4839,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {47166B16-364F-4AA0-9F31-E2AB3DF449C3}, 100</para>
                 /// </summary>
-                public static PropertyKey DOPNumerator => new PropertyKey(new Guid("{47166B16-364F-4AA0-9F31-E2AB3DF449C3}"), 100);
+                public static PropertyKey DOPNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{47166B16-364F-4AA0-9F31-E2AB3DF449C3}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.ImgDirection -- PKEY_GPS_ImgDirection</para>
@@ -3521,7 +4853,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: {16473C91-D017-4ED9-BA4D-B6BAA55DBCF8}, 100</para>
                 /// </summary>
-                public static PropertyKey ImageDirection => new PropertyKey(new Guid("{16473C91-D017-4ED9-BA4D-B6BAA55DBCF8}"), 100);
+                public static PropertyKey ImageDirection => new
+#if !CS9
+				PropertyKey
+#endif
+				("{16473C91-D017-4ED9-BA4D-B6BAA55DBCF8}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.ImgDirectionDenominator -- PKEY_GPS_ImgDirectionDenominator</para>
@@ -3530,7 +4866,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {10B24595-41A2-4E20-93C2-5761C1395F32}, 100</para>
                 /// </summary>
-                public static PropertyKey ImageDirectionDenominator => new PropertyKey(new Guid("{10B24595-41A2-4E20-93C2-5761C1395F32}"), 100);
+                public static PropertyKey ImageDirectionDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{10B24595-41A2-4E20-93C2-5761C1395F32}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.ImgDirectionNumerator -- PKEY_GPS_ImgDirectionNumerator</para>
@@ -3539,7 +4879,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {DC5877C7-225F-45F7-BAC7-E81334B6130A}, 100</para>
                 /// </summary>
-                public static PropertyKey ImageDirectionNumerator => new PropertyKey(new Guid("{DC5877C7-225F-45F7-BAC7-E81334B6130A}"), 100);
+                public static PropertyKey ImageDirectionNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{DC5877C7-225F-45F7-BAC7-E81334B6130A}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.ImgDirectionRef -- PKEY_GPS_ImgDirectionRef</para>
@@ -3548,7 +4892,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {A4AAA5B7-1AD0-445F-811A-0F8F6E67F6B5}, 100</para>
                 /// </summary>
-                public static PropertyKey ImageDirectionRef => new PropertyKey(new Guid("{A4AAA5B7-1AD0-445F-811A-0F8F6E67F6B5}"), 100);
+                public static PropertyKey ImageDirectionRef => new
+#if !CS9
+				PropertyKey
+#endif
+				("{A4AAA5B7-1AD0-445F-811A-0F8F6E67F6B5}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.Latitude -- PKEY_GPS_Latitude</para>
@@ -3558,7 +4906,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue Double -- <see cref="VarEnum.VT_VECTOR"/> | VT_R8  (For variants: <see cref="VarEnum.VT_ARRAY"/> | VT_R8)</para>
                 /// <para>FormatID: {8727CFFF-4868-4EC6-AD5B-81B98521D1AB}, 100</para>
                 /// </summary>
-                public static PropertyKey Latitude => new PropertyKey(new Guid("{8727CFFF-4868-4EC6-AD5B-81B98521D1AB}"), 100);
+                public static PropertyKey Latitude => new
+#if !CS9
+				PropertyKey
+#endif
+				("{8727CFFF-4868-4EC6-AD5B-81B98521D1AB}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.LatitudeDenominator -- PKEY_GPS_LatitudeDenominator</para>
@@ -3567,7 +4919,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="uint"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_UI4"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_UI4"/>)</para>
                 /// <para>FormatID: {16E634EE-2BFF-497B-BD8A-4341AD39EEB9}, 100</para>
                 /// </summary>
-                public static PropertyKey LatitudeDenominator => new PropertyKey(new Guid("{16E634EE-2BFF-497B-BD8A-4341AD39EEB9}"), 100);
+                public static PropertyKey LatitudeDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{16E634EE-2BFF-497B-BD8A-4341AD39EEB9}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.LatitudeNumerator -- PKEY_GPS_LatitudeNumerator</para>
@@ -3576,7 +4932,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="uint"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_UI4"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_UI4"/>)</para>
                 /// <para>FormatID: {7DDAAAD1-CCC8-41AE-B750-B2CB8031AEA2}, 100</para>
                 /// </summary>
-                public static PropertyKey LatitudeNumerator => new PropertyKey(new Guid("{7DDAAAD1-CCC8-41AE-B750-B2CB8031AEA2}"), 100);
+                public static PropertyKey LatitudeNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{7DDAAAD1-CCC8-41AE-B750-B2CB8031AEA2}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.LatitudeRef -- PKEY_GPS_LatitudeRef</para>
@@ -3585,7 +4945,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {029C0252-5B86-46C7-ACA0-2769FFC8E3D4}, 100</para>
                 /// </summary>
-                public static PropertyKey LatitudeRef => new PropertyKey(new Guid("{029C0252-5B86-46C7-ACA0-2769FFC8E3D4}"), 100);
+                public static PropertyKey LatitudeRef => new
+#if !CS9
+				PropertyKey
+#endif
+				("{029C0252-5B86-46C7-ACA0-2769FFC8E3D4}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.Longitude -- PKEY_GPS_Longitude</para>
@@ -3595,7 +4959,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue Double -- <see cref="VarEnum.VT_VECTOR"/> | VT_R8  (For variants: <see cref="VarEnum.VT_ARRAY"/> | VT_R8)</para>
                 /// <para>FormatID: {C4C4DBB2-B593-466B-BBDA-D03D27D5E43A}, 100</para>
                 /// </summary>
-                public static PropertyKey Longitude => new PropertyKey(new Guid("{C4C4DBB2-B593-466B-BBDA-D03D27D5E43A}"), 100);
+                public static PropertyKey Longitude => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C4C4DBB2-B593-466B-BBDA-D03D27D5E43A}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.LongitudeDenominator -- PKEY_GPS_LongitudeDenominator</para>
@@ -3604,7 +4972,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="uint"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_UI4"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_UI4"/>)</para>
                 /// <para>FormatID: {BE6E176C-4534-4D2C-ACE5-31DEDAC1606B}, 100</para>
                 /// </summary>
-                public static PropertyKey LongitudeDenominator => new PropertyKey(new Guid("{BE6E176C-4534-4D2C-ACE5-31DEDAC1606B}"), 100);
+                public static PropertyKey LongitudeDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{BE6E176C-4534-4D2C-ACE5-31DEDAC1606B}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.LongitudeNumerator -- PKEY_GPS_LongitudeNumerator</para>
@@ -3613,7 +4985,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="uint"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_UI4"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_UI4"/>)</para>
                 /// <para>FormatID: {02B0F689-A914-4E45-821D-1DDA452ED2C4}, 100</para>
                 /// </summary>
-                public static PropertyKey LongitudeNumerator => new PropertyKey(new Guid("{02B0F689-A914-4E45-821D-1DDA452ED2C4}"), 100);
+                public static PropertyKey LongitudeNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{02B0F689-A914-4E45-821D-1DDA452ED2C4}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.LongitudeRef -- PKEY_GPS_LongitudeRef</para>
@@ -3622,7 +4998,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {33DCF22B-28D5-464C-8035-1EE9EFD25278}, 100</para>
                 /// </summary>
-                public static PropertyKey LongitudeRef => new PropertyKey(new Guid("{33DCF22B-28D5-464C-8035-1EE9EFD25278}"), 100);
+                public static PropertyKey LongitudeRef => new
+#if !CS9
+				PropertyKey
+#endif
+				("{33DCF22B-28D5-464C-8035-1EE9EFD25278}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.MapDatum -- PKEY_GPS_MapDatum</para>
@@ -3631,7 +5011,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {2CA2DAE6-EDDC-407D-BEF1-773942ABFA95}, 100</para>
                 /// </summary>
-                public static PropertyKey MapDatum => new PropertyKey(new Guid("{2CA2DAE6-EDDC-407D-BEF1-773942ABFA95}"), 100);
+                public static PropertyKey MapDatum => new
+#if !CS9
+				PropertyKey
+#endif
+				("{2CA2DAE6-EDDC-407D-BEF1-773942ABFA95}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.MeasureMode -- PKEY_GPS_MeasureMode</para>
@@ -3640,7 +5024,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {A015ED5D-AAEA-4D58-8A86-3C586920EA0B}, 100</para>
                 /// </summary>
-                public static PropertyKey MeasureMode => new PropertyKey(new Guid("{A015ED5D-AAEA-4D58-8A86-3C586920EA0B}"), 100);
+                public static PropertyKey MeasureMode => new
+#if !CS9
+				PropertyKey
+#endif
+				("{A015ED5D-AAEA-4D58-8A86-3C586920EA0B}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.ProcessingMethod -- PKEY_GPS_ProcessingMethod</para>
@@ -3649,7 +5037,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {59D49E61-840F-4AA9-A939-E2099B7F6399}, 100</para>
                 /// </summary>
-                public static PropertyKey ProcessingMethod => new PropertyKey(new Guid("{59D49E61-840F-4AA9-A939-E2099B7F6399}"), 100);
+                public static PropertyKey ProcessingMethod => new
+#if !CS9
+				PropertyKey
+#endif
+				("{59D49E61-840F-4AA9-A939-E2099B7F6399}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.Satellites -- PKEY_GPS_Satellites</para>
@@ -3658,7 +5050,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {467EE575-1F25-4557-AD4E-B8B58B0D9C15}, 100</para>
                 /// </summary>
-                public static PropertyKey Satellites => new PropertyKey(new Guid("{467EE575-1F25-4557-AD4E-B8B58B0D9C15}"), 100);
+                public static PropertyKey Satellites => new
+#if !CS9
+				PropertyKey
+#endif
+				("{467EE575-1F25-4557-AD4E-B8B58B0D9C15}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.Speed -- PKEY_GPS_Speed</para>
@@ -3668,7 +5064,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: {DA5D0862-6E76-4E1B-BABD-70021BD25494}, 100</para>
                 /// </summary>
-                public static PropertyKey Speed => new PropertyKey(new Guid("{DA5D0862-6E76-4E1B-BABD-70021BD25494}"), 100);
+                public static PropertyKey Speed => new
+#if !CS9
+				PropertyKey
+#endif
+				("{DA5D0862-6E76-4E1B-BABD-70021BD25494}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.SpeedDenominator -- PKEY_GPS_SpeedDenominator</para>
@@ -3677,7 +5077,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {7D122D5A-AE5E-4335-8841-D71E7CE72F53}, 100</para>
                 /// </summary>
-                public static PropertyKey SpeedDenominator => new PropertyKey(new Guid("{7D122D5A-AE5E-4335-8841-D71E7CE72F53}"), 100);
+                public static PropertyKey SpeedDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{7D122D5A-AE5E-4335-8841-D71E7CE72F53}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.SpeedNumerator -- PKEY_GPS_SpeedNumerator</para>
@@ -3686,7 +5090,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {ACC9CE3D-C213-4942-8B48-6D0820F21C6D}, 100</para>
                 /// </summary>
-                public static PropertyKey SpeedNumerator => new PropertyKey(new Guid("{ACC9CE3D-C213-4942-8B48-6D0820F21C6D}"), 100);
+                public static PropertyKey SpeedNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{ACC9CE3D-C213-4942-8B48-6D0820F21C6D}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.SpeedRef -- PKEY_GPS_SpeedRef</para>
@@ -3696,7 +5104,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {ECF7F4C9-544F-4D6D-9D98-8AD79ADAF453}, 100</para>
                 /// </summary>
-                public static PropertyKey SpeedRef => new PropertyKey(new Guid("{ECF7F4C9-544F-4D6D-9D98-8AD79ADAF453}"), 100);
+                public static PropertyKey SpeedRef => new
+#if !CS9
+				PropertyKey
+#endif
+				("{ECF7F4C9-544F-4D6D-9D98-8AD79ADAF453}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.Status -- PKEY_GPS_Status</para>
@@ -3706,7 +5118,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {125491F4-818F-46B2-91B5-D537753617B2}, 100</para>
                 /// </summary>
-                public static PropertyKey Status => new PropertyKey(new Guid("{125491F4-818F-46B2-91B5-D537753617B2}"), 100);
+                public static PropertyKey Status => new
+#if !CS9
+				PropertyKey
+#endif
+				("{125491F4-818F-46B2-91B5-D537753617B2}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.Track -- PKEY_GPS_Track</para>
@@ -3716,7 +5132,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: {76C09943-7C33-49E3-9E7E-CDBA872CFADA}, 100</para>
                 /// </summary>
-                public static PropertyKey Track => new PropertyKey(new Guid("{76C09943-7C33-49E3-9E7E-CDBA872CFADA}"), 100);
+                public static PropertyKey Track => new
+#if !CS9
+				PropertyKey
+#endif
+				("{76C09943-7C33-49E3-9E7E-CDBA872CFADA}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.TrackDenominator -- PKEY_GPS_TrackDenominator</para>
@@ -3725,7 +5145,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {C8D1920C-01F6-40C0-AC86-2F3A4AD00770}, 100</para>
                 /// </summary>
-                public static PropertyKey TrackDenominator => new PropertyKey(new Guid("{C8D1920C-01F6-40C0-AC86-2F3A4AD00770}"), 100);
+                public static PropertyKey TrackDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C8D1920C-01F6-40C0-AC86-2F3A4AD00770}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.TrackNumerator -- PKEY_GPS_TrackNumerator</para>
@@ -3734,7 +5158,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {702926F4-44A6-43E1-AE71-45627116893B}, 100</para>
                 /// </summary>
-                public static PropertyKey TrackNumerator => new PropertyKey(new Guid("{702926F4-44A6-43E1-AE71-45627116893B}"), 100);
+                public static PropertyKey TrackNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{702926F4-44A6-43E1-AE71-45627116893B}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.TrackRef -- PKEY_GPS_TrackRef</para>
@@ -3743,7 +5171,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {35DBE6FE-44C3-4400-AAAE-D2C799C407E8}, 100</para>
                 /// </summary>
-                public static PropertyKey TrackRef => new PropertyKey(new Guid("{35DBE6FE-44C3-4400-AAAE-D2C799C407E8}"), 100);
+                public static PropertyKey TrackRef => new
+#if !CS9
+				PropertyKey
+#endif
+				("{35DBE6FE-44C3-4400-AAAE-D2C799C407E8}", 100);
 
                 /// <summary>
                 /// <para>Name: System.GPS.VersionID -- PKEY_GPS_VersionID</para>
@@ -3752,11 +5184,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Buffer -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_UI1"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_UI1"/>)</para>
                 /// <para>FormatID: {22704DA4-C6B2-4A99-8E56-F16DF8C92599}, 100</para>
                 /// </summary>
-                public static PropertyKey VersionID => new PropertyKey(new Guid("{22704DA4-C6B2-4A99-8E56-F16DF8C92599}"), 100);
+                public static PropertyKey VersionID => new
+#if !CS9
+				PropertyKey
+#endif
+				("{22704DA4-C6B2-4A99-8E56-F16DF8C92599}", 100);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -3764,10 +5197,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Identity
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Identity.Blob -- PKEY_Identity_Blob</para>
                 /// <para>Description: Blob used to import/export identities
@@ -3775,7 +5205,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Blob -- VT_BLOB</para>
                 /// <para>FormatID: {8C3B93A4-BAED-1A83-9A32-102EE313F6EB}, 100</para>
                 /// </summary>
-                public static PropertyKey Blob => new PropertyKey(new Guid("{8C3B93A4-BAED-1A83-9A32-102EE313F6EB}"), 100);
+                public static PropertyKey Blob => new
+#if !CS9
+				PropertyKey
+#endif
+				("{8C3B93A4-BAED-1A83-9A32-102EE313F6EB}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Identity.DisplayName -- PKEY_Identity_DisplayName</para>
@@ -3784,7 +5218,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {7D683FC9-D155-45A8-BB1F-89D19BCB792F}, 100</para>
                 /// </summary>
-                public static PropertyKey DisplayName => new PropertyKey(new Guid("{7D683FC9-D155-45A8-BB1F-89D19BCB792F}"), 100);
+                public static PropertyKey DisplayName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{7D683FC9-D155-45A8-BB1F-89D19BCB792F}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Identity.IsMeIdentity -- PKEY_Identity_IsMeIdentity</para>
@@ -3793,7 +5231,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {A4108708-09DF-4377-9DFC-6D99986D5A67}, 100</para>
                 /// </summary>
-                public static PropertyKey IsMeIdentity => new PropertyKey(new Guid("{A4108708-09DF-4377-9DFC-6D99986D5A67}"), 100);
+                public static PropertyKey IsMeIdentity => new
+#if !CS9
+				PropertyKey
+#endif
+				("{A4108708-09DF-4377-9DFC-6D99986D5A67}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Identity.PrimaryEmailAddress -- PKEY_Identity_PrimaryEmailAddress</para>
@@ -3802,7 +5244,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {FCC16823-BAED-4F24-9B32-A0982117F7FA}, 100</para>
                 /// </summary>
-                public static PropertyKey PrimaryEmailAddress => new PropertyKey(new Guid("{FCC16823-BAED-4F24-9B32-A0982117F7FA}"), 100);
+                public static PropertyKey PrimaryEmailAddress => new
+#if !CS9
+				PropertyKey
+#endif
+				("{FCC16823-BAED-4F24-9B32-A0982117F7FA}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Identity.ProviderID -- PKEY_Identity_ProviderID</para>
@@ -3811,7 +5257,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="Guid"/> -- <see cref="VarEnum.VT_CLSID"/></para>
                 /// <para>FormatID: {74A7DE49-FA11-4D3D-A006-DB7E08675916}, 100</para>
                 /// </summary>
-                public static PropertyKey ProviderID => new PropertyKey(new Guid("{74A7DE49-FA11-4D3D-A006-DB7E08675916}"), 100);
+                public static PropertyKey ProviderID => new
+#if !CS9
+				PropertyKey
+#endif
+				("{74A7DE49-FA11-4D3D-A006-DB7E08675916}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Identity.UniqueID -- PKEY_Identity_UniqueID</para>
@@ -3820,7 +5270,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {E55FC3B0-2B60-4220-918E-B21E8BF16016}, 100</para>
                 /// </summary>
-                public static PropertyKey UniqueID => new PropertyKey(new Guid("{E55FC3B0-2B60-4220-918E-B21E8BF16016}"), 100);
+                public static PropertyKey UniqueID => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E55FC3B0-2B60-4220-918E-B21E8BF16016}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Identity.UserName -- PKEY_Identity_UserName</para>
@@ -3829,11 +5283,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {C4322503-78CA-49C6-9ACC-A68E2AFD7B6B}, 100</para>
                 /// </summary>
-                public static PropertyKey UserName => new PropertyKey(new Guid("{C4322503-78CA-49C6-9ACC-A68E2AFD7B6B}"), 100);
+                public static PropertyKey UserName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C4322503-78CA-49C6-9ACC-A68E2AFD7B6B}", 100);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -3841,10 +5296,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class IdentityProvider
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.IdentityProvider.Name -- PKEY_IdentityProvider_Name</para>
                 /// <para>Description: Identity Provider Name
@@ -3852,7 +5304,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {B96EFF7B-35CA-4A35-8607-29E3A54C46EA}, 100</para>
                 /// </summary>
-                public static PropertyKey Name => new PropertyKey(new Guid("{B96EFF7B-35CA-4A35-8607-29E3A54C46EA}"), 100);
+                public static PropertyKey Name => new
+#if !CS9
+				PropertyKey
+#endif
+				("{B96EFF7B-35CA-4A35-8607-29E3A54C46EA}", 100);
 
                 /// <summary>
                 /// <para>Name: System.IdentityProvider.Picture -- PKEY_IdentityProvider_Picture</para>
@@ -3861,11 +5317,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {2425166F-5642-4864-992F-98FD98F294C3}, 100</para>
                 /// </summary>
-                public static PropertyKey Picture => new PropertyKey(new Guid("{2425166F-5642-4864-992F-98FD98F294C3}"), 100);
+                public static PropertyKey Picture => new
+#if !CS9
+				PropertyKey
+#endif
+				("{2425166F-5642-4864-992F-98FD98F294C3}", 100);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -3873,10 +5330,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Image
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Image.BitDepth -- PKEY_Image_BitDepth</para>
                 /// <para>Description: 
@@ -3884,7 +5338,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: (PSGUID_IMAGESUMMARYINFORMATION) {6444048F-4C8B-11D1-8B70-080036B11A03}, 7 (PIDISI_BITDEPTH)</para>
                 /// </summary>
-                public static PropertyKey BitDepth => new PropertyKey(new Guid("{6444048F-4C8B-11D1-8B70-080036B11A03}"), 7);
+                public static PropertyKey BitDepth => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6444048F-4C8B-11D1-8B70-080036B11A03}", 7);
 
                 /// <summary>
                 /// <para>Name: System.Image.ColorSpace -- PKEY_Image_ColorSpace</para>
@@ -3893,7 +5351,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="ushort"/> -- <see cref="VarEnum.VT_UI2"/></para>
                 /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 40961</para>
                 /// </summary>
-                public static PropertyKey ColorSpace => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 40961);
+                public static PropertyKey ColorSpace => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties, 40961);
 
                 /// <summary>
                 /// <para>Name: System.Image.CompressedBitsPerPixel -- PKEY_Image_CompressedBitsPerPixel</para>
@@ -3902,7 +5364,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: {364B6FA9-37AB-482A-BE2B-AE02F60D4318}, 100</para>
                 /// </summary>
-                public static PropertyKey CompressedBitsPerPixel => new PropertyKey(new Guid("{364B6FA9-37AB-482A-BE2B-AE02F60D4318}"), 100);
+                public static PropertyKey CompressedBitsPerPixel => new
+#if !CS9
+				PropertyKey
+#endif
+				("{364B6FA9-37AB-482A-BE2B-AE02F60D4318}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Image.CompressedBitsPerPixelDenominator -- PKEY_Image_CompressedBitsPerPixelDenominator</para>
@@ -3911,7 +5377,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {1F8844E1-24AD-4508-9DFD-5326A415CE02}, 100</para>
                 /// </summary>
-                public static PropertyKey CompressedBitsPerPixelDenominator => new PropertyKey(new Guid("{1F8844E1-24AD-4508-9DFD-5326A415CE02}"), 100);
+                public static PropertyKey CompressedBitsPerPixelDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{1F8844E1-24AD-4508-9DFD-5326A415CE02}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Image.CompressedBitsPerPixelNumerator -- PKEY_Image_CompressedBitsPerPixelNumerator</para>
@@ -3920,7 +5390,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {D21A7148-D32C-4624-8900-277210F79C0F}, 100</para>
                 /// </summary>
-                public static PropertyKey CompressedBitsPerPixelNumerator => new PropertyKey(new Guid("{D21A7148-D32C-4624-8900-277210F79C0F}"), 100);
+                public static PropertyKey CompressedBitsPerPixelNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{D21A7148-D32C-4624-8900-277210F79C0F}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Image.Compression -- PKEY_Image_Compression</para>
@@ -3929,7 +5403,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="ushort"/> -- <see cref="VarEnum.VT_UI2"/></para>
                 /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 259</para>
                 /// </summary>
-                public static PropertyKey Compression => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 259);
+                public static PropertyKey Compression => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties, 259);
 
                 /// <summary>
                 /// <para>Name: System.Image.CompressionText -- PKEY_Image_CompressionText</para>
@@ -3939,7 +5417,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {3F08E66F-2F44-4BB9-A682-AC35D2562322}, 100</para>
                 /// </summary>
-                public static PropertyKey CompressionText => new PropertyKey(new Guid("{3F08E66F-2F44-4BB9-A682-AC35D2562322}"), 100);
+                public static PropertyKey CompressionText => new
+#if !CS9
+				PropertyKey
+#endif
+				("{3F08E66F-2F44-4BB9-A682-AC35D2562322}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Image.Dimensions -- PKEY_Image_Dimensions</para>
@@ -3948,7 +5430,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_IMAGESUMMARYINFORMATION) {6444048F-4C8B-11D1-8B70-080036B11A03}, 13 (PIDISI_DIMENSIONS)</para>
                 /// </summary>
-                public static PropertyKey Dimensions => new PropertyKey(new Guid("{6444048F-4C8B-11D1-8B70-080036B11A03}"), 13);
+                public static PropertyKey Dimensions => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6444048F-4C8B-11D1-8B70-080036B11A03}", 13);
 
                 /// <summary>
                 /// <para>Name: System.Image.HorizontalResolution -- PKEY_Image_HorizontalResolution</para>
@@ -3957,7 +5443,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: (PSGUID_IMAGESUMMARYINFORMATION) {6444048F-4C8B-11D1-8B70-080036B11A03}, 5 (PIDISI_RESOLUTIONX)</para>
                 /// </summary>
-                public static PropertyKey HorizontalResolution => new PropertyKey(new Guid("{6444048F-4C8B-11D1-8B70-080036B11A03}"), 5);
+                public static PropertyKey HorizontalResolution => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6444048F-4C8B-11D1-8B70-080036B11A03}", 5);
 
                 /// <summary>
                 /// <para>Name: System.Image.HorizontalSize -- PKEY_Image_HorizontalSize</para>
@@ -3966,7 +5456,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: (PSGUID_IMAGESUMMARYINFORMATION) {6444048F-4C8B-11D1-8B70-080036B11A03}, 3 (PIDISI_CX)</para>
                 /// </summary>
-                public static PropertyKey HorizontalSize => new PropertyKey(new Guid("{6444048F-4C8B-11D1-8B70-080036B11A03}"), 3);
+                public static PropertyKey HorizontalSize => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6444048F-4C8B-11D1-8B70-080036B11A03}", 3);
 
                 /// <summary>
                 /// <para>Name: System.Image.ImageID -- PKEY_Image_ImageID</para>
@@ -3974,7 +5468,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {10DABE05-32AA-4C29-BF1A-63E2D220587F}, 100</para>
                 /// </summary>
-                public static PropertyKey ImageID => new PropertyKey(new Guid("{10DABE05-32AA-4C29-BF1A-63E2D220587F}"), 100);
+                public static PropertyKey ImageID => new
+#if !CS9
+				PropertyKey
+#endif
+				("{10DABE05-32AA-4C29-BF1A-63E2D220587F}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Image.ResolutionUnit -- PKEY_Image_ResolutionUnit</para>
@@ -3982,7 +5480,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="short"/> -- <see cref="VarEnum.VT_I2"/></para>
                 /// <para>FormatID: {19B51FA6-1F92-4A5C-AB48-7DF0ABD67444}, 100</para>
                 /// </summary>
-                public static PropertyKey ResolutionUnit => new PropertyKey(new Guid("{19B51FA6-1F92-4A5C-AB48-7DF0ABD67444}"), 100);
+                public static PropertyKey ResolutionUnit => new
+#if !CS9
+				PropertyKey
+#endif
+				("{19B51FA6-1F92-4A5C-AB48-7DF0ABD67444}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Image.VerticalResolution -- PKEY_Image_VerticalResolution</para>
@@ -3991,7 +5493,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: (PSGUID_IMAGESUMMARYINFORMATION) {6444048F-4C8B-11D1-8B70-080036B11A03}, 6 (PIDISI_RESOLUTIONY)</para>
                 /// </summary>
-                public static PropertyKey VerticalResolution => new PropertyKey(new Guid("{6444048F-4C8B-11D1-8B70-080036B11A03}"), 6);
+                public static PropertyKey VerticalResolution => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6444048F-4C8B-11D1-8B70-080036B11A03}", 6);
 
                 /// <summary>
                 /// <para>Name: System.Image.VerticalSize -- PKEY_Image_VerticalSize</para>
@@ -4000,11 +5506,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: (PSGUID_IMAGESUMMARYINFORMATION) {6444048F-4C8B-11D1-8B70-080036B11A03}, 4 (PIDISI_CY)</para>
                 /// </summary>
-                public static PropertyKey VerticalSize => new PropertyKey(new Guid("{6444048F-4C8B-11D1-8B70-080036B11A03}"), 4);
+                public static PropertyKey VerticalSize => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6444048F-4C8B-11D1-8B70-080036B11A03}", 4);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -4012,17 +5519,18 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Journal
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Journal.Contacts -- PKEY_Journal_Contacts</para>
                 /// <para>Description: </para>
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {DEA7C82C-1D89-4A66-9427-A4E3DEBABCB1}, 100</para>
                 /// </summary>
-                public static PropertyKey Contacts => new PropertyKey(new Guid("{DEA7C82C-1D89-4A66-9427-A4E3DEBABCB1}"), 100);
+                public static PropertyKey Contacts => new
+#if !CS9
+				PropertyKey
+#endif
+				("{DEA7C82C-1D89-4A66-9427-A4E3DEBABCB1}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Journal.EntryType -- PKEY_Journal_EntryType</para>
@@ -4030,11 +5538,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {95BEB1FC-326D-4644-B396-CD3ED90E6DDF}, 100</para>
                 /// </summary>
-                public static PropertyKey EntryType => new PropertyKey(new Guid("{95BEB1FC-326D-4644-B396-CD3ED90E6DDF}"), 100);
+                public static PropertyKey EntryType => new
+#if !CS9
+				PropertyKey
+#endif
+				("{95BEB1FC-326D-4644-B396-CD3ED90E6DDF}", 100);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -4042,10 +5551,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class LayoutPattern
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.LayoutPattern.ContentViewModeForBrowse -- PKEY_LayoutPattern_ContentViewModeForBrowse</para>
                 /// <para>Description: Specifies the layout pattern that the content view mode should apply for this item in the context of browsing.
@@ -4054,7 +5560,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {C9944A21-A406-48FE-8225-AEC7E24C211B}, 500</para>
                 /// </summary>
-                public static PropertyKey ContentViewModeForBrowse => new PropertyKey(new Guid("{C9944A21-A406-48FE-8225-AEC7E24C211B}"), 500);
+                public static PropertyKey ContentViewModeForBrowse => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C9944A21-A406-48FE-8225-AEC7E24C211B}", 500);
 
                 /// <summary>
                 /// <para>Name: System.LayoutPattern.ContentViewModeForSearch -- PKEY_LayoutPattern_ContentViewModeForSearch</para>
@@ -4064,11 +5574,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {C9944A21-A406-48FE-8225-AEC7E24C211B}, 501</para>
                 /// </summary>
-                public static PropertyKey ContentViewModeForSearch => new PropertyKey(new Guid("{C9944A21-A406-48FE-8225-AEC7E24C211B}"), 501);
+                public static PropertyKey ContentViewModeForSearch => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C9944A21-A406-48FE-8225-AEC7E24C211B}", 501);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -4076,17 +5587,18 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Link
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Link.Arguments -- PKEY_Link_Arguments</para>
                 /// <para>Description: </para>
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {436F2667-14E2-4FEB-B30A-146C53B5B674}, 100</para>
                 /// </summary>
-                public static PropertyKey Arguments => new PropertyKey(new Guid("{436F2667-14E2-4FEB-B30A-146C53B5B674}"), 100);
+                public static PropertyKey Arguments => new
+#if !CS9
+				PropertyKey
+#endif
+				("{436F2667-14E2-4FEB-B30A-146C53B5B674}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Link.Comment -- PKEY_Link_Comment</para>
@@ -4094,7 +5606,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_LINK) {B9B4B3FC-2B51-4A42-B5D8-324146AFCF25}, 5</para>
                 /// </summary>
-                public static PropertyKey Comment => new PropertyKey(new Guid("{B9B4B3FC-2B51-4A42-B5D8-324146AFCF25}"), 5);
+                public static PropertyKey Comment => new
+#if !CS9
+				PropertyKey
+#endif
+				("{B9B4B3FC-2B51-4A42-B5D8-324146AFCF25}", 5);
 
                 /// <summary>
                 /// <para>Name: System.Link.DateVisited -- PKEY_Link_DateVisited</para>
@@ -4102,7 +5618,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
                 /// <para>FormatID: {5CBF2787-48CF-4208-B90E-EE5E5D420294}, 23  (PKEYs relating to URLs.  Used by IE History.)</para>
                 /// </summary>
-                public static PropertyKey DateVisited => new PropertyKey(new Guid("{5CBF2787-48CF-4208-B90E-EE5E5D420294}"), 23);
+                public static PropertyKey DateVisited => new
+#if !CS9
+				PropertyKey
+#endif
+				("{5CBF2787-48CF-4208-B90E-EE5E5D420294}", 23);
 
                 /// <summary>
                 /// <para>Name: System.Link.Description -- PKEY_Link_Description</para>
@@ -4110,7 +5630,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {5CBF2787-48CF-4208-B90E-EE5E5D420294}, 21  (PKEYs relating to URLs.  Used by IE History.)</para>
                 /// </summary>
-                public static PropertyKey Description => new PropertyKey(new Guid("{5CBF2787-48CF-4208-B90E-EE5E5D420294}"), 21);
+                public static PropertyKey Description => new
+#if !CS9
+				PropertyKey
+#endif
+				("{5CBF2787-48CF-4208-B90E-EE5E5D420294}", 21);
 
                 /// <summary>
                 /// <para>Name: System.Link.Status -- PKEY_Link_Status</para>
@@ -4119,7 +5643,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
                 /// <para>FormatID: (PSGUID_LINK) {B9B4B3FC-2B51-4A42-B5D8-324146AFCF25}, 3 (PID_LINK_TARGET_TYPE)</para>
                 /// </summary>
-                public static PropertyKey Status => new PropertyKey(new Guid("{B9B4B3FC-2B51-4A42-B5D8-324146AFCF25}"), 3);
+                public static PropertyKey Status => new
+#if !CS9
+				PropertyKey
+#endif
+				("{B9B4B3FC-2B51-4A42-B5D8-324146AFCF25}", 3);
 
                 /// <summary>
                 /// <para>Name: System.Link.TargetExtension -- PKEY_Link_TargetExtension</para>
@@ -4128,7 +5656,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {7A7D76F4-B630-4BD7-95FF-37CC51A975C9}, 2</para>
                 /// </summary>
-                public static PropertyKey TargetExtension => new PropertyKey(new Guid("{7A7D76F4-B630-4BD7-95FF-37CC51A975C9}"), 2);
+                public static PropertyKey TargetExtension => new
+#if !CS9
+				PropertyKey
+#endif
+				("{7A7D76F4-B630-4BD7-95FF-37CC51A975C9}", 2);
 
                 /// <summary>
                 /// <para>Name: System.Link.TargetParsingPath -- PKEY_Link_TargetParsingPath</para>
@@ -4142,7 +5674,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_LINK) {B9B4B3FC-2B51-4A42-B5D8-324146AFCF25}, 2 (PID_LINK_TARGET)</para>
                 /// </summary>
-                public static PropertyKey TargetParsingPath => new PropertyKey(new Guid("{B9B4B3FC-2B51-4A42-B5D8-324146AFCF25}"), 2);
+                public static PropertyKey TargetParsingPath => new
+#if !CS9
+				PropertyKey
+#endif
+				("{B9B4B3FC-2B51-4A42-B5D8-324146AFCF25}", 2);
 
                 /// <summary>
                 /// <para>Name: System.Link.TargetSFGAOFlags -- PKEY_Link_TargetSFGAOFlags</para>
@@ -4152,7 +5688,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: (PSGUID_LINK) {B9B4B3FC-2B51-4A42-B5D8-324146AFCF25}, 8</para>
                 /// </summary>
-                public static PropertyKey TargetSFGAOFlags => new PropertyKey(new Guid("{B9B4B3FC-2B51-4A42-B5D8-324146AFCF25}"), 8);
+                public static PropertyKey TargetSFGAOFlags => new
+#if !CS9
+				PropertyKey
+#endif
+				("{B9B4B3FC-2B51-4A42-B5D8-324146AFCF25}", 8);
 
                 /// <summary>
                 /// <para>Name: System.Link.TargetSFGAOFlagsStrings -- PKEY_Link_TargetSFGAOFlagsStrings</para>
@@ -4162,7 +5702,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {D6942081-D53B-443D-AD47-5E059D9CD27A}, 3</para>
                 /// </summary>
-                public static PropertyKey TargetSFGAOFlagsStrings => new PropertyKey(new Guid("{D6942081-D53B-443D-AD47-5E059D9CD27A}"), 3);
+                public static PropertyKey TargetSFGAOFlagsStrings => new
+#if !CS9
+				PropertyKey
+#endif
+				("{D6942081-D53B-443D-AD47-5E059D9CD27A}", 3);
 
                 /// <summary>
                 /// <para>Name: System.Link.TargetUrl -- PKEY_Link_TargetUrl</para>
@@ -4170,11 +5714,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {5CBF2787-48CF-4208-B90E-EE5E5D420294}, 2  (PKEYs relating to URLs.  Used by IE History.)</para>
                 /// </summary>
-                public static PropertyKey TargetUrl => new PropertyKey(new Guid("{5CBF2787-48CF-4208-B90E-EE5E5D420294}"), 2);
+                public static PropertyKey TargetUrl => new
+#if !CS9
+				PropertyKey
+#endif
+				("{5CBF2787-48CF-4208-B90E-EE5E5D420294}", 2);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -4182,10 +5727,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Media
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Media.AuthorUrl -- PKEY_Media_AuthorUrl</para>
                 /// <para>Description: 
@@ -4193,7 +5735,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 32 (PIDMSI_AUTHOR_URL)</para>
                 /// </summary>
-                public static PropertyKey AuthorUrl => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 32);
+                public static PropertyKey AuthorUrl => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 32);
 
                 /// <summary>
                 /// <para>Name: System.Media.AverageLevel -- PKEY_Media_AverageLevel</para>
@@ -4201,7 +5747,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {09EDD5B6-B301-43C5-9990-D00302EFFD46}, 100</para>
                 /// </summary>
-                public static PropertyKey AverageLevel => new PropertyKey(new Guid("{09EDD5B6-B301-43C5-9990-D00302EFFD46}"), 100);
+                public static PropertyKey AverageLevel => new
+#if !CS9
+				PropertyKey
+#endif
+				("{09EDD5B6-B301-43C5-9990-D00302EFFD46}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Media.ClassPrimaryID -- PKEY_Media_ClassPrimaryID</para>
@@ -4210,7 +5760,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 13 (PIDMSI_CLASS_PRIMARY_ID)</para>
                 /// </summary>
-                public static PropertyKey ClassPrimaryID => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 13);
+                public static PropertyKey ClassPrimaryID => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 13);
 
                 /// <summary>
                 /// <para>Name: System.Media.ClassSecondaryID -- PKEY_Media_ClassSecondaryID</para>
@@ -4219,7 +5773,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 14 (PIDMSI_CLASS_SECONDARY_ID)</para>
                 /// </summary>
-                public static PropertyKey ClassSecondaryID => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 14);
+                public static PropertyKey ClassSecondaryID => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 14);
 
                 /// <summary>
                 /// <para>Name: System.Media.CollectionGroupID -- PKEY_Media_CollectionGroupID</para>
@@ -4228,7 +5786,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 24 (PIDMSI_COLLECTION_GROUP_ID)</para>
                 /// </summary>
-                public static PropertyKey CollectionGroupID => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 24);
+                public static PropertyKey CollectionGroupID => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 24);
 
                 /// <summary>
                 /// <para>Name: System.Media.CollectionID -- PKEY_Media_CollectionID</para>
@@ -4237,7 +5799,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 25 (PIDMSI_COLLECTION_ID)</para>
                 /// </summary>
-                public static PropertyKey CollectionID => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 25);
+                public static PropertyKey CollectionID => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 25);
 
                 /// <summary>
                 /// <para>Name: System.Media.ContentDistributor -- PKEY_Media_ContentDistributor</para>
@@ -4246,7 +5812,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 18 (PIDMSI_CONTENTDISTRIBUTOR)</para>
                 /// </summary>
-                public static PropertyKey ContentDistributor => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 18);
+                public static PropertyKey ContentDistributor => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 18);
 
                 /// <summary>
                 /// <para>Name: System.Media.ContentID -- PKEY_Media_ContentID</para>
@@ -4255,7 +5825,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 26 (PIDMSI_CONTENT_ID)</para>
                 /// </summary>
-                public static PropertyKey ContentID => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 26);
+                public static PropertyKey ContentID => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 26);
 
                 /// <summary>
                 /// <para>Name: System.Media.CreatorApplication -- PKEY_Media_CreatorApplication</para>
@@ -4264,7 +5838,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 27 (PIDMSI_TOOL_NAME)</para>
                 /// </summary>
-                public static PropertyKey CreatorApplication => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 27);
+                public static PropertyKey CreatorApplication => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 27);
 
                 /// <summary>
                 /// <para>Name: System.Media.CreatorApplicationVersion -- PKEY_Media_CreatorApplicationVersion</para>
@@ -4273,7 +5851,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 28 (PIDMSI_TOOL_VERSION)</para>
                 /// </summary>
-                public static PropertyKey CreatorApplicationVersion => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 28);
+                public static PropertyKey CreatorApplicationVersion => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 28);
 
                 /// <summary>
                 /// <para>Name: System.Media.DateEncoded -- PKEY_Media_DateEncoded</para>
@@ -4282,7 +5864,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
                 /// <para>FormatID: {2E4B640D-5019-46D8-8881-55414CC5CAA0}, 100</para>
                 /// </summary>
-                public static PropertyKey DateEncoded => new PropertyKey(new Guid("{2E4B640D-5019-46D8-8881-55414CC5CAA0}"), 100);
+                public static PropertyKey DateEncoded => new
+#if !CS9
+				PropertyKey
+#endif
+				("{2E4B640D-5019-46D8-8881-55414CC5CAA0}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Media.DateReleased -- PKEY_Media_DateReleased</para>
@@ -4290,7 +5876,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {DE41CC29-6971-4290-B472-F59F2E2F31E2}, 100</para>
                 /// </summary>
-                public static PropertyKey DateReleased => new PropertyKey(new Guid("{DE41CC29-6971-4290-B472-F59F2E2F31E2}"), 100);
+                public static PropertyKey DateReleased => new
+#if !CS9
+				PropertyKey
+#endif
+				("{DE41CC29-6971-4290-B472-F59F2E2F31E2}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Media.Duration -- PKEY_Media_Duration</para>
@@ -4299,7 +5889,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="ulong"/> -- <see cref="VarEnum.VT_UI8"/></para>
                 /// <para>FormatID: (FMTID_AudioSummaryInformation) {64440490-4C8B-11D1-8B70-080036B11A03}, 3 (PIDASI_TIMELENGTH)</para>
                 /// </summary>
-                public static PropertyKey Duration => new PropertyKey(new Guid("{64440490-4C8B-11D1-8B70-080036B11A03}"), 3);
+                public static PropertyKey Duration => new
+#if !CS9
+				PropertyKey
+#endif
+				("{64440490-4C8B-11D1-8B70-080036B11A03}", 3);
 
                 /// <summary>
                 /// <para>Name: System.Media.DVDID -- PKEY_Media_DVDID</para>
@@ -4308,7 +5902,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 15 (PIDMSI_DVDID)</para>
                 /// </summary>
-                public static PropertyKey DVDID => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 15);
+                public static PropertyKey DVDID => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 15);
 
                 /// <summary>
                 /// <para>Name: System.Media.EncodedBy -- PKEY_Media_EncodedBy</para>
@@ -4317,7 +5915,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 36 (PIDMSI_ENCODED_BY)</para>
                 /// </summary>
-                public static PropertyKey EncodedBy => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 36);
+                public static PropertyKey EncodedBy => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 36);
 
                 /// <summary>
                 /// <para>Name: System.Media.EncodingSettings -- PKEY_Media_EncodingSettings</para>
@@ -4326,7 +5928,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 37 (PIDMSI_ENCODING_SETTINGS)</para>
                 /// </summary>
-                public static PropertyKey EncodingSettings => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 37);
+                public static PropertyKey EncodingSettings => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 37);
 
                 /// <summary>
                 /// <para>Name: System.Media.FrameCount -- PKEY_Media_FrameCount</para>
@@ -4335,7 +5941,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: (PSGUID_IMAGESUMMARYINFORMATION) {6444048F-4C8B-11D1-8B70-080036B11A03}, 12 (PIDISI_FRAMECOUNT)</para>
                 /// </summary>
-                public static PropertyKey FrameCount => new PropertyKey(new Guid("{6444048F-4C8B-11D1-8B70-080036B11A03}"), 12);
+                public static PropertyKey FrameCount => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6444048F-4C8B-11D1-8B70-080036B11A03}", 12);
 
                 /// <summary>
                 /// <para>Name: System.Media.MCDI -- PKEY_Media_MCDI</para>
@@ -4344,7 +5954,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 16 (PIDMSI_MCDI)</para>
                 /// </summary>
-                public static PropertyKey MCDI => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 16);
+                public static PropertyKey MCDI => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 16);
 
                 /// <summary>
                 /// <para>Name: System.Media.MetadataContentProvider -- PKEY_Media_MetadataContentProvider</para>
@@ -4353,7 +5967,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 17 (PIDMSI_PROVIDER)</para>
                 /// </summary>
-                public static PropertyKey MetadataContentProvider => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 17);
+                public static PropertyKey MetadataContentProvider => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 17);
 
                 /// <summary>
                 /// <para>Name: System.Media.Producer -- PKEY_Media_Producer</para>
@@ -4362,7 +5980,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 22 (PIDMSI_PRODUCER)</para>
                 /// </summary>
-                public static PropertyKey Producer => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 22);
+                public static PropertyKey Producer => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 22);
 
                 /// <summary>
                 /// <para>Name: System.Media.PromotionUrl -- PKEY_Media_PromotionUrl</para>
@@ -4371,7 +5993,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 33 (PIDMSI_PROMOTION_URL)</para>
                 /// </summary>
-                public static PropertyKey PromotionUrl => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 33);
+                public static PropertyKey PromotionUrl => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 33);
 
                 /// <summary>
                 /// <para>Name: System.Media.ProtectionType -- PKEY_Media_ProtectionType</para>
@@ -4380,7 +6006,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 38</para>
                 /// </summary>
-                public static PropertyKey ProtectionType => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 38);
+                public static PropertyKey ProtectionType => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 38);
 
                 /// <summary>
                 /// <para>Name: System.Media.ProviderRating -- PKEY_Media_ProviderRating</para>
@@ -4389,7 +6019,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 39</para>
                 /// </summary>
-                public static PropertyKey ProviderRating => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 39);
+                public static PropertyKey ProviderRating => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 39);
 
                 /// <summary>
                 /// <para>Name: System.Media.ProviderStyle -- PKEY_Media_ProviderStyle</para>
@@ -4398,7 +6032,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 40</para>
                 /// </summary>
-                public static PropertyKey ProviderStyle => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 40);
+                public static PropertyKey ProviderStyle => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 40);
 
                 /// <summary>
                 /// <para>Name: System.Media.Publisher -- PKEY_Media_Publisher</para>
@@ -4407,7 +6045,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 30 (PIDMSI_PUBLISHER)</para>
                 /// </summary>
-                public static PropertyKey Publisher => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 30);
+                public static PropertyKey Publisher => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 30);
 
                 /// <summary>
                 /// <para>Name: System.Media.SubscriptionContentId -- PKEY_Media_SubscriptionContentId</para>
@@ -4415,7 +6057,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {9AEBAE7A-9644-487D-A92C-657585ED751A}, 100</para>
                 /// </summary>
-                public static PropertyKey SubscriptionContentId => new PropertyKey(new Guid("{9AEBAE7A-9644-487D-A92C-657585ED751A}"), 100);
+                public static PropertyKey SubscriptionContentId => new
+#if !CS9
+				PropertyKey
+#endif
+				("{9AEBAE7A-9644-487D-A92C-657585ED751A}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Media.SubTitle -- PKEY_Media_SubTitle</para>
@@ -4424,7 +6070,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_MUSIC) {56A3372E-CE9C-11D2-9F0E-006097C686F6}, 38 (PIDSI_MUSIC_SUB_TITLE)</para>
                 /// </summary>
-                public static PropertyKey Subtitle => new PropertyKey(new Guid("{56A3372E-CE9C-11D2-9F0E-006097C686F6}"), 38);
+                public static PropertyKey Subtitle => new
+#if !CS9
+				PropertyKey
+#endif
+				("{56A3372E-CE9C-11D2-9F0E-006097C686F6}", 38);
 
                 /// <summary>
                 /// <para>Name: System.Media.UniqueFileIdentifier -- PKEY_Media_UniqueFileIdentifier</para>
@@ -4433,7 +6083,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 35 (PIDMSI_UNIQUE_FILE_IDENTIFIER)</para>
                 /// </summary>
-                public static PropertyKey UniqueFileIdentifier => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 35);
+                public static PropertyKey UniqueFileIdentifier => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 35);
 
                 /// <summary>
                 /// <para>Name: System.Media.UserNoAutoInfo -- PKEY_Media_UserNoAutoInfo</para>
@@ -4442,7 +6096,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 41</para>
                 /// </summary>
-                public static PropertyKey UserNoAutoInfo => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 41);
+                public static PropertyKey UserNoAutoInfo => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 41);
 
                 /// <summary>
                 /// <para>Name: System.Media.UserWebUrl -- PKEY_Media_UserWebUrl</para>
@@ -4451,7 +6109,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 34 (PIDMSI_USER_WEB_URL)</para>
                 /// </summary>
-                public static PropertyKey UserWebUrl => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 34);
+                public static PropertyKey UserWebUrl => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 34);
 
                 /// <summary>
                 /// <para>Name: System.Media.Writer -- PKEY_Media_Writer</para>
@@ -4460,7 +6122,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 23 (PIDMSI_WRITER)</para>
                 /// </summary>
-                public static PropertyKey Writer => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 23);
+                public static PropertyKey Writer => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 23);
 
                 /// <summary>
                 /// <para>Name: System.Media.Year -- PKEY_Media_Year</para>
@@ -4469,11 +6135,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: (FMTID_MUSIC) {56A3372E-CE9C-11D2-9F0E-006097C686F6}, 5 (PIDSI_MUSIC_YEAR)</para>
                 /// </summary>
-                public static PropertyKey Year => new PropertyKey(new Guid("{56A3372E-CE9C-11D2-9F0E-006097C686F6}"), 5);
+                public static PropertyKey Year => new
+#if !CS9
+				PropertyKey
+#endif
+				("{56A3372E-CE9C-11D2-9F0E-006097C686F6}", 5);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -4481,17 +6148,18 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Message
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Message.AttachmentContents -- PKEY_Message_AttachmentContents</para>
                 /// <para>Description: </para>
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {3143BF7C-80A8-4854-8880-E2E40189BDD0}, 100</para>
                 /// </summary>
-                public static PropertyKey AttachmentContents => new PropertyKey(new Guid("{3143BF7C-80A8-4854-8880-E2E40189BDD0}"), 100);
+                public static PropertyKey AttachmentContents => new
+#if !CS9
+				PropertyKey
+#endif
+				("{3143BF7C-80A8-4854-8880-E2E40189BDD0}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Message.AttachmentNames -- PKEY_Message_AttachmentNames</para>
@@ -4500,7 +6168,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}, 21</para>
                 /// </summary>
-                public static PropertyKey AttachmentNames => new PropertyKey(new Guid("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}"), 21);
+                public static PropertyKey AttachmentNames => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}", 21);
 
                 /// <summary>
                 /// <para>Name: System.Message.BccAddress -- PKEY_Message_BccAddress</para>
@@ -4509,7 +6181,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}, 2</para>
                 /// </summary>
-                public static PropertyKey BccAddress => new PropertyKey(new Guid("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}"), 2);
+                public static PropertyKey BccAddress => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}", 2);
 
                 /// <summary>
                 /// <para>Name: System.Message.BccName -- PKEY_Message_BccName</para>
@@ -4518,7 +6194,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}, 3</para>
                 /// </summary>
-                public static PropertyKey BccName => new PropertyKey(new Guid("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}"), 3);
+                public static PropertyKey BccName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}", 3);
 
                 /// <summary>
                 /// <para>Name: System.Message.CcAddress -- PKEY_Message_CcAddress</para>
@@ -4527,7 +6207,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}, 4</para>
                 /// </summary>
-                public static PropertyKey CcAddress => new PropertyKey(new Guid("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}"), 4);
+                public static PropertyKey CcAddress => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}", 4);
 
                 /// <summary>
                 /// <para>Name: System.Message.CcName -- PKEY_Message_CcName</para>
@@ -4536,7 +6220,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}, 5</para>
                 /// </summary>
-                public static PropertyKey CcName => new PropertyKey(new Guid("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}"), 5);
+                public static PropertyKey CcName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}", 5);
 
                 /// <summary>
                 /// <para>Name: System.Message.ConversationID -- PKEY_Message_ConversationID</para>
@@ -4544,7 +6232,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {DC8F80BD-AF1E-4289-85B6-3DFC1B493992}, 100</para>
                 /// </summary>
-                public static PropertyKey ConversationID => new PropertyKey(new Guid("{DC8F80BD-AF1E-4289-85B6-3DFC1B493992}"), 100);
+                public static PropertyKey ConversationID => new
+#if !CS9
+				PropertyKey
+#endif
+				("{DC8F80BD-AF1E-4289-85B6-3DFC1B493992}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Message.ConversationIndex -- PKEY_Message_ConversationIndex</para>
@@ -4553,7 +6245,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Buffer -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_UI1"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_UI1"/>)</para>
                 /// <para>FormatID: {DC8F80BD-AF1E-4289-85B6-3DFC1B493992}, 101</para>
                 /// </summary>
-                public static PropertyKey ConversationIndex => new PropertyKey(new Guid("{DC8F80BD-AF1E-4289-85B6-3DFC1B493992}"), 101);
+                public static PropertyKey ConversationIndex => new
+#if !CS9
+				PropertyKey
+#endif
+				("{DC8F80BD-AF1E-4289-85B6-3DFC1B493992}", 101);
 
                 /// <summary>
                 /// <para>Name: System.Message.DateReceived -- PKEY_Message_DateReceived</para>
@@ -4562,7 +6258,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
                 /// <para>FormatID: {E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}, 20</para>
                 /// </summary>
-                public static PropertyKey DateReceived => new PropertyKey(new Guid("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}"), 20);
+                public static PropertyKey DateReceived => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}", 20);
 
                 /// <summary>
                 /// <para>Name: System.Message.DateSent -- PKEY_Message_DateSent</para>
@@ -4571,7 +6271,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
                 /// <para>FormatID: {E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}, 19</para>
                 /// </summary>
-                public static PropertyKey DateSent => new PropertyKey(new Guid("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}"), 19);
+                public static PropertyKey DateSent => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}", 19);
 
                 /// <summary>
                 /// <para>Name: System.Message.Flags -- PKEY_Message_Flags</para>
@@ -4581,7 +6285,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
                 /// <para>FormatID: {A82D9EE7-CA67-4312-965E-226BCEA85023}, 100</para>
                 /// </summary>
-                public static PropertyKey Flags => new PropertyKey(new Guid("{A82D9EE7-CA67-4312-965E-226BCEA85023}"), 100);
+                public static PropertyKey Flags => new
+#if !CS9
+				PropertyKey
+#endif
+				("{A82D9EE7-CA67-4312-965E-226BCEA85023}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Message.FromAddress -- PKEY_Message_FromAddress</para>
@@ -4589,7 +6297,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}, 13</para>
                 /// </summary>
-                public static PropertyKey FromAddress => new PropertyKey(new Guid("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}"), 13);
+                public static PropertyKey FromAddress => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}", 13);
 
                 /// <summary>
                 /// <para>Name: System.Message.FromName -- PKEY_Message_FromName</para>
@@ -4598,7 +6310,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}, 14</para>
                 /// </summary>
-                public static PropertyKey FromName => new PropertyKey(new Guid("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}"), 14);
+                public static PropertyKey FromName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}", 14);
 
                 /// <summary>
                 /// <para>Name: System.Message.HasAttachments -- PKEY_Message_HasAttachments</para>
@@ -4607,7 +6323,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {9C1FCF74-2D97-41BA-B4AE-CB2E3661A6E4}, 8</para>
                 /// </summary>
-                public static PropertyKey HasAttachments => new PropertyKey(new Guid("{9C1FCF74-2D97-41BA-B4AE-CB2E3661A6E4}"), 8);
+                public static PropertyKey HasAttachments => new
+#if !CS9
+				PropertyKey
+#endif
+				("{9C1FCF74-2D97-41BA-B4AE-CB2E3661A6E4}", 8);
 
                 /// <summary>
                 /// <para>Name: System.Message.IsFwdOrReply -- PKEY_Message_IsFwdOrReply</para>
@@ -4615,7 +6335,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
                 /// <para>FormatID: {9A9BC088-4F6D-469E-9919-E705412040F9}, 100</para>
                 /// </summary>
-                public static PropertyKey IsFwdOrReply => new PropertyKey(new Guid("{9A9BC088-4F6D-469E-9919-E705412040F9}"), 100);
+                public static PropertyKey IsFwdOrReply => new
+#if !CS9
+				PropertyKey
+#endif
+				("{9A9BC088-4F6D-469E-9919-E705412040F9}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Message.MessageClass -- PKEY_Message_MessageClass</para>
@@ -4624,7 +6348,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {CD9ED458-08CE-418F-A70E-F912C7BB9C5C}, 103</para>
                 /// </summary>
-                public static PropertyKey MessageClass => new PropertyKey(new Guid("{CD9ED458-08CE-418F-A70E-F912C7BB9C5C}"), 103);
+                public static PropertyKey MessageClass => new
+#if !CS9
+				PropertyKey
+#endif
+				("{CD9ED458-08CE-418F-A70E-F912C7BB9C5C}", 103);
 
                 /// <summary>
                 /// <para>Name: System.Message.ProofInProgress -- PKEY_Message_ProofInProgress</para>
@@ -4633,7 +6361,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {9098F33C-9A7D-48A8-8DE5-2E1227A64E91}, 100</para>
                 /// </summary>
-                public static PropertyKey ProofInProgress => new PropertyKey(new Guid("{9098F33C-9A7D-48A8-8DE5-2E1227A64E91}"), 100);
+                public static PropertyKey ProofInProgress => new
+#if !CS9
+				PropertyKey
+#endif
+				("{9098F33C-9A7D-48A8-8DE5-2E1227A64E91}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Message.SenderAddress -- PKEY_Message_SenderAddress</para>
@@ -4641,7 +6373,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {0BE1C8E7-1981-4676-AE14-FDD78F05A6E7}, 100</para>
                 /// </summary>
-                public static PropertyKey SenderAddress => new PropertyKey(new Guid("{0BE1C8E7-1981-4676-AE14-FDD78F05A6E7}"), 100);
+                public static PropertyKey SenderAddress => new
+#if !CS9
+				PropertyKey
+#endif
+				("{0BE1C8E7-1981-4676-AE14-FDD78F05A6E7}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Message.SenderName -- PKEY_Message_SenderName</para>
@@ -4649,7 +6385,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {0DA41CFA-D224-4A18-AE2F-596158DB4B3A}, 100</para>
                 /// </summary>
-                public static PropertyKey SenderName => new PropertyKey(new Guid("{0DA41CFA-D224-4A18-AE2F-596158DB4B3A}"), 100);
+                public static PropertyKey SenderName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{0DA41CFA-D224-4A18-AE2F-596158DB4B3A}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Message.Store -- PKEY_Message_Store</para>
@@ -4658,7 +6398,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}, 15</para>
                 /// </summary>
-                public static PropertyKey Store => new PropertyKey(new Guid("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}"), 15);
+                public static PropertyKey Store => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}", 15);
 
                 /// <summary>
                 /// <para>Name: System.Message.ToAddress -- PKEY_Message_ToAddress</para>
@@ -4667,7 +6411,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}, 16</para>
                 /// </summary>
-                public static PropertyKey ToAddress => new PropertyKey(new Guid("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}"), 16);
+                public static PropertyKey ToAddress => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}", 16);
 
                 /// <summary>
                 /// <para>Name: System.Message.ToDoFlags -- PKEY_Message_ToDoFlags</para>
@@ -4676,7 +6424,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
                 /// <para>FormatID: {1F856A9F-6900-4ABA-9505-2D5F1B4D66CB}, 100</para>
                 /// </summary>
-                public static PropertyKey ToDoFlags => new PropertyKey(new Guid("{1F856A9F-6900-4ABA-9505-2D5F1B4D66CB}"), 100);
+                public static PropertyKey ToDoFlags => new
+#if !CS9
+				PropertyKey
+#endif
+				("{1F856A9F-6900-4ABA-9505-2D5F1B4D66CB}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Message.ToDoTitle -- PKEY_Message_ToDoTitle</para>
@@ -4684,7 +6436,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {BCCC8A3C-8CEF-42E5-9B1C-C69079398BC7}, 100</para>
                 /// </summary>
-                public static PropertyKey ToDoTitle => new PropertyKey(new Guid("{BCCC8A3C-8CEF-42E5-9B1C-C69079398BC7}"), 100);
+                public static PropertyKey ToDoTitle => new
+#if !CS9
+				PropertyKey
+#endif
+				("{BCCC8A3C-8CEF-42E5-9B1C-C69079398BC7}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Message.ToName -- PKEY_Message_ToName</para>
@@ -4693,11 +6449,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}, 17</para>
                 /// </summary>
-                public static PropertyKey ToName => new PropertyKey(new Guid("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}"), 17);
+                public static PropertyKey ToName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}", 17);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -4705,10 +6462,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Music
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Music.AlbumArtist -- PKEY_Music_AlbumArtist</para>
                 /// <para>Description: 
@@ -4716,7 +6470,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_MUSIC) {56A3372E-CE9C-11D2-9F0E-006097C686F6}, 13 (PIDSI_MUSIC_ALBUM_ARTIST)</para>
                 /// </summary>
-                public static PropertyKey AlbumArtist => new PropertyKey(new Guid("{56A3372E-CE9C-11D2-9F0E-006097C686F6}"), 13);
+                public static PropertyKey AlbumArtist => new
+#if !CS9
+				PropertyKey
+#endif
+				("{56A3372E-CE9C-11D2-9F0E-006097C686F6}", 13);
 
                 /// <summary>
                 /// <para>Name: System.Music.AlbumID -- PKEY_Music_AlbumID</para>
@@ -4726,7 +6484,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_MUSIC) {56A3372E-CE9C-11D2-9F0E-006097C686F6}, 100</para>
                 /// </summary>
-                public static PropertyKey AlbumID => new PropertyKey(new Guid("{56A3372E-CE9C-11D2-9F0E-006097C686F6}"), 100);
+                public static PropertyKey AlbumID => new
+#if !CS9
+				PropertyKey
+#endif
+				("{56A3372E-CE9C-11D2-9F0E-006097C686F6}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Music.AlbumTitle -- PKEY_Music_AlbumTitle</para>
@@ -4735,7 +6497,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_MUSIC) {56A3372E-CE9C-11D2-9F0E-006097C686F6}, 4 (PIDSI_MUSIC_ALBUM)</para>
                 /// </summary>
-                public static PropertyKey AlbumTitle => new PropertyKey(new Guid("{56A3372E-CE9C-11D2-9F0E-006097C686F6}"), 4);
+                public static PropertyKey AlbumTitle => new
+#if !CS9
+				PropertyKey
+#endif
+				("{56A3372E-CE9C-11D2-9F0E-006097C686F6}", 4);
 
                 /// <summary>
                 /// <para>Name: System.Music.Artist -- PKEY_Music_Artist</para>
@@ -4744,7 +6510,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_MUSIC) {56A3372E-CE9C-11D2-9F0E-006097C686F6}, 2 (PIDSI_MUSIC_ARTIST)</para>
                 /// </summary>
-                public static PropertyKey Artist => new PropertyKey(new Guid("{56A3372E-CE9C-11D2-9F0E-006097C686F6}"), 2);
+                public static PropertyKey Artist => new
+#if !CS9
+				PropertyKey
+#endif
+				("{56A3372E-CE9C-11D2-9F0E-006097C686F6}", 2);
 
                 /// <summary>
                 /// <para>Name: System.Music.BeatsPerMinute -- PKEY_Music_BeatsPerMinute</para>
@@ -4753,7 +6523,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_MUSIC) {56A3372E-CE9C-11D2-9F0E-006097C686F6}, 35 (PIDSI_MUSIC_BEATS_PER_MINUTE)</para>
                 /// </summary>
-                public static PropertyKey BeatsPerMinute => new PropertyKey(new Guid("{56A3372E-CE9C-11D2-9F0E-006097C686F6}"), 35);
+                public static PropertyKey BeatsPerMinute => new
+#if !CS9
+				PropertyKey
+#endif
+				("{56A3372E-CE9C-11D2-9F0E-006097C686F6}", 35);
 
                 /// <summary>
                 /// <para>Name: System.Music.Composer -- PKEY_Music_Composer</para>
@@ -4762,7 +6536,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 19 (PIDMSI_COMPOSER)</para>
                 /// </summary>
-                public static PropertyKey Composer => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 19);
+                public static PropertyKey Composer => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 19);
 
                 /// <summary>
                 /// <para>Name: System.Music.Conductor -- PKEY_Music_Conductor</para>
@@ -4771,7 +6549,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_MUSIC) {56A3372E-CE9C-11D2-9F0E-006097C686F6}, 36 (PIDSI_MUSIC_CONDUCTOR)</para>
                 /// </summary>
-                public static PropertyKey Conductor => new PropertyKey(new Guid("{56A3372E-CE9C-11D2-9F0E-006097C686F6}"), 36);
+                public static PropertyKey Conductor => new
+#if !CS9
+				PropertyKey
+#endif
+				("{56A3372E-CE9C-11D2-9F0E-006097C686F6}", 36);
 
                 /// <summary>
                 /// <para>Name: System.Music.ContentGroupDescription -- PKEY_Music_ContentGroupDescription</para>
@@ -4780,7 +6562,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_MUSIC) {56A3372E-CE9C-11D2-9F0E-006097C686F6}, 33 (PIDSI_MUSIC_CONTENT_GROUP_DESCRIPTION)</para>
                 /// </summary>
-                public static PropertyKey ContentGroupDescription => new PropertyKey(new Guid("{56A3372E-CE9C-11D2-9F0E-006097C686F6}"), 33);
+                public static PropertyKey ContentGroupDescription => new
+#if !CS9
+				PropertyKey
+#endif
+				("{56A3372E-CE9C-11D2-9F0E-006097C686F6}", 33);
 
                 /// <summary>
                 /// <para>Name: System.Music.DisplayArtist -- PKEY_Music_DisplayArtist</para>
@@ -4790,7 +6576,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {FD122953-FA93-4EF7-92C3-04C946B2F7C8}, 100</para>
                 /// </summary>
-                public static PropertyKey DisplayArtist => new PropertyKey(new Guid("{FD122953-FA93-4EF7-92C3-04C946B2F7C8}"), 100);
+                public static PropertyKey DisplayArtist => new
+#if !CS9
+				PropertyKey
+#endif
+				("{FD122953-FA93-4EF7-92C3-04C946B2F7C8}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Music.Genre -- PKEY_Music_Genre</para>
@@ -4799,7 +6589,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_MUSIC) {56A3372E-CE9C-11D2-9F0E-006097C686F6}, 11 (PIDSI_MUSIC_GENRE)</para>
                 /// </summary>
-                public static PropertyKey Genre => new PropertyKey(new Guid("{56A3372E-CE9C-11D2-9F0E-006097C686F6}"), 11);
+                public static PropertyKey Genre => new
+#if !CS9
+				PropertyKey
+#endif
+				("{56A3372E-CE9C-11D2-9F0E-006097C686F6}", 11);
 
                 /// <summary>
                 /// <para>Name: System.Music.InitialKey -- PKEY_Music_InitialKey</para>
@@ -4808,7 +6602,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_MUSIC) {56A3372E-CE9C-11D2-9F0E-006097C686F6}, 34 (PIDSI_MUSIC_INITIAL_KEY)</para>
                 /// </summary>
-                public static PropertyKey InitialKey => new PropertyKey(new Guid("{56A3372E-CE9C-11D2-9F0E-006097C686F6}"), 34);
+                public static PropertyKey InitialKey => new
+#if !CS9
+				PropertyKey
+#endif
+				("{56A3372E-CE9C-11D2-9F0E-006097C686F6}", 34);
 
                 /// <summary>
                 /// <para>Name: System.Music.IsCompilation -- PKEY_Music_IsCompilation</para>
@@ -4817,7 +6615,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {C449D5CB-9EA4-4809-82E8-AF9D59DED6D1}, 100</para>
                 /// </summary>
-                public static PropertyKey IsCompilation => new PropertyKey(new Guid("{C449D5CB-9EA4-4809-82E8-AF9D59DED6D1}"), 100);
+                public static PropertyKey IsCompilation => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C449D5CB-9EA4-4809-82E8-AF9D59DED6D1}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Music.Lyrics -- PKEY_Music_Lyrics</para>
@@ -4826,7 +6628,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_MUSIC) {56A3372E-CE9C-11D2-9F0E-006097C686F6}, 12 (PIDSI_MUSIC_LYRICS)</para>
                 /// </summary>
-                public static PropertyKey Lyrics => new PropertyKey(new Guid("{56A3372E-CE9C-11D2-9F0E-006097C686F6}"), 12);
+                public static PropertyKey Lyrics => new
+#if !CS9
+				PropertyKey
+#endif
+				("{56A3372E-CE9C-11D2-9F0E-006097C686F6}", 12);
 
                 /// <summary>
                 /// <para>Name: System.Music.Mood -- PKEY_Music_Mood</para>
@@ -4835,7 +6641,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_MUSIC) {56A3372E-CE9C-11D2-9F0E-006097C686F6}, 39 (PIDSI_MUSIC_MOOD)</para>
                 /// </summary>
-                public static PropertyKey Mood => new PropertyKey(new Guid("{56A3372E-CE9C-11D2-9F0E-006097C686F6}"), 39);
+                public static PropertyKey Mood => new
+#if !CS9
+				PropertyKey
+#endif
+				("{56A3372E-CE9C-11D2-9F0E-006097C686F6}", 39);
 
                 /// <summary>
                 /// <para>Name: System.Music.PartOfSet -- PKEY_Music_PartOfSet</para>
@@ -4844,7 +6654,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_MUSIC) {56A3372E-CE9C-11D2-9F0E-006097C686F6}, 37 (PIDSI_MUSIC_PART_OF_SET)</para>
                 /// </summary>
-                public static PropertyKey PartOfSet => new PropertyKey(new Guid("{56A3372E-CE9C-11D2-9F0E-006097C686F6}"), 37);
+                public static PropertyKey PartOfSet => new
+#if !CS9
+				PropertyKey
+#endif
+				("{56A3372E-CE9C-11D2-9F0E-006097C686F6}", 37);
 
                 /// <summary>
                 /// <para>Name: System.Music.Period -- PKEY_Music_Period</para>
@@ -4853,7 +6667,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 31 (PIDMSI_PERIOD)</para>
                 /// </summary>
-                public static PropertyKey Period => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 31);
+                public static PropertyKey Period => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 31);
 
                 /// <summary>
                 /// <para>Name: System.Music.SynchronizedLyrics -- PKEY_Music_SynchronizedLyrics</para>
@@ -4861,7 +6679,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Blob -- VT_BLOB</para>
                 /// <para>FormatID: {6B223B6A-162E-4AA9-B39F-05D678FC6D77}, 100</para>
                 /// </summary>
-                public static PropertyKey SynchronizedLyrics => new PropertyKey(new Guid("{6B223B6A-162E-4AA9-B39F-05D678FC6D77}"), 100);
+                public static PropertyKey SynchronizedLyrics => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6B223B6A-162E-4AA9-B39F-05D678FC6D77}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Music.TrackNumber -- PKEY_Music_TrackNumber</para>
@@ -4870,11 +6692,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: (FMTID_MUSIC) {56A3372E-CE9C-11D2-9F0E-006097C686F6}, 7 (PIDSI_MUSIC_TRACK)</para>
                 /// </summary>
-                public static PropertyKey TrackNumber => new PropertyKey(new Guid("{56A3372E-CE9C-11D2-9F0E-006097C686F6}"), 7);
+                public static PropertyKey TrackNumber => new
+#if !CS9
+				PropertyKey
+#endif
+				("{56A3372E-CE9C-11D2-9F0E-006097C686F6}", 7);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -4882,17 +6705,18 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Note
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Note.Color -- PKEY_Note_Color</para>
                 /// <para>Description: </para>
                 /// <para>Type: <see cref="ushort"/> -- <see cref="VarEnum.VT_UI2"/></para>
                 /// <para>FormatID: {4776CAFA-BCE4-4CB1-A23E-265E76D8EB11}, 100</para>
                 /// </summary>
-                public static PropertyKey Color => new PropertyKey(new Guid("{4776CAFA-BCE4-4CB1-A23E-265E76D8EB11}"), 100);
+                public static PropertyKey Color => new
+#if !CS9
+				PropertyKey
+#endif
+				("{4776CAFA-BCE4-4CB1-A23E-265E76D8EB11}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Note.ColorText -- PKEY_Note_ColorText</para>
@@ -4902,11 +6726,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {46B4E8DE-CDB2-440D-885C-1658EB65B914}, 100</para>
                 /// </summary>
-                public static PropertyKey ColorText => new PropertyKey(new Guid("{46B4E8DE-CDB2-440D-885C-1658EB65B914}"), 100);
+                public static PropertyKey ColorText => new
+#if !CS9
+				PropertyKey
+#endif
+				("{46B4E8DE-CDB2-440D-885C-1658EB65B914}", 100);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -4914,10 +6739,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Photo
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Photo.Aperture -- PKEY_Photo_Aperture</para>
                 /// <para>Description: PropertyTagExifAperture.  Calculated from PKEY_Photo_ApertureNumerator and PKEY_Photo_ApertureDenominator
@@ -4925,7 +6747,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 37378</para>
                 /// </summary>
-                public static PropertyKey Aperture => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 37378);
+                public static PropertyKey Aperture => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties, 37378);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ApertureDenominator -- PKEY_Photo_ApertureDenominator</para>
@@ -4934,7 +6760,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {E1A9A38B-6685-46BD-875E-570DC7AD7320}, 100</para>
                 /// </summary>
-                public static PropertyKey ApertureDenominator => new PropertyKey(new Guid("{E1A9A38B-6685-46BD-875E-570DC7AD7320}"), 100);
+                public static PropertyKey ApertureDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E1A9A38B-6685-46BD-875E-570DC7AD7320}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ApertureNumerator -- PKEY_Photo_ApertureNumerator</para>
@@ -4943,7 +6773,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {0337ECEC-39FB-4581-A0BD-4C4CC51E9914}, 100</para>
                 /// </summary>
-                public static PropertyKey ApertureNumerator => new PropertyKey(new Guid("{0337ECEC-39FB-4581-A0BD-4C4CC51E9914}"), 100);
+                public static PropertyKey ApertureNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{0337ECEC-39FB-4581-A0BD-4C4CC51E9914}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.Brightness -- PKEY_Photo_Brightness</para>
@@ -4957,7 +6791,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: {1A701BF6-478C-4361-83AB-3701BB053C58}, 100 (PropertyTagExifBrightness)</para>
                 /// </summary>
-                public static PropertyKey Brightness => new PropertyKey(new Guid("{1A701BF6-478C-4361-83AB-3701BB053C58}"), 100);
+                public static PropertyKey Brightness => new
+#if !CS9
+				PropertyKey
+#endif
+				("{1A701BF6-478C-4361-83AB-3701BB053C58}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.BrightnessDenominator -- PKEY_Photo_BrightnessDenominator</para>
@@ -4966,7 +6804,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {6EBE6946-2321-440A-90F0-C043EFD32476}, 100</para>
                 /// </summary>
-                public static PropertyKey BrightnessDenominator => new PropertyKey(new Guid("{6EBE6946-2321-440A-90F0-C043EFD32476}"), 100);
+                public static PropertyKey BrightnessDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6EBE6946-2321-440A-90F0-C043EFD32476}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.BrightnessNumerator -- PKEY_Photo_BrightnessNumerator</para>
@@ -4975,7 +6817,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {9E7D118F-B314-45A0-8CFB-D654B917C9E9}, 100</para>
                 /// </summary>
-                public static PropertyKey BrightnessNumerator => new PropertyKey(new Guid("{9E7D118F-B314-45A0-8CFB-D654B917C9E9}"), 100);
+                public static PropertyKey BrightnessNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{9E7D118F-B314-45A0-8CFB-D654B917C9E9}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.CameraManufacturer -- PKEY_Photo_CameraManufacturer</para>
@@ -4984,7 +6830,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 271 (PropertyTagEquipMake)</para>
                 /// </summary>
-                public static PropertyKey CameraManufacturer => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 271);
+                public static PropertyKey CameraManufacturer => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties, 271);
 
                 /// <summary>
                 /// <para>Name: System.Photo.CameraModel -- PKEY_Photo_CameraModel</para>
@@ -4993,7 +6843,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 272 (PropertyTagEquipModel)</para>
                 /// </summary>
-                public static PropertyKey CameraModel => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 272);
+                public static PropertyKey CameraModel => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties, 272);
 
                 /// <summary>
                 /// <para>Name: System.Photo.CameraSerialNumber -- PKEY_Photo_CameraSerialNumber</para>
@@ -5002,7 +6856,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 273</para>
                 /// </summary>
-                public static PropertyKey CameraSerialNumber => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 273);
+                public static PropertyKey CameraSerialNumber => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties, 273);
 
                 /// <summary>
                 /// <para>Name: System.Photo.Contrast -- PKEY_Photo_Contrast</para>
@@ -5012,7 +6870,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {2A785BA9-8D23-4DED-82E6-60A350C86A10}, 100</para>
                 /// </summary>
-                public static PropertyKey Contrast => new PropertyKey(new Guid("{2A785BA9-8D23-4DED-82E6-60A350C86A10}"), 100);
+                public static PropertyKey Contrast => new
+#if !CS9
+				PropertyKey
+#endif
+				("{2A785BA9-8D23-4DED-82E6-60A350C86A10}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ContrastText -- PKEY_Photo_ContrastText</para>
@@ -5022,7 +6884,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {59DDE9F2-5253-40EA-9A8B-479E96C6249A}, 100</para>
                 /// </summary>
-                public static PropertyKey ContrastText => new PropertyKey(new Guid("{59DDE9F2-5253-40EA-9A8B-479E96C6249A}"), 100);
+                public static PropertyKey ContrastText => new
+#if !CS9
+				PropertyKey
+#endif
+				("{59DDE9F2-5253-40EA-9A8B-479E96C6249A}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.DateTaken -- PKEY_Photo_DateTaken</para>
@@ -5031,7 +6897,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
                 /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 36867</para>
                 /// </summary>
-                public static PropertyKey DateTaken => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 36867);
+                public static PropertyKey DateTaken => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties, 36867);
 
                 /// <summary>
                 /// <para>Name: System.Photo.DigitalZoom -- PKEY_Photo_DigitalZoom</para>
@@ -5040,7 +6910,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: {F85BF840-A925-4BC2-B0C4-8E36B598679E}, 100</para>
                 /// </summary>
-                public static PropertyKey DigitalZoom => new PropertyKey(new Guid("{F85BF840-A925-4BC2-B0C4-8E36B598679E}"), 100);
+                public static PropertyKey DigitalZoom => new
+#if !CS9
+				PropertyKey
+#endif
+				("{F85BF840-A925-4BC2-B0C4-8E36B598679E}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.DigitalZoomDenominator -- PKEY_Photo_DigitalZoomDenominator</para>
@@ -5049,7 +6923,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {745BAF0E-E5C1-4CFB-8A1B-D031A0A52393}, 100</para>
                 /// </summary>
-                public static PropertyKey DigitalZoomDenominator => new PropertyKey(new Guid("{745BAF0E-E5C1-4CFB-8A1B-D031A0A52393}"), 100);
+                public static PropertyKey DigitalZoomDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{745BAF0E-E5C1-4CFB-8A1B-D031A0A52393}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.DigitalZoomNumerator -- PKEY_Photo_DigitalZoomNumerator</para>
@@ -5058,7 +6936,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {16CBB924-6500-473B-A5BE-F1599BCBE413}, 100</para>
                 /// </summary>
-                public static PropertyKey DigitalZoomNumerator => new PropertyKey(new Guid("{16CBB924-6500-473B-A5BE-F1599BCBE413}"), 100);
+                public static PropertyKey DigitalZoomNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{16CBB924-6500-473B-A5BE-F1599BCBE413}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.Event -- PKEY_Photo_Event</para>
@@ -5067,7 +6949,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 18248</para>
                 /// </summary>
-                public static PropertyKey Event => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 18248);
+                public static PropertyKey Event => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties, 18248);
 
                 /// <summary>
                 /// <para>Name: System.Photo.EXIFVersion -- PKEY_Photo_EXIFVersion</para>
@@ -5076,7 +6962,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {D35F743A-EB2E-47F2-A286-844132CB1427}, 100</para>
                 /// </summary>
-                public static PropertyKey EXIFVersion => new PropertyKey(new Guid("{D35F743A-EB2E-47F2-A286-844132CB1427}"), 100);
+                public static PropertyKey EXIFVersion => new
+#if !CS9
+				PropertyKey
+#endif
+				("{D35F743A-EB2E-47F2-A286-844132CB1427}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ExposureBias -- PKEY_Photo_ExposureBias</para>
@@ -5085,7 +6975,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 37380</para>
                 /// </summary>
-                public static PropertyKey ExposureBias => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 37380);
+                public static PropertyKey ExposureBias => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties, 37380);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ExposureBiasDenominator -- PKEY_Photo_ExposureBiasDenominator</para>
@@ -5094,7 +6988,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
                 /// <para>FormatID: {AB205E50-04B7-461C-A18C-2F233836E627}, 100</para>
                 /// </summary>
-                public static PropertyKey ExposureBiasDenominator => new PropertyKey(new Guid("{AB205E50-04B7-461C-A18C-2F233836E627}"), 100);
+                public static PropertyKey ExposureBiasDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{AB205E50-04B7-461C-A18C-2F233836E627}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ExposureBiasNumerator -- PKEY_Photo_ExposureBiasNumerator</para>
@@ -5103,7 +7001,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
                 /// <para>FormatID: {738BF284-1D87-420B-92CF-5834BF6EF9ED}, 100</para>
                 /// </summary>
-                public static PropertyKey ExposureBiasNumerator => new PropertyKey(new Guid("{738BF284-1D87-420B-92CF-5834BF6EF9ED}"), 100);
+                public static PropertyKey ExposureBiasNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{738BF284-1D87-420B-92CF-5834BF6EF9ED}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ExposureIndex -- PKEY_Photo_ExposureIndex</para>
@@ -5112,7 +7014,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: {967B5AF8-995A-46ED-9E11-35B3C5B9782D}, 100</para>
                 /// </summary>
-                public static PropertyKey ExposureIndex => new PropertyKey(new Guid("{967B5AF8-995A-46ED-9E11-35B3C5B9782D}"), 100);
+                public static PropertyKey ExposureIndex => new
+#if !CS9
+				PropertyKey
+#endif
+				("{967B5AF8-995A-46ED-9E11-35B3C5B9782D}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ExposureIndexDenominator -- PKEY_Photo_ExposureIndexDenominator</para>
@@ -5121,7 +7027,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {93112F89-C28B-492F-8A9D-4BE2062CEE8A}, 100</para>
                 /// </summary>
-                public static PropertyKey ExposureIndexDenominator => new PropertyKey(new Guid("{93112F89-C28B-492F-8A9D-4BE2062CEE8A}"), 100);
+                public static PropertyKey ExposureIndexDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{93112F89-C28B-492F-8A9D-4BE2062CEE8A}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ExposureIndexNumerator -- PKEY_Photo_ExposureIndexNumerator</para>
@@ -5130,7 +7040,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {CDEDCF30-8919-44DF-8F4C-4EB2FFDB8D89}, 100</para>
                 /// </summary>
-                public static PropertyKey ExposureIndexNumerator => new PropertyKey(new Guid("{CDEDCF30-8919-44DF-8F4C-4EB2FFDB8D89}"), 100);
+                public static PropertyKey ExposureIndexNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{CDEDCF30-8919-44DF-8F4C-4EB2FFDB8D89}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ExposureProgram -- PKEY_Photo_ExposureProgram</para>
@@ -5139,7 +7053,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 34850 (PropertyTagExifExposureProg)</para>
                 /// </summary>
-                public static PropertyKey ExposureProgram => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 34850);
+                public static PropertyKey ExposureProgram => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties, 34850);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ExposureProgramText -- PKEY_Photo_ExposureProgramText</para>
@@ -5149,7 +7067,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {FEC690B7-5F30-4646-AE47-4CAAFBA884A3}, 100</para>
                 /// </summary>
-                public static PropertyKey ExposureProgramText => new PropertyKey(new Guid("{FEC690B7-5F30-4646-AE47-4CAAFBA884A3}"), 100);
+                public static PropertyKey ExposureProgramText => new
+#if !CS9
+				PropertyKey
+#endif
+				("{FEC690B7-5F30-4646-AE47-4CAAFBA884A3}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ExposureTime -- PKEY_Photo_ExposureTime</para>
@@ -5158,7 +7080,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 33434</para>
                 /// </summary>
-                public static PropertyKey ExposureTime => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 33434);
+                public static PropertyKey ExposureTime => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties, 33434);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ExposureTimeDenominator -- PKEY_Photo_ExposureTimeDenominator</para>
@@ -5167,7 +7093,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {55E98597-AD16-42E0-B624-21599A199838}, 100</para>
                 /// </summary>
-                public static PropertyKey ExposureTimeDenominator => new PropertyKey(new Guid("{55E98597-AD16-42E0-B624-21599A199838}"), 100);
+                public static PropertyKey ExposureTimeDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{55E98597-AD16-42E0-B624-21599A199838}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ExposureTimeNumerator -- PKEY_Photo_ExposureTimeNumerator</para>
@@ -5176,7 +7106,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {257E44E2-9031-4323-AC38-85C552871B2E}, 100</para>
                 /// </summary>
-                public static PropertyKey ExposureTimeNumerator => new PropertyKey(new Guid("{257E44E2-9031-4323-AC38-85C552871B2E}"), 100);
+                public static PropertyKey ExposureTimeNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{257E44E2-9031-4323-AC38-85C552871B2E}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.Flash -- PKEY_Photo_Flash</para>
@@ -5185,7 +7119,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Byte -- <see cref="VarEnum.VT_UI1"/></para>
                 /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 37385</para>
                 /// </summary>
-                public static PropertyKey Flash => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 37385);
+                public static PropertyKey Flash => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties, 37385);
 
                 /// <summary>
                 /// <para>Name: System.Photo.FlashEnergy -- PKEY_Photo_FlashEnergy</para>
@@ -5194,7 +7132,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 41483</para>
                 /// </summary>
-                public static PropertyKey FlashEnergy => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 41483);
+                public static PropertyKey FlashEnergy => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties, 41483);
 
                 /// <summary>
                 /// <para>Name: System.Photo.FlashEnergyDenominator -- PKEY_Photo_FlashEnergyDenominator</para>
@@ -5203,7 +7145,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {D7B61C70-6323-49CD-A5FC-C84277162C97}, 100</para>
                 /// </summary>
-                public static PropertyKey FlashEnergyDenominator => new PropertyKey(new Guid("{D7B61C70-6323-49CD-A5FC-C84277162C97}"), 100);
+                public static PropertyKey FlashEnergyDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{D7B61C70-6323-49CD-A5FC-C84277162C97}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.FlashEnergyNumerator -- PKEY_Photo_FlashEnergyNumerator</para>
@@ -5212,7 +7158,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {FCAD3D3D-0858-400F-AAA3-2F66CCE2A6BC}, 100</para>
                 /// </summary>
-                public static PropertyKey FlashEnergyNumerator => new PropertyKey(new Guid("{FCAD3D3D-0858-400F-AAA3-2F66CCE2A6BC}"), 100);
+                public static PropertyKey FlashEnergyNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{FCAD3D3D-0858-400F-AAA3-2F66CCE2A6BC}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.FlashManufacturer -- PKEY_Photo_FlashManufacturer</para>
@@ -5220,7 +7170,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {AABAF6C9-E0C5-4719-8585-57B103E584FE}, 100</para>
                 /// </summary>
-                public static PropertyKey FlashManufacturer => new PropertyKey(new Guid("{AABAF6C9-E0C5-4719-8585-57B103E584FE}"), 100);
+                public static PropertyKey FlashManufacturer => new
+#if !CS9
+				PropertyKey
+#endif
+				("{AABAF6C9-E0C5-4719-8585-57B103E584FE}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.FlashModel -- PKEY_Photo_FlashModel</para>
@@ -5228,7 +7182,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {FE83BB35-4D1A-42E2-916B-06F3E1AF719E}, 100</para>
                 /// </summary>
-                public static PropertyKey FlashModel => new PropertyKey(new Guid("{FE83BB35-4D1A-42E2-916B-06F3E1AF719E}"), 100);
+                public static PropertyKey FlashModel => new
+#if !CS9
+				PropertyKey
+#endif
+				("{FE83BB35-4D1A-42E2-916B-06F3E1AF719E}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.FlashText -- PKEY_Photo_FlashText</para>
@@ -5238,7 +7196,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {6B8B68F6-200B-47EA-8D25-D8050F57339F}, 100</para>
                 /// </summary>
-                public static PropertyKey FlashText => new PropertyKey(new Guid("{6B8B68F6-200B-47EA-8D25-D8050F57339F}"), 100);
+                public static PropertyKey FlashText => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6B8B68F6-200B-47EA-8D25-D8050F57339F}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.FNumber -- PKEY_Photo_FNumber</para>
@@ -5247,7 +7209,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 33437</para>
                 /// </summary>
-                public static PropertyKey FNumber => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 33437);
+                public static PropertyKey FNumber => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties, 33437);
 
                 /// <summary>
                 /// <para>Name: System.Photo.FNumberDenominator -- PKEY_Photo_FNumberDenominator</para>
@@ -5256,7 +7222,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {E92A2496-223B-4463-A4E3-30EABBA79D80}, 100</para>
                 /// </summary>
-                public static PropertyKey FNumberDenominator => new PropertyKey(new Guid("{E92A2496-223B-4463-A4E3-30EABBA79D80}"), 100);
+                public static PropertyKey FNumberDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E92A2496-223B-4463-A4E3-30EABBA79D80}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.FNumberNumerator -- PKEY_Photo_FNumberNumerator</para>
@@ -5265,7 +7235,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {1B97738A-FDFC-462F-9D93-1957E08BE90C}, 100</para>
                 /// </summary>
-                public static PropertyKey FNumberNumerator => new PropertyKey(new Guid("{1B97738A-FDFC-462F-9D93-1957E08BE90C}"), 100);
+                public static PropertyKey FNumberNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{1B97738A-FDFC-462F-9D93-1957E08BE90C}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.FocalLength -- PKEY_Photo_FocalLength</para>
@@ -5274,7 +7248,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 37386</para>
                 /// </summary>
-                public static PropertyKey FocalLength => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 37386);
+                public static PropertyKey FocalLength => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties, 37386);
 
                 /// <summary>
                 /// <para>Name: System.Photo.FocalLengthDenominator -- PKEY_Photo_FocalLengthDenominator</para>
@@ -5283,7 +7261,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {305BC615-DCA1-44A5-9FD4-10C0BA79412E}, 100</para>
                 /// </summary>
-                public static PropertyKey FocalLengthDenominator => new PropertyKey(new Guid("{305BC615-DCA1-44A5-9FD4-10C0BA79412E}"), 100);
+                public static PropertyKey FocalLengthDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{305BC615-DCA1-44A5-9FD4-10C0BA79412E}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.FocalLengthInFilm -- PKEY_Photo_FocalLengthInFilm</para>
@@ -5291,7 +7273,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="ushort"/> -- <see cref="VarEnum.VT_UI2"/></para>
                 /// <para>FormatID: {A0E74609-B84D-4F49-B860-462BD9971F98}, 100</para>
                 /// </summary>
-                public static PropertyKey FocalLengthInFilm => new PropertyKey(new Guid("{A0E74609-B84D-4F49-B860-462BD9971F98}"), 100);
+                public static PropertyKey FocalLengthInFilm => new
+#if !CS9
+				PropertyKey
+#endif
+				("{A0E74609-B84D-4F49-B860-462BD9971F98}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.FocalLengthNumerator -- PKEY_Photo_FocalLengthNumerator</para>
@@ -5300,7 +7286,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {776B6B3B-1E3D-4B0C-9A0E-8FBAF2A8492A}, 100</para>
                 /// </summary>
-                public static PropertyKey FocalLengthNumerator => new PropertyKey(new Guid("{776B6B3B-1E3D-4B0C-9A0E-8FBAF2A8492A}"), 100);
+                public static PropertyKey FocalLengthNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{776B6B3B-1E3D-4B0C-9A0E-8FBAF2A8492A}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.FocalPlaneXResolution -- PKEY_Photo_FocalPlaneXResolution</para>
@@ -5310,7 +7300,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: {CFC08D97-C6F7-4484-89DD-EBEF4356FE76}, 100</para>
                 /// </summary>
-                public static PropertyKey FocalPlaneXResolution => new PropertyKey(new Guid("{CFC08D97-C6F7-4484-89DD-EBEF4356FE76}"), 100);
+                public static PropertyKey FocalPlaneXResolution => new
+#if !CS9
+				PropertyKey
+#endif
+				("{CFC08D97-C6F7-4484-89DD-EBEF4356FE76}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.FocalPlaneXResolutionDenominator -- PKEY_Photo_FocalPlaneXResolutionDenominator</para>
@@ -5319,7 +7313,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {0933F3F5-4786-4F46-A8E8-D64DD37FA521}, 100</para>
                 /// </summary>
-                public static PropertyKey FocalPlaneXResolutionDenominator => new PropertyKey(new Guid("{0933F3F5-4786-4F46-A8E8-D64DD37FA521}"), 100);
+                public static PropertyKey FocalPlaneXResolutionDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{0933F3F5-4786-4F46-A8E8-D64DD37FA521}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.FocalPlaneXResolutionNumerator -- PKEY_Photo_FocalPlaneXResolutionNumerator</para>
@@ -5328,7 +7326,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {DCCB10AF-B4E2-4B88-95F9-031B4D5AB490}, 100</para>
                 /// </summary>
-                public static PropertyKey FocalPlaneXResolutionNumerator => new PropertyKey(new Guid("{DCCB10AF-B4E2-4B88-95F9-031B4D5AB490}"), 100);
+                public static PropertyKey FocalPlaneXResolutionNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{DCCB10AF-B4E2-4B88-95F9-031B4D5AB490}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.FocalPlaneYResolution -- PKEY_Photo_FocalPlaneYResolution</para>
@@ -5338,7 +7340,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: {4FFFE4D0-914F-4AC4-8D6F-C9C61DE169B1}, 100</para>
                 /// </summary>
-                public static PropertyKey FocalPlaneYResolution => new PropertyKey(new Guid("{4FFFE4D0-914F-4AC4-8D6F-C9C61DE169B1}"), 100);
+                public static PropertyKey FocalPlaneYResolution => new
+#if !CS9
+				PropertyKey
+#endif
+				("{4FFFE4D0-914F-4AC4-8D6F-C9C61DE169B1}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.FocalPlaneYResolutionDenominator -- PKEY_Photo_FocalPlaneYResolutionDenominator</para>
@@ -5347,7 +7353,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {1D6179A6-A876-4031-B013-3347B2B64DC8}, 100</para>
                 /// </summary>
-                public static PropertyKey FocalPlaneYResolutionDenominator => new PropertyKey(new Guid("{1D6179A6-A876-4031-B013-3347B2B64DC8}"), 100);
+                public static PropertyKey FocalPlaneYResolutionDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{1D6179A6-A876-4031-B013-3347B2B64DC8}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.FocalPlaneYResolutionNumerator -- PKEY_Photo_FocalPlaneYResolutionNumerator</para>
@@ -5356,7 +7366,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {A2E541C5-4440-4BA8-867E-75CFC06828CD}, 100</para>
                 /// </summary>
-                public static PropertyKey FocalPlaneYResolutionNumerator => new PropertyKey(new Guid("{A2E541C5-4440-4BA8-867E-75CFC06828CD}"), 100);
+                public static PropertyKey FocalPlaneYResolutionNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{A2E541C5-4440-4BA8-867E-75CFC06828CD}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.GainControl -- PKEY_Photo_GainControl</para>
@@ -5367,7 +7381,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: {FA304789-00C7-4D80-904A-1E4DCC7265AA}, 100 (PropertyTagExifGainControl)</para>
                 /// </summary>
-                public static PropertyKey GainControl => new PropertyKey(new Guid("{FA304789-00C7-4D80-904A-1E4DCC7265AA}"), 100);
+                public static PropertyKey GainControl => new
+#if !CS9
+				PropertyKey
+#endif
+				("{FA304789-00C7-4D80-904A-1E4DCC7265AA}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.GainControlDenominator -- PKEY_Photo_GainControlDenominator</para>
@@ -5376,7 +7394,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {42864DFD-9DA4-4F77-BDED-4AAD7B256735}, 100</para>
                 /// </summary>
-                public static PropertyKey GainControlDenominator => new PropertyKey(new Guid("{42864DFD-9DA4-4F77-BDED-4AAD7B256735}"), 100);
+                public static PropertyKey GainControlDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{42864DFD-9DA4-4F77-BDED-4AAD7B256735}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.GainControlNumerator -- PKEY_Photo_GainControlNumerator</para>
@@ -5385,7 +7407,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {8E8ECF7C-B7B8-4EB8-A63F-0EE715C96F9E}, 100</para>
                 /// </summary>
-                public static PropertyKey GainControlNumerator => new PropertyKey(new Guid("{8E8ECF7C-B7B8-4EB8-A63F-0EE715C96F9E}"), 100);
+                public static PropertyKey GainControlNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{8E8ECF7C-B7B8-4EB8-A63F-0EE715C96F9E}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.GainControlText -- PKEY_Photo_GainControlText</para>
@@ -5395,7 +7421,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {C06238B2-0BF9-4279-A723-25856715CB9D}, 100</para>
                 /// </summary>
-                public static PropertyKey GainControlText => new PropertyKey(new Guid("{C06238B2-0BF9-4279-A723-25856715CB9D}"), 100);
+                public static PropertyKey GainControlText => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C06238B2-0BF9-4279-A723-25856715CB9D}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ISOSpeed -- PKEY_Photo_ISOSpeed</para>
@@ -5404,7 +7434,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="ushort"/> -- <see cref="VarEnum.VT_UI2"/></para>
                 /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 34855</para>
                 /// </summary>
-                public static PropertyKey ISOSpeed => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 34855);
+                public static PropertyKey ISOSpeed => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties, 34855);
 
                 /// <summary>
                 /// <para>Name: System.Photo.LensManufacturer -- PKEY_Photo_LensManufacturer</para>
@@ -5412,7 +7446,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {E6DDCAF7-29C5-4F0A-9A68-D19412EC7090}, 100</para>
                 /// </summary>
-                public static PropertyKey LensManufacturer => new PropertyKey(new Guid("{E6DDCAF7-29C5-4F0A-9A68-D19412EC7090}"), 100);
+                public static PropertyKey LensManufacturer => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E6DDCAF7-29C5-4F0A-9A68-D19412EC7090}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.LensModel -- PKEY_Photo_LensModel</para>
@@ -5420,7 +7458,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {E1277516-2B5F-4869-89B1-2E585BD38B7A}, 100</para>
                 /// </summary>
-                public static PropertyKey LensModel => new PropertyKey(new Guid("{E1277516-2B5F-4869-89B1-2E585BD38B7A}"), 100);
+                public static PropertyKey LensModel => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E1277516-2B5F-4869-89B1-2E585BD38B7A}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.LightSource -- PKEY_Photo_LightSource</para>
@@ -5429,7 +7471,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 37384</para>
                 /// </summary>
-                public static PropertyKey LightSource => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 37384);
+                public static PropertyKey LightSource => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties, 37384);
 
                 /// <summary>
                 /// <para>Name: System.Photo.MakerNote -- PKEY_Photo_MakerNote</para>
@@ -5437,7 +7483,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Buffer -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_UI1"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_UI1"/>)</para>
                 /// <para>FormatID: {FA303353-B659-4052-85E9-BCAC79549B84}, 100</para>
                 /// </summary>
-                public static PropertyKey MakerNote => new PropertyKey(new Guid("{FA303353-B659-4052-85E9-BCAC79549B84}"), 100);
+                public static PropertyKey MakerNote => new
+#if !CS9
+				PropertyKey
+#endif
+				("{FA303353-B659-4052-85E9-BCAC79549B84}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.MakerNoteOffset -- PKEY_Photo_MakerNoteOffset</para>
@@ -5445,7 +7495,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="ulong"/> -- <see cref="VarEnum.VT_UI8"/></para>
                 /// <para>FormatID: {813F4124-34E6-4D17-AB3E-6B1F3C2247A1}, 100</para>
                 /// </summary>
-                public static PropertyKey MakerNoteOffset => new PropertyKey(new Guid("{813F4124-34E6-4D17-AB3E-6B1F3C2247A1}"), 100);
+                public static PropertyKey MakerNoteOffset => new
+#if !CS9
+				PropertyKey
+#endif
+				("{813F4124-34E6-4D17-AB3E-6B1F3C2247A1}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.MaxAperture -- PKEY_Photo_MaxAperture</para>
@@ -5454,7 +7508,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: {08F6D7C2-E3F2-44FC-AF1E-5AA5C81A2D3E}, 100</para>
                 /// </summary>
-                public static PropertyKey MaxAperture => new PropertyKey(new Guid("{08F6D7C2-E3F2-44FC-AF1E-5AA5C81A2D3E}"), 100);
+                public static PropertyKey MaxAperture => new
+#if !CS9
+				PropertyKey
+#endif
+				("{08F6D7C2-E3F2-44FC-AF1E-5AA5C81A2D3E}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.MaxApertureDenominator -- PKEY_Photo_MaxApertureDenominator</para>
@@ -5463,7 +7521,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {C77724D4-601F-46C5-9B89-C53F93BCEB77}, 100</para>
                 /// </summary>
-                public static PropertyKey MaxApertureDenominator => new PropertyKey(new Guid("{C77724D4-601F-46C5-9B89-C53F93BCEB77}"), 100);
+                public static PropertyKey MaxApertureDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C77724D4-601F-46C5-9B89-C53F93BCEB77}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.MaxApertureNumerator -- PKEY_Photo_MaxApertureNumerator</para>
@@ -5472,7 +7534,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {C107E191-A459-44C5-9AE6-B952AD4B906D}, 100</para>
                 /// </summary>
-                public static PropertyKey MaxApertureNumerator => new PropertyKey(new Guid("{C107E191-A459-44C5-9AE6-B952AD4B906D}"), 100);
+                public static PropertyKey MaxApertureNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C107E191-A459-44C5-9AE6-B952AD4B906D}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.MeteringMode -- PKEY_Photo_MeteringMode</para>
@@ -5481,7 +7547,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="ushort"/> -- <see cref="VarEnum.VT_UI2"/></para>
                 /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 37383</para>
                 /// </summary>
-                public static PropertyKey MeteringMode => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 37383);
+                public static PropertyKey MeteringMode => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties, 37383);
 
                 /// <summary>
                 /// <para>Name: System.Photo.MeteringModeText -- PKEY_Photo_MeteringModeText</para>
@@ -5491,7 +7561,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {F628FD8C-7BA8-465A-A65B-C5AA79263A9E}, 100</para>
                 /// </summary>
-                public static PropertyKey MeteringModeText => new PropertyKey(new Guid("{F628FD8C-7BA8-465A-A65B-C5AA79263A9E}"), 100);
+                public static PropertyKey MeteringModeText => new
+#if !CS9
+				PropertyKey
+#endif
+				("{F628FD8C-7BA8-465A-A65B-C5AA79263A9E}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.Orientation -- PKEY_Photo_Orientation</para>
@@ -5500,7 +7574,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="ushort"/> -- <see cref="VarEnum.VT_UI2"/></para>
                 /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 274 (PropertyTagOrientation)</para>
                 /// </summary>
-                public static PropertyKey Orientation => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 274);
+                public static PropertyKey Orientation => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties, 274);
 
                 /// <summary>
                 /// <para>Name: System.Photo.OrientationText -- PKEY_Photo_OrientationText</para>
@@ -5510,7 +7588,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {A9EA193C-C511-498A-A06B-58E2776DCC28}, 100</para>
                 /// </summary>
-                public static PropertyKey OrientationText => new PropertyKey(new Guid("{A9EA193C-C511-498A-A06B-58E2776DCC28}"), 100);
+                public static PropertyKey OrientationText => new
+#if !CS9
+				PropertyKey
+#endif
+				("{A9EA193C-C511-498A-A06B-58E2776DCC28}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.PeopleNames -- PKEY_Photo_PeopleNames</para>
@@ -5519,7 +7601,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)  Legacy code may treat this as <see cref="VarEnum.VT_LPSTR"/>.</para>
                 /// <para>FormatID: {E8309B6E-084C-49B4-B1FC-90A80331B638}, 100</para>
                 /// </summary>
-                public static PropertyKey PeopleNames => new PropertyKey(new Guid("{E8309B6E-084C-49B4-B1FC-90A80331B638}"), 100);
+                public static PropertyKey PeopleNames => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E8309B6E-084C-49B4-B1FC-90A80331B638}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.PhotometricInterpretation -- PKEY_Photo_PhotometricInterpretation</para>
@@ -5529,7 +7615,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="ushort"/> -- <see cref="VarEnum.VT_UI2"/></para>
                 /// <para>FormatID: {341796F1-1DF9-4B1C-A564-91BDEFA43877}, 100</para>
                 /// </summary>
-                public static PropertyKey PhotometricInterpretation => new PropertyKey(new Guid("{341796F1-1DF9-4B1C-A564-91BDEFA43877}"), 100);
+                public static PropertyKey PhotometricInterpretation => new
+#if !CS9
+				PropertyKey
+#endif
+				("{341796F1-1DF9-4B1C-A564-91BDEFA43877}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.PhotometricInterpretationText -- PKEY_Photo_PhotometricInterpretationText</para>
@@ -5539,7 +7629,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {821437D6-9EAB-4765-A589-3B1CBBD22A61}, 100</para>
                 /// </summary>
-                public static PropertyKey PhotometricInterpretationText => new PropertyKey(new Guid("{821437D6-9EAB-4765-A589-3B1CBBD22A61}"), 100);
+                public static PropertyKey PhotometricInterpretationText => new
+#if !CS9
+				PropertyKey
+#endif
+				("{821437D6-9EAB-4765-A589-3B1CBBD22A61}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ProgramMode -- PKEY_Photo_ProgramMode</para>
@@ -5549,7 +7643,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {6D217F6D-3F6A-4825-B470-5F03CA2FBE9B}, 100</para>
                 /// </summary>
-                public static PropertyKey ProgramMode => new PropertyKey(new Guid("{6D217F6D-3F6A-4825-B470-5F03CA2FBE9B}"), 100);
+                public static PropertyKey ProgramMode => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6D217F6D-3F6A-4825-B470-5F03CA2FBE9B}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ProgramModeText -- PKEY_Photo_ProgramModeText</para>
@@ -5559,7 +7657,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {7FE3AA27-2648-42F3-89B0-454E5CB150C3}, 100</para>
                 /// </summary>
-                public static PropertyKey ProgramModeText => new PropertyKey(new Guid("{7FE3AA27-2648-42F3-89B0-454E5CB150C3}"), 100);
+                public static PropertyKey ProgramModeText => new
+#if !CS9
+				PropertyKey
+#endif
+				("{7FE3AA27-2648-42F3-89B0-454E5CB150C3}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.RelatedSoundFile -- PKEY_Photo_RelatedSoundFile</para>
@@ -5567,7 +7669,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {318A6B45-087F-4DC2-B8CC-05359551FC9E}, 100</para>
                 /// </summary>
-                public static PropertyKey RelatedSoundFile => new PropertyKey(new Guid("{318A6B45-087F-4DC2-B8CC-05359551FC9E}"), 100);
+                public static PropertyKey RelatedSoundFile => new
+#if !CS9
+				PropertyKey
+#endif
+				("{318A6B45-087F-4DC2-B8CC-05359551FC9E}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.Saturation -- PKEY_Photo_Saturation</para>
@@ -5577,7 +7683,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {49237325-A95A-4F67-B211-816B2D45D2E0}, 100</para>
                 /// </summary>
-                public static PropertyKey Saturation => new PropertyKey(new Guid("{49237325-A95A-4F67-B211-816B2D45D2E0}"), 100);
+                public static PropertyKey Saturation => new
+#if !CS9
+				PropertyKey
+#endif
+				("{49237325-A95A-4F67-B211-816B2D45D2E0}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.SaturationText -- PKEY_Photo_SaturationText</para>
@@ -5587,7 +7697,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {61478C08-B600-4A84-BBE4-E99C45F0A072}, 100</para>
                 /// </summary>
-                public static PropertyKey SaturationText => new PropertyKey(new Guid("{61478C08-B600-4A84-BBE4-E99C45F0A072}"), 100);
+                public static PropertyKey SaturationText => new
+#if !CS9
+				PropertyKey
+#endif
+				("{61478C08-B600-4A84-BBE4-E99C45F0A072}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.Sharpness -- PKEY_Photo_Sharpness</para>
@@ -5597,7 +7711,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {FC6976DB-8349-4970-AE97-B3C5316A08F0}, 100</para>
                 /// </summary>
-                public static PropertyKey Sharpness => new PropertyKey(new Guid("{FC6976DB-8349-4970-AE97-B3C5316A08F0}"), 100);
+                public static PropertyKey Sharpness => new
+#if !CS9
+				PropertyKey
+#endif
+				("{FC6976DB-8349-4970-AE97-B3C5316A08F0}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.SharpnessText -- PKEY_Photo_SharpnessText</para>
@@ -5607,7 +7725,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {51EC3F47-DD50-421D-8769-334F50424B1E}, 100</para>
                 /// </summary>
-                public static PropertyKey SharpnessText => new PropertyKey(new Guid("{51EC3F47-DD50-421D-8769-334F50424B1E}"), 100);
+                public static PropertyKey SharpnessText => new
+#if !CS9
+				PropertyKey
+#endif
+				("{51EC3F47-DD50-421D-8769-334F50424B1E}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ShutterSpeed -- PKEY_Photo_ShutterSpeed</para>
@@ -5616,7 +7738,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 37377</para>
                 /// </summary>
-                public static PropertyKey ShutterSpeed => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 37377);
+                public static PropertyKey ShutterSpeed => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties, 37377);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ShutterSpeedDenominator -- PKEY_Photo_ShutterSpeedDenominator</para>
@@ -5625,7 +7751,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
                 /// <para>FormatID: {E13D8975-81C7-4948-AE3F-37CAE11E8FF7}, 100</para>
                 /// </summary>
-                public static PropertyKey ShutterSpeedDenominator => new PropertyKey(new Guid("{E13D8975-81C7-4948-AE3F-37CAE11E8FF7}"), 100);
+                public static PropertyKey ShutterSpeedDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E13D8975-81C7-4948-AE3F-37CAE11E8FF7}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.ShutterSpeedNumerator -- PKEY_Photo_ShutterSpeedNumerator</para>
@@ -5634,7 +7764,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
                 /// <para>FormatID: {16EA4042-D6F4-4BCA-8349-7C78D30FB333}, 100</para>
                 /// </summary>
-                public static PropertyKey ShutterSpeedNumerator => new PropertyKey(new Guid("{16EA4042-D6F4-4BCA-8349-7C78D30FB333}"), 100);
+                public static PropertyKey ShutterSpeedNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{16EA4042-D6F4-4BCA-8349-7C78D30FB333}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.SubjectDistance -- PKEY_Photo_SubjectDistance</para>
@@ -5643,7 +7777,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Double -- VT_R8</para>
                 /// <para>FormatID: (FMTID_ImageProperties) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties"/>, 37382</para>
                 /// </summary>
-                public static PropertyKey SubjectDistance => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties), 37382);
+                public static PropertyKey SubjectDistance => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.ImageProperties, 37382);
 
                 /// <summary>
                 /// <para>Name: System.Photo.SubjectDistanceDenominator -- PKEY_Photo_SubjectDistanceDenominator</para>
@@ -5652,7 +7790,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {0C840A88-B043-466D-9766-D4B26DA3FA77}, 100</para>
                 /// </summary>
-                public static PropertyKey SubjectDistanceDenominator => new PropertyKey(new Guid("{0C840A88-B043-466D-9766-D4B26DA3FA77}"), 100);
+                public static PropertyKey SubjectDistanceDenominator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{0C840A88-B043-466D-9766-D4B26DA3FA77}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.SubjectDistanceNumerator -- PKEY_Photo_SubjectDistanceNumerator</para>
@@ -5661,7 +7803,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {8AF4961C-F526-43E5-AA81-DB768219178D}, 100</para>
                 /// </summary>
-                public static PropertyKey SubjectDistanceNumerator => new PropertyKey(new Guid("{8AF4961C-F526-43E5-AA81-DB768219178D}"), 100);
+                public static PropertyKey SubjectDistanceNumerator => new
+#if !CS9
+				PropertyKey
+#endif
+				("{8AF4961C-F526-43E5-AA81-DB768219178D}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.TagViewAggregate -- PKEY_Photo_TagViewAggregate</para>
@@ -5670,7 +7816,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)  Legacy code may treat this as <see cref="VarEnum.VT_LPSTR"/>.</para>
                 /// <para>FormatID: {B812F15D-C2D8-4BBF-BACD-79744346113F}, 100</para>
                 /// </summary>
-                public static PropertyKey TagViewAggregate => new PropertyKey(new Guid("{B812F15D-C2D8-4BBF-BACD-79744346113F}"), 100);
+                public static PropertyKey TagViewAggregate => new
+#if !CS9
+				PropertyKey
+#endif
+				("{B812F15D-C2D8-4BBF-BACD-79744346113F}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.TranscodedForSync -- PKEY_Photo_TranscodedForSync</para>
@@ -5678,7 +7828,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {9A8EBB75-6458-4E82-BACB-35C0095B03BB}, 100</para>
                 /// </summary>
-                public static PropertyKey TranscodedForSync => new PropertyKey(new Guid("{9A8EBB75-6458-4E82-BACB-35C0095B03BB}"), 100);
+                public static PropertyKey TranscodedForSync => new
+#if !CS9
+				PropertyKey
+#endif
+				("{9A8EBB75-6458-4E82-BACB-35C0095B03BB}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.WhiteBalance -- PKEY_Photo_WhiteBalance</para>
@@ -5687,7 +7841,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {EE3D3D8A-5381-4CFA-B13B-AAF66B5F4EC9}, 100</para>
                 /// </summary>
-                public static PropertyKey WhiteBalance => new PropertyKey(new Guid("{EE3D3D8A-5381-4CFA-B13B-AAF66B5F4EC9}"), 100);
+                public static PropertyKey WhiteBalance => new
+#if !CS9
+				PropertyKey
+#endif
+				("{EE3D3D8A-5381-4CFA-B13B-AAF66B5F4EC9}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Photo.WhiteBalanceText -- PKEY_Photo_WhiteBalanceText</para>
@@ -5697,11 +7855,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {6336B95E-C7A7-426D-86FD-7AE3D39C84B4}, 100</para>
                 /// </summary>
-                public static PropertyKey WhiteBalanceText => new PropertyKey(new Guid("{6336B95E-C7A7-426D-86FD-7AE3D39C84B4}"), 100);
+                public static PropertyKey WhiteBalanceText => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6336B95E-C7A7-426D-86FD-7AE3D39C84B4}", 100);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -5709,17 +7868,18 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class PropGroup
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.PropGroup.Advanced -- PKEY_PropGroup_Advanced</para>
                 /// <para>Description: </para>
                 /// <para>Type: <see langword="null"/> -- <see cref="VarEnum.VT_NULL"/></para>
                 /// <para>FormatID: {900A403B-097B-4B95-8AE2-071FDAEEB118}, 100</para>
                 /// </summary>
-                public static PropertyKey Advanced => new PropertyKey(new Guid("{900A403B-097B-4B95-8AE2-071FDAEEB118}"), 100);
+                public static PropertyKey Advanced => new
+#if !CS9
+				PropertyKey
+#endif
+				("{900A403B-097B-4B95-8AE2-071FDAEEB118}", 100);
 
                 /// <summary>
                 /// <para>Name: System.PropGroup.Audio -- PKEY_PropGroup_Audio</para>
@@ -5727,7 +7887,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see langword="null"/> -- <see cref="VarEnum.VT_NULL"/></para>
                 /// <para>FormatID: {2804D469-788F-48AA-8570-71B9C187E138}, 100</para>
                 /// </summary>
-                public static PropertyKey Audio => new PropertyKey(new Guid("{2804D469-788F-48AA-8570-71B9C187E138}"), 100);
+                public static PropertyKey Audio => new
+#if !CS9
+				PropertyKey
+#endif
+				("{2804D469-788F-48AA-8570-71B9C187E138}", 100);
 
                 /// <summary>
                 /// <para>Name: System.PropGroup.Calendar -- PKEY_PropGroup_Calendar</para>
@@ -5735,7 +7899,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see langword="null"/> -- <see cref="VarEnum.VT_NULL"/></para>
                 /// <para>FormatID: {9973D2B5-BFD8-438A-BA94-5349B293181A}, 100</para>
                 /// </summary>
-                public static PropertyKey Calendar => new PropertyKey(new Guid("{9973D2B5-BFD8-438A-BA94-5349B293181A}"), 100);
+                public static PropertyKey Calendar => new
+#if !CS9
+				PropertyKey
+#endif
+				("{9973D2B5-BFD8-438A-BA94-5349B293181A}", 100);
 
                 /// <summary>
                 /// <para>Name: System.PropGroup.Camera -- PKEY_PropGroup_Camera</para>
@@ -5743,7 +7911,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see langword="null"/> -- <see cref="VarEnum.VT_NULL"/></para>
                 /// <para>FormatID: {DE00DE32-547E-4981-AD4B-542F2E9007D8}, 100</para>
                 /// </summary>
-                public static PropertyKey Camera => new PropertyKey(new Guid("{DE00DE32-547E-4981-AD4B-542F2E9007D8}"), 100);
+                public static PropertyKey Camera => new
+#if !CS9
+				PropertyKey
+#endif
+				("{DE00DE32-547E-4981-AD4B-542F2E9007D8}", 100);
 
                 /// <summary>
                 /// <para>Name: System.PropGroup.Contact -- PKEY_PropGroup_Contact</para>
@@ -5751,7 +7923,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see langword="null"/> -- <see cref="VarEnum.VT_NULL"/></para>
                 /// <para>FormatID: {DF975FD3-250A-4004-858F-34E29A3E37AA}, 100</para>
                 /// </summary>
-                public static PropertyKey Contact => new PropertyKey(new Guid("{DF975FD3-250A-4004-858F-34E29A3E37AA}"), 100);
+                public static PropertyKey Contact => new
+#if !CS9
+				PropertyKey
+#endif
+				("{DF975FD3-250A-4004-858F-34E29A3E37AA}", 100);
 
                 /// <summary>
                 /// <para>Name: System.PropGroup.Content -- PKEY_PropGroup_Content</para>
@@ -5759,7 +7935,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see langword="null"/> -- <see cref="VarEnum.VT_NULL"/></para>
                 /// <para>FormatID: {D0DAB0BA-368A-4050-A882-6C010FD19A4F}, 100</para>
                 /// </summary>
-                public static PropertyKey Content => new PropertyKey(new Guid("{D0DAB0BA-368A-4050-A882-6C010FD19A4F}"), 100);
+                public static PropertyKey Content => new
+#if !CS9
+				PropertyKey
+#endif
+				("{D0DAB0BA-368A-4050-A882-6C010FD19A4F}", 100);
 
                 /// <summary>
                 /// <para>Name: System.PropGroup.Description -- PKEY_PropGroup_Description</para>
@@ -5767,7 +7947,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see langword="null"/> -- <see cref="VarEnum.VT_NULL"/></para>
                 /// <para>FormatID: {8969B275-9475-4E00-A887-FF93B8B41E44}, 100</para>
                 /// </summary>
-                public static PropertyKey Description => new PropertyKey(new Guid("{8969B275-9475-4E00-A887-FF93B8B41E44}"), 100);
+                public static PropertyKey Description => new
+#if !CS9
+				PropertyKey
+#endif
+				("{8969B275-9475-4E00-A887-FF93B8B41E44}", 100);
 
                 /// <summary>
                 /// <para>Name: System.PropGroup.FileSystem -- PKEY_PropGroup_FileSystem</para>
@@ -5775,7 +7959,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see langword="null"/> -- <see cref="VarEnum.VT_NULL"/></para>
                 /// <para>FormatID: {E3A7D2C1-80FC-4B40-8F34-30EA111BDC2E}, 100</para>
                 /// </summary>
-                public static PropertyKey FileSystem => new PropertyKey(new Guid("{E3A7D2C1-80FC-4B40-8F34-30EA111BDC2E}"), 100);
+                public static PropertyKey FileSystem => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E3A7D2C1-80FC-4B40-8F34-30EA111BDC2E}", 100);
 
                 /// <summary>
                 /// <para>Name: System.PropGroup.General -- PKEY_PropGroup_General</para>
@@ -5783,7 +7971,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see langword="null"/> -- <see cref="VarEnum.VT_NULL"/></para>
                 /// <para>FormatID: {CC301630-B192-4C22-B372-9F4C6D338E07}, 100</para>
                 /// </summary>
-                public static PropertyKey General => new PropertyKey(new Guid("{CC301630-B192-4C22-B372-9F4C6D338E07}"), 100);
+                public static PropertyKey General => new
+#if !CS9
+				PropertyKey
+#endif
+				("{CC301630-B192-4C22-B372-9F4C6D338E07}", 100);
 
                 /// <summary>
                 /// <para>Name: System.PropGroup.GPS -- PKEY_PropGroup_GPS</para>
@@ -5791,7 +7983,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see langword="null"/> -- <see cref="VarEnum.VT_NULL"/></para>
                 /// <para>FormatID: {F3713ADA-90E3-4E11-AAE5-FDC17685B9BE}, 100</para>
                 /// </summary>
-                public static PropertyKey GPS => new PropertyKey(new Guid("{F3713ADA-90E3-4E11-AAE5-FDC17685B9BE}"), 100);
+                public static PropertyKey GPS => new
+#if !CS9
+				PropertyKey
+#endif
+				("{F3713ADA-90E3-4E11-AAE5-FDC17685B9BE}", 100);
 
                 /// <summary>
                 /// <para>Name: System.PropGroup.Image -- PKEY_PropGroup_Image</para>
@@ -5799,7 +7995,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see langword="null"/> -- <see cref="VarEnum.VT_NULL"/></para>
                 /// <para>FormatID: {E3690A87-0FA8-4A2A-9A9F-FCE8827055AC}, 100</para>
                 /// </summary>
-                public static PropertyKey Image => new PropertyKey(new Guid("{E3690A87-0FA8-4A2A-9A9F-FCE8827055AC}"), 100);
+                public static PropertyKey Image => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E3690A87-0FA8-4A2A-9A9F-FCE8827055AC}", 100);
 
                 /// <summary>
                 /// <para>Name: System.PropGroup.Media -- PKEY_PropGroup_Media</para>
@@ -5807,7 +8007,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see langword="null"/> -- <see cref="VarEnum.VT_NULL"/></para>
                 /// <para>FormatID: {61872CF7-6B5E-4B4B-AC2D-59DA84459248}, 100</para>
                 /// </summary>
-                public static PropertyKey Media => new PropertyKey(new Guid("{61872CF7-6B5E-4B4B-AC2D-59DA84459248}"), 100);
+                public static PropertyKey Media => new
+#if !CS9
+				PropertyKey
+#endif
+				("{61872CF7-6B5E-4B4B-AC2D-59DA84459248}", 100);
 
                 /// <summary>
                 /// <para>Name: System.PropGroup.MediaAdvanced -- PKEY_PropGroup_MediaAdvanced</para>
@@ -5815,7 +8019,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see langword="null"/> -- <see cref="VarEnum.VT_NULL"/></para>
                 /// <para>FormatID: {8859A284-DE7E-4642-99BA-D431D044B1EC}, 100</para>
                 /// </summary>
-                public static PropertyKey MediaAdvanced => new PropertyKey(new Guid("{8859A284-DE7E-4642-99BA-D431D044B1EC}"), 100);
+                public static PropertyKey MediaAdvanced => new
+#if !CS9
+				PropertyKey
+#endif
+				("{8859A284-DE7E-4642-99BA-D431D044B1EC}", 100);
 
                 /// <summary>
                 /// <para>Name: System.PropGroup.Message -- PKEY_PropGroup_Message</para>
@@ -5823,7 +8031,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see langword="null"/> -- <see cref="VarEnum.VT_NULL"/></para>
                 /// <para>FormatID: {7FD7259D-16B4-4135-9F97-7C96ECD2FA9E}, 100</para>
                 /// </summary>
-                public static PropertyKey Message => new PropertyKey(new Guid("{7FD7259D-16B4-4135-9F97-7C96ECD2FA9E}"), 100);
+                public static PropertyKey Message => new
+#if !CS9
+				PropertyKey
+#endif
+				("{7FD7259D-16B4-4135-9F97-7C96ECD2FA9E}", 100);
 
                 /// <summary>
                 /// <para>Name: System.PropGroup.Music -- PKEY_PropGroup_Music</para>
@@ -5831,7 +8043,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see langword="null"/> -- <see cref="VarEnum.VT_NULL"/></para>
                 /// <para>FormatID: {68DD6094-7216-40F1-A029-43FE7127043F}, 100</para>
                 /// </summary>
-                public static PropertyKey Music => new PropertyKey(new Guid("{68DD6094-7216-40F1-A029-43FE7127043F}"), 100);
+                public static PropertyKey Music => new
+#if !CS9
+				PropertyKey
+#endif
+				("{68DD6094-7216-40F1-A029-43FE7127043F}", 100);
 
                 /// <summary>
                 /// <para>Name: System.PropGroup.Origin -- PKEY_PropGroup_Origin</para>
@@ -5839,7 +8055,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see langword="null"/> -- <see cref="VarEnum.VT_NULL"/></para>
                 /// <para>FormatID: {2598D2FB-5569-4367-95DF-5CD3A177E1A5}, 100</para>
                 /// </summary>
-                public static PropertyKey Origin => new PropertyKey(new Guid("{2598D2FB-5569-4367-95DF-5CD3A177E1A5}"), 100);
+                public static PropertyKey Origin => new
+#if !CS9
+				PropertyKey
+#endif
+				("{2598D2FB-5569-4367-95DF-5CD3A177E1A5}", 100);
 
                 /// <summary>
                 /// <para>Name: System.PropGroup.PhotoAdvanced -- PKEY_PropGroup_PhotoAdvanced</para>
@@ -5847,7 +8067,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see langword="null"/> -- <see cref="VarEnum.VT_NULL"/></para>
                 /// <para>FormatID: {0CB2BF5A-9EE7-4A86-8222-F01E07FDADAF}, 100</para>
                 /// </summary>
-                public static PropertyKey PhotoAdvanced => new PropertyKey(new Guid("{0CB2BF5A-9EE7-4A86-8222-F01E07FDADAF}"), 100);
+                public static PropertyKey PhotoAdvanced => new
+#if !CS9
+				PropertyKey
+#endif
+				("{0CB2BF5A-9EE7-4A86-8222-F01E07FDADAF}", 100);
 
                 /// <summary>
                 /// <para>Name: System.PropGroup.RecordedTV -- PKEY_PropGroup_RecordedTV</para>
@@ -5855,7 +8079,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see langword="null"/> -- <see cref="VarEnum.VT_NULL"/></para>
                 /// <para>FormatID: {E7B33238-6584-4170-A5C0-AC25EFD9DA56}, 100</para>
                 /// </summary>
-                public static PropertyKey RecordedTV => new PropertyKey(new Guid("{E7B33238-6584-4170-A5C0-AC25EFD9DA56}"), 100);
+                public static PropertyKey RecordedTV => new
+#if !CS9
+				PropertyKey
+#endif
+				("{E7B33238-6584-4170-A5C0-AC25EFD9DA56}", 100);
 
                 /// <summary>
                 /// <para>Name: System.PropGroup.Video -- PKEY_PropGroup_Video</para>
@@ -5863,11 +8091,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see langword="null"/> -- <see cref="VarEnum.VT_NULL"/></para>
                 /// <para>FormatID: {BEBE0920-7671-4C54-A3EB-49FDDFC191EE}, 100</para>
                 /// </summary>
-                public static PropertyKey Video => new PropertyKey(new Guid("{BEBE0920-7671-4C54-A3EB-49FDDFC191EE}"), 100);
+                public static PropertyKey Video => new
+#if !CS9
+				PropertyKey
+#endif
+				("{BEBE0920-7671-4C54-A3EB-49FDDFC191EE}", 100);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -5875,10 +8104,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class PropList
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.PropList.ConflictPrompt -- PKEY_PropList_ConflictPrompt</para>
                 /// <para>Description: The list of properties to show in the file operation conflict resolution dialog. Properties with empty 
@@ -5887,7 +8113,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {C9944A21-A406-48FE-8225-AEC7E24C211B}, 11</para>
                 /// </summary>
-                public static PropertyKey ConflictPrompt => new PropertyKey(new Guid("{C9944A21-A406-48FE-8225-AEC7E24C211B}"), 11);
+                public static PropertyKey ConflictPrompt => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C9944A21-A406-48FE-8225-AEC7E24C211B}", 11);
 
                 /// <summary>
                 /// <para>Name: System.PropList.ContentViewModeForBrowse -- PKEY_PropList_ContentViewModeForBrowse</para>
@@ -5897,7 +8127,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {C9944A21-A406-48FE-8225-AEC7E24C211B}, 13</para>
                 /// </summary>
-                public static PropertyKey ContentViewModeForBrowse => new PropertyKey(new Guid("{C9944A21-A406-48FE-8225-AEC7E24C211B}"), 13);
+                public static PropertyKey ContentViewModeForBrowse => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C9944A21-A406-48FE-8225-AEC7E24C211B}", 13);
 
                 /// <summary>
                 /// <para>Name: System.PropList.ContentViewModeForSearch -- PKEY_PropList_ContentViewModeForSearch</para>
@@ -5907,7 +8141,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {C9944A21-A406-48FE-8225-AEC7E24C211B}, 14</para>
                 /// </summary>
-                public static PropertyKey ContentViewModeForSearch => new PropertyKey(new Guid("{C9944A21-A406-48FE-8225-AEC7E24C211B}"), 14);
+                public static PropertyKey ContentViewModeForSearch => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C9944A21-A406-48FE-8225-AEC7E24C211B}", 14);
 
                 /// <summary>
                 /// <para>Name: System.PropList.ExtendedTileInfo -- PKEY_PropList_ExtendedTileInfo</para>
@@ -5917,7 +8155,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {C9944A21-A406-48FE-8225-AEC7E24C211B}, 9</para>
                 /// </summary>
-                public static PropertyKey ExtendedTileInfo => new PropertyKey(new Guid("{C9944A21-A406-48FE-8225-AEC7E24C211B}"), 9);
+                public static PropertyKey ExtendedTileInfo => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C9944A21-A406-48FE-8225-AEC7E24C211B}", 9);
 
                 /// <summary>
                 /// <para>Name: System.PropList.FileOperationPrompt -- PKEY_PropList_FileOperationPrompt</para>
@@ -5928,7 +8170,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {C9944A21-A406-48FE-8225-AEC7E24C211B}, 10</para>
                 /// </summary>
-                public static PropertyKey FileOperationPrompt => new PropertyKey(new Guid("{C9944A21-A406-48FE-8225-AEC7E24C211B}"), 10);
+                public static PropertyKey FileOperationPrompt => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C9944A21-A406-48FE-8225-AEC7E24C211B}", 10);
 
                 /// <summary>
                 /// <para>Name: System.PropList.FullDetails -- PKEY_PropList_FullDetails</para>
@@ -5938,7 +8184,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {C9944A21-A406-48FE-8225-AEC7E24C211B}, 2</para>
                 /// </summary>
-                public static PropertyKey FullDetails => new PropertyKey(new Guid("{C9944A21-A406-48FE-8225-AEC7E24C211B}"), 2);
+                public static PropertyKey FullDetails => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C9944A21-A406-48FE-8225-AEC7E24C211B}", 2);
 
                 /// <summary>
                 /// <para>Name: System.PropList.InfoTip -- PKEY_PropList_InfoTip</para>
@@ -5948,7 +8198,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {C9944A21-A406-48FE-8225-AEC7E24C211B}, 4 (PID_PROPLIST_INFOTIP)</para>
                 /// </summary>
-                public static PropertyKey InfoTip => new PropertyKey(new Guid("{C9944A21-A406-48FE-8225-AEC7E24C211B}"), 4);
+                public static PropertyKey InfoTip => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C9944A21-A406-48FE-8225-AEC7E24C211B}", 4);
 
                 /// <summary>
                 /// <para>Name: System.PropList.NonPersonal -- PKEY_PropList_NonPersonal</para>
@@ -5959,7 +8213,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {49D1091F-082E-493F-B23F-D2308AA9668C}, 100</para>
                 /// </summary>
-                public static PropertyKey NonPersonal => new PropertyKey(new Guid("{49D1091F-082E-493F-B23F-D2308AA9668C}"), 100);
+                public static PropertyKey NonPersonal => new
+#if !CS9
+				PropertyKey
+#endif
+				("{49D1091F-082E-493F-B23F-D2308AA9668C}", 100);
 
                 /// <summary>
                 /// <para>Name: System.PropList.PreviewDetails -- PKEY_PropList_PreviewDetails</para>
@@ -5968,7 +8226,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {C9944A21-A406-48FE-8225-AEC7E24C211B}, 8</para>
                 /// </summary>
-                public static PropertyKey PreviewDetails => new PropertyKey(new Guid("{C9944A21-A406-48FE-8225-AEC7E24C211B}"), 8);
+                public static PropertyKey PreviewDetails => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C9944A21-A406-48FE-8225-AEC7E24C211B}", 8);
 
                 /// <summary>
                 /// <para>Name: System.PropList.PreviewTitle -- PKEY_PropList_PreviewTitle</para>
@@ -5978,7 +8240,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {C9944A21-A406-48FE-8225-AEC7E24C211B}, 6</para>
                 /// </summary>
-                public static PropertyKey PreviewTitle => new PropertyKey(new Guid("{C9944A21-A406-48FE-8225-AEC7E24C211B}"), 6);
+                public static PropertyKey PreviewTitle => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C9944A21-A406-48FE-8225-AEC7E24C211B}", 6);
 
                 /// <summary>
                 /// <para>Name: System.PropList.QuickTip -- PKEY_PropList_QuickTip</para>
@@ -5988,7 +8254,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {C9944A21-A406-48FE-8225-AEC7E24C211B}, 5 (PID_PROPLIST_QUICKTIP)</para>
                 /// </summary>
-                public static PropertyKey QuickTip => new PropertyKey(new Guid("{C9944A21-A406-48FE-8225-AEC7E24C211B}"), 5);
+                public static PropertyKey QuickTip => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C9944A21-A406-48FE-8225-AEC7E24C211B}", 5);
 
                 /// <summary>
                 /// <para>Name: System.PropList.TileInfo -- PKEY_PropList_TileInfo</para>
@@ -5997,7 +8267,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {C9944A21-A406-48FE-8225-AEC7E24C211B}, 3 (PID_PROPLIST_TILEINFO)</para>
                 /// </summary>
-                public static PropertyKey TileInfo => new PropertyKey(new Guid("{C9944A21-A406-48FE-8225-AEC7E24C211B}"), 3);
+                public static PropertyKey TileInfo => new
+#if !CS9
+				PropertyKey
+#endif
+				("{C9944A21-A406-48FE-8225-AEC7E24C211B}", 3);
 
                 /// <summary>
                 /// <para>Name: System.PropList.XPDetailsPanel -- PKEY_PropList_XPDetailsPanel</para>
@@ -6006,11 +8280,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_WebView) {F2275480-F782-4291-BD94-F13693513AEC}, 0 (PID_DISPLAY_PROPERTIES)</para>
                 /// </summary>
-                public static PropertyKey XPDetailsPanel => new PropertyKey(new Guid("{F2275480-F782-4291-BD94-F13693513AEC}"), 0);
+                public static PropertyKey XPDetailsPanel => new
+#if !CS9
+				PropertyKey
+#endif
+				("{F2275480-F782-4291-BD94-F13693513AEC}", 0);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -6018,10 +8293,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class RecordedTV
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.RecordedTV.ChannelNumber -- PKEY_RecordedTV_ChannelNumber</para>
                 /// <para>Description: Example: 42
@@ -6029,7 +8301,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {6D748DE2-8D38-4CC3-AC60-F009B057C557}, 7</para>
                 /// </summary>
-                public static PropertyKey ChannelNumber => new PropertyKey(new Guid("{6D748DE2-8D38-4CC3-AC60-F009B057C557}"), 7);
+                public static PropertyKey ChannelNumber => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6D748DE2-8D38-4CC3-AC60-F009B057C557}", 7);
 
                 /// <summary>
                 /// <para>Name: System.RecordedTV.Credits -- PKEY_RecordedTV_Credits</para>
@@ -6038,7 +8314,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {6D748DE2-8D38-4CC3-AC60-F009B057C557}, 4</para>
                 /// </summary>
-                public static PropertyKey Credits => new PropertyKey(new Guid("{6D748DE2-8D38-4CC3-AC60-F009B057C557}"), 4);
+                public static PropertyKey Credits => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6D748DE2-8D38-4CC3-AC60-F009B057C557}", 4);
 
                 /// <summary>
                 /// <para>Name: System.RecordedTV.DateContentExpires -- PKEY_RecordedTV_DateContentExpires</para>
@@ -6046,7 +8326,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
                 /// <para>FormatID: {6D748DE2-8D38-4CC3-AC60-F009B057C557}, 15</para>
                 /// </summary>
-                public static PropertyKey DateContentExpires => new PropertyKey(new Guid("{6D748DE2-8D38-4CC3-AC60-F009B057C557}"), 15);
+                public static PropertyKey DateContentExpires => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6D748DE2-8D38-4CC3-AC60-F009B057C557}", 15);
 
                 /// <summary>
                 /// <para>Name: System.RecordedTV.EpisodeName -- PKEY_RecordedTV_EpisodeName</para>
@@ -6055,7 +8339,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {6D748DE2-8D38-4CC3-AC60-F009B057C557}, 2</para>
                 /// </summary>
-                public static PropertyKey EpisodeName => new PropertyKey(new Guid("{6D748DE2-8D38-4CC3-AC60-F009B057C557}"), 2);
+                public static PropertyKey EpisodeName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6D748DE2-8D38-4CC3-AC60-F009B057C557}", 2);
 
                 /// <summary>
                 /// <para>Name: System.RecordedTV.IsATSCContent -- PKEY_RecordedTV_IsATSCContent</para>
@@ -6063,7 +8351,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {6D748DE2-8D38-4CC3-AC60-F009B057C557}, 16</para>
                 /// </summary>
-                public static PropertyKey IsATSCContent => new PropertyKey(new Guid("{6D748DE2-8D38-4CC3-AC60-F009B057C557}"), 16);
+                public static PropertyKey IsATSCContent => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6D748DE2-8D38-4CC3-AC60-F009B057C557}", 16);
 
                 /// <summary>
                 /// <para>Name: System.RecordedTV.IsClosedCaptioningAvailable -- PKEY_RecordedTV_IsClosedCaptioningAvailable</para>
@@ -6071,7 +8363,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {6D748DE2-8D38-4CC3-AC60-F009B057C557}, 12</para>
                 /// </summary>
-                public static PropertyKey IsClosedCaptioningAvailable => new PropertyKey(new Guid("{6D748DE2-8D38-4CC3-AC60-F009B057C557}"), 12);
+                public static PropertyKey IsClosedCaptioningAvailable => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6D748DE2-8D38-4CC3-AC60-F009B057C557}", 12);
 
                 /// <summary>
                 /// <para>Name: System.RecordedTV.IsDTVContent -- PKEY_RecordedTV_IsDTVContent</para>
@@ -6079,7 +8375,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {6D748DE2-8D38-4CC3-AC60-F009B057C557}, 17</para>
                 /// </summary>
-                public static PropertyKey IsDTVContent => new PropertyKey(new Guid("{6D748DE2-8D38-4CC3-AC60-F009B057C557}"), 17);
+                public static PropertyKey IsDTVContent => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6D748DE2-8D38-4CC3-AC60-F009B057C557}", 17);
 
                 /// <summary>
                 /// <para>Name: System.RecordedTV.IsHDContent -- PKEY_RecordedTV_IsHDContent</para>
@@ -6087,7 +8387,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {6D748DE2-8D38-4CC3-AC60-F009B057C557}, 18</para>
                 /// </summary>
-                public static PropertyKey IsHDContent => new PropertyKey(new Guid("{6D748DE2-8D38-4CC3-AC60-F009B057C557}"), 18);
+                public static PropertyKey IsHDContent => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6D748DE2-8D38-4CC3-AC60-F009B057C557}", 18);
 
                 /// <summary>
                 /// <para>Name: System.RecordedTV.IsRepeatBroadcast -- PKEY_RecordedTV_IsRepeatBroadcast</para>
@@ -6095,7 +8399,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {6D748DE2-8D38-4CC3-AC60-F009B057C557}, 13</para>
                 /// </summary>
-                public static PropertyKey IsRepeatBroadcast => new PropertyKey(new Guid("{6D748DE2-8D38-4CC3-AC60-F009B057C557}"), 13);
+                public static PropertyKey IsRepeatBroadcast => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6D748DE2-8D38-4CC3-AC60-F009B057C557}", 13);
 
                 /// <summary>
                 /// <para>Name: System.RecordedTV.IsSAP -- PKEY_RecordedTV_IsSAP</para>
@@ -6103,7 +8411,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {6D748DE2-8D38-4CC3-AC60-F009B057C557}, 14</para>
                 /// </summary>
-                public static PropertyKey IsSAP => new PropertyKey(new Guid("{6D748DE2-8D38-4CC3-AC60-F009B057C557}"), 14);
+                public static PropertyKey IsSAP => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6D748DE2-8D38-4CC3-AC60-F009B057C557}", 14);
 
                 /// <summary>
                 /// <para>Name: System.RecordedTV.NetworkAffiliation -- PKEY_RecordedTV_NetworkAffiliation</para>
@@ -6111,7 +8423,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {2C53C813-FB63-4E22-A1AB-0B331CA1E273}, 100</para>
                 /// </summary>
-                public static PropertyKey NetworkAffiliation => new PropertyKey(new Guid("{2C53C813-FB63-4E22-A1AB-0B331CA1E273}"), 100);
+                public static PropertyKey NetworkAffiliation => new
+#if !CS9
+				PropertyKey
+#endif
+				("{2C53C813-FB63-4E22-A1AB-0B331CA1E273}", 100);
 
                 /// <summary>
                 /// <para>Name: System.RecordedTV.OriginalBroadcastDate -- PKEY_RecordedTV_OriginalBroadcastDate</para>
@@ -6119,7 +8435,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
                 /// <para>FormatID: {4684FE97-8765-4842-9C13-F006447B178C}, 100</para>
                 /// </summary>
-                public static PropertyKey OriginalBroadcastDate => new PropertyKey(new Guid("{4684FE97-8765-4842-9C13-F006447B178C}"), 100);
+                public static PropertyKey OriginalBroadcastDate => new
+#if !CS9
+				PropertyKey
+#endif
+				("{4684FE97-8765-4842-9C13-F006447B178C}", 100);
 
                 /// <summary>
                 /// <para>Name: System.RecordedTV.ProgramDescription -- PKEY_RecordedTV_ProgramDescription</para>
@@ -6127,7 +8447,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {6D748DE2-8D38-4CC3-AC60-F009B057C557}, 3</para>
                 /// </summary>
-                public static PropertyKey ProgramDescription => new PropertyKey(new Guid("{6D748DE2-8D38-4CC3-AC60-F009B057C557}"), 3);
+                public static PropertyKey ProgramDescription => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6D748DE2-8D38-4CC3-AC60-F009B057C557}", 3);
 
                 /// <summary>
                 /// <para>Name: System.RecordedTV.RecordingTime -- PKEY_RecordedTV_RecordingTime</para>
@@ -6135,7 +8459,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
                 /// <para>FormatID: {A5477F61-7A82-4ECA-9DDE-98B69B2479B3}, 100</para>
                 /// </summary>
-                public static PropertyKey RecordingTime => new PropertyKey(new Guid("{A5477F61-7A82-4ECA-9DDE-98B69B2479B3}"), 100);
+                public static PropertyKey RecordingTime => new
+#if !CS9
+				PropertyKey
+#endif
+				("{A5477F61-7A82-4ECA-9DDE-98B69B2479B3}", 100);
 
                 /// <summary>
                 /// <para>Name: System.RecordedTV.StationCallSign -- PKEY_RecordedTV_StationCallSign</para>
@@ -6144,7 +8472,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {6D748DE2-8D38-4CC3-AC60-F009B057C557}, 5</para>
                 /// </summary>
-                public static PropertyKey StationCallSign => new PropertyKey(new Guid("{6D748DE2-8D38-4CC3-AC60-F009B057C557}"), 5);
+                public static PropertyKey StationCallSign => new
+#if !CS9
+				PropertyKey
+#endif
+				("{6D748DE2-8D38-4CC3-AC60-F009B057C557}", 5);
 
                 /// <summary>
                 /// <para>Name: System.RecordedTV.StationName -- PKEY_RecordedTV_StationName</para>
@@ -6152,11 +8484,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {1B5439E7-EBA1-4AF8-BDD7-7AF1D4549493}, 100</para>
                 /// </summary>
-                public static PropertyKey StationName => new PropertyKey(new Guid("{1B5439E7-EBA1-4AF8-BDD7-7AF1D4549493}"), 100);
+                public static PropertyKey StationName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{1B5439E7-EBA1-4AF8-BDD7-7AF1D4549493}", 100);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -6164,10 +8497,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Search
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Search.AutoSummary -- PKEY_Search_AutoSummary</para>
                 /// <para>Description: General Summary of the document.
@@ -6175,7 +8505,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {560C36C0-503A-11CF-BAA1-00004C752A9A}, 2</para>
                 /// </summary>
-                public static PropertyKey AutoSummary => new PropertyKey(new Guid("{560C36C0-503A-11CF-BAA1-00004C752A9A}"), 2);
+                public static PropertyKey AutoSummary => new
+#if !CS9
+				PropertyKey
+#endif
+				("{560C36C0-503A-11CF-BAA1-00004C752A9A}", 2);
 
                 /// <summary>
                 /// <para>Name: System.Search.ContainerHash -- PKEY_Search_ContainerHash</para>
@@ -6184,7 +8518,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {BCEEE283-35DF-4D53-826A-F36A3EEFC6BE}, 100</para>
                 /// </summary>
-                public static PropertyKey ContainerHash => new PropertyKey(new Guid("{BCEEE283-35DF-4D53-826A-F36A3EEFC6BE}"), 100);
+                public static PropertyKey ContainerHash => new
+#if !CS9
+				PropertyKey
+#endif
+				("{BCEEE283-35DF-4D53-826A-F36A3EEFC6BE}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Search.Contents -- PKEY_Search_Contents</para>
@@ -6194,7 +8532,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_Storage) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Storage"/>, 19 (PID_STG_CONTENTS)</para>
                 /// </summary>
-                public static PropertyKey Contents => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Storage), 19);
+                public static PropertyKey Contents => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Storage, 19);
 
                 /// <summary>
                 /// <para>Name: System.Search.EntryID -- PKEY_Search_EntryID</para>
@@ -6204,7 +8546,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
                 /// <para>FormatID: (FMTID_Query) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Query"/>, 5 (PROPID_QUERY_WORKID)</para>
                 /// </summary>
-                public static PropertyKey EntryID => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Query), 5);
+                public static PropertyKey EntryID => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Query, 5);
 
                 /// <summary>
                 /// <para>Name: System.Search.ExtendedProperties -- PKEY_Search_ExtendedProperties</para>
@@ -6212,7 +8558,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Blob -- VT_BLOB</para>
                 /// <para>FormatID: {7B03B546-FA4F-4A52-A2FE-03D5311E5865}, 100</para>
                 /// </summary>
-                public static PropertyKey ExtendedProperties => new PropertyKey(new Guid("{7B03B546-FA4F-4A52-A2FE-03D5311E5865}"), 100);
+                public static PropertyKey ExtendedProperties => new
+#if !CS9
+				PropertyKey
+#endif
+				("{7B03B546-FA4F-4A52-A2FE-03D5311E5865}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Search.GatherTime -- PKEY_Search_GatherTime</para>
@@ -6221,7 +8571,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
                 /// <para>FormatID: {0B63E350-9CCC-11D0-BCDB-00805FCCCE04}, 8</para>
                 /// </summary>
-                public static PropertyKey GatherTime => new PropertyKey(new Guid("{0B63E350-9CCC-11D0-BCDB-00805FCCCE04}"), 8);
+                public static PropertyKey GatherTime => new
+#if !CS9
+				PropertyKey
+#endif
+				("{0B63E350-9CCC-11D0-BCDB-00805FCCCE04}", 8);
 
                 /// <summary>
                 /// <para>Name: System.Search.HitCount -- PKEY_Search_HitCount</para>
@@ -6231,7 +8585,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
                 /// <para>FormatID: (FMTID_Query) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Query"/>, 4 (PROPID_QUERY_HITCOUNT)</para>
                 /// </summary>
-                public static PropertyKey HitCount => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Query), 4);
+                public static PropertyKey HitCount => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Query, 4);
 
                 /// <summary>
                 /// <para>Name: System.Search.IsClosedDirectory -- PKEY_Search_IsClosedDirectory</para>
@@ -6240,7 +8598,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {0B63E343-9CCC-11D0-BCDB-00805FCCCE04}, 23</para>
                 /// </summary>
-                public static PropertyKey IsClosedDirectory => new PropertyKey(new Guid("{0B63E343-9CCC-11D0-BCDB-00805FCCCE04}"), 23);
+                public static PropertyKey IsClosedDirectory => new
+#if !CS9
+				PropertyKey
+#endif
+				("{0B63E343-9CCC-11D0-BCDB-00805FCCCE04}", 23);
 
                 /// <summary>
                 /// <para>Name: System.Search.IsFullyContained -- PKEY_Search_IsFullyContained</para>
@@ -6249,7 +8611,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {0B63E343-9CCC-11D0-BCDB-00805FCCCE04}, 24</para>
                 /// </summary>
-                public static PropertyKey IsFullyContained => new PropertyKey(new Guid("{0B63E343-9CCC-11D0-BCDB-00805FCCCE04}"), 24);
+                public static PropertyKey IsFullyContained => new
+#if !CS9
+				PropertyKey
+#endif
+				("{0B63E343-9CCC-11D0-BCDB-00805FCCCE04}", 24);
 
                 /// <summary>
                 /// <para>Name: System.Search.QueryFocusedSummary -- PKEY_Search_QueryFocusedSummary</para>
@@ -6258,7 +8624,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {560C36C0-503A-11CF-BAA1-00004C752A9A}, 3</para>
                 /// </summary>
-                public static PropertyKey QueryFocusedSummary => new PropertyKey(new Guid("{560C36C0-503A-11CF-BAA1-00004C752A9A}"), 3);
+                public static PropertyKey QueryFocusedSummary => new
+#if !CS9
+				PropertyKey
+#endif
+				("{560C36C0-503A-11CF-BAA1-00004C752A9A}", 3);
 
                 /// <summary>
                 /// <para>Name: System.Search.QueryFocusedSummaryWithFallback -- PKEY_Search_QueryFocusedSummaryWithFallback</para>
@@ -6267,7 +8637,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {560C36C0-503A-11CF-BAA1-00004C752A9A}, 4</para>
                 /// </summary>
-                public static PropertyKey QueryFocusedSummaryWithFallback => new PropertyKey(new Guid("{560C36C0-503A-11CF-BAA1-00004C752A9A}"), 4);
+                public static PropertyKey QueryFocusedSummaryWithFallback => new
+#if !CS9
+				PropertyKey
+#endif
+				("{560C36C0-503A-11CF-BAA1-00004C752A9A}", 4);
 
                 /// <summary>
                 /// <para>Name: System.Search.Rank -- PKEY_Search_Rank</para>
@@ -6276,7 +8650,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="int"/> -- <see cref="VarEnum.VT_I4"/></para>
                 /// <para>FormatID: (FMTID_Query) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Query"/>, 3 (PROPID_QUERY_RANK)</para>
                 /// </summary>
-                public static PropertyKey Rank => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Query), 3);
+                public static PropertyKey Rank => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Query, 3);
 
                 /// <summary>
                 /// <para>Name: System.Search.Store -- PKEY_Search_Store</para>
@@ -6285,7 +8663,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {A06992B3-8CAF-4ED7-A547-B259E32AC9FC}, 100</para>
                 /// </summary>
-                public static PropertyKey Store => new PropertyKey(new Guid("{A06992B3-8CAF-4ED7-A547-B259E32AC9FC}"), 100);
+                public static PropertyKey Store => new
+#if !CS9
+				PropertyKey
+#endif
+				("{A06992B3-8CAF-4ED7-A547-B259E32AC9FC}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Search.UrlToIndex -- PKEY_Search_UrlToIndex</para>
@@ -6294,7 +8676,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {0B63E343-9CCC-11D0-BCDB-00805FCCCE04}, 2</para>
                 /// </summary>
-                public static PropertyKey UrlToIndex => new PropertyKey(new Guid("{0B63E343-9CCC-11D0-BCDB-00805FCCCE04}"), 2);
+                public static PropertyKey UrlToIndex => new
+#if !CS9
+				PropertyKey
+#endif
+				("{0B63E343-9CCC-11D0-BCDB-00805FCCCE04}", 2);
 
                 /// <summary>
                 /// <para>Name: System.Search.UrlToIndexWithModificationTime -- PKEY_Search_UrlToIndexWithModificationTime</para>
@@ -6303,11 +8689,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue Any -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_NULL"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_NULL"/>)</para>
                 /// <para>FormatID: {0B63E343-9CCC-11D0-BCDB-00805FCCCE04}, 12</para>
                 /// </summary>
-                public static PropertyKey UrlToIndexWithModificationTime => new PropertyKey(new Guid("{0B63E343-9CCC-11D0-BCDB-00805FCCCE04}"), 12);
+                public static PropertyKey UrlToIndexWithModificationTime => new
+#if !CS9
+				PropertyKey
+#endif
+				("{0B63E343-9CCC-11D0-BCDB-00805FCCCE04}", 12);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -6315,10 +8702,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Shell
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Shell.OmitFromView -- PKEY_Shell_OmitFromView</para>
                 /// <para>Description: Set this to a <see cref="string"/> value of 'True' to omit this item from shell views
@@ -6326,7 +8710,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {DE35258C-C695-4CBC-B982-38B0AD24CED0}, 2</para>
                 /// </summary>
-                public static PropertyKey OmitFromView => new PropertyKey(new Guid("{DE35258C-C695-4CBC-B982-38B0AD24CED0}"), 2);
+                public static PropertyKey OmitFromView => new
+#if !CS9
+				PropertyKey
+#endif
+				("{DE35258C-C695-4CBC-B982-38B0AD24CED0}", 2);
 
                 /// <summary>
                 /// <para>Name: System.Shell.SFGAOFlagsStrings -- PKEY_Shell_SFGAOFlagsStrings</para>
@@ -6336,11 +8724,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>FormatID: {D6942081-D53B-443D-AD47-5E059D9CD27A}, 2</para>
                 /// </summary>
                 [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Flags")]
-                public static PropertyKey SFGAOFlagsStrings => new PropertyKey(new Guid("{D6942081-D53B-443D-AD47-5E059D9CD27A}"), 2);
+                public static PropertyKey SFGAOFlagsStrings => new
+#if !CS9
+				PropertyKey
+#endif
+				("{D6942081-D53B-443D-AD47-5E059D9CD27A}", 2);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -6348,10 +8737,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Software
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Software.DateLastUsed -- PKEY_Software_DateLastUsed</para>
                 /// <para>Description: 
@@ -6359,7 +8745,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="DateTime"/> -- <see cref="VarEnum.VT_FILETIME"/>  (For variants: <see cref="VarEnum.VT_DATE"/>)</para>
                 /// <para>FormatID: {841E4F90-FF59-4D16-8947-E81BBFFAB36D}, 16</para>
                 /// </summary>
-                public static PropertyKey DateLastUsed => new PropertyKey(new Guid("{841E4F90-FF59-4D16-8947-E81BBFFAB36D}"), 16);
+                public static PropertyKey DateLastUsed => new
+#if !CS9
+				PropertyKey
+#endif
+				("{841E4F90-FF59-4D16-8947-E81BBFFAB36D}", 16);
 
                 /// <summary>
                 /// <para>Name: System.Software.ProductName -- PKEY_Software_ProductName</para>
@@ -6368,11 +8758,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSFMTID_VERSION) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Version"/>, 7</para>
                 /// </summary>
-                public static PropertyKey ProductName => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Version), 7);
+                public static PropertyKey ProductName => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Version, 7);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -6380,17 +8771,18 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Sync
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Sync.Comments -- PKEY_Sync_Comments</para>
                 /// <para>Description: </para>
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {7BD5533E-AF15-44DB-B8C8-BD6624E1D032}, 13</para>
                 /// </summary>
-                public static PropertyKey Comments => new PropertyKey(new Guid("{7BD5533E-AF15-44DB-B8C8-BD6624E1D032}"), 13);
+                public static PropertyKey Comments => new
+#if !CS9
+				PropertyKey
+#endif
+				("{7BD5533E-AF15-44DB-B8C8-BD6624E1D032}", 13);
 
                 /// <summary>
                 /// <para>Name: System.Sync.ConflictDescription -- PKEY_Sync_ConflictDescription</para>
@@ -6398,7 +8790,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {CE50C159-2FB8-41FD-BE68-D3E042E274BC}, 4</para>
                 /// </summary>
-                public static PropertyKey ConflictDescription => new PropertyKey(new Guid("{CE50C159-2FB8-41FD-BE68-D3E042E274BC}"), 4);
+                public static PropertyKey ConflictDescription => new
+#if !CS9
+				PropertyKey
+#endif
+				("{CE50C159-2FB8-41FD-BE68-D3E042E274BC}", 4);
 
                 /// <summary>
                 /// <para>Name: System.Sync.ConflictFirstLocation -- PKEY_Sync_ConflictFirstLocation</para>
@@ -6406,7 +8802,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {CE50C159-2FB8-41FD-BE68-D3E042E274BC}, 6</para>
                 /// </summary>
-                public static PropertyKey ConflictFirstLocation => new PropertyKey(new Guid("{CE50C159-2FB8-41FD-BE68-D3E042E274BC}"), 6);
+                public static PropertyKey ConflictFirstLocation => new
+#if !CS9
+				PropertyKey
+#endif
+				("{CE50C159-2FB8-41FD-BE68-D3E042E274BC}", 6);
 
                 /// <summary>
                 /// <para>Name: System.Sync.ConflictSecondLocation -- PKEY_Sync_ConflictSecondLocation</para>
@@ -6414,7 +8814,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {CE50C159-2FB8-41FD-BE68-D3E042E274BC}, 7</para>
                 /// </summary>
-                public static PropertyKey ConflictSecondLocation => new PropertyKey(new Guid("{CE50C159-2FB8-41FD-BE68-D3E042E274BC}"), 7);
+                public static PropertyKey ConflictSecondLocation => new
+#if !CS9
+				PropertyKey
+#endif
+				("{CE50C159-2FB8-41FD-BE68-D3E042E274BC}", 7);
 
                 /// <summary>
                 /// <para>Name: System.Sync.HandlerCollectionID -- PKEY_Sync_HandlerCollectionID</para>
@@ -6422,7 +8826,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="Guid"/> -- <see cref="VarEnum.VT_CLSID"/></para>
                 /// <para>FormatID: {7BD5533E-AF15-44DB-B8C8-BD6624E1D032}, 2</para>
                 /// </summary>
-                public static PropertyKey HandlerCollectionID => new PropertyKey(new Guid("{7BD5533E-AF15-44DB-B8C8-BD6624E1D032}"), 2);
+                public static PropertyKey HandlerCollectionID => new
+#if !CS9
+				PropertyKey
+#endif
+				("{7BD5533E-AF15-44DB-B8C8-BD6624E1D032}", 2);
 
                 /// <summary>
                 /// <para>Name: System.Sync.HandlerID -- PKEY_Sync_HandlerID</para>
@@ -6430,7 +8838,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {7BD5533E-AF15-44DB-B8C8-BD6624E1D032}, 3</para>
                 /// </summary>
-                public static PropertyKey HandlerID => new PropertyKey(new Guid("{7BD5533E-AF15-44DB-B8C8-BD6624E1D032}"), 3);
+                public static PropertyKey HandlerID => new
+#if !CS9
+				PropertyKey
+#endif
+				("{7BD5533E-AF15-44DB-B8C8-BD6624E1D032}", 3);
 
                 /// <summary>
                 /// <para>Name: System.Sync.HandlerName -- PKEY_Sync_HandlerName</para>
@@ -6438,7 +8850,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {CE50C159-2FB8-41FD-BE68-D3E042E274BC}, 2</para>
                 /// </summary>
-                public static PropertyKey HandlerName => new PropertyKey(new Guid("{CE50C159-2FB8-41FD-BE68-D3E042E274BC}"), 2);
+                public static PropertyKey HandlerName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{CE50C159-2FB8-41FD-BE68-D3E042E274BC}", 2);
 
                 /// <summary>
                 /// <para>Name: System.Sync.HandlerType -- PKEY_Sync_HandlerType</para>
@@ -6447,7 +8863,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {7BD5533E-AF15-44DB-B8C8-BD6624E1D032}, 8</para>
                 /// </summary>
-                public static PropertyKey HandlerType => new PropertyKey(new Guid("{7BD5533E-AF15-44DB-B8C8-BD6624E1D032}"), 8);
+                public static PropertyKey HandlerType => new
+#if !CS9
+				PropertyKey
+#endif
+				("{7BD5533E-AF15-44DB-B8C8-BD6624E1D032}", 8);
 
                 /// <summary>
                 /// <para>Name: System.Sync.HandlerTypeLabel -- PKEY_Sync_HandlerTypeLabel</para>
@@ -6456,7 +8876,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {7BD5533E-AF15-44DB-B8C8-BD6624E1D032}, 9</para>
                 /// </summary>
-                public static PropertyKey HandlerTypeLabel => new PropertyKey(new Guid("{7BD5533E-AF15-44DB-B8C8-BD6624E1D032}"), 9);
+                public static PropertyKey HandlerTypeLabel => new
+#if !CS9
+				PropertyKey
+#endif
+				("{7BD5533E-AF15-44DB-B8C8-BD6624E1D032}", 9);
 
                 /// <summary>
                 /// <para>Name: System.Sync.ItemID -- PKEY_Sync_ItemID</para>
@@ -6464,7 +8888,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {7BD5533E-AF15-44DB-B8C8-BD6624E1D032}, 6</para>
                 /// </summary>
-                public static PropertyKey ItemID => new PropertyKey(new Guid("{7BD5533E-AF15-44DB-B8C8-BD6624E1D032}"), 6);
+                public static PropertyKey ItemID => new
+#if !CS9
+				PropertyKey
+#endif
+				("{7BD5533E-AF15-44DB-B8C8-BD6624E1D032}", 6);
 
                 /// <summary>
                 /// <para>Name: System.Sync.ItemName -- PKEY_Sync_ItemName</para>
@@ -6472,7 +8900,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {CE50C159-2FB8-41FD-BE68-D3E042E274BC}, 3</para>
                 /// </summary>
-                public static PropertyKey ItemName => new PropertyKey(new Guid("{CE50C159-2FB8-41FD-BE68-D3E042E274BC}"), 3);
+                public static PropertyKey ItemName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{CE50C159-2FB8-41FD-BE68-D3E042E274BC}", 3);
 
                 /// <summary>
                 /// <para>Name: System.Sync.ProgressPercentage -- PKEY_Sync_ProgressPercentage</para>
@@ -6481,7 +8913,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {7BD5533E-AF15-44DB-B8C8-BD6624E1D032}, 23</para>
                 /// </summary>
-                public static PropertyKey ProgressPercentage => new PropertyKey(new Guid("{7BD5533E-AF15-44DB-B8C8-BD6624E1D032}"), 23);
+                public static PropertyKey ProgressPercentage => new
+#if !CS9
+				PropertyKey
+#endif
+				("{7BD5533E-AF15-44DB-B8C8-BD6624E1D032}", 23);
 
                 /// <summary>
                 /// <para>Name: System.Sync.State -- PKEY_Sync_State</para>
@@ -6490,7 +8926,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: {7BD5533E-AF15-44DB-B8C8-BD6624E1D032}, 24</para>
                 /// </summary>
-                public static PropertyKey State => new PropertyKey(new Guid("{7BD5533E-AF15-44DB-B8C8-BD6624E1D032}"), 24);
+                public static PropertyKey State => new
+#if !CS9
+				PropertyKey
+#endif
+				("{7BD5533E-AF15-44DB-B8C8-BD6624E1D032}", 24);
 
                 /// <summary>
                 /// <para>Name: System.Sync.Status -- PKEY_Sync_Status</para>
@@ -6498,11 +8938,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {7BD5533E-AF15-44DB-B8C8-BD6624E1D032}, 10</para>
                 /// </summary>
-                public static PropertyKey Status => new PropertyKey(new Guid("{7BD5533E-AF15-44DB-B8C8-BD6624E1D032}"), 10);
+                public static PropertyKey Status => new
+#if !CS9
+				PropertyKey
+#endif
+				("{7BD5533E-AF15-44DB-B8C8-BD6624E1D032}", 10);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -6510,17 +8951,18 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Task
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Task.BillingInformation -- PKEY_Task_BillingInformation</para>
                 /// <para>Description: </para>
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {D37D52C6-261C-4303-82B3-08B926AC6F12}, 100</para>
                 /// </summary>
-                public static PropertyKey BillingInformation => new PropertyKey(new Guid("{D37D52C6-261C-4303-82B3-08B926AC6F12}"), 100);
+                public static PropertyKey BillingInformation => new
+#if !CS9
+				PropertyKey
+#endif
+				("{D37D52C6-261C-4303-82B3-08B926AC6F12}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Task.CompletionStatus -- PKEY_Task_CompletionStatus</para>
@@ -6528,7 +8970,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {084D8A0A-E6D5-40DE-BF1F-C8820E7C877C}, 100</para>
                 /// </summary>
-                public static PropertyKey CompletionStatus => new PropertyKey(new Guid("{084D8A0A-E6D5-40DE-BF1F-C8820E7C877C}"), 100);
+                public static PropertyKey CompletionStatus => new
+#if !CS9
+				PropertyKey
+#endif
+				("{084D8A0A-E6D5-40DE-BF1F-C8820E7C877C}", 100);
 
                 /// <summary>
                 /// <para>Name: System.Task.Owner -- PKEY_Task_Owner</para>
@@ -6536,11 +8982,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: {08C7CC5F-60F2-4494-AD75-55E3E0B5ADD0}, 100</para>
                 /// </summary>
-                public static PropertyKey Owner => new PropertyKey(new Guid("{08C7CC5F-60F2-4494-AD75-55E3E0B5ADD0}"), 100);
+                public static PropertyKey Owner => new
+#if !CS9
+				PropertyKey
+#endif
+				("{08C7CC5F-60F2-4494-AD75-55E3E0B5ADD0}", 100);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -6548,10 +8995,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Video
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Video.Compression -- PKEY_Video_Compression</para>
                 /// <para>Description: Indicates the level of compression for the video stream.  "Compression".
@@ -6559,7 +9003,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_VideoSummaryInformation) {64440491-4C8B-11D1-8B70-080036B11A03}, 10 (PIDVSI_COMPRESSION)</para>
                 /// </summary>
-                public static PropertyKey Compression => new PropertyKey(new Guid("{64440491-4C8B-11D1-8B70-080036B11A03}"), 10);
+                public static PropertyKey Compression => new
+#if !CS9
+				PropertyKey
+#endif
+				("{64440491-4C8B-11D1-8B70-080036B11A03}", 10);
 
                 /// <summary>
                 /// <para>Name: System.Video.Director -- PKEY_Video_Director</para>
@@ -6568,7 +9016,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: Multivalue <see cref="string"/> -- <see cref="VarEnum.VT_VECTOR"/> | <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_ARRAY"/> | <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (PSGUID_MEDIAFILESUMMARYINFORMATION) <see cref="SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation"/>, 20 (PIDMSI_DIRECTOR)</para>
                 /// </summary>
-                public static PropertyKey Director => new PropertyKey(new Guid(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation), 20);
+                public static PropertyKey Director => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.PSGUID_MediaFileSummaryInformation, 20);
 
                 /// <summary>
                 /// <para>Name: System.Video.EncodingBitrate -- PKEY_Video_EncodingBitrate</para>
@@ -6577,7 +9029,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: (FMTID_VideoSummaryInformation) {64440491-4C8B-11D1-8B70-080036B11A03}, 8 (PIDVSI_DATA_RATE)</para>
                 /// </summary>
-                public static PropertyKey EncodingBitrate => new PropertyKey(new Guid("{64440491-4C8B-11D1-8B70-080036B11A03}"), 8);
+                public static PropertyKey EncodingBitrate => new
+#if !CS9
+				PropertyKey
+#endif
+				("{64440491-4C8B-11D1-8B70-080036B11A03}", 8);
 
                 /// <summary>
                 /// <para>Name: System.Video.FourCC -- PKEY_Video_FourCC</para>
@@ -6586,7 +9042,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: (FMTID_VideoSummaryInformation) {64440491-4C8B-11D1-8B70-080036B11A03}, 44</para>
                 /// </summary>
-                public static PropertyKey FourCC => new PropertyKey(new Guid("{64440491-4C8B-11D1-8B70-080036B11A03}"), 44);
+                public static PropertyKey FourCC => new
+#if !CS9
+				PropertyKey
+#endif
+				("{64440491-4C8B-11D1-8B70-080036B11A03}", 44);
 
                 /// <summary>
                 /// <para>Name: System.Video.FrameHeight -- PKEY_Video_FrameHeight</para>
@@ -6595,7 +9055,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: (FMTID_VideoSummaryInformation) {64440491-4C8B-11D1-8B70-080036B11A03}, 4</para>
                 /// </summary>
-                public static PropertyKey FrameHeight => new PropertyKey(new Guid("{64440491-4C8B-11D1-8B70-080036B11A03}"), 4);
+                public static PropertyKey FrameHeight => new
+#if !CS9
+				PropertyKey
+#endif
+				("{64440491-4C8B-11D1-8B70-080036B11A03}", 4);
 
                 /// <summary>
                 /// <para>Name: System.Video.FrameRate -- PKEY_Video_FrameRate</para>
@@ -6604,7 +9068,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: (FMTID_VideoSummaryInformation) {64440491-4C8B-11D1-8B70-080036B11A03}, 6 (PIDVSI_FRAME_RATE)</para>
                 /// </summary>
-                public static PropertyKey FrameRate => new PropertyKey(new Guid("{64440491-4C8B-11D1-8B70-080036B11A03}"), 6);
+                public static PropertyKey FrameRate => new
+#if !CS9
+				PropertyKey
+#endif
+				("{64440491-4C8B-11D1-8B70-080036B11A03}", 6);
 
                 /// <summary>
                 /// <para>Name: System.Video.FrameWidth -- PKEY_Video_FrameWidth</para>
@@ -6613,7 +9081,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: (FMTID_VideoSummaryInformation) {64440491-4C8B-11D1-8B70-080036B11A03}, 3</para>
                 /// </summary>
-                public static PropertyKey FrameWidth => new PropertyKey(new Guid("{64440491-4C8B-11D1-8B70-080036B11A03}"), 3);
+                public static PropertyKey FrameWidth => new
+#if !CS9
+				PropertyKey
+#endif
+				("{64440491-4C8B-11D1-8B70-080036B11A03}", 3);
 
                 /// <summary>
                 /// <para>Name: System.Video.HorizontalAspectRatio -- PKEY_Video_HorizontalAspectRatio</para>
@@ -6623,7 +9095,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: (FMTID_VideoSummaryInformation) {64440491-4C8B-11D1-8B70-080036B11A03}, 42</para>
                 /// </summary>
-                public static PropertyKey HorizontalAspectRatio => new PropertyKey(new Guid("{64440491-4C8B-11D1-8B70-080036B11A03}"), 42);
+                public static PropertyKey HorizontalAspectRatio => new
+#if !CS9
+				PropertyKey
+#endif
+				("{64440491-4C8B-11D1-8B70-080036B11A03}", 42);
 
                 /// <summary>
                 /// <para>Name: System.Video.SampleSize -- PKEY_Video_SampleSize</para>
@@ -6632,7 +9108,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: (FMTID_VideoSummaryInformation) {64440491-4C8B-11D1-8B70-080036B11A03}, 9 (PIDVSI_SAMPLE_SIZE)</para>
                 /// </summary>
-                public static PropertyKey SampleSize => new PropertyKey(new Guid("{64440491-4C8B-11D1-8B70-080036B11A03}"), 9);
+                public static PropertyKey SampleSize => new
+#if !CS9
+				PropertyKey
+#endif
+				("{64440491-4C8B-11D1-8B70-080036B11A03}", 9);
 
                 /// <summary>
                 /// <para>Name: System.Video.StreamName -- PKEY_Video_StreamName</para>
@@ -6641,7 +9121,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_VideoSummaryInformation) {64440491-4C8B-11D1-8B70-080036B11A03}, 2 (PIDVSI_STREAM_NAME)</para>
                 /// </summary>
-                public static PropertyKey StreamName => new PropertyKey(new Guid("{64440491-4C8B-11D1-8B70-080036B11A03}"), 2);
+                public static PropertyKey StreamName => new
+#if !CS9
+				PropertyKey
+#endif
+				("{64440491-4C8B-11D1-8B70-080036B11A03}", 2);
 
                 /// <summary>
                 /// <para>Name: System.Video.StreamNumber -- PKEY_Video_StreamNumber</para>
@@ -6650,7 +9134,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="ushort"/> -- <see cref="VarEnum.VT_UI2"/></para>
                 /// <para>FormatID: (FMTID_VideoSummaryInformation) {64440491-4C8B-11D1-8B70-080036B11A03}, 11 (PIDVSI_STREAM_NUMBER)</para>
                 /// </summary>
-                public static PropertyKey StreamNumber => new PropertyKey(new Guid("{64440491-4C8B-11D1-8B70-080036B11A03}"), 11);
+                public static PropertyKey StreamNumber => new
+#if !CS9
+				PropertyKey
+#endif
+				("{64440491-4C8B-11D1-8B70-080036B11A03}", 11);
 
                 /// <summary>
                 /// <para>Name: System.Video.TotalBitrate -- PKEY_Video_TotalBitrate</para>
@@ -6659,7 +9147,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: (FMTID_VideoSummaryInformation) {64440491-4C8B-11D1-8B70-080036B11A03}, 43 (PIDVSI_TOTAL_BITRATE)</para>
                 /// </summary>
-                public static PropertyKey TotalBitrate => new PropertyKey(new Guid("{64440491-4C8B-11D1-8B70-080036B11A03}"), 43);
+                public static PropertyKey TotalBitrate => new
+#if !CS9
+				PropertyKey
+#endif
+				("{64440491-4C8B-11D1-8B70-080036B11A03}", 43);
 
                 /// <summary>
                 /// <para>Name: System.Video.TranscodedForSync -- PKEY_Video_TranscodedForSync</para>
@@ -6667,7 +9159,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: (FMTID_VideoSummaryInformation) {64440491-4C8B-11D1-8B70-080036B11A03}, 46</para>
                 /// </summary>
-                public static PropertyKey TranscodedForSync => new PropertyKey(new Guid("{64440491-4C8B-11D1-8B70-080036B11A03}"), 46);
+                public static PropertyKey TranscodedForSync => new
+#if !CS9
+				PropertyKey
+#endif
+				("{64440491-4C8B-11D1-8B70-080036B11A03}", 46);
 
                 /// <summary>
                 /// <para>Name: System.Video.VerticalAspectRatio -- PKEY_Video_VerticalAspectRatio</para>
@@ -6677,11 +9173,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
                 /// <para>FormatID: (FMTID_VideoSummaryInformation) {64440491-4C8B-11D1-8B70-080036B11A03}, 45</para>
                 /// </summary>
-                public static PropertyKey VerticalAspectRatio => new PropertyKey(new Guid("{64440491-4C8B-11D1-8B70-080036B11A03}"), 45);
+                public static PropertyKey VerticalAspectRatio => new
+#if !CS9
+				PropertyKey
+#endif
+				("{64440491-4C8B-11D1-8B70-080036B11A03}", 45);
                 #endregion
-
-
-
             }
 
             /// <summary>
@@ -6689,10 +9186,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             /// </summary>
             public static class Volume
             {
-
-
                 #region Properties
-
                 /// <summary>
                 /// <para>Name: System.Volume.FileSystem -- PKEY_Volume_FileSystem</para>
                 /// <para>Description: Indicates the filesystem of the volume.
@@ -6700,7 +9194,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="string"/> -- <see cref="VarEnum.VT_LPWSTR"/>  (For variants: <see cref="VarEnum.VT_BSTR"/>)</para>
                 /// <para>FormatID: (FMTID_Volume) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Volume"/>, 4 (PID_VOLUME_FILESYSTEM)  (Filesystem Volume Properties)</para>
                 /// </summary>
-                public static PropertyKey FileSystem => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Volume), 4);
+                public static PropertyKey FileSystem => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Volume, 4);
 
                 /// <summary>
                 /// <para>Name: System.Volume.IsMappedDrive -- PKEY_Volume_IsMappedDrive</para>
@@ -6708,7 +9206,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: {149C0B69-2C2D-48FC-808F-D318D78C4636}, 2</para>
                 /// </summary>
-                public static PropertyKey IsMappedDrive => new PropertyKey(new Guid("{149C0B69-2C2D-48FC-808F-D318D78C4636}"), 2);
+                public static PropertyKey IsMappedDrive => new
+#if !CS9
+				PropertyKey
+#endif
+				("{149C0B69-2C2D-48FC-808F-D318D78C4636}", 2);
 
                 /// <summary>
                 /// <para>Name: System.Volume.IsRoot -- PKEY_Volume_IsRoot</para>
@@ -6717,11 +9219,12 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
                 /// <para>Type: <see cref="bool"/> -- <see cref="VarEnum.VT_BOOL"/></para>
                 /// <para>FormatID: (FMTID_Volume) <see cref="SystemPropertiesGuids.FormatIdentifiersGuids.Volume"/>, 10  (Filesystem Volume Properties)</para>
                 /// </summary>
-                public static PropertyKey IsRoot => new PropertyKey(new Guid(SystemPropertiesGuids.FormatIdentifiersGuids.Volume), 10);
+                public static PropertyKey IsRoot => new
+#if !CS9
+				PropertyKey
+#endif
+				(SystemPropertiesGuids.FormatIdentifiersGuids.Volume, 10);
                 #endregion
-
-
-
             }
             #endregion
         }

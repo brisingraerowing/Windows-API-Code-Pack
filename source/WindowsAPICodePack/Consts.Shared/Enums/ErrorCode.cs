@@ -1,7 +1,5 @@
 ﻿namespace Microsoft.WindowsAPICodePack.Win32Native
 {
-    // todo: add the other codes
-
     public enum ErrorCode
     {
         /// <summary>
@@ -8023,340 +8021,338 @@
 
 
 
-        //        /// <summary>
-        //        /// <para>MessageId: PEERDIST_ERROR_CONTENTINFO_VERSION_UNSUPPORTED</para>
-        //        /// <para>MessageText: The version of the supplied content information is not supported.</para>
-        //        /// </summary>
-        //        StErrorContentinfoVersionUnsupported = 4050,
+        /// <summary>
+        /// <para>MessageId: PEERDIST_ERROR_CONTENTINFO_VERSION_UNSUPPORTED</para>
+        /// <para>MessageText: The version of the supplied content information is not supported.</para>
+        /// </summary>
+        PeerDistContentInfoVersionUnsupported = 4050,
 
-        //        /// <summary>
-        //        /// <para>MessageId: PEERDIST_ERROR_CANNOT_PARSE_CONTENTINFO</para>
-        //        /// <para>MessageText: The supplied content information is malformed.</para>
-        //        /// </summary>
-        //        StErrorCannotParseContentinfo = 4051,
+        /// <summary>
+        /// <para>MessageId: PEERDIST_ERROR_CANNOT_PARSE_CONTENTINFO</para>
+        /// <para>MessageText: The supplied content information is malformed.</para>
+        /// </summary>
+        PeerDistCannotParseContentInfo = 4051,
 
-        //        /// <summary>
-        //        /// <para>MessageId: PEERDIST_ERROR_MISSING_DATA</para>
-        //        /// <para>MessageText: The requested data cannot be found in local or peer caches.</para>
-        //        /// </summary>
-        //        StErrorMissingData = 4052,
+        /// <summary>
+        /// <para>MessageId: PEERDIST_ERROR_MISSING_DATA</para>
+        /// <para>MessageText: The requested data cannot be found in local or peer caches.</para>
+        /// </summary>
+        PeerDistMissingData = 4052,
 
-        //        /// <summary>
-        //        /// <para>MessageId: PEERDIST_ERROR_NO_MORE</para>
-        //        /// <para>MessageText: No more data is available or required.</para>
-        //        /// </summary>
-        //        StErrorNoMore = 4053,
+        /// <summary>
+        /// <para>MessageId: PEERDIST_ERROR_NO_MORE</para>
+        /// <para>MessageText: No more data is available or required.</para>
+        /// </summary>
+        PeerDistNoMore = 4053,
 
-        //        /// <summary>
-        //        /// <para>MessageId: PEERDIST_ERROR_NOT_INITIALIZED</para>
-        //        /// <para>MessageText: The supplied object has not been initialized.</para>
-        //        /// </summary>
-        //        StErrorNotInitialized = 4054,
+        /// <summary>
+        /// <para>MessageId: PEERDIST_ERROR_NOT_INITIALIZED</para>
+        /// <para>MessageText: The supplied object has not been initialized.</para>
+        /// </summary>
+        PeerDistNotInitialized = 4054,
 
-        //        /// <summary>
-        //        /// <para>MessageId: PEERDIST_ERROR_ALREADY_INITIALIZED</para>
-        //        /// <para>MessageText: The supplied object has already been initialized.</para>
-        //        /// </summary>
-        //        StErrorAlreadyInitialized = 4055,
+        /// <summary>
+        /// <para>MessageId: PEERDIST_ERROR_ALREADY_INITIALIZED</para>
+        /// <para>MessageText: The supplied object has already been initialized.</para>
+        /// </summary>
+        PeerDistAlreadyInitialized = 4055,
 
-        //        /// <summary>
-        //        /// <para>MessageId: PEERDIST_ERROR_SHUTDOWN_IN_PROGRESS</para>
-        //        /// <para>MessageText: A shutdown operation is already in progress.</para>
-        //        /// </summary>
-        //        StErrorShutdownInProgress = 4056,
+        /// <summary>
+        /// <para>MessageId: PEERDIST_ERROR_SHUTDOWN_IN_PROGRESS</para>
+        /// <para>MessageText: A shutdown operation is already in progress.</para>
+        /// </summary>
+        PeerDistShutdownInProgress = 4056,
 
-        //        /// <summary>
-        //        /// <para>MessageId: PEERDIST_ERROR_INVALIDATED</para>
-        //        /// <para>MessageText: The supplied object has already been invalidated.</para>
-        //        /// </summary>
-        //        StErrorInvalidated = 4057,
+        /// <summary>
+        /// <para>MessageId: PEERDIST_ERROR_INVALIDATED</para>
+        /// <para>MessageText: The supplied object has already been invalidated.</para>
+        /// </summary>
+        PeerDistInvalidated = 4057,
 
-        //        /// <summary>
-        //        /// <para>MessageId: PEERDIST_ERROR_ALREADY_EXISTS</para>
-        //        /// <para>MessageText: An element already exists and was not replaced.</para>
-        //        /// </summary>
-        //        StErrorAlreadyExists = 4058,
+        /// <summary>
+        /// <para>MessageId: PEERDIST_ERROR_ALREADY_EXISTS</para>
+        /// <para>MessageText: An element already exists and was not replaced.</para>
+        /// </summary>
+        PeerDistAlreadyExists = 4058,
 
-        //        /// <summary>
-        //        /// <para>MessageId: PEERDIST_ERROR_OPERATION_NOTFOUND</para>
-        //        /// <para>MessageText: Can not cancel the requested operation as it has already been completed.</para>
-        //        /// </summary>
-        //        StErrorOperationNotfound = 4059,
+        /// <summary>
+        /// <para>MessageId: PEERDIST_ERROR_OPERATION_NOTFOUND</para>
+        /// <para>MessageText: Can not cancel the requested operation as it has already been completed.</para>
+        /// </summary>
+        PeerDistOperationNotFound = 4059,
 
-        //        /// <summary>
-        //        /// <para>MessageId: PEERDIST_ERROR_ALREADY_COMPLETED</para>
-        //        /// <para>MessageText: Can not perform the requested operation because it has already been carried out.</para>
-        //        /// </summary>
-        //        StErrorAlreadyCompleted = 4060,
+        /// <summary>
+        /// <para>MessageId: PEERDIST_ERROR_ALREADY_COMPLETED</para>
+        /// <para>MessageText: Can not perform the requested operation because it has already been carried out.</para>
+        /// </summary>
+        PeerDistAlreadyCompleted = 4060,
 
-        // todo: to check
+        /// <summary>
+        /// <para>MessageId: PEERDIST_ERROR_OUT_OF_BOUNDS</para>
+        /// <para>MessageText: An operation accessed data beyond the bounds of valid data.</para>
+        /// </summary>
+        PeerDistOutOfBounds = 4061,
 
-        //        /// <summary>
-        //        /// <para>MessageId: PEERDIST_ERROR_OUT_OF_BOUNDS</para>
-        //        /// <para>MessageText: An operation accessed data beyond the bounds of valid data.</para>
-        //        /// </summary>
-        //        StErrorOutOfBounds = 4061,
+        /// <summary>
+        /// <para>MessageId: PEERDIST_ERROR_VERSION_UNSUPPORTED</para>
+        /// <para>MessageText: The requested version is not supported.</para>
+        /// </summary>
+        PeerDistVersionUnsupported = 4062,
 
-        //        /// <summary>
-        //        /// <para>MessageId: PEERDIST_ERROR_VERSION_UNSUPPORTED</para>
-        //        /// <para>MessageText: The requested version is not supported.</para>
-        //        /// </summary>
-        //        StErrorVersionUnsupported = 4062,
+        /// <summary>
+        /// <para>MessageId: PEERDIST_ERROR_INVALID_CONFIGURATION</para>
+        /// <para>MessageText: A configuration value is invalid.</para>
+        /// </summary>
+        PeerDistInvalidConfiguration = 4063,
 
-        //        /// <summary>
-        //        /// <para>MessageId: PEERDIST_ERROR_INVALID_CONFIGURATION</para>
-        //        /// <para>MessageText: A configuration value is invalid.</para>
-        //        /// </summary>
-        //        StErrorInvalidConfiguration = 4063,
+        /// <summary>
+        /// <para>MessageId: PEERDIST_ERROR_NOT_LICENSED</para>
+        /// <para>MessageText: The SKU is not licensed.</para>
+        /// </summary>
+        PeerDistNotLicensed = 4064,
 
-        //        /// <summary>
-        //        /// <para>MessageId: PEERDIST_ERROR_NOT_LICENSED</para>
-        //        /// <para>MessageText: The SKU is not licensed.</para>
-        //        /// </summary>
-        //        StErrorNotLicensed = 4064,
+        /// <summary>
+        /// <para>MessageId: PEERDIST_ERROR_SERVICE_UNAVAILABLE</para>
+        /// <para>MessageText: PeerDist Service is still initializing and will be available shortly.</para>
+        /// </summary>
+        PeerDistServiceUnavailable = 4065,
 
-        //        /// <summary>
-        //        /// <para>MessageId: PEERDIST_ERROR_SERVICE_UNAVAILABLE</para>
-        //        /// <para>MessageText: PeerDist Service is still initializing and will be available shortly.</para>
-        //        /// </summary>
-        //        StErrorServiceUnavailable = 4065,
-
-        //        /// <summary>
-        //        /// <para>MessageId: PEERDIST_ERROR_TRUST_FAILURE</para>
-        //        /// <para>MessageText: Communication with one or more computers will be temporarily blocked due to recent errors.</para>
-        //        /// </summary>
-        //        StErrorTrustFailure = 4066,
+        /// <summary>
+        /// <para>MessageId: PEERDIST_ERROR_TRUST_FAILURE</para>
+        /// <para>MessageText: Communication with one or more computers will be temporarily blocked due to recent errors.</para>
+        /// </summary>
+        PeerDistTrustFailure = 4066,
 
 
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_DHCP_ADDRESS_CONFLICT</para>
-        //        /// <para>MessageText: The DHCP client has obtained an IP address that is already in use on the network. The local interface will be disabled until the DHCP client can obtain a new address.</para>
-        //        /// </summary>
-        //        DhcpAddressConflict = 4100,
+        /// <summary>
+        /// <para>MessageId: ERROR_DHCP_ADDRESS_CONFLICT</para>
+        /// <para>MessageText: The DHCP client has obtained an IP address that is already in use on the network. The local interface will be disabled until the DHCP client can obtain a new address.</para>
+        /// </summary>
+        DHCPAddressConflict = 4100,
 
 
 
 
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_WMI_GUID_NOT_FOUND</para>
-        //        /// <para>MessageText: The GUID passed was not recognized as valid by a WMI data provider.</para>
-        //        /// </summary>
-        //        WmiGuidNotFound = 4200,
+        /// <summary>
+        /// <para>MessageId: ERROR_WMI_GUID_NOT_FOUND</para>
+        /// <para>MessageText: The GUID passed was not recognized as valid by a WMI data provider.</para>
+        /// </summary>
+        WMIGuidNotFound = 4200,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_WMI_INSTANCE_NOT_FOUND</para>
-        //        /// <para>MessageText: The instance name passed was not recognized as valid by a WMI data provider.</para>
-        //        /// </summary>
-        //        WmiInstanceNotFound = 4201,
+        /// <summary>
+        /// <para>MessageId: ERROR_WMI_INSTANCE_NOT_FOUND</para>
+        /// <para>MessageText: The instance name passed was not recognized as valid by a WMI data provider.</para>
+        /// </summary>
+        WMIInstanceNotFound = 4201,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_WMI_ITEMID_NOT_FOUND</para>
-        //        /// <para>MessageText: The data item ID passed was not recognized as valid by a WMI data provider.</para>
-        //        /// </summary>
-        //        WmiItemidNotFound = 4202,
+        /// <summary>
+        /// <para>MessageId: ERROR_WMI_ITEMID_NOT_FOUND</para>
+        /// <para>MessageText: The data item ID passed was not recognized as valid by a WMI data provider.</para>
+        /// </summary>
+        WMIItemIdNotFound = 4202,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_WMI_TRY_AGAIN</para>
-        //        /// <para>MessageText: The WMI request could not be completed and should be retried.</para>
-        //        /// </summary>
-        //        WmiTryAgain = 4203,
+        /// <summary>
+        /// <para>MessageId: ERROR_WMI_TRY_AGAIN</para>
+        /// <para>MessageText: The WMI request could not be completed and should be retried.</para>
+        /// </summary>
+        WMITryAgain = 4203,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_WMI_DP_NOT_FOUND</para>
-        //        /// <para>MessageText: The WMI data provider could not be located.</para>
-        //        /// </summary>
-        //        WmiDpNotFound = 4204,
+        /// <summary>
+        /// <para>MessageId: ERROR_WMI_DP_NOT_FOUND</para>
+        /// <para>MessageText: The WMI data provider could not be located.</para>
+        /// </summary>
+        WMIDPNotFound = 4204,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_WMI_UNRESOLVED_INSTANCE_REF</para>
-        //        /// <para>MessageText: The WMI data provider references an instance set that has not been registered.</para>
-        //        /// </summary>
-        //        WmiUnresolvedInstanceRef = 4205,
+        /// <summary>
+        /// <para>MessageId: ERROR_WMI_UNRESOLVED_INSTANCE_REF</para>
+        /// <para>MessageText: The WMI data provider references an instance set that has not been registered.</para>
+        /// </summary>
+        WMIUnresolvedInstanceRef = 4205,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_WMI_ALREADY_ENABLED</para>
-        //        /// <para>MessageText: The WMI data block or event notification has already been enabled.</para>
-        //        /// </summary>
-        //        WmiAlreadyEnabled = 4206,
+        /// <summary>
+        /// <para>MessageId: ERROR_WMI_ALREADY_ENABLED</para>
+        /// <para>MessageText: The WMI data block or event notification has already been enabled.</para>
+        /// </summary>
+        WMIAlreadyEnabled = 4206,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_WMI_GUID_DISCONNECTED</para>
-        //        /// <para>MessageText: The WMI data block is no longer available.</para>
-        //        /// </summary>
-        //        WmiGuidDisconnected = 4207,
+        /// <summary>
+        /// <para>MessageId: ERROR_WMI_GUID_DISCONNECTED</para>
+        /// <para>MessageText: The WMI data block is no longer available.</para>
+        /// </summary>
+        WMIGuidDisconnected = 4207,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_WMI_SERVER_UNAVAILABLE</para>
-        //        /// <para>MessageText: The WMI data service is not available.</para>
-        //        /// </summary>
-        //        WmiServerUnavailable = 4208,
+        /// <summary>
+        /// <para>MessageId: ERROR_WMI_SERVER_UNAVAILABLE</para>
+        /// <para>MessageText: The WMI data service is not available.</para>
+        /// </summary>
+        WMIServerUnavailable = 4208,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_WMI_DP_FAILED</para>
-        //        /// <para>MessageText: The WMI data provider failed to carry out the request.</para>
-        //        /// </summary>
-        //        WmiDpFailed = 4209,
+        /// <summary>
+        /// <para>MessageId: ERROR_WMI_DP_FAILED</para>
+        /// <para>MessageText: The WMI data provider failed to carry out the request.</para>
+        /// </summary>
+        WMIDPFailed = 4209,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_WMI_INVALID_MOF</para>
-        //        /// <para>MessageText: The WMI MOF information is not valid.</para>
-        //        /// </summary>
-        //        WmiInvalidMof = 4210,
+        /// <summary>
+        /// <para>MessageId: ERROR_WMI_INVALID_MOF</para>
+        /// <para>MessageText: The WMI MOF information is not valid.</para>
+        /// </summary>
+        WMIInvalidMOF = 4210,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_WMI_INVALID_REGINFO</para>
-        //        /// <para>MessageText: The WMI registration information is not valid.</para>
-        //        /// </summary>
-        //        WmiInvalidReginfo = 4211,
+        /// <summary>
+        /// <para>MessageId: ERROR_WMI_INVALID_REGINFO</para>
+        /// <para>MessageText: The WMI registration information is not valid.</para>
+        /// </summary>
+        WMIInvalidRegInfo = 4211,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_WMI_ALREADY_DISABLED</para>
-        //        /// <para>MessageText: The WMI data block or event notification has already been disabled.</para>
-        //        /// </summary>
-        //        WmiAlreadyDisabled = 4212,
+        /// <summary>
+        /// <para>MessageId: ERROR_WMI_ALREADY_DISABLED</para>
+        /// <para>MessageText: The WMI data block or event notification has already been disabled.</para>
+        /// </summary>
+        WMIAlreadyDisabled = 4212,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_WMI_READ_ONLY</para>
-        //        /// <para>MessageText: The WMI data item or data block is read only.</para>
-        //        /// </summary>
-        //        WmiReadOnly = 4213,
+        /// <summary>
+        /// <para>MessageId: ERROR_WMI_READ_ONLY</para>
+        /// <para>MessageText: The WMI data item or data block is read only.</para>
+        /// </summary>
+        WMIReadOnly = 4213,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_WMI_SET_FAILURE</para>
-        //        /// <para>MessageText: The WMI data item or data block could not be changed.</para>
-        //        /// </summary>
-        //        WmiSetFailure = 4214,
-
-
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_NOT_APPCONTAINER</para>
-        //        /// <para>MessageText: This operation is only valid in the context of an app container.</para>
-        //        /// </summary>
-        //        NotAppcontainer = 4250,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_APPCONTAINER_REQUIRED</para>
-        //        /// <para>MessageText: This application can only run in the context of an app container.</para>
-        //        /// </summary>
-        //        AppcontainerRequired = 4251,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_NOT_SUPPORTED_IN_APPCONTAINER</para>
-        //        /// <para>MessageText: This functionality is not supported in the context of an app container.</para>
-        //        /// </summary>
-        //        NotSupportedInAppcontainer = 4252,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_INVALID_PACKAGE_SID_LENGTH</para>
-        //        /// <para>MessageText: The length of the SID supplied is not a valid length for app container SIDs.</para>
-        //        /// </summary>
-        //        InvalidPackageSidLength = 4253,
+        /// <summary>
+        /// <para>MessageId: ERROR_WMI_SET_FAILURE</para>
+        /// <para>MessageText: The WMI data item or data block could not be changed.</para>
+        /// </summary>
+        WMISetFailure = 4214,
 
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_INVALID_MEDIA</para>
-        //        /// <para>MessageText: The media identifier does not represent a valid medium.</para>
-        //        /// </summary>
-        //        InvalidMedia = 4300,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_INVALID_LIBRARY</para>
-        //        /// <para>MessageText: The library identifier does not represent a valid library.</para>
-        //        /// </summary>
-        //        InvalidLibrary = 4301,
+        /// <summary>
+        /// <para>MessageId: ERROR_NOT_APPCONTAINER</para>
+        /// <para>MessageText: This operation is only valid in the context of an app container.</para>
+        /// </summary>
+        NotAppContainer = 4250,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_INVALID_MEDIA_POOL</para>
-        //        /// <para>MessageText: The media pool identifier does not represent a valid media pool.</para>
-        //        /// </summary>
-        //        InvalidMediaPool = 4302,
+        /// <summary>
+        /// <para>MessageId: ERROR_APPCONTAINER_REQUIRED</para>
+        /// <para>MessageText: This application can only run in the context of an app container.</para>
+        /// </summary>
+        AppContainerRequired = 4251,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_DRIVE_MEDIA_MISMATCH</para>
-        //        /// <para>MessageText: The drive and medium are not compatible or exist in different libraries.</para>
-        //        /// </summary>
-        //        DriveMediaMismatch = 4303,
+        /// <summary>
+        /// <para>MessageId: ERROR_NOT_SUPPORTED_IN_APPCONTAINER</para>
+        /// <para>MessageText: This functionality is not supported in the context of an app container.</para>
+        /// </summary>
+        NotSupportedInAppContainer = 4252,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_MEDIA_OFFLINE</para>
-        //        /// <para>MessageText: The medium currently exists in an offline library and must be online to perform this operation.</para>
-        //        /// </summary>
-        //        MediaOffline = 4304,
+        /// <summary>
+        /// <para>MessageId: ERROR_INVALID_PACKAGE_SID_LENGTH</para>
+        /// <para>MessageText: The length of the SID supplied is not a valid length for app container SIDs.</para>
+        /// </summary>
+        InvalidPackageSIDLength = 4253,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_LIBRARY_OFFLINE</para>
-        //        /// <para>MessageText: The operation cannot be performed on an offline library.</para>
-        //        /// </summary>
-        //        LibraryOffline = 4305,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_EMPTY</para>
-        //        /// <para>MessageText: The library, drive, or media pool is empty.</para>
-        //        /// </summary>
-        //        Empty = 4306,
+        /// <summary>
+        /// <para>MessageId: ERROR_INVALID_MEDIA</para>
+        /// <para>MessageText: The media identifier does not represent a valid medium.</para>
+        /// </summary>
+        InvalidMedia = 4300,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_NOT_EMPTY</para>
-        //        /// <para>MessageText: The library, drive, or media pool must be empty to perform this operation.</para>
-        //        /// </summary>
-        //        NotEmpty = 4307,
+        /// <summary>
+        /// <para>MessageId: ERROR_INVALID_LIBRARY</para>
+        /// <para>MessageText: The library identifier does not represent a valid library.</para>
+        /// </summary>
+        InvalidLibrary = 4301,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_MEDIA_UNAVAILABLE</para>
-        //        /// <para>MessageText: No media is currently available in this media pool or library.</para>
-        //        /// </summary>
-        //        MediaUnavailable = 4308,
+        /// <summary>
+        /// <para>MessageId: ERROR_INVALID_MEDIA_POOL</para>
+        /// <para>MessageText: The media pool identifier does not represent a valid media pool.</para>
+        /// </summary>
+        InvalidMediaPool = 4302,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_RESOURCE_DISABLED</para>
-        //        /// <para>MessageText: A resource required for this operation is disabled.</para>
-        //        /// </summary>
-        //        ResourceDisabled = 4309,
+        /// <summary>
+        /// <para>MessageId: ERROR_DRIVE_MEDIA_MISMATCH</para>
+        /// <para>MessageText: The drive and medium are not compatible or exist in different libraries.</para>
+        /// </summary>
+        DriveMediaMismatch = 4303,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_INVALID_CLEANER</para>
-        //        /// <para>MessageText: The media identifier does not represent a valid cleaner.</para>
-        //        /// </summary>
-        //        InvalidCleaner = 4310,
+        /// <summary>
+        /// <para>MessageId: ERROR_MEDIA_OFFLINE</para>
+        /// <para>MessageText: The medium currently exists in an offline library and must be online to perform this operation.</para>
+        /// </summary>
+        MediaOffline = 4304,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_UNABLE_TO_CLEAN</para>
-        //        /// <para>MessageText: The drive cannot be cleaned or does not support cleaning.</para>
-        //        /// </summary>
-        //        UnableToClean = 4311,
+        /// <summary>
+        /// <para>MessageId: ERROR_LIBRARY_OFFLINE</para>
+        /// <para>MessageText: The operation cannot be performed on an offline library.</para>
+        /// </summary>
+        LibraryOffline = 4305,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_OBJECT_NOT_FOUND</para>
-        //        /// <para>MessageText: The object identifier does not represent a valid object.</para>
-        //        /// </summary>
-        //        ObjectNotFound = 4312,
+        /// <summary>
+        /// <para>MessageId: ERROR_EMPTY</para>
+        /// <para>MessageText: The library, drive, or media pool is empty.</para>
+        /// </summary>
+        Empty = 4306,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_DATABASE_FAILURE</para>
-        //        /// <para>MessageText: Unable to read from or write to the database.</para>
-        //        /// </summary>
-        //        DatabaseFailure = 4313,
+        /// <summary>
+        /// <para>MessageId: ERROR_NOT_EMPTY</para>
+        /// <para>MessageText: The library, drive, or media pool must be empty to perform this operation.</para>
+        /// </summary>
+        NotEmpty = 4307,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_DATABASE_FULL</para>
-        //        /// <para>MessageText: The database is full.</para>
-        //        /// </summary>
-        //        DatabaseFull = 4314,
+        /// <summary>
+        /// <para>MessageId: ERROR_MEDIA_UNAVAILABLE</para>
+        /// <para>MessageText: No media is currently available in this media pool or library.</para>
+        /// </summary>
+        MediaUnavailable = 4308,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_MEDIA_INCOMPATIBLE</para>
-        //        /// <para>MessageText: The medium is not compatible with the device or media pool.</para>
-        //        /// </summary>
-        //        MediaIncompatible = 4315,
+        /// <summary>
+        /// <para>MessageId: ERROR_RESOURCE_DISABLED</para>
+        /// <para>MessageText: A resource required for this operation is disabled.</para>
+        /// </summary>
+        ResourceDisabled = 4309,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_RESOURCE_NOT_PRESENT</para>
-        //        /// <para>MessageText: The resource required for this operation does not exist.</para>
-        //        /// </summary>
-        //        ResourceNotPresent = 4316,
+        /// <summary>
+        /// <para>MessageId: ERROR_INVALID_CLEANER</para>
+        /// <para>MessageText: The media identifier does not represent a valid cleaner.</para>
+        /// </summary>
+        InvalidCleaner = 4310,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_UNABLE_TO_CLEAN</para>
+        /// <para>MessageText: The drive cannot be cleaned or does not support cleaning.</para>
+        /// </summary>
+        UnableToClean = 4311,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_OBJECT_NOT_FOUND</para>
+        /// <para>MessageText: The object identifier does not represent a valid object.</para>
+        /// </summary>
+        ObjectNotFound = 4312,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_DATABASE_FAILURE</para>
+        /// <para>MessageText: Unable to read from or write to the database.</para>
+        /// </summary>
+        DatabaseFailure = 4313,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_DATABASE_FULL</para>
+        /// <para>MessageText: The database is full.</para>
+        /// </summary>
+        DatabaseFull = 4314,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_MEDIA_INCOMPATIBLE</para>
+        /// <para>MessageText: The medium is not compatible with the device or media pool.</para>
+        /// </summary>
+        MediaIncompatible = 4315,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_RESOURCE_NOT_PRESENT</para>
+        /// <para>MessageText: The resource required for this operation does not exist.</para>
+        /// </summary>
+        ResourceNotPresent = 4316,
 
         /// <summary>
         /// <para>MessageId: ERROR_INVALID_OPERATION</para>
@@ -8364,453 +8360,453 @@
         /// </summary>
         InvalidOperation = 4317,
 
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_MEDIA_NOT_AVAILABLE</para>
-        //        /// <para>MessageText: The media is not mounted or ready for use.</para>
-        //        /// </summary>
-        //        MediaNotAvailable = 4318,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_DEVICE_NOT_AVAILABLE</para>
-        //        /// <para>MessageText: The device is not ready for use.</para>
-        //        /// </summary>
-        //        DeviceNotAvailable = 4319,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_REQUEST_REFUSED</para>
-        //        /// <para>MessageText: The operator or administrator has refused the request.</para>
-        //        /// </summary>
-        //        RequestRefused = 4320,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_INVALID_DRIVE_OBJECT</para>
-        //        /// <para>MessageText: The drive identifier does not represent a valid drive.</para>
-        //        /// </summary>
-        //        InvalidDriveObject = 4321,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_LIBRARY_FULL</para>
-        //        /// <para>MessageText: Library is full. No slot is available for use.</para>
-        //        /// </summary>
-        //        LibraryFull = 4322,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_MEDIUM_NOT_ACCESSIBLE</para>
-        //        /// <para>MessageText: The transport cannot access the medium.</para>
-        //        /// </summary>
-        //        MediumNotAccessible = 4323,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_UNABLE_TO_LOAD_MEDIUM</para>
-        //        /// <para>MessageText: Unable to load the medium into the drive.</para>
-        //        /// </summary>
-        //        UnableToLoadMedium = 4324,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_UNABLE_TO_INVENTORY_DRIVE</para>
-        //        /// <para>MessageText: Unable to retrieve the drive status.</para>
-        //        /// </summary>
-        //        UnableToInventoryDrive = 4325,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_UNABLE_TO_INVENTORY_SLOT</para>
-        //        /// <para>MessageText: Unable to retrieve the slot status.</para>
-        //        /// </summary>
-        //        UnableToInventorySlot = 4326,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_UNABLE_TO_INVENTORY_TRANSPORT</para>
-        //        /// <para>MessageText: Unable to retrieve status about the transport.</para>
-        //        /// </summary>
-        //        UnableToInventoryTransport = 4327,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_TRANSPORT_FULL</para>
-        //        /// <para>MessageText: Cannot use the transport because it is already in use.</para>
-        //        /// </summary>
-        //        TransportFull = 4328,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_CONTROLLING_IEPORT</para>
-        //        /// <para>MessageText: Unable to open or close the inject/eject port.</para>
-        //        /// </summary>
-        //        ControllingIeport = 4329,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_UNABLE_TO_EJECT_MOUNTED_MEDIA</para>
-        //        /// <para>MessageText: Unable to eject the medium because it is in a drive.</para>
-        //        /// </summary>
-        //        UnableToEjectMountedMedia = 4330,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_CLEANER_SLOT_SET</para>
-        //        /// <para>MessageText: A cleaner slot is already reserved.</para>
-        //        /// </summary>
-        //        CleanerSlotSet = 4331,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_CLEANER_SLOT_NOT_SET</para>
-        //        /// <para>MessageText: A cleaner slot is not reserved.</para>
-        //        /// </summary>
-        //        CleanerSlotNotSet = 4332,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_CLEANER_CARTRIDGE_SPENT</para>
-        //        /// <para>MessageText: The cleaner cartridge has performed the maximum number of drive cleanings.</para>
-        //        /// </summary>
-        //        CleanerCartridgeSpent = 4333,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_UNEXPECTED_OMID</para>
-        //        /// <para>MessageText: Unexpected on-medium identifier.</para>
-        //        /// </summary>
-        //        UnexpectedOmid = 4334,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_CANT_DELETE_LAST_ITEM</para>
-        //        /// <para>MessageText: The last remaining item in this group or resource cannot be deleted.</para>
-        //        /// </summary>
-        //        CantDeleteLastItem = 4335,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_MESSAGE_EXCEEDS_MAX_SIZE</para>
-        //        /// <para>MessageText: The message provided exceeds the maximum size allowed for this parameter.</para>
-        //        /// </summary>
-        //        MessageExceedsMaxSize = 4336,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_VOLUME_CONTAINS_SYS_FILES</para>
-        //        /// <para>MessageText: The volume contains system or paging files.</para>
-        //        /// </summary>
-        //        VolumeContainsSysFiles = 4337,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_INDIGENOUS_TYPE</para>
-        //        /// <para>MessageText: The media type cannot be removed from this library since at least one drive in the library reports it can support this media type.</para>
-        //        /// </summary>
-        //        IndigenousType = 4338,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_NO_SUPPORTING_DRIVES</para>
-        //        /// <para>MessageText: This offline media cannot be mounted on this system since no enabled drives are present which can be used.</para>
-        //        /// </summary>
-        //        NoSupportingDrives = 4339,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_CLEANER_CARTRIDGE_INSTALLED</para>
-        //        /// <para>MessageText: A cleaner cartridge is present in the tape library.</para>
-        //        /// </summary>
-        //        CleanerCartridgeInstalled = 4340,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_IEPORT_FULL</para>
-        //        /// <para>MessageText: Cannot use the inject/eject port because it is not empty.</para>
-        //        /// </summary>
-        //        IeportFull = 4341,
-
-
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_FILE_OFFLINE</para>
-        //        /// <para>MessageText: This file is currently not available for use on this computer.</para>
-        //        /// </summary>
-        //        FileOffline = 4350,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_REMOTE_STORAGE_NOT_ACTIVE</para>
-        //        /// <para>MessageText: The remote storage service is not operational at this time.</para>
-        //        /// </summary>
-        //        RemoteStorageNotActive = 4351,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_REMOTE_STORAGE_MEDIA_ERROR</para>
-        //        /// <para>MessageText: The remote storage service encountered a media error.</para>
-        //        /// </summary>
-        //        RemoteStorageMediaError = 4352,
-
-
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_NOT_A_REPARSE_POINT</para>
-        //        /// <para>MessageText: The file or directory is not a reparse point.</para>
-        //        /// </summary>
-        //        NotAReparsePoint = 4390,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_REPARSE_ATTRIBUTE_CONFLICT</para>
-        //        /// <para>MessageText: The reparse point attribute cannot be set because it conflicts with an existing attribute.</para>
-        //        /// </summary>
-        //        ReparseAttributeConflict = 4391,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_INVALID_REPARSE_DATA</para>
-        //        /// <para>MessageText: The data present in the reparse point buffer is invalid.</para>
-        //        /// </summary>
-        //        InvalidReparseData = 4392,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_REPARSE_TAG_INVALID</para>
-        //        /// <para>MessageText: The tag present in the reparse point buffer is invalid.</para>
-        //        /// </summary>
-        //        ReparseTagInvalid = 4393,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_REPARSE_TAG_MISMATCH</para>
-        //        /// <para>MessageText: There is a mismatch between the tag specified in the request and the tag present in the reparse point.</para>
-        //        /// </summary>
-        //        ReparseTagMismatch = 4394,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_REPARSE_POINT_ENCOUNTERED</para>
-        //        /// <para>MessageText: The object manager encountered a reparse point while retrieving an object.</para>
-        //        /// </summary>
-        //        ReparsePointEncountered = 4395,
-
-
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_APP_DATA_NOT_FOUND</para>
-        //        /// <para>MessageText: Fast Cache data not found.</para>
-        //        /// </summary>
-        //        AppDataNotFound = 4400,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_APP_DATA_EXPIRED</para>
-        //        /// <para>MessageText: Fast Cache data expired.</para>
-        //        /// </summary>
-        //        AppDataExpired = 4401,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_APP_DATA_CORRUPT</para>
-        //        /// <para>MessageText: Fast Cache data corrupt.</para>
-        //        /// </summary>
-        //        AppDataCorrupt = 4402,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_APP_DATA_LIMIT_EXCEEDED</para>
-        //        /// <para>MessageText: Fast Cache data has exceeded its max size and cannot be updated.</para>
-        //        /// </summary>
-        //        AppDataLimitExceeded = 4403,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_APP_DATA_REBOOT_REQUIRED</para>
-        //        /// <para>MessageText: Fast Cache has been ReArmed and requires a reboot until it can be updated.</para>
-        //        /// </summary>
-        //        AppDataRebootRequired = 4404,
-
-
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SECUREBOOT_ROLLBACK_DETECTED</para>
-        //        /// <para>MessageText: Secure Boot detected that rollback of protected data has been attempted.</para>
-        //        /// </summary>
-        //        SecurebootRollbackDetected = 4420,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SECUREBOOT_POLICY_VIOLATION</para>
-        //        /// <para>MessageText: The value is protected by Secure Boot policy and cannot be modified or deleted.</para>
-        //        /// </summary>
-        //        SecurebootPolicyViolation = 4421,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SECUREBOOT_INVALID_POLICY</para>
-        //        /// <para>MessageText: The Secure Boot policy is invalid.</para>
-        //        /// </summary>
-        //        SecurebootInvalidPolicy = 4422,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SECUREBOOT_POLICY_PUBLISHER_NOT_FOUND</para>
-        //        /// <para>MessageText: A new Secure Boot policy did not contain the current publisher on its update list.</para>
-        //        /// </summary>
-        //        SecurebootPolicyPublisherNotFound = 4423,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SECUREBOOT_POLICY_NOT_SIGNED</para>
-        //        /// <para>MessageText: The Secure Boot policy is either not signed or is signed by a non-trusted signer.</para>
-        //        /// </summary>
-        //        SecurebootPolicyNotSigned = 4424,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SECUREBOOT_NOT_ENABLED</para>
-        //        /// <para>MessageText: Secure Boot is not enabled on this machine.</para>
-        //        /// </summary>
-        //        SecurebootNotEnabled = 4425,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SECUREBOOT_FILE_REPLACED</para>
-        //        /// <para>MessageText: Secure Boot requires that certain files and drivers are not replaced by other files or drivers.</para>
-        //        /// </summary>
-        //        SecurebootFileReplaced = 4426,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SECUREBOOT_POLICY_NOT_AUTHORIZED</para>
-        //        /// <para>MessageText: The Secure Boot Supplemental Policy file was not authorized on this machine.</para>
-        //        /// </summary>
-        //        SecurebootPolicyNotAuthorized = 4427,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SECUREBOOT_POLICY_UNKNOWN</para>
-        //        /// <para>MessageText: The Supplemental Policy is not recognized on this device.</para>
-        //        /// </summary>
-        //        SecurebootPolicyUnknown = 4428,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SECUREBOOT_POLICY_MISSING_ANTIROLLBACKVERSION</para>
-        //        /// <para>MessageText: The Antirollback version was not found in the Secure Boot Policy.</para>
-        //        /// </summary>
-        //        SecurebootPolicyMissingAntirollbackversion = 4429,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SECUREBOOT_PLATFORM_ID_MISMATCH</para>
-        //        /// <para>MessageText: The Platform ID specified in the Secure Boot policy does not match the Platform ID on this device.</para>
-        //        /// </summary>
-        //        SecurebootPlatformIdMismatch = 4430,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SECUREBOOT_POLICY_ROLLBACK_DETECTED</para>
-        //        /// <para>MessageText: The Secure Boot policy file has an older Antirollback Version than this device.</para>
-        //        /// </summary>
-        //        SecurebootPolicyRollbackDetected = 4431,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SECUREBOOT_POLICY_UPGRADE_MISMATCH</para>
-        //        /// <para>MessageText: The Secure Boot policy file does not match the upgraded legacy policy.</para>
-        //        /// </summary>
-        //        SecurebootPolicyUpgradeMismatch = 4432,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SECUREBOOT_REQUIRED_POLICY_FILE_MISSING</para>
-        //        /// <para>MessageText: The Secure Boot policy file is required but could not be found.</para>
-        //        /// </summary>
-        //        SecurebootRequiredPolicyFileMissing = 4433,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SECUREBOOT_NOT_BASE_POLICY</para>
-        //        /// <para>MessageText: Supplemental Secure Boot policy file can not be loaded as a base Secure Boot policy.</para>
-        //        /// </summary>
-        //        SecurebootNotBasePolicy = 4434,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SECUREBOOT_NOT_SUPPLEMENTAL_POLICY</para>
-        //        /// <para>MessageText: Base Secure Boot policy file can not be loaded as a Supplemental Secure Boot policy.</para>
-        //        /// </summary>
-        //        SecurebootNotSupplementalPolicy = 4435,
-
-
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_OFFLOAD_READ_FLT_NOT_SUPPORTED</para>
-        //        /// <para>MessageText: The copy offload read operation is not supported by a filter.</para>
-        //        /// </summary>
-        //        OffloadReadFltNotSupported = 4440,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_OFFLOAD_WRITE_FLT_NOT_SUPPORTED</para>
-        //        /// <para>MessageText: The copy offload write operation is not supported by a filter.</para>
-        //        /// </summary>
-        //        OffloadWriteFltNotSupported = 4441,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_OFFLOAD_READ_FILE_NOT_SUPPORTED</para>
-        //        /// <para>MessageText: The copy offload read operation is not supported for the file.</para>
-        //        /// </summary>
-        //        OffloadReadFileNotSupported = 4442,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_OFFLOAD_WRITE_FILE_NOT_SUPPORTED</para>
-        //        /// <para>MessageText: The copy offload write operation is not supported for the file.</para>
-        //        /// </summary>
-        //        OffloadWriteFileNotSupported = 4443,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_ALREADY_HAS_STREAM_ID</para>
-        //        /// <para>MessageText: This file is currently associated with a different stream id.</para>
-        //        /// </summary>
-        //        AlreadyHasStreamId = 4444,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SMR_GARBAGE_COLLECTION_REQUIRED</para>
-        //        /// <para>MessageText: The volume must undergo garbage collection.</para>
-        //        /// </summary>
-        //        SmrGarbageCollectionRequired = 4445,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_WOF_WIM_HEADER_CORRUPT</para>
-        //        /// <para>MessageText: The WOF driver encountered a corruption in WIM image's Header.</para>
-        //        /// </summary>
-        //        WofWimHeaderCorrupt = 4446,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_WOF_WIM_RESOURCE_TABLE_CORRUPT</para>
-        //        /// <para>MessageText: The WOF driver encountered a corruption in WIM image's Resource Table.</para>
-        //        /// </summary>
-        //        WofWimResourceTableCorrupt = 4447,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_WOF_FILE_RESOURCE_TABLE_CORRUPT</para>
-        //        /// <para>MessageText: The WOF driver encountered a corruption in the compressed file's Resource Table.</para>
-        //        /// </summary>
-        //        WofFileResourceTableCorrupt = 4448,
-
-
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_VOLUME_NOT_SIS_ENABLED</para>
-        //        /// <para>MessageText: Single Instance Storage is not available on this volume.</para>
-        //        /// </summary>
-        //        VolumeNotSisEnabled = 4500,
-
-
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SYSTEM_INTEGRITY_ROLLBACK_DETECTED</para>
-        //        /// <para>MessageText: System Integrity detected that policy rollback has been attempted.</para>
-        //        /// </summary>
-        //        SystemIntegrityRollbackDetected = 4550,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SYSTEM_INTEGRITY_POLICY_VIOLATION</para>
-        //        /// <para>MessageText: Your organization used Device Guard to block this app. Contact your support person for more info.</para>
-        //        /// </summary>
-        //        SystemIntegrityPolicyViolation = 4551,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SYSTEM_INTEGRITY_INVALID_POLICY</para>
-        //        /// <para>MessageText: The System Integrity policy is invalid.</para>
-        //        /// </summary>
-        //        SystemIntegrityInvalidPolicy = 4552,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SYSTEM_INTEGRITY_POLICY_NOT_SIGNED</para>
-        //        /// <para>MessageText: The System Integrity policy is either not signed or is signed by a non-trusted signer.</para>
-        //        /// </summary>
-        //        SystemIntegrityPolicyNotSigned = 4553,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SYSTEM_INTEGRITY_TOO_MANY_POLICIES</para>
-        //        /// <para>MessageText: The number of System Integrity policies is out of limit.</para>
-        //        /// </summary>
-        //        SystemIntegrityTooManyPolicies = 4554,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_SYSTEM_INTEGRITY_SUPPLEMENTAL_POLICY_NOT_AUTHORIZED</para>
-        //        /// <para>MessageText: The Code Integrity supplemental policy is not authorized by a Code Integrity base policy.</para>
-        //        /// </summary>
-        //        SystemIntegritySupplementalPolicyNotAuthorized = 4555,
-
-
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_VSM_NOT_INITIALIZED</para>
-        //        /// <para>MessageText: Virtual Secure Mode (VSM) is not initialized. The hypervisor or VSM may not be present or enabled.</para>
-        //        /// </summary>
-        //        VsmNotInitialized = 4560,
-
-        //        /// <summary>
-        //        /// <para>MessageId: ERROR_VSM_DMA_PROTECTION_NOT_IN_USE</para>
-        //        /// <para>MessageText: The hypervisor is not protecting DMA because an IOMMU is not present or not enabled in the BIOS.</para>
-        //        /// </summary>
-        //        VsmDmaProtectionNotInUse = 4561,
+        /// <summary>
+        /// <para>MessageId: ERROR_MEDIA_NOT_AVAILABLE</para>
+        /// <para>MessageText: The media is not mounted or ready for use.</para>
+        /// </summary>
+        MediaNotAvailable = 4318,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_DEVICE_NOT_AVAILABLE</para>
+        /// <para>MessageText: The device is not ready for use.</para>
+        /// </summary>
+        DeviceNotAvailable = 4319,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_REQUEST_REFUSED</para>
+        /// <para>MessageText: The operator or administrator has refused the request.</para>
+        /// </summary>
+        RequestRefused = 4320,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_INVALID_DRIVE_OBJECT</para>
+        /// <para>MessageText: The drive identifier does not represent a valid drive.</para>
+        /// </summary>
+        InvalidDriveObject = 4321,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_LIBRARY_FULL</para>
+        /// <para>MessageText: Library is full. No slot is available for use.</para>
+        /// </summary>
+        LibraryFull = 4322,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_MEDIUM_NOT_ACCESSIBLE</para>
+        /// <para>MessageText: The transport cannot access the medium.</para>
+        /// </summary>
+        MediumNotAccessible = 4323,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_UNABLE_TO_LOAD_MEDIUM</para>
+        /// <para>MessageText: Unable to load the medium into the drive.</para>
+        /// </summary>
+        UnableToLoadMedium = 4324,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_UNABLE_TO_INVENTORY_DRIVE</para>
+        /// <para>MessageText: Unable to retrieve the drive status.</para>
+        /// </summary>
+        UnableToInventoryDrive = 4325,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_UNABLE_TO_INVENTORY_SLOT</para>
+        /// <para>MessageText: Unable to retrieve the slot status.</para>
+        /// </summary>
+        UnableToInventorySlot = 4326,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_UNABLE_TO_INVENTORY_TRANSPORT</para>
+        /// <para>MessageText: Unable to retrieve status about the transport.</para>
+        /// </summary>
+        UnableToInventoryTransport = 4327,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_TRANSPORT_FULL</para>
+        /// <para>MessageText: Cannot use the transport because it is already in use.</para>
+        /// </summary>
+        TransportFull = 4328,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_CONTROLLING_IEPORT</para>
+        /// <para>MessageText: Unable to open or close the inject/eject port.</para>
+        /// </summary>
+        ControllingIEPort = 4329,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_UNABLE_TO_EJECT_MOUNTED_MEDIA</para>
+        /// <para>MessageText: Unable to eject the medium because it is in a drive.</para>
+        /// </summary>
+        UnableToEjectMountedMedia = 4330,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_CLEANER_SLOT_SET</para>
+        /// <para>MessageText: A cleaner slot is already reserved.</para>
+        /// </summary>
+        CleanerSlotSet = 4331,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_CLEANER_SLOT_NOT_SET</para>
+        /// <para>MessageText: A cleaner slot is not reserved.</para>
+        /// </summary>
+        CleanerSlotNotSet = 4332,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_CLEANER_CARTRIDGE_SPENT</para>
+        /// <para>MessageText: The cleaner cartridge has performed the maximum number of drive cleanings.</para>
+        /// </summary>
+        CleanerCartridgeSpent = 4333,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_UNEXPECTED_OMID</para>
+        /// <para>MessageText: Unexpected on-medium identifier.</para>
+        /// </summary>
+        UnexpectedOMID = 4334,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_CANT_DELETE_LAST_ITEM</para>
+        /// <para>MessageText: The last remaining item in this group or resource cannot be deleted.</para>
+        /// </summary>
+        CantDeleteLastItem = 4335,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_MESSAGE_EXCEEDS_MAX_SIZE</para>
+        /// <para>MessageText: The message provided exceeds the maximum size allowed for this parameter.</para>
+        /// </summary>
+        MessageExceedsMaxSize = 4336,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_VOLUME_CONTAINS_SYS_FILES</para>
+        /// <para>MessageText: The volume contains system or paging files.</para>
+        /// </summary>
+        VolumeContainsSysFiles = 4337,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_INDIGENOUS_TYPE</para>
+        /// <para>MessageText: The media type cannot be removed from this library since at least one drive in the library reports it can support this media type.</para>
+        /// </summary>
+        IndigenousType = 4338,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_NO_SUPPORTING_DRIVES</para>
+        /// <para>MessageText: This offline media cannot be mounted on this system since no enabled drives are present which can be used.</para>
+        /// </summary>
+        NoSupportingDrives = 4339,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_CLEANER_CARTRIDGE_INSTALLED</para>
+        /// <para>MessageText: A cleaner cartridge is present in the tape library.</para>
+        /// </summary>
+        CleanerCartridgeInstalled = 4340,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_IEPORT_FULL</para>
+        /// <para>MessageText: Cannot use the inject/eject port because it is not empty.</para>
+        /// </summary>
+        IEPortFull = 4341,
+
+
+
+        /// <summary>
+        /// <para>MessageId: ERROR_FILE_OFFLINE</para>
+        /// <para>MessageText: This file is currently not available for use on this computer.</para>
+        /// </summary>
+        FileOffline = 4350,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_REMOTE_STORAGE_NOT_ACTIVE</para>
+        /// <para>MessageText: The remote storage service is not operational at this time.</para>
+        /// </summary>
+        RemoteStorageNotActive = 4351,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_REMOTE_STORAGE_MEDIA_ERROR</para>
+        /// <para>MessageText: The remote storage service encountered a media error.</para>
+        /// </summary>
+        RemoteStorageMediaError = 4352,
+
+
+
+        /// <summary>
+        /// <para>MessageId: ERROR_NOT_A_REPARSE_POINT</para>
+        /// <para>MessageText: The file or directory is not a reparse point.</para>
+        /// </summary>
+        NotAReparsePoint = 4390,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_REPARSE_ATTRIBUTE_CONFLICT</para>
+        /// <para>MessageText: The reparse point attribute cannot be set because it conflicts with an existing attribute.</para>
+        /// </summary>
+        ReparseAttributeConflict = 4391,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_INVALID_REPARSE_DATA</para>
+        /// <para>MessageText: The data present in the reparse point buffer is invalid.</para>
+        /// </summary>
+        InvalidReparseData = 4392,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_REPARSE_TAG_INVALID</para>
+        /// <para>MessageText: The tag present in the reparse point buffer is invalid.</para>
+        /// </summary>
+        ReparseTagInvalid = 4393,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_REPARSE_TAG_MISMATCH</para>
+        /// <para>MessageText: There is a mismatch between the tag specified in the request and the tag present in the reparse point.</para>
+        /// </summary>
+        ReparseTagMismatch = 4394,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_REPARSE_POINT_ENCOUNTERED</para>
+        /// <para>MessageText: The object manager encountered a reparse point while retrieving an object.</para>
+        /// </summary>
+        ReparsePointEncountered = 4395,
+
+
+
+        /// <summary>
+        /// <para>MessageId: ERROR_APP_DATA_NOT_FOUND</para>
+        /// <para>MessageText: Fast Cache data not found.</para>
+        /// </summary>
+        AppDataNotFound = 4400,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_APP_DATA_EXPIRED</para>
+        /// <para>MessageText: Fast Cache data expired.</para>
+        /// </summary>
+        AppDataExpired = 4401,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_APP_DATA_CORRUPT</para>
+        /// <para>MessageText: Fast Cache data corrupt.</para>
+        /// </summary>
+        AppDataCorrupt = 4402,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_APP_DATA_LIMIT_EXCEEDED</para>
+        /// <para>MessageText: Fast Cache data has exceeded its max size and cannot be updated.</para>
+        /// </summary>
+        AppDataLimitExceeded = 4403,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_APP_DATA_REBOOT_REQUIRED</para>
+        /// <para>MessageText: Fast Cache has been ReArmed and requires a reboot until it can be updated.</para>
+        /// </summary>
+        AppDataRebootRequired = 4404,
+
+
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SECUREBOOT_ROLLBACK_DETECTED</para>
+        /// <para>MessageText: Secure Boot detected that rollback of protected data has been attempted.</para>
+        /// </summary>
+        SecureBootRollbackDetected = 4420,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SECUREBOOT_POLICY_VIOLATION</para>
+        /// <para>MessageText: The value is protected by Secure Boot policy and cannot be modified or deleted.</para>
+        /// </summary>
+        SecureBootPolicyViolation = 4421,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SECUREBOOT_INVALID_POLICY</para>
+        /// <para>MessageText: The Secure Boot policy is invalid.</para>
+        /// </summary>
+        SecureBootInvalidPolicy = 4422,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SECUREBOOT_POLICY_PUBLISHER_NOT_FOUND</para>
+        /// <para>MessageText: A new Secure Boot policy did not contain the current publisher on its update list.</para>
+        /// </summary>
+        SecureBootPolicyPublisherNotFound = 4423,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SECUREBOOT_POLICY_NOT_SIGNED</para>
+        /// <para>MessageText: The Secure Boot policy is either not signed or is signed by a non-trusted signer.</para>
+        /// </summary>
+        SecureBootPolicyNotSigned = 4424,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SECUREBOOT_NOT_ENABLED</para>
+        /// <para>MessageText: Secure Boot is not enabled on this machine.</para>
+        /// </summary>
+        SecureBootNotEnabled = 4425,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SECUREBOOT_FILE_REPLACED</para>
+        /// <para>MessageText: Secure Boot requires that certain files and drivers are not replaced by other files or drivers.</para>
+        /// </summary>
+        SecureBootFileReplaced = 4426,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SECUREBOOT_POLICY_NOT_AUTHORIZED</para>
+        /// <para>MessageText: The Secure Boot Supplemental Policy file was not authorized on this machine.</para>
+        /// </summary>
+        SecureBootPolicyNotAuthorized = 4427,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SECUREBOOT_POLICY_UNKNOWN</para>
+        /// <para>MessageText: The Supplemental Policy is not recognized on this device.</para>
+        /// </summary>
+        SecureBootPolicyUnknown = 4428,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SECUREBOOT_POLICY_MISSING_ANTIROLLBACKVERSION</para>
+        /// <para>MessageText: The Antirollback version was not found in the Secure Boot Policy.</para>
+        /// </summary>
+        SecureBootPolicyMissingAntirollbackVersion = 4429,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SECUREBOOT_PLATFORM_ID_MISMATCH</para>
+        /// <para>MessageText: The Platform ID specified in the Secure Boot policy does not match the Platform ID on this device.</para>
+        /// </summary>
+        SecureBootPlatformIdMismatch = 4430,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SECUREBOOT_POLICY_ROLLBACK_DETECTED</para>
+        /// <para>MessageText: The Secure Boot policy file has an older Antirollback Version than this device.</para>
+        /// </summary>
+        SecureBootPolicyRollbackDetected = 4431,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SECUREBOOT_POLICY_UPGRADE_MISMATCH</para>
+        /// <para>MessageText: The Secure Boot policy file does not match the upgraded legacy policy.</para>
+        /// </summary>
+        SecureBootPolicyUpgradeMismatch = 4432,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SECUREBOOT_REQUIRED_POLICY_FILE_MISSING</para>
+        /// <para>MessageText: The Secure Boot policy file is required but could not be found.</para>
+        /// </summary>
+        SecureBootRequiredPolicyFileMissing = 4433,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SECUREBOOT_NOT_BASE_POLICY</para>
+        /// <para>MessageText: Supplemental Secure Boot policy file can not be loaded as a base Secure Boot policy.</para>
+        /// </summary>
+        SecureBootNotBasePolicy = 4434,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SECUREBOOT_NOT_SUPPLEMENTAL_POLICY</para>
+        /// <para>MessageText: Base Secure Boot policy file can not be loaded as a Supplemental Secure Boot policy.</para>
+        /// </summary>
+        SecureBootNotSupplementalPolicy = 4435,
+
+
+
+        /// <summary>
+        /// <para>MessageId: ERROR_OFFLOAD_READ_FLT_NOT_SUPPORTED</para>
+        /// <para>MessageText: The copy offload read operation is not supported by a filter.</para>
+        /// </summary>
+        OffloadReadFltNotSupported = 4440,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_OFFLOAD_WRITE_FLT_NOT_SUPPORTED</para>
+        /// <para>MessageText: The copy offload write operation is not supported by a filter.</para>
+        /// </summary>
+        OffloadWriteFltNotSupported = 4441,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_OFFLOAD_READ_FILE_NOT_SUPPORTED</para>
+        /// <para>MessageText: The copy offload read operation is not supported for the file.</para>
+        /// </summary>
+        OffloadReadFileNotSupported = 4442,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_OFFLOAD_WRITE_FILE_NOT_SUPPORTED</para>
+        /// <para>MessageText: The copy offload write operation is not supported for the file.</para>
+        /// </summary>
+        OffloadWriteFileNotSupported = 4443,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_ALREADY_HAS_STREAM_ID</para>
+        /// <para>MessageText: This file is currently associated with a different stream id.</para>
+        /// </summary>
+        AlreadyHasStreamId = 4444,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SMR_GARBAGE_COLLECTION_REQUIRED</para>
+        /// <para>MessageText: The volume must undergo garbage collection.</para>
+        /// </summary>
+        SMRGarbageCollectionRequired = 4445,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_WOF_WIM_HEADER_CORRUPT</para>
+        /// <para>MessageText: The WOF driver encountered a corruption in WIM image's Header.</para>
+        /// </summary>
+        WOFWIMHeaderCorrupt = 4446,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_WOF_WIM_RESOURCE_TABLE_CORRUPT</para>
+        /// <para>MessageText: The WOF driver encountered a corruption in WIM image's Resource Table.</para>
+        /// </summary>
+        WOFWIMResourceTableCorrupt = 4447,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_WOF_FILE_RESOURCE_TABLE_CORRUPT</para>
+        /// <para>MessageText: The WOF driver encountered a corruption in the compressed file's Resource Table.</para>
+        /// </summary>
+        WOFFileResourceTableCorrupt = 4448,
+
+
+
+        /// <summary>
+        /// <para>MessageId: ERROR_VOLUME_NOT_SIS_ENABLED</para>
+        /// <para>MessageText: Single Instance Storage is not available on this volume.</para>
+        /// </summary>
+        VolumeNotSISEnabled = 4500,
+
+
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SYSTEM_INTEGRITY_ROLLBACK_DETECTED</para>
+        /// <para>MessageText: System Integrity detected that policy rollback has been attempted.</para>
+        /// </summary>
+        SystemIntegrityRollbackDetected = 4550,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SYSTEM_INTEGRITY_POLICY_VIOLATION</para>
+        /// <para>MessageText: Your organization used Device Guard to block this app. Contact your support person for more info.</para>
+        /// </summary>
+        SystemIntegrityPolicyViolation = 4551,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SYSTEM_INTEGRITY_INVALID_POLICY</para>
+        /// <para>MessageText: The System Integrity policy is invalid.</para>
+        /// </summary>
+        SystemIntegrityInvalidPolicy = 4552,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SYSTEM_INTEGRITY_POLICY_NOT_SIGNED</para>
+        /// <para>MessageText: The System Integrity policy is either not signed or is signed by a non-trusted signer.</para>
+        /// </summary>
+        SystemIntegrityPolicyNotSigned = 4553,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SYSTEM_INTEGRITY_TOO_MANY_POLICIES</para>
+        /// <para>MessageText: The number of System Integrity policies is out of limit.</para>
+        /// </summary>
+        SystemIntegrityTooManyPolicies = 4554,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_SYSTEM_INTEGRITY_SUPPLEMENTAL_POLICY_NOT_AUTHORIZED</para>
+        /// <para>MessageText: The Code Integrity supplemental policy is not authorized by a Code Integrity base policy.</para>
+        /// </summary>
+        SystemIntegritySupplementalPolicyNotAuthorized = 4555,
+
+
+
+        /// <summary>
+        /// <para>MessageId: ERROR_VSM_NOT_INITIALIZED</para>
+        /// <para>MessageText: Virtual Secure Mode (VSM) is not initialized. The hypervisor or VSM may not be present or enabled.</para>
+        /// </summary>
+        VSMNotInitialized = 4560,
+
+        /// <summary>
+        /// <para>MessageId: ERROR_VSM_DMA_PROTECTION_NOT_IN_USE</para>
+        /// <para>MessageText: The hypervisor is not protecting DMA because an IOMMU is not present or not enabled in the BIOS.</para>
+        /// </summary>
+        VSMDMAProtectionNotInUse = 4561,
 
 
         //        /// <summary>

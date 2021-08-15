@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
 {
-
     /// <summary>
     /// An exception thrown when an error occurs while dealing with the Property System API.
     /// </summary>
@@ -13,42 +13,27 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public PropertySystemException() { }
+        public PropertySystemException() { /* Left empty. */ }
 
         /// <summary>
         /// Initializes an excpetion with a custom message.
         /// </summary>
-        /// <param name="message"></param>
-        public PropertySystemException(string message) : base(message) { }
+        public PropertySystemException(string message) : base(message) { /* Left empty. */ }
 
         /// <summary>
         /// Initializes an exception with custom message and inner exception.
         /// </summary>
-        /// <param name="message"></param>
-        /// <param name="innerException"></param>
-        public PropertySystemException(string message, Exception innerException)
-            : base(message, innerException)
-        {
-        }
+        public PropertySystemException(string message, Exception innerException) : base(message, innerException) { /* Left empty. */ }
 
         /// <summary>
         /// Initializes an exception with custom message and error code.
         /// </summary>
-        /// <param name="message"></param>
-        /// <param name="errorCode"></param>
-        public PropertySystemException(string message, int errorCode) : base(message, errorCode) { }
+        public PropertySystemException(string message, int errorCode) : base(message, errorCode) { /* Left empty. */ }
 
         /// <summary>
         /// Initializes an exception from serialization info and a context.
         /// </summary>
-        /// <param name="info"></param>
-        /// <param name="context"></param>
-        protected PropertySystemException(
-            System.Runtime.Serialization.SerializationInfo info,
-            System.Runtime.Serialization.StreamingContext context)
-            : base(info, context)
-        {
-        }
+        protected PropertySystemException(SerializationInfo info, StreamingContext context) : base(info, context) { /* Left empty. */ }
 
     }
 }

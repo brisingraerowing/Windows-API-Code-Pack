@@ -1,6 +1,7 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using Microsoft.WindowsAPICodePack.COMNative.Shell.Resources;
+
 using System;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.Shell
@@ -11,11 +12,9 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     public struct IconReference
     {
         #region Private members
-
         private string moduleName;
         private string referencePath;
         private static readonly char[] commaSeparator = new char[] { ',' };
-
         #endregion
 
         /// <summary>
@@ -65,14 +64,8 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
         public string ModuleName
         {
             get => moduleName;
-            set
-            {
-                if (string.IsNullOrEmpty(value))
 
-                    throw new ArgumentNullException(nameof(value));
-
-                moduleName = value;
-            }
+            set => moduleName = string.IsNullOrEmpty(value) ? throw new ArgumentNullException(nameof(value)) : value;
         }
 
         /// <summary>
@@ -86,6 +79,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
         public string ReferencePath
         {
             get => referencePath;
+
             set
             {
                 if (string.IsNullOrEmpty(value))
@@ -141,7 +135,5 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
             hash = (hash * 31) + ResourceId.GetHashCode();
             return hash;
         }
-
     }
-
 }

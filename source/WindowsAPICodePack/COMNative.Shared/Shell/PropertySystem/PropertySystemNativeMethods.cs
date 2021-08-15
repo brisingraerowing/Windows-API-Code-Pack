@@ -2,8 +2,7 @@
 
 using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
+
 using System;
 using System.Runtime.InteropServices;
 
@@ -12,7 +11,6 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
     public static class PropertySystemNativeMethods
     {
         #region Property Definitions
-
         public enum RelativeDescriptionType
         {
             General,
@@ -27,11 +25,9 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             Rating,
             Priority
         }
-
         #endregion
 
         #region Property System Helpers
-
         [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true)]
         public static extern int PSGetNameFromPropertyKey(
             ref PropertyKey propkey,
@@ -57,9 +53,6 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
             [In] ref Guid riid,
             out IPropertyDescriptionList ppv
         );
-
-
-
         #endregion
     }
 }

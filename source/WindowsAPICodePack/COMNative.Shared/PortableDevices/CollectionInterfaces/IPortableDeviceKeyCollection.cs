@@ -1,23 +1,18 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
 using Microsoft.WindowsAPICodePack.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative;
-using Microsoft.WindowsAPICodePack.COMNative.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using GuidAttribute = System.Runtime.InteropServices.GuidAttribute;
 using Microsoft.WindowsAPICodePack.Win32Native;
+
+using System;
+using System.Runtime.InteropServices;
+
+using GuidAttribute = System.Runtime.InteropServices.GuidAttribute;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem
 {
     [ComImport,
-        Guid(NativeAPI.Guids.PortableDevices.IPortableDeviceKeyCollection),
-        InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    Guid(NativeAPI.Guids.PortableDevices.IPortableDeviceKeyCollection),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceKeyCollection
     {
         [PreserveSig]

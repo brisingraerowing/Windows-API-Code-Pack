@@ -9,18 +9,14 @@
 //-----------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security;
-using System.Text;
-using System.Threading.Tasks;
+
 using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
-
     [SuppressUnmanagedCodeSecurity]
     public static class SingleInstanceNativeMethods
     {
@@ -32,10 +28,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         [DllImport(Shell32, EntryPoint = nameof(CommandLineToArgvW), CharSet = CharSet.Unicode)]
         public static extern IntPtr CommandLineToArgvW([MarshalAs(UnmanagedType.LPWStr)] string cmdLine, out int numArgs);
 
-
         public static string[] CommandLineToArgv(string cmdLine)
         {
-
             IntPtr argv = IntPtr.Zero;
 
             try
@@ -54,15 +48,14 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 
                 return result;
             }
+
             finally
             {
 
-                IntPtr p = Core.LocalFree(argv);
+                _ = Core.LocalFree(argv);
                 // Otherwise LocalFree failed.
                 // Assert.AreEqual(IntPtr.Zero, p);
             }
         }
-
     }
-
 }

@@ -1,31 +1,21 @@
 ﻿using Microsoft.WindowsAPICodePack.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative;
-using Microsoft.WindowsAPICodePack.COMNative.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 
+using System;
+using System.Runtime.InteropServices;
+
 namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
 {
-
-
     /// <summary>
     /// Exposes methods for several multiple change operations that may be passed to <see cref="IFileOperation"/>.
     /// </summary>
     /// <remarks>Either call CoCreateInstance with a class identifier (CLSID) of CLSID_PropertyChangeArray or call PSCreatePropertyChangeArray to obtain a standard implementation of this interface. This is a container interface that allows multiple changes to be passed to a single file operation to prevent accessing a file multiple times.</remarks>
     [ComImport,
-        System.Runtime.InteropServices.Guid(NativeAPI.Guids.Shell.PropertySystem.IPropertyChangeArray),
-        InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    Guid(NativeAPI.Guids.Shell.PropertySystem.IPropertyChangeArray),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyChangeArray
     {
-
         /// <summary>
         /// Gets the number of change operations in the array.
         /// </summary>
@@ -77,18 +67,16 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
         /// <param name="key">A reference to the <see cref="PropertyKey"/> structure of interest.</param>
         /// <returns>Returns <see cref="HResult.Ok"/> if key is found; otherwise, E_FAIL.</returns>
         HResult IsKeyInArray(ref PropertyKey key);
-
     }
 
     /// <summary>
     /// Exposes a method that encapsulates a change to a single property.
     /// </summary>
     [ComImport,
-        System.Runtime.InteropServices.Guid(NativeAPI.Guids.Shell.PropertySystem.IPropertyChange),
-        InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    Guid(NativeAPI.Guids.Shell.PropertySystem.IPropertyChange),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPropertyChange
     {
-
         /// <summary>
         /// Applies a change to a property value.
         /// </summary>
@@ -96,6 +84,5 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
         /// <param name="ppropvarOut">A pointer to a changed <see cref="PropVariant"/> structure.</param>
         /// <returns>If this method succeeds, it returns <see cref="HResult.Ok"/>. Otherwise, it returns an <see cref="HResult"/> error code.</returns>
         HResult ApplyToPropVariant(PropVariant propvarIn, PropVariant ppropvarOut);
-
     }
 }

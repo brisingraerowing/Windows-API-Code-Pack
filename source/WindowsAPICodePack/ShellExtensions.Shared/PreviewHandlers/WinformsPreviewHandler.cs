@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Microsoft.WindowsAPICodePack.COMNative.ShellExtensions;
+using Microsoft.WindowsAPICodePack.ShellExtensions.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager;
+
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Microsoft.WindowsAPICodePack.ShellExtensions.Resources;
-using Microsoft.WindowsAPICodePack.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.COMNative.ShellExtensions;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager;
 
 namespace Microsoft.WindowsAPICodePack.ShellExtensions
 {
@@ -28,7 +28,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         protected void ThrowIfNoControl()
         {
             if (Control == null)
-            
+
                 throw new InvalidOperationException(LocalizedMessages.PreviewHandlerControlNotInitialized);
         }
 
@@ -36,21 +36,19 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         /// Called when an exception is thrown during itialization of the preview control.
         /// </summary>
         /// <param name="caughtException"></param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", 
-            Justification="The object remains reachable through the Controls collection which can be disposed at a later time.")]
         protected override void HandleInitializeException(in Exception caughtException)
         {
-            if (caughtException == null) { throw new ArgumentNullException("caughtException"); }
+            if (caughtException == null) throw new ArgumentNullException("caughtException");
 
             Control = new UserControl();
             Control.Controls.Add(new TextBox
-                {
-                    ReadOnly = true,
-                    Multiline = true,
-                    Dock = DockStyle.Fill,
-                    Text = caughtException.ToString(),
-                    BackColor = Color.OrangeRed
-                });
+            {
+                ReadOnly = true,
+                Multiline = true,
+                Dock = DockStyle.Fill,
+                Text = caughtException.ToString(),
+                BackColor = Color.OrangeRed
+            });
         }
 
         protected override void UpdateBounds(in NativeRect bounds)
@@ -72,25 +70,21 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         protected override void SetParentHandle(IntPtr handle) => HandlerNativeMethods.SetParent(Control.Handle, handle);
 
         #region IDisposable Members
-
-        ~WinFormsPreviewHandler()
-        {
-            Dispose(false);
-        }
+        ~WinFormsPreviewHandler() => Dispose(false);
 
         public void Dispose()
         {
             Dispose(true);
+        
             GC.SuppressFinalize(this);
         }
 
         protected virtual void Dispose(bool disposing)
         {
             if (disposing && Control != null)
-            
+
                 Control.Dispose();
         }
-
         #endregion
     }
 }

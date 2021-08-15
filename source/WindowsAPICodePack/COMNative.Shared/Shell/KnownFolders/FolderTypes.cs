@@ -1,6 +1,5 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
-#if CS7
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
 
 using System.Linq;
@@ -54,7 +53,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
         public static string GetFolderType(string typeId)
         {
             // todo: include (sub-)nested types
-            FieldInfo fieldInfo = typeof(Microsoft.WindowsAPICodePack.Shell.Guids.FolderTypes).GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static).Where(f => f.IsLiteral && !f.IsInitOnly && (string)f.GetValue(null) == typeId).FirstOrDefault();
+            FieldInfo fieldInfo = typeof(WindowsAPICodePack.Shell.Guids.FolderTypes).GetFields(BindingFlags.Public | BindingFlags.Static).Where(f => f.IsLiteral && !f.IsInitOnly && (string)f.GetValue(null) == typeId).FirstOrDefault();
 
             if (fieldInfo is null)
 
@@ -62,8 +61,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
 
             string propertyName = "FolderType" + fieldInfo.Name;
 
-            return (string)typeof(LocalizedMessages).GetProperties().Where(p => p.Name == propertyName).FirstOrDefault()?.GetValue(null) ?? string.Empty;
+            return (string)typeof(LocalizedMessages).GetProperties().Where(p => p.Name == propertyName).FirstOrDefault()?.GetValue(null, null) ?? string.Empty;
         }
     }
 }
-#endif

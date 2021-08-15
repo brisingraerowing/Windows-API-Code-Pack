@@ -1,17 +1,16 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
-using System;
-using System.Runtime.InteropServices;
-
 using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.EventSystem;
 using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
+
+using System;
+using System.Runtime.InteropServices;
 
 // todo: for portable and media devices: implement interfaces for service providers
 
 namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
 {
-
     /// <summary>
     /// <para>The <see cref="IPortableDevice"/> interface provides access to a portable device.</para>
     /// <para>To create and open this interface, first call <see cref="CoCreateInstance"/> with <see cref="NativeAPI.Guids.PortableDevices.PortableDeviceFTM"/> or <see cref="NativeAPI.Guids.PortableDevices.PortableDevice"/> to retrieve an <see cref="IPortableDevice"/> interface, and then call <see cref="Open"/> to open a connection to the device.</para>
@@ -20,8 +19,8 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
     /// <para>For Windows 7, <see cref="IPortableDevice"/> supports two CLSIDs for <see cref="CoCreateInstance"/>. <see cref="NativeAPI.Guids.PortableDevices.PortableDevice"/> returns an <see cref="IPortableDevice"/> pointer that does not aggregate the free-threaded marshaler; <see cref="NativeAPI.Guids.PortableDevices.PortableDeviceFTM"/> is a new CLSID that returns an <see cref="IPortableDevice"/> pointer that aggregates the free-threaded marshaler.Both pointers support the same functionality otherwise.</para>
     /// <para>Applications that live in Single Threaded Apartments should use <see cref="NativeAPI.Guids.PortableDevices.PortableDeviceFTM"/> as this eliminates the overhead of interface pointer marshaling. <see cref="NativeAPI.Guids.PortableDevices.PortableDevice"/> is still supported for legacy applications.</para></remarks>
     [ComImport(),
-        Guid(NativeAPI.Guids.PortableDevices.IPortableDevice),
-        InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    Guid(NativeAPI.Guids.PortableDevices.IPortableDevice),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDevice
     {
         /// <summary>
@@ -183,8 +182,6 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
         /// <para><ul><li><see cref="HResult.Ok"/></li>
         /// <li><see cref="HResult.Pointer"/></li></ul></para></returns>
         [PreserveSig]
-        /// <remarks>TODO</remarks>
-        /// <example><code>TODO</code></example>
         HResult SendCommand(
             [In] uint dwFlags,
             [In, MarshalAs(UnmanagedType.Interface)]

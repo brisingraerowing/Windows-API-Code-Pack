@@ -234,13 +234,12 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
         internal override void InitializeNativeFileDialog()
         {
-#if CS7
+#if CS8
+            saveDialogCoClass ??= new NativeFileSaveDialog();
+#else
             if (saveDialogCoClass == null)
 
                 saveDialogCoClass = new NativeFileSaveDialog();
-#else
-
-                saveDialogCoClass ??= new NativeFileSaveDialog();
 #endif
         }
 
@@ -279,7 +278,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         {
             if (saveDialogCoClass != null)
 
-                _=Marshal.ReleaseComObject(saveDialogCoClass);
+                _ = Marshal.ReleaseComObject(saveDialogCoClass);
         }
 
         internal override FileOpenOptions GetDerivedOptionFlags(FileOpenOptions flags)

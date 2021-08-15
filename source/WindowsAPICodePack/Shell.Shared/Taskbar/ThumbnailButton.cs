@@ -1,12 +1,11 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
-using System;
-using System.Drawing;
-using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
-using Microsoft.WindowsAPICodePack.Internal;
+
+using System;
+using System.Drawing;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar
 {
@@ -17,6 +16,12 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
     {
         private static uint nextId = 101;
         private ThumbButton win32ThumbButton;
+        private Icon icon;
+        private string tooltip;
+        private bool visible = true;
+        private bool enabled = true;
+        private bool dismissOnClick;
+        private bool isInteractive = true;
 
         /// <summary>
         /// The event that occurs when the taskbar thumbnail button
@@ -45,8 +50,11 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
             // increment the ID
             if (nextId == int.MaxValue)
+
                 nextId = 101; // our starting point
+
             else
+
                 nextId++;
 
             // Set user settings
@@ -64,19 +72,18 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         }
 
         #region Public properties
-
         /// <summary>
         /// Gets thumbnail button's id.
         /// </summary>
         internal uint Id { get; set; }
 
-        private Icon icon;
         /// <summary>
         /// Gets or sets the thumbnail button's icon.
         /// </summary>
         public Icon Icon
         {
             get => icon;
+
             set
             {
                 if (icon != value)
@@ -87,13 +94,13 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             }
         }
 
-        private string tooltip;
         /// <summary>
         /// Gets or sets the thumbnail button's tooltip.
         /// </summary>
         public string Tooltip
         {
             get => tooltip;
+
             set
             {
                 if (tooltip != value)
@@ -104,13 +111,13 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             }
         }
 
-        private bool visible = true;
         /// <summary>
         /// Gets or sets the thumbnail button's visibility. Default is true.
         /// </summary>
         public bool Visible
         {
             get => (Flags & ThumbButtonOptions.Hidden) == 0;
+
             set
             {
                 if (visible != value)
@@ -131,7 +138,6 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             }
         }
 
-        private bool enabled = true;
         /// <summary>
         /// Gets or sets the thumbnail button's enabled state. If the button is disabled, it is present, 
         /// but has a visual state that indicates that it will not respond to user action. Default is true.
@@ -139,6 +145,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         public bool Enabled
         {
             get => (Flags & ThumbButtonOptions.Disabled) == 0;
+
             set
             {
                 if (value != enabled)
@@ -158,7 +165,6 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             }
         }
 
-        private bool dismissOnClick;
         /// <summary>
         /// Gets or sets the property that describes the behavior when the button is clicked. 
         /// If set to true, the taskbar button's flyout will close immediately. Default is false.
@@ -166,6 +172,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         public bool DismissOnClick
         {
             get => (Flags & ThumbButtonOptions.DismissOnClick) == 0;
+
             set
             {
                 if (value != dismissOnClick)
@@ -185,7 +192,6 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             }
         }
 
-        private bool isInteractive = true;
         /// <summary>
         /// Gets or sets the property that describes whether the button is interactive with the user. Default is true.
         /// </summary>
@@ -197,6 +203,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         public bool IsInteractive
         {
             get => (Flags & ThumbButtonOptions.NonInteractive) == 0;
+
             set
             {
                 if (value != isInteractive)
@@ -215,11 +222,9 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 }
             }
         }
-
         #endregion
 
         #region Internal Methods
-
         /// <summary>
         /// Native flags enum (used when creating the native button)
         /// </summary>
@@ -271,45 +276,29 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// <summary>
         /// Handle to the window to which this button is for (on the taskbar).
         /// </summary>
-        internal IntPtr WindowHandle
-        {
-            get;
-            set;
-        }
+        internal IntPtr WindowHandle { get; set; }
 
         /// <summary>
         /// Indicates if this button was added to the taskbar. If it's not yet added,
         /// then we can't do any updates on it.
         /// </summary>
-        internal bool AddedToTaskbar
-        {
-            get;
-            set;
-        }
+        internal bool AddedToTaskbar { get; set; }
 
         internal void UpdateThumbnailButton()
         {
-            if (internalUpdate || !AddedToTaskbar) return; 
+            if (internalUpdate || !AddedToTaskbar) return;
 
             // Get the array of thumbnail buttons in native format
             ThumbButton[] nativeButtons = { Win32ThumbButton };
 
             HResult hr = TaskbarList.Instance.ThumbBarUpdateButtons(WindowHandle, 1, nativeButtons);
 
-            if (!CoreErrorHelper.Succeeded(hr)) throw new ShellException(hr); 
+            if (!CoreErrorHelper.Succeeded(hr)) throw new ShellException(hr);
         }
-
         #endregion
 
         #region IDisposable Members
-
-        /// <summary>
-        /// 
-        /// </summary>
-        ~ThumbnailToolBarButton()
-        {
-            Dispose(false);
-        }
+        ~ThumbnailToolBarButton() => Dispose(false);
 
         /// <summary>
         /// Release the native objects.
@@ -317,6 +306,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         public void Dispose()
         {
             Dispose(true);
+
             GC.SuppressFinalize(this);
         }
 
@@ -333,8 +323,6 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 tooltip = null;
             }
         }
-
         #endregion
     }
-
 }

@@ -20,6 +20,7 @@ using Microsoft.WindowsAPICodePack.COMNative;
 
 using WinCopies.Collections.DotNetFix;
 using WinCopies.Collections.DotNetFix.Generic;
+using WinCopies.Collections.Enumeration.Generic;
 
 using static WinCopies.ThrowHelper;
 
@@ -56,7 +57,11 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         void RemoveAt(ref uint index);
     }
 
-    public interface IReadOnlyUIntIndexedCollection<out T> : IEnumerable<T>, IEnumerable
+    public interface IReadOnlyUIntIndexedCollection<
+#if CS5
+        out
+#endif
+        T> : IEnumerable<T>, IEnumerable
     {
         uint Count { get; }
     }
@@ -80,7 +85,11 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         // Left empty.
     }
 
-    public interface IReadOnlyUIntIndexedList<out T> :
+    public interface IReadOnlyUIntIndexedList<
+#if CS5
+        out
+#endif
+        T> :
 #if WAPICP2
         IReadOnlyUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable
 #else
@@ -523,6 +532,15 @@ in
 
             Marshal.ThrowExceptionForHR((int)Items.RemoveAt(index));
         }
+
+#if WAPICP3
+        protected IUIntCountableEnumerator<T> GetUIntCountableEnumerator() => new UIntCountableEnumerator<System.Collections.Generic.IEnumerator<T>, T>(GetEnumerator(), () => Count);
+
+        IUIntCountableEnumerator<T> IUIntCountableEnumerable<T, IUIntCountableEnumerator<T>>.GetEnumerator() => GetUIntCountableEnumerator();
+        IUIntCountableEnumerator<T> WinCopies.Collections.Enumeration.DotNetFix.IEnumerable<IUIntCountableEnumerator<T>>.GetEnumerator() => GetUIntCountableEnumerator();
+        IUIntCountableEnumerator<T> IEnumerable<T, IUIntCountableEnumerator<T>>.GetEnumerator() => GetUIntCountableEnumerator();
+        IUIntCountableEnumerator WinCopies.Collections.Enumeration.DotNetFix.IEnumerable<IUIntCountableEnumerator>.GetEnumerator() => GetUIntCountableEnumerator();
+#endif
     }
 
     [Serializable]
@@ -867,7 +885,17 @@ in
 #endif
             T item) => throw new InvalidOperationException("The current collection is read-only.");
 
-#if WAPICP2
+#if WAPICP3
+        private IUIntCountableEnumerator<T> GetUIntCountableEnumerator() => new UIntCountableEnumerator<System.Collections.Generic.IEnumerator<T>, T>(GetEnumerator(), () => Count);
+
+        IUIntCountableEnumerator<T> IUIntCountableEnumerable<T, IUIntCountableEnumerator<T>>.GetEnumerator() => GetUIntCountableEnumerator();
+
+        IUIntCountableEnumerator WinCopies.Collections.Enumeration.DotNetFix.IEnumerable<IUIntCountableEnumerator>.GetEnumerator() => GetUIntCountableEnumerator();
+
+        IUIntCountableEnumerator<T> WinCopies.Collections.Enumeration.DotNetFix.IEnumerable<IUIntCountableEnumerator<T>>.GetEnumerator() => GetUIntCountableEnumerator();
+
+        IUIntCountableEnumerator<T> IEnumerable<T, IUIntCountableEnumerator<T>>.GetEnumerator() => GetUIntCountableEnumerator();
+#else
         void IUIntIndexedList<T>.RemoveAt(ref uint index) => throw new InvalidOperationException("The current collection is read-only.");
 #endif
     }
@@ -936,10 +964,14 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
     // todo: this collection implements the .Net IReadOnlyDictionary interface, but this interface does not support the uint indexing.
 
-    public class PropertyCollection : IReadOnlyDictionary<PropertyKey, Property>, IDisposable
+    public class PropertyCollection : IDisposable,
+#if CS6
+IReadOnlyDictionary<PropertyKey, Property>
+#else
+        System.Collections.Generic.IEnumerable<KeyValuePair<PropertyKey, Property>>
+#endif
     {
         #region Private/Internal Fields
-
         protected internal INativePropertiesCollection Items { get; }
 
         private INativePropertyValuesCollection _nativePropertyValuesCollection;
@@ -951,11 +983,9 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         private Dictionary<Property> _innerDictionary;
 
         private Func<Dictionary<Property>> _getDictionaryDelegate;
-
         #endregion
 
         #region Public Properties
-
         public Property this[PropertyKey key]
         {
             get
@@ -992,7 +1022,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             }
         }
 
-        public IEnumerable<PropertyKey> Keys
+        public System.Collections.Generic.IEnumerable<PropertyKey> Keys
         {
             get
             {
@@ -1011,17 +1041,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             }
         }
 
-        public IEnumerable<Property> Values
-        {
-            get
-            {
-                if (IsDisposed)
-
-                    throw new InvalidOperationException("The current object is disposed.");
-
-                return _getDictionaryDelegate().Values;
-            }
-        }
+        public System.Collections.Generic.IEnumerable<Property> Values => IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : _getDictionaryDelegate().Values;
 
         public uint Count
         {
@@ -1041,17 +1061,13 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
                 return _count.Value;
             }
         }
-
         #endregion
 
-        #region Explicit Interface Implementations
-
+#if CS6
         int IReadOnlyCollection<KeyValuePair<PropertyKey, Property>>.Count => (int)Count;
-
-        #endregion
+#endif
 
         #region Public Constructors
-
         public PropertyCollection(in INativePropertiesCollection nativePropertyCollection)
         {
             ThrowIfNull(nativePropertyCollection, nameof(nativePropertyCollection));
@@ -1071,11 +1087,9 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
                 return _innerDictionary;
             };
         }
-
         #endregion
 
         #region Private Methods
-
         private void PopulateDictionary()
         {
             if ((int)Count != _innerDictionary.Count)
@@ -1094,11 +1108,9 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
                 }
             }
         }
-
         #endregion
 
         #region Public Methods
-
         public bool ContainsKey(PropertyKey key)
         {
             if (IsDisposed)
@@ -1148,7 +1160,6 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
             return false;
         }
-
         #endregion
 
         #region IDisposable Support
@@ -1172,7 +1183,6 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         #endregion
 
         #region IEnumerable Support
-
         public System.Collections.Generic.IEnumerator<KeyValuePair<PropertyKey, Property>> GetEnumerator() => IsDisposed
                 ? throw new InvalidOperationException("The current object is disposed.")
                 : _getDictionaryDelegate().GetEnumerator();
@@ -1180,7 +1190,6 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => IsDisposed
                 ? throw new InvalidOperationException("The current object is disposed.")
                 : ((IEnumerable)_getDictionaryDelegate()).GetEnumerator();
-
         #endregion
     }
 
@@ -1199,7 +1208,6 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         <PropertyAttribute>
     {
         #region Private Fields
-
         private IDisposableReadOnlyNativePropertyValuesCollection _nativePropertyValuesCollection;
 
         private readonly Dictionary<PropertyAttribute> _innerDictionary;
@@ -1207,11 +1215,9 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         private uint? _count;
 
         private Func<Dictionary<PropertyAttribute>> _getDictionaryDelegate;
-
         #endregion
 
         #region Public Indexers
-
         public PropertyAttribute this[PropertyKey key] => IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : _getDictionaryDelegate()[key];
 
         public PropertyAttribute this[uint index]
@@ -1240,9 +1246,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         }
 
         #endregion
-
         #region Public Properties
-
         public uint Count
         {
             get
@@ -1267,11 +1271,9 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
                 return _count.Value;
             }
         }
-
         #endregion
 
         #region Public Constructors
-
         public PropertyAttributeCollection(in IDisposableReadOnlyNativePropertyValuesCollection nativePropertyValuesCollection)
         {
             ThrowIfNull(nativePropertyValuesCollection, nameof(nativePropertyValuesCollection));
@@ -1289,7 +1291,6 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
             _nativePropertyValuesCollection = nativePropertyValuesCollection;
         }
-
         #endregion
 
         private void PopulateDictionary()
@@ -1327,9 +1328,9 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         }
 #else
         // TODO: remove after referenced WinCopies > 3.1.0.1
-        private class _Class : WinCopies.Collections.DotNetFix.Generic.IUIntIndexedList<PropertyAttribute>
+        private class _Class : IUIntIndexedList<PropertyAttribute>
         {
-            private PropertyAttributeCollection _propertyAttributes;
+            private readonly PropertyAttributeCollection _propertyAttributes;
 
             public _Class(PropertyAttributeCollection propertyAttributes) => _propertyAttributes = propertyAttributes;
 
@@ -1338,7 +1339,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             uint IUIntCountable.Count => _propertyAttributes.Count;
 
         #region Unsupported items
-            System.Collections.Generic.IEnumerator<PropertyAttribute> IEnumerable<PropertyAttribute>.GetEnumerator() => throw new NotImplementedException();
+            System.Collections.Generic.IEnumerator<PropertyAttribute> System.Collections.Generic.IEnumerable<PropertyAttribute>.GetEnumerator() => throw new NotImplementedException();
             System.Collections.IEnumerator IEnumerable.GetEnumerator() => throw new NotImplementedException();
             void IUIntIndexedCollection<PropertyAttribute>.Add(PropertyAttribute item) => throw new NotImplementedException();
             void IUIntIndexedCollection<PropertyAttribute>.Clear() => throw new NotImplementedException();
@@ -1350,6 +1351,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             uint? IUIntIndexedList<PropertyAttribute>.IndexOf(PropertyAttribute item) => throw new NotImplementedException();
             void IUIntIndexedList<PropertyAttribute>.Insert(uint index, PropertyAttribute item) => throw new NotImplementedException();
             void IUIntIndexedList<PropertyAttribute>.RemoveAt(uint index) => throw new NotImplementedException();
+            public IUIntCountableEnumerator<PropertyAttribute> GetEnumerator() => throw new NotImplementedException();
         #endregion
         }
 #endif
@@ -1384,6 +1386,18 @@ UIntIndexedCollectionEnumerator(this);
                 IsDisposed = true;
             }
         }
+
+#if WAPICP3
+        private IUIntCountableEnumerator<PropertyAttribute> GetUIntCountableEnumerator() => new UIntCountableEnumerator<System.Collections.Generic.IEnumerator<PropertyAttribute>, PropertyAttribute>(GetEnumerator(), () => Count);
+
+        IUIntCountableEnumerator<PropertyAttribute> IUIntCountableEnumerable<PropertyAttribute, IUIntCountableEnumerator<PropertyAttribute>>.GetEnumerator() => GetUIntCountableEnumerator();
+
+#if !CS8
+        IUIntCountableEnumerator<PropertyAttribute> WinCopies.Collections.Enumeration.DotNetFix.IEnumerable<IUIntCountableEnumerator<PropertyAttribute>>.GetEnumerator() => GetUIntCountableEnumerator();
+
+        IUIntCountableEnumerator<PropertyAttribute> IEnumerable<PropertyAttribute, IUIntCountableEnumerator<PropertyAttribute>>.GetEnumerator() => GetUIntCountableEnumerator();
+#endif
+#endif
         #endregion
     }
 }

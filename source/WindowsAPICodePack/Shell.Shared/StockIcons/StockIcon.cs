@@ -1,15 +1,18 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
+using Microsoft.WindowsAPICodePack.Shell.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+
 using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
-using Microsoft.WindowsAPICodePack.Shell.Resources;
-using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.Internal;
+
+using static Microsoft.WindowsAPICodePack.Win32Native.Shell.StockIconSize;
+using static Microsoft.WindowsAPICodePack.Win32Native.Shell.StockIconsNativeMethods;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -19,18 +22,15 @@ namespace Microsoft.WindowsAPICodePack.Shell
     public class StockIcon : IDisposable
     {
         #region Private Members
-
         private StockIconIdentifier identifier = StockIconIdentifier.Application;
         private StockIconSize currentSize = StockIconSize.Large;
         private bool linkOverlay;
         private bool selected;
         private bool invalidateIcon = true;
         private IntPtr hIcon = IntPtr.Zero;
-
         #endregion
 
         #region Public Constructors
-
         /// <summary>
         /// Creates a new StockIcon instance with the specified identifer, default size 
         /// and no link overlay or selected states.
@@ -57,65 +57,31 @@ namespace Microsoft.WindowsAPICodePack.Shell
             currentSize = size;
             invalidateIcon = true;
         }
-
         #endregion
 
         #region Public Properties
-
         /// <summary>
         /// Gets or sets a value indicating whether the icon appears selected.
         /// </summary>
         /// <value>A <see cref="bool"/> value.</value>
-        public bool Selected
-        {
-            get => selected;
-            set
-            {
-                selected = value;
-                invalidateIcon = true;
-            }
-        }
+        public bool Selected { get => selected; set => UpdateValue(ref selected, value); }
 
         /// <summary>
         /// Gets or sets a value that cotrols whether to put a link overlay on the icon.
         /// </summary>
         /// <value>A <see cref="bool"/> value.</value>
-        public bool LinkOverlay
-        {
-            get => linkOverlay;
-            set
-            {
-                linkOverlay = value;
-                invalidateIcon = true;
-            }
-        }
+        public bool LinkOverlay { get => linkOverlay; set => UpdateValue(ref linkOverlay, value); }
 
         /// <summary>
         /// Gets or sets a value that controls the size of the Stock Icon.
         /// </summary>
         /// <value>A <see cref="StockIconSize"/> value.</value>
-        public StockIconSize CurrentSize
-        {
-            get => currentSize;
-            set
-            {
-                currentSize = value;
-                invalidateIcon = true;
-            }
-        }
+        public StockIconSize CurrentSize { get => currentSize; set => UpdateValue(ref currentSize, value); }
 
         /// <summary>
         /// Gets or sets the Stock Icon identifier associated with this icon.
         /// </summary>
-        public StockIconIdentifier Identifier
-        {
-            get => identifier;
-            set
-            {
-                identifier = value;
-                invalidateIcon = true;
-            }
-        }
+        public StockIconIdentifier Identifier { get => identifier; set => UpdateValue(ref identifier, value); }
 
         /// <summary>
         /// Gets the icon image in <see cref="System.Drawing.Bitmap"/> format. 
@@ -139,8 +105,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 UpdateHIcon();
 
-                return (hIcon != IntPtr.Zero) ?
-                    Imaging.CreateBitmapSourceFromHIcon(hIcon, Int32Rect.Empty, null) : null;
+                return (hIcon != IntPtr.Zero) ? Imaging.CreateBitmapSourceFromHIcon(hIcon, Int32Rect.Empty, null) : null;
             }
         }
 
@@ -160,13 +125,20 @@ namespace Microsoft.WindowsAPICodePack.Shell
         #endregion
 
         #region Private Methods
+        private void UpdateValue<T>(ref T value, in T newValue)
+        {
+            value = newValue;
+
+            invalidateIcon = true;
+        }
 
         private void UpdateHIcon()
         {
             if (invalidateIcon)
             {
                 if (hIcon != IntPtr.Zero)
-                    Core.DestroyIcon(hIcon);
+
+                    _ = Core.DestroyIcon(hIcon);
 
                 hIcon = GetHIcon();
 
@@ -180,70 +152,100 @@ namespace Microsoft.WindowsAPICodePack.Shell
             StockIconsNativeMethods.StockIconOptions flags = StockIconsNativeMethods.StockIconOptions.Handle;
 
             // Based on the current settings, update the flags
-            if (CurrentSize == StockIconSize.Small)
+#if CS8
+            flags |= CurrentSize switch
+            {
+#else
+            switch (CurrentSize)
+            {
+                case 
+#endif
+                Small
+#if CS8
+                =>
+#else
+                : flags |=
+#endif
+                StockIconOptions.Small
+#if CS8
+                ,
+#else
+                ;
 
-                flags |= StockIconsNativeMethods.StockIconOptions.Small;
+                break;
 
-            else if (CurrentSize == StockIconSize.ShellSize)
+                case
+#endif
+                ShellSize
+#if CS8
+                =>
+#else
+                : flags |=
+#endif
+                StockIconOptions.ShellSize
+#if CS8
+                ,
 
-                flags |= StockIconsNativeMethods.StockIconOptions.ShellSize;
+                _ =>
+#else
+                ;
 
-            else
+                break;
 
-                flags |= StockIconsNativeMethods.StockIconOptions.Large;  // default
+                default:
+
+                flags |=
+#endif
+                StockIconOptions.Large
+#if CS8
+            };
+#else
+                ;
+
+                break;
+            }
+#endif
 
             if (Selected)
 
-                flags |= StockIconsNativeMethods.StockIconOptions.Selected;
+                flags |= StockIconOptions.Selected;
 
             if (LinkOverlay)
 
-                flags |= StockIconsNativeMethods.StockIconOptions.LinkOverlay;
+                flags |= StockIconOptions.LinkOverlay;
 
             // Create a StockIconInfo structure to pass to the native method.
-            var info = new StockIconsNativeMethods.StockIconInfo
-            {
-                StuctureSize = (uint)Marshal.SizeOf(typeof(StockIconsNativeMethods.StockIconInfo))
-            };
+            var info = new StockIconInfo { StuctureSize = (uint)Marshal.SizeOf(typeof(StockIconInfo)) };
 
             // Pass the struct to the native method
-            HResult hr = StockIconsNativeMethods.SHGetStockIconInfo(identifier, flags, ref info);
+            HResult hr = SHGetStockIconInfo(identifier, flags, ref info);
 
             // If we get an error, return null as the icon requested might not be supported
             // on the current system
-            if (hr != HResult.Ok)
-            {
-                if (hr == HResult.InvalidArguments)
-
-                    throw new InvalidOperationException(
-                        string.Format(System.Globalization.CultureInfo.InvariantCulture,
-                        LocalizedMessages.StockIconInvalidGuid,
-                        identifier));
-
-                return IntPtr.Zero;
-            }
 
             // If we succeed, return the HIcon
-            return info.Handle;
-        }
 
+            return hr == HResult.Ok ? info.Handle :
+
+            hr == HResult.InvalidArguments
+                    ? throw new InvalidOperationException(
+                        string.Format(System.Globalization.CultureInfo.InvariantCulture,
+                        LocalizedMessages.StockIconInvalidGuid,
+                        identifier))
+                    : IntPtr.Zero;
+        }
         #endregion
 
         #region IDisposable Members
-
         /// <summary>
         /// Release the native and managed objects
         /// </summary>
         protected virtual void DisposeOverride()
         {
-            //if (disposing)
-            //{
-            //    // dispose managed resources here
-            //}
-
             // Unmanaged resources
             if (hIcon != IntPtr.Zero)
-                Core.DestroyIcon(hIcon);
+
+                _ = Core.DestroyIcon(hIcon);
         }
 
         /// <summary>
@@ -258,11 +260,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// 
         /// </summary>
-        ~StockIcon()
-        {
-            DisposeOverride();
-        }
-
+        ~StockIcon() => DisposeOverride();
         #endregion
     }
 }

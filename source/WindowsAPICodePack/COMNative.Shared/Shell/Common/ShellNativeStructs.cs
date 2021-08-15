@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.Shell
 {
@@ -16,7 +13,6 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     /// functions and methods which use these constants. 
     /// </summary>
     [Flags]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1008:EnumsShouldHaveZeroValue", Justification="Follows native api.")]
     public enum AccessModes
     {
         /// <summary>
@@ -41,7 +37,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
         /// Indicates that the object is read-only, 
         /// meaning that modifications cannot be made.
         /// </summary>
-        Read = 0x00000000,
+        Read = Direct,
 
         /// <summary>
         /// Enables you to save changes to the object, 
@@ -110,7 +106,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
         /// <summary>
         /// Causes the create operation to fail if an existing object with the specified name exists.
         /// </summary>
-        FailIfThere = 0x00000000,
+        FailIfThere = Direct,
 
         /// <summary>
         /// This flag is used when opening a storage object with Transacted 
@@ -125,5 +121,5 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
         /// Supports direct mode for single-writer, multireader file operations. 
         /// </summary>
         DirectSingleWriterMultipleReader = 0x00400000
-    };
+    }
 }

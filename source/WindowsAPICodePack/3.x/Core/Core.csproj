@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
-    <TargetFrameworks>net472;net48;netcoreapp3.0;netcoreapp3.1;net5.0-windows</TargetFrameworks>
+    <TargetFrameworks>net35;net40;net45;net472;net48;netcoreapp3.0;netcoreapp3.1;net5.0-windows;net6.0-windows</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
     <PackageId>WinCopies.WindowsAPICodePack</PackageId>
     <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
@@ -33,8 +33,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="WinCopies.Util" Version="3.1.0.1-preview" />
-    <PackageReference Include="WinCopies.Collections" Version="3.1.0.1-preview" />
+    <PackageReference Include="WinCopies.Util" Version="3.12-preview" />
+    <PackageReference Include="WinCopies.Collections" Version="3.12-preview" />
   </ItemGroup>
 
   <ItemGroup>

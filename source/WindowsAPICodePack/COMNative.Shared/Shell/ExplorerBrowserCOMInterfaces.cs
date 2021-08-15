@@ -11,7 +11,6 @@ using System.Text;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.Controls
 {
-
     public enum ShellViewGetItemObject
     {
         Background = 0x00000000,
@@ -130,8 +129,6 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Controls
     // Disable warning if a method declaration hides another inherited from a parent COM interface
     // To successfully import a COM interface, all inherited methods need to be declared again with 
     // the exception of those already declared in "IUnknown"
-#pragma warning disable 108
-
 
     [ComImport,
      TypeLibType(TypeLibTypeFlags.FCanCreate),
@@ -189,7 +186,6 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Controls
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         public virtual extern HResult GetCurrentView(ref Guid riid, out IntPtr ppv);
     }
-
 
     [ComImport,
      InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
@@ -353,7 +349,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Controls
         [PreserveSig]
         [MethodImpl(MethodImplOptions.InternalCall)]
         HResult QueryService(ref Guid guidService, ref Guid riid, out IntPtr ppvObject);
-    };
+    }
 
     [ComImport,
      Guid(NativeAPI.Guids.Shell.ExplorerBrowser.IFolderView),
@@ -497,7 +493,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Controls
         [PreserveSig]
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         HResult GetPaneState(ref Guid explorerPane, out ExplorerPaneState peps);
-    };
+    }
 
     [ComImport,
      Guid(NativeAPI.Guids.Shell.ExplorerBrowser.IExplorerBrowserEvents),
@@ -522,7 +518,6 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Controls
     }
 
     #region Unused - Keeping for debugging bug #885228
-
     //[ComImport,
     // Guid(ExplorerBrowserIIDGuid.ICommDlgBrowser),
     // InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -588,7 +583,6 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Controls
     //        IntPtr pshv,
     //        CommDlgBrowserNotifyType notifyType);
     //}
-
     #endregion
 
     [ComImport,
@@ -651,8 +645,8 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Controls
     }
 
     [ComImport,
-   Guid(NativeAPI.Guids.Shell.ExplorerBrowser.IInputObject),
-   InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    Guid(NativeAPI.Guids.Shell.ExplorerBrowser.IInputObject),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IInputObject
     {
         [PreserveSig]
@@ -666,8 +660,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Controls
         [PreserveSig]
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         HResult TranslateAcceleratorIO(ref System.Windows.Forms.Message pMsg);
-
-    };
+    }
 
     [ComImport,
      Guid(NativeAPI.Guids.Shell.ExplorerBrowser.IShellView),
@@ -747,7 +740,4 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Controls
             ref Guid riid,
             [MarshalAs(UnmanagedType.IUnknown)] out object ppv);
     }
-
-#pragma warning restore 108
-
 }

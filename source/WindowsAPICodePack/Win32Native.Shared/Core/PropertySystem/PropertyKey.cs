@@ -1,6 +1,7 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using Microsoft.WindowsAPICodePack.Win32Native.Resources;
+
 using System;
 using System.Runtime.InteropServices;
 
@@ -12,14 +13,9 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
     [StructLayout(LayoutKind.Sequential, Pack = 4)]
     public struct PropertyKey : IEquatable<PropertyKey>
     {
-        #region Private Fields
-
         private Guid formatId;
 
-        #endregion
-
         #region Public Properties
-
         /// <summary>
         /// A unique GUID for the property
         /// </summary>
@@ -29,11 +25,9 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         ///  Property identifier (PID)
         /// </summary>
         public uint PropertyId { get; }
-
         #endregion
 
         #region Public Construction
-
         /// <summary>
         /// PropertyKey Constructor
         /// </summary>
@@ -42,6 +36,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         public PropertyKey(Guid formatId, uint propertyId)
         {
             this.formatId = formatId;
+
             PropertyId = propertyId;
         }
 
@@ -50,16 +45,10 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         /// </summary>
         /// <param name="formatId">A string represenstion of a GUID for the property</param>
         /// <param name="propertyId">Property identifier (PID)</param>
-        public PropertyKey(string formatId, uint propertyId)
-        {
-            this.formatId = new Guid(formatId);
-            PropertyId = propertyId;
-        }
-
+        public PropertyKey(string formatId, uint propertyId) : this(new Guid(formatId), propertyId) { /* Left empty. */ }
         #endregion
 
-        #region IEquatable<PropertyKey> Members
-
+        #region equality and hashing
         /// <summary>
         /// Returns whether this object is equal to another. This is vital for performance of value types.
         /// </summary>
@@ -67,15 +56,11 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         /// <returns>Equality result.</returns>
         public bool Equals(PropertyKey other) => other.Equals((object)this);
 
-        #endregion
-
-        #region equality and hashing
-
         /// <summary>
         /// Returns the hash code of the object. This is vital for performance of value types.
         /// </summary>
         /// <returns></returns>
-        public override int GetHashCode() => formatId.GetHashCode() ^ (int) PropertyId;
+        public override int GetHashCode() => formatId.GetHashCode() ^ (int)PropertyId;
 
         /// <summary>
         /// Returns whether this object is equal to another. This is vital for performance of value types.
@@ -110,7 +95,6 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         public override string ToString() => string.Format(System.Globalization.CultureInfo.InvariantCulture,
                 LocalizedMessages.PropertyKeyFormatString,
                 formatId.ToString("B"), PropertyId);
-
         #endregion
     }
 }

@@ -5,7 +5,6 @@ using System;
 namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
 {
     #region Property System Enumerations
-
     /// <summary>
     /// Property store cache state
     /// </summary>
@@ -732,6 +731,5 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem
         /// </summary>
         MaskAll = 0x000003ff,
     }
-
     #endregion
 }

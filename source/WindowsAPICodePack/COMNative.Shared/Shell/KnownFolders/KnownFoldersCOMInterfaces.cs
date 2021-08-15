@@ -1,20 +1,21 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
+using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native;
+
+using static Microsoft.WindowsAPICodePack.NativeAPI.Guids.Shell;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.Shell
 {
     // Disable warning if a method declaration hides another inherited from a parent COM interface
     // To successfully import a COM interface, all inherited methods need to be declared again with 
     // the exception of those already declared in "IUnknown"
-#pragma warning disable 0108
-
     [ComImport,
-    Guid(NativeAPI.Guids.Shell.KnownFolders.IKnownFolder),
+    Guid(KnownFolders.IKnownFolder),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IKnownFolderNative
     {
@@ -59,11 +60,10 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
             MethodCodeType = MethodCodeType.Runtime)]
         void GetFolderDefinition(
             [Out, MarshalAs(UnmanagedType.Struct)] out KnownFoldersSafeNativeMethods.NativeFolderDefinition definition);
-
     }
 
     [ComImport,
-    Guid(NativeAPI.Guids.Shell.KnownFolders.IKnownFolderManager),
+    Guid(KnownFolders.IKnownFolderManager),
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IKnownFolderManager
     {
@@ -120,11 +120,10 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
         void Redirect();
     }
 
-    [ComImport]
-    [Guid(NativeAPI.Guids.Shell.KnownFolders.KnownFolderManager)]
+    [ComImport,
+    Guid(KnownFolders.KnownFolderManager)]
     public class KnownFolderManagerClass : IKnownFolderManager
     {
-
         [MethodImpl(MethodImplOptions.InternalCall,
             MethodCodeType = MethodCodeType.Runtime)]
         public virtual extern void FolderIdFromCsidl(int csidl,

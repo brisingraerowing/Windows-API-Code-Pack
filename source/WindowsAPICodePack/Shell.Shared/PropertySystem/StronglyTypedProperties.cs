@@ -1215,7 +1215,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     Stream -- VT_STREAM</para>
             /// <para>FormatID: (FMTID_SummaryInformation) {F29F85E0-4FF9-1068-AB91-08002B27B3D9}, 27</para>
             /// </summary>
-            public ShellProperty<IStream> ThumbnailStream => AddProperty<IStream>(COMNative.Shell.PropertySystem.SystemProperties.System.ThumbnailStream);
+            public ShellProperty<System.Runtime.InteropServices.ComTypes.IStream> ThumbnailStream => AddProperty<System.Runtime.InteropServices.ComTypes.IStream>(COMNative.Shell.PropertySystem.SystemProperties.System.ThumbnailStream);
 
             /// <summary>
             /// <para>Name: System.Title -- PKEY_Title</para>

@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using IDataObject = System.Runtime.InteropServices.ComTypes.IDataObject;
+
 using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames;
+
+using IDataObject = System.Runtime.InteropServices.ComTypes.IDataObject;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Clipboard
 {
     public static class ClipboardNativeMethods
     {
-
         [DllImport(User32, SetLastError = true)]
         public static extern bool OpenClipboard(IntPtr ownerWindowNewOwner);
 
@@ -44,6 +41,5 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Clipboard
 
         [DllImport(User32, SetLastError = true)]
         public static extern bool CloseClipboard();
-
     }
 }

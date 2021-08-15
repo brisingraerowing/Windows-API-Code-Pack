@@ -388,7 +388,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             uint optimalBufferSize = 0;
 
-            ThrowWhenFailHResult(Content.CreateObjectWithPropertiesAndData(properties, out IStream writer, ref optimalBufferSize, null));
+            ThrowWhenFailHResult(Content.CreateObjectWithPropertiesAndData(properties, out System.Runtime.InteropServices.ComTypes.IStream writer, ref optimalBufferSize, null));
 
             _ = Marshal.ReleaseComObject(properties);
 
@@ -398,7 +398,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             Write(forceBufferSize, optimalBufferSize, bufferSize, buffer => stream.Read(buffer, 0, buffer.Length /* In order to use the real buffer size (the optimal buffer size retrieved previously). */), (byte[] buffer, int realBufferLength) =>
             {
-                // TODO: re-implement IStream
+                // TODO: re-implement System.Runtime.InteropServices.ComTypes.IStream
                 writer.Write(buffer, realBufferLength, bytesWrittenPtr);
 
                 uint bytesWritten;

@@ -29,6 +29,10 @@ using System.Text;
 
 using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames;
 
+using static Microsoft.WindowsAPICodePack.Win32Native.Resources.LocalizedMessages;
+
+using static System.Environment;
+
 namespace Microsoft.WindowsAPICodePack.Win32Native
 {
     /// <summary>
@@ -36,6 +40,24 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
     /// </summary>
     public static class CoreHelpers
     {
+        public static void UpdateValue<T>(ref T value, in T newValue) where T : class
+        {
+            if (value != null)
+
+                _ = Marshal.ReleaseComObject(value);
+
+            value = newValue;
+        }
+
+        public static void DisposeCOMObject<T>(ref T value) where T : class
+        {
+            if (value != null)
+            {
+                _ = Marshal.ReleaseComObject(value);
+                value = null;
+            }
+        }
+
         public static SecurityAttributes GetSecurityAttributes(GCHandle securityDescriptorPinnedHandle, bool inheritHandle = false)
         {
             var securityAttributes = new SecurityAttributes { bInheritHandle = inheritHandle };
@@ -48,39 +70,36 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         /// <summary>
         /// Determines if the application is running on XP
         /// </summary>
-        public static bool RunningOnXP => Environment.OSVersion.Platform == PlatformID.Win32NT && Environment.OSVersion.Version.Major >= 5;
+        public static bool RunningOnXP => OSVersion.Platform == PlatformID.Win32NT && OSVersion.Version.Major >= 5;
+
+        private static void ThrowIfPlatformNotSupported(in bool condition, in string errorMessage)
+        {
+            if (!condition)
+
+                throw new PlatformNotSupportedException(errorMessage);
+        }
 
         /// <summary>
         /// Throws PlatformNotSupportedException if the application is not running on Windows XP
         /// </summary>
-        public static void ThrowIfNotXP()
-        {
-            if (!RunningOnXP)
-
-                throw new PlatformNotSupportedException(LocalizedMessages.CoreHelpersRunningOnXp);
-        }
+        public static void ThrowIfNotXP() => ThrowIfPlatformNotSupported(RunningOnXP, CoreHelpersRunningOnXp);
 
         /// <summary>
         /// Determines if the application is running on Vista
         /// </summary>
-        public static bool RunningOnVista => Environment.OSVersion.Version.Major >= 6;
+        public static bool RunningOnVista => OSVersion.Version.Major >= 6;
 
         /// <summary>
         /// Throws PlatformNotSupportedException if the application is not running on Windows Vista
         /// </summary>
-        public static void ThrowIfNotVista()
-        {
-            if (!RunningOnVista)
-
-                throw new PlatformNotSupportedException(LocalizedMessages.CoreHelpersRunningOnVista);
-        }
+        public static void ThrowIfNotVista() => ThrowIfPlatformNotSupported(RunningOnVista, CoreHelpersRunningOnVista);
 
         /// <summary>
         /// Determines if the application is running on Windows 7
         /// </summary>
         public static bool RunningOnWin7 =>
                 // Verifies that OS version is 6.1 or greater, and the Platform is WinNT.
-                Environment.OSVersion.Platform == PlatformID.Win32NT && Environment.OSVersion.Version.CompareTo(new Version(6, 1)) >= 0;
+                OSVersion.Platform == PlatformID.Win32NT && OSVersion.Version.CompareTo(new Version(6, 1)) >= 0;
 
         /// <summary>
         /// Throws PlatformNotSupportedException if the application is not running on Windows 7
@@ -89,14 +108,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         {
             if (!RunningOnWin7)
 
-                throw new PlatformNotSupportedException(LocalizedMessages.CoreHelpersRunningOn7);
+                throw new PlatformNotSupportedException(CoreHelpersRunningOn7);
         }
 
         /// <summary>
         /// Determines if the application is running on Windows 8
         /// </summary>
-        public static bool RunningOnWin8 => Environment.OSVersion.Platform == PlatformID.Win32NT &&
-            Environment.OSVersion.Version.CompareTo(new Version(6, 2)) >= 0;
+        public static bool RunningOnWin8 => OSVersion.Platform == PlatformID.Win32NT && OSVersion.Version.CompareTo(new Version(6, 2)) >= 0;
 
         /// <summary>
         /// Throws PlatformNotSupportedException if the application is not running on Windows 8
@@ -111,7 +129,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         /// <summary>
         /// Determines if the application is running on Windows 8.1
         /// </summary>
-        public static bool RunningOnWin8_1 => Environment.OSVersion.Platform == PlatformID.Win32NT && Environment.OSVersion.Version.CompareTo(new Version(6, 3)) >= 0;
+        public static bool RunningOnWin8_1 => OSVersion.Platform == PlatformID.Win32NT && OSVersion.Version.CompareTo(new Version(6, 3)) >= 0;
 
         /// <summary>
         /// Throws PlatformNotSupportedException if the application is not running on Windows 8.1
@@ -126,7 +144,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         /// <summary>
         /// Determines if the application is running on Windows 10
         /// </summary>
-        public static bool RunningOnWin10 => Environment.OSVersion.Platform == PlatformID.Win32NT && Environment.OSVersion.Version.CompareTo(new Version(10, 0)) >= 0;
+        public static bool RunningOnWin10 => OSVersion.Platform == PlatformID.Win32NT && OSVersion.Version.CompareTo(new Version(10, 0)) >= 0;
 
         /// <summary>
         /// Throws PlatformNotSupportedException if the application is not running on Windows 10
@@ -160,7 +178,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
 
             library = parts[0];
             library = library.Replace(@"@", string.Empty);
-            library = Environment.ExpandEnvironmentVariables(library);
+            library = ExpandEnvironmentVariables(library);
             IntPtr handle = Core.LoadLibrary(library);
 
             parts[1] = parts[1].Replace("-", string.Empty);

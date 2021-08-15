@@ -1,19 +1,15 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
-using Microsoft.WindowsAPICodePack.COMNative;
 using Microsoft.WindowsAPICodePack.Win32Native;
+
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
 {
     [ComImport,
-        Guid(NativeAPI.Guids.PortableDevices.IPortableDeviceServiceManager),
-        InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    Guid(NativeAPI.Guids.PortableDevices.IPortableDeviceServiceManager),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceServiceManager
     {
         [PreserveSig]

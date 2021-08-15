@@ -1,19 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
-    <TargetFrameworks>net472;net48;netcoreapp3.0;netcoreapp3.1;net5.0-windows</TargetFrameworks>
+    <TargetFrameworks>net40;net45;net472;net48;netcoreapp3.0;netcoreapp3.1;net5.0-windows;net6.0-windows</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <AssemblyName>WinCopies.WindowsAPICodePack.ShellExtensions</AssemblyName>
     <RootNamespace>Microsoft.WindowsAPICodePack.ShellExtensions</RootNamespace>
-    <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
+    <Authors>Microsoft; Pierre Sprimont</Authors>
     <Description>WindowsAPICodePack Shell Extensions</Description>
     <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020-2021</Copyright>
     <AssemblyOriginatorKeyFile>ShellExtensions.snk</AssemblyOriginatorKeyFile>
     <DocumentationFile>WinCopies.WindowsAPICodePack.ShellExtensions.xml</DocumentationFile>
     <DefineConstants>WAPICP2;$(DefineConstants)</DefineConstants>
     <VersionPrefix>2.3</VersionPrefix>
-    <!--<VersionSuffix>preview</VersionSuffix>-->
     <AssemblyVersion>2.3</AssemblyVersion>
     <FileVersion>2.3</FileVersion>
   </PropertyGroup>

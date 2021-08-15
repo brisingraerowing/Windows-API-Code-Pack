@@ -1,16 +1,16 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
-using System;
-using System.Runtime.InteropServices;
-
 using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
+
+using System;
+using System.Runtime.InteropServices;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
 {
     [ComImport,
-        Guid(NativeAPI.Guids.PortableDevices.IPortableDeviceServiceMethodCallback),
-        InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    Guid(NativeAPI.Guids.PortableDevices.IPortableDeviceServiceMethodCallback),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IPortableDeviceServiceMethodCallback
     {
         [PreserveSig]

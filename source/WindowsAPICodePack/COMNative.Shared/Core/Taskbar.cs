@@ -1,20 +1,19 @@
-﻿using Microsoft.WindowsAPICodePack.PropertySystem;
+﻿using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
-using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Text;
-using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames;
-using static Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.SystemProperties.System;
 
-namespace Microsoft.WindowsAPICodePack. COMNative.Taskbar
+using System;
+using System.Runtime.InteropServices;
+
+using static Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.SystemProperties.System;
+using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames;
+
+namespace Microsoft.WindowsAPICodePack.COMNative.Taskbar
 {
     public static class Taskbar
     {
-
         [DllImport(Shell32)]
         public static extern int SHGetPropertyStoreForWindow(
             IntPtr hwnd,

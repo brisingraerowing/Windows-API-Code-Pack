@@ -1,14 +1,13 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
-using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
 using Microsoft.WindowsAPICodePack.COMNative.Sensors;
 using Microsoft.WindowsAPICodePack.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.PortableDevices;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
+
+using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace Microsoft.WindowsAPICodePack.Sensors
 {
@@ -35,63 +34,47 @@ namespace Microsoft.WindowsAPICodePack.Sensors
 
                 _ = keyCollection.GetAt(index, ref key);
 
-#if CS7
-
-                using (var propValue = new PropVariant())
-
-                { 
-
-#else
-
+#if CS8
                 using var propValue = new PropVariant();
-
+#else
+                using (var propValue = new PropVariant())
+                {
 #endif
+                    _ = valuesCollection.GetValue(ref key, propValue);
 
-                _ = valuesCollection.GetValue(ref key, propValue);
+                    if (data.ContainsKey(key.FormatId))
 
-                if (data.ContainsKey(key.FormatId))
+                        data[key.FormatId].Add(propValue.Value);
 
-                    data[key.FormatId].Add(propValue.Value);
+                    else
 
-                else
-
-                    data.Add(key.FormatId, new List<object> { propValue.Value });
-
-#if CS7
-
+                        data.Add(key.FormatId, new List<object> { propValue.Value });
+#if !CS8
                 }
-
 #endif
             }
 
             if (keyCollection != null)
-
             {
-
                 _ = Marshal.ReleaseComObject(keyCollection);
 
                 keyCollection = null;
-
             }
 
             if (valuesCollection != null)
-
             {
-
                 _ = Marshal.ReleaseComObject(valuesCollection);
 
                 keyCollection = null;
-
             }
 
             return data;
         }
-#endregion
+        #endregion
 
         private readonly Dictionary<Guid, IList<object>> sensorDataDictionary = new Dictionary<Guid, IList<object>>();
 
-#region IDictionary<Guid,IList<object>> Members
-
+        #region IDictionary<Guid,IList<object>> Members
         /// <summary>
         /// Adds a data item to the dictionary.
         /// </summary>
@@ -136,15 +119,10 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// </summary>
         /// <param name="key">A GUID.</param>
         /// <returns>The item at the specified index.</returns>
-        public IList<object> this[Guid key]
-        {
-            get => sensorDataDictionary[key];
-            set => sensorDataDictionary[key] = value;
-        }
+        public IList<object> this[Guid key] { get => sensorDataDictionary[key]; set => sensorDataDictionary[key] = value; }
+        #endregion
 
-#endregion
-
-#region System.Collections.Generic.ICollection<KeyValuePair<Guid,IList<object>>> Members
+        #region System.Collections.Generic.ICollection<KeyValuePair<Guid,IList<object>>> Members
         /// <summary>
         /// Adds a specified key/value data pair to the collection.
         /// </summary>
@@ -186,25 +164,22 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// <param name="item">The item to remove.</param>
         /// <returns><b>true</b> if successful; otherwise <b>false</b></returns>
         public bool Remove(KeyValuePair<Guid, IList<object>> item) => (sensorDataDictionary as System.Collections.Generic.ICollection<KeyValuePair<Guid, IList<object>>>).Remove(item);
+        #endregion
 
-#endregion
-
-#region IEnumerable<KeyValuePair<Guid,IList<object>>> Members
+        #region IEnumerable<KeyValuePair<Guid,IList<object>>> Members
         /// <summary>
         /// Returns an enumerator for the collection.
         /// </summary>
         /// <returns>An enumerator.</returns>
         public IEnumerator<KeyValuePair<Guid, IList<object>>> GetEnumerator() => sensorDataDictionary as IEnumerator<KeyValuePair<Guid, IList<object>>>;
+        #endregion
 
-#endregion
-
-#region IEnumerable Members
+        #region IEnumerable Members
         /// <summary>
         /// Returns an enumerator for the collection.
         /// </summary>
         /// <returns>An enumerator.</returns>
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => sensorDataDictionary as System.Collections.IEnumerator;
-
-#endregion
+        #endregion
     }
 }

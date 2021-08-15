@@ -2152,7 +2152,8 @@ namespace Microsoft.WindowsAPICodePack.NativeAPI.Guids
         public const string IUnknown = "00000000-0000-0000-C000-000000000046";
         public const string ISpecifyPropertyPages = "B196B28B-BAB4-101A-B69C-00AA00341D07";
         public const string IMarshal = "00000003-0000-0000-C000-000000000046";
-
+        public const string ISequentialStream = "0c733a30-2a1c-11ce-ade5-00aa0044773d";
+        public const string IStream = "0000000c-0000-0000-C000-000000000046";
         public const string IObjectWithSite = "fc4801a3-2ba9-11cf-a229-00aa003d7352";
         public const string IOleWindow = "00000114-0000-0000-C000-000000000046";
     }

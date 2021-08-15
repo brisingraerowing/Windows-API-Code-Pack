@@ -1,4 +1,5 @@
 ﻿using Microsoft.WindowsAPICodePack.PortableDevices.PropertySystem;
+
 using System;
 using System.IO;
 
@@ -27,7 +28,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
         IDeviceCapabilities DeviceCapabilities { get; }
 
-        Microsoft.WindowsAPICodePack.PropertySystem.PropertyCollection Properties { get; }
+        WindowsAPICodePack.PropertySystem.PropertyCollection Properties { get; }
 
         string DeviceId { get; }
 

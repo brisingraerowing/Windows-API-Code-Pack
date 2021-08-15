@@ -1,17 +1,17 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
-using System;
-using System.Runtime.InteropServices;
-using Microsoft.WindowsAPICodePack.COMNative;
 using Microsoft.WindowsAPICodePack.COMNative.COM;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
 
+using System;
+using System.Runtime.InteropServices;
+
 namespace Microsoft.WindowsAPICodePack.COMNative.Taskbar
 {
-    [ComImport()]
-    [Guid(NativeAPI.Guids.Taskbar.ICustomDestinationList)]
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    [ComImport(),
+    Guid(NativeAPI.Guids.Taskbar.ICustomDestinationList),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ICustomDestinationList
     {
         void SetAppID(
@@ -39,14 +39,14 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Taskbar
         void AbortList();
     }
 
-    [Guid(NativeAPI.Guids.Taskbar.CDestinationList)]
-    [ClassInterface(ClassInterfaceType.None)]
-    [ComImport()]
+    [Guid(NativeAPI.Guids.Taskbar.CDestinationList),
+    ClassInterface(ClassInterfaceType.None),
+    ComImport()]
     public class CDestinationList { }
 
-    [ComImport()]
-    [Guid(NativeAPI.Guids.Taskbar.ITaskbarList)]
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    [ComImport(),
+    Guid(NativeAPI.Guids.Taskbar.ITaskbarList),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface ITaskbarList
     {
         [PreserveSig]
@@ -61,10 +61,10 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Taskbar
         void SetActiveAlt(IntPtr hwnd);
     }
 
-    [ComImport()]
-    [Guid(NativeAPI.Guids.Taskbar.ITaskbarList2)]
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface ITaskbarList2: ITaskbarList
+    [ComImport(),
+    Guid(NativeAPI.Guids.Taskbar.ITaskbarList2),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface ITaskbarList2 : ITaskbarList
     {
         [PreserveSig]
         void MarkFullscreenWindow(
@@ -72,10 +72,10 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Taskbar
                 [MarshalAs(UnmanagedType.Bool)] bool fFullscreen);
     }
 
-    [ComImport()]
-    [Guid(NativeAPI.Guids.Taskbar.ITaskbarList3)]
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface ITaskbarList3: ITaskbarList2
+    [ComImport(),
+    Guid(NativeAPI.Guids.Taskbar.ITaskbarList3),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface ITaskbarList3 : ITaskbarList2
     {
         [PreserveSig]
         void SetProgressValue(IntPtr hwnd, ulong ullCompleted, ulong ullTotal);
@@ -116,16 +116,16 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Taskbar
             IntPtr prcClip);
     }
 
-    [ComImport()]
-    [Guid(NativeAPI.Guids.Taskbar.ITaskbarList4)]
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface ITaskbarList4: ITaskbarList3
-    { 
-    void SetTabProperties(IntPtr hwndTab, SetTabPropertiesOption stpFlags);
+    [ComImport(),
+    Guid(NativeAPI.Guids.Taskbar.ITaskbarList4),
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface ITaskbarList4 : ITaskbarList3
+    {
+        void SetTabProperties(IntPtr hwndTab, SetTabPropertiesOption stpFlags);
     }
 
-    [Guid(NativeAPI.Guids.Taskbar.CTaskbarList)]
-    [ClassInterface(ClassInterfaceType.None)]
-    [ComImport()]
+    [Guid(NativeAPI.Guids.Taskbar.CTaskbarList),
+    ClassInterface(ClassInterfaceType.None),
+    ComImport()]
     public class CTaskbarList { }
 }

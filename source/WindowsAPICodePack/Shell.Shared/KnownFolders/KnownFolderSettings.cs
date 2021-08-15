@@ -1,11 +1,12 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
-using System;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+
+using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -19,7 +20,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
         internal KnownFolderSettings(IKnownFolderNative knownFolderNative) => GetFolderProperties(knownFolderNative);
 
         #region Private Methods
-
         /// <summary>
         /// Populates a structure that contains 
         /// this known folder's properties.
@@ -58,8 +58,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 knownFolderProperties.localizedName = CoreHelpers.GetStringResource(knownFolderProperties.localizedNameResourceId);
 
                 knownFolderProperties.folderId = knownFolderNative.GetId();
-
             }
+
             finally
             {
                 // Clean up memory. 
@@ -83,7 +83,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </param>
         /// <param name="knownFolderNative">Native IKnownFolder reference</param>
         /// <returns>
-        /// A <see cref="System.String"/> containing the path, or <see cref="string.Empty"/> if this known folder does not exist.
+        /// A <see cref="string"/> containing the path, or <see cref="string.Empty"/> if this known folder does not exist.
         /// </returns>
         private string GetPath(out bool fileExists, IKnownFolderNative knownFolderNative)
         {
@@ -96,6 +96,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             if (knownFolderProperties.category == FolderCategory.Virtual)
             {
                 fileExists = false;
+        
                 return kfPath;
             }
 
@@ -103,10 +104,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 kfPath = knownFolderNative.GetPath(0);
             }
+            
             catch (System.IO.FileNotFoundException)
             {
                 fileExists = false;
             }
+            
             catch (System.IO.DirectoryNotFoundException)
             {
                 fileExists = false;
@@ -114,17 +117,14 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             return kfPath;
         }
-
         #endregion
 
         #region KnownFolder Properties
-
         /// <summary>
         /// Gets the path for this known folder.
         /// </summary>
         /// <value>A <see cref="string"/> object.</value>
         public string Path => knownFolderProperties.path;
-
 
         /// <summary>
         /// Gets the category designation for this known folder.
@@ -232,7 +232,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         /// <value>A <see cref="RedirectionCapability"/> value.</value>
         public RedirectionCapability Redirection => knownFolderProperties.redirection;
-
         #endregion
     }
 }

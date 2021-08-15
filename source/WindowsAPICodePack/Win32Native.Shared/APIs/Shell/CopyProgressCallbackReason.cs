@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Microsoft.WindowsAPICodePack.Win32Native.Shell.Shell;
-
-namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
+﻿namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
     /// <summary>
     /// The reason that <see cref="CopyProgressRoutine"/> was called.

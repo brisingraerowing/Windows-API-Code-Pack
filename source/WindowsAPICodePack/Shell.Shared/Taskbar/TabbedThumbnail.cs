@@ -1,5 +1,10 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
+using Microsoft.WindowsAPICodePack.Shell.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.GDI;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager;
+
 using System;
 using System.Drawing;
 using System.IO;
@@ -8,15 +13,6 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
-using Microsoft.WindowsAPICodePack.Shell;
-using Microsoft.WindowsAPICodePack.Shell.Resources;
-using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native.Taskbar;
-using Microsoft.WindowsAPICodePack.Internal;
-
-using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.Taskbar.TabbedThumbnail;
-using Microsoft.WindowsAPICodePack.Win32Native.GDI;
 
 namespace Microsoft.WindowsAPICodePack.Taskbar
 {
@@ -25,14 +21,20 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
     /// </summary>
     public class TabbedThumbnail : IDisposable
     {
-        #region Internal members
+        private bool _addedToTaskbar;
+        private string _title = string.Empty;
+        private string _tooltip = string.Empty;
+        private Rectangle? _clippingRectangle;
 
+        #region Internal members
         // Control properties
         internal IntPtr WindowHandle { get; set; }
+
         internal IntPtr ParentWindowHandle { get; set; }
 
         // WPF properties
         internal UIElement WindowsControl { get; set; }
+
         internal Window WindowsControlParentWindow { get; set; }
 
         private TaskbarWindow _taskbarWindow;
@@ -40,6 +42,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         internal TaskbarWindow TaskbarWindow
         {
             get => _taskbarWindow;
+
             set
             {
                 _taskbarWindow = value;
@@ -51,11 +54,10 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             }
         }
 
-        private bool _addedToTaskbar;
-
         internal bool AddedToTaskbar
         {
             get => _addedToTaskbar;
+
             set
             {
                 _addedToTaskbar = value;
@@ -68,99 +70,26 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         }
 
         internal bool RemovedFromTaskbar { get; set; }
-
-        #endregion
-
-        #region Constructors
-
-        /// <summary>
-        /// Creates a new TabbedThumbnail with the given window handle of the parent and
-        /// a child control/window's handle (e.g. TabPage or Panel)
-        /// </summary>
-        /// <param name="parentWindowHandle">Window handle of the parent window. 
-        /// This window has to be a top-level window and the handle cannot be null or IntPtr.Zero</param>
-        /// <param name="windowHandle">Window handle of the child control or window for which a tabbed 
-        /// thumbnail needs to be displayed</param>
-        public TabbedThumbnail(IntPtr parentWindowHandle, IntPtr windowHandle)
-        {
-            if (parentWindowHandle == IntPtr.Zero)
-
-                throw new ArgumentException(LocalizedMessages.TabbedThumbnailZeroParentHandle, nameof(parentWindowHandle));
-
-            if (windowHandle == IntPtr.Zero)
-
-                throw new ArgumentException(LocalizedMessages.TabbedThumbnailZeroChildHandle, nameof(windowHandle));
-
-            WindowHandle = windowHandle;
-            ParentWindowHandle = parentWindowHandle;
-        }
-
-        /// <summary>
-        /// Creates a new TabbedThumbnail with the given window handle of the parent and
-        /// a child control (e.g. TabPage or Panel)
-        /// </summary>
-        /// <param name="parentWindowHandle">Window handle of the parent window. 
-        /// This window has to be a top-level window and the handle cannot be null or IntPtr.Zero</param>
-        /// <param name="control">Child control for which a tabbed thumbnail needs to be displayed</param>
-        /// <remarks>This method can also be called when using a WindowsFormHost control in a WPF application.
-        ///  Call this method with the main WPF Window's handle, and windowsFormHost.Child control.</remarks>
-        public TabbedThumbnail(IntPtr parentWindowHandle, Control control)
-        {
-            if (parentWindowHandle == IntPtr.Zero)
-
-                throw new ArgumentException(LocalizedMessages.TabbedThumbnailZeroParentHandle, nameof(parentWindowHandle));
-
-            if (control == null)
-
-                throw new ArgumentNullException(nameof(control));
-
-            WindowHandle = control.Handle;
-            ParentWindowHandle = parentWindowHandle;
-        }
-
-        /// <summary>
-        /// Creates a new TabbedThumbnail with the given window handle of the parent and
-        /// a WPF child Window. For WindowsFormHost control, use TabbedThumbnail(IntPtr, Control) overload and pass
-        /// the WindowsFormHost.Child as the second parameter.
-        /// </summary>
-        /// <param name="parentWindow">Parent window for the UIElement control. 
-        /// This window has to be a top-level window and the handle cannot be null</param>
-        /// <param name="windowsControl">WPF Control (UIElement) for which a tabbed thumbnail needs to be displayed</param>
-        /// <param name="peekOffset">Offset point used for displaying the peek bitmap. This setting is
-        /// recomended for hidden WPF controls as it is difficult to calculate their offset.</param>
-        public TabbedThumbnail(Window parentWindow, UIElement windowsControl, Vector peekOffset)
-        {
-            WindowHandle = IntPtr.Zero;
-
-            WindowsControl = windowsControl ?? throw new ArgumentNullException(nameof(windowsControl));
-            WindowsControlParentWindow = parentWindow ?? throw new ArgumentNullException(nameof(parentWindow));
-            ParentWindowHandle = new WindowInteropHelper(parentWindow).Handle;
-            PeekOffset = peekOffset;
-        }
-
         #endregion
 
         #region Public Properties
-
-        private string _title = string.Empty;
-
         /// <summary>
         /// Title for the window shown as the taskbar thumbnail.
         /// </summary>
         public string Title
         {
             get => _title;
+
             set
             {
                 if (_title != value)
                 {
                     _title = value;
+
                     TitleChanged?.Invoke(this, EventArgs.Empty);
                 }
             }
         }
-
-        private string _tooltip = string.Empty;
 
         /// <summary>
         /// Tooltip to be shown for this thumbnail on the taskbar. 
@@ -169,6 +98,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         public string Tooltip
         {
             get => _tooltip;
+
             set
             {
                 if (_tooltip != value)
@@ -207,8 +137,6 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 TaskbarWindow.TabbedThumbnailProxyWindow.Icon = Icon;
         }
 
-        private Rectangle? _clippingRectangle;
-
         /// <summary>
         /// Specifies that only a portion of the window's client area
         /// should be used in the window's thumbnail.
@@ -217,6 +145,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         public Rectangle? ClippingRectangle
         {
             get => _clippingRectangle;
+
             set
             {
                 _clippingRectangle = value;
@@ -263,34 +192,31 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             if (bitmapSource == null)
             {
                 SetImage(IntPtr.Zero);
+
                 return;
             }
 
             var encoder = new BmpBitmapEncoder();
+
             encoder.Frames.Add(BitmapFrame.Create(bitmapSource));
 
-#if CS7
-
-            using (MemoryStream memoryStream = new MemoryStream())
-            {
-                encoder.Save(memoryStream);
-                memoryStream.Position = 0;
-
-                using (Bitmap bmp = new Bitmap(memoryStream))
-                {
-                    SetImage(bmp.GetHbitmap());
-                }
-            }
-
-#else
-
+#if CS8
             using var memoryStream = new MemoryStream();
             encoder.Save(memoryStream);
             memoryStream.Position = 0;
 
             using var bmp = new Bitmap(memoryStream);
             SetImage(bmp.GetHbitmap());
+#else
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                encoder.Save(memoryStream);
+                memoryStream.Position = 0;
 
+                using (Bitmap bmp = new Bitmap(memoryStream))
+
+                    SetImage(bmp.GetHbitmap());
+            }
 #endif
         }
 
@@ -345,13 +271,9 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// recomended for hidden WPF controls as it is difficult to calculate their offset.
         /// </summary>
         public Vector? PeekOffset { get; set; }
+        #endregion
 
-#endregion
-
-
-
-#region Events
-
+        #region Events
         /// <summary>
         /// This event is raised when the Title property changes.
         /// </summary>
@@ -387,14 +309,13 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// </summary>
         public event EventHandler<TabbedThumbnailBitmapRequestedEventArgs> TabbedThumbnailBitmapRequested;
 
-
         internal void OnTabbedThumbnailMaximized()
         {
             if (TabbedThumbnailMaximized == null)
 
                 // No one is listening to these events.
                 // Forward the message to the main window
-                _ = Core.SendMessage(ParentWindowHandle, WindowMessage.SystemCommand, new IntPtr(ScMaximize), IntPtr.Zero);
+                _ = Core.SendMessage(ParentWindowHandle, WindowMessage.SystemCommand, new IntPtr((int)SystemMenuCommands.Maximize), IntPtr.Zero);
 
             else
 
@@ -407,7 +328,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
                 // No one is listening to these events.
                 // Forward the message to the main window
-                _ = Core.SendMessage(ParentWindowHandle, WindowMessage.SystemCommand, new IntPtr(ScMinimize), IntPtr.Zero);
+                _ = Core.SendMessage(ParentWindowHandle, WindowMessage.SystemCommand, new IntPtr((int)SystemMenuCommands.Minimize), IntPtr.Zero);
 
             else
 
@@ -501,18 +422,82 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
             return eventArgs;
         }
+        #endregion
 
-#endregion
+        #region Constructors
+        /// <summary>
+        /// Creates a new TabbedThumbnail with the given window handle of the parent and
+        /// a child control/window's handle (e.g. TabPage or Panel)
+        /// </summary>
+        /// <param name="parentWindowHandle">Window handle of the parent window. 
+        /// This window has to be a top-level window and the handle cannot be null or IntPtr.Zero</param>
+        /// <param name="windowHandle">Window handle of the child control or window for which a tabbed 
+        /// thumbnail needs to be displayed</param>
+        public TabbedThumbnail(IntPtr parentWindowHandle, IntPtr windowHandle)
+        {
+            if (parentWindowHandle == IntPtr.Zero)
 
-#region IDisposable Members
+                throw new ArgumentException(LocalizedMessages.TabbedThumbnailZeroParentHandle, nameof(parentWindowHandle));
 
+            if (windowHandle == IntPtr.Zero)
+
+                throw new ArgumentException(LocalizedMessages.TabbedThumbnailZeroChildHandle, nameof(windowHandle));
+
+            WindowHandle = windowHandle;
+
+            ParentWindowHandle = parentWindowHandle;
+        }
+
+        /// <summary>
+        /// Creates a new TabbedThumbnail with the given window handle of the parent and
+        /// a child control (e.g. TabPage or Panel)
+        /// </summary>
+        /// <param name="parentWindowHandle">Window handle of the parent window. 
+        /// This window has to be a top-level window and the handle cannot be null or IntPtr.Zero</param>
+        /// <param name="control">Child control for which a tabbed thumbnail needs to be displayed</param>
+        /// <remarks>This method can also be called when using a WindowsFormHost control in a WPF application.
+        ///  Call this method with the main WPF Window's handle, and windowsFormHost.Child control.</remarks>
+        public TabbedThumbnail(IntPtr parentWindowHandle, Control control)
+        {
+            if (parentWindowHandle == IntPtr.Zero)
+
+                throw new ArgumentException(LocalizedMessages.TabbedThumbnailZeroParentHandle, nameof(parentWindowHandle));
+
+            if (control == null)
+
+                throw new ArgumentNullException(nameof(control));
+
+            WindowHandle = control.Handle;
+
+            ParentWindowHandle = parentWindowHandle;
+        }
+
+        /// <summary>
+        /// Creates a new TabbedThumbnail with the given window handle of the parent and
+        /// a WPF child Window. For WindowsFormHost control, use TabbedThumbnail(IntPtr, Control) overload and pass
+        /// the WindowsFormHost.Child as the second parameter.
+        /// </summary>
+        /// <param name="parentWindow">Parent window for the UIElement control. 
+        /// This window has to be a top-level window and the handle cannot be null</param>
+        /// <param name="windowsControl">WPF Control (UIElement) for which a tabbed thumbnail needs to be displayed</param>
+        /// <param name="peekOffset">Offset point used for displaying the peek bitmap. This setting is
+        /// recomended for hidden WPF controls as it is difficult to calculate their offset.</param>
+        public TabbedThumbnail(Window parentWindow, UIElement windowsControl, Vector peekOffset)
+        {
+            WindowHandle = IntPtr.Zero;
+
+            WindowsControl = windowsControl ?? throw new ArgumentNullException(nameof(windowsControl));
+            WindowsControlParentWindow = parentWindow ?? throw new ArgumentNullException(nameof(parentWindow));
+            ParentWindowHandle = new WindowInteropHelper(parentWindow).Handle;
+            PeekOffset = peekOffset;
+        }
+        #endregion
+
+        #region IDisposable Members
         /// <summary>
         /// 
         /// </summary>
-        ~TabbedThumbnail()
-        {
-            Dispose(false);
-        }
+        ~TabbedThumbnail() => Dispose(false);
 
         /// <summary>
         /// Release the native objects.
@@ -547,10 +532,10 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             if (CurrentHBitmap != IntPtr.Zero)
             {
                 _ = GDI.DeleteObject(CurrentHBitmap);
+
                 CurrentHBitmap = IntPtr.Zero;
             }
         }
-
-#endregion
+        #endregion
     }
 }

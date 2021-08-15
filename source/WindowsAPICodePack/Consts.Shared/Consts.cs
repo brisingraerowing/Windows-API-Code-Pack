@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Microsoft.WindowsAPICodePack.NativeAPI.Consts
+﻿namespace Microsoft.WindowsAPICodePack.NativeAPI.Consts
 {
     public static class Common
     {
@@ -125,16 +121,20 @@ namespace Microsoft.WindowsAPICodePack.NativeAPI.Consts
 
     public static class Taskbar
     {
+#if !WAPICP3
         public const int WmCommand = 0x0111;
+#endif
 
         public static class TabbedThumbnail
         {
             public const uint WaActive = 1;
             public const uint WaClickActive = 2;
 
+#if !WAPICP3
             public const int ScClose = 0xF060;
             public const int ScMaximize = 0xF030;
             public const int ScMinimize = 0xF020;
+#endif
         }
     }
 
@@ -166,8 +166,10 @@ namespace Microsoft.WindowsAPICodePack.NativeAPI.Consts
 
             public static class DWMMessages
             {
+#if !WAPICP3
                 public const int WM_DWMCOMPOSITIONCHANGED = 0x031E;
                 public const int WM_DWMNCRENDERINGCHANGED = 0x031F;
+#endif
 
                 /// <summary>
                 /// Enable/disable non-client rendering based on window style.

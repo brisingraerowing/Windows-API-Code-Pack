@@ -2,8 +2,9 @@
 
 using Microsoft.WindowsAPICodePack.COMNative.Sensors;
 using Microsoft.WindowsAPICodePack.Win32Native.TimeZone;
+
 using System;
-using System.Runtime.InteropServices.ComTypes;
+
 using TimeZone = Microsoft.WindowsAPICodePack.Win32Native.TimeZone.TimeZone;
 
 namespace Microsoft.WindowsAPICodePack.Sensors
@@ -16,7 +17,6 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// <summary>
         /// Gets the time when the data report was generated.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "TimeStamp")]
         public DateTime TimeStamp { get; private set; } = new DateTime();
 
         /// <summary>
@@ -30,17 +30,16 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         public Sensor Source { get; private set; }
 
         #region implementation
-
         internal static SensorReport FromNativeReport(in Sensor originator, in ISensorDataReport iReport)
         {
             iReport.GetTimestamp(out SystemTime systemTimeStamp);
-            _ = TimeZone.SystemTimeToFileTime(ref systemTimeStamp, out FILETIME ftTimeStamp);
+
+            _ = TimeZone.SystemTimeToFileTime(ref systemTimeStamp, out System.Runtime.InteropServices.ComTypes.FILETIME ftTimeStamp);
+
             long lTimeStamp = (((long)ftTimeStamp.dwHighDateTime) << 32) + ftTimeStamp.dwLowDateTime;
-            var sensorReport = new SensorReport
-            {
-                Source = originator
-            };
+            var sensorReport = new SensorReport { Source = originator };
             var timeStamp = DateTime.FromFileTime(lTimeStamp);
+
             sensorReport.TimeStamp = timeStamp;
             sensorReport.Values = SensorData.FromNativeReport(originator.InternalObject, iReport);
 

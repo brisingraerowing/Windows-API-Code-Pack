@@ -15,25 +15,13 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         /// <param name="path">The path to the jump list item.</param>
         /// <remarks>The file type should associate the given file  
         /// with the calling application.</remarks>
-        public JumpListItem(string path) : base(path) { }
+        public JumpListItem(string path) : base(path) { /* Left empty. */ }
 
         #region IJumpListItem Members
-
         /// <summary>
         /// Gets or sets the target path for this jump list item.
         /// </summary>
-        public new string Path
-        {
-            get
-            {
-                return base.Path;
-            }
-            set
-            {
-                base.ParsingName = value;
-            }
-        }
-
+        public new string Path { get => base.Path; set => base.ParsingName = value; }
         #endregion
     }
 }

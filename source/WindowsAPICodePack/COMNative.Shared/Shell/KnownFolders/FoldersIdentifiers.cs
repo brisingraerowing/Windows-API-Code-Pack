@@ -1,6 +1,7 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
+
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -17,21 +18,19 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
         static FolderIdentifiers()
         {
             folders = new Dictionary<Guid, string>();
-            Type folderIDs = typeof(Microsoft.WindowsAPICodePack.Shell.Guids.KnownFolders);
+            Type folderIDs = typeof(WindowsAPICodePack.Shell.Guids.KnownFolders);
 
 #if CS8
             static
 #endif
 
                 void add(in Type type)
-
             {
-
                 FieldInfo[] fields = type.GetFields(BindingFlags.NonPublic | BindingFlags.Static);
+
                 foreach (FieldInfo f in fields)
 
                     folders.Add(new Guid((string)f.GetValue(null)), f.Name);
-
             }
 
             add(folderIDs);
@@ -41,13 +40,10 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
             Type[] types = folderIDs.GetNestedTypes();
 
             foreach (Type t in types)
-
             {
-
                 if (t.IsClass)
 
                     add(t);
-
             }
         }
 

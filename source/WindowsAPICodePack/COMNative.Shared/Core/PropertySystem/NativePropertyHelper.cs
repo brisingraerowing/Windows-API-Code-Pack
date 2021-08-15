@@ -1,26 +1,15 @@
-﻿using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.Shell.Resources;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
+﻿using System;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.ComTypes;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.PropertySystem
 {
     public static class NativePropertyHelper
     {
-
         /// <summary>
-        /// Converts VarEnum to its associated .net Type.
+        /// Converts <see cref="VarEnum"/> to its associated .net Type.
         /// </summary>
-        /// <param name="VarEnumType">VarEnum value</param>
+        /// <param name="VarEnumType"><see cref="VarEnum"/> value</param>
         /// <returns>Associated .net equivelent.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         public static Type VarEnumToSystemType(VarEnum VarEnumType)
         {
             switch (VarEnumType)
@@ -59,7 +48,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PropertySystem
                 case VarEnum.VT_UNKNOWN:
                     return typeof(IntPtr?);
                 case VarEnum.VT_STREAM:
-                    return typeof(IStream);
+                    return typeof(System.Runtime.InteropServices.ComTypes.IStream);
                 case VarEnum.VT_VECTOR | VarEnum.VT_UI1:
                     return typeof(byte[]);
                 case VarEnum.VT_VECTOR | VarEnum.VT_I2:

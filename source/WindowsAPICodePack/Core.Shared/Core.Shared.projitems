@@ -33,8 +33,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Dialogs\TaskDialogs\TaskDialogStandardIcon.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dialogs\TaskDialogs\TaskDialogStartupLocation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dialogs\TaskDialogs\TaskDialogTickEventArgs.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interop\Dialogs\DialogShowState.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interop\Dialogs\TaskDialogs\NativeTaskDialog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interop\DialogShowState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interop\NativeTaskDialog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NetworkList\Network.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NetworkList\NetworkCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NetworkList\NetworkConnection.cs" />

@@ -8,9 +8,7 @@ using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-#if WAPICP2
-using WinCopies.Collections;
-#endif
+using WinCopies;
 
 namespace Microsoft.WindowsAPICodePack.PropertySystem
 {
@@ -169,7 +167,12 @@ WinCopies.Collections.IUIntIndexedCollection
 
                 throw new InvalidOperationException("The current object is disposed.");
 
-            (Type valueType, object value) result;
+#if CS7
+            (Type valueType, object value)
+#else
+            ValueTuple<Type, object>
+#endif
+            result;
 
             if ((PropertyInfo.IsReadable.HasValue && PropertyInfo.IsReadable.Value) || !PropertyInfo.IsReadable.HasValue)
             {
@@ -181,13 +184,29 @@ WinCopies.Collections.IUIntIndexedCollection
 
                         throw new PropertySystemException("The property is not set.");
 
-                    result = (NativePropertyHelper.VarEnumToSystemType(propVariant.VarType), propVariant.Value);
+                    result =
+#if !CS7
+                        new ValueTuple<Type, object>
+#endif
+                        (NativePropertyHelper.VarEnumToSystemType(propVariant.VarType), propVariant.Value);
 
                     propVariant.Dispose();
 
-                    valueType = result.valueType;
+                    valueType = result.
+#if CS7
+                        valueType
+#else
+                        item1
+#endif
+                        ;
 
-                    return result.value;
+                    return result.
+#if CS7
+                        value
+#else
+                        item2
+#endif
+                        ;
                 }
 
                 propVariant.Dispose();

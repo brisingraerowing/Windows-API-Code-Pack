@@ -35,6 +35,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
     public static class Core
     {
         #region General Definitions
+        /// <summary>
+        /// Retrieves the thread identifier of the calling thread.
+        /// </summary>
+        /// <returns>The thread identifier of the calling thread.</returns>
+        /// <remarks>Until the thread terminates, the thread identifier uniquely identifies the thread throughout the system.</remarks>
+        [DllImport(Kernel32)]
+        public static extern uint GetCurrentThreadId();
 
         /// <summary>
         /// Places (posts) a message in the message queue associated with the thread that created
@@ -195,18 +202,14 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         [DllImport(User32, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool DestroyIcon(IntPtr hIcon);
-
         #endregion
 
         #region Window Handling
-
         [DllImport(User32, SetLastError = true, EntryPoint = nameof(DestroyWindow), CallingConvention = CallingConvention.StdCall)]
         public static extern int DestroyWindow(IntPtr handle);
-
         #endregion
 
         #region General Declarations
-
         /// <summary>
         /// Gets the HiWord
         /// </summary>
@@ -221,7 +224,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         /// <param name="value">The value to get the low word from.</param>
         /// <returns>The lower half of the dword.</returns>
         public static int GetLoWord(long value) => (short)(value & 0xFFFF);
-
         #endregion
 
         [DllImport(Kernel32, EntryPoint = "RtlMoveMemory", SetLastError = true)]

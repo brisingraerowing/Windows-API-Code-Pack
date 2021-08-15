@@ -1,6 +1,7 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+
 using System;
 using System.Collections.Generic;
 
@@ -11,14 +12,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
     /// </summary>
     public class StockIcons
     {
-        #region Private Members
-
         private readonly IDictionary<StockIconIdentifier, StockIcon> stockIconCache;
 
-        #endregion
-
         #region Public Constructors
-
         /// <summary>
         /// Creates a stock icon collection using the default options for 
         /// size, link overlay and selection state.
@@ -64,7 +60,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
         #endregion
 
         #region Public Properties
-
         /// <summary>
         /// Gets the default stock icon size in one of the StockIconSize values.
         /// This size applies to all the stock icons in the collection.
@@ -552,11 +547,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// Icon for Clustered disk
         /// </summary>
         public StockIcon ClusteredDisk => GetStockIcon(StockIconIdentifier.ClusteredDisk);
-
         #endregion
 
         #region Private Methods
-
         /// <summary>
         /// Returns the existing stock icon from the internal cache, or creates a new one
         /// based on the current settings if it's not in the cache.
@@ -567,7 +560,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             // Check the cache first
             if (stockIconCache[stockIconIdentifier] != null)
+
                 return stockIconCache[stockIconIdentifier];
+
             else
             {
                 // Create a new icon based on our default settings
@@ -586,32 +581,25 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 // Return 
                 return icon;
-
             }
-
         }
 
-                private System.Collections.Generic.ICollection<StockIcon> GetAllStockIcons()
-                {
-                    // Create a list of stock Identifiers
-                    var ids = new StockIconIdentifier[stockIconCache.Count];
-                    stockIconCache.Keys.CopyTo(ids, 0);
+        private System.Collections.Generic.ICollection<StockIcon> GetAllStockIcons()
+        {
+            // Create a list of stock Identifiers
+            var ids = new StockIconIdentifier[stockIconCache.Count];
+            stockIconCache.Keys.CopyTo(ids, 0);
 
-                    // For each identifier, if our cache is null, create a new stock icon
-                    foreach (StockIconIdentifier id in ids)
-                    
-                        if (stockIconCache[id] == null)
+            // For each identifier, if our cache is null, create a new stock icon
+            foreach (StockIconIdentifier id in ids)
+
+                if (stockIconCache[id] == null)
 
                     _ = GetStockIcon(id);
-                    
-                    // return the list of stock icons
-                    return stockIconCache.Values;
-                }
 
-
-                #endregion
-
-            }
-
-
+            // return the list of stock icons
+            return stockIconCache.Values;
         }
+        #endregion
+    }
+}

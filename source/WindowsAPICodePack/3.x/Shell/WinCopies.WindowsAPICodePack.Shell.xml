@@ -1421,181 +1421,6 @@
             <param name="eventHandler">EventHandler&lt;EventArgs&gt; to raise</param>
             <param name="sender">Event sender</param>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Shell.FileInfo">
-            <summary>
-            Contains information about a file object.
-            </summary>
-            <remarks>This structure is used with the <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.GetFileInfo(System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes,Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions)"/> function.</remarks>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.Icon">
-            <summary>
-            Gets or sets the icon that represents the file. When the <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileInfo.Dispose"/> method of this struct is called, that method calls the <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileInfo.Dispose"/> method on the current <see cref="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.Icon"/>.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.IconIndex">
-            <summary>
-            Gets or sets the index of the icon image within the system image list.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.Attributes">
-            <summary>
-            Gets or sets an array of values that indicates the attributes of the file object. For information about these values, see the <see cref="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellFolder.GetAttributesOf(System.UInt32,System.IntPtr,System.UInt32@)"/> method.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.DisplayName">
-            <summary>
-            Gets or sets a string that contains the name of the file as it appears in the Windows Shell, or the path and file name of the file that contains the icon representing the file.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.TypeName">
-            <summary>
-            Gets or sets a string that describes the type of file.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileInfo.#ctor(System.Drawing.Icon,System.Int32,Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions,System.String,System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.WindowsAPICodePack.Shell.FileInfo"/> structure.
-            </summary>
-            <param name="icon">The icon of the file represented by this structure.</param>
-            <param name="iconIndex">The icon index of the retrieved icon.</param>
-            <param name="attributes">The attributes of the file represented by this structure.</param>
-            <param name="displayName">The display name of the file represented by this structure.</param>
-            <param name="typeName">The type name of the file represented by this structure.</param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileInfo.Dispose">
-            <summary>
-            Calls the <see cref="M:System.Drawing.Icon.Dispose"/> method from the <see cref="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.Icon"/> property.
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Shell.FileOperation">
-            <summary>
-            Provides methods to perform file system operations.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.WindowsAPICodePack.Shell.FileOperation"/> class.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.Advise(Microsoft.WindowsAPICodePack.Shell.FileOperationProgressSink)">
-            <summary>
-            Enables a handler to provide status and error information for all operations.
-            </summary>
-            <param name="pfops">An <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperationProgressSink"/> object to be used for progress status and error notifications.</param>
-            <returns>A returned token that uniquely identifies this connection. The calling application uses this token later to delete the connection by passing it to <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.Unadvise(System.UInt32)"/>.</returns>
-            <remarks>Several individual methods have the ability to declare their own progress sinks, which are redundant to the one set here. They are used when you only want to be given progress and error information for a specific operation.</remarks>
-            <exception cref="T:System.ArgumentNullException">Exception thrown when a parameter is null.</exception>
-            <exception cref="T:System.ObjectDisposedException">Exception thrown when this object is disposed.</exception>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.Unadvise(System.UInt32)">
-            <summary>
-            Terminates an advisory connection previously established through <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.Advise(Microsoft.WindowsAPICodePack.Shell.FileOperationProgressSink)"/>.
-            </summary>
-            <param name="dwCookie">The connection token that identifies the connection to delete. This value was originally retrieved by <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.Advise(Microsoft.WindowsAPICodePack.Shell.FileOperationProgressSink)"/> when the connection was made.</param>
-            <exception cref="T:System.ObjectDisposedException">Exception thrown when this object is disposed.</exception>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.SetOperationFlags(Microsoft.WindowsAPICodePack.COMNative.Shell.ShellOperationFlags)">
-            <summary>
-            Sets parameters for the current operation.
-            </summary>
-            <param name="dwOperationFlags">Flags that control the file operation. FOF flags are defined in Shellapi.h and FOFX flags are defined in Shobjidl.h. Note : If this method is not called, the default value used by the operation is <see cref="!: ShellOperationFlags.FOF_ALLOWUNDO"/> | <see cref="!:ShellOperationFlags.FOF_NOCONFIRMMKDIR"/>.</param>
-            <remarks>Set these flags before you call <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.PerformOperations"/> to define the parameters for whatever operations are being performed, such as copy, delete, or rename.</remarks>
-            <exception cref="T:System.ObjectDisposedException">Exception thrown when this object is disposed.</exception>
-            <exception cref="T:System.PlatformNotSupportedException">Exception thrown when a requested flag is not supported by the current platform.</exception>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.SetProgressDialog(Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog)">
-            <summary>
-            Specifies a dialog box used to display the progress of the operation.
-            </summary>
-            <param name="popd">An <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog"/> object that represents the dialog box.</param>
-            <exception cref="T:System.ArgumentNullException">Exception thrown when a parameter is null.</exception>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.SetProperties(Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyChangeArray)">
-            <summary>
-            Declares a set of properties and values to be set on an item or items.
-            </summary>
-            <param name="pproparray">An <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyChangeArray"/>, which accesses a collection of <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyChange"/> objects that specify the properties to be set and their new values.</param>
-            <remarks>This method does not set the new property values, it merely declares them. To set property values on an item or a group of items, you must make at least the sequence of calls detailed here:
-            <ol><li>Call <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.SetProperties(Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyChangeArray)"/> to declare the specific properties to be set and their new values.</li>
-            <li>Call <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.ApplyPropertiesToItem(Microsoft.WindowsAPICodePack.Shell.ShellObject)"/> or <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.ApplyPropertiesToItem(Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem)"/> to declare the item or items whose properties are to be set.</li>
-            <li>Call <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.PerformOperations"/> to apply the properties to the item or items.</li></ol></remarks>
-            <exception cref="T:System.ArgumentNullException">Exception thrown when a parameter is null.</exception>
-            <exception cref="T:System.ObjectDisposedException">Exception thrown when this object is disposed.</exception>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.GetFileInfo(System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes,Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions)">
-            <summary>
-            Retrieves information about an object in the file system, such as a file, folder, directory, or drive root.
-            </summary>
-            <param name="path"><para>A string of maximum length <see cref="!:MaxPath"/> that contains the path and file name. Both absolute and relative paths are valid.</para>
-            <para>If the <b>uFlags</b> parameter includes the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.PIDL"/> flag, this parameter must be the address of an ITEMIDLIST(PIDL) structure that contains the list of item identifiers that uniquely identifies the file within the Shell's namespace. The PIDL must be a fully qualified PIDL. Relative PIDLs are not allowed.</para>
-            <para>If the <b>uFlags</b> parameter includes the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.UseFileAttributes"/> flag, this parameter does not have to be a valid file name. The function will proceed as if the file exists with the specified name and with the file attributes passed in the <b>dwFileAttributes</b> parameter. This allows you to obtain information about a file type by passing just the extension for <b>pszPath</b> and passing <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes.Normal"/> in <b>dwFileAttributes</b>.</para>
-            <para>This string can use either short (the 8.3 form) or long file names.</para></param>
-            <param name="fileAttributes">A combination of one or more <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes"/> flags. If <b>uFlags</b> does not include the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.UseFileAttributes"/> flag, this parameter is ignored.</param>
-            <param name="options">The flags that specify the file information to retrieve. This parameter can be a combination of the values of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions"/> enum.</param>
-            <returns>A <see cref="T:Microsoft.WindowsAPICodePack.Shell.FileInfo"/> structure that contains the file information.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.GetFileInfo(System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes,Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions,System.Int32@)">
-            <summary>
-            Retrieves information about an object in the file system, such as a file, folder, directory, or drive root and a value that indicates the exe type.
-            </summary>
-            <param name="path"><para>A string of maximum length <see cref="!:MaxPath"/> that contains the path and file name. Both absolute and relative paths are valid.</para>
-            <para>If the <b>uFlags</b> parameter includes the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.PIDL"/> flag, this parameter must be the address of an ITEMIDLIST(PIDL) structure that contains the list of item identifiers that uniquely identifies the file within the Shell's namespace. The PIDL must be a fully qualified PIDL. Relative PIDLs are not allowed.</para>
-            <para>If the <b>uFlags</b> parameter includes the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.UseFileAttributes"/> flag, this parameter does not have to be a valid file name. The function will proceed as if the file exists with the specified name and with the file attributes passed in the <b>dwFileAttributes</b> parameter. This allows you to obtain information about a file type by passing just the extension for <b>pszPath</b> and passing <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes.Normal"/> in <b>dwFileAttributes</b>.</para>
-            <para>This string can use either short (the 8.3 form) or long file names.</para></param>
-            <param name="fileAttributes">A combination of one or more <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes"/> flags. If <b>uFlags</b> does not include the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.UseFileAttributes"/> flag, this parameter is ignored.</param>
-            <param name="options">The flags that specify the file information to retrieve. This parameter can be a combination of the values of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions"/> enum.</param>
-            <param name="exeType">The exe type. In order to this method retrieves the exe type, you need to use the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.ExeType"/> flag in the <b>options</b> parameter.</param>
-            <returns>A <see cref="T:Microsoft.WindowsAPICodePack.Shell.FileInfo"/> structure that contains the file information.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.QueryRecycleBinInfo(System.String,Microsoft.WindowsAPICodePack.Shell.RecycleBinInfo@)">
-            <summary>
-            Queries the size and the number of items in the Recycle Bin.
-            </summary>
-            <param name="drivePath">The path to the Recycle Bin drive. Leave this parameter null or empty if you want to get the info for the Recycle Bins for all drives.</param>
-            <param name="recycleBinInfo">The out Recycle Bin info</param>
-            <returns><see langword="true"/> if the drive supports the Recycle Bin, otherwise <see langword="false"/>.</returns>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown if a Win32 exception has occurred during thr process.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.EmptyRecycleBin(System.IntPtr,System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.EmptyRecycleBinFlags)">
-            <summary>
-            Empties the Recycle Bin.
-            </summary>
-            <param name="windowHandle">A handle to the owner window</param>
-            <param name="drivePath">The path to the Recycle Bin drive. Leave this parameter null or empty if you want to get the info for the Recycle Bins for all drives.</param>
-            <param name="emptyRecycleBinFlags">Flags to describe the behavior for the process.</param>
-            <returns><see langword="true"/> if the drive supports the Recycle Bin, otherwise <see langword="false"/>.</returns>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown if a Win32 exception has occurred during thr process.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.EmptyRecycleBin(System.Windows.Forms.Form,System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.EmptyRecycleBinFlags)">
-            <summary>
-            Empties the Recycle Bin.
-            </summary>
-            <param name="window">The owner window</param>
-            <param name="drivePath">The path to the Recycle Bin drive. Leave this parameter null or empty if you want to get the info for the Recycle Bins for all drives.</param>
-            <param name="emptyRecycleBinFlags">Flags to describe the behavior for the process.</param>
-            <returns><see langword="true"/> if the drive supports the Recycle Bin, otherwise <see langword="false"/>.</returns>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown if a Win32 exception has occurred during thr process.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.EmptyRecycleBin(System.Windows.Window,System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.EmptyRecycleBinFlags)">
-            <summary>
-            Empties the Recycle Bin.
-            </summary>
-            <param name="window">The owner window</param>
-            <param name="drivePath">The path to the Recycle Bin drive. Leave this parameter null or empty if you want to get the info for the Recycle Bins for all drives.</param>
-            <param name="emptyRecycleBinFlags">Flags to describe the behavior for the process.</param>
-            <returns><see langword="true"/> if the drive supports the Recycle Bin, otherwise <see langword="false"/>.</returns>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown if a Win32 exception has occurred during thr process.</exception>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Shell.FileOperationProgressSink.StartOperations">
-            <summary>
-            Gets or sets a delegate to call in the <see cref="T:Microsoft.WindowsAPICodePack.Shell.FileOperation"/> class when file operations are starting.
-            </summary>
-        </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.FileLockFinder">
             <summary>
             This class contains all the functions to find out which are the processes are locking a file.
@@ -2853,7 +2678,6 @@
             <summary>
             Overide OnPaint to paint the background as black.
             </summary>
-            <param name="e">PaintEventArgs</param>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.GlassWindow">
             <summary>
@@ -2895,7 +2719,297 @@
             Override SourceInitialized to initialize windowHandle for this window.
             A valid windowHandle is available only after the sourceInitialized is completed
             </summary>
-            <param name="e">EventArgs</param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.DesktopWindowManager.GetWindowStyles(System.IntPtr,Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.GetWindowLongEnum)">
+            <summary>
+            Retrieves information about the specified window. The function also retrieves the value at a specified offset into the extra window memory.
+            </summary>
+            <param name="hwnd">A handle to the window and, indirectly, the class to which the window belongs.</param>
+            <returns>
+            <para>If the function succeeds, the return value is the requested value.</para>
+            <para>If the function fails, the return value is zero. To get extended error information, call <see cref="M:System.Runtime.InteropServices.Marshal.GetLastWin32Error"/>.</para>
+            <para>If <see cref="!:SetWindowStyles(IntPtr,  WindowStyles)"/> has not been called previously, <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.HandlerNativeMethods.GetWindowLongPtr(System.IntPtr,Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.GetWindowLongEnum)"/> returns zero for values in the extra window or class memory.</para>
+            </returns>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Overlapped">
+            <summary>
+            <para>Name: WS_OVERLAPPED</para>
+            <para>Description: The window is an overlapped window. An overlapped window has a title bar and a border. Same as the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Tiled"/> style.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Tiled">
+            <summary>
+            <para>Name: WS_TILED</para>
+            <para>Description: The window is an overlapped window. An overlapped window has a title bar and a border. Same as the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Overlapped"/> style.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Popup">
+            <summary>
+            <para>Name: WS_POPUP</para>
+            <para>Description: The window is a pop-up window. This style cannot be used with the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Child"/> style.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Child">
+            <summary>
+            <para>Name: WS_CHILD</para>
+            <para>Description: The window is a child window. A window with this style cannot have a menu bar. This style cannot be used with the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Popup"/> style.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Minimize">
+            <summary>
+            <para>Name: WS_MINIMIZE</para>
+            <para>Description: The window is initially minimized. Same as the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Iconic"/> style.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Iconic">
+            <summary>
+            <para>Name: WS_ICONIC</para>
+            <para>Description: The window is initially minimized. Same as the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Minimize"/> style.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Visible">
+            <summary>
+            <para>Name: WS_VISIBLE</para>
+            <para>Description: The window is initially visible. This style can be turned on and off by using the ShowWindow or <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.HandlerNativeMethods.SetWindowPos(System.IntPtr,System.IntPtr,System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.SetWindowPositionOptions)"/> function.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Disabled">
+            <summary>
+            <para>Name: WS_DISABLED</para>
+            <para>Description: The window is initially disabled. A disabled window cannot receive input from the user. To change this after a window has been created, use the EnableWindow function.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ClipSiblings">
+            <summary>
+            <para>Name: WS_CLIPSIBLINGS</para>
+            <para>Description: Clips child windows relative to each other; that is, when a particular child window receives a <see cref="F:Microsoft.WindowsAPICodePack.WindowMessage.Paint"/> message, the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ClipSiblings"/> style clips all other overlapping child windows out of the region of the child window to be updated. If <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ClipSiblings"/> is not specified and child windows overlap, it is possible, when drawing within the client area of a child window, to draw within the client area of a neighboring child window.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ClipChildren">
+            <summary>
+            <para>Name: WS_CLIPCHILDREN</para>
+            <para>Description: Excludes the area occupied by child windows when drawing occurs within the parent window. This style is used when creating the parent window.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Maximize">
+            <summary>
+            <para>Name: WS_MAXIMIZE</para>
+            <para>Description: The window is initially maximized.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Caption">
+            <summary>
+            <para>Name: WS_CAPTION</para>
+            <para>Description: The window has a title bar (includes the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Border"/> style).</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Border">
+            <summary>
+            <para>Name: WS_BORDER</para>
+            <para>Description: The window has a thin-line border.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.DialogFrame">
+            <summary>
+            <para>Name: WS_DLGFRAME</para>
+            <para>Description: The window has a border of a style typically used with dialog boxes. A window with this style cannot have a title bar.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.VerticalScrollBar">
+            <summary>
+            <para>Name: WS_VSCROLL</para>
+            <para>Description: The window has a vertical scroll bar.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.HorizontalScrollBar">
+            <summary>
+            <para>Name: WS_HSCROLL</para>
+            <para>Description: The window has a horizontal scroll bar.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.SystemMenu">
+            <summary>
+            <para>Name: WS_SYSMENU</para>
+            <para>Description: The window has a window menu on its title bar. The <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Caption"/> style must also be specified.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ThickFrame">
+            <summary>
+            <para>Name: WS_THICKFRAME</para>
+            <para>Description: The window has a sizing border. Same as the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.SizeBox"/> style.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.SizeBox">
+            <summary>
+            <para>Name: WS_SIZEBOX</para>
+            <para>Description: The window has a sizing border. Same as the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ThickFrame"/> style.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Group">
+            <summary>
+            <para>Name: WS_GROUP</para>
+            <para>Description: The window is the first control of a group of controls. The group consists of this first control and all controls defined after it, up to the next control with the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.Group"/> style. The first control in each group usually has the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.TabStop"/> style so that the user can move from group to group. The user can subsequently change the keyboard focus from one control in the group to the next control in the group by using the direction keys. You can turn this style on and off to change dialog box navigation. To change this style after a window has been created, use the <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.HandlerNativeMethods.SetWindowLongPtr(System.IntPtr,Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.GetWindowLongEnum,System.Int64)"/> function.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.TabStop">
+            <summary>
+            <para>Name: WS_TABSTOP</para>
+            <para>Description: The window is a control that can receive the keyboard focus when the user presses the TAB key. Pressing the TAB key changes the keyboard focus to the next control with the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.TabStop"/> style. You can turn this style on and off to change dialog box navigation. To change this style after a window has been created, use the <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.HandlerNativeMethods.SetWindowLongPtr(System.IntPtr,Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.GetWindowLongEnum,System.Int64)"/> function. For user-created windows and modeless dialogs to work with tab stops, alter the message loop to call the IsDialogMessage function.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.MinimizeBox">
+            <summary>
+            <para>Name: WS_MINIMIZEBOX</para>
+            <para>Description: The window has a minimize button. Cannot be combined with the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ContextHelp"/> style. The <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.SystemMenu"/> style must also be specified.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.MaximizeBox">
+            <summary>
+            <para>Name: WS_MAXIMIZEBOX</para>
+            <para>Description: The window has a maximize button. Cannot be combined with the <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.ContextHelp"/> style. The <see cref="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.SystemMenu"/> style must also be specified. </para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Shell.WindowStyles.TiledWindow">
+            <summary>
+            <para>Name: WS_TILEDWINDOW</para>
+            <para>Description: The window is an overlapped window. Same as the <see cref="F:Microsoft.WindowsAPICodePack.Shell.Winnail or icon in extra large size and <see cref="T:System.Drawing.Bitmap"/> format.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Shell.ShellThumbnail.ExtraLargeBitmapSource">
+            <summary>
+            Gets the thumbnail or icon in Extra Large size and <see cref="T:System.Windows.Media.Imaging.BitmapSource"/> format.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Shell.ShellThumbnail.ExtraLargeIcon">
+            <summary>
+            Gets the thumbnail or icon in Extra Large size and <see cref="T:System.Drawing.Icon"/> format.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Shell.ShellThumbnail.RetrievalOption">
+            <summary>
+            Gets or sets a value that determines if the current retrieval option is cache or extract, cache only, or from memory only.
+            The default is cache or extract.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Shell.ShellThumbnail.FormatOption">
+            <summary>
+            Gets or sets a value that determines if the current format option is thumbnail or icon, thumbnail only, or icon only.
+            The default is thumbnail or icon.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Shell.ShellThumbnail.AllowBiggerSize">
+            <summary>
+            Gets or sets a value that determines if the user can manually stretch the returned image.
+            The default value is false.
+            </summary>
+            <remarks>
+            For example, if the caller passes in 80x80 a 96x96 thumbnail could be returned. 
+            This could be used as a performance optimization if the caller will need to stretch 
+            the image themselves anyway. Note that the Shell implementation performs a GDI stretch blit. 
+            If the caller wants a higher quality image stretch, they should pass this flag and do it themselves.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Shell.AeroGlassCompositionChangedEventArgs">
+            <summary>
+            Event argument for The GlassAvailabilityChanged event
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Shell.AeroGlassCompositionChangedEventArgs.GlassAvailable">
+            <summary>
+            The new GlassAvailable state
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Shell.GlassForm">
+            <summary>
+            Windows Glass Form
+            Inherit from this form to be able to enable glass on Windows Form
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Shell.GlassForm.AeroGlassCompositionEnabled">
+            <summary>
+            Get determines if AeroGlass is enabled on the desktop. Set enables/disables AreoGlass on the desktop.
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Shell.GlassForm.AeroGlassCompositionChanged">
+            <summary>
+            Fires when the availability of Glass effect changes.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.GlassForm.SetAeroGlassTransparency">
+            <summary>
+            Makes the background of current window transparent
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.GlassForm.ExcludeControlFromAeroGlass(System.Windows.Forms.Control)">
+            <summary>
+            Excludes a Control from the AeroGlass frame.
+            </summary>
+            <param name="control">The control to exclude.</param>
+            <remarks>Many non-WPF rendered controls (i.e., the ExplorerBrowser control) will not 
+            render properly on top of an AeroGlass frame. </remarks>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.GlassForm.ResetAeroGlass">
+            <summary>
+            Resets the AeroGlass exclusion area.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.GlassForm.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            Catches the DWM messages to this window and fires the appropriate event.
+            </summary>
+            <param name="m"></param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.GlassForm.OnLoad(System.EventArgs)">
+            <summary>
+            Initializes the Form for AeroGlass
+            </summary>
+            <param name="e">The arguments for this event</param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.GlassForm.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Overide OnPaint to paint the background as black.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Shell.GlassWindow">
+            <summary>
+            WPF Glass Window
+            Inherit from this window class to enable glass on a WPF window
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Shell.GlassWindow.AeroGlassCompositionEnabled">
+            <summary>
+            Get determines if AeroGlass is enabled on the desktop. Set enables/disables AreoGlass on the desktop.
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Shell.GlassWindow.AeroGlassCompositionChanged">
+            <summary>
+            Fires when the availability of Glass effect changes.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.GlassWindow.SetAeroGlassTransparency">
+            <summary>
+            Makes the background of current window transparent from both Wpf and Windows Perspective
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.GlassWindow.ExcludeElementFromAeroGlass(System.Windows.FrameworkElement)">
+            <summary>
+            Excludes a UI element from the AeroGlass frame.
+            </summary>
+            <param name="element">The element to exclude.</param>
+            <remarks>Many non-WPF rendered controls (i.e., the ExplorerBrowser control) will not 
+            render properly on top of an AeroGlass frame. </remarks>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.GlassWindow.ResetAeroGlass">
+            <summary>
+            Resets the AeroGlass exclusion area.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.GlassWindow.OnSourceInitialized(System.EventArgs)">
+            <summary>
+            OnSourceInitialized
+            Override SourceInitialized to initialize windowHandle for this window.
+            A valid windowHandle is available only after the sourceInitialized is completed
+            </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.DesktopWindowManager.GetWindowStyles(System.IntPtr,Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.GetWindowLongEnum)">
             <summary>
@@ -13388,24 +13502,6 @@
             <param name="window">WPF Window associated with the new JumpList</param>
             <returns>A new JumpList that is associated with the specific WPF window</returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Taskbar.JumpList.AddCustomCategories(Microsoft.WindowsAPICodePack.Taskbar.JumpListCustomCategory[])">
-            <summary>
-            Adds a collection of custom categories to the Taskbar jump list.
-            </summary>
-            <param name="customCategories">The catagories to add to the jump list.</param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Taskbar.JumpList.AddUserTasks(Microsoft.WindowsAPICodePack.Taskbar.JumpListTask[])">
-            <summary>
-            Adds user tasks to the Taskbar JumpList. User tasks can only consist of JumpListTask or
-            JumpListSeparator objects.
-            </summary>
-            <param name="tasks">The user tasks to add to the JumpList.</param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Taskbar.JumpList.ClearAllUserTasks">
-            <summary>
-            Removes all user tasks that have been added.
-            </summary>
-        </member>
         <member name="P:Microsoft.WindowsAPICodePack.Taskbar.JumpList.MaxSlotsInList">
             <summary>
             Gets the recommended number of items to add to the jump list.  
@@ -13435,6 +13531,13 @@
             Gets or sets the application ID to use for this jump list.
             </summary>
         </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Taskbar.JumpList.RemovedDestinations">
+            <summary>
+            Retrieves the current list of destinations that have been removed from the existing jump list by the user. 
+            The removed destinations may become items on a custom jump list.
+            </summary>
+            <value>A collection of items (filenames) removed from the existing jump list by the user.</value>
+        </member>
         <member name="M:Microsoft.WindowsAPICodePack.Taskbar.JumpList.#ctor(System.String)">
             <summary>
             Creates a new instance of the JumpList class with the specified
@@ -13458,6 +13561,35 @@
             <param name="appID">Application Id to use for this instace.</param>
             <param name="windowHandle">Window handle for the window that is associated with this JumpList</param>
         </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Taskbar.JumpList.JumpListItemsRemoved">
+            <summary>
+            Occurs when items are removed from the Taskbar's jump list since the last
+            refresh. 
+            </summary>
+            <remarks>
+            This event is not triggered
+            immediately when a user removes an item from the jump list but rather
+            when the application refreshes the task bar list directly.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Taskbar.JumpList.AddCustomCategories(Microsoft.WindowsAPICodePack.Taskbar.JumpListCustomCategory[])">
+            <summary>
+            Adds a collection of custom categories to the Taskbar jump list.
+            </summary>
+            <param name="customCategories">The catagories to add to the jump list.</param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Taskbar.JumpList.AddUserTasks(Microsoft.WindowsAPICodePack.Taskbar.JumpListTask[])">
+            <summary>
+            Adds user tasks to the Taskbar JumpList. User tasks can only consist of JumpListTask or
+            JumpListSeparator objects.
+            </summary>
+            <param name="tasks">The user tasks to add to the JumpList.</param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Taskbar.JumpList.ClearAllUserTasks">
+            <summary>
+            Removes all user tasks that have been added.
+            </summary>
+        </member>
         <member name="M:Microsoft.WindowsAPICodePack.Taskbar.JumpList.AddToRecent(System.String)">
             <summary>
             Reports document usage to the shell.
@@ -13471,24 +13603,6 @@
             <exception cref="T:System.InvalidOperationException">Will throw if the type of the file being added to the JumpList is not registered with the application.</exception>
             <exception cref="T:System.UnauthorizedAccessException">Will throw if recent documents tracking is turned off by the user or via group policy.</exception>
             <exception cref="T:System.Runtime.InteropServices.COMException">Will throw if updating the JumpList fails for any other reason.</exception>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Taskbar.JumpList.JumpListItemsRemoved">
-            <summary>
-            Occurs when items are removed from the Taskbar's jump list since the last
-            refresh. 
-            </summary>
-            <remarks>
-            This event is not triggered
-            immediately when a user removes an item from the jump list but rather
-            when the application refreshes the task bar list directly.
-            </remarks>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Taskbar.JumpList.RemovedDestinations">
-            <summary>
-            Retrieves the current list of destinations that have been removed from the existing jump list by the user. 
-            The removed destinations may become items on a custom jump list.
-            </summary>
-            <value>A collection of items (filenames) removed from the existing jump list by the user.</value>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Taskbar.JumpListCustomCategory">
             <summary>
@@ -13761,39 +13875,6 @@
             Represents a tabbed thumbnail on the taskbar for a given window or a control.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Taskbar.TabbedThumbnail.#ctor(System.IntPtr,System.IntPtr)">
-            <summary>
-            Creates a new TabbedThumbnail with the given window handle of the parent and
-            a child control/window's handle (e.g. TabPage or Panel)
-            </summary>
-            <param name="parentWindowHandle">Window handle of the parent window. 
-            This window has to be a top-level window and the handle cannot be null or IntPtr.Zero</param>
-            <param name="windowHandle">Window handle of the child control or window for which a tabbed 
-            thumbnail needs to be displayed</param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Taskbar.TabbedThumbnail.#ctor(System.IntPtr,System.Windows.Forms.Control)">
-            <summary>
-            Creates a new TabbedThumbnail with the given window handle of the parent and
-            a child control (e.g. TabPage or Panel)
-            </summary>
-            <param name="parentWindowHandle">Window handle of the parent window. 
-            This window has to be a top-level window and the handle cannot be null or IntPtr.Zero</param>
-            <param name="control">Child control for which a tabbed thumbnail needs to be displayed</param>
-            <remarks>This method can also be called when using a WindowsFormHost control in a WPF application.
-             Call this method with the main WPF Window's handle, and windowsFormHost.Child control.</remarks>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Taskbar.TabbedThumbnail.#ctor(System.Windows.Window,System.Windows.UIElement,System.Windows.Vector)">
-            <summary>
-            Creates a new TabbedThumbnail with the given window handle of the parent and
-            a WPF child Window. For WindowsFormHost control, use TabbedThumbnail(IntPtr, Control) overload and pass
-            the WindowsFormHost.Child as the second parameter.
-            </summary>
-            <param name="parentWindow">Parent window for the UIElement control. 
-            This window has to be a top-level window and the handle cannot be null</param>
-            <param name="windowsControl">WPF Control (UIElement) for which a tabbed thumbnail needs to be displayed</param>
-            <param name="peekOffset">Offset point used for displaying the peek bitmap. This setting is
-            recomended for hidden WPF controls as it is difficult to calculate their offset.</param>
-        </member>
         <member name="P:Microsoft.WindowsAPICodePack.Taskbar.TabbedThumbnail.Title">
             <summary>
             Title for the window shown as the taskbar thumbnail.
@@ -13933,6 +14014,39 @@
             Returns true if the thumbnail was removed from the taskbar; false if it was not.
             </summary>
             <returns>Returns true if the thumbnail was removed from the taskbar; false if it was not.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Taskbar.TabbedThumbnail.#ctor(System.IntPtr,System.IntPtr)">
+            <summary>
+            Creates a new TabbedThumbnail with the given window handle of the parent and
+            a child control/window's handle (e.g. TabPage or Panel)
+            </summary>
+            <param name="parentWindowHandle">Window handle of the parent window. 
+            This window has to be a top-level window and the handle cannot be null or IntPtr.Zero</param>
+            <param name="windowHandle">Window handle of the child control or window for which a tabbed 
+            thumbnail needs to be displayed</param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Taskbar.TabbedThumbnail.#ctor(System.IntPtr,System.Windows.Forms.Control)">
+            <summary>
+            Creates a new TabbedThumbnail with the given window handle of the parent and
+            a child control (e.g. TabPage or Panel)
+            </summary>
+            <param name="parentWindowHandle">Window handle of the parent window. 
+            This window has to be a top-level window and the handle cannot be null or IntPtr.Zero</param>
+            <param name="control">Child control for which a tabbed thumbnail needs to be displayed</param>
+            <remarks>This method can also be called when using a WindowsFormHost control in a WPF application.
+             Call this method with the main WPF Window's handle, and windowsFormHost.Child control.</remarks>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Taskbar.TabbedThumbnail.#ctor(System.Windows.Window,System.Windows.UIElement,System.Windows.Vector)">
+            <summary>
+            Creates a new TabbedThumbnail with the given window handle of the parent and
+            a WPF child Window. For WindowsFormHost control, use TabbedThumbnail(IntPtr, Control) overload and pass
+            the WindowsFormHost.Child as the second parameter.
+            </summary>
+            <param name="parentWindow">Parent window for the UIElement control. 
+            This window has to be a top-level window and the handle cannot be null</param>
+            <param name="windowsControl">WPF Control (UIElement) for which a tabbed thumbnail needs to be displayed</param>
+            <param name="peekOffset">Offset point used for displaying the peek bitmap. This setting is
+            recomended for hidden WPF controls as it is difficult to calculate their offset.</param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Taskbar.TabbedThumbnail.Finalize">
             <summary>

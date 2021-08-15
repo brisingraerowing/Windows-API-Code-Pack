@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.PropertySystem
 {
@@ -12,13 +10,10 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PropertySystem
         public short PropertyId { get; }
 
         public PropertyKeyAttribute(string guid, short propertyId)
-
         {
-
             Guid = guid;
 
             PropertyId = propertyId;
-
         }
     }
 }

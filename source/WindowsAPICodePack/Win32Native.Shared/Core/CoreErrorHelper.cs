@@ -1,12 +1,10 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
+using System;
 using System.Runtime.InteropServices;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native
 {
-
-    //// todo: to add the other error codes
-
     ///// <summary>
     ///// HRESULT Wrapper    
     ///// </summary>    
@@ -141,6 +139,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         public static bool Succeeded(in int result) => result >= 0;
 
         /// <summary>
+        /// Determines whether a given <see cref="ErrorCode"/> indicates success.
+        /// </summary>
+        /// <param name="result">The error code.</param>
+        /// <returns><see langword="true"/> if the error code indicates success; otherwise <see langword="false"/>.</returns>
+        public static bool Succeeded(in ErrorCode result) => result >= 0;
+
+        /// <summary>
         /// Determines whether a given <see cref="HResult"/> indicates success.
         /// </summary>
         /// <param name="result">The error code.</param>
@@ -178,5 +183,30 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         public static bool Matches(in HResult result, in ErrorCode win32ErrorCode) => result == HResultFromWin32(win32ErrorCode);
 
         public static void ThrowExceptionForHR(in HResult hresult) => Marshal.ThrowExceptionForHR((int)hresult);
+
+        public static Exception GetExceptionForHR(in HResult hResult) => Marshal.GetExceptionForHR((int)hResult);
+
+        public static Exception GetExceptionForHR(in HResult hResult, in IntPtr errorInfo) => Marshal.GetExceptionForHR((int)hResult, errorInfo);
+
+        public static HResult GetHRForException(in Exception ex) => (HResult)Marshal.GetHRForException(ex);
+
+        public static T GetIfSucceeded<T>(in T value, in HResult hResult) => Succeeded(hResult) ? value : throw GetExceptionForHR(hResult);
+
+        // TODO: replace by WinCopies.FuncOut:
+
+        public delegate HResult FuncOut<T>(out T param);
+
+        public static T GetIfSucceeded<T>(in FuncOut<T> func)
+        {
+            HResult hr = (func ?? throw WinCopies.
+#if WAPICP3
+                ThrowHelper
+#else
+                Util.Util
+#endif
+                .GetArgumentNullException(nameof(func)))(out T param);
+
+            return GetIfSucceeded(param, hr);
+        }
     }
 }

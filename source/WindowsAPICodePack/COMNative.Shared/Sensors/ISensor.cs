@@ -1,19 +1,23 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
-using System;
-using System.Runtime.InteropServices;
-using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem;
-using GuidAttribute = System.Runtime.InteropServices.GuidAttribute;
+using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
+
+using System;
+using System.Runtime.InteropServices;
+
+using GuidAttribute = System.Runtime.InteropServices.GuidAttribute;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.Sensors
 {
     /// <summary>
     /// A COM interop wrapper for the ISensor interface.
     /// </summary>
-    [ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown), Guid(NativeAPI.Guids.Sensors.ISensor)]
+    [ComImport,
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
+    Guid(NativeAPI.Guids.Sensors.ISensor)]
     public interface ISensor
     {
         /// <summary>

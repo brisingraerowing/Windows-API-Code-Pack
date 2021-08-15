@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Microsoft.WindowsAPICodePack.Win32Native.Storage
+﻿namespace Microsoft.WindowsAPICodePack.Win32Native.Storage
 {
     /// <summary>
-    /// <para>The <see cref="STGM"/> constants are flags that indicate conditions for creating and deleting the object and access modes for the object. The <see cref="STGM"/> constants are included in the IStorage, IStream, and IPropertySetStorage interfaces and in the StgCreateDocfile, StgCreateStorageEx, StgCreateDocfileOnILockBytes, StgOpenStorage, and StgOpenStorageEx functions.</para>
+    /// <para>The <see cref="STGM"/> constants are flags that indicate conditions for creating and deleting the object and access modes for the object. The <see cref="STGM"/> constants are included in the IStorage, System.Runtime.InteropServices.ComTypes.IStream, and IPropertySetStorage interfaces and in the StgCreateDocfile, StgCreateStorageEx, StgCreateDocfileOnILockBytes, StgOpenStorage, and StgOpenStorageEx functions.</para>
     /// <para>These elements are often combined using an OR operator. They are interpreted in groups as listed in this class. It is not valid to use more than one element from a single group.</para>
     /// <para>Use a flag from the creation group when creating an object, such as with StgCreateStorageEx or IStorage::CreateStream.</para>
     /// <para>For more information about transactioning, see the Remarks section of the following web page: https://docs.microsoft.com/en-us/windows/win32/stg/stgm-constants</para>
@@ -15,7 +11,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Storage
         public enum Access
         {
             /// <summary>
-            /// Indicates that the object is read-only, meaning that modifications cannot be made. For example, if a stream object is opened with <see cref="Read"/>, the ISequentialStream::Read method may be called, but the ISequentialStream::Write method may not. Similarly, if a storage object opened with <see cref="Read"/>, the IStorage::OpenStream and IStorage::OpenStorage methods may be called, but the IStorage::CreateStream and IStorage::CreateStorage methods may not.
+            /// Indicates that the object is read-only, meaning that modifications cannot be made. For example, if a stream object is opened with <see cref="Read"/>, the System.Runtime.InteropServices.ComTypes.ISequentialStream::Read method may be called, but the System.Runtime.InteropServices.ComTypes.ISequentialStream::Write method may not. Similarly, if a storage object opened with <see cref="Read"/>, the IStorage::OpenStream and IStorage::OpenStorage methods may be called, but the IStorage::CreateStream and IStorage::CreateStorage methods may not.
             /// </summary>
             Read = 0x00000000,
 
@@ -25,7 +21,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Storage
             Write = 0x00000001,
 
             /// <summary>
-            /// Enables access and modification of object data. For example, if a stream object is created or opened in this mode, it is possible to call both IStream::Read and IStream::Write. Be aware that this constant is not a simple binary OR operation of the <see cref="Write"/> and <see cref="Read"/> elements.
+            /// Enables access and modification of object data. For example, if a stream object is created or opened in this mode, it is possible to call both System.Runtime.InteropServices.ComTypes.IStream::Read and System.Runtime.InteropServices.ComTypes.IStream::Write. Be aware that this constant is not a simple binary OR operation of the <see cref="Write"/> and <see cref="Read"/> elements.
             /// </summary>
             ReadWrite = 0x00000002
         }
@@ -89,7 +85,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Storage
             Direct = 0x00000000,
 
             /// <summary>
-            /// Indicates that, in transacted mode, changes are buffered and written only if an explicit commit operation is called. To ignore the changes, call the Revert method in the IStream, IStorage, or IPropertyStorage interface. The COM compound file implementation of IStorage does not support transacted streams, which means that streams can be opened only in direct mode, and you cannot revert changes to them, however transacted storages are supported. The compound file, stand-alone, and NTFS file system implementations of IPropertySetStorage similarly do not support transacted, simple property sets because these property sets are stored in streams. However, transactioning of nonsimple property sets, which can be created by specifying the PROPSETFLAG_NONSIMPLE flag in the grfFlags parameter of IPropertySetStorage::Create, are supported.
+            /// Indicates that, in transacted mode, changes are buffered and written only if an explicit commit operation is called. To ignore the changes, call the Revert method in the System.Runtime.InteropServices.ComTypes.IStream, IStorage, or IPropertyStorage interface. The COM compound file implementation of IStorage does not support transacted streams, which means that streams can be opened only in direct mode, and you cannot revert changes to them, however transacted storages are supported. The compound file, stand-alone, and NTFS file system implementations of IPropertySetStorage similarly do not support transacted, simple property sets because these property sets are stored in streams. However, transactioning of nonsimple property sets, which can be created by specifying the PROPSETFLAG_NONSIMPLE flag in the grfFlags parameter of IPropertySetStorage::Create, are supported.
             /// </summary>
             Transacted = 0x00010000
         }

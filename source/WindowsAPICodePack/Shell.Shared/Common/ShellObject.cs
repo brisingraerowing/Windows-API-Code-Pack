@@ -71,7 +71,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         /// <exception cref="ExternalException">If the native object cannot be created.
         /// The ErrorCode member will contain the external error code.</exception>
-        virtual internal IShellItem2 NativeShellItem2
+        internal virtual IShellItem2 NativeShellItem2
         {
             get
             {
@@ -92,7 +92,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Return the native ShellFolder object. This property should not be used directly except on Win32 API reimplementation.
         /// </summary>
-        virtual internal IShellItem NativeShellItem => NativeShellItem2;
+        internal virtual IShellItem NativeShellItem => NativeShellItem2;
 
         /// <summary>
         /// Gets access to the native IPropertyStore (if one is already

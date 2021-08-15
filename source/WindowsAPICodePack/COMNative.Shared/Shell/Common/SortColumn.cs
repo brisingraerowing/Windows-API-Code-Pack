@@ -1,8 +1,9 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
-using System.Runtime.InteropServices;
-using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.PropertySystem;
+
+using System.Runtime.InteropServices;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.Shell
 {

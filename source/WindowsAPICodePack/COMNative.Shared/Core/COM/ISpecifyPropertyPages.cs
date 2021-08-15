@@ -1,8 +1,7 @@
 ﻿using Microsoft.WindowsAPICodePack.Win32Native;
+
 using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.COM
 {

@@ -1,14 +1,7 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
 {
-
     /// <summary>
     /// The <see cref="PropValidValuesForm"/> enumeration type describes possible forms of valid values for a property.
     /// </summary>
@@ -204,13 +197,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
         /// <summary>
         /// Format code for a Wireless Application Protocol Bitmap (.wbmp) image.
         /// </summary>
-        WBMP
-    ,
+        WBMP,
         /// <summary>
         /// Format code for an HD Photo image
         /// </summary>
-        JPEGXR
-    ,
+        JPEGXR,
         /// <summary>
         /// Format code for Windows image format.
         /// </summary>
@@ -242,13 +233,11 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
         /// <summary>
         /// Format code for a Qualcomm Code Excited Linear Prediction (QCELP) codec file.
         /// </summary>
-        QCELP
-    ,
+        QCELP,
         /// <summary>
         /// Format code for an Adaptive Multi-Rate audio (AMR) codec file.
         /// </summary>
-        AMR
-    ,
+        AMR,
         /// <summary>
         /// Format code for a video file with an undefined type.
         /// </summary>
@@ -268,23 +257,19 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
         /// <summary>
         /// Format code for a 3G2 (3GPP2) multimedia container format. A file of this type may contain audio, video, or text.
         /// </summary>
-        ThreeG2
-    ,
+        ThreeG2,
         /// <summary>
         /// Format code for an AVCHD (Advanced Video Coding High Definition) video file.
         /// </summary>
-        AVCHD
-    ,
+        AVCHD,
         /// <summary>
         /// Format code for the Advanced Television Systems Committee (ATSCTS) format standard.
         /// </summary>
-        ATSCTS
-    ,
+        ATSCTS,
         /// <summary>
         /// Format code for an MPEG-2 video and MPEG-1 Layer II, or AC-3, audio within a DVB-compliant MPEG-2 Transport Stream.
         /// </summary>
-        DVBTS
-    ,
+        DVBTS,
         /// <summary>
         /// Format code for a collection of an undefined type.
         /// </summary>
@@ -425,7 +410,6 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
         /// Format code for a 3G2A (3GPP2A) multimedia container format.
         /// </summary>
         ThreeG2A
-
     }
 
     /// <summary>
@@ -512,6 +496,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
         /// </summary>
         DATE
     }
+
     /// <summary>
     /// The <see cref="Message"/> enumeration type defines message types and states.
     /// </summary>
@@ -533,7 +518,5 @@ namespace Microsoft.WindowsAPICodePack.COMNative.MediaDevices
         /// Media has been removed from a Windows Media Device Manager device.
         /// </summary>
         MediaRemoval
-
     }
-
 }

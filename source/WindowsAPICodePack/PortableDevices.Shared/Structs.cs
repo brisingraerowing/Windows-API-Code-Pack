@@ -1,12 +1,12 @@
 ﻿//Copyright (c) Pierre Sprimont.  All rights reserved.
 
 using Microsoft.WindowsAPICodePack.Win32Native;
+
 using System;
 using System.Reflection;
 
 namespace Microsoft.WindowsAPICodePack.PortableDevices
 {
-
     public struct ClientVersion
     {
         public string ClientName { get; }
@@ -46,7 +46,6 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
     public struct PortableDeviceOpeningOptions
     {
-
         public GenericRights GenericRights { get; }
 
         public FileShareOptions FileShare { get; }
@@ -54,17 +53,12 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
         public bool ManualCloseOnDisconnect { get; }
 
         public PortableDeviceOpeningOptions(in GenericRights genericRights, in FileShareOptions fileShare, in bool manualCloseOnDisconnect)
-
         {
-
             GenericRights = genericRights;
 
             FileShare = fileShare;
 
             ManualCloseOnDisconnect = manualCloseOnDisconnect;
-
         }
-
     }
-
 }

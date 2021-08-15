@@ -191,28 +191,21 @@
             <summary>
             Initializes an excpetion with a custom message.
             </summary>
-            <param name="message"></param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.PropertySystemException.#ctor(System.String,System.Exception)">
             <summary>
             Initializes an exception with custom message and inner exception.
             </summary>
-            <param name="message"></param>
-            <param name="innerException"></param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.PropertySystemException.#ctor(System.String,System.Int32)">
             <summary>
             Initializes an exception with custom message and error code.
             </summary>
-            <param name="message"></param>
-            <param name="errorCode"></param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.PropertySystemException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
             Initializes an exception from serialization info and a context.
             </summary>
-            <param name="info"></param>
-            <param name="context"></param>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.PropertyStoreCacheState">
             <summary>
@@ -1154,7 +1147,7 @@
             appropriately by the data source from System.FileName.  If System.FileName does not have a file 
             extension, this value should be <see cref="F:System.Runtime.InteropServices.VarEnum.VT_EMPTY"/>.
             
-            To obtain the type of any item (including an item that is not a file), use System.ItemType.
+            To obtain the type of any item (including an item that is not a file, use System.ItemType.
             
             Example values:
             
@@ -1186,7 +1179,7 @@
             
             It is possible that the item might not exist on a filesystem (ie, it may not be opened 
             using CreateFile).  Nonetheless, if the item is represented as a file from the logical sense 
-            (and its name follows standard Win32 file-naming syntax), then the data source should emit this property.
+            (and its name follows standard Win32 file-naming syntax, then the data source should emit this property.
             
             If an item is not a file, then the value for this property is <see cref="F:System.Runtime.InteropServices.VarEnum.VT_EMPTY"/>.  See 
             System.ItemNameDisplay.
@@ -1608,7 +1601,7 @@
             If the item is a file, then the value of this property is <see cref="F:System.Runtime.InteropServices.VarEnum.VT_EMPTY"/>.
             
             If the item is a message, then the value of this property is the forwarding or reply 
-            prefixes (including delimiting colon, but no whitespace), or <see cref="F:System.Runtime.InteropServices.VarEnum.VT_EMPTY"/> if there is no prefix.
+            prefixes (including delimiting colon, but no whitespace, or <see cref="F:System.Runtime.InteropServices.VarEnum.VT_EMPTY"/> if there is no prefix.
             
             Example values:
             
@@ -1694,7 +1687,7 @@
             
             If there is no canonical type, the value is <see cref="F:System.Runtime.InteropServices.VarEnum.VT_EMPTY"/>.
             
-            If the item is a file (ie, System.FileName is not <see cref="F:System.Runtime.InteropServices.VarEnum.VT_EMPTY"/>), the value is the same as
+            If the item is a file (ie, System.FileName is not <see cref="F:System.Runtime.InteropServices.VarEnum.VT_EMPTY"/>, the value is the same as
             System.FileExtension.
             
             Use System.ItemTypeText when you want to display the type to end users in a view.  (If
@@ -2023,7 +2016,7 @@
         <member name="P:Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.SystemProperties.System.SharingStatus">
             <summary>
             <para>Name: System.SharingStatus -- PKEY_SharingStatus</para>
-            <para>Description: What is the item's sharing status (not .Shared, .Shared, everyone (homegroup or everyone), or private)?</para>
+            <para>Description: What is the item's sharing status (not .Shared, .Shared, everyone (homegroup or everyone, or private)?</para>
             <para>Type: <see cref="T:System.UInt32"/> -- <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI4"/></para>
             <para>FormatID: {EF884C5B-2BFE-41BB-AAE5-76EEDF4F9902}, 300</para>
             </summary>
@@ -2203,7 +2196,7 @@
         <member name="P:Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.SystemProperties.System.Audio.ChannelCount">
              <summary>
              <para>Name: System.Audio.ChannelCount -- PKEY_Audio_ChannelCount</para>
-             <para>Description: Indicates the channel count for the audio file.  Values: 1 (mono), 2 (stereo).
+             <para>Description: Indicates the channel count for the audio file.  Values: 1 (mono, 2 (stereo).
             </para>
              <para>Type: <see cref="T:System.UInt32"/> -- <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI4"/></para>
              <para>FormatID: (FMTID_AudioSummaryInformation) {64440490-4C8B-11D1-8B70-080036B11A03}, 7 (PIDASI_CHANNEL_COUNT)</para>
@@ -7628,6 +7621,76 @@
             <para>You should call <see cref="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperation.GetAnyOperationsAborted(System.Boolean@)"/> regardless of whether <see cref="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperation.PerformOperations"/> returned a success or failure code.A success code can be returned even if the operation was stopped by the user or the system.</para>
             <para>This method provides the same functionality as the fAnyOperationsAborted member of the SHFILEOPSTRUCT structure used by the legacy function SHFileOperation.</para></remarks>
         </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.Shell.TransferSourceFlags.Normal">
+            <summary>
+            Fail if the destination already exists, unless <see cref="F:Microsoft.WindowsAPICodePack.COMNative.Shell.TransferSourceFlags.OverwriteExist"/> is specified. This is a default behavior.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.Shell.TransferSourceFlags.FailExist">
+            <summary>
+            See <see cref="F:Microsoft.WindowsAPICodePack.COMNative.Shell.TransferSourceFlags.Normal"/>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.Shell.TransferSourceFlags.RenameExist">
+            <summary>
+            Rename with auto-name generation if the destination already exists.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.Shell.TransferSourceFlags.OverwriteExist">
+            <summary>
+            Overwrite or merge with the destination.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.Shell.TransferSourceFlags.AllowDecryption">
+            <summary>
+            Allow creation of a decrypted destination.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.Shell.TransferSourceFlags.NoSecurity">
+            <summary>
+            No discretionary access control list (DACL), system access control list (SACL), or owner.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.Shell.TransferSourceFlags.CopyCreationTime">
+            <summary>
+            Copy the creation time as part of the copy. This can be useful for a move operation that is being used as a copy and delete operation (<see cref="F:Microsoft.WindowsAPICodePack.COMNative.Shell.TransferSourceFlags.MoveAsCopyDelete"/>).
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.Shell.TransferSourceFlags.CopyWriteTime">
+            <summary>
+            Copy the last write time as part of the copy.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.Shell.TransferSourceFlags.UseFullAccess">
+            <summary>
+            Assign write, read, and delete permissions as share mode.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.Shell.TransferSourceFlags.DeleteRecycleIfPossible">
+            <summary>
+            Recycle on file delete, if possible.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.Shell.TransferSourceFlags.CopyHardLink">
+            <summary>
+            Hard link to the desired source (not required). This avoids a normal copy operation.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.Shell.TransferSourceFlags.CopyLocalizedName">
+            <summary>
+            Copy the localized name.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.Shell.TransferSourceFlags.MoveAsCopyDelete">
+            <summary>
+            Move as a copy and delete operation.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.Shell.TransferSourceFlags.SuspendShellEvents">
+            <summary>
+            Suspend Shell events.
+            </summary>
+        </member>
         <member name="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperationProgressSink">
             <summary>
             Exposes methods that provide a rich notification system used by callers of <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperation"/> to monitor the details of the operations they are performing through that interface.
@@ -7651,7 +7714,7 @@
             <summary>
             Performs caller-implemented actions before the rename process for each item begins.
             </summary>
-            <param name="dwFlags">bitwise value that contains flags that control the operation. See <a href="https://msdn.microsoft.com/8a3da00a-1d96-444d-acbe-9327620b8d24">TRANSFER_SOURCE_FLAGS</a> for flag descriptions.</param>
+            <param name="dwFlags">Bitwise value that contains flags that control the operation.</param>
             <param name="psiItem">Pointer to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> that specifies the item to be renamed.</param>
             <param name="pszNewName">Pointer to the new <a href="https://msdn.microsoft.com/9b159be9-3797-4c8b-90f8-9d3b3a3afb71">display name</a> of the item. This is a null-terminated, Unicode string.</param>
             <returns>Returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/> if successful, or an error value otherwise. In the case of an error value, the rename operation and all subsequent operations pending from the call to <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperation"/> are canceled.</returns>
@@ -7660,7 +7723,7 @@
             <summary>
             Performs caller-implemented actions after the rename process for each item is complete.
             </summary>
-            <param name="dwFlags">bitwise value that contains flags that were used during the rename operation. Some values can be set or changed during the rename operation. See <a href="https://msdn.microsoft.com/8a3da00a-1d96-444d-acbe-9327620b8d24">TRANSFER_SOURCE_FLAGS</a> for flag descriptions.</param>
+            <param name="dwFlags">Bitwise value that contains flags that were used during the rename operation. Some values can be set or changed during the rename operation.</param>
             <param name="psiItem">Pointer to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> that specifies the item before it was renamed.</param>
             <param name="pszNewName">Pointer to the new <a href="https://msdn.microsoft.com/9b159be9-3797-4c8b-90f8-9d3b3a3afb71">display name</a> of the item. This is a null-terminated, Unicode string. Note that this might not be the name that you asked for, given collisions and other naming rules.</param>
             <param name="hrRename">The return value of the rename operation. Note that this is not the HRESULT returned by <see cref="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperation.RenameItem(Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem,System.String,Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperationProgressSink)"/>, which simply queues the rename operation. Instead, this is the result of the actual rename operation.</param>
@@ -7671,7 +7734,7 @@
             <summary>
             Performs caller-implemented actions before the move process for each item begins.
             </summary>
-            <param name="dwFlags">bitwise value that contains flags that control the operation. See <a href="https://msdn.microsoft.com/8a3da00a-1d96-444d-acbe-9327620b8d24">TRANSFER_SOURCE_FLAGS</a> for flag descriptions.</param>
+            <param name="dwFlags">Bitwise value that contains flags that control the operation.</param>
             <param name="psiItem">Pointer to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> that specifies the item to be moved.</param>
             <param name="psiDestinationFolder">Pointer to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> that specifies the destination folder to contain the moved item.</param>
             <param name="pszNewName">Pointer to a new name for the item in its new location. This is a null-terminated Unicode string and can be <see langword="null"/>. If <see langword="null"/>, the name of the destination item is the same as the source.</param>
@@ -7681,7 +7744,7 @@
             <summary>
             Performs caller-implemented actions after the move process for each item is complete.
             </summary>
-            <param name="dwFlags">bitwise value that contains flags that were used during the move operation. Some values can be set or changed during the move operation. See <a href="https://msdn.microsoft.com/8a3da00a-1d96-444d-acbe-9327620b8d24">TRANSFER_SOURCE_FLAGS for flag descriptions</a>.</param>
+            <param name="dwFlags">Bitwise value that contains flags that were used during the move operation. Some values can be set or changed during the move operation.</param>
             <param name="psiItem">Pointer to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> that specifies the source item.</param>
             <param name="psiDestinationFolder">Pointer to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> that specifies the destination folder that contains the moved item.</param>
             <param name="pszNewName">Pointer to the name that was given to the item after it was moved. This is a null-terminated Unicode string. Note that this might not be the name that you asked for, given collisions and other naming rules.</param>
@@ -7693,7 +7756,7 @@
             <summary>
             Performs caller-implemented actions before the copy process for each item begins.
             </summary>
-            <param name="dwFlags">bitwise value that contains flags that control the operation. See <a href="https://msdn.microsoft.com/8a3da00a-1d96-444d-acbe-9327620b8d24">TRANSFER_SOURCE_FLAGS</a> for flag descriptions.</param>
+            <param name="dwFlags">Bitwise value that contains flags that control the operation.</param>
             <param name="psiItem">Pointer to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> that specifies the source item.</param>
             <param name="psiDestinationFolder">Pointer to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> that specifies the destination folder to contain the copy of the item.</param>
             <param name="pszNewName">Pointer to a new name for the item after it has been copied. This is a null-terminated Unicode string and can be <see langword="null"/>. If <see langword="null"/>, the name of the destination item is the same as the source.</param>
@@ -7703,7 +7766,7 @@
             <summary>
             Performs caller-implemented actions after the copy process for each item is complete.
             </summary>
-            <param name="dwFlags">bitwise value that contains flags that were used during the copy operation. Some values can be set or changed during the copy operation. See <a href="https://msdn.microsoft.com/8a3da00a-1d96-444d-acbe-9327620b8d24">TRANSFER_SOURCE_FLAGS</a> for flag descriptions.</param>
+            <param name="dwFlags">Bitwise value that contains flags that were used during the copy operation. Some values can be set or changed during the copy operation.</param>
             <param name="psiItem">Pointer to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> that specifies the source item.</param>
             <param name="psiDestinationFolder">Pointer to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> that specifies the destination folder to which the item was copied.</param>
             <param name="pszNewName">Pointer to the new name that was given to the item after it was copied. This is a null-terminated Unicode string. Note that this might not be the name that you asked for, given collisions and other naming rules.</param>
@@ -7715,7 +7778,7 @@
             <summary>
             Performs caller-implemented actions before the delete process for each item begins.
             </summary>
-            <param name="dwFlags">bitwise value that contains flags that control the operation. See <a href="https://msdn.microsoft.com/8a3da00a-1d96-444d-acbe-9327620b8d24">TRANSFER_SOURCE_FLAGS</a> for flag descriptions.</param>
+            <param name="dwFlags">Bitwise value that contains flags that control the operation.</param>
             <param name="psiItem">Pointer to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> that specifies the item to be deleted.</param>
             <returns>Returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/> if successful, or an error value otherwise. In the case of an error value, the delete operation and all subsequent operations pending from the call to <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperation"/> are canceled.</returns>
         </member>
@@ -7723,7 +7786,7 @@
             <summary>
             Performs caller-implemented actions after the delete process for each item is complete.
             </summary>
-            <param name="dwFlags">bitwise value that contains flags that were used during the delete operation. Some values can be set or changed during the delete operation. See <a href="https://msdn.microsoft.com/8a3da00a-1d96-444d-acbe-9327620b8d24">TRANSFER_SOURCE_FLAGS</a> for flag descriptions.</param>
+            <param name="dwFlags">Bitwise value that contains flags that were used during the delete operation. Some values can be set or changed during the delete operation.</param>
             <param name="psiItem">Pointer to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> that specifies the item that was deleted.</param>
             <param name="hrDelete">The return value of the delete operation. Note that this is not the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> returned by <see cref="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperation.DeleteItem(Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem,Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperationProgressSink)"/>, which simply queues the delete operation. Instead, this is the result of the actual deletion.</param>
             <param name="psiNewlyCreated">A pointer to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> that specifies the deleted item, now in the Recycle Bin. If the item was fully deleted, this value is <see langword="null"/>.</param>
@@ -7733,7 +7796,7 @@
             <summary>
             Performs caller-implemented actions before the process to create a new item begins.
             </summary>
-            <param name="dwFlags">bitwise value that contains flags that control the operation. See <a href="https://msdn.microsoft.com/8a3da00a-1d96-444d-acbe-9327620b8d24">TRANSFER_SOURCE_FLAGS</a> for flag descriptions.</param>
+            <param name="dwFlags">Bitwise value that contains flags that control the operation.</param>
             <param name="psiDestinationFolder">Pointer to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> that specifies the destination folder that will contain the new item.</param>
             <param name="pszNewName">Pointer to the file name of the new item, for instance <b>Newfile.txt</b>. This is a null-terminated, Unicode string.</param>
             <returns>Returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/> if successful, or an error value otherwise. In the case of an error value, this operation and all subsequent operations pending from the call to <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperation"/> are canceled.</returns>
@@ -7742,7 +7805,7 @@
             <summary>
             Performs caller-implemented actions after the new item is created.
             </summary>
-            <param name="dwFlags">bitwise value that contains flags that were used during the creation operation. Some values can be set or changed during the creation operation. See <a href="https://msdn.microsoft.com/8a3da00a-1d96-444d-acbe-9327620b8d24">TRANSFER_SOURCE_FLAGS</a> for flag descriptions.</param>
+            <param name="dwFlags">Bitwise value that contains flags that were used during the creation operation. Some values can be set or changed during the creation operation.</param>
             <param name="psiDestinationFolder">Pointer to an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> that specifies the destination folder to which the new item was added.</param>
             <param name="pszNewName">Pointer to the file name of the new item, for instance <b>Newfile.txt</b>. This is a null-terminated, Unicode string.</param>
             <param name="pszTemplateName">Pointer to the name of the template file (for example <b>Excel9.xls</b>) that the new item is based on, stored in one of the following locations:
@@ -7770,21 +7833,21 @@
             Not supported.
             </summary>
             <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
-            <remarks>This method should return <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/> rather than E_NOTIMPL.</remarks>
+            <remarks>This method should return <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/> rather than <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.NotImplemented"/>.</remarks>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperationProgressSink.PauseTimer">
             <summary>
             Not supported.
             </summary>
             <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
-            <remarks>This method should return <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/> rather than E_NOTIMPL.</remarks>
+            <remarks>This method should return <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/> rather than <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.NotImplemented"/>.</remarks>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperationProgressSink.ResumeTimer">
             <summary>
             Not supported.
             </summary>
             <returns>If this method succeeds, it returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/>. Otherwise, it returns an <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.HResult"/> error code.</returns>
-            <remarks>This method should return <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/> rather than E_NOTIMPL.</remarks>
+            <remarks>This method should return <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.Ok"/> rather than <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.HResult.NotImplemented"/>.</remarks>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog">
             <summary>
@@ -9128,6 +9191,46 @@
             application does not have sufficient permissions.
             </summary>
         </member>
+        <member name="T:Microsoft.WindowsAPICodePack.COMNative.COM.StatFlag">
+            <summary>
+            This enumeration values indicate whether the method should try to return a name in the pwcsName member of the <see cref="T:Microsoft.WindowsAPICodePack.COMNative.COM.STATSTG"/> structure. The values are used in the ILockBytes::Stat, IStorage::Stat, and <see cref="M:Microsoft.WindowsAPICodePack.COMNative.COM.IStream.Stat(Microsoft.WindowsAPICodePack.COMNative.COM.STATSTG@,Microsoft.WindowsAPICodePack.COMNative.COM.StatFlag)"/> methods to save memory when the pwcsName member is not required.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.COM.StatFlag.Default">
+            <summary>
+            Requests that the statistics include the pwcsName member of the <see cref="T:Microsoft.WindowsAPICodePack.COMNative.COM.STATSTG"/> structure.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.COM.StatFlag.NoName">
+            <summary>
+            Requests that the statistics not include the pwcsName member of the <see cref="T:Microsoft.WindowsAPICodePack.COMNative.COM.STATSTG"/> structure. If the name is omitted, there is no need for the ILockBytes::Stat, IStorage::Stat, and <see cref="M:Microsoft.WindowsAPICodePack.COMNative.COM.IStream.Stat(Microsoft.WindowsAPICodePack.COMNative.COM.STATSTG@,Microsoft.WindowsAPICodePack.COMNative.COM.StatFlag)"/> methods methods to allocate and free memory for the string value of the name, therefore the method reduces time and resources used in an allocation and free operation.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.COM.StatFlag.NoOpen">
+            <summary>
+            Not implemented.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.COMNative.COM.StreamSeek">
+            <summary>
+            This enumeration values specify the origin from which to calculate the new seek-pointer location. They are used for the dworigin parameter in the <see cref="M:Microsoft.WindowsAPICodePack.COMNative.COM.IStream.Seek(System.Int64,Microsoft.WindowsAPICodePack.COMNative.COM.StreamSeek,System.UInt64@)"/> method. The new seek position is calculated using this value and the dlibMove parameter.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.COM.StreamSeek.Set">
+            <summary>
+            The new seek pointer is an offset relative to the beginning of the stream. In this case, the dlibMove parameter is the new seek position relative to the beginning of the stream.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.COM.StreamSeek.Cursor">
+            <summary>
+            The new seek pointer is an offset relative to the current seek pointer location. In this case, the dlibMove parameter is the signed displacement from the current seek position.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.COM.StreamSeek.End">
+            <summary>
+            The new seek pointer is an offset relative to the end of the stream. In this case, the dlibMove parameter is the new seek position relative to the end of the stream.
+            </summary>
+        </member>
         <member name="T:Microsoft.WindowsAPICodePack.COMNative.COM.CAUUID">
             <summary>
             Specifies a counted array of <see cref="T:System.Guid"/> types used to receive an array of CLSIDs for the property pages that the object wants to display.
@@ -9286,9 +9389,9 @@
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.COMNative.PropertySystem.NativePropertyHelper.VarEnumToSystemType(System.Runtime.InteropServices.VarEnum)">
             <summary>
-            Converts VarEnum to its associated .net Type.
+            Converts <see cref="T:System.Runtime.InteropServices.VarEnum"/> to its associated .net Type.
             </summary>
-            <param name="VarEnumType">VarEnum value</param>
+            <param name="VarEnumType"><see cref="T:System.Runtime.InteropServices.VarEnum"/> value</param>
             <returns>Associated .net equivelent.</returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.COMNative.Taskbar.Taskbar.SetWindowAppId(System.IntPtr,System.String)">
@@ -11278,13 +11381,13 @@
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.COMNative.PortableDevices.ResourceSystem.IPortableDeviceResources.GetStream(System.String,Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey@,System.UInt32,System.UInt32@,System.Runtime.InteropServices.ComTypes.IStream@)">
             <summary>
-            The <see cref="M:Microsoft.WindowsAPICodePack.COMNative.PortableDevices.ResourceSystem.IPortableDeviceResources.GetStream(System.String,Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey@,System.UInt32,System.UInt32@,System.Runtime.InteropServices.ComTypes.IStream@)"/> method gets an IStream interface with which to read or write the content data in an object on a device. The retrieved interface enables you to read from or write to the object data.
+            The <see cref="M:Microsoft.WindowsAPICodePack.COMNative.PortableDevices.ResourceSystem.IPortableDeviceResources.GetStream(System.String,Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey@,System.UInt32,System.UInt32@,System.Runtime.InteropServices.ComTypes.IStream@)"/> method gets an System.Runtime.InteropServices.ComTypes.IStream interface with which to read or write the content data in an object on a device. The retrieved interface enables you to read from or write to the object data.
             </summary>
             <param name="pszObjectID">Pointer to a null-terminated string that contains the object ID of the object.</param>
             <param name="Key">A <see cref="T:Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey"/> that specifies which resource to read. You can retrieve the keys of all the object's resources by calling <see cref="M:Microsoft.WindowsAPICodePack.COMNative.PortableDevices.ResourceSystem.IPortableDeviceResources.GetSupportedResources(System.String,Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem.IPortableDeviceKeyCollection@)"/>.</param>
             <param name="dwMode">One of the value of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Storage.STGM.Access"/> enum.</param>
             <param name="pdwOptimalBufferSize">An optional reference to a <see cref="T:System.UInt32"/> that specifies an estimate of the best buffer size to use when reading or writing data by using ppStream. A driver is required to support this value.</param>
-            <param name="ppStream">An IStream interface. This interface is used to read and write data to the object. The caller must release this interface when it is done with it.</param>
+            <param name="ppStream">An System.Runtime.InteropServices.ComTypes.IStream interface. This interface is used to read and write data to the object. The caller must release this interface when it is done with it.</param>
             <returns></returns>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.COMNative.Sensors.ISensor">

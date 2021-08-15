@@ -1,6 +1,7 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using Microsoft.WindowsAPICodePack.COMNative.NetworkList;
+
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
@@ -8,9 +9,9 @@ using System.Runtime.InteropServices;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.Net
 {
-    [ComImport]
-    [Guid(NativeAPI.Guids.Net.INetworkListManager)]
-    [TypeLibType((short)0x1040)]
+    [ComImport,
+    Guid(NativeAPI.Guids.Net.INetworkListManager),
+    TypeLibType(0x1040)]
     public interface INetworkListManager
     {
         [return: MarshalAs(UnmanagedType.Interface)]

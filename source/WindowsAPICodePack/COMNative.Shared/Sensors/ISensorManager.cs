@@ -1,10 +1,10 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
+using Microsoft.WindowsAPICodePack.Win32Native;
+
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using Microsoft.WindowsAPICodePack.COMNative;
-using Microsoft.WindowsAPICodePack.Win32Native;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.Sensors
 {
@@ -14,7 +14,9 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Sensors
     /// <remarks>
     /// See Sensor API documentation in Windows 7 SDK
     /// </remarks>
-    [ComImport, Guid("77A1C827-FCD2-4689-8915-9D613CC5FA3E"), ClassInterface(ClassInterfaceType.None)]
+    [ComImport,
+    Guid("77A1C827-FCD2-4689-8915-9D613CC5FA3E"),
+    ClassInterface(ClassInterfaceType.None)]
     public class NativeSensorManager : NativeISensorManager
     {
         [PreserveSig]
@@ -49,7 +51,9 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Sensors
     /// <summary>
     /// A COM interop wrapper for the ISensorsManager interface
     /// </summary>
-    [ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown), Guid("BD77DB67-45A8-42DC-8D00-6DCF15F8377A")]
+    [ComImport,
+    InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
+    Guid("BD77DB67-45A8-42DC-8D00-6DCF15F8377A")]
     public interface NativeISensorManager
     {
         /// <summary>
