@@ -63,6 +63,7 @@ COMNative 3.0
 
 - Add new types.
 - Update file operations implementations to extend features.
+- Add support for .Net 3.5, 4.0, 4.5 and 6.0. Fixes #22.
 
 ## 07/17/2021 2.5
 

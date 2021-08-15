@@ -1421,181 +1421,6 @@
             <param name="eventHandler">EventHandler&lt;EventArgs&gt; to raise</param>
             <param name="sender">Event sender</param>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Shell.FileInfo">
-            <summary>
-            Contains information about a file object.
-            </summary>
-            <remarks>This structure is used with the <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.GetFileInfo(System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes,Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions)"/> function.</remarks>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.Icon">
-            <summary>
-            Gets or sets the icon that represents the file. When the <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileInfo.Dispose"/> method of this struct is called, that method calls the <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileInfo.Dispose"/> method on the current <see cref="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.Icon"/>.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.IconIndex">
-            <summary>
-            Gets or sets the index of the icon image within the system image list.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.Attributes">
-            <summary>
-            Gets or sets an array of values that indicates the attributes of the file object. For information about these values, see the <see cref="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellFolder.GetAttributesOf(System.UInt32,System.IntPtr,System.UInt32@)"/> method.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.DisplayName">
-            <summary>
-            Gets or sets a string that contains the name of the file as it appears in the Windows Shell, or the path and file name of the file that contains the icon representing the file.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.TypeName">
-            <summary>
-            Gets or sets a string that describes the type of file.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileInfo.#ctor(System.Drawing.Icon,System.Int32,Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions,System.String,System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.WindowsAPICodePack.Shell.FileInfo"/> structure.
-            </summary>
-            <param name="icon">The icon of the file represented by this structure.</param>
-            <param name="iconIndex">The icon index of the retrieved icon.</param>
-            <param name="attributes">The attributes of the file represented by this structure.</param>
-            <param name="displayName">The display name of the file represented by this structure.</param>
-            <param name="typeName">The type name of the file represented by this structure.</param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileInfo.Dispose">
-            <summary>
-            Calls the <see cref="M:System.Drawing.Icon.Dispose"/> method from the <see cref="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.Icon"/> property.
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Shell.FileOperation">
-            <summary>
-            Provides methods to perform file system operations.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.WindowsAPICodePack.Shell.FileOperation"/> class.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.Advise(Microsoft.WindowsAPICodePack.Shell.FileOperationProgressSink)">
-            <summary>
-            Enables a handler to provide status and error information for all operations.
-            </summary>
-            <param name="pfops">An <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperationProgressSink"/> object to be used for progress status and error notifications.</param>
-            <returns>A returned token that uniquely identifies this connection. The calling application uses this token later to delete the connection by passing it to <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.Unadvise(System.UInt32)"/>.</returns>
-            <remarks>Several individual methods have the ability to declare their own progress sinks, which are redundant to the one set here. They are used when you only want to be given progress and error information for a specific operation.</remarks>
-            <exception cref="T:System.ArgumentNullException">Exception thrown when a parameter is null.</exception>
-            <exception cref="T:System.ObjectDisposedException">Exception thrown when this object is disposed.</exception>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.Unadvise(System.UInt32)">
-            <summary>
-            Terminates an advisory connection previously established through <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.Advise(Microsoft.WindowsAPICodePack.Shell.FileOperationProgressSink)"/>.
-            </summary>
-            <param name="dwCookie">The connection token that identifies the connection to delete. This value was originally retrieved by <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.Advise(Microsoft.WindowsAPICodePack.Shell.FileOperationProgressSink)"/> when the connection was made.</param>
-            <exception cref="T:System.ObjectDisposedException">Exception thrown when this object is disposed.</exception>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.SetOperationFlags(Microsoft.WindowsAPICodePack.COMNative.Shell.ShellOperationFlags)">
-            <summary>
-            Sets parameters for the current operation.
-            </summary>
-            <param name="flags">Flags that control the file operation. FOF flags are defined in Shellapi.h and FOFX flags are defined in Shobjidl.h. Note : If this method is not called, the default value used by the operation is <see cref="!: ShellOperationFlags.FOF_ALLOWUNDO"/> | <see cref="!:ShellOperationFlags.FOF_NOCONFIRMMKDIR"/>.</param>
-            <remarks>Set these flags before you call <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.PerformOperations"/> to define the parameters for whatever operations are being performed, such as copy, delete, or rename.</remarks>
-            <exception cref="T:System.ObjectDisposedException">Exception thrown when this object is disposed.</exception>
-            <exception cref="T:System.PlatformNotSupportedException">Exception thrown when a requested flag is not supported by the current platform.</exception>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.SetProgressDialog(Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog)">
-            <summary>
-            Specifies a dialog box used to display the progress of the operation.
-            </summary>
-            <param name="popd">An <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog"/> object that represents the dialog box.</param>
-            <exception cref="T:System.ArgumentNullException">Exception thrown when a parameter is null.</exception>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.SetProperties(Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyChangeArray)">
-            <summary>
-            Declares a set of properties and values to be set on an item or items.
-            </summary>
-            <param name="pproparray">An <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyChangeArray"/>, which accesses a collection of <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyChange"/> objects that specify the properties to be set and their new values.</param>
-            <remarks>This method does not set the new property values, it merely declares them. To set property values on an item or a group of items, you must make at least the sequence of calls detailed here:
-            <ol><li>Call <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.SetProperties(Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyChangeArray)"/> to declare the specific properties to be set and their new values.</li>
-            <li>Call <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.ApplyPropertiesToItem(Microsoft.WindowsAPICodePack.Shell.ShellObject)"/> or <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.ApplyPropertiesToItem(Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem)"/> to declare the item or items whose properties are to be set.</li>
-            <li>Call <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.PerformOperations"/> to apply the properties to the item or items.</li></ol></remarks>
-            <exception cref="T:System.ArgumentNullException">Exception thrown when a parameter is null.</exception>
-            <exception cref="T:System.ObjectDisposedException">Exception thrown when this object is disposed.</exception>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.GetFileInfo(System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes,Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions)">
-            <summary>
-            Retrieves information about an object in the file system, such as a file, folder, directory, or drive root.
-            </summary>
-            <param name="path"><para>A string of maximum length <see cref="!:MaxPath"/> that contains the path and file name. Both absolute and relative paths are valid.</para>
-            <para>If the <b>uFlags</b> parameter includes the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.PIDL"/> flag, this parameter must be the address of an ITEMIDLIST(PIDL) structure that contains the list of item identifiers that uniquely identifies the file within the Shell's namespace. The PIDL must be a fully qualified PIDL. Relative PIDLs are not allowed.</para>
-            <para>If the <b>uFlags</b> parameter includes the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.UseFileAttributes"/> flag, this parameter does not have to be a valid file name. The function will proceed as if the file exists with the specified name and with the file attributes passed in the <b>dwFileAttributes</b> parameter. This allows you to obtain information about a file type by passing just the extension for <b>pszPath</b> and passing <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes.Normal"/> in <b>dwFileAttributes</b>.</para>
-            <para>This string can use either short (the 8.3 form) or long file names.</para></param>
-            <param name="fileAttributes">A combination of one or more <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes"/> flags. If <b>uFlags</b> does not include the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.UseFileAttributes"/> flag, this parameter is ignored.</param>
-            <param name="options">The flags that specify the file information to retrieve. This parameter can be a combination of the values of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions"/> enum.</param>
-            <returns>A <see cref="T:Microsoft.WindowsAPICodePack.Shell.FileInfo"/> structure that contains the file information.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.GetFileInfo(System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes,Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions,System.Int32@)">
-            <summary>
-            Retrieves information about an object in the file system, such as a file, folder, directory, or drive root and a value that indicates the exe type.
-            </summary>
-            <param name="path"><para>A string of maximum length <see cref="!:MaxPath"/> that contains the path and file name. Both absolute and relative paths are valid.</para>
-            <para>If the <b>uFlags</b> parameter includes the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.PIDL"/> flag, this parameter must be the address of an ITEMIDLIST(PIDL) structure that contains the list of item identifiers that uniquely identifies the file within the Shell's namespace. The PIDL must be a fully qualified PIDL. Relative PIDLs are not allowed.</para>
-            <para>If the <b>uFlags</b> parameter includes the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.UseFileAttributes"/> flag, this parameter does not have to be a valid file name. The function will proceed as if the file exists with the specified name and with the file attributes passed in the <b>dwFileAttributes</b> parameter. This allows you to obtain information about a file type by passing just the extension for <b>pszPath</b> and passing <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes.Normal"/> in <b>dwFileAttributes</b>.</para>
-            <para>This string can use either short (the 8.3 form) or long file names.</para></param>
-            <param name="fileAttributes">A combination of one or more <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes"/> flags. If <b>uFlags</b> does not include the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.UseFileAttributes"/> flag, this parameter is ignored.</param>
-            <param name="options">The flags that specify the file information to retrieve. This parameter can be a combination of the values of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions"/> enum.</param>
-            <param name="exeType">The exe type. In order to this method retrieves the exe type, you need to use the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.ExeType"/> flag in the <b>options</b> parameter.</param>
-            <returns>A <see cref="T:Microsoft.WindowsAPICodePack.Shell.FileInfo"/> structure that contains the file information.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.QueryRecycleBinInfo(System.String,Microsoft.WindowsAPICodePack.Shell.RecycleBinInfo@)">
-            <summary>
-            Queries the size and the number of items in the Recycle Bin.
-            </summary>
-            <param name="drivePath">The path to the Recycle Bin drive. Leave this parameter null or empty if you want to get the info for the Recycle Bins for all drives.</param>
-            <param name="recycleBinInfo">The out Recycle Bin info</param>
-            <returns><see langword="true"/> if the drive supports the Recycle Bin, otherwise <see langword="false"/>.</returns>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown if a Win32 exception has occurred during thr process.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.EmptyRecycleBin(System.IntPtr,System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.EmptyRecycleBinFlags)">
-            <summary>
-            Empties the Recycle Bin.
-            </summary>
-            <param name="windowHandle">A handle to the owner window</param>
-            <param name="drivePath">The path to the Recycle Bin drive. Leave this parameter null or empty if you want to get the info for the Recycle Bins for all drives.</param>
-            <param name="emptyRecycleBinFlags">Flags to describe the behavior for the process.</param>
-            <returns><see langword="true"/> if the drive supports the Recycle Bin, otherwise <see langword="false"/>.</returns>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown if a Win32 exception has occurred during thr process.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.EmptyRecycleBin(System.Windows.Forms.Form,System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.EmptyRecycleBinFlags)">
-            <summary>
-            Empties the Recycle Bin.
-            </summary>
-            <param name="window">The owner window</param>
-            <param name="drivePath">The path to the Recycle Bin drive. Leave this parameter null or empty if you want to get the info for the Recycle Bins for all drives.</param>
-            <param name="emptyRecycleBinFlags">Flags to describe the behavior for the process.</param>
-            <returns><see langword="true"/> if the drive supports the Recycle Bin, otherwise <see langword="false"/>.</returns>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown if a Win32 exception has occurred during thr process.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.EmptyRecycleBin(System.Windows.Window,System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.EmptyRecycleBinFlags)">
-            <summary>
-            Empties the Recycle Bin.
-            </summary>
-            <param name="window">The owner window</param>
-            <param name="drivePath">The path to the Recycle Bin drive. Leave this parameter null or empty if you want to get the info for the Recycle Bins for all drives.</param>
-            <param name="emptyRecycleBinFlags">Flags to describe the behavior for the process.</param>
-            <returns><see langword="true"/> if the drive supports the Recycle Bin, otherwise <see langword="false"/>.</returns>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown if a Win32 exception has occurred during thr process.</exception>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Shell.FileOperationProgressSink.StartOperations">
-            <summary>
-            Gets or sets a delegate to call in the <see cref="T:Microsoft.WindowsAPICodePack.Shell.FileOperation"/> class when file operations are starting.
-            </summary>
-        </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.FileLockFinder">
             <summary>
             This class contains all the functions to find out which are the processes are locking a file.
@@ -2871,7 +2696,6 @@
             <summary>
             Overide OnPaint to paint the background as black.
             </summary>
-            <param name="e">PaintEventArgs</param>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.GlassWindow">
             <summary>
@@ -2913,7 +2737,6 @@
             Override SourceInitialized to initialize windowHandle for this window.
             A valid windowHandle is available only after the sourceInitialized is completed
             </summary>
-            <param name="e">EventArgs</param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.DesktopWindowManager.GetWindowStyles(System.IntPtr)">
             <summary>
@@ -14319,11 +14142,6 @@
             <summary>
             Indicates if this button was added to the taskbar. If it's not yet added,
             then we can't do any updates on it.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Taskbar.ThumbnailToolBarButton.Finalize">
-            <summary>
-            
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Taskbar.ThumbnailToolBarButton.Dispose">

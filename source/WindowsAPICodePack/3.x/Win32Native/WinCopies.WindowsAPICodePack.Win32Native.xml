@@ -1163,7 +1163,7 @@
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.IsSlow">
             <summary>
-            Indicates that accessing the object = through System.Runtime.InteropServices.ComTypes.IStream or other storage interfaces, 
+            Indicates that accessing the object = through <see cref="T:System.Runtime.InteropServices.ComTypes.IStream"/> or other storage interfaces, 
             is a slow operation. 
             Applications should avoid accessing items flagged with <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.IsSlow"/>.
             </summary>
@@ -1280,7 +1280,7 @@
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.StorageAncestor">
             <summary>
-            Children of this item are accessible through System.Runtime.InteropServices.ComTypes.IStream or IStorage. 
+            Children of this item are accessible through <see cref="T:System.Runtime.InteropServices.ComTypes.IStream"/> or IStorage. 
             Those children are flagged with <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.Storage"/> or <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions.Stream"/>.
             </summary>
         </member>

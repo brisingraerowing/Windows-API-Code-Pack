@@ -19,7 +19,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public ShellFile(in string path)
         {
             // Get the absolute path
-            string absPath = ShellHelper.GetAbsolutePath(path);
+            string absPath = WinCopies.Util.IO.Path.GetAbsolutePath(path);
 
             ParsingName = File.Exists(absPath) ? absPath : throw new FileNotFoundException(
                     string.Format(System.Globalization.CultureInfo.InvariantCulture,
@@ -43,7 +43,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         /// <param name="path">The file or folder path</param>
         /// <returns>ShellFile object created using given file path.</returns>
-        static public ShellFile FromFilePath(string path) => new ShellFile(path);
+        public static ShellFile FromFilePath(string path) => new ShellFile(path);
         #endregion
 #endif
     }

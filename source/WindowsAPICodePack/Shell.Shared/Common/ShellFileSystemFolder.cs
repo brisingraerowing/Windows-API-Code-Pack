@@ -13,14 +13,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
     public class ShellFileSystemFolder : ShellFolder
     {
         #region Internal Constructor
-
-        internal ShellFileSystemFolder()
-        {
-            // Empty
-        }
+        internal ShellFileSystemFolder() { /* Left empty. */ }
 
         internal ShellFileSystemFolder(IShellItem2 shellItem) => nativeShellItem = shellItem;
-
         #endregion
 
         #region Public Methods
@@ -32,15 +27,15 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public static ShellFileSystemFolder FromFolderPath(string path)
         {
             // Get the absolute path
-            string absPath = ShellHelper.GetAbsolutePath(path);
+            string absPath = WinCopies.Util.IO.Path.GetAbsolutePath(path);
 
             // Make sure this is valid
             if (!Directory.Exists(absPath))
-            
+
                 throw new DirectoryNotFoundException(
                     string.Format(System.Globalization.CultureInfo.InvariantCulture,
                     LocalizedMessages.FilePathNotExist, path));
-            
+
             var folder = new ShellFileSystemFolder();
 
             try
@@ -49,24 +44,21 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 return folder;
             }
+
             catch
             {
                 folder.Dispose();
 
                 throw;
             }
-
         }
-
         #endregion
 
         #region Public Properties
-
         /// <summary>
         /// The path for this Folder
         /// </summary>
         public virtual string Path => ParsingName;
-
         #endregion
     }
 }

@@ -310,7 +310,7 @@
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.ShellExtensions.StorageStream">
             <summary>
-            A wrapper for the native System.Runtime.InteropServices.ComTypes.IStream object.
+            A wrapper for the native <see cref="T:System.Runtime.InteropServices.ComTypes.IStream"/> object.
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.ShellExtensions.StorageStream.ReadByte">

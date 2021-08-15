@@ -1,16 +1,15 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
-using System;
-using System.Collections.Generic;
 using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Controls.WindowsForms;
 using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+
+using System;
+using System.Collections.Generic;
 
 namespace Microsoft.WindowsAPICodePack.Controls
 {
-
     /// <summary>
     /// The navigation log is a history of the locations visited by the explorer browser. 
     /// </summary>
@@ -23,22 +22,22 @@ namespace Microsoft.WindowsAPICodePack.Controls
         public void ClearLog()
         {
             // nothing to do
-            if (_locations.Count == 0) { return; }
+            if (_locations.Count == 0) return;
 
             bool oldCanNavigateBackward = CanNavigateBackward;
             bool oldCanNavigateForward = CanNavigateForward;
 
             _locations.Clear();
-            this.currentLocationIndex = -1;
+            currentLocationIndex = -1;
 
-            NavigationLogEventArgs args = new NavigationLogEventArgs();
-            args.LocationsChanged = true;
-            args.CanNavigateBackwardChanged = (oldCanNavigateBackward != CanNavigateBackward);
-            args.CanNavigateForwardChanged = (oldCanNavigateForward != CanNavigateForward);
-            if (NavigationLogChanged != null)
+            var args = new NavigationLogEventArgs
             {
-                NavigationLogChanged(this, args);
-            }
+                LocationsChanged = true,
+                CanNavigateBackwardChanged = oldCanNavigateBackward != CanNavigateBackward,
+                CanNavigateForwardChanged = oldCanNavigateForward != CanNavigateForward
+            };
+
+            NavigationLogChanged?.Invoke(this, args);
         }
         #endregion
 
@@ -47,74 +46,50 @@ namespace Microsoft.WindowsAPICodePack.Controls
         /// Indicates the presence of locations in the log that can be 
         /// reached by calling Navigate(Forward)
         /// </summary>
-        public bool CanNavigateForward
-        {
-            get
-            {
-                return (CurrentLocationIndex < (_locations.Count - 1));
-            }
-        }
+        public bool CanNavigateForward => CurrentLocationIndex < (_locations.Count - 1);
 
         /// <summary>
         /// Indicates the presence of locations in the log that can be 
         /// reached by calling Navigate(Backward)
         /// </summary>
-        public bool CanNavigateBackward
-        {
-            get
-            {
-                return (CurrentLocationIndex > 0);
-            }
-        }
+        public bool CanNavigateBackward => CurrentLocationIndex > 0;
 
         /// <summary>
         /// The navigation log
         /// </summary>
         public IEnumerable<ShellObject> Locations
         {
-            get { foreach (var obj in _locations) { yield return obj; } }
+            get
+            {
+                foreach (ShellObject obj in _locations)
+
+                    yield return obj;
+            }
         }
+
         private List<ShellObject> _locations = new List<ShellObject>();
 
         /// <summary>
         /// An index into the Locations collection. The ShellObject pointed to 
         /// by this index is the current location of the ExplorerBrowser.
         /// </summary>
-        public int CurrentLocationIndex
-        {
-            get
-            {
-                return currentLocationIndex;
-            }
-        }
-
+        public int CurrentLocationIndex => currentLocationIndex;
 
         /// <summary>
         /// Gets the shell object in the Locations collection pointed to
         /// by CurrentLocationIndex.
         /// </summary>
-        public ShellObject CurrentLocation
-        {
-            get
-            {
-                if (currentLocationIndex < 0) { return null; }
-
-                return _locations[currentLocationIndex];
-            }
-        }
+        public ShellObject CurrentLocation => currentLocationIndex < 0 ? null : _locations[currentLocationIndex];
         #endregion
 
-        #region events
         /// <summary>
         /// Fires when the navigation log changes or 
         /// the current navigation position changes
         /// </summary>
         public event EventHandler<NavigationLogEventArgs> NavigationLogChanged;
-        #endregion
 
         #region implementation
-
-        private ExplorerBrowser parent = null;
+        private readonly ExplorerBrowser parent = null;
 
         /// <summary>
         /// The pending navigation log action. null if the user is not navigating 
@@ -130,22 +105,14 @@ namespace Microsoft.WindowsAPICodePack.Controls
 
         internal ExplorerBrowserNavigationLog(ExplorerBrowser parent)
         {
-            if (parent == null)
-            {
-                throw new ArgumentException(LocalizedMessages.NavigationLogNullParent, "parent");
-            }
-
             // Hook navigation events from the parent to distinguish between
             // navigation log induced navigation, and other navigations.
-            this.parent = parent;
+            this.parent = parent ?? throw new ArgumentException(LocalizedMessages.NavigationLogNullParent, nameof(parent));
             this.parent.NavigationComplete += new EventHandler<NavigationCompleteEventArgs>(OnNavigationComplete);
             this.parent.NavigationFailed += new EventHandler<NavigationFailedEventArgs>(OnNavigationFailed);
         }
 
-        private void OnNavigationFailed(object sender, NavigationFailedEventArgs args)
-        {
-            pendingNavigation = null;
-        }
+        private void OnNavigationFailed(object sender, NavigationFailedEventArgs args) => pendingNavigation = null;
 
         private void OnNavigationComplete(object sender, NavigationCompleteEventArgs args)
         {
@@ -153,43 +120,48 @@ namespace Microsoft.WindowsAPICodePack.Controls
             bool oldCanNavigateBackward = CanNavigateBackward;
             bool oldCanNavigateForward = CanNavigateForward;
 
-            if ((pendingNavigation != null))
+            if (pendingNavigation != null)
             {
                 // navigation log traversal in progress
 
                 // determine if new location is the same as the traversal request
-                int result = 0;
                 pendingNavigation.Location.NativeShellItem.Compare(
-                    args.NewLocation.NativeShellItem, SICHINTF.SICHINT_ALLFIELDS, out result);
-                bool shellItemsEqual = (result == 0);
+                    args.NewLocation.NativeShellItem, SICHINTF.AllFields, out int result);
+
+                bool shellItemsEqual = result == 0;
+
                 if (shellItemsEqual == false)
                 {
                     // new location is different than traversal request, 
                     // behave is if it never happened!
                     // remove history following currentLocationIndex, append new item
                     if (currentLocationIndex < (_locations.Count - 1))
-                    {
+
                         _locations.RemoveRange((int)currentLocationIndex + 1, (int)(_locations.Count - (currentLocationIndex + 1)));
-                    }
+
                     _locations.Add(args.NewLocation);
                     currentLocationIndex = (_locations.Count - 1);
                     eventArgs.LocationsChanged = true;
                 }
+
                 else
                 {
                     // log traversal successful, update index
-                    currentLocationIndex = (int)pendingNavigation.Index;
+                    currentLocationIndex = pendingNavigation.Index;
+
                     eventArgs.LocationsChanged = false;
                 }
+
                 pendingNavigation = null;
             }
+
             else
             {
                 // remove history following currentLocationIndex, append new item
                 if (currentLocationIndex < (_locations.Count - 1))
-                {
-                    _locations.RemoveRange((int)currentLocationIndex + 1, (int)(_locations.Count - (currentLocationIndex + 1)));
-                }
+
+                    _locations.RemoveRange(currentLocationIndex + 1, _locations.Count - (currentLocationIndex + 1));
+
                 _locations.Add(args.NewLocation);
                 currentLocationIndex = (_locations.Count - 1);
                 eventArgs.LocationsChanged = true;
@@ -200,30 +172,29 @@ namespace Microsoft.WindowsAPICodePack.Controls
             eventArgs.CanNavigateForwardChanged = (oldCanNavigateForward != CanNavigateForward);
 
             if (NavigationLogChanged != null)
-            {
+
                 NavigationLogChanged(this, eventArgs);
-            }
         }
 
         internal bool NavigateLog(NavigationLogDirection direction)
         {
             // determine proper index to navigate to
-            int locationIndex = 0;
+            int locationIndex;
+
             if (direction == NavigationLogDirection.Backward && CanNavigateBackward)
-            {
-                locationIndex = (currentLocationIndex - 1);
-            }
+
+                locationIndex = currentLocationIndex - 1;
+
             else if (direction == NavigationLogDirection.Forward && CanNavigateForward)
-            {
-                locationIndex = (currentLocationIndex + 1);
-            }
+
+                locationIndex = currentLocationIndex + 1;
+
             else
-            {
+
                 return false;
-            }
 
             // initiate traversal request
-            ShellObject location = _locations[(int)locationIndex];
+            ShellObject location = _locations[locationIndex];
             pendingNavigation = new PendingNavigation(location, locationIndex);
             parent.Navigate(location);
             return true;
@@ -232,18 +203,17 @@ namespace Microsoft.WindowsAPICodePack.Controls
         internal bool NavigateLog(int index)
         {
             // can't go anywhere
-            if (index >= _locations.Count || index < 0) { return false; }
+            if (index >= _locations.Count || index < 0) return false;
 
             // no need to re navigate to the same location
-            if (index == currentLocationIndex) { return false; }
+            if (index == currentLocationIndex) return false;
 
             // initiate traversal request
-            ShellObject location = _locations[(int)index];
+            ShellObject location = _locations[index];
             pendingNavigation = new PendingNavigation(location, index);
             parent.Navigate(location);
             return true;
         }
-
         #endregion
     }
 
@@ -252,13 +222,13 @@ namespace Microsoft.WindowsAPICodePack.Controls
     /// </summary>
     internal class PendingNavigation
     {
+        internal ShellObject Location { get; set; }
+        internal int Index { get; set; }
+
         internal PendingNavigation(ShellObject location, int index)
         {
             Location = location;
             Index = index;
         }
-
-        internal ShellObject Location { get; set; }
-        internal int Index { get; set; }
     }
 }

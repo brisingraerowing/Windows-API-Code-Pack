@@ -111,7 +111,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 #if CS8
             ??=
 #else
-            ?? (properties = 
+            ?? (properties =
 #endif
             new ShellProperties(this)
 #if !CS8
@@ -224,7 +224,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 #if CS8
             ??=
 #else
-            ?? (thumbnail = 
+            ?? (thumbnail =
 #endif
             new ShellThumbnail(this)
 #if !CS8
@@ -404,23 +404,18 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <returns>True if the ShellObjects are equal, false otherwise.</returns>
         public bool Equals(ShellObject other)
         {
-            bool areEqual = false;
-
             if (other != null)
             {
                 IShellItem ifirst = NativeShellItem;
                 IShellItem isecond = other.NativeShellItem;
 
                 if (ifirst != null && isecond != null)
-                {
-                    HResult hr = ifirst.Compare(
-                        isecond, SICHINTF.SICHINT_ALLFIELDS, out int result);
 
-                    areEqual = (hr == HResult.Ok) && (result == 0);
-                }
+                    return (ifirst.Compare(
+                         isecond, SICHINTF.AllFields, out int result) == HResult.Ok) && (result == 0);
             }
 
-            return areEqual;
+            return false;
         }
 
         /// <summary>

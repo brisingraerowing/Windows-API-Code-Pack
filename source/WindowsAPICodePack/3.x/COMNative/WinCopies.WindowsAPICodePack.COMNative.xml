@@ -11381,13 +11381,13 @@
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.COMNative.PortableDevices.ResourceSystem.IPortableDeviceResources.GetStream(System.String,Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey@,System.UInt32,System.UInt32@,System.Runtime.InteropServices.ComTypes.IStream@)">
             <summary>
-            The <see cref="M:Microsoft.WindowsAPICodePack.COMNative.PortableDevices.ResourceSystem.IPortableDeviceResources.GetStream(System.String,Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey@,System.UInt32,System.UInt32@,System.Runtime.InteropServices.ComTypes.IStream@)"/> method gets an System.Runtime.InteropServices.ComTypes.IStream interface with which to read or write the content data in an object on a device. The retrieved interface enables you to read from or write to the object data.
+            The <see cref="M:Microsoft.WindowsAPICodePack.COMNative.PortableDevices.ResourceSystem.IPortableDeviceResources.GetStream(System.String,Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey@,System.UInt32,System.UInt32@,System.Runtime.InteropServices.ComTypes.IStream@)"/> method gets an <see cref="T:System.Runtime.InteropServices.ComTypes.IStream"/> interface with which to read or write the content data in an object on a device. The retrieved interface enables you to read from or write to the object data.
             </summary>
             <param name="pszObjectID">Pointer to a null-terminated string that contains the object ID of the object.</param>
             <param name="Key">A <see cref="T:Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey"/> that specifies which resource to read. You can retrieve the keys of all the object's resources by calling <see cref="M:Microsoft.WindowsAPICodePack.COMNative.PortableDevices.ResourceSystem.IPortableDeviceResources.GetSupportedResources(System.String,Microsoft.WindowsAPICodePack.COMNative.PortableDevices.PropertySystem.IPortableDeviceKeyCollection@)"/>.</param>
             <param name="dwMode">One of the value of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Storage.STGM.Access"/> enum.</param>
             <param name="pdwOptimalBufferSize">An optional reference to a <see cref="T:System.UInt32"/> that specifies an estimate of the best buffer size to use when reading or writing data by using ppStream. A driver is required to support this value.</param>
-            <param name="ppStream">An System.Runtime.InteropServices.ComTypes.IStream interface. This interface is used to read and write data to the object. The caller must release this interface when it is done with it.</param>
+            <param name="ppStream">An <see cref="T:System.Runtime.InteropServices.ComTypes.IStream"/> interface. This interface is used to read and write data to the object. The caller must release this interface when it is done with it.</param>
             <returns></returns>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.COMNative.Sensors.ISensor">
@@ -11659,6 +11659,11 @@
         <member name="T:Microsoft.WindowsAPICodePack.COMNative.ShellExtensions.IThumbnailProvider">
             <summary>
             ComVisible interface for native IThumbnailProvider
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.COMNative.ShellExtensions.IThumbnailProvider.GetThumbnail(System.UInt32,System.IntPtr@,System.UInt32@)">
+            <summary>
+            Gets a pointer to a bitmap to display as a thumbnail
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.COMNative.ShellExtensions.IInitializeWithFile">
