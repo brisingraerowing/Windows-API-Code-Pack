@@ -12,10 +12,10 @@
     <AssemblyOriginatorKeyFile>ShellExtensions.snk</AssemblyOriginatorKeyFile>
     <DocumentationFile>WinCopies.WindowsAPICodePack.ShellExtensions.xml</DocumentationFile>
     <DefineConstants>WAPICP3;$(DefineConstants)</DefineConstants>
-    <VersionPrefix>3.1.2</VersionPrefix>
+    <VersionPrefix>3.4</VersionPrefix>
     <VersionSuffix>preview</VersionSuffix>
-    <AssemblyVersion>3.1.2</AssemblyVersion>
-    <FileVersion>3.1.2</FileVersion>
+    <AssemblyVersion>3.4</AssemblyVersion>
+    <FileVersion>3.4</FileVersion>
   </PropertyGroup>
 
   <Import Project="..\..\ShellExtensions.Shared\ShellExtensions.Shared.projitems" Label="Shared" />

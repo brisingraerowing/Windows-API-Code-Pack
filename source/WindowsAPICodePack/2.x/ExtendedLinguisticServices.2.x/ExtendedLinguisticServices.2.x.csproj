@@ -10,9 +10,10 @@
     <AssemblyOriginatorKeyFile>ExtendedLinguisticServices.snk</AssemblyOriginatorKeyFile>
     <DocumentationFile>WinCopies.WindowsAPICodePack.ExtendedLinguisticServices.xml</DocumentationFile>
     <DefineConstants>WAPICP2;$(DefineConstants)</DefineConstants>
-    <VersionPrefix>2.3</VersionPrefix>
-    <AssemblyVersion>2.3</AssemblyVersion>
-    <FileVersion>2.3</FileVersion>
+    <VersionPrefix>2.6</VersionPrefix>
+    <VersionSuffix>preview</VersionSuffix>
+    <AssemblyVersion>2.6</AssemblyVersion>
+    <FileVersion>2.6</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
