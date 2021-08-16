@@ -51,13 +51,19 @@ namespace Microsoft.WindowsAPICodePack.Shell
     /// <summary>
     /// Contains information about a file object.
     /// </summary>
-    /// <remarks>This structure is used with the <see cref="FileOperation.GetFileInfo(string, FileAttributes, GetFileInfoOptions)"/> function.</remarks>
-    public struct FileInfo : IDisposable
+    /// <remarks>This structure is used with the <see cref="FileOperation.GetFileInfo(in string, in FileAttributes, in GetFileInfoOptions)"/> function.</remarks>
+    public struct FileInfo :
+#if WinCopies3
+        WinCopies.DotNetFix
+#else
+        System
+#endif
+        .IDisposable
     {
         /// <summary>
         /// Gets or sets the icon that represents the file. When the <see cref="Dispose"/> method of this struct is called, that method calls the <see cref="Dispose"/> method on the current <see cref="Icon"/>.
         /// </summary>
-        public Icon Icon { get; }
+        public Icon Icon { get; private set; }
 
         /// <summary>
         /// Gets or sets the index of the icon image within the system image list.
@@ -72,12 +78,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Gets or sets a string that contains the name of the file as it appears in the Windows Shell, or the path and file name of the file that contains the icon representing the file.
         /// </summary>
-        public string DisplayName { get; }
+        public string DisplayName { get; private set; }
 
         /// <summary>
         /// Gets or sets a string that describes the type of file.
         /// </summary>
-        public string TypeName { get; }
+        public string TypeName { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileInfo"/> structure.
@@ -87,7 +93,27 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="attributes">The attributes of the file represented by this structure.</param>
         /// <param name="displayName">The display name of the file represented by this structure.</param>
         /// <param name="typeName">The type name of the file represented by this structure.</param>
-        public FileInfo(Icon icon, int iconIndex, ShellFileGetAttributesOptions attributes, string displayName, string typeName)
+        public FileInfo(
+#if WinCopies3
+            in
+#endif
+            Icon icon,
+#if WinCopies3
+            in
+#endif
+            int iconIndex,
+#if WinCopies3
+            in
+#endif
+            ShellFileGetAttributesOptions attributes,
+#if WinCopies3
+            in
+#endif
+            string displayName,
+#if WinCopies3
+            in
+#endif
+            string typeName)
         {
             Icon = icon;
 
@@ -100,10 +126,28 @@ namespace Microsoft.WindowsAPICodePack.Shell
             TypeName = typeName;
         }
 
+#if WinCopies3
+        public bool IsDisposed => Icon == null;
+
+        public void Dispose()
+        {
+            if (IsDisposed)
+
+                return;
+
+            Icon.Dispose();
+            Icon = null;
+
+            DisplayName = null;
+
+            TypeName = null;
+        }
+#else
         /// <summary>
         /// Calls the <see cref="Icon.Dispose"/> method from the <see cref="Icon"/> property.
         /// </summary>
         public void Dispose() => Icon.Dispose();
+#endif
     }
 
     /// <summary>

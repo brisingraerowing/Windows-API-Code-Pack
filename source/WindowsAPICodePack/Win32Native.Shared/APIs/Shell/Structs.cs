@@ -59,7 +59,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         public string szTypeName;
     }
 
-    [StructLayout(LayoutKind.Sequential, Pack = 1)]
+    [StructLayout(LayoutKind.Sequential, Pack = 8)]
     public struct SHQUERYRBINFO
     {
         public int cbSize;

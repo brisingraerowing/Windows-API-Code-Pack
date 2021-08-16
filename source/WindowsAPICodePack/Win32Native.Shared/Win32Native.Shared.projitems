@@ -9,8 +9,10 @@
     <Import_RootNamespace>Win32Native</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)APIs\Console.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\GDI.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\NamedPipe.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)APIs\Menus.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\Enums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\FileAttributes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\FileOperationFlags.cs" />

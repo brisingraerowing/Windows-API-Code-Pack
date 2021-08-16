@@ -10,9 +10,12 @@ For issue and fixation details, visit [https://wincopies.com/fwd.php?id=3](https
 
 For the original code (version 1.1, last release by Microsoft), see [https://wincopies.com/fwd.php?id=1](https://wincopies.com/fwd.php?id=1)
 
-## ??/??/???? 3.4
+## 08/16/2021 3.4
 
 - Update file operations implementations to extend features.
+- Microsoft.WindowsAPICodePack.Shell.FileInfo:
+    - implements WinCopies.DotNetFix.IDisposable.
+    - constructor parameters have the 'in' modifier.
 
 ## 07/17/2021 3.3
 
@@ -59,11 +62,12 @@ COMNative 3.0
 - Removals:
     - Some 'ref' keywords in native PortableDevices interfaces. These keywords have been removed for interface type parameters because they was redundant.
 
-## ??/??/???? 2.6
+## 08/16/2021 2.6
 
 - Add new types.
 - Update file operations implementations to extend features.
 - Add support for .Net 3.5, 4.0, 4.5 and 6.0. Fixes #22.
+- Bug fixed in SHQUERYRBINFO: wrong StructLayout.Pack value.
 
 ## 07/17/2021 2.5
 
