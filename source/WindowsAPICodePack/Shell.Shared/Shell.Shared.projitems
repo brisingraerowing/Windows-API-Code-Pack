@@ -107,6 +107,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Taskbar\JumpListItemCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Taskbar\JumpListLink.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Taskbar\JumpListSeparator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Taskbar\NotificationIcon.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Taskbar\TabbedThumbnail.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Taskbar\TabbedThumbnailBitmapRequestedEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Taskbar\TabbedThumbnailClosedEventArgs.cs" />

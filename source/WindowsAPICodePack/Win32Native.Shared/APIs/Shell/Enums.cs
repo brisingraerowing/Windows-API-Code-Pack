@@ -2,6 +2,140 @@
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
+    public enum NotifyIconVersion : uint
+    {
+        None = 0,
+        Version3 = 3,
+        Version4 = 4
+    }
+
+    [Flags]
+    public enum NotifyIconFlags : uint
+    {
+        /// <summary>
+        /// The <see cref="NotifyIconData.uCallbackMessage"/> member is valid.
+        /// </summary>
+        Message = 0x00000001,
+
+        /// <summary>
+        /// The <see cref="NotifyIconData.hIcon"/> member is valid.
+        /// </summary>
+        Icon = 0x00000002,
+
+        /// <summary>
+        /// The <see cref="NotifyIconData.szTip"/> member is valid.
+        /// </summary>
+        Tip = 0x00000004,
+
+        /// <summary>
+        /// The <see cref="NotifyIconData.dwState"/> and <see cref="NotifyIconData.dwStateMask"/> members are valid.
+        /// </summary>
+        State = 0x00000008,
+
+        /// <summary>
+        /// <para>Display a balloon notification. The <see cref="NotifyIconData.szInfo"/>, <see cref="NotifyIconData.szInfoTitle"/>, <see cref="NotifyIconData.dwInfoFlags"/>, and <see cref="NotifyIconData.uTimeout"/> members are valid. Note that <see cref="NotifyIconData.uTimeout"/> is valid only in Windows 2000 and Windows XP.</para>
+        /// <para>To display the balloon notification, specify <see cref="Info"/> and provide text in <see cref="NotifyIconData.szInfo"/>.</para>
+        /// <para>To remove a balloon notification, specify <see cref="Info"/> and provide an empty string through <see cref="NotifyIconData.szInfo"/>.</para>
+        /// <para>To add a notification area icon without displaying a notification, do not set the <see cref="Info"/> flag.</para>
+        /// </summary>
+        Info = 0x00000010,
+
+        /// <summary>
+        /// <para>Windows 7 and later: The guidItem is valid.</para>
+        /// <para>Windows Vista and earlier: Reserved.</para>
+        /// </summary>
+        Guid = 0x00000020,
+
+        /// <summary>
+        /// Windows Vista and later. If the balloon notification cannot be displayed immediately, discard it. Use this flag for notifications that represent real-time information which would be meaningless or misleading if displayed at a later time. For example, a message that states "Your telephone is ringing." <see cref="RealTime"/> is meaningful only when combined with the <see cref="Info"/> flag.
+        /// </summary>
+        RealTime = 0x00000040,
+
+        /// <summary>
+        /// Windows Vista and later. Use the standard tooltip. Normally, when <see cref="NotifyIconData.uVersion"/> is set to <see cref="NotifyIconVersion.Version4"/>, the standard tooltip is suppressed and can be replaced by the application-drawn, pop-up UI. If the application wants to show the standard tooltip with <see cref="NotifyIconVersion.Version4"/>, it can specify <see cref="ShowTip"/> to indicate the standard tooltip should still be shown.
+        /// </summary>
+        ShowTip = 0x00000080
+    }
+
+    [Flags]
+    public enum NotifyIconStates : uint
+    {
+        /// <summary>
+        /// The icon is hidden.
+        /// </summary>
+        Hidden = 0x00000001,
+
+        /// <summary>
+        /// The icon resource is shared between multiple icons.
+        /// </summary>
+        SharedIcon = 0x00000002
+    }
+
+    [Flags]
+    public enum NotifyIconInfos : uint
+    {
+        None = 0x00000000,
+
+        Info = 0x00000001,
+
+        Warning = 0x00000002,
+
+        Error = 0x00000003,
+
+        User = 0x00000004,
+
+        NoSound = 0x00000010,
+
+        LargeIcon = 0x00000020,
+
+        RespectQuietTime = 0x00000080,
+
+        IconMask = 0x0000000F
+    }
+
+    public enum NotifyIconModification : uint
+    {
+        /// <summary>
+        /// Adds an icon to the status area. The icon is given an identifier in the <see cref="NotifyIconData"/> structure pointed to by lpdata—either through its uID or guidItem member. This identifier is used in subsequent calls to <see cref="InteropTools.Shell_NotifyIconW(NotifyIconModification, PNOTIFYICONDATAW)"/> to perform later actions on the icon.
+        /// </summary>
+        Add = 0x00000000,
+
+        /// <summary>
+        /// Modifies an icon in the status area. <see cref="NotifyIconData"/> structure pointed to by lpdata uses the ID originally assigned to the icon when it was added to the notification area (<see cref="Add"/>) to identify the icon to be modified.
+        /// </summary>
+        Modify = 0x00000001,
+
+        /// <summary>
+        /// Deletes an icon from the status area. <see cref="NotifyIconData"/> structure pointed to by lpdata uses the ID originally assigned to the icon when it was added to the notification area (<see cref="Add"/>) to identify the icon to be deleted.
+        /// </summary>
+        Delete = 0x00000002,
+
+        /// <summary>
+        /// Shell32.dll version 5.0 and later only. Returns focus to the taskbar notification area. Notification area icons should use this message when they have completed their UI operation. For example, if the icon displays a shortcut menu, but the user presses ESC to cancel it, use <see cref="SetFocus"/> to return focus to the notification area.
+        /// </summary>
+        SetFocus = 0x00000003,
+
+        /// <summary>
+        /// <para>Shell32.dll version 5.0 and later only. Instructs the notification area to behave according to the version number specified in the <see cref="NotifyIconData.uVersion"/> member of the structure pointed to by lpdata. The version number specifies which members are recognized.</para>
+        /// <para><see cref="SetVersion"/> must be called every time a notification area icon is added (<see cref="Add"/>)>. It does not need to be called with <see cref="Modify"/>. The version setting is not persisted once a user logs off.</para>
+        /// </summary>
+        SetVersion = 0x00000004
+    }
+
+    public enum NotifyIconNotification
+    {
+        Select = (WindowMessage.User + 0),
+        Key = 0x1,
+        KeySelect = (Select | Key),
+
+        BalloonShow = (WindowMessage.User + 2),
+        BalloonHide = (WindowMessage.User + 3),
+        BalloonTimeOut = (WindowMessage.User + 4),
+        BalloonUserClick = (WindowMessage.User + 5),
+        PopupOpen = (WindowMessage.User + 6),
+        PopupClose = (WindowMessage.User + 7)
+    }
+
     [Flags]
     public enum EmptyRecycleBinFlags : uint
     {

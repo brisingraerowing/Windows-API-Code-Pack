@@ -1,8 +1,55 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
+using static System.Runtime.InteropServices.UnmanagedType;
+
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    public struct NotifyIconData
+    {
+        [MarshalAs(U4)]
+        public uint cbSize;
+
+        public IntPtr hWnd;
+
+        [MarshalAs(U4)]
+        public uint uID;
+
+        [MarshalAs(U4)]
+        public NotifyIconFlags uFlags;
+
+        [MarshalAs(U4)]
+        public uint uCallbackMessage;
+
+        public IntPtr hIcon;
+
+        [MarshalAs(ByValTStr, SizeConst = 128)]
+        public string szTip;
+
+        [MarshalAs(U4)]
+        public NotifyIconStates dwState;
+
+        [MarshalAs(U4)]
+        public NotifyIconStates dwStateMask;
+
+        [MarshalAs(ByValTStr, SizeConst = 256)]
+        public string szInfo;
+
+        [MarshalAs(U4)]
+        public NotifyIconVersion uVersion;
+
+        [MarshalAs(ByValTStr, SizeConst = 64)]
+        public string szInfoTitle;
+
+        [MarshalAs(U4)]
+        public NotifyIconInfos dwInfoFlags;
+
+        public Guid guidItem;
+
+        public IntPtr hBalloonIcon;
+    }
+
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
     public struct FilterSpec
     {

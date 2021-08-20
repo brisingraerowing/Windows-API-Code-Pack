@@ -10,11 +10,17 @@ using static Microsoft.WindowsAPICodePack.Win32Native.Shell.CopyProgressResult;
 using static Microsoft.WindowsAPICodePack.Win32Native.Shell.MoveFileFlags;
 using static Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions;
 
+using static System.Runtime.InteropServices.UnmanagedType;
+
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
     public static partial class Shell
     {
         #region Shell Helper Methods
+        [DllImport(Shell32, CharSet = CharSet.Unicode, ExactSpelling = true, SetLastError = true)]
+        [return: MarshalAs(Bool)]
+        public static extern bool Shell_NotifyIconW([MarshalAs(U4)] NotifyIconModification dwMessage, [In] ref NotifyIconData lpData);
+
         /// <summary>
         /// <para>Moves a file or directory, including its children. You can provide a callback function that receives progress notifications.</para>
         /// <para>To perform this operation as a transacted operation, use the MoveFileTransacted function.</para>
@@ -39,19 +45,19 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         /// <para>The <see cref="MoveFileWithProgressW"/> function coordinates its operation with the link tracking service, so link sources can be tracked as they are moved.</para>
         /// <para>To delete or rename a file, you must have either delete permission on the file or delete child permission in the parent directory. If you set up a directory with all access except delete and delete child and the ACLs of new files are inherited, then you should be able to create a file without being able to delete it. However, you can then create a file, and you will get all the access you request on the handle returned to you at the time you create the file. If you requested delete permission at the time you created the file, you could delete or rename the file with that handle but not with any other.</para></remarks>
         [DllImport(Kernel32, CharSet = CharSet.Unicode, SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool MoveFileWithProgressW([In, MarshalAs(UnmanagedType.LPWStr)] string lpExistingFileName, [In, MarshalAs(UnmanagedType.LPWStr)] string lpNewFileName, [In] CopyProgressRoutine lpProgressRoutine, [In] IntPtr lpData, [In, MarshalAs(UnmanagedType.U4)] MoveFileFlags dwFlags);
+        [return: MarshalAs(Bool)]
+        public static extern bool MoveFileWithProgressW([In, MarshalAs(LPWStr)] string lpExistingFileName, [In, MarshalAs(LPWStr)] string lpNewFileName, [In] CopyProgressRoutine lpProgressRoutine, [In] IntPtr lpData, [In, MarshalAs(U4)] MoveFileFlags dwFlags);
 
         [DllImport(Kernel32, SetLastError = true, CharSet = CharSet.Unicode)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CreateDirectoryW([In, MarshalAs(UnmanagedType.LPWStr)] string lpPathName, [In] IntPtr lpSecurityAttributes);
+        [return: MarshalAs(Bool)]
+        public static extern bool CreateDirectoryW([In, MarshalAs(LPWStr)] string lpPathName, [In] IntPtr lpSecurityAttributes);
 
         [DllImport(Kernel32, CharSet = CharSet.Unicode, SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool RemoveDirectoryW([In, MarshalAs(UnmanagedType.LPWStr)] string lpPathName);
+        [return: MarshalAs(Bool)]
+        public static extern bool RemoveDirectoryW([In, MarshalAs(LPWStr)] string lpPathName);
 
         [DllImport(Kernel32, CharSet = CharSet.Unicode, SetLastError = true)]
-        public static extern bool DeleteFileW([In, MarshalAs(UnmanagedType.LPWStr)] string lpFileName);
+        public static extern bool DeleteFileW([In, MarshalAs(LPWStr)] string lpFileName);
 
         [DllImport(Shell32, EntryPoint = "#62", CharSet = CharSet.Unicode, SetLastError = true)]
         [SuppressUnmanagedCodeSecurity]
@@ -82,15 +88,15 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         /// <para>Note: Once you have a handle to a system image list, you can use the <b>Image List API</b> to manipulate it like any other image list. Because system image lists are created on a per-process basis, you should treat them as read-only objects. Writing to a system image list may overwrite or delete one of the system images, making it unavailable or incorrect for the remainder of the process.</para>
         /// <para>When you use the <see cref="ExeType"/> flag with a Windows application, the Windows version of the executable is given in the HIWORD of the return value. This version is returned as a hexadecimal value. For details on equating this value with a specific Windows version, see <a href="https://docs.microsoft.com/windows/desktop/WinProg/using-the-windows-headers">Using the Windows Headers</a>.</para></remarks>
         [DllImport(Shell32, CharSet = CharSet.Unicode, SetLastError = true, EntryPoint = "SHGetFileInfoW")]
-        public static extern HResult SHGetFileInfo([In, MarshalAs(UnmanagedType.LPWStr)] string pszPath, [MarshalAs(UnmanagedType.U4)] FileAttributes dwFileAttributes, [In, Out] ref SHFILEINFO psfi, [MarshalAs(UnmanagedType.U4)] uint cbFileInfo, GetFileInfoOptions uFlags);
+        public static extern HResult SHGetFileInfo([In, MarshalAs(LPWStr)] string pszPath, [MarshalAs(U4)] FileAttributes dwFileAttributes, [In, Out] ref SHFILEINFO psfi, [MarshalAs(U4)] uint cbFileInfo, GetFileInfoOptions uFlags);
 
         [DllImport("shlwapi.dll", CharSet = CharSet.Unicode, SetLastError = true)]
         public static extern int PathParseIconLocation(
-            [MarshalAs(UnmanagedType.LPWStr)] ref string pszIconFile);
+            [MarshalAs(LPWStr)] ref string pszIconFile);
 
         [DllImport(Shell32, CharSet = CharSet.Unicode, SetLastError = true)]
         public static extern int SHParseDisplayName(
-            [MarshalAs(UnmanagedType.LPWStr)] string pszName,
+            [MarshalAs(LPWStr)] string pszName,
             IntPtr pbc,
             out IntPtr ppidl,
             ShellFileGetAttributesOptions sfgaoIn,
@@ -151,16 +157,16 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         /// <para>Windows 7, Windows Server 2008 R2, Windows Server 2008, Windows Vista, Windows Server 2003 and Windows XP:  If you are writing an application that is optimizing file copy operations across a LAN, consider using the TransmitFile function from Windows Sockets(Winsock). TransmitFile supports high-performance network transfers and provides a simple interface to send the contents of a file to a remote computer.To use TransmitFile, you must write a Winsock client application that sends the file from the source computer as well as a Winsock server application that uses other Winsock functions to receive the file on the remote computer.</para>
         /// <para>In Windows 8 and Windows Server 2012, this function is supported by the following technologies: Server Message Block (SMB) 3.0 protocol, SMB 3.0 Transparent Failover (TFO), SMB 3.0 with Scale-out File Shares (SO), Cluster .Shared Volume File System (CsvFS), Resilient File System (ReFS) Yes </remarks></para>
         [DllImport(Kernel32, SetLastError = true, CharSet = CharSet.Unicode)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool CopyFileEx([In, MarshalAs(UnmanagedType.LPWStr)] string lpExistingFileName, [In, MarshalAs(UnmanagedType.LPWStr)] string lpNewFileName,
-            [In] CopyProgressRoutine lpProgressRoutine, [In] IntPtr lpData, [In, Out, MarshalAs(UnmanagedType.Bool)] ref bool pbCancel,
-            [In, MarshalAs(UnmanagedType.U4)] CopyFileFlags dwCopyFlags);
+        [return: MarshalAs(Bool)]
+        public static extern bool CopyFileEx([In, MarshalAs(LPWStr)] string lpExistingFileName, [In, MarshalAs(LPWStr)] string lpNewFileName,
+            [In] CopyProgressRoutine lpProgressRoutine, [In] IntPtr lpData, [In, Out, MarshalAs(Bool)] ref bool pbCancel,
+            [In, MarshalAs(U4)] CopyFileFlags dwCopyFlags);
         #endregion
 
         #region Shell notification definitions
         [DllImport(Shell32, SetLastError = true, CharSet = CharSet.Unicode)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SHGetPathFromIDListW(IntPtr pidl, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszPath);
+        [return: MarshalAs(Bool)]
+        public static extern bool SHGetPathFromIDListW(IntPtr pidl, [MarshalAs(LPWStr)] StringBuilder pszPath);
 
         [DllImport(Shell32, SetLastError = true)]
         public static extern uint SHChangeNotifyRegister(
@@ -179,11 +185,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
             out uint lEvent);
 
         [DllImport(Shell32, SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
+        [return: MarshalAs(Bool)]
         public static extern bool SHChangeNotification_Unlock(IntPtr hLock);
 
         [DllImport(Shell32, SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
+        [return: MarshalAs(Bool)]
         public static extern bool SHChangeNotifyDeregister(uint hNotify);
         #endregion
     }
@@ -193,7 +199,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     {
         public IntPtr pIdl;
 
-        [MarshalAs(UnmanagedType.Bool)]
+        [MarshalAs(Bool)]
         public bool recursively;
     }
 
@@ -223,16 +229,16 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     /// <param name="dwCallbackReason">The reason that <see cref="CopyProgressRoutine"/> was called. This parameter can be one of the values of the <see cref="CopyProgressCallbackReason"/> enum.</param>
     /// <param name="hSourceFile">A handle to the source file.</param>
     /// <param name="hDestinationFile">A handle to the destination file.</param>
-    /// <param name="lpData">Argument passed to CopyProgressRoutine by <see cref="Win32Native.Shell.Shell.CopyFileEx(string, string, CopyProgressRoutine, IntPtr, ref bool, CopyFileFlags)"/>, MoveFileTransacted, or MoveFileWithProgress.</param>
+    /// <param name="lpData">Argument passed to CopyProgressRoutine by <see cref="Shell.CopyFileEx(string, string, CopyProgressRoutine, IntPtr, ref bool, CopyFileFlags)"/>, MoveFileTransacted, or MoveFileWithProgress.</param>
     /// <returns>The CopyProgressRoutine function should return one of the values of the <see cref="CopyProgressResult"/> enum.</returns>
     /// <remarks>An application can use this information to display a progress bar that shows the total number of bytes copied as a percent of the total file size.</remarks>
     public delegate CopyProgressResult CopyProgressRoutine(
-        [In, MarshalAs(UnmanagedType.I8)] long TotalFileSize,
-        [In, MarshalAs(UnmanagedType.I8)] long TotalBytesTransferred,
-        [In, MarshalAs(UnmanagedType.I8)] long StreamSize,
-        [In, MarshalAs(UnmanagedType.I8)] long StreamBytesTransferred,
-        [In, MarshalAs(UnmanagedType.U4)] uint dwStreamNumber,
-        [In, MarshalAs(UnmanagedType.U4)] CopyProgressCallbackReason dwCallbackReason,
+        [In, MarshalAs(I8)] long TotalFileSize,
+        [In, MarshalAs(I8)] long TotalBytesTransferred,
+        [In, MarshalAs(I8)] long StreamSize,
+        [In, MarshalAs(I8)] long StreamBytesTransferred,
+        [In, MarshalAs(U4)] uint dwStreamNumber,
+        [In, MarshalAs(U4)] CopyProgressCallbackReason dwCallbackReason,
         [In] IntPtr hSourceFile,
         [In] IntPtr hDestinationFile,
         [In] IntPtr lpData);

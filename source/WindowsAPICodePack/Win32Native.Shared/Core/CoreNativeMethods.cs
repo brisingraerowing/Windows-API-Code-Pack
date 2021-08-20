@@ -20,12 +20,10 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
     public delegate bool IntPtrEnumResTypeProc([In] IntPtr hModule, [In] IntPtr lpType, [In] IntPtr lParam);
 
     #region Windows OS structs and consts
-
     public delegate int WNDPROC(IntPtr hWnd,
         uint uMessage,
         IntPtr wParam,
         IntPtr lParam);
-
     #endregion
 
     /// <summary>
@@ -225,6 +223,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         /// <returns>The lower half of the dword.</returns>
         public static int GetLoWord(long value) => (short)(value & 0xFFFF);
         #endregion
+
+        [DllImport(User32, ExactSpelling = true, SetLastError = true)]
+        public static extern bool SetForegroundWindow(IntPtr hWnd);
 
         [DllImport(Kernel32, EntryPoint = "RtlMoveMemory", SetLastError = true)]
         public unsafe static extern void CopyMemory([Out] void* dest, [In] void* src,
