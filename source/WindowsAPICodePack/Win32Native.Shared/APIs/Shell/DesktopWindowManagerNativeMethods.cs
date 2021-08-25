@@ -2,6 +2,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Windows.Interop;
 
 using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.Shell.DesktopWindowManager;
 using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames;
@@ -120,12 +121,17 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager
     /// </summary>
     public static class DesktopWindowManager
     {
-        [DllImport(User32)]
+        [Obsolete("Use the methods in Menus class instead."),
+        DllImport(User32)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool EnableMenuItem([In] IntPtr hMenu, [In, MarshalAs(UnmanagedType.U4)] SystemMenuCommands uIDEnableItem, [In, MarshalAs(UnmanagedType.U4)] MenuFlags uEnable);
 
         [DllImport(User32)]
         public static extern IntPtr GetSystemMenu([In] IntPtr hWnd, [In, MarshalAs(UnmanagedType.Bool)] bool bRevert);
+
+        public static IntPtr GetSystemMenu(in System.Windows.Forms.Form form, in bool bRevert) => GetSystemMenu(form.Handle, bRevert);
+
+        public static IntPtr GetSystemMenu(in System.Windows.Window window, in bool bRevert) => GetSystemMenu(new WindowInteropHelper(window).Handle, bRevert);
 
         public static int GetSystemCommandWParam(in IntPtr wParam) => (int)wParam & 0xFFF0;
 

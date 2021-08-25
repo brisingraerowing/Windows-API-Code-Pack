@@ -12,8 +12,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         public static readonly IntPtr SizeOfGuid = (IntPtr)Marshal.SizeOf(typeof(Guid));
         public static readonly Type TypeOfGuid = typeof(Guid);
 
-        public static int LOWORD(int i) => ((int)((int)((UIntPtr)(i)) & 0xffff));
-        public static int HIWORD(int i) => ((int)(((int)((UIntPtr)(i)) >> 16) & 0xffff));
+        public static int LOWORD(IntPtr i) => (int)(UIntPtr)(int)i & 0xffff;
+
+        public static int HIWORD(IntPtr i) => ((int)(UIntPtr)(int)i >> 16) & 0xffff;
 
         public static T Unpack<T>(IntPtr value) where T : struct => value == IntPtr.Zero ? (default) : (T)Marshal.PtrToStructure(value, typeof(T));
 
