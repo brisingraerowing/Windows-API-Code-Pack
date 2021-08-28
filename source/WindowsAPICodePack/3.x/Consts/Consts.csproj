@@ -13,10 +13,10 @@
     <AssemblyName>WinCopies.WindowsAPICodePack.Consts</AssemblyName>
     <SignAssembly>true</SignAssembly>
     <DefineConstants>WAPICP3;$(DefineConstants)</DefineConstants>
-    <VersionPrefix>3.4</VersionPrefix>
+    <VersionPrefix>3.5</VersionPrefix>
     <VersionSuffix>preview</VersionSuffix>
-    <AssemblyVersion>3.4</AssemblyVersion>
-    <FileVersion>3.4</FileVersion>
+    <AssemblyVersion>3.5</AssemblyVersion>
+    <FileVersion>3.5</FileVersion>
   </PropertyGroup>
 
   <Import Project="..\..\Consts.Shared\Consts.Shared.projitems" Label="Shared" />
