@@ -2,7 +2,9 @@
 
 using System;
 using System.Runtime.InteropServices;
+#if !NETSTANDARD
 using System.Windows.Interop;
+#endif
 
 using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames;
 
@@ -124,9 +126,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Menus
         [DllImport(User32, SetLastError = true, ExactSpelling = true)]
         public static extern IntPtr GetSystemMenu([In] IntPtr hWnd, [In, MarshalAs(Bool)] bool bRevert);
 
+#if !NETSTANDARD
         public static IntPtr GetSystemMenu(in System.Windows.Window window, in bool bRevert) => DesktopWindowManager.GetSystemMenu(new WindowInteropHelper(window).Handle, bRevert);
 
         public static IntPtr GetSystemMenu(in System.Windows.Forms.Form form, in bool bRevert) => DesktopWindowManager.GetSystemMenu(form.Handle, bRevert);
+#endif
 
         [DllImport(User32, SetLastError = true, ExactSpelling = true)]
         public static extern IntPtr GetSubMenu([In] IntPtr hMenu, [In, MarshalAs(I4)] int nPos);
