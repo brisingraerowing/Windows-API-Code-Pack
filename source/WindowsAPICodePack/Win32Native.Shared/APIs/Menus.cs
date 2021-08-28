@@ -2,6 +2,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Windows.Interop;
 
 using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames;
 
@@ -9,7 +10,7 @@ using static System.Runtime.InteropServices.UnmanagedType;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Menus
 {
-	// TODO: implement other enums.
+    // TODO: implement other enums.
     public enum MenuItemInfoFlags : uint
     {
         /// <summary>
@@ -58,7 +59,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Menus
         /// </summary>
         FType = 0x00000100
     }
-	
+
     public struct MenuItemInfo
     {
         [MarshalAs(U4)]
@@ -92,12 +93,12 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Menus
         [return: MarshalAs(Bool)]
         public static extern bool AppendMenuW([In] IntPtr hMenu, [In, MarshalAs(U4)] MenuFlags uFlags, [In] UIntPtr uIDNewItem, [In] IntPtr lpNewItem);
 
-        public static bool AppendMenuW(in IntPtr hMenu, in MenuFlags uFlags, in uint uIDNewItem, in string lpNewItem) => AppendMenuW(hMenu, uFlags, (UIntPtr)uIDNewItem, lpNewItem);
+        public static bool AppendMenu(in IntPtr hMenu, in MenuFlags uFlags, in uint uIDNewItem, in string lpNewItem) => AppendMenuW(hMenu, uFlags, (UIntPtr)uIDNewItem, lpNewItem);
 
-        public static bool AppendMenuW(in IntPtr hMenu, in MenuFlags uFlags, in UIntPtr uIDNewItem, in IntPtr lpNewItem) => AppendMenuW(hMenu, uFlags, uIDNewItem, lpNewItem);
+        public static bool AppendMenu(in IntPtr hMenu, in MenuFlags uFlags, in UIntPtr uIDNewItem, in IntPtr lpNewItem) => AppendMenuW(hMenu, uFlags, uIDNewItem, lpNewItem);
 
         [DllImport(User32)]
-        [return: MarshalAs(UnmanagedType.Bool)]
+        [return: MarshalAs(Bool)]
         public static extern bool EnableMenuItem([In] IntPtr hMenu, [In, MarshalAs(U4)] uint uIDEnableItem, [In, MarshalAs(U4)] MenuFlags uEnable);
 
         public static bool EnableMenuItemByCommand(in IntPtr hMenu, in SystemMenuCommands uIDEnableItem, in MenuFlags uEnable) => EnableMenuItem(hMenu, (uint)uIDEnableItem, MenuFlags.ByCommand | uEnable);
@@ -121,6 +122,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Menus
         public static extern uint GetMenuItemID([In] IntPtr hMenu, [In, MarshalAs(I4)] int nPos);
 
         [DllImport(User32, SetLastError = true, ExactSpelling = true)]
+        public static extern IntPtr GetSystemMenu([In] IntPtr hWnd, [In, MarshalAs(Bool)] bool bRevert);
+
+        public static IntPtr GetSystemMenu(in System.Windows.Window window, in bool bRevert) => DesktopWindowManager.GetSystemMenu(new WindowInteropHelper(window).Handle, bRevert);
+
+        public static IntPtr GetSystemMenu(in System.Windows.Forms.Form form, in bool bRevert) => DesktopWindowManager.GetSystemMenu(form.Handle, bRevert);
+
+        [DllImport(User32, SetLastError = true, ExactSpelling = true)]
         public static extern IntPtr GetSubMenu([In] IntPtr hMenu, [In, MarshalAs(I4)] int nPos);
 
         [DllImport(User32, SetLastError = true, CharSet = CharSet.Unicode, ExactSpelling = true)]
@@ -128,12 +136,12 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Menus
         public static extern bool GetMenuItemInfoW([In] IntPtr hmenu, [In, MarshalAs(U4)] uint item, [In, MarshalAs(Bool)] bool fByPosition, [In, Out] ref MenuItemInfo lpmii);
 
         [DllImport(User32, SetLastError = true, ExactSpelling = true)]
-        [return:MarshalAs(I4)]
+        [return: MarshalAs(I4)]
         public static extern int GetMenuItemCount([In] IntPtr hMenu);
-		
-		[DllImport(User32, SetLastError = true, CharSet = CharSet.Unicode, ExactSpelling = true)]
-        [return:MarshalAs(Bool)]
-		public static extern bool SetMenuItemInfoW([In] IntPtr hmenu, [In, MarshalAs(U4)] uint item, [In, MarshalAs(Bool)] bool fByPositon, [In] ref MenuItemInfo lpmii);
+
+        [DllImport(User32, SetLastError = true, CharSet = CharSet.Unicode, ExactSpelling = true)]
+        [return: MarshalAs(Bool)]
+        public static extern bool SetMenuItemInfoW([In] IntPtr hmenu, [In, MarshalAs(U4)] uint item, [In, MarshalAs(Bool)] bool fByPositon, [In] ref MenuItemInfo lpmii);
 
         public static bool SetMenuItemInfo(IntPtr hmenu, uint item, ref MenuItemInfo lpmii) => SetMenuItemInfoW(hmenu, item, true, ref lpmii);
 
