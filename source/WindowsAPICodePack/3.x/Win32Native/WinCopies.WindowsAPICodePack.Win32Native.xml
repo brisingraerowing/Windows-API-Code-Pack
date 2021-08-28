@@ -411,6 +411,86 @@
               Looks up a localized string similar to CurrentSize (width or height) cannot be 0..
             </summary>
         </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconFlags.Message">
+            <summary>
+            The <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconData.uCallbackMessage"/> member is valid.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconFlags.Icon">
+            <summary>
+            The <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconData.hIcon"/> member is valid.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconFlags.Tip">
+            <summary>
+            The <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconData.szTip"/> member is valid.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconFlags.State">
+            <summary>
+            The <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconData.dwState"/> and <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconData.dwStateMask"/> members are valid.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconFlags.Info">
+            <summary>
+            <para>Display a balloon notification. The <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconData.szInfo"/>, <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconData.szInfoTitle"/>, <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconData.dwInfoFlags"/>, and <see cref="!:NotifyIconData.uTimeout"/> members are valid. Note that <see cref="!:NotifyIconData.uTimeout"/> is valid only in Windows 2000 and Windows XP.</para>
+            <para>To display the balloon notification, specify <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconFlags.Info"/> and provide text in <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconData.szInfo"/>.</para>
+            <para>To remove a balloon notification, specify <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconFlags.Info"/> and provide an empty string through <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconData.szInfo"/>.</para>
+            <para>To add a notification area icon without displaying a notification, do not set the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconFlags.Info"/> flag.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconFlags.Guid">
+            <summary>
+            <para>Windows 7 and later: The guidItem is valid.</para>
+            <para>Windows Vista and earlier: Reserved.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconFlags.RealTime">
+            <summary>
+            Windows Vista and later. If the balloon notification cannot be displayed immediately, discard it. Use this flag for notifications that represent real-time information which would be meaningless or misleading if displayed at a later time. For example, a message that states "Your telephone is ringing." <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconFlags.RealTime"/> is meaningful only when combined with the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconFlags.Info"/> flag.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconFlags.ShowTip">
+            <summary>
+            Windows Vista and later. Use the standard tooltip. Normally, when <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconData.uVersion"/> is set to <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconVersion.Version4"/>, the standard tooltip is suppressed and can be replaced by the application-drawn, pop-up UI. If the application wants to show the standard tooltip with <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconVersion.Version4"/>, it can specify <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconFlags.ShowTip"/> to indicate the standard tooltip should still be shown.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconStates.Hidden">
+            <summary>
+            The icon is hidden.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconStates.SharedIcon">
+            <summary>
+            The icon resource is shared between multiple icons.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconModification.Add">
+            <summary>
+            Adds an icon to the status area. The icon is given an identifier in the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconData"/> structure pointed to by lpdata—either through its uID or guidItem member. This identifier is used in subsequent calls to <see cref="!:InteropTools.Shell_NotifyIconW(NotifyIconModification, PNOTIFYICONDATAW)"/> to perform later actions on the icon.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconModification.Modify">
+            <summary>
+            Modifies an icon in the status area. <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconData"/> structure pointed to by lpdata uses the ID originally assigned to the icon when it was added to the notification area (<see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconModification.Add"/>) to identify the icon to be modified.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconModification.Delete">
+            <summary>
+            Deletes an icon from the status area. <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconData"/> structure pointed to by lpdata uses the ID originally assigned to the icon when it was added to the notification area (<see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconModification.Add"/>) to identify the icon to be deleted.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconModification.SetFocus">
+            <summary>
+            Shell32.dll version 5.0 and later only. Returns focus to the taskbar notification area. Notification area icons should use this message when they have completed their UI operation. For example, if the icon displays a shortcut menu, but the user presses ESC to cancel it, use <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconModification.SetFocus"/> to return focus to the notification area.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconModification.SetVersion">
+            <summary>
+            <para>Shell32.dll version 5.0 and later only. Instructs the notification area to behave according to the version number specified in the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconData.uVersion"/> member of the structure pointed to by lpdata. The version number specifies which members are recognized.</para>
+            <para><see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconModification.SetVersion"/> must be called every time a notification area icon is added (<see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconModification.Add"/>)>. It does not need to be called with <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconModification.Modify"/>. The version setting is not persisted once a user logs off.</para>
+            </summary>
+        </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.EmptyRecycleBinFlags.NoConfirmation">
             <summary>
             No dialog box confirming the deletion of the objects will be displayed.
@@ -2591,6 +2671,52 @@
             <param name="pipeName">Named pipe core name.</param>
             <returns>An instance of the <see cref="T:System.IO.Pipes.NamedPipeServerStream"/> class.</returns>
         </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfoFlags.State">
+            <summary>
+            Retrieves or sets the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfo.fState"/> member.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfoFlags.ID">
+            <summary>
+            Retrieves or sets the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfo.wID"/> member.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfoFlags.SubMenu">
+            <summary>
+            Retrieves or sets the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfo.hSubMenu"/> member.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfoFlags.CheckMarks">
+            <summary>
+            Retrieves or sets the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfo.hbmpChecked"/> and <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfo.hbmpUnchecked"/> members.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfoFlags.Type">
+            <summary>
+            <para>Retrieves or sets the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfo.fType"/> and <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfo.dwTypeData"/> members.</para>
+            <para>MIIM_TYPE is replaced by <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfoFlags.Bitmap"/>, <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfoFlags.FType"/>, and <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfoFlags.String"/>.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfoFlags.Data">
+            <summary>
+            Retrieves or sets the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfo.dwItemData"/> member.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfoFlags.String">
+            <summary>
+            Retrieves or sets the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfo.dwTypeData"/> member.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfoFlags.Bitmap">
+            <summary>
+            Retrieves or sets the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfo.hbmpItem"/> member.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfoFlags.FType">
+            <summary>
+            Retrieves or sets the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfo.fType"/> member.
+            </summary>
+        </member>
         <member name="T:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RecoveryCallback">
             <summary>
             The <see cref="T:System.Delegate"/> that represents the callback method invoked
@@ -3519,86 +3645,6 @@
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Dialogs.TaskDialogProgressBarState.Marquee">
             <summary>
             Displays marquee (indeterminate) style progress
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconFlags.Message">
-            <summary>
-            The <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconData.uCallbackMessage"/> member is valid.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconFlags.Icon">
-            <summary>
-            The <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconData.hIcon"/> member is valid.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconFlags.Tip">
-            <summary>
-            The <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconData.szTip"/> member is valid.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconFlags.State">
-            <summary>
-            The <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconData.dwState"/> and <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconData.dwStateMask"/> members are valid.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconFlags.Info">
-            <summary>
-            <para>Display a balloon notification. The <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconData.szInfo"/>, <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconData.szInfoTitle"/>, <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconData.dwInfoFlags"/>, and <see cref="!:NotifyIconData.uTimeout"/> members are valid. Note that <see cref="!:NotifyIconData.uTimeout"/> is valid only in Windows 2000 and Windows XP.</para>
-            <para>To display the balloon notification, specify <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconFlags.Info"/> and provide text in <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconData.szInfo"/>.</para>
-            <para>To remove a balloon notification, specify <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconFlags.Info"/> and provide an empty string through <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconData.szInfo"/>.</para>
-            <para>To add a notification area icon without displaying a notification, do not set the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconFlags.Info"/> flag.</para>
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconFlags.Guid">
-            <summary>
-            <para>Windows 7 and later: The guidItem is valid.</para>
-            <para>Windows Vista and earlier: Reserved.</para>
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconFlags.RealTime">
-            <summary>
-            Windows Vista and later. If the balloon notification cannot be displayed immediately, discard it. Use this flag for notifications that represent real-time information which would be meaningless or misleading if displayed at a later time. For example, a message that states "Your telephone is ringing." <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconFlags.RealTime"/> is meaningful only when combined with the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconFlags.Info"/> flag.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconFlags.ShowTip">
-            <summary>
-            Windows Vista and later. Use the standard tooltip. Normally, when <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconData.uVersion"/> is set to <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconVersion.Version4"/>, the standard tooltip is suppressed and can be replaced by the application-drawn, pop-up UI. If the application wants to show the standard tooltip with <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconVersion.Version4"/>, it can specify <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconFlags.ShowTip"/> to indicate the standard tooltip should still be shown.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconStates.Hidden">
-            <summary>
-            The icon is hidden.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconStates.SharedIcon">
-            <summary>
-            The icon resource is shared between multiple icons.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconModification.Add">
-            <summary>
-            Adds an icon to the status area. The icon is given an identifier in the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconData"/> structure pointed to by lpdata—either through its uID or guidItem member. This identifier is used in subsequent calls to <see cref="!:InteropTools.Shell_NotifyIconW(NotifyIconModification, PNOTIFYICONDATAW)"/> to perform later actions on the icon.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconModification.Modify">
-            <summary>
-            Modifies an icon in the status area. <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconData"/> structure pointed to by lpdata uses the ID originally assigned to the icon when it was added to the notification area (<see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconModification.Add"/>) to identify the icon to be modified.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconModification.Delete">
-            <summary>
-            Deletes an icon from the status area. <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconData"/> structure pointed to by lpdata uses the ID originally assigned to the icon when it was added to the notification area (<see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconModification.Add"/>) to identify the icon to be deleted.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconModification.SetFocus">
-            <summary>
-            Shell32.dll version 5.0 and later only. Returns focus to the taskbar notification area. Notification area icons should use this message when they have completed their UI operation. For example, if the icon displays a shortcut menu, but the user presses ESC to cancel it, use <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconModification.SetFocus"/> to return focus to the notification area.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconModification.SetVersion">
-            <summary>
-            <para>Shell32.dll version 5.0 and later only. Instructs the notification area to behave according to the version number specified in the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconData.uVersion"/> member of the structure pointed to by lpdata. The version number specifies which members are recognized.</para>
-            <para><see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconModification.SetVersion"/> must be called every time a notification area icon is added (<see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconModification.Add"/>)>. It does not need to be called with <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NotifyIconModification.Modify"/>. The version setting is not persisted once a user logs off.</para>
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Win32Native.TimeZone.SystemTime">

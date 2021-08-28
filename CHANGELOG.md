@@ -6,9 +6,13 @@ Note:
 - The '#<number\>' notice indicates that the relative issue has been opened starting with the relative release.
 - The 'Fixation #<number\>'/'Fixes #<number\>' notice indicates that the relative issue has been fixed starting with the relative release.
 
-For issue and fixation details, visit [https://wincopies.com/fwd.php?id=3](https://wincopies.com/fwd.php?id=3)
+For issues and bug fixes details, visit [https://wincopies.com/fwd.php?id=3](https://wincopies.com/fwd.php?id=3)
 
 For the original code (version 1.1, last release by Microsoft), see [https://wincopies.com/fwd.php?id=1](https://wincopies.com/fwd.php?id=1)
+
+## 08/28/2021 3.5
+
+- Update DeleteConsoleMenu method parameters.
 
 ## 08/16/2021 3.4
 
@@ -61,6 +65,15 @@ COMNative 3.0
 
 - Removals:
     - Some 'ref' keywords in native PortableDevices interfaces. These keywords have been removed for interface type parameters because they was redundant.
+
+## 08/28/2021 2.7
+
+- Add:
+    - Win32 API implementations
+    - notification support for WPF
+    - new static methods
+    - fields to SystemCommand
+- Update Readme files. Fixes #25
 
 ## 08/16/2021 2.6
 

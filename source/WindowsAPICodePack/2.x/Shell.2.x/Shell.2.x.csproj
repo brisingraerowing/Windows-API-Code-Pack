@@ -45,7 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="WinCopies.Util" Version="2.15" />
+    <PackageReference Include="WinCopies.Util" Version="2.15.1" />
   </ItemGroup>
 
   <ItemGroup>

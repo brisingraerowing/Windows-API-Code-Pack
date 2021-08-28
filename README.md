@@ -7,7 +7,7 @@ README
 License
 -------
 
-See [LICENSE](https://wincopies.com/fwd.php?id=4) for the original licence (retrieved from [WebArchive](http://web.archive.org/web/20130717101016/http://archive.msdn.microsoft.com/WindowsAPICodePack/Project/License.aspx)). The library is not developed anymore by Microsoft and seems to have been left as 'free to use'. A clarification or update about the licence terms from Microsoft is welcome, however.
+See [LICENSE](https://wincopies.com/fwd.php?id=4) for the original license (retrieved from [WebArchive](http://web.archive.org/web/20130717101016/http://archive.msdn.microsoft.com/WindowsAPICodePack/Project/License.aspx)). The library is not developed anymore by Microsoft and seems to have been left as 'free to use'. A clarification or update about the license terms from Microsoft is welcome, however.
  
 Release notes
 -------------

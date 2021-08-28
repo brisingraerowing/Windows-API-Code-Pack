@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="WinCopies.Collections" Version="3.12-preview" />
+    <PackageReference Include="WinCopies.Collections" Version="3.13-preview" />
   </ItemGroup>
 
   <!--<ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789.`))'=='netstandard'">

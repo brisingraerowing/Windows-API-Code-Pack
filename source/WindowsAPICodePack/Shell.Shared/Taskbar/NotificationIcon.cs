@@ -20,7 +20,11 @@ using static WinCopies.
 
 namespace Microsoft.WindowsAPICodePack.Taskbar
 {
-    public class NotificationIcon : WinCopies.DotNetFix.IDisposable
+    public class NotificationIcon : WinCopies.
+#if !WAPICP3
+        Util.
+#endif
+        DotNetFix.IDisposable
     {
         public Window Window { get; private set; }
 
@@ -47,7 +51,31 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
         const WindowMessage WMAPP_NOTIFYCALLBACK = (WindowMessage)((uint)WindowMessage.App + 1u);
 
-        public NotificationIcon([DisallowNull] in Window window, in Guid guid, [DisallowNull] in Icon icon, [AllowNull] in string? toolTip, [AllowNull] in ContextMenu? contextMenu, in bool disposeIcon)
+        public NotificationIcon(
+#if CS8
+            [DisallowNull]
+#endif
+            in Window window, in Guid guid,
+#if CS8
+            [DisallowNull]
+#endif
+             in Icon icon,
+#if CS8
+            [AllowNull]
+#endif
+             in string
+#if CS8
+            ?
+#endif
+             toolTip,
+#if CS8
+            [AllowNull]
+#endif
+             in ContextMenu
+#if CS8
+            ?
+#endif
+             contextMenu, in bool disposeIcon)
         {
             Window = window ?? throw GetArgumentNullException(nameof(window));
 
@@ -64,12 +92,40 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             DisposeIcon = disposeIcon;
         }
 
-        public NotificationIcon(in Window window, in string guid, in Icon icon, in string? toolTip, in ContextMenu? contextMenu, in bool disposeIcon) : this(window, new Guid(guid), icon, toolTip, contextMenu, disposeIcon)
+        public NotificationIcon(in Window window, in string guid, in Icon icon, in string
+#if CS8
+            ?
+#endif
+            toolTip, in ContextMenu
+#if CS8
+            ?
+#endif
+            contextMenu, in bool disposeIcon) : this(window, new Guid(guid), icon, toolTip, contextMenu, disposeIcon)
         {
             // Left empty.
         }
 
-        protected virtual NotifyIconData GetNotifyIconData() => new() { cbSize = (uint)Marshal.SizeOf<NotifyIconData>(), hWnd = new WindowInteropHelper(Window).Handle };
+        protected virtual NotifyIconData GetNotifyIconData() => new
+#if !CS9
+            NotifyIconData
+#endif
+            ()
+        {
+            cbSize = (uint)Marshal.SizeOf
+#if CS7
+            <
+#else
+            (typeof(
+#endif
+            NotifyIconData
+#if CS7
+                >()
+#else
+                ))
+#endif
+                ,
+            hWnd = new WindowInteropHelper(Window).Handle
+        };
 
         protected virtual bool AddNotificationIcon()
         {
@@ -129,7 +185,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             {
                 case WMAPP_NOTIFYCALLBACK:
 
-                    int _lParam = InteropTools.LOWORD((int)lParam);
+                    int _lParam = InteropTools.LOWORD(lParam);
 
                     var windowMessage = (WindowMessage)_lParam;
 

@@ -2,7 +2,9 @@
 
 using System;
 using System.Runtime.InteropServices;
+#if !NETSTANDARD
 using System.Windows.Interop;
+#endif
 
 using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.Shell.DesktopWindowManager;
 using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames;
@@ -20,47 +22,47 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager
         Delete = 0x00000200,
         Remove = 0x00001000,
 
-        ByCommand = 0x00000000,
+        ByCommand = Insert,
         ByPosition = 0x00000400,
 
         Separator = 0x00000800,
 
-        Enabled = 0x00000000,
+        Enabled = Insert,
         Grayed = 0x00000001,
         Disabled = 0x00000002,
 
-        Unchecked = 0x00000000,
+        Unchecked = Insert,
         Checked = 0x00000008,
-        UseCheckBitmaps = 0x00000200,
+        UseCheckBitmaps = Delete,
 
-        String = 0x00000000,
+        String = Insert,
         Bitmap = 0x00000004,
-        OwnerDraw = 0x00000100,
+        OwnerDraw = Append,
 
         Popup = 0x00000010,
         MenuBarBreak = 0x00000020,
         MenuBreak = 0x00000040,
 
-        Unhilite = 0x00000000,
-        Hilite = 0x00000080,
+        Unhilite = Insert,
+        Hilite = Change,
 
-        Default = 0x00001000,
+        Default = Remove,
 
         SystemMenu = 0x00002000,
         Help = 0x00004000,
 
-        RightJustify = 0x00004000,
+        RightJustify = Help,
 
 
 
         MouseSelect = 0x00008000,
 
-        End = 0x00000080,  /* Obsolete -- only used by old RES files */
+        End = Change,  /* Obsolete -- only used by old RES files */
 
 
 
-        RadioCheck = 0x00000200,
-        RightOrder = 0x00002000,
+        RadioCheck = Delete,
+        RightOrder = SystemMenu,
 
         /* Menu flags for Add/Check/EnableMenuItem() */
         MFS_Grayed = 0x00000003,
@@ -129,9 +131,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager
         [DllImport(User32)]
         public static extern IntPtr GetSystemMenu([In] IntPtr hWnd, [In, MarshalAs(UnmanagedType.Bool)] bool bRevert);
 
+#if !NETSTANDARD
         public static IntPtr GetSystemMenu(in System.Windows.Forms.Form form, in bool bRevert) => GetSystemMenu(form.Handle, bRevert);
 
         public static IntPtr GetSystemMenu(in System.Windows.Window window, in bool bRevert) => GetSystemMenu(new WindowInteropHelper(window).Handle, bRevert);
+#endif
 
         public static int GetSystemCommandWParam(in IntPtr wParam) => (int)wParam & 0xFFF0;
 
@@ -497,25 +501,25 @@ int
 
     public enum SystemCommand
     {
-		Size = 0xF000,
-		Move = 0xF010,
-		Minimize = 0xF020,
-		Maximize = 0xF030,
-		NextWindow = 0xF040,
-		PrevWindow = 0xF050,
-		Close = 0xF060,
-		VerticalScroll = 0xF070,
-		HorizontalScroll = 0xF080,
-		MouseMenu = 0xF090,
-		KeyMenu = 0xF100,
-		Arrange = 0xF110,
-		Restore = 0xF120,
-		TaskList = 0xF130,
-		ScreenSave = 0xF140,
-		HotKey = 0xF150,
-		Default = 0xF160
-		MonitorPower = 0xF170
-		ContextHelp = 0xF180
-		Separator = 0xF00F
+        Size = 0xF000,
+        Move = 0xF010,
+        Minimize = 0xF020,
+        Maximize = 0xF030,
+        NextWindow = 0xF040,
+        PrevWindow = 0xF050,
+        Close = 0xF060,
+        VerticalScroll = 0xF070,
+        HorizontalScroll = 0xF080,
+        MouseMenu = 0xF090,
+        KeyMenu = 0xF100,
+        Arrange = 0xF110,
+        Restore = 0xF120,
+        TaskList = 0xF130,
+        ScreenSave = 0xF140,
+        HotKey = 0xF150,
+        Default = 0xF160,
+        MonitorPower = 0xF170,
+        ContextHelp = 0xF180,
+        Separator = 0xF00F
     }
 }
