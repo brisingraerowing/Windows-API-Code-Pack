@@ -10,6 +10,14 @@ For issues and bug fixes details, visit [https://wincopies.com/fwd.php?id=3](htt
 
 For the original code (version 1.1, last release by Microsoft), see [https://wincopies.com/fwd.php?id=1](https://wincopies.com/fwd.php?id=1)
 
+## 09/08/2021 3.6.1
+
+- Add:
+    - ShellContextMenu.
+    - types and static methods.
+    - consts.
+- Update IShellFolder implementation.
+
 ## 08/28/2021 3.5
 
 - Update DeleteConsoleMenu method parameters.
@@ -65,6 +73,13 @@ COMNative 3.0
 
 - Removals:
     - Some 'ref' keywords in native PortableDevices interfaces. These keywords have been removed for interface type parameters because they was redundant.
+
+## 09/08/2021 2.8
+
+- Add:
+    - types and static methods.
+    - consts.
+- Remove hook from window when NotificationIcon is disposing.
 
 ## 08/28/2021 2.7
 

@@ -8893,6 +8893,37 @@
             <b>Windows 7 and later.</b> Do not display the location line in the progress dialog.
             </summary>
         </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.Shell.GetDisplayNameFlags.Normal">
+            <summary>
+            <para>Name: SHGDN_NORMAL</para>
+            <para>Description: When not combined with another flag, return the parent-relative name that identifies the item, suitable for displaying to the user. This name often does not include extra information such as the file name extension and does not need to be unique. This name might include information that identifies the folder that contains the item. For instance, this flag could cause <see cref="!:IShellFolder.GetDisplayNameOf(IntPtr, uint, IntPtr)"/> to return the string "username (on Machine)" for a particular user's folder.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.Shell.GetDisplayNameFlags.InFolder">
+            <summary>
+            <para>Name: SHGDN_INFOLDER</para>
+            <para>Description: The name is relative to the folder from which the request was made. This is the name display to the user when used in the context of the folder. For example, it is used in the view and in the address bar path segment for the folder. This name should not include disambiguation information—for instance "username" instead of "username (on Machine)" for a particular user's folder.</para>
+            <para>Use this flag in combinations with <see cref="F:Microsoft.WindowsAPICodePack.COMNative.Shell.GetDisplayNameFlags.ForParsing"/> and <see cref="F:Microsoft.WindowsAPICodePack.COMNative.Shell.GetDisplayNameFlags.ForEditing"/>.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.Shell.GetDisplayNameFlags.ForEditing">
+            <summary>
+            <para>Name: SHGDN_FOREDITING</para>
+            <para>Description: The name is used for in-place editing when the user renames the item.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.Shell.GetDisplayNameFlags.ForAddressBar">
+            <summary>
+            <para>Name: SHGDN_FORADDRESSBAR</para>
+            <para>Description: The name is displayed in an address bar combo box.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.Shell.GetDisplayNameFlags.ForParsing">
+            <summary>
+            <para>Name: SHGDN_FORPARSING</para>
+            <para>Description: The name is used for parsing. That is, it can be passed to <see cref="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellFolder.ParseDisplayName(System.IntPtr,System.IntPtr,System.String,System.UInt32@,System.IntPtr@,System.UInt32@)"/> to recover the object's PIDL. The form this name takes depends on the particular object. When <see cref="F:Microsoft.WindowsAPICodePack.COMNative.Shell.GetDisplayNameFlags.ForParsing"/> is used alone, the name is relative to the desktop. When combined with <see cref="F:Microsoft.WindowsAPICodePack.COMNative.Shell.GetDisplayNameFlags.InFolder"/>, the name is relative to the folder from which the request was made.</para>
+            </summary>
+        </member>
         <member name="T:Microsoft.WindowsAPICodePack.COMNative.Shell.AccessModes">
             <summary>
             The STGM constants are flags that indicate 

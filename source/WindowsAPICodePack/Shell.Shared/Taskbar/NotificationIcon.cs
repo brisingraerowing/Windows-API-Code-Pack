@@ -255,6 +255,8 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 nid.guidItem = Guid;
 
                 _ = Shell_NotifyIconW(NotifyIconModification.Delete, ref nid);
+
+                HwndSource.FromHwnd(WindowInteropHelper.Handle).RemoveHook(WndProc);
             }
 
             Window = null;

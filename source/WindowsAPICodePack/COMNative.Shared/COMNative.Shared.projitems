@@ -96,6 +96,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ShellExtensionsHandlerNativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\DefaultShellImageSizes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\IconReference.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMInterfaces\IContextMenu.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\IntPtrExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMClasses.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMInterfaces\IFileOperation.cs" />

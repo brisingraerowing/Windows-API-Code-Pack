@@ -1,5 +1,9 @@
-﻿namespace Microsoft.WindowsAPICodePack
+﻿using System;
+
+namespace Microsoft.WindowsAPICodePack
 {
+    public delegate IntPtr HwndSourceHook(WindowMessage msg, IntPtr wParam, IntPtr lParam, ref bool handled);
+
     public enum WindowMessage : ushort
     {
         Null = 0x00,

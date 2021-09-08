@@ -1,9 +1,13 @@
-﻿using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+﻿using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
 using System;
+using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
 
 using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames;
+using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.Shell;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.Shell
 {
@@ -18,6 +22,78 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
             [In] string instruction,
             [In] LibraryManageDialogOptions lmdOptions);
         #endregion
+
+#if WAPICP3
+        public static IntPtr GetPidl(in string directory)
+        {
+            DirectoryInfo parent = System.IO.Directory.GetParent(directory);
+
+            if (parent == null)
+
+                return IntPtr.Zero;
+
+            IShellFolder oParentFolder = GetParentFolder(parent.FullName);
+
+            if (oParentFolder == null)
+
+                return IntPtr.Zero;
+
+            uint pchEaten = 0;
+            uint pdwAttributes = 0;
+
+            _ = oParentFolder.ParseDisplayName(IntPtr.Zero, IntPtr.Zero, System.IO.Path.GetFileName(directory), ref pchEaten, out IntPtr pPidl, ref pdwAttributes);
+
+            _ = Marshal.ReleaseComObject(oParentFolder);
+
+            oParentFolder = null;
+
+            return pPidl;
+        }
+
+        public static IShellFolder GetParentFolder(string folderName)
+        {
+            _ = SHGetDesktopFolder(out IShellFolder oDesktopFolder);
+
+            if (oDesktopFolder == null)
+
+                return null;
+
+            uint pchEaten = 0;
+            uint pdwAttributes = 0;
+
+            HResult nResult = oDesktopFolder.ParseDisplayName(IntPtr.Zero, IntPtr.Zero, folderName, ref pchEaten, out IntPtr pPidl, ref pdwAttributes);
+
+            if (!CoreErrorHelper.Succeeded(nResult))
+
+                return null;
+
+            IntPtr pStrRet = Marshal.AllocCoTaskMem((MaxPath * 2) + 4);
+
+            Marshal.WriteInt32(pStrRet, 0, 0);
+
+            _ = oDesktopFolder.GetDisplayNameOf(pPidl, GetDisplayNameFlags.ForParsing, pStrRet);
+
+            var strFolder = new StringBuilder(MaxPath);
+
+            _ = StrRetToBufW(pStrRet, pPidl, strFolder, MaxPath);
+
+            Marshal.FreeCoTaskMem(pStrRet);
+
+            pStrRet = IntPtr.Zero;
+
+            Guid guid = new Guid(NativeAPI.Guids.Shell.IShellFolder);
+
+            nResult = oDesktopFolder.BindToObject(pPidl, IntPtr.Zero, ref guid, out IShellFolder shellFolder);
+
+            Marshal.FreeCoTaskMem(pPidl);
+
+            _ = Marshal.ReleaseComObject(oDesktopFolder);
+
+            oDesktopFolder = null;
+
+            return CoreErrorHelper.Succeeded(nResult) ? shellFolder : null;
+        }
+#endif
 
         [DllImport(Shell32, CharSet = CharSet.Unicode, SetLastError = true)]
         public static extern int SHCreateShellItemArrayFromDataObject(
@@ -48,7 +124,13 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
             [MarshalAs(UnmanagedType.Interface)] out IShellItem2 ppv);
 
         [DllImport(Shell32, CharSet = CharSet.Unicode, SetLastError = true)]
-        public static extern int SHGetDesktopFolder(
+        public static extern
+#if WAPICP3
+            HResult
+#else
+            int
+#endif
+            SHGetDesktopFolder(
             [MarshalAs(UnmanagedType.Interface)] out IShellFolder ppshf
         );
 
@@ -59,5 +141,8 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
             IntPtr pidl,
             [MarshalAs(UnmanagedType.Interface)] out IShellItem ppsi
         );
+
+        [DllImport(Shlwapi, ExactSpelling = true, CharSet = CharSet.Unicode, SetLastError = true)]
+        public static extern HResult StrRetToBufW(IntPtr pstr, IntPtr pidl, StringBuilder pszBuf, [MarshalAs(UnmanagedType.U4)] uint cchBuf);
     }
 }

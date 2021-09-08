@@ -2255,6 +2255,9 @@ namespace Microsoft.WindowsAPICodePack.NativeAPI.Guids
         public const string IQueryParserManager = "A879E3C4-AF77-44fb-8F37-EBD1487CF920";
         public const string IEntity = "24264891-E80B-4fd3-B7CE-4FF2FAE8931F";
         public const string IFileOperation = "947AAB5F-0A5C-4C13-B4D6-4BF7836FC9F8";
+        public const string IContextMenu = "000214e4-0000-0000-c000-000000000046";
+        public const string IContextMenu2 = "000214f4-0000-0000-c000-000000000046";
+        public const string IContextMenu3 = "BCFCE0A0-EC17-11d0-8D10-00A0C90F2719";
 
         public const string FileOpenDialog = "DC1C5A9C-E88A-4DDE-A5A1-60F82A20AEF7";
         public const string FileSaveDialog = "C0B4E2F3-BA21-4773-8DBA-335EC946EB8B";

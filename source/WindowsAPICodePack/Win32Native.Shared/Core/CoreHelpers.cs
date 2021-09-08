@@ -40,6 +40,21 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
     /// </summary>
     public static class CoreHelpers
     {
+#if !NETSTANDARD || NETSTANDARD2_1_OR_GREATER
+        public static T GetTypedObjectForIUnknown<T>(in IntPtr intPtr) => (T)Marshal.GetTypedObjectForIUnknown(intPtr, typeof(T));
+
+        public static T QueryInterfaceForIUnknown<T>(in IntPtr intPtr, ref Guid guid) => CoreErrorHelper.Succeeded(Marshal.QueryInterface(intPtr, ref guid, out IntPtr intPtr2)) ? GetTypedObjectForIUnknown<T>(intPtr2) : default;
+
+        public static T QueryInterfaceForIUnknown2<T>(in IntPtr intPtr, in Guid guid)
+        {
+            Guid _guid = guid;
+
+            return QueryInterfaceForIUnknown<T>(intPtr, ref _guid);
+        }
+
+        public static T QueryInterfaceForIUnknown<T>(in IntPtr intPtr, in string guid) => QueryInterfaceForIUnknown2<T>(intPtr, new Guid(guid));
+#endif
+
         public static void UpdateValue<T>(ref T value, in T newValue) where T : class
         {
             if (value != null)
@@ -54,6 +69,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
             if (value != null)
             {
                 _ = Marshal.ReleaseComObject(value);
+
                 value = null;
             }
         }
