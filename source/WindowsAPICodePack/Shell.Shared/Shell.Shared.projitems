@@ -36,6 +36,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\LockFinder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SearchCondition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SearchConditionFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellContextMenu.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ShellFile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ShellFileSystemFolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ShellFolder.cs" />

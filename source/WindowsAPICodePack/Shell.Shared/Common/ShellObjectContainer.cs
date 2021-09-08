@@ -3,6 +3,7 @@
 using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -13,19 +14,14 @@ namespace Microsoft.WindowsAPICodePack.Shell
     /// Represents the base class for all types of Shell "containers". Any class deriving from this class
     /// can contain other ShellObjects (e.g. ShellFolder, FileSystemKnownFolder, ShellLibrary, etc)
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "This will complicate the class hierarchy and naming convention used in the Shell area")]
     public abstract class ShellContainer : ShellObject, IEnumerable<ShellObject>, IDisposable
     {
-
         #region Private Fields
-
         private IShellFolder desktopFolderEnumeration;
         private IShellFolder nativeShellFolder;
-
         #endregion
 
         #region Internal Properties
-
         internal IShellFolder NativeShellFolder
         {
             get
@@ -33,7 +29,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 if (nativeShellFolder == null)
                 {
                     var guid = new Guid(NativeAPI.Guids.Shell.IShellFolder);
-                    var handler = new Guid(Shell.Guids.ShellBindingHandlerID.ShellFolderObject);
+                    var handler = new Guid(Guids.ShellBindingHandlerID.ShellFolderObject);
 
                     HResult hr = NativeShellItem.BindToHandler(
                         IntPtr.Zero, ref handler, ref guid, out nativeShellFolder);
@@ -51,19 +47,15 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 return nativeShellFolder;
             }
         }
-
         #endregion
 
         #region Internal Constructor
-
         internal ShellContainer() { }
 
         internal ShellContainer(IShellItem2 shellItem) : base(shellItem) { }
-
         #endregion
 
         #region Disposable Pattern
-
         /// <summary>
         /// Release resources
         /// </summary>
@@ -84,11 +76,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             base.Dispose(disposing);
         }
-
         #endregion
 
         #region IEnumerable<ShellObject> Members
-
         /// <summary>
         /// Enumerates through contents of the ShellObjectContainer
         /// </summary>
@@ -106,13 +96,10 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             return new ShellFolderItems(this);
         }
-
         #endregion
 
         #region IEnumerable Members
-
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => new ShellFolderItems(this);
-
         #endregion
     }
 }

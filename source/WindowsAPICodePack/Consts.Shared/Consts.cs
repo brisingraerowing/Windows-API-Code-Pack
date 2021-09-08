@@ -38,6 +38,7 @@
         public const string Psapi = "psapi.dll";
         public const string Rstrtmgr = "rstrtmgr.dll";
         public const string DwmApi = "DwmApi.dll";
+        public const string Shlwapi = "Shlwapi.dll";
     }
 
     public static class PortableDevices

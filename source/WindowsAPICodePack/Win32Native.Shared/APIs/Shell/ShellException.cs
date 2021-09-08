@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Runtime.InteropServices;
-using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Resources;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
+
 using LocalizedMessages = Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
-
     /// <summary>
     /// An exception thrown when an error occurs while dealing with ShellObjects.
     /// </summary>
@@ -39,10 +33,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         /// </summary>
         /// <param name="message">Custom message</param>
         /// <param name="innerException">The original exception that preceded this exception</param>
-        public ShellException(string message, Exception innerException)
-            : base(message, innerException)
-        {
-        }
+        public ShellException(string message, Exception innerException) : base(message, innerException) { }
 
         /// <summary>
         /// Initializes an exception with custom message and error code.
@@ -62,10 +53,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         /// Initializes an exception with custom message and inner exception.
         /// </summary>
         /// <param name="errorCode">HRESULT of an operation</param>        
-        public ShellException(int errorCode)
-            : base(LocalizedMessages.ShellExceptionDefaultText, errorCode)
-        {
-        }
+        public ShellException(int errorCode) : base(LocalizedMessages.ShellExceptionDefaultText, errorCode) { }
 
         /// <summary>
         /// Initializes an exception from serialization info and a context.
@@ -74,10 +62,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         /// <param name="context"></param>
         protected ShellException(
             System.Runtime.Serialization.SerializationInfo info,
-            System.Runtime.Serialization.StreamingContext context)
-            : base(info, context)
-        {
-        }
-
+            System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
     }
 }

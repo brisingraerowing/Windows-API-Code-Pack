@@ -12,9 +12,9 @@
     <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020-2021</Copyright>
     <DocumentationFile>WinCopies.WindowsAPICodePack.Shell.xml</DocumentationFile>
     <DefineConstants>WAPICP2;$(DefineConstants)</DefineConstants>
-    <VersionPrefix>2.7</VersionPrefix>
-    <AssemblyVersion>2.7</AssemblyVersion>
-    <FileVersion>2.7</FileVersion>
+    <VersionPrefix>2.8</VersionPrefix>
+    <AssemblyVersion>2.8</AssemblyVersion>
+    <FileVersion>2.8</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

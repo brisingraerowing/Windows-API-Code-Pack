@@ -903,4 +903,38 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
         DoNotDisplayLocations = 0x00001000
 
     }
+
+    public enum GetDisplayNameFlags : uint
+    {
+        /// <summary>
+        /// <para>Name: SHGDN_NORMAL</para>
+        /// <para>Description: When not combined with another flag, return the parent-relative name that identifies the item, suitable for displaying to the user. This name often does not include extra information such as the file name extension and does not need to be unique. This name might include information that identifies the folder that contains the item. For instance, this flag could cause <see cref="IShellFolder.GetDisplayNameOf(IntPtr, uint, IntPtr)"/> to return the string "username (on Machine)" for a particular user's folder.</para>
+        /// </summary>
+        Normal = 0,
+
+        /// <summary>
+        /// <para>Name: SHGDN_INFOLDER</para>
+        /// <para>Description: The name is relative to the folder from which the request was made. This is the name display to the user when used in the context of the folder. For example, it is used in the view and in the address bar path segment for the folder. This name should not include disambiguation information—for instance "username" instead of "username (on Machine)" for a particular user's folder.</para>
+        /// <para>Use this flag in combinations with <see cref="ForParsing"/> and <see cref="ForEditing"/>.</para>
+        /// </summary>
+        InFolder = 0x1,
+
+        /// <summary>
+        /// <para>Name: SHGDN_FOREDITING</para>
+        /// <para>Description: The name is used for in-place editing when the user renames the item.</para>
+        /// </summary>
+        ForEditing = 0x1000,
+
+        /// <summary>
+        /// <para>Name: SHGDN_FORADDRESSBAR</para>
+        /// <para>Description: The name is displayed in an address bar combo box.</para>
+        /// </summary>
+        ForAddressBar = 0x4000,
+
+        /// <summary>
+        /// <para>Name: SHGDN_FORPARSING</para>
+        /// <para>Description: The name is used for parsing. That is, it can be passed to <see cref="IShellFolder.ParseDisplayName(IntPtr, IntPtr, string, ref uint, out IntPtr, ref uint)"/> to recover the object's PIDL. The form this name takes depends on the particular object. When <see cref="ForParsing"/> is used alone, the name is relative to the desktop. When combined with <see cref="InFolder"/>, the name is relative to the folder from which the request was made.</para>
+        /// </summary>
+        ForParsing = 0x8000
+    }
 }

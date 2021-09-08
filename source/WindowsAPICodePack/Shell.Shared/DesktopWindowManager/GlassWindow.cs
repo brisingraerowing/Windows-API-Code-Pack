@@ -130,7 +130,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             // add Window Proc hook to capture DWM messages
             var source = HwndSource.FromHwnd(windowHandle);
-            source.AddHook(new HwndSourceHook(WndProc));
+            source.AddHook(new System.Windows.Interop.HwndSourceHook(WndProc));
 
             ResetAeroGlass();
         }

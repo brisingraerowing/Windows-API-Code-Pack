@@ -1,26 +1,24 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using Microsoft.WindowsAPICodePack.COMNative.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
     class ShellFolderItems : IEnumerator<ShellObject>
     {
         #region Private Fields
-
         private IEnumIDList nativeEnumIdList;
         private readonly ShellContainer nativeShellFolder;
-
         #endregion
 
         #region Internal Constructor
-
         internal ShellFolderItems(ShellContainer nativeShellFolder)
         {
             this.nativeShellFolder = nativeShellFolder;
@@ -34,17 +32,13 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 throw hr == HResult.Canceled ? new System.IO.FileNotFoundException() : throw new ShellException(hr);
         }
-
         #endregion
 
         #region IEnumerator<ShellObject> Members
-
         public ShellObject Current { get; private set; }
-
         #endregion
 
         #region IDisposable Members
-
         public void Dispose()
         {
             if (nativeEnumIdList != null)
@@ -53,11 +47,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 nativeEnumIdList = null;
             }
         }
-
         #endregion
 
         #region IEnumerator Members
-
         object IEnumerator.Current => Current;
 
         public bool MoveNext()
@@ -81,8 +73,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 Marshal.ThrowExceptionForHR( (int) nativeEnumIdList.Reset());
         }
-
-
         #endregion
     }
 }
