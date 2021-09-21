@@ -26,6 +26,8 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 #endif
         DotNetFix.IDisposable
     {
+        private string _toolTip;
+
         public Window Window { get; private set; }
 
         public WindowInteropHelper WindowInteropHelper { get; private set; }
@@ -36,7 +38,21 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
         public ContextMenu ContextMenu { get; private set; }
 
-        public string ToolTip { get; private set; }
+        public string ToolTip
+        {
+            get => _toolTip;
+
+            set
+            {
+                _toolTip = value;
+
+                NotifyIconData nid = GetNotifyIconData(NotifyIconFlags.Tip | NotifyIconFlags.ShowTip);
+
+                nid.szTip = value;
+
+                _ = UpdateNotificationIcon(nid);
+            }
+        }
 
         public bool Initialized { get; private set; }
 
@@ -83,7 +99,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
             WindowInteropHelper = new WindowInteropHelper(window);
 
-            ToolTip = toolTip;
+            _toolTip = toolTip;
 
             ContextMenu = contextMenu;
 
@@ -105,13 +121,20 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
             // Left empty.
         }
 
-        protected virtual NotifyIconData GetNotifyIconData() => new
+        protected virtual NotifyIconData GetNotifyIconData(NotifyIconFlags? flags)
+        {
+#if CS9
+            NotifyIconData
+#else
+            var
+#endif
+                nid = new
 #if !CS9
             NotifyIconData
 #endif
             ()
-        {
-            cbSize = (uint)Marshal.SizeOf
+                {
+                    cbSize = (uint)Marshal.SizeOf
 #if CS7
             <
 #else
@@ -124,19 +147,38 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
                 ))
 #endif
                 ,
-            hWnd = new WindowInteropHelper(Window).Handle
-        };
+                    hWnd = new WindowInteropHelper(Window).Handle,
+                    guidItem = Guid,
+                    uFlags = NotifyIconFlags.Guid
+                };
+
+            if (flags.HasValue)
+
+                nid.uFlags |= flags.Value;
+
+            return nid;
+        }
+
+        protected virtual bool UpdateNotificationIcon(NotifyIconData nid)
+        {
+            nid.guidItem = Guid;
+
+            //nid.hIcon = Icon.Handle;
+
+            //_ = Shell_NotifyIconW(NotifyIconModification.Add, ref nid);
+
+            return Shell_NotifyIconW(NotifyIconModification.Modify, ref nid);
+        }
 
         protected virtual bool AddNotificationIcon()
         {
-            NotifyIconData nid = GetNotifyIconData();
+            NotifyIconData nid = GetNotifyIconData(NotifyIconFlags.Icon | NotifyIconFlags.Tip | NotifyIconFlags.Message | NotifyIconFlags.ShowTip);
 
-            nid.uFlags = NotifyIconFlags.Icon | NotifyIconFlags.Tip | NotifyIconFlags.Message | NotifyIconFlags.ShowTip | NotifyIconFlags.Guid;
-            nid.guidItem = Guid;
             nid.uCallbackMessage = (uint)WMAPP_NOTIFYCALLBACK;
             nid.szTip = ToolTip;
 
             nid.hIcon = Icon.Handle;
+
             _ = Shell_NotifyIconW(NotifyIconModification.Add, ref nid);
 
             nid.uVersion = NotifyIconVersion.Version4;
@@ -230,11 +272,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
         public bool AddNotification(string text, string title)
         {
-            NotifyIconData nid = GetNotifyIconData();
-
-            nid.uFlags = NotifyIconFlags.Info | NotifyIconFlags.Guid;
-
-            nid.guidItem = Guid;
+            NotifyIconData nid = GetNotifyIconData(NotifyIconFlags.Info);
 
             nid.dwInfoFlags = NotifyIconInfos.Info | NotifyIconInfos.RespectQuietTime;
 
@@ -249,10 +287,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
         {
             if (Initialized)
             {
-                NotifyIconData nid = GetNotifyIconData();
-
-                nid.uFlags = NotifyIconFlags.Guid;
-                nid.guidItem = Guid;
+                NotifyIconData nid = GetNotifyIconData(null);
 
                 _ = Shell_NotifyIconW(NotifyIconModification.Delete, ref nid);
 
@@ -269,7 +304,7 @@ namespace Microsoft.WindowsAPICodePack.Taskbar
 
             Icon = null;
 
-            ToolTip = null;
+            _toolTip = null;
 
             Guid = default;
         }

@@ -30,7 +30,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
         /// <summary>
         /// The maximum size for a Shell Icon, 256x256 pixels.
         /// </summary>
-        public static readonly System.Windows.Size Maximum = new System.Windows.Size(256, 256);
+        public static readonly System.Windows.Size Maximum = ExtraLarge;
 
     }
 
@@ -62,6 +62,6 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
         /// <summary>
         /// Maximum size for the Shell Thumbnail, 1024x1024 pixels.
         /// </summary>
-        public static readonly System.Windows.Size Maximum = new System.Windows.Size(1024, 1024);
+        public static readonly System.Windows.Size Maximum = ExtraLarge;
     }
 }
