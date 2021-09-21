@@ -55,6 +55,42 @@ namespace Microsoft.WindowsAPICodePack.Shell
         internal ShellContainer(IShellItem2 shellItem) : base(shellItem) { }
         #endregion
 
+#if WAPICP3
+#if CS7
+        public static IntPtr[] GetPIDLs(IEnumerable<ShellObject> items)
+        {
+            if (items is IReadOnlyList<ShellObject> _items)
+
+                return GetPIDLs(_items);
+
+            var pidls = new WinCopies.Collections.Generic.ArrayBuilder<IntPtr>();
+
+            foreach (ShellObject item in items)
+
+                pidls.AddLast(COMNative.Shell.Shell.GetPidl(item.ParsingName));
+
+            return pidls.ToArray();
+        }
+#endif
+
+        public static IntPtr[] GetPIDLs(
+#if CS6
+            System.
+#else
+            WinCopies.
+#endif
+            Collections.Generic.IReadOnlyList<ShellObject> items)
+        {
+            var pidls = new IntPtr[items.Count];
+
+            for (int i = 0; i < items.Count; i++)
+
+                pidls[i] = COMNative.Shell.Shell.GetPidl(items[i].ParsingName);
+
+            return pidls;
+        }
+#endif
+
         #region Disposable Pattern
         /// <summary>
         /// Release resources

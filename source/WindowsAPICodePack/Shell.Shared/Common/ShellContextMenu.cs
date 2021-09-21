@@ -81,15 +81,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             _hookRegistration = hookRegistration;
 
-            var ptrs = new IntPtr[items.Count];
-
-            for (int i = 0; i < items.Count; i++)
-
-                ptrs[i] = COMNative.Shell.Shell.GetPidl(items[i].ParsingName);
-
             var guid = new Guid(NativeAPI.Guids.Shell.IContextMenu);
 
-            HResult hr = folder.NativeShellFolder.GetUIObjectOf(IntPtr.Zero, (uint)items.Count, ptrs, ref guid, IntPtr.Zero, out IntPtr intPtr);
+            CoreErrorHelper.ThrowExceptionForHR(folder.NativeShellFolder.GetUIObjectOf(IntPtr.Zero, (uint)items.Count, ShellContainer.GetPIDLs(items), ref guid, IntPtr.Zero, out IntPtr intPtr));
 
             _contextMenu = GetTypedObjectForIUnknown<IContextMenu>(intPtr);
 
