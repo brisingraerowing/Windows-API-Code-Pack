@@ -101,6 +101,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMClasses.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMInterfaces\IFileOperation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMInterfaces\IFileOperationProgressSink.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMInterfaces\IImageList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMInterfaces\IOperationsProgressDialog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMInterfaces\IQueryParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Shell\Common\ShellCOMInterfaces\IQuerySolution.cs" />

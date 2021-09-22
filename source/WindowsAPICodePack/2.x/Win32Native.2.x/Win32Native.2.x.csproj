@@ -14,9 +14,9 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <AssemblyName>WinCopies.WindowsAPICodePack.Win32Native</AssemblyName>
     <DefineConstants>WAPICP2;$(DefineConstants)</DefineConstants>
-    <VersionPrefix>2.8</VersionPrefix>
-    <AssemblyVersion>2.8</AssemblyVersion>
-    <FileVersion>2.8</FileVersion>
+    <VersionPrefix>2.9</VersionPrefix>
+    <AssemblyVersion>2.9</AssemblyVersion>
+    <FileVersion>2.9</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

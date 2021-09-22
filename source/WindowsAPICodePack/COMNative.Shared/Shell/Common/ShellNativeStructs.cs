@@ -1,7 +1,66 @@
-﻿using System;
+﻿using Microsoft.WindowsAPICodePack.Win32Native;
+
+using System;
+using System.Drawing;
+using System.Runtime.InteropServices;
+
+using static System.Runtime.InteropServices.UnmanagedType;
 
 namespace Microsoft.WindowsAPICodePack.COMNative.Shell
 {
+    [StructLayout(LayoutKind.Sequential)]
+    public struct ImageInfo
+    {
+        public IntPtr hbmImage;
+        public IntPtr hbmMask;
+        public int Unused1;
+        public int Unused2;
+        public Rectangle rcImage;
+    }
+
+    public struct ContextMenuInvokeCommandInfo
+    {
+        [MarshalAs(U4)]
+        public uint cbSize;
+
+        [MarshalAs(U4)]
+        public ContextMenuInvokeCommandFlags fMask;
+
+        public IntPtr hwnd;
+
+        public IntPtr lpVerb;
+
+        [MarshalAs(LPStr)]
+        public string lpParameters;
+
+        [MarshalAs(LPStr)]
+        public string lpDirectory;
+
+        [MarshalAs(I4)]
+        public ShowWindowCommands nShow;
+
+        [MarshalAs(U4)]
+        public uint dwHotKey;
+
+        public IntPtr hIcon;
+
+        [MarshalAs(LPStr)]
+        public string lpTitle;
+
+        public IntPtr lpVerbW;
+
+        [MarshalAs(LPWStr)]
+        public string lpParametersW;
+
+        [MarshalAs(LPWStr)]
+        public string lpDirectoryW;
+
+        [MarshalAs(LPWStr)]
+        public string lpTitleW;
+
+        public Point ptInvoke;
+    }
+
     /// <summary>
     /// The STGM constants are flags that indicate 
     /// conditions for creating and deleting the object and access modes 

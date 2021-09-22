@@ -2258,6 +2258,7 @@ namespace Microsoft.WindowsAPICodePack.NativeAPI.Guids
         public const string IContextMenu = "000214e4-0000-0000-c000-000000000046";
         public const string IContextMenu2 = "000214f4-0000-0000-c000-000000000046";
         public const string IContextMenu3 = "BCFCE0A0-EC17-11d0-8D10-00A0C90F2719";
+        public const string IImageList = "46EB5926-582E-4017-9FDF-E8998DAA0950";
 
         public const string FileOpenDialog = "DC1C5A9C-E88A-4DDE-A5A1-60F82A20AEF7";
         public const string FileSaveDialog = "C0B4E2F3-BA21-4773-8DBA-335EC946EB8B";
