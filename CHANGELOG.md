@@ -10,9 +10,10 @@ For issues and bug fixes details, visit [https://wincopies.com/fwd.php?id=3](htt
 
 For the original code (version 1.1, last release by Microsoft), see [https://wincopies.com/fwd.php?id=1](https://wincopies.com/fwd.php?id=1)
 
-## 09/21/2021 3.7
+## 09/21/2021 3.7.1
 
 - Add GetPIDLs methods to ShellContainer.
+- Add types and TryExtractIcon method to FileOperation and SHGetImageList native method.
 
 ## 09/08/2021 3.6.1
 
@@ -78,10 +79,11 @@ COMNative 3.0
 - Removals:
     - Some 'ref' keywords in native PortableDevices interfaces. These keywords have been removed for interface type parameters because they was redundant.
 
-## 09/21/2021 2.9
+## 09/21/2021 2.9.1
 
 - Add setter to NotificationIcon.ToolTip.
 - Add properties to ShellThumbnail.
+- Add types and TryExtractIcon method to FileOperation and SHGetImageList native method.
 
 ## 09/08/2021 2.8
 

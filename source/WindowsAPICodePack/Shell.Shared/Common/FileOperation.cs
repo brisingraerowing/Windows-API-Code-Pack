@@ -201,6 +201,30 @@ System.Collections.ObjectModel.ReadOnlyCollection
                 <uint>(_cookies);
         }
 
+        public static HResult TryExtractIcon(in string extension, in ShellImageListIconSize size, in IImageList imageList, out Icon icon)
+        {
+            FileInfo fileInfo = GetFileInfo(extension, FileAttributes.Normal, GetFileInfoOptions.IconLocation | GetFileInfoOptions.UseFileAttributes);
+
+            // var guid = new Guid(NativeAPI.Guids.Shell.IImageList);
+
+            // _ = SHGetImageList(size, ref guid, out IntPtr ptr);
+
+            HResult result = /*((IImageList)Marshal.GetTypedObjectForIUnknown(ptr, typeof(IImageList)))*/imageList.GetIcon(fileInfo.IconIndex, ImageListDrawFlags.Transparent, out IntPtr iconPtr);
+
+            if (Succeeded(result))
+            {
+                icon = (Icon)Icon.FromHandle(iconPtr).Clone();
+
+                _ = Core.DestroyIcon(iconPtr);
+            }
+
+            else
+
+                icon = null;
+
+            return result;
+        }
+
         public void Dispose()
         {
             Dispose(true);
@@ -646,7 +670,7 @@ System.Collections.ObjectModel.ReadOnlyCollection
 #endif
             ));
 
-        public HResult TryDeleteItem(in ShellObject item, 
+        public HResult TryDeleteItem(in ShellObject item,
 #if WAPICP3
             IFileOperationProgressSink
 #else
@@ -700,7 +724,7 @@ System.Collections.ObjectModel.ReadOnlyCollection
 #endif
             ));
 
-        public HResult TryNewItem(in ShellObject destinationFolder, in FileAttributes fileAttributes, in string name, in string templateName, 
+        public HResult TryNewItem(in ShellObject destinationFolder, in FileAttributes fileAttributes, in string name, in string templateName,
 #if WAPICP3
             IFileOperationProgressSink
 #else

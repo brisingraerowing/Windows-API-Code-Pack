@@ -120,6 +120,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         [DllImport(Shell32, SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern HResult SHEmptyRecycleBin(IntPtr hWnd, string pszRootPath, EmptyRecycleBinFlags dwFlags);
 
+        [DllImport(Shell32)]
+        public static extern HResult SHGetImageList([In, MarshalAs(I4)] ShellImageListIconSize iImageList, [In] ref Guid riid, out IntPtr ppvObj);
+
         /// <summary>
         /// <para>Copies an existing file to a new file, notifying the application of its progress through a callback function.</para>
         /// <para>To perform this operation as a transacted operation, use the CopyFileTransacted function.</para>
