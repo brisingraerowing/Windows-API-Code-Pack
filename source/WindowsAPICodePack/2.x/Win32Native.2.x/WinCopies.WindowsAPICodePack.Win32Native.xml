@@ -411,6 +411,36 @@
               Looks up a localized string similar to CurrentSize (width or height) cannot be 0..
             </summary>
         </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellImageListIconSize.Large">
+            <summary>
+            The image size is normally 32x32 pixels. However, if the Use large icons option is selected from the Effects section of the Appearance tab in Display Properties, the image is 48x48 pixels.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellImageListIconSize.Small">
+            <summary>
+            These images are the Shell standard small icon size of 16x16, but the size can be customized by the user.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellImageListIconSize.ExtraLarge">
+            <summary>
+            These images are the Shell standard extra-large icon size. This is typically 48x48, but the size can be customized by the user.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellImageListIconSize.SysSmall">
+            <summary>
+            These images are the size specified by GetSystemMetrics called with SM_CXSMICON and GetSystemMetrics called with SM_CYSMICON.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellImageListIconSize.Jumbo">
+            <summary>
+            Windows Vista and later. The image is normally 256x256 pixels.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellImageListIconSize.Last">
+            <summary>
+            The largest valid flag value, for validation purposes.
+            </summary>
+        </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconFlags.Message">
             <summary>
             The <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.NotifyIconData.uCallbackMessage"/> member is valid.
