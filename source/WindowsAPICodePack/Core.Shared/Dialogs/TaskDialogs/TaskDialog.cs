@@ -81,7 +81,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             set
             {
                 // Set local value, then update native dialog if showing.
-                if (NativeDialogShowing) nativeDialog.UpdateText(text = value);
+                text = value;
+                if (NativeDialogShowing) nativeDialog.UpdateText(value);
             }
         }
 
@@ -96,7 +97,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             set
             {
                 // Set local value, then update native dialog if showing.
-                if (NativeDialogShowing) nativeDialog.UpdateInstruction(instructionText = value);
+                instructionText = value;
+                if (NativeDialogShowing) nativeDialog.UpdateInstruction(value);
             }
         }
 
@@ -126,7 +128,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             set
             {
                 // Set local value, then update native dialog if showing.
-                if (NativeDialogShowing) nativeDialog.UpdateFooterText(footerText = value);
+                footerText = value;
+                if (NativeDialogShowing) nativeDialog.UpdateFooterText(value);
             }
         }
 
@@ -156,7 +159,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             set
             {
                 // Set local value, then update native dialog if showing.
-                if (NativeDialogShowing) nativeDialog.UpdateExpandedText(detailsExpandedText = value);
+                detailsExpandedText = value;
+                if (NativeDialogShowing) nativeDialog.UpdateExpandedText(value);
             }
         }
 
@@ -231,7 +235,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             set
             {
                 // Set local value, then update native dialog if showing.
-                if (NativeDialogShowing) nativeDialog.UpdateMainIcon(icon = value);
+                icon = value;
+                if (NativeDialogShowing) nativeDialog.UpdateMainIcon(value);
             }
         }
 
@@ -246,7 +251,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             set
             {
                 // Set local value, then update native dialog if showing.
-                if (NativeDialogShowing) nativeDialog.UpdateFooterIcon(footerIcon = value);
+                footerIcon = value;
+                if (NativeDialogShowing) nativeDialog.UpdateFooterIcon(value);
             }
         }
 
@@ -737,7 +743,8 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
         private void ApplySupplementalSettings(in NativeTaskDialogSettings settings)
         {
-            if (progressBar?.State != TaskDialogProgressBarState.Marquee)
+            if (progressBar != null &&
+                progressBar.State != TaskDialogProgressBarState.Marquee)
             {
                 settings.ProgressBarMinimum = progressBar.Minimum;
                 settings.ProgressBarMaximum = progressBar.Maximum;
