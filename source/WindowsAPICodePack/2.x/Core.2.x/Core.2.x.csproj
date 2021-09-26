@@ -13,9 +13,6 @@
     <RootNamespace>Microsoft.WindowsAPICodePack</RootNamespace>
     <DocumentationFile>WinCopies.WindowsAPICodePack.Core.xml</DocumentationFile>
     <DefineConstants>WAPICP2;$(DefineConstants)</DefineConstants>
-    <VersionPrefix>2.9.2</VersionPrefix>
-    <AssemblyVersion>2.9.2</AssemblyVersion>
-    <FileVersion>2.9.2</FileVersion>
     <VersionPrefix>2.9.3</VersionPrefix>
     <AssemblyVersion>2.9.3</AssemblyVersion>
     <FileVersion>2.9.3</FileVersion>
