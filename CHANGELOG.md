@@ -79,6 +79,10 @@ COMNative 3.0
 - Removals:
     - Some 'ref' keywords in native PortableDevices interfaces. These keywords have been removed for interface type parameters because they was redundant.
 
+## 09/26/2021 2.9.3
+
+- #24, #27
+
 ## 09/21/2021 2.9.1
 
 - Add setter to NotificationIcon.ToolTip.

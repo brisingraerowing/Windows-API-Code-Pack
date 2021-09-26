@@ -16,6 +16,9 @@
     <VersionPrefix>2.9.2</VersionPrefix>
     <AssemblyVersion>2.9.2</AssemblyVersion>
     <FileVersion>2.9.2</FileVersion>
+    <VersionPrefix>2.9.3</VersionPrefix>
+    <AssemblyVersion>2.9.3</AssemblyVersion>
+    <FileVersion>2.9.3</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

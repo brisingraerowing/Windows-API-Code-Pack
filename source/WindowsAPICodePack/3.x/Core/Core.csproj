@@ -17,6 +17,10 @@
     <VersionSuffix>preview</VersionSuffix>
     <AssemblyVersion>3.7.2</AssemblyVersion>
     <FileVersion>3.7.2</FileVersion>
+    <VersionPrefix>3.7.3</VersionPrefix>
+    <VersionSuffix>preview</VersionSuffix>
+    <AssemblyVersion>3.7.3</AssemblyVersion>
+    <FileVersion>3.7.3</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
