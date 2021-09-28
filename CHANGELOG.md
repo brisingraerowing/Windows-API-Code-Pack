@@ -79,7 +79,7 @@ COMNative 3.0
 - Removals:
     - Some 'ref' keywords in native PortableDevices interfaces. These keywords have been removed for interface type parameters because they was redundant.
 
-## 09/28/2021 2.10
+## 09/28/2021 2.10.1
 
 - Bug fixed in ShellObjectWatcher: a thread was not released when the ShellObjectWatcher is disposed.
 

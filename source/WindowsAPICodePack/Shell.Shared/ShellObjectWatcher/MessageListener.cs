@@ -144,6 +144,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 case (uint)WindowMessage.Destroy:
                     _running = false;
+                    _windowThread = null;
                     break;
 
                 default:
