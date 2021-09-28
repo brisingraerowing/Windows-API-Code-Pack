@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Microsoft.WindowsAPICodePack.Shell.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Microsoft.WindowsAPICodePack.Internal;
-using System.Threading;
-using Microsoft.WindowsAPICodePack.Shell.Resources;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -20,9 +18,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 uint message = 0;
                 RegisteredListener package = _packages.FirstOrDefault(x => x.TryRegister(callback, out message));
+
                 if (package == null)
                 {
                     package = new RegisteredListener();
+
                     if (!package.TryRegister(callback, out message))
                         // this should never happen
                         throw new ShellException(LocalizedMessages.MessageListenerFilterUnableToRegister);
@@ -41,6 +41,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             lock (_registerLock)
             {
                 RegisteredListener package = _packages.FirstOrDefault(x => x.Listener.WindowHandle == listenerHandle);
+
                 if (package == null || !package.Callbacks.Remove(message))
 
                     throw new ArgumentException(LocalizedMessages.MessageListenerFilterUnknownListenerHandle);
@@ -48,13 +49,15 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 if (package.Callbacks.Count == 0)
                 {
                     package.Listener.Dispose();
-                    _packages.Remove(package);
+                    _ = _packages.Remove(package);
                 }
             }
         }
 
-        class RegisteredListener
+        private class RegisteredListener
         {
+            private uint _lastMessage = MessageListener.BaseUserMessage;
+
             public Dictionary<uint, Action<WindowMessageEventArgs>> Callbacks { get; private set; }
 
             public MessageListener Listener { get; private set; }
@@ -73,13 +76,14 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     action(e);
             }
 
-            private uint _lastMessage = MessageListener.BaseUserMessage;
             public bool TryRegister(Action<WindowMessageEventArgs> callback, out uint message)
             {
                 message = 0;
+
                 if (Callbacks.Count < ushort.MaxValue - MessageListener.BaseUserMessage)
                 {
                     uint i = _lastMessage + 1;
+
                     while (i != _lastMessage)
                     {
                         if (i > ushort.MaxValue) i = MessageListener.BaseUserMessage;
@@ -90,9 +94,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
                             Callbacks.Add(i, callback);
                             return true;
                         }
+
                         i++;
                     }
                 }
+
                 return false;
             }
         }
@@ -119,6 +125,4 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         public uint Message { get; private set; }
     }
-
-
 }

@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Microsoft.WindowsAPICodePack.Shell.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+
+using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Threading;
-using Microsoft.WindowsAPICodePack.Internal;
-using Microsoft.WindowsAPICodePack.Shell.Resources;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -50,15 +50,16 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                     _firstWindowHandle = WindowHandle;
                 }
+
                 else
-                
+
                     CrossThreadCreateWindow();
-                
+
                 if (WindowHandle == IntPtr.Zero)
-                
+
                     throw new ShellException(LocalizedMessages.MessageListenerCannotCreateWindow,
                         Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error()));
-                
+
                 _listeners.Add(WindowHandle, this);
             }
         }
@@ -66,9 +67,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         private void CrossThreadCreateWindow()
         {
             if (_firstWindowHandle == IntPtr.Zero)
-            
+
                 throw new InvalidOperationException(LocalizedMessages.MessageListenerNoWindowHandle);
-            
+
             lock (_crossThreadWindowLock)
             {
                 Core.PostMessage(_firstWindowHandle, (WindowMessage)CreateWindowMessage, IntPtr.Zero, IntPtr.Zero);
@@ -89,17 +90,16 @@ namespace Microsoft.WindowsAPICodePack.Shell
             };
 
             uint atom = ShellObjectWatcherNativeMethods.RegisterClassEx(ref classEx);
+
             if (atom == 0)
-            {
+
                 throw new ShellException(LocalizedMessages.MessageListenerClassNotRegistered,
                     Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error()));
-            }
+
             _atom = atom;
         }
 
-        private static IntPtr CreateWindow()
-        {
-            IntPtr handle = ShellObjectWatcherNativeMethods.CreateWindowEx(
+        private static IntPtr CreateWindow() => ShellObjectWatcherNativeMethods.CreateWindowEx(
                 0, //extended style
                 MessageWindowClassName, //class name
                 "MessageListenerWindow", //title
@@ -108,29 +108,27 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 new IntPtr(-3), // -3 = Message-Only window
                 IntPtr.Zero, IntPtr.Zero, IntPtr.Zero);
 
-            return handle;
-        }
-
         private void ThreadMethod() // Message Loop
         {
             lock (_crossThreadWindowLock)
             {
                 _running = true;
+
                 if (_atom == 0)
-                
+
                     RegisterWindowClass();
-                
+
                 WindowHandle = CreateWindow();
 
                 Monitor.Pulse(_crossThreadWindowLock);
             }
 
             while (_running)
-            
+
                 if (ShellObjectWatcherNativeMethods.GetMessage(out Message msg, IntPtr.Zero, 0, 0))
-                
+
                     ShellObjectWatcherNativeMethods.DispatchMessage(ref msg);
-                        }
+        }
 
         private static int WndProc(IntPtr hwnd, uint msg, IntPtr wparam, IntPtr lparam)
         {
@@ -143,15 +141,20 @@ namespace Microsoft.WindowsAPICodePack.Shell
                         Monitor.Pulse(_crossThreadWindowLock);
                     }
                     break;
+
                 case (uint)WindowMessage.Destroy:
+                    _running = false;
                     break;
+
                 default:
                     MessageListener listener;
+
                     if (_listeners.TryGetValue(hwnd, out listener))
                     {
                         var message = new Message(hwnd, msg, wparam, lparam, 0, new NativePoint());
                         listener.MessageReceived.SafeRaise(listener, new WindowMessageEventArgs(message));
                     }
+
                     break;
             }
 
@@ -163,10 +166,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         #region IDisposable Members
 
-        ~MessageListener()
-        {
-            Dispose(false);
-        }
+        ~MessageListener() => Dispose(false);
 
         public void Dispose()
         {
@@ -181,16 +181,15 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 lock (_threadlock)
                 {
                     _ = _listeners.Remove(WindowHandle);
+
                     if (_listeners.Count == 0)
-                    
+
                         Core.PostMessage(WindowHandle, WindowMessage.Destroy, IntPtr.Zero, IntPtr.Zero);
-                                    }
+                }
             }
         }
-
         #endregion
     }
-
 
     /// <summary>
     /// Encapsulates the data about a window message 
@@ -204,6 +203,4 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         internal WindowMessageEventArgs(Message msg) => Message = msg;
     }
-
-
 }

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Runtime.InteropServices;
-using System.Diagnostics;
-using Microsoft.WindowsAPICodePack.Internal;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native;
+﻿using Microsoft.WindowsAPICodePack.COMNative;
 using Microsoft.WindowsAPICodePack.COMNative.Shell;
-using Microsoft.WindowsAPICodePack.COMNative;
+using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+
+using System;
+using System.Diagnostics;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -32,17 +28,18 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 if (notifyStruct.item1 != IntPtr.Zero &&
                     (((ShellObjectChangeTypes)_event) & ShellObjectChangeTypes.SystemImageUpdate) == ShellObjectChangeTypes.None)
                 {
-
                     if (CoreErrorHelper.Succeeded(COMNative.Shell.Shell.SHCreateItemFromIDList(
                         notifyStruct.item1, ref guid, out IShellItem2 nativeShellItem)))
                     {
                         _ = nativeShellItem.GetDisplayName(ShellItemDesignNameOptions.FileSystemPath,
                             out string name);
+
                         ItemName = name;
 
                         Trace.TraceInformation("Item1: {0}", ItemName);
                     }
                 }
+
                 else
 
                     ImageIndex = notifyStruct.item1.ToInt32();
@@ -54,17 +51,19 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     {
                         _ = nativeShellItem.GetDisplayName(ShellItemDesignNameOptions.FileSystemPath,
                             out string name);
+
                         ItemName2 = name;
 
                         Trace.TraceInformation("Item2: {0}", ItemName2);
                     }
             }
+
             finally
             {
                 if (lockId != IntPtr.Zero)
 
                     _ = Win32Native.Shell.Shell.SHChangeNotification_Unlock(lockId);
-                            }
+            }
 
         }
 
@@ -76,7 +75,5 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public string ItemName2 { get; private set; }
 
         public ShellObjectChangeTypes ChangeType => (ShellObjectChangeTypes)_event;
-
-
     }
 }

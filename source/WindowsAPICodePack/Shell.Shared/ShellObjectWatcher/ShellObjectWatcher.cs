@@ -1,10 +1,11 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
+using Microsoft.WindowsAPICodePack.Shell.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+
 using System;
 using System.ComponentModel;
 using System.Threading;
-using Microsoft.WindowsAPICodePack.Shell.Resources;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -35,9 +36,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public ShellObjectWatcher(ShellObject shellObject, bool recursive)
         {
             if (shellObject == null)
-            
+
                 throw new ArgumentNullException(nameof(shellObject));
-            
 
             if (_context == null)
             {
@@ -56,11 +56,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Gets whether the watcher is currently running.
         /// </summary>
-        public bool Running
-        {
-            get => _running;
-            private set => _running = value;
-        }
+        public bool Running { get => _running; private set => _running = value; }
 
         /// <summary>
         /// Start the watcher and begin receiving change notifications.        
@@ -71,7 +67,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         public void Start()
         {
-            if (Running)  return;
+            if (Running) return;
 
             #region Registration
             var entry = new SHChangeNotifyEntry
@@ -90,7 +86,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 ref entry);
 
             if (_registrationId == 0)
-            
+
                 throw new Win32Exception(LocalizedMessages.ShellObjectWatcherRegisterFailed);
             #endregion
 
@@ -103,29 +99,29 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         public void Stop()
         {
-            if (!Running)  return; 
+            if (!Running) return;
+
             if (_registrationId > 0)
             {
                 _ = Win32Native.Shell.Shell.SHChangeNotifyDeregister(_registrationId);
                 _registrationId = 0;
             }
+
             Running = false;
         }
 
         private void OnWindowMessageReceived(WindowMessageEventArgs e)
         {
             if (e.Message.Msg == _message)
-            {
+
                 _context.Send(x => ProcessChangeNotificationEvent(e), null);
-            }
         }
 
         private void ThrowIfRunning()
         {
             if (Running)
-            
+
                 throw new InvalidOperationException(LocalizedMessages.ShellObjectWatcherUnableToChangeEvents);
-            
         }
 
         /// <summary>
@@ -134,7 +130,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="e">The windows message representing the notification event</param>
         protected virtual void ProcessChangeNotificationEvent(WindowMessageEventArgs e)
         {
-            if (!Running) return; 
+            if (!Running) return;
+
             if (e == null) throw new ArgumentNullException(nameof(e));
 
             var notifyLock = new ChangeNotifyLock(e.Message);
@@ -159,7 +156,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
         }
 
         #region Change Events
-
         #region Mask Events
         /// <summary>
         /// Raised when any event occurs.
@@ -520,11 +516,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
             }
         }
         #endregion
-
         #endregion
 
         #region IDisposable Members
-
         /// <summary>
         /// Disposes ShellObjectWatcher
         /// </summary>
@@ -535,9 +529,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
             _manager.UnregisterAll();
 
             if (_listenerHandle != IntPtr.Zero)
-            
+
                 MessageListenerFilter.Unregister(_listenerHandle, _message);
-                    }
+        }
 
         /// <summary>
         /// Disposes ShellObjectWatcher.
@@ -551,13 +545,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Finalizer for ShellObjectWatcher
         /// </summary>
-        ~ShellObjectWatcher()
-        {
-            Dispose(false);
-        }
-
+        ~ShellObjectWatcher() => Dispose(false);
         #endregion
     }
-
-
 }

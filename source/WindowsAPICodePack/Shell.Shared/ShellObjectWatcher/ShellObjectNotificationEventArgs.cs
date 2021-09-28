@@ -1,4 +1,5 @@
 ﻿using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+
 using System;
 
 namespace Microsoft.WindowsAPICodePack.Shell
@@ -66,6 +67,4 @@ namespace Microsoft.WindowsAPICodePack.Shell
         internal SystemImageUpdatedEventArgs(ChangeNotifyLock notifyLock)
             : base(notifyLock) => ImageIndex = notifyLock.ImageIndex;
     }
-
-
 }
