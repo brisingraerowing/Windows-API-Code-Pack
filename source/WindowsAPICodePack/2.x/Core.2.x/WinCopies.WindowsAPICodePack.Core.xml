@@ -1027,31 +1027,6 @@
             in previous versions of Windows.
             </summary>
         </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.Tick">
-            <summary>
-            Occurs when a progress bar changes.
-            </summary>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.HyperlinkClick">
-            <summary>
-            Occurs when a user clicks a hyperlink.
-            </summary>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.Closing">
-            <summary>
-            Occurs when the TaskDialog is closing.
-            </summary>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.HelpInvoked">
-            <summary>
-            Occurs when a user clicks on Help.
-            </summary>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.Opened">
-            <summary>
-            Occurs when the TaskDialog is opened.
-            </summary>
-        </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.OwnerWindowHandle">
             <summary>
             Gets or sets a value that contains the owner window's handle.
@@ -1151,6 +1126,31 @@
             <summary>
             Gets or sets the progress bar on the taskdialog. ProgressBar a visual representation 
             of the progress of a long running operation.
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.Tick">
+            <summary>
+            Occurs when a progress bar changes.
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.HyperlinkClick">
+            <summary>
+            Occurs when a user clicks a hyperlink.
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.Closing">
+            <summary>
+            Occurs when the TaskDialog is closing.
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.HelpInvoked">
+            <summary>
+            Occurs when a user clicks on Help.
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.Opened">
+            <summary>
+            Occurs when the TaskDialog is opened.
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.#ctor">

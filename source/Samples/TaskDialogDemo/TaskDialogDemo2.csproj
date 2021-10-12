@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>TaskDialogDemo</RootNamespace>
+    <AssemblyName>TaskDialogDemo</AssemblyName>
+    <UseWindowsForms>true</UseWindowsForms>
+    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\WindowsAPICodePack\2.x\Core.2.x\Core.2.x.csproj" />
+  </ItemGroup>
+</Project>

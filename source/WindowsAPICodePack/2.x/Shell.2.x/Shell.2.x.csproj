@@ -15,6 +15,7 @@
     <VersionPrefix>2.10.1</VersionPrefix>
     <AssemblyVersion>2.10.1</AssemblyVersion>
     <FileVersion>2.10.1</FileVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>

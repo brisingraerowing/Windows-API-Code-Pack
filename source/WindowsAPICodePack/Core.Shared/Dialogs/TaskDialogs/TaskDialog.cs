@@ -16,6 +16,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
     /// </summary>
     public sealed class TaskDialog : IDialogControlHost, IDisposable
     {
+        #region Private Fields
         // Global instance of TaskDialog, to be used by static Show() method.
         // As most parameters of a dialog created via static Show() will have
         // identical parameters, we'll create one TaskDialog and treat it
@@ -30,32 +31,28 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         private List<TaskDialogButtonBase> commandLinks = new List<TaskDialogButtonBase>();
         private IntPtr ownerWindow;
 
+        // Main content (maps to MessageBox's "message"). 
+        private string text;
+        private string instructionText;
+        private string caption;
+        private string footerText;
+        private string checkBoxText;
+        private string detailsExpandedText;
+        private bool detailsExpanded;
+        private string detailsExpandedLabel;
+        private string detailsCollapsedLabel;
+        private bool cancelable;
+        private TaskDialogStandardIcon icon;
+        private TaskDialogStandardIcon footerIcon;
+        private TaskDialogStandardButtons standardButtons = TaskDialogStandardButtons.None;
+        private bool hyperlinksEnabled;
+        private bool? footerCheckBoxChecked = null;
+        private TaskDialogExpandedDetailsLocation expansionMode;
+        private TaskDialogStartupLocation startupLocation;
+        private TaskDialogProgressBar progressBar;
+        #endregion
+
         #region Public Properties
-        /// <summary>
-        /// Occurs when a progress bar changes.
-        /// </summary>
-        public event EventHandler<TaskDialogTickEventArgs> Tick;
-
-        /// <summary>
-        /// Occurs when a user clicks a hyperlink.
-        /// </summary>
-        public event EventHandler<TaskDialogHyperlinkClickedEventArgs> HyperlinkClick;
-
-        /// <summary>
-        /// Occurs when the TaskDialog is closing.
-        /// </summary>
-        public event EventHandler<TaskDialogClosingEventArgs> Closing;
-
-        /// <summary>
-        /// Occurs when a user clicks on Help.
-        /// </summary>
-        public event EventHandler HelpInvoked;
-
-        /// <summary>
-        /// Occurs when the TaskDialog is opened.
-        /// </summary>
-        public event EventHandler Opened;
-
         /// <summary>
         /// Gets or sets a value that contains the owner window's handle.
         /// </summary>
@@ -68,9 +65,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 ownerWindow = value;
             }
         }
-
-        // Main content (maps to MessageBox's "message"). 
-        private string text;
 
         /// <summary>
         /// Gets or sets a value that contains the message text.
@@ -86,8 +80,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             }
         }
 
-        private string instructionText;
-
         /// <summary>
         /// Gets or sets a value that contains the instruction text.
         /// </summary>
@@ -102,8 +94,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             }
         }
 
-        private string caption;
-
         /// <summary>
         /// Gets or sets a value that contains the caption text.
         /// </summary>
@@ -116,8 +106,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 caption = value;
             }
         }
-
-        private string footerText;
 
         /// <summary>
         /// Gets or sets a value that contains the footer text.
@@ -133,8 +121,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             }
         }
 
-        private string checkBoxText;
-
         /// <summary>
         /// Gets or sets a value that contains the footer check box text.
         /// </summary>
@@ -147,8 +133,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 checkBoxText = value;
             }
         }
-
-        private string detailsExpandedText;
 
         /// <summary>
         /// Gets or sets a value that contains the expanded text in the details section.
@@ -164,8 +148,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             }
         }
 
-        private bool detailsExpanded;
-
         /// <summary>
         /// Gets or sets a value that determines if the details section is expanded.
         /// </summary>
@@ -178,8 +160,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 detailsExpanded = value;
             }
         }
-
-        private string detailsExpandedLabel;
 
         /// <summary>
         /// Gets or sets a value that contains the expanded control text.
@@ -194,8 +174,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             }
         }
 
-        private string detailsCollapsedLabel;
-
         /// <summary>
         /// Gets or sets a value that contains the collapsed control text.
         /// </summary>
@@ -209,8 +187,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             }
         }
 
-        private bool cancelable;
-
         /// <summary>
         /// Gets or sets a value that determines if Cancelable is set.
         /// </summary>
@@ -223,8 +199,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 cancelable = value;
             }
         }
-
-        private TaskDialogStandardIcon icon;
 
         /// <summary>
         /// Gets or sets a value that contains the TaskDialog main icon.
@@ -240,8 +214,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             }
         }
 
-        private TaskDialogStandardIcon footerIcon;
-
         /// <summary>
         /// Gets or sets a value that contains the footer icon.
         /// </summary>
@@ -255,8 +227,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 if (NativeDialogShowing) nativeDialog.UpdateFooterIcon(value);
             }
         }
-
-        private TaskDialogStandardButtons standardButtons = TaskDialogStandardButtons.None;
 
         /// <summary>
         /// Gets or sets a value that contains the standard buttons.
@@ -281,8 +251,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             get;
         }
 
-        private bool hyperlinksEnabled;
-
         /// <summary>
         /// Gets or sets a value that determines if hyperlinks are enabled.
         /// </summary>
@@ -295,8 +263,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 hyperlinksEnabled = value;
             }
         }
-
-        private bool? footerCheckBoxChecked = null;
 
         /// <summary>
         /// Gets or sets a value that indicates if the footer checkbox is checked.
@@ -312,7 +278,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             }
         }
 
-        private TaskDialogExpandedDetailsLocation expansionMode;
         /// <summary>
         /// Gets or sets a value that contains the expansion mode for this dialog.
         /// </summary>
@@ -326,7 +291,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             }
         }
 
-        private TaskDialogStartupLocation startupLocation;
         /// <summary>
         /// Gets or sets a value that contains the startup location.
         /// </summary>
@@ -340,7 +304,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             }
         }
 
-        private TaskDialogProgressBar progressBar;
 
         /// <summary>
         /// Gets or sets the progress bar on the taskdialog. ProgressBar a visual representation 
@@ -359,11 +322,36 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 progressBar = value;
             }
         }
+        #endregion
 
+        #region Public Events
+        /// <summary>
+        /// Occurs when a progress bar changes.
+        /// </summary>
+        public event EventHandler<TaskDialogTickEventArgs> Tick;
+
+        /// <summary>
+        /// Occurs when a user clicks a hyperlink.
+        /// </summary>
+        public event EventHandler<TaskDialogHyperlinkClickedEventArgs> HyperlinkClick;
+
+        /// <summary>
+        /// Occurs when the TaskDialog is closing.
+        /// </summary>
+        public event EventHandler<TaskDialogClosingEventArgs> Closing;
+
+        /// <summary>
+        /// Occurs when a user clicks on Help.
+        /// </summary>
+        public event EventHandler HelpInvoked;
+
+        /// <summary>
+        /// Occurs when the TaskDialog is opened.
+        /// </summary>
+        public event EventHandler Opened;
         #endregion
 
         #region Constructors
-
         /// <summary>
         /// Creates a basic TaskDialog window 
         /// </summary>
@@ -374,11 +362,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             // Initialize various data structs.
             Controls = new DialogControlCollection<TaskDialogControl>(this);
         }
-
         #endregion
 
         #region Static Show Methods
-
         /// <summary>
         /// Creates and shows a task dialog with the specified message text.
         /// </summary>
@@ -411,17 +397,14 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         #endregion
 
         #region Instance Show Methods
-
         /// <summary>
         /// Creates and shows a task dialog.
         /// </summary>
         /// <returns>The dialog result.</returns>
         public TaskDialogResult Show() => ShowCore();
-
         #endregion
 
         #region Core Show Logic
-
         // CORE SHOW METHODS:
         // All static Show() calls forward here - 
         // it is responsible for retrieving
@@ -572,11 +555,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             // TaskDialog's own cleanup code - 
             // which runs post show - will handle disposal of native dialog.
         }
-
         #endregion
 
         #region Configuration Construction
-
         private void ApplyCoreSettings(in NativeTaskDialogSettings settings)
         {
             ApplyGeneralNativeConfiguration(settings.NativeConfiguration);
@@ -792,11 +773,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                     throw new InvalidOperationException(LocalizedMessages.TaskDialogUnkownControl);
             }
         }
-
         #endregion
 
         #region Helpers
-
         // Helper to map the standard button IDs returned by 
         // TaskDialogIndirect to the standard button ID enum - 
         // note that we can't just cast, as the Win32
@@ -861,11 +840,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         // across both buttons and radio buttons,
         // even though the Win32 API allows them to be separate.
         private TaskDialogButtonBase GetButtonForId(int id) => (TaskDialogButtonBase)Controls.GetControlbyId(id);
-
         #endregion
 
         #region IDialogControlHost Members
-
         // We're explicitly implementing this interface 
         // as the user will never need to know about it
         // or use it directly - it is only for the internal 
@@ -1001,11 +978,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                     // either thrown on the changing event, or we handle above.
                     Debug.Assert(true, "Control property changed notification not handled properly - being ignored");
         }
-
         #endregion
 
         #region Event Percolation Methods
-
         // All Raise*() methods are called by the 
         // NativeTaskDialog when various pseudo-controls
         // are triggered.
@@ -1068,11 +1043,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         internal void RaiseOpenedEvent() => Opened?.Invoke(this, EventArgs.Empty);
 
         internal void RaiseTickEvent(in int ticks) => Tick?.Invoke(this, new TaskDialogTickEventArgs(ticks));
-
         #endregion
 
         #region Cleanup Code
-
         // Cleans up data and structs from a single 
         // native dialog Show() invocation.
         private void CleanUp()
@@ -1094,7 +1067,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             nativeDialog?.Dispose();
         }
 
-
         // Dispose pattern - cleans up data and structs for 
         // a) any native dialog currently showing, and
         // b) anything else that the outer TaskDialog has.
@@ -1112,10 +1084,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// <summary>
         /// TaskDialog Finalizer
         /// </summary>
-        ~TaskDialog()
-        {
-            Dispose(false);
-        }
+        ~TaskDialog() => Dispose(false);
 
         /// <summary>
         /// Dispose TaskDialog Resources
@@ -1156,7 +1125,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
             }
         }
-
         #endregion
 
         /// <summary>

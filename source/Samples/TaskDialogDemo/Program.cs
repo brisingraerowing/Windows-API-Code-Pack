@@ -27,21 +27,23 @@ namespace TaskDialogDemo
 
         private static void CreateTaskDialogDemo()
         {
-            TaskDialog taskDialogMain = new TaskDialog();
-            taskDialogMain.Caption = "TaskDialog Samples";
-            taskDialogMain.InstructionText = "Pick a sample to try:";
-            taskDialogMain.FooterText = "Demo application as part of <a href=\"http://code.msdn.microsoft.com/WindowsAPICodePack\">Windows API Code Pack for .NET Framework</a>";
-            taskDialogMain.Cancelable = true;
+            var taskDialogMain = new TaskDialog
+            {
+                Caption = "TaskDialog Samples",
+                InstructionText = "Pick a sample to try:",
+                FooterText = "Demo application as part of <a href=\"http://code.msdn.microsoft.com/WindowsAPICodePack\">Windows API Code Pack for .NET Framework</a>",
+                Cancelable = true,
 
-            // Enable the hyperlinks
-            taskDialogMain.HyperlinksEnabled = true;
+                // Enable the hyperlinks
+                HyperlinksEnabled = true
+            };
+
             taskDialogMain.HyperlinkClick += new EventHandler<TaskDialogHyperlinkClickedEventArgs>(taskDialogMain_HyperlinkClick);
 
             // Add a close button so user can close our dialog
             taskDialogMain.StandardButtons = TaskDialogStandardButtons.Close;
 
             #region Creating and adding command link buttons
-
             TaskDialogCommandLink buttonTestHarness = new TaskDialogCommandLink("test_harness", "TaskDialog Test Harness");
             buttonTestHarness.Click += new EventHandler(buttonTestHarness_Click);
 
@@ -83,11 +85,10 @@ namespace TaskDialogDemo
             taskDialogMain.Controls.Add(buttonProgress);
             taskDialogMain.Controls.Add(buttonProgressEffects);
             taskDialogMain.Controls.Add(buttonTimer);
-
             #endregion
 
             // Show the taskdialog
-            taskDialogMain.Show();
+            _ = taskDialogMain.Show();
         }
 
 
@@ -444,7 +445,7 @@ namespace TaskDialogDemo
             tdProgressEffectsSample.InstructionText = "Shows a dialog with Marquee style";
 
             TaskDialogProgressBar progressBarMarquee = new TaskDialogProgressBar();
-            progressBarMarquee.State = TaskDialogProgressBarState.Marquee;
+            progressBarMarquee.State = Microsoft.WindowsAPICodePack.Win32Native.Dialogs.TaskDialogProgressBarState.Marquee;
 
             tdProgressEffectsSample.ProgressBar = progressBarMarquee;
 

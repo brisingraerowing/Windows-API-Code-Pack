@@ -30,6 +30,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         private static readonly object _crossThreadWindowLock = new object();
         private static IntPtr _tempHandle = IntPtr.Zero;
 
+        public IntPtr WindowHandle { get; private set; }
+        public static bool Running => _running;
+
         public event EventHandler<WindowMessageEventArgs> MessageReceived;
 
         public MessageListener()
@@ -143,8 +146,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     break;
 
                 case (uint)WindowMessage.Destroy:
-                    _running = false;
-                    _windowThread = null;
+                    lock (_crossThreadWindowLock)
+                    {
+                        _running = false;
+                        _windowThread = null;
+                        Monitor.Pulse(_crossThreadWindowLock);
+                    }
                     break;
 
                 default:
@@ -162,11 +169,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             return ShellObjectWatcherNativeMethods.DefWindowProc(hwnd, msg, wparam, lparam);
         }
 
-        public IntPtr WindowHandle { get; private set; }
-        public static bool Running => _running;
-
         #region IDisposable Members
-
         ~MessageListener() => Dispose(false);
 
         public void Dispose()
@@ -185,7 +188,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                     if (_listeners.Count == 0)
 
-                        Core.PostMessage(WindowHandle, WindowMessage.Destroy, IntPtr.Zero, IntPtr.Zero);
+                        lock (_crossThreadWindowLock)
+                        {
+                            Core.PostMessage(WindowHandle, WindowMessage.Destroy, IntPtr.Zero, IntPtr.Zero);
+                            _ = Monitor.Wait(_crossThreadWindowLock);
+                        }
                 }
             }
         }

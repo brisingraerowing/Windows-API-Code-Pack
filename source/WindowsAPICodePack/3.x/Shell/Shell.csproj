@@ -16,6 +16,7 @@
     <VersionSuffix>preview</VersionSuffix>
     <AssemblyVersion>3.8.1</AssemblyVersion>
     <FileVersion>3.8.1</FileVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>
