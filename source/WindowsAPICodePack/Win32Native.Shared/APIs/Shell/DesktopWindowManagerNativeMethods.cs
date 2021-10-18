@@ -13,7 +13,8 @@ using static System.Runtime.InteropServices.Marshal;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager
 {
-    [Flags]
+    [Flags,
+        Obsolete("Replaced by Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuFlags and Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuStates.")]
     public enum MenuFlags : uint
     {
         Insert = 0x00000000,

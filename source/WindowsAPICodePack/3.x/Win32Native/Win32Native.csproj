@@ -14,10 +14,10 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <AssemblyName>WinCopies.WindowsAPICodePack.Win32Native</AssemblyName>
     <DefineConstants>WAPICP3;$(DefineConstants)</DefineConstants>
-    <VersionPrefix>3.7</VersionPrefix>
+    <VersionPrefix>3.9</VersionPrefix>
     <VersionSuffix>preview</VersionSuffix>
-    <AssemblyVersion>3.7</AssemblyVersion>
-    <FileVersion>3.7</FileVersion>
+    <AssemblyVersion>3.9</AssemblyVersion>
+    <FileVersion>3.9</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

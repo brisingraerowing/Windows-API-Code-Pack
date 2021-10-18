@@ -8,6 +8,13 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
+using static WinCopies.
+#if WAPICP3
+    ThrowHelper;
+#else
+    Util.Util;
+#endif
+
 namespace Microsoft.WindowsAPICodePack.Shell
 {
     /// <summary>
@@ -67,7 +74,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             foreach (ShellObject item in items)
 
-                pidls.AddLast(COMNative.Shell.Shell.GetPidl(item.ParsingName));
+                _ = pidls.AddLast(COMNative.Shell.Shell.GetPidl(item.ParsingName));
 
             return pidls.ToArray();
         }
@@ -90,6 +97,15 @@ namespace Microsoft.WindowsAPICodePack.Shell
             return pidls;
         }
 #endif
+
+        public HResult TryGetUIObjectOf(IntPtr hwndOwner, IntPtr[] ptrs, ref Guid guid, out IntPtr ptr) => ptrs == null ? throw GetArgumentNullException(nameof(ptrs)) : NativeShellFolder.GetUIObjectOf(hwndOwner, (uint)ptrs.Length, ptrs, ref guid, IntPtr.Zero, out ptr);
+
+        public IntPtr GetUIObjectOf(IntPtr hwndOwner, IntPtr[] ptrs, ref Guid guid)
+        {
+            CoreErrorHelper.ThrowExceptionForHR(TryGetUIObjectOf(hwndOwner, ptrs, ref guid, out IntPtr ptr));
+
+            return ptr;
+        }
 
         #region Disposable Pattern
         /// <summary>

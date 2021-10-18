@@ -5,7 +5,10 @@ using System;
 using System.Diagnostics;
 using System.Windows.Interop;
 
+using static Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuFlags;
+using static Microsoft.WindowsAPICodePack.Win32Native.Menus.Menus;
 using static Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.HandlerNativeMethods;
+using static Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.SystemMenuCommands;
 
 using static System.Runtime.InteropServices.Marshal;
 
@@ -13,7 +16,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 {
     public static class DesktopWindowManager
     {
-        public static bool EnableCloseMenuItemFromMenuHandle(in IntPtr hMenu) => Win32Native.Shell.DesktopWindowManager.DesktopWindowManager.EnableMenuItem(hMenu, SystemMenuCommands.Close, MenuFlags.ByCommand | MenuFlags.Enabled);
+        public static bool EnableCloseMenuItemFromMenuHandle(in IntPtr hMenu) => EnableMenuItemByCommand(hMenu, Close, Enabled);
 
         public static bool EnableCloseMenuItemFromWindowHandle(in IntPtr hwnd)
         {
@@ -26,7 +29,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         public static bool EnableCloseMenuItem(in System.Windows.Window window) => EnableCloseMenuItemFromWindowHandle(new WindowInteropHelper(window).Handle);
 
-        public static bool DisableCloseMenuItemFromMenuHandle(in IntPtr hMenu) => Win32Native.Shell.DesktopWindowManager.DesktopWindowManager.EnableMenuItem(hMenu, SystemMenuCommands.Close, MenuFlags.ByCommand | MenuFlags.Grayed);
+        public static bool DisableCloseMenuItemFromMenuHandle(in IntPtr hMenu) => EnableMenuItemByCommand(hMenu, Close, Grayed);
 
         public static bool DisableCloseMenuItemFromWindowHandle(in IntPtr hwnd)
         {
@@ -348,13 +351,13 @@ int
         /// <para>Name: WS_MINIMIZEBOX</para>
         /// <para>Description: The window has a minimize button. Cannot be combined with the <see cref="ContextHelp"/> style. The <see cref="SystemMenu"/> style must also be specified.</para>
         /// </summary>
-        MinimizeBox = 0x00020000,
+        MinimizeBox = Group,
 
         /// <summary>
         /// <para>Name: WS_MAXIMIZEBOX</para>
         /// <para>Description: The window has a maximize button. Cannot be combined with the <see cref="ContextHelp"/> style. The <see cref="SystemMenu"/> style must also be specified. </para>
         /// </summary>
-        MaximizeBox = 0x00010000,
+        MaximizeBox = TabStop,
 
         /// <summary>
         /// <para>Name: WS_TILEDWINDOW</para>
@@ -456,7 +459,7 @@ int
         /// <para>Name: WS_EX_LEFT</para>
         /// <para>Description: The window has generic left-aligned properties. This is the default.</para>
         /// </summary>
-        Left = 0x00000000,
+        Left = Overlapped,
 
         /// <summary>
         /// <para>Name: WS_EX_RTLREADING</para>
@@ -468,7 +471,7 @@ int
         /// <para>Name: WS_EX_LTRREADING</para>
         /// <para>Description: The window text is displayed using left-to-right reading-order properties. This is the default.</para>
         /// </summary>
-        LTRReading = 0x00000000,
+        LTRReading = Overlapped,
 
         /// <summary>
         /// <para>Name: WS_EX_LEFTSCROLLBAR</para>
@@ -480,25 +483,25 @@ int
         /// <para>Name: WS_EX_RIGHTSCROLLBAR</para>
         /// <para>Description: The vertical scroll bar (if present) is to the right of the client area. This is the default.</para>
         /// </summary>
-        RightScrollBar = 0x00000000,
+        RightScrollBar = Overlapped,
 
         /// <summary>
         /// <para>Name: WS_EX_CONTROLPARENT</para>
         /// <para>Description: The window itself contains child windows that should take part in dialog box navigation. If this style is specified, the dialog manager recurses into children of this window when performing navigation operations such as handling the TAB key, an arrow key, or a keyboard mnemonic.</para>
         /// </summary>
-        ControlParent = 0x00010000,
+        ControlParent = TabStop,
 
         /// <summary>
         /// <para>Name: WS_EX_STATICEDGE</para>
         /// <para>Description: The window has a three-dimensional border style intended to be used for items that do not accept user input.</para>
         /// </summary>
-        StaticEdge = 0x00020000,
+        StaticEdge = Group,
 
         /// <summary>
         /// <para>Name: WS_EX_APPWINDOW</para>
         /// <para>Description: Forces a top-level window onto the taskbar when the window is visible.</para>
         /// </summary>
-        AppWindow = 0x00040000,
+        AppWindow = ThickFrame,
 
 
 
@@ -520,37 +523,37 @@ int
         /// <para>Name: WS_EX_LAYERED</para>
         /// <para>Description: The window is a layered window. This style cannot be used if the window has a class style of either CS_OWNDC or CS_CLASSDC. Windows 8: The <see cref="Layered"/> style is supported for top-level windows and child windows. Previous Windows versions support <see cref="Layered"/> only for top-level windows.</para>
         /// </summary>
-        Layered = 0x00080000,
+        Layered = SystemMenu,
 
         /// <summary>
         /// <para>Name: WS_EX_NOINHERITLAYOUT</para>
         /// <para>Description: The window does not pass its window layout to its child windows.</para>
         /// </summary>
-        NoInheritLayout = 0x00100000, // Disable inheritence of mirroring by children
+        NoInheritLayout = HorizontalScrollBar, // Disable inheritence of mirroring by children
 
         /// <summary>
         /// <para>Name: WS_EX_NOREDIRECTIONBITMAP</para>
         /// <para>Description: The window does not render to a redirection surface. This is for windows that do not have visible content or that use mechanisms other than surfaces to provide their visual.</para>
         /// </summary>
-        NoRedirectionBitmap = 0x00200000,
+        NoRedirectionBitmap = VerticalScrollBar,
 
         /// <summary>
         /// <para>Name: WS_EX_LAYOUTRTL</para>
         /// <para>Description: If the shell language is Hebrew, Arabic, or another language that supports reading order alignment, the horizontal origin of the window is on the right edge. Increasing horizontal values advance to the left.</para>
         /// </summary>
-        LayoutRTL = 0x00400000, // Right to left mirroring
+        LayoutRTL = DialogFrame, // Right to left mirroring
 
         /// <summary>
         /// <para>Name: WS_EX_COMPOSITED</para>
         /// <para>Description: Paints all descendants of a window in bottom-to-top painting order using double-buffering. Bottom-to-top painting order allows a descendent window to have translucency (alpha) and transparency (color-key) effects, but only if the descendent window also has the <see cref="Transparent"/> bit set. Double-buffering allows the window and its descendents to be painted without flicker. This cannot be used if the window has a class style of either CS_OWNDC or CS_CLASSDC. Windows 2000: This style is not supported.</para>
         /// </summary>
-        Composited = 0x02000000,
+        Composited = ClipChildren,
 
         /// <summary>
         /// <para>Name: WS_EX_NOACTIVATE</para>
         /// <para>Description: A top-level window created with this style does not become the foreground window when the user clicks it. The system does not bring this window to the foreground when the user minimizes or closes the foreground window. The window should not be activated through programmatic access or via keyboard navigation by accessible technology, such as Narrator. To activate the window, use the SetActiveWindow or SetForegroundWindow function. The window does not appear on the taskbar by default. To force the window to appear on the taskbar, use the <see cref="AppWindow"/> style.</para>
         /// </summary>
-        NoActivate = 0x08000000
+        NoActivate = Disabled
     }
 
     [Flags]
@@ -638,7 +641,7 @@ int
         /// <summary>
         /// See <see cref="WindowStyles.LTRReading"/>
         /// </summary>
-        LTRReading = (int)WindowStyles.LTRReading,
+        LTRReading = Left,
 
         /// <summary>
         /// See <see cref="WindowStyles.LeftScrollBar"/>
@@ -648,7 +651,7 @@ int
         /// <summary>
         /// See <see cref="WindowStyles.RightScrollBar"/>
         /// </summary>
-        RightScrollBar = (int)WindowStyles.RightScrollBar,
+        RightScrollBar = Left,
 
         /// <summary>
         /// See <see cref="WindowStyles.ControlParent"/>

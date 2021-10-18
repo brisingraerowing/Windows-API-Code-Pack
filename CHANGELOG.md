@@ -10,10 +10,22 @@ For issues and bug fixes details, visit [https://wincopies.com/fwd.php?id=3](htt
 
 For the original code (version 1.1, last release by Microsoft), see [https://wincopies.com/fwd.php?id=1](https://wincopies.com/fwd.php?id=1)
 
+## 10/18/2021 3.9
+
+- Add:
+    - (Try)GetUIObjectOf methods to ShellContainer.
+    - new enumerations for win32 menu management.
+- MenuItemInfo:
+    - fType type is now MenuFlags
+    - fState type is now MenuStates.
+- Some method parameters of the class Microsoft.WindowsAPICodePack.Win32Native.Menus.Menus have changed to the new menu enums.
+- Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.MenuFlags has been replaced by Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuFlags and Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuStates.
+
 ## 09/21/2021 3.7.1
 
-- Add GetPIDLs methods to ShellContainer.
-- Add types and TryExtractIcon method to FileOperation and SHGetImageList native method.
+- Add:
+    - GetPIDLs methods to ShellContainer.
+    - types and TryExtractIcon method to FileOperation and SHGetImageList native method.
 
 ## 09/08/2021 3.6.1
 
@@ -78,6 +90,10 @@ COMNative 3.0
 
 - Removals:
     - Some 'ref' keywords in native PortableDevices interfaces. These keywords have been removed for interface type parameters because they was redundant.
+
+## 10/18/2021 2.10.2
+
+- MessageListener was not disposed properly causing inability to re-create any new ShellObjectWatcher after all existing ones were disposed.
 
 ## 09/28/2021 2.10.1
 
