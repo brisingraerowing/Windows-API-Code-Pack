@@ -5,7 +5,13 @@ using System;
 using System.Diagnostics;
 using System.Windows.Interop;
 
-using static Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuFlags;
+using static Microsoft.WindowsAPICodePack.Win32Native.
+#if WAPICP3
+    Menus
+#else
+    Shell.DesktopWindowManager
+#endif
+    .MenuFlags;
 using static Microsoft.WindowsAPICodePack.Win32Native.Menus.Menus;
 using static Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.HandlerNativeMethods;
 using static Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.SystemMenuCommands;
@@ -60,7 +66,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 #if WAPICP3
             long
 #else
-int
+            int
 #endif
           result = GetWindowLongPtr(hwnd,
 #if WAPICP3
@@ -89,7 +95,7 @@ int
 
             return (WindowStylesEx)result;
         }
-        
+
         [Obsolete("Use GetWindowStyles instead.")]
         public static void SetWindowStylesEx(IntPtr hwnd, WindowStylesEx styles)
         {
@@ -133,7 +139,7 @@ int
 #if WAPICP3
             WindowStyles
 #else
-            WindowStylesEx 
+            WindowStylesEx
 #endif
             stylesEx, SetWindowPositionOptions windowPositionOptions)
         {
@@ -160,7 +166,7 @@ int
         {
             IntPtr activatedHandle = HandlerNativeMethods.GetForegroundWindow();
 
-            return  activatedHandle != IntPtr.Zero && activatedHandle == hWnd;
+            return activatedHandle != IntPtr.Zero && activatedHandle == hWnd;
         }
 
         // TODO: also return the int given by HandlerNativeMethods.GetWindowThreadProcessId?

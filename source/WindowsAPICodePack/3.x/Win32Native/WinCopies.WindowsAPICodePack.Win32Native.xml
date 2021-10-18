@@ -2618,89 +2618,6 @@
              Adds the system highlight color to the icon.
              </summary>
         </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.Type.Byte">
-            <summary>
-            Data is written to the pipe as a stream of bytes. This mode cannot be used with <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.Read.Message"/>. The pipe does not distinguish bytes written during different write operations.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.Type.Message">
-            <summary>
-            Data is written to the pipe as a stream of messages. The pipe treats the bytes written during each write operation as a message unit. The <see cref="M:System.Runtime.InteropServices.Marshal.GetLastWin32Error"/> function returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.MoreData"/> when a message is not read completely. This mode can be used with either <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.Read.Message"/> or <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.Read.Byte"/>.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.Access.InBound">
-            <summary>
-            The flow of data in the pipe goes from client to server only. This mode gives the server the equivalent of GENERIC_READ access to the pipe. The client must specify GENERIC_WRITE access when connecting to the pipe. If the client must read pipe settings by calling the GetNamedPipeInfo or GetNamedPipeHandleState functions, the client must specify GENERIC_WRITE and FILE_READ_ATTRIBUTES access when connecting to the pipe.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.Access.OutBound">
-            <summary>
-            The flow of data in the pipe goes from server to client only. This mode gives the server the equivalent of GENERIC_WRITE access to the pipe. The client must specify GENERIC_READ access when connecting to the pipe. If the client must change pipe settings by calling the SetNamedPipeHandleState function, the client must specify GENERIC_READ and FILE_WRITE_ATTRIBUTES access when connecting to the pipe.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.Access.Duplex">
-            <summary>
-            The pipe is bi-directional; both server and client processes can read from and write to the pipe. This mode gives the server the equivalent of GENERIC_READ and GENERIC_WRITE access to the pipe. The client can specify GENERIC_READ or GENERIC_WRITE, or both, when it connects to the pipe using the CreateFile function.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.File.FirstPipeInstance">
-            <summary>
-            If you attempt to create multiple instances of a pipe with this flag, creation of the first instance succeeds, but creation of the next instance fails with ERROR_ACCESS_DENIED.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.File.WriteThrough">
-            <summary>
-            Write-through mode is enabled. This mode affects only write operations on byte-type pipes and, then, only when the client and server processes are on different computers. If this mode is enabled, functions writing to a named pipe do not return until the data written is transmitted across the network and is in the pipe's buffer on the remote computer. If this mode is not enabled, the system enhances the efficiency of network operations by buffering data until a minimum number of bytes accumulate or until a maximum time elapses.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.File.Overlapped">
-            <summary>
-            Overlapped mode is enabled. If this mode is enabled, functions performing read, write, and connect operations that may take a significant time to be completed can return immediately. This mode enables the thread that started the operation to perform other operations while the time-consuming operation executes in the background. For example, in overlapped mode, a thread can handle simultaneous input and output (I/O) operations on multiple instances of a pipe or perform simultaneous read and write operations on the same pipe handle. If overlapped mode is not enabled, functions performing read, write, and connect operations on the pipe handle do not return until the operation is finished. The ReadFileEx and WriteFileEx functions can only be used with a pipe handle in overlapped mode. The ReadFile, WriteFile, ConnectNamedPipe, and TransactNamedPipe functions can execute either synchronously or as overlapped operations.
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.NamedPipe">
-            <summary>
-            Native API for Named Pipes
-            https://github.com/PowerShell/PowerShell/blob/master/src/System.Management.Automation/engine/remoting/common/RemoteSessionNamedPipe.cs#L124-L256
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.NamedPipe.CreateNamedPipeW(System.String,System.UInt32,System.UInt32,System.UInt32,System.UInt32,System.UInt32,System.UInt32,Microsoft.WindowsAPICodePack.Win32Native.SecurityAttributes)">
-            <summary>
-            Creates an instance of a named pipe and returns a handle for subsequent pipe operations. A named pipe server process uses this function either to create the first instance of a specific named pipe and establish its basic attributes or to create a new instance of an existing named pipe.
-            </summary>
-            <param name="lpName">
-            <para>The unique pipe name. This string must have the following form: \\.\pipe\pipename</para>
-            <para>The pipename part of the name can include any character other than a backslash, including numbers and special characters. The entire pipe name string can be up to 256 characters long. Pipe names are not case sensitive.</para></param>
-            <param name="dwOpenMode">
-            <para>The open mode.</para>
-            <para>The function fails if <paramref name="dwOpenMode"/> specifies anything other than 0 or the flags listed in the following tables.</para>
-            <para>This parameter must specify one of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.Access"/> modes. The same mode must be specified for each instance of the pipe.</para>
-            <para>This parameter can also include one or more of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.File"/> enum flags, which enable the write-through and overlapped modes. These modes can be different for different instances of the same pipe.</para>
-            <para>This parameter can include any combination of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.WriteAccess"/> security access modes. These modes can be different for different instances of the same pipe.</para></param>
-            <param name="dwPipeMode"><para>The pipe mode.</para>
-            <para>The function fails if dwPipeMode specifies anything other than 0 or the flags listed in the following tables.</para>
-            <para>One of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.Type"/> modes can be specified. The same type mode must be specified for each instance of the pipe.</para>
-            <para>One of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.Read"/> modes can be specified. Different instances of the same pipe can specify different read modes.</para>
-            <para>One of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.Wait"/> modes can be specified. Different instances of the same pipe can specify different wait modes.</para>
-            <para>One of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.RemoteClient"/> modes can be specified. Different instances of the same pipe can specify different remote-client modes.</para></param>
-            <param name="nMaxInstances"><para>The maximum number of instances that can be created for this pipe. The first instance of the pipe can specify this value; the same number must be specified for other instances of the pipe. Acceptable values are in the range 1 through <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.NamedPipe.UnlimitedInstances"/> (255).</para>
-            <para>If this parameter is <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.NamedPipe.UnlimitedInstances"/>, the number of pipe instances that can be created is limited only by the availability of system resources. If nMaxInstances is greater than <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.NamedPipe.UnlimitedInstances"/>, the return value is INVALID_HANDLE_VALUE and <see cref="M:System.Runtime.InteropServices.Marshal.GetLastWin32Error"/> returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.InvalidParameter"/>.</para></param>
-            <param name="nOutBufferSize">The number of bytes to reserve for the output buffer.</param>
-            <param name="nInBufferSize">The number of bytes to reserve for the input buffer.</param>
-            <param name="nDefaultTimeOut"><para>The default time-out value, in milliseconds, if the WaitNamedPipe function specifies NMPWAIT_USE_DEFAULT_WAIT. Each instance of a named pipe must specify the same value.</para>
-            <para>A value of zero will result in a default time-out of 50 milliseconds.</para></param>
-            <param name="lpSecurityAttributes">A pointer to a <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.SecurityAttributes"/> structure that specifies a security descriptor for the new named pipe and determines whether child processes can inherit the returned handle. If lpSecurityAttributes is <see langword="null"/>, the named pipe gets a default security descriptor and the handle cannot be inherited. The ACLs in the default security descriptor for a named pipe grant full control to the LocalSystem account, administrators, and the creator owner. They also grant read access to members of the Everyone group and the anonymous account.</param>
-            <returns><para>If the function succeeds, the return value is a handle to the server end of a named pipe instance.</para>
-            <para>If the function fails, the return value is INVALID_HANDLE_VALUE. To get extended error information, call <see cref="M:System.Runtime.InteropServices.Marshal.GetLastWin32Error"/>.</para></returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.NamedPipe.CreateNamedPipe(System.String,System.UInt32,System.IO.Pipes.PipeSecurity)">
-            <summary>
-            Helper method to create a PowerShell transport named pipe via native API, along
-            with a returned .Net NamedPipeServerStream object wrapping the named pipe.
-            </summary>
-            <param name="pipeName">Named pipe core name.</param>
-            <returns>An instance of the <see cref="T:System.IO.Pipes.NamedPipeServerStream"/> class.</returns>
-        </member>
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfoFlags.State">
             <summary>
             Retrieves or sets the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfo.fState"/> member.
@@ -2745,6 +2662,110 @@
         <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfoFlags.FType">
             <summary>
             Retrieves or sets the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfo.fType"/> member.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuFlags.Separator">
+            <summary>
+            <para>Name: MFT_SEPARATOR</para>
+            <para>Description: Specifies that the menu item is a separator. A menu item separator appears as a horizontal dividing line. The dwTypeData and cch members are ignored. This value is valid only in a drop-down menu, submenu, or shortcut menu.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuFlags.String">
+            <summary>
+            <para>Name: MFT_STRING</para>
+            <para>Description: Displays the menu item using a text string. The <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfo.dwTypeData"/> member is the pointer to a null-terminated string, and the cch member is the length of the string.</para>
+            <para>Replaced by: <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfoFlags.String"/>.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuFlags.Bitmap">
+            <summary>
+            <para>Name: MFT_BITMAP</para>
+            <para>Description: Displays the menu item using a bitmap. The low-order word of the dwTypeData member is the bitmap handle, and the cch member is ignored.</para>
+            <para>Replaced by: <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfoFlags.Bitmap"/> and <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfo.hbmpItem"/>.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuFlags.OwnerDraw">
+            <summary>
+            <para>Name: MFT_OWNERDRAW</para>
+            <para>Description: Assigns responsibility for drawing the menu item to the window that owns the menu. The window receives a <see cref="F:Microsoft.WindowsAPICodePack.WindowMessage.MeasureItem"/> message before the menu is displayed for the first time, and a <see cref="F:Microsoft.WindowsAPICodePack.WindowMessage.DrawItem"/> message whenever the appearance of the menu item must be updated. If this value is specified, the dwTypeData member contains an application-defined value.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuFlags.MenuBarBreak">
+            <summary>
+            <para>Name: MFT_MENUBARBREAK</para>
+            <para>Description: Places the menu item on a new line (for a menu bar) or in a new column (for a drop-down menu, submenu, or shortcut menu). For a drop-down menu, submenu, or shortcut menu, a vertical line separates the new column from the old.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuFlags.MenuBreak">
+            <summary>
+            <para>Name: MFT_MENUBREAK</para>
+            <para>Description: Places the menu item on a new line (for a menu bar) or in a new column (for a drop-down menu, submenu, or shortcut menu). For a drop-down menu, submenu, or shortcut menu, the columns are not separated by a vertical line.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuFlags.RightJustify">
+            <summary>
+            <para>Name: MFT_RIGHTJUSTIFY</para>
+            <para>Description: Right-justifies the menu item and any subsequent items. This value is valid only if the menu item is in a menu bar.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuFlags.RadioCheck">
+            <summary>
+            <para>Name: MFT_RADIOCHECK</para>
+            <para>Description: Displays selected menu items using a radio-button mark instead of a check mark if the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfo.hbmpChecked"/> member is <see langword="null"/>.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuFlags.RightOrder">
+            <summary>
+            <para>Name: MFT_RIGHTORDER</para>
+            <para>Description: Specifies that menus cascade right-to-left (the default is left-to-right). This is used to support right-to-left languages, such as Arabic and Hebrew.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuStates.Grayed">
+            <summary>
+            <para>Name: MFS_GRAYED</para>
+            <para>Description: Disables the menu item and grays it so that it cannot be selected. This is equivalent to <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuStates.Disabled"/>.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuStates.Disabled">
+            <summary>
+            <para>Name: MFS_DISABLED</para>
+            <para>Description: Disables the menu item and grays it so that it cannot be selected. This is equivalent to <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuStates.Grayed"/>.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuStates.Checked">
+            <summary>
+            <para>Name: MFS_CHECKED</para>
+            <para>Description: Checks the menu item. For more information about selected menu items, see the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfo.hbmpChecked"/> member.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuStates.Hilite">
+            <summary>
+            <para>Name: MFS_HILITE</para>
+            <para>Description: Highlights the menu item.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuStates.Enabled">
+            <summary>
+            <para>Name: MFS_ENABLED</para>
+            <para>Description: Enables the menu item so that it can be selected. This is the default state.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuStates.Unchecked">
+            <summary>
+            <para>Name: MFS_UNCHECKED</para>
+            <para>Description: Unchecks the menu item. For more information about clear menu items, see the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuItemInfo.hbmpChecked"/> member.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuStates.Unhilite">
+            <summary>
+            <para>Name: MFS_UNHILITE</para>
+            <para>Description: Removes the highlight from the menu item. This is the default state.</para>
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuStates.Default">
+            <summary>
+            <para>Name: MFS_DEFAULT</para>
+            <para>Description: Specifies that the menu item is the default. A menu can contain only one default menu item, which is displayed in bold.</para>
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Win32Native.Menus.TrackPopupMenuFlags">
@@ -2865,6 +2886,89 @@
             <para>Name: TPM_LAYOUTRTL</para>
             <para>Description: Uses right-to-left text layout. By default, the text layout is left-to-right.</para>
             </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.Type.Byte">
+            <summary>
+            Data is written to the pipe as a stream of bytes. This mode cannot be used with <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.Read.Message"/>. The pipe does not distinguish bytes written during different write operations.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.Type.Message">
+            <summary>
+            Data is written to the pipe as a stream of messages. The pipe treats the bytes written during each write operation as a message unit. The <see cref="M:System.Runtime.InteropServices.Marshal.GetLastWin32Error"/> function returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.MoreData"/> when a message is not read completely. This mode can be used with either <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.Read.Message"/> or <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.Read.Byte"/>.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.Access.InBound">
+            <summary>
+            The flow of data in the pipe goes from client to server only. This mode gives the server the equivalent of GENERIC_READ access to the pipe. The client must specify GENERIC_WRITE access when connecting to the pipe. If the client must read pipe settings by calling the GetNamedPipeInfo or GetNamedPipeHandleState functions, the client must specify GENERIC_WRITE and FILE_READ_ATTRIBUTES access when connecting to the pipe.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.Access.OutBound">
+            <summary>
+            The flow of data in the pipe goes from server to client only. This mode gives the server the equivalent of GENERIC_WRITE access to the pipe. The client must specify GENERIC_READ access when connecting to the pipe. If the client must change pipe settings by calling the SetNamedPipeHandleState function, the client must specify GENERIC_READ and FILE_WRITE_ATTRIBUTES access when connecting to the pipe.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.Access.Duplex">
+            <summary>
+            The pipe is bi-directional; both server and client processes can read from and write to the pipe. This mode gives the server the equivalent of GENERIC_READ and GENERIC_WRITE access to the pipe. The client can specify GENERIC_READ or GENERIC_WRITE, or both, when it connects to the pipe using the CreateFile function.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.File.FirstPipeInstance">
+            <summary>
+            If you attempt to create multiple instances of a pipe with this flag, creation of the first instance succeeds, but creation of the next instance fails with ERROR_ACCESS_DENIED.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.File.WriteThrough">
+            <summary>
+            Write-through mode is enabled. This mode affects only write operations on byte-type pipes and, then, only when the client and server processes are on different computers. If this mode is enabled, functions writing to a named pipe do not return until the data written is transmitted across the network and is in the pipe's buffer on the remote computer. If this mode is not enabled, the system enhances the efficiency of network operations by buffering data until a minimum number of bytes accumulate or until a maximum time elapses.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.File.Overlapped">
+            <summary>
+            Overlapped mode is enabled. If this mode is enabled, functions performing read, write, and connect operations that may take a significant time to be completed can return immediately. This mode enables the thread that started the operation to perform other operations while the time-consuming operation executes in the background. For example, in overlapped mode, a thread can handle simultaneous input and output (I/O) operations on multiple instances of a pipe or perform simultaneous read and write operations on the same pipe handle. If overlapped mode is not enabled, functions performing read, write, and connect operations on the pipe handle do not return until the operation is finished. The ReadFileEx and WriteFileEx functions can only be used with a pipe handle in overlapped mode. The ReadFile, WriteFile, ConnectNamedPipe, and TransactNamedPipe functions can execute either synchronously or as overlapped operations.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.NamedPipe">
+            <summary>
+            Native API for Named Pipes
+            https://github.com/PowerShell/PowerShell/blob/master/src/System.Management.Automation/engine/remoting/common/RemoteSessionNamedPipe.cs#L124-L256
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.NamedPipe.CreateNamedPipeW(System.String,System.UInt32,System.UInt32,System.UInt32,System.UInt32,System.UInt32,System.UInt32,Microsoft.WindowsAPICodePack.Win32Native.SecurityAttributes)">
+            <summary>
+            Creates an instance of a named pipe and returns a handle for subsequent pipe operations. A named pipe server process uses this function either to create the first instance of a specific named pipe and establish its basic attributes or to create a new instance of an existing named pipe.
+            </summary>
+            <param name="lpName">
+            <para>The unique pipe name. This string must have the following form: \\.\pipe\pipename</para>
+            <para>The pipename part of the name can include any character other than a backslash, including numbers and special characters. The entire pipe name string can be up to 256 characters long. Pipe names are not case sensitive.</para></param>
+            <param name="dwOpenMode">
+            <para>The open mode.</para>
+            <para>The function fails if <paramref name="dwOpenMode"/> specifies anything other than 0 or the flags listed in the following tables.</para>
+            <para>This parameter must specify one of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.Access"/> modes. The same mode must be specified for each instance of the pipe.</para>
+            <para>This parameter can also include one or more of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.File"/> enum flags, which enable the write-through and overlapped modes. These modes can be different for different instances of the same pipe.</para>
+            <para>This parameter can include any combination of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.WriteAccess"/> security access modes. These modes can be different for different instances of the same pipe.</para></param>
+            <param name="dwPipeMode"><para>The pipe mode.</para>
+            <para>The function fails if dwPipeMode specifies anything other than 0 or the flags listed in the following tables.</para>
+            <para>One of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.Type"/> modes can be specified. The same type mode must be specified for each instance of the pipe.</para>
+            <para>One of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.Read"/> modes can be specified. Different instances of the same pipe can specify different read modes.</para>
+            <para>One of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.Wait"/> modes can be specified. Different instances of the same pipe can specify different wait modes.</para>
+            <para>One of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.RemoteClient"/> modes can be specified. Different instances of the same pipe can specify different remote-client modes.</para></param>
+            <param name="nMaxInstances"><para>The maximum number of instances that can be created for this pipe. The first instance of the pipe can specify this value; the same number must be specified for other instances of the pipe. Acceptable values are in the range 1 through <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.NamedPipe.UnlimitedInstances"/> (255).</para>
+            <para>If this parameter is <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.NamedPipe.UnlimitedInstances"/>, the number of pipe instances that can be created is limited only by the availability of system resources. If nMaxInstances is greater than <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.NamedPipe.UnlimitedInstances"/>, the return value is INVALID_HANDLE_VALUE and <see cref="M:System.Runtime.InteropServices.Marshal.GetLastWin32Error"/> returns <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.ErrorCode.InvalidParameter"/>.</para></param>
+            <param name="nOutBufferSize">The number of bytes to reserve for the output buffer.</param>
+            <param name="nInBufferSize">The number of bytes to reserve for the input buffer.</param>
+            <param name="nDefaultTimeOut"><para>The default time-out value, in milliseconds, if the WaitNamedPipe function specifies NMPWAIT_USE_DEFAULT_WAIT. Each instance of a named pipe must specify the same value.</para>
+            <para>A value of zero will result in a default time-out of 50 milliseconds.</para></param>
+            <param name="lpSecurityAttributes">A pointer to a <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.SecurityAttributes"/> structure that specifies a security descriptor for the new named pipe and determines whether child processes can inherit the returned handle. If lpSecurityAttributes is <see langword="null"/>, the named pipe gets a default security descriptor and the handle cannot be inherited. The ACLs in the default security descriptor for a named pipe grant full control to the LocalSystem account, administrators, and the creator owner. They also grant read access to members of the Everyone group and the anonymous account.</param>
+            <returns><para>If the function succeeds, the return value is a handle to the server end of a named pipe instance.</para>
+            <para>If the function fails, the return value is INVALID_HANDLE_VALUE. To get extended error information, call <see cref="M:System.Runtime.InteropServices.Marshal.GetLastWin32Error"/>.</para></returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.NamedPipe.NamedPipe.CreateNamedPipe(System.String,System.UInt32,System.IO.Pipes.PipeSecurity)">
+            <summary>
+            Helper method to create a PowerShell transport named pipe via native API, along
+            with a returned .Net NamedPipeServerStream object wrapping the named pipe.
+            </summary>
+            <param name="pipeName">Named pipe core name.</param>
+            <returns>An instance of the <see cref="T:System.IO.Pipes.NamedPipeServerStream"/> class.</returns>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RecoveryCallback">
             <summary>

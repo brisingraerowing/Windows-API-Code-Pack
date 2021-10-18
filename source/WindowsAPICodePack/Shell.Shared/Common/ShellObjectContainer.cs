@@ -96,7 +96,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             return pidls;
         }
-#endif
 
         public HResult TryGetUIObjectOf(IntPtr hwndOwner, IntPtr[] ptrs, ref Guid guid, out IntPtr ptr) => ptrs == null ? throw GetArgumentNullException(nameof(ptrs)) : NativeShellFolder.GetUIObjectOf(hwndOwner, (uint)ptrs.Length, ptrs, ref guid, IntPtr.Zero, out ptr);
 
@@ -106,6 +105,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             return ptr;
         }
+#endif
 
         #region Disposable Pattern
         /// <summary>
