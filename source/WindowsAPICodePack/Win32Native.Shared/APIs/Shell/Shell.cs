@@ -21,6 +21,14 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         [return: MarshalAs(Bool)]
         public static extern bool Shell_NotifyIconW([MarshalAs(U4)] NotifyIconModification dwMessage, [In] ref NotifyIconData lpData);
 
+        [DllImport(Kernel32)]
+        [return: MarshalAs(Bool)]
+        public static extern bool MoveFileW([In, MarshalAs(LPWStr)] string lpExistingFileName, [In, MarshalAs(LPWStr)] string lpNewFileName);
+
+        [DllImport(Kernel32)]
+        [return: MarshalAs(Bool)]
+        public static extern bool MoveFileExW([In, MarshalAs(LPWStr)] string lpExistingFileName, [In, MarshalAs(LPWStr)] string lpNewFileName, [In, MarshalAs(U4)] MoveFileFlags dwFlags);
+
         /// <summary>
         /// <para>Moves a file or directory, including its children. You can provide a callback function that receives progress notifications.</para>
         /// <para>To perform this operation as a transacted operation, use the MoveFileTransacted function.</para>

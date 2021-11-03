@@ -91,6 +91,10 @@ COMNative 3.0
 - Removals:
     - Some 'ref' keywords in native PortableDevices interfaces. These keywords have been removed for interface type parameters because they was redundant.
 
+## 11/03/2021 2.10.3
+
+- Add methods to Win32Native for file moving.
+
 ## 10/18/2021 2.10.2
 
 - MessageListener was not disposed properly causing inability to re-create any new ShellObjectWatcher after all existing ones were disposed.
