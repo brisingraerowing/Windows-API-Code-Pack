@@ -1,31 +1,31 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>net472;net48;netcoreapp3.0;netcoreapp3.1;net5.0-windows;net6.0-windows</TargetFrameworks>
-    <DocumentationFile>WinCopies.WindowsAPICodePack.PortableDevices.xml</DocumentationFile>
-    <AssemblyOriginatorKeyFile>PortableDevices.snk</AssemblyOriginatorKeyFile>
-    <AssemblyName>WinCopies.WindowsAPICodePack.PortableDevices</AssemblyName>
-    <RootNamespace>Microsoft.WindowsAPICodePack.PortableDevices</RootNamespace>
-    <Authors>Pierre Sprimont</Authors>
-    <Description>.NET wrappers fro the PortableDevices API</Description>
-    <Copyright>Copyright © Pierre Sprimont 2020-2021</Copyright>
-    <DefineConstants>WAPICP2;$(DefineConstants)</DefineConstants>
-    <VersionPrefix>2.6</VersionPrefix>
-    <VersionSuffix>preview</VersionSuffix>
-    <AssemblyVersion>2.6</AssemblyVersion>
-    <FileVersion>2.6</FileVersion>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net472;net48;netcoreapp3.0;netcoreapp3.1;net5.0-windows;net6.0-windows</TargetFrameworks>
+		<DocumentationFile>WinCopies.WindowsAPICodePack.PortableDevices.xml</DocumentationFile>
+		<AssemblyOriginatorKeyFile>PortableDevices.snk</AssemblyOriginatorKeyFile>
+		<AssemblyName>WinCopies.WindowsAPICodePack.PortableDevices</AssemblyName>
+		<RootNamespace>Microsoft.WindowsAPICodePack.PortableDevices</RootNamespace>
+		<Authors>Pierre Sprimont</Authors>
+		<Description>.NET wrappers fro the PortableDevices API</Description>
+		<Copyright>Copyright © Pierre Sprimont 2020-2021</Copyright>
+		<DefineConstants>WAPICP2;$(DefineConstants)</DefineConstants>
+		<VersionPrefix>2.6</VersionPrefix>
+		<VersionSuffix>preview</VersionSuffix>
+		<AssemblyVersion>2.6</AssemblyVersion>
+		<FileVersion>2.6</FileVersion>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="WinCopies.Util" Version="2.15.1" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="WinCopies.Util" Version="2.15.1" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\COMNative.2.x\COMNative.2.x.csproj" />
-    <ProjectReference Include="..\Core.2.x\Core.2.x.csproj" />
-    <ProjectReference Include="..\Win32Native.2.x\Win32Native.2.x.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\COMNative.2.x\COMNative.2.x.csproj" />
+		<ProjectReference Include="..\Core.2.x\Core.2.x.csproj" />
+		<ProjectReference Include="..\Win32Native.2.x\Win32Native.2.x.csproj" />
+	</ItemGroup>
 
-  <Import Project="..\..\PortableDevices.Shared\PortableDevices.Shared.projitems" Label="Shared" />
+	<Import Project="..\..\Shared\PortableDevices.Shared\PortableDevices.Shared.projitems" Label="Shared" />
 
 </Project>

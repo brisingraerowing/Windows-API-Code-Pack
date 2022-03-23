@@ -12,24 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\..\README.md = ..\..\README.md
 	EndProjectSection
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Core.Shared", "Core.Shared\Core.Shared.shproj", "{3C3964DD-26D2-4497-A8EE-AAD7DC73A52D}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Shell.Shared", "Shell.Shared\Shell.Shared.shproj", "{EC2B98CC-6F10-4E51-8D2A-17595DAD65EB}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ShellExtensions.Shared", "ShellExtensions.Shared\ShellExtensions.Shared.shproj", "{EFD811BF-9FA7-4925-B1C9-30C96200E0F7}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ExtendedLinguisticServices.Shared", "ExtendedLinguisticServices.Shared\ExtendedLinguisticServices.Shared.shproj", "{CE862078-C419-483A-AE32-DCC933AEB787}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Sensors.Shared", "Sensors.Shared\Sensors.Shared.shproj", "{A873C775-CCBA-437D-BC62-9AC7C821E7D7}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "PortableDevices.Shared", "PortableDevices.Shared\PortableDevices.Shared.shproj", "{DFE309F3-5FC4-48E2-B26D-274F1033B41E}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Win32Native.Shared", "Win32Native.Shared\Win32Native.Shared.shproj", "{EECA348E-F9E7-44D5-9C50-A307C7F44D48}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "COMNative.Shared", "COMNative.Shared\COMNative.Shared.shproj", "{0D3D2287-7D7C-464D-977A-B6663A231389}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Consts.Shared", "Consts.Shared\Consts.Shared.shproj", "{AB530093-4FEB-4F6F-A34D-6DC5FF9B3881}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.x", "3.x", "{5738404B-DA1B-46EE-9918-8AC94B68385D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.x", "2.x", "{24933726-7153-4F64-8656-AB18EFAB0BA5}"
@@ -70,35 +52,55 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shell", "3.x\Shell\Shell.cs
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShellExtensions", "3.x\ShellExtensions\ShellExtensions.csproj", "{57B8F530-5061-4F85-8A1E-986D20291C29}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{701A1F6B-5403-4B6D-952D-926074F63221}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Consts.Shared", "Shared\Consts.Shared\Consts.Shared.shproj", "{B7262B23-AC4B-4236-BA5B-5E17EACBB3F8}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Win32Native.Shared", "Shared\Win32Native.Shared\Win32Native.Shared.shproj", "{EECA348E-F9E7-44D5-9C50-A307C7F44D48}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "COMNative.Shared", "Shared\COMNative.Shared\COMNative.Shared.shproj", "{0D3D2287-7D7C-464D-977A-B6663A231389}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Core.Shared", "Shared\Core.Shared\Core.Shared.shproj", "{3C3964DD-26D2-4497-A8EE-AAD7DC73A52D}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Shell.Shared", "Shared\Shell.Shared\Shell.Shared.shproj", "{EC2B98CC-6F10-4E51-8D2A-17595DAD65EB}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Sensors.Shared", "Shared\Sensors.Shared\Sensors.Shared.shproj", "{A873C775-CCBA-437D-BC62-9AC7C821E7D7}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ShellExtensions.Shared", "Shared\ShellExtensions.Shared\ShellExtensions.Shared.shproj", "{EFD811BF-9FA7-4925-B1C9-30C96200E0F7}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ExtendedLinguisticServices.Shared", "Shared\ExtendedLinguisticServices.Shared\ExtendedLinguisticServices.Shared.shproj", "{CE862078-C419-483A-AE32-DCC933AEB787}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "PortableDevices.Shared", "Shared\PortableDevices.Shared\PortableDevices.Shared.shproj", "{DFE309F3-5FC4-48E2-B26D-274F1033B41E}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		PortableDevices.Shared\PortableDevices.Shared.projitems*{0901777f-5c07-4133-8b7a-7ea6f644b230}*SharedItemsImports = 5
-		COMNative.Shared\COMNative.Shared.projitems*{0d3d2287-7d7c-464d-977a-b6663a231389}*SharedItemsImports = 13
-		Consts.Shared\Consts.Shared.projitems*{2cbbd649-3a50-4b75-8d1f-9a5c784eb4d3}*SharedItemsImports = 5
-		Core.Shared\Core.Shared.projitems*{3c3964dd-26d2-4497-a8ee-aad7dc73a52d}*SharedItemsImports = 13
-		COMNative.Shared\COMNative.Shared.projitems*{43953bec-e549-4c44-84f3-dd981d788eea}*SharedItemsImports = 5
-		Shell.Shared\Shell.Shared.projitems*{4b888886-77f8-4fc4-81a0-479e232c065a}*SharedItemsImports = 5
-		Core.Shared\Core.Shared.projitems*{5508df2a-719b-4139-87ca-f736bbbff204}*SharedItemsImports = 5
-		ShellExtensions.Shared\ShellExtensions.Shared.projitems*{57b8f530-5061-4f85-8a1e-986d20291c29}*SharedItemsImports = 5
-		Consts.Shared\Consts.Shared.projitems*{7e819198-a4d0-451c-b6c3-5fb3ee0d1a88}*SharedItemsImports = 5
-		Sensors.Shared\Sensors.Shared.projitems*{8045331e-94d9-4e45-bbf3-65a4fdacd374}*SharedItemsImports = 5
-		ShellExtensions.Shared\ShellExtensions.Shared.projitems*{8749fa54-aa81-4d77-b5a7-95d01e23a794}*SharedItemsImports = 5
-		Win32Native.Shared\Win32Native.Shared.projitems*{8d172a82-fb40-4991-b0a9-95f310b49dbd}*SharedItemsImports = 5
-		Sensors.Shared\Sensors.Shared.projitems*{a873c775-ccba-437d-bc62-9ac7c821e7d7}*SharedItemsImports = 13
-		Shell.Shared\Shell.Shared.projitems*{ab093c9c-3dc8-4c31-8dfd-5962b58596b3}*SharedItemsImports = 5
-		Consts.Shared\Consts.Shared.projitems*{ab530093-4feb-4f6f-a34d-6dc5ff9b3881}*SharedItemsImports = 13
-		Sensors.Shared\Sensors.Shared.projitems*{ab9a3748-db5d-4986-bd63-7f865423cebd}*SharedItemsImports = 5
-		COMNative.Shared\COMNative.Shared.projitems*{ac892548-b138-4700-a9df-d07273584854}*SharedItemsImports = 5
-		ExtendedLinguisticServices.Shared\ExtendedLinguisticServices.Shared.projitems*{bf9545c0-91e8-43f6-845d-64774de03671}*SharedItemsImports = 5
-		ExtendedLinguisticServices.Shared\ExtendedLinguisticServices.Shared.projitems*{ce862078-c419-483a-ae32-dcc933aeb787}*SharedItemsImports = 13
-		Win32Native.Shared\Win32Native.Shared.projitems*{dc708d14-d579-4901-b2f2-8ddadeb289da}*SharedItemsImports = 5
-		PortableDevices.Shared\PortableDevices.Shared.projitems*{dfe309f3-5fc4-48e2-b26d-274f1033b41e}*SharedItemsImports = 13
-		PortableDevices.Shared\PortableDevices.Shared.projitems*{e4073296-7575-449a-9a41-ec9bafc5f5b1}*SharedItemsImports = 5
-		Core.Shared\Core.Shared.projitems*{e8478d1a-74d5-4b91-906d-917031c41c52}*SharedItemsImports = 5
-		ExtendedLinguisticServices.Shared\ExtendedLinguisticServices.Shared.projitems*{ec15ef2e-a8f7-4ecc-bb9b-228d94b13a29}*SharedItemsImports = 5
-		Shell.Shared\Shell.Shared.projitems*{ec2b98cc-6f10-4e51-8d2a-17595dad65eb}*SharedItemsImports = 13
-		Win32Native.Shared\Win32Native.Shared.projitems*{eeca348e-f9e7-44d5-9c50-a307c7f44d48}*SharedItemsImports = 13
-		ShellExtensions.Shared\ShellExtensions.Shared.projitems*{efd811bf-9fa7-4925-b1c9-30c96200e0f7}*SharedItemsImports = 13
+		Shared\PortableDevices.Shared\PortableDevices.Shared.projitems*{0901777f-5c07-4133-8b7a-7ea6f644b230}*SharedItemsImports = 5
+		Shared\COMNative.Shared\COMNative.Shared.projitems*{0d3d2287-7d7c-464d-977a-b6663a231389}*SharedItemsImports = 13
+		Shared\Consts.Shared\Consts.Shared.projitems*{2cbbd649-3a50-4b75-8d1f-9a5c784eb4d3}*SharedItemsImports = 5
+		Shared\Core.Shared\Core.Shared.projitems*{3c3964dd-26d2-4497-a8ee-aad7dc73a52d}*SharedItemsImports = 13
+		Shared\COMNative.Shared\COMNative.Shared.projitems*{43953bec-e549-4c44-84f3-dd981d788eea}*SharedItemsImports = 5
+		Shared\Shell.Shared\Shell.Shared.projitems*{4b888886-77f8-4fc4-81a0-479e232c065a}*SharedItemsImports = 5
+		Shared\Core.Shared\Core.Shared.projitems*{5508df2a-719b-4139-87ca-f736bbbff204}*SharedItemsImports = 5
+		Shared\ShellExtensions.Shared\ShellExtensions.Shared.projitems*{57b8f530-5061-4f85-8a1e-986d20291c29}*SharedItemsImports = 5
+		Shared\Consts.Shared\Consts.Shared.projitems*{7e819198-a4d0-451c-b6c3-5fb3ee0d1a88}*SharedItemsImports = 5
+		Shared\Sensors.Shared\Sensors.Shared.projitems*{8045331e-94d9-4e45-bbf3-65a4fdacd374}*SharedItemsImports = 5
+		Shared\ShellExtensions.Shared\ShellExtensions.Shared.projitems*{8749fa54-aa81-4d77-b5a7-95d01e23a794}*SharedItemsImports = 5
+		Shared\Win32Native.Shared\Win32Native.Shared.projitems*{8d172a82-fb40-4991-b0a9-95f310b49dbd}*SharedItemsImports = 5
+		Shared\Sensors.Shared\Sensors.Shared.projitems*{a873c775-ccba-437d-bc62-9ac7c821e7d7}*SharedItemsImports = 13
+		Shared\Shell.Shared\Shell.Shared.projitems*{ab093c9c-3dc8-4c31-8dfd-5962b58596b3}*SharedItemsImports = 5
+		Shared\Sensors.Shared\Sensors.Shared.projitems*{ab9a3748-db5d-4986-bd63-7f865423cebd}*SharedItemsImports = 5
+		Shared\COMNative.Shared\COMNative.Shared.projitems*{ac892548-b138-4700-a9df-d07273584854}*SharedItemsImports = 5
+		Shared\Consts.Shared\Consts.Shared.projitems*{b7262b23-ac4b-4236-ba5b-5e17eacbb3f8}*SharedItemsImports = 13
+		Shared\ExtendedLinguisticServices.Shared\ExtendedLinguisticServices.Shared.projitems*{bf9545c0-91e8-43f6-845d-64774de03671}*SharedItemsImports = 5
+		Shared\ExtendedLinguisticServices.Shared\ExtendedLinguisticServices.Shared.projitems*{ce862078-c419-483a-ae32-dcc933aeb787}*SharedItemsImports = 13
+		Shared\Win32Native.Shared\Win32Native.Shared.projitems*{dc708d14-d579-4901-b2f2-8ddadeb289da}*SharedItemsImports = 5
+		Shared\PortableDevices.Shared\PortableDevices.Shared.projitems*{dfe309f3-5fc4-48e2-b26d-274f1033b41e}*SharedItemsImports = 13
+		Shared\PortableDevices.Shared\PortableDevices.Shared.projitems*{e4073296-7575-449a-9a41-ec9bafc5f5b1}*SharedItemsImports = 5
+		Shared\Consts.Shared\Consts.Shared.projitems*{e8478d1a-74d5-4b91-906d-917031c41c52}*SharedItemsImports = 5
+		Shared\ExtendedLinguisticServices.Shared\ExtendedLinguisticServices.Shared.projitems*{ec15ef2e-a8f7-4ecc-bb9b-228d94b13a29}*SharedItemsImports = 5
+		Shared\Shell.Shared\Shell.Shared.projitems*{ec2b98cc-6f10-4e51-8d2a-17595dad65eb}*SharedItemsImports = 13
+		Shared\Win32Native.Shared\Win32Native.Shared.projitems*{eeca348e-f9e7-44d5-9c50-a307c7f44d48}*SharedItemsImports = 13
+		Shared\ShellExtensions.Shared\ShellExtensions.Shared.projitems*{efd811bf-9fa7-4925-b1c9-30c96200e0f7}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CodeAnalysisDebug|Any CPU = CodeAnalysisDebug|Any CPU
@@ -866,6 +868,15 @@ Global
 		{8045331E-94D9-4E45-BBF3-65A4FDACD374} = {5738404B-DA1B-46EE-9918-8AC94B68385D}
 		{4B888886-77F8-4FC4-81A0-479E232C065A} = {5738404B-DA1B-46EE-9918-8AC94B68385D}
 		{57B8F530-5061-4F85-8A1E-986D20291C29} = {5738404B-DA1B-46EE-9918-8AC94B68385D}
+		{B7262B23-AC4B-4236-BA5B-5E17EACBB3F8} = {701A1F6B-5403-4B6D-952D-926074F63221}
+		{EECA348E-F9E7-44D5-9C50-A307C7F44D48} = {701A1F6B-5403-4B6D-952D-926074F63221}
+		{0D3D2287-7D7C-464D-977A-B6663A231389} = {701A1F6B-5403-4B6D-952D-926074F63221}
+		{3C3964DD-26D2-4497-A8EE-AAD7DC73A52D} = {701A1F6B-5403-4B6D-952D-926074F63221}
+		{EC2B98CC-6F10-4E51-8D2A-17595DAD65EB} = {701A1F6B-5403-4B6D-952D-926074F63221}
+		{A873C775-CCBA-437D-BC62-9AC7C821E7D7} = {701A1F6B-5403-4B6D-952D-926074F63221}
+		{EFD811BF-9FA7-4925-B1C9-30C96200E0F7} = {701A1F6B-5403-4B6D-952D-926074F63221}
+		{CE862078-C419-483A-AE32-DCC933AEB787} = {701A1F6B-5403-4B6D-952D-926074F63221}
+		{DFE309F3-5FC4-48E2-B26D-274F1033B41E} = {701A1F6B-5403-4B6D-952D-926074F63221}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B754C752-6D53-4C13-BA50-D0152A1534E7}

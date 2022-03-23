@@ -1,55 +1,55 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
-  <PropertyGroup>
-    <TargetFrameworks>net35;net472;net48;netcoreapp3.0;netcoreapp3.1;net5.0-windows;net6.0-windows</TargetFrameworks>
-    <UseWindowsForms>true</UseWindowsForms>
-    <PackageId>WinCopies.WindowsAPICodePack</PackageId>
-    <Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
-    <AssemblyOriginatorKeyFile>Core.snk</AssemblyOriginatorKeyFile>
-    <Description>WindowsAPICodePack Core</Description>
-    <Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020-2021</Copyright>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <AssemblyName>WinCopies.WindowsAPICodePack</AssemblyName>
-    <RootNamespace>Microsoft.WindowsAPICodePack</RootNamespace>
-    <DocumentationFile>WinCopies.WindowsAPICodePack.Core.xml</DocumentationFile>
-    <DefineConstants>WAPICP2;$(DefineConstants)</DefineConstants>
-    <VersionPrefix>2.9.3</VersionPrefix>
-    <AssemblyVersion>2.9.3</AssemblyVersion>
-    <FileVersion>2.9.3</FileVersion>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net35;net472;net48;netcoreapp3.0;netcoreapp3.1;net5.0-windows;net6.0-windows</TargetFrameworks>
+		<UseWindowsForms>true</UseWindowsForms>
+		<PackageId>WinCopies.WindowsAPICodePack</PackageId>
+		<Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
+		<AssemblyOriginatorKeyFile>Core.snk</AssemblyOriginatorKeyFile>
+		<Description>WindowsAPICodePack Core</Description>
+		<Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020-2021</Copyright>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<AssemblyName>WinCopies.WindowsAPICodePack</AssemblyName>
+		<RootNamespace>Microsoft.WindowsAPICodePack</RootNamespace>
+		<DocumentationFile>WinCopies.WindowsAPICodePack.Core.xml</DocumentationFile>
+		<DefineConstants>WAPICP2;$(DefineConstants)</DefineConstants>
+		<VersionPrefix>2.9.3</VersionPrefix>
+		<AssemblyVersion>2.9.3</AssemblyVersion>
+		<FileVersion>2.9.3</FileVersion>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="CustomDictionary.xml" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="CustomDictionary.xml" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
-  </ItemGroup>
+	<ItemGroup>
+		<CodeAnalysisDictionary Include="CustomDictionary.xml" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\COMNative.2.x\COMNative.2.x.csproj" />
-    <ProjectReference Include="..\Win32Native.2.x\Win32Native.2.x.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\COMNative.2.x\COMNative.2.x.csproj" />
+		<ProjectReference Include="..\Win32Native.2.x\Win32Native.2.x.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="WinCopies.Util" Version="2.15.1" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="WinCopies.Util" Version="2.15.1" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Resources\LocalizedMessages.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>LocalizedMessages.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="Resources\LocalizedMessages.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>LocalizedMessages.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Update="Resources\LocalizedMessages.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>LocalizedMessages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="Resources\LocalizedMessages.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>LocalizedMessages.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
 
-  <Import Project="..\..\Core.Shared\Core.Shared.projitems" Label="Shared" />
+	<Import Project="..\..\Shared\Consts.Shared\Consts.Shared.projitems" Label="Shared" />
 
 </Project>
