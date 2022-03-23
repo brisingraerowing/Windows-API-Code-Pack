@@ -8,7 +8,7 @@
 		<RootNamespace>Microsoft.WindowsAPICodePack.ShellExtensions</RootNamespace>
 		<Authors>Microsoft; Pierre Sprimont</Authors>
 		<Description>WindowsAPICodePack Shell Extensions</Description>
-		<Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020-2021</Copyright>
+		<Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2022</Copyright>
 		<AssemblyOriginatorKeyFile>ShellExtensions.snk</AssemblyOriginatorKeyFile>
 		<DocumentationFile>WinCopies.WindowsAPICodePack.ShellExtensions.xml</DocumentationFile>
 		<DefineConstants>WAPICP3;$(DefineConstants)</DefineConstants>

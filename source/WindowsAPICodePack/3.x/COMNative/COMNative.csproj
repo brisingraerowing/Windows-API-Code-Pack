@@ -8,7 +8,7 @@
 		<AssemblyName>WinCopies.WindowsAPICodePack.COMNative</AssemblyName>
 		<RootNamespace>Microsoft.WindowsAPICodePack.COMNative</RootNamespace>
 		<AssemblyOriginatorKeyFile>COMNative.snk</AssemblyOriginatorKeyFile>
-		<Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020-2021</Copyright>
+		<Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2022</Copyright>
 		<Description>WindowsAPICodePack COM Interop</Description>
 		<DocumentationFile>WinCopies.WindowsAPICodePack.COMNative.xml</DocumentationFile>
 		<DefineConstants>WAPICP3;$(DefineConstants)</DefineConstants>

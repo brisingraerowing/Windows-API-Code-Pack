@@ -6,7 +6,7 @@
 		<PackageId>WinCopies.WindowsAPICodePack.Consts</PackageId>
 		<Product>Microsoft Windows API Code Pack for .NET Framework</Product>
 		<Authors>Microsoft; Pierre Sprimont</Authors>
-		<Copyright>Copyright © Pierre Sprimont 2020-2021</Copyright>
+		<Copyright>Copyright © Pierre Sprimont 2022</Copyright>
 		<AssemblyOriginatorKeyFile>Consts.snk</AssemblyOriginatorKeyFile>
 		<Description>Native consts required by the Windows API Code Pack</Description>
 		<DocumentationFile>WinCopies.WindowsAPICodePack.Consts.xml</DocumentationFile>

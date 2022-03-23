@@ -7,7 +7,7 @@
 		<RootNamespace>Microsoft.WindowsAPICodePack.Win32Native</RootNamespace>
 		<PackageId>WinCopies.WindowsAPICodePack.Win32Native</PackageId>
 		<Authors>Microsoft; Pierre Sprimont</Authors>
-		<Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020-2021</Copyright>
+		<Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2022</Copyright>
 		<AssemblyOriginatorKeyFile>Win32Native.snk</AssemblyOriginatorKeyFile>
 		<Description>WindowsAPICodePack Win32 Interop</Description>
 		<DocumentationFile>WinCopies.WindowsAPICodePack.Win32Native.xml</DocumentationFile>

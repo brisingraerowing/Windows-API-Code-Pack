@@ -9,7 +9,7 @@
 		<AssemblyOriginatorKeyFile>Shell.snk</AssemblyOriginatorKeyFile>
 		<Authors>Microsoft; Pierre Sprimont</Authors>
 		<Description>WindowsAPICodePack for Shell</Description>
-		<Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020-2021</Copyright>
+		<Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2022</Copyright>
 		<DocumentationFile>WinCopies.WindowsAPICodePack.Shell.xml</DocumentationFile>
 		<DefineConstants>WAPICP3;$(DefineConstants)</DefineConstants>
 		<VersionPrefix>3.8.2</VersionPrefix>

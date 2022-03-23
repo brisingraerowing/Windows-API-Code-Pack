@@ -7,7 +7,7 @@
 		<Authors>Microsoft; Aybe; Pierre Sprimont</Authors>
 		<AssemblyOriginatorKeyFile>Core.snk</AssemblyOriginatorKeyFile>
 		<Description>WindowsAPICodePack Core</Description>
-		<Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020-2021</Copyright>
+		<Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2022</Copyright>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<AssemblyName>WinCopies.WindowsAPICodePack</AssemblyName>
 		<RootNamespace>Microsoft.WindowsAPICodePack</RootNamespace>

@@ -8,7 +8,7 @@
 		<RootNamespace>Microsoft.WindowsAPICodePack.PortableDevices</RootNamespace>
 		<Authors>Pierre Sprimont</Authors>
 		<Description>.NET wrappers fro the PortableDevices API</Description>
-		<Copyright>Copyright © Pierre Sprimont 2020-2021</Copyright>
+		<Copyright>Copyright © Pierre Sprimont 2022</Copyright>
 		<DefineConstants>WAPICP3;$(DefineConstants)</DefineConstants>
 		<VersionPrefix>3.4</VersionPrefix>
 		<VersionSuffix>preview</VersionSuffix>

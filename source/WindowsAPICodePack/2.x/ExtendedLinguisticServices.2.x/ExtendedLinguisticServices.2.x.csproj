@@ -6,7 +6,7 @@
 		<RootNamespace>Microsoft.WindowsAPICodePack.ExtendedLinguisticServices</RootNamespace>
 		<Authors>Microsoft; Pierre Sprimont</Authors>
 		<Description>WindowsAPICodePack for Extended Linguistic Services</Description>
-		<Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2020-2021</Copyright>
+		<Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2022</Copyright>
 		<AssemblyOriginatorKeyFile>ExtendedLinguisticServices.snk</AssemblyOriginatorKeyFile>
 		<DocumentationFile>WinCopies.WindowsAPICodePack.ExtendedLinguisticServices.xml</DocumentationFile>
 		<DefineConstants>WAPICP2;$(DefineConstants)</DefineConstants>
