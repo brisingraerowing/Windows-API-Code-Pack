@@ -35,12 +35,12 @@
 
 //            var propVar = PropVariant.FromObject(pValue);
 
-//            Marshal.ThrowExceptionForHR((int)_PortableDevicePropVariantCollection.Add(ref propVar));
+//            CoreErrorHelper.ThrowExceptionForHResult(_PortableDevicePropVariantCollection.Add(ref propVar));
 
 //            propVar.Dispose();
 //        }
 
-//        public void ChangeItemVariantType(in VarEnum vt) => Marshal.ThrowExceptionForHR((int)_portableDevicePropVariantCollection.ChangeType(vt));
+//        public void ChangeItemVariantType(in VarEnum vt) => CoreErrorHelper.ThrowExceptionForHResult(_portableDevicePropVariantCollection.ChangeType(vt));
 
 //        public void Clear() => _PortableDevicePropVariantCollection.Clear();
 

@@ -71,7 +71,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             if (nativeEnumIdList is object)
 
-                Marshal.ThrowExceptionForHR( (int) nativeEnumIdList.Reset());
+                CoreErrorHelper.ThrowExceptionForHResult((int)nativeEnumIdList.Reset());
         }
         #endregion
     }

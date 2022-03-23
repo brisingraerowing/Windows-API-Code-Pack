@@ -4,9 +4,11 @@ using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Menus;
 
 using System;
+using System.Drawing;
 using System.Runtime.InteropServices;
 
 using static Microsoft.WindowsAPICodePack.Win32Native.CoreHelpers;
+using static Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper;
 
 using static WinCopies.
 #if !WAPICP3
@@ -15,6 +17,7 @@ using static WinCopies.
 using static WinCopies.Util.
 #endif
     ThrowHelper;
+using System.Text;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -83,12 +86,10 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             var guid = new Guid(NativeAPI.Guids.Shell.IContextMenu);
 
-            CoreErrorHelper.ThrowExceptionForHR(folder.NativeShellFolder.GetUIObjectOf(IntPtr.Zero, (uint)items.Count, ShellContainer.GetPIDLs(items), ref guid, IntPtr.Zero, out IntPtr intPtr));
+            ThrowExceptionForHResult(folder.NativeShellFolder.GetUIObjectOf(IntPtr.Zero, (uint)items.Count, ShellContainer.GetPIDLs(items), ref guid, IntPtr.Zero, out IntPtr intPtr));
 
             _contextMenu = GetTypedObjectForIUnknown<IContextMenu>(intPtr);
-
             _contextMenu2 = QueryInterfaceForIUnknown<IContextMenu2>(intPtr, NativeAPI.Guids.Shell.IContextMenu2);
-
             _contextMenu3 = QueryInterfaceForIUnknown<IContextMenu3>(intPtr, NativeAPI.Guids.Shell.IContextMenu3);
 
             intPtr = IntPtr.Zero;
@@ -100,25 +101,35 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         protected virtual IntPtr OnSourceHook(WindowMessage msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
-            if (_contextMenu2 != null &&
+            if ((_contextMenu2 != null &&
                 (msg == WindowMessage.InitializeMenuPopup ||
                  msg == WindowMessage.MeasureItem ||
-                 msg == WindowMessage.DrawItem))
-            {
-                if (_contextMenu2.HandleMenuMsg((uint)msg, wParam, lParam) == HResult.Ok)
+                 msg == WindowMessage.DrawItem) && _contextMenu2.HandleMenuMsg((uint)msg, wParam, lParam) == HResult.Ok) ||
+                 (_contextMenu3 != null &&
+                msg == WindowMessage.MenuChar && _contextMenu3.HandleMenuMsg2((uint)msg, wParam, lParam, IntPtr.Zero) == HResult.Ok))
 
-                    handled = true;
-            }
-
-            if (_contextMenu3 != null &&
-                msg == WindowMessage.MenuChar)
-            {
-                if (_contextMenu3.HandleMenuMsg2((uint)msg, wParam, lParam, IntPtr.Zero) == HResult.Ok)
-
-                    handled = true;
-            }
+                handled = true;
 
             return IntPtr.Zero;
+        }
+
+        public string
+#if CS8
+            ?
+#endif
+            GetCommandString(in uint selected, in GetCommandStringFlags flags)
+        {
+            var bytes = new byte[NativeAPI.Consts.Shell.MaxPath];
+
+            ThrowExceptionForHResult(_contextMenu.GetCommandString(selected, flags, 0, bytes, NativeAPI.Consts.Shell.MaxPath));
+
+            const int max = NativeAPI.Consts.Shell.MaxPath - 1;
+
+            int i;
+
+            for (i = 0; i < max && (bytes[i] != 0 || bytes[i + 1] != 0); i += 2) { /* Left empty. */ }
+
+            return i < max ? Encoding.Unicode.GetString(bytes, 0, i) : null;
         }
 
         public IntPtr Query(in uint first, in uint last, in ContextMenuFlags flags)
@@ -136,18 +147,59 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     throw new ArgumentException($"{nameof(first)} must be less than {nameof(last)}.");
 
                 _first = first;
-
                 _last = last;
 
-                _menu = Menus.CreatePopupMenu();
-
-                CoreErrorHelper.ThrowExceptionForHR(_contextMenu.QueryContextMenu(_menu, 0, first, last, flags));
+                ThrowExceptionForHResult(_contextMenu.QueryContextMenu(_menu = Menus.CreatePopupMenu(), 0, first, last, flags));
             }
 
             return _menu;
         }
 
-        public void Show(in IntPtr hwnd, in System.Drawing.Point point)
+        public ContextMenuInvokeCommandInfo GetInvokeCommandInfo(in IntPtr selected) => new
+#if CS9
+            ()
+#else
+            ContextMenuInvokeCommandInfo
+#endif
+        {
+            cbSize = (uint)Marshal.SizeOf
+#if CS7
+                    <
+#else
+                    (typeof(
+#endif
+                        ContextMenuInvokeCommandInfo
+#if CS7
+                        >(
+#else
+                        )
+#endif
+                    ),
+
+            lpDirectory = _folder.ParsingName,
+            lpDirectoryW = _folder.ParsingName,
+
+            lpVerb = selected,
+            lpVerbW = selected
+        };
+
+        public ContextMenuInvokeCommandInfo GetInvokeCommandInfo(in uint selected) => GetInvokeCommandInfo((IntPtr)selected);
+
+        public ContextMenuInvokeCommandInfo GetDefaultInvokeCommandInfo(in IntPtr selected, in Point point)
+        {
+            ContextMenuInvokeCommandInfo ci = GetInvokeCommandInfo(selected);
+            ci.fMask = ContextMenuInvokeCommandFlags.Unicode | ContextMenuInvokeCommandFlags.PtInvoke;
+            ci.ptInvoke = point;
+            ci.nShow = ShowWindowCommands.ShowNormal;
+
+            return ci;
+        }
+
+        public ContextMenuInvokeCommandInfo GetDefaultInvokeCommandInfo(in uint selected, in Point point) => GetDefaultInvokeCommandInfo((IntPtr)selected, point);
+
+        public void InvokeCommand(ref ContextMenuInvokeCommandInfo ci) => ThrowExceptionForHResult(_contextMenu.InvokeCommand(ref ci));
+
+        public void Show(in IntPtr hwnd, in Point point)
         {
             ThrowIfDisposed(this);
 
@@ -163,36 +215,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 selected -= _first;
 
-                var ci = new ContextMenuInvokeCommandInfo
-                {
-                    cbSize = (uint)Marshal.SizeOf
-#if CS7
-                    <
-#else
-                    (typeof(
-#endif
-                        ContextMenuInvokeCommandInfo
-#if CS7
-                        >(
-#else
-                        )
-#endif
-                    ),
+                ContextMenuInvokeCommandInfo ci = GetDefaultInvokeCommandInfo(selected, point);
 
-                    lpVerb = (IntPtr)selected,
-                    lpVerbW = (IntPtr)selected,
-
-                    lpDirectory = _folder.ParsingName,
-                    lpDirectoryW = _folder.ParsingName,
-
-                    fMask = ContextMenuInvokeCommandFlags.Unicode | ContextMenuInvokeCommandFlags.PtInvoke,
-
-                    ptInvoke = point,
-
-                    nShow = ShowWindowCommands.ShowNormal
-                };
-
-                _ = _contextMenu.InvokeCommand(ci);
+                InvokeCommand(ref ci);
             }
 
             _hookRegistration.RemoveHook(OnSourceHook);

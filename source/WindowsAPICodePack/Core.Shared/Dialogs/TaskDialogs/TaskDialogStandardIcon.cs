@@ -30,6 +30,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// <summary>
         /// Displays the User Account Control shield.
         /// </summary>
-        Shield = 65532 
+        Shield = 65532
     }
 }

@@ -39,6 +39,8 @@
         public const string Rstrtmgr = "rstrtmgr.dll";
         public const string DwmApi = "DwmApi.dll";
         public const string Shlwapi = "Shlwapi.dll";
+        public const string Wininet = "Wininet.dll";
+        public const string Propsys = "propsys.dll";
     }
 
     public static class PortableDevices

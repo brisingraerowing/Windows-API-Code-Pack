@@ -1,11 +1,12 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
-using System;
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.WindowsAPICodePack.Resources;
-using System.ComponentModel;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices;
+
+using System;
+using System.ComponentModel;
+
 using static Microsoft.WindowsAPICodePack.ApplicationServices.Guids.EventManager;
 
 namespace Microsoft.WindowsAPICodePack.ApplicationServices
@@ -20,29 +21,27 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         private static bool monitorRequired;
         private static bool requestBlockSleep;
 
-        private static readonly object monitoronlock = new object();
+        private static readonly object monitoronlock = new
+#if !CS9
+            object
+#endif
+            ();
 
         #region Notifications
-
         /// <summary>
         /// Raised each time the active power scheme changes.
         /// </summary>
         /// <exception cref="InvalidOperationException">The event handler specified for removal was not registered.</exception>
-        /// <exception cref="System.PlatformNotSupportedException">Requires Vista/Windows Server 2008.</exception>
+        /// <exception cref="PlatformNotSupportedException">Requires Vista/Windows Server 2008.</exception>
         public static event EventHandler PowerPersonalityChanged
         {
-            add
-            {
-                MessageManager.RegisterPowerEvent(
-                    new Guid(PowerPersonalityChange), value);
-            }
+            add => MessageManager.RegisterPowerEvent(new Guid(PowerPersonalityChange), value);
 
             remove
             {
                 CoreHelpers.ThrowIfNotVista();
 
-                MessageManager.UnregisterPowerEvent(
-                    new Guid(PowerPersonalityChange), value);
+                MessageManager.UnregisterPowerEvent(new Guid(PowerPersonalityChange), value);
             }
         }
 
@@ -50,23 +49,21 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// Raised when the power source changes.
         /// </summary>
         /// <exception cref="InvalidOperationException">The event handler specified for removal was not registered.</exception>
-        /// <exception cref="System.PlatformNotSupportedException">Requires Vista/Windows Server 2008.</exception>
+        /// <exception cref="PlatformNotSupportedException">Requires Vista/Windows Server 2008.</exception>
         public static event EventHandler PowerSourceChanged
         {
             add
             {
                 CoreHelpers.ThrowIfNotVista();
 
-                MessageManager.RegisterPowerEvent(
-                    new Guid(PowerSourceChange), value);
+                MessageManager.RegisterPowerEvent(new Guid(PowerSourceChange), value);
             }
 
             remove
             {
                 CoreHelpers.ThrowIfNotVista();
 
-                MessageManager.UnregisterPowerEvent(
-                    new Guid(PowerSourceChange), value);
+                MessageManager.UnregisterPowerEvent(new Guid(PowerSourceChange), value);
             }
         }
 
@@ -74,22 +71,21 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// Raised when the remaining battery life changes.
         /// </summary>
         /// <exception cref="InvalidOperationException">The event handler specified for removal was not registered.</exception>
-        /// <exception cref="System.PlatformNotSupportedException">Requires Vista/Windows Server 2008.</exception>
+        /// <exception cref="PlatformNotSupportedException">Requires Vista/Windows Server 2008.</exception>
         public static event EventHandler BatteryLifePercentChanged
         {
             add
             {
                 CoreHelpers.ThrowIfNotVista();
 
-                MessageManager.RegisterPowerEvent(
-                    new Guid(BatteryCapacityChange), value);
+                MessageManager.RegisterPowerEvent(new Guid(BatteryCapacityChange), value);
             }
+
             remove
             {
                 CoreHelpers.ThrowIfNotVista();
 
-                MessageManager.UnregisterPowerEvent(
-                    new Guid(BatteryCapacityChange), value);
+                MessageManager.UnregisterPowerEvent(new Guid(BatteryCapacityChange), value);
             }
         }
 
@@ -97,22 +93,21 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// Raised when the monitor status changes.
         /// </summary>
         /// <exception cref="InvalidOperationException">The event handler specified for removal was not registered.</exception>
-        /// <exception cref="System.PlatformNotSupportedException">Requires Vista/Windows Server 2008.</exception>
+        /// <exception cref="PlatformNotSupportedException">Requires Vista/Windows Server 2008.</exception>
         public static event EventHandler IsMonitorOnChanged
         {
             add
             {
                 CoreHelpers.ThrowIfNotVista();
 
-                MessageManager.RegisterPowerEvent(
-                    new Guid(MonitorPowerStatus), value);
+                MessageManager.RegisterPowerEvent(new Guid(MonitorPowerStatus), value);
             }
+
             remove
             {
                 CoreHelpers.ThrowIfNotVista();
 
-                MessageManager.UnregisterPowerEvent(
-                    new Guid(MonitorPowerStatus), value);
+                MessageManager.UnregisterPowerEvent(new Guid(MonitorPowerStatus), value);
             }
         }
 
@@ -123,22 +118,21 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// would otherwise prevent the computer from entering an idle state. 
         /// </summary>
         /// <exception cref="InvalidOperationException">The event handler specified for removal was not registered.</exception>
-        /// <exception cref="System.PlatformNotSupportedException">Requires Vista/Windows Server 2008.</exception>
+        /// <exception cref="PlatformNotSupportedException">Requires Vista/Windows Server 2008.</exception>
         public static event EventHandler SystemBusyChanged
         {
             add
             {
                 CoreHelpers.ThrowIfNotVista();
 
-                MessageManager.RegisterPowerEvent(
-                    new Guid(BackgroundTaskNotification), value);
+                MessageManager.RegisterPowerEvent(new Guid(BackgroundTaskNotification), value);
             }
+
             remove
             {
                 CoreHelpers.ThrowIfNotVista();
 
-                MessageManager.UnregisterPowerEvent(
-                    new Guid(BackgroundTaskNotification), value);
+                MessageManager.UnregisterPowerEvent(new Guid(BackgroundTaskNotification), value);
             }
         }
         #endregion
@@ -148,34 +142,35 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// </summary>
         /// <returns>A <see cref="BatteryState"/> instance that represents 
         /// the state of the battery at the time this method was called.</returns>
-        /// <exception cref="System.InvalidOperationException">The system does not have a battery.</exception>
-        /// <exception cref="System.PlatformNotSupportedException">Requires XP/Windows Server 2003 or higher.</exception>        
+        /// <exception cref="InvalidOperationException">The system does not have a battery.</exception>
+        /// <exception cref="PlatformNotSupportedException">Requires XP/Windows Server 2003 or higher.</exception>        
         public static BatteryState GetCurrentBatteryState()
         {
             CoreHelpers.ThrowIfNotXP();
+
             return new BatteryState();
         }
 
         #region Power System Properties
-
         /// <summary>
         /// Gets or sets a value that indicates whether the monitor is 
         /// set to remain active.  
         /// </summary>
-        /// <exception cref="T:System.PlatformNotSupportedException">Requires XP/Windows Server 2003 or higher.</exception>
-        /// <exception cref="T:System.Security.SecurityException">The caller does not have sufficient privileges to set this property.
+        /// <exception cref="PlatformNotSupportedException">Requires XP/Windows Server 2003 or higher.</exception>
+        /// <exception cref="System.Security.SecurityException">The caller does not have sufficient privileges to set this property.
         /// </exception>
         /// <remarks>This information is typically used by applications
         /// that display information but do not require 
         /// user interaction. For example, video playback applications.</remarks>
-        /// <permission cref="T:System.Security.Permissions.SecurityPermission"> to set this property. Demand value: <see cref="F:System.Security.Permissions.SecurityAction.Demand"/>; Named Permission Sets: <b>FullTrust</b>.</permission>
-        /// <value>A <see cref="bool"/> value. <b>True</b> if the monitor
+        /// <permission cref="System.Security.Permissions.SecurityPermission"> to set this property. Demand value: <see cref="System.Security.Permissions.SecurityAction.Demand"/>; Named Permission Sets: <b>FullTrust</b>.</permission>
+        /// <value><see langword="true"/> if the monitor
         /// is required to remain on.</value>
         public static bool MonitorRequired
         {
             get
             {
                 CoreHelpers.ThrowIfNotXP();
+
                 return monitorRequired;
             }
 
@@ -200,11 +195,10 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// Gets or sets a value that indicates whether the system 
         /// is required to be in the working state.
         /// </summary>
-        /// <exception cref="System.PlatformNotSupportedException">Requires XP/Windows Server 2003 or higher.</exception>
+        /// <exception cref="PlatformNotSupportedException">Requires XP/Windows Server 2003 or higher.</exception>
         /// <exception cref="System.Security.SecurityException">The caller does not have sufficient privileges to set this property.
         /// </exception>
-        /// <permission cref="System.Security.Permissions.SecurityPermission"> to set this property. Demand value: <see cref="F:System.Security.Permissions.SecurityAction.Demand"/>; Named Permission Sets: <b>FullTrust</b>.</permission>
-        /// <value>A <see cref="bool"/> value.</value>
+        /// <permission cref="System.Security.Permissions.SecurityPermission"> to set this property. Demand value: <see cref="System.Security.Permissions.SecurityAction.Demand"/>; Named Permission Sets: <b>FullTrust</b>.</permission>
         public static bool RequestBlockSleep
         {
             get
@@ -235,8 +229,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// Gets a value that indicates whether a battery is present.  
         /// The battery can be a short term battery.
         /// </summary>
-        /// <exception cref="System.PlatformNotSupportedException">Requires XP/Windows Server 2003 or higher.</exception>
-        /// <value>A <see cref="bool"/> value.</value>
+        /// <exception cref="PlatformNotSupportedException">Requires XP/Windows Server 2003 or higher.</exception>
         public static bool IsBatteryPresent
         {
             get
@@ -250,8 +243,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// <summary>
         /// Gets a value that indicates whether the battery is a short term battery. 
         /// </summary>
-        /// <exception cref="System.PlatformNotSupportedException">Requires XP/Windows Server 2003 or higher.</exception>
-        /// <value>A <see cref="bool"/> value.</value>
+        /// <exception cref="PlatformNotSupportedException">Requires XP/Windows Server 2003 or higher.</exception>
         public static bool IsBatteryShortTerm
         {
             get
@@ -265,8 +257,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// Gets a value that indicates a UPS is present to prevent 
         /// sudden loss of power.
         /// </summary>
-        /// <exception cref="System.PlatformNotSupportedException">Requires XP/Windows Server 2003 or higher.</exception>
-        /// <value>A <see cref="bool"/> value.</value>
+        /// <exception cref="PlatformNotSupportedException">Requires XP/Windows Server 2003 or higher.</exception>
         public static bool IsUpsPresent
         {
             get
@@ -284,7 +275,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// <summary>
         /// Gets a value that indicates the current power scheme.  
         /// </summary>
-        /// <exception cref="System.PlatformNotSupportedException">Requires Vista/Windows Server 2008.</exception>
+        /// <exception cref="PlatformNotSupportedException">Requires Vista/Windows Server 2008.</exception>
         /// <value>A <see cref="PowerPersonality"/> value.</value>
         public static PowerPersonality PowerPersonality
         {
@@ -296,6 +287,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                 {
                     return PowerPersonalityGuids.GuidToEnum(guid.ToString());
                 }
+
                 finally
                 {
                     _ = Core.LocalFree(ref guid);
@@ -321,20 +313,17 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                 // Because of the way this value is being calculated, it should not be limited to granularity
                 // as the data from the event (old way) was.
                 CoreHelpers.ThrowIfNotVista();
-                if (!Power.GetSystemBatteryState().BatteryPresent)
-                    throw new InvalidOperationException(LocalizedMessages.PowerManagerBatteryNotPresent);
 
-                PowerManagementNativeMethods.SystemBatteryState state = Power.GetSystemBatteryState();
+                PowerManagementNativeMethods.SystemBatteryState state = Power.GetSystemBatteryState().BatteryPresent ? Power.GetSystemBatteryState() : throw new InvalidOperationException(LocalizedMessages.PowerManagerBatteryNotPresent);
 
-                return (int)Math.Round(((double)state.RemainingCapacity / state.MaxCapacity * 100), 0);
+                return (int)Math.Round((double)state.RemainingCapacity / state.MaxCapacity * 100, 0);
             }
         }
 
         /// <summary>
         /// Gets a value that indictates whether the monitor is on. 
         /// </summary>
-        /// <exception cref="System.PlatformNotSupportedException">Requires Vista/Windows Server 2008.</exception>
-        /// <value>A <see cref="bool"/> value.</value>
+        /// <exception cref="PlatformNotSupportedException">Requires Vista/Windows Server 2008.</exception>
         public static bool IsMonitorOn
         {
             get
@@ -348,22 +337,27 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
 #if CS8
                         static
 #endif
-                            void dummy(object sender, EventArgs args) { }
+                            void dummy(object sender, EventArgs args)
+                        { /* Left empty. */ }
+
                         IsMonitorOnChanged += dummy;
+
                         // Wait until Windows updates the power source 
                         // (through RegisterPowerSettingNotification)
+
                         _ = EventManager.monitorOnReset.WaitOne();
                     }
 
                 return (bool)isMonitorOn;
             }
+
             internal set => isMonitorOn = value;
         }
 
         /// <summary>
         /// Gets the current power source.  
         /// </summary>
-        /// <exception cref="System.PlatformNotSupportedException">Requires Vista/Windows Server 2008.</exception>
+        /// <exception cref="PlatformNotSupportedException">Requires Vista/Windows Server 2008.</exception>
         /// <value>A <see cref="PowerSource"/> value.</value>
         public static PowerSource PowerSource
         {
@@ -390,6 +384,5 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
 
                 throw new Win32Exception(LocalizedMessages.PowerExecutionStateFailed);
         }
-
     }
 }

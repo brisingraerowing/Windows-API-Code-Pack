@@ -1,45 +1,31 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
-using System;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.InteropServices;
 using Microsoft.WindowsAPICodePack.Resources;
-using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices;
+
+using System;
+using System.Runtime.InteropServices;
 
 namespace Microsoft.WindowsAPICodePack.ApplicationServices
 {
     internal static class Power
     {
         internal static PowerManagementNativeMethods.SystemPowerCapabilities
-            GetSystemPowerCapabilities()
-        {
-
-            if (PowerManagementNativeMethods.CallNtPowerInformation(
+            GetSystemPowerCapabilities() => PowerManagementNativeMethods.CallNtPowerInformation(
               PowerManagementNativeMethods.PowerInformationLevel.SystemPowerCapabilities,
               IntPtr.Zero, 0, out PowerManagementNativeMethods.SystemPowerCapabilities powerCap,
               (uint)Marshal.SizeOf(typeof(PowerManagementNativeMethods.SystemPowerCapabilities))
-              ) == NativeAPI.Consts.Common.StatusAccessDenied)
+              ) == NativeAPI.Consts.Common.StatusAccessDenied
+                ? throw new UnauthorizedAccessException(LocalizedMessages.PowerInsufficientAccessCapabilities)
+                : powerCap;
 
-                throw new UnauthorizedAccessException(LocalizedMessages.PowerInsufficientAccessCapabilities);
-
-            return powerCap;
-        }
-
-        internal static PowerManagementNativeMethods.SystemBatteryState GetSystemBatteryState()
-        {
-
-            if (PowerManagementNativeMethods.CallNtPowerInformation(
+        internal static PowerManagementNativeMethods.SystemBatteryState GetSystemBatteryState() => PowerManagementNativeMethods.CallNtPowerInformation(
               PowerManagementNativeMethods.PowerInformationLevel.SystemBatteryState,
               IntPtr.Zero, 0, out PowerManagementNativeMethods.SystemBatteryState batteryState,
               (uint)Marshal.SizeOf(typeof(PowerManagementNativeMethods.SystemBatteryState))
-              ) == NativeAPI.Consts.Common.StatusAccessDenied)
-
-                throw new UnauthorizedAccessException(LocalizedMessages.PowerInsufficientAccessBatteryState);
-
-            return batteryState;
-        }
+              ) == NativeAPI.Consts.Common.StatusAccessDenied
+                ? throw new UnauthorizedAccessException(LocalizedMessages.PowerInsufficientAccessBatteryState)
+                : batteryState;
 
         /// <summary>
         /// Registers the application to receive power setting notifications 

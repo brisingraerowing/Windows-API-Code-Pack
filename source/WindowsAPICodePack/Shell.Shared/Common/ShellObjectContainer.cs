@@ -101,7 +101,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         public IntPtr GetUIObjectOf(IntPtr hwndOwner, IntPtr[] ptrs, ref Guid guid)
         {
-            CoreErrorHelper.ThrowExceptionForHR(TryGetUIObjectOf(hwndOwner, ptrs, ref guid, out IntPtr ptr));
+            CoreErrorHelper.ThrowExceptionForHResult(TryGetUIObjectOf(hwndOwner, ptrs, ref guid, out IntPtr ptr));
 
             return ptr;
         }

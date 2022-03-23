@@ -1,13 +1,14 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
+using Microsoft.WindowsAPICodePack.Shell.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
-using Microsoft.WindowsAPICodePack.COMNative.Shell;
-using Microsoft.WindowsAPICodePack.Shell.Resources;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -33,12 +34,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 try
                 {
-                    Marshal.ThrowExceptionForHR((int) iArray.GetCount(out uint itemCount));
+                    CoreErrorHelper.ThrowExceptionForHResult(iArray.GetCount(out uint itemCount));
                     content.Capacity = (int)itemCount;
 
                     for (uint index = 0; index < itemCount; index++)
                     {
-                        Marshal.ThrowExceptionForHR((int) iArray.GetItemAt(index, out IShellItem iShellItem));
+                        CoreErrorHelper.ThrowExceptionForHResult(iArray.GetItemAt(index, out IShellItem iShellItem));
                         content.Add(ShellObjectFactory.Create(iShellItem));
                     }
                 }
@@ -63,18 +64,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Constructs an empty ShellObjectCollection
         /// </summary>
-        public ShellObjectCollection()
-        {
-            // Left empty
-        }
+        public ShellObjectCollection() { /* Left empty */ }
 
-        /// <summary>
-        /// Finalizer
-        /// </summary>
-        ~ShellObjectCollection()
-        {
-            Dispose(false);
-        }
+        ~ShellObjectCollection() => Dispose(false);
 
         /// <summary>
         /// Standard Dispose pattern
@@ -107,18 +99,13 @@ namespace Microsoft.WindowsAPICodePack.Shell
         }
         #endregion
 
-        #region implementation
-
+        #region Implementation
         /// <summary>
         /// Item count
         /// </summary>
         public int Count => content.Count;
 
-        /// <summary>
-        /// Collection enumeration
-        /// </summary>
-        /// <returns></returns>
-        public System.Collections.IEnumerator GetEnumerator()
+        public IEnumerator GetEnumerator()
         {
             foreach (ShellObject obj in content)
 
@@ -203,7 +190,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
         #endregion
 
         #region IList<ShellObject> Members
-
         /// <summary>
         /// Returns the index of a particualr shell object in the collection
         /// </summary>
@@ -255,11 +241,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 content[index] = value;
             }
         }
-
         #endregion
 
         #region System.Collections.Generic.ICollection<ShellObject> Members
-
         /// <summary>
         /// Adds a ShellObject to the collection,
         /// </summary>
@@ -313,7 +297,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Retrieves the number of ShellObjects in the collection
         /// </summary>
-        int System.Collections.Generic.ICollection<ShellObject>.Count => content.Count;
+        int ICollection<ShellObject>.Count => content.Count;
 
         /// <summary>
         /// If true, the contents of the collection are immutable.
@@ -325,19 +309,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         /// <param name="item">The ShellObject to remove.</param>
         /// <returns>True if the item could be removed, false otherwise.</returns>
-        public bool Remove(ShellObject item)
-        {
-            if (IsReadOnly)
-
-                throw new InvalidOperationException(LocalizedMessages.ShellObjectCollectionRemoveReadOnly);
-
-            return content.Remove(item);
-        }
-
+        public bool Remove(ShellObject item) => IsReadOnly
+                ? throw new InvalidOperationException(LocalizedMessages.ShellObjectCollectionRemoveReadOnly)
+                : content.Remove(item);
         #endregion
 
         #region IEnumerable<ShellObject> Members
-
         /// <summary>
         /// Allows for enumeration through the list of ShellObjects in the collection.
         /// </summary>
@@ -348,7 +325,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 yield return obj;
         }
-
         #endregion
     }
 }

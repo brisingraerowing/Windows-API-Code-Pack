@@ -9,6 +9,8 @@ using System.Windows.Interop;
 using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.Shell.DesktopWindowManager;
 using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames;
 
+using static Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper;
+
 using static System.Runtime.InteropServices.Marshal;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager
@@ -185,7 +187,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager
         /// </summary>
         /// <param name="hwnd">The window handle.</param>
         /// <param name="hBitmap">The thumbnail bitmap.</param>
-        public static void SetIconicThumbnail(IntPtr hwnd, IntPtr hBitmap) => Marshal.ThrowExceptionForHR(DwmSetIconicThumbnail(
+        public static void SetIconicThumbnail(IntPtr hwnd, IntPtr hBitmap) => ThrowExceptionForHResult(DwmSetIconicThumbnail(
                 hwnd,
                 hBitmap,
                 DisplayFrame));
@@ -198,7 +200,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager
         /// <param name="bitmap">The thumbnail bitmap.</param>
         /// <param name="displayFrame">Whether to display a standard window
         /// frame around the bitmap.</param>
-        public static void SetPeekBitmap(IntPtr hwnd, IntPtr bitmap, bool displayFrame) => Marshal.ThrowExceptionForHR(DwmSetIconicLivePreviewBitmap(
+        public static void SetPeekBitmap(IntPtr hwnd, IntPtr bitmap, bool displayFrame) => ThrowExceptionForHResult(DwmSetIconicLivePreviewBitmap(
                 hwnd,
                 bitmap,
                 IntPtr.Zero,
@@ -253,9 +255,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager
 
             try
             {
-                ThrowExceptionForHR(DwmSetWindowAttribute(hwnd, HasIconicBitmap, t, 4));
+                ThrowExceptionForHResult(DwmSetWindowAttribute(hwnd, HasIconicBitmap, t, 4));
 
-                ThrowExceptionForHR(DwmSetWindowAttribute(hwnd, ForceIconicRepresentation, t, 4));
+                ThrowExceptionForHResult(DwmSetWindowAttribute(hwnd, ForceIconicRepresentation, t, 4));
             }
             finally
             {

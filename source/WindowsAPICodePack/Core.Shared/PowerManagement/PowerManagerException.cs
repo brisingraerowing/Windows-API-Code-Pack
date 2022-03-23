@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Runtime.InteropServices;
 
 namespace Microsoft.WindowsAPICodePack.ApplicationServices
 {
@@ -14,13 +11,13 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public PowerManagerException() { }
+        public PowerManagerException() { /* Left empty. */ }
 
         /// <summary>
         /// Initializes an excpetion with a custom message.
         /// </summary>
         /// <param name="message">A custom message for the exception.</param>
-        public PowerManagerException(in string message) : base(message) { }
+        public PowerManagerException(in string message) : base(message) { /* Left empty. */ }
 
         /// <summary>
         /// Initializes an exception with custom message and inner exception.
@@ -28,21 +25,16 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// <param name="message">A custom message for the exception.</param>
         /// <param name="innerException">An inner exception on which to base this exception.</param>
         public PowerManagerException(in string message, in Exception innerException)
-            : base(message, innerException)
-        {            
-        }
-        
+            : base(message, innerException) { /* Left empty. */ }
+
         /// <summary>
         /// Initializes an exception from serialization info and a context.
         /// </summary>
         /// <param name="info">SerializationInfo for the exception.</param>
         /// <param name="context">StreamingContext for the exception.</param>
         protected PowerManagerException(
-            in System.Runtime.Serialization.SerializationInfo info, 
+            in System.Runtime.Serialization.SerializationInfo info,
             in System.Runtime.Serialization.StreamingContext context)
-            : base(info, context)
-        {
-        }
-            
+            : base(info, context) { /* Left empty. */ }
     }
 }

@@ -33,7 +33,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.TimeZone
         internal ushort Millisecond;
 
         /// <summary>
-        /// Gets the <see cref="DateTime"/> representation of this object.
+        /// Gets the <see cref="System.DateTime"/> representation of this object.
         /// </summary>
         public DateTime DateTime => new DateTime(Year, Month, Day, Hour, Minute, Second, Millisecond);
 

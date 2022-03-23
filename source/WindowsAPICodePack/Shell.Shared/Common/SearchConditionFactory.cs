@@ -1,23 +1,22 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
+using Microsoft.WindowsAPICodePack.COMNative.Shell;
+using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native;
+using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Runtime.InteropServices;
-using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
-using Microsoft.WindowsAPICodePack.PropertySystem;
-using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
     /// <summary>
-    /// Provides methods for creating or resolving a condition tree 
-    /// that was obtained by parsing a query string.
+    /// Provides methods for creating or resolving a condition tree that was obtained by parsing a query string.
     /// </summary>
     public static class SearchConditionFactory
     {
@@ -28,11 +27,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// The locale name of the leaf node is LOCALE_NAME_USER_DEFAULT.</param>
         /// <param name="value">The constant value against which the property value should be compared.</param>
         /// <param name="operation">Specific condition to be used when comparing the actual value and the expected value of the given property</param>
-        /// <returns>SearchCondition based on the given parameters</returns>
+        /// <returns><see cref="SearchCondition"/> based on the given parameters</returns>
         /// <remarks>
         /// The search will only work for files that are indexed, as well as the specific properties are indexed. To find 
         /// the properties that are indexed, look for the specific property's property description and 
-        /// <see cref="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
+        /// <see cref="PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
         /// </remarks>
         public static SearchCondition CreateLeafCondition(string propertyName, string value, SearchConditionOperation operation)
         {
@@ -43,23 +42,23 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         /// <summary>
         /// Creates a leaf condition node that represents a comparison of property value and constant value. 
-        /// Overload method takes a DateTime parameter for the comparison value.
+        /// Overload method takes a <see cref="System.DateTime"/> parameter for the comparison value.
         /// </summary>
         /// <param name="propertyName">The name of a property to be compared, or null for an unspecified property. 
         /// The locale name of the leaf node is LOCALE_NAME_USER_DEFAULT.</param>
-        /// <param name="value">The DateTime value against which the property value should be compared.</param>
+        /// <param name="value">The <see cref="System.DateTime"/> value against which the property value should be compared.</param>
         /// <param name="operation">Specific condition to be used when comparing the actual value and the expected value of the given property</param>
-        /// <returns>SearchCondition based on the given parameters</returns>
+        /// <returns><see cref="SearchCondition"/> based on the given parameters</returns>
         /// <remarks>
         /// The search will only work for files that are indexed, as well as the specific properties are indexed. To find 
         /// the properties that are indexed, look for the specific property's property description and 
-        /// <see cref="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
+        /// <see cref="PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
         /// </remarks>
-        public static SearchCondition CreateLeafCondition(string propertyName, DateTime value, SearchConditionOperation operation)
+        public static SearchCondition CreateLeafCondition(string propertyName, System.DateTime value, SearchConditionOperation operation)
         {
             using (var propVar = new PropVariant(value))
 
-                return CreateLeafCondition(propertyName, propVar, "System.StructuredQuery.CustomProperty.DateTime", operation);
+                return CreateLeafCondition(propertyName, propVar, "System.StructuredQuery.CustomProperty.System.DateTime", operation);
         }
 
         /// <summary>
@@ -69,11 +68,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// The locale name of the leaf node is LOCALE_NAME_USER_DEFAULT.</param>
         /// <param name="value">The Integer value against which the property value should be compared.</param>
         /// <param name="operation">Specific condition to be used when comparing the actual value and the expected value of the given property</param>
-        /// <returns>SearchCondition based on the given parameters</returns>
+        /// <returns><see cref="SearchCondition"/> based on the given parameters</returns>
         /// <remarks>
         /// The search will only work for files that are indexed, as well as the specific properties are indexed. To find 
         /// the properties that are indexed, look for the specific property's property description and 
-        /// <see cref="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
+        /// <see cref="PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
         /// </remarks>
         public static SearchCondition CreateLeafCondition(string propertyName, int value, SearchConditionOperation operation)
         {
@@ -89,11 +88,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// The locale name of the leaf node is LOCALE_NAME_USER_DEFAULT.</param>
         /// <param name="value">The Boolean value against which the property value should be compared.</param>
         /// <param name="operation">Specific condition to be used when comparing the actual value and the expected value of the given property</param>
-        /// <returns>SearchCondition based on the given parameters</returns>
+        /// <returns><see cref="SearchCondition"/> based on the given parameters</returns>
         /// <remarks>
         /// The search will only work for files that are indexed, as well as the specific properties are indexed. To find 
         /// the properties that are indexed, look for the specific property's property description and 
-        /// <see cref="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
+        /// <see cref="PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
         /// </remarks>
         public static SearchCondition CreateLeafCondition(string propertyName, bool value, SearchConditionOperation operation)
         {
@@ -109,11 +108,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// The locale name of the leaf node is LOCALE_NAME_USER_DEFAULT.</param>
         /// <param name="value">The Floating Point value against which the property value should be compared.</param>
         /// <param name="operation">Specific condition to be used when comparing the actual value and the expected value of the given property</param>
-        /// <returns>SearchCondition based on the given parameters</returns>
+        /// <returns><see cref="SearchCondition"/> based on the given parameters</returns>
         /// <remarks>
         /// The search will only work for files that are indexed, as well as the specific properties are indexed. To find 
         /// the properties that are indexed, look for the specific property's property description and 
-        /// <see cref="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
+        /// <see cref="PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
         /// </remarks>
         public static SearchCondition CreateLeafCondition(string propertyName, double value, SearchConditionOperation operation)
         {
@@ -122,7 +121,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 return CreateLeafCondition(propertyName, propVar, "System.StructuredQuery.CustomProperty.FloatingPoint", operation);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope")]
         private static SearchCondition CreateLeafCondition(string propertyName, PropVariant propVar, string valueType, SearchConditionOperation operation)
         {
             IConditionFactory nativeConditionFactory = null;
@@ -149,6 +147,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 // Create our search condition and set the various properties.
                 condition = new SearchCondition(nativeCondition);
             }
+
             finally
             {
                 if (nativeConditionFactory != null)
@@ -165,122 +164,111 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="propertyKey">The property to be compared.</param>
         /// <param name="value">The constant value against which the property value should be compared.</param>
         /// <param name="operation">Specific condition to be used when comparing the actual value and the expected value of the given property</param>
-        /// <returns>SearchCondition based on the given parameters</returns>
+        /// <returns><see cref="SearchCondition"/> based on the given parameters</returns>
         /// <remarks>
         /// The search will only work for files that are indexed, as well as the specific properties are indexed. To find 
         /// the properties that are indexed, look for the specific property's property description and 
-        /// <see cref="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
+        /// <see cref="PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
         /// </remarks>
         public static SearchCondition CreateLeafCondition(PropertyKey propertyKey, string value, SearchConditionOperation operation)
         {
-            Marshal.ThrowExceptionForHR( PropertySystemNativeMethods.PSGetNameFromPropertyKey(ref propertyKey, out string canonicalName));
+            CoreErrorHelper.ThrowExceptionForHResult(PropertySystemNativeMethods.PSGetNameFromPropertyKey(ref propertyKey, out string canonicalName));
 
-            if (string.IsNullOrEmpty(canonicalName))
-
-                throw new ArgumentException(LocalizedMessages.SearchConditionFactoryInvalidProperty, nameof(propertyKey));
-
-            return CreateLeafCondition(canonicalName, value, operation);
+            return string.IsNullOrEmpty(canonicalName)
+                ? throw new ArgumentException(LocalizedMessages.SearchConditionFactoryInvalidProperty, nameof(propertyKey))
+                : CreateLeafCondition(canonicalName, value, operation);
         }
 
         /// <summary>
         /// Creates a leaf condition node that represents a comparison of property value and constant value. 
-        /// Overload method takes a DateTime parameter for the comparison value.
+        /// Overload method takes a <see cref="System.DateTime"/> parameter for the comparison value.
         /// </summary>
         /// <param name="propertyKey">The property to be compared.</param>
-        /// <param name="value">The DateTime value against which the property value should be compared.</param>
+        /// <param name="value">The <see cref="System.DateTime"/> value against which the property value should be compared.</param>
         /// <param name="operation">Specific condition to be used when comparing the actual value and the expected value of the given property</param>
-        /// <returns>SearchCondition based on the given parameters</returns>
+        /// <returns><see cref="SearchCondition"/> based on the given parameters</returns>
         /// <remarks>
         /// The search will only work for files that are indexed, as well as the specific properties are indexed. To find 
         /// the properties that are indexed, look for the specific property's property description and 
-        /// <see cref="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
+        /// <see cref="PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
         /// </remarks>
-        public static SearchCondition CreateLeafCondition(PropertyKey propertyKey, DateTime value, SearchConditionOperation operation)
+        public static SearchCondition CreateLeafCondition(PropertyKey propertyKey, System.DateTime value, SearchConditionOperation operation)
         {
-            PropertySystemNativeMethods.PSGetNameFromPropertyKey(ref propertyKey, out string canonicalName);
+            _ = PropertySystemNativeMethods.PSGetNameFromPropertyKey(ref propertyKey, out string canonicalName);
 
-            if (string.IsNullOrEmpty(canonicalName))
-
-                throw new ArgumentException(LocalizedMessages.SearchConditionFactoryInvalidProperty, nameof(propertyKey));
-
-            return CreateLeafCondition(canonicalName, value, operation);
+            return string.IsNullOrEmpty(canonicalName)
+                ? throw new ArgumentException(LocalizedMessages.SearchConditionFactoryInvalidProperty, nameof(propertyKey))
+                : CreateLeafCondition(canonicalName, value, operation);
         }
 
         /// <summary>
         /// Creates a leaf condition node that represents a comparison of property value and Boolean value. 
-        /// Overload method takes a DateTime parameter for the comparison value.
+        /// Overload method takes a <see cref="System.DateTime"/> parameter for the comparison value.
         /// </summary>
         /// <param name="propertyKey">The property to be compared.</param>
         /// <param name="value">The boolean value against which the property value should be compared.</param>
         /// <param name="operation">Specific condition to be used when comparing the actual value and the expected value of the given property</param>
-        /// <returns>SearchCondition based on the given parameters</returns>
+        /// <returns><see cref="SearchCondition"/> based on the given parameters</returns>
         /// <remarks>
         /// The search will only work for files that are indexed, as well as the specific properties are indexed. To find 
         /// the properties that are indexed, look for the specific property's property description and 
-        /// <see cref="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
+        /// <see cref="PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
         /// </remarks>
         public static SearchCondition CreateLeafCondition(PropertyKey propertyKey, bool value, SearchConditionOperation operation)
         {
             _ = PropertySystemNativeMethods.PSGetNameFromPropertyKey(ref propertyKey, out string canonicalName);
 
-            if (string.IsNullOrEmpty(canonicalName))
-
-                throw new ArgumentException(LocalizedMessages.SearchConditionFactoryInvalidProperty, nameof(propertyKey));
-
-            return CreateLeafCondition(canonicalName, value, operation);
+            return string.IsNullOrEmpty(canonicalName)
+                ? throw new ArgumentException(LocalizedMessages.SearchConditionFactoryInvalidProperty, nameof(propertyKey))
+                : CreateLeafCondition(canonicalName, value, operation);
         }
 
         /// <summary>
         /// Creates a leaf condition node that represents a comparison of property value and Floating Point value. 
-        /// Overload method takes a DateTime parameter for the comparison value.
+        /// Overload method takes a <see cref="System.DateTime"/> parameter for the comparison value.
         /// </summary>
         /// <param name="propertyKey">The property to be compared.</param>
         /// <param name="value">The Floating Point value against which the property value should be compared.</param>
         /// <param name="operation">Specific condition to be used when comparing the actual value and the expected value of the given property</param>
-        /// <returns>SearchCondition based on the given parameters</returns>
+        /// <returns><see cref="SearchCondition"/> based on the given parameters</returns>
         /// <remarks>
         /// The search will only work for files that are indexed, as well as the specific properties are indexed. To find 
         /// the properties that are indexed, look for the specific property's property description and 
-        /// <see cref="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
+        /// <see cref="PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
         /// </remarks>
         public static SearchCondition CreateLeafCondition(PropertyKey propertyKey, double value, SearchConditionOperation operation)
         {
-            PropertySystemNativeMethods.PSGetNameFromPropertyKey(ref propertyKey, out string canonicalName);
+            _ = PropertySystemNativeMethods.PSGetNameFromPropertyKey(ref propertyKey, out string canonicalName);
 
-            if (string.IsNullOrEmpty(canonicalName))
-
-                throw new ArgumentException(LocalizedMessages.SearchConditionFactoryInvalidProperty, nameof(propertyKey));
-
-            return CreateLeafCondition(canonicalName, value, operation);
+            return string.IsNullOrEmpty(canonicalName)
+                ? throw new ArgumentException(LocalizedMessages.SearchConditionFactoryInvalidProperty, nameof(propertyKey))
+                : CreateLeafCondition(canonicalName, value, operation);
         }
 
         /// <summary>
         /// Creates a leaf condition node that represents a comparison of property value and Integer value. 
-        /// Overload method takes a DateTime parameter for the comparison value.
+        /// Overload method takes a <see cref="System.DateTime"/> parameter for the comparison value.
         /// </summary>
         /// <param name="propertyKey">The property to be compared.</param>
         /// <param name="value">The Integer value against which the property value should be compared.</param>
         /// <param name="operation">Specific condition to be used when comparing the actual value and the expected value of the given property</param>
-        /// <returns>SearchCondition based on the given parameters</returns>
+        /// <returns><see cref="SearchCondition"/> based on the given parameters</returns>
         /// <remarks>
         /// The search will only work for files that are indexed, as well as the specific properties are indexed. To find 
         /// the properties that are indexed, look for the specific property's property description and 
-        /// <see cref="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
+        /// <see cref="PropertySystem.ShellPropertyDescription.TypeFlags"/> property for IsQueryable flag.
         /// </remarks>
         public static SearchCondition CreateLeafCondition(PropertyKey propertyKey, int value, SearchConditionOperation operation)
         {
-            PropertySystemNativeMethods.PSGetNameFromPropertyKey(ref propertyKey, out string canonicalName);
+            _ = PropertySystemNativeMethods.PSGetNameFromPropertyKey(ref propertyKey, out string canonicalName);
 
-            if (string.IsNullOrEmpty(canonicalName))
-
-                throw new ArgumentException(LocalizedMessages.SearchConditionFactoryInvalidProperty, nameof(propertyKey));
-
-            return CreateLeafCondition(canonicalName, value, operation);
+            return string.IsNullOrEmpty(canonicalName)
+                ? throw new ArgumentException(LocalizedMessages.SearchConditionFactoryInvalidProperty, nameof(propertyKey))
+                : CreateLeafCondition(canonicalName, value, operation);
         }
 
         /// <summary>
-        /// Creates a condition node that is a logical conjunction ("AND") or disjunction ("OR") 
-        /// of a collection of subconditions.
+        /// Creates a condition node that is a logical conjunction ("AND") or disjunction ("OR") of a collection of subconditions.
         /// </summary>
         /// <param name="conditionType">The SearchConditionType of the condition node. 
         /// Must be either AndCondition or OrCondition.</param>
@@ -289,7 +277,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// have exactly the prescribed structure. An application that plans to execute a query based on the 
         /// condition tree would typically benefit from setting this parameter to TRUE. </param>
         /// <param name="conditionNodes">Array of subconditions</param>
-        /// <returns>New SearchCondition based on the operation</returns>
+        /// <returns>New <see cref="SearchCondition"/> based on the operation</returns>
         public static SearchCondition CreateAndOrCondition(SearchConditionType conditionType, bool simplify, params SearchCondition[] conditionNodes)
         {
             // Same as the native "IConditionFactory:MakeAndOr" method
@@ -313,6 +301,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 if (!CoreErrorHelper.Succeeded(hr)) throw new ShellException(hr);
             }
+
             finally
             {
                 if (nativeConditionFactory != null)
@@ -330,7 +319,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="conditionToBeNegated">SearchCondition node to be negated.</param>
         /// <param name="simplify">True to logically simplify the result if possible; False otherwise. 
         /// In a query builder scenario, simplyfy should typically be set to false.</param>
-        /// <returns>New SearchCondition</returns>
         public static SearchCondition CreateNotCondition(SearchCondition conditionToBeNegated, bool simplify)
         {
             if (conditionToBeNegated == null)
@@ -347,6 +335,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 if (!CoreErrorHelper.Succeeded(hr)) throw new ShellException(hr);
             }
+
             finally
             {
                 if (nativeConditionFactory != null)
@@ -431,12 +420,14 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 return searchCondition;
             }
+
             catch
             {
                 if (searchCondition != null) searchCondition.Dispose();
 
                 throw;
             }
+
             finally
             {
                 if (nativeQueryParserManager != null)

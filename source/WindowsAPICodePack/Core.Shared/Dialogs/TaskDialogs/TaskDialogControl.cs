@@ -10,11 +10,12 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// <summary>
         /// Creates a new instance of a task dialog control.
         /// </summary>
-        protected TaskDialogControl() { }
+        protected TaskDialogControl() { /* Left empty. */ }
+
         /// <summary>
         /// Creates a new instance of a task dialog control with the specified name.
         /// </summary>
         /// <param name="name">The name for this control.</param>
-        protected TaskDialogControl(in string name) : base(name) { }
+        protected TaskDialogControl(in string name) : base(name) { /* Left empty. */ }
     }
 }

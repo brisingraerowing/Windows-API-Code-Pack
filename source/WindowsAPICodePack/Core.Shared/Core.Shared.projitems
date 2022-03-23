@@ -13,6 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)AppRestartRecovery\ApplicationRestartRecoveryManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AppRestartRecovery\RecoverySettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AppRestartRecovery\RestartSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DateTime.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dialogs\Common\DialogControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dialogs\Common\DialogControlCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dialogs\Common\DialogsDefaults.cs" />
@@ -35,6 +36,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Dialogs\TaskDialogs\TaskDialogTickEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interop\DialogShowState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interop\NativeTaskDialog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Networking\FTPConnection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Networking\FTPItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Networking\IInternetConnection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Networking\InternetConnection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NetworkList\Network.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NetworkList\NetworkCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NetworkList\NetworkConnection.cs" />

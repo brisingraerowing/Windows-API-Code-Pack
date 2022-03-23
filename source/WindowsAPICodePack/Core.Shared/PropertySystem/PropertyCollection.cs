@@ -11,11 +11,7 @@ using System.Runtime.InteropServices;
 
 using WinCopies.Collections;
 
-#if WAPICP2
-using static WinCopies.Util.Util;
-
-using IDisposable = WinCopies.Util.DotNetFix.IDisposable;
-#else
+#if WAPICP3
 using Microsoft.WindowsAPICodePack.COMNative;
 
 using WinCopies.Collections.DotNetFix;
@@ -25,11 +21,15 @@ using WinCopies.Collections.Enumeration.Generic;
 using static WinCopies.ThrowHelper;
 
 using IDisposable = WinCopies.DotNetFix.IDisposable;
+#else
+using static WinCopies.Util.Util;
+
+using IDisposable = WinCopies.Util.DotNetFix.IDisposable;
 #endif
 
 namespace Microsoft.WindowsAPICodePack.PropertySystem
 {
-#if WAPICP2
+#if !WAPICP3
     // todo: use the new interfaces of WinCopies.Util instead.
     public interface IUIntIndexedCollection<T> : IEnumerable<T>, IEnumerable
     {
@@ -68,7 +68,10 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 #endif
 
     public interface IUIntIndexedCollection :
-#if WAPICP2
+#if WAPICP3
+        WinCopies.Collections.DotNetFix.IUIntIndexedCollection
+    {
+#else
         IEnumerable
     {
         uint Count { get; }
@@ -78,9 +81,6 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         bool IsSynchronized { get; }
 
         void CopyTo(in Array array, uint index);
-#else
-        WinCopies.Collections.DotNetFix.IUIntIndexedCollection
-    {
 #endif
         // Left empty.
     }
@@ -90,20 +90,20 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         out
 #endif
         T> :
-#if WAPICP2
-        IReadOnlyUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable
-#else
+#if WAPICP3
        WinCopies.Collections.DotNetFix.Generic.IReadOnlyUIntIndexedList<T>, WinCopies.Collections.DotNetFix.IReadOnlyUIntIndexedList
+#else
+        IReadOnlyUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable
 #endif
     {
         T GetAt(ref uint index);
     }
 
     public interface IUIntIndexedList : IUIntIndexedCollection,
-#if WAPICP2
-        IEnumerable
+#if WAPICP3
+        IReadOnlyUIntIndexedList
 #else
-       WinCopies.Collections.DotNetFix.IReadOnlyUIntIndexedList
+        IEnumerable
 #endif
     {
         bool IsReadOnly { get; }
@@ -115,19 +115,19 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
         uint Add(ref object value);
 
         bool Contains(
-#if WAPICP2
+#if !WAPICP3
 in
 #endif
             object value);
 
         uint? IndexOf(
-#if WAPICP2
+#if !WAPICP3
 in
 #endif
             object value);
 
         void Remove(
-#if WAPICP2
+#if !WAPICP3
 in
 #endif
             object value);
@@ -138,7 +138,7 @@ in
     }
 
     public interface ICollection<T> : IDisposable, IUIntIndexedCollection, IUIntIndexedList,
-#if WAPICP2
+#if !WAPICP3
      IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IReadOnlyUIntIndexedCollection<T>, WinCopies.Collections.
 #endif
         IUIntIndexedCollection<T>, IReadOnlyUIntIndexedList<T>
@@ -149,31 +149,37 @@ in
     [Serializable]
     [DebuggerDisplay("Count = {Count}")]
     public class Collection<T> : IDisposable, ICollection<T>
-#if WAPICP2
+#if !WAPICP3
         , IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUIntIndexedList, IUIntIndexedCollection, IReadOnlyUIntIndexedList<T>, IReadOnlyUIntIndexedCollection<T>, WinCopies.Collections.IUIntIndexedCollection<T>
 #endif
     {
         [NonSerialized]
         private object _syncRoot;
-        private INativeCollection<T> items;
+        private INativeCollection<T> _items;
+        private const bool _isReadOnly = false;
 
-        // todo: replace this by the same method of the WinCopies.Util package
+        protected void ThrowIfDisposed() => WinCopies.
+#if WAPICP3
+            ThrowHelper
+#else
+            Util.Util
+#endif
+            .ThrowIfDisposed(this);
 
-        private void ThrowIfDisposed()
-        {
-            if (IsDisposed)
-
-                throw new InvalidOperationException("The collection is disposed.");
-        }
+        protected U GetOrThrowIfDisposed<U>(in U value) => WinCopies.
+#if !WAPICP3
+            Util.
+#endif
+            ThrowHelper.GetOrThrowIfDisposed(this, value);
 
         bool
-#if !WAPICP2
+#if WAPICP3
            WinCopies.Collections.DotNetFix.
 #endif
             IUIntIndexedCollection.IsSynchronized => false;
 
         object
-#if !WAPICP2
+#if WAPICP3
            WinCopies.Collections.DotNetFix.
 #endif
              IUIntIndexedCollection.SyncRoot
@@ -196,9 +202,9 @@ in
             }
         }
 
-        protected internal INativeCollection<T> Items { get { ThrowIfDisposed(); return items; } private set { ThrowIfDisposed(); items = value; } }
+        protected internal INativeCollection<T> Items { get => GetOrThrowIfDisposed(_items); private set => _items = GetOrThrowIfDisposed(value); }
 
-        public Collection(in INativeCollection<T> items) => this.items = (items ?? throw new ArgumentNullException(nameof(items))).IsReadOnly ? throw new ArgumentException("The given collection is read-only.") : items.IsDisposed ? throw new ObjectDisposedException(nameof(items)) : items;
+        public Collection(in INativeCollection<T> items) => _items = (items ?? throw new ArgumentNullException(nameof(items))).IsReadOnly ? throw new ArgumentException("The given collection is read-only.") : items.IsDisposed ? throw new ObjectDisposedException(nameof(items)) : items;
 
         public T GetAt(ref uint index) => GetItem(ref index);
 
@@ -229,104 +235,74 @@ in
 
         uint IUIntIndexedList.Add(ref object value)
         {
-            ThrowIfDisposed();
-
-            var _value = (T)value;
+            var _value = (T)GetOrThrowIfDisposed(value);
 
             AddItem(ref _value);
+
+            value = _value;
 
             return Count;
         }
 
         bool IUIntIndexedList.Contains(
-#if WAPICP2
+#if !WAPICP3
 in
 #endif
              object value)
-#if !WAPICP2
+#if WAPICP3
             => Contains(value);
 
         bool IReadOnlyUIntIndexedList.Contains(in object value) => Contains(value);
 
         private bool Contains(in object value)
 #endif
-        {
-            ThrowIfDisposed();
-
-            if (value is null) return false;
-
-            var _value = (T)value;
-
-            return Contains(_value);
-        }
+            =>
+#if !CS9
+            !(
+#endif
+            GetOrThrowIfDisposed(value) is
+#if CS9
+            not
+#endif
+            null && Contains((T)value)
+#if !CS9
+            )
+#endif
+            ;
 
         uint? IUIntIndexedList.IndexOf(
-#if WAPICP2
+#if !WAPICP3
 in
 #endif
              object value)
-#if !WAPICP2
+#if WAPICP3
             => IndexOf(value);
 
         uint? IReadOnlyUIntIndexedList.IndexOf(in object value) => IndexOf(value);
 
         private uint? IndexOf(in object value)
 #endif
-        {
-            ThrowIfDisposed();
-
-            if (value is null) return null;
-
-            var _value = (T)value;
-
-            return IndexOf(_value);
-        }
+            => GetOrThrowIfDisposed(value) is null ? null : IndexOf((T)value);
 
         void IUIntIndexedList.Remove(
-#if WAPICP2
+#if !WAPICP3
 in
 #endif
-             object value)
-
-        {
-            ThrowIfDisposed();
-
-            var _value = (T)value;
-
-            _ = Remove(_value);
-        }
+             object value) => Remove((T)GetOrThrowIfDisposed(value));
 
         object IUIntIndexedList.GetAt(ref uint index) => GetAt(ref index);
 
-        private const bool _isReadOnly = false;
+        private bool IsReadOnly => GetOrThrowIfDisposed(_isReadOnly);
 
-        private bool IsReadOnly
-        {
-            get
-            {
-                ThrowIfDisposed();
-
-                return _isReadOnly;
-            }
-        }
-
-#if WAPICP2
+#if WAPICP3
+        bool IUIntIndexedList.IsReadOnly => IsReadOnly;
+#else
         bool IUIntIndexedCollection<T>.IsReadOnly => IsReadOnly;
 
         bool IUIntIndexedList.IsReadOnly => IsReadOnly;
-#else
-        bool IUIntIndexedList.IsReadOnly => IsReadOnly;
 #endif
 
-        public bool IsFixedSize
-        {
-            get
-            {
-                ThrowIfDisposed();
-
-                return Items.IsFixedSize;
-            }
-        }
+        public bool IsFixedSize => Items.IsFixedSize;
 
         public bool IsDisposed { get; private set; }
 
@@ -366,32 +342,24 @@ in
 
         public void Add(ref T item) => AddItem(ref item);
 
-#if !WAPICP2
+#if WAPICP3
         void IUIntIndexedCollection<T>.Add(T item) => Add(ref item);
 #endif
 
         public void Clear() => ClearItems();
 
         public bool Contains(
-#if WAPICP2
+#if !WAPICP3
             in
 #endif
             T item)
         {
-            ThrowIfDisposed();
-
-            if (item
-
+            if (GetOrThrowIfDisposed(item)
 #if CS8
-
                 is null
-
 #else
-
                 .Equals(null)
-
 #endif
-
                 ) return false;
 
             foreach (T _item in Items)
@@ -404,20 +372,14 @@ in
         }
 
         public void CopyTo(
-#if WAPICP2
+#if !WAPICP3
             in
 #endif
             T[] array, uint index)
         {
-            ThrowIfNull(array, nameof(array));
+            uint i = (GetOrThrowIfDisposed(array) ?? throw GetArgumentNullException(nameof(array))).Length <= Count + index ? throw new ArgumentException($"{nameof(array)} does not have the required length.") : 0u;
 
-            if (array.Length <= Count + index)
-
-                throw new ArgumentException($"{nameof(array)} does not have the required length.");
-
-            uint i = 0;
-
-            _ = Items.GetAt(ref i, out T item);
+            _ = _items.GetAt(ref i, out T item);
 
             array[index] = item;
 
@@ -430,49 +392,37 @@ in
         }
 
         void
-#if !WAPICP2
+#if WAPICP3
             WinCopies.Collections.DotNetFix.
 #endif
             IUIntIndexedCollection.CopyTo(in Array array,
-#if WAPICP2
-            uint
-#else
+#if WAPICP3
             int
+#else
+            uint
 #endif
             index)
         {
-            ThrowIfDisposed();
+            uint i = (GetOrThrowIfDisposed(array) ?? throw GetArgumentNullException(nameof(array))).Length <= Count + index ? throw new ArgumentException($"{nameof(array)} does not have the required length.") : 0u;
 
-            ThrowIfNull(array, nameof(array));
-
-            if (array.Length <= Count + index)
-
-                throw new ArgumentException($"{nameof(array)} does not have the required length.");
-
-            uint i = 0;
-
-            _ = Items.GetAt(ref i, out T item);
+            _ = _items.GetAt(ref i, out T item);
 
             array.SetValue(item, index);
 
             for (i = 1; i < Count; i++)
             {
-
                 _ = Items.GetAt(ref i, out item);
 
                 array.SetValue(item, index);
-
             }
         }
 
         public System.Collections.Generic.IEnumerator<T> GetEnumerator() => Items.GetEnumerator();
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
+        System.Collections.IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public uint? IndexOf(in T item)
         {
-            ThrowIfDisposed();
-
             for (uint i = 0; i < Count; i++)
             {
                 _ = Items.GetAt(ref i, out T _item);
@@ -486,7 +436,7 @@ in
         }
 
         public bool Remove(
-#if WAPICP2
+#if !WAPICP3
             in
 #endif
             T item)
@@ -501,7 +451,7 @@ in
 
             uint _index = index.Value;
 
-            Marshal.ThrowExceptionForHR((int)Items.RemoveAt(_index));
+            CoreErrorHelper.ThrowExceptionForHResult(Items.RemoveAt(_index));
 
             return true;
         }
@@ -514,23 +464,23 @@ in
         {
             ThrowIfDisposed();
 
-#if WAPICP2
-            ThrowIfNull(item,
-#else
+#if WAPICP3
             if (item == null)
 
                 throw GetArgumentNullException(
+#else
+            ThrowIfNull(item,
 #endif
                     nameof(item));
 
-            Marshal.ThrowExceptionForHR((int)Items.Add(ref item));
+            CoreErrorHelper.ThrowExceptionForHResult(Items.Add(ref item));
         }
 
         protected virtual void RemoveItem(ref uint index)
         {
             ThrowIfDisposed();
 
-            Marshal.ThrowExceptionForHR((int)Items.RemoveAt(index));
+            CoreErrorHelper.ThrowExceptionForHResult(Items.RemoveAt(index));
         }
 
 #if WAPICP3
@@ -546,25 +496,22 @@ in
     [Serializable]
     [DebuggerDisplay("Count = {Count}")]
     public class ReadOnlyCollection<T> :
-#if WAPICP2
+#if !WAPICP3
 IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUIntIndexedList, IUIntIndexedCollection, IReadOnlyUIntIndexedList<T>, IReadOnlyUIntIndexedCollection<T>, WinCopies.Collections.IUIntIndexedCollection<T>, WinCopies.Util.DotNetFix.IDisposable,
 #endif
         ICollection<T>
     {
+        private const bool _isReadOnly = true;
+
         public bool IsDisposed { get; private set; }
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!IsDisposed)
+            if (!IsDisposed && disposing)
             {
-                if (disposing)
-                {
-                    _collectionBridge = null;
+                Items.Dispose();
 
-                    Items.Dispose();
-
-                    _items = null;
-                }
+                _items = null;
             }
 
             IsDisposed = true;
@@ -582,23 +529,35 @@ IUIntIndexedList<T>, IUIntIndexedCollection<T>, IEnumerable<T>, IEnumerable, IUI
         [NonSerialized]
         private object _syncRoot;
 
+        protected void ThrowIfDisposed() => WinCopies.
+#if WAPICP3
+            ThrowHelper
+#else
+            Util.Util
+#endif
+            .ThrowIfDisposed(this);
+
+        protected U GetOrThrowIfDisposed<U>(in U value) => WinCopies.
+#if !WAPICP3
+            Util.
+#endif
+            ThrowHelper.GetOrThrowIfDisposed(this, value);
+
         bool
-#if !WAPICP2
-WinCopies.Collections.DotNetFix.
+#if WAPICP3
+            WinCopies.Collections.DotNetFix.
 #endif
             IUIntIndexedCollection.IsSynchronized => false;
 
         object
-#if !WAPICP2
+#if WAPICP3
             WinCopies.Collections.DotNetFix.
 #endif
             IUIntIndexedCollection.SyncRoot
         {
             get
             {
-                ThrowIfDisposed();
-
-                if (_syncRoot is null)
+                if (GetOrThrowIfDisposed(_syncRoot) is null)
 
                     if (Items is IUIntIndexedCollection c)
 
@@ -612,70 +571,29 @@ WinCopies.Collections.DotNetFix.
             }
         }
 
-        private const bool _isReadOnly = true;
-
-#if WAPICP2
-        bool IUIntIndexedCollection<T>.IsReadOnly
-        {
-            get
-            {
-                ThrowIfDisposed();
-
-                return _isReadOnly;
-            }
-        }
+#if !WAPICP3
+        bool IUIntIndexedCollection<T>.IsReadOnly => GetOrThrowIfDisposed(_isReadOnly);
 #endif
 
-        bool IUIntIndexedList.IsReadOnly
-        {
-            get
-            {
-                ThrowIfDisposed();
+        bool IUIntIndexedList.IsReadOnly => GetOrThrowIfDisposed(_isReadOnly);
 
-                return _isReadOnly;
-            }
-        }
-
-        bool IUIntIndexedList.IsFixedSize
-        {
-            get
-            {
-                ThrowIfDisposed();
-
-                return true;
-            }
-        }
-
-        // todo: replace this by the same method of the WinCopies.Util package
-
-        private void ThrowIfDisposed()
-        {
-            if (IsDisposed)
-
-                throw new InvalidOperationException("The collection is disposed.");
-        }
+        bool IUIntIndexedList.IsFixedSize => GetOrThrowIfDisposed(true);
 
         private INativeReadOnlyCollection<T> _items;
 
-        protected INativeReadOnlyCollection<T> Items
-        {
-            get
-            {
-                ThrowIfDisposed();
-
-                return _items;
-            }
-        }
+        protected INativeReadOnlyCollection<T> Items => GetOrThrowIfDisposed(_items);
 
         public ReadOnlyCollection(in INativeReadOnlyCollection<T> list) => _items = (list ?? throw new ArgumentNullException(nameof(list))).IsDisposed ? throw new ObjectDisposedException(nameof(list)) : list;
 
-        public ReadOnlyCollection(in Collection<T> collection) : this(collection.Items) { }
+        public ReadOnlyCollection(in Collection<T> collection) : this(collection.Items) { /* Left empty. */ }
 
+#if !WAPICP3
         private IDisposable _collectionBridge;
 
         public ReadOnlyCollection(in INativeReadOnlyCollection<T> list, IDisposable collectionBridge) : this(list) => _collectionBridge = collectionBridge ?? throw new ArgumentNullException(nameof(collectionBridge));
 
         public ReadOnlyCollection(in Collection<T> collection, IDisposable collectionBridge) : this(collection) => _collectionBridge = collectionBridge ?? throw new ArgumentNullException(nameof(collectionBridge));
+#endif
 
         public T GetAt(ref uint index)
         {
@@ -692,19 +610,19 @@ WinCopies.Collections.DotNetFix.
         }
 
         T WinCopies.Collections.
-#if WAPICP2
-            IUIntIndexedCollection
-#else
+#if WAPICP3
             DotNetFix.Generic.IReadOnlyUIntIndexedList
+#else
+            IUIntIndexedCollection
 #endif
             <T>.this[uint index] => GetAt(ref index);
 
         object
 
-#if WAPICP2
-WinCopies.Collections.IUIntIndexedCollection
-#else
+#if WAPICP3
             IReadOnlyUIntIndexedList
+#else
+            WinCopies.Collections.IUIntIndexedCollection
 #endif
             .this[uint index] => GetAt(ref index);
 
@@ -719,13 +637,11 @@ WinCopies.Collections.IUIntIndexedCollection
         }
 
         public bool Contains(
-#if WAPICP2
+#if !WAPICP3
             in
 #endif
             T value)
         {
-            ThrowIfDisposed();
-
             foreach (T _value in Items)
 
                 if (_value.Equals(value))
@@ -736,24 +652,18 @@ WinCopies.Collections.IUIntIndexedCollection
         }
 
         public void CopyTo(
-#if WAPICP2
+#if !WAPICP3
             in
 #endif
             T[] array, uint index)
         {
-            ThrowIfDisposed();
+            ThrowIfNull(GetOrThrowIfDisposed(array), nameof(array));
 
-            ThrowIfNull(array, nameof(array));
+            _ = _items.GetCount(out uint count);
 
-            _ = Items.GetCount(out uint count);
+            uint i = array.Length <= count + index ? throw new ArgumentException($"{nameof(array)} does not have the required length.") : 0u;
 
-            if (array.Length <= count + index)
-
-                throw new ArgumentException($"{nameof(array)} does not have the required length.");
-
-            uint i = 0;
-
-            _ = Items.GetAt(ref i, out T item);
+            _ = _items.GetAt(ref i, out T item);
 
             array[index] = item;
 
@@ -767,12 +677,10 @@ WinCopies.Collections.IUIntIndexedCollection
 
         public System.Collections.Generic.IEnumerator<T> GetEnumerator() => Items.GetEnumerator();
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
+        System.Collections.IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public uint? IndexOf(in T item)
         {
-            ThrowIfDisposed();
-
             for (uint i = 0; i < Count; i++)
             {
                 _ = Items.GetAt(ref i, out T _item);
@@ -786,11 +694,11 @@ WinCopies.Collections.IUIntIndexedCollection
         }
 
         uint? IUIntIndexedList.IndexOf(
-#if WAPICP2
+#if !WAPICP3
 in
 #endif
              object value)
-#if !WAPICP2
+#if WAPICP3
             => IndexOf(value);
 
         uint? IReadOnlyUIntIndexedList.IndexOf(in object value) => IndexOf(value);
@@ -804,56 +712,52 @@ in
         }
 
         bool IUIntIndexedList.Contains(
-#if WAPICP2
+#if !WAPICP3
 in
 #endif
              object value)
-#if !WAPICP2
+#if WAPICP3
             => Contains(value);
 
         bool IReadOnlyUIntIndexedList.Contains(in object value) => Contains(value);
 
         private bool Contains(in object value)
 #endif
-        {
-            ThrowIfDisposed();
-
-            if (value is null) return false;
-
-            var _value = (T)value;
-
-            return Contains(_value);
-        }
+            =>
+#if !CS9
+            !(
+#endif
+            GetOrThrowIfDisposed(value) is
+#if CS9
+            not
+#endif
+            null
+#if !CS9
+            )
+#endif
+            && Contains((T)value);
 
         void
-#if !WAPICP2
+#if WAPICP3
            WinCopies.Collections.DotNetFix.
 #endif
             IUIntIndexedCollection.CopyTo(in Array array,
-#if WAPICP2
-            uint
-#else
+#if WAPICP3
             int
+#else
+            uint
 #endif
             index)
         {
-            ThrowIfDisposed();
+            uint i = (GetOrThrowIfDisposed(array) ?? throw GetArgumentNullException(nameof(array))).Length <= Count + index ? throw new ArgumentException($"{nameof(array)} does not have the required length.") : 0u;
 
-            ThrowIfNull(array, nameof(array));
-
-            if (array.Length <= Count + index)
-
-                throw new ArgumentException($"{nameof(array)} does not have the required length.");
-
-            uint i = 0;
-
-            _ = Items.GetAt(ref i, out T item);
+            _ = _items.GetAt(ref i, out T item);
 
             array.SetValue(item, index);
 
-            for (i = 1; i < Count; i++)
+            for (i = 1u; i < Count; i++)
             {
-                _ = Items.GetAt(ref i, out item);
+                _ = _items.GetAt(ref i, out item);
 
                 array.SetValue(item, index);
             }
@@ -862,7 +766,7 @@ in
         uint IUIntIndexedList.Add(ref object value) => throw new InvalidOperationException("The current collection is read-only.");
 
         void IUIntIndexedList.Remove(
-#if WAPICP2
+#if !WAPICP3
 in
 #endif
              object value) => throw new InvalidOperationException("The current collection is read-only.");
@@ -874,13 +778,13 @@ in
         void IUIntIndexedList.Clear() => throw new InvalidOperationException("The current collection is read-only.");
 
         void IUIntIndexedCollection<T>.Add(
-#if WAPICP2
+#if !WAPICP3
             ref
 #endif
             T item) => throw new InvalidOperationException("The current collection is read-only.");
 
         bool IUIntIndexedCollection<T>.Remove(
-#if WAPICP2
+#if !WAPICP3
             in
 #endif
             T item) => throw new InvalidOperationException("The current collection is read-only.");
@@ -900,10 +804,6 @@ in
 #endif
     }
 
-}
-
-namespace Microsoft.WindowsAPICodePack.PropertySystem
-{
     public static class PropertySystemHelper
     {
         public static void ThrowWhenFailHResult(HResult hResult)
@@ -966,7 +866,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
 
     public class PropertyCollection : IDisposable,
 #if CS6
-IReadOnlyDictionary<PropertyKey, Property>
+        IReadOnlyDictionary<PropertyKey, Property>
 #else
         System.Collections.Generic.IEnumerable<KeyValuePair<PropertyKey, Property>>
 #endif
@@ -1074,7 +974,7 @@ IReadOnlyDictionary<PropertyKey, Property>
 
             Items = nativePropertyCollection;
 
-            Marshal.ThrowExceptionForHR((int)nativePropertyCollection.GetValues(out _nativePropertyValuesCollection));
+            CoreErrorHelper.ThrowExceptionForHResult(nativePropertyCollection.GetValues(out _nativePropertyValuesCollection));
 
             _innerDictionary = new Dictionary<Property>();
 

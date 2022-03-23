@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Console.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)APIs\DataAccessAndStorage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\GDI.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Menus\Enums\MenuItemInfoFlags.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Menus\Enums\MenuItemInfoTypes.cs" />
@@ -18,6 +19,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Menus\Structs\TrackPopupMenuParams.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\NamedPipe.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Menus\Menus.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)APIs\Networking\Common.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)APIs\Networking\Enums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)APIs\Networking\FTP.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\Enums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\FileAttributes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Shell\FileOperationFlags.cs" />

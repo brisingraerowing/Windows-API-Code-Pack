@@ -297,7 +297,7 @@ System.Collections.ObjectModel.ReadOnlyCollection
 #endif
             pfops)
         {
-            ThrowExceptionForHR(TryAdvise(pfops, out uint cookie));
+            ThrowExceptionForHResult(TryAdvise(pfops, out uint cookie));
 
             return cookie;
         }
@@ -325,7 +325,7 @@ System.Collections.ObjectModel.ReadOnlyCollection
 #if WAPICP3
             in
 #endif
-            uint dwCookie) => ThrowExceptionForHR(TryUnadvise(dwCookie));
+            uint dwCookie) => ThrowExceptionForHResult(TryUnadvise(dwCookie));
 
         private HResult GetHResult(in Func<HResult> func) => IsDisposed ? throw new ObjectDisposedException(nameof(FileOperation)) : func();
 
@@ -369,7 +369,7 @@ System.Collections.ObjectModel.ReadOnlyCollection
 #if WAPICP3
             in
 #endif
-            ShellOperationFlags flags) => ThrowExceptionForHR(TrySetOperationFlags(flags));
+            ShellOperationFlags flags) => ThrowExceptionForHResult(TrySetOperationFlags(flags));
 
         public HResult TrySetProgressDialog(IOperationsProgressDialog progressDialog)
         {
@@ -388,7 +388,7 @@ System.Collections.ObjectModel.ReadOnlyCollection
 #if WAPICP3
             in
 #endif
-            IOperationsProgressDialog popd) => ThrowExceptionForHR(TrySetProgressDialog(popd));
+            IOperationsProgressDialog popd) => ThrowExceptionForHResult(TrySetProgressDialog(popd));
 
         public HResult TrySetProperties(IPropertyChangeArray pproparray)
         {
@@ -412,7 +412,7 @@ System.Collections.ObjectModel.ReadOnlyCollection
 #if WAPICP3
             in
 #endif
-            IPropertyChangeArray pproparray) => ThrowExceptionForHR(TrySetProperties(pproparray));
+            IPropertyChangeArray pproparray) => ThrowExceptionForHResult(TrySetProperties(pproparray));
 
         public HResult TrySetOwnerWindow(IntPtr ptr) => GetHResult(() => _fileOperation.SetOwnerWindow(ptr));
 
@@ -420,7 +420,7 @@ System.Collections.ObjectModel.ReadOnlyCollection
 #if WAPICP3
             in
 #endif
-            IntPtr hwndOwner) => ThrowExceptionForHR(TrySetOwnerWindow(hwndOwner));
+            IntPtr hwndOwner) => ThrowExceptionForHResult(TrySetOwnerWindow(hwndOwner));
 
         public HResult TrySetOwnerWindow(in Form window) => TrySetOwnerWindow(window.Handle);
 
@@ -444,7 +444,7 @@ System.Collections.ObjectModel.ReadOnlyCollection
 #if WAPICP3
             in
 #endif
-            IShellItem psiItem) => ThrowExceptionForHR(TryApplyPropertiesToItem(psiItem));
+            IShellItem psiItem) => ThrowExceptionForHResult(TryApplyPropertiesToItem(psiItem));
 
         private static IShellItem GetShellItem(in ShellObject shellObject) => (IShellItem)typeof(ShellObject).GetProperty("NativeShellItem", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(shellObject);
 
@@ -498,7 +498,7 @@ System.Collections.ObjectModel.ReadOnlyCollection
 #else
             FileOperationProgressSink
 #endif
-         pfopsItem) => ThrowExceptionForHR(TryRenameItem(psiItem, pszNewName, pfopsItem));
+         pfopsItem) => ThrowExceptionForHResult(TryRenameItem(psiItem, pszNewName, pfopsItem));
 
         public void RenameItem(
 #if WAPICP3
@@ -566,7 +566,7 @@ System.Collections.ObjectModel.ReadOnlyCollection
 #else
             FileOperationProgressSink
 #endif
-            pfopsItem) => ThrowExceptionForHR(TryMoveItem(psiItem, psiDestinationFolder, pszNewName, pfopsItem));
+            pfopsItem) => ThrowExceptionForHResult(TryMoveItem(psiItem, psiDestinationFolder, pszNewName, pfopsItem));
 
         public void MoveItem(
 #if WAPICP3
@@ -636,7 +636,7 @@ System.Collections.ObjectModel.ReadOnlyCollection
 #else
             FileOperationProgressSink
 #endif
-             pfopsItem) => ThrowExceptionForHR(TryCopyItem(psiItem, psiDestinationFolder, pszCopyName, pfopsItem));
+             pfopsItem) => ThrowExceptionForHResult(TryCopyItem(psiItem, psiDestinationFolder, pszCopyName, pfopsItem));
 
         public void CopyItem(
 #if WAPICP3
@@ -698,7 +698,7 @@ System.Collections.ObjectModel.ReadOnlyCollection
 #else
             FileOperationProgressSink
 #endif
-            pfopsItem) => ThrowExceptionForHR(TryDeleteItem(psiItem, pfopsItem));
+            pfopsItem) => ThrowExceptionForHResult(TryDeleteItem(psiItem, pfopsItem));
 
         public void DeleteItem(
 #if WAPICP3
@@ -764,7 +764,7 @@ System.Collections.ObjectModel.ReadOnlyCollection
 #else
             FileOperationProgressSink
 #endif
-            pfopsItem) => ThrowExceptionForHR(TryNewItem(psiDestinationFolder, dwFileAttributes, pszName, pszTemplateName, pfopsItem));
+            pfopsItem) => ThrowExceptionForHResult(TryNewItem(psiDestinationFolder, dwFileAttributes, pszName, pszTemplateName, pfopsItem));
 
         public void NewItem(
 #if WAPICP3
@@ -792,7 +792,7 @@ System.Collections.ObjectModel.ReadOnlyCollection
 
         public HResult TryPerformOperations() => GetHResult(() => _fileOperation.PerformOperations());
 
-        public void PerformOperations() => ThrowExceptionForHR(TryPerformOperations());
+        public void PerformOperations() => ThrowExceptionForHResult(TryPerformOperations());
 
         public HResult TryGetAnyOperationsAborted(out bool anyOperationsAborted) => IsDisposed
                 ? throw new ObjectDisposedException(nameof(FileOperation))
@@ -830,7 +830,7 @@ System.Collections.ObjectModel.ReadOnlyCollection
 
             if (!Succeeded(hr))
 
-                Marshal.ThrowExceptionForHR((int)hr);
+                CoreErrorHelper.ThrowExceptionForHResult(hr);
 
             Icon icon;
 
@@ -879,7 +879,7 @@ System.Collections.ObjectModel.ReadOnlyCollection
 
             if (!Succeeded(hr))
 
-                Marshal.ThrowExceptionForHR((int)hr);
+                CoreErrorHelper.ThrowExceptionForHResult(hr);
 
             exeType = options.HasFlag(GetFileInfoOptions.ExeType) ? (int)hr : 0;
 
@@ -927,7 +927,7 @@ System.Collections.ObjectModel.ReadOnlyCollection
 
             if (!CopyFileEx(sourceFileName, newFileName, progressRoutine, data, ref cancel, copyFlags))
 
-                Marshal.ThrowExceptionForHR(Marshal.GetHRForLastWin32Error());
+                ThrowExceptionForHResult(Marshal.GetHRForLastWin32Error());
         }
 
         /// <summary>
@@ -972,7 +972,7 @@ System.Collections.ObjectModel.ReadOnlyCollection
 
             else
 
-                Marshal.ThrowExceptionForHR((int)hr);
+                CoreErrorHelper.ThrowExceptionForHResult(hr);
 
             recycleBinInfo = default;
 
@@ -1007,7 +1007,7 @@ System.Collections.ObjectModel.ReadOnlyCollection
 
             else if (hr == HResult.Fail) return false;
 
-            else Marshal.ThrowExceptionForHR((int)hr);
+            else CoreErrorHelper.ThrowExceptionForHResult(hr);
 
             return false;
         }
@@ -1040,7 +1040,7 @@ System.Collections.ObjectModel.ReadOnlyCollection
 
             else if (hr == HResult.Fail) return false;
 
-            else Marshal.ThrowExceptionForHR((int)hr);
+            else CoreErrorHelper.ThrowExceptionForHResult(hr);
 
             return false;
         }
@@ -1080,7 +1080,7 @@ System.Collections.ObjectModel.ReadOnlyCollection
                     return false;
             }
 
-            Marshal.ThrowExceptionForHR((int)hr);
+            CoreErrorHelper.ThrowExceptionForHResult(hr);
 
             return false;
         }
@@ -1411,7 +1411,7 @@ Action
         {
             if (!Succeeded(hr))
 
-                Marshal.ThrowExceptionForHR((int)hr);
+                CoreErrorHelper.ThrowExceptionForHResult(hr);
 
             fileOperationProgressSink.FinishOperations?.Invoke();
 
@@ -1424,7 +1424,7 @@ Action
         {
             if (!Succeeded(hrRename))
 
-                Marshal.ThrowExceptionForHR((int)hrRename);
+                CoreErrorHelper.ThrowExceptionForHResult(hrRename);
 
             fileOperationProgressSink.PostRenameItem?.Invoke(dwFlags, psiItem, pszNewName, psiNewlyCreated);
 
@@ -1437,7 +1437,7 @@ Action
         {
             if (!Succeeded(hrMove))
 
-                Marshal.ThrowExceptionForHR((int)hrMove);
+                CoreErrorHelper.ThrowExceptionForHResult(hrMove);
 
             fileOperationProgressSink.PostMoveItem?.Invoke(dwFlags, psiItem, psiDestinationFolder, pszNewName, psiNewlyCreated);
 
@@ -1450,7 +1450,7 @@ Action
         {
             if (!Succeeded(hrCopy))
 
-                Marshal.ThrowExceptionForHR((int)hrCopy);
+                CoreErrorHelper.ThrowExceptionForHResult(hrCopy);
 
             fileOperationProgressSink.PostCopyItem?.Invoke(dwFlags, psiItem, psiDestinationFolder, pszNewName, psiNewlyCreated);
 
@@ -1463,7 +1463,7 @@ Action
         {
             if (!Succeeded(hrDelete))
 
-                Marshal.ThrowExceptionForHR((int)hrDelete);
+                CoreErrorHelper.ThrowExceptionForHResult(hrDelete);
 
             fileOperationProgressSink.PostDeleteItem?.Invoke(dwFlags, psiItem, psiNewlyCreated);
 
@@ -1476,7 +1476,7 @@ Action
         {
             if (!Succeeded(hrNew))
 
-                Marshal.ThrowExceptionForHR((int)hrNew);
+                CoreErrorHelper.ThrowExceptionForHResult(hrNew);
 
             fileOperationProgressSink.PostNewItem?.Invoke(dwFlags, psiDestinationFolder, pszNewName, pszTemplateName, dwFileAttributes, psiNewItem);
 

@@ -18,6 +18,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// by a 12V automotive adapter.
         /// </summary>
         AC = 0,
+
         /// <summary>
         /// The computer is powered by a built-in battery. 
         /// A battery has a limited 
@@ -25,6 +26,7 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// where possible.
         /// </summary>
         Battery = 1,
+
         /// <summary>
         /// The computer is powered by a short-term power source 
         /// such as a UPS device.

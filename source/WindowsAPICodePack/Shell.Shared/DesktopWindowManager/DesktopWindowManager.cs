@@ -12,6 +12,7 @@ using static Microsoft.WindowsAPICodePack.Win32Native.
     Shell.DesktopWindowManager
 #endif
     .MenuFlags;
+using static Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper;
 using static Microsoft.WindowsAPICodePack.Win32Native.Menus.Menus;
 using static Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.HandlerNativeMethods;
 using static Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.SystemMenuCommands;
@@ -78,7 +79,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (result == 0)
 
-                ThrowExceptionForHR(GetHRForLastWin32Error());
+                ThrowExceptionForHResult(GetHRForLastWin32Error());
 
             return (WindowStyles)result;
         }
@@ -91,7 +92,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             if (result == 0)
 
-                ThrowExceptionForHR(GetHRForLastWin32Error());
+                ThrowExceptionForHResult(GetHRForLastWin32Error());
 
             return (WindowStylesEx)result;
         }
@@ -101,7 +102,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             if (SetWindowLongPtr(hwnd, GetWindowLongEnum.ExStyle, (int)styles) == 0)
 
-                ThrowExceptionForHR(GetHRForLastWin32Error());
+                ThrowExceptionForHResult(GetHRForLastWin32Error());
         }
 #endif
 
@@ -125,14 +126,14 @@ namespace Microsoft.WindowsAPICodePack.Shell
 #endif
                 styles) == 0)
 
-                ThrowExceptionForHR(GetHRForLastWin32Error());
+                ThrowExceptionForHResult(GetHRForLastWin32Error());
         }
 
         public static void SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, SetWindowPositionOptions windowPositionOptions)
         {
             if (!HandlerNativeMethods.SetWindowPos(hWnd, hWndInsertAfter, x, y, cx, cy, windowPositionOptions))
 
-                ThrowExceptionForHR(GetHRForLastWin32Error());
+                ThrowExceptionForHResult(GetHRForLastWin32Error());
         }
 
         public static void SetWindow(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, WindowStyles styles,

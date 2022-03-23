@@ -183,7 +183,7 @@
 
 //        public PortableDeviceKeyCollection() => _portableDeviceKeyCollection = new COMNative.PortableDevices.PropertySystem.PortableDeviceKeyCollection();
 
-//        public void Add(ref PropertyKey Key) => Marshal.ThrowExceptionForHR((int)_PortableDeviceKeyCollection.Add(ref Key));
+//        public void Add(ref PropertyKey Key) => CoreErrorHelper.ThrowExceptionForHResult(_PortableDeviceKeyCollection.Add(ref Key));
 
 //        public void Clear() => _PortableDeviceKeyCollection.Clear();
 
@@ -197,7 +197,7 @@
 
 //            var key = new PropertyKey();
 
-//            Marshal.ThrowExceptionForHR((int)_PortableDeviceKeyCollection.GetAt(dwIndex, ref key));
+//            CoreErrorHelper.ThrowExceptionForHResult(_PortableDeviceKeyCollection.GetAt(dwIndex, ref key));
 
 //            return key;
 //        }

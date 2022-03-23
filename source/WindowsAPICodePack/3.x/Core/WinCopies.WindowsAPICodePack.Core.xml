@@ -397,7 +397,7 @@
             Windows Error Reporting will terminate the application
             after this method is invoked.
             </remarks>
-            <param name="success"><b>true</b> to indicate the the program was able to complete its recovery
+            <param name="success"><see langword="true"/> to indicate that the program was able to complete its recovery
             work before terminating; otherwise <b>false</b>.</param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRestartRecoveryManager.RegisterForApplicationRestart(Microsoft.WindowsAPICodePack.ApplicationServices.RestartSettings@)">
@@ -425,17 +425,6 @@
             See the <see cref="T:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRestartRecoveryManager"/> class.
             </remarks>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.RecoverySettings.#ctor(Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RecoveryData@,System.UInt32@)">
-            <summary>
-            Initializes a new instance of the <b>RecoverySettings</b> class.
-            </summary>
-            <param name="data">A recovery data object that contains the callback method (invoked by the system
-            before Windows Error Reporting terminates the application) and an optional state object.</param>
-            <param name="interval">The time interval within which the 
-            callback method must invoke <see cref="M:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRestartRecoveryManager.ApplicationRecoveryInProgress"/> to 
-            prevent WER from terminating the application.</param>
-            <seealso cref="T:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRestartRecoveryManager"/>
-        </member>
         <member name="P:Microsoft.WindowsAPICodePack.ApplicationServices.RecoverySettings.RecoveryData">
             <summary>
             Gets the recovery data object that contains the callback method and an optional
@@ -456,6 +445,17 @@
             If you specify zero, the default interval is used. 
             </remarks>
         </member>
+        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.RecoverySettings.#ctor(Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RecoveryData@,System.UInt32@)">
+            <summary>
+            Initializes a new instance of the <b>RecoverySettings</b> class.
+            </summary>
+            <param name="data">A recovery data object that contains the callback method (invoked by the system
+            before Windows Error Reporting terminates the application) and an optional state object.</param>
+            <param name="interval">The time interval within which the 
+            callback method must invoke <see cref="M:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRestartRecoveryManager.ApplicationRecoveryInProgress"/> to 
+            prevent WER from terminating the application.</param>
+            <seealso cref="T:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRestartRecoveryManager"/>
+        </member>
         <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.RecoverySettings.ToString">
             <summary>
             Returns a string representation of the current state
@@ -473,17 +473,6 @@
             will not be restarted if it executed for less than 60 seconds before
             terminating.</remarks>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.RestartSettings.#ctor(System.String@,Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RestartRestrictions@)">
-            <summary>
-            Creates a new instance of the RestartSettings class.
-            </summary>
-            <param name="command">The command line arguments 
-            used to restart the application.</param>
-            <param name="restrictions">A bitwise combination of the RestartRestrictions 
-            values that specify  
-            when the application should not be restarted.
-            </param>
-        </member>
         <member name="P:Microsoft.WindowsAPICodePack.ApplicationServices.RestartSettings.Command">
             <summary>
             Gets the command line arguments used to restart the application.
@@ -496,6 +485,17 @@
             should not be restarted.
             </summary>
             <value>A set of <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RestartRestrictions"/> values.</value>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.RestartSettings.#ctor(System.String@,Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices.RestartRestrictions@)">
+            <summary>
+            Creates a new instance of the RestartSettings class.
+            </summary>
+            <param name="command">The command line arguments 
+            used to restart the application.</param>
+            <param name="restrictions">A bitwise combination of the RestartRestrictions 
+            values that specify  
+            when the application should not be restarted.
+            </param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.RestartSettings.ToString">
             <summary>
@@ -724,7 +724,7 @@
             that display information but do not require 
             user interaction. For example, video playback applications.</remarks>
             <permission cref="T:System.Security.Permissions.SecurityPermission"> to set this property. Demand value: <see cref="F:System.Security.Permissions.SecurityAction.Demand"/>; Named Permission Sets: <b>FullTrust</b>.</permission>
-            <value>A <see cref="T:System.Boolean"/> value. <b>True</b> if the monitor
+            <value><see langword="true"/> if the monitor
             is required to remain on.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ApplicationServices.PowerManager.RequestBlockSleep">
@@ -736,7 +736,6 @@
             <exception cref="T:System.Security.SecurityException">The caller does not have sufficient privileges to set this property.
             </exception>
             <permission cref="T:System.Security.Permissions.SecurityPermission"> to set this property. Demand value: <see cref="F:System.Security.Permissions.SecurityAction.Demand"/>; Named Permission Sets: <b>FullTrust</b>.</permission>
-            <value>A <see cref="T:System.Boolean"/> value.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ApplicationServices.PowerManager.IsBatteryPresent">
             <summary>
@@ -744,14 +743,12 @@
             The battery can be a short term battery.
             </summary>
             <exception cref="T:System.PlatformNotSupportedException">Requires XP/Windows Server 2003 or higher.</exception>
-            <value>A <see cref="T:System.Boolean"/> value.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ApplicationServices.PowerManager.IsBatteryShortTerm">
             <summary>
             Gets a value that indicates whether the battery is a short term battery. 
             </summary>
             <exception cref="T:System.PlatformNotSupportedException">Requires XP/Windows Server 2003 or higher.</exception>
-            <value>A <see cref="T:System.Boolean"/> value.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ApplicationServices.PowerManager.IsUpsPresent">
             <summary>
@@ -759,7 +756,6 @@
             sudden loss of power.
             </summary>
             <exception cref="T:System.PlatformNotSupportedException">Requires XP/Windows Server 2003 or higher.</exception>
-            <value>A <see cref="T:System.Boolean"/> value.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ApplicationServices.PowerManager.PowerPersonality">
             <summary>
@@ -784,7 +780,6 @@
             Gets a value that indictates whether the monitor is on. 
             </summary>
             <exception cref="T:System.PlatformNotSupportedException">Requires Vista/Windows Server 2008.</exception>
-            <value>A <see cref="T:System.Boolean"/> value.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ApplicationServices.PowerManager.PowerSource">
             <summary>
@@ -869,6 +864,23 @@
             Abstract base class for all dialog controls
             </summary>
         </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.DialogControl.Name">
+            <summary>
+            Gets the name for this control.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.DialogControl.HostingDialog">
+            <summary>
+            The native dialog that is hosting this control. This property is null is
+            there is not associated dialog
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.DialogControl.Id">
+            <summary>
+            Gets the identifier for this control.
+            </summary>
+            <value>An <see cref="T:System.Int32"/> value.</value>
+        </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.DialogControl.#ctor">
             <summary>
             Creates a new instance of a dialog control
@@ -879,24 +891,6 @@
             Creates a new instance of a dialog control with the specified name.
             </summary>
             <param name="name">The name for this dialog.</param>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.DialogControl.HostingDialog">
-            <summary>
-            The native dialog that is hosting this control. This property is null is
-            there is not associated dialog
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.DialogControl.Name">
-            <summary>
-            Gets the name for this control.
-            </summary>
-            <value>A <see cref="T:System.String"/> value.</value>        
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.DialogControl.Id">
-            <summary>
-            Gets the identifier for this control.
-            </summary>
-            <value>An <see cref="T:System.Int32"/> value.</value>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.DialogControl.CheckPropertyChangeAllowed(System.String@)">
             <summary>
@@ -936,7 +930,18 @@
             <summary>
             Strongly typed collection for dialog controls.
             </summary>
-            <typeparam name="T">DialogControl</typeparam>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.DialogControlCollection`1.Item(System.String)">
+             <summary>
+             Defines the indexer that supports accessing controls by name. 
+             </summary>
+             <remarks>
+             <para>Control names are case sensitive.</para>
+             <para>This indexer is useful when the dialog is created in XAML
+             rather than constructed in code.</para></remarks>
+            <exception cref="T:System.ArgumentException">
+             The name cannot be null or a zero-length string.</exception>
+             <remarks>If there is more than one control with the same name, only the <B>first control</B> will be returned.</remarks>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.DialogControlCollection`1.InsertItem(System.Int32,`0)">
             <summary>
@@ -957,18 +962,6 @@
             <permission cref="T:System.InvalidOperationException">
             The associated dialog is 
             showing and cannot be modified.</permission>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.DialogControlCollection`1.Item(System.String)">
-             <summary>
-             Defines the indexer that supports accessing controls by name. 
-             </summary>
-             <remarks>
-             <para>Control names are case sensitive.</para>
-             <para>This indexer is useful when the dialog is created in XAML
-             rather than constructed in code.</para></remarks>
-            <exception cref="T:System.ArgumentException">
-             The name cannot be null or a zero-length string.</exception>
-             <remarks>If there is more than one control with the same name, only the <B>first control</B> will be returned.</remarks>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.DialogControlCollection`1.GetControlbyId(System.Int32)">
             <summary>
@@ -1233,6 +1226,11 @@
             Defines a common class for all task dialog bar controls, such as the progress and marquee bars.
             </summary>
         </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogBar.State">
+            <summary>
+            Gets or sets the state of the progress bar.
+            </summary>
+        </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogBar.#ctor">
             <summary>
             Creates a new instance of this class.
@@ -1244,11 +1242,6 @@
             </summary>
             <param name="name">The name for this control.</param>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogBar.State">
-            <summary>
-            Gets or sets the state of the progress bar.
-            </summary>
-        </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogBar.Reset">
             <summary>
             Resets the state of the control to normal.
@@ -1257,6 +1250,11 @@
         <member name="T:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogButton">
             <summary>
             Implements a button that can be hosted in a task dialog.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogButton.UseElevationIcon">
+            <summary>
+            Gets or sets a value that controls whether the elevation icon is displayed.
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogButton.#ctor">
@@ -1271,34 +1269,11 @@
             <param name="name">The name of the button.</param>
             <param name="text">The button label.</param>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogButton.UseElevationIcon">
-            <summary>
-            Gets or sets a value that controls whether the elevation icon is displayed.
-            </summary>
-        </member>
         <member name="T:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogButtonBase">
             <summary>
             Defines the abstract base class for task dialog buttons. 
             Classes that inherit from this class will inherit 
             the Text property defined in this class.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogButtonBase.#ctor">
-            <summary>
-            Creates a new instance on a task dialog button.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogButtonBase.#ctor(System.String,System.String)">
-            <summary>
-            Creates a new instance on a task dialog button with
-            the specified name and text.
-            </summary>
-            <param name="name">The name for this button.</param>
-            <param name="text">The label for this button.</param>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogButtonBase.Click">
-            <summary>
-            Raised when the task dialog button is clicked.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogButtonBase.Text">
@@ -1318,6 +1293,24 @@
             Gets or sets a value that indicates whether
             this button is the default button.
             </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogButtonBase.Click">
+            <summary>
+            Raised when the task dialog button is clicked.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogButtonBase.#ctor">
+            <summary>
+            Creates a new instance on a task dialog button.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogButtonBase.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new instance on a task dialog button with
+            the specified name and text.
+            </summary>
+            <param name="name">The name for this button.</param>
+            <param name="text">The label for this button.</param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogButtonBase.ToString">
             <summary>
@@ -1345,6 +1338,11 @@
             Represents a command-link. 
             </summary>
         </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogCommandLink.Instruction">
+            <summary>
+            Gets or sets the instruction associated with this command link button.
+            </summary>
+        </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogCommandLink.#ctor">
             <summary>
             Creates a new instance of this class.
@@ -1365,16 +1363,10 @@
             <param name="text">The label for this button.</param>
             <param name="instruction">The instruction for this command link.</param>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogCommandLink.Instruction">
-            <summary>
-            Gets or sets the instruction associated with this command link button.
-            </summary>
-        </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogCommandLink.ToString">
             <summary>
             Returns a string representation of this object.
             </summary>
-            <returns>A <see cref="T:System.String"/></returns>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogControl">
             <summary>
@@ -1417,20 +1409,40 @@
             Defines event data associated with a HyperlinkClick event.
             </summary>
         </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogHyperlinkClickedEventArgs.LinkText">
+            <summary>
+            Gets or sets the text of the hyperlink that was clicked.
+            </summary>
+        </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogHyperlinkClickedEventArgs.#ctor(System.String)">
             <summary>
             Creates a new instance of this class with the specified link text.
             </summary>
             <param name="linkText">The text of the hyperlink that was clicked.</param>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogHyperlinkClickedEventArgs.LinkText">
-            <summary>
-            Gets or sets the text of the hyperlink that was clicked.
-            </summary>
-        </member>
         <member name="T:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogProgressBar">
             <summary>
             Provides a visual representation of the progress of a long running operation.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogProgressBar.Minimum">
+            <summary>
+            Gets or sets the minimum value for the control.
+            </summary>                
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogProgressBar.Maximum">
+            <summary>
+            Gets or sets the maximum value for the control.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogProgressBar.Value">
+            <summary>
+            Gets or sets the current value for the control.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogProgressBar.HasValidValues">
+            <summary>
+            Verifies that the progress bar's value is between its minimum and maximum.
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogProgressBar.#ctor">
@@ -1453,26 +1465,6 @@
             <param name="minimum">The minimum value for this control.</param>
             <param name="maximum">The maximum value for this control.</param>
             <param name="value">The current value for this control.</param>        
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogProgressBar.Minimum">
-            <summary>
-            Gets or sets the minimum value for the control.
-            </summary>                
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogProgressBar.Maximum">
-            <summary>
-            Gets or sets the maximum value for the control.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogProgressBar.Value">
-            <summary>
-            Gets or sets the current value for the control.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogProgressBar.HasValidValues">
-            <summary>
-            Verifies that the progress bar's value is between its minimum and maximum.
-            </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogProgressBar.Reset">
             <summary>
@@ -1635,16 +1627,16 @@
             The event data for a TaskDialogTick event.
             </summary>
         </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogTickEventArgs.Ticks">
+            <summary>
+            Gets a value that determines the current number of ticks.
+            </summary>
+        </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogTickEventArgs.#ctor(System.Int32@)">
             <summary>
             Initializes the data associated with the TaskDialog tick event.
             </summary>
             <param name="ticks">The total number of ticks since the control was activated.</param>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogTickEventArgs.Ticks">
-            <summary>
-            Gets a value that determines the current number of ticks.
-            </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Dialogs.DialogShowState">
             <summary>
@@ -1707,7 +1699,7 @@
             Gets the local date and time when the network 
             was connected.
             </summary>
-            <value>A <see cref="T:System.DateTime"/> object.</value>
+            <value>A <see cref="!:System.System.DateTime"/> object.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Net.Network.Connections">
             <summary>
@@ -1729,7 +1721,7 @@
             Gets the local date and time when the 
             network was created.
             </summary>
-            <value>A <see cref="T:System.DateTime"/> object.</value>
+            <value>A <see cref="!:System.System.DateTime"/> object.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Net.Network.Description">
             <summary>
@@ -1788,7 +1780,7 @@
              <summary>
              Returns the enumerator for this collection.
              </summary>
-            <returns>An <see cref="T:System.Collections.IEnumerator"/> object.</returns> 
+            <returns>An <see cref="T:System.Collections.IEnumerator"/> object.</returns>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Net.NetworkConnection">
             <summary>
@@ -1860,7 +1852,7 @@
              <summary>
              Returns the enumerator for this collection.
              </summary>
-            <returns>A <see cref="T:System.Collections.IEnumerator"/> object.</returns> 
+            <returns>A <see cref="T:System.Collections.IEnumerator"/> object.</returns>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Net.NetworkListManager">
             <summary>

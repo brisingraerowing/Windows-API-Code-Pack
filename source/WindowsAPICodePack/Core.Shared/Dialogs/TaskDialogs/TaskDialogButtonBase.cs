@@ -17,19 +17,24 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
     /// </summary>
     public abstract class TaskDialogButtonBase : TaskDialogControl
     {
-        
-        /// <summary>
-        /// Creates a new instance on a task dialog button.
-        /// </summary>
-        protected TaskDialogButtonBase() { }
+        private string _text;
+        private bool _enabled = true;
+        private bool _defaultControl;
 
         /// <summary>
-        /// Creates a new instance on a task dialog button with
-        /// the specified name and text.
+        /// Gets or sets the button text.
         /// </summary>
-        /// <param name="name">The name for this button.</param>
-        /// <param name="text">The label for this button.</param>
-        protected TaskDialogButtonBase(string name, string text) : base(name) => this.text = text;
+        public string Text { get => _text; set => UpdateProperty(ref _text, value, nameof(Text)); }
+
+        /// <summary>
+        /// Gets or sets a value that determines whether the button is enabled. The enabled state can cannot be changed before the dialog is shown.
+        /// </summary>
+        public bool Enabled { get => _enabled; set => UpdateProperty(ref _enabled, value, nameof(Enabled)); }
+
+        /// <summary>
+        /// Gets or sets a value that indicates whether this button is the default button.
+        /// </summary>
+        public bool Default { get => _defaultControl; set => UpdateProperty(ref _defaultControl, value, nameof(Default)); }
 
         // Note that we don't need to explicitly 
         // implement the add/remove delegate for the Click event;
@@ -37,74 +42,44 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         // information when the Click event is 
         // raised (indirectly) by NativeTaskDialog, 
         // so the latest delegate is always available.
+
         /// <summary>
         /// Raised when the task dialog button is clicked.
         /// </summary>
         public event EventHandler Click;
 
+        /// <summary>
+        /// Creates a new instance on a task dialog button.
+        /// </summary>
+        protected TaskDialogButtonBase() { /* Left empty. */ }
+
+        /// <summary>
+        /// Creates a new instance on a task dialog button with
+        /// the specified name and text.
+        /// </summary>
+        /// <param name="name">The name for this button.</param>
+        /// <param name="text">The label for this button.</param>
+        protected TaskDialogButtonBase(string name, string text) : base(name) => this._text = text;
+
+        protected void UpdateProperty<T>(ref T value, in T newValue, in string propertyName)
+        {
+            CheckPropertyChangeAllowed(propertyName);
+            value = newValue;
+            ApplyPropertyChange(propertyName);
+        }
+
         internal void RaiseClickEvent()
         {
             // Only perform click if the button is enabled.
-            if (!enabled) return;
+            if (_enabled)
 
-            Click?.Invoke(this, EventArgs.Empty);
-        }
-
-        private string text;
-
-        /// <summary>
-        /// Gets or sets the button text.
-        /// </summary>
-        public string Text
-        {
-            get => text;
-            set
-            {
-                CheckPropertyChangeAllowed(nameof(Text));
-                text = value;
-                ApplyPropertyChange(nameof(Text));
-            }
-        }
-
-        private bool enabled = true;
-
-        /// <summary>
-        /// Gets or sets a value that determines whether the
-        /// button is enabled. The enabled state can cannot be changed
-        /// before the dialog is shown.
-        /// </summary>
-        public bool Enabled
-        {
-            get => enabled;
-            set
-            {
-                CheckPropertyChangeAllowed(nameof(Enabled));
-                enabled = value;
-                ApplyPropertyChange(nameof(Enabled));
-            }
-        }
-
-        private bool defaultControl;
-
-        /// <summary>
-        /// Gets or sets a value that indicates whether
-        /// this button is the default button.
-        /// </summary>
-        public bool Default
-        {
-            get => defaultControl;
-            set
-            {
-                CheckPropertyChangeAllowed(nameof(Default));
-                defaultControl = value;
-                ApplyPropertyChange(nameof(Default));
-            }
+                Click?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
         /// Returns the Text property value for this button.
         /// </summary>
         /// <returns>A <see cref="string"/>.</returns>
-        public override string ToString() => text ?? string.Empty;
+        public override string ToString() => _text ?? string.Empty;
     }
 }

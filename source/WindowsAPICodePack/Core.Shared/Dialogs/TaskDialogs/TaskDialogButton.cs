@@ -7,18 +7,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
     /// </summary>
     public class TaskDialogButton : TaskDialogButtonBase
     {
-        /// <summary>
-        /// Creates a new instance of this class.
-        /// </summary>
-        public TaskDialogButton() { }
-
-        /// <summary>
-        /// Creates a new instance of this class with the specified property settings.
-        /// </summary>
-        /// <param name="name">The name of the button.</param>
-        /// <param name="text">The button label.</param>
-        public TaskDialogButton(in string name, in string text) : base(name, text) { }
-
         private bool useElevationIcon;
 
         /// <summary>
@@ -34,5 +22,17 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 ApplyPropertyChange("ShowElevationIcon");
             }
         }
+
+        /// <summary>
+        /// Creates a new instance of this class.
+        /// </summary>
+        public TaskDialogButton() { /* Left empty. */ }
+
+        /// <summary>
+        /// Creates a new instance of this class with the specified property settings.
+        /// </summary>
+        /// <param name="name">The name of the button.</param>
+        /// <param name="text">The button label.</param>
+        public TaskDialogButton(in string name, in string text) : base(name, text) { /* Left empty. */ }
     }
 }

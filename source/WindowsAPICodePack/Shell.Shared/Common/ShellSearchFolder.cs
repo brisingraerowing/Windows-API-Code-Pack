@@ -71,7 +71,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             {
                 searchCondition = value;
 
-                Marshal.ThrowExceptionForHR((int) NativeSearchFolderItemFactory.SetCondition(searchCondition.NativeSearchCondition));
+                CoreErrorHelper.ThrowExceptionForHResult(NativeSearchFolderItemFactory.SetCondition(searchCondition.NativeSearchCondition));
             }
         }
 
@@ -124,7 +124,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 int hr = NativeSearchFolderItemFactory.GetShellItem(ref guid, out IShellItem shellItem);
 
-                 return CoreErrorHelper.Succeeded(hr) ? shellItem : throw new ShellException(hr) ; 
+                return CoreErrorHelper.Succeeded(hr) ? shellItem : throw new ShellException(hr);
             }
         }
 
@@ -167,7 +167,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             if (propertyKeys != null && propertyKeys.Length > 0)
 
-                Marshal.ThrowExceptionForHR((int) NativeSearchFolderItemFactory.SetStacks((uint)propertyKeys.Length, propertyKeys));
+                CoreErrorHelper.ThrowExceptionForHResult(NativeSearchFolderItemFactory.SetStacks((uint)propertyKeys.Length, propertyKeys));
         }
 
         /// <summary>

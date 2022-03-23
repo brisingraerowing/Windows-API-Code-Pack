@@ -936,7 +936,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         internal static IShellItem GetShellItemAt(IShellItemArray array, int i)
         {
             uint index = (uint)i;
-            Marshal.ThrowExceptionForHR((int)array.GetItemAt(index, out IShellItem result));
+            CoreErrorHelper.ThrowExceptionForHResult(array.GetItemAt(index, out IShellItem result));
             return result;
         }
 

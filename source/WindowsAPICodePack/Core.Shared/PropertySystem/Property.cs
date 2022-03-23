@@ -17,6 +17,17 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
     /// </summary>
     public sealed class Property : IProperty, IEquatable<IProperty>
     {
+        private PropertyCollection _propertyCollection;
+        private PropertyKey _propertyKey;
+        private
+#if WAPICP3
+    WinCopies.Collections.DotNetFix.Generic.IReadOnlyUIntIndexedList
+#else
+    WinCopies.Collections.IUIntIndexedCollection
+#endif
+            <PropertyAttribute> _attributes;
+        private bool _allowSetTruncatedValue;
+
         public bool TryGetValue<T>(out T value)
         {
             if (IsSet)
@@ -32,15 +43,11 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
                         Debug.WriteLine($"The given value is from {resultType} type and is {result}.");
 
                         if (resultType == typeof(T))
-
                         {
-
                             value = (T)result;
 
                             return true;
-
                         }
-
                     }
 
                     catch (PropertySystemException)
@@ -54,25 +61,14 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             return false;
         }
 
-        private PropertyCollection _propertyCollection;
-        private PropertyKey _propertyKey;
-        private
-#if WAPICP2
-WinCopies.Collections.IUIntIndexedCollection
-#else
-     WinCopies.Collections.DotNetFix.Generic.IReadOnlyUIntIndexedList
-#endif
-            <PropertyAttribute> _attributes;
-        private bool _allowSetTruncatedValue;
-
         /// <summary>
         /// Gets the attributes for this property.
         /// </summary>
         public
-#if WAPICP2
-WinCopies.Collections.IUIntIndexedCollection
+#if WAPICP3
+    WinCopies.Collections.DotNetFix.Generic.IReadOnlyUIntIndexedList
 #else
-     WinCopies.Collections.DotNetFix.Generic.IReadOnlyUIntIndexedList
+    WinCopies.Collections.IUIntIndexedCollection
 #endif
             <PropertyAttribute> Attributes
         {
@@ -86,7 +82,7 @@ WinCopies.Collections.IUIntIndexedCollection
                 {
                     PropertyKey propertyKey = _propertyKey;
 
-                    Marshal.ThrowExceptionForHR((int)_propertyCollection.Items.GetAttributes(ref propertyKey, out IDisposableReadOnlyNativePropertyValuesCollection attributes));
+                    CoreErrorHelper.ThrowExceptionForHResult(_propertyCollection.Items.GetAttributes(ref propertyKey, out IDisposableReadOnlyNativePropertyValuesCollection attributes));
 
                     _attributes = new PropertyAttributeCollection(attributes);
                 }
@@ -127,7 +123,12 @@ WinCopies.Collections.IUIntIndexedCollection
             }
         }
 
-        private bool IsBlank(in PropVariant propVariant) => propVariant.VarType == VarEnum.VT_HRESULT;
+        /// <summary>
+        /// Gets or sets a value that indicates whether the current property supports setting a truncated value.
+        /// </summary>
+        public bool AllowSetTruncatedValue { get => IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : _allowSetTruncatedValue; set => _allowSetTruncatedValue = IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : value; }
+
+        private static bool IsBlank(in PropVariant propVariant) => propVariant.VarType == VarEnum.VT_HRESULT;
 
         internal Property(in PropertyCollection propertyCollection, in PropertyKey propertyKey, in IPropertyInfo propertyInfo)
         {
@@ -154,11 +155,6 @@ WinCopies.Collections.IUIntIndexedCollection
         }
 
         /// <summary>
-        /// Gets or sets a value that indicates whether the current property supports setting a truncated value.
-        /// </summary>
-        public bool AllowSetTruncatedValue { get => IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : _allowSetTruncatedValue; set => _allowSetTruncatedValue = IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : value; }
-
-        /// <summary>
         /// Gets the value of this property.
         /// </summary>
         public object GetValue(out Type valueType)
@@ -180,7 +176,7 @@ WinCopies.Collections.IUIntIndexedCollection
 
                 if (CoreErrorHelper.Succeeded(hr))
                 {
-                    if (IsBlank(propVariant))
+                    if (Property.IsBlank(propVariant))
 
                         throw new PropertySystemException("The property is not set.");
 
@@ -229,32 +225,42 @@ WinCopies.Collections.IUIntIndexedCollection
 
             if (PropertyInfo.IsReadOnly.HasValue && PropertyInfo.IsReadOnly.Value) throw new PropertySystemException("This property is read-only.");
 
-            if (value is Nullable)
-            {
-                System.Reflection.PropertyInfo pi = value.GetType().GetProperty("HasValue");
-
-                if (pi != null && !(bool)pi.GetValue(value, null))
-                {
-                    ClearValueInternal();
-
-                    return;
-                }
-            }
-
-            else if (value == null)
+            if (value == null)
             {
                 ClearValueInternal();
 
                 return;
             }
 
+            else
+            {
+                Type type = value.GetType();
+
+                if (Nullable.GetUnderlyingType(type) != null)
+                {
+                    System.Reflection.PropertyInfo pi = type.GetProperty("HasValue");
+
+                    if (!(pi == null || (bool)pi.GetValue(value, null)))
+                    {
+                        ClearValueInternal();
+
+                        return;
+                    }
+                }
+            }
+
+            using
+#if !CS8
+            (
+#endif
+             var propVariant = PropVariant.FromObject(value)
 #if CS8
-            using var propVariant = PropVariant.FromObject(value);
+             ;
 #else
-            using (var propVariant = PropVariant.FromObject(value))
+            )
 #endif
 
-                StorePropVariantValue(propVariant);
+            StorePropVariantValue(propVariant);
         }
 
         /// <summary>
@@ -276,26 +282,28 @@ WinCopies.Collections.IUIntIndexedCollection
 
         private void ClearValueInternal()
         {
+            using
+#if !CS8
+            (
+#endif
+             var propVar = new PropVariant()
 #if CS8
-            using var propVar = new PropVariant();
+             ;
 #else
-            using (var propVar = new PropVariant())
+            )
 #endif
 
-                StorePropVariantValue(propVar);
+            StorePropVariantValue(propVar);
         }
 
         public void RemoveProperty()
         {
-            if (IsDisposed)
-
-                throw new InvalidOperationException("The current object is disposed.");
-
-            if (PropertyInfo.IsRemovable.HasValue && !PropertyInfo.IsRemovable.Value)
-
-                throw new PropertySystemException("This property is not removable.");
-
-            HResult hr = _propertyCollection.Items.Delete(PropertyKey);
+            HResult hr =
+                IsDisposed ?
+                throw new InvalidOperationException("The current object is disposed.")
+                : PropertyInfo.IsRemovable.HasValue && !PropertyInfo.IsRemovable.Value
+                ? throw new PropertySystemException("This property is not removable.")
+                : _propertyCollection.Items.Delete(PropertyKey);
 
             if (!CoreErrorHelper.Succeeded(hr))
 
@@ -335,26 +343,20 @@ WinCopies.Collections.IUIntIndexedCollection
         {
             PropertyKey propertyKey = _propertyKey;
 
-            HResult hr = _propertyCollection.NativePropertyValuesCollection.GetValue(ref propertyKey, out propVariant);
-
-            return hr;
+            return _propertyCollection.NativePropertyValuesCollection.GetValue(ref propertyKey, out propVariant);
         }
 
         HResult IProperty.GetValue(out PropVariant propVariant) => GetPropVariant(out propVariant);
         #endregion
 
         #region IEquatable Support
-
-
         /// <summary>
         /// Checks if the current property is equal to a given <see cref="IProperty"/>.
         /// </summary>
         /// <param name="other">The <see cref="IProperty"/> to check equality.</param>
         /// <returns><see langword="true"/> if the <paramref name="other"/> is equal to the current <see cref="IProperty"/>, otherwise <see langword="false"/>.</returns>
         public bool Equals(IProperty other) => other?.PropertyKey.Equals(PropertyKey) == true;
-
         #endregion
-
     }
 
     public sealed class PropertyAttribute : IEquatable<PropertyAttribute>
@@ -410,6 +412,5 @@ WinCopies.Collections.IUIntIndexedCollection
         // GC.SuppressFinalize(this);
         //}
         //#endregion
-
     }
 }

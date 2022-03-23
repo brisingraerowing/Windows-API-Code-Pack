@@ -98,16 +98,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Menus
         public static extern bool DestroyMenu([In] IntPtr hMenu);
 
         [DllImport(User32, SetLastError = true, ExactSpelling = true)]
-#if !WAPICP3
         [return: MarshalAs(U4)]
-#endif
-        public static extern
-#if WAPICP3
-            object
-#else
-            uint
-#endif
-            GetMenuItemID([In] IntPtr hMenu, [In, MarshalAs(I4)] int nPos);
+        public static extern uint GetMenuItemID([In] IntPtr hMenu, [In, MarshalAs(I4)] int nPos);
 
         [DllImport(User32, SetLastError = true, ExactSpelling = true)]
         public static extern IntPtr GetSystemMenu([In] IntPtr hWnd, [In, MarshalAs(Bool)] bool bRevert);

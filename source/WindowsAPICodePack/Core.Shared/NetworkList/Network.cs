@@ -2,6 +2,7 @@
 
 using Microsoft.WindowsAPICodePack.COMNative.Net;
 using Microsoft.WindowsAPICodePack.COMNative.NetworkList;
+
 using System;
 
 namespace Microsoft.WindowsAPICodePack.Net
@@ -17,13 +18,9 @@ namespace Microsoft.WindowsAPICodePack.Net
     /// </remarks>
     public class Network
     {
-        #region Private Fields
+        readonly INetwork _network;
 
-        readonly INetwork network;
-
-        #endregion // Private Fields
-
-        internal Network(in INetwork network) => this.network = network;
+        internal Network(in INetwork network) => this._network = network;
 
         /// <summary>
         /// Gets or sets the category of a network. The 
@@ -33,9 +30,9 @@ namespace Microsoft.WindowsAPICodePack.Net
         /// <value>A <see cref="NetworkCategory"/> value.</value>
         public NetworkCategory Category
         {
-            get => network.GetCategory();
+            get => _network.GetCategory();
 
-            set => network.SetCategory(value);
+            set => _network.SetCategory(value);
         }
 
         /// <summary>
@@ -43,16 +40,16 @@ namespace Microsoft.WindowsAPICodePack.Net
         /// was connected.
         /// </summary>
         /// <value>A <see cref="System.DateTime"/> object.</value>
-        public DateTime ConnectedTime
+        public System.DateTime ConnectedTime
         {
             get
             {
-                network.GetTimeCreatedAndConnected(out _, out _, out uint low, out uint high);
+                _network.GetTimeCreatedAndConnected(out _, out _, out uint low, out uint high);
                 long time = high;
                 // Shift the day info into the high order bits.
                 time <<= 32;
                 time |= low;
-                return DateTime.FromFileTimeUtc(time);
+                return System.DateTime.FromFileTimeUtc(time);
             }
         }
 
@@ -60,7 +57,7 @@ namespace Microsoft.WindowsAPICodePack.Net
         /// Gets the network connections for the network.
         /// </summary>
         /// <value>A <see cref="NetworkConnectionCollection"/> object.</value>
-        public NetworkConnectionCollection Connections => new NetworkConnectionCollection(network.GetNetworkConnections());
+        public NetworkConnectionCollection Connections => new NetworkConnectionCollection(_network.GetNetworkConnections());
 
         /// <summary>
         /// Gets the connectivity state of the network.
@@ -69,23 +66,23 @@ namespace Microsoft.WindowsAPICodePack.Net
         /// <remarks>Connectivity provides information on whether
         /// the network is connected, and the protocols
         /// in use for network traffic.</remarks>
-        public ConnectivityStates Connectivity => network.GetConnectivity();
+        public ConnectivityStates Connectivity => _network.GetConnectivity();
 
         /// <summary>
         /// Gets the local date and time when the 
         /// network was created.
         /// </summary>
         /// <value>A <see cref="System.DateTime"/> object.</value>
-        public DateTime CreatedTime
+        public System.DateTime CreatedTime
         {
             get
             {
-                network.GetTimeCreatedAndConnected(out uint low, out uint high, out _, out _);
+                _network.GetTimeCreatedAndConnected(out uint low, out uint high, out _, out _);
                 long time = high;
                 //Shift the value into the high order bits.
                 time <<= 32;
                 time |= low;
-                return DateTime.FromFileTimeUtc(time);
+                return System.DateTime.FromFileTimeUtc(time);
             }
         }
 
@@ -95,9 +92,9 @@ namespace Microsoft.WindowsAPICodePack.Net
         /// <value>A <see cref="string"/> value.</value>
         public string Description
         {
-            get => network.GetDescription();
+            get => _network.GetDescription();
 
-            set => network.SetDescription(value);
+            set => _network.SetDescription(value);
         }
 
         /// <summary>
@@ -108,21 +105,21 @@ namespace Microsoft.WindowsAPICodePack.Net
         /// indictates whether the network is an Active
         /// Directory Network, and whether the machine
         /// has been authenticated by Active Directory.</remarks>
-        public DomainType DomainType => network.GetDomainType();
+        public DomainType DomainType => _network.GetDomainType();
 
         /// <summary>
         /// Gets a value that indicates whether there is
         /// network connectivity.
         /// </summary>
         /// <value>A <see cref="bool"/> value.</value>
-        public bool IsConnected => network.IsConnected;
+        public bool IsConnected => _network.IsConnected;
 
         /// <summary>
         /// Gets a value that indicates whether there is 
         /// Internet connectivity.
         /// </summary>
         /// <value>A <see cref="bool"/> value.</value>
-        public bool IsConnectedToInternet => network.IsConnectedToInternet;
+        public bool IsConnectedToInternet => _network.IsConnectedToInternet;
 
         /// <summary>
         /// Gets or sets the name of the network.
@@ -130,15 +127,15 @@ namespace Microsoft.WindowsAPICodePack.Net
         /// <value>A <see cref="string"/> value.</value>
         public string Name
         {
-            get => network.GetName();
+            get => _network.GetName();
 
-            set => network.SetName(value);
+            set => _network.SetName(value);
         }
 
         /// <summary>
         /// Gets a unique identifier for the network.
         /// </summary>
         /// <value>A <see cref="Guid"/> value.</value>
-        public Guid NetworkId => network.GetNetworkId();
+        public Guid NetworkId => _network.GetNetworkId();
     }
 }

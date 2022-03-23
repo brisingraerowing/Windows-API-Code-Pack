@@ -2,7 +2,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using System.Security.Permissions;
 
 namespace Microsoft.WindowsAPICodePack
 {
@@ -12,18 +11,13 @@ namespace Microsoft.WindowsAPICodePack
     public abstract class ZeroInvalidHandle : SafeHandle
     {
         /// <summary>
-        /// Default constructor
-        /// </summary>
-        protected ZeroInvalidHandle()
-            : base(IntPtr.Zero, true)
-        {
-        }
-
-        /// <summary>
         /// Determines if this is a valid handle
         /// </summary>
         public override bool IsInvalid => handle == IntPtr.Zero;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        protected ZeroInvalidHandle() : base(IntPtr.Zero, true) { /* Left empty. */ }
     }
 }
-

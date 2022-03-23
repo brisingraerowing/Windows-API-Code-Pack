@@ -3,13 +3,20 @@ using System.Runtime.InteropServices;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
+    public enum FileAccess:uint
+    {
+        Read = 0x80000000,
+        Write = 0x40000000,
+        Execute = 0x20000000,
+        All = 0x10000000
+    }
 
     /// <summary>
     /// Provides attributes for files and directories.
     /// </summary>
     [Flags]
     [ComVisible(true)]
-    [System.Serializable]
+    [Serializable]
     public enum FileAttributes : uint
     {
         /// <summary>

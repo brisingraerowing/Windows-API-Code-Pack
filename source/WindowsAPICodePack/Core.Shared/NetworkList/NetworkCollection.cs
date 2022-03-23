@@ -1,12 +1,9 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using Microsoft.WindowsAPICodePack.COMNative.Net;
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 
 namespace Microsoft.WindowsAPICodePack.Net
 {
@@ -15,42 +12,29 @@ namespace Microsoft.WindowsAPICodePack.Net
     /// </summary>
     public class NetworkCollection : IEnumerable<Network>
     {
-        #region Private Fields
+        readonly IEnumerable _networkEnumerable;
 
-        readonly IEnumerable networkEnumerable;
-
-        #endregion // Private Fields
-
-        internal NetworkCollection(in IEnumerable networkEnumerable) => this.networkEnumerable = networkEnumerable;
+        internal NetworkCollection(in IEnumerable networkEnumerable) => this._networkEnumerable = networkEnumerable;
 
         #region IEnumerable<Network> Members
-
         /// <summary>
         /// Returns the strongly typed enumerator for this collection.
         /// </summary>
-        /// <returns>An <see cref="System.Collections.Generic.IEnumerator{T}"/>  object.</returns>
+        /// <returns>An <see cref="IEnumerator{T}"/>  object.</returns>
         public IEnumerator<Network> GetEnumerator()
         {
-            foreach (INetwork network in networkEnumerable)
+            foreach (INetwork network in _networkEnumerable)
 
                 yield return new Network(network);
         }
-
         #endregion
 
         #region IEnumerable Members
-
         /// <summary>
         /// Returns the enumerator for this collection.
         /// </summary>
-        ///<returns>An <see cref="System.Collections.IEnumerator"/> object.</returns> 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            foreach (INetwork network in networkEnumerable)
-
-                yield return new Network(network);
-        }
-
+        ///<returns>An <see cref="IEnumerator"/> object.</returns>
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         #endregion
     }
 }

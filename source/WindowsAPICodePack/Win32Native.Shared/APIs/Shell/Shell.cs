@@ -7,8 +7,8 @@ using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames;
 using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.Shell;
 using static Microsoft.WindowsAPICodePack.Win32Native.ErrorCode;
 using static Microsoft.WindowsAPICodePack.Win32Native.Shell.CopyProgressResult;
-using static Microsoft.WindowsAPICodePack.Win32Native.Shell.MoveFileFlags;
 using static Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions;
+using static Microsoft.WindowsAPICodePack.Win32Native.Shell.MoveFileFlags;
 
 using static System.Runtime.InteropServices.UnmanagedType;
 

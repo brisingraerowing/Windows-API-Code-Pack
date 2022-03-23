@@ -145,9 +145,30 @@ namespace Microsoft.WindowsAPICodePack
         MiddleButtonUp = 0x208,
         MiddleButtonDoubleClick = 0x209,
         MouseWheel = 0x20A,
-        XBUTTONDOWN = 0x020B,
-        XBUTTONUP = 0x020C,
-        XBUTTONDBLCLK = 0x020D,
+        XButtonDown = 0x020B,
+
+        /// <summary>
+        /// Obsolete -- Please use <see cref="XButtonDown"/> instead.
+        /// </summary>
+        [Obsolete("Please use XButtonDown instead.")]
+        XBUTTONDOWN = XButtonDown,
+
+        XButtonUp = 0x020C,
+
+        /// <summary>
+        /// Obsolete -- Please use <see cref="XButtonUp"/> instead.
+        /// </summary>
+        [Obsolete("Please use XButtonUp instead.")]
+        XBUTTONUP = XButtonUp,
+
+        XButtonDoubleClick = 0x020D,
+
+        /// <summary>
+        /// Obsolete -- Please use <see cref="XButtonDoubleClick"/> instead.
+        /// </summary>
+        [Obsolete("Please use XButtonDoubleClick instead.")]
+        XBUTTONDBLCLK = XButtonDoubleClick,
+
         MouseHorizontalWheel = 0x20E,
 
         ParentNotify = 0x210,

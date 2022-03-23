@@ -2,6 +2,7 @@
 
 using Microsoft.WindowsAPICodePack.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native.Dialogs;
+using System;
 
 namespace Microsoft.WindowsAPICodePack.Dialogs
 {
@@ -10,17 +11,79 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
     /// </summary>
     public class TaskDialogProgressBar : TaskDialogBar
     {
+        private int _minimum;
+        private int _value;
+        private int _maximum = TaskDialogDefaults.ProgressBarMaximumValue;
+
+        /// <summary>
+        /// Gets or sets the minimum value for the control.
+        /// </summary>                
+        public int Minimum
+        {
+            get => _minimum;
+
+            set
+            {
+#if CS8
+                static
+#endif
+                    ArgumentException getException(in string msg) => new
+#if !CS9
+                    ArgumentException
+#endif                    
+                    (msg, nameof(value));
+
+                UpdateProperty(nameof(Minimum), () => _minimum =
+                     // Check for positive numbers
+                     value < 0
+                     ? throw getException(LocalizedMessages.TaskDialogProgressBarMinValueGreaterThanZero)
+                     // Check if min / max differ
+                     : value >= Maximum
+                     ? throw getException(LocalizedMessages.TaskDialogProgressBarMinValueLessThanMax)
+                     : value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the maximum value for the control.
+        /// </summary>
+        public int Maximum
+        {
+            get => _maximum; set => UpdateProperty(nameof(Maximum), () => _maximum =
+                // Check if min / max differ
+                value < Minimum
+                ? throw new ArgumentException(LocalizedMessages.TaskDialogProgressBarMaxValueGreaterThanMin, nameof(value))
+                : value);
+        }
+
+        /// <summary>
+        /// Gets or sets the current value for the control.
+        /// </summary>
+        public int Value
+        {
+            get => _value; set => UpdateProperty(nameof(Value), () => _value =
+                // Check for positive numbers
+                value < Minimum || value > Maximum
+                ? throw new ArgumentException(LocalizedMessages.TaskDialogProgressBarValueInRange, nameof(value))
+                : value);
+        }
+
+        /// <summary>
+        /// Verifies that the progress bar's value is between its minimum and maximum.
+        /// </summary>
+        internal bool HasValidValues => _minimum <= _value && _value <= _maximum;
+
         /// <summary>
         /// Creates a new instance of this class.
         /// </summary>
-        public TaskDialogProgressBar() { }
+        public TaskDialogProgressBar() { /* Left empty. */ }
 
         /// <summary>
         /// Creates a new instance of this class with the specified name.
         /// And using the default values: Min = 0, Max = 100, Current = 0
         /// </summary>
         /// <param name="name">The name of the control.</param>        
-        public TaskDialogProgressBar(in string name) : base(name) { }
+        public TaskDialogProgressBar(in string name) : base(name) { /* Left empty. */ }
 
         /// <summary>
         /// Creates a new instance of this class with the specified 
@@ -36,78 +99,14 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             Value = value;
         }
 
-        private int _minimum;
-        private int _value;
-        private int _maximum = TaskDialogDefaults.ProgressBarMaximumValue;
-
-        /// <summary>
-        /// Gets or sets the minimum value for the control.
-        /// </summary>                
-        public int Minimum
+        protected void UpdateProperty(in string propertyName, in Action action)
         {
-            get => _minimum;
-            set
-            {
-                CheckPropertyChangeAllowed(nameof(Minimum));
+            CheckPropertyChangeAllowed(propertyName);
 
-                // Check for positive numbers
-                if (value < 0)
+            action();
 
-                    throw new System.ArgumentException(LocalizedMessages.TaskDialogProgressBarMinValueGreaterThanZero, nameof(value));
-
-                // Check if min / max differ
-                if (value >= Maximum)
-
-                    throw new System.ArgumentException(LocalizedMessages.TaskDialogProgressBarMinValueLessThanMax, nameof(value));
-
-                _minimum = value;
-                ApplyPropertyChange(nameof(Minimum));
-            }
+            ApplyPropertyChange(propertyName);
         }
-
-        /// <summary>
-        /// Gets or sets the maximum value for the control.
-        /// </summary>
-        public int Maximum
-        {
-            get => _maximum;
-            set
-            {
-                CheckPropertyChangeAllowed(nameof(Maximum));
-
-                // Check if min / max differ
-                if (value < Minimum)
-
-                    throw new System.ArgumentException(LocalizedMessages.TaskDialogProgressBarMaxValueGreaterThanMin, nameof(value));
-
-                _maximum = value;
-                ApplyPropertyChange(nameof(Maximum));
-            }
-        }
-        /// <summary>
-        /// Gets or sets the current value for the control.
-        /// </summary>
-        public int Value
-        {
-            get => _value;
-            set
-            {
-                CheckPropertyChangeAllowed(nameof(Value));
-
-                // Check for positive numbers
-                if (value < Minimum || value > Maximum)
-
-                    throw new System.ArgumentException(LocalizedMessages.TaskDialogProgressBarValueInRange, nameof(value));
-
-                _value = value;
-                ApplyPropertyChange(nameof(Value));
-            }
-        }
-
-        /// <summary>
-        /// Verifies that the progress bar's value is between its minimum and maximum.
-        /// </summary>
-        internal bool HasValidValues => _minimum <= _value && _value <= _maximum;
 
         /// <summary>
         /// Resets the control to its minimum value.

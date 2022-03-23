@@ -142,9 +142,9 @@ IPortableDeviceObject
             {
                 var propVars = (IPortableDevicePropVariantCollection)new PortableDevicePropVariantCollection();
 
-                Marshal.ThrowExceptionForHR((int)propVars.Add(new PropVariant(Id)));
+                CoreErrorHelper.ThrowExceptionForHResult(propVars.Add(new PropVariant(Id)));
 
-                Marshal.ThrowExceptionForHR((int)_parentPortableDevice.Content.Move(propVars, moveTo.Id, null));
+                CoreErrorHelper.ThrowExceptionForHResult(_parentPortableDevice.Content.Move(propVars, moveTo.Id, null));
             }
 
             else
@@ -213,7 +213,6 @@ IPortableDeviceObject
                     _parentPortableDevice = null;
 
                     _properties.Dispose();
-
                     _properties = null;
 
                     _id = "";

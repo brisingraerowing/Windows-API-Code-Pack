@@ -18509,5 +18509,142 @@
         //        /// <para>MessageText: The license has been revoked for this user.</para>
         //        /// </summary>
         //        ErrorLicenseRevoked = 15864
+
+
+
+        InternetErrorBase = 12000,
+
+        InternetOutOfHandles = InternetErrorBase + 1,
+        InternetTimeout = InternetErrorBase + 2,
+        InternetExtendedError = InternetErrorBase + 3,
+        InternetInternalError = InternetErrorBase + 4,
+        InternetInvalidURL = InternetErrorBase + 5,
+        InternetUnrecognizedScheme = InternetErrorBase + 6,
+        InternetNameNotResolved = InternetErrorBase + 7,
+        InternetProtocolNotFound = InternetErrorBase + 8,
+        InternetInvalidOption = InternetErrorBase + 9,
+        InternetBadOptionLength = InternetErrorBase + 10,
+        /*InternetOPTION_NOT_SETTABLE = InternetErrorBase + 11,
+        InternetSHUTDOWN = InternetErrorBase + 12,
+        InternetINCORRECT_USER_NAME = InternetErrorBase + 13,
+        InternetINCORRECT_PASSWORD = InternetErrorBase + 14,
+        InternetLOGIN_FAILURE = InternetErrorBase + 15,
+        InternetINVALID_OPERATION = InternetErrorBase + 16,
+        InternetOPERATION_CANCELLED = InternetErrorBase + 17,
+        InternetINCORRECT_HANDLE_TYPE = InternetErrorBase + 18,
+        InternetINCORRECT_HANDLE_STATE = InternetErrorBase + 19,
+        InternetNOT_PROXY_REQUEST = InternetErrorBase + 20,
+        InternetREGISTRY_VALUE_NOT_FOUND = InternetErrorBase + 21,
+        InternetBAD_REGISTRY_PARAMETER = InternetErrorBase + 22,*/
+        InternetNoDirectAccess = InternetErrorBase + 23,
+        /*InternetNO_CONTEXT = InternetErrorBase + 24,
+        InternetNO_CALLBACK = InternetErrorBase + 25,
+        InternetREQUEST_PENDING = InternetErrorBase + 26,
+        InternetINCORRECT_FORMAT = InternetErrorBase + 27,
+        InternetITEM_NOT_FOUND = InternetErrorBase + 28,
+        InternetCANNOT_CONNECT = InternetErrorBase + 29,
+        InternetCONNECTION_ABORTED = InternetErrorBase + 30,
+        InternetCONNECTION_RESET = InternetErrorBase + 31,
+        InternetFORCE_RETRY = InternetErrorBase + 32,
+        InternetINVALID_PROXY_REQUEST = InternetErrorBase + 33,
+        InternetNEED_UI = InternetErrorBase + 34,
+
+        InternetHANDLE_EXISTS = InternetErrorBase + 36,
+        InternetSEC_CERT_DATE_INVALID = InternetErrorBase + 37,
+        InternetSEC_CERT_CN_INVALID = InternetErrorBase + 38,
+        InternetHTTP_TO_HTTPS_ON_REDIR = InternetErrorBase + 39,
+        InternetHTTPS_TO_HTTP_ON_REDIR = InternetErrorBase + 40,
+        InternetMIXED_SECURITY = InternetErrorBase + 41,
+        InternetCHG_POST_IS_NON_SECURE = InternetErrorBase + 42,
+        InternetPOST_IS_NON_SECURE = InternetErrorBase + 43,
+        InternetCLIENT_AUTH_CERT_NEEDED = InternetErrorBase + 44,
+        InternetINVALID_CA = InternetErrorBase + 45,
+        InternetCLIENT_AUTH_NOT_SETUP = InternetErrorBase + 46,
+        InternetASYNC_THREAD_FAILED = InternetErrorBase + 47,
+        InternetREDIRECT_SCHEME_CHANGE = InternetErrorBase + 48,
+        InternetDIALOG_PENDING = InternetErrorBase + 49,
+        InternetRETRY_DIALOG = InternetErrorBase + 50,
+        InternetHTTPS_HTTP_SUBMIT_REDIR = InternetErrorBase + 52,
+        InternetINSERT_CDROM = InternetErrorBase + 53,
+        InternetFORTEZZA_LOGIN_NEEDED = InternetErrorBase + 54,
+        InternetSEC_CERT_ERRORS = InternetErrorBase + 55,
+        InternetSEC_CERT_NO_REV = InternetErrorBase + 56,
+        InternetSEC_CERT_REV_FAILED = InternetErrorBase + 57,*/
+
+
+        HTTP_HSTSRedirectRequired = InternetErrorBase + 60,
+
+
+        InternetSecCertWeakSignature = InternetErrorBase + 62,
+
+
+        //
+        // FTP API errors
+        //
+
+        FTPTransferInProgress = InternetErrorBase + 110,
+        FTPDropped = InternetErrorBase + 111,
+        FTPNoPassiveMode = InternetErrorBase + 112,
+
+        //
+        // gopher API errors
+        //
+
+        GopherProtocolError = InternetErrorBase + 130,
+        GopherNotFile = InternetErrorBase + 131,
+        GopherDataError = InternetErrorBase + 132,
+        GopherEndOfData = InternetErrorBase + 133,
+        GopherInvalidLocator = InternetErrorBase + 134,
+        GopherIncorrectLocatorType = InternetErrorBase + 135,
+        GopherNotGopherPlus = InternetErrorBase + 136,
+        GopherAttributeNotFound = InternetErrorBase + 137,
+        GopherUnknownLocator = InternetErrorBase + 138,
+
+        //
+        // HTTP API errors
+        //
+
+        HTTPHeaderNotFound = InternetErrorBase + 150,
+        HTTPDownLevelServer = InternetErrorBase + 151,
+        HTTPInvalidServerResponse = InternetErrorBase + 152,
+        HTTPInvalidHeader = InternetErrorBase + 153,
+        HTTPInvalidQueryRequest = InternetErrorBase + 154,
+        HTTPHeaderAlreadyExists = InternetErrorBase + 155,
+        HTTPRedirectFailed = InternetErrorBase + 156,
+        HTTPNotRedirected = InternetErrorBase + 160,
+        HTTPCookieNeedsConfirmation = InternetErrorBase + 161,
+        HTTPCookieDeclined = InternetErrorBase + 162,
+        HTTPRedirectNeedsConfirmation = InternetErrorBase + 168,
+
+        //
+        // Additional Internet API error codes
+        //
+
+        /*InternetSECURITY_CHANNEL_ERROR = InternetErrorBase + 157,
+        InternetUNABLE_TO_CACHE_FILE = InternetErrorBase + 158,
+        InternetTCPIP_NOT_INSTALLED = InternetErrorBase + 159,
+        InternetDISCONNECTED = InternetErrorBase + 163,
+        InternetSERVER_UNREACHABLE = InternetErrorBase + 164,
+        InternetPROXY_SERVER_UNREACHABLE = InternetErrorBase + 165,
+
+        InternetBAD_AUTO_PROXY_SCRIPT = InternetErrorBase + 166,
+        InternetUNABLE_TO_DOWNLOAD_SCRIPT = InternetErrorBase + 167,
+        InternetSEC_INVALID_CERT = InternetErrorBase + 169,
+        InternetSEC_CERT_REVOKED = InternetErrorBase + 170,
+
+        // InternetAutodial specific errors
+
+        InternetFAILED_DUETOSECURITYCHECK = InternetErrorBase + 171,
+        InternetNOT_INITIALIZED = InternetErrorBase + 172,
+        InternetNEED_MSN_SSPI_PKG = InternetErrorBase + 173,
+        InternetLOGIN_FAILURE_DISPLAY_ENTITY_BODY = InternetErrorBase + 174,*/
+
+        // Decoding/Decompression specific errors
+
+        InternetDecodingFailed = InternetErrorBase + 175,
+
+        InternetClientAuthCertNeededProxy = InternetErrorBase + 187,
+        InternetSecureFailureProxy = InternetErrorBase + 188,
+        InternetHTTPProtocolMismatch = InternetErrorBase + 190
     }
 }

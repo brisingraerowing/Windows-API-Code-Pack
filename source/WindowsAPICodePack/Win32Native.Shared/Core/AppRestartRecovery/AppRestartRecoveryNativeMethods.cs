@@ -1,7 +1,5 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
-using Microsoft.WindowsAPICodePack.Win32Native;
-
 using System;
 using System.Runtime.InteropServices;
 
@@ -12,14 +10,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices
     public static class AppRestartRecoveryNativeMethods
     {
         #region Application Restart and Recovery Definitions
-
         public delegate uint RecoveryCallbackDelegate(IntPtr state);
 
         public static RecoveryCallbackDelegate RecoveryCallback { get; } = new RecoveryCallbackDelegate(RecoveryHandler);
 
         private static uint RecoveryHandler(IntPtr parameter)
         {
-            Marshal.ThrowExceptionForHR( (int) ApplicationRecoveryInProgress(out _));
+            CoreErrorHelper.ThrowExceptionForHResult((int)ApplicationRecoveryInProgress(out _));
 
             var handle = GCHandle.FromIntPtr(parameter);
             var data = handle.Target as RecoveryData;
@@ -58,7 +55,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices
         [DllImport(Kernel32)]
         [PreserveSig]
         public static extern HResult UnregisterApplicationRestart();
-
         #endregion
     }
 }

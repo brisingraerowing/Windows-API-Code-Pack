@@ -1,7 +1,16 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using System;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
+
+using static WinCopies.
+#if WAPICP3
+    ThrowHelper
+#else
+    Util.Util
+#endif
+                ;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native
 {
@@ -112,6 +121,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
     /// </summary>
     public static class CoreErrorHelper
     {
+        public static IntPtr InvalidHandleValue => (IntPtr)(-1);
+
         /// <summary>
         /// <see cref="HResult.Ok"/> value.
         /// </summary>
@@ -182,7 +193,10 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         /// <returns><see langword="true"/> if <paramref name="result"/> corresponds to <paramref name="win32ErrorCode"/>; otherwise <see langword="false"/>.</returns>
         public static bool Matches(in HResult result, in ErrorCode win32ErrorCode) => result == HResultFromWin32(win32ErrorCode);
 
+#if !WAPICP3
+        [Obsolete("Replaced by ThrowExceptionForHResult")]
         public static void ThrowExceptionForHR(in HResult hresult) => Marshal.ThrowExceptionForHR((int)hresult);
+#endif
 
         public static Exception GetExceptionForHR(in HResult hResult) => Marshal.GetExceptionForHR((int)hResult);
 
@@ -198,15 +212,34 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
 
         public static T GetIfSucceeded<T>(in FuncOut<T> func)
         {
-            HResult hr = (func ?? throw WinCopies.
-#if WAPICP3
-                ThrowHelper
-#else
-                Util.Util
-#endif
-                .GetArgumentNullException(nameof(func)))(out T param);
+            HResult hr = (func ?? throw GetArgumentNullException(nameof(func)))(out T param);
 
             return GetIfSucceeded(param, hr);
+        }
+
+        public static void ThrowExceptionForHResult(in int hResult) => Marshal.ThrowExceptionForHR(hResult);
+
+        public static void ThrowExceptionForHResult(in HResult hResult) => ThrowExceptionForHResult((int)hResult);
+
+        public static Win32Exception GetExceptionForWin32Error(in int errorCode) => new Win32Exception(errorCode);
+
+        public static Win32Exception GetExceptionForWin32Error(in ErrorCode errorCode) => GetExceptionForWin32Error((int)errorCode);
+
+        public static Win32Exception GetExceptionForLastWin32Error() => GetExceptionForWin32Error(Marshal.GetLastWin32Error());
+
+        public static void ThrowExceptionForWin32Error(in int errorCode) => throw GetExceptionForWin32Error(errorCode);
+
+        public static void ThrowExceptionForWin32Error(in ErrorCode errorCode) => ThrowExceptionForWin32Error((int)errorCode);
+
+        public static void ThrowExceptionForLastWin32Error() => ThrowExceptionForWin32Error(Marshal.GetHRForLastWin32Error());
+
+        public static ErrorCode GetLastWin32Error() => (ErrorCode)Marshal.GetLastWin32Error();
+
+        public static void RunWin32Action(in Func<bool> func)
+        {
+            if (!(func ?? throw GetArgumentNullException(nameof(func)))())
+
+                ThrowExceptionForLastWin32Error();
         }
     }
 }

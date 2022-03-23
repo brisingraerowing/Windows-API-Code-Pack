@@ -18,56 +18,13 @@ namespace Microsoft.WindowsAPICodePack.Shell
 #endif
     {
         #region Fields
+#if !WAPICP3
         /// Path for this file e.g. c:\Windows\file.txt,
         private string _path;
+#endif
         private string _targetLocation;
         private string _arguments;
         private string _comments;
-        #endregion
-
-        #region Constructors
-        internal ShellLink(in IShellItem2 shellItem) : base(shellItem)
-        {
-            // Left empty.
-        }
-
-#if WAPICP3
-        private ShellLink(in IShellItem2 shellItem, in string sourcePath) : base(shellItem) => TargetLocation = sourcePath;
-
-        /// <summary>
-        /// Creates a shortcut on the disk and returns a <see cref="ShellLink"/> that represents it.
-        /// </summary>
-        /// <param name="sourcePath">The full target path.</param>
-        /// <param name="destPath">If <paramref name="relative"/>, only the destination path's directory; otherwise, the full destination path for the shortcut.</param>
-        /// <param name="relative">Indicates whether <paramref name="destPath"/> is relative.</param>
-        /// <returns>A <see cref="ShellLink"/> that represents the newly created shortcut.</returns>
-        public static ShellLink Create(string sourcePath, string destPath, bool relative)
-        {
-            if (relative)
-
-                return Create(sourcePath, $"{destPath}\\\\{System.IO.Path.GetFileNameWithoutExtension(sourcePath)}.lnk", false);
-#else
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ShellLink"/> class and directly saves the link on disk.
-        /// </summary>
-        /// <param name="sourcePath">The full source path.</param>
-        /// <param name="destPath">The destination directory.</param>
-        public ShellLink(in string sourcePath, string destPath)
-        {
-#endif
-            var lnk = Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid(NativeAPI.Guids.Shell.CShellLink), true)) as IShellLinkW;
-            lnk.SetPath(sourcePath);
-#if !WAPICP3
-            destPath = $"{destPath}\\\\{System.IO.Path.GetFileNameWithoutExtension(sourcePath)}.lnk";
-#endif
-            ((IPersistFile)lnk).Save(destPath, true);
-#if WAPICP3
-            return new ShellLink(ShellObjectFactory.GetNativeShellItem(destPath), sourcePath);
-#else
-            Path = destPath;
-            TargetLocation = sourcePath;
-#endif
-        }
         #endregion
 
         #region Public Properties
@@ -197,6 +154,51 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     _comments = value;
                 }
             }
+        }
+        #endregion
+
+        #region Constructors
+        internal ShellLink(in IShellItem2 shellItem) : base(shellItem)
+        {
+            // Left empty.
+        }
+
+#if WAPICP3
+        private ShellLink(in IShellItem2 shellItem, in string sourcePath) : base(shellItem) => TargetLocation = sourcePath;
+
+        /// <summary>
+        /// Creates a shortcut on the disk and returns a <see cref="ShellLink"/> that represents it.
+        /// </summary>
+        /// <param name="sourcePath">The full target path.</param>
+        /// <param name="destPath">If <paramref name="relative"/>, only the destination path's directory; otherwise, the full destination path for the shortcut.</param>
+        /// <param name="relative">Indicates whether <paramref name="destPath"/> is relative.</param>
+        /// <returns>A <see cref="ShellLink"/> that represents the newly created shortcut.</returns>
+        public static ShellLink Create(string sourcePath, string destPath, bool relative)
+        {
+            if (relative)
+
+                return Create(sourcePath, $"{destPath}\\\\{System.IO.Path.GetFileNameWithoutExtension(sourcePath)}.lnk", false);
+#else
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ShellLink"/> class and directly saves the link on disk.
+        /// </summary>
+        /// <param name="sourcePath">The full source path.</param>
+        /// <param name="destPath">The destination directory.</param>
+        public ShellLink(in string sourcePath, string destPath)
+        {
+#endif
+            var lnk = Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid(NativeAPI.Guids.Shell.CShellLink), true)) as IShellLinkW;
+            lnk.SetPath(sourcePath);
+#if !WAPICP3
+            destPath = $"{destPath}\\\\{System.IO.Path.GetFileNameWithoutExtension(sourcePath)}.lnk";
+#endif
+            ((IPersistFile)lnk).Save(destPath, true);
+#if WAPICP3
+            return new ShellLink(ShellObjectFactory.GetNativeShellItem(destPath), sourcePath);
+#else
+            Path = destPath;
+            TargetLocation = sourcePath;
+#endif
         }
         #endregion
     }

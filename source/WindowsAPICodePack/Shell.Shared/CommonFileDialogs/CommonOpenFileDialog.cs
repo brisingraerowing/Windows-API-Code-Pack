@@ -3,6 +3,7 @@
 using Microsoft.WindowsAPICodePack.COMNative.Dialogs;
 using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
 using System.Collections.Generic;
@@ -147,7 +148,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         internal override void PopulateWithFileNames(System.Collections.ObjectModel.Collection<string> names)
         {
             openDialogCoClass.GetResults(out IShellItemArray resultsArray);
-            Marshal.ThrowExceptionForHR((int)resultsArray.GetCount(out uint count));
+            CoreErrorHelper.ThrowExceptionForHResult(resultsArray.GetCount(out uint count));
             names.Clear();
             for (int i = 0; i < count; i++)
 
@@ -157,7 +158,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         internal override void PopulateWithIShellItems(System.Collections.ObjectModel.Collection<IShellItem> items)
         {
             openDialogCoClass.GetResults(out IShellItemArray resultsArray);
-            Marshal.ThrowExceptionForHR((int)resultsArray.GetCount(out uint count));
+            CoreErrorHelper.ThrowExceptionForHResult(resultsArray.GetCount(out uint count));
             items.Clear();
             for (int i = 0; i < count; i++)
 

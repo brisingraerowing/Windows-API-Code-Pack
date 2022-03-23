@@ -40,10 +40,10 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Net
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void GetTimeCreatedAndConnected(
-            out uint pdwLowDateTimeCreated,
-            out uint pdwHighDateTimeCreated,
-            out uint pdwLowDateTimeConnected,
-            out uint pdwHighDateTimeConnected);
+            [Out, MarshalAs(UnmanagedType.U4)] out uint pdwLowDateTimeCreated,
+            [Out, MarshalAs(UnmanagedType.U4)] out uint pdwHighDateTimeCreated,
+            [Out, MarshalAs(UnmanagedType.U4)] out uint pdwLowDateTimeConnected,
+            [Out, MarshalAs(UnmanagedType.U4)] out uint pdwHighDateTimeConnected);
 
         bool IsConnectedToInternet
         {

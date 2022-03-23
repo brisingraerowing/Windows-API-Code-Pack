@@ -2,6 +2,7 @@
 
 using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
+
 using System.IO;
 
 namespace Microsoft.WindowsAPICodePack.Shell

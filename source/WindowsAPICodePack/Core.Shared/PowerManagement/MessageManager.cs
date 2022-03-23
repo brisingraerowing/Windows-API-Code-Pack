@@ -1,12 +1,13 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
+using Microsoft.WindowsAPICodePack.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices;
+
 using System;
 using System.Collections;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
-using Microsoft.WindowsAPICodePack.Resources;
-using Microsoft.WindowsAPICodePack.Win32Native.ApplicationServices;
 
 using static Microsoft.WindowsAPICodePack.ApplicationServices.Guids.EventManager;
 
@@ -18,40 +19,19 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
     /// </summary>
     internal static class MessageManager
     {
-        private static readonly object lockObject = new object();
+        private static readonly object lockObject = new
+#if !CS9
+            object
+#endif
+            ();
         private static PowerRegWindow window;
 
-        #region Internal static methods
-
-        /// <summary>
-        /// Registers a callback for a power event.
-        /// </summary>
-        /// <param name="eventId">Guid for the event.</param>
-        /// <param name="eventToRegister">Event handler for the specified event.</param>
-        internal static void RegisterPowerEvent(in Guid eventId, in EventHandler eventToRegister)
-        {
-            EnsureInitialized();
-            window.RegisterPowerEvent(eventId, eventToRegister);
-        }
-
-        /// <summary>
-        /// Unregisters an event handler for a power event.
-        /// </summary>
-        /// <param name="eventId">Guid for the event.</param>
-        /// <param name="eventToUnregister">Event handler to unregister.</param>
-        internal static void UnregisterPowerEvent(in Guid eventId, in EventHandler eventToUnregister)
-        {
-            EnsureInitialized();
-            window.UnregisterPowerEvent(eventId, eventToUnregister);
-        }
-
-        #endregion
-
+        #region Methods
         /// <summary>
         /// Ensures that the hidden window is initialized and 
         /// listening for messages.
         /// </summary>
-        private static void EnsureInitialized()
+        private static void EnsureInitialized(in Action action)
         {
             lock (lockObject)
 
@@ -60,7 +40,26 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                     // Create a new hidden window to listen
                     // for power management related window messages.
                     window = new PowerRegWindow();
+
+            action();
         }
+
+        #region Internal Static Methods
+        /// <summary>
+        /// Registers a callback for a power event.
+        /// </summary>
+        /// <param name="eventId">Guid for the event.</param>
+        /// <param name="eventToRegister">Event handler for the specified event.</param>
+        internal static void RegisterPowerEvent(Guid eventId, EventHandler eventToRegister) => EnsureInitialized(() => window.RegisterPowerEvent(eventId, eventToRegister));
+
+        /// <summary>
+        /// Unregisters an event handler for a power event.
+        /// </summary>
+        /// <param name="eventId">Guid for the event.</param>
+        /// <param name="eventToUnregister">Event handler to unregister.</param>
+        internal static void UnregisterPowerEvent(Guid eventId, EventHandler eventToUnregister) => EnsureInitialized(() => window.UnregisterPowerEvent(eventId, eventToUnregister));
+        #endregion Internal Static Methods
+        #endregion Methods
 
         /// <summary>
         /// Catch Windows messages and generates events for power specific
@@ -68,17 +67,20 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         /// </summary>
         internal class PowerRegWindow : Form
         {
-            private readonly Hashtable eventList = new Hashtable();
-            private readonly ReaderWriterLock readerWriterLock = new ReaderWriterLock();
+            private readonly Hashtable eventList = new
+#if !CS9
+                Hashtable
+#endif
+                ();
+            private readonly ReaderWriterLock readerWriterLock = new
+#if !CS9
+                ReaderWriterLock
+#endif
+                ();
 
-            internal PowerRegWindow()
-                : base()
-            {
-
-            }
+            internal PowerRegWindow() : base() { /* Left empty. */ }
 
             #region Internal Methods
-
             /// <summary>
             /// Adds an event handler to call when Windows sends 
             /// a message for an event.
@@ -89,17 +91,17 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
             {
                 readerWriterLock.AcquireWriterLock(Timeout.Infinite);
 
-                if (!eventList.Contains(eventId))
+                if (eventList.Contains(eventId))
+
+                    _ = ((ArrayList)eventList[eventId]).Add(eventToRegister);
+
+                else
                 {
                     _ = Power.RegisterPowerSettingNotification(Handle, eventId);
                     var newList = new ArrayList();
                     _ = newList.Add(eventToRegister);
                     eventList.Add(eventId, newList);
                 }
-
-                else
-
-                    _ = ((ArrayList)eventList[eventId]).Add(eventToRegister);
 
                 readerWriterLock.ReleaseWriterLock();
             }
@@ -114,14 +116,8 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
             internal void UnregisterPowerEvent(in Guid eventId, in EventHandler eventToUnregister)
             {
                 readerWriterLock.AcquireWriterLock(Timeout.Infinite);
-                if (eventList.Contains(eventId))
-                {
-                    var currList = (ArrayList)eventList[eventId];
-                    currList.Remove(eventToUnregister);
-                }
-                else
 
-                    throw new InvalidOperationException(LocalizedMessages.MessageManagerHandlerNotRegistered);
+                ((ArrayList)(eventList.Contains(eventId) ? eventList : throw new InvalidOperationException(LocalizedMessages.MessageManagerHandlerNotRegistered))[eventId]).Remove(eventToUnregister);
 
                 readerWriterLock.ReleaseWriterLock();
             }
@@ -170,12 +166,11 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
 
                         ExecuteEvents((ArrayList)eventList[currentEvent]);
                 }
+
                 else
 
                     base.WndProc(ref m);
-
             }
-
         }
     }
 }

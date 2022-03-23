@@ -3,7 +3,7 @@
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
     // move fields to the Core.WindowMessage enum
-    [Obsolete("This enum will be replaced by the Core.WindowMessage enum in further versions.")]
+    [Obsolete("This enum will be replaced by the Microsoft.WindowsAPICodePack.WindowMessage enum in further versions.")]
     public enum WM
     {
         NULL = 0x0000,

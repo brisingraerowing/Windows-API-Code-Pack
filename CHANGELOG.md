@@ -10,6 +10,15 @@ For issues and bug fixes details, visit [https://wincopies.com/fwd.php?id=3](htt
 
 For the original code (version 1.1, last release by Microsoft), see [https://wincopies.com/fwd.php?id=1](https://wincopies.com/fwd.php?id=1)
 
+## ??? ???
+
+- Microsoft.WindowsAPICodePack.Net.NetworkListManager: none of the method parameters have the 'in' modifier anymore.
+- WindowMessage.XBUTTON values had been replaced with other names (starting with XButton instead, as C# is case sensitive, and fully spelled).
+- Add:
+    - support for FTP.
+    - new types.
+- Code optimized.
+
 ## 10/18/2021 3.9
 
 - Add:
@@ -90,6 +99,10 @@ COMNative 3.0
 
 - Removals:
     - Some 'ref' keywords in native PortableDevices interfaces. These keywords have been removed for interface type parameters because they was redundant.
+
+## ??? ???
+
+- New error codes and constants.
 
 ## 11/03/2021 2.10.3
 

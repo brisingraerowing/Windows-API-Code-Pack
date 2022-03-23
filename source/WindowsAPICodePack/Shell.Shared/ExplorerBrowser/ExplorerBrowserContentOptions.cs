@@ -38,7 +38,7 @@ namespace Microsoft.WindowsAPICodePack.Controls
 
                 if (eb.explorerBrowserControl != null)
 
-                    Marshal.ThrowExceptionForHR((int) eb.explorerBrowserControl.SetFolderSettings(folderSettings));
+                    CoreErrorHelper.ThrowExceptionForHResult( eb.explorerBrowserControl.SetFolderSettings(folderSettings));
             }
         }
         #endregion

@@ -49,7 +49,7 @@
 
 //            COMNative.PortableDevices.PropertySystem.IPortableDeviceValues temp = values._PortableDeviceValues;
 
-//            Marshal.ThrowExceptionForHR((int)_portableDeviceValuesCollection.Add(ref temp));
+//            CoreErrorHelper.ThrowExceptionForHResult(_portableDeviceValuesCollection.Add(ref temp));
 
 //            for (int i )
 //        }

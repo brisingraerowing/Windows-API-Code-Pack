@@ -20,15 +20,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
     /// Originally sourced from http://blogs.msdn.com/adamroot/pages/interop-with-propvariants-in-net.aspx
     /// and modified to support additional types including vectors and ability to set values
     /// </remarks>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Portability", "CA1900:ValueTypeFieldsShouldBePortable", MessageId = "_ptr2")]
     [StructLayout(LayoutKind.Explicit)]
     public sealed partial class PropVariant : IDisposable
     {
         #region Vector Action Cache
-
         // A static dictionary of delegates to get data from array's contained within PropVariants
         private static Dictionary<Type, Action<PropVariant, Array, uint>> _vectorActions = null;
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
+
         private static Dictionary<Type, Action<PropVariant, Array, uint>> GenerateVectorActions()
         {
             var cache = new Dictionary<Type, Action<PropVariant, Array, uint>>
@@ -88,14 +86,14 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
                 },
 
                 {
-                    typeof(DateTime),
+                    typeof(System.DateTime),
                     (pv, array, i) =>
  {
      PropVariantGetFileTimeElem(pv, i, out System.Runtime.InteropServices.ComTypes.FILETIME val);
 
      long fileTime = GetFileTimeAsLong(ref val);
 
-     array.SetValue(DateTime.FromFileTime(fileTime), i);
+     array.SetValue(System.DateTime.FromFileTime(fileTime), i);
  }
                 },
 
@@ -157,7 +155,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         #endregion
 
         #region Dynamic Construction / Factory (Expressions)
-
         /// <summary>
         /// Attempts to create a PropVariant by finding an appropriate constructor.
         /// </summary>
@@ -203,11 +200,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
                 return action;
             }
         }
-
         #endregion
 
         #region Fields
-
         [FieldOffset(0)]
         decimal _decimal;
 
@@ -232,10 +227,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         // pointer. The valueDataExt field provides this, as well as
         // the last 4-bytes of an 8-byte value on 32-bit
         // architectures.
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2006:UseSafeHandleToEncapsulateNativeResources")]
         [FieldOffset(16)]
         IntPtr _ptr2;
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2006:UseSafeHandleToEncapsulateNativeResources")]
         [FieldOffset(8)]
         IntPtr _ptr;
         [FieldOffset(8)]
@@ -258,21 +251,16 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         double _double;
         [FieldOffset(8)]
         float _float;
-
-        #endregion // struct fields
+        #endregion Fields
 
         #region Constructors
-
         /// <summary>
         /// Default constrcutor
         /// </summary>
-        public PropVariant()
-        {
-            // left empty
-        }
+        public PropVariant() { /* Left empty. */ }
 
         /// <summary>
-        /// Set a string value
+        /// Set a <see cref="string"/> value
         /// </summary>
         public PropVariant(string value)
         {
@@ -284,63 +272,65 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
             _ptr = Marshal.StringToCoTaskMemUni(value);
         }
 
-        // todo: replace by WinCopies.Util methods
-
-        private static void ThrowIfNull(object value)
-        {
-            if (value is null) throw GetArgumentNullException();
-        }
+        private static void ThrowIfNull(object value) => WinCopies.
+#if WAPICP3
+            ThrowHelper
+#else
+            Util.Util
+#endif
+            .ThrowIfNull(value, nameof(value));
 
         private static ArgumentNullException GetArgumentNullException() => new ArgumentNullException("value");
 
         /// <summary>
-        /// Set a string vector
+        /// Set a <see cref="string"/> vector
         /// </summary>
         public PropVariant(string[] value) => InitPropVariantFromStringVector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
 
         /// <summary>
-        /// Set a bool vector
+        /// Set a <see cref="bool"/> vector
         /// </summary>
         public PropVariant(bool[] value) => InitPropVariantFromBooleanVector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
 
         /// <summary>
-        /// Set a short vector
+        /// Set a <see cref="short"/> vector
         /// </summary>
         public PropVariant(short[] value) => InitPropVariantFromInt16Vector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
 
         /// <summary>
-        /// Set a short vector
+        /// Set a <see cref="ushort"/> vector
         /// </summary>
         public PropVariant(ushort[] value) => InitPropVariantFromUInt16Vector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
 
         /// <summary>
-        /// Set an int vector
+        /// Set an <see cref="int"/> vector
         /// </summary>
         public PropVariant(int[] value) => InitPropVariantFromInt32Vector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
 
         /// <summary>
-        /// Set an uint vector
+        /// Set a <see cref="uint"/> vector
         /// </summary>
         public PropVariant(uint[] value) => InitPropVariantFromUInt32Vector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
 
         /// <summary>
-        /// Set a long vector
+        /// Set a <see cref="long"/> vector
         /// </summary>
         public PropVariant(long[] value) => InitPropVariantFromInt64Vector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
 
         /// <summary>
-        /// Set a ulong vector
+        /// Set a <see cref="ulong"/> vector
         /// </summary>
         public PropVariant(ulong[] value) => InitPropVariantFromUInt64Vector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
 
         /// <summary>>
-        /// Set a double vector
+        /// Set a <see cref="double"/> vector
         /// </summary>
         public PropVariant(double[] value) => InitPropVariantFromDoubleVector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
 
 
+
         /// <summary>
-        /// Set a DateTime vector
+        /// Set a <see cref="DateTime"/> vector
         /// </summary>
         public PropVariant(DateTime[] value)
         {
@@ -357,7 +347,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         }
 
         /// <summary>
-        /// Set a bool value
+        /// Set a <see cref="bool"/> value
         /// </summary>
         public PropVariant(bool value)
         {
@@ -366,7 +356,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         }
 
         /// <summary>
-        /// Set a DateTime value
+        /// Set a <see cref="DateTime"/> value
         /// </summary>
         public PropVariant(DateTime value)
         {
@@ -376,9 +366,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
             InitPropVariantFromFileTime(ref ft, this);
         }
 
-
         /// <summary>
-        /// Set a byte value
+        /// Set a <see cref="byte"/> value
         /// </summary>
         public PropVariant(byte value)
         {
@@ -387,7 +376,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         }
 
         /// <summary>
-        /// Set a sbyte value
+        /// Set a <see cref="sbyte"/> value
         /// </summary>
         public PropVariant(sbyte value)
         {
@@ -396,7 +385,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         }
 
         /// <summary>
-        /// Set a short value
+        /// Set a <see cref="short"/> value
         /// </summary>
         public PropVariant(short value)
         {
@@ -405,7 +394,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         }
 
         /// <summary>
-        /// Set an unsigned short value
+        /// Set a <see cref="ushort"/> value
         /// </summary>
         public PropVariant(ushort value)
         {
@@ -414,7 +403,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         }
 
         /// <summary>
-        /// Set an int value
+        /// Set an <see cref="int"/> value
         /// </summary>
         public PropVariant(int value)
         {
@@ -423,7 +412,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         }
 
         /// <summary>
-        /// Set an unsigned int value
+        /// Set a <see cref="uint"/> value
         /// </summary>
         public PropVariant(uint value)
         {
@@ -432,7 +421,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         }
 
         /// <summary>
-        /// Set a decimal  value
+        /// Set a <see cref="decimal"/> value
         /// </summary>
         public PropVariant(decimal value)
         {
@@ -444,9 +433,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         }
 
         /// <summary>
-        /// Create a PropVariant with a contained decimal array.
+        /// Create a <see cref="PropVariant"/> with a contained <see cref="decimal"/> array.
         /// </summary>
-        /// <param name="value">Decimal array to wrap.</param>
+        /// <param name="value"><see cref="decimal"/> array to wrap.</param>
         public PropVariant(decimal[] value)
         {
             ThrowIfNull(value);
@@ -464,7 +453,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         }
 
         /// <summary>
-        /// Create a PropVariant containing a float type.
+        /// Create a <see cref="PropVariant"/> containing a <see cref="float"/> value.
         /// </summary>        
         public PropVariant(float value)
         {
@@ -474,7 +463,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         }
 
         /// <summary>
-        /// Creates a PropVariant containing a float[] array.
+        /// Creates a <see cref="PropVariant"/> containing a <see cref="float"/> array.
         /// </summary>        
         public PropVariant(float[] value)
         {
@@ -489,7 +478,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         }
 
         /// <summary>
-        /// Set a long
+        /// Set a <see cref="long"/>
         /// </summary>
         public PropVariant(long value)
         {
@@ -498,7 +487,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         }
 
         /// <summary>
-        /// Set a ulong
+        /// Set a <see cref="ulong"/>
         /// </summary>
         public PropVariant(ulong value)
         {
@@ -507,18 +496,16 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         }
 
         /// <summary>
-        /// Set a double
+        /// Set a <see cref="double"/>
         /// </summary>
         public PropVariant(double value)
         {
             _valueType = (ushort)VarEnum.VT_R8;
             _double = value;
         }
-
         #endregion
 
         #region Uncalled methods - These are currently not called, but I think may be valid in the future.
-
         /// <summary>
         /// Set an IUnknown value
         /// </summary>
@@ -528,7 +515,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
             _valueType = (ushort)VarEnum.VT_UNKNOWN;
             _ptr = Marshal.GetIUnknownForObject(value);
         }
-
 
         /// <summary>
         /// Set a safe array value
@@ -551,6 +537,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
                     Marshal.WriteIntPtr(pvData, i * IntPtr.Size, punk);
                 }
             }
+
             finally
             {
                 SafeArrayUnaccessData(psa);
@@ -559,11 +546,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
             _valueType = (ushort)VarEnum.VT_ARRAY | (ushort)VarEnum.VT_UNKNOWN;
             _ptr = psa;
         }
-
         #endregion
 
         #region public Properties
-
         /// <summary>
         /// Gets or sets the variant type.
         /// </summary>
@@ -617,9 +602,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
                     case VarEnum.VT_CY:
                         return _decimal;
                     case VarEnum.VT_DATE:
-                        return DateTime.FromOADate(_double);
+                        return System.DateTime.FromOADate(_double);
                     case VarEnum.VT_FILETIME:
-                        return DateTime.FromFileTime(_long);
+                        return System.DateTime.FromFileTime(_long);
                     case VarEnum.VT_BSTR:
                         return Marshal.PtrToStringBSTR(_ptr);
                     case VarEnum.VT_BLOB:
@@ -635,11 +620,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
                     case VarEnum.VT_DECIMAL:
                         return _decimal;
                     case VarEnum.VT_CLSID:
-                        return
+                        return Marshal.PtrToStructure
 #if CS7
-                            Marshal.PtrToStructure<Guid>(_ptr);
+                            <Guid>(_ptr);
 #else
-                            Marshal.PtrToStructure(_ptr, typeof(Guid));
+                            (_ptr, typeof(Guid));
 #endif
                     case VarEnum.VT_ARRAY | VarEnum.VT_UNKNOWN:
                         return CrackSingleDimSafeArray(_ptr);
@@ -673,23 +658,23 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
                 }
             }
         }
-
         #endregion
 
+        public static long GetLong(int high, int low) => (((long)high) << 32) | (uint)low;
+        public static ulong GetULong(uint high, uint low) => (((ulong)high) << 32) | low;
+
+        public static long GetFileTimeAsLong(ref System.Runtime.InteropServices.ComTypes.FILETIME val) => GetLong(val.dwHighDateTime, val.dwLowDateTime);
+        public static ulong GetFileTimeAsULong(Shell.FileTime val) => GetULong(val.dwHighDateTime, val.dwLowDateTime);
+
+        public static System.Runtime.InteropServices.ComTypes.FILETIME DateTimeToFileTime(System.DateTime value) => DateTimeToFileTime(value.ToFileTime());
+        public static System.Runtime.InteropServices.ComTypes.FILETIME DateTimeToFileTimeUTC(System.DateTime value) => DateTimeToFileTime(value.ToFileTimeUtc());
+
         #region Private Methods
-
-        private static long GetFileTimeAsLong(ref System.Runtime.InteropServices.ComTypes.FILETIME val) => (((long)val.dwHighDateTime) << 32) + val.dwLowDateTime;
-
-        private static System.Runtime.InteropServices.ComTypes.FILETIME DateTimeToFileTime(DateTime value)
+        private static System.Runtime.InteropServices.ComTypes.FILETIME DateTimeToFileTime(in long value) => new System.Runtime.InteropServices.ComTypes.FILETIME
         {
-            long hFT = value.ToFileTime();
-
-            return new System.Runtime.InteropServices.ComTypes.FILETIME
-            {
-                dwLowDateTime = (int)(hFT & 0xFFFFFFFF),
-                dwHighDateTime = (int)(hFT >> 32)
-            }; 
-        }
+            dwLowDateTime = (int)(value & 0xFFFFFFFF),
+            dwHighDateTime = (int)(value >> 32)
+        };
 
         private object GetBlobData()
         {
@@ -729,7 +714,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
                 return array;
             }
 
-                throw new InvalidCastException(LocalizedMessages.PropVariantUnsupportedType);
+            throw new InvalidCastException(LocalizedMessages.PropVariantUnsupportedType);
         }
 
         private static Array CrackSingleDimSafeArray(IntPtr psa)
@@ -751,11 +736,9 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
             return array;
         }
-
         #endregion
 
         #region IDisposable Members
-
         /// <summary>
         /// Disposes the object, calls the clear function.
         /// </summary>
@@ -766,14 +749,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
             GC.SuppressFinalize(this);
         }
 
-        /// <summary>
-        /// Finalizer
-        /// </summary>
-        ~PropVariant()
-        {
-            Dispose();
-        }
-
+        ~PropVariant() => Dispose();
         #endregion
 
         /// <summary>
@@ -810,77 +786,75 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         [return: MarshalAs(UnmanagedType.IUnknown)]
         public extern static object SafeArrayGetElement(IntPtr psa, ref int rgIndices);
 
-        [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
+        [DllImport(Propsys, CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void InitPropVariantFromPropVariantVectorElem([In] PropVariant propvarIn, uint iElem, [Out] PropVariant ppropvar);
 
-        [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
+        [DllImport(Propsys, CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void InitPropVariantFromFileTime([In] ref System.Runtime.InteropServices.ComTypes.FILETIME pftIn, [Out] PropVariant ppropvar);
 
-        [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        [DllImport(Propsys, CharSet = CharSet.Unicode, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.I4)]
         public static extern int PropVariantGetElementCount([In] PropVariant propVar);
 
-        [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
+        [DllImport(Propsys, CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void PropVariantGetBooleanElem([In] PropVariant propVar, [In] uint iElem, [Out, MarshalAs(UnmanagedType.Bool)] out bool pfVal);
 
-        [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
+        [DllImport(Propsys, CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void PropVariantGetInt16Elem([In] PropVariant propVar, [In] uint iElem, [Out] out short pnVal);
 
-        [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
+        [DllImport(Propsys, CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void PropVariantGetUInt16Elem([In] PropVariant propVar, [In] uint iElem, [Out] out ushort pnVal);
 
-        [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
+        [DllImport(Propsys, CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void PropVariantGetInt32Elem([In] PropVariant propVar, [In] uint iElem, [Out] out int pnVal);
 
-        [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
+        [DllImport(Propsys, CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void PropVariantGetUInt32Elem([In] PropVariant propVar, [In] uint iElem, [Out] out uint pnVal);
 
-        [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
+        [DllImport(Propsys, CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void PropVariantGetInt64Elem([In] PropVariant propVar, [In] uint iElem, [Out] out long pnVal);
 
-        [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
+        [DllImport(Propsys, CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void PropVariantGetUInt64Elem([In] PropVariant propVar, [In] uint iElem, [Out] out ulong pnVal);
 
-        [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
+        [DllImport(Propsys, CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void PropVariantGetDoubleElem([In] PropVariant propVar, [In] uint iElem, [Out] out double pnVal);
 
-        [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
+        [DllImport(Propsys, CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void PropVariantGetFileTimeElem([In] PropVariant propVar, [In] uint iElem, [Out, MarshalAs(UnmanagedType.Struct)] out System.Runtime.InteropServices.ComTypes.FILETIME pftVal);
 
-        [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
+        [DllImport(Propsys, CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void PropVariantGetStringElem([In] PropVariant propVar, [In] uint iElem, [MarshalAs(UnmanagedType.LPWStr)] ref string ppszVal);
 
-        [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
+        [DllImport(Propsys, CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void InitPropVariantFromBooleanVector([In, MarshalAs(UnmanagedType.LPArray)] bool[] prgf, uint cElems, [Out] PropVariant ppropvar);
 
-        [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
+        [DllImport(Propsys, CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void InitPropVariantFromInt16Vector([In, Out] Int16[] prgn, uint cElems, [Out] PropVariant ppropvar);
 
-        [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
+        [DllImport(Propsys, CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void InitPropVariantFromUInt16Vector([In, Out] UInt16[] prgn, uint cElems, [Out] PropVariant ppropvar);
 
-        [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
+        [DllImport(Propsys, CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void InitPropVariantFromInt32Vector([In, Out] Int32[] prgn, uint cElems, [Out] PropVariant propVar);
 
-        [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
+        [DllImport(Propsys, CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void InitPropVariantFromUInt32Vector([In, Out] UInt32[] prgn, uint cElems, [Out] PropVariant ppropvar);
 
-        [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
+        [DllImport(Propsys, CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void InitPropVariantFromInt64Vector([In, Out] Int64[] prgn, uint cElems, [Out] PropVariant ppropvar);
 
-        [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
+        [DllImport(Propsys, CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void InitPropVariantFromUInt64Vector([In, Out] UInt64[] prgn, uint cElems, [Out] PropVariant ppropvar);
 
-        [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
+        [DllImport(Propsys, CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void InitPropVariantFromDoubleVector([In, Out] double[] prgn, uint cElems, [Out] PropVariant propvar);
 
-        [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
+        [DllImport(Propsys, CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void InitPropVariantFromFileTimeVector([In, Out] System.Runtime.InteropServices.ComTypes.FILETIME[] prgft, uint cElems, [Out] PropVariant ppropvar);
 
-        [DllImport("propsys.dll", CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
+        [DllImport(Propsys, CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void InitPropVariantFromStringVector([In, Out] string[] prgsz, uint cElems, [Out] PropVariant ppropvar);
-#endregion
-
+        #endregion
     }
-
 }

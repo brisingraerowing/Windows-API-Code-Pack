@@ -145,7 +145,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: (FMTID_Storage) {B725F130-47EF-101A-A5F1-02608C9EEBAC}, 16 (PID_STG_ACCESSTIME)</para>
             /// </summary>
-            public ShellProperty<DateTime?> DateAccessed => AddProperty<DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.DateAccessed);
+            public ShellProperty<System.DateTime?> DateAccessed => AddProperty<System.DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.DateAccessed);
 
             /// <summary>
             /// <para>Name: System.DateAcquired -- PKEY_DateAcquired</para>
@@ -154,7 +154,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {2CBAA8F5-D81F-47CA-B17A-F8D822300131}, 100</para>
             /// </summary>
-            public ShellProperty<DateTime?> DateAcquired => AddProperty<DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.DateAcquired);
+            public ShellProperty<System.DateTime?> DateAcquired => AddProperty<System.DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.DateAcquired);
 
             /// <summary>
             /// <para>Name: System.DateArchived -- PKEY_DateArchived</para>
@@ -162,7 +162,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {43F8D7B7-A444-4F87-9383-52271C9B915C}, 100</para>
             /// </summary>
-            public ShellProperty<DateTime?> DateArchived => AddProperty<DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.DateArchived);
+            public ShellProperty<System.DateTime?> DateArchived => AddProperty<System.DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.DateArchived);
 
             /// <summary>
             /// <para>Name: System.DateCompleted -- PKEY_DateCompleted</para>
@@ -170,7 +170,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {72FAB781-ACDA-43E5-B155-B2434F85E678}, 100</para>
             /// </summary>
-            public ShellProperty<DateTime?> DateCompleted => AddProperty<DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.DateCompleted);
+            public ShellProperty<System.DateTime?> DateCompleted => AddProperty<System.DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.DateCompleted);
 
             /// <summary>
             /// <para>Name: System.DateCreated -- PKEY_DateCreated</para>
@@ -178,7 +178,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: (FMTID_Storage) {B725F130-47EF-101A-A5F1-02608C9EEBAC}, 15 (PID_STG_CREATETIME)</para>
             /// </summary>
-            public ShellProperty<DateTime?> DateCreated => AddProperty<DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.DateCreated);
+            public ShellProperty<System.DateTime?> DateCreated => AddProperty<System.DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.DateCreated);
 
             /// <summary>
             /// <para>Name: System.DateImported -- PKEY_DateImported</para>
@@ -186,7 +186,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: (FMTID_ImageProperties) {14B81DA1-0135-4D31-96D9-6CBFC9671A99}, 18258</para>
             /// </summary>
-            public ShellProperty<DateTime?> DateImported => AddProperty<DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.DateImported);
+            public ShellProperty<System.DateTime?> DateImported => AddProperty<System.DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.DateImported);
 
             /// <summary>
             /// <para>Name: System.DateModified -- PKEY_DateModified</para>
@@ -194,7 +194,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: (FMTID_Storage) {B725F130-47EF-101A-A5F1-02608C9EEBAC}, 14 (PID_STG_WRITETIME)</para>
             /// </summary>
-            public ShellProperty<DateTime?> DateModified => AddProperty<DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.DateModified);
+            public ShellProperty<System.DateTime?> DateModified => AddProperty<System.DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.DateModified);
 
             /// <summary>
             /// <para>Name: System.DescriptionID -- PKEY_DescriptionID</para>
@@ -210,7 +210,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {3F8472B5-E0AF-4DB2-8071-C53FE76AE7CE}, 100</para>
             /// </summary>
-            public ShellProperty<DateTime?> DueDate => AddProperty<DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.DueDate);
+            public ShellProperty<System.DateTime?> DueDate => AddProperty<System.DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.DueDate);
 
             /// <summary>
             /// <para>Name: System.EndDate -- PKEY_EndDate</para>
@@ -218,7 +218,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {C75FAA05-96FD-49E7-9CB4-9F601082D553}, 100</para>
             /// </summary>
-            public ShellProperty<DateTime?> EndDate => AddProperty<DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.EndDate);
+            public ShellProperty<System.DateTime?> EndDate => AddProperty<System.DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.EndDate);
 
             /// <summary>
             /// <para>Name: System.FileAllocationSize -- PKEY_FileAllocationSize</para>
@@ -577,7 +577,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {F7DB74B4-4287-4103-AFBA-F1B13DCD75CF}, 100</para>
             /// </summary>
-            public ShellProperty<DateTime?> ItemDate => AddProperty<DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.ItemDate);
+            public ShellProperty<System.DateTime?> ItemDate => AddProperty<System.DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.ItemDate);
 
             /// <summary>
             /// <para>Name: System.ItemFolderNameDisplay -- PKEY_ItemFolderNameDisplay</para>
@@ -1174,7 +1174,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {48FD6EC8-8A12-4CDF-A03E-4EC5A511EDDE}, 100</para>
             /// </summary>
-            public ShellProperty<DateTime?> StartDate => AddProperty<DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.StartDate);
+            public ShellProperty<System.DateTime?> StartDate => AddProperty<System.DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.StartDate);
 
             /// <summary>
             /// <para>Name: System.Status -- PKEY_Status</para>
@@ -1705,7 +1705,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {72FC5BA4-24F9-4011-9F3F-ADD27AFAD818}, 100</para>
             /// </summary>
-            public ShellProperty<DateTime?> ReminderTime => AddProperty<DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.Calendar.ReminderTime);
+            public ShellProperty<System.DateTime?> ReminderTime => AddProperty<System.DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.Calendar.ReminderTime);
 
             /// <summary>
             /// <para>Name: System.Calendar.RequiredAttendeeAddresses -- PKEY_Calendar_RequiredAttendeeAddresses</para>
@@ -1785,7 +1785,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {428040AC-A177-4C8A-9760-F6F761227F9A}, 100</para>
             /// </summary>
-            public ShellProperty<DateTime?> DateItemExpires => AddProperty<DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.Communication.DateItemExpires);
+            public ShellProperty<System.DateTime?> DateItemExpires => AddProperty<System.DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.Communication.DateItemExpires);
 
             /// <summary>
             /// <para>Name: System.Communication.FollowupIconIndex -- PKEY_Communication_FollowupIconIndex</para>
@@ -1886,7 +1886,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {9AD5BADB-CEA7-4470-A03D-B84E51B9949E}, 100</para>
             /// </summary>
-            public ShellProperty<DateTime?> Anniversary => AddProperty<DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.Contact.Anniversary);
+            public ShellProperty<System.DateTime?> Anniversary => AddProperty<System.DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.Contact.Anniversary);
 
             /// <summary>
             /// <para>Name: System.Contact.AssistantName -- PKEY_Contact_AssistantName</para>
@@ -1910,7 +1910,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {176DC63C-2688-4E89-8143-A347800F25E9}, 47</para>
             /// </summary>
-            public ShellProperty<DateTime?> Birthday => AddProperty<DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.Contact.Birthday);
+            public ShellProperty<System.DateTime?> Birthday => AddProperty<System.DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.Contact.Birthday);
 
             /// <summary>
             /// <para>Name: System.Contact.BusinessAddress -- PKEY_Contact_BusinessAddress</para>
@@ -3100,7 +3100,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: (FMTID_SummaryInformation) {F29F85E0-4FF9-1068-AB91-08002B27B3D9}, 12 (PIDSI_CREATE_DTM)</para>
             /// </summary>
-            public ShellProperty<DateTime?> DateCreated => AddProperty<DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.Document.DateCreated);
+            public ShellProperty<System.DateTime?> DateCreated => AddProperty<System.DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.Document.DateCreated);
 
             /// <summary>
             /// <para>Name: System.Document.DatePrinted -- PKEY_Document_DatePrinted</para>
@@ -3108,7 +3108,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: (FMTID_SummaryInformation) {F29F85E0-4FF9-1068-AB91-08002B27B3D9}, 11 (PIDSI_LASTPRINTED)</para>
             /// </summary>
-            public ShellProperty<DateTime?> DatePrinted => AddProperty<DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.Document.DatePrinted);
+            public ShellProperty<System.DateTime?> DatePrinted => AddProperty<System.DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.Document.DatePrinted);
 
             /// <summary>
             /// <para>Name: System.Document.DateSaved -- PKEY_Document_DateSaved</para>
@@ -3116,7 +3116,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: (FMTID_SummaryInformation) {F29F85E0-4FF9-1068-AB91-08002B27B3D9}, 13 (PIDSI_LASTSAVE_DTM)</para>
             /// </summary>
-            public ShellProperty<DateTime?> DateSaved => AddProperty<DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.Document.DateSaved);
+            public ShellProperty<System.DateTime?> DateSaved => AddProperty<System.DateTime?>(COMNative.Shell.PropertySystem.SystemProperties.System.Document.DateSaved);
 
             /// <summary>
             /// <para>Name: System.Document.Division -- PKEY_Document_Division</para>
@@ -3281,7 +3281,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: (FMTID_DRM) {AEAC19E4-89AE-4508-B9B7-BB867ABEE2ED}, 6 (PIDDRSI_PLAYEXPIRES)</para>
             /// </summary>
-            public ShellProperty<DateTime?> DatePlayExpires
+            public ShellProperty<System.DateTime?> DatePlayExpires
             {
                 get
                 {
@@ -3289,10 +3289,10 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
                     if (!hashtable.ContainsKey(key))
                     {
-                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<DateTime?>(key));
+                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<System.DateTime?>(key));
                     }
 
-                    return hashtable[key] as ShellProperty<DateTime?>;
+                    return hashtable[key] as ShellProperty<System.DateTime?>;
                 }
             }
 
@@ -3302,7 +3302,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: (FMTID_DRM) {AEAC19E4-89AE-4508-B9B7-BB867ABEE2ED}, 5 (PIDDRSI_PLAYSTARTS)</para>
             /// </summary>
-            public ShellProperty<DateTime?> DatePlayStarts
+            public ShellProperty<System.DateTime?> DatePlayStarts
             {
                 get
                 {
@@ -3310,10 +3310,10 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
                     if (!hashtable.ContainsKey(key))
                     {
-                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<DateTime?>(key));
+                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<System.DateTime?>(key));
                     }
 
-                    return hashtable[key] as ShellProperty<DateTime?>;
+                    return hashtable[key] as ShellProperty<System.DateTime?>;
                 }
             }
 
@@ -3500,7 +3500,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {3602C812-0F3B-45F0-85AD-603468D69423}, 100</para>
             /// </summary>
-            public ShellProperty<DateTime?> Date
+            public ShellProperty<System.DateTime?> Date
             {
                 get
                 {
@@ -3508,9 +3508,9 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
                     if (!hashtable.ContainsKey(key))
 
-                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<DateTime?>(key));
+                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<System.DateTime?>(key));
 
-                    return hashtable[key] as ShellProperty<DateTime?>;
+                    return hashtable[key] as ShellProperty<System.DateTime?>;
                 }
             }
 
@@ -5187,7 +5187,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {5CBF2787-48CF-4208-B90E-EE5E5D420294}, 23  (PKEYs relating to URLs.  Used by IE History.)</para>
             /// </summary>
-            public ShellProperty<DateTime?> DateVisited
+            public ShellProperty<System.DateTime?> DateVisited
             {
                 get
                 {
@@ -5195,9 +5195,9 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
                     if (!hashtable.ContainsKey(key))
 
-                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<DateTime?>(key));
+                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<System.DateTime?>(key));
 
-                    return hashtable[key] as ShellProperty<DateTime?>;
+                    return hashtable[key] as ShellProperty<System.DateTime?>;
                 }
             }
 
@@ -5573,11 +5573,11 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
             /// <summary>
             /// <para>Name: System.Media.DateEncoded -- PKEY_Media_DateEncoded</para>
-            /// <para>Description: DateTime is in UTC (in the doc, not file system).</para>
+            /// <para>Description: System.DateTime is in UTC (in the doc, not file system).</para>
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {2E4B640D-5019-46D8-8881-55414CC5CAA0}, 100</para>
             /// </summary>
-            public ShellProperty<DateTime?> DateEncoded
+            public ShellProperty<System.DateTime?> DateEncoded
             {
                 get
                 {
@@ -5585,10 +5585,10 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
                     if (!hashtable.ContainsKey(key))
                     {
-                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<DateTime?>(key));
+                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<System.DateTime?>(key));
                     }
 
-                    return hashtable[key] as ShellProperty<DateTime?>;
+                    return hashtable[key] as ShellProperty<System.DateTime?>;
                 }
             }
 
@@ -6211,7 +6211,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}, 20</para>
             /// </summary>
-            public ShellProperty<DateTime?> DateReceived
+            public ShellProperty<System.DateTime?> DateReceived
             {
                 get
                 {
@@ -6219,10 +6219,10 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
                     if (!hashtable.ContainsKey(key))
                     {
-                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<DateTime?>(key));
+                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<System.DateTime?>(key));
                     }
 
-                    return hashtable[key] as ShellProperty<DateTime?>;
+                    return hashtable[key] as ShellProperty<System.DateTime?>;
                 }
             }
 
@@ -6232,7 +6232,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {E3E0584C-B788-4A5A-BB20-7F5A44C9ACDD}, 19</para>
             /// </summary>
-            public ShellProperty<DateTime?> DateSent
+            public ShellProperty<System.DateTime?> DateSent
             {
                 get
                 {
@@ -6240,10 +6240,10 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
                     if (!hashtable.ContainsKey(key))
                     {
-                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<DateTime?>(key));
+                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<System.DateTime?>(key));
                     }
 
-                    return hashtable[key] as ShellProperty<DateTime?>;
+                    return hashtable[key] as ShellProperty<System.DateTime?>;
                 }
             }
 
@@ -7248,7 +7248,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: (FMTID_ImageProperties) {14B81DA1-0135-4D31-96D9-6CBFC9671A99}, 36867</para>
             /// </summary>
-            public ShellProperty<DateTime?> DateTaken
+            public ShellProperty<System.DateTime?> DateTaken
             {
                 get
                 {
@@ -7256,10 +7256,10 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
                     if (!hashtable.ContainsKey(key))
                     {
-                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<DateTime?>(key));
+                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<System.DateTime?>(key));
                     }
 
-                    return hashtable[key] as ShellProperty<DateTime?>;
+                    return hashtable[key] as ShellProperty<System.DateTime?>;
                 }
             }
 
@@ -9585,7 +9585,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {6D748DE2-8D38-4CC3-AC60-F009B057C557}, 15</para>
             /// </summary>
-            public ShellProperty<DateTime?> DateContentExpires
+            public ShellProperty<System.DateTime?> DateContentExpires
             {
                 get
                 {
@@ -9593,10 +9593,10 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
                     if (!hashtable.ContainsKey(key))
                     {
-                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<DateTime?>(key));
+                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<System.DateTime?>(key));
                     }
 
-                    return hashtable[key] as ShellProperty<DateTime?>;
+                    return hashtable[key] as ShellProperty<System.DateTime?>;
                 }
             }
 
@@ -9774,7 +9774,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {4684FE97-8765-4842-9C13-F006447B178C}, 100</para>
             /// </summary>
-            public ShellProperty<DateTime?> OriginalBroadcastDate
+            public ShellProperty<System.DateTime?> OriginalBroadcastDate
             {
                 get
                 {
@@ -9782,10 +9782,10 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
                     if (!hashtable.ContainsKey(key))
                     {
-                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<DateTime?>(key));
+                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<System.DateTime?>(key));
                     }
 
-                    return hashtable[key] as ShellProperty<DateTime?>;
+                    return hashtable[key] as ShellProperty<System.DateTime?>;
                 }
             }
 
@@ -9816,7 +9816,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {A5477F61-7A82-4ECA-9DDE-98B69B2479B3}, 100</para>
             /// </summary>
-            public ShellProperty<DateTime?> RecordingTime
+            public ShellProperty<System.DateTime?> RecordingTime
             {
                 get
                 {
@@ -9824,10 +9824,10 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
                     if (!hashtable.ContainsKey(key))
                     {
-                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<DateTime?>(key));
+                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<System.DateTime?>(key));
                     }
 
-                    return hashtable[key] as ShellProperty<DateTime?>;
+                    return hashtable[key] as ShellProperty<System.DateTime?>;
                 }
             }
 
@@ -9995,11 +9995,11 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
             /// <summary>
             /// <para>Name: System.Search.GatherTime -- PKEY_Search_GatherTime</para>
-            /// <para>Description: The Datetime that the Windows Search Gatherer process last pushed properties of this document to the Windows Search Gatherer Plugins.</para>
+            /// <para>Description: The System.DateTime that the Windows Search Gatherer process last pushed properties of this document to the Windows Search Gatherer Plugins.</para>
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {0B63E350-9CCC-11D0-BCDB-00805FCCCE04}, 8</para>
             /// </summary>
-            public ShellProperty<DateTime?> GatherTime
+            public ShellProperty<System.DateTime?> GatherTime
             {
                 get
                 {
@@ -10007,10 +10007,10 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
                     if (!hashtable.ContainsKey(key))
                     {
-                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<DateTime?>(key));
+                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<System.DateTime?>(key));
                     }
 
-                    return hashtable[key] as ShellProperty<DateTime?>;
+                    return hashtable[key] as ShellProperty<System.DateTime?>;
                 }
             }
 
@@ -10276,7 +10276,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             /// <para>FormatID: {841E4F90-FF59-4D16-8947-E81BBFFAB36D}, 16</para>
             /// </summary>
-            public ShellProperty<DateTime?> DateLastUsed
+            public ShellProperty<System.DateTime?> DateLastUsed
             {
                 get
                 {
@@ -10284,9 +10284,9 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
                     if (!hashtable.ContainsKey(key))
 
-                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<DateTime?>(key));
+                        hashtable.Add(key, shellObjectParent.Properties.CreateTypedProperty<System.DateTime?>(key));
 
-                    return hashtable[key] as ShellProperty<DateTime?>;
+                    return hashtable[key] as ShellProperty<System.DateTime?>;
                 }
             }
 

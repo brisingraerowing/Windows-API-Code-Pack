@@ -16,6 +16,19 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
     public class RestartSettings
     {
         /// <summary>
+        /// Gets the command line arguments used to restart the application.
+        /// </summary>
+        /// <value>A <see cref="string"/> object.</value>
+        public string Command { get; }
+
+        /// <summary>
+        /// Gets the set of conditions when the application 
+        /// should not be restarted.
+        /// </summary>
+        /// <value>A set of <see cref="RestartRestrictions"/> values.</value>
+        public RestartRestrictions Restrictions { get; }
+
+        /// <summary>
         /// Creates a new instance of the RestartSettings class.
         /// </summary>
         /// <param name="command">The command line arguments 
@@ -31,19 +44,6 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
         }
 
         /// <summary>
-        /// Gets the command line arguments used to restart the application.
-        /// </summary>
-        /// <value>A <see cref="string"/> object.</value>
-        public string Command { get; }
-
-        /// <summary>
-        /// Gets the set of conditions when the application 
-        /// should not be restarted.
-        /// </summary>
-        /// <value>A set of <see cref="RestartRestrictions"/> values.</value>
-        public RestartRestrictions Restrictions { get; }
-
-        /// <summary>
         /// Returns a string representation of the current state
         /// of this object.
         /// </summary>
@@ -55,4 +55,3 @@ namespace Microsoft.WindowsAPICodePack.ApplicationServices
                 Command, Restrictions.ToString());
     }
 }
-

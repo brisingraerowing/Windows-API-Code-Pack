@@ -1,11 +1,59 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
+using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.Shell;
+
+using static System.Runtime.InteropServices.CharSet;
+using static System.Runtime.InteropServices.LayoutKind;
 using static System.Runtime.InteropServices.UnmanagedType;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    [StructLayout(Sequential)]
+    public struct FileTime
+    {
+        [MarshalAs(U4)]
+        public uint dwLowDateTime;
+
+        [MarshalAs(U4)]
+        public uint dwHighDateTime;
+    }
+
+    [StructLayout(Sequential)]
+    public struct FileSize
+    {
+        [MarshalAs(U4)]
+        public uint nFileSizeHigh;
+
+        [MarshalAs(U4)]
+        public uint nFileSizeLow;
+    }
+
+    [StructLayout(Sequential, CharSet = Unicode)]
+    public struct Win32FindData
+    {
+        public const byte AlternateFileName = 14;
+
+        [MarshalAs(U4)]
+        public FileAttributes dwFileAttributes;
+        public FileTime ftCreationTime;
+        public FileTime ftLastAccessTime;
+        public FileTime ftLastWriteTime;
+        public FileSize fileSize;
+        [MarshalAs(U4)]
+        public uint reserved0;
+        [MarshalAs(U4)]
+        public uint reserved1;
+        [MarshalAs(ByValTStr, SizeConst = MaxPath)]
+        public string cFileName;
+        [MarshalAs(ByValTStr, SizeConst = AlternateFileName)]
+        public string cAlternateFileName;
+        public uint  dwFileType;
+        public uint  dwCreatorType;
+        public ushort wFinderFlags;
+    }
+
+    [StructLayout(Sequential, CharSet = Unicode)]
     public struct NotifyIconData
     {
         [MarshalAs(U4)]
@@ -50,12 +98,12 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         public IntPtr hBalloonIcon;
     }
 
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+    [StructLayout(Sequential, CharSet = CharSet.Auto)]
     public struct FilterSpec
     {
-        [MarshalAs(UnmanagedType.LPWStr)]
+        [MarshalAs(LPWStr)]
         public string Name;
-        [MarshalAs(UnmanagedType.LPWStr)]
+        [MarshalAs(LPWStr)]
         public string Spec;
 
         public FilterSpec(string name, string spec)
@@ -65,17 +113,17 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         }
     }
 
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+    [StructLayout(Sequential, CharSet = CharSet.Auto)]
     public struct ThumbnailId
     {
-        [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 16)]
+        [MarshalAs(LPArray, SizeParamIndex = 16)]
         public byte rgbKey;
     }
 
     /// <summary>
     /// Contains information about a file object.
     /// </summary>
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    [StructLayout(Sequential, CharSet = Unicode)]
     public struct SHFILEINFO
     {
         /// <summary>
@@ -96,17 +144,17 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         /// <summary>
         /// A string that contains the name of the file as it appears in the Windows Shell, or the path and file name of the file that contains the icon representing the file.
         /// </summary>
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = NativeAPI.Consts.Shell.MaxPath)]
+        [MarshalAs(ByValTStr, SizeConst = MaxPath)]
         public string szDisplayName;
 
         /// <summary>
         /// A string that describes the type of file.
         /// </summary>
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)]
+        [MarshalAs(ByValTStr, SizeConst = 80)]
         public string szTypeName;
     }
 
-    [StructLayout(LayoutKind.Sequential, Pack = 8)]
+    [StructLayout(Sequential, Pack = 8)]
     public struct SHQUERYRBINFO
     {
         public int cbSize;
@@ -114,7 +162,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         public long i64NumItems;
     }
 
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout(Sequential)]
     public struct ShellNotifyStruct
     {
         public IntPtr item1;

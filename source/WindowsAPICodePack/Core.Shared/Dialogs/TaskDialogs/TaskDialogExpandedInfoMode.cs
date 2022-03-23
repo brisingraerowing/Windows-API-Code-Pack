@@ -10,7 +10,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// <summary>
         /// Do not show the content.
         /// </summary>
-        Hide, 
+        Hide,
 
         /// <summary>
         /// Show the content.

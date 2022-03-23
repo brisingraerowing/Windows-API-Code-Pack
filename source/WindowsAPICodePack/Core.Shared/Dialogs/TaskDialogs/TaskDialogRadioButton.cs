@@ -11,7 +11,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// <summary>
         /// Creates a new instance of this class.
         /// </summary>
-        public TaskDialogRadioButton() { }
+        public TaskDialogRadioButton() { /* Left empty. */ }
 
         /// <summary>
         /// Creates a new instance of this class with
@@ -19,7 +19,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// </summary>
         /// <param name="name">The name for this control.</param>
         /// <param name="text">The value for this controls 
-        /// <see cref="P:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogButtonBase.Text"/> property.</param>
-        public TaskDialogRadioButton(in string name, in string text) : base(name, text) { }
+        /// <see cref="TaskDialogButtonBase.Text"/> property.</param>
+        public TaskDialogRadioButton(in string name, in string text) : base(name, text) { /* Left empty. */ }
     }
 }

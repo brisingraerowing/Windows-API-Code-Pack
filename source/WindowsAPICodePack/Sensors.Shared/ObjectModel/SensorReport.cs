@@ -29,7 +29,7 @@ namespace Microsoft.WindowsAPICodePack.Sensors
         /// </summary>
         public Sensor Source { get; private set; }
 
-        #region implementation
+        #region Implementation
         internal static SensorReport FromNativeReport(in Sensor originator, in ISensorDataReport iReport)
         {
             iReport.GetTimestamp(out SystemTime systemTimeStamp);

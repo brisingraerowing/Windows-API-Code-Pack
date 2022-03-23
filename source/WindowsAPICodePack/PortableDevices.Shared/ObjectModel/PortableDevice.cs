@@ -419,21 +419,21 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             PropertyKey pKey = PropertySystem.Properties.Legacy.Object.Common.ParentId;
 
-            ThrowExceptionForHR(values.SetStringValue(ref pKey, id));
+            ThrowExceptionForHResult(values.SetStringValue(ref pKey, id));
 
             pKey = PropertySystem.Properties.Legacy.Object.Common.Name;
 
-            ThrowExceptionForHR(values.SetStringValue(ref pKey, name));
+            ThrowExceptionForHResult(values.SetStringValue(ref pKey, name));
 
             pKey = PropertySystem.Properties.Object.ContentType;
 
             var guid = new Guid(Guids.PropertySystem.ContentType.Folder);
 
-            ThrowExceptionForHR(values.SetGuidValue(ref pKey, ref guid));
+            ThrowExceptionForHResult(values.SetGuidValue(ref pKey, ref guid));
 
             string folderId = null;
 
-            ThrowExceptionForHR(_content.CreateObjectWithPropertiesOnly(values, ref folderId));
+            ThrowExceptionForHResult(_content.CreateObjectWithPropertiesOnly(values, ref folderId));
 
             return folderId;
         }
@@ -452,7 +452,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             // TODO: check if the device has enough space.
             byte[] buffer = new byte[bufferSize];
 
-            int realBufferLength = 0;
+            int realBufferLength;
 
             bool condition() => (realBufferLength = reader(buffer)) > 0;
 
@@ -487,14 +487,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
                 ThrowWhenFailHResult(Content.Properties(out _nativePortableDeviceProperties));
         }
 
-        // todo: replace by the same method of the WinCopies.Util package.
-
-        private void ThrowIfDisposed()
-        {
-            if (IsDisposed)
-
-                throw new InvalidOperationException("The current object is disposed.");
-        }
+        protected void ThrowIfDisposed() => WinCopies.
+#if WAPICP3
+            ThrowHelper
+#else
+            Util.Util
+#endif
+            .ThrowIfDisposed(this);
 
         private void ThrowOnInvalidOperation()
         {
@@ -619,7 +618,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             if (pClientInformation != null)
             {
                 // pClientInformation.Release();
-                _ = Marshal.ReleaseComObject(pClientInformation);
+                _ = ReleaseComObject(pClientInformation);
                 pClientInformation = null;
             }
 
@@ -682,7 +681,7 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
                     return BlobHelper.ToDotNetType(bytes, (valueKind = _valueKind), doNotExpand);
 
-                else if (hr == CoreErrorHelper.HResultFromWin32(ErrorCode.InsufficientBuffer))
+                else if (hr == HResultFromWin32(ErrorCode.InsufficientBuffer))
                 {
                     valueKind = BlobValueKind.None;
 
@@ -711,13 +710,13 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
             {
                 // First, we try to get the common interop interface for properties.
 
-                if (CoreErrorHelper.Succeeded(properties.GetValues(out COMNative.PropertySystem.INativePropertyValuesCollection values)))
+                if (Succeeded(properties.GetValues(out COMNative.PropertySystem.INativePropertyValuesCollection values)))
                 {
                     // If the operation succeeds, we try to get a PropVariant that will contain the requested value.
 
                     PropertyKey propKey = PropertySystem.Properties.Object.ContentType;
 
-                    if (CoreErrorHelper.Succeeded(values.GetValue(ref propKey, out PropVariant propVariant)) && propVariant.VarType == VarEnum.VT_CLSID)
+                    if (Succeeded(values.GetValue(ref propKey, out PropVariant propVariant)) && propVariant.VarType == VarEnum.VT_CLSID)
                     {
                         // If the operation succeeds and if the variant type of the given value VT_CLSID, we can switch this value in order to know which managed type to return.
 
@@ -807,17 +806,17 @@ namespace Microsoft.WindowsAPICodePack.PortableDevices
 
             if (_content is object)
             {
-                _ = Marshal.ReleaseComObject(_content);
+                _ = ReleaseComObject(_content);
                 _content = null;
             }
 
             if (_nativePortableDeviceProperties is object)
             {
-                _ = Marshal.ReleaseComObject(_nativePortableDeviceProperties);
+                _ = ReleaseComObject(_nativePortableDeviceProperties);
                 _nativePortableDeviceProperties = null;
             }
 
-            _ = Marshal.ReleaseComObject(NativePortableDevice);
+            _ = ReleaseComObject(NativePortableDevice);
             NativePortableDevice = null;
 
             IsDisposed = true;

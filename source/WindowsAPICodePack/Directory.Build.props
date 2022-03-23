@@ -39,10 +39,12 @@
 
 	<PropertyGroup Condition="'$(TargetFramework.TrimEnd(`0123456789-windows`))' == 'net6.'">
 		<DefineConstants>CS4;CS5;CS6;CS7;CS8;CS9;CS10;$(DefineConstants)</DefineConstants>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework.TrimEnd(`0123456789-windows`))' == 'net5.'">
 		<DefineConstants>CS4;CS5;CS6;CS7;CS8;CS9;$(DefineConstants)</DefineConstants>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)'=='net35'">
@@ -87,6 +89,13 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789-windows`))' == 'net6.'">
+		<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
