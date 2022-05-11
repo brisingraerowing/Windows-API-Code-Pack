@@ -1,5 +1,7 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
+#region Usings
+#region WAPICP
 using Microsoft.WindowsAPICodePack.COMNative.Dialogs;
 using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Controls;
@@ -8,7 +10,9 @@ using Microsoft.WindowsAPICodePack.Shell;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
+#endregion WAPICP
 
+#region System
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +21,7 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Markup;
+#endregion System
 
 using static WinCopies.
 #if WAPICP2
@@ -25,6 +30,7 @@ using static WinCopies.
     ThrowHelper
 #endif
     ;
+#endregion
 
 namespace Microsoft.WindowsAPICodePack.Dialogs
 {
@@ -57,11 +63,25 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         private bool? canceled;
         private bool resetSelections;
         private IntPtr parentWindow = IntPtr.Zero;
-
         private bool filterSet; // filters can only be set once
+        private string title;
+        // This is the first of many properties that are backed by the FOS_*
+        // bitflag options set with IFileDialog.SetOptions(). 
+        // SetOptions() fails
+        // if called while dialog is showing (e.g. from a callback).
+        private bool ensureFileExists;
+        private bool ensurePathExists;
+        private bool ensureValidNames;
+        private bool ensureReadOnly;
+        private bool restoreDirectory;
+        private bool showPlacesList = true;
+        private bool addToMruList = true;
+        private bool showHiddenItems;
+        private bool navigateToShortcut = true;
+        // Null = use default identifier.
+        private Guid cookieIdentifier;
 
         #region Constructors
-
         /// <summary>
         /// Creates a new instance of this class.
         /// </summary>
@@ -83,7 +103,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// <param name="title">The title to display in the dialog.</param>
         protected CommonFileDialog(string title)
             : this() => this.title = title;
-
         #endregion
 
         // Template method to allow derived dialog to create actual
@@ -96,7 +115,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         internal abstract FileOpenOptions GetDerivedOptionFlags(FileOpenOptions flags);
 
         #region Public API
-
         // Events.
         /// <summary>
         /// Raised just before the dialog is about to return with a result. Occurs when the user clicks on the Open 
@@ -134,181 +152,92 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// </summary>
         public CommonFileDialogFilterCollection Filters { get; }
 
-        private string title;
         /// <summary>
         /// Gets or sets the dialog title.
         /// </summary>
-        /// <value>A <see cref="string"/> object.</value>
         public string Title
         {
             get => title;
+
             set
             {
                 title = value;
-                if (NativeDialogShowing) nativeDialog.SetTitle(value);
+
+                if (NativeDialogShowing)
+
+                    nativeDialog.SetTitle(value);
             }
         }
 
-        // This is the first of many properties that are backed by the FOS_*
-        // bitflag options set with IFileDialog.SetOptions(). 
-        // SetOptions() fails
-        // if called while dialog is showing (e.g. from a callback).
-        private bool ensureFileExists;
         /// <summary>
         /// Gets or sets a value that determines whether the file must exist beforehand.
         /// </summary>
-        /// <value>A <see cref="bool"/> value. <b>true</b> if the file must exist.</value>
-        /// <exception cref="System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
-        public bool EnsureFileExists
-        {
-            get => ensureFileExists;
-            set
-            {
-                ThrowIfDialogShowing(LocalizedMessages.EnsureFileExistsCannotBeChanged);
-                ensureFileExists = value;
-            }
-        }
+        /// <value>A <see cref="bool"/> value. <see langword="true"/> if the file must exist.</value>
+        /// <exception cref="InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
+        public bool EnsureFileExists { get => ensureFileExists; set => SetValue(ref ensureFileExists, value, LocalizedMessages.EnsureFileExistsCannotBeChanged); }
 
-        private bool ensurePathExists;
         /// <summary>
         /// Gets or sets a value that specifies whether the returned file must be in an existing folder.
         /// </summary>
-        /// <value>A <see cref="bool"/> value. <b>true</b> if the file must exist.</value>
-        /// <exception cref="System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
-        public bool EnsurePathExists
-        {
-            get => ensurePathExists;
-            set
-            {
-                ThrowIfDialogShowing(LocalizedMessages.EnsurePathExistsCannotBeChanged);
-                ensurePathExists = value;
-            }
-        }
-
-        private bool ensureValidNames;
+        /// <value>A <see cref="bool"/> value. <see langword="true"/> if the file must exist.</value>
+        /// <exception cref="InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
+        public bool EnsurePathExists { get => ensurePathExists; set => SetValue(ref ensurePathExists, value, LocalizedMessages.EnsurePathExistsCannotBeChanged); }
 
         /// <summary>Gets or sets a value that determines whether to validate file names.
         /// </summary>
-        ///<value>A <see cref="bool"/> value. <b>true </b>to check for situations that would prevent an application from opening the selected file, such as sharing violations or access denied errors.</value>
+        ///<value>A <see cref="bool"/> value. <see langword="true"/> to check for situations that would prevent an application from opening the selected file, such as sharing violations or access denied errors.</value>
         /// <exception cref="InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
-        /// 
-        public bool EnsureValidNames
-        {
-            get => ensureValidNames;
-            set
-            {
-                ThrowIfDialogShowing(LocalizedMessages.EnsureValidNamesCannotBeChanged);
-                ensureValidNames = value;
-            }
-        }
+        public bool EnsureValidNames { get => ensureValidNames; set => SetValue(ref ensureValidNames, value, LocalizedMessages.EnsureValidNamesCannotBeChanged); }
 
-        private bool ensureReadOnly;
         /// <summary>
         /// Gets or sets a value that determines whether read-only items are returned.
-        /// Default value for CommonOpenFileDialog is true (allow read-only files) and 
-        /// CommonSaveFileDialog is false (don't allow read-only files).
+        /// Default value for <see cref="CommonOpenFileDialog"/> is <see langword="true"/> (allow read-only files) and
+        /// <see cref="CommonSaveFileDialog"/> is <see langword="false"/> (don't allow read-only files).
         /// </summary>
-        /// <value>A <see cref="bool"/> value. <b>true</b> includes read-only items.</value>
+        /// <value>A <see cref="bool"/> value. <see langword="true"/> includes read-only items.</value>
         /// <exception cref="InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
-        public bool EnsureReadOnly
-        {
-            get => ensureReadOnly;
-            set
-            {
-                ThrowIfDialogShowing(LocalizedMessages.EnsureReadonlyCannotBeChanged);
-                ensureReadOnly = value;
-            }
-        }
+        public bool EnsureReadOnly { get => ensureReadOnly; set => SetValue(ref ensureReadOnly, value, LocalizedMessages.EnsureReadonlyCannotBeChanged); }
 
-        private bool restoreDirectory;
         /// <summary>
         /// Gets or sets a value that determines the restore directory.
         /// </summary>
-        /// <remarks></remarks>
-        /// <exception cref="System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
-        public bool RestoreDirectory
-        {
-            get => restoreDirectory;
-            set
-            {
-                ThrowIfDialogShowing(LocalizedMessages.RestoreDirectoryCannotBeChanged);
-                restoreDirectory = value;
-            }
-        }
+        /// <exception cref="InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
+        public bool RestoreDirectory { get => restoreDirectory; set => SetValue(ref restoreDirectory, value, LocalizedMessages.RestoreDirectoryCannotBeChanged); }
 
-        private bool showPlacesList = true;
         /// <summary>
-        /// Gets or sets a value that controls whether 
+        /// Gets or sets a value that controls whether
         /// to show or hide the list of pinned places that
         /// the user can choose.
         /// </summary>
-        /// <value>A <see cref="bool"/> value. <b>true</b> if the list is visible; otherwise <b>false</b>.</value>
-        /// <exception cref="System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
-        public bool ShowPlacesList
-        {
+        /// <value>A <see cref="bool"/> value. <see langword="true"/> if the list is visible; otherwise <see langword="false"/>.</value>
+        /// <exception cref="InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
+        public bool ShowPlacesList { get => showPlacesList; set => SetValue(ref showPlacesList, value, LocalizedMessages.ShowPlacesListCannotBeChanged); }
 
-            get => showPlacesList;
-            set
-            {
-                ThrowIfDialogShowing(LocalizedMessages.ShowPlacesListCannotBeChanged);
-                showPlacesList = value;
-            }
-        }
-
-        private bool addToMruList = true;
         /// <summary>
         /// Gets or sets a value that controls whether to show or hide the list of places where the user has recently opened or saved items.
         /// </summary>
-        /// <value>A <see cref="bool"/> value.</value>
-        /// <exception cref="System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
-        public bool AddToMostRecentlyUsedList
-        {
-            get => addToMruList;
-            set
-            {
-                ThrowIfDialogShowing(LocalizedMessages.AddToMostRecentlyUsedListCannotBeChanged);
-                addToMruList = value;
-            }
-        }
+        /// <exception cref="InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
+        public bool AddToMostRecentlyUsedList { get => addToMruList; set => SetValue(ref addToMruList, value, LocalizedMessages.AddToMostRecentlyUsedListCannotBeChanged); }
 
-        private bool showHiddenItems;
         ///<summary>
         /// Gets or sets a value that controls whether to show hidden items.
         /// </summary>
-        /// <value>A <see cref="bool"/> value.<b>true</b> to show the items; otherwise <b>false</b>.</value>
-        /// <exception cref="System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
-        public bool ShowHiddenItems
-        {
-            get => showHiddenItems;
-            set
-            {
-                ThrowIfDialogShowing(LocalizedMessages.ShowHiddenItemsCannotBeChanged);
-                showHiddenItems = value;
-            }
-        }
+        /// <value>A <see cref="bool"/> value. <see langword="true"/> to show the items; otherwise <see langword="false"/>.</value>
+        /// <exception cref="InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
+        public bool ShowHiddenItems { get => showHiddenItems; set => SetValue(ref showHiddenItems, value, LocalizedMessages.ShowHiddenItemsCannotBeChanged); }
 
         /// <summary>
-        /// Gets or sets a value that controls whether 
+        /// Gets or sets a value that controls whether
         /// properties can be edited.
         /// </summary>
-        /// <value>A <see cref="bool"/> value. </value>
         public bool AllowPropertyEditing { get; set; }
 
-        private bool navigateToShortcut = true;
         ///<summary>
         /// Gets or sets a value that controls whether shortcuts should be treated as their target items, allowing an application to open a .lnk file.
         /// </summary>
-        /// <value>A <see cref="bool"/> value. <b>true</b> indicates that shortcuts should be treated as their targets. </value>
-        /// <exception cref="System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
-        public bool NavigateToShortcut
-        {
-            get => navigateToShortcut;
-            set
-            {
-                ThrowIfDialogShowing(LocalizedMessages.NavigateToShortcutCannotBeChanged);
-                navigateToShortcut = value;
-            }
-        }
+        /// <value>A <see cref="bool"/> value. <see langword="true"/> indicates that shortcuts should be treated as their targets. </value>
+        /// <exception cref="InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
+        public bool NavigateToShortcut { get => navigateToShortcut; set => SetValue(ref navigateToShortcut, value, LocalizedMessages.NavigateToShortcutCannotBeChanged); }
 
         /// <summary>
         /// Gets or sets the default file extension to be added to file names. If the value is null
@@ -323,24 +252,67 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         {
             get
             {
-                if (nativeDialog != null)
-                {
-                    nativeDialog.GetFileTypeIndex(out uint fileType);
-                    return (int)fileType;
-                }
+                if (nativeDialog == null)
 
-                return -1;
+                    return -1;
+
+                nativeDialog.GetFileTypeIndex(out uint fileType);
+
+                return (int)fileType;
             }
         }
 
+        // Null = use default directory.
+
         /// <summary>
-        /// Tries to set the File(s) Type Combo to match the value in 
-        /// 'DefaultExtension'.  Only doing this if 'this' is a Save dialog 
+        /// Gets or sets the initial directory displayed when the dialog is shown. 
+        /// A null or empty string indicates that the dialog is using the default directory.
+        /// </summary>
+        /// <value>A <see cref="string"/> object.</value>
+        public string InitialDirectory { get; set; }
+
+        /// <summary>
+        /// Gets or sets a location that is always selected when the dialog is opened, 
+        /// regardless of previous user action. A null value implies that the dialog is using 
+        /// the default location.
+        /// </summary>
+        public ShellContainer InitialDirectoryShellContainer { get; set; }
+
+        /// <summary>
+        /// Sets the folder and path used as a default if there is not a recently used folder value available.
+        /// </summary>
+        public string DefaultDirectory { get; set; }
+
+        /// <summary>
+        /// Sets the location (<see cref="Microsoft.WindowsAPICodePack.Shell.ShellContainer">ShellContainer</see> 
+        /// used as a default if there is not a recently used folder value available.
+        /// </summary>
+        public ShellContainer DefaultDirectoryShellContainer { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value that enables a calling application 
+        /// to associate a GUID with a dialog's persisted state.
+        /// </summary>
+        public Guid CookieIdentifier { get => cookieIdentifier; set => cookieIdentifier = value; }
+
+        /// <summary>
+        /// Default file name.
+        /// </summary>
+        public string DefaultFileName { get; set; }
+
+        private void SetValue(ref bool value, in bool newValue, in string exceptionMessage)
+        {
+            ThrowIfDialogShowing(exceptionMessage);
+
+            value = newValue;
+        }
+
+        /// <summary>
+        /// Tries to set the File(s) Type Combo to match the value in
+        /// <see cref="DefaultExtension"/>. Only doing this if 'this' is a Save dialog
         /// as it makes no sense to do this if only Opening a file.
         /// </summary>
-        /// 
-        /// <param name="dialog">The native/IFileDialog instance.</param>
-        /// 
+        /// <param name="dialog">The native/<see cref="IFileDialog"/> instance.</param>
         private void SyncFileTypeComboToDefaultExtension(IFileDialog dialog)
         {
             // make sure it's a Save dialog and that there is a default 
@@ -350,13 +322,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
                 return;
 
-            CommonFileDialogFilter filter;
-
             for (uint filtersCounter = 0; filtersCounter < Filters.Count; filtersCounter++)
-            {
-                filter = Filters[(int)filtersCounter];
 
-                if (filter.Extensions.Contains(DefaultExtension))
+                if (Filters[(int)filtersCounter].Extensions.Contains(DefaultExtension))
                 {
                     // set the docType combo to match this 
                     // extension. property is a 1-based index.
@@ -365,14 +333,11 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                     // we're done, exit for
                     break;
                 }
-            }
-
         }
 
         /// <summary>
         /// Gets the selected filename.
         /// </summary>
-        /// <value>A <see cref="string"/> object.</value>
         /// <exception cref="InvalidOperationException">This property cannot be used when multiple files are selected.</exception>
         public string FileName
         {
@@ -380,11 +345,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             {
                 CheckFileNamesAvailable();
 
-                if (filenames.Count > 1)
-
-                    throw new InvalidOperationException(LocalizedMessages.CommonFileDialogMultipleFiles);
-
-                string returnFilename = filenames[0];
+                string returnFilename = filenames.Count > 1 ? throw new InvalidOperationException(LocalizedMessages.CommonFileDialogMultipleFiles) : filenames[0];
 
                 // "If extension is a null reference (Nothing in Visual 
                 // Basic), the returned string contains the specified 
@@ -393,19 +354,14 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 // DefaultExtension property is NOT null.
 
                 // if we should, and there is one to set...
-                if (!string.IsNullOrEmpty(DefaultExtension))
-
-                    returnFilename = System.IO.Path.ChangeExtension(returnFilename, DefaultExtension);
-
-                return returnFilename;
+                return string.IsNullOrEmpty(DefaultExtension) ? returnFilename : System.IO.Path.ChangeExtension(returnFilename, DefaultExtension);
             }
         }
 
         /// <summary>
-        /// Gets the selected item as a ShellObject.
+        /// Gets the selected item as a <see cref="ShellObject"/>.
         /// </summary>
-        /// <value>A <see cref="Microsoft.WindowsAPICodePack.Shell.ShellObject"></see> object.</value>
-        /// <exception cref="System.InvalidOperationException">This property cannot be used when multiple files
+        /// <exception cref="InvalidOperationException">This property cannot be used when multiple files
         /// are selected.</exception>
         public ShellObject FileAsShellObject
         {
@@ -466,55 +422,11 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
             // Create a native shellitem from our path
             var guid = new Guid(NativeAPI.Guids.Shell.IShellItem2);
-            int retCode = COMNative.Shell.Shell.SHCreateItemFromParsingName(path, IntPtr.Zero, ref guid, out IShellItem2 nativeShellItem);
-
-            if (!CoreErrorHelper.Succeeded(retCode))
-
-                throw new CommonControlException(LocalizedMessages.CommonFileDialogCannotCreateShellItem, Marshal.GetExceptionForHR(retCode));
+            HResult retCode = COMNative.Shell.Shell.SHCreateItemFromParsingName(path, IntPtr.Zero, ref guid, out IShellItem2 nativeShellItem);
 
             // Add the shellitem to the places list
 
-            nativeDialog?.AddPlace(nativeShellItem, (FileDialogAddPlacement)location);
-        }
-
-        // Null = use default directory.
-
-        /// <summary>
-        /// Gets or sets the initial directory displayed when the dialog is shown. 
-        /// A null or empty string indicates that the dialog is using the default directory.
-        /// </summary>
-        /// <value>A <see cref="string"/> object.</value>
-        public string InitialDirectory { get; set; }
-
-        /// <summary>
-        /// Gets or sets a location that is always selected when the dialog is opened, 
-        /// regardless of previous user action. A null value implies that the dialog is using 
-        /// the default location.
-        /// </summary>
-        public ShellContainer InitialDirectoryShellContainer { get; set; }
-
-        /// <summary>
-        /// Sets the folder and path used as a default if there is not a recently used folder value available.
-        /// </summary>
-        public string DefaultDirectory { get; set; }
-
-        /// <summary>
-        /// Sets the location (<see cref="Microsoft.WindowsAPICodePack.Shell.ShellContainer">ShellContainer</see> 
-        /// used as a default if there is not a recently used folder value available.
-        /// </summary>
-        public ShellContainer DefaultDirectoryShellContainer { get; set; }
-
-        // Null = use default identifier.
-        private Guid cookieIdentifier;
-
-        /// <summary>
-        /// Gets or sets a value that enables a calling application 
-        /// to associate a GUID with a dialog's persisted state.
-        /// </summary>
-        public Guid CookieIdentifier
-        {
-            get => cookieIdentifier;
-            set => cookieIdentifier = value;
+            (CoreErrorHelper.Succeeded(retCode) ? nativeDialog : throw new CommonControlException(LocalizedMessages.CommonFileDialogCannotCreateShellItem, CoreErrorHelper.GetExceptionForHR(retCode)))?.AddPlace(nativeShellItem, (FileDialogAddPlacement)location);
         }
 
         /// <summary>
@@ -540,14 +452,10 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// </summary>
         /// <param name="window">Top-level WPF window that will own the modal dialog box.</param>
         /// <returns>A <see cref="CommonFileDialogResult"/> object.</returns>
-        public CommonFileDialogResult ShowDialog(Window window)
+        public CommonFileDialogResult ShowDialog(System.Windows.Window window)
         {
-            if (window == null)
-
-                throw new ArgumentNullException(nameof(window));
-
             // Set the parent / owner window
-            parentWindow = (new WindowInteropHelper(window)).Handle;
+            parentWindow = new WindowInteropHelper(window ?? throw GetArgumentNullException(nameof(window))).Handle;
 
             // Show the modal dialog
             return ShowDialog();
@@ -602,20 +510,14 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
             return result;
         }
+
         /// <summary>
         /// Removes the current selection.
         /// </summary>
         public void ResetUserSelections() => resetSelections = true;
-
-        /// <summary>
-        /// Default file name.
-        /// </summary>
-        public string DefaultFileName { get; set; }
-
         #endregion
 
         #region Configuration
-
         private void InitializeEventSink(IFileDialog nativeDlg)
         {
             // Check if we even need to have a sink.
@@ -765,11 +667,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
             return flags;
         }
-
         #endregion
 
         #region IDialogControlHost Members
-
         private static void GenerateNotImplementedException() => throw new NotImplementedException(LocalizedMessages.NotImplementedException);
 
         /// <summary>
@@ -819,18 +719,20 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             ThrowIfNull(control, nameof(control));
 
             CommonFileDialogControl dialogControl = null;
+
             if (propertyName == "Text")
             {
                 var textBox = control as CommonFileDialogTextBox;
 
-                if (textBox is object)
+                if (textBox is null)
 
-                    customize.SetEditBoxText(control.Id, textBox.Text);
+                    customize.SetControlLabel(control.Id, textBox.Text);
 
                 else
 
-                    customize.SetControlLabel(control.Id, textBox.Text);
+                    customize.SetEditBoxText(control.Id, textBox.Text);
             }
+
             else if (propertyName == "Visible" && (dialogControl = control as CommonFileDialogControl) is object)
             {
                 customize.GetControlState(control.Id, out ControlState state);
@@ -845,6 +747,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
                 customize.SetControlState(control.Id, state);
             }
+
             else if (propertyName == "Enabled" && dialogControl is object)
             {
                 customize.GetControlState(control.Id, out ControlState state);
@@ -859,6 +762,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
                 customize.SetControlState(control.Id, state);
             }
+
             else if (propertyName == "SelectedIndex")
             {
                 if (control is CommonFileDialogRadioButtonList list)
@@ -869,15 +773,14 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
                     customize.SetSelectedControlItem(box.Id, box.SelectedIndex);
             }
+
             else if (propertyName == "IsChecked" && control is CommonFileDialogCheckBox checkBox)
 
                 customize.SetCheckButtonState(checkBox.Id, checkBox.IsChecked);
         }
-
         #endregion
 
         #region Helpers
-
         /// <summary>
         /// Ensures that the user has selected one or more files.
         /// </summary>
@@ -924,19 +827,19 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         internal static string GetFileNameFromShellItem(IShellItem item)
         {
             string filename = null;
-            HResult hr = item.GetDisplayName(ShellItemDesignNameOptions.DesktopAbsoluteParsing, out IntPtr pszString);
-            if (hr == HResult.Ok && pszString != IntPtr.Zero)
+
+            if (item.GetDisplayName(ShellItemDesignNameOptions.DesktopAbsoluteParsing, out IntPtr pszString) == HResult.Ok && pszString != IntPtr.Zero)
             {
                 filename = Marshal.PtrToStringAuto(pszString);
                 Marshal.FreeCoTaskMem(pszString);
             }
+
             return filename;
         }
 
         internal static IShellItem GetShellItemAt(IShellItemArray array, int i)
         {
-            uint index = (uint)i;
-            CoreErrorHelper.ThrowExceptionForHResult(array.GetItemAt(index, out IShellItem result));
+            CoreErrorHelper.ThrowExceptionForHResult(array.GetItemAt((uint)i, out IShellItem result));
             return result;
         }
 
@@ -966,6 +869,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                     InitializeNativeFileDialog();
                     nativeDialog = GetNativeFileDialog();
                 }
+
                 customize = (IFileDialogCustomize)nativeDialog;
             }
         }
@@ -1008,11 +912,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// </summary>
         /// <param name="e">The event data.</param>
         protected virtual void OnOpening(EventArgs e) => DialogOpening?.Invoke(this, e);
-
         #endregion
 
         #region NativeDialogEventSink Nested Class
-
         private class NativeDialogEventSink : IFileDialogEvents, IFileDialogControlEvents
         {
             private readonly CommonFileDialog parent;
@@ -1038,6 +940,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                             textBox.SyncValue();
                             textBox.Closed = true;
                         }
+
                         // Also check subcontrols
                         else if (control is CommonFileDialogGroupBox groupBox)
 
@@ -1069,6 +972,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                     firstFolderChanged = false;
                     parent.OnOpening(EventArgs.Empty);
                 }
+
                 else
 
                     parent.OnFolderChanged(EventArgs.Empty);
@@ -1104,6 +1008,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                     controlInterface.SelectedIndex = dwIDItem;
                     controlInterface.RaiseSelectedIndexChangedEvent();
                 }
+
                 // Process Menu
                 else if (control is CommonFileDialogMenu menu)
 
@@ -1119,36 +1024,27 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
             public void OnButtonClicked(IFileDialogCustomize pfdc, int dwIDCtl)
             {
-                // Find control
-                DialogControl control = parent.Controls.GetControlbyId(dwIDCtl);
-                // Call corresponding event
-                if (control is CommonFileDialogButton button)
+                // Find control and call corresponding event
+                if (parent.Controls.GetControlbyId(dwIDCtl) is CommonFileDialogButton button)
 
                     button.RaiseClickEvent();
             }
 
             public void OnCheckButtonToggled(IFileDialogCustomize pfdc, int dwIDCtl, bool bChecked)
             {
-                // Find control
-                DialogControl control = parent.Controls.GetControlbyId(dwIDCtl);
-
-                // Update control and call corresponding event
-                if (control is CommonFileDialogCheckBox box)
+                // Find control and update control and call corresponding event
+                if (parent.Controls.GetControlbyId(dwIDCtl) is CommonFileDialogCheckBox box)
                 {
                     box.IsChecked = bChecked;
                     box.RaiseCheckedChangedEvent();
                 }
             }
 
-            public void OnControlActivating(IFileDialogCustomize pfdc, int dwIDCtl)
-            {
-            }
+            public void OnControlActivating(IFileDialogCustomize pfdc, int dwIDCtl) { /* Left empty. */ }
         }
-
         #endregion
 
         #region IDisposable Members
-
         /// <summary>
         /// Releases the unmanaged resources used by the CommonFileDialog class and optionally 
         /// releases the managed resources.
@@ -1170,7 +1066,6 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
         #endregion
 
         /// <summary>

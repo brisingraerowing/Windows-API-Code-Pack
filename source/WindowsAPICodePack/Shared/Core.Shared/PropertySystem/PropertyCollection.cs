@@ -853,7 +853,7 @@ in
 
         public System.Collections.Generic.IEnumerator<KeyValuePair<PropertyKey, TValue>> GetEnumerator() => _innerDictionary.GetEnumerator();
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => ((IEnumerable)_innerDictionary).GetEnumerator();
+        System.Collections.IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)_innerDictionary).GetEnumerator();
 
         bool IDictionary<PropertyKey, TValue>.Remove(PropertyKey key) => _innerDictionary.Remove(key);
 
@@ -866,23 +866,21 @@ in
 
     public class PropertyCollection : IDisposable,
 #if CS6
-        IReadOnlyDictionary<PropertyKey, Property>
+        System.Collections.Generic.IReadOnlyDictionary<PropertyKey, Property>
 #else
-        System.Collections.Generic.IEnumerable<KeyValuePair<PropertyKey, Property>>
+        IEnumerable<KeyValuePair<PropertyKey, Property>>
 #endif
     {
         #region Private/Internal Fields
+        private uint? _count;
+        private Dictionary<Property> _innerDictionary;
+        private Func<Dictionary<Property>> _getDictionaryDelegate;
+
         protected internal INativePropertiesCollection Items { get; }
 
         private INativePropertyValuesCollection _nativePropertyValuesCollection;
 
         internal INativePropertyValuesCollection NativePropertyValuesCollection => _nativePropertyValuesCollection;
-
-        private uint? _count;
-
-        private Dictionary<Property> _innerDictionary;
-
-        private Func<Dictionary<Property>> _getDictionaryDelegate;
         #endregion
 
         #region Public Properties
@@ -922,7 +920,7 @@ in
             }
         }
 
-        public System.Collections.Generic.IEnumerable<PropertyKey> Keys
+        public IEnumerable<PropertyKey> Keys
         {
             get
             {
@@ -941,7 +939,7 @@ in
             }
         }
 
-        public System.Collections.Generic.IEnumerable<Property> Values => IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : _getDictionaryDelegate().Values;
+        public IEnumerable<Property> Values => IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : _getDictionaryDelegate().Values;
 
         public uint Count
         {
@@ -1087,7 +1085,7 @@ in
                 ? throw new InvalidOperationException("The current object is disposed.")
                 : _getDictionaryDelegate().GetEnumerator();
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => IsDisposed
+        System.Collections.IEnumerator IEnumerable.GetEnumerator() => IsDisposed
                 ? throw new InvalidOperationException("The current object is disposed.")
                 : ((IEnumerable)_getDictionaryDelegate()).GetEnumerator();
         #endregion
@@ -1144,8 +1142,8 @@ in
                 throw new ArgumentOutOfRangeException(nameof(index), index, "'index' is out of range.");
             }
         }
-
         #endregion
+
         #region Public Properties
         public uint Count
         {
@@ -1239,7 +1237,7 @@ in
             uint IUIntCountable.Count => _propertyAttributes.Count;
 
         #region Unsupported items
-            System.Collections.Generic.IEnumerator<PropertyAttribute> System.Collections.Generic.IEnumerable<PropertyAttribute>.GetEnumerator() => throw new NotImplementedException();
+            System.Collections.Generic.IEnumerator<PropertyAttribute> IEnumerable<PropertyAttribute>.GetEnumerator() => throw new NotImplementedException();
             System.Collections.IEnumerator IEnumerable.GetEnumerator() => throw new NotImplementedException();
             void IUIntIndexedCollection<PropertyAttribute>.Add(PropertyAttribute item) => throw new NotImplementedException();
             void IUIntIndexedCollection<PropertyAttribute>.Clear() => throw new NotImplementedException();
@@ -1259,14 +1257,13 @@ in
         public System.Collections.Generic.IEnumerator<PropertyAttribute> GetEnumerator() => IsDisposed
                 ? throw new InvalidOperationException("The current object is disposed.")
                 : new
-#if WAPICP2
-UIntIndexedCollectionEnumerator(this);
-#else
+#if WAPICP3
             UIntIndexedListEnumerator<PropertyAttribute>(new _Class(this));
+#else
+            UIntIndexedCollectionEnumerator(this);
 #endif
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
-
+        System.Collections.IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         #endregion
 
         #region IDisposable Support

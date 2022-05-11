@@ -1,4 +1,7 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
+
+using Microsoft.WindowsAPICodePack.Shell;
+
 using System;
 using System.Collections.ObjectModel;
 using System.Threading;
@@ -6,8 +9,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms.Integration;
 using System.Windows.Threading;
-using Microsoft.WindowsAPICodePack.Shell;
-
 
 namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 {
@@ -865,9 +866,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
 
         private static void OnNavigationLogIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) => _ = (d as ExplorerBrowser)?.ExplorerBrowserControl?.NavigationLog.NavigateLog((int)e.NewValue);
 
-
         #region IDisposable Members
-
         /// <summary>
         /// Disposes the class
         /// </summary>        
@@ -889,7 +888,6 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation
                 selectionChanged?.Close();
             }
         }
-
         #endregion
     }
 }

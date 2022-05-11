@@ -236,7 +236,7 @@ namespace Microsoft.WindowsAPICodePack.PropertySystem
             {
                 Type type = value.GetType();
 
-                if (Nullable.GetUnderlyingType(type) != null)
+                if (System.Nullable.GetUnderlyingType(type) != null)
                 {
                     System.Reflection.PropertyInfo pi = type.GetProperty("HasValue");
 

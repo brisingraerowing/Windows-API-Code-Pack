@@ -1,20 +1,19 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
+using Microsoft.WindowsAPICodePack.Win32Native;
+
 using System;
 using System.ComponentModel;
 using System.Text;
 using System.Windows.Forms;
-using Microsoft.WindowsAPICodePack.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.Internal;
+
 using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.Shell;
 using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.Shell.CommandLinkDefinitions;
 
 namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
 {
     /// <summary>
-    /// Implements a CommandLink button that can be used in 
+    /// Implements a CommandLink button that can be used in
     /// WinForms user interfaces.
     /// </summary>    
     public class CommandLink : Button
@@ -62,11 +61,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
         [Description("Specifies the supporting note text.")]
         [Browsable(true)]
         [DefaultValue("(Note Text)")]
-        public string NoteText
-        {
-            get => GetNote(this);
-            set => SetNote(this, value);
-        }
+        public string NoteText { get => GetNote(this); set => SetNote(this, value); }
 
         /// <summary>
         /// Enable shield icon to be set at design-time.
@@ -78,6 +73,7 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
         public bool UseElevationIcon
         {
             get => useElevationIcon;
+
             set
             {
                 useElevationIcon = value;
@@ -88,7 +84,6 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
 
 
         #region Interop helpers
-
         private static int AddCommandLinkStyle(int style)
         {
             // Only add BS_COMMANDLINK style on Windows Vista or above.
@@ -112,7 +107,8 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
             int len = ((int)retVal) + 1;
             var strBld = new StringBuilder(len);
 
-            retVal = Core.SendMessage(Button.Handle, CommandLinkDefinitions.GetNote, ref len, strBld);
+            _ = Core.SendMessage(Button.Handle, CommandLinkDefinitions.GetNote, ref len, strBld);
+
             return strBld.ToString();
         }
 
@@ -129,7 +125,6 @@ namespace Microsoft.WindowsAPICodePack.Controls.WindowsForms
                 IntPtr.Zero,
                 fRequired);
         }
-
         #endregion
 
         /// <summary>

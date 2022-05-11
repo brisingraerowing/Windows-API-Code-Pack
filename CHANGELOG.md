@@ -10,10 +10,18 @@ For issues and bug fixes details, visit [https://wincopies.com/fwd.php?id=3](htt
 
 For the original code (version 1.1, last release by Microsoft), see [https://wincopies.com/fwd.php?id=1](https://wincopies.com/fwd.php?id=1)
 
-## ??? ???
+## ??? 3.10
 
 - Microsoft.WindowsAPICodePack.Net.NetworkListManager: none of the method parameters have the 'in' modifier anymore.
 - WindowMessage.XBUTTON values had been replaced with other names (starting with XButton instead, as C# is case sensitive, and fully spelled).
+- Microsoft.WindowsAPICodePack.COMNative.Shell.Shell:
+    - GetPidl definition changed.
+    - SHCreateItemFromParsingName: return type is HResult.
+- Microsoft.WindowsAPICodePack.Shell:
+    - ShellContextMenu:
+        - The HookRegistration value can be null and updated after object construction.
+        - New methods.
+    - ShellObjectFactory.TryGetNativeShellItem(string, out IShellItem2) return type is HResult.
 - Add:
     - support for FTP.
     - new types.
@@ -100,9 +108,17 @@ COMNative 3.0
 - Removals:
     - Some 'ref' keywords in native PortableDevices interfaces. These keywords have been removed for interface type parameters because they was redundant.
 
-## ??? ???
+## ??? 2.11
 
-- New error codes and constants.
+- New error codes and other constants, and Win32 P/Invoke methods.
+- Microsoft.WindowsAPICodePack:
+    - COMNative.Shell.IContextMenu interfaces: some parameters have marshalling attributes.
+    - Win32Native:
+        - bug fixed in some delegate and P/Invoke method definitions (pointer-typed parameters had a marshalling attribute).
+        - InteropTools.LOWORD/HIWORD(IntPtr) are obsolete. They have been replaced with Microsoft.WindowsAPICodePack.Win32Native.Core.GetLoWord/HiWord methods.
+    - Shell.ShellObjectWatcherNativeMethods: new method: CreateMessageOnlyWindow(string, string).
+- GlassWindow inherits from a new Window class. Some content previously in the GlassWindow class now is in this type.
+- Bug fixed in ShellObjectContainer.GetPIDLs(IReadOnlyList<ShellObject> items)
 
 ## 11/03/2021 2.10.3
 

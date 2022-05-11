@@ -16,7 +16,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public const uint BaseUserMessage = (uint)WindowMessage.User + 5;
 
         private const string MessageWindowClassName = "MessageListenerClass";
-
+        private const string MessageListenerWindowTitle = "MessageListenerWindow";
         private static readonly object _threadlock = new object();
         private static uint _atom;
         private static Thread _windowThread = null;
@@ -58,12 +58,10 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                     CrossThreadCreateWindow();
 
-                if (WindowHandle == IntPtr.Zero)
-
-                    throw new ShellException(LocalizedMessages.MessageListenerCannotCreateWindow,
-                        Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error()));
-
-                _listeners.Add(WindowHandle, this);
+                _listeners.Add(WindowHandle == IntPtr.Zero
+                    ? throw new ShellException(LocalizedMessages.MessageListenerCannotCreateWindow,
+                        Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error()))
+                    : WindowHandle, this);
             }
         }
 
@@ -102,14 +100,10 @@ namespace Microsoft.WindowsAPICodePack.Shell
             _atom = atom;
         }
 
-        private static IntPtr CreateWindow() => ShellObjectWatcherNativeMethods.CreateWindowEx(
-                0, //extended style
+        private static IntPtr CreateWindow() => ShellObjectWatcherNativeMethods.CreateMessageOnlyWindow(
                 MessageWindowClassName, //class name
-                "MessageListenerWindow", //title
-                0, //style
-                0, 0, 0, 0, // x,y,width,height
-                new IntPtr(-3), // -3 = Message-Only window
-                IntPtr.Zero, IntPtr.Zero, IntPtr.Zero);
+                MessageListenerWindowTitle //title
+                );
 
         private void ThreadMethod() // Message Loop
         {

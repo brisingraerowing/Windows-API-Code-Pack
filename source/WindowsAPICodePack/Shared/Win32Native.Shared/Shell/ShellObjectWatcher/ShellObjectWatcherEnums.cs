@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
-{    
+{
     /// <summary>
     /// Describes the event that has occurred. 
     /// Typically, only one event is specified at a time. 

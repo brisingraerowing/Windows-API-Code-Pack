@@ -57,6 +57,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\ShellSearchFolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ShellThumbnail.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SingleInstance.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CommandLinkWinforms.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CommandLinkWPF.xaml.cs">
+      <DependentUpon>CommandLinkWPF.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)DesktopWindowManager\GlassEvents.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DesktopWindowManager\GlassForm.cs">
       <SubType>Form</SubType>
@@ -64,6 +70,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)DesktopWindowManager\GlassWindow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DesktopWindowManager\DesktopWindowManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\CommonControlException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowser.WPF.xaml.cs">
+      <DependentUpon>ExplorerBrowser.WPF.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowserContentOptions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowserEnums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowserEvents.cs" />
@@ -134,5 +146,20 @@
     <None Include="$(MSBuildThisFileDirectory)Design\ShellObjects.cd" />
     <None Include="$(MSBuildThisFileDirectory)Design\ShellThumbnailClassDiagram.cd" />
     <None Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowserDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\CommandLinkWPF.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)ExplorerBrowser\ExplorerBrowser.WPF.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="$(MSBuildThisFileDirectory)CustomDictionary.xml" />
   </ItemGroup>
 </Project>

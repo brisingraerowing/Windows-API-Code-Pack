@@ -19,7 +19,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Gets a strongly-typed read-only collection of all the registered known folders.
         /// </summary>
-        public static System.Collections.Generic.ICollection<IKnownFolder> All => GetAllFolders();
+        public static ICollection<IKnownFolder> All => GetAllFolders();
 
         private static System.Collections.ObjectModel.ReadOnlyCollection<IKnownFolder> GetAllFolders()
         {

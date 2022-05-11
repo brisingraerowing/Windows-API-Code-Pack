@@ -34,8 +34,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Dialogs\TaskDialogs\TaskDialogStandardIcon.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dialogs\TaskDialogs\TaskDialogStartupLocation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dialogs\TaskDialogs\TaskDialogTickEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HookRegistration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interop\DialogShowState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interop\NativeTaskDialog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Menu.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Networking\FTPConnection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Networking\FTPItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Networking\IInternetConnection.cs" />

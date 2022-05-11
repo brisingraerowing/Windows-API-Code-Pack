@@ -19,11 +19,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="CustomDictionary.xml" />
+		<None Remove="..\..\Shared\Shell.Shared\CustomDictionary.xml" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<CodeAnalysisDictionary Include="CustomDictionary.xml" />
+		<CodeAnalysisDictionary Include="..\..\Shared\Shell.Shared\CustomDictionary.xml" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)'=='net5.0-windows'">
@@ -49,12 +49,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Controls\CommandLinkWinforms.cs">
-			<SubType>Component</SubType>
-		</Compile>
-		<Compile Update="ExplorerBrowser\ExplorerBrowser.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
 		<Compile Update="Resources\LocalizedMessages.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -67,24 +61,6 @@
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>LocalizedMessages.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Update="Controls\CommandLinkWPF.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</None>
-		<None Update="ExplorerBrowser\ExplorerBrowser.WPF.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-		<Page Update="Controls\CommandLinkWPF.xaml">
-			<XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-		</Page>
-		<Page Update="ExplorerBrowser\ExplorerBrowser.WPF.xaml">
-			<XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-		</Page>
 	</ItemGroup>
 
 	<Import Project="..\..\Shared\Shell.Shared\Shell.Shared.projitems" Label="Shared" />

@@ -35,6 +35,15 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
             IntPtr instanceHandle,
             IntPtr additionalData);
 
+        public static IntPtr CreateMessageOnlyWindow(in string messageWindowClassName, in string messageListenerWindowTitle) => CreateWindowEx(
+                0, //extended style
+                messageWindowClassName, //class name
+                messageListenerWindowTitle, //title
+                0, //style
+                0, 0, 0, 0, // x,y,width,height
+                new IntPtr(-3), // -3 = Message-Only window
+                IntPtr.Zero, IntPtr.Zero, IntPtr.Zero);
+
         [DllImport(User32)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetMessage(

@@ -4,6 +4,8 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 
+using static System.Runtime.InteropServices.UnmanagedType;
+
 namespace Microsoft.WindowsAPICodePack.COMNative.Shell
 {
     [ComImport,
@@ -12,13 +14,13 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     public interface IContextMenu
     {
         [PreserveSig]
-        HResult QueryContextMenu(IntPtr hmenu, uint iMenu, uint idCmdFirst, uint idCmdLast, ContextMenuFlags uFlags);
+        HResult QueryContextMenu(IntPtr hmenu, [In, MarshalAs(U4)] uint iMenu, [In, MarshalAs(U4)] uint idCmdFirst, [In, MarshalAs(U4)] uint idCmdLast, [In, MarshalAs(U4)] ContextMenuFlags uFlags);
 
         [PreserveSig]
         HResult InvokeCommand(ref ContextMenuInvokeCommandInfo info);
 
         [PreserveSig]
-        HResult GetCommandString(uint idcmd, GetCommandStringFlags uflags, uint reserved, [MarshalAs(UnmanagedType.LPArray)] byte[] commandstring, int cch);
+        HResult GetCommandString([In, MarshalAs(U4)] uint idcmd, [In, MarshalAs(U4)] GetCommandStringFlags uflags, [In, MarshalAs(U4)] uint reserved, [MarshalAs(LPArray)] byte[] commandstring, [In, MarshalAs(I4)] int cch);
     }
 
     [ComImport,
@@ -27,16 +29,16 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     public interface IContextMenu2
     {
         [PreserveSig]
-        HResult QueryContextMenu(IntPtr hmenu, uint iMenu, uint idCmdFirst, uint idCmdLast, ContextMenuFlags uFlags);
+        HResult QueryContextMenu(IntPtr hmenu, [In, MarshalAs(U4)] uint iMenu, [In, MarshalAs(U4)] uint idCmdFirst, [In, MarshalAs(U4)] uint idCmdLast, [In, MarshalAs(U4)] ContextMenuFlags uFlags);
 
         [PreserveSig]
         HResult InvokeCommand(ref ContextMenuInvokeCommandInfo info);
 
         [PreserveSig]
-        HResult GetCommandString(uint idcmd, GetCommandStringFlags uflags, uint reserved, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder commandstring, int cch);
+        HResult GetCommandString([In, MarshalAs(U4)] uint idcmd, [In, MarshalAs(U4)] GetCommandStringFlags uflags, [In, MarshalAs(U4)] uint reserved, [MarshalAs(LPWStr)] StringBuilder commandstring, [In, MarshalAs(I4)] int cch);
 
         [PreserveSig]
-        HResult HandleMenuMsg(uint uMsg, IntPtr wParam, IntPtr lParam);
+        HResult HandleMenuMsg([In, MarshalAs(U4)] uint uMsg, IntPtr wParam, IntPtr lParam);
     }
 
     [ComImport,
@@ -45,18 +47,18 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     public interface IContextMenu3
     {
         [PreserveSig]
-        HResult QueryContextMenu(IntPtr hmenu, uint iMenu, uint idCmdFirst, uint idCmdLast, ContextMenuFlags uFlags);
+        HResult QueryContextMenu(IntPtr hmenu, [In, MarshalAs(U4)] uint iMenu, [In, MarshalAs(U4)] uint idCmdFirst, [In, MarshalAs(U4)] uint idCmdLast, [In, MarshalAs(U4)] ContextMenuFlags uFlags);
 
         [PreserveSig]
         HResult InvokeCommand(ref ContextMenuInvokeCommandInfo info);
 
         [PreserveSig]
-        HResult GetCommandString(uint idcmd, GetCommandStringFlags uflags, uint reserved, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder commandstring, int cch);
+        HResult GetCommandString([In, MarshalAs(U4)] uint idcmd, [In, MarshalAs(U4)] GetCommandStringFlags uflags, [In, MarshalAs(U4)] uint reserved, [MarshalAs(LPWStr)] StringBuilder commandstring, [In, MarshalAs(I4)] int cch);
 
         [PreserveSig]
-        HResult HandleMenuMsg(uint uMsg, IntPtr wParam, IntPtr lParam);
+        HResult HandleMenuMsg([In, MarshalAs(U4)] uint uMsg, IntPtr wParam, IntPtr lParam);
 
         [PreserveSig]
-        HResult HandleMenuMsg2(uint uMsg, IntPtr wParam, IntPtr lParam, IntPtr plResult);
+        HResult HandleMenuMsg2([In, MarshalAs(U4)] uint uMsg, IntPtr wParam, IntPtr lParam, IntPtr plResult);
     }
 }

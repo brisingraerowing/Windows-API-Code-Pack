@@ -349,18 +349,10 @@
             <summary>
             Registers an application for recovery by Application Restart and Recovery.
             </summary>
-            <param name="settings">An object that specifies
-            the callback method, an optional parameter to pass to the callback
-            method and a time interval.</param>
-            <exception cref="T:System.ArgumentException">
-            The registration failed due to an invalid parameter.
-            </exception>
-            <exception cref="T:System.ComponentModel.Win32Exception">
-            The registration failed.</exception>
-            <remarks>The time interval is the period of time within 
-            which the recovery callback method 
-            calls the <see cref="M:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRestartRecoveryManager.ApplicationRecoveryInProgress"/> method to indicate
-            that it is still performing recovery work.</remarks>        
+            <param name="settings">An object that specifies the callback method, an optional parameter to pass to the callback method and a time interval.</param>
+            <exception cref="T:System.ArgumentException">The registration failed due to an invalid parameter.</exception>
+            <exception cref="T:System.ComponentModel.Win32Exception">The registration failed.</exception>
+            <remarks>The time interval is the period of time within which the recovery callback method calls the <see cref="M:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRestartRecoveryManager.ApplicationRecoveryInProgress"/> method to indicate that it is still performing recovery work.</remarks>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRestartRecoveryManager.UnregisterApplicationRecovery">
             <summary>
@@ -402,15 +394,9 @@
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.ApplicationRestartRecoveryManager.RegisterForApplicationRestart(Microsoft.WindowsAPICodePack.ApplicationServices.RestartSettings@)">
             <summary>
-            Registers an application for automatic restart if 
-            the application 
-            is terminated by Windows Error Reporting.
+            Registers an application for automatic restart if the application is terminated by Windows Error Reporting.
             </summary>
-            <param name="settings">An object that specifies
-            the command line arguments used to restart the 
-            application, and 
-            the conditions under which the application should not be 
-            restarted.</param>
+            <param name="settings">An object that specifies the command line arguments used to restart the application, and the conditions under which the application should not be restarted.</param>
             <exception cref="T:System.ArgumentException">Registration failed due to an invalid parameter.</exception>
             <exception cref="T:System.InvalidOperationException">The attempt to register failed.</exception>
             <remarks>A registered application will not be restarted if it executed for less than 60 seconds before terminating.</remarks>
@@ -513,57 +499,48 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ApplicationServices.BatteryState.ACOnline">
             <summary>
-            Gets a value that indicates whether the battery charger is 
-            operating on external power.
+            Gets a value that indicates whether the battery charger is operating on external power.
             </summary>
-            <value>A <see cref="T:System.Boolean"/> value. <b>True</b> indicates the battery charger is operating on AC power.</value>
+            <value>A <see cref="T:System.Boolean"/> value. <see langword="true"/> indicates the battery charger is operating on AC power.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ApplicationServices.BatteryState.MaxCharge">
             <summary>
             Gets the maximum charge of the battery (in mW).
             </summary>
-            <value>An <see cref="T:System.Int32"/> value.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ApplicationServices.BatteryState.CurrentCharge">
             <summary>
             Gets the current charge of the battery (in mW).
             </summary>
-            <value>An <see cref="T:System.Int32"/> value.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ApplicationServices.BatteryState.ChargeRate">
             <summary>
             Gets the rate of discharge for the battery (in mW). 
             </summary>
             <remarks>
-            If plugged in, fully charged: DischargeRate = 0.
-            If plugged in, charging: DischargeRate = positive mW per hour.
-            If unplugged: DischargeRate = negative mW per hour.
+            <para><b>If plugged in, <i>fully charged</i>:</b> <see cref="P:Microsoft.WindowsAPICodePack.ApplicationServices.BatteryState.ChargeRate"/> = 0.</para>
+            <para><b>If plugged in, <i>charging</i>:</b> <see cref="P:Microsoft.WindowsAPICodePack.ApplicationServices.BatteryState.ChargeRate"/> = positive mW per hour.</para>
+            <para><b>If unplugged</b>: <see cref="P:Microsoft.WindowsAPICodePack.ApplicationServices.BatteryState.ChargeRate"/> = negative mW per hour.</para>
             </remarks>
-            <value>An <see cref="T:System.Int32"/> value.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ApplicationServices.BatteryState.EstimatedTimeRemaining">
             <summary>
             Gets the estimated time remaining until the battery is empty.
             </summary>
-            <value>A <see cref="T:System.TimeSpan"/> object.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ApplicationServices.BatteryState.SuggestedCriticalBatteryCharge">
             <summary>
-            Gets the manufacturer's suggested battery charge level 
-            that should cause a critical alert to be sent to the user.
+            Gets the manufacturer's suggested battery charge level that should cause a critical alert to be sent to the user.
             </summary>
-            <value>An <see cref="T:System.Int32"/> value.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.ApplicationServices.BatteryState.SuggestedBatteryWarningCharge">
             <summary>
-            Gets the manufacturer's suggested battery charge level
-            that should cause a warning to be sent to the user.
+            Gets the manufacturer's suggested battery charge level that should cause a warning to be sent to the user.
             </summary>
-            <value>An <see cref="T:System.Int32"/> value.</value>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.BatteryState.ToString">
             <summary>
-            Generates a string that represents this <b>BatteryState</b> object.
+            Generates a string that represents this <see cref="T:Microsoft.WindowsAPICodePack.ApplicationServices.BatteryState"/> object.
             </summary>
             <returns>A <see cref="T:System.String"/> representation of this object's current state.</returns>        
         </member>
@@ -577,13 +554,11 @@
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.EventManager.IsMessageCaught(System.String@)">
             <summary>
-            Determines if a message should be caught, preventing
-            the event handler from executing. 
+            Determines if a message should be caught, preventing the event handler from executing.
             This is needed when an event is initially registered.
             </summary>
             <param name="eventGuid">The event to check.</param>
-            <returns>A boolean value. Returns true if the 
-            message should be caught.</returns>
+            <returns>A <see cref="T:System.Boolean"/> value. Returns true if the message should be caught.</returns>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.ApplicationServices.MessageManager">
             <summary>
@@ -591,25 +566,25 @@
             The PowerRegWindow class processes the messages from Windows.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.MessageManager.RegisterPowerEvent(System.Guid@,System.EventHandler@)">
+        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.MessageManager.EnsureInitialized(System.Action@)">
+            <summary>
+            Ensures that the hidden window is initialized and 
+            listening for messages.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.MessageManager.RegisterPowerEvent(System.Guid,System.EventHandler)">
             <summary>
             Registers a callback for a power event.
             </summary>
             <param name="eventId">Guid for the event.</param>
             <param name="eventToRegister">Event handler for the specified event.</param>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.MessageManager.UnregisterPowerEvent(System.Guid@,System.EventHandler@)">
+        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.MessageManager.UnregisterPowerEvent(System.Guid,System.EventHandler)">
             <summary>
             Unregisters an event handler for a power event.
             </summary>
             <param name="eventId">Guid for the event.</param>
             <param name="eventToUnregister">Event handler to unregister.</param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ApplicationServices.MessageManager.EnsureInitialized">
-            <summary>
-            Ensures that the hidden window is initialized and 
-            listening for messages.
-            </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.ApplicationServices.MessageManager.PowerRegWindow">
             <summary>
@@ -965,15 +940,10 @@
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.DialogControlCollection`1.GetControlbyId(System.Int32)">
             <summary>
-            Searches for the control who's id matches the value
-            passed in the <paramref name="id"/> parameter.
+            Searches for the control who's id matches the value passed in the <paramref name="id"/> parameter.
             </summary>
-            
-            <param name="id">An integer containing the identifier of the 
-            control being searched for.</param>
-            
-            <returns>A DialogControl who's id matches the value of the
-            <paramref name="id"/> parameter.</returns>        
+            <param name="id">An integer containing the identifier of the control being searched for.</param>
+            <returns>A DialogControl who's id matches the value of the <paramref name="id"/> parameter.</returns>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Dialogs.IDialogControlHost">
             <summary>
@@ -1181,17 +1151,17 @@
             </summary>
             <returns>The dialog result.</returns>
         </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.Close(Microsoft.WindowsAPICodePack.Dialogs.TaskDialogResult@)">
+            <summary>
+            Close TaskDialog with a given <see cref="T:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogResult"/>
+            </summary>
+            <param name="closingResult"><see cref="T:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogResult"/> to return from the <see cref="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.Show"/> method</param>
+            <exception cref="T:System.InvalidOperationException">if TaskDialog is not showing.</exception>
+        </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.Close">
             <summary>
             Close TaskDialog
             </summary>
-            <exception cref="T:System.InvalidOperationException">if TaskDialog is not showing.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.Close(Microsoft.WindowsAPICodePack.Dialogs.TaskDialogResult@)">
-            <summary>
-            Close TaskDialog with a given TaskDialogResult
-            </summary>
-            <param name="closingResult">TaskDialogResult to return from the TaskDialog.Show() method</param>
             <exception cref="T:System.InvalidOperationException">if TaskDialog is not showing.</exception>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.TaskDialog.ApplyTextConfiguration(Microsoft.WindowsAPICodePack.Win32Native.Dialogs.TaskDialog.TaskDialogConfiguration@)">
@@ -1283,15 +1253,12 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogButtonBase.Enabled">
             <summary>
-            Gets or sets a value that determines whether the
-            button is enabled. The enabled state can cannot be changed
-            before the dialog is shown.
+            Gets or sets a value that determines whether the button is enabled. The enabled state can cannot be changed before the dialog is shown.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogButtonBase.Default">
             <summary>
-            Gets or sets a value that indicates whether
-            this button is the default button.
+            Gets or sets a value that indicates whether this button is the default button.
             </summary>
         </member>
         <member name="E:Microsoft.WindowsAPICodePack.Dialogs.TaskDialogButtonBase.Click">
@@ -1699,7 +1666,7 @@
             Gets the local date and time when the network 
             was connected.
             </summary>
-            <value>A <see cref="!:System.System.DateTime"/> object.</value>
+            <value>A <see cref="T:System.DateTime"/> object.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Net.Network.Connections">
             <summary>
@@ -1721,7 +1688,7 @@
             Gets the local date and time when the 
             network was created.
             </summary>
-            <value>A <see cref="!:System.System.DateTime"/> object.</value>
+            <value>A <see cref="T:System.DateTime"/> object.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Net.Network.Description">
             <summary>
@@ -1859,47 +1826,6 @@
             Provides access to objects that represent networks and network connections.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Net.NetworkListManager.GetNetworks(Microsoft.WindowsAPICodePack.COMNative.NetworkList.NetworkConnectivityLevels@)">
-            <summary>
-            Retrieves a collection of <see cref="T:Microsoft.WindowsAPICodePack.Net.Network"/> objects that represent the networks defined for this machine.
-            </summary>
-            <param name="level">
-            The <see cref="T:Microsoft.WindowsAPICodePack.COMNative.NetworkList.NetworkConnectivityLevels"/> that specify the connectivity level of the returned <see cref="T:Microsoft.WindowsAPICodePack.Net.Network"/> objects.
-            </param>
-            <returns>
-            A <see cref="T:Microsoft.WindowsAPICodePack.Net.NetworkCollection"/> of <see cref="T:Microsoft.WindowsAPICodePack.Net.Network"/> objects.
-            </returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Net.NetworkListManager.GetNetwork(System.Guid@)">
-            <summary>
-            Retrieves the <see cref="T:Microsoft.WindowsAPICodePack.Net.Network"/> identified by the specified network identifier.
-            </summary>
-            <param name="networkId">
-            A <see cref="T:System.Guid"/> that specifies the unique identifier for the network.
-            </param>
-            <returns>
-            The <see cref="T:Microsoft.WindowsAPICodePack.Net.Network"/> that represents the network identified by the identifier.
-            </returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Net.NetworkListManager.GetNetworkConnections">
-            <summary>
-            Retrieves a collection of <see cref="T:Microsoft.WindowsAPICodePack.Net.NetworkConnection"/> objects that represent the connections for this machine.
-            </summary>
-            <returns>
-            A <see cref="T:Microsoft.WindowsAPICodePack.Net.NetworkConnectionCollection"/> containing the network connections.
-            </returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Net.NetworkListManager.GetNetworkConnection(System.Guid@)">
-            <summary>
-            Retrieves the <see cref="T:Microsoft.WindowsAPICodePack.Net.NetworkConnection"/> identified by the specified connection identifier.
-            </summary>
-            <param name="networkConnectionId">
-            A <see cref="T:System.Guid"/> that specifies the unique identifier for the network connection.
-            </param>
-            <returns>
-            The <see cref="T:Microsoft.WindowsAPICodePack.Net.NetworkConnection"/> identified by the specified identifier.
-            </returns>
-        </member>
         <member name="P:Microsoft.WindowsAPICodePack.Net.NetworkListManager.IsConnectedToInternet">
             <summary>
             Gets a value that indicates whether this machine 
@@ -1919,6 +1845,47 @@
             Gets the connectivity state of this machine.
             </summary>
             <value>A <see cref="P:Microsoft.WindowsAPICodePack.Net.NetworkListManager.Connectivity"/> value.</value>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Net.NetworkListManager.GetNetworks(Microsoft.WindowsAPICodePack.COMNative.NetworkList.NetworkConnectivityLevels)">
+            <summary>
+            Retrieves a collection of <see cref="T:Microsoft.WindowsAPICodePack.Net.Network"/> objects that represent the networks defined for this machine.
+            </summary>
+            <param name="level">
+            The <see cref="T:Microsoft.WindowsAPICodePack.COMNative.NetworkList.NetworkConnectivityLevels"/> that specify the connectivity level of the returned <see cref="T:Microsoft.WindowsAPICodePack.Net.Network"/> objects.
+            </param>
+            <returns>
+            A <see cref="T:Microsoft.WindowsAPICodePack.Net.NetworkCollection"/> of <see cref="T:Microsoft.WindowsAPICodePack.Net.Network"/> objects.
+            </returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Net.NetworkListManager.GetNetwork(System.Guid)">
+            <summary>
+            Retrieves the <see cref="T:Microsoft.WindowsAPICodePack.Net.Network"/> identified by the specified network identifier.
+            </summary>
+            <param name="networkId">
+            A <see cref="T:System.Guid"/> that specifies the unique identifier for the network.
+            </param>
+            <returns>
+            The <see cref="T:Microsoft.WindowsAPICodePack.Net.Network"/> that represents the network identified by the identifier.
+            </returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Net.NetworkListManager.GetNetworkConnections">
+            <summary>
+            Retrieves a collection of <see cref="T:Microsoft.WindowsAPICodePack.Net.NetworkConnection"/> objects that represent the connections for this machine.
+            </summary>
+            <returns>
+            A <see cref="T:Microsoft.WindowsAPICodePack.Net.NetworkConnectionCollection"/> containing the network connections.
+            </returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Net.NetworkListManager.GetNetworkConnection(System.Guid)">
+            <summary>
+            Retrieves the <see cref="T:Microsoft.WindowsAPICodePack.Net.NetworkConnection"/> identified by the specified connection identifier.
+            </summary>
+            <param name="networkConnectionId">
+            A <see cref="T:System.Guid"/> that specifies the unique identifier for the network connection.
+            </param>
+            <returns>
+            The <see cref="T:Microsoft.WindowsAPICodePack.Net.NetworkConnection"/> identified by the specified identifier.
+            </returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.PropertySystem.ReadOnlyValueCollection.CopyValuesFromPropertyStore(Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyStore@)">
             <summary>
@@ -2072,14 +2039,14 @@
             Base class for Safe handles with Null IntPtr as invalid
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.ZeroInvalidHandle.#ctor">
-            <summary>
-            Default constructor
-            </summary>
-        </member>
         <member name="P:Microsoft.WindowsAPICodePack.ZeroInvalidHandle.IsInvalid">
             <summary>
             Determines if this is a valid handle
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.ZeroInvalidHandle.#ctor">
+            <summary>
+            Default constructor
             </summary>
         </member>
     </members>

@@ -42,7 +42,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
         };
         #endregion
 
-        private Dictionary<ShellObjectChangeTypes, Delegate> _events = new Dictionary<ShellObjectChangeTypes, Delegate>();
+        private readonly Dictionary<ShellObjectChangeTypes, Delegate> _events = new
+#if !CS9
+            Dictionary<ShellObjectChangeTypes, Delegate>
+#endif
+            ();
 
         public void Register(ShellObjectChangeTypes changeType, Delegate handler)
         {
@@ -65,7 +69,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 if (del == null) // It's a bug in .NET if del is non-null and has an empty invocation list.
 
-                    _events.Remove(changeType);
+                    _ = _events.Remove(changeType);
 
                 else
 
@@ -78,7 +82,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public void Invoke(object sender, ShellObjectChangeTypes changeType, EventArgs args)
         {
             // Removes FromInterrupt flag if pressent
-            changeType = changeType & ~ShellObjectChangeTypes.FromInterrupt;
+            changeType &= ~ShellObjectChangeTypes.FromInterrupt;
 
             foreach (ShellObjectChangeTypes change in _changeOrder.Where(x => (x & changeType) != 0))
 

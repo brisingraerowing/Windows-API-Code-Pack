@@ -8103,6 +8103,16 @@
             Windows Vista and later. Draw the image if it is available in the cache. Do not extract it automatically. The called draw method returns E_PENDING to the calling component, which should then take an alternative action, such as, provide another image and queue a background task to force the image to be loaded via ForceImagePresent using the ILFIP_ALWAYS flag. The ILD_ASYNC flag then prevents the extraction operation from blocking the current thread and is especially important if a draw method is called from the user interface (UI) thread.
             </summary>
         </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.Shell.ContextMenuFlags.Normal">
+            <summary>
+            Indicates normal operation. A shortcut menu extension, namespace extension, or drag-and-drop handler can add all menu items.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.COMNative.Shell.ContextMenuFlags.DefaultOnly">
+            <summary>
+            The user is activating the default action, typically by double-clicking. This flag provides a hint for the shortcut menu extension to add nothing if it does not modify the default item in the menu. A shortcut menu extension or drag-and-drop handler should not add any menu items if this value is specified. A namespace extension should at most add only the default item.
+            </summary>
+        </member>
         <member name="T:Microsoft.WindowsAPICodePack.COMNative.Shell.FileDialogAddPlaceLocation">
             <summary>
             CommonFileDialog AddPlace locations

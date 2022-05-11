@@ -17,33 +17,49 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Menus
         [DllImport(User32, ExactSpelling = true)]
         public static extern IntPtr CreatePopupMenu();
 
-        [DllImport(User32, CharSet = CharSet.Unicode, ExactSpelling = true, SetLastError = true)]
+        [DllImport(User32, ExactSpelling = true, SetLastError = true)]
         [return: MarshalAs(Bool)]
-        public static extern bool AppendMenuW([In] IntPtr hMenu, [In, MarshalAs(U4)]
-#if !WAPICP3
-        Shell.DesktopWindowManager.
-#endif
-        MenuFlags uFlags, [In] UIntPtr uIDNewItem, [In, MarshalAs(LPWStr)] string lpNewItem);
+        public static extern bool SetMenuDefaultItem(IntPtr hMenu, [In, MarshalAs(U4)] uint uItem, [In, MarshalAs(U4)] uint fByPos);
+
+        public static bool SetMenuDefaultItem(in IntPtr hMenu, in uint uItem, in bool fByPos) => SetMenuDefaultItem(hMenu, uItem, fByPos ? 1u : 0u);
 
         [DllImport(User32, CharSet = CharSet.Unicode, ExactSpelling = true, SetLastError = true)]
         [return: MarshalAs(Bool)]
-        public static extern bool AppendMenuW([In] IntPtr hMenu, [In, MarshalAs(U4)] 
+        public static extern bool AppendMenuW(IntPtr hMenu, [In, MarshalAs(U4)]
 #if !WAPICP3
         Shell.DesktopWindowManager.
 #endif
-      MenuFlags uFlags, [In] UIntPtr uIDNewItem, [In] IntPtr lpNewItem);
+        MenuFlags uFlags, UIntPtr uIDNewItem, [In, MarshalAs(LPWStr)] string lpNewItem);
+
+        [DllImport(User32, CharSet = CharSet.Unicode, ExactSpelling = true, SetLastError = true)]
+        [return: MarshalAs(Bool)]
+        public static extern bool AppendMenuW(IntPtr hMenu, [In, MarshalAs(U4)] 
+#if !WAPICP3
+        Shell.DesktopWindowManager.
+#endif
+        MenuFlags uFlags, UIntPtr uIDNewItem, IntPtr lpNewItem);
 
         public static bool AppendMenu(in IntPtr hMenu, in
 #if !WAPICP3
         Shell.DesktopWindowManager.
 #endif
-      MenuFlags uFlags, in uint uIDNewItem, in string lpNewItem) => AppendMenuW(hMenu, uFlags, (UIntPtr)uIDNewItem, lpNewItem);
+        MenuFlags uFlags, in uint uIDNewItem, in string lpNewItem) => AppendMenuW(hMenu, uFlags, (UIntPtr)uIDNewItem, lpNewItem);
 
-        public static bool AppendMenu(in IntPtr hMenu, in
 #if !WAPICP3
-        Shell.DesktopWindowManager.
+        public static bool AppendMenu(in IntPtr hMenu, in Shell.DesktopWindowManager.MenuFlags uFlags, in UIntPtr uIDNewItem, in IntPtr lpNewItem) => AppendMenuW(hMenu, uFlags, uIDNewItem, lpNewItem);
 #endif
-      MenuFlags uFlags, in UIntPtr uIDNewItem, in IntPtr lpNewItem) => AppendMenuW(hMenu, uFlags, uIDNewItem, lpNewItem);
+
+        [DllImport(User32, CharSet = CharSet.Unicode, ExactSpelling = true, SetLastError = true)]
+        [return: MarshalAs(Bool)]
+        public static extern bool InsertMenuW(IntPtr hMenu, [In, MarshalAs(U4)] uint uPosition, [In, MarshalAs(U4)] MenuFlags uFlags, UIntPtr uIDNewItem, [In, MarshalAs(LPWStr)] string lpNewItem);
+
+        [DllImport(User32, CharSet = CharSet.Unicode, ExactSpelling = true, SetLastError = true)]
+        [return: MarshalAs(Bool)]
+        public static extern bool InsertMenuItemW(IntPtr hmenu, [In, MarshalAs(U4)] uint item, [In, MarshalAs(Bool)] bool fByPosition, [In, Out, MarshalAs(Struct)] ref MenuItemInfo lpmi);
+
+        public static bool PrependMenu(in IntPtr hMenu, in MenuFlags uFlags, UIntPtr uIDNewItem, string lpNewItem) => InsertMenuW(hMenu, 0u, (uFlags & MenuFlags.ByCommand) | MenuFlags.ByPosition, uIDNewItem, lpNewItem);
+
+        public static bool PrependMenu(in IntPtr hmenu, ref MenuItemInfo lpmi) => InsertMenuItemW(hmenu, 0u, true, ref lpmi);
 
         [DllImport(User32)]
         [return: MarshalAs(Bool)]

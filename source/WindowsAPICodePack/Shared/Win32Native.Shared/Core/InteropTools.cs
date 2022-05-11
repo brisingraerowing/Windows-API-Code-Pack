@@ -12,9 +12,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native
         public static readonly IntPtr SizeOfGuid = (IntPtr)Marshal.SizeOf(typeof(Guid));
         public static readonly Type TypeOfGuid = typeof(Guid);
 
-        public static int LOWORD(IntPtr i) => (int)(UIntPtr)(int)i & 0xffff;
+        [Obsolete("Please use Microsoft.WindowsAPICodePack.Win32Native.Core.GetLoWord instead.")]
+        public static int LOWORD(IntPtr i) => Core.GetLoWord(i);
 
-        public static int HIWORD(IntPtr i) => ((int)(UIntPtr)(int)i >> 16) & 0xffff;
+        [Obsolete("Please use Microsoft.WindowsAPICodePack.Win32Native.Core.GetHiWord instead.")]
+        public static int HIWORD(IntPtr i) => Core.GetHiWord(i);
 
         public static T Unpack<T>(IntPtr value) where T : struct => value == IntPtr.Zero ? (default) : (T)Marshal.PtrToStructure(value, typeof(T));
 

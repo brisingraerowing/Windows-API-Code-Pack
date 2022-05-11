@@ -3909,133 +3909,133 @@
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.String)">
             <summary>
-            Set a string value
+            Set a <see cref="T:System.String"/> value
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.String[])">
             <summary>
-            Set a string vector
+            Set a <see cref="T:System.String"/> vector
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.Boolean[])">
             <summary>
-            Set a bool vector
+            Set a <see cref="T:System.Boolean"/> vector
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.Int16[])">
             <summary>
-            Set a short vector
+            Set a <see cref="T:System.Int16"/> vector
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.UInt16[])">
             <summary>
-            Set a short vector
+            Set a <see cref="T:System.UInt16"/> vector
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.Int32[])">
             <summary>
-            Set an int vector
+            Set an <see cref="T:System.Int32"/> vector
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.UInt32[])">
             <summary>
-            Set an uint vector
+            Set a <see cref="T:System.UInt32"/> vector
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.Int64[])">
             <summary>
-            Set a long vector
+            Set a <see cref="T:System.Int64"/> vector
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.UInt64[])">
             <summary>
-            Set a ulong vector
+            Set a <see cref="T:System.UInt64"/> vector
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.Double[])">
             <summary>>
-            Set a double vector
+            Set a <see cref="T:System.Double"/> vector
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.DateTime[])">
             <summary>
-            Set a System.DateTime vector
+            Set a <see cref="T:System.DateTime"/> vector
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.Boolean)">
             <summary>
-            Set a bool value
+            Set a <see cref="T:System.Boolean"/> value
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.DateTime)">
             <summary>
-            Set a System.DateTime value
+            Set a <see cref="T:System.DateTime"/> value
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.Byte)">
             <summary>
-            Set a byte value
+            Set a <see cref="T:System.Byte"/> value
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.SByte)">
             <summary>
-            Set a sbyte value
+            Set a <see cref="T:System.SByte"/> value
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.Int16)">
             <summary>
-            Set a short value
+            Set a <see cref="T:System.Int16"/> value
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.UInt16)">
             <summary>
-            Set an unsigned short value
+            Set a <see cref="T:System.UInt16"/> value
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.Int32)">
             <summary>
-            Set an int value
+            Set an <see cref="T:System.Int32"/> value
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.UInt32)">
             <summary>
-            Set an unsigned int value
+            Set a <see cref="T:System.UInt32"/> value
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.Decimal)">
             <summary>
-            Set a decimal  value
+            Set a <see cref="T:System.Decimal"/> value
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.Decimal[])">
             <summary>
-            Create a PropVariant with a contained decimal array.
+            Create a <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant"/> with a contained <see cref="T:System.Decimal"/> array.
             </summary>
-            <param name="value">Decimal array to wrap.</param>
+            <param name="value"><see cref="T:System.Decimal"/> array to wrap.</param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.Single)">
             <summary>
-            Create a PropVariant containing a float type.
+            Create a <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant"/> containing a <see cref="T:System.Single"/> value.
             </summary>        
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.Single[])">
             <summary>
-            Creates a PropVariant containing a float[] array.
+            Creates a <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant"/> containing a <see cref="T:System.Single"/> array.
             </summary>        
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.Int64)">
             <summary>
-            Set a long
+            Set a <see cref="T:System.Int64"/>
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.UInt64)">
             <summary>
-            Set a ulong
+            Set a <see cref="T:System.UInt64"/>
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.#ctor(System.Double)">
             <summary>
-            Set a double
+            Set a <see cref="T:System.Double"/>
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.SetIUnknown(System.Object)">
@@ -4069,11 +4069,6 @@
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.Dispose">
             <summary>
             Disposes the object, calls the clear function.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.Finalize">
-            <summary>
-            Finalizer
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.ToString">

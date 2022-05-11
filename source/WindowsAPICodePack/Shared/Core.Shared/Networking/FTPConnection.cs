@@ -153,16 +153,14 @@ namespace Microsoft.WindowsAPICodePack.Net.FTP
                 FTPConnection._currentEnumerator = null;
             }
 
-            protected override void ResetOverride()
+            protected override void ResetOverride2()
             {
-                base.ResetOverride();
-
                 ResetMoveNext();
 
                 ReleaseHandle();
             }
 
-            protected virtual void DisposeUnmanaged() => ReleaseHandle();
+            protected override void DisposeUnmanaged() => ReleaseHandle();
 
             protected override void DisposeManaged()
             {
@@ -173,13 +171,6 @@ namespace Microsoft.WindowsAPICodePack.Net.FTP
                 _parent = null;
 
                 base.DisposeManaged();
-            }
-
-            protected override void Dispose(bool disposing)
-            {
-                DisposeUnmanaged();
-
-                base.Dispose(disposing);
             }
         }
 

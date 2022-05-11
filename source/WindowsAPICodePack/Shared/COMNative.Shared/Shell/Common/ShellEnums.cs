@@ -86,7 +86,14 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
     [Flags]
     public enum ContextMenuFlags : uint
     {
+        /// <summary>
+        /// Indicates normal operation. A shortcut menu extension, namespace extension, or drag-and-drop handler can add all menu items.
+        /// </summary>
         Normal = 0x00000000,
+
+        /// <summary>
+        /// The user is activating the default action, typically by double-clicking. This flag provides a hint for the shortcut menu extension to add nothing if it does not modify the default item in the menu. A shortcut menu extension or drag-and-drop handler should not add any menu items if this value is specified. A namespace extension should at most add only the default item.
+        /// </summary>
         DefaultOnly = 0x00000001,
         VerbsOnly = 0x00000002,
         Explore = 0x00000004,

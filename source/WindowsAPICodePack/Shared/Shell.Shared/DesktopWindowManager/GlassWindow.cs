@@ -10,6 +10,59 @@ using static Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
+    public class Window : System.Windows.Window
+    {
+        public IntPtr Handle { get; private set; }
+
+        private static readonly DependencyPropertyKey IsSourceInitializedPropertyKey = DependencyProperty.RegisterReadOnly(nameof(IsSourceInitialized), typeof(bool), typeof(Window), new PropertyMetadata(false));
+
+        public static readonly DependencyProperty IsSourceInitializedProperty = IsSourceInitializedPropertyKey.DependencyProperty;
+
+        public bool IsSourceInitialized => (bool)GetValue(IsSourceInitializedProperty);
+
+        protected virtual IntPtr OnSourceHook2(WindowMessage msg, IntPtr wParam, IntPtr lParam, out bool handled)
+        {
+            handled = false;
+
+            return IntPtr.Zero;
+        }
+
+        protected virtual IntPtr OnSourceHook(WindowMessage msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        {
+            if (handled)
+
+                return IntPtr.Zero;
+
+            IntPtr result = OnSourceHook2(msg, wParam, lParam, out bool _handled);
+
+            if (_handled)
+
+                handled = true;
+
+            return result;
+        }
+
+        protected virtual void OnSourceInitialized(HwndSource hwndSource) => hwndSource.AddHook((IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled) => OnSourceHook((WindowMessage)msg, wParam, lParam, ref handled));
+
+        protected virtual void OnSourceInitializing(EventArgs e) { /* Left empty. */ }
+
+        /// <summary>
+        /// Override SourceInitialized to initialize windowHandle for this window.
+        /// A valid windowHandle is available only after the sourceInitialized is completed
+        /// </summary>
+        protected override void OnSourceInitialized(EventArgs e)
+        {
+            base.OnSourceInitialized(e);
+
+            // add Window Proc hook to capture DWM messages
+            OnSourceInitialized(HwndSource.FromHwnd(Handle = new WindowInteropHelper(this).Handle));
+
+            OnSourceInitializing(e);
+
+            SetValue(IsSourceInitializedPropertyKey, true);
+        }
+    }
+
     /// <summary>
     /// WPF Glass Window
     /// Inherit from this window class to enable glass on a WPF window
@@ -24,9 +77,28 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             get => DwmIsCompositionEnabled();
 
-            set => DwmEnableComposition(
-                    value ? CompositionEnable.Enable : CompositionEnable.Disable);
+            set => DwmEnableComposition(value ? CompositionEnable.Enable : CompositionEnable.Disable);
         }
+
+        public static readonly DependencyProperty AeroGlassCompositionActivatedProperty = DependencyProperty.Register(nameof(AeroGlassCompositionActivated), typeof(bool), typeof(GlassWindow), new PropertyMetadata(false, (DependencyObject d, DependencyPropertyChangedEventArgs e) =>
+        {
+            var window = (GlassWindow)d;
+
+            if (window.IsSourceInitialized)
+
+                if ((bool)e.NewValue)
+
+                    window.ActivateAeroGlassComposition();
+
+                else
+
+                    window.UpdateColors(SystemColors.WindowColor, SystemColors.WindowBrush);
+        }));
+
+        /// <summary>
+        /// Get: Gets a value indicating whether the current window is displayed with an Aero background. Set: Makes the background of current window transparent from both Wpf and Windows Perspective if the value is <see langword="true"/>, otherwise resets the backgrounds to their respective system default values.
+        /// </summary>
+        public bool AeroGlassCompositionActivated { get => (bool)GetValue(AeroGlassCompositionActivatedProperty); set => SetValue(AeroGlassCompositionActivatedProperty, value); }
         #endregion
 
         #region events
@@ -37,17 +109,16 @@ namespace Microsoft.WindowsAPICodePack.Shell
         #endregion
 
         #region operations
-        /// <summary>
-        /// Makes the background of current window transparent from both Wpf and Windows Perspective
-        /// </summary>
-        public void SetAeroGlassTransparency()
+        private void UpdateColors(in Color color, in SolidColorBrush brush)
         {
             // Set the Background to transparent from Win32 perpective 
-            HwndSource.FromHwnd(windowHandle).CompositionTarget.BackgroundColor = Colors.Transparent;
+            HwndSource.FromHwnd(Handle).CompositionTarget.BackgroundColor = color;
 
             // Set the Background to transparent from WPF perpective 
-            Background = Brushes.Transparent;
+            Background = brush;
         }
+
+        private void ActivateAeroGlassComposition() => UpdateColors(Colors.Transparent, Brushes.Transparent);
 
         /// <summary>
         /// Excludes a UI element from the AeroGlass frame.
@@ -64,8 +135,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 _ = HandlerNativeMethods.GetWindowRect(hwndSource.Handle, out NativeRect windowRect);
                 _ = HandlerNativeMethods.GetClientRect(hwndSource.Handle, out NativeRect clientRect);
                 var nonClientSize = new Size(
-                        (double)(windowRect.Right - windowRect.Left) - (double)(clientRect.Right - clientRect.Left),
-                        (double)(windowRect.Bottom - windowRect.Top) - (double)(clientRect.Bottom - clientRect.Top));
+                        windowRect.Right - windowRect.Left - (double)(clientRect.Right - clientRect.Left),
+                        windowRect.Bottom - windowRect.Top - (double)(clientRect.Bottom - clientRect.Top));
 
                 // calculate size of element relative to nonclient area
                 GeneralTransform transform = element.TransformToAncestor(this);
@@ -84,7 +155,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 };
 
                 // Extend the Frame into client area
-                _ = DwmExtendFrameIntoClientArea(windowHandle, ref margins);
+                _ = DwmExtendFrameIntoClientArea(Handle, ref margins);
             }
         }
 
@@ -94,24 +165,29 @@ namespace Microsoft.WindowsAPICodePack.Shell
         public void ResetAeroGlass()
         {
             var margins = new Margins(true);
-            _ = DwmExtendFrameIntoClientArea(windowHandle, ref margins);
+            _ = DwmExtendFrameIntoClientArea(Handle, ref margins);
         }
         #endregion
 
         #region implementation
-        private IntPtr windowHandle;
-
-        private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        protected override IntPtr OnSourceHook2(WindowMessage msg, IntPtr wParam, IntPtr lParam, out bool handled)
         {
-            if (msg == (int)WindowMessage.DWMCompositionChanged
-                || msg == (int)WindowMessage.DWMNCRenderingChanged)
+            switch (msg)
             {
-                if (AeroGlassCompositionChanged != null)
+                case WindowMessage.DWMCompositionChanged:
+                case WindowMessage.DWMNCRenderingChanged:
 
-                    AeroGlassCompositionChanged.Invoke(this,
-                        new AeroGlassCompositionChangedEventArgs(AeroGlassCompositionEnabled));
+                    AeroGlassCompositionChanged?.Invoke(this, new AeroGlassCompositionChangedEventArgs(AeroGlassCompositionEnabled));
 
-                handled = true;
+                    handled = true;
+
+                    break;
+
+                default:
+
+                    handled = false;
+
+                    break;
             }
 
             return IntPtr.Zero;
@@ -125,14 +201,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
         protected override void OnSourceInitialized(EventArgs e)
         {
             base.OnSourceInitialized(e);
-            var interopHelper = new WindowInteropHelper(this);
-            windowHandle = interopHelper.Handle;
-
-            // add Window Proc hook to capture DWM messages
-            var source = HwndSource.FromHwnd(windowHandle);
-            source.AddHook(new System.Windows.Interop.HwndSourceHook(WndProc));
 
             ResetAeroGlass();
+
+            if (AeroGlassCompositionActivated)
+
+                ActivateAeroGlassComposition();
         }
         #endregion
     }

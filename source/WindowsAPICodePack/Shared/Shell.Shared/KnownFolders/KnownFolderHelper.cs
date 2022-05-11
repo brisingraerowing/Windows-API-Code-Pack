@@ -29,7 +29,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         /// <param name="knownFolderId">A GUID for the requested known folder.</param>
         /// <returns>A known folder representing the specified name.</returns>
-        /// <exception cref="System.ArgumentException">Thrown if the given Known Folder ID is invalid.</exception>
+        /// <exception cref="ArgumentException">Thrown if the given Known Folder ID is invalid.</exception>
         public static IKnownFolder FromKnownFolderId(in Guid knownFolderId)
         {
             HResult hr = new KnownFolderManagerClass().GetFolder(knownFolderId, out IKnownFolderNative knownFolderNative);

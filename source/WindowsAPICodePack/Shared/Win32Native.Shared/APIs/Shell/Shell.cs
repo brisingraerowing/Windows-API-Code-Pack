@@ -17,6 +17,13 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     public static partial class Shell
     {
         #region Shell Helper Methods
+        [DllImport("shell32.dll", ExactSpelling = true, PreserveSig = true)]
+        public static extern HResult SHBindToParent(
+            IntPtr pidl,
+            [In, MarshalAs(LPStruct)] Guid riid,
+            [MarshalAs(Interface)] out object ppv,
+            out IntPtr ppidlLast);
+
         [DllImport(Shell32, CharSet = CharSet.Unicode, ExactSpelling = true, SetLastError = true)]
         [return: MarshalAs(Bool)]
         public static extern bool Shell_NotifyIconW([MarshalAs(U4)] NotifyIconModification dwMessage, [In] ref NotifyIconData lpData);

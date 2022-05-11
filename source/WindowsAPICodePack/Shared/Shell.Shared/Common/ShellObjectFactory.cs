@@ -1,24 +1,24 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
-using System;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.Linq;
-using System.Threading;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
 using Microsoft.WindowsAPICodePack.COMNative.Shell;
+
+using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
     public static class ShellObjectFactory
     {
         /// <summary>
-        /// Creates a ShellObject given a native IShellItem interface
+        /// Creates a <see cref="ShellObject"/> given a native <see cref="IShellItem"/> interface.
         /// </summary>
-        /// <param name="nativeShellItem"></param>
-        /// <returns>A newly constructed ShellObject object</returns>
+        /// <param name="nativeShellItem">The native <see cref="IShellItem"/> from which to create the new <see cref="ShellObject"/>.</param>
+        /// <returns>A newly constructed <see cref="ShellObject"/> object.</returns>
         public static ShellObject Create(IShellItem nativeShellItem)
         {
             // Sanity check
@@ -71,32 +71,30 @@ namespace Microsoft.WindowsAPICodePack.Shell
                 }
 
                 // 4. It's a ShellFolder
-                if (isFileSystem)
-                {
+                return isFileSystem ?
+
                     // 5. Is it a (File-System / Non-Virtual) Known Folder
-                    if (!IsVirtualKnownFolder(nativeShellItem2))
-                    { //needs to check if it is a known folder and not virtual
-                        var kf = new FileSystemKnownFolder(nativeShellItem2);
+                    IsVirtualKnownFolder(nativeShellItem2) ?
+                        //needs to check if it is a known folder and not virtual
 
-                        return kf;
-                    }
 
-                    return new ShellFileSystemFolder(nativeShellItem2);
-                }
+                        new ShellFileSystemFolder(nativeShellItem2)
+                        : new FileSystemKnownFolder(nativeShellItem2)
 
-                // 5. Is it a (Non File-System / Virtual) Known Folder
-                if (IsVirtualKnownFolder(nativeShellItem2))
-                { //needs to check if known folder is virtual
-                    var kf = new NonFileSystemKnownFolder(nativeShellItem2);
+                    // 5. Is it a (Non File-System / Virtual) Known Folder
+                    : IsVirtualKnownFolder(nativeShellItem2) ?
+                    //needs to check if known folder is virtual
+                    new NonFileSystemKnownFolder(nativeShellItem2)
 
-                    return kf;
-                }
-
-                return new ShellNonFileSystemFolder(nativeShellItem2);
+                    : new ShellNonFileSystemFolder(nativeShellItem2);
             }
 
             // 6. If this is an entity (single item), check if its filesystem or not
-            return isFileSystem ? new ShellFile(nativeShellItem2) : (ShellObject)new ShellNonFileSystemItem(nativeShellItem2);
+            return isFileSystem ? new ShellFile(nativeShellItem2) :
+#if !CS9
+                    (ShellObject)
+#endif
+                    new ShellNonFileSystemItem(nativeShellItem2);
         }
 
         // This is a work around for the STA thread bug.  This will execute the call on a non-sta thread, then return the result
@@ -144,13 +142,20 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 return nativeFolder != null && definition.category == FolderCategory.Virtual;
             }
+
             finally
             {
                 Win32Native.Shell.Shell.ILFree(pidl);
             }
         }
 
-        public static int TryGetNativeShellItem(string parsingName, out IShellItem2 result)
+        public static
+#if WAPICP3
+            HResult
+#else
+            int
+#endif
+            TryGetNativeShellItem(string parsingName, out IShellItem2 result)
         {
             if (string.IsNullOrEmpty(parsingName))
 
@@ -163,24 +168,29 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
         public static IShellItem2 GetNativeShellItem(string parsingName)
         {
-            int retCode = TryGetNativeShellItem(parsingName, out IShellItem2 result);
+            HResult retCode = TryGetNativeShellItem(parsingName, out IShellItem2 result);
 
-            return CoreErrorHelper.Succeeded(retCode) ? result : throw new ShellException(LocalizedMessages.ShellObjectFactoryUnableToCreateItem, Marshal.GetExceptionForHR(retCode));
+            return CoreErrorHelper.Succeeded(retCode) ? result : throw new ShellException(LocalizedMessages.ShellObjectFactoryUnableToCreateItem, CoreErrorHelper.GetExceptionForHR(retCode));
         }
 
         /// <summary>
-        /// Creates a ShellObject given a parsing name
+        /// Creates a <see cref="ShellObject"/> given a parsing name.
         /// </summary>
-        /// <param name="parsingName"></param>
-        /// <returns>A newly constructed ShellObject object</returns>
+        /// <param name="parsingName">The parsing name from which to create the new <see cref="ShellObject"/>.</param>
+        /// <returns>A newly constructed <see cref="ShellObject"/> object.</returns>
         public static ShellObject Create(string parsingName) => Create(GetNativeShellItem(parsingName));
 
         /// <summary>
-        /// Constructs a new Shell object from IDList pointer
+        /// Constructs a new <see cref="ShellObject"/> from an IDList pointer.
         /// </summary>
-        /// <param name="idListPtr"></param>
-        /// <returns></returns>
-        public static ShellObject Create(IntPtr idListPtr)
+        /// <param name="idListPtr">The IDList pointer from which to create the new <see cref="ShellObject"/>.</param>
+        /// <returns>A newly constructed <see cref="ShellObject"/> object or <see langword="null"/> if no <see cref="IShellItem2"/> could be retrieved.</returns>
+        /// <seealso cref="Create(IntPtr, ShellContainer)"/>
+        public static ShellObject
+#if CS8
+            ?
+#endif
+            Create(IntPtr idListPtr)
         {
             // Throw exception if not running on Win7 or newer.
             CoreHelpers.ThrowIfNotVista();
@@ -193,11 +203,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
         }
 
         /// <summary>
-        /// Constructs a new Shell object from IDList pointer
+        /// Constructs a new <see cref="ShellObject"/> from an IDList pointer and a parent <see cref="ShellContainer"/>.
         /// </summary>
-        /// <param name="idListPtr"></param>
-        /// <param name="parent"></param>
-        /// <returns></returns>
+        /// <param name="idListPtr">The IDList pointer from which to create the new <see cref="ShellObject"/>.</param>
+        /// <returns>A newly constructed <see cref="ShellObject"/> object or <see langword="null"/> if no <see cref="IShellItem"/> could be retrieved.</returns>
+        /// <seealso cref="Create(IntPtr)"/>
         public static ShellObject Create(IntPtr idListPtr, ShellContainer parent)
         {
             int retCode = COMNative.Shell.Shell.SHCreateShellItem(

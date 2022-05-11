@@ -24,15 +24,23 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
         #endregion
 
 #if WAPICP3
-        public static IntPtr GetPidl(in string directory)
+        public static IntPtr GetPidl(string directory, string name = null)
         {
-            DirectoryInfo parent = System.IO.Directory.GetParent(directory);
+            if (name == null)
+            {
+                DirectoryInfo parent = Directory.GetParent(directory);
 
-            if (parent == null)
+                if (parent == null)
 
-                return IntPtr.Zero;
+                    return IntPtr.Zero;
 
-            IShellFolder oParentFolder = GetParentFolder(parent.FullName);
+                name = Path.GetFileName(directory);
+
+                directory = parent.FullName;
+
+            }
+
+            IShellFolder oParentFolder = GetParentFolder(directory);
 
             if (oParentFolder == null)
 
@@ -41,7 +49,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
             uint pchEaten = 0;
             uint pdwAttributes = 0;
 
-            _ = oParentFolder.ParseDisplayName(IntPtr.Zero, IntPtr.Zero, System.IO.Path.GetFileName(directory), ref pchEaten, out IntPtr pPidl, ref pdwAttributes);
+            _ = oParentFolder.ParseDisplayName(IntPtr.Zero, IntPtr.Zero, name, ref pchEaten, out IntPtr pPidl, ref pdwAttributes);
 
             _ = Marshal.ReleaseComObject(oParentFolder);
 
@@ -102,7 +110,13 @@ namespace Microsoft.WindowsAPICodePack.COMNative.Shell
             [MarshalAs(UnmanagedType.Interface)] out IShellItemArray iShellItemArray);
 
         [DllImport(Shell32, CharSet = CharSet.Unicode, SetLastError = true)]
-        public static extern int SHCreateItemFromParsingName(
+        public static extern
+#if WAPICP3
+            HResult
+#else
+            int
+#endif
+            SHCreateItemFromParsingName(
             [MarshalAs(UnmanagedType.LPWStr)] string path,
             // The following parameter is not used - binding context.
             IntPtr pbc,

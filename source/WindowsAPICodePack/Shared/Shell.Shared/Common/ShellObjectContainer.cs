@@ -21,11 +21,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
     /// Represents the base class for all types of Shell "containers". Any class deriving from this class
     /// can contain other ShellObjects (e.g. ShellFolder, FileSystemKnownFolder, ShellLibrary, etc)
     /// </summary>
-    public abstract class ShellContainer : ShellObject, IEnumerable<ShellObject>, IDisposable
+    public abstract class ShellContainer : ShellObject, IEnumerable<ShellObject>, System.IDisposable
     {
         #region Private Fields
-        private IShellFolder desktopFolderEnumeration;
-        private IShellFolder nativeShellFolder;
+        private IShellFolder _desktopFolderEnumeration;
+        private IShellFolder _nativeShellFolder;
         #endregion
 
         #region Internal Properties
@@ -33,13 +33,13 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             get
             {
-                if (nativeShellFolder == null)
+                if (_nativeShellFolder == null)
                 {
                     var guid = new Guid(NativeAPI.Guids.Shell.IShellFolder);
                     var handler = new Guid(Guids.ShellBindingHandlerID.ShellFolderObject);
 
                     HResult hr = NativeShellItem.BindToHandler(
-                        IntPtr.Zero, ref handler, ref guid, out nativeShellFolder);
+                        IntPtr.Zero, ref handler, ref guid, out _nativeShellFolder);
 
                     if (CoreErrorHelper.Failed(hr))
                     {
@@ -51,15 +51,15 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     }
                 }
 
-                return nativeShellFolder;
+                return _nativeShellFolder;
             }
         }
         #endregion
 
         #region Internal Constructor
-        internal ShellContainer() { }
+        internal ShellContainer() { /* Left empty. */ }
 
-        internal ShellContainer(IShellItem2 shellItem) : base(shellItem) { }
+        internal ShellContainer(IShellItem2 shellItem) : base(shellItem) { /* Left empty. */ }
         #endregion
 
 #if WAPICP3
@@ -91,11 +91,60 @@ namespace Microsoft.WindowsAPICodePack.Shell
             var pidls = new IntPtr[items.Count];
 
             for (int i = 0; i < items.Count; i++)
+            {
+                _ = Win32Native.Shell.Shell.SHBindToParent(items[i].PIDL, new Guid(NativeAPI.Guids.Shell.IShellFolder), out object ppv, out IntPtr pidl);
 
-                pidls[i] = COMNative.Shell.Shell.GetPidl(items[i].ParsingName);
+                pidls[i] = pidl;
+
+                CoreHelpers.DisposeCOMObject(ref ppv);
+            }
 
             return pidls;
         }
+
+        /*public static IntPtr[] GetPIDLs(
+#if CS6
+            System.
+#else
+            WinCopies.
+#endif
+            Collections.Generic.IReadOnlyList<ShellObject> items, string parent = null)
+        {
+            FuncIn<int, IntPtr> func = parent == null ? (in int i) => COMNative.Shell.Shell.GetPidl(items[i].ParsingName) :
+#if !CS9
+                (FuncIn<int, IntPtr>)(
+#endif
+                (in int i) => COMNative.Shell.Shell.GetPidl(parent, items[i].Name)
+#if !CS9
+                )
+#endif
+                ;
+
+            var pidls = new IntPtr[items.Count];
+
+            for (int i = 0; i < items.Count; i++)
+
+                pidls[i] = func(i);
+
+            return pidls;
+        }
+
+        public static IntPtr[] GetPIDLsRel(
+#if CS6
+            System.
+#else
+            WinCopies.
+#endif
+            Collections.Generic.IReadOnlyList<ShellObject> items)
+        {
+            var pidls = new IntPtr[items.Count];
+
+            for (int i = 0; i < items.Count; i++)
+
+                pidls[i] = items[i].PIDLRel;
+
+            return pidls;
+        }*/
 
         public HResult TryGetUIObjectOf(IntPtr hwndOwner, IntPtr[] ptrs, ref Guid guid, out IntPtr ptr) => ptrs == null ? throw GetArgumentNullException(nameof(ptrs)) : NativeShellFolder.GetUIObjectOf(hwndOwner, (uint)ptrs.Length, ptrs, ref guid, IntPtr.Zero, out ptr);
 
@@ -114,17 +163,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="disposing"><B>True</B> indicates that this is being called from Dispose(), rather than the finalizer.</param>
         protected override void Dispose(bool disposing)
         {
-            if (nativeShellFolder != null)
-            {
-                _ = Marshal.ReleaseComObject(nativeShellFolder);
-                nativeShellFolder = null;
-            }
-
-            if (desktopFolderEnumeration != null)
-            {
-                _ = Marshal.ReleaseComObject(desktopFolderEnumeration);
-                desktopFolderEnumeration = null;
-            }
+            CoreHelpers.DisposeCOMObject(ref _nativeShellFolder);
+            CoreHelpers.DisposeCOMObject(ref _desktopFolderEnumeration);
 
             base.Dispose(disposing);
         }
@@ -139,11 +179,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             if (NativeShellFolder == null)
             {
-                if (desktopFolderEnumeration == null)
+                if (_desktopFolderEnumeration == null)
 
-                    _ = COMNative.Shell.Shell.SHGetDesktopFolder(out desktopFolderEnumeration);
+                    _ = COMNative.Shell.Shell.SHGetDesktopFolder(out _desktopFolderEnumeration);
 
-                nativeShellFolder = desktopFolderEnumeration;
+                _nativeShellFolder = _desktopFolderEnumeration;
             }
 
             return new ShellFolderItems(this);

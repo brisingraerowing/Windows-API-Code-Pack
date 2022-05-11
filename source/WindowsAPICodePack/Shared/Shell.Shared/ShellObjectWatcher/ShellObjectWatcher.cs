@@ -7,6 +7,16 @@ using System;
 using System.ComponentModel;
 using System.Threading;
 
+using static Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellObjectChangeTypes;
+
+using static WinCopies.
+#if WAPICP3
+    ThrowHelper
+#else
+    Util.Util
+#endif
+    ;
+
 namespace Microsoft.WindowsAPICodePack.Shell
 {
     /// <summary>
@@ -16,17 +26,18 @@ namespace Microsoft.WindowsAPICodePack.Shell
     /// </summary>
     public class ShellObjectWatcher : IDisposable
     {
-        private ShellObject _shellObject;
-        private bool _recursive;
-
-        private ChangeNotifyEventManager _manager = new ChangeNotifyEventManager();
-        private IntPtr _listenerHandle;
-        private uint _message;
-
+        private readonly ShellObject _shellObject;
+        private readonly bool _recursive;
+        private readonly ChangeNotifyEventManager _manager = new
+#if !CS9
+            ChangeNotifyEventManager
+#endif
+            ();
+        private readonly IntPtr _listenerHandle;
+        private readonly uint _message;
         private uint _registrationId;
         private volatile bool _running;
-
-        private SynchronizationContext _context = SynchronizationContext.Current;
+        private readonly SynchronizationContext _context = SynchronizationContext.Current;
 
         /// <summary>
         /// Creates the ShellObjectWatcher for the given ShellObject
@@ -35,18 +46,14 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <param name="recursive">Whether to listen for changes recursively (for when monitoring a container)</param>
         public ShellObjectWatcher(ShellObject shellObject, bool recursive)
         {
-            if (shellObject == null)
-
-                throw new ArgumentNullException(nameof(shellObject));
+            _shellObject = shellObject ?? throw GetArgumentNullException(nameof(shellObject));
+            _recursive = recursive;
 
             if (_context == null)
             {
                 _context = new SynchronizationContext();
                 SynchronizationContext.SetSynchronizationContext(_context);
             }
-
-            _shellObject = shellObject;
-            _recursive = recursive;
 
             MessageListenerFilterRegistrationResult result = MessageListenerFilter.Register(OnWindowMessageReceived);
             _listenerHandle = result.WindowHandle;
@@ -57,6 +64,222 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// Gets whether the watcher is currently running.
         /// </summary>
         public bool Running { get => _running; private set => _running = value; }
+
+        #region Change Events
+        #region Mask Events
+        /// <summary>
+        /// Raised when any event occurs.
+        /// </summary>
+        public event EventHandler<ShellObjectNotificationEventArgs> AllEvents
+        {
+            add => HandleEvent(_manager.Register, AllEventsMask, value);
+
+            remove => HandleEvent(_manager.Unregister, AllEventsMask, value);
+        }
+
+        /// <summary>
+        /// Raised when global events occur.
+        /// </summary>
+        public event EventHandler<ShellObjectNotificationEventArgs> GlobalEvents
+        {
+            add => HandleEvent(_manager.Register, GlobalEventsMask, value);
+
+            remove => HandleEvent(_manager.Unregister, GlobalEventsMask, value);
+        }
+
+        /// <summary>
+        /// Raised when disk events occur.
+        /// </summary>
+        public event EventHandler<ShellObjectNotificationEventArgs> DiskEvents
+        {
+            add => HandleEvent(_manager.Register, DiskEventsMask, value);
+
+            remove => HandleEvent(_manager.Unregister, DiskEventsMask, value);
+        }
+        #endregion
+
+        #region Single Events
+        /// <summary>
+        /// Raised when an item is renamed.
+        /// </summary>
+        public event EventHandler<ShellObjectRenamedEventArgs> ItemRenamed
+        {
+            add => HandleEvent(_manager.Register, ItemRename, value);
+
+            remove => HandleEvent(_manager.Unregister, ItemRename, value);
+        }
+
+        /// <summary>
+        /// Raised when an item is created.
+        /// </summary>
+        public event EventHandler<ShellObjectChangedEventArgs> ItemCreated
+        {
+            add => HandleEvent(_manager.Register, ItemCreate, value);
+
+            remove => HandleEvent(_manager.Unregister, ItemCreate, value);
+        }
+
+        /// <summary>
+        /// Raised when an item is deleted.
+        /// </summary>
+        public event EventHandler<ShellObjectChangedEventArgs> ItemDeleted
+        {
+            add => HandleEvent(_manager.Register, ItemDelete, value);
+
+            remove => HandleEvent(_manager.Unregister, ItemDelete, value);
+        }
+
+        /// <summary>
+        /// Raised when an item is updated.
+        /// </summary>
+        public event EventHandler<ShellObjectChangedEventArgs> Updated
+        {
+            add => HandleEvent(_manager.Register, Update, value);
+
+            remove => HandleEvent(_manager.Unregister, Update, value);
+        }
+
+        /// <summary>
+        /// Raised when a directory is updated.
+        /// </summary>
+        public event EventHandler<ShellObjectChangedEventArgs> DirectoryUpdated
+        {
+            add => HandleEvent(_manager.Register, DirectoryContentsUpdate, value);
+
+            remove => HandleEvent(_manager.Unregister, DirectoryContentsUpdate, value);
+        }
+
+        /// <summary>
+        /// Raised when a directory is renamed.
+        /// </summary>
+        public event EventHandler<ShellObjectRenamedEventArgs> DirectoryRenamed
+        {
+            add => HandleEvent(_manager.Register, DirectoryRename, value);
+
+            remove => HandleEvent(_manager.Unregister, DirectoryRename, value);
+        }
+
+        /// <summary>
+        /// Raised when a directory is created.
+        /// </summary>
+        public event EventHandler<ShellObjectChangedEventArgs> DirectoryCreated
+        {
+            add => HandleEvent(_manager.Register, DirectoryCreate, value);
+
+            remove => HandleEvent(_manager.Unregister, DirectoryCreate, value);
+        }
+
+        /// <summary>
+        /// Raised when a directory is deleted.
+        /// </summary>
+        public event EventHandler<ShellObjectChangedEventArgs> DirectoryDeleted
+        {
+            add => HandleEvent(_manager.Register, DirectoryDelete, value);
+
+            remove => HandleEvent(_manager.Unregister, DirectoryDelete, value);
+        }
+
+        /// <summary>
+        /// Raised when media is inserted.
+        /// </summary>
+        public event EventHandler<ShellObjectChangedEventArgs> MediaInserted
+        {
+            add => HandleEvent(_manager.Register, MediaInsert, value);
+
+            remove => HandleEvent(_manager.Unregister, MediaInsert, value);
+        }
+
+        /// <summary>
+        /// Raised when media is removed.
+        /// </summary>
+        public event EventHandler<ShellObjectChangedEventArgs> MediaRemoved
+        {
+            add => HandleEvent(_manager.Register, MediaRemove, value);
+
+            remove => HandleEvent(_manager.Unregister, MediaRemove, value);
+        }
+
+        /// <summary>
+        /// Raised when a drive is added.
+        /// </summary>
+        public event EventHandler<ShellObjectChangedEventArgs> DriveAdded
+        {
+            add => HandleEvent(_manager.Register, DriveAdd, value);
+
+            remove => HandleEvent(_manager.Unregister, DriveAdd, value);
+        }
+
+        /// <summary>
+        /// Raised when a drive is removed.
+        /// </summary>
+        public event EventHandler<ShellObjectChangedEventArgs> DriveRemoved
+        {
+            add => HandleEvent(_manager.Register, DriveRemove, value);
+
+            remove => HandleEvent(_manager.Unregister, DriveRemove, value);
+        }
+
+        /// <summary>
+        /// Raised when a folder is .Shared on a network.
+        /// </summary>
+        public event EventHandler<ShellObjectChangedEventArgs> FolderNetworkShared
+        {
+            add => HandleEvent(_manager.Register, NetShare, value);
+
+            remove => HandleEvent(_manager.Unregister, NetShare, value);
+        }
+
+        /// <summary>
+        /// Raised when a folder is un.Shared from the network.
+        /// </summary>
+        public event EventHandler<ShellObjectChangedEventArgs> FolderNetworkUnShared
+        {
+            add => HandleEvent(_manager.Register, NetUnshare, value);
+
+            remove => HandleEvent(_manager.Unregister, NetUnshare, value);
+        }
+
+        /// <summary>
+        /// Raised when a server is disconnected.
+        /// </summary>
+        public event EventHandler<ShellObjectChangedEventArgs> ServerDisconnected
+        {
+            add => HandleEvent(_manager.Register, ServerDisconnect, value);
+
+            remove => HandleEvent(_manager.Unregister, ServerDisconnect, value);
+        }
+
+        /// <summary>
+        /// Raised when a system image is changed.
+        /// </summary>
+        public event EventHandler<ShellObjectChangedEventArgs> SystemImageChanged
+        {
+            add => HandleEvent(_manager.Register, SystemImageUpdate, value);
+
+            remove => HandleEvent(_manager.Unregister, SystemImageUpdate, value);
+        }
+
+        /// <summary>
+        /// Raised when free space changes.
+        /// </summary>
+        public event EventHandler<ShellObjectChangedEventArgs> FreeSpaceChanged
+        {
+            add => HandleEvent(_manager.Register, FreeSpace, value);
+
+            remove => HandleEvent(_manager.Unregister, FreeSpace, value);
+        }
+
+        /// <summary>
+        /// Raised when a file type association changes.
+        /// </summary>
+        public event EventHandler<ShellObjectChangedEventArgs> FileTypeAssociationChanged
+        {
+            add => HandleEvent(_manager.Register, AssociationChange, value);
+
+            remove => HandleEvent(_manager.Unregister, AssociationChange, value);
+        }
+        #endregion
+        #endregion
 
         /// <summary>
         /// Start the watcher and begin receiving change notifications.        
@@ -132,7 +355,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         {
             if (!Running) return;
 
-            if (e == null) throw new ArgumentNullException(nameof(e));
+            if (e == null) throw GetArgumentNullException(nameof(e));
 
             var notifyLock = new ChangeNotifyLock(e.Message);
 
@@ -140,11 +363,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             switch (notifyLock.ChangeType)
             {
-                case ShellObjectChangeTypes.DirectoryRename:
-                case ShellObjectChangeTypes.ItemRename:
+                case DirectoryRename:
+                case ItemRename:
                     args = new ShellObjectRenamedEventArgs(notifyLock);
                     break;
-                case ShellObjectChangeTypes.SystemImageUpdate:
+                case SystemImageUpdate:
                     args = new SystemImageUpdatedEventArgs(notifyLock);
                     break;
                 default:
@@ -155,368 +378,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
             _manager.Invoke(this, notifyLock.ChangeType, args);
         }
 
-        #region Change Events
-        #region Mask Events
-        /// <summary>
-        /// Raised when any event occurs.
-        /// </summary>
-        public event EventHandler<ShellObjectNotificationEventArgs> AllEvents
+        protected void HandleEvent(in Action<ShellObjectChangeTypes, Delegate> action, in ShellObjectChangeTypes shellObjectChangeTypes, Delegate @delegate)
         {
-            add
-            {
-                ThrowIfRunning();
-                _manager.Register(ShellObjectChangeTypes.AllEventsMask, value);
-            }
-            remove
-            {
-                ThrowIfRunning();
-                _manager.Unregister(ShellObjectChangeTypes.AllEventsMask, value);
-            }
-        }
+            ThrowIfRunning();
 
-        /// <summary>
-        /// Raised when global events occur.
-        /// </summary>
-        public event EventHandler<ShellObjectNotificationEventArgs> GlobalEvents
-        {
-            add
-            {
-                ThrowIfRunning();
-                _manager.Register(ShellObjectChangeTypes.GlobalEventsMask, value);
-            }
-            remove
-            {
-                ThrowIfRunning();
-                _manager.Unregister(ShellObjectChangeTypes.GlobalEventsMask, value);
-            }
+            (action ?? throw GetArgumentNullException(nameof(action)))(shellObjectChangeTypes, @delegate);
         }
-
-        /// <summary>
-        /// Raised when disk events occur.
-        /// </summary>
-        public event EventHandler<ShellObjectNotificationEventArgs> DiskEvents
-        {
-            add
-            {
-                ThrowIfRunning();
-                _manager.Register(ShellObjectChangeTypes.DiskEventsMask, value);
-            }
-            remove
-            {
-                ThrowIfRunning();
-                _manager.Unregister(ShellObjectChangeTypes.DiskEventsMask, value);
-            }
-        }
-        #endregion
-
-        #region Single Events
-        /// <summary>
-        /// Raised when an item is renamed.
-        /// </summary>
-        public event EventHandler<ShellObjectRenamedEventArgs> ItemRenamed
-        {
-            add
-            {
-                ThrowIfRunning();
-                _manager.Register(ShellObjectChangeTypes.ItemRename, value);
-            }
-            remove
-            {
-                ThrowIfRunning();
-                _manager.Unregister(ShellObjectChangeTypes.ItemRename, value);
-            }
-        }
-
-        /// <summary>
-        /// Raised when an item is created.
-        /// </summary>
-        public event EventHandler<ShellObjectChangedEventArgs> ItemCreated
-        {
-            add
-            {
-                ThrowIfRunning();
-                _manager.Register(ShellObjectChangeTypes.ItemCreate, value);
-            }
-            remove
-            {
-                ThrowIfRunning();
-                _manager.Unregister(ShellObjectChangeTypes.ItemCreate, value);
-            }
-        }
-
-        /// <summary>
-        /// Raised when an item is deleted.
-        /// </summary>
-        public event EventHandler<ShellObjectChangedEventArgs> ItemDeleted
-        {
-            add
-            {
-                ThrowIfRunning();
-                _manager.Register(ShellObjectChangeTypes.ItemDelete, value);
-            }
-            remove
-            {
-                ThrowIfRunning();
-                _manager.Unregister(ShellObjectChangeTypes.ItemDelete, value);
-            }
-        }
-
-        /// <summary>
-        /// Raised when an item is updated.
-        /// </summary>
-        public event EventHandler<ShellObjectChangedEventArgs> Updated
-        {
-            add
-            {
-                ThrowIfRunning();
-                _manager.Register(ShellObjectChangeTypes.Update, value);
-            }
-            remove
-            {
-                ThrowIfRunning();
-                _manager.Unregister(ShellObjectChangeTypes.Update, value);
-            }
-        }
-
-        /// <summary>
-        /// Raised when a directory is updated.
-        /// </summary>
-        public event EventHandler<ShellObjectChangedEventArgs> DirectoryUpdated
-        {
-            add
-            {
-                ThrowIfRunning();
-                _manager.Register(ShellObjectChangeTypes.DirectoryContentsUpdate, value);
-            }
-            remove
-            {
-                ThrowIfRunning();
-                _manager.Unregister(ShellObjectChangeTypes.DirectoryContentsUpdate, value);
-            }
-        }
-
-        /// <summary>
-        /// Raised when a directory is renamed.
-        /// </summary>
-        public event EventHandler<ShellObjectRenamedEventArgs> DirectoryRenamed
-        {
-            add
-            {
-                ThrowIfRunning();
-                _manager.Register(ShellObjectChangeTypes.DirectoryRename, value);
-            }
-            remove
-            {
-                ThrowIfRunning();
-                _manager.Unregister(ShellObjectChangeTypes.DirectoryRename, value);
-            }
-        }
-
-        /// <summary>
-        /// Raised when a directory is created.
-        /// </summary>
-        public event EventHandler<ShellObjectChangedEventArgs> DirectoryCreated
-        {
-            add
-            {
-                ThrowIfRunning();
-                _manager.Register(ShellObjectChangeTypes.DirectoryCreate, value);
-            }
-            remove
-            {
-                ThrowIfRunning();
-                _manager.Unregister(ShellObjectChangeTypes.DirectoryCreate, value);
-            }
-        }
-
-        /// <summary>
-        /// Raised when a directory is deleted.
-        /// </summary>
-        public event EventHandler<ShellObjectChangedEventArgs> DirectoryDeleted
-        {
-            add
-            {
-                ThrowIfRunning();
-                _manager.Register(ShellObjectChangeTypes.DirectoryDelete, value);
-            }
-            remove
-            {
-                ThrowIfRunning();
-                _manager.Unregister(ShellObjectChangeTypes.DirectoryDelete, value);
-            }
-        }
-
-        /// <summary>
-        /// Raised when media is inserted.
-        /// </summary>
-        public event EventHandler<ShellObjectChangedEventArgs> MediaInserted
-        {
-            add
-            {
-                ThrowIfRunning();
-                _manager.Register(ShellObjectChangeTypes.MediaInsert, value);
-            }
-            remove
-            {
-                ThrowIfRunning();
-                _manager.Unregister(ShellObjectChangeTypes.MediaInsert, value);
-            }
-        }
-
-        /// <summary>
-        /// Raised when media is removed.
-        /// </summary>
-        public event EventHandler<ShellObjectChangedEventArgs> MediaRemoved
-        {
-            add
-            {
-                ThrowIfRunning();
-                _manager.Register(ShellObjectChangeTypes.MediaRemove, value);
-            }
-            remove
-            {
-                ThrowIfRunning();
-                _manager.Unregister(ShellObjectChangeTypes.MediaRemove, value);
-            }
-        }
-
-        /// <summary>
-        /// Raised when a drive is added.
-        /// </summary>
-        public event EventHandler<ShellObjectChangedEventArgs> DriveAdded
-        {
-            add
-            {
-                ThrowIfRunning();
-                _manager.Register(ShellObjectChangeTypes.DriveAdd, value);
-            }
-            remove
-            {
-                ThrowIfRunning();
-                _manager.Unregister(ShellObjectChangeTypes.DriveAdd, value);
-            }
-        }
-
-        /// <summary>
-        /// Raised when a drive is removed.
-        /// </summary>
-        public event EventHandler<ShellObjectChangedEventArgs> DriveRemoved
-        {
-            add
-            {
-                ThrowIfRunning();
-                _manager.Register(ShellObjectChangeTypes.DriveRemove, value);
-            }
-            remove
-            {
-                ThrowIfRunning();
-                _manager.Unregister(ShellObjectChangeTypes.DriveRemove, value);
-            }
-        }
-
-        /// <summary>
-        /// Raised when a folder is .Shared on a network.
-        /// </summary>
-        public event EventHandler<ShellObjectChangedEventArgs> FolderNetworkShared
-        {
-            add
-            {
-                ThrowIfRunning();
-                _manager.Register(ShellObjectChangeTypes.NetShare, value);
-            }
-            remove
-            {
-                ThrowIfRunning();
-                _manager.Unregister(ShellObjectChangeTypes.NetShare, value);
-            }
-        }
-
-        /// <summary>
-        /// Raised when a folder is un.Shared from the network.
-        /// </summary>
-        public event EventHandler<ShellObjectChangedEventArgs> FolderNetworkUnShared
-        {
-            add
-            {
-                ThrowIfRunning();
-                _manager.Register(ShellObjectChangeTypes.NetUnshare, value);
-            }
-            remove
-            {
-                ThrowIfRunning();
-                _manager.Unregister(ShellObjectChangeTypes.NetUnshare, value);
-            }
-        }
-
-        /// <summary>
-        /// Raised when a server is disconnected.
-        /// </summary>
-        public event EventHandler<ShellObjectChangedEventArgs> ServerDisconnected
-        {
-            add
-            {
-                ThrowIfRunning();
-                _manager.Register(ShellObjectChangeTypes.ServerDisconnect, value);
-            }
-            remove
-            {
-                ThrowIfRunning();
-                _manager.Unregister(ShellObjectChangeTypes.ServerDisconnect, value);
-            }
-        }
-
-        /// <summary>
-        /// Raised when a system image is changed.
-        /// </summary>
-        public event EventHandler<ShellObjectChangedEventArgs> SystemImageChanged
-        {
-            add
-            {
-                ThrowIfRunning();
-                _manager.Register(ShellObjectChangeTypes.SystemImageUpdate, value);
-            }
-            remove
-            {
-                ThrowIfRunning();
-                _manager.Unregister(ShellObjectChangeTypes.SystemImageUpdate, value);
-            }
-        }
-
-        /// <summary>
-        /// Raised when free space changes.
-        /// </summary>
-        public event EventHandler<ShellObjectChangedEventArgs> FreeSpaceChanged
-        {
-            add
-            {
-                ThrowIfRunning();
-                _manager.Register(ShellObjectChangeTypes.FreeSpace, value);
-            }
-            remove
-            {
-                ThrowIfRunning();
-                _manager.Unregister(ShellObjectChangeTypes.FreeSpace, value);
-            }
-        }
-
-        /// <summary>
-        /// Raised when a file type association changes.
-        /// </summary>
-        public event EventHandler<ShellObjectChangedEventArgs> FileTypeAssociationChanged
-        {
-            add
-            {
-                ThrowIfRunning();
-                _manager.Register(ShellObjectChangeTypes.AssociationChange, value);
-            }
-            remove
-            {
-                ThrowIfRunning();
-                _manager.Unregister(ShellObjectChangeTypes.AssociationChange, value);
-            }
-        }
-        #endregion
-        #endregion
 
         #region IDisposable Members
         /// <summary>
