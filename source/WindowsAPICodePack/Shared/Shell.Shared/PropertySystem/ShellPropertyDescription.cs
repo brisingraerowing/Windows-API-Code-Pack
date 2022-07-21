@@ -1,16 +1,14 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
+using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native;
+
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.ComTypes;
-using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
+
 using static Microsoft.WindowsAPICodePack.COMNative.PropertySystem.NativePropertyHelper;
-using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
-using Microsoft.WindowsAPICodePack.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 {
@@ -20,7 +18,6 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
     public class ShellPropertyDescription : IDisposable
     {
         #region Private Fields
-
         private IPropertyDescription nativePropertyDescription;
         private string canonicalName;
         private PropertyKey propertyKey;
@@ -33,17 +30,15 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         private PropertyTypeOptions? propertyTypeFlags;
         private PropertyViewOptions? propertyViewFlags;
         private Type valueType;
-        private System.Collections.ObjectModel. ReadOnlyCollection<ShellPropertyEnumType> propertyEnumTypes;
+        private System.Collections.ObjectModel.ReadOnlyCollection<ShellPropertyEnumType> propertyEnumTypes;
         private PropertyColumnStateOptions? columnState;
         private PropertyConditionType? conditionType;
         private PropertyConditionOperation? conditionOperation;
         private PropertyGroupingRange? groupingRange;
         private PropertySortDescription? sortDescription;
-
         #endregion
 
         #region Public Properties
-
         /// <summary>
         /// Gets the case-sensitive name of a property as it is known to the system, 
         /// regardless of its localized name.
@@ -102,20 +97,16 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             }
         }
 
+        private T GetValue<T>(ref T? value, in Func<WinCopies.
+#if !WAPICP3
+            Util.
+#endif
+            FuncOut<T, HResult>> func) where T : struct => (NativePropertyDescription != null && value == null && CoreErrorHelper.Succeeded(func()(out T tmpValue)) ? value = tmpValue : value) ?? default;
+
         /// <summary>
         /// Gets the VarEnum OLE type for this property.
         /// </summary>
-        public VarEnum VarEnumType
-        {
-            get
-            {
-                if (NativePropertyDescription != null && varEnumType == null && CoreErrorHelper.Succeeded(NativePropertyDescription.GetPropertyType(out VarEnum tempType)))
-
-                    varEnumType = tempType;
-
-                return varEnumType ?? default;
-            }
-        }
+        public VarEnum VarEnumType => GetValue(ref varEnumType, () => NativePropertyDescription.GetPropertyType);
 
         /// <summary>
         /// Gets the .NET system type for a value of this property, or
@@ -126,53 +117,23 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// <summary>
         /// Gets the current data type used to display the property.
         /// </summary>
-        public PropertyDisplayType DisplayType
-        {
-            get
-            {
-                if (NativePropertyDescription != null && displayType == null && CoreErrorHelper.Succeeded(NativePropertyDescription.GetDisplayType(out PropertyDisplayType tempDisplayType)))
-
-                    displayType = tempDisplayType;
-
-                return displayType ?? default;
-            }
-        }
+        public PropertyDisplayType DisplayType => GetValue(ref displayType, () => NativePropertyDescription.GetDisplayType);
 
         /// <summary>
         /// Gets the default user interface (UI) column width for this property.
         /// </summary>
-        public uint DefaultColumWidth
-        {
-            get
-            {
-                if (NativePropertyDescription != null && !defaultColumWidth.HasValue && CoreErrorHelper.Succeeded(NativePropertyDescription.GetDefaultColumnWidth(out uint tempDefaultColumWidth)))
-
-                        defaultColumWidth = tempDefaultColumWidth;
-
-                return defaultColumWidth ?? default;
-            }
-        }
+        public uint DefaultColumWidth => (NativePropertyDescription != null && !defaultColumWidth.HasValue && CoreErrorHelper.Succeeded(NativePropertyDescription.GetDefaultColumnWidth(out uint tempDefaultColumWidth)) ? defaultColumWidth = tempDefaultColumWidth : defaultColumWidth) ?? default;
 
         /// <summary>
         /// Gets a value that describes how the property values are displayed when 
         /// multiple items are selected in the user interface (UI).
         /// </summary>
-        public PropertyAggregationType AggregationTypes
-        {
-            get
-            {
-                if (NativePropertyDescription != null && aggregationTypes == null && CoreErrorHelper.Succeeded(NativePropertyDescription.GetAggregationType(out PropertyAggregationType tempAggregationTypes)))
-
-                        aggregationTypes = tempAggregationTypes;
-
-                return aggregationTypes ?? default;
-            }
-        }
+        public PropertyAggregationType AggregationTypes => GetValue(ref aggregationTypes, () => NativePropertyDescription.GetAggregationType);
 
         /// <summary>
         /// Gets a list of the possible values for this property.
         /// </summary>
-        public System.Collections.ObjectModel. ReadOnlyCollection<ShellPropertyEnumType> PropertyEnumTypes
+        public System.Collections.ObjectModel.ReadOnlyCollection<ShellPropertyEnumType> PropertyEnumTypes
         {
             get
             {
@@ -185,7 +146,6 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
                     if (nativeList != null && CoreErrorHelper.Succeeded(hr))
                     {
-
                         nativeList.GetCount(out uint count);
                         guid = new Guid(NativeAPI.Guids.Shell.IPropertyEnumType);
 
@@ -196,7 +156,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                         }
                     }
 
-                    propertyEnumTypes = new System.Collections.ObjectModel. ReadOnlyCollection<ShellPropertyEnumType>(propEnumTypeList);
+                    propertyEnumTypes = new System.Collections.ObjectModel.ReadOnlyCollection<ShellPropertyEnumType>(propEnumTypeList);
                 }
 
                 return propertyEnumTypes;
@@ -207,17 +167,18 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// Gets the column state flag, which describes how the property 
         /// should be treated by interfaces or APIs that use this flag.
         /// </summary>
-        public PropertyColumnStateOptions ColumnState
+        public PropertyColumnStateOptions ColumnState => GetValue(ref columnState, () => NativePropertyDescription.GetColumnState);
+
+        private T GetConditionValue<T>(ref T? conditionValue) where T : struct
         {
-            get
+            // If default/first value, try to get it again, otherwise used the cached one.
+            if (!(NativePropertyDescription == null || conditionValue.HasValue) && CoreErrorHelper.Succeeded(NativePropertyDescription.GetConditionType(out PropertyConditionType tempConditionType, out PropertyConditionOperation tempConditionOperation)))
             {
-                // If default/first value, try to get it again, otherwise used the cached one.
-                if (NativePropertyDescription != null && columnState == null && CoreErrorHelper.Succeeded(NativePropertyDescription.GetColumnState(out PropertyColumnStateOptions state)))
-
-                        columnState = state;
-
-                return columnState ?? default;
+                conditionOperation = tempConditionOperation;
+                conditionType = tempConditionType;
             }
+
+            return conditionValue ?? default;
         }
 
         /// <summary>
@@ -228,20 +189,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// </summary>
         /// <remarks>For more information, see the <c>conditionType</c> attribute 
         /// of the <c>typeInfo</c> element in the property's .propdesc file.</remarks>
-        public PropertyConditionType ConditionType
-        {
-            get
-            {
-                // If default/first value, try to get it again, otherwise used the cached one.
-                if (NativePropertyDescription != null && conditionType == null && CoreErrorHelper.Succeeded(NativePropertyDescription.GetConditionType(out PropertyConditionType tempConditionType, out PropertyConditionOperation tempConditionOperation)))
-                    {
-                        conditionOperation = tempConditionOperation;
-                        conditionType = tempConditionType;
-                    }
-
-                return conditionType ?? default;
-            }
-        }
+        public PropertyConditionType ConditionType => GetConditionValue(ref conditionType);
 
         /// <summary>
         /// Gets the default condition operation to use 
@@ -252,20 +200,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// </summary>
         /// <remarks>For more information, see the <c>conditionType</c> attribute of the 
         /// <c>typeInfo</c> element in the property's .propdesc file.</remarks>
-        public PropertyConditionOperation ConditionOperation
-        {
-            get
-            {
-                // If default/first value, try to get it again, otherwise used the cached one.
-                if (NativePropertyDescription != null && conditionOperation == null && CoreErrorHelper.Succeeded(NativePropertyDescription.GetConditionType(out PropertyConditionType tempConditionType, out PropertyConditionOperation tempConditionOperation)))
-                    {
-                        conditionOperation = tempConditionOperation;
-                        conditionType = tempConditionType;
-                    }
-
-                return conditionOperation ?? default;
-            }
-        }
+        public PropertyConditionOperation ConditionOperation => GetConditionValue(ref conditionOperation);
 
         /// <summary>
         /// Gets the method used when a view is grouped by this property.
@@ -273,18 +208,9 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// <remarks>The information retrieved by this method comes from 
         /// the <c>groupingRange</c> attribute of the <c>typeInfo</c> element in the 
         /// property's .propdesc file.</remarks>
-        public PropertyGroupingRange GroupingRange
-        {
-            get
-            {
+        public PropertyGroupingRange GroupingRange => GetValue(ref
                 // If default/first value, try to get it again, otherwise used the cached one.
-                if (NativePropertyDescription != null && groupingRange == null && CoreErrorHelper.Succeeded(NativePropertyDescription.GetGroupingRange(out PropertyGroupingRange tempGroupingRange)))
-
-                        groupingRange = tempGroupingRange;
-
-                return groupingRange ?? default;
-            }
-        }
+                groupingRange, () => NativePropertyDescription.GetGroupingRange);
 
         /// <summary>
         /// Gets the current sort description flags for the property, 
@@ -293,18 +219,9 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// <remarks>The settings retrieved by this method are set 
         /// through the <c>sortDescription</c> attribute of the <c>labelInfo</c> 
         /// element in the property's .propdesc file.</remarks>
-        public PropertySortDescription SortDescription
-        {
-            get
-            {
+        public PropertySortDescription SortDescription => GetValue(ref
                 // If default/first value, try to get it again, otherwise used the cached one.
-                if (NativePropertyDescription != null && sortDescription == null && CoreErrorHelper.Succeeded(NativePropertyDescription.GetSortDescription(out PropertySortDescription tempSortDescription)))
-
-                        sortDescription = tempSortDescription;
-
-                return sortDescription ?? default;
-            }
-        }
+                sortDescription, () => NativePropertyDescription.GetSortDescription);
 
         /// <summary>
         /// Gets the localized display string that describes the current sort order.
@@ -319,11 +236,11 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             string label = string.Empty;
 
             if (NativePropertyDescription != null && CoreErrorHelper.Succeeded(NativePropertyDescription.GetSortDescriptionLabel(descending, out IntPtr ptr)) && ptr != IntPtr.Zero)
-                {
-                    label = Marshal.PtrToStringUni(ptr);
-                    // Free the string
-                    Marshal.FreeCoTaskMem(ptr);
-                }
+            {
+                label = Marshal.PtrToStringUni(ptr);
+                // Free the string
+                Marshal.FreeCoTaskMem(ptr);
+            }
 
             return label;
         }
@@ -331,47 +248,20 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// <summary>
         /// Gets a set of flags that describe the uses and capabilities of the property.
         /// </summary>
-        public PropertyTypeOptions TypeFlags
-        {
-            get
-            {
-                if (NativePropertyDescription != null && propertyTypeFlags == null)
-
-                    propertyTypeFlags = CoreErrorHelper.Succeeded(NativePropertyDescription.GetTypeFlags(PropertyTypeOptions.MaskAll, out PropertyTypeOptions tempFlags)) ? tempFlags : default;
-
-                return propertyTypeFlags ?? default;
-            }
-        }
+        public PropertyTypeOptions TypeFlags => (NativePropertyDescription != null && propertyTypeFlags == null ? propertyTypeFlags = CoreErrorHelper.Succeeded(NativePropertyDescription.GetTypeFlags(PropertyTypeOptions.MaskAll, out PropertyTypeOptions tempFlags)) ? tempFlags : default : propertyTypeFlags) ?? default;
 
         /// <summary>
         /// Gets the current set of flags governing the property's view.
         /// </summary>
-        public PropertyViewOptions ViewFlags
-        {
-            get
-            {
-                if (NativePropertyDescription != null && propertyViewFlags == null)
-
-                    propertyViewFlags = CoreErrorHelper.Succeeded(NativePropertyDescription.GetViewFlags(out PropertyViewOptions tempFlags)) ? tempFlags : default;
-
-                return propertyViewFlags ?? default;
-            }
-        }
+        public PropertyViewOptions ViewFlags => (NativePropertyDescription != null && propertyViewFlags == null ? propertyViewFlags = CoreErrorHelper.Succeeded(NativePropertyDescription.GetViewFlags(out PropertyViewOptions tempFlags)) ? tempFlags : default : propertyViewFlags) ?? default;
 
         /// <summary>
         /// Gets a value that determines if the native property description is present on the system.
         /// </summary>
         public bool HasSystemDescription => NativePropertyDescription != null;
-
         #endregion
-
-        #region Internal Constructor
 
         internal ShellPropertyDescription(PropertyKey key) => propertyKey = key;
-
-        #endregion
-
-        #region Internal Methods
 
         /// <summary>
         /// Get the native property description COM interface
@@ -390,21 +280,14 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             }
         }
 
-        #endregion
-
         #region IDisposable Members
-
         /// <summary>
         /// Release the native objects
         /// </summary>
         /// <param name="disposing">Indicates that this is being called from Dispose(), rather than the finalizer.</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (nativePropertyDescription != null)
-            {
-                _ = Marshal.ReleaseComObject(nativePropertyDescription);
-                nativePropertyDescription = null;
-            }
+            CoreHelpers.DisposeCOMObject(ref nativePropertyDescription);
 
             if (disposing)
             {
@@ -430,11 +313,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// <summary>
         /// Release the native objects
         /// </summary>
-        ~ShellPropertyDescription()
-        {
-            Dispose(false);
-        }
-
+        ~ShellPropertyDescription() => Dispose(false);
         #endregion
     }
 }

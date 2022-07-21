@@ -27,20 +27,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
             return IntPtr.Zero;
         }
 
-        protected virtual IntPtr OnSourceHook(WindowMessage msg, IntPtr wParam, IntPtr lParam, ref bool handled)
-        {
-            if (handled)
-
-                return IntPtr.Zero;
-
-            IntPtr result = OnSourceHook2(msg, wParam, lParam, out bool _handled);
-
-            if (_handled)
-
-                handled = true;
-
-            return result;
-        }
+        protected virtual IntPtr OnSourceHook(WindowMessage msg, IntPtr wParam, IntPtr lParam, ref bool handled) => handled ? IntPtr.Zero : OnSourceHook2(msg, wParam, lParam, out handled);
 
         protected virtual void OnSourceInitialized(HwndSource hwndSource) => hwndSource.AddHook((IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled) => OnSourceHook((WindowMessage)msg, wParam, lParam, ref handled));
 
@@ -64,21 +51,15 @@ namespace Microsoft.WindowsAPICodePack.Shell
     }
 
     /// <summary>
-    /// WPF Glass Window
-    /// Inherit from this window class to enable glass on a WPF window
+    /// WPF Glass Window. Inherit from this window class to enable glass on a WPF window.
     /// </summary>
     public class GlassWindow : Window
     {
-        #region properties
+        #region Properties
         /// <summary>
         /// Get determines if AeroGlass is enabled on the desktop. Set enables/disables AreoGlass on the desktop.
         /// </summary>
-        public static bool AeroGlassCompositionEnabled
-        {
-            get => DwmIsCompositionEnabled();
-
-            set => DwmEnableComposition(value ? CompositionEnable.Enable : CompositionEnable.Disable);
-        }
+        public static bool AeroGlassCompositionEnabled { get => DwmIsCompositionEnabled(); set => DwmEnableComposition(value ? CompositionEnable.Enable : CompositionEnable.Disable); }
 
         public static readonly DependencyProperty AeroGlassCompositionActivatedProperty = DependencyProperty.Register(nameof(AeroGlassCompositionActivated), typeof(bool), typeof(GlassWindow), new PropertyMetadata(false, (DependencyObject d, DependencyPropertyChangedEventArgs e) =>
         {
@@ -99,17 +80,15 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// Get: Gets a value indicating whether the current window is displayed with an Aero background. Set: Makes the background of current window transparent from both Wpf and Windows Perspective if the value is <see langword="true"/>, otherwise resets the backgrounds to their respective system default values.
         /// </summary>
         public bool AeroGlassCompositionActivated { get => (bool)GetValue(AeroGlassCompositionActivatedProperty); set => SetValue(AeroGlassCompositionActivatedProperty, value); }
-        #endregion
+        #endregion Properties
 
-        #region events
         /// <summary>
         /// Fires when the availability of Glass effect changes.
         /// </summary>
         public event EventHandler<AeroGlassCompositionChangedEventArgs> AeroGlassCompositionChanged;
-        #endregion
 
-        #region operations
-        private void UpdateColors(in Color color, in SolidColorBrush brush)
+        #region Operations
+        private void UpdateColors(in System.Windows.Media.Color color, in SolidColorBrush brush)
         {
             // Set the Background to transparent from Win32 perpective 
             HwndSource.FromHwnd(Handle).CompositionTarget.BackgroundColor = color;
@@ -167,9 +146,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
             var margins = new Margins(true);
             _ = DwmExtendFrameIntoClientArea(Handle, ref margins);
         }
-        #endregion
+        #endregion Operations
 
-        #region implementation
+        #region Implementation
         protected override IntPtr OnSourceHook2(WindowMessage msg, IntPtr wParam, IntPtr lParam, out bool handled)
         {
             switch (msg)
@@ -208,6 +187,6 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
                 ActivateAeroGlassComposition();
         }
-        #endregion
+        #endregion Implementation
     }
 }

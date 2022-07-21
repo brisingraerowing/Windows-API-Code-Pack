@@ -26,13 +26,9 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         {
             int result = PropertySystemNativeMethods.PSGetPropertyKeyFromName(canonicalName, out PropertyKey propKey);
 
-            if (!CoreErrorHelper.Succeeded(result))
+            // todo: some localized messages could now apply only for the Shell project (and not for Win32Native), so they should be moved to the Shell project.
 
-                // todo: some localized messages could now apply only for the Shell project (and not for Win32Native), so they should be moved to the Shell project.
-
-                throw new ArgumentException(LocalizedMessages.ShellInvalidCanonicalName, Marshal.GetExceptionForHR(result));
-
-            return ShellPropertyDescriptionsCache.Cache.GetPropertyDescription(propKey);
+            return CoreErrorHelper.Succeeded(result) ? ShellPropertyDescriptionsCache.Cache.GetPropertyDescription(propKey) : throw new ArgumentException(LocalizedMessages.ShellInvalidCanonicalName, Marshal.GetExceptionForHR(result));
         }
     }
 }

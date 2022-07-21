@@ -13,8 +13,6 @@ using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-using PropertyInfo = System.Reflection.PropertyInfo;
-
 namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 {
     /// <summary>
@@ -41,13 +39,18 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         private void GetImageReference()
         {
             IPropertyStore store = ShellPropertyCollection.CreateDefaultPropertyStore(ParentShellObject);
+
+            using
+#if !CS8
+                (
+#endif
+            var propVar = new PropVariant()
 #if CS8
-            using var propVar = new PropVariant();
+            ;
 #else
-            using (var propVar = new PropVariant())
+            )
             {
 #endif
-
                 _ = store.GetValue(ref propertyKey, propVar);
 
                 _ = Marshal.ReleaseComObject(store);
@@ -84,22 +87,10 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                         ref guid,
                         out writablePropStore);
 
-                if (!CoreErrorHelper.Succeeded(hr))
-
-                    throw new PropertySystemException(LocalizedMessages.ShellPropertyUnableToGetWritableProperty,
+                HResult result = CoreErrorHelper.Succeeded(hr) ? writablePropStore.SetValue(ref propertyKey, propVar) : throw new PropertySystemException(LocalizedMessages.ShellPropertyUnableToGetWritableProperty,
                         Marshal.GetExceptionForHR(hr));
 
-                HResult result = writablePropStore.SetValue(ref propertyKey, propVar);
-
-                if (!AllowSetTruncatedValue && result == HResult.InPlaceStringTruncated)
-
-                    throw new ArgumentOutOfRangeException(nameof(propVar), LocalizedMessages.ShellPropertyValueTruncated);
-
-                if (!CoreErrorHelper.Succeeded(result))
-
-                    throw new PropertySystemException(LocalizedMessages.ShellPropertySetValue, Marshal.GetExceptionForHR((int)result));
-
-                _ = writablePropStore.Commit();
+                _ = AllowSetTruncatedValue && result == HResult.InPlaceStringTruncated ? CoreErrorHelper.Succeeded(result) ? writablePropStore.Commit() : throw new PropertySystemException(LocalizedMessages.ShellPropertySetValue, Marshal.GetExceptionForHR((int)result)) : throw new ArgumentOutOfRangeException(nameof(propVar), LocalizedMessages.ShellPropertyValueTruncated);
             }
 
             catch (InvalidComObjectException e)
@@ -114,51 +105,10 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
             finally
             {
-                if (writablePropStore != null)
-                {
-                    _ = Marshal.ReleaseComObject(writablePropStore);
-
-                    writablePropStore = null;
-                }
+                CoreHelpers.DisposeCOMObject(ref writablePropStore);
             }
         }
-        #endregion
-
-        #region Internal Constructor
-        /// <summary>
-        /// Constructs a new Property object
-        /// </summary>
-        /// <param name="propertyKey"></param>
-        /// <param name="description"></param>
-        /// <param name="parent"></param>
-        internal ShellProperty(
-            PropertyKey propertyKey,
-            ShellPropertyDescription description,
-            ShellObject parent)
-        {
-            this.propertyKey = propertyKey;
-            Description = description;
-            ParentShellObject = parent;
-            AllowSetTruncatedValue = false;
-        }
-
-        /// <summary>
-        /// Constructs a new Property object
-        /// </summary>
-        /// <param name="propertyKey"></param>
-        /// <param name="description"></param>
-        /// <param name="propertyStore"></param>
-        internal ShellProperty(
-            PropertyKey propertyKey,
-            ShellPropertyDescription description,
-            IPropertyStore propertyStore)
-        {
-            this.propertyKey = propertyKey;
-            Description = description;
-            NativePropertyStore = propertyStore;
-            AllowSetTruncatedValue = false;
-        }
-        #endregion
+        #endregion Private Methods
 
         #region Public Properties
         /// <summary>
@@ -170,17 +120,26 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// <exception cref="NotSupportedException">If the type of this property is not supported; e.g. writing a binary object.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown if <see cref="AllowSetTruncatedValue"/> is false, and either 
         /// a string value was truncated or a numeric value was rounded.</exception>        
-        public T Value
+        public T
+#if CS9
+            ?
+#endif
+            Value
         {
             get
             {
                 // Make sure we load the correct type
                 Debug.Assert(ValueType == NativePropertyHelper.VarEnumToSystemType(Description.VarEnumType));
 
+                using
+#if !CS8
+                (
+#endif
+                var propVar = new PropVariant()
 #if CS8
-                using var propVar = new PropVariant();
+                ;
 #else
-                using (var propVar = new PropVariant())
+                )
                 {
 #endif
                     if (ParentShellObject.NativePropertyStore != null)
@@ -199,8 +158,25 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                         _ = NativePropertyStore.GetValue(ref propertyKey, propVar);
 
                     //Get the value
-                    return propVar.Value != null ? (T)propVar.Value : default;
+                    object value = propVar.Value;
 
+                    if (value == null)
+
+                        return default;
+
+                    Type type = typeof(T);
+
+                    if (type.IsValueType)
+
+                        value = (type = Nullable.GetUnderlyingType(type) ?? type).IsEnum ? Enum.ToObject(type, Convert.ChangeType(value,
+#if CS8
+                            type.GetEnumUnderlyingType()
+#else
+                            Enum.GetUnderlyingType(type)
+#endif
+                        )) : Convert.ChangeType(value, type);
+
+                    return (T)value;
 #if !CS8
                 }
 #endif
@@ -211,44 +187,58 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                 // Make sure we use the correct type
                 Debug.Assert(ValueType == NativePropertyHelper.VarEnumToSystemType(Description.VarEnumType));
 
-                if (typeof(T) != ValueType)
+                Type getType(Type type) => (type = Nullable.GetUnderlyingType(type) ?? type).IsEnum ?
+#if CS8
+                    type.GetEnumUnderlyingType()
+#else
+                    Enum.GetUnderlyingType(type)
+#endif
+                    : type;
 
-                    throw new NotSupportedException(
-                        string.Format(System.Globalization.CultureInfo.InvariantCulture,
-                        LocalizedMessages.ShellPropertyWrongType, ValueType.Name));
-
-                if (value is Nullable)
-                {
-                    Type t = typeof(T);
-
-                    PropertyInfo pi = t.GetProperty("HasValue");
-
-                    if (pi != null && !(bool)pi.GetValue(value, null))
-                    {
-                        ClearValue();
-
-                        return;
-                    }
-                }
-
-                else if (value == null)
+                if (getType(typeof(T)) == getType(ValueType) ? value == null : throw new NotSupportedException(
+                    string.Format(System.Globalization.CultureInfo.InvariantCulture,
+                    LocalizedMessages.ShellPropertyWrongType, ValueType.Name)))
                 {
                     ClearValue();
 
                     return;
                 }
 
-                if (ParentShellObject != null)
+                using (ShellPropertyWriter propertyWriter = ParentShellObject == null && NativePropertyStore != null ? throw new InvalidOperationException(LocalizedMessages.ShellPropertyCannotSetProperty) : ParentShellObject.Properties.GetPropertyWriter())
 
-                    using (ShellPropertyWriter propertyWriter = ParentShellObject.Properties.GetPropertyWriter())
-
-                        propertyWriter.WriteProperty<T>(this, value, AllowSetTruncatedValue);
-
-                else if (NativePropertyStore != null)
-
-                    throw new InvalidOperationException(LocalizedMessages.ShellPropertyCannotSetProperty);
+                    propertyWriter.WriteProperty<T>(this, value, AllowSetTruncatedValue);
             }
         }
+        #endregion Public Properties
+
+        #region Constructors
+        private ShellProperty(in PropertyKey propertyKey,
+            in ShellPropertyDescription description)
+        {
+            this.propertyKey = propertyKey;
+            Description = description;
+            AllowSetTruncatedValue = false;
+        }
+
+        /// <summary>
+        /// Constructs a new Property object.
+        /// </summary>
+        internal ShellProperty(
+            PropertyKey propertyKey,
+            ShellPropertyDescription description,
+            ShellObject parent) : this(propertyKey, description) =>
+
+            ParentShellObject = parent;
+
+        /// <summary>
+        /// Constructs a new Property object
+        /// </summary>
+        internal ShellProperty(
+            PropertyKey propertyKey,
+            ShellPropertyDescription description,
+            IPropertyStore propertyStore) : this(propertyKey, description) =>
+
+            NativePropertyStore = propertyStore;
         #endregion
 
         #region IProperty Members
@@ -260,12 +250,11 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// <summary>
         /// Returns a formatted, Unicode string representation of a property value.
         /// </summary>
-        /// <param name="format">One or more of the PropertyDescriptionFormat flags 
+        /// <param name="format">One or more of the <see cref="PropertyDescriptionFormatOptions"/> flags 
         /// that indicate the desired format.</param>
-        /// <param name="formattedString">The formatted value as a string, or null if this property 
+        /// <param name="formattedString">The formatted value as a <see cref="string"/>, or <see langword="null"/> if this property 
         /// cannot be formatted for display.</param>
-        /// <returns>True if the method successfully locates the formatted string; otherwise 
-        /// False.</returns>
+        /// <returns><see langword="true"/> if the method successfully locates the formatted <see cref="string"/>; otherwise <see langword="false"/>.</returns>
         public bool TryFormatForDisplay(PropertyDescriptionFormatOptions format, out string formattedString)
         {
             if (Description == null || Description.NativePropertyDescription == null)
@@ -278,10 +267,15 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
             IPropertyStore store = ShellPropertyCollection.CreateDefaultPropertyStore(ParentShellObject);
 
+            using
+#if !CS8
+            (
+#endif
+                var propVar = new PropVariant()
 #if CS8
-            using var propVar = new PropVariant();
+                ;
 #else
-            using (var propVar = new PropVariant())
+            )
             {
 #endif
                 _ = store.GetValue(ref propertyKey, propVar);
@@ -294,14 +288,13 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
                 // Sometimes, the value cannot be displayed properly, such as for blobs
                 // or if we get argument exception
-                if (!CoreErrorHelper.Succeeded(hr))
-                {
-                    formattedString = null;
+                if (CoreErrorHelper.Succeeded(hr))
 
-                    return false;
-                }
+                    return true;
 
-                return true;
+                formattedString = null;
+
+                return false;
 #if !CS8
             }
 #endif
@@ -323,10 +316,15 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
             IPropertyStore store = ShellPropertyCollection.CreateDefaultPropertyStore(ParentShellObject);
 
+            using
+#if !CS8
+            (
+#endif
+                var propVar = new PropVariant()
 #if CS8
-            using var propVar = new PropVariant();
+                ;
 #else
-            using (var propVar = new PropVariant())
+            )
             {
 #endif
                 _ = store.GetValue(ref propertyKey, propVar);
@@ -339,7 +337,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
                 // Sometimes, the value cannot be displayed properly, such as for blobs
                 // or if we get argument exception
-                return !CoreErrorHelper.Succeeded(hr) ? throw new ShellException(hr) : formattedString;
+                return CoreErrorHelper.Succeeded(hr) ? formattedString : throw new ShellException(hr);
 #if !CS8
             }
 #endif
@@ -348,7 +346,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// <summary>
         /// Get the property description object.
         /// </summary>
-        public ShellPropertyDescription Description { get; } = null;
+        public ShellPropertyDescription Description { get; }
 
         /// <summary>
         /// Gets the case-sensitive name of a property as it is known to the system,
@@ -361,12 +359,16 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// </summary>
         public void ClearValue()
         {
-#if CS8
-            using var propVar = new PropVariant();
-#else
-            using (var propVar = new PropVariant())
+            using
+#if !CS8
+            (
 #endif
-
+            var propVar = new PropVariant()
+#if CS8
+            ;
+#else
+            )
+#endif
                 StorePropVariantValue(propVar);
         }
 
@@ -380,10 +382,15 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         {
             get
             {
+                using
+#if !CS8
+                (
+#endif
+                var propVar = new PropVariant()
 #if CS8
-                using var propVar = new PropVariant();
+                ;
 #else
-                using (var propVar = new PropVariant())
+                )
                 {
 #endif
                     if (ParentShellObject != null)
@@ -392,8 +399,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
                         _ = store.GetValue(ref propertyKey, propVar);
 
-                        _ = Marshal.ReleaseComObject(store);
-                        store = null;
+                        CoreHelpers.DisposeCOMObject(ref store);
                     }
 
                     else
@@ -411,15 +417,36 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// Gets the associated runtime type.
         /// </summary>
         public Type ValueType
+#if DEBUG
         {
             get
             {
                 // The type for this object need to match that of the description
-                Debug.Assert(Description.ValueType == typeof(T));
+                Type tmp;
+                Type
+#if CS8
+                    ?
+#endif
+                    type = Nullable.GetUnderlyingType(tmp = typeof(T)) ?? tmp;
+                Type _type = Nullable.GetUnderlyingType(tmp = Description.ValueType) ?? tmp;
 
-                return Description.ValueType;
+                Debug.Assert(_type == (type.IsEnum ?
+#if CS5
+                    type.GetEnumUnderlyingType()
+#else
+                    Enum.GetUnderlyingType(type)
+#endif
+                    : type));
+
+                return
+#else
+                    =>
+#endif
+                 Description.ValueType;
+#if DEBUG
             }
         }
+#endif
 
         /// <summary>
         /// Gets the image reference path and icon index associated with a property value (Windows 7 only).
@@ -439,13 +466,12 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         }
 
         /// <summary>
-        /// Gets or sets a value that determines if a value can be truncated. The default for this property is false.
+        /// Gets or sets a value that determines if a value can be truncated. The default for this property is <see langword="false"/>.
         /// </summary>
         /// <remarks>
         /// An <see cref="ArgumentOutOfRangeException"/> will be thrown if
-        /// this property is not set to true, and a property value was set
+        /// this property is not set to <see langword="true"/>, and a property value was set
         /// but later truncated. 
-        /// 
         /// </remarks>
         public bool AllowSetTruncatedValue { get; set; }
         #endregion

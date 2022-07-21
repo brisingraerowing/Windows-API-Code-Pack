@@ -814,9 +814,13 @@ in
         }
     }
 
-    internal sealed class Dictionary<TValue> : IDictionary<PropertyKey, TValue>
+    internal sealed class Dictionary<TValue> : System.Collections.Generic.IDictionary<PropertyKey, TValue>
     {
-        private readonly Dictionary<PropertyKey, TValue> _innerDictionary = new Dictionary<PropertyKey, TValue>();
+        private readonly Dictionary<PropertyKey, TValue> _innerDictionary = new
+#if !CS9
+            Dictionary<PropertyKey, TValue>
+#endif
+            ();
 
         private Action<PropertyKey, TValue> _addAction;
 
@@ -855,7 +859,7 @@ in
 
         System.Collections.IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)_innerDictionary).GetEnumerator();
 
-        bool IDictionary<PropertyKey, TValue>.Remove(PropertyKey key) => _innerDictionary.Remove(key);
+        bool System.Collections.Generic.IDictionary<PropertyKey, TValue>.Remove(PropertyKey key) => _innerDictionary.Remove(key);
 
         bool System.Collections.Generic.ICollection<KeyValuePair<PropertyKey, TValue>>.Remove(KeyValuePair<PropertyKey, TValue> item) => ((ICollection<KeyValuePair<PropertyKey, TValue>>)_innerDictionary).Remove(item);
 
@@ -888,49 +892,42 @@ in
         {
             get
             {
-                if (IsDisposed)
-
-                    throw new InvalidOperationException("The current object is disposed.");
-
-                if (_innerDictionary.TryGetValue(key, out Property value))
+                if (IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : _innerDictionary.TryGetValue(key, out Property value))
 
                     return value;
 
-                else
+                PropertyKey propertyKey;
+                Property objectProperty;
+
+                for (uint i = 0; i < Count; i++)
                 {
-                    for (uint i = 0; i < Count; i++)
+                    propertyKey = new PropertyKey();
+
+                    _ = Items.GetAt(i, ref propertyKey);
+
+                    if (propertyKey == key)
                     {
-                        var propertyKey = new PropertyKey();
+                        objectProperty = new Property(this, propertyKey, CoreErrorHelper.Succeeded(Items.GetPropertyInfo(ref propertyKey, out IPropertyInfo propertyInfo)) ? propertyInfo : PropertyInfo.DefaultPropertyInfo);
 
-                        _ = Items.GetAt(i, ref propertyKey);
+                        _innerDictionary.Add(key, objectProperty);
 
-                        if (propertyKey == key)
-                        {
-
-                            var objectProperty = new Property(this, propertyKey, CoreErrorHelper.Succeeded(Items.GetPropertyInfo(ref propertyKey, out IPropertyInfo propertyInfo)) ? propertyInfo : PropertyInfo.DefaultPropertyInfo);
-
-                            _innerDictionary.Add(key, objectProperty);
-
-                            return objectProperty;
-                        }
+                        return objectProperty;
                     }
-
-                    throw new IndexOutOfRangeException("The key was not found.");
                 }
+
+                throw new IndexOutOfRangeException("The key was not found.");
             }
         }
 
-        public IEnumerable<PropertyKey> Keys
+        public System.Collections.Generic.IEnumerable<PropertyKey> Keys
         {
             get
             {
-                for (uint i = 0; i < Count; i++)
+                PropertyKey propertyKey;
+
+                for (uint i = IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : 0u; i < Count; i++)
                 {
-                    if (IsDisposed)
-
-                        throw new InvalidOperationException("The current object is disposed.");
-
-                    var propertyKey = new PropertyKey();
+                    propertyKey = new PropertyKey();
 
                     _ = Items.GetAt(i, ref propertyKey);
 
@@ -939,17 +936,13 @@ in
             }
         }
 
-        public IEnumerable<Property> Values => IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : _getDictionaryDelegate().Values;
+        public System.Collections.Generic.IEnumerable<Property> Values => IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : _getDictionaryDelegate().Values;
 
         public uint Count
         {
             get
             {
-                if (IsDisposed)
-
-                    throw new InvalidOperationException("The current object is disposed.");
-
-                if (_count is null)
+                if (IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : _count == null)
                 {
                     _ = Items.GetCount(out uint count);
 
@@ -959,7 +952,7 @@ in
                 return _count.Value;
             }
         }
-        #endregion
+        #endregion Public Properties
 
 #if CS6
         int IReadOnlyCollection<KeyValuePair<PropertyKey, Property>>.Count => (int)Count;
@@ -1011,11 +1004,7 @@ in
         #region Public Methods
         public bool ContainsKey(PropertyKey key)
         {
-            if (IsDisposed)
-
-                throw new InvalidOperationException("The current object is disposed.");
-
-            foreach (PropertyKey propertyKey in Keys)
+            foreach (PropertyKey propertyKey in IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : Keys)
 
                 if (propertyKey == key)
 
@@ -1026,11 +1015,7 @@ in
 
         public bool TryGetValue(PropertyKey key, out Property value)
         {
-            if (IsDisposed)
-
-                throw new InvalidOperationException("The current object is disposed.");
-
-            foreach (KeyValuePair<PropertyKey, Property> _value in _innerDictionary)
+            foreach (KeyValuePair<PropertyKey, Property> _value in IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : _innerDictionary)
 
                 if (_value.Key == key)
                 {
@@ -1039,13 +1024,16 @@ in
                     return true;
                 }
 
+            PropertyKey _propertyKey;
+            Property property;
+
             foreach (PropertyKey propertyKey in Keys)
 
                 if (key == propertyKey)
                 {
-                    PropertyKey _propertyKey = propertyKey;
+                    _propertyKey = propertyKey;
 
-                    var property = new Property(this, _propertyKey, CoreErrorHelper.Succeeded(Items.GetPropertyInfo(ref _propertyKey, out IPropertyInfo propertyInfo)) ? propertyInfo : PropertyInfo.DefaultPropertyInfo);
+                    property = new Property(this, _propertyKey, CoreErrorHelper.Succeeded(Items.GetPropertyInfo(ref _propertyKey, out IPropertyInfo propertyInfo)) ? propertyInfo : PropertyInfo.DefaultPropertyInfo);
 
                     _innerDictionary.Add(propertyKey, property);
 
@@ -1058,7 +1046,7 @@ in
 
             return false;
         }
-        #endregion
+        #endregion Public Methods
 
         #region IDisposable Support
         public bool IsDisposed { get; private set; } = false;
@@ -1098,10 +1086,10 @@ in
     /// <seealso cref="Property"/>
     /// <seealso cref="PropertyCollection"/>
     internal sealed class PropertyAttributeCollection : System.Collections.Generic.IEnumerable<PropertyAttribute>, WinCopies.Collections.
-#if WAPICP2
-        IUIntIndexedCollection
-#else
+#if WAPICP3
         DotNetFix.Generic.IReadOnlyUIntIndexedList
+#else
+        IUIntIndexedCollection
 #endif
         <PropertyAttribute>
     {
@@ -1122,22 +1110,17 @@ in
         {
             get
             {
-                if (IsDisposed)
-
-                    throw new InvalidOperationException("The current object is disposed.");
-
                 // todo: replace this code by a custom dictionary that supports uint indexing.
 
-                int i = 0;
+                int i = IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : 0;
 
                 Dictionary<PropertyAttribute> dic = _getDictionaryDelegate();
 
                 foreach (PropertyAttribute value in dic.Values)
-                {
+
                     if (i++ == index)
 
                         return value;
-                }
 
                 throw new ArgumentOutOfRangeException(nameof(index), index, "'index' is out of range.");
             }
@@ -1149,22 +1132,18 @@ in
         {
             get
             {
-                if (IsDisposed)
+                if (IsDisposed ? throw new InvalidOperationException("The current object is disposed.") : _count == null)
 
-                    throw new InvalidOperationException("The current object is disposed.");
+                    if (_nativePropertyValuesCollection is null)
 
-                if (_count is null)
+                        _count = (uint)_innerDictionary.Count;
 
-                    if (_nativePropertyValuesCollection is object)
+                    else
                     {
                         _ = _nativePropertyValuesCollection.GetCount(out uint count);
 
                         _count = count;
                     }
-
-                    else
-
-                        _count = (uint)_innerDictionary.Count;
 
                 return _count.Value;
             }
@@ -1205,7 +1184,7 @@ in
             }
         }
 
-#if WAPICP2
+#if !WAPICP3
         #region IUIntIndexedCollection Support
 
         object WinCopies.Collections.IUIntIndexedCollection.this[uint index] => this[index];
@@ -1214,17 +1193,7 @@ in
 #endif
 
         #region IEnumerable Support
-
-#if WAPICP2
-        private class UIntIndexedCollectionEnumerator : UIntIndexedCollectionEnumeratorBase, System.Collections.Generic.IEnumerator<PropertyAttribute>
-        {
-            public UIntIndexedCollectionEnumerator(WinCopies.Collections.IUIntIndexedCollection<PropertyAttribute> uIntIndexedCollection) : base(uIntIndexedCollection) { }
-
-            public PropertyAttribute Current => ((PropertyAttributeCollection)UIntIndexedCollection).IsDisposed ? throw new InvalidOperationException("The collection is disposed.") : ((WinCopies.Collections.IUIntIndexedCollection<PropertyAttribute>)UIntIndexedCollection)[Index.Value];
-
-            object System.Collections.IEnumerator.Current => Current;
-        }
-#else
+#if WAPICP3
         // TODO: remove after referenced WinCopies > 3.1.0.1
         private class _Class : IUIntIndexedList<PropertyAttribute>
         {
@@ -1236,8 +1205,8 @@ in
 
             uint IUIntCountable.Count => _propertyAttributes.Count;
 
-        #region Unsupported items
-            System.Collections.Generic.IEnumerator<PropertyAttribute> IEnumerable<PropertyAttribute>.GetEnumerator() => throw new NotImplementedException();
+            #region Unsupported items
+            System.Collections.Generic.IEnumerator<PropertyAttribute> System.Collections.Generic.IEnumerable<PropertyAttribute>.GetEnumerator() => throw new NotImplementedException();
             System.Collections.IEnumerator IEnumerable.GetEnumerator() => throw new NotImplementedException();
             void IUIntIndexedCollection<PropertyAttribute>.Add(PropertyAttribute item) => throw new NotImplementedException();
             void IUIntIndexedCollection<PropertyAttribute>.Clear() => throw new NotImplementedException();
@@ -1250,7 +1219,16 @@ in
             void IUIntIndexedList<PropertyAttribute>.Insert(uint index, PropertyAttribute item) => throw new NotImplementedException();
             void IUIntIndexedList<PropertyAttribute>.RemoveAt(uint index) => throw new NotImplementedException();
             public IUIntCountableEnumerator<PropertyAttribute> GetEnumerator() => throw new NotImplementedException();
-        #endregion
+            #endregion
+        }
+#else
+        private class UIntIndexedCollectionEnumerator : UIntIndexedCollectionEnumeratorBase, System.Collections.Generic.IEnumerator<PropertyAttribute>
+        {
+            public UIntIndexedCollectionEnumerator(WinCopies.Collections.IUIntIndexedCollection<PropertyAttribute> uIntIndexedCollection) : base(uIntIndexedCollection) { }
+
+            public PropertyAttribute Current => ((PropertyAttributeCollection)UIntIndexedCollection).IsDisposed ? throw new InvalidOperationException("The collection is disposed.") : ((WinCopies.Collections.IUIntIndexedCollection<PropertyAttribute>)UIntIndexedCollection)[Index.Value];
+
+            object System.Collections.IEnumerator.Current => Current;
         }
 #endif
 

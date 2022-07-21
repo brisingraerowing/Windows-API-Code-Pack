@@ -8,12 +8,11 @@ using System.Diagnostics;
 namespace Microsoft.WindowsAPICodePack.Dialogs
 {
     /// <summary>
-    /// Abstract base class for all dialog controls
+    /// Abstract base class for all dialog controls.
     /// </summary>
     public abstract class DialogControl
     {
         private static int nextId = DialogsDefaults.MinimumDialogControlId;
-
         private string _name;
 
         /// <summary>
@@ -23,40 +22,29 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         {
             get => _name;
 
-            set
-            {
+            set =>
                 // Names for controls need to be quite stable, 
                 // as we are going to maintain a mapping between 
                 // the names and the underlying Win32/COM control IDs.
-                if (string.IsNullOrEmpty(value))
-
-                    throw new ArgumentException(LocalizedMessages.DialogControlNameCannotBeEmpty);
-
-                if (!string.IsNullOrEmpty(_name))
-
-                    throw new InvalidOperationException(LocalizedMessages.DialogControlsCannotBeRenamed);
 
                 // Note that we don't notify the hosting dialog of 
                 // the change, as the initial set of name is (must be)
                 // always legal, and renames are always illegal.
-                _name = value;
-            }
+                _name = string.IsNullOrEmpty(value) ? throw new ArgumentException(LocalizedMessages.DialogControlNameCannotBeEmpty) : string.IsNullOrEmpty(_name) ? value : throw new InvalidOperationException(LocalizedMessages.DialogControlsCannotBeRenamed);
         }
 
         /// <summary>
-        /// The native dialog that is hosting this control. This property is null is
-        /// there is not associated dialog
+        /// The native dialog that is hosting this control. This property is null is there is not associated dialog.
         /// </summary>
         public IDialogControlHost HostingDialog { get; set; }
 
         /// <summary>
         /// Gets the identifier for this control.
         /// </summary>
-        /// <value>An <see cref="int"/> value.</value>
         public int Id { get; private set; }
 
         /// <summary>
-        /// Creates a new instance of a dialog control
+        /// Creates a new instance of a dialog control.
         /// </summary>
         protected DialogControl()
         {
@@ -76,6 +64,20 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// <param name="name">The name for this dialog.</param>
         protected DialogControl(in string name) : this() => Name = name;
 
+        private void OnPropertyChange(in string propName, in Converter<IDialogControlHost, Action<string, DialogControl>> converter
+#if DEBUG
+            , in string text
+#endif
+            )
+        {
+#if DEBUG
+            Debug.Assert(!string.IsNullOrEmpty(propName), $"Property {text} was not specified");
+#endif
+            if (HostingDialog != null)
+
+                converter(HostingDialog)(propName, this);
+        }
+
         ///<summary>
         /// Calls the hosting dialog, if it exists, to check whether the 
         /// property can be set in the dialog's current state. 
@@ -84,13 +86,11 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// there are no restrictions on setting the property.
         /// </summary>
         /// <param name="propName">The name of the property that is changing</param>
-        protected void CheckPropertyChangeAllowed(in string propName)
-        {
-            Debug.Assert(!string.IsNullOrEmpty(propName), "Property to change was not specified");
-
-            // This will throw if the property change is not allowed.
-            _ = HostingDialog?.IsControlPropertyChangeAllowed(propName, this);
-        }
+        protected void CheckPropertyChangeAllowed(in string propName) => OnPropertyChange(propName, hostingDialog => (string propertyName, DialogControl control) => hostingDialog.IsControlPropertyChangeAllowed(propertyName, control)
+#if DEBUG
+        , "to change"
+#endif
+        ); // This will throw if the property change is not allowed.
 
         ///<summary>
         /// Calls the hosting dialog, if it exists, to
@@ -101,19 +101,18 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// there are no restrictions on setting the property.
         /// </summary>
         /// <param name="propName">The name of the property that is changing.</param>
-        protected void ApplyPropertyChange(in string propName)
-        {
-            Debug.Assert(!string.IsNullOrEmpty(propName), "Property changed was not specified");
-
-            HostingDialog?.ApplyControlPropertyChange(propName, this);
-        }
+        protected void ApplyPropertyChange(in string propName) => OnPropertyChange(propName, hostingDialog => hostingDialog.ApplyControlPropertyChange
+#if DEBUG
+        , "changed"
+#endif
+        );
 
         /// <summary>
         /// Compares two objects to determine whether they are equal
         /// </summary>
         /// <param name="obj">The object to compare against.</param>
         /// <returns>A <see cref="bool"/> value.</returns>
-        public override bool Equals(object obj) => obj is DialogControl control ? Id == control.Id : false;
+        public override bool Equals(object obj) => obj is DialogControl control && Id == control.Id;
 
         /// <summary>
         /// Serves as a hash function for a particular type. 

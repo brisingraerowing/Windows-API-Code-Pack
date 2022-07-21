@@ -8,6 +8,8 @@ using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
 using System;
 using System.Diagnostics;
 
+using static Microsoft.WindowsAPICodePack.Win32Native.Shell.Shell;
+
 namespace Microsoft.WindowsAPICodePack.Shell
 {
     /// <summary>
@@ -16,10 +18,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
     public static class KnownFolderHelper
     {
         /// <summary>
-        /// Returns the native known folder (IKnownFolderNative) given a PID list
+        /// Returns the native known folder (<see cref="IKnownFolderNative"/>) given a PID list
         /// </summary>
-        /// <param name="pidl"></param>
-        /// <returns></returns>
         internal static IKnownFolderNative FromPIDL(in IntPtr pidl) => new KnownFolderManagerClass().FindFolderFromIDList(pidl, out IKnownFolderNative knownFolder) == HResult.Ok ? knownFolder : null;
 
         public static IKnownFolder FromKnownFolderId(in string knownFolderId) => FromKnownFolderId(new Guid(knownFolderId));
@@ -27,7 +27,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Returns a known folder given a globally unique identifier.
         /// </summary>
-        /// <param name="knownFolderId">A GUID for the requested known folder.</param>
+        /// <param name="knownFolderId">A <see cref="Guid"/> for the requested known folder.</param>
         /// <returns>A known folder representing the specified name.</returns>
         /// <exception cref="ArgumentException">Thrown if the given Known Folder ID is invalid.</exception>
         public static IKnownFolder FromKnownFolderId(in Guid knownFolderId)
@@ -42,16 +42,15 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <summary>
         /// Returns a known folder given a globally unique identifier.
         /// </summary>
-        /// <param name="knownFolderId">A GUID for the requested known folder.</param>
-        /// <returns>A known folder representing the specified name. Returns null if Known Folder is not found or could not be created.</returns>
+        /// <param name="knownFolderId">A <see cref="Guid"/> for the requested known folder.</param>
+        /// <returns>A known folder representing the specified name. Returns <see langword="null"/> if Known Folder is not found or could not be created.</returns>
         internal static IKnownFolder FromKnownFolderIdInternal(in Guid knownFolderId) => new KnownFolderManagerClass().GetFolder(knownFolderId, out IKnownFolderNative knownFolderNative) == HResult.Ok ? GetKnownFolder(knownFolderNative) : null;
 
         /// <summary>
-        /// Given a native KnownFolder (IKnownFolderNative), create the right type of
-        /// IKnownFolder object (FileSystemKnownFolder or NonFileSystemKnownFolder)
+        /// Given a native KnownFolder (<see cref="IKnownFolderNative"/>), create the right type of
+        /// <see cref="IKnownFolder"/> object (<see cref="FileSystemKnownFolder"/> or <see cref="NonFileSystemKnownFolder"/>)
         /// </summary>
         /// <param name="knownFolderNative">Native Known Folder</param>
-        /// <returns></returns>
         private static IKnownFolder GetKnownFolder(in IKnownFolderNative knownFolderNative)
         {
             Debug.Assert(knownFolderNative != null, "Native IKnownFolder should not be null.");
@@ -108,23 +107,15 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <exception cref="System.ArgumentException">Thrown if the given parsing name is invalid.</exception>
         public static IKnownFolder FromParsingName(in string parsingName)
         {
-            if (parsingName == null)
-
-                throw new ArgumentNullException(nameof(parsingName));
-
-            IntPtr pidl = IntPtr.Zero;
+            IntPtr pidl = parsingName == null ? throw new ArgumentNullException(nameof(parsingName)) : IntPtr.Zero;
             IntPtr pidl2 = IntPtr.Zero;
 
             try
             {
                 pidl = ShellHelper.PidlFromParsingName(parsingName);
 
-                if (pidl == IntPtr.Zero)
-
-                    throw new ArgumentException(LocalizedMessages.KnownFolderParsingName, nameof(parsingName));
-
                 // It's probably a special folder, try to get it                
-                IKnownFolderNative knownFolderNative = FromPIDL(pidl);
+                IKnownFolderNative knownFolderNative = pidl == IntPtr.Zero ? throw new ArgumentException(LocalizedMessages.KnownFolderParsingName, nameof(parsingName)) : FromPIDL(pidl);
 
                 if (knownFolderNative != null)
 
@@ -143,8 +134,8 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             finally
             {
-                Win32Native.Shell.Shell.ILFree(pidl);
-                Win32Native.Shell.Shell.ILFree(pidl2);
+                ILFree(pidl);
+                ILFree(pidl2);
             }
         }
     }

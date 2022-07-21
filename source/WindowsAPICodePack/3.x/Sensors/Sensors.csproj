@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net35;net472;net48;netcoreapp3.0;netcoreapp3.1;net5.0-windows;net6.0-windows</TargetFrameworks>
+		<TargetFrameworks>net35;net472;net48;netcoreapp3.0;netcoreapp3.1;net5.0-windows;net6.0-windows;net7.0-windows</TargetFrameworks>
 		<AssemblyOriginatorKeyFile>Sensors.snk</AssemblyOriginatorKeyFile>
 		<RootNamespace>Microsoft.WindowsAPICodePack.Sensors</RootNamespace>
 		<AssemblyName>WinCopies.WindowsAPICodePack.Sensors</AssemblyName>
@@ -10,10 +10,10 @@
 		<Copyright>Copyright © Microsoft 2009, Copyright © Pierre Sprimont 2022</Copyright>
 		<DocumentationFile>WinCopies.WindowsAPICodePack.Sensors.xml</DocumentationFile>
 		<DefineConstants>WAPICP3;$(DefineConstants)</DefineConstants>
-		<VersionPrefix>3.4</VersionPrefix>
+		<VersionPrefix>3.10</VersionPrefix>
 		<VersionSuffix>preview</VersionSuffix>
-		<AssemblyVersion>3.4</AssemblyVersion>
-		<FileVersion>3.4</FileVersion>
+		<AssemblyVersion>3.10</AssemblyVersion>
+		<FileVersion>3.10</FileVersion>
 	</PropertyGroup>
 
 	<Import Project="..\..\Shared\Sensors.Shared\Sensors.Shared.projitems" Label="Shared" />
@@ -28,7 +28,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\COMNative\COMNative.csproj" />
-		<ProjectReference Include="..\Win32Native\Win32Native.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

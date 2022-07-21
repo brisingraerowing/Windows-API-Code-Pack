@@ -15,7 +15,11 @@ using static Microsoft.WindowsAPICodePack.Win32Native.Menus.MenuFlags;
 
 namespace Microsoft.WindowsAPICodePack
 {
-    public class Menu : ICountable, IEnumerable<MenuItem>, WinCopies.DotNetFix.IDisposable
+    public class Menu : ICountable, IEnumerable<MenuItem>, WinCopies.
+#if !WAPICP3
+        Util.
+#endif
+        DotNetFix.IDisposable
     {
         protected internal IntPtr Handle { get; }
 
@@ -58,11 +62,7 @@ namespace Microsoft.WindowsAPICodePack
             {
                 IntPtr bitmapPtr = GetInfo(MenuItemInfoFlags.Bitmap).hbmpItem;
 
-                if (bitmapPtr != _bitmap?.GetHbitmap())
-
-                    _bitmap = bitmapPtr == IntPtr.Zero ? null : Image.FromHbitmap(bitmapPtr);
-
-                return _bitmap;
+                return bitmapPtr == _bitmap?.GetHbitmap() ? _bitmap : (_bitmap = bitmapPtr == IntPtr.Zero ? null : Image.FromHbitmap(bitmapPtr));
             }
 
             set
@@ -77,15 +77,48 @@ namespace Microsoft.WindowsAPICodePack
         {
             get
             {
-                MenuStates state = GetInfo(MenuItemInfoFlags.State).fState;
+                MenuStates state =
+#if !WAPICP3
+                (MenuStates)
+#endif
+                GetInfo(MenuItemInfoFlags.State).fState;
 
                 return !(state.HasFlag((MenuStates)Disabled) || state.HasFlag((MenuStates)Grayed) || state.HasFlag(MenuStates.Grayed));
             }
 
-            set => Menus.EnableMenuItemByPosition(Parent.Handle, (uint)Position, value ? Enabled : Grayed);
+            set => Menus.EnableMenuItemByPosition(Parent.Handle, (uint)Position, value ?
+#if !WAPICP3
+                Win32Native.Shell.DesktopWindowManager.MenuFlags.
+#endif
+                Enabled :
+#if !WAPICP3
+                Win32Native.Shell.DesktopWindowManager.MenuFlags.
+#endif
+                Grayed);
         }
 
-        public bool IsChecked { get => GetInfo(MenuItemInfoFlags.State).fState.HasFlag(MenuStates.Checked); set => SetInfo(MenuItemInfoFlags.State, new MenuItemInfo { fState = value ? MenuStates.Checked : MenuStates.Unchecked }); }
+        public bool IsChecked
+        {
+            get =>
+#if !WAPICP3
+                ((MenuStates)
+#endif
+                GetInfo(MenuItemInfoFlags.State).fState
+#if !WAPICP3
+                )
+#endif
+                .HasFlag(MenuStates.Checked); set => SetInfo(MenuItemInfoFlags.State, new MenuItemInfo
+                {
+                    fState =
+#if !WAPICP3
+                    (uint)(
+#endif
+                    value ? MenuStates.Checked : MenuStates.Unchecked
+#if !WAPICP3
+            )
+#endif
+                });
+        }
 
         public string Header
         {
@@ -103,7 +136,25 @@ namespace Microsoft.WindowsAPICodePack
             set => SetInfo(MenuItemInfoFlags.String, new MenuItemInfo() { dwTypeData = value });
         }
 
-        public bool IsSeparator { get => GetInfo(MenuItemInfoFlags.FType).fType.HasFlag(Separator); set => SetInfo(MenuItemInfoFlags.FType, new MenuItemInfo() { fType = MenuFlags.Separator }); }
+        public bool IsSeparator
+        {
+            get =>
+#if !WAPICP3
+                ((MenuFlags)
+#endif
+                GetInfo(MenuItemInfoFlags.FType).fType
+#if !WAPICP3
+                )
+#endif
+                .HasFlag(Separator); set => SetInfo(MenuItemInfoFlags.FType, new MenuItemInfo()
+                {
+                    fType =
+#if !WAPICP3
+                    (uint)
+#endif
+                    Separator
+                });
+        }
 
         internal MenuItem(in Menu parent, in uint id, in int pos)
         {
@@ -135,7 +186,11 @@ namespace Microsoft.WindowsAPICodePack
         {
             info.fMask = flags;
             info.cbSize = (uint)Marshal.SizeOf<MenuItemInfo>();
-            info.fType = ByPosition;
+            info.fType =
+#if !WAPICP3
+                (uint)
+#endif
+                ByPosition;
 
             OnMenuItemInfoAction(Menus.GetMenuItemInfoW, ref info);
         }
@@ -158,7 +213,11 @@ namespace Microsoft.WindowsAPICodePack
         }
     }
 
-    public class MenuEnumerator : WinCopies.Collections.Generic.Enumerator<MenuItem>
+    public class MenuEnumerator :
+#if WAPICP3
+        WinCopies.Collections.Generic.
+#endif
+        Enumerator<MenuItem>
     {
         private MenuItem _current;
         private int _currentPos;
@@ -167,7 +226,9 @@ namespace Microsoft.WindowsAPICodePack
 
         protected override MenuItem CurrentOverride => _current;
 
+#if WAPICP3
         public override bool? IsResetSupported => true;
+#endif
 
         public MenuEnumerator(in Menu menu)
         {
@@ -190,16 +251,33 @@ namespace Microsoft.WindowsAPICodePack
             return false;
         }
 
-        protected override void ResetCurrent()
+        protected
+#if WAPICP3
+            override
+#endif
+            void ResetCurrent()
         {
+#if WAPICP3
             base.ResetCurrent();
+#endif
 
             _current = null;
 
             ResetCurrentPos();
         }
 
-        protected override void ResetOverride2() { /* Left empty. */ }
+        protected override void
+#if WAPICP3
+            ResetOverride2
+#else
+            ResetOverride
+#endif
+            ()
+#if WAPICP3
+        { /* Left empty. */ }
+#else
+            => ResetCurrent();
+#endif
     }
 }
 #endif

@@ -3832,7 +3832,7 @@
             </summary>
             <param name="value">The value to get the hi word from.</param>
             <param name="size">Size</param>
-            <returns>The upper half of the dword.</returns>        
+            <returns>The upper half of the dword.</returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Win32Native.Core.GetLoWord(System.Int64)">
             <summary>

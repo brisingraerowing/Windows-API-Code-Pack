@@ -2,7 +2,6 @@
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
-
     /// <summary>
     /// Specifies options for the size of the stock icon.
     /// </summary>
@@ -413,7 +412,5 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         /// Icon for Clustered disk
         /// </summary>
         ClusteredDisk = 140,
-
     }
-
 }

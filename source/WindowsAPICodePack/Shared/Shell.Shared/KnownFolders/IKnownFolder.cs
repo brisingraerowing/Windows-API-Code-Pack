@@ -2,9 +2,10 @@
 
 using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+
 using System;
 using System.Collections.Generic;
-using System.IO;
+
 using FileAttributes = Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes;
 
 namespace Microsoft.WindowsAPICodePack.Shell

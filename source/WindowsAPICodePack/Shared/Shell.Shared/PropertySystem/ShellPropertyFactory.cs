@@ -1,19 +1,17 @@
-﻿using System;
+﻿using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.ComTypes;
-using Microsoft.WindowsAPICodePack.PropertySystem;
-using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
+
 using static Microsoft.WindowsAPICodePack.COMNative.PropertySystem.NativePropertyHelper;
 
 namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 {
-
     /// <summary>
     /// Factory class for creating typed ShellProperties.
     /// Generates/caches expressions to create generic ShellProperties.
@@ -36,7 +34,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         /// Creates a generic ShellProperty.
         /// </summary>
         /// <param name="propKey">PropertyKey</param>
-        /// <param name="store">IPropertyStore from which to get property</param>
+        /// <param name="store"><see cref="IPropertyStore"/> from which to get property</param>
         /// <returns>ShellProperty matching type of value in property.</returns>
         public static IShellProperty CreateShellProperty(PropertyKey propKey, IPropertyStore store) => GenericCreateShellProperty(propKey, store);
 
@@ -63,7 +61,6 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         }
 
         #region Private static helper functions
-
         // Creates an expression for the specific constructor of the given type.
         private static Func<PropertyKey, ShellPropertyDescription, object, IShellProperty> ExpressConstructor(Type type, Type[] argTypes)
         {
@@ -73,11 +70,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             ConstructorInfo ctorInfo = type.GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
                 .FirstOrDefault(x => typeHash == GetTypeHash(x.GetParameters().Select(a => a.ParameterType)));
 
-            if (ctorInfo == null)
-
-                throw new ArgumentException(LocalizedMessages.ShellPropertyFactoryConstructorNotFound, nameof(type));
-
-            ParameterExpression key = Expression.Parameter(argTypes[0], "propKey");
+            ParameterExpression key = ctorInfo == null ? throw new ArgumentException(LocalizedMessages.ShellPropertyFactoryConstructorNotFound, nameof(type)) : Expression.Parameter(argTypes[0], "propKey");
             ParameterExpression desc = Expression.Parameter(argTypes[1], "desc");
             ParameterExpression third = Expression.Parameter(typeof(object), "third"); //needs to be object to avoid casting later
 
@@ -94,13 +87,13 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         private static int GetTypeHash(IEnumerable<Type> types)
         {
             int hash = 0;
+
             foreach (Type type in types)
 
                 hash = (hash * 31) + type.GetHashCode();
 
             return hash;
         }
-
         #endregion
     }
 }

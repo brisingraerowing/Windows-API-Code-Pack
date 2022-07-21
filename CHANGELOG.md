@@ -10,7 +10,16 @@ For issues and bug fixes details, visit [https://wincopies.com/fwd.php?id=3](htt
 
 For the original code (version 1.1, last release by Microsoft), see [https://wincopies.com/fwd.php?id=1](https://wincopies.com/fwd.php?id=1)
 
-## ??? 3.10
+## 07/2022 3.11
+
+- Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem2.GetPropertyStore returns a HResult value instead of an int.
+- Remove the 'in' modifier in Microsoft.WindowsAPICodePack.Dialogs.IDialogControlHost:
+    - IsControlPropertyChangeAllowed(in string propertyName, in DialogControl control)
+    - ApplyControlPropertyChange(in string propertyName, in DialogControl control)
+- Microsoft.WindowsAPICodePack.Dialogs.TaskDialogButton.UseElevationIcon renamed to ShowElevationIcon.
+- TaskDialogButtonBase.UpdateProperty\<T> protected method replaced with a new one, non-generic, with new parameters.
+
+## 05/2022 3.10
 
 - Microsoft.WindowsAPICodePack.Net.NetworkListManager: none of the method parameters have the 'in' modifier anymore.
 - WindowMessage.XBUTTON values had been replaced with other names (starting with XButton instead, as C# is case sensitive, and fully spelled).
@@ -108,7 +117,16 @@ COMNative 3.0
 - Removals:
     - Some 'ref' keywords in native PortableDevices interfaces. These keywords have been removed for interface type parameters because they was redundant.
 
-## ??? 2.11
+## 07/2022 2.12
+
+- New constants.
+- Move to specific folders:
+    - shell file dialogs.
+    - common shell files.
+- Add support for Windows Color Picker dialog.
+- New types.
+
+## 05/2022 2.11
 
 - New error codes and other constants, and Win32 P/Invoke methods.
 - Microsoft.WindowsAPICodePack:

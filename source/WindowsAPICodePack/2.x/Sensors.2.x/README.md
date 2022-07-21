@@ -1,5 +1,5 @@
-﻿Windows-API-Code-Pack
-=====================
+﻿Windows-API-Code-Pack/Sensors/2.x
+=================================
 
 README
 ======

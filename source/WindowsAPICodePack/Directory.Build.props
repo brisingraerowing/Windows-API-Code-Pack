@@ -1,14 +1,16 @@
 <Project>
 	<PropertyGroup>
-		<SignAssembly>true</SignAssembly>
-		<Company>Pierre Sprimont</Company>
-		<PackageProjectUrl>https://wincopies.com/windows-api-codepack/</PackageProjectUrl>
+		<Product>Microsoft Windows API Code Pack for .NET Framework</Product>
+		<Authors>Pierre Sprimont</Authors>
 		<RepositoryUrl>https://github.com/pierresprim/Windows-API-Code-Pack.git</RepositoryUrl>
 		<RepositoryType>Git</RepositoryType>
 		<PackageReleaseNotes>See https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/CHANGELOG.md</PackageReleaseNotes>
-		<PackageTags>WindowsAPICodePack</PackageTags>
-		<Product>Microsoft Windows API Code Pack for .NET Framework</Product>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<SignAssembly>true</SignAssembly>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageProjectUrl>https://wincopies.com/windows-api-codepack/</PackageProjectUrl>
+		<PackageTags>WindowsAPICodePack</PackageTags>
+		<ProduceReferenceAssembly>true</ProduceReferenceAssembly>
 	</PropertyGroup>
 
 	<!--Constants-->
@@ -18,6 +20,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<DocumentationFile>$(PackageId).xml</DocumentationFile>
 		<!-- SourceLink related properties https://github.com/dotnet/SourceLink#using-sourcelink -->
 		<!-- Optional: Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -37,15 +40,18 @@
 		<DefineConstants>CS4;CS5;CS6;CS7;CS8;NETCORE;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(TargetFramework.TrimEnd(`0123456789-windows`))' == 'net6.'">
-		<DefineConstants>CS4;CS5;CS6;CS7;CS8;CS9;CS10;$(DefineConstants)</DefineConstants>
-		<Nullable>enable</Nullable>
-	</PropertyGroup>
-
 	<PropertyGroup Condition="'$(TargetFramework.TrimEnd(`0123456789-windows`))' == 'net5.'">
 		<DefineConstants>CS4;CS5;CS6;CS7;CS8;CS9;$(DefineConstants)</DefineConstants>
-		<Nullable>enable</Nullable>
 	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(TargetFramework.TrimEnd(`0123456789-windows`))' == 'net6.'">
+		<DefineConstants>CS4;CS5;CS6;CS7;CS8;CS9;CS10;$(DefineConstants)</DefineConstants>
+	</PropertyGroup>
+
+  	<PropertyGroup Condition="'$(TargetFramework.TrimEnd(`0123456789-windows`))' == 'net7.'">
+    	<DefineConstants>CS4;CS5;CS6;CS7;CS8;CS9;CS10;CS11;NET5;NET6;NET7;$(DefineConstants)</DefineConstants>
+		<LangVersion>preview</LangVersion>
+  	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)'=='net35'">
 		<DefineConstants>CS4;$(DefineConstants)</DefineConstants>
@@ -79,6 +85,10 @@
 		<DefineConstants>NETSTANDARD;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="$(DefineConstants.Contains('CS8'))">
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(Platform)'=='x64'">
 		<DefineConstants>WIN64;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
@@ -89,6 +99,17 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<PropertyGroup Condition="'$(TargetFramework.TrimEnd(`0123456789-windows`))' == 'net7.'">
+		<WarningLevel>7</WarningLevel>
+	</PropertyGroup>
+
+	<ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789-windows`))' == 'net7.'">
+		<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="7.0-preview">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
@@ -108,12 +129,12 @@
 		</PackageReference>
 	</ItemGroup>
 
-	<!--<ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789-windows`))' != 'net5.'">
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>-->
+	<ItemGroup Condition="'!$(DefineConstants.Contains(`CS9`))'">
+		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 
 	<!--End Source Control-->
 

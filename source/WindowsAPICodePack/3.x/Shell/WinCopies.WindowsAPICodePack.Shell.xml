@@ -588,7 +588,7 @@
             <returns><see langword="true"/> if the drive supports the Recycle Bin, otherwise <see langword="false"/>.</returns>
             <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown if a Win32 exception has occurred during thr process.</exception>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.EmptyRecycleBin(System.Windows.Window@,System.String@,Microsoft.WindowsAPICodePack.Win32Native.Shell.EmptyRecycleBinFlags@)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.EmptyRecycleBin(Microsoft.WindowsAPICodePack.Shell.Window@,System.String@,Microsoft.WindowsAPICodePack.Win32Native.Shell.EmptyRecycleBinFlags@)">
             <summary>
             Empties the Recycle Bin.
             </summary>
@@ -1237,10 +1237,10 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.ShellObject.NativeShellItem2">
             <summary>
-            Return the native ShellFolder object as newer IShellItem2
+            Return the native <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellFolder"/> object as newer <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem2"/>.
             </summary>
             <exception cref="T:System.Runtime.InteropServices.ExternalException">If the native object cannot be created.
-            The ErrorCode member will contain the external error code.</exception>
+            The <see cref="P:System.Runtime.InteropServices.ExternalException.ErrorCode"/> property will contain the external error code.</exception>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.ShellObject.NativeShellItem">
             <summary>
@@ -1339,14 +1339,13 @@
             <summary>
             Returns the hash code of the object.
             </summary>
-            <returns></returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObject.Equals(Microsoft.WindowsAPICodePack.Shell.ShellObject)">
             <summary>
-            Determines if two ShellObjects are identical.
+            Determines if two <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/>s are identical.
             </summary>
-            <param name="other">The ShellObject to comare this one to.</param>
-            <returns>True if the ShellObjects are equal, false otherwise.</returns>
+            <param name="other">The <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/> to comare this one to.</param>
+            <returns><see langword="true"/> if the <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/>s are equal, <see langword="false"/> otherwise.</returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObject.Equals(System.Object)">
             <summary>
@@ -1361,7 +1360,7 @@
             </summary>
             <param name="leftShellObject">First object to compare.</param>
             <param name="rightShellObject">Second object to compare.</param>
-            <returns>True if leftShellObject equals rightShellObject; false otherwise.</returns>
+            <returns><see langword="true"/> if leftShellObject equals rightShellObject; <see langword="false"/> otherwise.</returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObject.op_Inequality(Microsoft.WindowsAPICodePack.Shell.ShellObject,Microsoft.WindowsAPICodePack.Shell.ShellObject)">
             <summary>
@@ -1369,7 +1368,7 @@
             </summary>
             <param name="leftShellObject">First object to compare.</param>
             <param name="rightShellObject">Second object to compare.</param>
-            <returns>True if leftShellObject does not equal leftShellObject; false otherwise.</returns>        
+            <returns><see langword="true"/> if leftShellObject does not equal leftShellObject; <see langword="false"/> otherwise.</returns>        
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.ShellObjectCollection">
             <summary>
@@ -1513,32 +1512,33 @@
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectFactory.Create(Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem)">
             <summary>
-            Creates a ShellObject given a native IShellItem interface
+            Creates a <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/> given a native <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> interface.
             </summary>
-            <param name="nativeShellItem"></param>
-            <returns>A newly constructed ShellObject object</returns>
+            <param name="nativeShellItem">The native <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> from which to create the new <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/>.</param>
+            <returns>A newly constructed <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/> object.</returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectFactory.Create(System.String)">
             <summary>
-            Creates a ShellObject given a parsing name
+            Creates a <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/> given a parsing name.
             </summary>
-            <param name="parsingName"></param>
-            <returns>A newly constructed ShellObject object</returns>
+            <param name="parsingName">The parsing name from which to create the new <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/>.</param>
+            <returns>A newly constructed <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/> object.</returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectFactory.Create(System.IntPtr)">
             <summary>
-            Constructs a new Shell object from IDList pointer
+            Constructs a new <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/> from an IDList pointer.
             </summary>
-            <param name="idListPtr"></param>
-            <returns></returns>
+            <param name="idListPtr">The IDList pointer from which to create the new <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/>.</param>
+            <returns>A newly constructed <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/> object or <see langword="null"/> if no <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem2"/> could be retrieved.</returns>
+            <seealso cref="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectFactory.Create(System.IntPtr,Microsoft.WindowsAPICodePack.Shell.ShellContainer)"/>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectFactory.Create(System.IntPtr,Microsoft.WindowsAPICodePack.Shell.ShellContainer)">
             <summary>
-            Constructs a new Shell object from IDList pointer
+            Constructs a new <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/> from an IDList pointer and a parent <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellContainer"/>.
             </summary>
-            <param name="idListPtr"></param>
-            <param name="parent"></param>
-            <returns></returns>
+            <param name="idListPtr">The IDList pointer from which to create the new <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/>.</param>
+            <returns>A newly constructed <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/> object or <see langword="null"/> if no <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> could be retrieved.</returns>
+            <seealso cref="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectFactory.Create(System.IntPtr)"/>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.ShellSavedSearchCollection">
             <summary>
@@ -1844,6 +1844,12 @@
             Overide OnPaint to paint the background as black.
             </summary>
         </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.Window.OnSourceInitialized(System.EventArgs)">
+            <summary>
+            Override SourceInitialized to initialize windowHandle for this window.
+            A valid windowHandle is available only after the sourceInitialized is completed
+            </summary>
+        </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.GlassWindow">
             <summary>
             WPF Glass Window
@@ -1855,14 +1861,14 @@
             Get determines if AeroGlass is enabled on the desktop. Set enables/disables AreoGlass on the desktop.
             </summary>
         </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Shell.GlassWindow.AeroGlassCompositionActivated">
+            <summary>
+            Get: Gets a value indicating whether the current window is displayed with an Aero background. Set: Makes the background of current window transparent from both Wpf and Windows Perspective if the value is <see langword="true"/>, otherwise resets the backgrounds to their respective system default values.
+            </summary>
+        </member>
         <member name="E:Microsoft.WindowsAPICodePack.Shell.GlassWindow.AeroGlassCompositionChanged">
             <summary>
             Fires when the availability of Glass effect changes.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.GlassWindow.SetAeroGlassTransparency">
-            <summary>
-            Makes the background of current window transparent from both Wpf and Windows Perspective
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.GlassWindow.ExcludeElementFromAeroGlass(System.Windows.FrameworkElement)">
@@ -10250,7 +10256,7 @@
             <param name="windowHandle">Handle to the window that the property will be set on</param>
             <param name="value">The value to set for the property</param>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.WindowProperties.SetWindowProperty(System.Windows.Window,Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,System.String)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.WindowProperties.SetWindowProperty(Microsoft.WindowsAPICodePack.Shell.Window,Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,System.String)">
             <summary>
             Sets a shell property for a given window
             </summary>
@@ -10346,27 +10352,6 @@
             <summary>
             Gets whether the watcher is currently running.
             </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectWatcher.Start">
-            <summary>
-            Start the watcher and begin receiving change notifications.        
-            <remarks>
-            If the watcher is running, has no effect.
-            Registration for notifications should be done before this is called.
-            </remarks>
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectWatcher.Stop">
-            <summary>
-            Stop the watcher and prevent further notifications from being received.
-            <remarks>If the watcher is not running, this has no effect.</remarks>
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectWatcher.ProcessChangeNotificationEvent(Microsoft.WindowsAPICodePack.Shell.WindowMessageEventArgs)">
-            <summary>
-            Processes all change notifications sent by the Windows Shell.
-            </summary>
-            <param name="e">The windows message representing the notification event</param>
         </member>
         <member name="E:Microsoft.WindowsAPICodePack.Shell.ShellObjectWatcher.AllEvents">
             <summary>
@@ -10472,6 +10457,27 @@
             <summary>
             Raised when a file type association changes.
             </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectWatcher.Start">
+            <summary>
+            Start the watcher and begin receiving change notifications.        
+            <remarks>
+            If the watcher is running, has no effect.
+            Registration for notifications should be done before this is called.
+            </remarks>
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectWatcher.Stop">
+            <summary>
+            Stop the watcher and prevent further notifications from being received.
+            <remarks>If the watcher is not running, this has no effect.</remarks>
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectWatcher.ProcessChangeNotificationEvent(Microsoft.WindowsAPICodePack.Shell.WindowMessageEventArgs)">
+            <summary>
+            Processes all change notifications sent by the Windows Shell.
+            </summary>
+            <param name="e">The windows message representing the notification event</param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectWatcher.Dispose(System.Boolean)">
             <summary>
@@ -11101,37 +11107,6 @@
             </summary>
             <param name="title">The title to display in the dialog.</param>
         </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FileOk">
-            <summary>
-            Raised just before the dialog is about to return with a result. Occurs when the user clicks on the Open 
-            or Save button on a file dialog box. 
-            </summary>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FolderChanging">
-            <summary>
-            Raised just before the user navigates to a new folder.
-            </summary>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FolderChanged">
-            <summary>
-            Raised when the user navigates to a new folder.
-            </summary>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.SelectionChanged">
-            <summary>
-            Raised when the user changes the selection in the dialog's view.
-            </summary>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FileTypeChanged">
-            <summary>
-            Raised when the dialog is opened to notify the application of the initial chosen filetype.
-            </summary>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.DialogOpening">
-            <summary>
-            Raised when the dialog is opening.
-            </summary>
-        </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.Controls">
             <summary>
             Gets the collection of controls for the dialog.
@@ -11146,80 +11121,75 @@
             <summary>
             Gets or sets the dialog title.
             </summary>
-            <value>A <see cref="T:System.String"/> object.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.EnsureFileExists">
             <summary>
             Gets or sets a value that determines whether the file must exist beforehand.
             </summary>
-            <value>A <see cref="T:System.Boolean"/> value. <b>true</b> if the file must exist.</value>
+            <value>A <see cref="T:System.Boolean"/> value. <see langword="true"/> if the file must exist.</value>
             <exception cref="T:System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.EnsurePathExists">
             <summary>
             Gets or sets a value that specifies whether the returned file must be in an existing folder.
             </summary>
-            <value>A <see cref="T:System.Boolean"/> value. <b>true</b> if the file must exist.</value>
+            <value>A <see cref="T:System.Boolean"/> value. <see langword="true"/> if the file must exist.</value>
             <exception cref="T:System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.EnsureValidNames">
              <summary>Gets or sets a value that determines whether to validate file names.
              </summary>
-            <value>A <see cref="T:System.Boolean"/> value. <b>true </b>to check for situations that would prevent an application from opening the selected file, such as sharing violations or access denied errors.</value>
+            <value>A <see cref="T:System.Boolean"/> value. <see langword="true"/> to check for situations that would prevent an application from opening the selected file, such as sharing violations or access denied errors.</value>
              <exception cref="T:System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
-             
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.EnsureReadOnly">
             <summary>
             Gets or sets a value that determines whether read-only items are returned.
-            Default value for CommonOpenFileDialog is true (allow read-only files) and 
-            CommonSaveFileDialog is false (don't allow read-only files).
+            Default value for <see cref="T:Microsoft.WindowsAPICodePack.Dialogs.CommonOpenFileDialog"/> is <see langword="true"/> (allow read-only files) and
+            <see cref="T:Microsoft.WindowsAPICodePack.Dialogs.CommonSaveFileDialog"/> is <see langword="false"/> (don't allow read-only files).
             </summary>
-            <value>A <see cref="T:System.Boolean"/> value. <b>true</b> includes read-only items.</value>
+            <value>A <see cref="T:System.Boolean"/> value. <see langword="true"/> includes read-only items.</value>
             <exception cref="T:System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.RestoreDirectory">
             <summary>
             Gets or sets a value that determines the restore directory.
             </summary>
-            <remarks></remarks>
             <exception cref="T:System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.ShowPlacesList">
             <summary>
-            Gets or sets a value that controls whether 
+            Gets or sets a value that controls whether
             to show or hide the list of pinned places that
             the user can choose.
             </summary>
-            <value>A <see cref="T:System.Boolean"/> value. <b>true</b> if the list is visible; otherwise <b>false</b>.</value>
+            <value>A <see cref="T:System.Boolean"/> value. <see langword="true"/> if the list is visible; otherwise <see langword="false"/>.</value>
             <exception cref="T:System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.AddToMostRecentlyUsedList">
             <summary>
             Gets or sets a value that controls whether to show or hide the list of places where the user has recently opened or saved items.
             </summary>
-            <value>A <see cref="T:System.Boolean"/> value.</value>
             <exception cref="T:System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.ShowHiddenItems">
             <summary>
              Gets or sets a value that controls whether to show hidden items.
              </summary>
-             <value>A <see cref="T:System.Boolean"/> value.<b>true</b> to show the items; otherwise <b>false</b>.</value>
+             <value>A <see cref="T:System.Boolean"/> value. <see langword="true"/> to show the items; otherwise <see langword="false"/>.</value>
              <exception cref="T:System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.AllowPropertyEditing">
             <summary>
-            Gets or sets a value that controls whether 
+            Gets or sets a value that controls whether
             properties can be edited.
             </summary>
-            <value>A <see cref="T:System.Boolean"/> value. </value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.NavigateToShortcut">
             <summary>
              Gets or sets a value that controls whether shortcuts should be treated as their target items, allowing an application to open a .lnk file.
              </summary>
-             <value>A <see cref="T:System.Boolean"/> value. <b>true</b> indicates that shortcuts should be treated as their targets. </value>
+             <value>A <see cref="T:System.Boolean"/> value. <see langword="true"/> indicates that shortcuts should be treated as their targets. </value>
              <exception cref="T:System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.DefaultExtension">
@@ -11232,50 +11202,6 @@
             <summary>
             Gets the index for the currently selected file type.
             </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.SyncFileTypeComboToDefaultExtension(Microsoft.WindowsAPICodePack.COMNative.Dialogs.IFileDialog)">
-            <summary>
-            Tries to set the File(s) Type Combo to match the value in 
-            'DefaultExtension'.  Only doing this if 'this' is a Save dialog 
-            as it makes no sense to do this if only Opening a file.
-            </summary>
-            
-            <param name="dialog">The native/IFileDialog instance.</param>
-            
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FileName">
-            <summary>
-            Gets the selected filename.
-            </summary>
-            <value>A <see cref="T:System.String"/> object.</value>
-            <exception cref="T:System.InvalidOperationException">This property cannot be used when multiple files are selected.</exception>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FileAsShellObject">
-            <summary>
-            Gets the selected item as a ShellObject.
-            </summary>
-            <value>A <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"></see> object.</value>
-            <exception cref="T:System.InvalidOperationException">This property cannot be used when multiple files
-            are selected.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.AddPlace(Microsoft.WindowsAPICodePack.Shell.ShellContainer,Microsoft.WindowsAPICodePack.COMNative.Shell.FileDialogAddPlaceLocation)">
-            <summary>
-            Adds a location, such as a folder, library, search connector, or known folder, to the list of
-            places available for a user to open or save items. This method actually adds an item
-            to the <b>Favorite Links</b> or <b>Places</b> section of the Open/Save dialog.
-            </summary>
-            <param name="place">The item to add to the places list.</param>
-            <param name="location">One of the enumeration values that indicates placement of the item in the list.</param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.AddPlace(System.String,Microsoft.WindowsAPICodePack.COMNative.Shell.FileDialogAddPlaceLocation)">
-            <summary>
-            Adds a location (folder, library, search connector, known folder) to the list of
-            places available for the user to open or save items. This method actually adds an item
-            to the <b>Favorite Links</b> or <b>Places</b> section of the Open/Save dialog. Overload method
-            takes in a string for the path.
-            </summary>
-            <param name="path">The item to add to the places list.</param>
-            <param name="location">One of the enumeration values that indicates placement of the item in the list.</param>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.InitialDirectory">
             <summary>
@@ -11308,6 +11234,74 @@
             to associate a GUID with a dialog's persisted state.
             </summary>
         </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.DefaultFileName">
+            <summary>
+            Default file name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FileName">
+            <summary>
+            Gets the selected filename.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">This property cannot be used when multiple files are selected.</exception>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FileAsShellObject">
+            <summary>
+            Gets the selected item as a <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/>.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">This property cannot be used when multiple files
+            are selected.</exception>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FileOk">
+            <summary>
+            Raised just before the dialog is about to return with a result. Occurs when the user clicks on the Open 
+            or Save button on a file dialog box. 
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FolderChanging">
+            <summary>
+            Raised just before the user navigates to a new folder.
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FolderChanged">
+            <summary>
+            Raised when the user navigates to a new folder.
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.SelectionChanged">
+            <summary>
+            Raised when the user changes the selection in the dialog's view.
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FileTypeChanged">
+            <summary>
+            Raised when the dialog is opened to notify the application of the initial chosen filetype.
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.DialogOpening">
+            <summary>
+            Raised when the dialog is opening.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.AddPlace(Microsoft.WindowsAPICodePack.Shell.ShellContainer,Microsoft.WindowsAPICodePack.COMNative.Shell.FileDialogAddPlaceLocation)">
+            <summary>
+            Adds a location, such as a folder, library, search connector, or known folder, to the list of
+            places available for a user to open or save items. This method actually adds an item
+            to the <b>Favorite Links</b> or <b>Places</b> section of the Open/Save dialog.
+            </summary>
+            <param name="place">The item to add to the places list.</param>
+            <param name="location">One of the enumeration values that indicates placement of the item in the list.</param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.AddPlace(System.String,Microsoft.WindowsAPICodePack.COMNative.Shell.FileDialogAddPlaceLocation)">
+            <summary>
+            Adds a location (folder, library, search connector, known folder) to the list of
+            places available for the user to open or save items. This method actually adds an item
+            to the <b>Favorite Links</b> or <b>Places</b> section of the Open/Save dialog. Overload method
+            takes in a string for the path.
+            </summary>
+            <param name="path">The item to add to the places list.</param>
+            <param name="location">One of the enumeration values that indicates placement of the item in the list.</param>
+        </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.ShowDialog(System.IntPtr)">
             <summary>
             Displays the dialog.
@@ -11331,11 +11325,6 @@
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.ResetUserSelections">
             <summary>
             Removes the current selection.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.DefaultFileName">
-            <summary>
-            Default file name.
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.IsCollectionChangeAllowed">
@@ -11364,6 +11353,14 @@
             </summary>
             <param name="propertyName">The name of the property changed.</param>
             <param name="control">The control whose property has changed.</param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.SyncFileTypeComboToDefaultExtension(Microsoft.WindowsAPICodePack.COMNative.Dialogs.IFileDialog)">
+            <summary>
+            Tries to set the File(s) Type Combo to match the value in
+            <see cref="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.DefaultExtension"/>. Only doing this if 'this' is a Save dialog
+            as it makes no sense to do this if only Opening a file.
+            </summary>
+            <param name="dialog">The native/<see cref="T:Microsoft.WindowsAPICodePack.COMNative.Dialogs.IFileDialog"/> instance.</param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.CheckFileNamesAvailable">
             <summary>
@@ -12301,7 +12298,7 @@
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Controls.WindowsForms.CommandLink">
             <summary>
-            Implements a CommandLink button that can be used in 
+            Implements a CommandLink button that can be used in
             WinForms user interfaces.
             </summary>    
         </member>
@@ -12512,9 +12509,14 @@
             CommandLink
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.#ctor">
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.IsPlatformSupported">
             <summary>
-            Creates a new instance of this class.
+            Indicates whether this feature is supported on the current platform.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.Link">
+            <summary>
+            Specifies the main instruction text.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.Command">
@@ -12522,19 +12524,9 @@
             Routed UI command to use for this button
             </summary>
         </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.Click">
-            <summary>
-            Occurs when the control is clicked.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.Link">
-            <summary>
-            Specifies the main instruction text
-            </summary>
-        </member>
         <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.Note">
             <summary>
-            Specifies the supporting note text
+            Specifies the supporting note text.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.Icon">
@@ -12547,14 +12539,19 @@
             Indicates if the button is in a checked state
             </summary>
         </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.Click">
+            <summary>
+            Occurs when the control is clicked.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.#ctor">
+            <summary>
+            Creates a new instance of this class.
+            </summary>
+        </member>
         <member name="E:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.PropertyChanged">
             <summary>
             Occurs when a property value changes.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.IsPlatformSupported">
-            <summary>
-            Indicates whether this feature is supported on the current platform.
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.InitializeComponent">

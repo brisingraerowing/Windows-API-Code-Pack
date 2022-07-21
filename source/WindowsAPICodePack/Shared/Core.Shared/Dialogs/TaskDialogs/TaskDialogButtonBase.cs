@@ -2,6 +2,8 @@
 
 using System;
 
+using WinCopies.Util;
+
 namespace Microsoft.WindowsAPICodePack.Dialogs
 {
     // ContentProperty allows us to specify the text 
@@ -17,24 +19,23 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
     /// </summary>
     public abstract class TaskDialogButtonBase : TaskDialogControl
     {
+        private byte _bools = 0b1;
         private string _text;
-        private bool _enabled = true;
-        private bool _defaultControl;
 
         /// <summary>
         /// Gets or sets the button text.
         /// </summary>
-        public string Text { get => _text; set => UpdateProperty(ref _text, value, nameof(Text)); }
+        public string Text { get => _text; set => UpdateProperty(() => _text = value, nameof(Text)); }
 
         /// <summary>
         /// Gets or sets a value that determines whether the button is enabled. The enabled state can cannot be changed before the dialog is shown.
         /// </summary>
-        public bool Enabled { get => _enabled; set => UpdateProperty(ref _enabled, value, nameof(Enabled)); }
+        public bool Enabled { get => GetBit(0); set => UpdateProperty(0, value, nameof(Enabled)); }
 
         /// <summary>
         /// Gets or sets a value that indicates whether this button is the default button.
         /// </summary>
-        public bool Default { get => _defaultControl; set => UpdateProperty(ref _defaultControl, value, nameof(Default)); }
+        public bool Default { get => GetBit(1); set => UpdateProperty(1, value, nameof(Default)); }
 
         // Note that we don't need to explicitly 
         // implement the add/remove delegate for the Click event;
@@ -59,19 +60,23 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// </summary>
         /// <param name="name">The name for this button.</param>
         /// <param name="text">The label for this button.</param>
-        protected TaskDialogButtonBase(string name, string text) : base(name) => this._text = text;
+        protected TaskDialogButtonBase(string name, string text) : base(name) => _text = text;
 
-        protected void UpdateProperty<T>(ref T value, in T newValue, in string propertyName)
+        private bool GetBit(in byte pos) => _bools.GetBit(pos);
+
+        protected void UpdateProperty(in Action action, in string propertyName)
         {
             CheckPropertyChangeAllowed(propertyName);
-            value = newValue;
+            action();
             ApplyPropertyChange(propertyName);
         }
+
+        private void UpdateProperty(byte pos, bool value, in string propertyName) => UpdateProperty(() => WinCopies.UtilHelpers.SetBit(ref _bools, pos, value), propertyName);
 
         internal void RaiseClickEvent()
         {
             // Only perform click if the button is enabled.
-            if (_enabled)
+            if (Enabled)
 
                 Click?.Invoke(this, EventArgs.Empty);
         }

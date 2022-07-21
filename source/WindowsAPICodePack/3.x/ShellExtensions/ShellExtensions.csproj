@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
 	<PropertyGroup>
-		<TargetFrameworks>net472;net48;netcoreapp3.0;netcoreapp3.1;net5.0-windows;net6.0-windows</TargetFrameworks>
+		<TargetFrameworks>net472;net48;netcoreapp3.0;netcoreapp3.1;net5.0-windows;net6.0-windows;net7.0-windows</TargetFrameworks>
 		<UseWPF>true</UseWPF>
 		<UseWindowsForms>true</UseWindowsForms>
 		<AssemblyName>WinCopies.WindowsAPICodePack.ShellExtensions</AssemblyName>
@@ -12,10 +12,10 @@
 		<AssemblyOriginatorKeyFile>ShellExtensions.snk</AssemblyOriginatorKeyFile>
 		<DocumentationFile>WinCopies.WindowsAPICodePack.ShellExtensions.xml</DocumentationFile>
 		<DefineConstants>WAPICP3;$(DefineConstants)</DefineConstants>
-		<VersionPrefix>3.4</VersionPrefix>
+		<VersionPrefix>3.10</VersionPrefix>
 		<VersionSuffix>preview</VersionSuffix>
-		<AssemblyVersion>3.4</AssemblyVersion>
-		<FileVersion>3.4</FileVersion>
+		<AssemblyVersion>3.10</AssemblyVersion>
+		<FileVersion>3.10</FileVersion>
 	</PropertyGroup>
 
 	<Import Project="..\..\Shared\ShellExtensions.Shared\ShellExtensions.Shared.projitems" Label="Shared" />

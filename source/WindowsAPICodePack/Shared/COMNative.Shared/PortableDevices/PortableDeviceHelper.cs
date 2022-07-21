@@ -26,7 +26,7 @@ namespace Microsoft.WindowsAPICodePack.COMNative.PortableDevices
 #if CS7
         public static
 #if WAPICP3
-            WinCopies.Collections.Generic.EnumerableHelper<T>.IEnumerableLinkedList
+            EnumerableHelper<T>.IEnumerableLinkedList
 #else
             IList<T> 
 #endif

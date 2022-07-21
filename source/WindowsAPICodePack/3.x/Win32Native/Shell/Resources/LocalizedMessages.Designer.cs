@@ -19,7 +19,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class LocalizedMessages {
@@ -79,24 +79,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ControlPanel Category.
-        /// </summary>
-        public static string FolderTypeCategory {
-            get {
-                return ResourceManager.GetString("FolderTypeCategory", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ControlPanel Classic.
-        /// </summary>
-        public static string FolderTypeClassic {
-            get {
-                return ResourceManager.GetString("FolderTypeClassic", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Communications.
         /// </summary>
         public static string FolderTypeCommunications {
@@ -124,6 +106,24 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ControlPanel Category.
+        /// </summary>
+        public static string FolderTypeControlPanelCategory {
+            get {
+                return ResourceManager.GetString("FolderTypeControlPanelCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ControlPanel Classic.
+        /// </summary>
+        public static string FolderTypeControlPanelClassic {
+            get {
+                return ResourceManager.GetString("FolderTypeControlPanelClassic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Documents.
         /// </summary>
         public static string FolderTypeDocuments {
@@ -147,6 +147,15 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources {
         public static string FolderTypeGenericLibrary {
             get {
                 return ResourceManager.GetString("FolderTypeGenericLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generic SearchResults.
+        /// </summary>
+        public static string FolderTypeGenericSearchResults {
+            get {
+                return ResourceManager.GetString("FolderTypeGenericSearchResults", resourceCulture);
             }
         }
         
@@ -282,15 +291,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources {
         public static string FolderTypeSearches {
             get {
                 return ResourceManager.GetString("FolderTypeSearches", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Generic SearchResults.
-        /// </summary>
-        public static string FolderTypeSearchResults {
-            get {
-                return ResourceManager.GetString("FolderTypeSearchResults", resourceCulture);
             }
         }
         
@@ -547,7 +547,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This property only accepts a value of type \&quot;{0}\&quot;..
+        ///   Looks up a localized string similar to This property only accepts a value of type &quot;{0}&quot;..
         /// </summary>
         public static string ShellPropertyWrongType {
             get {

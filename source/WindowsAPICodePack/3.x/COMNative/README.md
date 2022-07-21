@@ -1,5 +1,5 @@
-﻿Windows-API-Code-Pack
-=====================
+﻿Windows-API-Code-Pack/COMNative/3.x
+===================================
 
 README
 ======

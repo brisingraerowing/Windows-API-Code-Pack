@@ -1,13 +1,12 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
-using System;
-using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.ComTypes;
+using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
-using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
+
+using System;
+using System.Runtime.InteropServices;
 
 namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 {
@@ -93,7 +92,6 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         }
 
         #region IDisposable Members
-
         /// <summary>
         /// Cleans up memory
         /// </summary>
@@ -113,13 +111,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                 defaultPropertyCollection?.Dispose();
         }
 
-        ~ShellProperties()
-        {
-
-            Dispose(false);
-
-        }
-
+        ~ShellProperties() => Dispose(false);
         #endregion
     }
 }

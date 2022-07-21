@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Microsoft.WindowsAPICodePack.Win32Native;
+
+using System;
 using System.Runtime.InteropServices;
-using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Internal;
 
 namespace Microsoft.WindowsAPICodePack.Controls
 {
@@ -11,52 +11,24 @@ namespace Microsoft.WindowsAPICodePack.Controls
     [Serializable]
     public class CommonControlException : COMException
     {
-        /// <summary>
-        /// Default constructor.
-        /// </summary>
-        public CommonControlException() { }
+        /// <inheritdoc/>
+        public CommonControlException() { /* Left empty. */ }
 
-        /// <summary>
-        /// Initializes an excpetion with a custom message.
-        /// </summary>
-        /// <param name="message"></param>
-        public CommonControlException(string message) : base(message) { }
+        /// <inheritdoc/>
+        public CommonControlException(string message) : base(message) { /* Left empty. */ }
 
-        /// <summary>
-        /// Initializes an exception with custom message and inner exception.
-        /// </summary>
-        /// <param name="message"></param>
-        /// <param name="innerException"></param>
-        public CommonControlException(string message, Exception innerException)
-            : base(message, innerException)
-        {
-        }
+        /// <inheritdoc/>
+        public CommonControlException(string message, Exception innerException) : base(message, innerException) { /* Left empty. */ }
+
+        /// <inheritdoc/>
+        public CommonControlException(string message, int errorCode) : base(message, errorCode) { /* Left empty. */ }
 
         /// <summary>
         /// Initializes an exception with custom message and error code.
         /// </summary>
-        /// <param name="message"></param>
-        /// <param name="errorCode"></param>
-        public CommonControlException(string message, int errorCode) : base(message, errorCode) { }
+        internal CommonControlException(string message, HResult errorCode) : this(message, (int)errorCode) { /* Left empty. */ }
 
-        /// <summary>
-        /// Initializes an exception with custom message and error code.
-        /// </summary>
-        /// <param name="message"></param>
-        /// <param name="errorCode"></param>
-        internal CommonControlException(string message, HResult errorCode) : this(message, (int)errorCode) { }
-
-        /// <summary>
-        /// Initializes an exception from serialization info and a context.
-        /// </summary>
-        /// <param name="info"></param>
-        /// <param name="context"></param>
-        protected CommonControlException(
-            System.Runtime.Serialization.SerializationInfo info,
-            System.Runtime.Serialization.StreamingContext context)
-            : base(info, context)
-        {
-        }
-
+        /// <inheritdoc/>
+        protected CommonControlException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : base(info, context) { /* Left empty. */ }
     }
 }

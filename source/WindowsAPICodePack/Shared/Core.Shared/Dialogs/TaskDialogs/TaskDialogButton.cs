@@ -7,19 +7,25 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
     /// </summary>
     public class TaskDialogButton : TaskDialogButtonBase
     {
-        private bool useElevationIcon;
+        private bool _showElevationIcon;
 
         /// <summary>
         /// Gets or sets a value that controls whether the elevation icon is displayed.
         /// </summary>
-        public bool UseElevationIcon
+        public bool
+#if WAPICP3
+            ShowElevationIcon
+#else
+            UseElevationIcon
+#endif
         {
-            get => useElevationIcon;
+            get => _showElevationIcon;
+
             set
             {
-                CheckPropertyChangeAllowed("ShowElevationIcon");
-                useElevationIcon = value;
-                ApplyPropertyChange("ShowElevationIcon");
+                CheckPropertyChangeAllowed(nameof(ShowElevationIcon));
+                _showElevationIcon = value;
+                ApplyPropertyChange(nameof(ShowElevationIcon));
             }
         }
 

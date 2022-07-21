@@ -5,6 +5,8 @@ using System;
 using System.Diagnostics;
 using System.Windows.Interop;
 
+using static Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper;
+using static Microsoft.WindowsAPICodePack.Win32Native.Menus.Menus;
 using static Microsoft.WindowsAPICodePack.Win32Native.
 #if WAPICP3
     Menus
@@ -12,8 +14,6 @@ using static Microsoft.WindowsAPICodePack.Win32Native.
     Shell.DesktopWindowManager
 #endif
     .MenuFlags;
-using static Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper;
-using static Microsoft.WindowsAPICodePack.Win32Native.Menus.Menus;
 using static Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.HandlerNativeMethods;
 using static Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.SystemMenuCommands;
 
@@ -370,13 +370,13 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// <para>Name: WS_TILEDWINDOW</para>
         /// <para>Description: The window is an overlapped window. Same as the <see cref="OverlappedWindow"/> style.</para>
         /// </summary>
-        TiledWindow = OverlappedWindow,
+        TiledWindow = Overlapped | Caption | SystemMenu | ThickFrame | MinimizeBox | MaximizeBox,
 
         /// <summary>
         /// <para>Name: WS_OVERLAPPEDWINDOW</para>
         /// <para>Description: The window is an overlapped window. Same as the <see cref="TiledWindow"/> style. </para>
         /// </summary>
-        OverlappedWindow = Overlapped | Caption | SystemMenu | ThickFrame | MinimizeBox | MaximizeBox,
+        OverlappedWindow = TiledWindow,
 
         /// <summary>
         /// <para>Name: WS_POPUPWINDOW</para>

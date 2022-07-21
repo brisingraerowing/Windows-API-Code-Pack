@@ -262,7 +262,7 @@
     <value>This Property is available on Windows 7 only.</value>
   </data>
   <data name="ShellPropertyWrongType" xml:space="preserve">
-    <value>This property only accepts a value of type \"{0}\".</value>
+    <value>This property only accepts a value of type "{0}".</value>
   </data>
   <data name="ShellThumbnailCurrentSizeRange" xml:space="preserve">
     <value>CurrentSize (width or height) cannot be greater than the maximum size: {0}.</value>

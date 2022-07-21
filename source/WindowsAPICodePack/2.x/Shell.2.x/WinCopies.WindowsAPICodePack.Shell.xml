@@ -4,999 +4,6 @@
         <name>WinCopies.WindowsAPICodePack.Shell</name>
     </assembly>
     <members>
-        <member name="T:Microsoft.WindowsAPICodePack.Controls.WindowsForms.CommandLink">
-            <summary>
-            Implements a CommandLink button that can be used in 
-            WinForms user interfaces.
-            </summary>    
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.CommandLink.CreateParams">
-            <summary>
-            Gets a System.Windows.Forms.CreateParams on the base class when 
-            creating a window.
-            </summary>        
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.CommandLink.#ctor">
-            <summary>
-            Creates a new instance of this class.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.CommandLink.DefaultSize">
-            <summary>
-            Increase default width.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.CommandLink.NoteText">
-            <summary>
-            Specifies the supporting note text
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.CommandLink.UseElevationIcon">
-            <summary>
-            Enable shield icon to be set at design-time.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.CommandLink.IsPlatformSupported">
-            <summary>
-            Indicates whether this feature is supported on the current platform.
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser">
-            <summary>
-            This class is a wrapper around the Windows Explorer Browser control.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.NavigationOptions">
-            <summary>
-            Options that control how the ExplorerBrowser navigates
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.ContentOptions">
-            <summary>
-            Options that control how the content of the ExplorerBorwser looks
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.Items">
-            <summary>
-            The set of ShellObjects in the Explorer Browser
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.SelectedItems">
-            <summary>
-            The set of selected ShellObjects in the Explorer Browser
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.NavigationLog">
-            <summary>
-            Contains the navigation history of the ExplorerBrowser
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.PropertyBagName">
-            <summary>
-            The name of the property bag used to persist changes to the ExplorerBrowser's view state.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.Navigate(Microsoft.WindowsAPICodePack.Shell.ShellObject)">
-            <summary>
-            Clears the Explorer Browser of existing content, fills it with
-            content from the specified container, and adds a new point to the Travel Log.
-            </summary>
-            <param name="shellObject">The shell container to navigate to.</param>
-            <exception cref="T:System.Runtime.InteropServices.COMException">Will throw if navigation fails for any other reason.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.NavigateLogLocation(Microsoft.WindowsAPICodePack.Controls.NavigationLogDirection)">
-            <summary>
-            Navigates within the navigation log. This does not change the set of 
-            locations in the navigation log.
-            </summary>
-            <param name="direction">Forward of Backward</param>
-            <returns>True if the navigation succeeded, false if it failed for any reason.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.NavigateLogLocation(System.Int32)">
-            <summary>
-            Navigate within the navigation log. This does not change the set of 
-            locations in the navigation log.
-            </summary>
-            <param name="navigationLogIndex">An index into the navigation logs Locations collection.</param>
-            <returns>True if the navigation succeeded, false if it failed for any reason.</returns>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.SelectionChanged">
-            <summary>
-            Fires when the SelectedItems collection changes. 
-            </summary>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.ItemsChanged">
-            <summary>
-            Fires when the Items colection changes. 
-            </summary>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.NavigationPending">
-            <summary>
-            Fires when a navigation has been initiated, but is not yet complete.
-            </summary>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.NavigationComplete">
-            <summary>
-            Fires when a navigation has been 'completed': no NavigationPending listener 
-            has cancelled, and the ExplorerBorwser has created a new view. The view 
-            will be populated with new items asynchronously, and ItemsChanged will be 
-            fired to reflect this some time later.
-            </summary>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.NavigationFailed">
-            <summary>
-            Fires when either a NavigationPending listener cancels the navigation, or
-            if the operating system determines that navigation is not possible.
-            </summary>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.ViewEnumerationComplete">
-            <summary>
-            Fires when the ExplorerBorwser view has finished enumerating files.
-            </summary>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.ViewSelectedItemChanged">
-            <summary>
-            Fires when the item selected in the view has changed (i.e., a rename ).
-            This is not the same as SelectionChanged.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.#ctor">
-            <summary>
-            Initializes the ExplorerBorwser WinForms wrapper.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.OnPaint(System.Windows.Forms.PaintEventArgs)">
-            <summary>
-            Displays a placeholder for the explorer browser in design mode
-            </summary>
-            <param name="e">Contains information about the paint event.</param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.OnCreateControl">
-            <summary>
-            Creates and initializes the native ExplorerBrowser control
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.OnSizeChanged(System.EventArgs)">
-            <summary>
-            Sizes the native control to match the WinForms control wrapper.
-            </summary>
-            <param name="e">Contains information about the size changed event.</param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.OnHandleDestroyed(System.EventArgs)">
-            <summary>
-            Cleans up the explorer browser events+object when the window is being taken down.
-            </summary>
-            <param name="e">An EventArgs that contains event data.</param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.Microsoft#WindowsAPICodePack#COMNative#Controls#IServiceProvider#QueryService(System.Guid@,System.Guid@,System.IntPtr@)">
-            <summary>
-            
-            </summary>
-            <param name="guidService">calling service</param>
-            <param name="riid">requested interface guid</param>
-            <param name="ppvObject">caller-allocated memory for interface pointer</param>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.Microsoft#WindowsAPICodePack#COMNative#Controls#IExplorerPaneVisibility#GetPaneState(System.Guid@,Microsoft.WindowsAPICodePack.COMNative.Controls.ExplorerPaneState@)">
-            <summary>
-            Controls the visibility of the explorer borwser panes
-            </summary>
-            <param name="explorerPane">a guid identifying the pane</param>
-            <param name="peps">the pane state desired</param>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.GetCurrentViewMode">
-            <summary>
-            Returns the current view mode of the browser
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.GetFolderView2">
-            <summary>
-            Gets the IFolderView2 interface from the explorer browser.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.GetSelectedItemsArray">
-            <summary>
-            Gets the selected items in the explorer browser as an IShellItemArray
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.GetItemsArray">
-            <summary>
-            Gets the items in the ExplorerBrowser as an IShellItemArray
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink">
-            <summary>
-            Implements a CommandLink button that can be used in WPF user interfaces.
-            </summary>
-            <summary>
-            CommandLink
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.#ctor">
-            <summary>
-            Creates a new instance of this class.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.Command">
-            <summary>
-            Routed UI command to use for this button
-            </summary>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.Click">
-            <summary>
-            Occurs when the control is clicked.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.Link">
-            <summary>
-            Specifies the main instruction text
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.Note">
-            <summary>
-            Specifies the supporting note text
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.Icon">
-            <summary>
-            Icon to set for the command link button
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.IsCheck">
-            <summary>
-            Indicates if the button is in a checked state
-            </summary>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.PropertyChanged">
-            <summary>
-            Occurs when a property value changes.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.IsPlatformSupported">
-            <summary>
-            Indicates whether this feature is supported on the current platform.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser">
-            <summary>
-            Interaction logic for ExplorerBrowser.xaml
-            </summary>
-            <summary>
-            ExplorerBrowser
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.ExplorerBrowserControl">
-            <summary>
-            The underlying WinForms control
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.#ctor">
-            <summary>
-            Hosts the ExplorerBrowser WinForms wrapper in this control
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.ExplorerBrowser_Loaded(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            To avoid the 'Dispatcher processing has been suspended' InvalidOperationException on Win7,
-            the ExplorerBorwser native control is initialized after this control is fully loaded.
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.UpdateDependencyPropertiesFromCLRPRoperties(System.Object,System.EventArgs)">
-            <summary>
-            Map changes to the CLR flags to the dependency properties
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NavigationLogChanged(System.Object,Microsoft.WindowsAPICodePack.Controls.NavigationLogEventArgs)">
-            <summary>
-            Synchronize NavigationLog collection to dependency collection
-            </summary>
-            <param name="sender"></param>
-            <param name="args"></param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.SelectionChanged(System.Object,System.EventArgs)">
-            <summary>
-            Synchronize SelectedItems collection to dependency collection
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.Items">
-            <summary>
-            The items in the ExplorerBrowser window
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.ItemsProperty">
-            <summary>
-            The items in the ExplorerBrowser window
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.SelectedItems">
-            <summary>
-            The selected items in the ExplorerBrowser window
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NavigationLog">
-            <summary>
-            The selected items in the ExplorerBrowser window
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NavigationLogProperty">
-            <summary>
-            The NavigationLog
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.SelectedItemsProperty">
-            <summary>
-            The selected items in the ExplorerBrowser window
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NavigationTarget">
-            <summary>
-            The location the explorer browser is navigating to
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NavigationTargetProperty">
-            <summary>
-            The DependencyProperty for the NavigationTarget property
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.AlignLeft">
-            <summary>
-            The view should be left-aligned. 
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.AutoArrange">
-            <summary>
-            Automatically arrange the elements in the view. 
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.CheckSelect">
-            <summary>
-            Turns on check mode for the view
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.ExtendedTiles">
-            <summary>
-            When the view is in "tile view mode" the layout of a single item should be extended to the width of the view.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.FullRowSelect">
-            <summary>
-            When an item is selected, the item and all its sub-items are highlighted.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.HideFileNames">
-            <summary>
-            The view should not display file names
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NoBrowserViewState">
-            <summary>
-            The view should not save view state in the browser.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NoColumnHeader">
-            <summary>
-            Do not display a column header in the view in any view mode.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NoHeaderInAllViews">
-            <summary>
-            Only show the column header in details view mode.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NoIcons">
-            <summary>
-            The view should not display icons. 
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NoSubfolders">
-            <summary>
-            Do not show subfolders. 
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.SingleClickActivate">
-            <summary>
-            Navigate with a single click
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.SingleSelection">
-            <summary>
-            Do not allow more than a single item to be selected.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.ThumbnailSize">
-            <summary>
-            The size of the thumbnails in the explorer browser
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.ViewMode">
-            <summary>
-            The various view modes of the explorer browser control
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.AlwaysNavigate">
-            <summary>
-            Always navigate, even if you are attempting to navigate to the current folder.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NavigateOnce">
-            <summary>
-            Do not navigate further than the initial navigation.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.AdvancedQueryPane">
-            <summary>
-            Show/Hide the AdvancedQuery pane on subsequent navigation
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.CommandsPane">
-            <summary>
-            Show/Hide the Commands pane on subsequent navigation
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.CommandsOrganizePane">
-            <summary>
-            Show/Hide the Organize menu in the Commands pane on subsequent navigation
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.CommandsViewPane">
-            <summary>
-            Show/Hide the View menu in the Commands pane on subsequent navigation
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.DetailsPane">
-            <summary>
-            Show/Hide the Details pane on subsequent navigation
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NavigationPane">
-            <summary>
-            Show/Hide the Navigation pane on subsequent navigation
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.PreviewPane">
-            <summary>
-            Show/Hide the Preview pane on subsequent navigation
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.QueryPane">
-            <summary>
-            Show/Hide the Query pane on subsequent navigation
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NavigationLogIndex">
-            <summary>
-            Navigation log index
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.Dispose">
-            <summary>
-            Disposes the class
-            </summary>        
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.Dispose(System.Boolean)">
-            <summary>
-            Disposes the browser.
-            </summary>
-            <param name="disposed"></param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Controls.CommonControlException">
-            <summary>
-            An exception thrown when an error occurs while dealing with Control objects.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.CommonControlException.#ctor">
-            <summary>
-            Default constructor.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.CommonControlException.#ctor(System.String)">
-            <summary>
-            Initializes an excpetion with a custom message.
-            </summary>
-            <param name="message"></param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.CommonControlException.#ctor(System.String,System.Exception)">
-            <summary>
-            Initializes an exception with custom message and inner exception.
-            </summary>
-            <param name="message"></param>
-            <param name="innerException"></param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.CommonControlException.#ctor(System.String,System.Int32)">
-            <summary>
-            Initializes an exception with custom message and error code.
-            </summary>
-            <param name="message"></param>
-            <param name="errorCode"></param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.CommonControlException.#ctor(System.String,Microsoft.WindowsAPICodePack.Win32Native.HResult)">
-            <summary>
-            Initializes an exception with custom message and error code.
-            </summary>
-            <param name="message"></param>
-            <param name="errorCode"></param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.CommonControlException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            Initializes an exception from serialization info and a context.
-            </summary>
-            <param name="info"></param>
-            <param name="context"></param>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions">
-            <summary>
-            These options control how the content of the Explorer Browser 
-            is rendered.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.ViewMode">
-            <summary>
-            The viewing mode of the Explorer Browser
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.Flags">
-            <summary>
-            The binary representation of the ExplorerBrowser content flags
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.AlignLeft">
-            <summary>
-            The view should be left-aligned. 
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.AutoArrange">
-            <summary>
-            Automatically arrange the elements in the view. 
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.CheckSelect">
-            <summary>
-            Turns on check mode for the view
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.ExtendedTiles">
-            <summary>
-            When the view is in "tile view mode" the layout of a single item should be extended to the width of the view.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.FullRowSelect">
-            <summary>
-            When an item is selected, the item and all its sub-items are highlighted.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.HideFileNames">
-            <summary>
-            The view should not display file names
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.NoBrowserViewState">
-            <summary>
-            The view should not save view state in the browser.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.NoColumnHeader">
-            <summary>
-            Do not display a column header in the view in any view mode.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.NoHeaderInAllViews">
-            <summary>
-            Only show the column header in details view mode.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.NoIcons">
-            <summary>
-            The view should not display icons. 
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.NoSubfolders">
-            <summary>
-            Do not show subfolders. 
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.SingleClickActivate">
-            <summary>
-            Navigate with a single click
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.SingleSelection">
-            <summary>
-            Do not allow more than a single item to be selected.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.ThumbnailSize">
-            <summary>
-            The size of the thumbnails in pixels
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserViewMode">
-            <summary>
-            Indicates the viewing mode of the explorer browser
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserViewMode.Auto">
-            <summary>
-            Choose the best view mode for the folder
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserViewMode.Content">
-            <summary>
-            (New for Windows7)
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserViewMode.Details">
-            <summary>
-            Object names and other selected information, such as the size or date last updated, are shown.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserViewMode.Icon">
-            <summary>
-            The view should display medium-size icons.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserViewMode.List">
-            <summary>
-            Object names are displayed in a list view.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserViewMode.SmallIcon">
-            <summary>
-            The view should display small icons. 
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserViewMode.Thumbnail">
-            <summary>
-            The view should display thumbnail icons. 
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserViewMode.ThumbStrip">
-            <summary>
-            The view should display icons in a filmstrip format.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserViewMode.Tile">
-            <summary>
-            The view should display large icons. 
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigateOptions">
-            <summary>
-            Specifies the options that control subsequent navigation.
-            Typically use one, or a bitwise combination of these
-            flags to specify how the explorer browser navigates.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigateOptions.AlwaysNavigate">
-            <summary>
-            Always navigate, even if you are attempting to navigate to the current folder.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigateOptions.NavigateOnce">
-            <summary>
-            Do not navigate further than the initial navigation.
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions">
-            <summary>
-            Indicates the content options of the explorer browser.
-            Typically use one, or a bitwise combination of these
-            flags to specify how conent should appear in the
-            explorer browser control
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.None">
-            <summary>
-            No options.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.AlignLeft">
-            <summary>
-            The view should be left-aligned. 
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.AutoArrange">
-            <summary>
-            Automatically arrange the elements in the view. 
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.CheckSelect">
-            <summary>
-            Turns on check mode for the view
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.ExtendedTiles">
-            <summary>
-            When the view is set to "Tile" the layout of a single item should be extended to the width of the view.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.FullRowSelect">
-            <summary>
-            When an item is selected, the item and all its sub-items are highlighted.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.HideFileNames">
-            <summary>
-            The view should not display file names
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.NoBrowserViewState">
-            <summary>
-            The view should not save view state in the browser.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.NoColumnHeader">
-            <summary>
-            Do not display a column header in the view in any view mode.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.NoHeaderInAllViews">
-            <summary>
-            Only show the column header in details view mode.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.NoIcons">
-            <summary>
-            The view should not display icons. 
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.NoSubfolders">
-            <summary>
-            Do not show subfolders. 
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.SingleClickActivate">
-            <summary>
-            Navigate with a single click
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.SingleSelection">
-            <summary>
-            Do not allow more than a single item to be selected.
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Controls.PaneVisibilityState">
-            <summary>
-            Indicates the visibility state of an ExplorerBrowser pane
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.PaneVisibilityState.DoNotCare">
-            <summary>
-            Allow the explorer browser to determine if this pane is displayed.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.PaneVisibilityState.Hide">
-            <summary>
-            Hide the pane
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.PaneVisibilityState.Show">
-            <summary>
-            Show the pane
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Controls.NavigationPendingEventArgs">
-            <summary>
-            Event argument for The NavigationPending event
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.NavigationPendingEventArgs.PendingLocation">
-            <summary>
-            The location being navigated to
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.NavigationPendingEventArgs.Cancel">
-            <summary>
-            Set to 'True' to cancel the navigation.
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Controls.NavigationCompleteEventArgs">
-            <summary>
-            Event argument for The NavigationComplete event
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.NavigationCompleteEventArgs.NewLocation">
-            <summary>
-            The new location of the explorer browser
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Controls.NavigationFailedEventArgs">
-            <summary>
-            Event argument for the NavigatinoFailed event
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.NavigationFailedEventArgs.FailedLocation">
-            <summary>
-            The location the the browser would have navigated to.
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserPaneVisibility">
-            <summary>
-            Controls the visibility of the various ExplorerBrowser panes on subsequent navigation
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserPaneVisibility.Navigation">
-            <summary>
-            The pane on the left side of the Windows Explorer window that hosts the folders tree and Favorites.
-            </summary>        
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserPaneVisibility.Commands">
-            <summary>
-            Commands module along the top of the Windows Explorer window.
-            </summary>        
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserPaneVisibility.CommandsOrganize">
-            <summary>
-            Organize menu within the commands module.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserPaneVisibility.CommandsView">
-            <summary>
-            View menu within the commands module.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserPaneVisibility.Details">
-            <summary>
-            Pane showing metadata along the bottom of the Windows Explorer window.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserPaneVisibility.Preview">
-            <summary>
-            Pane on the right of the Windows Explorer window that shows a large reading preview of the file.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserPaneVisibility.Query">
-            <summary>
-            Quick filter buttons to aid in a search.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserPaneVisibility.AdvancedQuery">
-            <summary>
-            Additional fields and options to aid in a search.
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationLog">
-            <summary>
-            The navigation log is a history of the locations visited by the explorer browser. 
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationLog.ClearLog">
-            <summary>
-            Clears the contents of the navigation log.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationLog.CanNavigateForward">
-            <summary>
-            Indicates the presence of locations in the log that can be 
-            reached by calling Navigate(Forward)
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationLog.CanNavigateBackward">
-            <summary>
-            Indicates the presence of locations in the log that can be 
-            reached by calling Navigate(Backward)
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationLog.Locations">
-            <summary>
-            The navigation log
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationLog.CurrentLocationIndex">
-            <summary>
-            An index into the Locations collection. The ShellObject pointed to 
-            by this index is the current location of the ExplorerBrowser.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationLog.CurrentLocation">
-            <summary>
-            Gets the shell object in the Locations collection pointed to
-            by CurrentLocationIndex.
-            </summary>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationLog.NavigationLogChanged">
-            <summary>
-            Fires when the navigation log changes or 
-            the current navigation position changes
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationLog.pendingNavigation">
-            <summary>
-            The pending navigation log action. null if the user is not navigating 
-            via the navigation log.
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationLog.currentLocationIndex">
-            <summary>
-            The index into the Locations collection. -1 if the Locations colleciton 
-            is empty.
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Controls.PendingNavigation">
-            <summary>
-            A navigation traversal request
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Controls.NavigationLogDirection">
-            <summary>
-            The direction argument for Navigate
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.NavigationLogDirection.Forward">
-            <summary>
-            Navigates forward through the navigation log
-            </summary>
-        </member>
-        <member name="F:Microsoft.WindowsAPICodePack.Controls.NavigationLogDirection.Backward">
-            <summary>
-            Navigates backward through the travel log
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Controls.NavigationLogEventArgs">
-            <summary>
-            The event argument for NavigationLogChangedEvent
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.NavigationLogEventArgs.CanNavigateForwardChanged">
-            <summary>
-            Indicates CanNavigateForward has changed
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.NavigationLogEventArgs.CanNavigateBackwardChanged">
-            <summary>
-            Indicates CanNavigateBackward has changed
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.NavigationLogEventArgs.LocationsChanged">
-            <summary>
-            Indicates the Locations collection has changed
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationOptions">
-            <summary>
-            These options control the results subsequent navigations of the ExplorerBrowser
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationOptions.Flags">
-            <summary>
-            The binary flags that are passed to the explorer browser control's GetOptions/SetOptions methods
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationOptions.NavigateOnce">
-            <summary>
-            Do not navigate further than the initial navigation.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationOptions.AlwaysNavigate">
-            <summary>
-            Always navigate, even if you are attempting to navigate to the current folder.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationOptions.PaneVisibility">
-            <summary>
-            Controls the visibility of the various ExplorerBrowser panes on subsequent navigation
-            </summary>
-        </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -1421,181 +428,6 @@
             <param name="eventHandler">EventHandler&lt;EventArgs&gt; to raise</param>
             <param name="sender">Event sender</param>
         </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Shell.FileInfo">
-            <summary>
-            Contains information about a file object.
-            </summary>
-            <remarks>This structure is used with the <see cref="!:FileOperation.GetFileInfo(in string, in FileAttributes, in GetFileInfoOptions)"/> function.</remarks>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.Icon">
-            <summary>
-            Gets or sets the icon that represents the file. When the <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileInfo.Dispose"/> method of this struct is called, that method calls the <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileInfo.Dispose"/> method on the current <see cref="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.Icon"/>.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.IconIndex">
-            <summary>
-            Gets or sets the index of the icon image within the system image list.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.Attributes">
-            <summary>
-            Gets or sets an array of values that indicates the attributes of the file object. For information about these values, see the <see cref="M:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellFolder.GetAttributesOf(System.UInt32,System.IntPtr,System.UInt32@)"/> method.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.DisplayName">
-            <summary>
-            Gets or sets a string that contains the name of the file as it appears in the Windows Shell, or the path and file name of the file that contains the icon representing the file.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.TypeName">
-            <summary>
-            Gets or sets a string that describes the type of file.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileInfo.#ctor(System.Drawing.Icon,System.Int32,Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellFileGetAttributesOptions,System.String,System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.WindowsAPICodePack.Shell.FileInfo"/> structure.
-            </summary>
-            <param name="icon">The icon of the file represented by this structure.</param>
-            <param name="iconIndex">The icon index of the retrieved icon.</param>
-            <param name="attributes">The attributes of the file represented by this structure.</param>
-            <param name="displayName">The display name of the file represented by this structure.</param>
-            <param name="typeName">The type name of the file represented by this structure.</param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileInfo.Dispose">
-            <summary>
-            Calls the <see cref="M:System.Drawing.Icon.Dispose"/> method from the <see cref="P:Microsoft.WindowsAPICodePack.Shell.FileInfo.Icon"/> property.
-            </summary>
-        </member>
-        <member name="T:Microsoft.WindowsAPICodePack.Shell.FileOperation">
-            <summary>
-            Provides methods to perform file system operations.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.WindowsAPICodePack.Shell.FileOperation"/> class.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.Advise(Microsoft.WindowsAPICodePack.Shell.FileOperationProgressSink)">
-            <summary>
-            Enables a handler to provide status and error information for all operations.
-            </summary>
-            <param name="pfops">An <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IFileOperationProgressSink"/> object to be used for progress status and error notifications.</param>
-            <returns>A returned token that uniquely identifies this connection. The calling application uses this token later to delete the connection by passing it to <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.Unadvise(System.UInt32)"/>.</returns>
-            <remarks>Several individual methods have the ability to declare their own progress sinks, which are redundant to the one set here. They are used when you only want to be given progress and error information for a specific operation.</remarks>
-            <exception cref="T:System.ArgumentNullException">Exception thrown when a parameter is null.</exception>
-            <exception cref="T:System.ObjectDisposedException">Exception thrown when this object is disposed.</exception>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.Unadvise(System.UInt32)">
-            <summary>
-            Terminates an advisory connection previously established through <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.Advise(Microsoft.WindowsAPICodePack.Shell.FileOperationProgressSink)"/>.
-            </summary>
-            <param name="dwCookie">The connection token that identifies the connection to delete. This value was originally retrieved by <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.Advise(Microsoft.WindowsAPICodePack.Shell.FileOperationProgressSink)"/> when the connection was made.</param>
-            <exception cref="T:System.ObjectDisposedException">Exception thrown when this object is disposed.</exception>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.SetOperationFlags(Microsoft.WindowsAPICodePack.COMNative.Shell.ShellOperationFlags)">
-            <summary>
-            Sets parameters for the current operation.
-            </summary>
-            <param name="flags">Flags that control the file operation. FOF flags are defined in Shellapi.h and FOFX flags are defined in Shobjidl.h. Note : If this method is not called, the default value used by the operation is <see cref="!: ShellOperationFlags.FOF_ALLOWUNDO"/> | <see cref="!:ShellOperationFlags.FOF_NOCONFIRMMKDIR"/>.</param>
-            <remarks>Set these flags before you call <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.PerformOperations"/> to define the parameters for whatever operations are being performed, such as copy, delete, or rename.</remarks>
-            <exception cref="T:System.ObjectDisposedException">Exception thrown when this object is disposed.</exception>
-            <exception cref="T:System.PlatformNotSupportedException">Exception thrown when a requested flag is not supported by the current platform.</exception>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.SetProgressDialog(Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog)">
-            <summary>
-            Specifies a dialog box used to display the progress of the operation.
-            </summary>
-            <param name="popd">An <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IOperationsProgressDialog"/> object that represents the dialog box.</param>
-            <exception cref="T:System.ArgumentNullException">Exception thrown when a parameter is null.</exception>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.SetProperties(Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyChangeArray)">
-            <summary>
-            Declares a set of properties and values to be set on an item or items.
-            </summary>
-            <param name="pproparray">An <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyChangeArray"/>, which accesses a collection of <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyChange"/> objects that specify the properties to be set and their new values.</param>
-            <remarks>This method does not set the new property values, it merely declares them. To set property values on an item or a group of items, you must make at least the sequence of calls detailed here:
-            <ol><li>Call <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.SetProperties(Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyChangeArray)"/> to declare the specific properties to be set and their new values.</li>
-            <li>Call <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.ApplyPropertiesToItem(Microsoft.WindowsAPICodePack.Shell.ShellObject)"/> or <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.ApplyPropertiesToItem(Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem)"/> to declare the item or items whose properties are to be set.</li>
-            <li>Call <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.PerformOperations"/> to apply the properties to the item or items.</li></ol></remarks>
-            <exception cref="T:System.ArgumentNullException">Exception thrown when a parameter is null.</exception>
-            <exception cref="T:System.ObjectDisposedException">Exception thrown when this object is disposed.</exception>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown when this method fails because of an error in the Win32 COM API implementation.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.GetFileInfo(System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes,Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions)">
-            <summary>
-            Retrieves information about an object in the file system, such as a file, folder, directory, or drive root.
-            </summary>
-            <param name="path"><para>A string of maximum length <see cref="!:MaxPath"/> that contains the path and file name. Both absolute and relative paths are valid.</para>
-            <para>If the <b>uFlags</b> parameter includes the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.PIDL"/> flag, this parameter must be the address of an ITEMIDLIST(PIDL) structure that contains the list of item identifiers that uniquely identifies the file within the Shell's namespace. The PIDL must be a fully qualified PIDL. Relative PIDLs are not allowed.</para>
-            <para>If the <b>uFlags</b> parameter includes the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.UseFileAttributes"/> flag, this parameter does not have to be a valid file name. The function will proceed as if the file exists with the specified name and with the file attributes passed in the <b>dwFileAttributes</b> parameter. This allows you to obtain information about a file type by passing just the extension for <b>pszPath</b> and passing <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes.Normal"/> in <b>dwFileAttributes</b>.</para>
-            <para>This string can use either short (the 8.3 form) or long file names.</para></param>
-            <param name="fileAttributes">A combination of one or more <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes"/> flags. If <b>uFlags</b> does not include the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.UseFileAttributes"/> flag, this parameter is ignored.</param>
-            <param name="options">The flags that specify the file information to retrieve. This parameter can be a combination of the values of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions"/> enum.</param>
-            <returns>A <see cref="T:Microsoft.WindowsAPICodePack.Shell.FileInfo"/> structure that contains the file information.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.GetFileInfo(System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes,Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions,System.Int32@)">
-            <summary>
-            Retrieves information about an object in the file system, such as a file, folder, directory, or drive root and a value that indicates the exe type.
-            </summary>
-            <param name="path"><para>A string of maximum length <see cref="!:MaxPath"/> that contains the path and file name. Both absolute and relative paths are valid.</para>
-            <para>If the <b>uFlags</b> parameter includes the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.PIDL"/> flag, this parameter must be the address of an ITEMIDLIST(PIDL) structure that contains the list of item identifiers that uniquely identifies the file within the Shell's namespace. The PIDL must be a fully qualified PIDL. Relative PIDLs are not allowed.</para>
-            <para>If the <b>uFlags</b> parameter includes the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.UseFileAttributes"/> flag, this parameter does not have to be a valid file name. The function will proceed as if the file exists with the specified name and with the file attributes passed in the <b>dwFileAttributes</b> parameter. This allows you to obtain information about a file type by passing just the extension for <b>pszPath</b> and passing <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes.Normal"/> in <b>dwFileAttributes</b>.</para>
-            <para>This string can use either short (the 8.3 form) or long file names.</para></param>
-            <param name="fileAttributes">A combination of one or more <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes"/> flags. If <b>uFlags</b> does not include the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.UseFileAttributes"/> flag, this parameter is ignored.</param>
-            <param name="options">The flags that specify the file information to retrieve. This parameter can be a combination of the values of the <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions"/> enum.</param>
-            <param name="exeType">The exe type. In order to this method retrieves the exe type, you need to use the <see cref="F:Microsoft.WindowsAPICodePack.Win32Native.Shell.GetFileInfoOptions.ExeType"/> flag in the <b>options</b> parameter.</param>
-            <returns>A <see cref="T:Microsoft.WindowsAPICodePack.Shell.FileInfo"/> structure that contains the file information.</returns>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.QueryRecycleBinInfo(System.String,Microsoft.WindowsAPICodePack.Shell.RecycleBinInfo@)">
-            <summary>
-            Queries the size and the number of items in the Recycle Bin.
-            </summary>
-            <param name="drivePath">The path to the Recycle Bin drive. Leave this parameter null or empty if you want to get the info for the Recycle Bins for all drives.</param>
-            <param name="recycleBinInfo">The out Recycle Bin info</param>
-            <returns><see langword="true"/> if the drive supports the Recycle Bin, otherwise <see langword="false"/>.</returns>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown if a Win32 exception has occurred during thr process.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.EmptyRecycleBin(System.IntPtr,System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.EmptyRecycleBinFlags)">
-            <summary>
-            Empties the Recycle Bin.
-            </summary>
-            <param name="windowHandle">A handle to the owner window</param>
-            <param name="drivePath">The path to the Recycle Bin drive. Leave this parameter null or empty if you want to get the info for the Recycle Bins for all drives.</param>
-            <param name="emptyRecycleBinFlags">Flags to describe the behavior for the process.</param>
-            <returns><see langword="true"/> if the drive supports the Recycle Bin, otherwise <see langword="false"/>.</returns>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown if a Win32 exception has occurred during thr process.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.EmptyRecycleBin(System.Windows.Forms.Form,System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.EmptyRecycleBinFlags)">
-            <summary>
-            Empties the Recycle Bin.
-            </summary>
-            <param name="window">The owner window</param>
-            <param name="drivePath">The path to the Recycle Bin drive. Leave this parameter null or empty if you want to get the info for the Recycle Bins for all drives.</param>
-            <param name="emptyRecycleBinFlags">Flags to describe the behavior for the process.</param>
-            <returns><see langword="true"/> if the drive supports the Recycle Bin, otherwise <see langword="false"/>.</returns>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown if a Win32 exception has occurred during thr process.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.FileOperation.EmptyRecycleBin(System.Windows.Window,System.String,Microsoft.WindowsAPICodePack.Win32Native.Shell.EmptyRecycleBinFlags)">
-            <summary>
-            Empties the Recycle Bin.
-            </summary>
-            <param name="window">The owner window</param>
-            <param name="drivePath">The path to the Recycle Bin drive. Leave this parameter null or empty if you want to get the info for the Recycle Bins for all drives.</param>
-            <param name="emptyRecycleBinFlags">Flags to describe the behavior for the process.</param>
-            <returns><see langword="true"/> if the drive supports the Recycle Bin, otherwise <see langword="false"/>.</returns>
-            <exception cref="T:System.ComponentModel.Win32Exception">Exception thrown if a Win32 exception has occurred during thr process.</exception>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Shell.FileOperationProgressSink.StartOperations">
-            <summary>
-            Gets or sets a delegate to call in the <see cref="T:Microsoft.WindowsAPICodePack.Shell.FileOperation"/> class when file operations are starting.
-            </summary>
-        </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.FileLockFinder">
             <summary>
             This class contains all the functions to find out which are the processes are locking a file.
@@ -1657,8 +489,7 @@
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory">
             <summary>
-            Provides methods for creating or resolving a condition tree 
-            that was obtained by parsing a query string.
+            Provides methods for creating or resolving a condition tree that was obtained by parsing a query string.
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(System.String,System.String,Microsoft.WindowsAPICodePack.COMNative.Shell.SearchConditionOperation)">
@@ -1669,7 +500,7 @@
             The locale name of the leaf node is LOCALE_NAME_USER_DEFAULT.</param>
             <param name="value">The constant value against which the property value should be compared.</param>
             <param name="operation">Specific condition to be used when comparing the actual value and the expected value of the given property</param>
-            <returns>SearchCondition based on the given parameters</returns>
+            <returns><see cref="T:Microsoft.WindowsAPICodePack.Shell.SearchCondition"/> based on the given parameters</returns>
             <remarks>
             The search will only work for files that are indexed, as well as the specific properties are indexed. To find 
             the properties that are indexed, look for the specific property's property description and 
@@ -1679,13 +510,13 @@
         <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(System.String,System.DateTime,Microsoft.WindowsAPICodePack.COMNative.Shell.SearchConditionOperation)">
             <summary>
             Creates a leaf condition node that represents a comparison of property value and constant value. 
-            Overload method takes a DateTime parameter for the comparison value.
+            Overload method takes a <see cref="T:System.DateTime"/> parameter for the comparison value.
             </summary>
             <param name="propertyName">The name of a property to be compared, or null for an unspecified property. 
             The locale name of the leaf node is LOCALE_NAME_USER_DEFAULT.</param>
-            <param name="value">The DateTime value against which the property value should be compared.</param>
+            <param name="value">The <see cref="T:System.DateTime"/> value against which the property value should be compared.</param>
             <param name="operation">Specific condition to be used when comparing the actual value and the expected value of the given property</param>
-            <returns>SearchCondition based on the given parameters</returns>
+            <returns><see cref="T:Microsoft.WindowsAPICodePack.Shell.SearchCondition"/> based on the given parameters</returns>
             <remarks>
             The search will only work for files that are indexed, as well as the specific properties are indexed. To find 
             the properties that are indexed, look for the specific property's property description and 
@@ -1700,7 +531,7 @@
             The locale name of the leaf node is LOCALE_NAME_USER_DEFAULT.</param>
             <param name="value">The Integer value against which the property value should be compared.</param>
             <param name="operation">Specific condition to be used when comparing the actual value and the expected value of the given property</param>
-            <returns>SearchCondition based on the given parameters</returns>
+            <returns><see cref="T:Microsoft.WindowsAPICodePack.Shell.SearchCondition"/> based on the given parameters</returns>
             <remarks>
             The search will only work for files that are indexed, as well as the specific properties are indexed. To find 
             the properties that are indexed, look for the specific property's property description and 
@@ -1715,7 +546,7 @@
             The locale name of the leaf node is LOCALE_NAME_USER_DEFAULT.</param>
             <param name="value">The Boolean value against which the property value should be compared.</param>
             <param name="operation">Specific condition to be used when comparing the actual value and the expected value of the given property</param>
-            <returns>SearchCondition based on the given parameters</returns>
+            <returns><see cref="T:Microsoft.WindowsAPICodePack.Shell.SearchCondition"/> based on the given parameters</returns>
             <remarks>
             The search will only work for files that are indexed, as well as the specific properties are indexed. To find 
             the properties that are indexed, look for the specific property's property description and 
@@ -1730,7 +561,7 @@
             The locale name of the leaf node is LOCALE_NAME_USER_DEFAULT.</param>
             <param name="value">The Floating Point value against which the property value should be compared.</param>
             <param name="operation">Specific condition to be used when comparing the actual value and the expected value of the given property</param>
-            <returns>SearchCondition based on the given parameters</returns>
+            <returns><see cref="T:Microsoft.WindowsAPICodePack.Shell.SearchCondition"/> based on the given parameters</returns>
             <remarks>
             The search will only work for files that are indexed, as well as the specific properties are indexed. To find 
             the properties that are indexed, look for the specific property's property description and 
@@ -1744,7 +575,7 @@
             <param name="propertyKey">The property to be compared.</param>
             <param name="value">The constant value against which the property value should be compared.</param>
             <param name="operation">Specific condition to be used when comparing the actual value and the expected value of the given property</param>
-            <returns>SearchCondition based on the given parameters</returns>
+            <returns><see cref="T:Microsoft.WindowsAPICodePack.Shell.SearchCondition"/> based on the given parameters</returns>
             <remarks>
             The search will only work for files that are indexed, as well as the specific properties are indexed. To find 
             the properties that are indexed, look for the specific property's property description and 
@@ -1754,12 +585,12 @@
         <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,System.DateTime,Microsoft.WindowsAPICodePack.COMNative.Shell.SearchConditionOperation)">
             <summary>
             Creates a leaf condition node that represents a comparison of property value and constant value. 
-            Overload method takes a DateTime parameter for the comparison value.
+            Overload method takes a <see cref="T:System.DateTime"/> parameter for the comparison value.
             </summary>
             <param name="propertyKey">The property to be compared.</param>
-            <param name="value">The DateTime value against which the property value should be compared.</param>
+            <param name="value">The <see cref="T:System.DateTime"/> value against which the property value should be compared.</param>
             <param name="operation">Specific condition to be used when comparing the actual value and the expected value of the given property</param>
-            <returns>SearchCondition based on the given parameters</returns>
+            <returns><see cref="T:Microsoft.WindowsAPICodePack.Shell.SearchCondition"/> based on the given parameters</returns>
             <remarks>
             The search will only work for files that are indexed, as well as the specific properties are indexed. To find 
             the properties that are indexed, look for the specific property's property description and 
@@ -1769,12 +600,12 @@
         <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,System.Boolean,Microsoft.WindowsAPICodePack.COMNative.Shell.SearchConditionOperation)">
             <summary>
             Creates a leaf condition node that represents a comparison of property value and Boolean value. 
-            Overload method takes a DateTime parameter for the comparison value.
+            Overload method takes a <see cref="T:System.DateTime"/> parameter for the comparison value.
             </summary>
             <param name="propertyKey">The property to be compared.</param>
             <param name="value">The boolean value against which the property value should be compared.</param>
             <param name="operation">Specific condition to be used when comparing the actual value and the expected value of the given property</param>
-            <returns>SearchCondition based on the given parameters</returns>
+            <returns><see cref="T:Microsoft.WindowsAPICodePack.Shell.SearchCondition"/> based on the given parameters</returns>
             <remarks>
             The search will only work for files that are indexed, as well as the specific properties are indexed. To find 
             the properties that are indexed, look for the specific property's property description and 
@@ -1784,12 +615,12 @@
         <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,System.Double,Microsoft.WindowsAPICodePack.COMNative.Shell.SearchConditionOperation)">
             <summary>
             Creates a leaf condition node that represents a comparison of property value and Floating Point value. 
-            Overload method takes a DateTime parameter for the comparison value.
+            Overload method takes a <see cref="T:System.DateTime"/> parameter for the comparison value.
             </summary>
             <param name="propertyKey">The property to be compared.</param>
             <param name="value">The Floating Point value against which the property value should be compared.</param>
             <param name="operation">Specific condition to be used when comparing the actual value and the expected value of the given property</param>
-            <returns>SearchCondition based on the given parameters</returns>
+            <returns><see cref="T:Microsoft.WindowsAPICodePack.Shell.SearchCondition"/> based on the given parameters</returns>
             <remarks>
             The search will only work for files that are indexed, as well as the specific properties are indexed. To find 
             the properties that are indexed, look for the specific property's property description and 
@@ -1799,12 +630,12 @@
         <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateLeafCondition(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,System.Int32,Microsoft.WindowsAPICodePack.COMNative.Shell.SearchConditionOperation)">
             <summary>
             Creates a leaf condition node that represents a comparison of property value and Integer value. 
-            Overload method takes a DateTime parameter for the comparison value.
+            Overload method takes a <see cref="T:System.DateTime"/> parameter for the comparison value.
             </summary>
             <param name="propertyKey">The property to be compared.</param>
             <param name="value">The Integer value against which the property value should be compared.</param>
             <param name="operation">Specific condition to be used when comparing the actual value and the expected value of the given property</param>
-            <returns>SearchCondition based on the given parameters</returns>
+            <returns><see cref="T:Microsoft.WindowsAPICodePack.Shell.SearchCondition"/> based on the given parameters</returns>
             <remarks>
             The search will only work for files that are indexed, as well as the specific properties are indexed. To find 
             the properties that are indexed, look for the specific property's property description and 
@@ -1813,8 +644,7 @@
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateAndOrCondition(Microsoft.WindowsAPICodePack.COMNative.Shell.SearchConditionType,System.Boolean,Microsoft.WindowsAPICodePack.Shell.SearchCondition[])">
             <summary>
-            Creates a condition node that is a logical conjunction ("AND") or disjunction ("OR") 
-            of a collection of subconditions.
+            Creates a condition node that is a logical conjunction ("AND") or disjunction ("OR") of a collection of subconditions.
             </summary>
             <param name="conditionType">The SearchConditionType of the condition node. 
             Must be either AndCondition or OrCondition.</param>
@@ -1823,7 +653,7 @@
             have exactly the prescribed structure. An application that plans to execute a query based on the 
             condition tree would typically benefit from setting this parameter to TRUE. </param>
             <param name="conditionNodes">Array of subconditions</param>
-            <returns>New SearchCondition based on the operation</returns>
+            <returns>New <see cref="T:Microsoft.WindowsAPICodePack.Shell.SearchCondition"/> based on the operation</returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.CreateNotCondition(Microsoft.WindowsAPICodePack.Shell.SearchCondition,System.Boolean)">
             <summary>
@@ -1833,7 +663,6 @@
             <param name="conditionToBeNegated">SearchCondition node to be negated.</param>
             <param name="simplify">True to logically simplify the result if possible; False otherwise. 
             In a query builder scenario, simplyfy should typically be set to false.</param>
-            <returns>New SearchCondition</returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.SearchConditionFactory.ParseStructuredQuery(System.String)">
             <summary>
@@ -2187,13 +1016,6 @@
         <member name="F:Microsoft.WindowsAPICodePack.Shell.ShellLink._path">
             Path for this file e.g. c:\Windows\file.txt,
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLink.#ctor(System.String@,System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellLink"/> class and directly saves the link on disk.
-            </summary>
-            <param name="sourcePath">The full source path.</param>
-            <param name="destPath">The destination directory.</param>
-        </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.ShellLink.Path">
             <summary>
             The path for this link
@@ -2223,6 +1045,13 @@
             <summary>
             Gets the comments associated with this link.
             </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLink.#ctor(System.String@,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellLink"/> class and directly saves the link on disk.
+            </summary>
+            <param name="sourcePath">The full source path.</param>
+            <param name="destPath">The destination directory.</param>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.ShellNonFileSystemFolder">
             <summary>
@@ -2254,10 +1083,10 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.ShellObject.NativeShellItem2">
             <summary>
-            Return the native ShellFolder object as newer IShellItem2
+            Return the native <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellFolder"/> object as newer <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem2"/>.
             </summary>
             <exception cref="T:System.Runtime.InteropServices.ExternalException">If the native object cannot be created.
-            The ErrorCode member will contain the external error code.</exception>
+            The <see cref="P:System.Runtime.InteropServices.ExternalException.ErrorCode"/> property will contain the external error code.</exception>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.ShellObject.NativeShellItem">
             <summary>
@@ -2356,14 +1185,13 @@
             <summary>
             Returns the hash code of the object.
             </summary>
-            <returns></returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObject.Equals(Microsoft.WindowsAPICodePack.Shell.ShellObject)">
             <summary>
-            Determines if two ShellObjects are identical.
+            Determines if two <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/>s are identical.
             </summary>
-            <param name="other">The ShellObject to comare this one to.</param>
-            <returns>True if the ShellObjects are equal, false otherwise.</returns>
+            <param name="other">The <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/> to comare this one to.</param>
+            <returns><see langword="true"/> if the <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/>s are equal, <see langword="false"/> otherwise.</returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObject.Equals(System.Object)">
             <summary>
@@ -2378,7 +1206,7 @@
             </summary>
             <param name="leftShellObject">First object to compare.</param>
             <param name="rightShellObject">Second object to compare.</param>
-            <returns>True if leftShellObject equals rightShellObject; false otherwise.</returns>
+            <returns><see langword="true"/> if leftShellObject equals rightShellObject; <see langword="false"/> otherwise.</returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObject.op_Inequality(Microsoft.WindowsAPICodePack.Shell.ShellObject,Microsoft.WindowsAPICodePack.Shell.ShellObject)">
             <summary>
@@ -2386,7 +1214,7 @@
             </summary>
             <param name="leftShellObject">First object to compare.</param>
             <param name="rightShellObject">Second object to compare.</param>
-            <returns>True if leftShellObject does not equal leftShellObject; false otherwise.</returns>        
+            <returns><see langword="true"/> if leftShellObject does not equal leftShellObject; <see langword="false"/> otherwise.</returns>        
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.ShellObjectCollection">
             <summary>
@@ -2412,11 +1240,6 @@
             Constructs an empty ShellObjectCollection
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectCollection.Finalize">
-            <summary>
-            Finalizer
-            </summary>
-        </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectCollection.Dispose">
             <summary>
             Standard Dispose pattern
@@ -2432,12 +1255,6 @@
             <summary>
             Item count
             </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectCollection.GetEnumerator">
-            <summary>
-            Collection enumeration
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectCollection.BuildShellIDList">
             <summary>
@@ -2541,32 +1358,33 @@
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectFactory.Create(Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem)">
             <summary>
-            Creates a ShellObject given a native IShellItem interface
+            Creates a <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/> given a native <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> interface.
             </summary>
-            <param name="nativeShellItem"></param>
-            <returns>A newly constructed ShellObject object</returns>
+            <param name="nativeShellItem">The native <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> from which to create the new <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/>.</param>
+            <returns>A newly constructed <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/> object.</returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectFactory.Create(System.String)">
             <summary>
-            Creates a ShellObject given a parsing name
+            Creates a <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/> given a parsing name.
             </summary>
-            <param name="parsingName"></param>
-            <returns>A newly constructed ShellObject object</returns>
+            <param name="parsingName">The parsing name from which to create the new <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/>.</param>
+            <returns>A newly constructed <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/> object.</returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectFactory.Create(System.IntPtr)">
             <summary>
-            Constructs a new Shell object from IDList pointer
+            Constructs a new <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/> from an IDList pointer.
             </summary>
-            <param name="idListPtr"></param>
-            <returns></returns>
+            <param name="idListPtr">The IDList pointer from which to create the new <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/>.</param>
+            <returns>A newly constructed <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/> object or <see langword="null"/> if no <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem2"/> could be retrieved.</returns>
+            <seealso cref="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectFactory.Create(System.IntPtr,Microsoft.WindowsAPICodePack.Shell.ShellContainer)"/>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectFactory.Create(System.IntPtr,Microsoft.WindowsAPICodePack.Shell.ShellContainer)">
             <summary>
-            Constructs a new Shell object from IDList pointer
+            Constructs a new <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/> from an IDList pointer and a parent <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellContainer"/>.
             </summary>
-            <param name="idListPtr"></param>
-            <param name="parent"></param>
-            <returns></returns>
+            <param name="idListPtr">The IDList pointer from which to create the new <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/>.</param>
+            <returns>A newly constructed <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/> object or <see langword="null"/> if no <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem"/> could be retrieved.</returns>
+            <seealso cref="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectFactory.Create(System.IntPtr)"/>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.ShellSavedSearchCollection">
             <summary>
@@ -2872,6 +1690,12 @@
             Overide OnPaint to paint the background as black.
             </summary>
         </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.Window.OnSourceInitialized(System.EventArgs)">
+            <summary>
+            Override SourceInitialized to initialize windowHandle for this window.
+            A valid windowHandle is available only after the sourceInitialized is completed
+            </summary>
+        </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.GlassWindow">
             <summary>
             WPF Glass Window
@@ -2883,14 +1707,14 @@
             Get determines if AeroGlass is enabled on the desktop. Set enables/disables AreoGlass on the desktop.
             </summary>
         </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Shell.GlassWindow.AeroGlassCompositionActivated">
+            <summary>
+            Get: Gets a value indicating whether the current window is displayed with an Aero background. Set: Makes the background of current window transparent from both Wpf and Windows Perspective if the value is <see langword="true"/>, otherwise resets the backgrounds to their respective system default values.
+            </summary>
+        </member>
         <member name="E:Microsoft.WindowsAPICodePack.Shell.GlassWindow.AeroGlassCompositionChanged">
             <summary>
             Fires when the availability of Glass effect changes.
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.GlassWindow.SetAeroGlassTransparency">
-            <summary>
-            Makes the background of current window transparent from both Wpf and Windows Perspective
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.GlassWindow.ExcludeElementFromAeroGlass(System.Windows.FrameworkElement)">
@@ -2920,7 +1744,7 @@
             <param name="hwnd">A handle to the window and, indirectly, the class to which the window belongs.</param>
             <returns>
             <para>If the function succeeds, the return value is the requested value.</para>
-            <para>If the function fails, the return value is zero. To get extended error information, call <see cref="M:System.Runtime.InteropServices.Marshal.GetLastWin32Error"/>.</para>
+            <para>If the function fails, the return value is zero. To get extended error information, call <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.CoreErrorHelper.GetLastWin32Error"/>.</para>
             <para>If <see cref="M:Microsoft.WindowsAPICodePack.Shell.DesktopWindowManager.SetWindowStyles(System.IntPtr,Microsoft.WindowsAPICodePack.Shell.WindowStyles)"/> has not been called previously, <see cref="M:Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.HandlerNativeMethods.GetWindowLongPtr(System.IntPtr,Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager.GetWindowLongEnum)"/> returns zero for values in the extra window or class memory.</para>
             </returns>
         </member>
@@ -8352,7 +7176,7 @@
         <member name="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperties.PropertySystemMedia.DateEncoded">
             <summary>
             <para>Name: System.Media.DateEncoded -- PKEY_Media_DateEncoded</para>
-            <para>Description: DateTime is in UTC (in the doc, not file system).</para>
+            <para>Description: System.DateTime is in UTC (in the doc, not file system).</para>
             <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             <para>FormatID: {2E4B640D-5019-46D8-8881-55414CC5CAA0}, 100</para>
             </summary>
@@ -10067,7 +8891,7 @@
         <member name="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperties.PropertySystemSearch.GatherTime">
             <summary>
             <para>Name: System.Search.GatherTime -- PKEY_Search_GatherTime</para>
-            <para>Description: The Datetime that the Windows Search Gatherer process last pushed properties of this document to the Windows Search Gatherer Plugins.</para>
+            <para>Description: The System.DateTime that the Windows Search Gatherer process last pushed properties of this document to the Windows Search Gatherer Plugins.</para>
             <para>Type:     DateTime -- VT_FILETIME  (For variants: VT_DATE)</para>
             <para>FormatID: {0B63E350-9CCC-11D0-BCDB-00805FCCCE04}, 8</para>
             </summary>
@@ -10994,7 +9818,7 @@
             <param name="windowHandle">Handle to the window that the property will be set on</param>
             <param name="value">The value to set for the property</param>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.WindowProperties.SetWindowProperty(System.Windows.Window,Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,System.String)">
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.WindowProperties.SetWindowProperty(Microsoft.WindowsAPICodePack.Shell.Window,Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,System.String)">
             <summary>
             Sets a shell property for a given window
             </summary>
@@ -11090,27 +9914,6 @@
             <summary>
             Gets whether the watcher is currently running.
             </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectWatcher.Start">
-            <summary>
-            Start the watcher and begin receiving change notifications.        
-            <remarks>
-            If the watcher is running, has no effect.
-            Registration for notifications should be done before this is called.
-            </remarks>
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectWatcher.Stop">
-            <summary>
-            Stop the watcher and prevent further notifications from being received.
-            <remarks>If the watcher is not running, this has no effect.</remarks>
-            </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectWatcher.ProcessChangeNotificationEvent(Microsoft.WindowsAPICodePack.Shell.WindowMessageEventArgs)">
-            <summary>
-            Processes all change notifications sent by the Windows Shell.
-            </summary>
-            <param name="e">The windows message representing the notification event</param>
         </member>
         <member name="E:Microsoft.WindowsAPICodePack.Shell.ShellObjectWatcher.AllEvents">
             <summary>
@@ -11216,6 +10019,27 @@
             <summary>
             Raised when a file type association changes.
             </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectWatcher.Start">
+            <summary>
+            Start the watcher and begin receiving change notifications.        
+            <remarks>
+            If the watcher is running, has no effect.
+            Registration for notifications should be done before this is called.
+            </remarks>
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectWatcher.Stop">
+            <summary>
+            Stop the watcher and prevent further notifications from being received.
+            <remarks>If the watcher is not running, this has no effect.</remarks>
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectWatcher.ProcessChangeNotificationEvent(Microsoft.WindowsAPICodePack.Shell.WindowMessageEventArgs)">
+            <summary>
+            Processes all change notifications sent by the Windows Shell.
+            </summary>
+            <param name="e">The windows message representing the notification event</param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellObjectWatcher.Dispose(System.Boolean)">
             <summary>
@@ -11845,37 +10669,6 @@
             </summary>
             <param name="title">The title to display in the dialog.</param>
         </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FileOk">
-            <summary>
-            Raised just before the dialog is about to return with a result. Occurs when the user clicks on the Open 
-            or Save button on a file dialog box. 
-            </summary>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FolderChanging">
-            <summary>
-            Raised just before the user navigates to a new folder.
-            </summary>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FolderChanged">
-            <summary>
-            Raised when the user navigates to a new folder.
-            </summary>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.SelectionChanged">
-            <summary>
-            Raised when the user changes the selection in the dialog's view.
-            </summary>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FileTypeChanged">
-            <summary>
-            Raised when the dialog is opened to notify the application of the initial chosen filetype.
-            </summary>
-        </member>
-        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.DialogOpening">
-            <summary>
-            Raised when the dialog is opening.
-            </summary>
-        </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.Controls">
             <summary>
             Gets the collection of controls for the dialog.
@@ -11890,80 +10683,75 @@
             <summary>
             Gets or sets the dialog title.
             </summary>
-            <value>A <see cref="T:System.String"/> object.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.EnsureFileExists">
             <summary>
             Gets or sets a value that determines whether the file must exist beforehand.
             </summary>
-            <value>A <see cref="T:System.Boolean"/> value. <b>true</b> if the file must exist.</value>
+            <value>A <see cref="T:System.Boolean"/> value. <see langword="true"/> if the file must exist.</value>
             <exception cref="T:System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.EnsurePathExists">
             <summary>
             Gets or sets a value that specifies whether the returned file must be in an existing folder.
             </summary>
-            <value>A <see cref="T:System.Boolean"/> value. <b>true</b> if the file must exist.</value>
+            <value>A <see cref="T:System.Boolean"/> value. <see langword="true"/> if the file must exist.</value>
             <exception cref="T:System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.EnsureValidNames">
              <summary>Gets or sets a value that determines whether to validate file names.
              </summary>
-            <value>A <see cref="T:System.Boolean"/> value. <b>true </b>to check for situations that would prevent an application from opening the selected file, such as sharing violations or access denied errors.</value>
+            <value>A <see cref="T:System.Boolean"/> value. <see langword="true"/> to check for situations that would prevent an application from opening the selected file, such as sharing violations or access denied errors.</value>
              <exception cref="T:System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
-             
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.EnsureReadOnly">
             <summary>
             Gets or sets a value that determines whether read-only items are returned.
-            Default value for CommonOpenFileDialog is true (allow read-only files) and 
-            CommonSaveFileDialog is false (don't allow read-only files).
+            Default value for <see cref="T:Microsoft.WindowsAPICodePack.Dialogs.CommonOpenFileDialog"/> is <see langword="true"/> (allow read-only files) and
+            <see cref="T:Microsoft.WindowsAPICodePack.Dialogs.CommonSaveFileDialog"/> is <see langword="false"/> (don't allow read-only files).
             </summary>
-            <value>A <see cref="T:System.Boolean"/> value. <b>true</b> includes read-only items.</value>
+            <value>A <see cref="T:System.Boolean"/> value. <see langword="true"/> includes read-only items.</value>
             <exception cref="T:System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.RestoreDirectory">
             <summary>
             Gets or sets a value that determines the restore directory.
             </summary>
-            <remarks></remarks>
             <exception cref="T:System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.ShowPlacesList">
             <summary>
-            Gets or sets a value that controls whether 
+            Gets or sets a value that controls whether
             to show or hide the list of pinned places that
             the user can choose.
             </summary>
-            <value>A <see cref="T:System.Boolean"/> value. <b>true</b> if the list is visible; otherwise <b>false</b>.</value>
+            <value>A <see cref="T:System.Boolean"/> value. <see langword="true"/> if the list is visible; otherwise <see langword="false"/>.</value>
             <exception cref="T:System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.AddToMostRecentlyUsedList">
             <summary>
             Gets or sets a value that controls whether to show or hide the list of places where the user has recently opened or saved items.
             </summary>
-            <value>A <see cref="T:System.Boolean"/> value.</value>
             <exception cref="T:System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.ShowHiddenItems">
             <summary>
              Gets or sets a value that controls whether to show hidden items.
              </summary>
-             <value>A <see cref="T:System.Boolean"/> value.<b>true</b> to show the items; otherwise <b>false</b>.</value>
+             <value>A <see cref="T:System.Boolean"/> value. <see langword="true"/> to show the items; otherwise <see langword="false"/>.</value>
              <exception cref="T:System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.AllowPropertyEditing">
             <summary>
-            Gets or sets a value that controls whether 
+            Gets or sets a value that controls whether
             properties can be edited.
             </summary>
-            <value>A <see cref="T:System.Boolean"/> value. </value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.NavigateToShortcut">
             <summary>
              Gets or sets a value that controls whether shortcuts should be treated as their target items, allowing an application to open a .lnk file.
              </summary>
-             <value>A <see cref="T:System.Boolean"/> value. <b>true</b> indicates that shortcuts should be treated as their targets. </value>
+             <value>A <see cref="T:System.Boolean"/> value. <see langword="true"/> indicates that shortcuts should be treated as their targets. </value>
              <exception cref="T:System.InvalidOperationException">This property cannot be set when the dialog is visible.</exception>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.DefaultExtension">
@@ -11976,50 +10764,6 @@
             <summary>
             Gets the index for the currently selected file type.
             </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.SyncFileTypeComboToDefaultExtension(Microsoft.WindowsAPICodePack.COMNative.Dialogs.IFileDialog)">
-            <summary>
-            Tries to set the File(s) Type Combo to match the value in 
-            'DefaultExtension'.  Only doing this if 'this' is a Save dialog 
-            as it makes no sense to do this if only Opening a file.
-            </summary>
-            
-            <param name="dialog">The native/IFileDialog instance.</param>
-            
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FileName">
-            <summary>
-            Gets the selected filename.
-            </summary>
-            <value>A <see cref="T:System.String"/> object.</value>
-            <exception cref="T:System.InvalidOperationException">This property cannot be used when multiple files are selected.</exception>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FileAsShellObject">
-            <summary>
-            Gets the selected item as a ShellObject.
-            </summary>
-            <value>A <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"></see> object.</value>
-            <exception cref="T:System.InvalidOperationException">This property cannot be used when multiple files
-            are selected.</exception>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.AddPlace(Microsoft.WindowsAPICodePack.Shell.ShellContainer,Microsoft.WindowsAPICodePack.COMNative.Shell.FileDialogAddPlaceLocation)">
-            <summary>
-            Adds a location, such as a folder, library, search connector, or known folder, to the list of
-            places available for a user to open or save items. This method actually adds an item
-            to the <b>Favorite Links</b> or <b>Places</b> section of the Open/Save dialog.
-            </summary>
-            <param name="place">The item to add to the places list.</param>
-            <param name="location">One of the enumeration values that indicates placement of the item in the list.</param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.AddPlace(System.String,Microsoft.WindowsAPICodePack.COMNative.Shell.FileDialogAddPlaceLocation)">
-            <summary>
-            Adds a location (folder, library, search connector, known folder) to the list of
-            places available for the user to open or save items. This method actually adds an item
-            to the <b>Favorite Links</b> or <b>Places</b> section of the Open/Save dialog. Overload method
-            takes in a string for the path.
-            </summary>
-            <param name="path">The item to add to the places list.</param>
-            <param name="location">One of the enumeration values that indicates placement of the item in the list.</param>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.InitialDirectory">
             <summary>
@@ -12052,6 +10796,74 @@
             to associate a GUID with a dialog's persisted state.
             </summary>
         </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.DefaultFileName">
+            <summary>
+            Default file name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FileName">
+            <summary>
+            Gets the selected filename.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">This property cannot be used when multiple files are selected.</exception>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FileAsShellObject">
+            <summary>
+            Gets the selected item as a <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/>.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">This property cannot be used when multiple files
+            are selected.</exception>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FileOk">
+            <summary>
+            Raised just before the dialog is about to return with a result. Occurs when the user clicks on the Open 
+            or Save button on a file dialog box. 
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FolderChanging">
+            <summary>
+            Raised just before the user navigates to a new folder.
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FolderChanged">
+            <summary>
+            Raised when the user navigates to a new folder.
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.SelectionChanged">
+            <summary>
+            Raised when the user changes the selection in the dialog's view.
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FileTypeChanged">
+            <summary>
+            Raised when the dialog is opened to notify the application of the initial chosen filetype.
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.DialogOpening">
+            <summary>
+            Raised when the dialog is opening.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.AddPlace(Microsoft.WindowsAPICodePack.Shell.ShellContainer,Microsoft.WindowsAPICodePack.COMNative.Shell.FileDialogAddPlaceLocation)">
+            <summary>
+            Adds a location, such as a folder, library, search connector, or known folder, to the list of
+            places available for a user to open or save items. This method actually adds an item
+            to the <b>Favorite Links</b> or <b>Places</b> section of the Open/Save dialog.
+            </summary>
+            <param name="place">The item to add to the places list.</param>
+            <param name="location">One of the enumeration values that indicates placement of the item in the list.</param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.AddPlace(System.String,Microsoft.WindowsAPICodePack.COMNative.Shell.FileDialogAddPlaceLocation)">
+            <summary>
+            Adds a location (folder, library, search connector, known folder) to the list of
+            places available for the user to open or save items. This method actually adds an item
+            to the <b>Favorite Links</b> or <b>Places</b> section of the Open/Save dialog. Overload method
+            takes in a string for the path.
+            </summary>
+            <param name="path">The item to add to the places list.</param>
+            <param name="location">One of the enumeration values that indicates placement of the item in the list.</param>
+        </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.ShowDialog(System.IntPtr)">
             <summary>
             Displays the dialog.
@@ -12075,11 +10887,6 @@
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.ResetUserSelections">
             <summary>
             Removes the current selection.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.DefaultFileName">
-            <summary>
-            Default file name.
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.IsCollectionChangeAllowed">
@@ -12108,6 +10915,14 @@
             </summary>
             <param name="propertyName">The name of the property changed.</param>
             <param name="control">The control whose property has changed.</param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.SyncFileTypeComboToDefaultExtension(Microsoft.WindowsAPICodePack.COMNative.Dialogs.IFileDialog)">
+            <summary>
+            Tries to set the File(s) Type Combo to match the value in
+            <see cref="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.DefaultExtension"/>. Only doing this if 'this' is a Save dialog
+            as it makes no sense to do this if only Opening a file.
+            </summary>
+            <param name="dialog">The native/<see cref="T:Microsoft.WindowsAPICodePack.COMNative.Dialogs.IFileDialog"/> instance.</param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.CheckFileNamesAvailable">
             <summary>
@@ -13042,6 +11857,999 @@
             has closed, to retrieve the final set of values. The call to this method will fail 
             unless property collection has been turned on with a call to SetCollectedPropertyKeys method.
             </remarks>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Controls.WindowsForms.CommandLink">
+            <summary>
+            Implements a CommandLink button that can be used in
+            WinForms user interfaces.
+            </summary>    
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.CommandLink.CreateParams">
+            <summary>
+            Gets a System.Windows.Forms.CreateParams on the base class when 
+            creating a window.
+            </summary>        
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.CommandLink.#ctor">
+            <summary>
+            Creates a new instance of this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.CommandLink.DefaultSize">
+            <summary>
+            Increase default width.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.CommandLink.NoteText">
+            <summary>
+            Specifies the supporting note text
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.CommandLink.UseElevationIcon">
+            <summary>
+            Enable shield icon to be set at design-time.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.CommandLink.IsPlatformSupported">
+            <summary>
+            Indicates whether this feature is supported on the current platform.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser">
+            <summary>
+            This class is a wrapper around the Windows Explorer Browser control.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.NavigationOptions">
+            <summary>
+            Options that control how the ExplorerBrowser navigates
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.ContentOptions">
+            <summary>
+            Options that control how the content of the ExplorerBorwser looks
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.Items">
+            <summary>
+            The set of ShellObjects in the Explorer Browser
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.SelectedItems">
+            <summary>
+            The set of selected ShellObjects in the Explorer Browser
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.NavigationLog">
+            <summary>
+            Contains the navigation history of the ExplorerBrowser
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.PropertyBagName">
+            <summary>
+            The name of the property bag used to persist changes to the ExplorerBrowser's view state.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.Navigate(Microsoft.WindowsAPICodePack.Shell.ShellObject)">
+            <summary>
+            Clears the Explorer Browser of existing content, fills it with
+            content from the specified container, and adds a new point to the Travel Log.
+            </summary>
+            <param name="shellObject">The shell container to navigate to.</param>
+            <exception cref="T:System.Runtime.InteropServices.COMException">Will throw if navigation fails for any other reason.</exception>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.NavigateLogLocation(Microsoft.WindowsAPICodePack.Controls.NavigationLogDirection)">
+            <summary>
+            Navigates within the navigation log. This does not change the set of 
+            locations in the navigation log.
+            </summary>
+            <param name="direction">Forward of Backward</param>
+            <returns>True if the navigation succeeded, false if it failed for any reason.</returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.NavigateLogLocation(System.Int32)">
+            <summary>
+            Navigate within the navigation log. This does not change the set of 
+            locations in the navigation log.
+            </summary>
+            <param name="navigationLogIndex">An index into the navigation logs Locations collection.</param>
+            <returns>True if the navigation succeeded, false if it failed for any reason.</returns>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.SelectionChanged">
+            <summary>
+            Fires when the SelectedItems collection changes. 
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.ItemsChanged">
+            <summary>
+            Fires when the Items colection changes. 
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.NavigationPending">
+            <summary>
+            Fires when a navigation has been initiated, but is not yet complete.
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.NavigationComplete">
+            <summary>
+            Fires when a navigation has been 'completed': no NavigationPending listener 
+            has cancelled, and the ExplorerBorwser has created a new view. The view 
+            will be populated with new items asynchronously, and ItemsChanged will be 
+            fired to reflect this some time later.
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.NavigationFailed">
+            <summary>
+            Fires when either a NavigationPending listener cancels the navigation, or
+            if the operating system determines that navigation is not possible.
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.ViewEnumerationComplete">
+            <summary>
+            Fires when the ExplorerBorwser view has finished enumerating files.
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.ViewSelectedItemChanged">
+            <summary>
+            Fires when the item selected in the view has changed (i.e., a rename ).
+            This is not the same as SelectionChanged.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.#ctor">
+            <summary>
+            Initializes the ExplorerBorwser WinForms wrapper.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Displays a placeholder for the explorer browser in design mode
+            </summary>
+            <param name="e">Contains information about the paint event.</param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.OnCreateControl">
+            <summary>
+            Creates and initializes the native ExplorerBrowser control
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.OnSizeChanged(System.EventArgs)">
+            <summary>
+            Sizes the native control to match the WinForms control wrapper.
+            </summary>
+            <param name="e">Contains information about the size changed event.</param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.OnHandleDestroyed(System.EventArgs)">
+            <summary>
+            Cleans up the explorer browser events+object when the window is being taken down.
+            </summary>
+            <param name="e">An EventArgs that contains event data.</param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.Microsoft#WindowsAPICodePack#COMNative#Controls#IServiceProvider#QueryService(System.Guid@,System.Guid@,System.IntPtr@)">
+            <summary>
+            
+            </summary>
+            <param name="guidService">calling service</param>
+            <param name="riid">requested interface guid</param>
+            <param name="ppvObject">caller-allocated memory for interface pointer</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.Microsoft#WindowsAPICodePack#COMNative#Controls#IExplorerPaneVisibility#GetPaneState(System.Guid@,Microsoft.WindowsAPICodePack.COMNative.Controls.ExplorerPaneState@)">
+            <summary>
+            Controls the visibility of the explorer borwser panes
+            </summary>
+            <param name="explorerPane">a guid identifying the pane</param>
+            <param name="peps">the pane state desired</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.GetCurrentViewMode">
+            <summary>
+            Returns the current view mode of the browser
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.GetFolderView2">
+            <summary>
+            Gets the IFolderView2 interface from the explorer browser.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.GetSelectedItemsArray">
+            <summary>
+            Gets the selected items in the explorer browser as an IShellItemArray
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.GetItemsArray">
+            <summary>
+            Gets the items in the ExplorerBrowser as an IShellItemArray
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink">
+            <summary>
+            Implements a CommandLink button that can be used in WPF user interfaces.
+            </summary>
+            <summary>
+            CommandLink
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.IsPlatformSupported">
+            <summary>
+            Indicates whether this feature is supported on the current platform.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.Link">
+            <summary>
+            Specifies the main instruction text.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.Command">
+            <summary>
+            Routed UI command to use for this button
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.Note">
+            <summary>
+            Specifies the supporting note text.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.Icon">
+            <summary>
+            Icon to set for the command link button
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.IsCheck">
+            <summary>
+            Indicates if the button is in a checked state
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.Click">
+            <summary>
+            Occurs when the control is clicked.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.#ctor">
+            <summary>
+            Creates a new instance of this class.
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.PropertyChanged">
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser">
+            <summary>
+            Interaction logic for ExplorerBrowser.xaml
+            </summary>
+            <summary>
+            ExplorerBrowser
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.ExplorerBrowserControl">
+            <summary>
+            The underlying WinForms control
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.#ctor">
+            <summary>
+            Hosts the ExplorerBrowser WinForms wrapper in this control
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.ExplorerBrowser_Loaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            To avoid the 'Dispatcher processing has been suspended' InvalidOperationException on Win7,
+            the ExplorerBorwser native control is initialized after this control is fully loaded.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.UpdateDependencyPropertiesFromCLRPRoperties(System.Object,System.EventArgs)">
+            <summary>
+            Map changes to the CLR flags to the dependency properties
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NavigationLogChanged(System.Object,Microsoft.WindowsAPICodePack.Controls.NavigationLogEventArgs)">
+            <summary>
+            Synchronize NavigationLog collection to dependency collection
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.SelectionChanged(System.Object,System.EventArgs)">
+            <summary>
+            Synchronize SelectedItems collection to dependency collection
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.Items">
+            <summary>
+            The items in the ExplorerBrowser window
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.ItemsProperty">
+            <summary>
+            The items in the ExplorerBrowser window
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.SelectedItems">
+            <summary>
+            The selected items in the ExplorerBrowser window
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NavigationLog">
+            <summary>
+            The selected items in the ExplorerBrowser window
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NavigationLogProperty">
+            <summary>
+            The NavigationLog
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.SelectedItemsProperty">
+            <summary>
+            The selected items in the ExplorerBrowser window
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NavigationTarget">
+            <summary>
+            The location the explorer browser is navigating to
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NavigationTargetProperty">
+            <summary>
+            The DependencyProperty for the NavigationTarget property
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.AlignLeft">
+            <summary>
+            The view should be left-aligned. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.AutoArrange">
+            <summary>
+            Automatically arrange the elements in the view. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.CheckSelect">
+            <summary>
+            Turns on check mode for the view
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.ExtendedTiles">
+            <summary>
+            When the view is in "tile view mode" the layout of a single item should be extended to the width of the view.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.FullRowSelect">
+            <summary>
+            When an item is selected, the item and all its sub-items are highlighted.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.HideFileNames">
+            <summary>
+            The view should not display file names
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NoBrowserViewState">
+            <summary>
+            The view should not save view state in the browser.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NoColumnHeader">
+            <summary>
+            Do not display a column header in the view in any view mode.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NoHeaderInAllViews">
+            <summary>
+            Only show the column header in details view mode.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NoIcons">
+            <summary>
+            The view should not display icons. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NoSubfolders">
+            <summary>
+            Do not show subfolders. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.SingleClickActivate">
+            <summary>
+            Navigate with a single click
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.SingleSelection">
+            <summary>
+            Do not allow more than a single item to be selected.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.ThumbnailSize">
+            <summary>
+            The size of the thumbnails in the explorer browser
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.ViewMode">
+            <summary>
+            The various view modes of the explorer browser control
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.AlwaysNavigate">
+            <summary>
+            Always navigate, even if you are attempting to navigate to the current folder.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NavigateOnce">
+            <summary>
+            Do not navigate further than the initial navigation.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.AdvancedQueryPane">
+            <summary>
+            Show/Hide the AdvancedQuery pane on subsequent navigation
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.CommandsPane">
+            <summary>
+            Show/Hide the Commands pane on subsequent navigation
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.CommandsOrganizePane">
+            <summary>
+            Show/Hide the Organize menu in the Commands pane on subsequent navigation
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.CommandsViewPane">
+            <summary>
+            Show/Hide the View menu in the Commands pane on subsequent navigation
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.DetailsPane">
+            <summary>
+            Show/Hide the Details pane on subsequent navigation
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NavigationPane">
+            <summary>
+            Show/Hide the Navigation pane on subsequent navigation
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.PreviewPane">
+            <summary>
+            Show/Hide the Preview pane on subsequent navigation
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.QueryPane">
+            <summary>
+            Show/Hide the Query pane on subsequent navigation
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.NavigationLogIndex">
+            <summary>
+            Navigation log index
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.Dispose">
+            <summary>
+            Disposes the class
+            </summary>        
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.Dispose(System.Boolean)">
+            <summary>
+            Disposes the browser.
+            </summary>
+            <param name="disposed"></param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.ExplorerBrowser.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Controls.CommonControlException">
+            <summary>
+            An exception thrown when an error occurs while dealing with Control objects.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.CommonControlException.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.CommonControlException.#ctor(System.String)">
+            <summary>
+            Initializes an excpetion with a custom message.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.CommonControlException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes an exception with custom message and inner exception.
+            </summary>
+            <param name="message"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.CommonControlException.#ctor(System.String,System.Int32)">
+            <summary>
+            Initializes an exception with custom message and error code.
+            </summary>
+            <param name="message"></param>
+            <param name="errorCode"></param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.CommonControlException.#ctor(System.String,Microsoft.WindowsAPICodePack.Win32Native.HResult)">
+            <summary>
+            Initializes an exception with custom message and error code.
+            </summary>
+            <param name="message"></param>
+            <param name="errorCode"></param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.CommonControlException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes an exception from serialization info and a context.
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions">
+            <summary>
+            These options control how the content of the Explorer Browser 
+            is rendered.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.ViewMode">
+            <summary>
+            The viewing mode of the Explorer Browser
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.Flags">
+            <summary>
+            The binary representation of the ExplorerBrowser content flags
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.AlignLeft">
+            <summary>
+            The view should be left-aligned. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.AutoArrange">
+            <summary>
+            Automatically arrange the elements in the view. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.CheckSelect">
+            <summary>
+            Turns on check mode for the view
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.ExtendedTiles">
+            <summary>
+            When the view is in "tile view mode" the layout of a single item should be extended to the width of the view.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.FullRowSelect">
+            <summary>
+            When an item is selected, the item and all its sub-items are highlighted.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.HideFileNames">
+            <summary>
+            The view should not display file names
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.NoBrowserViewState">
+            <summary>
+            The view should not save view state in the browser.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.NoColumnHeader">
+            <summary>
+            Do not display a column header in the view in any view mode.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.NoHeaderInAllViews">
+            <summary>
+            Only show the column header in details view mode.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.NoIcons">
+            <summary>
+            The view should not display icons. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.NoSubfolders">
+            <summary>
+            Do not show subfolders. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.SingleClickActivate">
+            <summary>
+            Navigate with a single click
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.SingleSelection">
+            <summary>
+            Do not allow more than a single item to be selected.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.ThumbnailSize">
+            <summary>
+            The size of the thumbnails in pixels
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserViewMode">
+            <summary>
+            Indicates the viewing mode of the explorer browser
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserViewMode.Auto">
+            <summary>
+            Choose the best view mode for the folder
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserViewMode.Content">
+            <summary>
+            (New for Windows7)
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserViewMode.Details">
+            <summary>
+            Object names and other selected information, such as the size or date last updated, are shown.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserViewMode.Icon">
+            <summary>
+            The view should display medium-size icons.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserViewMode.List">
+            <summary>
+            Object names are displayed in a list view.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserViewMode.SmallIcon">
+            <summary>
+            The view should display small icons. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserViewMode.Thumbnail">
+            <summary>
+            The view should display thumbnail icons. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserViewMode.ThumbStrip">
+            <summary>
+            The view should display icons in a filmstrip format.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserViewMode.Tile">
+            <summary>
+            The view should display large icons. 
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigateOptions">
+            <summary>
+            Specifies the options that control subsequent navigation.
+            Typically use one, or a bitwise combination of these
+            flags to specify how the explorer browser navigates.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigateOptions.AlwaysNavigate">
+            <summary>
+            Always navigate, even if you are attempting to navigate to the current folder.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigateOptions.NavigateOnce">
+            <summary>
+            Do not navigate further than the initial navigation.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions">
+            <summary>
+            Indicates the content options of the explorer browser.
+            Typically use one, or a bitwise combination of these
+            flags to specify how conent should appear in the
+            explorer browser control
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.None">
+            <summary>
+            No options.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.AlignLeft">
+            <summary>
+            The view should be left-aligned. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.AutoArrange">
+            <summary>
+            Automatically arrange the elements in the view. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.CheckSelect">
+            <summary>
+            Turns on check mode for the view
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.ExtendedTiles">
+            <summary>
+            When the view is set to "Tile" the layout of a single item should be extended to the width of the view.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.FullRowSelect">
+            <summary>
+            When an item is selected, the item and all its sub-items are highlighted.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.HideFileNames">
+            <summary>
+            The view should not display file names
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.NoBrowserViewState">
+            <summary>
+            The view should not save view state in the browser.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.NoColumnHeader">
+            <summary>
+            Do not display a column header in the view in any view mode.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.NoHeaderInAllViews">
+            <summary>
+            Only show the column header in details view mode.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.NoIcons">
+            <summary>
+            The view should not display icons. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.NoSubfolders">
+            <summary>
+            Do not show subfolders. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.SingleClickActivate">
+            <summary>
+            Navigate with a single click
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions.SingleSelection">
+            <summary>
+            Do not allow more than a single item to be selected.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Controls.PaneVisibilityState">
+            <summary>
+            Indicates the visibility state of an ExplorerBrowser pane
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.PaneVisibilityState.DoNotCare">
+            <summary>
+            Allow the explorer browser to determine if this pane is displayed.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.PaneVisibilityState.Hide">
+            <summary>
+            Hide the pane
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.PaneVisibilityState.Show">
+            <summary>
+            Show the pane
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Controls.NavigationPendingEventArgs">
+            <summary>
+            Event argument for The NavigationPending event
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.NavigationPendingEventArgs.PendingLocation">
+            <summary>
+            The location being navigated to
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.NavigationPendingEventArgs.Cancel">
+            <summary>
+            Set to 'True' to cancel the navigation.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Controls.NavigationCompleteEventArgs">
+            <summary>
+            Event argument for The NavigationComplete event
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.NavigationCompleteEventArgs.NewLocation">
+            <summary>
+            The new location of the explorer browser
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Controls.NavigationFailedEventArgs">
+            <summary>
+            Event argument for the NavigatinoFailed event
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.NavigationFailedEventArgs.FailedLocation">
+            <summary>
+            The location the the browser would have navigated to.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserPaneVisibility">
+            <summary>
+            Controls the visibility of the various ExplorerBrowser panes on subsequent navigation
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserPaneVisibility.Navigation">
+            <summary>
+            The pane on the left side of the Windows Explorer window that hosts the folders tree and Favorites.
+            </summary>        
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserPaneVisibility.Commands">
+            <summary>
+            Commands module along the top of the Windows Explorer window.
+            </summary>        
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserPaneVisibility.CommandsOrganize">
+            <summary>
+            Organize menu within the commands module.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserPaneVisibility.CommandsView">
+            <summary>
+            View menu within the commands module.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserPaneVisibility.Details">
+            <summary>
+            Pane showing metadata along the bottom of the Windows Explorer window.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserPaneVisibility.Preview">
+            <summary>
+            Pane on the right of the Windows Explorer window that shows a large reading preview of the file.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserPaneVisibility.Query">
+            <summary>
+            Quick filter buttons to aid in a search.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserPaneVisibility.AdvancedQuery">
+            <summary>
+            Additional fields and options to aid in a search.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationLog">
+            <summary>
+            The navigation log is a history of the locations visited by the explorer browser. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationLog.ClearLog">
+            <summary>
+            Clears the contents of the navigation log.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationLog.CanNavigateForward">
+            <summary>
+            Indicates the presence of locations in the log that can be 
+            reached by calling Navigate(Forward)
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationLog.CanNavigateBackward">
+            <summary>
+            Indicates the presence of locations in the log that can be 
+            reached by calling Navigate(Backward)
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationLog.Locations">
+            <summary>
+            The navigation log
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationLog.CurrentLocationIndex">
+            <summary>
+            An index into the Locations collection. The ShellObject pointed to 
+            by this index is the current location of the ExplorerBrowser.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationLog.CurrentLocation">
+            <summary>
+            Gets the shell object in the Locations collection pointed to
+            by CurrentLocationIndex.
+            </summary>
+        </member>
+        <member name="E:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationLog.NavigationLogChanged">
+            <summary>
+            Fires when the navigation log changes or 
+            the current navigation position changes
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationLog.pendingNavigation">
+            <summary>
+            The pending navigation log action. null if the user is not navigating 
+            via the navigation log.
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationLog.currentLocationIndex">
+            <summary>
+            The index into the Locations collection. -1 if the Locations colleciton 
+            is empty.
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Controls.PendingNavigation">
+            <summary>
+            A navigation traversal request
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Controls.NavigationLogDirection">
+            <summary>
+            The direction argument for Navigate
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.NavigationLogDirection.Forward">
+            <summary>
+            Navigates forward through the navigation log
+            </summary>
+        </member>
+        <member name="F:Microsoft.WindowsAPICodePack.Controls.NavigationLogDirection.Backward">
+            <summary>
+            Navigates backward through the travel log
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Controls.NavigationLogEventArgs">
+            <summary>
+            The event argument for NavigationLogChangedEvent
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.NavigationLogEventArgs.CanNavigateForwardChanged">
+            <summary>
+            Indicates CanNavigateForward has changed
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.NavigationLogEventArgs.CanNavigateBackwardChanged">
+            <summary>
+            Indicates CanNavigateBackward has changed
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.NavigationLogEventArgs.LocationsChanged">
+            <summary>
+            Indicates the Locations collection has changed
+            </summary>
+        </member>
+        <member name="T:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationOptions">
+            <summary>
+            These options control the results subsequent navigations of the ExplorerBrowser
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationOptions.Flags">
+            <summary>
+            The binary flags that are passed to the explorer browser control's GetOptions/SetOptions methods
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationOptions.NavigateOnce">
+            <summary>
+            Do not navigate further than the initial navigation.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationOptions.AlwaysNavigate">
+            <summary>
+            Always navigate, even if you are attempting to navigate to the current folder.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserNavigationOptions.PaneVisibility">
+            <summary>
+            Controls the visibility of the various ExplorerBrowser panes on subsequent navigation
+            </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Internal.ExplorerBrowserViewEvents">
             <summary>

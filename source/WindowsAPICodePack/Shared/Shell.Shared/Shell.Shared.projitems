@@ -9,54 +9,55 @@
     <Import_RootNamespace>Shell</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialog.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogButton.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogCheckBox.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogComboBox.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogControl.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogControlCollection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogFilter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogFilterCollection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogFolderChangeEventArgs.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogGroupBox.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogLabel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogMenu.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogProminentControl.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogRadioButtonList.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogResult.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogSeperator.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogStandardFilters.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonFileDialogTextBox.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonOpenFileDialog.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\CommonSaveFileDialog.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CommonFileDialogs\ICommonFileDialogIndexedControls.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\EnumUnknown.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\EventHandlerExtensionMethods.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\FileOperation.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\LockFinder.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\SearchCondition.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\SearchConditionFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellContextMenu.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellFile.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellFileSystemFolder.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellFolder.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellFolderItems.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellItemArray.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellLibrary.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellLink.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellNonFileSystemFolder.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellNonFileSystemItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellObjectCollection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellObjectContainer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellObjectFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellSavedSearchCollection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellSearchCollection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellSearchConnector.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellSearchFolder.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\ShellThumbnail.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\SingleInstance.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Dialogs\File\CommonFileDialog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Dialogs\File\CommonFileDialogButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Dialogs\File\CommonFileDialogCheckBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Dialogs\File\CommonFileDialogComboBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Dialogs\File\CommonFileDialogControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Dialogs\File\CommonFileDialogControlCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Dialogs\File\CommonFileDialogFilter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Dialogs\File\CommonFileDialogFilterCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Dialogs\File\CommonFileDialogFolderChangeEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Dialogs\File\CommonFileDialogGroupBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Dialogs\File\CommonFileDialogLabel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Dialogs\File\CommonFileDialogMenu.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Dialogs\File\CommonFileDialogProminentControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Dialogs\File\CommonFileDialogRadioButtonList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Dialogs\File\CommonFileDialogResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Dialogs\File\CommonFileDialogSeperator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Dialogs\File\CommonFileDialogStandardFilters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Dialogs\File\CommonFileDialogTextBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Dialogs\File\CommonOpenFileDialog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Dialogs\File\CommonSaveFileDialog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Dialogs\File\ICommonFileDialogIndexedControls.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Dialogs\IconPickerDialog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\EnumUnknown.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\EventHandlerExtensionMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\FileOperation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\LockFinder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\SearchCondition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\SearchConditionFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\ShellContextMenu.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\ShellFile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\ShellFileSystemFolder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\ShellFolder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\ShellFolderItems.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\ShellHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\ShellItemArray.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\ShellLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\ShellLink.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\ShellNonFileSystemFolder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\ShellNonFileSystemItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\ShellObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\ShellObjectCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\ShellObjectContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\ShellObjectFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\ShellSavedSearchCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\ShellSearchCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\ShellSearchConnector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\ShellSearchFolder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\ShellThumbnail.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Shell\SingleInstance.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CommandLinkWinforms.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -161,5 +162,8 @@
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="$(MSBuildThisFileDirectory)CustomDictionary.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Common\Shell\" />
   </ItemGroup>
 </Project>

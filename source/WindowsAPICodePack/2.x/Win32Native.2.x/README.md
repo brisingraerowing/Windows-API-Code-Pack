@@ -1,5 +1,5 @@
-﻿Windows-API-Code-Pack
-=====================
+﻿Windows-API-Code-Pack/Win32Native/2.x
+=====================================
 
 README
 ======

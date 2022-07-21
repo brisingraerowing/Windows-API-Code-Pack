@@ -1,16 +1,14 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
-using System.Security;
 using System.Text;
 using System.Windows.Forms;
+
 using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.Shell;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
     public class IconPickerDialog : CommonDialog
     {
-
         [DefaultValue(default(string))]
         public string FileName { get; set; }
 

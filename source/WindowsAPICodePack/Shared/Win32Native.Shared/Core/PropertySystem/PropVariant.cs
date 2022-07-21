@@ -8,6 +8,8 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
+using WinCopies.Util;
+
 using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
@@ -21,138 +23,79 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
     /// and modified to support additional types including vectors and ability to set values
     /// </remarks>
     [StructLayout(LayoutKind.Explicit)]
-    public sealed partial class PropVariant : IDisposable
+    public sealed partial class PropVariant : System.IDisposable
     {
         #region Vector Action Cache
         // A static dictionary of delegates to get data from array's contained within PropVariants
         private static Dictionary<Type, Action<PropVariant, Array, uint>> _vectorActions = null;
 
-        private static Dictionary<Type, Action<PropVariant, Array, uint>> GenerateVectorActions()
-        {
-            var cache = new Dictionary<Type, Action<PropVariant, Array, uint>>
+        private delegate void ActionOut<T1, T2, T3>(T1 p1, T2 p2, out T3 p3);
+
+        private static KeyValuePair<Type, Action<PropVariant, Array, uint>> GetKeyValuePair<T>(in Action<PropVariant, Array, uint> action) => WinCopies.
+#if WAPICP3
+            UtilHelpers
+#else
+            Util.Util
+#endif
+            .GetKeyValuePair(typeof(T), action);
+
+        private static KeyValuePair<Type, Action<PropVariant, Array, uint>> GetKeyValuePair<T>(ActionOut<PropVariant, uint, T> action) => GetKeyValuePair<T>(
+            (pv, array, i) =>
             {
-                {
-                    typeof(short),
+                action(pv, i, out T val);
+                array.SetValue(val, i);
+            });
+
+        private class Dictionary : Dictionary<Type, Action<PropVariant, Array, uint>>
+        {
+            public void Add(KeyValuePair<Type, Action<PropVariant, Array, uint>> keyValuePair) => this.AsFromType<ICollection<KeyValuePair<Type, Action<PropVariant, Array, uint>>>>().Add(keyValuePair);
+        }
+
+        private static Dictionary<Type, Action<PropVariant, Array, uint>> GenerateVectorActions() => new Dictionary
+            {
+                GetKeyValuePair<short>(PropVariantGetInt16Elem),
+                GetKeyValuePair<ushort>(PropVariantGetUInt16Elem),
+                GetKeyValuePair<int>(PropVariantGetInt32Elem),
+                GetKeyValuePair<uint>(PropVariantGetUInt32Elem),
+                GetKeyValuePair<long>(PropVariantGetInt64Elem),
+                GetKeyValuePair<ulong>(PropVariantGetUInt64Elem),
+                GetKeyValuePair<System.DateTime>(
                     (pv, array, i) =>
-    {
-        PropVariantGetInt16Elem(pv, i, out short val);
-        array.SetValue(val, i);
-    }
-                },
+                    {
+                        PropVariantGetFileTimeElem(pv, i, out System.Runtime.InteropServices.ComTypes.FILETIME val);
 
-                {
-                    typeof(ushort),
-                    (pv, array, i) =>
-   {
-       PropVariantGetUInt16Elem(pv, i, out ushort val);
-       array.SetValue(val, i);
-   }
-                },
+        long fileTime = GetFileTimeAsLong(ref val);
 
-                {
-                    typeof(int),
-                    (pv, array, i) =>
-    {
-        PropVariantGetInt32Elem(pv, i, out int val);
-        array.SetValue(val, i);
-    }
-                },
-
-                {
-                    typeof(uint),
-                    (pv, array, i) =>
-   {
-       PropVariantGetUInt32Elem(pv, i, out uint val);
-       array.SetValue(val, i);
-   }
-                },
-
-                {
-                    typeof(long),
-                    (pv, array, i) =>
-    {
-        PropVariantGetInt64Elem(pv, i, out long val);
-        array.SetValue(val, i);
-    }
-                },
-
-                {
-                    typeof(ulong),
-                    (pv, array, i) =>
-   {
-       PropVariantGetUInt64Elem(pv, i, out ulong val);
-       array.SetValue(val, i);
-   }
-                },
-
-                {
-                    typeof(System.DateTime),
-                    (pv, array, i) =>
- {
-     PropVariantGetFileTimeElem(pv, i, out System.Runtime.InteropServices.ComTypes.FILETIME val);
-
-     long fileTime = GetFileTimeAsLong(ref val);
-
-     array.SetValue(System.DateTime.FromFileTime(fileTime), i);
- }
-                },
-
-                {
-                    typeof(bool),
-                    (pv, array, i) =>
-  {
-      PropVariantGetBooleanElem(pv, i, out bool val);
-      array.SetValue(val, i);
-  }
-                },
-
-                {
-                    typeof(double),
-                    (pv, array, i) =>
-   {
-       PropVariantGetDoubleElem(pv, i, out double val);
-       array.SetValue(val, i);
-   }
-                },
-
-                {
-                    typeof(float),
-                    (pv, array, i) => // float
+        array.SetValue(System.DateTime.FromFileTime(fileTime), i);
+                    }),
+                GetKeyValuePair<bool>(PropVariantGetBooleanElem),
+                GetKeyValuePair<double>(PropVariantGetDoubleElem),
+                GetKeyValuePair<float>((pv, array, i) => // float
                     {
                         float[] val = new float[1];
-                        Marshal.Copy(pv._ptr2, val, (int)i, 1);
-                        array.SetValue(val[0], (int)i);
-                    }
-                },
-
-                {
-                    typeof(decimal),
+    Marshal.Copy(pv._ptr2, val, (int) i, 1);
+                        array.SetValue(val[0], (int) i);
+                    }),
+                GetKeyValuePair<decimal>(
                     (pv, array, i) =>
-  {
-      int[] val = new int[4];
-      for (int a = 0; a < val.Length; a++)
+                    {
+                        int[] val = new int[4];
+                        for (int a = 0; a < val.Length; a++)
 
-          val[a] = Marshal.ReadInt32(pv._ptr2,
-              ((int)i * sizeof(decimal)) + (a * sizeof(int))); //index * size + offset quarter
-                
-      array.SetValue(new decimal(val), i);
-  }
-                },
+                            val[a] = Marshal.ReadInt32(pv._ptr2,
+                                ((int)i * sizeof(decimal)) + (a * sizeof(int))); //index * size + offset quarter
 
-                {
-                    typeof(string),
+                        array.SetValue(new decimal(val), i);
+                    }),
+                GetKeyValuePair<string>(
                     (pv, array, i) =>
-   {
-       string val = string.Empty;
-       PropVariantGetStringElem(pv, i, ref val);
-       array.SetValue(val, i);
-   }
-                }
+                    {
+                        string val = string.Empty;
+                        PropVariantGetStringElem(pv, i, ref val);
+                        array.SetValue(val, i);
+                    })
             };
-
-            return cache;
-        }
-        #endregion
+        #endregion Vector Action Cache
 
         #region Dynamic Construction / Factory (Expressions)
         /// <summary>
@@ -169,7 +112,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         // If no constructor has been cached, it attempts to find/add it.  If it cannot be found
         // an exception is thrown.
         // This method looks for a public constructor with the same parameter type as the object.
-        private static Func<object, PropVariant> GetDynamicConstructor(Type type)
+        private static Func<object, PropVariant> GetDynamicConstructor(in Type type)
         {
             lock (_padlock)
             {
@@ -180,23 +123,17 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
                     ConstructorInfo constructor = typeof(PropVariant)
                         .GetConstructor(new Type[] { type });
 
-                    if (constructor == null)
-                        // if the method was not found, throw.
-                        throw new ArgumentException(LocalizedMessages.PropVariantTypeNotSupported);
+                    // if the method was not found, throw.
+                    // if the method was found, create an expression to call it.
+                    // create parameters to action                    
+                    ParameterExpression arg = constructor == null ? throw new ArgumentException(LocalizedMessages.PropVariantTypeNotSupported) : Expression.Parameter(typeof(object), nameof(arg));
 
-                    else // if the method was found, create an expression to call it.
-                    {
-                        // create parameters to action                    
-                        ParameterExpression arg = Expression.Parameter(typeof(object), nameof(arg));
-
-                        // create an expression to invoke the constructor with an argument cast to the correct type
-                        NewExpression create = Expression.New(constructor, Expression.Convert(arg, type));
-
-                        // compiles expression into an action delegate
-                        action = Expression.Lambda<Func<object, PropVariant>>(create, arg).Compile();
-                        _cache.Add(type, action);
-                    }
+                    // create an expression to invoke the constructor with an argument cast to the correct type
+                    // compiles expression into an action delegate
+                    action = Expression.Lambda<Func<object, PropVariant>>(Expression.New(constructor, Expression.Convert(arg, type)), arg).Compile();
+                    _cache.Add(type, action);
                 }
+
                 return action;
             }
         }
@@ -264,11 +201,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         /// </summary>
         public PropVariant(string value)
         {
-            if (value == null)
-
-                throw new ArgumentException(LocalizedMessages.PropVariantNullString, nameof(value));
-
-            _valueType = (ushort)VarEnum.VT_LPWSTR;
+            _valueType = value == null ? throw new ArgumentException(LocalizedMessages.PropVariantNullString, nameof(value)) : (ushort)VarEnum.VT_LPWSTR;
             _ptr = Marshal.StringToCoTaskMemUni(value);
         }
 
@@ -280,52 +213,68 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 #endif
             .ThrowIfNull(value, nameof(value));
 
-        private static ArgumentNullException GetArgumentNullException() => new ArgumentNullException("value");
+        private static ArgumentNullException GetArgumentNullException() => new
+#if !CS9
+            ArgumentNullException
+#endif
+            ("value");
+
+        private void SetValue<T>(in T[] value, in Action<T[], uint, PropVariant> action) => action(value
+#if CS8
+            ??
+#else
+            == null ?
+#endif
+            throw GetArgumentNullException()
+#if !CS8
+            : value
+#endif
+            , (uint)value.Length, this);
 
         /// <summary>
         /// Set a <see cref="string"/> vector
         /// </summary>
-        public PropVariant(string[] value) => InitPropVariantFromStringVector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
+        public PropVariant(string[] value) => SetValue(value, InitPropVariantFromStringVector);
 
         /// <summary>
         /// Set a <see cref="bool"/> vector
         /// </summary>
-        public PropVariant(bool[] value) => InitPropVariantFromBooleanVector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
+        public PropVariant(bool[] value) => SetValue(value, InitPropVariantFromBooleanVector);
 
         /// <summary>
         /// Set a <see cref="short"/> vector
         /// </summary>
-        public PropVariant(short[] value) => InitPropVariantFromInt16Vector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
+        public PropVariant(short[] value) => SetValue(value, InitPropVariantFromInt16Vector);
 
         /// <summary>
         /// Set a <see cref="ushort"/> vector
         /// </summary>
-        public PropVariant(ushort[] value) => InitPropVariantFromUInt16Vector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
+        public PropVariant(ushort[] value) => SetValue(value, InitPropVariantFromUInt16Vector);
 
         /// <summary>
         /// Set an <see cref="int"/> vector
         /// </summary>
-        public PropVariant(int[] value) => InitPropVariantFromInt32Vector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
+        public PropVariant(int[] value) => SetValue(value, InitPropVariantFromInt32Vector);
 
         /// <summary>
         /// Set a <see cref="uint"/> vector
         /// </summary>
-        public PropVariant(uint[] value) => InitPropVariantFromUInt32Vector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
+        public PropVariant(uint[] value) => SetValue(value, InitPropVariantFromUInt32Vector);
 
         /// <summary>
         /// Set a <see cref="long"/> vector
         /// </summary>
-        public PropVariant(long[] value) => InitPropVariantFromInt64Vector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
+        public PropVariant(long[] value) => SetValue(value, InitPropVariantFromInt64Vector);
 
         /// <summary>
         /// Set a <see cref="ulong"/> vector
         /// </summary>
-        public PropVariant(ulong[] value) => InitPropVariantFromUInt64Vector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
+        public PropVariant(ulong[] value) => SetValue(value, InitPropVariantFromUInt64Vector);
 
         /// <summary>>
         /// Set a <see cref="double"/> vector
         /// </summary>
-        public PropVariant(double[] value) => InitPropVariantFromDoubleVector(value ?? throw GetArgumentNullException(), (uint)value.Length, this);
+        public PropVariant(double[] value) => SetValue(value, InitPropVariantFromDoubleVector);
 
 
 
@@ -346,14 +295,16 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
             InitPropVariantFromFileTimeVector(fileTimeArr, (uint)fileTimeArr.Length, this);
         }
 
+        private void Init<T>(ref T value, in T newValue, in VarEnum varType)
+        {
+            _valueType = (ushort)varType;
+            value = newValue;
+        }
+
         /// <summary>
         /// Set a <see cref="bool"/> value
         /// </summary>
-        public PropVariant(bool value)
-        {
-            _valueType = (ushort)VarEnum.VT_BOOL;
-            _int32 = (value == true) ? -1 : 0;
-        }
+        public PropVariant(bool value) => Init(ref _int32, (value == true) ? -1 : 0, VarEnum.VT_BOOL);
 
         /// <summary>
         /// Set a <see cref="DateTime"/> value
@@ -369,56 +320,32 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         /// <summary>
         /// Set a <see cref="byte"/> value
         /// </summary>
-        public PropVariant(byte value)
-        {
-            _valueType = (ushort)VarEnum.VT_UI1;
-            _byte = value;
-        }
+        public PropVariant(byte value) => Init(ref _byte, value, VarEnum.VT_UI1);
 
         /// <summary>
         /// Set a <see cref="sbyte"/> value
         /// </summary>
-        public PropVariant(sbyte value)
-        {
-            _valueType = (ushort)VarEnum.VT_I1;
-            _sbyte = value;
-        }
+        public PropVariant(sbyte value) => Init(ref _sbyte, value, VarEnum.VT_I1);
 
         /// <summary>
         /// Set a <see cref="short"/> value
         /// </summary>
-        public PropVariant(short value)
-        {
-            _valueType = (ushort)VarEnum.VT_I2;
-            _short = value;
-        }
+        public PropVariant(short value) => Init(ref _short, value, VarEnum.VT_I2);
 
         /// <summary>
         /// Set a <see cref="ushort"/> value
         /// </summary>
-        public PropVariant(ushort value)
-        {
-            _valueType = (ushort)VarEnum.VT_UI2;
-            _ushort = value;
-        }
+        public PropVariant(ushort value) => Init(ref _ushort, value, VarEnum.VT_UI2);
 
         /// <summary>
         /// Set an <see cref="int"/> value
         /// </summary>
-        public PropVariant(int value)
-        {
-            _valueType = (ushort)VarEnum.VT_I4;
-            _int32 = value;
-        }
+        public PropVariant(int value) => Init(ref _int32, value, VarEnum.VT_I4);
 
         /// <summary>
         /// Set a <see cref="uint"/> value
         /// </summary>
-        public PropVariant(uint value)
-        {
-            _valueType = (ushort)VarEnum.VT_UI4;
-            _uint32 = value;
-        }
+        public PropVariant(uint value) => Init(ref _uint32, value, VarEnum.VT_UI4);
 
         /// <summary>
         /// Set a <see cref="decimal"/> value
@@ -445,9 +372,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
             // allocate required memory for array with 128bit elements
             _ptr2 = Marshal.AllocCoTaskMem(value.Length * sizeof(decimal));
+            int[] bits;
+
             for (int i = 0; i < value.Length; i++)
             {
-                int[] bits = decimal.GetBits(value[i]);
+                bits = decimal.GetBits(value[i]);
                 Marshal.Copy(bits, 0, _ptr2, bits.Length);
             }
         }
@@ -455,12 +384,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         /// <summary>
         /// Create a <see cref="PropVariant"/> containing a <see cref="float"/> value.
         /// </summary>        
-        public PropVariant(float value)
-        {
-            _valueType = (ushort)VarEnum.VT_R4;
-
-            _float = value;
-        }
+        public PropVariant(float value) => Init(ref _float, value, VarEnum.VT_R4);
 
         /// <summary>
         /// Creates a <see cref="PropVariant"/> containing a <see cref="float"/> array.
@@ -472,9 +396,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
             _valueType = (ushort)(VarEnum.VT_R4 | VarEnum.VT_VECTOR);
             _int32 = value.Length;
 
-            _ptr2 = Marshal.AllocCoTaskMem(value.Length * sizeof(float));
-
-            Marshal.Copy(value, 0, _ptr2, value.Length);
+            Marshal.Copy(value, 0, Marshal.AllocCoTaskMem(value.Length * sizeof(float)), value.Length);
         }
 
         /// <summary>
@@ -489,24 +411,16 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         /// <summary>
         /// Set a <see cref="ulong"/>
         /// </summary>
-        public PropVariant(ulong value)
-        {
-            _valueType = (ushort)VarEnum.VT_UI8;
-            _ulong = value;
-        }
+        public PropVariant(ulong value) => Init(ref _ulong, value, VarEnum.VT_UI8);
 
         /// <summary>
         /// Set a <see cref="double"/>
         /// </summary>
-        public PropVariant(double value)
-        {
-            _valueType = (ushort)VarEnum.VT_R8;
-            _double = value;
-        }
-        #endregion
+        public PropVariant(double value) => Init(ref _double, value, VarEnum.VT_R8);
+        #endregion Constructors
 
         #region Uncalled methods - These are currently not called, but I think may be valid in the future.
-        /// <summary>
+        /*/// <summary>
         /// Set an IUnknown value
         /// </summary>
         /// <param name="value">The new value to set.</param>
@@ -526,14 +440,16 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
             const ushort vtUnknown = 13;
             IntPtr psa = SafeArrayCreateVector(vtUnknown, 0, (uint)array.Length);
-
             IntPtr pvData = SafeArrayAccessData(psa);
+            object obj;
+            IntPtr punk;
+
             try // to remember to release lock on data
             {
                 for (int i = 0; i < array.Length; ++i)
                 {
-                    object obj = array.GetValue(i);
-                    IntPtr punk = (obj != null) ? Marshal.GetIUnknownForObject(obj) : IntPtr.Zero;
+                    obj = array.GetValue(i);
+                    punk = (obj != null) ? Marshal.GetIUnknownForObject(obj) : IntPtr.Zero;
                     Marshal.WriteIntPtr(pvData, i * IntPtr.Size, punk);
                 }
             }
@@ -545,18 +461,14 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
             _valueType = (ushort)VarEnum.VT_ARRAY | (ushort)VarEnum.VT_UNKNOWN;
             _ptr = psa;
-        }
+        }*/
         #endregion
 
-        #region public Properties
+        #region Public Properties
         /// <summary>
         /// Gets or sets the variant type.
         /// </summary>
-        public VarEnum VarType
-        {
-            get => (VarEnum)_valueType;
-            set => _valueType = (ushort)value;
-        }
+        public VarEnum VarType { get => (VarEnum)_valueType; set => _valueType = (ushort)value; }
 
         /// <summary>
         /// Checks if this has an empty or null value
@@ -622,35 +534,38 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
                     case VarEnum.VT_CLSID:
                         return Marshal.PtrToStructure
 #if CS7
-                            <Guid>(_ptr);
-#else
-                            (_ptr, typeof(Guid));
+                            <Guid>
 #endif
+                        (_ptr
+#if !CS7
+                            , typeof(Guid)
+#endif
+                            );
                     case VarEnum.VT_ARRAY | VarEnum.VT_UNKNOWN:
                         return CrackSingleDimSafeArray(_ptr);
-                    case (VarEnum.VT_VECTOR | VarEnum.VT_LPWSTR):
+                    case VarEnum.VT_VECTOR | VarEnum.VT_LPWSTR:
                         return GetVector<string>();
-                    case (VarEnum.VT_VECTOR | VarEnum.VT_I2):
+                    case VarEnum.VT_VECTOR | VarEnum.VT_I2:
                         return GetVector<short>();
-                    case (VarEnum.VT_VECTOR | VarEnum.VT_UI2):
+                    case VarEnum.VT_VECTOR | VarEnum.VT_UI2:
                         return GetVector<ushort>();
-                    case (VarEnum.VT_VECTOR | VarEnum.VT_I4):
+                    case VarEnum.VT_VECTOR | VarEnum.VT_I4:
                         return GetVector<int>();
-                    case (VarEnum.VT_VECTOR | VarEnum.VT_UI4):
+                    case VarEnum.VT_VECTOR | VarEnum.VT_UI4:
                         return GetVector<uint>();
-                    case (VarEnum.VT_VECTOR | VarEnum.VT_I8):
+                    case VarEnum.VT_VECTOR | VarEnum.VT_I8:
                         return GetVector<long>();
-                    case (VarEnum.VT_VECTOR | VarEnum.VT_UI8):
+                    case VarEnum.VT_VECTOR | VarEnum.VT_UI8:
                         return GetVector<ulong>();
-                    case (VarEnum.VT_VECTOR | VarEnum.VT_R4):
+                    case VarEnum.VT_VECTOR | VarEnum.VT_R4:
                         return GetVector<float>();
-                    case (VarEnum.VT_VECTOR | VarEnum.VT_R8):
+                    case VarEnum.VT_VECTOR | VarEnum.VT_R8:
                         return GetVector<double>();
-                    case (VarEnum.VT_VECTOR | VarEnum.VT_BOOL):
+                    case VarEnum.VT_VECTOR | VarEnum.VT_BOOL:
                         return GetVector<bool>();
-                    case (VarEnum.VT_VECTOR | VarEnum.VT_FILETIME):
+                    case VarEnum.VT_VECTOR | VarEnum.VT_FILETIME:
                         return GetVector<DateTime>();
-                    case (VarEnum.VT_VECTOR | VarEnum.VT_DECIMAL):
+                    case VarEnum.VT_VECTOR | VarEnum.VT_DECIMAL:
                         return GetVector<decimal>();
                     default:
                         // if the value cannot be marshaled
@@ -658,7 +573,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
                 }
             }
         }
-        #endregion
+        #endregion Public Properties
 
         public static long GetLong(int high, int low) => (((long)high) << 32) | (uint)low;
         public static ulong GetULong(uint high, uint low) => (((ulong)high) << 32) | low;
@@ -694,13 +609,16 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
             lock (_padlock)
             {
-#if CS8
-                _vectorActions ??= GenerateVectorActions();
-#else
+#if !CS8
                 if (_vectorActions == null)
-
-                    _vectorActions = GenerateVectorActions();
 #endif
+                    _vectorActions
+#if CS8
+                    ??=
+#else
+                    =
+#endif
+                    GenerateVectorActions();
             }
 
             if (_vectorActions.TryGetValue(typeof(T), out Action<PropVariant, Array, uint> action))
@@ -719,16 +637,11 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
         private static Array CrackSingleDimSafeArray(IntPtr psa)
         {
-            if (SafeArrayGetDim(psa) != 1)
-
-                throw new ArgumentException(LocalizedMessages.PropVariantMultiDimArray, nameof(psa));
-
-            int lBound = SafeArrayGetLBound(psa, 1U);
+            int lBound = SafeArrayGetDim(psa) == 1U ? SafeArrayGetLBound(psa, 1U) : throw new ArgumentException(LocalizedMessages.PropVariantMultiDimArray, nameof(psa));
             int uBound = SafeArrayGetUBound(psa, 1U);
-
             int n = uBound - lBound + 1; // uBound is inclusive
 
-            object[] array = new object[n];
+            var array = new object[n];
 
             for (int i = lBound; i <= uBound; ++i)
 
@@ -750,7 +663,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
         }
 
         ~PropVariant() => Dispose();
-        #endregion
+        #endregion Private Methods
 
         /// <summary>
         /// Provides an simple string representation of the contained data and type.
@@ -855,6 +768,6 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.PropertySystem
 
         [DllImport(Propsys, CharSet = CharSet.Unicode, SetLastError = true, PreserveSig = false)]
         public static extern void InitPropVariantFromStringVector([In, Out] string[] prgsz, uint cElems, [Out] PropVariant ppropvar);
-        #endregion
+        #endregion Native methods
     }
 }

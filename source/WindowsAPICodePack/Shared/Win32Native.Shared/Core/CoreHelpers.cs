@@ -28,181 +28,214 @@ using System.Runtime.InteropServices;
 using System.Text;
 
 using static Microsoft.WindowsAPICodePack.NativeAPI.Consts.DllNames;
-
 using static Microsoft.WindowsAPICodePack.Win32Native.Resources.LocalizedMessages;
 
 using static System.Environment;
 
-namespace Microsoft.WindowsAPICodePack.Win32Native
+namespace Microsoft.WindowsAPICodePack
 {
-    /// <summary>
-    /// Common Helper methods
-    /// </summary>
-    public static class CoreHelpers
+    public struct Color
     {
-#if !NETSTANDARD || NETSTANDARD2_1_OR_GREATER
-        public static T GetTypedObjectForIUnknown<T>(in IntPtr intPtr) => (T)Marshal.GetTypedObjectForIUnknown(intPtr, typeof(T));
+        public byte R { get; }
+        public byte G{ get; }
+        public byte B { get; }
 
-        public static T QueryInterfaceForIUnknown<T>(in IntPtr intPtr, ref Guid guid) => CoreErrorHelper.Succeeded(Marshal.QueryInterface(intPtr, ref guid, out IntPtr intPtr2)) ? GetTypedObjectForIUnknown<T>(intPtr2) : default;
-
-        public static T QueryInterfaceForIUnknown2<T>(in IntPtr intPtr, in Guid guid)
+        public Color(in byte r, in byte g, in byte b)
         {
-            Guid _guid = guid;
-
-            return QueryInterfaceForIUnknown<T>(intPtr, ref _guid);
+            R = r;
+            G = g;
+            B = b;
         }
+    }
 
-        public static T QueryInterfaceForIUnknown<T>(in IntPtr intPtr, in string guid) => QueryInterfaceForIUnknown2<T>(intPtr, new Guid(guid));
+    public struct TransparentColor
+    {
+        public byte A { get; }
+
+        public Color Color { get; }
+
+        public TransparentColor(in byte a, in Color color)
+        {
+            A = a;
+            Color = color;
+        }
+    }
+
+    namespace Win32Native
+    {
+        /// <summary>
+        /// Common Helper methods
+        /// </summary>
+        public static class CoreHelpers
+        {
+#if !NETSTANDARD || NETSTANDARD2_1_OR_GREATER
+            public static T GetTypedObjectForIUnknown<T>(in IntPtr intPtr) => (T)Marshal.GetTypedObjectForIUnknown(intPtr, typeof(T));
+
+            public static T QueryInterfaceForIUnknown<T>(in IntPtr intPtr, ref Guid guid) => CoreErrorHelper.Succeeded(Marshal.QueryInterface(intPtr, ref guid, out IntPtr intPtr2)) ? GetTypedObjectForIUnknown<T>(intPtr2) : default;
+
+            public static T QueryInterfaceForIUnknown2<T>(in IntPtr intPtr, in Guid guid)
+            {
+                Guid _guid = guid;
+
+                return QueryInterfaceForIUnknown<T>(intPtr, ref _guid);
+            }
+
+            public static T QueryInterfaceForIUnknown<T>(in IntPtr intPtr, in string guid) => QueryInterfaceForIUnknown2<T>(intPtr, new Guid(guid));
 #endif
 
-        public static void UpdateValue<T>(ref T value, in T newValue) where T : class
-        {
-            if (value != null)
-
-                _ = Marshal.ReleaseComObject(value);
-
-            value = newValue;
-        }
-
-        public static void DisposeCOMObject<T>(ref T value) where T : class
-        {
-            if (value != null)
+            public static void UpdateValue<T>(ref T value, in T newValue) where T : class
             {
-                _ = Marshal.ReleaseComObject(value);
+                if (value != null)
 
-                value = null;
+                    _ = Marshal.ReleaseComObject(value);
+
+                value = newValue;
             }
-        }
 
-        public static SecurityAttributes GetSecurityAttributes(GCHandle securityDescriptorPinnedHandle, bool inheritHandle = false)
-        {
-            var securityAttributes = new SecurityAttributes { bInheritHandle = inheritHandle };
+            public static void DisposeCOMObject<T>(ref T
+#if CS9
+                ?
+#endif
+                value) where T : class
+            {
+                if (value != null)
+                {
+                    _ = Marshal.ReleaseComObject(value);
 
-            securityAttributes.nLength = (uint)Marshal.SizeOf(securityAttributes);
-            securityAttributes.lpSecurityDescriptor = securityDescriptorPinnedHandle.AddrOfPinnedObject();
-            return securityAttributes;
-        }
+                    value = null;
+                }
+            }
 
-        /// <summary>
-        /// Determines if the application is running on XP
-        /// </summary>
-        public static bool RunningOnXP => OSVersion.Platform == PlatformID.Win32NT && OSVersion.Version.Major >= 5;
+            public static SecurityAttributes GetSecurityAttributes(GCHandle securityDescriptorPinnedHandle, bool inheritHandle = false)
+            {
+                var securityAttributes = new SecurityAttributes { bInheritHandle = inheritHandle };
 
-        private static void ThrowIfPlatformNotSupported(in bool condition, in string errorMessage)
-        {
-            if (!condition)
+                securityAttributes.nLength = (uint)Marshal.SizeOf(securityAttributes);
+                securityAttributes.lpSecurityDescriptor = securityDescriptorPinnedHandle.AddrOfPinnedObject();
+                return securityAttributes;
+            }
 
-                throw new PlatformNotSupportedException(errorMessage);
-        }
+            /// <summary>
+            /// Determines if the application is running on XP
+            /// </summary>
+            public static bool RunningOnXP => OSVersion.Platform == PlatformID.Win32NT && OSVersion.Version.Major >= 5;
 
-        /// <summary>
-        /// Throws PlatformNotSupportedException if the application is not running on Windows XP
-        /// </summary>
-        public static void ThrowIfNotXP() => ThrowIfPlatformNotSupported(RunningOnXP, CoreHelpersRunningOnXp);
+            private static void ThrowIfPlatformNotSupported(in bool condition, in string errorMessage)
+            {
+                if (!condition)
 
-        /// <summary>
-        /// Determines if the application is running on Vista
-        /// </summary>
-        public static bool RunningOnVista => OSVersion.Version.Major >= 6;
+                    throw new PlatformNotSupportedException(errorMessage);
+            }
 
-        /// <summary>
-        /// Throws PlatformNotSupportedException if the application is not running on Windows Vista
-        /// </summary>
-        public static void ThrowIfNotVista() => ThrowIfPlatformNotSupported(RunningOnVista, CoreHelpersRunningOnVista);
+            /// <summary>
+            /// Throws PlatformNotSupportedException if the application is not running on Windows XP
+            /// </summary>
+            public static void ThrowIfNotXP() => ThrowIfPlatformNotSupported(RunningOnXP, CoreHelpersRunningOnXp);
 
-        /// <summary>
-        /// Determines if the application is running on Windows 7
-        /// </summary>
-        public static bool RunningOnWin7 =>
-                // Verifies that OS version is 6.1 or greater, and the Platform is WinNT.
-                OSVersion.Platform == PlatformID.Win32NT && OSVersion.Version.CompareTo(new Version(6, 1)) >= 0;
+            /// <summary>
+            /// Determines if the application is running on Vista
+            /// </summary>
+            public static bool RunningOnVista => OSVersion.Version.Major >= 6;
 
-        /// <summary>
-        /// Throws PlatformNotSupportedException if the application is not running on Windows 7
-        /// </summary>
-        public static void ThrowIfNotWin7()
-        {
-            if (!RunningOnWin7)
+            /// <summary>
+            /// Throws PlatformNotSupportedException if the application is not running on Windows Vista
+            /// </summary>
+            public static void ThrowIfNotVista() => ThrowIfPlatformNotSupported(RunningOnVista, CoreHelpersRunningOnVista);
 
-                throw new PlatformNotSupportedException(CoreHelpersRunningOn7);
-        }
+            /// <summary>
+            /// Determines if the application is running on Windows 7
+            /// </summary>
+            public static bool RunningOnWin7 =>
+                    // Verifies that OS version is 6.1 or greater, and the Platform is WinNT.
+                    OSVersion.Platform == PlatformID.Win32NT && OSVersion.Version.CompareTo(new Version(6, 1)) >= 0;
 
-        /// <summary>
-        /// Determines if the application is running on Windows 8
-        /// </summary>
-        public static bool RunningOnWin8 => OSVersion.Platform == PlatformID.Win32NT && OSVersion.Version.CompareTo(new Version(6, 2)) >= 0;
+            /// <summary>
+            /// Throws PlatformNotSupportedException if the application is not running on Windows 7
+            /// </summary>
+            public static void ThrowIfNotWin7()
+            {
+                if (!RunningOnWin7)
 
-        /// <summary>
-        /// Throws PlatformNotSupportedException if the application is not running on Windows 8
-        /// </summary>
-        public static void ThrowIfNotWin8()
-        {
-            if (!RunningOnWin8)
+                    throw new PlatformNotSupportedException(CoreHelpersRunningOn7);
+            }
 
-                throw new PlatformNotSupportedException(LocalizedMessages.CoreHelpersRunningOn8);
-        }
+            /// <summary>
+            /// Determines if the application is running on Windows 8
+            /// </summary>
+            public static bool RunningOnWin8 => OSVersion.Platform == PlatformID.Win32NT && OSVersion.Version.CompareTo(new Version(6, 2)) >= 0;
 
-        /// <summary>
-        /// Determines if the application is running on Windows 8.1
-        /// </summary>
-        public static bool RunningOnWin8_1 => OSVersion.Platform == PlatformID.Win32NT && OSVersion.Version.CompareTo(new Version(6, 3)) >= 0;
+            /// <summary>
+            /// Throws PlatformNotSupportedException if the application is not running on Windows 8
+            /// </summary>
+            public static void ThrowIfNotWin8()
+            {
+                if (!RunningOnWin8)
 
-        /// <summary>
-        /// Throws PlatformNotSupportedException if the application is not running on Windows 8.1
-        /// </summary>
-        public static void ThrowIfNotWin8_1()
-        {
-            if (!RunningOnWin8_1)
+                    throw new PlatformNotSupportedException(LocalizedMessages.CoreHelpersRunningOn8);
+            }
 
-                throw new PlatformNotSupportedException(LocalizedMessages.CoreHelpersRunningOn8_1);
-        }
+            /// <summary>
+            /// Determines if the application is running on Windows 8.1
+            /// </summary>
+            public static bool RunningOnWin8_1 => OSVersion.Platform == PlatformID.Win32NT && OSVersion.Version.CompareTo(new Version(6, 3)) >= 0;
 
-        /// <summary>
-        /// Determines if the application is running on Windows 10
-        /// </summary>
-        public static bool RunningOnWin10 => OSVersion.Platform == PlatformID.Win32NT && OSVersion.Version.CompareTo(new Version(10, 0)) >= 0;
+            /// <summary>
+            /// Throws PlatformNotSupportedException if the application is not running on Windows 8.1
+            /// </summary>
+            public static void ThrowIfNotWin8_1()
+            {
+                if (!RunningOnWin8_1)
 
-        /// <summary>
-        /// Throws PlatformNotSupportedException if the application is not running on Windows 10
-        /// </summary>
-        public static void ThrowIfNotWin10()
-        {
-            if (!RunningOnWin10)
+                    throw new PlatformNotSupportedException(LocalizedMessages.CoreHelpersRunningOn8_1);
+            }
 
-                throw new PlatformNotSupportedException(LocalizedMessages.CoreHelpersRunningOn10);
-        }
+            /// <summary>
+            /// Determines if the application is running on Windows 10
+            /// </summary>
+            public static bool RunningOnWin10 => OSVersion.Platform == PlatformID.Win32NT && OSVersion.Version.CompareTo(new Version(10, 0)) >= 0;
 
-        /// <summary>
-        /// Get a string resource given a resource Id
-        /// </summary>
-        /// <param name="resourceId">The resource Id</param>
-        /// <returns>The string resource corresponding to the given resource Id. Returns null if the resource id
-        /// is invalid or the string cannot be retrieved for any other reason.</returns>
-        public static string GetStringResource(string resourceId)
-        {
-            string[] parts;
-            string library;
-            int index;
+            /// <summary>
+            /// Throws PlatformNotSupportedException if the application is not running on Windows 10
+            /// </summary>
+            public static void ThrowIfNotWin10()
+            {
+                if (!RunningOnWin10)
 
-            if (string.IsNullOrEmpty(resourceId)) return string.Empty;
+                    throw new PlatformNotSupportedException(LocalizedMessages.CoreHelpersRunningOn10);
+            }
 
-            // Known folder "Recent" has a malformed resource id
-            // for its tooltip. This causes the resource id to
-            // parse into 3 parts instead of 2 parts if we don't fix.
-            resourceId = resourceId.Replace("shell32,dll", Shell32);
-            parts = resourceId.Split(new char[] { ',' });
+            /// <summary>
+            /// Get a string resource given a resource Id
+            /// </summary>
+            /// <param name="resourceId">The resource Id</param>
+            /// <returns>The string resource corresponding to the given resource Id. Returns null if the resource id
+            /// is invalid or the string cannot be retrieved for any other reason.</returns>
+            public static string GetStringResource(string resourceId)
+            {
+                string[] parts;
+                string library;
+                int index;
 
-            library = parts[0];
-            library = library.Replace(@"@", string.Empty);
-            library = ExpandEnvironmentVariables(library);
-            IntPtr handle = Core.LoadLibrary(library);
+                if (string.IsNullOrEmpty(resourceId)) return string.Empty;
 
-            parts[1] = parts[1].Replace("-", string.Empty);
-            index = int.Parse(parts[1], CultureInfo.InvariantCulture);
+                // Known folder "Recent" has a malformed resource id
+                // for its tooltip. This causes the resource id to
+                // parse into 3 parts instead of 2 parts if we don't fix.
+                resourceId = resourceId.Replace("shell32,dll", Shell32);
+                parts = resourceId.Split(new char[] { ',' });
 
-            var stringValue = new StringBuilder(255);
+                library = parts[0];
+                library = library.Replace(@"@", string.Empty);
+                library = ExpandEnvironmentVariables(library);
+                IntPtr handle = Core.LoadLibrary(library);
 
-            return Core.LoadString(handle, index, stringValue, 255) == 0 ? null : stringValue.ToString();
+                parts[1] = parts[1].Replace("-", string.Empty);
+                index = int.Parse(parts[1], CultureInfo.InvariantCulture);
+
+                var stringValue = new StringBuilder(255);
+
+                return Core.LoadString(handle, index, stringValue, 255) == 0 ? null : stringValue.ToString();
+            }
         }
     }
 }

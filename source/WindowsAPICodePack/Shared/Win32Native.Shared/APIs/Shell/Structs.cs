@@ -9,6 +9,39 @@ using static System.Runtime.InteropServices.UnmanagedType;
 
 namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
 {
+    public delegate UIntPtr CCHookProc(IntPtr p1, uint p2, IntPtr p3, IntPtr p4);
+
+    public enum ChooseColorFlags : uint
+    {
+        RGBInit = 0x00000001,
+        FullOpen = 0x00000002,
+        PreventFullOpen = 0x00000004,
+        ShowHelp = 0x00000008,
+        EnableHook = 0x00000010,
+        EnableTemplate = 0x00000020,
+        EnableTemplateHandle = 0x00000040,
+        SolidColor = 0x00000080,
+        AnyColor = 0x00000100
+    }
+
+    [StructLayout(Sequential)]
+    public unsafe struct ChooseColor
+    {
+        [MarshalAs(U4)]
+        public uint lStructSize;
+        public IntPtr hwndOwner;
+        public IntPtr hInstance;
+        [MarshalAs(U4)]
+        public uint rgbResult;
+        public uint* lpCustColors;
+        [MarshalAs(U4)]
+        public ChooseColorFlags Flags;
+        public IntPtr lCustData;
+        public CCHookProc lpfnHook;
+        [MarshalAs(LPWStr)]
+        public string lpTemplateName;
+    }
+
     [StructLayout(Sequential)]
     public struct FileTime
     {
@@ -48,8 +81,8 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         public string cFileName;
         [MarshalAs(ByValTStr, SizeConst = AlternateFileName)]
         public string cAlternateFileName;
-        public uint  dwFileType;
-        public uint  dwCreatorType;
+        public uint dwFileType;
+        public uint dwCreatorType;
         public ushort wFinderFlags;
     }
 

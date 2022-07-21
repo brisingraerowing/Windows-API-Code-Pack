@@ -1,10 +1,10 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
 using Microsoft.WindowsAPICodePack.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
 
 using System;
 using System.Collections;
-using System.Runtime.InteropServices.ComTypes;
 using System.Runtime.InteropServices;
 
 namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
@@ -231,10 +231,22 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// <summary>
             /// <para>Name: System.FileAttributes -- PKEY_FileAttributes</para>
             /// <para>Description: This is the WIN32_FIND_DATA dwFileAttributes for the file-based item.</para>
-            /// <para>Type:     <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
+            /// <para>Type:     <see cref="Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes"/> -- <see cref="uint"/> -- <see cref="VarEnum.VT_UI4"/></para>
             /// <para>FormatID: (FMTID_Storage) {B725F130-47EF-101A-A5F1-02608C9EEBAC}, 13 (PID_STG_ATTRIBUTES)</para>
             /// </summary>
-            public ShellProperty<uint?> FileAttributes => AddProperty<uint?>(COMNative.Shell.PropertySystem.SystemProperties.System.FileAttributes);
+            public ShellProperty<
+#if WAPICP3
+                FileAttributes
+#else
+                uint
+#endif
+                ?> FileAttributes => AddProperty<
+#if WAPICP3
+                FileAttributes
+#else
+                uint
+#endif
+                ?>(COMNative.Shell.PropertySystem.SystemProperties.System.FileAttributes);
 
             /// <summary>
             /// <para>Name: System.FileCount -- PKEY_FileCount</para>
@@ -1242,7 +1254,6 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             public ShellProperty<string> Trademarks => AddProperty<string>(COMNative.Shell.PropertySystem.SystemProperties.System.Trademarks);
             #endregion
 
-
             #region sub-namespaces
             private PropertySystemAppUserModel _propertySystemAppUserModel;
             private PropertySystemAudio _propertySystemAudio;
@@ -1452,7 +1463,6 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
             /// System.Volume Properties
             /// </summary>
             public PropertySystemVolume Volume => _propertySystemVolume ?? (_propertySystemVolume = new PropertySystemVolume(shellObjectParent));
-
             #endregion
         }
 

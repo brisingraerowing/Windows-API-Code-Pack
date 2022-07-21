@@ -20,17 +20,25 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         void ApplyCollectionChanged();
 
         /// <summary>
-        /// Handle notifications of individual child 
-        /// pseudo-controls' properties changing..
-        /// Prefilter should throw if the property 
+        /// Handle notifications of individual child
+        /// pseudo-controls' properties changing.
+        /// Prefilter should throw if the property
         /// cannot be set in the dialog's current state.
-        /// PostProcess should pass on changes to native control, 
+        /// PostProcess should pass on changes to native control,
         /// if appropriate.
         /// </summary>
         /// <param name="propertyName">The name of the property.</param>
         /// <param name="control">The control propertyName applies to.</param>
         /// <returns>true if the property change is allowed.</returns>
-        bool IsControlPropertyChangeAllowed(in string propertyName, in DialogControl control);
+        bool IsControlPropertyChangeAllowed(
+#if !WAPICP3
+            in
+#endif
+            string propertyName,
+#if !WAPICP3
+            in
+#endif
+            DialogControl control);
 
         /// <summary>
         /// Called when a control currently in the collection 
@@ -38,6 +46,14 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// </summary>
         /// <param name="propertyName">The name of the property changed.</param>
         /// <param name="control">The control whose property has changed.</param>
-        void ApplyControlPropertyChange(in string propertyName, in DialogControl control);
+        void ApplyControlPropertyChange(
+#if !WAPICP3
+            in
+#endif
+            string propertyName,
+#if !WAPICP3
+            in
+#endif
+            DialogControl control);
     }
 }

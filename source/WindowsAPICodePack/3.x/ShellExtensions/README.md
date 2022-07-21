@@ -1,5 +1,5 @@
-﻿Windows-API-Code-Pack
-=====================
+﻿Windows-API-Code-Pack/ShellExtensions/3.x
+=========================================
 
 README
 ======

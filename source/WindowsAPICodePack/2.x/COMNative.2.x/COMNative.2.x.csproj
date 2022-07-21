@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
 	<PropertyGroup>
-		<TargetFrameworks>net35;net472;net48;netcoreapp3.0;netcoreapp3.1;net5.0-windows;net6.0-windows</TargetFrameworks>
+		<TargetFrameworks>net35;net472;net48;netcoreapp3.0;netcoreapp3.1;net5.0-windows;net6.0-windows;net7.0-windows</TargetFrameworks>
 		<UseWPF>true</UseWPF>
 		<UseWindowsForms>true</UseWindowsForms>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
@@ -12,15 +12,14 @@
 		<Description>WindowsAPICodePack COM Interop</Description>
 		<DocumentationFile>WinCopies.WindowsAPICodePack.COMNative.xml</DocumentationFile>
 		<DefineConstants>WAPICP2;$(DefineConstants)</DefineConstants>
-		<VersionPrefix>2.9.1</VersionPrefix>
-		<AssemblyVersion>2.9.1</AssemblyVersion>
-		<FileVersion>2.9.1</FileVersion>
+		<VersionPrefix>2.11</VersionPrefix>
+		<AssemblyVersion>2.11</AssemblyVersion>
+		<FileVersion>2.11</FileVersion>
 	</PropertyGroup>
 
 	<Import Project="..\..\Shared\COMNative.Shared\COMNative.Shared.projitems" Label="Shared" />
 
 	<ItemGroup>
-		<ProjectReference Include="..\Consts.2.x\Consts.2.x.csproj" />
 		<ProjectReference Include="..\Win32Native.2.x\Win32Native.2.x.csproj" />
 	</ItemGroup>
 

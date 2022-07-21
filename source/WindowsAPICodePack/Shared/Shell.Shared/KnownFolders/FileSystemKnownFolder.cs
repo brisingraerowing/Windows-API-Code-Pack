@@ -2,9 +2,9 @@
 
 using Microsoft.WindowsAPICodePack.COMNative.Shell;
 using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+
 using System;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 
 namespace Microsoft.WindowsAPICodePack.Shell
 {
@@ -14,15 +14,12 @@ namespace Microsoft.WindowsAPICodePack.Shell
     public class FileSystemKnownFolder : ShellFileSystemFolder, IKnownFolder, IDisposable
     {
         #region Private Fields
-
         private IKnownFolderNative knownFolderNative;
         private KnownFolderSettings knownFolderSettings;
-
         #endregion
 
         #region Internal Constructors
-
-        internal FileSystemKnownFolder(IShellItem2 shellItem) : base(shellItem) { }
+        internal FileSystemKnownFolder(IShellItem2 shellItem) : base(shellItem) { /* Left empty. */ }
 
         internal FileSystemKnownFolder(IKnownFolderNative kf)
         {
@@ -32,13 +29,11 @@ namespace Microsoft.WindowsAPICodePack.Shell
             // Set the native shell item
             // and set it on the base class (ShellObject)
             var guid = new Guid(NativeAPI.Guids.Shell.IShellItem2);
-            _ = knownFolderNative.GetShellItem(0, ref guid, out nativeShellItem);
+            _ = knownFolderNative.GetShellItem(0, ref guid, out _nativeShellItem);
         }
-
         #endregion
 
         #region Private Members
-
         private KnownFolderSettings KnownFolderSettings
         {
             get
@@ -50,32 +45,36 @@ namespace Microsoft.WindowsAPICodePack.Shell
                     // Need to use the PIDL to get the native IKnownFolder interface.
 
                     // Get the PIDL for the ShellItem
-                    if (nativeShellItem != null && base.PIDL == IntPtr.Zero)
-                    
-                        base.PIDL = ShellHelper.PidlFromShellItem(nativeShellItem);
-                    
+                    if (_nativeShellItem != null && base.PIDL == IntPtr.Zero)
+
+                        base.PIDL = ShellHelper.PidlFromShellItem(_nativeShellItem);
+
                     // If we have a valid PIDL, get the native IKnownFolder
                     if (base.PIDL != IntPtr.Zero)
-                    
+
                         knownFolderNative = KnownFolderHelper.FromPIDL(base.PIDL);
-                    
+
                     Debug.Assert(knownFolderNative != null);
                 }
 
                 // If this is the first time this property is being called,
                 // get the native Folder Defination (KnownFolder properties)
-                if (knownFolderSettings == null)
-                
-                    knownFolderSettings = new KnownFolderSettings(knownFolderNative);
-                
-                return knownFolderSettings;
+                return knownFolderSettings
+#if CS8
+                    ??=
+#else
+                    ?? (knownFolderSettings =
+#endif
+                    new KnownFolderSettings(knownFolderNative)
+#if !CS8
+                    )
+#endif
+                ;
             }
         }
-
         #endregion
 
         #region IKnownFolder Members
-
         /// <summary>
         /// Gets the path for this known folder.
         /// </summary>
@@ -196,30 +195,23 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         /// <value>A <see cref="RedirectionCapability"/> value.</value>
         public RedirectionCapability Redirection => KnownFolderSettings.Redirection;
-
-        #endregion
+        #endregion IKnownFolder Members
 
         #region IDisposable Members
-
         /// <summary>
-        /// Release resources
+        /// Release resources.
         /// </summary>
-        /// <param name="disposing">Indicates that this mothod is being called from Dispose() rather than the finalizer.</param>
+        /// <param name="disposing">Indicates that this mothod is being called from <see cref="Dispose"/> rather than the finalizer.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
-            
+
                 knownFolderSettings = null;
-            
-            if (knownFolderNative != null)
-            {
-                _ = Marshal.ReleaseComObject(knownFolderNative);
-                knownFolderNative = null;
-            }
+
+            Win32Native.CoreHelpers.DisposeCOMObject(ref knownFolderNative);
 
             base.Dispose(disposing);
         }
-
         #endregion
     }
 }

@@ -1,8 +1,7 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
-using System;
-using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 using Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem;
+using Microsoft.WindowsAPICodePack.Win32Native.PropertySystem;
 
 namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 {
@@ -12,23 +11,16 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
     public class ShellPropertyEnumType
     {
         #region Private Properties
-
         private string displayText;
         private PropEnumType? enumType;
         private object minValue, setValue, enumerationValue;
 
         private IPropertyEnumType NativePropertyEnumType { get; set; }
-
         #endregion
-
-        #region Internal Constructor
 
         internal ShellPropertyEnumType(IPropertyEnumType nativePropertyEnumType) => NativePropertyEnumType = nativePropertyEnumType;
 
-        #endregion
-
         #region Public Properties
-
         /// <summary>
         /// Gets display text from an enumeration information structure. 
         /// </summary>
@@ -56,6 +48,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                     NativePropertyEnumType.GetEnumType(out PropEnumType tempEnumType);
                     enumType = tempEnumType;
                 }
+
                 return enumType.Value;
             }
         }
@@ -118,7 +111,6 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
                 return enumerationValue;
             }
         }
-
         #endregion
     }
 }

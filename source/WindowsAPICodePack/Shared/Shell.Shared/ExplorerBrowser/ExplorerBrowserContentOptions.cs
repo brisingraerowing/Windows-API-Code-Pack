@@ -1,12 +1,11 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.  Distributed under the Microsoft Public License (MS-PL)
 
-using System.Runtime.InteropServices;
+using Microsoft.WindowsAPICodePack.COMNative.Controls;
 using Microsoft.WindowsAPICodePack.Controls.WindowsForms;
 using Microsoft.WindowsAPICodePack.Shell.Resources;
-using Microsoft.WindowsAPICodePack.Win32Native.Controls;
 using Microsoft.WindowsAPICodePack.Win32Native;
-using Microsoft.WindowsAPICodePack.Internal;
-using Microsoft.WindowsAPICodePack.COMNative.Controls;
+
+using EBCSO = Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentSectionOptions;
 
 namespace Microsoft.WindowsAPICodePack.Controls
 {
@@ -16,15 +15,17 @@ namespace Microsoft.WindowsAPICodePack.Controls
     /// </summary>
     public class ExplorerBrowserContentOptions
     {
-        #region construction
         readonly ExplorerBrowser eb;
         internal ExplorerBrowserContentOptions(ExplorerBrowser eb) => this.eb = eb;
-        #endregion
 
         #region ViewMode property
         // This is a one-way property of the explorer browser. 
         // Keeping it around for the get implementations.
-        internal FolderSettings folderSettings = new FolderSettings();
+        internal FolderSettings folderSettings = new
+#if !CS9
+            FolderSettings
+#endif
+            ();
 
         /// <summary>
         /// The viewing mode of the Explorer Browser
@@ -32,158 +33,118 @@ namespace Microsoft.WindowsAPICodePack.Controls
         public ExplorerBrowserViewMode ViewMode
         {
             get => (ExplorerBrowserViewMode)folderSettings.ViewMode;
+
             set
             {
                 folderSettings.ViewMode = (FolderViewMode)value;
 
                 if (eb.explorerBrowserControl != null)
 
-                    CoreErrorHelper.ThrowExceptionForHResult( eb.explorerBrowserControl.SetFolderSettings(folderSettings));
+                    CoreErrorHelper.ThrowExceptionForHResult(eb.explorerBrowserControl.SetFolderSettings(folderSettings));
             }
         }
         #endregion
 
-        #region Flags property
         /// <summary>
-        /// The binary representation of the ExplorerBrowser content flags
+        /// The binary representation of the <see cref="ExplorerBrowser"/> content flags.
         /// </summary>
-        public ExplorerBrowserContentSectionOptions Flags
+        public EBCSO Flags
         {
-            get => (ExplorerBrowserContentSectionOptions)folderSettings.Options;
+            get => (EBCSO)folderSettings.Options;
+
             set
             {
                 folderSettings.Options = (FolderOptions)value | FolderOptions.UseSearchFolders | FolderOptions.NoWebView;
-                if (eb.explorerBrowserControl != null)
-                
-                    eb.explorerBrowserControl.SetFolderSettings(folderSettings);
-                            }
-        }
-        #endregion
 
-        #region content flags to properties mapping
+                eb.explorerBrowserControl?.SetFolderSettings(folderSettings);
+            }
+        }
+
+        #region Content flags to properties mapping
         /// <summary>
         /// The view should be left-aligned. 
         /// </summary>
-        public bool AlignLeft
-        {
-            get => IsFlagSet(ExplorerBrowserContentSectionOptions.AlignLeft);
-            set => SetFlag(ExplorerBrowserContentSectionOptions.AlignLeft, value);
-        }
+        public bool AlignLeft { get => IsFlagSet(EBCSO.AlignLeft); set => SetFlag(EBCSO.AlignLeft, value); }
+
         /// <summary>
         /// Automatically arrange the elements in the view. 
         /// </summary>
-        public bool AutoArrange
-        {
-            get => IsFlagSet(ExplorerBrowserContentSectionOptions.AutoArrange);
-            set => SetFlag(ExplorerBrowserContentSectionOptions.AutoArrange, value);
-        }
+        public bool AutoArrange { get => IsFlagSet(EBCSO.AutoArrange); set => SetFlag(EBCSO.AutoArrange, value); }
+
         /// <summary>
-        /// Turns on check mode for the view
+        /// Turns on check mode for the view.
         /// </summary>
-        public bool CheckSelect
-        {
-            get => IsFlagSet(ExplorerBrowserContentSectionOptions.CheckSelect);
-            set => SetFlag(ExplorerBrowserContentSectionOptions.CheckSelect, value);
-        }
+        public bool CheckSelect { get => IsFlagSet(EBCSO.CheckSelect); set => SetFlag(EBCSO.CheckSelect, value); }
+
         /// <summary>
         /// When the view is in "tile view mode" the layout of a single item should be extended to the width of the view.
         /// </summary>
-        public bool ExtendedTiles
-        {
-            get => IsFlagSet(ExplorerBrowserContentSectionOptions.ExtendedTiles);
-            set => SetFlag(ExplorerBrowserContentSectionOptions.ExtendedTiles, value);
-        }
+        public bool ExtendedTiles { get => IsFlagSet(EBCSO.ExtendedTiles); set => SetFlag(EBCSO.ExtendedTiles, value); }
+
         /// <summary>
         /// When an item is selected, the item and all its sub-items are highlighted.
         /// </summary>
-        public bool FullRowSelect
-        {
-            get => IsFlagSet(ExplorerBrowserContentSectionOptions.FullRowSelect);
-            set => SetFlag(ExplorerBrowserContentSectionOptions.FullRowSelect, value);
-        }
+        public bool FullRowSelect { get => IsFlagSet(EBCSO.FullRowSelect); set => SetFlag(EBCSO.FullRowSelect, value); }
+
         /// <summary>
         /// The view should not display file names
         /// </summary>
-        public bool HideFileNames
-        {
-            get => IsFlagSet(ExplorerBrowserContentSectionOptions.HideFileNames);
-            set => SetFlag(ExplorerBrowserContentSectionOptions.HideFileNames, value);
-        }
+        public bool HideFileNames { get => IsFlagSet(EBCSO.HideFileNames); set => SetFlag(EBCSO.HideFileNames, value); }
+
         /// <summary>
         /// The view should not save view state in the browser.
         /// </summary>
-        public bool NoBrowserViewState
-        {
-            get => IsFlagSet(ExplorerBrowserContentSectionOptions.NoBrowserViewState);
-            set => SetFlag(ExplorerBrowserContentSectionOptions.NoBrowserViewState, value);
-        }
+        public bool NoBrowserViewState { get => IsFlagSet(EBCSO.NoBrowserViewState); set => SetFlag(EBCSO.NoBrowserViewState, value); }
+
         /// <summary>
         /// Do not display a column header in the view in any view mode.
         /// </summary>
-        public bool NoColumnHeader
-        {
-            get => IsFlagSet(ExplorerBrowserContentSectionOptions.NoColumnHeader);
-            set => SetFlag(ExplorerBrowserContentSectionOptions.NoColumnHeader, value);
-        }
+        public bool NoColumnHeader { get => IsFlagSet(EBCSO.NoColumnHeader); set => SetFlag(EBCSO.NoColumnHeader, value); }
+
         /// <summary>
         /// Only show the column header in details view mode.
         /// </summary>
-        public bool NoHeaderInAllViews
-        {
-            get => IsFlagSet(ExplorerBrowserContentSectionOptions.NoHeaderInAllViews);
-            set => SetFlag(ExplorerBrowserContentSectionOptions.NoHeaderInAllViews, value);
-        }
+        public bool NoHeaderInAllViews { get => IsFlagSet(EBCSO.NoHeaderInAllViews); set => SetFlag(EBCSO.NoHeaderInAllViews, value); }
+
         /// <summary>
         /// The view should not display icons. 
         /// </summary>
-        public bool NoIcons
-        {
-            get => IsFlagSet(ExplorerBrowserContentSectionOptions.NoIcons);
-            set => SetFlag(ExplorerBrowserContentSectionOptions.NoIcons, value);
-        }
+        public bool NoIcons { get => IsFlagSet(EBCSO.NoIcons); set => SetFlag(EBCSO.NoIcons, value); }
+
         /// <summary>
         /// Do not show subfolders. 
         /// </summary>
-        public bool NoSubfolders
-        {
-            get => IsFlagSet(ExplorerBrowserContentSectionOptions.NoSubfolders);
-            set => SetFlag(ExplorerBrowserContentSectionOptions.NoSubfolders, value);
-        }
+        public bool NoSubfolders { get => IsFlagSet(EBCSO.NoSubfolders); set => SetFlag(EBCSO.NoSubfolders, value); }
+
         /// <summary>
-        /// Navigate with a single click
+        /// Navigate with a single click.
         /// </summary>
-        public bool SingleClickActivate
-        {
-            get => IsFlagSet(ExplorerBrowserContentSectionOptions.SingleClickActivate);
-            set => SetFlag(ExplorerBrowserContentSectionOptions.SingleClickActivate, value);
-        }
+        public bool SingleClickActivate { get => IsFlagSet(EBCSO.SingleClickActivate); set => SetFlag(EBCSO.SingleClickActivate, value); }
+
         /// <summary>
         /// Do not allow more than a single item to be selected.
         /// </summary>
-        public bool SingleSelection
-        {
-            get => IsFlagSet(ExplorerBrowserContentSectionOptions.SingleSelection);
-            set => SetFlag(ExplorerBrowserContentSectionOptions.SingleSelection, value);
-        }
+        public bool SingleSelection { get => IsFlagSet(EBCSO.SingleSelection); set => SetFlag(EBCSO.SingleSelection, value); }
 
-        private bool IsFlagSet(ExplorerBrowserContentSectionOptions flag) => (folderSettings.Options & (FolderOptions)flag) != 0;
+        private bool IsFlagSet(EBCSO flag) => (folderSettings.Options & (FolderOptions)flag) != 0;
 
-        private void SetFlag(ExplorerBrowserContentSectionOptions flag, bool value)
+        private void SetFlag(EBCSO flag, bool value)
         {
             if (value)
+
                 folderSettings.Options |= (FolderOptions)flag;
+
             else
+
                 folderSettings.Options &= ~(FolderOptions)flag;
 
-            if (eb.explorerBrowserControl != null)
-                eb.explorerBrowserControl.SetFolderSettings(folderSettings);
+            eb.explorerBrowserControl?.SetFolderSettings(folderSettings);
         }
+        #endregion Content flags to properties mapping
 
-        #endregion
-
-        #region thumbnail size
+        #region Thumbnail size
         /// <summary>
-        /// The size of the thumbnails in pixels
+        /// The size of the thumbnails in pixels.
         /// </summary>
         public int ThumbnailSize
         {
@@ -191,50 +152,47 @@ namespace Microsoft.WindowsAPICodePack.Controls
             {
                 int iconSize = 0;
                 IFolderView2 iFV2 = eb.GetFolderView2();
+
                 if (iFV2 != null)
-                {
+
                     try
                     {
                         HResult hr = iFV2.GetViewModeAndIconSize(out int fvm, out iconSize);
+
                         if (hr != HResult.Ok)
-                        
+
                             throw new CommonControlException(LocalizedMessages.ExplorerBrowserIconSize, hr);
-                                            }
+                    }
+
                     finally
                     {
-                        _ = Marshal.ReleaseComObject(iFV2);
-                        iFV2 = null;
+                        CoreHelpers.DisposeCOMObject(ref iFV2);
                     }
-                }
 
                 return iconSize;
             }
+
             set
             {
                 IFolderView2 iFV2 = eb.GetFolderView2();
+
                 if (iFV2 != null)
-                {
+
                     try
                     {
                         HResult hr = iFV2.GetViewModeAndIconSize(out int fvm, out int iconSize);
-                        if (hr != HResult.Ok)
-                        
+
+                        if ((hr = hr == HResult.Ok ? iFV2.SetViewModeAndIconSize(fvm, value) : throw new CommonControlException(LocalizedMessages.ExplorerBrowserIconSize, hr)) != HResult.Ok)
+
                             throw new CommonControlException(LocalizedMessages.ExplorerBrowserIconSize, hr);
-                        
-                        hr = iFV2.SetViewModeAndIconSize(fvm, value);
-                        if (hr != HResult.Ok)
-                        
-                            throw new CommonControlException(LocalizedMessages.ExplorerBrowserIconSize, hr);
-                                            }
+                    }
+
                     finally
                     {
-                        _ = Marshal.ReleaseComObject(iFV2);
-                        iFV2 = null;
+                        CoreHelpers.DisposeCOMObject(ref iFV2);
                     }
-                }
             }
         }
         #endregion
     }
-
 }

@@ -17,7 +17,10 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
     public static partial class Shell
     {
         #region Shell Helper Methods
-        [DllImport("shell32.dll", ExactSpelling = true, PreserveSig = true)]
+        [DllImport(Comdlg32, ExactSpelling = true, PreserveSig = true, SetLastError = true)]
+        public static extern bool ChooseColorW(ref ChooseColor chooseColor);
+
+        [DllImport(Shell32, ExactSpelling = true, PreserveSig = true)]
         public static extern HResult SHBindToParent(
             IntPtr pidl,
             [In, MarshalAs(LPStruct)] Guid riid,
@@ -173,7 +176,7 @@ namespace Microsoft.WindowsAPICodePack.Win32Native.Shell
         /// <para>If <see cref="FailIfExists"/> is also specified, and the destination file is an existing symbolic link, the operation fails only if the target of the symbolic link exists.</para>
         /// <para>If <see cref="FailIfExists"/> is not specified, there is no change in behavior.</para>
         /// <para>Windows 7, Windows Server 2008 R2, Windows Server 2008, Windows Vista, Windows Server 2003 and Windows XP:  If you are writing an application that is optimizing file copy operations across a LAN, consider using the TransmitFile function from Windows Sockets(Winsock). TransmitFile supports high-performance network transfers and provides a simple interface to send the contents of a file to a remote computer.To use TransmitFile, you must write a Winsock client application that sends the file from the source computer as well as a Winsock server application that uses other Winsock functions to receive the file on the remote computer.</para>
-        /// <para>In Windows 8 and Windows Server 2012, this function is supported by the following technologies: Server Message Block (SMB) 3.0 protocol, SMB 3.0 Transparent Failover (TFO), SMB 3.0 with Scale-out File Shares (SO), Cluster .Shared Volume File System (CsvFS), Resilient File System (ReFS) Yes </remarks></para>
+        /// <para>In Windows 8 and Windows Server 2012, this function is supported by the following technologies: Server Message Block (SMB) 3.0 protocol, SMB 3.0 Transparent Failover (TFO), SMB 3.0 with Scale-out File Shares (SO), Cluster .Shared Volume File System (CsvFS), Resilient File System (ReFS) Yes </para></remarks>
         [DllImport(Kernel32, SetLastError = true, CharSet = CharSet.Unicode)]
         [return: MarshalAs(Bool)]
         public static extern bool CopyFileEx([In, MarshalAs(LPWStr)] string lpExistingFileName, [In, MarshalAs(LPWStr)] string lpNewFileName,

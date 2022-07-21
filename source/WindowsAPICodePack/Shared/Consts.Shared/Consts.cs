@@ -28,6 +28,7 @@
 
     public static class DllNames
     {
+        public const string Comdlg32 = "Comdlg32.dll";
         public const string Gdi32 = "gdi32.dll";
         public const string Shell32 = "shell32.dll";
         public const string Kernel32 = "kernel32.dll";
