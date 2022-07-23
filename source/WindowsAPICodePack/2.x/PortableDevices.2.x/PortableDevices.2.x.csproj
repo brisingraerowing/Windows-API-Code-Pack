@@ -7,9 +7,9 @@
 		<Copyright>Copyright © Pierre Sprimont 2022</Copyright>
 		<Description>.NET wrappers fro the PortableDevices API</Description>
 		<DefineConstants>WAPICP2;$(DefineConstants)</DefineConstants>
-		<VersionPrefix>2.12</VersionPrefix>
-		<AssemblyVersion>2.12</AssemblyVersion>
-		<FileVersion>2.12</FileVersion>
+		<VersionPrefix>2.12.0.1</VersionPrefix>
+		<AssemblyVersion>2.12.0.1</AssemblyVersion>
+		<FileVersion>2.12.0.1</FileVersion>
 	</PropertyGroup>
 
 	<Import Project="$(SolutionDir)\ExtraProperties.props" />

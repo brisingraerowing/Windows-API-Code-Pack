@@ -7,9 +7,9 @@
 		<Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2022</Copyright>
 		<Description>WindowsAPICodePack for Shell</Description>
 		<DefineConstants>WAPICP2;$(DefineConstants)</DefineConstants>
-		<VersionPrefix>2.12</VersionPrefix>
-		<AssemblyVersion>2.12</AssemblyVersion>
-		<FileVersion>2.12</FileVersion>
+		<VersionPrefix>2.12.0.1</VersionPrefix>
+		<AssemblyVersion>2.12.0.1</AssemblyVersion>
+		<FileVersion>2.12.0.1</FileVersion>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<UseWindowsForms>true</UseWindowsForms>
 		<UseWPF>true</UseWPF>
