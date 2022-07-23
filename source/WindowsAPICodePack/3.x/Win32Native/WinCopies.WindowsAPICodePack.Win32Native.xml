@@ -116,16 +116,6 @@
               Looks up a localized string similar to Guid does not identify a known folder..
             </summary>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeCategory">
-            <summary>
-              Looks up a localized string similar to ControlPanel Category.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeClassic">
-            <summary>
-              Looks up a localized string similar to ControlPanel Classic.
-            </summary>
-        </member>
         <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeCommunications">
             <summary>
               Looks up a localized string similar to Communications.
@@ -141,6 +131,16 @@
               Looks up a localized string similar to Contacts.
             </summary>
         </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeControlPanelCategory">
+            <summary>
+              Looks up a localized string similar to ControlPanel Category.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeControlPanelClassic">
+            <summary>
+              Looks up a localized string similar to ControlPanel Classic.
+            </summary>
+        </member>
         <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeDocuments">
             <summary>
               Looks up a localized string similar to Documents.
@@ -154,6 +154,11 @@
         <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeGenericLibrary">
             <summary>
               Looks up a localized string similar to Generic Library.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeGenericSearchResults">
+            <summary>
+              Looks up a localized string similar to Generic SearchResults.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeInvalid">
@@ -229,11 +234,6 @@
         <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeSearches">
             <summary>
               Looks up a localized string similar to Searches.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeSearchResults">
-            <summary>
-              Looks up a localized string similar to Generic SearchResults.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.FolderTypeSoftwareExplorer">
@@ -378,7 +378,7 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellPropertyWrongType">
             <summary>
-              Looks up a localized string similar to This property only accepts a value of type \&quot;{0}\&quot;..
+              Looks up a localized string similar to This property only accepts a value of type &quot;{0}&quot;..
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources.LocalizedMessages.ShellSearchFolderUnableToSetSortColumns">
@@ -4037,18 +4037,6 @@
             <summary>
             Set a <see cref="T:System.Double"/>
             </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.SetIUnknown(System.Object)">
-            <summary>
-            Set an IUnknown value
-            </summary>
-            <param name="value">The new value to set.</param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.SetSafeArray(System.Array)">
-            <summary>
-            Set a safe array value
-            </summary>
-            <param name="array">The new value to set.</param>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Win32Native.PropertySystem.PropVariant.VarType">
             <summary>

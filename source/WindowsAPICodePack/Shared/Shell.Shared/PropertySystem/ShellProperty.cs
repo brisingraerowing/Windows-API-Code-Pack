@@ -82,13 +82,23 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 
             try
             {
-                int hr = ParentShellObject.NativeShellItem2.GetPropertyStore(
+#if WAPICP3
+                HResult
+#else
+                int
+#endif
+                hr = ParentShellObject.NativeShellItem2.GetPropertyStore(
                         GetPropertyStoreOptions.ReadWrite,
                         ref guid,
                         out writablePropStore);
 
                 HResult result = CoreErrorHelper.Succeeded(hr) ? writablePropStore.SetValue(ref propertyKey, propVar) : throw new PropertySystemException(LocalizedMessages.ShellPropertyUnableToGetWritableProperty,
-                        Marshal.GetExceptionForHR(hr));
+#if WAPICP3
+                    CoreErrorHelper.GetExceptionForHR
+#else
+                    Marshal.GetExceptionForHR
+#endif
+                    (hr));
 
                 _ = AllowSetTruncatedValue && result == HResult.InPlaceStringTruncated ? CoreErrorHelper.Succeeded(result) ? writablePropStore.Commit() : throw new PropertySystemException(LocalizedMessages.ShellPropertySetValue, Marshal.GetExceptionForHR((int)result)) : throw new ArgumentOutOfRangeException(nameof(propVar), LocalizedMessages.ShellPropertyValueTruncated);
             }

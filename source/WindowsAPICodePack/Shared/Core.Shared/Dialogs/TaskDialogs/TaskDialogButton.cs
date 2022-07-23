@@ -23,9 +23,21 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
             set
             {
-                CheckPropertyChangeAllowed(nameof(ShowElevationIcon));
+                CheckPropertyChangeAllowed(nameof(
+#if WAPICP3
+                    ShowElevationIcon
+#else
+                    UseElevationIcon
+#endif
+                ));
                 _showElevationIcon = value;
-                ApplyPropertyChange(nameof(ShowElevationIcon));
+                ApplyPropertyChange(nameof(
+#if WAPICP3
+                    ShowElevationIcon
+#else
+                    UseElevationIcon
+#endif
+                ));
             }
         }
 

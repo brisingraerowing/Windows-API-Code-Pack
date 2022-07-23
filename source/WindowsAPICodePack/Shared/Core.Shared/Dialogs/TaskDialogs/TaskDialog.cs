@@ -579,7 +579,13 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         {
             foreach (TaskDialogButton control in controls.Cast<TaskDialogButton>())
 
-                if (control.ShowElevationIcon)
+                if (control.
+#if WAPICP3
+                    ShowElevationIcon
+#else
+                    UseElevationIcon
+#endif
+                )
 
                     (settings.ElevatedButtons
 #if CS8
@@ -663,7 +669,13 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
         #region Helpers
         private bool GetBit(in byte pos) => _bools.GetBit(pos);
-        private void SetBit(in byte pos, in bool value) => UtilHelpers.SetBit(ref _bools, pos, value);
+        private void SetBit(in byte pos, in bool value) =>
+#if WAPICP3
+            UtilHelpers
+#else
+            Util
+#endif
+            .SetBit(ref _bools, pos, value);
 
         // Helper to map the standard button IDs returned by 
         // TaskDialogIndirect to the standard button ID enum - 
@@ -891,7 +903,15 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         // cannot occur while the dialog is showing
         // because the Win32 API has no way for us to 
         // propagate the changes until we re-invoke the Win32 call.
-        bool IDialogControlHost.IsControlPropertyChangeAllowed(string propertyName, DialogControl control)
+        bool IDialogControlHost.IsControlPropertyChangeAllowed(
+#if !WAPICP3
+            in
+#endif
+            string propertyName,
+#if !WAPICP3
+            in
+#endif
+            DialogControl control)
         {
             Debug.Assert(control is TaskDialogControl,
                 "Property changing for a control that is not a TaskDialogControl-derived type");
@@ -913,7 +933,13 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                         break;
 
                     // Properties that CAN be changed while dialog is showing.
-                    case nameof(TaskDialogButton.ShowElevationIcon):
+                    case nameof(TaskDialogButton.
+#if WAPICP3
+                        ShowElevationIcon
+#else
+                        UseElevationIcon
+#endif
+                        ):
                     case nameof(TaskDialogButtonBase.Enabled):
                         canChange = true;
                         break;
@@ -939,7 +965,15 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         // If there isn't a way to change the Win32 value, then we
         // should have already screened out the property set 
         // in NotifyControlPropertyChanging.        
-        void IDialogControlHost.ApplyControlPropertyChange(string propertyName, DialogControl control)
+        void IDialogControlHost.ApplyControlPropertyChange(
+#if !WAPICP3
+            in
+#endif
+            string propertyName,
+#if !WAPICP3
+            in
+#endif
+            DialogControl control)
         {
             // We only need to apply changes to the 
             // native dialog when it actually exists.
@@ -970,8 +1004,20 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
                     switch (propertyName)
                     {
-                        case nameof(TaskDialogButton.ShowElevationIcon):
-                            _nativeDialog.UpdateElevationIcon(button.Id, button.ShowElevationIcon);
+                        case nameof(TaskDialogButton.
+#if WAPICP3
+                            ShowElevationIcon
+#else
+                            UseElevationIcon
+#endif
+                            ):
+                            _nativeDialog.UpdateElevationIcon(button.Id, button.
+#if WAPICP3
+                            ShowElevationIcon
+#else
+                            UseElevationIcon
+#endif
+                            );
                             break;
                         case nameof(TaskDialogButtonBase.Enabled):
                             _nativeDialog.UpdateButtonEnabled(button.Id, button.Enabled);

@@ -10,7 +10,6 @@ using Microsoft.WindowsAPICodePack.Win32Native.Shell.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 
 namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 {
@@ -90,7 +89,13 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
         internal static IPropertyStore CreateDefaultPropertyStore(ShellObject shellObj)
         {
             var guid = new Guid(NativeAPI.Guids.Shell.IPropertyStore);
-            int hr = shellObj.NativeShellItem2.GetPropertyStore(
+
+#if WAPICP3
+            HResult
+#else
+            int
+#endif
+            hr = shellObj.NativeShellItem2.GetPropertyStore(
                    GetPropertyStoreOptions.BestEffort,
                    ref guid,
                    out IPropertyStore nativePropertyStore);

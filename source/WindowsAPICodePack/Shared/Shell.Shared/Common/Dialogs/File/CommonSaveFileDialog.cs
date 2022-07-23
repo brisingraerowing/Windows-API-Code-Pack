@@ -49,7 +49,12 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         {
             ThrowIfDialogShowing(exceptionMessage);
 
-            UtilHelpers.SetBit(ref _bools, pos, value);
+#if WAPICP3
+            UtilHelpers
+#else
+            Util
+#endif
+            .SetBit(ref _bools, pos, value);
         }
 
         #region Public API specific to Save

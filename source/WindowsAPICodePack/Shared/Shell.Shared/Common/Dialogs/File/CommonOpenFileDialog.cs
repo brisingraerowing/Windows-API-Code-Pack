@@ -97,7 +97,13 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         #endregion Public API specific to Open
 
         private bool GetBit(in byte pos) => _bools.GetBit(pos);
-        private void SetBit(in byte pos, in bool value) => UtilHelpers.SetBit(ref _bools, pos, value);
+        private void SetBit(in byte pos, in bool value) =>
+#if WAPICP3
+            UtilHelpers
+#else
+            Util
+#endif
+            .SetBit(ref _bools, pos, value);
 
         internal override IFileDialog GetNativeFileDialog()
         {

@@ -71,7 +71,13 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             ApplyPropertyChange(propertyName);
         }
 
-        private void UpdateProperty(byte pos, bool value, in string propertyName) => UpdateProperty(() => WinCopies.UtilHelpers.SetBit(ref _bools, pos, value), propertyName);
+        private void UpdateProperty(byte pos, bool value, in string propertyName) => UpdateProperty(() => WinCopies.
+#if WAPICP3
+        UtilHelpers
+#else
+        Util.Util
+#endif
+        .SetBit(ref _bools, pos, value), propertyName);
 
         internal void RaiseClickEvent()
         {

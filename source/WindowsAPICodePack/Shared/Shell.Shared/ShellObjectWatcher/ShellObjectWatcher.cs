@@ -17,6 +17,8 @@ using static WinCopies.
 #endif
     ;
 
+using SOCT = Microsoft.WindowsAPICodePack.Win32Native.Shell.ShellObjectChangeTypes;
+
 namespace Microsoft.WindowsAPICodePack.Shell
 {
     /// <summary>
@@ -134,9 +136,9 @@ namespace Microsoft.WindowsAPICodePack.Shell
         /// </summary>
         public event EventHandler<ShellObjectChangedEventArgs> Updated
         {
-            add => HandleEvent(_manager.Register, Update, value);
+            add => HandleEvent(_manager.Register, SOCT.Update, value);
 
-            remove => HandleEvent(_manager.Unregister, Update, value);
+            remove => HandleEvent(_manager.Unregister, SOCT.Update, value);
         }
 
         /// <summary>

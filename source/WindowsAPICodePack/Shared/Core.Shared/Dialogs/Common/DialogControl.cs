@@ -3,7 +3,11 @@
 using Microsoft.WindowsAPICodePack.Resources;
 
 using System;
+#if DEBUG
 using System.Diagnostics;
+#endif
+
+using WinCopies.Util;
 
 namespace Microsoft.WindowsAPICodePack.Dialogs
 {
@@ -64,7 +68,13 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// <param name="name">The name for this dialog.</param>
         protected DialogControl(in string name) : this() => Name = name;
 
-        private void OnPropertyChange(in string propName, in Converter<IDialogControlHost, Action<string, DialogControl>> converter
+        private void OnPropertyChange(in string propName, in Converter<IDialogControlHost,
+#if WAPICP3
+            Action
+#else
+            ActionIn
+#endif
+            <string, DialogControl>> converter
 #if DEBUG
             , in string text
 #endif
@@ -86,7 +96,15 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// there are no restrictions on setting the property.
         /// </summary>
         /// <param name="propName">The name of the property that is changing</param>
-        protected void CheckPropertyChangeAllowed(in string propName) => OnPropertyChange(propName, hostingDialog => (string propertyName, DialogControl control) => hostingDialog.IsControlPropertyChangeAllowed(propertyName, control)
+        protected void CheckPropertyChangeAllowed(in string propName) => OnPropertyChange(propName, hostingDialog => (
+#if !WAPICP3
+            in
+#endif
+            string propertyName,
+#if !WAPICP3
+            in
+#endif
+            DialogControl control) => hostingDialog.IsControlPropertyChangeAllowed(propertyName, control)
 #if DEBUG
         , "to change"
 #endif

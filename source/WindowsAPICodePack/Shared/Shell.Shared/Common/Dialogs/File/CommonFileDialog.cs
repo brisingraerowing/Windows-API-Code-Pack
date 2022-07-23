@@ -14,6 +14,7 @@ using Microsoft.WindowsAPICodePack.Win32Native;
 
 #region System
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -24,6 +25,8 @@ using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Markup;
 #endregion System
+
+using WinCopies.Util;
 
 using static Microsoft.WindowsAPICodePack.Shell.Resources.LocalizedMessages;
 
@@ -42,7 +45,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
     /// Defines the abstract base class for the common file dialogs.
     /// </summary>
     [ContentProperty("Controls")]
-    public abstract class CommonFileDialog : IDialogControlHost, IDisposable
+    public abstract class CommonFileDialog : IDialogControlHost, System.IDisposable
     {
         #region Fields
         private ushort _bools = 0b111;
@@ -815,7 +818,13 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
         #region Helpers
         private bool GetBit(in byte pos) => _bools.GetBit(pos);
-        private void SetBit(in byte pos, in bool value) => WinCopies.UtilHelpers.SetBit(ref _bools, pos, value);
+        private void SetBit(in byte pos, in bool value) => WinCopies.
+#if WAPICP3
+            UtilHelpers
+#else
+            Util.Util
+#endif
+            .SetBit(ref _bools, pos, value);
 
         private void SetValue(in Action action, in string exceptionMessage)
         {
@@ -966,9 +975,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
                 customize = (IFileDialogCustomize)nativeDialog;
             }
         }
-        #endregion
+#endregion
 
-        #region CheckChanged handling members
+#region CheckChanged handling members
         /// <summary>
         /// Raises the <see cref="FileOk"/> event just before the dialog is about to return with a result.
         /// </summary>
@@ -1005,9 +1014,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
         /// </summary>
         /// <param name="e">The event data.</param>
         protected virtual void OnOpening(EventArgs e) => DialogOpening?.Invoke(this, e);
-        #endregion
+#endregion
 
-        #region NativeDialogEventSink Nested Class
+#region NativeDialogEventSink Nested Class
         private class NativeDialogEventSink : IFileDialogEvents, IFileDialogControlEvents
         {
             private readonly CommonFileDialog parent;
@@ -1136,9 +1145,9 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
 
             public void OnControlActivating(IFileDialogCustomize pfdc, int dwIDCtl) { /* Left empty. */ }
         }
-        #endregion
+#endregion
 
-        #region IDisposable Members
+#region IDisposable Members
         /// <summary>
         /// Releases the unmanaged resources used by the CommonFileDialog class and optionally 
         /// releases the managed resources.
@@ -1160,7 +1169,7 @@ namespace Microsoft.WindowsAPICodePack.Dialogs
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-        #endregion
+#endregion
 
         /// <summary>
         /// Indicates whether this feature is supported on the current platform.

@@ -1,53 +1,54 @@
-﻿using System.Drawing;
+﻿using Microsoft.WindowsAPICodePack.Shell;
+
+using System.Drawing;
 using System.IO;
-using Microsoft.WindowsAPICodePack.Shell;
+
 using FileInfo = System.IO.FileInfo;
 
 namespace Microsoft.WindowsAPICodePack.ShellExtensions
 {
     /// <summary>
     /// This interface exposes the <see cref="ConsructBitmap"/> function for initializing the 
-    /// Thumbnail Provider with a <typeparamref name="Stream"/>.
+    /// Thumbnail Provider with a <see name="Stream"/>.
     /// If this interfaces is not used, then the handler must opt out of process isolation.
     /// This interface can be used in conjunction with the other intialization interfaces,
-    /// but only 1 will be accessed according to the priorities preset by the Windows Shell:
-    /// <typeparamref name="IThumbnailFromStream"/>
-    /// <typeparamref name="IThumbnailFromShellObject"/>
-    /// <typeparamref name="IThumbnailFromFile"/>
+    /// but only 1 will be accessed according to the priorities preset by the Windows Shell.
     /// </summary>
+    /// <seealso name="IThumbnailFromStream"/>
+    /// <seealso name="IThumbnailFromShellObject"/>
+    /// <seealso name="IThumbnailFromFile"/>
     public interface IThumbnailFromStream
     {
         /// <summary>
-        /// Provides the <typeparamref name="Stream"/> to the item from which a thumbnail should be created.
+        /// Provides the <see name="Stream"/> to the item from which a thumbnail should be created.
+        /// </summary>
         /// <remarks>Only 32bpp bitmaps support adornments. 
         /// While 24bpp bitmaps will be displayed they will not display adornments.
         /// Additional guidelines for developing thumbnails can be found at http://msdn.microsoft.com/en-us/library/cc144115(v=VS.85).aspx
         /// </remarks>
-        /// </summary>
         /// <param name="stream">Stream to initialize the thumbnail</param>
         /// <param name="sideSize">Square side dimension in which the thumbnail should fit; the thumbnail will be scaled otherwise.</param>
-        /// <returns></returns>
         Bitmap ConstructBitmap(Stream stream, int sideSize);
     }
 
     /// <summary>
     /// This interface exposes the <see cref="ConsructBitmap"/> function for initializing the 
-    /// Thumbnail Provider with a <typeparamref name="ShellObject"/>.
+    /// Thumbnail Provider with a <see name="ShellObject"/>.
     /// This interface can be used in conjunction with the other intialization interfaces,
-    /// but only 1 will be accessed according to the priorities preset by the Windows Shell:
-    /// <typeparamref name="IThumbnailFromStream"/>
-    /// <typeparamref name="IThumbnailFromShellObject"/>
-    /// <typeparamref name="IThumbnailFromFile"/>
+    /// but only 1 will be accessed according to the priorities preset by the Windows Shell.
     /// </summary>
+    /// <seealso name="IThumbnailFromStream"/>
+    /// <seealso name="IThumbnailFromShellObject"/>
+    /// <seealso name="IThumbnailFromFile"/>
     public interface IThumbnailFromShellObject
     {
         /// <summary>
-        /// Provides the <typeparamref name="ShellObject"/> to the item from which a thumbnail should be created.
+        /// Provides the <see name="ShellObject"/> to the item from which a thumbnail should be created.
+        /// </summary>
         /// <remarks>Only 32bpp bitmaps support adornments. 
         /// While 24bpp bitmaps will be displayed they will not display adornments.
         /// Additional guidelines for developing thumbnails can be found at http://msdn.microsoft.com/en-us/library/cc144115(v=VS.85).aspx
         /// </remarks>
-        /// </summary>
         /// <param name="shellObject">ShellObject to initialize the thumbnail</param>
         /// <param name="sideSize">Square side dimension in which the thumbnail should fit; the thumbnail will be scaled otherwise.</param>
         /// <returns>Generated thumbnail</returns>
@@ -58,20 +59,20 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
     /// This interface exposes the <see cref="ConsructBitmap"/> function for initializing the 
     /// Thumbnail Provider with file information.
     /// This interface can be used in conjunction with the other intialization interfaces,
-    /// but only 1 will be accessed according to the priorities preset by the Windows Shell:
-    /// <typeparamref name="IThumbnailFromStream"/>
-    /// <typeparamref name="IThumbnailFromShellObject"/>
-    /// <typeparamref name="IThumbnailFromFile"/>
+    /// but only 1 will be accessed according to the priorities preset by the Windows Shell.
     /// </summary>
+    /// <seealso name="IThumbnailFromStream"/>
+    /// <seealso name="IThumbnailFromShellObject"/>
+    /// <seealso name="IThumbnailFromFile"/>
     public interface IThumbnailFromFile
     {
         /// <summary>
-        /// Provides the <typeparamref name="FileInfo"/> to the item from which a thumbnail should be created.
+        /// Provides the <see name="FileInfo"/> to the item from which a thumbnail should be created.
+        /// </summary>
         /// <remarks>Only 32bpp bitmaps support adornments. 
         /// While 24bpp bitmaps will be displayed they will not display adornments.
         /// Additional guidelines for developing thumbnails can be found at http://msdn.microsoft.com/en-us/library/cc144115(v=VS.85).aspx
         /// </remarks>
-        /// </summary>
         /// <param name="info">FileInfo to initialize the thumbnail</param>
         /// <param name="sideSize">Square side dimension in which the thumbnail should fit; the thumbnail will be scaled otherwise.</param>
         /// <returns>Generated thumbnail</returns>

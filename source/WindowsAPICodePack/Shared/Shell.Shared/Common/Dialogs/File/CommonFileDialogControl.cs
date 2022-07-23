@@ -69,7 +69,13 @@ namespace Microsoft.WindowsAPICodePack.Dialogs.Controls
         protected CommonFileDialogControl(string name, string text) : base(name) => textValue = text;
 
         private bool GetBit(in byte pos) => _bools.GetBit(pos);
-        private void SetBit(in byte pos, in bool value) => WinCopies.UtilHelpers.SetBit(ref _bools, pos, value);
+        private void SetBit(in byte pos, in bool value) => WinCopies.
+#if WAPICP3
+            UtilHelpers
+#else
+            Util.Util
+#endif
+            .SetBit(ref _bools, pos, value);
 
         private void UpdateValue<T>(in Func<T> func, in Action action, in T newValue, in string propertyName)
         {

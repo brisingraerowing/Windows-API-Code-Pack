@@ -1,0 +1,9 @@
+﻿<Project>
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<PackageId>$(RootNamespace)</PackageId>
+		<AssemblyName>$(RootNamespace)</AssemblyName>
+		<AssemblyOriginatorKeyFile>Core.snk</AssemblyOriginatorKeyFile>
+	</PropertyGroup>
+
+	<Import Project="$(SolutionDir)\ExtraProperties.Common.props" />
+</Project>

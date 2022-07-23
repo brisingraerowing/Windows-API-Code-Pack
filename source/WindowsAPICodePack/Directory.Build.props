@@ -1,26 +1,23 @@
 <Project>
 	<PropertyGroup>
+		<CommonRootName>.WindowsAPICodePack.</CommonRootName>
+		<CommonRootNamespace>Microsoft$(CommonRootName)</CommonRootNamespace>
+		<WinCopiesRootNamespace>WinCopies$(CommonRootName)</WinCopiesRootNamespace>
 		<Product>Microsoft Windows API Code Pack for .NET Framework</Product>
 		<Authors>Pierre Sprimont</Authors>
 		<RepositoryUrl>https://github.com/pierresprim/Windows-API-Code-Pack.git</RepositoryUrl>
 		<RepositoryType>Git</RepositoryType>
 		<PackageReleaseNotes>See https://github.com/pierresprim/Windows-API-Code-Pack/blob/master/CHANGELOG.md</PackageReleaseNotes>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
-		<SignAssembly>true</SignAssembly>
-		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageProjectUrl>https://wincopies.com/windows-api-codepack/</PackageProjectUrl>
 		<PackageTags>WindowsAPICodePack</PackageTags>
-		<ProduceReferenceAssembly>true</ProduceReferenceAssembly>
 	</PropertyGroup>
-
-	<!--Constants-->
 
 	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
 		<DefineConstants>TRACE;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
-
+	
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
-		<DocumentationFile>$(PackageId).xml</DocumentationFile>
 		<!-- SourceLink related properties https://github.com/dotnet/SourceLink#using-sourcelink -->
 		<!-- Optional: Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -33,8 +30,17 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<ProduceReferenceAssemblies>true</ProduceReferenceAssemblies>
+		<SignAssembly>true</SignAssembly>
+
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 	</PropertyGroup>
+
+	<ItemGroup Condition="'$(Configuration)'=='Release'">
+		<None Include="README.md" Pack="true" PackagePath="" />
+	</ItemGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework.TrimEnd(`0123456789.`))'=='netcoreapp'">
 		<DefineConstants>CS4;CS5;CS6;CS7;CS8;NETCORE;$(DefineConstants)</DefineConstants>
@@ -93,10 +99,6 @@
 		<DefineConstants>WIN64;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
-	<!--End Constants-->
-
-	<!--Source Control-->
-
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
 			<PrivateAssets>all</PrivateAssets>
@@ -135,8 +137,6 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 	</ItemGroup>
-
-	<!--End Source Control-->
 
 	<ItemGroup>
 		<None Include="..\..\..\..\LICENSE">

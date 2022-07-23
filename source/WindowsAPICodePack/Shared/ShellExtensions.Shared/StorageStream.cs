@@ -12,7 +12,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
     /// </summary>
     public class StorageStream : Stream, IDisposable
     {
-        System.Runtime.InteropServices.ComTypes.IStream _stream;
+        private System.Runtime.InteropServices.ComTypes.IStream _stream;
         private readonly bool _isReadOnly = false;
 
         internal StorageStream(in System.Runtime.InteropServices.ComTypes.IStream stream, in bool readOnly)
@@ -70,17 +70,11 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         /// <param name="buffer">Buffer to fill</param>
         /// <param name="offset">Offset to start filling in the buffer</param>
         /// <param name="count">Number of bytes to read from the stream</param>
-        /// <returns></returns>
         public override int Read(byte[] buffer, int offset, int count)
         {
             ThrowIfDisposed();
 
-            if (buffer == null) throw new ArgumentNullException(nameof(buffer));
-            if (offset < 0) throw new ArgumentOutOfRangeException(nameof(offset), LocalizedMessages.StorageStreamOffsetLessThanZero);
-            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count), LocalizedMessages.StorageStreamCountLessThanZero);
-            if (offset + count > buffer.Length) throw new ArgumentException(LocalizedMessages.StorageStreamBufferOverflow, nameof(count));
-
-            int bytesRead = 0;
+            int bytesRead = buffer == null ? throw new ArgumentNullException(nameof(buffer)) : offset < 0 ? throw new ArgumentOutOfRangeException(nameof(offset), LocalizedMessages.StorageStreamOffsetLessThanZero) : count < 0 ? throw new ArgumentOutOfRangeException(nameof(count), LocalizedMessages.StorageStreamCountLessThanZero) : offset + count > buffer.Length ? throw new ArgumentException(LocalizedMessages.StorageStreamBufferOverflow, nameof(count)) : 0;
 
             if (count > 0)
             {
@@ -128,13 +122,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         {
             ThrowIfDisposed();
 
-            if (_isReadOnly) throw new InvalidOperationException(LocalizedMessages.StorageStreamIsReadonly);
-            if (buffer == null) throw new ArgumentNullException(nameof(buffer));
-            if (offset < 0) throw new ArgumentOutOfRangeException(nameof(offset), LocalizedMessages.StorageStreamOffsetLessThanZero);
-            if (count < 0) throw new ArgumentOutOfRangeException(nameof(count), LocalizedMessages.StorageStreamCountLessThanZero);
-            if (offset + count > buffer.Length) throw new ArgumentException(LocalizedMessages.StorageStreamBufferOverflow, nameof(count));
-
-            if (count > 0)
+            if (_isReadOnly ? throw new InvalidOperationException(LocalizedMessages.StorageStreamIsReadonly) : buffer == null ? throw new ArgumentNullException(nameof(buffer)) : offset < 0 ? throw new ArgumentOutOfRangeException(nameof(offset), LocalizedMessages.StorageStreamOffsetLessThanZero) : count < 0 ? throw new ArgumentOutOfRangeException(nameof(count), LocalizedMessages.StorageStreamCountLessThanZero) : offset + count > buffer.Length ? throw new ArgumentException(LocalizedMessages.StorageStreamBufferOverflow, nameof(count)) : count > 0)
             {
                 IntPtr ptr = Marshal.AllocCoTaskMem(sizeof(ulong));
 
@@ -160,7 +148,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         }
 
         /// <summary>
-        /// Gets the length of the System.Runtime.InteropServices.ComTypes.IStream
+        /// Gets the length of the <see cref="System.Runtime.InteropServices.ComTypes.IStream"/>
         /// </summary>
         public override long Length
         {
@@ -175,7 +163,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         }
 
         /// <summary>
-        /// Gets or sets the current position within the underlying System.Runtime.InteropServices.ComTypes.IStream.
+        /// Gets or sets the current position within the underlying <see cref="System.Runtime.InteropServices.ComTypes.IStream"/>.
         /// </summary>
         public override long Position
         {
@@ -199,7 +187,6 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         /// </summary>
         /// <param name="offset">Offset</param>
         /// <param name="origin">Where to start seeking</param>
-        /// <returns></returns>
         public override long Seek(long offset, SeekOrigin origin)
         {
             ThrowIfDisposed();
@@ -222,7 +209,6 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         /// <summary>
         /// Sets the length of the stream
         /// </summary>
-        /// <param name="value"></param>
         public override void SetLength(long value)
         {
             ThrowIfDisposed();
@@ -238,7 +224,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         /// <summary>
         /// Disposes the stream.
         /// </summary>
-        /// <param name="disposing">True if called from Dispose(), false if called from finalizer.</param>
+        /// <param name="disposing"><see langword="true"/> if called from <see cref="Stream.Dispose()"/>, <see langword="false"/> if called from finalizer.</param>
         protected override void Dispose(bool disposing)
         {
             _stream = null;

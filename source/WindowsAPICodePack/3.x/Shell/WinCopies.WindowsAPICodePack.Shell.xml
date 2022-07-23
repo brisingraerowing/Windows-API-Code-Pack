@@ -865,20 +865,25 @@
             A file in the Shell Namespace
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellFile.#ctor(System.String@)">
-            <summary>
-            Constructs a new ShellFile object given a file path
-            </summary>
-            <param name="path">The file or folder path</param>
-        </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.ShellFile.Path">
             <summary>
-            The path for this file
+            The path for this file.
             </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellFile.#ctor(System.String@)">
+            <summary>
+            Constructs a new <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellFile"/> object given a file path.
+            </summary>
+            <param name="path">The file or folder path.</param>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.ShellFileSystemFolder">
             <summary>
             A folder in the Shell Namespace
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Shell.ShellFileSystemFolder.Path">
+            <summary>
+            The path for this Folder
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellFileSystemFolder.FromFolderPath(System.String)">
@@ -887,11 +892,6 @@
             </summary>
             <param name="path">The folder path</param>
             <remarks>ShellFileSystemFolder created from the given folder path.</remarks>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Shell.ShellFileSystemFolder.Path">
-            <summary>
-            The path for this Folder
-            </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.ShellFolder">
             <summary>
@@ -908,44 +908,9 @@
             A Shell Library in the Shell Namespace
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.#ctor(Microsoft.WindowsAPICodePack.Shell.IKnownFolder,System.Boolean)">
-            <summary>
-            Creates a shell library in the Libraries Known Folder, 
-            using the given IKnownFolder
-            </summary>
-            <param name="sourceKnownFolder">KnownFolder from which to create the new Shell Library</param>
-            <param name="isReadOnly">If <B>true</B> , opens the library in read-only mode.</param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.#ctor(System.String,System.Boolean)">
-            <summary>
-            Creates a shell library in the Libraries Known Folder, 
-            using the given shell library name.
-            </summary>
-            <param name="libraryName">The name of this library</param>
-            <param name="overwrite">Allow overwriting an existing library; if one exists with the same name</param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.#ctor(System.String,Microsoft.WindowsAPICodePack.Shell.IKnownFolder,System.Boolean)">
-            <summary>
-            Creates a shell library in a given Known Folder, 
-            using the given shell library name.
-            </summary>
-            <param name="libraryName">The name of this library</param>
-            <param name="sourceKnownFolder">The known folder</param>
-            <param name="overwrite">Override an existing library with the same name</param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.#ctor(System.String,System.String,System.Boolean)">
-            <summary>
-            Creates a shell library in a given local folder, 
-            using the given shell library name.
-            </summary>
-            <param name="libraryName">The name of this library</param>
-            <param name="folderPath">The path to the local folder</param>
-            <param name="overwrite">Override an existing library with the same name</param>
-        </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.Name">
             <summary>
-            The name of the library, every library must 
-            have a name
+            The name of the library, every library must have a name.
             </summary>
             <exception cref="T:System.Runtime.InteropServices.COMException">Will throw if no Icon is set</exception>
         </member>
@@ -977,18 +942,49 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.IsPinnedToNavigationPane">
             <summary>
-            Whether the library will be pinned to the 
-            Explorer Navigation Pane
+            Whether the library will be pinned to the Explorer Navigation Pane.
             </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.#ctor(Microsoft.WindowsAPICodePack.Shell.IKnownFolder@,System.Boolean@)">
+            <summary>
+            Creates a shell library in the Libraries Known Folder, 
+            using the given IKnownFolder
+            </summary>
+            <param name="sourceKnownFolder">KnownFolder from which to create the new Shell Library</param>
+            <param name="isReadOnly">If <B>true</B> , opens the library in read-only mode.</param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.#ctor(System.String,System.Boolean)">
+            <summary>
+            Creates a shell library in the Libraries Known Folder, 
+            using the given shell library name.
+            </summary>
+            <param name="libraryName">The name of this library</param>
+            <param name="overwrite">Allow overwriting an existing library; if one exists with the same name</param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.#ctor(System.String,Microsoft.WindowsAPICodePack.Shell.IKnownFolder,System.Boolean)">
+            <summary>
+            Creates a shell library in a given Known Folder, using the given shell library name.
+            </summary>
+            <param name="libraryName">The name of this library</param>
+            <param name="sourceKnownFolder">The known folder</param>
+            <param name="overwrite">Override an existing library with the same name</param>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.#ctor(System.String,System.String,System.Boolean)">
+            <summary>
+            Creates a shell library in a given local folder, using the given shell library name.
+            </summary>
+            <param name="libraryName">The name of this library</param>
+            <param name="folderPath">The path to the local folder</param>
+            <param name="overwrite">Override an existing library with the same name</param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.Close">
             <summary>
-            Close the library, and release its associated file system resources
+            Close the library, and release its associated file system resources.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.LibrariesKnownFolder">
             <summary>
-            Get a the known folder FOLDERID_Libraries 
+            Get a the known folder FOLDERID_Libraries.
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.Load(System.String,System.Boolean)">
@@ -996,33 +992,33 @@
             Load the library using a number of options
             </summary>
             <param name="libraryName">The name of the library</param>
-            <param name="isReadOnly">If <B>true</B>, loads the library in read-only mode.</param>
-            <returns>A ShellLibrary Object</returns>
+            <param name="isReadOnly">If <see langword="true"/>, loads the library in read-only mode.</param>
+            <returns>A <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellLibrary"/> Object</returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.Load(System.String,System.String,System.Boolean)">
             <summary>
-            Load the library using a number of options
+            Load the library using a number of options.
             </summary>
             <param name="libraryName">The name of the library.</param>
             <param name="folderPath">The path to the library.</param>
-            <param name="isReadOnly">If <B>true</B>, opens the library in read-only mode.</param>
-            <returns>A ShellLibrary Object</returns>
+            <param name="isReadOnly">If <see langword="true"/>, opens the library in read-only mode.</param>
+            <returns>A <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellLibrary"/> Object</returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.FromShellItem(Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem,System.Boolean)">
             <summary>
-            Load the library using a number of options
+            Load the library using a number of options.
             </summary>
             <param name="nativeShellItem">IShellItem</param>
             <param name="isReadOnly">read-only flag</param>
-            <returns>A ShellLibrary Object</returns>
+            <returns>A <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellLibrary"/> Object</returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.Load(Microsoft.WindowsAPICodePack.Shell.IKnownFolder,System.Boolean)">
             <summary>
-            Load the library using a number of options
+            Load the library using a number of options.
             </summary>
             <param name="sourceKnownFolder">A known folder.</param>
-            <param name="isReadOnly">If <B>true</B>, opens the library in read-only mode.</param>
-            <returns>A ShellLibrary Object</returns>
+            <param name="isReadOnly">If <see langword="true"/>, opens the library in read-only mode.</param>
+            <returns>A <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellLibrary"/> Object</returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.ShowManageLibraryUI(System.String,System.String,System.IntPtr,System.String,System.String,System.Boolean)">
             <summary>
@@ -1060,34 +1056,34 @@
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.Add(Microsoft.WindowsAPICodePack.Shell.ShellFileSystemFolder)">
             <summary>
-            Add a new FileSystemFolder or SearchConnector
+            Add a new FileSystemFolder or SearchConnector.
             </summary>
             <param name="item">The folder to add to the library.</param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.Add(System.String)">
             <summary>
-            Add an existing folder to this library
+            Add an existing folder to this library.
             </summary>
             <param name="folderPath">The path to the folder to be added to the library.</param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.Clear">
             <summary>
-            Clear all items of this Library 
+            Clear all items of this Library.
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.Remove(Microsoft.WindowsAPICodePack.Shell.ShellFileSystemFolder)">
             <summary>
-            Remove a folder or search connector
+            Remove a folder or search connector.
             </summary>
             <param name="item">The item to remove.</param>
-            <returns><B>true</B> if the item was removed.</returns>
+            <returns><see langword="true"/> if the item was removed.</returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.Remove(System.String)">
             <summary>
-            Remove a folder or search connector
+            Remove a folder or search connector.
             </summary>
             <param name="folderPath">The path of the item to remove.</param>
-            <returns><B>true</B> if the item was removed.</returns>
+            <returns><see langword="true"/> if the item was removed.</returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellLibrary.Dispose(System.Boolean)">
             <summary>
@@ -1565,6 +1561,18 @@
             Create and modify search folders.
             </summary>
         </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Shell.ShellSearchFolder.SearchCondition">
+            <summary>
+            Gets the <see cref="T:Microsoft.WindowsAPICodePack.Shell.SearchCondition"/> of the search. 
+            When this property is not set, the resulting search will have no filters applied.
+            </summary>
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Shell.ShellSearchFolder.SearchScopePaths">
+            <summary>
+            Gets the search scope, as specified using an array of locations to search. 
+            The search will include this location and all its subcontainers. The default is FOLDERID_Profile
+            </summary>
+        </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellSearchFolder.#ctor(Microsoft.WindowsAPICodePack.Shell.SearchCondition,Microsoft.WindowsAPICodePack.Shell.ShellContainer[])">
             <summary>
             Create a simple search folder. Once the appropriate parameters are set, 
@@ -1580,18 +1588,6 @@
             </summary>
             <param name="searchCondition">Specific condition on which to perform the search (property and expected value)</param>
             <param name="searchScopePath">List of folders/paths to perform the search on. These locations need to be indexed by the system.</param>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Shell.ShellSearchFolder.SearchCondition">
-            <summary>
-            Gets the <see cref="T:Microsoft.WindowsAPICodePack.Shell.SearchCondition"/> of the search. 
-            When this property is not set, the resulting search will have no filters applied.
-            </summary>
-        </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Shell.ShellSearchFolder.SearchScopePaths">
-            <summary>
-            Gets the search scope, as specified using an array of locations to search. 
-            The search will include this location and all its subcontainers. The default is FOLDERID_Profile
-            </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellSearchFolder.SetStacks(System.String[])">
             <summary>
@@ -1665,12 +1661,6 @@
             <summary>
             Internal member to keep track of the current size
             </summary>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellThumbnail.#ctor(Microsoft.WindowsAPICodePack.Shell.ShellObject)">
-            <summary>
-            Internal constructor that takes in a parent ShellObject.
-            </summary>
-            <param name="shellObject"></param>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.ShellThumbnail.CurrentSize">
             <summary>
@@ -1783,25 +1773,30 @@
             If the caller wants a higher quality image stretch, they should pass this flag and do it themselves.
             </remarks>
         </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.ShellThumbnail.#ctor(Microsoft.WindowsAPICodePack.Shell.ShellObject)">
+            <summary>
+            Internal constructor that takes in a parent ShellObject.
+            </summary>
+            <param name="shellObject"></param>
+        </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.AeroGlassCompositionChangedEventArgs">
             <summary>
-            Event argument for The GlassAvailabilityChanged event
+            Event argument for the GlassAvailabilityChanged event.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.AeroGlassCompositionChangedEventArgs.GlassAvailable">
             <summary>
-            The new GlassAvailable state
+            The new Glass Available state.
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.GlassForm">
             <summary>
-            Windows Glass Form
-            Inherit from this form to be able to enable glass on Windows Form
+            Windows Glass Form. Inherit from this form to be able to enable glass on Windows Form.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.GlassForm.AeroGlassCompositionEnabled">
             <summary>
-            Get determines if AeroGlass is enabled on the desktop. Set enables/disables AreoGlass on the desktop.
+            Get determines if Aero Glass is enabled on the desktop. Set enables/disables Areo Glass on the desktop.
             </summary>
         </member>
         <member name="E:Microsoft.WindowsAPICodePack.Shell.GlassForm.AeroGlassCompositionChanged">
@@ -1811,7 +1806,7 @@
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.GlassForm.SetAeroGlassTransparency">
             <summary>
-            Makes the background of current window transparent
+            Makes the background of current window transparent.
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.GlassForm.ExcludeControlFromAeroGlass(System.Windows.Forms.Control)">
@@ -1831,13 +1826,12 @@
             <summary>
             Catches the DWM messages to this window and fires the appropriate event.
             </summary>
-            <param name="m"></param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.GlassForm.OnLoad(System.EventArgs)">
             <summary>
-            Initializes the Form for AeroGlass
+            Initializes the Form for AeroGlass.
             </summary>
-            <param name="e">The arguments for this event</param>
+            <param name="e">The arguments for this event.</param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.GlassForm.OnPaint(System.Windows.Forms.PaintEventArgs)">
             <summary>
@@ -1852,8 +1846,7 @@
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.GlassWindow">
             <summary>
-            WPF Glass Window
-            Inherit from this window class to enable glass on a WPF window
+            WPF Glass Window. Inherit from this window class to enable glass on a WPF window.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.GlassWindow.AeroGlassCompositionEnabled">
@@ -2490,9 +2483,9 @@
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.FileSystemKnownFolder.Dispose(System.Boolean)">
             <summary>
-            Release resources
+            Release resources.
             </summary>
-            <param name="disposing">Indicates that this mothod is being called from Dispose() rather than the finalizer.</param>
+            <param name="disposing">Indicates that this mothod is being called from <see cref="M:Microsoft.WindowsAPICodePack.Shell.FileSystemKnownFolder.Dispose(System.Boolean)"/> rather than the finalizer.</param>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.IKnownFolder">
             <summary>
@@ -2609,16 +2602,14 @@
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.KnownFolderHelper.FromPIDL(System.IntPtr@)">
             <summary>
-            Returns the native known folder (IKnownFolderNative) given a PID list
+            Returns the native known folder (<see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IKnownFolderNative"/>) given a PID list
             </summary>
-            <param name="pidl"></param>
-            <returns></returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.KnownFolderHelper.FromKnownFolderId(System.Guid@)">
             <summary>
             Returns a known folder given a globally unique identifier.
             </summary>
-            <param name="knownFolderId">A GUID for the requested known folder.</param>
+            <param name="knownFolderId">A <see cref="T:System.Guid"/> for the requested known folder.</param>
             <returns>A known folder representing the specified name.</returns>
             <exception cref="T:System.ArgumentException">Thrown if the given Known Folder ID is invalid.</exception>
         </member>
@@ -2626,16 +2617,15 @@
             <summary>
             Returns a known folder given a globally unique identifier.
             </summary>
-            <param name="knownFolderId">A GUID for the requested known folder.</param>
-            <returns>A known folder representing the specified name. Returns null if Known Folder is not found or could not be created.</returns>
+            <param name="knownFolderId">A <see cref="T:System.Guid"/> for the requested known folder.</param>
+            <returns>A known folder representing the specified name. Returns <see langword="null"/> if Known Folder is not found or could not be created.</returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.KnownFolderHelper.GetKnownFolder(Microsoft.WindowsAPICodePack.COMNative.Shell.IKnownFolderNative@)">
             <summary>
-            Given a native KnownFolder (IKnownFolderNative), create the right type of
-            IKnownFolder object (FileSystemKnownFolder or NonFileSystemKnownFolder)
+            Given a native KnownFolder (<see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IKnownFolderNative"/>), create the right type of
+            <see cref="T:Microsoft.WindowsAPICodePack.Shell.IKnownFolder"/> object (<see cref="T:Microsoft.WindowsAPICodePack.Shell.FileSystemKnownFolder"/> or <see cref="T:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder"/>)
             </summary>
             <param name="knownFolderNative">Native Known Folder</param>
-            <returns></returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.KnownFolderHelper.FromCanonicalName(System.String@)">
             <summary>
@@ -3375,7 +3365,7 @@
             Gets this known folder's file attributes, 
             such as "read-only".
             </summary>
-            <value>A <see cref="!:Shell.FileAttributes"/> value.</value>
+            <value>A <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes"/> value.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.KnownFolderSettings.DefinitionOptions">
             <summary>
@@ -3420,113 +3410,96 @@
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder">
             <summary>
-            Represents a registered non file system Known Folder
+            Represents a registered non file system Known Folder.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder.Path">
             <summary>
             Gets the path for this known folder.
             </summary>
-            <value>A <see cref="T:System.String"/> object.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder.Category">
             <summary>
             Gets the category designation for this known folder.
             </summary>
-            <value>A <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.FolderCategory"/> value.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder.CanonicalName">
             <summary>
             Gets this known folder's canonical name.
             </summary>
-            <value>A <see cref="T:System.String"/> object.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder.Description">
             <summary>
             Gets this known folder's description.
             </summary>
-            <value>A <see cref="T:System.String"/> object.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder.ParentId">
             <summary>
             Gets the unique identifier for this known folder's parent folder.
             </summary>
-            <value>A <see cref="T:System.Guid"/> value.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder.RelativePath">
             <summary>
             Gets this known folder's relative path.
             </summary>
-            <value>A <see cref="T:System.String"/> object.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder.ParsingName">
             <summary>
             Gets this known folder's parsing name.
             </summary>
-            <value>A <see cref="T:System.String"/> object.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder.Tooltip">
             <summary>
             Gets this known folder's tool tip text.
             </summary>
-            <value>A <see cref="T:System.String"/> object.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder.TooltipResourceId">
             <summary>
             Gets the resource identifier for this 
             known folder's tool tip text.
             </summary>
-            <value>A <see cref="T:System.String"/> object.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder.LocalizedName">
             <summary>
             Gets this known folder's localized name.
             </summary>
-            <value>A <see cref="T:System.String"/> object.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder.LocalizedNameResourceId">
             <summary>
             Gets the resource identifier for this 
             known folder's localized name.
             </summary>
-            <value>A <see cref="T:System.String"/> object.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder.Security">
             <summary>
             Gets this known folder's security attributes.
             </summary>
-            <value>A <see cref="T:System.String"/> object.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder.FileAttributes">
             <summary>
             Gets this known folder's file attributes, 
             such as "read-only".
             </summary>
-            <value>A <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes"/> value.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder.DefinitionOptions">
             <summary>
             Gets an value that describes this known folder's behaviors.
             </summary>
-            <value>A <see cref="P:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder.DefinitionOptions"/> value.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder.FolderTypeId">
             <summary>
             Gets the unique identifier for this known folder's type.
             </summary>
-            <value>A <see cref="T:System.Guid"/> value.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder.FolderType">
             <summary>
             Gets a string representation of this known folder's type.
             </summary>
-            <value>A <see cref="T:System.String"/> object.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder.FolderId">
             <summary>
             Gets the unique identifier for this known folder.
             </summary>
-            <value>A <see cref="T:System.Guid"/> value.</value>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder.PathExists">
             <summary>
@@ -3543,13 +3516,12 @@
             can have its path set to a new value, 
             including any restrictions on the redirection.
             </summary>
-            <value>A <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.RedirectionCapability"/> value.</value>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder.Dispose(System.Boolean)">
             <summary>
-            Release resources
+            Release resources.
             </summary>
-            <param name="disposing">Indicates that this mothod is being called from Dispose() rather than the finalizer.</param>
+            <param name="disposing">Indicates that this mothod is being called from <see cref="M:Microsoft.WindowsAPICodePack.Shell.NonFileSystemKnownFolder.Dispose(System.Boolean)"/> rather than the finalizer.</param>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.RetrievalOptions">
             <summary>
@@ -3872,7 +3844,7 @@
             <summary>
             <para>Name: System.FileAttributes -- PKEY_FileAttributes</para>
             <para>Description: This is the WIN32_FIND_DATA dwFileAttributes for the file-based item.</para>
-            <para>Type:     <see cref="T:System.UInt32"/> -- <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI4"/></para>
+            <para>Type:     <see cref="T:Microsoft.WindowsAPICodePack.Win32Native.Shell.FileAttributes"/> -- <see cref="T:System.UInt32"/> -- <see cref="F:System.Runtime.InteropServices.VarEnum.VT_UI4"/></para>
             <para>FormatID: (FMTID_Storage) {B725F130-47EF-101A-A5F1-02608C9EEBAC}, 13 (PID_STG_ATTRIBUTES)</para>
             </summary>
         </member>
@@ -9753,22 +9725,6 @@
             Because a property value can be empty, only nullable types 
             are allowed.</typeparam>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperty`1.#ctor(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription,Microsoft.WindowsAPICodePack.Shell.ShellObject)">
-            <summary>
-            Constructs a new Property object
-            </summary>
-            <param name="propertyKey"></param>
-            <param name="description"></param>
-            <param name="parent"></param>
-        </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperty`1.#ctor(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription,Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyStore)">
-            <summary>
-            Constructs a new Property object
-            </summary>
-            <param name="propertyKey"></param>
-            <param name="description"></param>
-            <param name="propertyStore"></param>
-        </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperty`1.Value">
             <summary>
             Gets or sets the strongly-typed value of this property.
@@ -9780,6 +9736,16 @@
             <exception cref="T:System.ArgumentOutOfRangeException">Thrown if <see cref="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperty`1.AllowSetTruncatedValue"/> is false, and either 
             a string value was truncated or a numeric value was rounded.</exception>        
         </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperty`1.#ctor(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription,Microsoft.WindowsAPICodePack.Shell.ShellObject)">
+            <summary>
+            Constructs a new Property object.
+            </summary>
+        </member>
+        <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperty`1.#ctor(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyDescription,Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyStore)">
+            <summary>
+            Constructs a new Property object
+            </summary>
+        </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperty`1.PropertyKey">
             <summary>
             Gets the property key identifying this property.
@@ -9789,12 +9755,11 @@
             <summary>
             Returns a formatted, Unicode string representation of a property value.
             </summary>
-            <param name="format">One or more of the PropertyDescriptionFormat flags 
+            <param name="format">One or more of the <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.PropertyDescriptionFormatOptions"/> flags 
             that indicate the desired format.</param>
-            <param name="formattedString">The formatted value as a string, or null if this property 
+            <param name="formattedString">The formatted value as a <see cref="T:System.String"/>, or <see langword="null"/> if this property 
             cannot be formatted for display.</param>
-            <returns>True if the method successfully locates the formatted string; otherwise 
-            False.</returns>
+            <returns><see langword="true"/> if the method successfully locates the formatted <see cref="T:System.String"/>; otherwise <see langword="false"/>.</returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperty`1.FormatForDisplay(Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.PropertyDescriptionFormatOptions)">
             <summary>
@@ -9841,13 +9806,12 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperty`1.AllowSetTruncatedValue">
             <summary>
-            Gets or sets a value that determines if a value can be truncated. The default for this property is false.
+            Gets or sets a value that determines if a value can be truncated. The default for this property is <see langword="false"/>.
             </summary>
             <remarks>
             An <see cref="T:System.ArgumentOutOfRangeException"/> will be thrown if
-            this property is not set to true, and a property value was set
+            this property is not set to <see langword="true"/>, and a property value was set
             but later truncated. 
-            
             </remarks>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyCollection">
@@ -9863,13 +9827,13 @@
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyCollection.#ctor(Microsoft.WindowsAPICodePack.Shell.ShellObject)">
             <summary>
-            Creates a new Property collection given an IShellItem2 native interface
+            Creates a new Property collection given an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItem2"/> native interface.
             </summary>
-            <param name="parent">Parent ShellObject</param>
+            <param name="parent">Parent <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/>.</param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyCollection.#ctor(System.String)">
             <summary>
-            Creates a new <c>ShellPropertyCollection</c> object with the specified file or folder path.
+            Creates a new <see cref="T:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyCollection"/> object with the specified file or folder path.
             </summary>
             <param name="path">The path to the file or folder.</param>        
         </member>
@@ -9878,20 +9842,19 @@
             Checks if a property with the given canonical name is available.
             </summary>
             <param name="canonicalName">The canonical name of the property.</param>
-            <returns><B>True</B> if available, <B>false</B> otherwise.</returns>
+            <returns><see langword="true"/> if available, <see langword="false"/> otherwise.</returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyCollection.Contains(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey)">
             <summary>
             Checks if a property with the given property key is available.
             </summary>
             <param name="key">The property key.</param>
-            <returns><B>True</B> if available, <B>false</B> otherwise.</returns>
+            <returns><see langword="true"/> if available, <see langword="false"/> otherwise.</returns>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyCollection.Item(System.String)">
             <summary>
             Gets the property associated with the supplied canonical name string.
             The canonical name property is case-sensitive.
-            
             </summary>
             <param name="canonicalName">The canonical name.</param>
             <returns>The property associated with the canonical name, if found.</returns>
@@ -9901,7 +9864,6 @@
         <member name="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyCollection.Item(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey)">
             <summary>
             Gets a property associated with the supplied property key.
-            
             </summary>
             <param name="key">The property key.</param>
             <returns>The property associated with the property key, if found.</returns>
@@ -10121,17 +10083,17 @@
             Creates a generic ShellProperty.
             </summary>
             <param name="propKey">PropertyKey</param>
-            <param name="store">IPropertyStore from which to get property</param>
+            <param name="store"><see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyStore"/> from which to get property</param>
             <returns>ShellProperty matching type of value in property.</returns>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyWriter">
             <summary>
-            Creates a property writer capable of setting multiple properties for a given ShellObject.
+            Creates a property writer capable of setting multiple properties for a given <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/>.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyWriter.ParentShellObject">
             <summary>
-            Reference to parent ShellObject (associated with this writer)
+            Reference to parent <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/> (associated with this writer).
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyWriter.WriteProperty(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,System.Object)">
@@ -10143,15 +10105,13 @@
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyWriter.WriteProperty(Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey,System.Object,System.Boolean)">
             <summary>
-            Writes the given property key and value. To allow truncation of the given value, set allowTruncatedValue
-            to true.
+            Writes the given property key and value. To allow truncation of the given value, set <paramref name="allowTruncatedValue"/> to <see langword="true"/>.
             </summary>
             <param name="key">The property key.</param>
             <param name="value">The value associated with the key.</param>
-            <param name="allowTruncatedValue">True to allow truncation (default); otherwise False.</param>
-            <exception cref="T:System.InvalidOperationException">If the writable property store is already 
-            closed.</exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">If AllowTruncatedValue is set to false 
+            <param name="allowTruncatedValue"><see langword="true"/> to allow truncation (default); otherwise <see langword="false"/>.</param>
+            <exception cref="T:System.InvalidOperationException">If the writable property store is already closed.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">If <paramref name="allowTruncatedValue"/> is set to <see langword="false"/> 
             and while setting the value on the property it had to be truncated in a string or rounded in 
             a numeric value.</exception>
         </member>
@@ -10164,33 +10124,31 @@
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyWriter.WriteProperty(System.String,System.Object,System.Boolean)">
             <summary>
-            Writes the specified property given the canonical name and a value. To allow truncation of the given value, set allowTruncatedValue
-            to true.
+            Writes the specified property given the canonical name and a value. To allow truncation of the given value, set <paramref name="allowTruncatedValue"/> to <see langword="true"/>.
             </summary>
             <param name="canonicalName">The canonical name.</param>
             <param name="value">The property value.</param>
-            <param name="allowTruncatedValue">True to allow truncation (default); otherwise False.</param>
+            <param name="allowTruncatedValue"><see langword="true"/> to allow truncation (default); otherwise <see langword="false"/>.</param>
             <exception cref="T:System.ArgumentException">If the given canonical name is not valid.</exception>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyWriter.WriteProperty(Microsoft.WindowsAPICodePack.Shell.PropertySystem.IShellProperty,System.Object)">
             <summary>
-            Writes the specified property using an IShellProperty and a value.
+            Writes the specified property using an <see cref="T:Microsoft.WindowsAPICodePack.Shell.PropertySystem.IShellProperty"/> and a value.
             </summary>
             <param name="shellProperty">The property name.</param>
             <param name="value">The property value.</param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyWriter.WriteProperty(Microsoft.WindowsAPICodePack.Shell.PropertySystem.IShellProperty,System.Object,System.Boolean)">
             <summary>
-            Writes the specified property given an IShellProperty and a value. To allow truncation of the given value, set allowTruncatedValue
-            to true.
+            Writes the specified property given an <see cref="T:Microsoft.WindowsAPICodePack.Shell.PropertySystem.IShellProperty"/> and a value. To allow truncation of the given value, set <paramref name="allowTruncatedValue"/> to <see langword="true"/>.
             </summary>
             <param name="shellProperty">The property name.</param>
             <param name="value">The property value.</param>
-            <param name="allowTruncatedValue">True to allow truncation (default); otherwise False.</param>
+            <param name="allowTruncatedValue"><see langword="true"/> to allow truncation (default); otherwise <see langword="false"/>.</param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyWriter.WriteProperty``1(Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperty{``0},``0)">
             <summary>
-            Writes the specified property using a strongly-typed ShellProperty and a value.
+            Writes the specified property using a strongly-typed <see cref="T:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperty`1"/> and a value.
             </summary>
             <typeparam name="T">The type of the property name.</typeparam>
             <param name="shellProperty">The property name.</param>
@@ -10198,13 +10156,12 @@
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyWriter.WriteProperty``1(Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperty{``0},``0,System.Boolean)">
             <summary>
-            Writes the specified property given a strongly-typed ShellProperty and a value. To allow truncation of the given value, set allowTruncatedValue
-            to true.
+            Writes the specified property given a strongly-typed <see cref="T:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellProperty`1"/> and a value. To allow truncation of the given value, set <paramref name="allowTruncatedValue"/> to <see langword="true"/>.
             </summary>
             <typeparam name="T">The type of the property name.</typeparam>
             <param name="shellProperty">The property name.</param>
             <param name="value">The property value.</param>
-            <param name="allowTruncatedValue">True to allow truncation (default); otherwise False.</param>
+            <param name="allowTruncatedValue"><see langword="true"/> to allow truncation (default); otherwise <see langword="false"/>.</param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyWriter.Dispose">
             <summary>
@@ -10215,8 +10172,7 @@
             <summary>
             Release the native and managed objects.
             </summary>
-            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.
-            </param>
+            <param name="disposing"><see langword="true"/> to release both managed and unmanaged resources; <see langword="false"/> to release only unmanaged resources.</param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Shell.PropertySystem.ShellPropertyWriter.Close">
             <summary>
@@ -11338,7 +11294,7 @@
             Applies changes to the collection.
             </summary>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.IsControlPropertyChangeAllowed(System.String@,Microsoft.WindowsAPICodePack.Dialogs.DialogControl@)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.IsControlPropertyChangeAllowed(System.String,Microsoft.WindowsAPICodePack.Dialogs.DialogControl)">
             <summary>
             Determines if changes to a specific property are allowed.
             </summary>
@@ -11346,7 +11302,7 @@
             <param name="control">The control propertyName applies to.</param>
             <returns>true if the property change is allowed.</returns>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.ApplyControlPropertyChange(System.String@,Microsoft.WindowsAPICodePack.Dialogs.DialogControl@)">
+        <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.ApplyControlPropertyChange(System.String,Microsoft.WindowsAPICodePack.Dialogs.DialogControl)">
             <summary>
             Called when a control currently in the collection 
             has a property changed.
@@ -11389,7 +11345,7 @@
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.GetCustomizedFileDialog">
             <summary>
-            Get the IFileDialogCustomize interface, preparing to add controls.
+            Get the <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Dialogs.IFileDialogCustomize"/> interface, preparing to add controls.
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.OnFileOk(System.ComponentModel.CancelEventArgs)">
@@ -11542,7 +11498,7 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogComboBox.Items">
             <summary>
-            Gets the collection of CommonFileDialogComboBoxItem objects.
+            Gets the collection of <see cref="T:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogComboBoxItem"/> objects.
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogComboBox.#ctor">
@@ -11563,25 +11519,22 @@
         </member>
         <member name="E:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogComboBox.SelectedIndexChanged">
             <summary>
-            Occurs when the SelectedIndex is changed.
+            Occurs when the <see cref="P:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogComboBox.SelectedIndex"/> is changed.
             </summary>
-            
             <remarks>
-            By initializing the SelectedIndexChanged event with an empty
+            By initializing the <see cref="E:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogComboBox.SelectedIndexChanged"/> event with an empty
             delegate, it is not necessary to check  
-            if the SelectedIndexChanged is not null.
-            
+            if the SelectedIndexChanged is not <see langword="null"/>.
             </remarks>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogComboBox.Microsoft#WindowsAPICodePack#Dialogs#Controls#ICommonFileDialogIndexedControls#RaiseSelectedIndexChangedEvent">
             <summary>
-            Raises the SelectedIndexChanged event if this control is 
-            enabled.
+            Raises the <see cref="E:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogComboBox.SelectedIndexChanged"/> event if this control is enabled.
             </summary>
             <remarks>Because this method is defined in an interface, we can either
-            have it as public, or make it private and explicitly implement (like below).
-            Making it public doesn't really help as its only internal (but can't have this 
-            internal because of the interface)
+            have it as <see langword="public"/>, or make it <see langword="private"/> and explicitly implement (like below).
+            Making it <see langword="public"/> doesn't really help as its only internal (but can't have this 
+            internal because of the interface).
             </remarks>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogComboBox.Attach(Microsoft.WindowsAPICodePack.COMNative.Dialogs.IFileDialogCustomize)">
@@ -11592,7 +11545,7 @@
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogComboBoxItem">
             <summary>
-            Creates a ComboBoxItem for the Common File Dialog.
+            Creates a <b>ComboBoxItem</b> for the <see cref="T:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog"/>.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogComboBoxItem.Text">
@@ -11634,13 +11587,12 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogControl.Visible">
             <summary>
-            Gets or sets a boolean value that indicates whether  
-            this control is visible.
+            Gets or sets a boolean value that indicates whether this control is visible.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogControl.IsAdded">
             <summary>
-            Has this control been added to the dialog
+            Has this control been added to the dialog.
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogControl.#ctor">
@@ -11663,15 +11615,14 @@
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogControl.Attach(Microsoft.WindowsAPICodePack.COMNative.Dialogs.IFileDialogCustomize)">
             <summary>
-            Attach the custom control itself to the specified dialog
+            Attach the custom control itself to the specified dialog.
             </summary>
-            <param name="dialog">the target dialog</param>
+            <param name="dialog">The target dialog</param>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogControlCollection`1">
             <summary>
             Provides a strongly typed collection for dialog controls.
             </summary>
-            <typeparam name="T">DialogControl</typeparam>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogControlCollection`1.InsertItem(System.Int32,`0)">
             <summary>
@@ -11679,10 +11630,10 @@
             </summary>
             <param name="index">The location to insert the control.</param>
             <param name="control">The item to insert.</param>
-            <permission cref="T:System.InvalidOperationException">A control with 
-            the same name already exists in this collection -or- 
-            the control is being hosted by another dialog -or- the associated dialog is 
-            showing and cannot be modified.</permission>
+            <permission cref="T:System.InvalidOperationException">
+            <para>A control with the same name already exists in this collection</para>
+            <para>-or- the control is being hosted by another dialog</para>
+            <para>-or- the associated dialog is showing and cannot be modified.</para></permission>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogControlCollection`1.RemoveItem(System.Int32)">
             <summary>
@@ -11690,47 +11641,39 @@
             </summary>
             <param name="index">The location of the control to remove.</param>
             <permission cref="T:System.InvalidOperationException">
-            The associated dialog is 
-            showing and cannot be modified.</permission>
+            The associated dialog is showing and cannot be modified.</permission>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogControlCollection`1.Item(System.String)">
-             <summary>
-             Defines the indexer that supports accessing controls by name. 
-             </summary>
-             <remarks>
-             <para>Control names are case sensitive.</para>
-             <para>This indexer is useful when the dialog is created in XAML
-             rather than constructed in code.</para></remarks>
+            <summary>
+            Defines the indexer that supports accessing controls by name. 
+            </summary>
+            <remarks>
+            <para>Control names are case sensitive.</para>
+            <para>This indexer is useful when the dialog is created in XAML
+            rather than constructed in code.</para></remarks>
             <exception cref="T:System.ArgumentException">
-             The name cannot be null or a zero-length string.</exception>
-             <remarks>If there is more than one control with the same name, only the <B>first control</B> will be returned.</remarks>
+            The name cannot be null or a zero-length string.</exception>
+            <remarks>If there is more than one control with the same name, only the <b>first control</b> will be returned.</remarks>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogControlCollection`1.GetControlbyId(System.Int32)">
             <summary>
             Recursively searches for the control who's id matches the value
             passed in the <paramref name="id"/> parameter.
             </summary>
-            
             <param name="id">An integer containing the identifier of the 
             control being searched for.</param>
-            
-            <returns>A DialogControl who's id matches the value of the
+            <returns>A <see cref="T:Microsoft.WindowsAPICodePack.Dialogs.DialogControl"/> who's id matches the value of the
             <paramref name="id"/> parameter.</returns>
-            
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogControlCollection`1.GetSubControlbyId(System.Collections.Generic.IEnumerable{Microsoft.WindowsAPICodePack.Dialogs.DialogControl},System.Int32)">
             <summary>
             Recursively searches for a given control id in the 
             collection passed via the <paramref name="controlCollection"/> parameter.
             </summary>
-            
-            <param name="controlCollection">A Collection&lt;CommonFileDialogControl&gt;</param>
             <param name="id">An int containing the identifier of the control 
             being searched for.</param>
-            
-            <returns>A DialogControl who's Id matches the value of the
+            <returns>A <see cref="T:Microsoft.WindowsAPICodePack.Dialogs.DialogControl"/> who's Id matches the value of the
             <paramref name="id"/> parameter.</returns>
-            
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogGroupBox">
             <summary>
@@ -11923,12 +11866,10 @@
             <summary>
             Occurs when the user changes the SelectedIndex.
             </summary>
-            
             <remarks>
-            By initializing the SelectedIndexChanged event with an empty
+            By initializing the <see cref="E:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogRadioButtonList.SelectedIndexChanged"/> event with an empty
             delegate, we can skip the test to determine
-            if the SelectedIndexChanged is null.
-            test.
+            if the <see cref="E:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogRadioButtonList.SelectedIndexChanged"/> is null.
             </remarks>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.Controls.CommonFileDialogRadioButtonList.Microsoft#WindowsAPICodePack#Dialogs#Controls#ICommonFileDialogIndexedControls#RaiseSelectedIndexChangedEvent">
@@ -12041,18 +11982,15 @@
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialogFilter.#ctor(System.String,System.String)">
             <summary>
-            Creates a new instance of this class with the specified display name and 
-            file extension list.
+            Creates a new instance of this class with the specified display name and file extension list.
             </summary>
             <param name="rawDisplayName">The name of this filter.</param>
-            <param name="extensionList">The list of extensions in 
-            this filter. See remarks.</param>
+            <param name="extensionList">The list of extensions in this filter. See remarks.</param>
             <remarks>The <paramref name="extensionList"/> can use a semicolon(";") 
             or comma (",") to separate extensions. Extensions can be prefaced 
             with a period (".") or with the file wild card specifier "*.".</remarks>
             <permission cref="T:System.ArgumentNullException">
-            The <paramref name="extensionList"/> cannot be null or a 
-            zero-length string. 
+            The <paramref name="extensionList"/> cannot be null or a zero-length string.
             </permission>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialogFilter.DisplayName">
@@ -12066,8 +12004,7 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialogFilter.Extensions">
             <summary>
-            Gets a collection of the individual extensions 
-            described by this filter.
+            Gets a collection of the individual extensions described by this filter.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialogFilter.ShowExtensions">
@@ -12098,7 +12035,11 @@
             <summary>
             Creates the event data associated with <see cref="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FolderChanging"/> event.
             </summary>
-            
+        </member>
+        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialogFolderChangeEventArgs.Folder">
+            <summary>
+            Gets or sets the name of the folder.
+            </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialogFolderChangeEventArgs.#ctor(System.String)">
             <summary>
@@ -12106,14 +12047,9 @@
             </summary>
             <param name="folder">The name of the folder.</param>
         </member>
-        <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialogFolderChangeEventArgs.Folder">
-            <summary>
-            Gets or sets the name of the folder.
-            </summary>
-        </member>
         <member name="T:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialogResult">
             <summary>
-            Specifies identifiers to indicate the return value of a CommonFileDialog dialog.
+            Specifies identifiers to indicate the return value of a <see cref="T:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog"/> dialog.
             </summary>
         </member>
         <member name="F:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialogResult.None">
@@ -12155,7 +12091,6 @@
             <summary>
             Creates a Vista or Windows 7 Common File Dialog, allowing the user to select one or more files.
             </summary>
-            
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Dialogs.CommonOpenFileDialog.#ctor">
             <summary>
@@ -12172,17 +12107,13 @@
             <summary>
             Gets a collection of the selected file names.
             </summary>
-            <remarks>This property should only be used when the
-            <see cref="P:Microsoft.WindowsAPICodePack.Dialogs.CommonOpenFileDialog.Multiselect"/>
-            property is <b>true</b>.</remarks>
+            <remarks>This property should only be used when the <see cref="P:Microsoft.WindowsAPICodePack.Dialogs.CommonOpenFileDialog.Multiselect"/> property is <see langword="true"/>.</remarks>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonOpenFileDialog.FilesAsShellObject">
             <summary>
-            Gets a collection of the selected items as ShellObject objects.
+            Gets a collection of the selected items as <see cref="T:Microsoft.WindowsAPICodePack.Shell.ShellObject"/> objects.
             </summary>
-            <remarks>This property should only be used when the
-            <see cref="P:Microsoft.WindowsAPICodePack.Dialogs.CommonOpenFileDialog.Multiselect"/>
-            property is <b>true</b>.</remarks>
+            <remarks>This property should only be used when the <see cref="P:Microsoft.WindowsAPICodePack.Dialogs.CommonOpenFileDialog.Multiselect"/> property is <see langword="true"/>.</remarks>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonOpenFileDialog.Multiselect">
             <summary>
@@ -12192,7 +12123,7 @@
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonOpenFileDialog.IsFolderPicker">
             <summary>
             Gets or sets a value that determines whether the user can select folders or files.
-            Default value is false.
+            Default value is <see langword="false"/>.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Dialogs.CommonOpenFileDialog.AllowNonFileSystemItems">
@@ -12273,15 +12204,14 @@
             <summary>
             Specifies which properties will be collected in the save dialog.
             </summary>
-            <param name="appendDefault">True to show default properties for the currently selected 
-            filetype in addition to the properties specified by propertyList. False to show only properties 
-            specified by pList.
-            <param name="propertyList">List of properties to collect. This parameter can be null.</param>
-            </param>
+            <param name="appendDefault"><see langword="true"/> to show default properties for the currently selected 
+            filetype in addition to the properties specified by propertyList. <see langword="false"/> to show only properties 
+            specified by <paramref name="propertyList"/>.</param>
+            <param name="propertyList">List of properties to collect. This parameter can be <see langword="null"/>.</param>
             <remarks>
-            SetCollectedPropertyKeys can be called at any time before the dialog is displayed or while it 
+            <see cref="M:Microsoft.WindowsAPICodePack.Dialogs.CommonSaveFileDialog.SetCollectedPropertyKeys(System.Boolean,Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey[])"/> can be called at any time before the dialog is displayed or while it 
             is visible. If different properties are to be collected depending on the chosen filetype, 
-            then SetCollectedProperties can be called in response to CommonFileDialog::FileTypeChanged event.
+            then <see cref="M:Microsoft.WindowsAPICodePack.COMNative.Dialogs.IFileSaveDialog.SetCollectedProperties(Microsoft.WindowsAPICodePack.COMNative.Shell.PropertySystem.IPropertyDescriptionList,System.Boolean)"/> can be called in response to <see cref="E:Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialog.FileTypeChanged"/> event.
             Note: By default, no properties are collected in the save dialog.
             </remarks>
         </member>
@@ -12289,11 +12219,11 @@
             <summary>
             Retrieves the set of property values for a saved item or an item in the process of being saved.
             </summary>
-            <returns>Collection of property values collected from the save dialog</returns>
+            <returns>Collection of property values collected from the save dialog.</returns>
             <remarks>This property can be called while the dialog is showing to retrieve the current 
             set of values in the metadata collection pane. It can also be called after the dialog 
             has closed, to retrieve the final set of values. The call to this method will fail 
-            unless property collection has been turned on with a call to SetCollectedPropertyKeys method.
+            unless property collection has been turned on with a call to <see cref="M:Microsoft.WindowsAPICodePack.Dialogs.CommonSaveFileDialog.SetCollectedPropertyKeys(System.Boolean,Microsoft.WindowsAPICodePack.PropertySystem.PropertyKey[])"/> method.
             </remarks>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Controls.WindowsForms.CommandLink">
@@ -12350,7 +12280,7 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.Items">
             <summary>
-            The set of ShellObjects in the Explorer Browser
+            The set of ShellObjects in the Explorer Browser.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.SelectedItems">
@@ -12360,7 +12290,7 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.NavigationLog">
             <summary>
-            Contains the navigation history of the ExplorerBrowser
+            Contains the navigation history of the ExplorerBrowser.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.PropertyBagName">
@@ -12382,7 +12312,7 @@
             locations in the navigation log.
             </summary>
             <param name="direction">Forward of Backward</param>
-            <returns>True if the navigation succeeded, false if it failed for any reason.</returns>
+            <returns><see langword="true"/> if the navigation succeeded, <see langword="false"/> if it failed for any reason.</returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.NavigateLogLocation(System.Int32)">
             <summary>
@@ -12390,7 +12320,7 @@
             locations in the navigation log.
             </summary>
             <param name="navigationLogIndex">An index into the navigation logs Locations collection.</param>
-            <returns>True if the navigation succeeded, false if it failed for any reason.</returns>
+            <returns><see langword="true"/> if the navigation succeeded, <see langword="false"/> if it failed for any reason.</returns>
         </member>
         <member name="E:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.SelectionChanged">
             <summary>
@@ -12460,15 +12390,6 @@
             </summary>
             <param name="e">An EventArgs that contains event data.</param>
         </member>
-        <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.Microsoft#WindowsAPICodePack#COMNative#Controls#IServiceProvider#QueryService(System.Guid@,System.Guid@,System.IntPtr@)">
-            <summary>
-            
-            </summary>
-            <param name="guidService">calling service</param>
-            <param name="riid">requested interface guid</param>
-            <param name="ppvObject">caller-allocated memory for interface pointer</param>
-            <returns></returns>
-        </member>
         <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.Microsoft#WindowsAPICodePack#COMNative#Controls#IExplorerPaneVisibility#GetPaneState(System.Guid@,Microsoft.WindowsAPICodePack.COMNative.Controls.ExplorerPaneState@)">
             <summary>
             Controls the visibility of the explorer borwser panes
@@ -12481,25 +12402,21 @@
             <summary>
             Returns the current view mode of the browser
             </summary>
-            <returns></returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.GetFolderView2">
             <summary>
-            Gets the IFolderView2 interface from the explorer browser.
+            Gets the <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Controls.IFolderView2"/> interface from the explorer browser.
             </summary>
-            <returns></returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.GetSelectedItemsArray">
             <summary>
-            Gets the selected items in the explorer browser as an IShellItemArray
+            Gets the selected items in the explorer browser as an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItemArray"/>.
             </summary>
-            <returns></returns>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser.GetItemsArray">
             <summary>
-            Gets the items in the ExplorerBrowser as an IShellItemArray
+            Gets the items in the <see cref="T:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser"/> as an <see cref="T:Microsoft.WindowsAPICodePack.COMNative.Shell.IShellItemArray"/>.
             </summary>
-            <returns></returns>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Controls.WindowsPresentationFoundation.CommandLink">
             <summary>
@@ -12798,43 +12715,24 @@
             </summary>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Controls.CommonControlException.#ctor">
-            <summary>
-            Default constructor.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Controls.CommonControlException.#ctor(System.String)">
-            <summary>
-            Initializes an excpetion with a custom message.
-            </summary>
-            <param name="message"></param>
+            <inheritdoc/>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Controls.CommonControlException.#ctor(System.String,System.Exception)">
-            <summary>
-            Initializes an exception with custom message and inner exception.
-            </summary>
-            <param name="message"></param>
-            <param name="innerException"></param>
+            <inheritdoc/>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Controls.CommonControlException.#ctor(System.String,System.Int32)">
-            <summary>
-            Initializes an exception with custom message and error code.
-            </summary>
-            <param name="message"></param>
-            <param name="errorCode"></param>
+            <inheritdoc/>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Controls.CommonControlException.#ctor(System.String,Microsoft.WindowsAPICodePack.Win32Native.HResult)">
             <summary>
             Initializes an exception with custom message and error code.
             </summary>
-            <param name="message"></param>
-            <param name="errorCode"></param>
         </member>
         <member name="M:Microsoft.WindowsAPICodePack.Controls.CommonControlException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            Initializes an exception from serialization info and a context.
-            </summary>
-            <param name="info"></param>
-            <param name="context"></param>
+            <inheritdoc/>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions">
             <summary>
@@ -12849,7 +12747,7 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.Flags">
             <summary>
-            The binary representation of the ExplorerBrowser content flags
+            The binary representation of the <see cref="T:Microsoft.WindowsAPICodePack.Controls.WindowsForms.ExplorerBrowser"/> content flags.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.AlignLeft">
@@ -12864,7 +12762,7 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.CheckSelect">
             <summary>
-            Turns on check mode for the view
+            Turns on check mode for the view.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.ExtendedTiles">
@@ -12909,7 +12807,7 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.SingleClickActivate">
             <summary>
-            Navigate with a single click
+            Navigate with a single click.
             </summary>
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.SingleSelection">
@@ -12919,7 +12817,7 @@
         </member>
         <member name="P:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserContentOptions.ThumbnailSize">
             <summary>
-            The size of the thumbnails in pixels
+            The size of the thumbnails in pixels.
             </summary>
         </member>
         <member name="T:Microsoft.WindowsAPICodePack.Controls.ExplorerBrowserViewMode">

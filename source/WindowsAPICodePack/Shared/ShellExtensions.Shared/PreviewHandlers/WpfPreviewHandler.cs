@@ -1,24 +1,26 @@
-﻿using System;
+﻿using Microsoft.WindowsAPICodePack.COMNative.ShellExtensions;
+using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.ShellExtensions.Resources;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell;
+using Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager;
+
+using System;
 using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media;
-using Microsoft.WindowsAPICodePack.ShellExtensions.Resources;
-using Microsoft.WindowsAPICodePack.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell;
-using Microsoft.WindowsAPICodePack.COMNative.ShellExtensions;
-using Microsoft.WindowsAPICodePack.COMNative.Shell;
-using Microsoft.WindowsAPICodePack.Win32Native.Shell.DesktopWindowManager;
+
+using MediaColor = System.Windows.Media.Color;
 
 namespace Microsoft.WindowsAPICodePack.ShellExtensions
 {
     /// <summary>
     /// This is the base class for all WPF-based preview handlers and provides their basic functionality.
     /// To create a custom preview handler that contains a WPF user control,
-    /// a class must derive from this, use the <typeparamref name="PreviewHandlerAttribute"/>,
+    /// a class must derive from this, use the <see name="PreviewHandlerAttribute"/>,
     /// and implement 1 or more of the following interfaces: 
-    /// <typeparamref name="IPreviewFromStream"/>, 
-    /// <typeparamref name="IPreviewFromShellObject"/>, 
-    /// <typeparamref name="IPreviewFromFile"/>.   
+    /// <seealso name="IPreviewFromStream"/>, 
+    /// <seealso name="IPreviewFromShellObject"/>, 
+    /// <seealso name="IPreviewFromFile"/>.   
     /// </summary>
     public abstract class WpfPreviewHandler : PreviewHandler, IDisposable
     {
@@ -67,18 +69,18 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
             {
                 ThrowIfNoControl();
 
-                var p = new HwndSourceParameters
+                _source = new HwndSource(new HwndSourceParameters
                 {
                     WindowStyle = (int)(WindowStyles.Child | WindowStyles.Visible | WindowStyles.ClipSiblings),
                     ParentWindow = _parentHandle,
                     Width = Math.Abs(_bounds.Left - _bounds.Right),
                     Height = Math.Abs(_bounds.Top - _bounds.Bottom)
-                };
+                });
 
-                _source = new HwndSource(p);
                 _source.CompositionTarget.BackgroundColor = Brushes.WhiteSmoke.Color;
                 _source.RootVisual = (Visual)Control.Content;
             }
+
             UpdatePlacement();
         }
 
@@ -94,24 +96,26 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         {
             if (caughtException == null) return;
 
-            var text = new TextBox
+            Control = new UserControl()
             {
-                IsReadOnly = true,
-                MaxLines = 20,
-                Text = caughtException.ToString()
+                Content = new TextBox
+                {
+                    IsReadOnly = true,
+                    MaxLines = 20,
+                    Text = caughtException.ToString()
+                }
             };
-            Control = new UserControl() { Content = text };
         }
 
         protected override void SetFocus() => Control.Focus();
 
-        protected override void SetBackground(in int argb) => Control.Background = new SolidColorBrush(Color.FromArgb(
+        protected override void SetBackground(in int argb) => Control.Background = new SolidColorBrush(MediaColor.FromArgb(
                 (byte)((argb >> 24) & 0xFF), //a         
                 (byte)((argb >> 16) & 0xFF), //r
                 (byte)((argb >> 8) & 0xFF), //g
                 (byte)(argb & 0xFF))); //b
 
-        protected override void SetForeground(in int argb) => Control.Foreground = new SolidColorBrush(Color.FromArgb(
+        protected override void SetForeground(in int argb) => Control.Foreground = new SolidColorBrush(MediaColor.FromArgb(
                  (byte)((argb >> 24) & 0xFF), //a                
                  (byte)((argb >> 16) & 0xFF), //r
                  (byte)((argb >> 8) & 0xFF), //g
@@ -119,9 +123,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
 
         protected override void SetFont(in LogFont font)
         {
-            if (font == null) throw new ArgumentNullException(nameof(font));
-
-            Control.FontFamily = new FontFamily(font.FaceName);
+            Control.FontFamily = font == null ? throw new ArgumentNullException(nameof(font)) : new FontFamily(font.FaceName);
             Control.FontSize = font.Height;
             Control.FontWeight = font.Weight > 0 && font.Weight < 1000 ?
                 System.Windows.FontWeight.FromOpenTypeWeight(font.Weight) :
@@ -129,14 +131,10 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         }
 
         #region IDisposable Members
-
         /// <summary>
         /// Preview handler control finalizer
         /// </summary>
-        ~WpfPreviewHandler()
-        {
-            Dispose(false);
-        }
+        ~WpfPreviewHandler() => Dispose(false);
 
         /// <summary>
         /// Disposes the control
@@ -154,12 +152,10 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         /// <param name="disposing"></param>
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing && _source != null)
+            if (disposing)
 
-                _source.Dispose();
+                _source?.Dispose();
         }
-
         #endregion
-
     }
 }

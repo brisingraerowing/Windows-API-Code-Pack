@@ -16,10 +16,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         /// <param name="extensions">Semi-colon-separated list of extensions supported by this provider.</param>
         public ThumbnailProviderAttribute(string name, string extensions)
         {
-            if (name == null) throw new ArgumentNullException("name");
-            if (extensions == null) throw new ArgumentNullException("extensions");
-
-            Name = name;
+            Name = name == null ? throw new ArgumentNullException(nameof(name)) : extensions == null ? throw new ArgumentNullException(nameof(extensions)) : name;
             Extensions = extensions;
 
             DisableProcessIsolation = false;
@@ -43,7 +40,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         /// <summary>
         /// Opts-out of running within the surrogate process DllHost.exe.
         /// This will reduce robustness and security.
-        /// This value should be true if the provider does not implement <typeparamref name="IThumbnailFromStream"/>.
+        /// This value should be true if the provider does not implement <see name="IThumbnailFromStream"/>.
         /// </summary>
         // Note: The msdn documentation and property name are contradicting.
         // http://msdn.microsoft.com/en-us/library/cc144118(VS.85).aspx
@@ -65,7 +62,7 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         public string TypeOverlay { get; set; }
 
         /// <summary>
-        /// Specifies the <typeparamref name="ThumbnailAdornment"/> for the thumbnail.
+        /// Specifies the <see name="ThumbnailAdornment"/> for the thumbnail.
         /// <remarks>
         /// Only 32bpp bitmaps support adornments. 
         /// While 24bpp bitmaps will be displayed, their adornments will not.
@@ -136,6 +133,4 @@ namespace Microsoft.WindowsAPICodePack.ShellExtensions
         /// </summary>
         VideoSprockets = 3
     }
-
-
 }
