@@ -13,7 +13,7 @@
 		<FileVersion>3.11</FileVersion>
 	</PropertyGroup>
 
-	<Import Project="$(SolutionDir)\ExtraProperties.props" />
+	<Import Project="$(SolutionDir)\ExtraProperties.props" Condition="'$(Configuration)'=='Release'" />
 
 	<ItemGroup>
 		<PackageReference Include="WinCopies.Util" Version="3.18" />

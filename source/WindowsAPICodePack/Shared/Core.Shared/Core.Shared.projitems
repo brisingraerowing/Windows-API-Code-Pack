@@ -6,7 +6,7 @@
     <SharedGUID>3c3964dd-26d2-4497-a8ee-aad7dc73a52d</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>Microsoft.WindowsAPICodePack.Core</Import_RootNamespace>
+    <Import_RootNamespace>Microsoft.WindowsAPICodePack</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AppRestartRecovery\ApplicationRecoveryException.cs" />

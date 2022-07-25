@@ -6,7 +6,7 @@
     <SharedGUID>ec2b98cc-6f10-4e51-8d2a-17595dad65eb</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>Shell</Import_RootNamespace>
+    <Import_RootNamespace>Microsoft.WindowsAPICodePack.Shell</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Common\Dialogs\File\CommonFileDialog.cs" />

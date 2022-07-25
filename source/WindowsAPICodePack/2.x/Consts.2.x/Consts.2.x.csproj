@@ -12,7 +12,7 @@
 		<FileVersion>2.12</FileVersion>
 	</PropertyGroup>
 
-	<Import Project="$(SolutionDir)\ExtraProperties.props" />
+	<Import Project="$(SolutionDir)\ExtraProperties.props" Condition="'$(Configuration)'=='Release'" />
 
 	<Import Project="..\..\Shared\Consts.Shared\Consts.Shared.projitems" Label="Shared" />
 </Project>

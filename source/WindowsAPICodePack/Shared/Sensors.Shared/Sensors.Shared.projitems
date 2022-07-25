@@ -6,7 +6,7 @@
     <SharedGUID>a873c775-ccba-437d-bc62-9ac7c821e7d7</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>Sensors</Import_RootNamespace>
+    <Import_RootNamespace>Microsoft.WindowsAPICodePack.Sensors</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Metadata\SensorConnection.cs">

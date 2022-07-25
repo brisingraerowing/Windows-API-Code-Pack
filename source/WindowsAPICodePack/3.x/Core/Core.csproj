@@ -13,7 +13,7 @@
 		<UseWindowsForms>true</UseWindowsForms>
 	</PropertyGroup>
 
-	<Import Project="$(SolutionDir)\ExtraProperties.Core.props" />
+	<Import Project="$(SolutionDir)\ExtraProperties.Core.props" Condition="'$(Configuration)'=='Release'" />
 
 	<ItemGroup>
 		<None Remove="CustomDictionary.xml" />

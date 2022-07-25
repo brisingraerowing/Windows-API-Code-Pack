@@ -6,7 +6,7 @@
     <SharedGUID>ab530093-4feb-4f6f-a34d-6dc5ff9b3881</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>Microsoft.WindowsAPICodePack.Win32Native</Import_RootNamespace>
+    <Import_RootNamespace>Microsoft.WindowsAPICodePack.Consts</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Consts.cs" />

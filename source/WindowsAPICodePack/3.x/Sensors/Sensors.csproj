@@ -13,7 +13,7 @@
 		<FileVersion>3.11</FileVersion>
 	</PropertyGroup>
 
-	<Import Project="$(SolutionDir)\ExtraProperties.props" />
+	<Import Project="$(SolutionDir)\ExtraProperties.props" Condition="'$(Configuration)'=='Release'" />
 
 	<Import Project="..\..\Shared\Sensors.Shared\Sensors.Shared.projitems" Label="Shared" />
 

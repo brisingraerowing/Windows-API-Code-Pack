@@ -6,7 +6,7 @@
     <SharedGUID>eeca348e-f9e7-44d5-9c50-a307c7f44d48</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>Win32Native</Import_RootNamespace>
+    <Import_RootNamespace>Microsoft.WindowsAPICodePack.Win32</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)APIs\Console.cs" />
