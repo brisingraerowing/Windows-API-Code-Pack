@@ -117,6 +117,10 @@ COMNative 3.0
 - Removals:
     - Some 'ref' keywords in native PortableDevices interfaces. These keywords have been removed for interface type parameters because they was redundant.
 
+## 07/2022 2.12.0.2
+
+Bug fixed in ShellProperty: an exception was thrown (truncation error), even if no truncation were made.
+
 ## 07/2022 2.12
 
 - New constants.

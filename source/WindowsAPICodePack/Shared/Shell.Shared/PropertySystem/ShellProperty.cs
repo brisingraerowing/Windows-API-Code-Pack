@@ -100,7 +100,7 @@ namespace Microsoft.WindowsAPICodePack.Shell.PropertySystem
 #endif
                     (hr));
 
-                _ = AllowSetTruncatedValue && result == HResult.InPlaceStringTruncated ? CoreErrorHelper.Succeeded(result) ? writablePropStore.Commit() : throw new PropertySystemException(LocalizedMessages.ShellPropertySetValue, Marshal.GetExceptionForHR((int)result)) : throw new ArgumentOutOfRangeException(nameof(propVar), LocalizedMessages.ShellPropertyValueTruncated);
+                _ = result != HResult.InPlaceStringTruncated || AllowSetTruncatedValue ? CoreErrorHelper.Succeeded(result) ? writablePropStore.Commit() : throw new PropertySystemException(LocalizedMessages.ShellPropertySetValue, Marshal.GetExceptionForHR((int)result)) : throw new ArgumentOutOfRangeException(nameof(propVar), LocalizedMessages.ShellPropertyValueTruncated);
             }
 
             catch (InvalidComObjectException e)

@@ -7,10 +7,10 @@
 		<Copyright>Copyright © Microsoft 2010, Copyright © Pierre Sprimont 2022</Copyright>
 		<Description>WindowsAPICodePack for Shell</Description>
 		<DefineConstants>WAPICP3;$(DefineConstants)</DefineConstants>
-		<VersionPrefix>3.11</VersionPrefix>
+		<VersionPrefix>3.11.0.1</VersionPrefix>
 		<VersionSuffix>preview</VersionSuffix>
-		<AssemblyVersion>3.11</AssemblyVersion>
-		<FileVersion>3.11</FileVersion>
+		<AssemblyVersion>3.11.0.1</AssemblyVersion>
+		<FileVersion>3.11.0.1</FileVersion>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<UseWindowsForms>true</UseWindowsForms>
 		<UseWPF>true</UseWPF>

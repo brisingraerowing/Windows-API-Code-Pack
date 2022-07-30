@@ -114,7 +114,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
 
             set
             {
-                if (value == null? throw new ArgumentNullException(nameof(value)) : NativeShellItem2 != null)
+                if (value == null ? throw new ArgumentNullException(nameof(value)) : NativeShellItem2 != null)
                 {
                     Properties.System.Comment.Value = value;
 
@@ -125,10 +125,7 @@ namespace Microsoft.WindowsAPICodePack.Shell
         #endregion Public Properties
 
         #region Constructors
-        internal ShellLink(in IShellItem2 shellItem) : base(shellItem)
-        {
-            // Left empty.
-        }
+        internal ShellLink(in IShellItem2 shellItem) : base(shellItem) { /* Left empty. */ }
 
 #if WAPICP3
         private ShellLink(in IShellItem2 shellItem, in string sourcePath) : base(shellItem) => TargetLocation = sourcePath;
